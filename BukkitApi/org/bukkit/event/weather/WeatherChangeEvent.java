@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Stores data for weather changing in a world
+ * 天气改变事件
  */
 public class WeatherChangeEvent extends WeatherEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -26,9 +26,9 @@ public class WeatherChangeEvent extends WeatherEvent implements Cancellable {
     }
 
     /**
-     * Gets the state of weather that the world is being set to
+     * 获取世界是否在下雨/雪
      *
-     * @return true if the weather is being set to raining, false otherwise
+     * @return true 世界正在下雨/雪，false 反之
      */
     public boolean toWeatherState() {
         return to;
