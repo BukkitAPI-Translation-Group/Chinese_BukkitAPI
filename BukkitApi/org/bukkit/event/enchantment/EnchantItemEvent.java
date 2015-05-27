@@ -13,8 +13,7 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when an ItemStack is successfully enchanted (currently at
- * enchantment table)
+ * 成功附魔物品的事件 (在附魔台里面附魔的)
  */
 public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -38,65 +37,64 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * Gets the player enchanting the item
+     * 获取附魔这个物品的玩家
      *
-     * @return enchanting player
+     * @return 附魔这个物品的玩家
      */
     public Player getEnchanter() {
         return enchanter;
     }
 
     /**
-     * Gets the block being used to enchant the item
+     * 获取附魔这个物品的方块
      *
-     * @return the block used for enchanting
+     * @return 附魔这个物品的方块
      */
     public Block getEnchantBlock() {
         return table;
     }
 
     /**
-     * Gets the item to be enchanted (can be modified)
+     * 获取被附魔的物品(可自定义)
      *
-     * @return ItemStack of item
+     * @return 被附魔的物品
      */
     public ItemStack getItem() {
         return item;
     }
 
     /**
-     * Get cost in exp levels of the enchantment
+     * 获取花费的附魔等级
      *
-     * @return experience level cost
+     * @return 花费的附魔等级
      */
     public int getExpLevelCost() {
         return level;
     }
 
     /**
-     * Set cost in exp levels of the enchantment
+     * 设置花费的附魔等级
      *
-     * @param level - cost in levels
+     * @param level - 花费的附魔等级
      */
     public void setExpLevelCost(int level) {
         this.level = level;
     }
 
     /**
-     * Get map of enchantment (levels, keyed by type) to be added to item
-     * (modify map returned to change values). Note: Any enchantments not
-     * allowed for the item will be ignored
+     * 获取被加到物品中的附魔的Map (等级, 附魔种类)（若要修改请直接修改Map） . 注意: 不能被添加
+     * 到物品中的附魔会被忽略哦
      *
-     * @return map of enchantment levels, keyed by enchantment
+     * @return 被加到物品中的附魔的Map (等级, 附魔种类)
      */
     public Map<Enchantment, Integer> getEnchantsToAdd() {
         return enchants;
     }
 
     /**
-     * Which button was pressed to initiate the enchanting.
+     * 获取玩家点击的附魔的按钮
      *
-     * @return The button index (0, 1, or 2).
+     * @return 按钮的序号 (0, 1, 2).
      */
     public int whichButton() {
         return button;
