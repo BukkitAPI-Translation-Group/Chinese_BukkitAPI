@@ -1,32 +1,46 @@
 package org.bukkit.inventory;
 
 /**
- * A ItemFlag can hide some Attributes from ItemStacks
+ * 隐藏ItemStacks的某些属性.
+ * <p>
+ * 原文:A ItemFlag can hide some Attributes from ItemStacks
  */
 public enum ItemFlag {
 
     /**
-     * Setting to show/hide enchants
+     * 设置显示/隐藏附魔.
+     * <p>
+     * 原文:Setting to show/hide enchants
      */
     HIDE_ENCHANTS,
     /**
-     * Setting to show/hide Attributes like Damage
+     * 设置显示/隐藏该Item的属性,例如伤害.
+     * <>
+     * 原文:Setting to show/hide Attributes like Damage
      */
     HIDE_ATTRIBUTES,
     /**
-     * Setting to show/hide the unbreakable State
+     * 设置显示/隐藏不可破坏属性.
+     * <p>
+     * 原文:Setting to show/hide the unbreakable State
      */
     HIDE_UNBREAKABLE,
     /**
-     * Setting to show/hide what the ItemStack can break/destroy
+     * 设置显示/隐藏哪些ItemStack可以被破坏.
+     * <p>
+     * 原文:Setting to show/hide what the ItemStack can break/destroy
      */
     HIDE_DESTROYS,
     /**
-     * Setting to show/hide where this ItemStack can be build/placed on
+     * 设置显示/隐藏哪些ItemStack可以被放置.
+     * <p>
+     * 原文:Setting to show/hide where this ItemStack can be build/placed on
      */
     HIDE_PLACED_ON,
     /**
-     * Setting to show/hide potion effects on this ItemStack
+     * 设置显示/隐藏ItemStack的药水效果.
+     * <p>
+     * 原文:Setting to show/hide potion effects on this ItemStack
      */
     HIDE_POTION_EFFECTS;
 }
