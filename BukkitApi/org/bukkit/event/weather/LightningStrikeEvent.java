@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Stores data for lightning striking
+ * 雷击事件
  */
 public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,9 +27,9 @@ public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
     }
 
     /**
-     * Gets the bolt which is striking the earth.
+     * 获取从天空中打下的雷电
      *
-     * @return lightning entity
+     * @return 雷电的实体
      */
     public LightningStrike getLightning() {
         return bolt;
