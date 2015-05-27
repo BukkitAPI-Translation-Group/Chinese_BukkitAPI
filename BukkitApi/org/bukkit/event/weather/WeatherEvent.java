@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.bukkit.event.Event;
 
 /**
- * Represents a Weather-related event
+ * 和天气有关的事件
  */
 public abstract class WeatherEvent extends Event {
     protected World world;
@@ -14,9 +14,9 @@ public abstract class WeatherEvent extends Event {
     }
 
     /**
-     * Returns the World where this event is occurring
+     * 返回天气事件所发生的世界
      *
-     * @return World this event is occurring in
+     * @return 天气事件所发生的世界
      */
     public final World getWorld() {
         return world;
