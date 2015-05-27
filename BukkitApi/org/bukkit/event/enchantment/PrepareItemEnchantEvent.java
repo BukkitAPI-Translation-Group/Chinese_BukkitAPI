@@ -9,8 +9,8 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when an ItemStack is inserted in an enchantment table - can be
- * called multiple times
+ * 物品塞入附魔台的事件 - 可以
+ * 同时调用
  */
 public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -32,46 +32,49 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
     }
 
     /**
-     * Gets the player enchanting the item
+     * 获取附魔的玩家
      *
-     * @return enchanting player
+     * @return 附魔的玩家
      */
     public Player getEnchanter() {
         return enchanter;
     }
 
     /**
-     * Gets the block being used to enchant the item
+     * 获取用来附魔的方块
      *
-     * @return the block used for enchanting
+     * @return 用来附魔的方块
      */
     public Block getEnchantBlock() {
         return table;
     }
 
     /**
-     * Gets the item to be enchanted (can be modified)
+     * 获取附魔的物品(可改动)
+	 * src:Gets the item to be enchanted (can be modified)
      *
-     * @return ItemStack of item
+     * @return 附魔的物品/ItemStack of item
      */
     public ItemStack getItem() {
         return item;
     }
 
     /**
-     * Get list of offered exp level costs of the enchantment (modify values
+     * 获取附魔需要的等级列表（更改返回值即可改变需要的等级）
+	 * src:Get list of offered exp level costs of the enchantment (modify values
      * to change offer)
      *
-     * @return experience level costs offered
+     * @return 获取附魔需要的等级列表/experience level costs offered
      */
     public int[] getExpLevelCostsOffered() {
         return levelsOffered;
     }
 
     /**
-     * Get enchantment bonus in effect - corresponds to number of bookshelves
+     * 获取附魔的附加效果
+	 * src:Get enchantment bonus in effect - corresponds to number of bookshelves
      *
-     * @return enchantment bonus
+     * @return enchantment bonus/附魔的附加效果
      */
     public int getEnchantmentBonus() {
         return bonus;
