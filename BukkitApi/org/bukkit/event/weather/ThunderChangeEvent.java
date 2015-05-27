@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Stores data for thunder state changing in a world
+ * 世界打雷事件
  */
 public class ThunderChangeEvent extends WeatherEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -26,9 +26,9 @@ public class ThunderChangeEvent extends WeatherEvent implements Cancellable {
     }
 
     /**
-     * Gets the state of thunder that the world is being set to
+     * 获取世界是否正在打雷
      *
-     * @return true if the weather is being set to thundering, false otherwise
+     * @return true 世界正在打雷, false 反之
      */
     public boolean toThunderState() {
         return to;
