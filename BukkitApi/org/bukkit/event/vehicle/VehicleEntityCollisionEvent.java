@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Raised when a vehicle collides with an entity.
+ * 载具撞击实体的事件
  */
 public class VehicleEntityCollisionEvent extends VehicleCollisionEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
