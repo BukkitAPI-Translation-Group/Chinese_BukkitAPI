@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Raised when a living entity exits a vehicle.
+ * 实体退出载具的事件
  */
 public class VehicleExitEvent extends VehicleEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -19,7 +19,8 @@ public class VehicleExitEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * Get the living entity that exited the vehicle.
+     * 获取退出载具事件的实体
+	 * 原文:Get the living entity that exited the vehicle.
      *
      * @return The entity.
      */
