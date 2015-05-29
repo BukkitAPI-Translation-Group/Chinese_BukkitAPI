@@ -5,7 +5,7 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * Represents the two types of coal
+ * 代表两种煤/Represents the two types of coal
  */
 public enum CoalType {
     COAL(0x0),
@@ -19,9 +19,9 @@ public enum CoalType {
     }
 
     /**
-     * Gets the associated data value representing this type of coal
-     *
-     * @return A byte containing the data value of this coal type
+     * 原文:Gets the associated data value representing this type of coal
+     * 获取煤的数据值
+     * @return 煤的数据值
      * @deprecated Magic value
      */
     @Deprecated
@@ -30,11 +30,10 @@ public enum CoalType {
     }
 
     /**
-     * Gets the type of coal with the given data value
-     *
-     * @param data Data value to fetch
-     * @return The {@link CoalType} representing the given value, or null if
-     *     it doesn't exist
+     * 原文：Gets the type of coal with the given data value
+     * 用数据值获取煤的类型
+     * @param data 要获取的煤的类型
+     * @return {@link CoalType} 代表给定的值, 如果不存在则为null
      * @deprecated Magic value
      */
     @Deprecated
