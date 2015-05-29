@@ -3,33 +3,33 @@ package org.bukkit.scheduler;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Represents a task being executed by the scheduler
+ * 代表一个被调度器执行的任务.
  */
 public interface BukkitTask {
 
     /**
-     * Returns the taskId for the task.
+     * 返回该任务id.
      *
-     * @return Task id number
+     * @return 任务id
      */
     public int getTaskId();
 
     /**
-     * Returns the Plugin that owns this task.
+     * 返回拥有该任务的插件.
      *
-     * @return The Plugin that owns the task
+     * @return 拥有该任务的插件
      */
     public Plugin getOwner();
 
     /**
-     * Returns true if the Task is a sync task.
+     * 返回true如果该任务是同步执行.
      *
-     * @return true if the task is run by main thread
+     * @return true 如果有主线程执行
      */
     public boolean isSync();
 
     /**
-     * Will attempt to cancel this task.
+     * 尝试关闭该任务.
      */
     public void cancel();
 }
