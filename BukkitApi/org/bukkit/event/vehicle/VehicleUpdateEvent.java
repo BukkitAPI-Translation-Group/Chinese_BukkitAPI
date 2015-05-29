@@ -4,7 +4,7 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a vehicle updates
+ * 载具更新事件
  */
 public class VehicleUpdateEvent extends VehicleEvent {
     private static final HandlerList handlers = new HandlerList();
