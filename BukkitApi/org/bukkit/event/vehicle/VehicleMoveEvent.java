@@ -5,7 +5,7 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.HandlerList;
 
 /**
- * Raised when a vehicle moves.
+ * 载具移动事件
  */
 public class VehicleMoveEvent extends VehicleEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -20,7 +20,8 @@ public class VehicleMoveEvent extends VehicleEvent {
     }
 
     /**
-     * Get the previous position.
+     * 获取载具的上一个位置
+	 * 原文:Get the previous position.
      *
      * @return Old position.
      */
@@ -29,7 +30,8 @@ public class VehicleMoveEvent extends VehicleEvent {
     }
 
     /**
-     * Get the next position.
+     * 获取载具新的位置
+	 * 原文:Get the next position.
      *
      * @return New position.
      */
