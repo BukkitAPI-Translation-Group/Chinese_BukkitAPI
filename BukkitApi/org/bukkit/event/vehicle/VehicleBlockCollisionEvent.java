@@ -5,7 +5,7 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.HandlerList;
 
 /**
- * Raised when a vehicle collides with a block.
+ * 载具撞击方块的事件
  */
 public class VehicleBlockCollisionEvent extends VehicleCollisionEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -17,9 +17,10 @@ public class VehicleBlockCollisionEvent extends VehicleCollisionEvent {
     }
 
     /**
-     * Gets the block the vehicle collided with
+     * 获取载具撞到的方块
+	 * 原文:Gets the block the vehicle collided with
      *
-     * @return the block the vehicle collided with
+     * @return 载具撞到的方块/the block the vehicle collided with
      */
     public Block getBlock() {
         return block;
