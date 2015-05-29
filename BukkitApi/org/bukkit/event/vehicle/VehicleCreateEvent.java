@@ -4,7 +4,7 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.HandlerList;
 
 /**
- * Raised when a vehicle is created.
+ * 载具创建事件
  */
 public class VehicleCreateEvent extends VehicleEvent {
     private static final HandlerList handlers = new HandlerList();
