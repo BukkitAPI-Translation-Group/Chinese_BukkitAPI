@@ -4,7 +4,8 @@ import org.bukkit.entity.Vehicle;
 import org.bukkit.event.Event;
 
 /**
- * Represents a vehicle-related event.
+ * 代表所有和载具有关的事件
+ * 原文:Represents a vehicle-related event.
  */
 public abstract class VehicleEvent extends Event {
     protected Vehicle vehicle;
@@ -14,9 +15,9 @@ public abstract class VehicleEvent extends Event {
     }
 
     /**
-     * Get the vehicle.
-     *
-     * @return the vehicle
+     * 获取发生事件的载具
+     * 原文:Get the vehicle
+     * @return 发生事件的载具
      */
     public final Vehicle getVehicle() {
         return vehicle;
