@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 /**
  * 载具被损毁的事件（包含被玩家/自然损坏）。若有一
  * 个船直接被"删除"了，这个事件将不会被调用
- * sssss:Raised when a vehicle is destroyed, which could be caused by either a
+ * 原文:Raised when a vehicle is destroyed, which could be caused by either a
  * player or the environment. This is not raised if the boat is simply
  * 'removed' due to other means.
  */
@@ -24,7 +24,7 @@ public class VehicleDestroyEvent extends VehicleEvent implements Cancellable {
 
     /**
      * 获取损毁载具的实体，可能为null
-	 * sssss:Gets the Entity that has destroyed the vehicle, potentially null
+	 * 原文:Gets the Entity that has destroyed the vehicle, potentially null
      *
      * @return 损毁载具的实体，可能为null/the Entity that has destroyed the vehicle, potentially null
      */
