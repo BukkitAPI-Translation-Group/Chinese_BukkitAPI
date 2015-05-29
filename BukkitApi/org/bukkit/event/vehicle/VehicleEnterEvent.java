@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Raised when an entity enters a vehicle.
+ * 实体进入载具的事件
  */
 public class VehicleEnterEvent extends VehicleEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -19,9 +19,10 @@ public class VehicleEnterEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * Gets the Entity that entered the vehicle.
+     * 获取进入到载具中的实体
+	 * 原文:Gets the Entity that entered the vehicle.
      *
-     * @return the Entity that entered the vehicle
+     * @return 进入到载具中的实体
      */
     public Entity getEntered() {
         return entered;
