@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.util.NumberConversions;
 
 /**
- * Raised when a vehicle receives damage.
+ * 载具被伤害的事件
  */
 public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,18 +27,20 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * Gets the Entity that is attacking the vehicle
+     * 获取攻击这个载具的实体
+	 * 原文:Gets the Entity that is attacking the vehicle
      *
-     * @return the Entity that is attacking the vehicle
+     * @return 攻击这个载具的实体
      */
     public Entity getAttacker() {
         return attacker;
     }
 
     /**
-     * Gets the damage done to the vehicle
+     * 获取载具受到的伤害
+	 * 原文:Gets the damage done to the vehicle
      *
-     * @return the damage done to the vehicle
+     * @return 载具受到的伤害
      */
     public double getDamage() {
         return damage;
@@ -57,9 +59,10 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * Sets the damage done to the vehicle
+     * 设置载具受到的伤害
+	 * 原文:Sets the damage done to the vehicle
      *
-     * @param damage The damage
+     * @param damage 载具受到的伤害
      */
     public void setDamage(double damage) {
         this.damage = damage;
