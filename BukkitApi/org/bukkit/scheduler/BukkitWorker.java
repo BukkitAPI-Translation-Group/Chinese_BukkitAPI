@@ -4,9 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 /**
- * 
-
-提供一简单的处理调度任务方式.
+ * 提供一简单的处理调度任务方式.
  */
 public abstract class BukkitRunnable implements Runnable {
   
@@ -14,11 +12,10 @@ public abstract class BukkitRunnable implements Runnable {
   private int taskId = -1;
 
     /**
+     * 
      * 尝试关闭该任务.
      *
-     * @throws 
-
-IllegalStateException 如果任务还未被调度.
+     * @throws IllegalStateException 如果任务还未被调度.
      */
     public synchronized void cancel() 
 
@@ -31,17 +28,11 @@ throws IllegalStateException {
  /**
      * 使该任务由Bukkit调度器在下一个tick执行.
      * 
-     * @param plugin 调度该任务的
-
-插件引用
+     * @param plugin 调度该任务的插件引用
      * @return 包含任务id的BukkitTask.
-     * @throws IllegalArgumentException 如果
-
-插件为空
+     * @throws IllegalArgumentException 如果插件为空
      * @throws IllegalStateException 如果该任务还未被调度
-     * @see 
-
-BukkitScheduler#runTask(Plugin, Runnable)
+     * @see BukkitScheduler#runTask(Plugin, Runnable)
      */
     public synchronized BukkitTask runTask
 
