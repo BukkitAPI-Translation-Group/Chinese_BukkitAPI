@@ -15,7 +15,7 @@ public interface BukkitScheduler {
      * @param plugin 拥有该任务的插件引用
      * @param task 即将被执行的任务
      * @param delay 任务执行前的延迟服务器tick数
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
@@ -24,7 +24,7 @@ public interface BukkitScheduler {
      * @param plugin 拥有该任务的插件引用
      * @param task 即将被执行的任务
      * @param delay 任务执行前的延迟服务器tick数
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task, long delay);
@@ -36,7 +36,7 @@ public interface BukkitScheduler {
      *
      * @param plugin 拥有该任务的插件引用
      * @param task 即将被执行的任务
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
 
@@ -44,7 +44,7 @@ public interface BukkitScheduler {
      * @deprecated Use {@link BukkitRunnable#runTask(Plugin)}
      * @param plugin 拥有该任务的插件引用
      * @param task 即将被执行的任务
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task);
@@ -58,7 +58,7 @@ public interface BukkitScheduler {
      * @param task 即将被执行的任务
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      */
     public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
 
@@ -68,7 +68,7 @@ public interface BukkitScheduler {
      * @param task 即将被执行的任务
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      */
     @Deprecated
     public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period);
@@ -83,7 +83,7 @@ public interface BukkitScheduler {
      * @param plugin Plugin that owns the task
      * @param task 即将被执行的任务
      * @param delay 任务执行前的延迟服务器tick数
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -99,7 +99,7 @@ public interface BukkitScheduler {
      *
      * @param plugin 拥有该任务的插件引用
      * @param task 即将被执行的任务
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -117,7 +117,7 @@ public interface BukkitScheduler {
      * @param task 即将被执行的任务
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return 返回任务的id。如果为-1，则表示调度失败
+     * @return 返回任务的id.如果为-1，则表示调度失败.
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
