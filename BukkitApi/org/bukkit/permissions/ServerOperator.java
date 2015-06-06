@@ -24,7 +24,7 @@ public interface ServerOperator {
      * <p>
      * 原文:Sets the operator status of this object
      *
-     * @param value 新op的值(名字)
+     * @param value 新op的值(布尔值)
      */
     public void setOp(boolean value);
 }
