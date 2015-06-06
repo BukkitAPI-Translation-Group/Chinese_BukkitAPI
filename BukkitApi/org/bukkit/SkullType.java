@@ -1,7 +1,7 @@
 package org.bukkit;
 
 /**
- * Represents the different types of skulls.
+ * 代表不同种类的头颅。
  */
 public enum SkullType {
     SKELETON,
