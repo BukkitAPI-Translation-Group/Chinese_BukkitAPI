@@ -20,11 +20,11 @@ public interface ServerOperator {
     public boolean isOp();
 
     /**
-     * 设置该对象是否为OP.
+     * 设置此对象的op状态.
      * <p>
      * 原文:Sets the operator status of this object
      *
-     * @param value 新的状态
+     * @param value 新op的值(名字)
      */
     public void setOp(boolean value);
 }
