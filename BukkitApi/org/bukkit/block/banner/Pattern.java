@@ -17,11 +17,14 @@ public class Pattern implements ConfigurationSerializable {
     private final PatternType pattern;
 
     /**
+     * 从指定的颜色和正则表达式类型创建一个新的正则表达式.
+     * <p>
+     * 原文:
      * Creates a new pattern from the specified color and
      * pattern type
      *
-     * @param color   the pattern color
-     * @param pattern the pattern type
+     * @param color   正则表达式的颜色
+     * @param pattern 正则表达式的类型
      */
     public Pattern(DyeColor color, PatternType pattern) {
         this.color = color;
@@ -29,9 +32,12 @@ public class Pattern implements ConfigurationSerializable {
     }
     
     /**
+     * 反序列化构造函数.
+     * <p>
+     * 原文:
      * Constructor for deserialization.
      *
-     * @param map the map to deserialize from
+     * @param map 从地图反序列化
      */
     public Pattern(Map<String, Object> map) {
         color = DyeColor.valueOf(getString(map, COLOR));
@@ -55,18 +61,24 @@ public class Pattern implements ConfigurationSerializable {
     }
 
     /**
+     * 返回正则表达式的颜色.
+     * <p>
+     * 原文:
      * Returns the color of the pattern
      *
-     * @return the color of the pattern
+     * @return 正则表达式的颜色.
      */
     public DyeColor getColor() {
         return color;
     }
 
     /**
+     * 返回正则表达式的类型.
+     * <p>
+     * 原文:
      * Returns the type of pattern
      *
-     * @return the pattern type
+     * @return 正则表达式的类型
      */
     public PatternType getPattern() {
         return pattern;

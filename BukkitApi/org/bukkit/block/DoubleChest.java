@@ -7,7 +7,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
- * Represents a double chest.
+ * 代表一个大型箱子.
  */
 public class DoubleChest implements InventoryHolder {
     private DoubleChestInventory inventory;

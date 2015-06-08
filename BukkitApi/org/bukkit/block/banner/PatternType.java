@@ -58,21 +58,27 @@ public enum PatternType {
     }
 
     /**
+     * 返回用于表示这种正则表达式的类型的标识符.
+     * <p>
+     * 原文:
      * Returns the identifier used to represent
      * this pattern type
      *
-     * @return the pattern's identifier
+     * @return 正则表达式的标识符
      */
     public String getIdentifier() {
         return identifier;
     }
 
     /**
+     * 返回匹配的标识符,如果找不到匹配的正则表达式的类型,将返回null.
+     * <p>
+     * 原文:
      * Returns the pattern type which matches the passed
      * identifier or null if no matches are found
      *
-     * @param identifier the identifier
-     * @return the matched pattern type or null
+     * @param identifier 标识符
+     * @return 匹配的正则表达式的类型或者为null
      */
     public static PatternType getByIdentifier(String identifier) {
         return byString.get(identifier);

@@ -3,9 +3,9 @@ package org.bukkit.block;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
- * Indicates a block type that has inventory.
+ * 表示一个有背包类型的方块.
  *
- * @deprecated in favour of {@link InventoryHolder}
+ * @deprecated 赞成 {@link InventoryHolder}
  */
 @Deprecated
 public interface ContainerBlock extends InventoryHolder {}

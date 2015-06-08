@@ -3,60 +3,83 @@ package org.bukkit.block;
 import org.bukkit.SkullType;
 
 /**
- * Represents a Skull
+ * 代表一个头颅.
  */
 public interface Skull extends BlockState {
 
     /**
+     * 检测此头颅是否有主人.
+     * <p>
+     * 原文:
      * Checks to see if the skull has an owner
      *
-     * @return true if the skull has an owner
+     * @return true表示此头颅有主人
      */
     public boolean hasOwner();
 
     /**
+     * 如果存在，获取这个头颅的主人.
+     * <p>
+     * 原文:
      * Gets the owner of the skull, if one exists
      *
-     * @return the owner of the skull or null if the skull does not have an owner
+     * @return 头颅主人的名字，如果此透露没有主人将返回null
      */
     public String getOwner();
 
     /**
+     * 设置头颅的主人.
+     * <p>
+     * 提供的名称的配置文件数据涉及一个存在阻塞的Web请求.
+     * <p>
+     * 原文:
      * Sets the owner of the skull
      * <p>
      * Involves a potentially blocking web request to acquire the profile data for
      * the provided name.
      *
-     * @param name the new owner of the skull
-     * @return true if the owner was successfully set
+     * @param name 新的头颅主人的名字
+     * @return true表示成功设置这个头颅的主人
      */
     public boolean setOwner(String name);
 
     /**
+     * 获取这个头颅在世界的角度.
+     * <p>
+     * 原文:
      * Gets the rotation of the skull in the world
      *
-     * @return the rotation of the skull
+     * @return 头颅的角度
      */
     public BlockFace getRotation();
 
     /**
+     * 设置这个头颅在世界的角度.
+     * <p>
+     * 原文:
      * Sets the rotation of the skull in the world
      *
-     * @param rotation the rotation of the skull
+     * @param rotation 头颅的角度
      */
     public void setRotation(BlockFace rotation);
 
     /**
+     * 获取头颅的类型.
+     * <p>
+     * 原文:
      * Gets the type of skull
      *
-     * @return the type of skull
+     * @return 头颅的类型
      */
     public SkullType getSkullType();
 
     /**
+     * 设置头颅的类型.
+     * <p>
+     * 原文:
      * Sets the type of skull
      *
-     * @param skullType the type of skull
+     * @param skullType 头颅的类型
      */
     public void setSkullType(SkullType skullType);
 }

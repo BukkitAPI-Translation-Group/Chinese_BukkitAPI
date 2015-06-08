@@ -3,7 +3,7 @@ package org.bukkit.block;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
- * Represents a hopper.
+ * 代表一个漏斗.
  */
 public interface Hopper extends BlockState, InventoryHolder {
 

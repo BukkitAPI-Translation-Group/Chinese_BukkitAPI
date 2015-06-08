@@ -6,15 +6,15 @@ import java.util.Map;
 public enum PistonMoveReaction {
 
     /**
-     * Indicates that the block can be pushed or pulled.
+     * 表示方块可以推拉
      */
     MOVE(0),
     /**
-     * Indicates the block is fragile and will break if pushed on.
+     * 如果此方块被退而破坏,则表明方块是脆弱的.
      */
     BREAK(1),
     /**
-     * Indicates that the block will resist being pushed or pulled.
+     * 表明此方块不能被推或拉.
      */
     BLOCK(2);
 
@@ -31,8 +31,8 @@ public enum PistonMoveReaction {
     }
 
     /**
-     * @return The ID of the move reaction
-     * @deprecated Magic value
+     * @return 此移动的反映ID
+     * @deprecated 魔法值
      */
     @Deprecated
     public int getId() {
@@ -40,9 +40,9 @@ public enum PistonMoveReaction {
     }
 
     /**
-     * @param id An ID
-     * @return The move reaction with that ID
-     * @deprecated Magic value
+     * @param id 一个ID
+     * @return 这个移动反应的ID
+     * @deprecated 魔法值
      */
     @Deprecated
     public static PistonMoveReaction getById(int id) {

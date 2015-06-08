@@ -1,7 +1,7 @@
 package org.bukkit.block;
 
 /**
- * Holds all accepted Biomes in the default server
+ * 服务器默认接受的所有生物群系.
  */
 public enum Biome {
     SWAMPLAND,
