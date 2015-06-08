@@ -3,7 +3,8 @@ package org.bukkit.block;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
- * Represents a beacon.
+ * 代表一个信标.
  */
 public interface Beacon extends BlockState, InventoryHolder {
 }
+
