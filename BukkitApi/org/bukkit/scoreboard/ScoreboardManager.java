@@ -3,26 +3,25 @@ package org.bukkit.scoreboard;
 import java.lang.ref.WeakReference;
 
 /**
- * Manager of Scoreboards
+ * 计分板管理
  */
 public interface ScoreboardManager {
 
     /**
-     * Gets the primary Scoreboard controlled by the server.
+     * 获取初始服务器计分板
      * <p>
-     * This Scoreboard is saved by the server, is affected by the /scoreboard
-     * command, and is the scoreboard shown by default to players.
-     *
-     * @return the default sever scoreboard
+     * 该计分板数据保于服务器,受/scoreboard 指令影响,
+     * 显示玩家初始计分
+     * 
+     * @return 初始服务器计分板
      */
     Scoreboard getMainScoreboard();
 
     /**
-     * Gets a new Scoreboard to be tracked by the server. This scoreboard will
-     * be tracked as long as a reference is kept, either by a player or by a
-     * plugin.
+     * 获取一个新的计分板，由服务器持续保存监测
+     * 可受玩家、插件影响
      *
-     * @return the registered Scoreboard
+     * @return 返回注册的计分板
      * @see WeakReference
      */
     Scoreboard getNewScoreboard();
