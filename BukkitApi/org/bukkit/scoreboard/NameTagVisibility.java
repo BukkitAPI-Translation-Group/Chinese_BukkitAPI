@@ -3,19 +3,19 @@ package org.bukkit.scoreboard;
 public enum NameTagVisibility {
 
     /**
-     * Always show the player's nametag.
+     * 一直显示玩家名称
      */
     ALWAYS,
     /**
-     * Never show the player's nametag.
+     * 不显示玩家名称
      */
     NEVER,
     /**
-     * Show the player's nametag only to his own team members.
+     * 仅显示在玩家所在队伍玩家计分板中
      */
     HIDE_FOR_OTHER_TEAMS,
     /**
-     * Show the player's nametag only to members of other teams.
+     * 仅显示在其他队伍计分板中
      */
     HIDE_FOR_OWN_TEAM;
 }
