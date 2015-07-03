@@ -1,7 +1,7 @@
 package org.bukkit.scoreboard;
 
 /**
- * Criteria names which trigger an objective to be modified by actions in-game
+ * 游戏内标准计分项目（生命、击杀信息、死亡次数）
  */
 public class Criterias {
     public static final String HEALTH;
