@@ -1,7 +1,7 @@
 package org.bukkit.scoreboard;
 
 /**
- * Locations for displaying objectives to the player
+ * 向玩家显示目标位置
  */
 public enum DisplaySlot {
     BELOW_NAME,
