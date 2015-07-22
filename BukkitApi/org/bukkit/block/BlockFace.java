@@ -1,7 +1,7 @@
 package org.bukkit.block;
 
 /**
- * Represents the face of a block
+ * 代表方块的朝向.
  */
 public enum BlockFace {
     NORTH(0, 0, -1),
@@ -41,6 +41,9 @@ public enum BlockFace {
     }
 
     /**
+     * 获取X坐标的数值来修改，以获得表示的方块.
+     * <p>
+     * 原文:
      * Get the amount of X-coordinates to modify to get the represented block
      *
      * @return Amount of X-coordinates to modify
@@ -50,6 +53,9 @@ public enum BlockFace {
     }
 
     /**
+     * 获取Y坐标的数值来修改，以获得表示的方块.
+     * <p>
+     * 原文:
      * Get the amount of Y-coordinates to modify to get the represented block
      *
      * @return Amount of Y-coordinates to modify
@@ -58,7 +64,10 @@ public enum BlockFace {
         return modY;
     }
 
-    /**
+    /*
+     * 获取Z坐标的数值来修改，以获得表示的方块.
+     * <p>
+     * 原文:
      * Get the amount of Z-coordinates to modify to get the represented block
      *
      * @return Amount of Z-coordinates to modify

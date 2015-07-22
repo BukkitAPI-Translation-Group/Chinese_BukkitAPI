@@ -19,64 +19,92 @@ import org.bukkit.metadata.Metadatable;
 public interface BlockState extends Metadatable {
 
     /**
+     * 获取这个方块所代表的BlockState对象.
+     * <p>
+     * 原文:
      * Gets the block represented by this BlockState
      *
-     * @return Block that this BlockState represents
+     * @return 这个方块代表的BlockState对象
      */
     Block getBlock();
 
     /**
+     * 获取这个方块的元数据.
+     * <p>
+     * 原文:
      * Gets the metadata for this block
      *
-     * @return block specific metadata
+     * @return 方块具体的元数据
      */
     MaterialData getData();
 
     /**
+     * 获取这个方块的类型.
+     * <p>
+     * 原文:
      * Gets the type of this block
      *
-     * @return block type
+     * @return 方块类型
      */
     Material getType();
 
     /**
+     * 获取这个方块的类型id.
+     * <p>
+     * 原文:
      * Gets the type-id of this block
      *
-     * @return block type-id
-     * @deprecated Magic value
+     * @return 方块类型id
+     * @deprecated 魔法值
      */
     @Deprecated
     int getTypeId();
 
     /**
+     * 获取光照强度，在0-15之间.
+     * <p>
+     * 原文:
      * Gets the light level between 0-15
      *
-     * @return light level
+     * @return 光照强度
      */
     byte getLightLevel();
 
     /**
+     * 获取方块包含在哪一个世界里.
+     * 
+     * <p>
+     * 原文:
      * Gets the world which contains this Block
      *
-     * @return World containing this block
+     * @return 方块所处世界
      */
     World getWorld();
 
-    /**
+    /*
+     * 获取这个方块的X坐标.
+     * <p>
+     * 原文:
      * Gets the x-coordinate of this block
      *
-     * @return x-coordinate
+     * @return X坐标
      */
     int getX();
 
     /**
+     * 获取这个方块的Y坐标.
+     * <p>
+     * 原文:
      * Gets the y-coordinate of this block
      *
-     * @return y-coordinate
+     * @return Y坐标
      */
     int getY();
 
     /**
+     * 获取这个方块的Z坐标.
+     * <p>
+     * 原文:
      * Gets the z-coordinate of this block
      *
      * @return z-coordinate
@@ -84,6 +112,9 @@ public interface BlockState extends Metadatable {
     int getZ();
 
     /**
+     * 获取这个方块的位置.
+     * <p>
+     * 原文:
      * Gets the location of this block
      *
      * @return location
@@ -102,20 +133,29 @@ public interface BlockState extends Metadatable {
     Location getLocation(Location loc);
 
     /**
+     * 获取方块包含在哪一个区块里.
+     * <p>
+     * 原文:
      * Gets the chunk which contains this block
      *
-     * @return Containing Chunk
+     * @return 方块所处区块
      */
     Chunk getChunk();
 
     /**
+     * 设置这个方块的元数据.
+     * <p>
+     * 原文:
      * Sets the metadata for this block
      *
-     * @param data New block specific metadata
+     * @param data 新的方块的具体元数据
      */
     void setData(MaterialData data);
 
     /**
+     * 设置这个方块的类型.
+     * <p>
+     * 原文:
      * Sets the type of this block
      *
      * @param type Material to change this block to
@@ -123,11 +163,14 @@ public interface BlockState extends Metadatable {
     void setType(Material type);
 
     /**
+     * 设置这个方块的类型id.
+     * <p>
+     * 原文:
      * Sets the type-id of this block
      *
-     * @param type Type-Id to change this block to
-     * @return Whether it worked?
-     * @deprecated Magic value
+     * @param type 要让此方块改变的类型id
+     * @return 这个是否有用呢?
+     * @deprecated 魔法值
      */
     @Deprecated
     boolean setTypeId(int type);
@@ -180,15 +223,15 @@ public interface BlockState extends Metadatable {
     boolean update(boolean force, boolean applyPhysics);
 
     /**
-     * @return The data as a raw byte.
-     * @deprecated Magic value
+     * @return 将数据作为原始字节
+     * @deprecated 魔法值
      */
     @Deprecated
     public byte getRawData();
 
     /**
-     * @param data The new data value for the block.
-     * @deprecated Magic value
+     * @param data 方块的新的数据值
+     * @deprecated 魔法值
      */
     @Deprecated
     public void setRawData(byte data);
