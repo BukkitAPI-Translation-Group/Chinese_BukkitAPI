@@ -107,7 +107,7 @@ public interface BlockState extends Metadatable {
      * 原文:
      * Gets the z-coordinate of this block
      *
-     * @return z-coordinate
+     * @return Z坐标
      */
     int getZ();
 
@@ -117,7 +117,7 @@ public interface BlockState extends Metadatable {
      * 原文:
      * Gets the location of this block
      *
-     * @return location
+     * @return 位置
      */
     Location getLocation();
 
