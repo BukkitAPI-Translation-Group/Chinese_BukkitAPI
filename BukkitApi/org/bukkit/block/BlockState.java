@@ -158,7 +158,7 @@ public interface BlockState extends Metadatable {
      * 原文:
      * Sets the type of this block
      *
-     * @param type Material to change this block to
+     * @param type Material类型来更改方块类型
      */
     void setType(Material type);
 
