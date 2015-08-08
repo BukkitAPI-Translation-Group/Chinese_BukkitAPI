@@ -27,6 +27,9 @@ public class ThunderChangeEvent extends WeatherEvent implements Cancellable {
 
     /**
      * 获取世界是否正在打雷
+     * <p>
+     * 原文:
+     * Gets the state of thunder that the world is being set to
      *
      * @return true 世界正在打雷, false 反之
      */

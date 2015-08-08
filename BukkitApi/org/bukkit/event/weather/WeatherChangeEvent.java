@@ -27,6 +27,9 @@ public class WeatherChangeEvent extends WeatherEvent implements Cancellable {
 
     /**
      * 获取世界是否在下雨/雪
+     * <p>
+     * 原文:
+     * Gets the state of weather that the world is being set to
      *
      * @return true 世界正在下雨/雪，false 反之
      */

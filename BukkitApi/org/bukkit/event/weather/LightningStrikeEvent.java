@@ -28,6 +28,9 @@ public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
 
     /**
      * 获取从天空中打下的雷电
+     * <p>
+     * 原文:
+     * Gets the bolt which is striking the earth.
      *
      * @return 雷电的实体
      */
