@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a fence gate
+ * 代表栅栏门/Represents a fence gate
  */
 public class Gate extends MaterialData implements Directional, Openable {
     private static final byte OPEN_BIT = 0x4;
