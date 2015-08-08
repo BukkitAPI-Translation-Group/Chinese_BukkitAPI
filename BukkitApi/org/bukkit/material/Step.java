@@ -6,7 +6,8 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of steps.
+ * 代表不同种类的台阶。
+ * 原文：Represents the different types of steps.
  */
 public class Step extends TexturedMaterial {
     private static final List<Material> textures = new ArrayList<Material>();
@@ -67,18 +68,20 @@ public class Step extends TexturedMaterial {
     }
 
     /**
-     * Test if step is inverted
+     * 看看一个台阶是否被反转了。
+     * 原文:Test if step is inverted
      *
-     * @return true if inverted (top half), false if normal (bottom half)
+     * @return true 如果台阶被反转(上半块)，false 一般状态(下半块)
+     * 原文：if inverted (top half), false if normal (bottom half)
      */
     public boolean isInverted() {
         return ((getData() & 0x8) != 0);
     }
 
     /**
-     * Set step inverted state
+     * 设置反转状态/Set step inverted state
      *
-     * @param inv - true if step is inverted (top half), false if step is
+     * @param inv - true 如果台阶是被反转的(上半块)/if step is inverted (top half), false 如果台阶一般状(下半块)态/if step is
      *     normal (bottom half)
      */
     public void setInverted(boolean inv) {
