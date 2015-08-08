@@ -15,6 +15,9 @@ public abstract class WeatherEvent extends Event {
 
     /**
      * 返回天气事件所发生的世界
+     * <p>
+     * 原文:
+     * Returns the World where this event is occurring
      *
      * @return 天气事件所发生的世界
      */
