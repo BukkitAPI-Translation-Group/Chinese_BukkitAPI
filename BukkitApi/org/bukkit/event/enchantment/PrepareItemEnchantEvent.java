@@ -33,6 +33,9 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
 
     /**
      * 获取附魔的玩家
+     * <p>
+     * 原文:
+     * Gets the player enchanting the item
      *
      * @return 附魔的玩家
      */
@@ -42,6 +45,9 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
 
     /**
      * 获取用来附魔的方块
+     * <p>
+     * 原文:
+     * Gets the block being used to enchant the item
      *
      * @return 用来附魔的方块
      */
@@ -51,7 +57,9 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
 
     /**
      * 获取附魔的物品(可改动)
-	 * src:Gets the item to be enchanted (can be modified)
+     * <p>
+     * 原文:
+     * Gets the item to be enchanted (can be modified)
      *
      * @return 附魔的物品/ItemStack of item
      */
@@ -61,7 +69,9 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
 
     /**
      * 获取附魔需要的等级列表（更改返回值即可改变需要的等级）
-	 * src:Get list of offered exp level costs of the enchantment (modify values
+     * <p>
+     * 原文:
+     * Get list of offered exp level costs of the enchantment (modify values
      * to change offer)
      *
      * @return 获取附魔需要的等级列表/experience level costs offered
@@ -72,7 +82,9 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
 
     /**
      * 获取附魔的附加效果
-	 * src:Get enchantment bonus in effect - corresponds to number of bookshelves
+     * <p>
+     * 原文:
+     * Get enchantment bonus in effect - corresponds to number of bookshelves
      *
      * @return enchantment bonus/附魔的附加效果
      */
