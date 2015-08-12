@@ -8,8 +8,10 @@ import org.bukkit.inventory.ItemStack;
  */
 public enum EnchantmentTarget {
     /**
-     * 允许将这个附魔用于所有的物品上. <p>
-     * 原文：Allows the Enchantment to be placed on all items
+     * 允许将这个附魔用于所有的物品上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on all items
      */
     ALL {
         @Override
@@ -19,8 +21,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于装备上. (包括鞋子，护腿，衣服以及帽子) <p>
-     * 原文：Allows the Enchantment to be placed on armor
+     * 允许将该附魔用于装备上. (包括鞋子，护腿，衣服以及帽子)
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on armor
      */
     ARMOR {
         @Override
@@ -33,8 +37,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于鞋子上. <p>
-     * 原文：Allows the Enchantment to be placed on feet slot armor
+     * 允许将该附魔用于鞋子上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on feet slot armor
      */
     ARMOR_FEET {
         @Override
@@ -48,8 +54,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于护腿上. <p>
-     * 原文：Allows the Enchantment to be placed on leg slot armor
+     * 允许将该附魔用于护腿上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on leg slot armor
      */
     ARMOR_LEGS {
         @Override
@@ -63,8 +71,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于衣服上. <p>
-     * 原文：Allows the Enchantment to be placed on torso slot armor
+     * 允许将该附魔用于衣服上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on torso slot armor
      */
     ARMOR_TORSO {
         @Override
@@ -78,8 +88,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于帽子上. <p>
-     * 原文：Allows the Enchantment to be placed on head slot armor
+     * 允许将该附魔用于帽子上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on head slot armor
      */
     ARMOR_HEAD {
         @Override
@@ -93,8 +105,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于剑上. <p>
-     * 原文：Allows the Enchantment to be placed on weapons (swords)
+     * 允许将该附魔用于剑上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on weapons (swords)
      */
     WEAPON {
         @Override
@@ -108,8 +122,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于工具上，如锹，稿，锄，斧。 <p>
-     * 原文：Allows the Enchantment to be placed on tools (spades, pickaxe, hoes,
+     * 允许将该附魔用于工具上，如锹，稿，锄，斧。
+     * <p>
+     * 原文:
+     * Allows the Enchantment to be placed on tools (spades, pickaxe, hoes,
      * axes)
      */
     TOOL {
@@ -141,8 +157,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于弓上. <p>
-     * 原文：Allows the Enchantment to be placed on bows.
+     * 允许将该附魔用于弓上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on bows.
      */
     BOW {
         @Override
@@ -152,8 +170,10 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于钓鱼竿上. <p>
-     * 原文：Allows the Enchantment to be placed on fishing rods.
+     * 允许将该附魔用于钓鱼竿上.
+     * <p>
+     * 原文：
+     * Allows the Enchantment to be placed on fishing rods.
      */
     FISHING_ROD {
         @Override
@@ -164,15 +184,18 @@ public enum EnchantmentTarget {
 
     /**
      * 检查是否包含该物品类型.
-     * 原文：Check whether this target includes the specified item.
+     * <p>
+     * 原文：
+     * Check whether this target includes the specified item.
      *
      * @param item 物品
-     * @return 假如包含则返回true。
+     * @return 如果包含则返回true。
      */
     public abstract boolean includes(Material item);
 
     /**
      * 检查是否包含该物品.
+     * <p>
      * 原文：Check whether this target includes the specified item.
      *
      * @param item 物品

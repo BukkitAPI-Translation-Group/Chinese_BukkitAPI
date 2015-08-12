@@ -12,8 +12,10 @@ public class EnchantmentWrapper extends Enchantment {
     }
 
     /**
-     * 得到这个包装类所对应的的附魔. <p>
-     * 原文：Gets the enchantment bound to this wrapper
+     * 得到这个包装类所对应的的附魔.
+     * <p>
+     * 原文：
+     * Gets the enchantment bound to this wrapper
      *
      * @return 附魔
      */
