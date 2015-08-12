@@ -8,22 +8,22 @@ import java.util.List;
 public interface Banner extends BlockState {
 
     /**
-     * 返回这个旗帜的基本颜色.
+     * 返回这个旗帜的底色.
      * <p>
      * 原文:
      * Returns the base color for this banner
      *
-     * @return 基本颜色
+     * @return 底色
      */
     DyeColor getBaseColor();
 
     /**
-     * 设置这个旗帜的基本颜色.
+     * 设置这个旗帜的底色.
      * <p>
      * 原文:
      * Sets the base color for this banner
      *
-     * @param color the base color
+     * @param color 底色
      */
     void setBaseColor(DyeColor color);
 
@@ -86,7 +86,7 @@ public interface Banner extends BlockState {
      * 原文:
      * Sets the pattern at the specified index
      *
-     * @param i       索引
+     * @param i 索引
      * @param pattern 新的正则表达式
      */
     void setPattern(int i, Pattern pattern);
