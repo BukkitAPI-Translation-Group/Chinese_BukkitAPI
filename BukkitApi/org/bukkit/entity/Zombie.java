@@ -1,35 +1,47 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Zombie.
+ * 代表僵尸.
  */
 public interface Zombie extends Monster {
 
     /**
+     * 获取这个僵尸是否为小僵尸.
+     * <p>
+     * 原文:
      * Gets whether the zombie is a baby
      *
-     * @return Whether the zombie is a baby
+     * @return 这个僵尸是否为小僵尸
      */
     public boolean isBaby();
 
     /**
+     * 设置这个僵尸是否为小僵尸.
+     * <p>
+     * 原文:
      * Sets whether the zombie is a baby
      *
-     * @param flag Whether the zombie is a baby
+     * @param flag 这个僵尸是否为小僵尸
      */
     public void setBaby(boolean flag);
 
     /**
+     * 获取这个僵尸是否为村民僵尸.
+     * <p>
+     * 原文:
      * Gets whether the zombie is a villager
      *
-     * @return Whether the zombie is a villager
+     * @return 这个僵尸是否为村民僵尸
      */
     public boolean isVillager();
 
     /**
+     * 设置这个僵尸是否为村民僵尸
+     * <p>
+     * 原文:
      * Sets whether the zombie is a villager
      *
-     * @param flag Whether the zombie is a villager
+     * @param flag 这个僵尸是否为村民僵尸
      */
     public void setVillager(boolean flag);
 }
