@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a snowball.
+ * 代表雪球.
  */
 public interface Snowball extends Projectile {}

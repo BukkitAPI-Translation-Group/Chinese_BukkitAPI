@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Silverfish.
+ * 代表蠢虫.
  */
 public interface Silverfish extends Monster {}

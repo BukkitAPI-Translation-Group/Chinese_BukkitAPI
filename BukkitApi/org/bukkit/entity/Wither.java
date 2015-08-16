@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Wither boss
+ * 代表凋零boss.
  */
 public interface Wither extends Monster {
 }

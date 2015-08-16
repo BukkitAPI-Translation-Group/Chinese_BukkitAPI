@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Witch
+ * 代表女巫.
  */
 public interface Witch extends Monster {
 }

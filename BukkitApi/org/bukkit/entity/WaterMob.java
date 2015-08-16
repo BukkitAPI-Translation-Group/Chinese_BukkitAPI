@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Water Mob
+ * 代表海洋生物.
  */
 public interface WaterMob extends LivingEntity {}

@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Squid.
+ * 代表鱿鱼.
  */
 public interface Squid extends WaterMob {}

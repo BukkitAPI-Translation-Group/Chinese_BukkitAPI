@@ -1,17 +1,17 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Slime.
+ * 代表史莱姆.
  */
 public interface Slime extends LivingEntity {
 
     /**
-     * @return The size of the slime
+     * @return 史莱姆的大小
      */
     public int getSize();
 
     /**
-     * @param sz The new size of the slime.
+     * @param sz 史莱姆新的大小.
      */
     public void setSize(int sz);
 }
