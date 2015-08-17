@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * A crystal that heals nearby EnderDragons
+ * 一个水晶，能治疗附近的末影龙
  */
 public interface EnderCrystal extends Entity {
 }

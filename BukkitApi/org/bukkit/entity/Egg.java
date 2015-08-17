@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a thrown egg.
+ * 代表抛出的鸡蛋.
  */
 public interface Egg extends Projectile {}

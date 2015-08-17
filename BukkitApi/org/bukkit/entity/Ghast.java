@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Ghast.
+ * 代表恶魂.
  */
 public interface Ghast extends Flying {}

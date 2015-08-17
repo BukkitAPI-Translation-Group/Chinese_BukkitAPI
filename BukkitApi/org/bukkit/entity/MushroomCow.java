@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a mushroom {@link Cow}
+ * 代表哞菇( {@link Cow} ).
  */
 public interface MushroomCow extends Cow {
 

@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Weather related entity, such as a storm
+ * 代表与天气有关的实体，例如雷暴.
  */
 public interface Weather extends Entity {}

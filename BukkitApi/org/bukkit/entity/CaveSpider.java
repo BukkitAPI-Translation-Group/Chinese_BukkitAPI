@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Spider.
+ * 代表蜘蛛(洞穴蜘蛛).
  */
 public interface CaveSpider extends Spider {}

@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a thrown Experience bottle.
+ * 代表抛出的附魔之瓶.
  */
 public interface ThrownExpBottle extends Projectile {
 

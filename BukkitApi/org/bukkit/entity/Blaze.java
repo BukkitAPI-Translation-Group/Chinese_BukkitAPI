@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Blaze monster
+ * 代表烈焰人怪物.
  */
 public interface Blaze extends Monster {
 
