@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a non-player character
+ * 代表非玩家角色.
  */
 public interface NPC extends Creature {
 
