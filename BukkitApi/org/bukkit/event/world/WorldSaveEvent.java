@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a World is saved.
+ * 当一个世界被保存时调用.
  */
 public class WorldSaveEvent extends WorldEvent {
     private static final HandlerList handlers = new HandlerList();

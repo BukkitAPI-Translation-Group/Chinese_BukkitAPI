@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a World is loaded
+ * 当一个世界被加载时调用.
  */
 public class WorldLoadEvent extends WorldEvent {
     private static final HandlerList handlers = new HandlerList();

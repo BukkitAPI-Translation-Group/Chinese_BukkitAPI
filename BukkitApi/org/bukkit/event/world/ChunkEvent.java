@@ -3,7 +3,7 @@ package org.bukkit.event.world;
 import org.bukkit.Chunk;
 
 /**
- * Represents a Chunk related event
+ * 代表与区块有关系的事件.
  */
 public abstract class ChunkEvent extends WorldEvent {
     protected Chunk chunk;
@@ -14,9 +14,12 @@ public abstract class ChunkEvent extends WorldEvent {
     }
 
     /**
+     * 获取准备加载/卸载的区块.
+     * <p>
+     * 原文:
      * Gets the chunk being loaded/unloaded
      *
-     * @return Chunk that triggered this event
+     * @return 引发此事件的区块
      */
     public Chunk getChunk() {
         return chunk;

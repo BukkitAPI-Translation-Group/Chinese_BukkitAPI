@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.bukkit.event.Event;
 
 /**
- * Represents events within a world
+ * 代表世界范围内的世界.
  */
 public abstract class WorldEvent extends Event {
     private final World world;
@@ -14,9 +14,12 @@ public abstract class WorldEvent extends Event {
     }
 
     /**
+     * 获取这个事件主要涉及的世界.
+     * <p>
+     * 原文:
      * Gets the world primarily involved with this event
      *
-     * @return World which caused this event
+     * @return 引发这个事件的世界
      */
     public World getWorld() {
         return world;
