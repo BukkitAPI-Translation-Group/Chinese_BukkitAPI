@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents an Animal.
+ * 代表动物.
  */
 public interface Animals extends Ageable {}
