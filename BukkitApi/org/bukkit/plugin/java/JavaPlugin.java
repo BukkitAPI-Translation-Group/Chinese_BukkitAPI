@@ -540,7 +540,7 @@ public abstract class JavaPlugin extends PluginBase {
         return description.getFullName();
     }
 
-    /**
+  /**
 	 * 这个方法提供了快速访问插件 {@link
      * #getProvidingPlugin(Class) provided} 的类.
 	 * 这通常是创建插件对象.
@@ -585,7 +585,7 @@ public abstract class JavaPlugin extends PluginBase {
         return clazz.cast(plugin);
     }
 
-    /**
+  /**
 	 * 此方法给给定的类提供了快速访问.
 	 * <p>
 	 * 原文:

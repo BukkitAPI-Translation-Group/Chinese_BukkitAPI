@@ -42,7 +42,7 @@ import org.bukkit.plugin.UnknownDependencyException;
 import org.yaml.snakeyaml.error.YAMLException;
 
 /**
- * Represents a Java plugin loader, allowing plugins in the form of .jar
+ * 代表一个java插件加载器，允许.jar形式的插件.
  */
 public final class JavaPluginLoader implements PluginLoader {
     final Server server;
