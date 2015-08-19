@@ -9,7 +9,10 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Event that is called when an organic structure attempts to grow (Sapling {@literal ->}
+ * 当一个有机结构试图长大的时调用此事件(树苗 {@literal ->} 树, 蘑菇 {@literal ->} 巨型蘑菇, 自然的或使用骨粉).
+ * 译注:翻译者暂时不明本类意义(不明structure单词在mc的意义),估计是树木之类的.本文出现的“结构”主要指树木、巨型蘑菇.
+ * <p>
+ * 原文:Event that is called when an organic structure attempts to grow (Sapling {@literal ->}
  * Tree), (Mushroom {@literal ->} Huge Mushroom), naturally or using bonemeal.
  */
 public class StructureGrowEvent extends WorldEvent implements Cancellable {
@@ -31,47 +34,61 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
     }
 
     /**
+     * 获取这个结构的位置.
+     * <p>
+     * 原文:
      * Gets the location of the structure.
      *
-     * @return Location of the structure
+     * @return 结构的位置
      */
     public Location getLocation() {
         return location;
     }
 
     /**
+     * 获取物种类型(白桦、橡树、云杉、红蘑菇和棕蘑菇).
+     * <p>
+     * 原文:
      * Gets the species type (birch, normal, pine, red mushroom, brown
      * mushroom)
      *
-     * @return Structure species
+     * @return 结构类型
      */
     public TreeType getSpecies() {
         return species;
     }
 
     /**
+     * 检测此结构的生长是否使用骨粉.
+     * <p>
+     * 原文:
      * Checks if structure was grown using bonemeal.
      *
-     * @return True if the structure was grown using bonemeal.
+     * @return 如果此结构是用骨粉催熟的则为true
      */
     public boolean isFromBonemeal() {
         return bonemeal;
     }
 
     /**
+     * 获取“种”下这个结构的玩家.
+     * <p>
+     * 原文:
      * Gets the player that created the structure.
      *
-     * @return Player that created the structure, null if was not created
-     *     manually
+     * @return “种”下这个结构的玩家，如果为null则这个不是手工创建的
      */
     public Player getPlayer() {
         return player;
     }
 
     /**
+     * 获取与结构有关的所有方块的ArrayList.
+     * <p>
+     * 原文:
      * Gets an ArrayList of all blocks associated with the structure.
      *
-     * @return ArrayList of all blocks associated with the structure.
+     * @return 与结构有关的所有方块的ArrayList
      */
     public List<BlockState> getBlocks() {
         return blocks;
