@@ -4,7 +4,7 @@ import org.bukkit.World;
 import org.bukkit.event.Event;
 
 /**
- * 代表世界范围内的世界.
+ * 代表世界范围内的事件.
  */
 public abstract class WorldEvent extends Event {
     private final World world;
