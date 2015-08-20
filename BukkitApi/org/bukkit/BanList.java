@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 /**
- * 一个封禁列表。包含了封禁和一些 {@link Type}.
+ * 一个封禁列表。包含了封禁和一些类型( {@link Type} ).
  */
 public interface BanList {
 
@@ -17,11 +17,11 @@ public interface BanList {
      */
     public enum Type {
         /**
-         * Banned player names
+         * 已封禁的玩家名称
          */
         NAME,
         /**
-         * Banned player IP addresses
+         * 已封禁的玩家ip地址
          */
         IP,
         ;
@@ -38,16 +38,16 @@ public interface BanList {
     public BanEntry getBanEntry(String target);
 
     /**
+     * 添加一个封禁到这个列表。如果以前的封禁存在，这将更新以前的封禁.
+     * <p>
      * 原文：Adds a ban to the this list. If a previous ban exists, this will
      * update the previous entry.
      *
-     * @param target the target of the ban
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @param target 封禁目标
+     * @param reason 封禁理由，null则使用默认
+     * @param expires 封禁的截止日期(解除封口)，null则为永远封禁
+     * @param source 封禁来源，null则使用默契
+     * @return 新创建的封禁条目，或为更新之前的封禁
      */
     public BanEntry addBan(String target, String reason, Date expires, String source);
 
@@ -59,16 +59,23 @@ public interface BanList {
     public Set<BanEntry> getBanEntries();
 
     /**
+     * 获取如果{@link BanEntry}存在这个目标，则表示活动的封禁状态.
+     * <p>
+     * 译注:其实就是获取这个目标有没有封禁.
+     * <p>
+     * 原文:
      * Gets if a {@link BanEntry} exists for the target, indicating an active
      * ban status.
      *
-     * @param target the target to find
-     * @return true if a {@link BanEntry} exists for the name, indicating an
-     *     active ban status, false otherwise
+     * @param target 寻找的目标
+     * @return 如果{@link BanEntry}存在这个名称则表示被封禁了，否则为false
      */
     public boolean isBanned(String target);
 
     /**
+     * 
+     * <p>
+     * 原文:
      * Removes the specified target from this list, therefore indicating a
      * "not banned" status.
      *
