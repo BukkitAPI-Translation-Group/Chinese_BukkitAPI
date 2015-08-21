@@ -5,12 +5,12 @@ import org.bukkit.block.Block;
 public interface BlockCommandSender extends CommandSender {
 
     /**
-     * ·µ»ØÊôÓÚ×èÖ¹µÄÃüÁî·¢ËÍÕß.
+     * è¿”å›žæ–¹å‘½ä»¤å‘é€è€…çš„æ–¹å—.
      * <p>
-     * Ô­ÎÄ:
+     * åŽŸæ–‡:
      * Returns the block this command sender belongs to
      *
-     * @return ×èÖ¹µÄÃüÁî·¢ËÍÕß
+     * @return å‘½ä»¤å‘é€è€…çš„æ–¹å—
      */
     public Block getBlock();
 }
