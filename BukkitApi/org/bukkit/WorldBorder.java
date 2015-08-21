@@ -3,58 +3,74 @@ package org.bukkit;
 public interface WorldBorder {
 
     /**
-     * Resets the border to default values.
+     * 将世界的边界恢复为默认值.
+     * <p>
+     * 原文:Resets the border to default values.
      */
     public void reset();
 
     /**
-     * Gets the current side length of the border.
-     *
-     * @return The current side length of the border.
+     * 获得指定世界当前的边界长度.
+     * <p>
+     * 原文:Gets the current side length of the border.
+     * <p>
+     * @return 世界的当前边界长度.
      */
     public double getSize();
 
     /**
-     * Sets the border to a square region with the specified side length in blocks.
-     *
-     * @param newSize The new size of the border.
+     * 以方块为单位，将边界设置为一个指定长度的正方形.
+     * <p>
+     * 原文:Sets the border to a square region with the specified side length in blocks.
+     * <p>
+     * @param newSize 边界的新长度.
      */
     public void setSize(double newSize);
 
     /**
-     * Sets the border to a square region with the specified side length in blocks.
-     *
-     * @param newSize The new side length of the border.
+     * 以方块为单位，将边界设置为一个指定长度的正方形.
+     * <p>
+     * 原文:Sets the border to a square region with the specified side length in blocks.
+     * <p>
+     * @param newSize 边界的新长度.
      * @param seconds The time in seconds in which the border grows or shrinks from the previous size to that being set.
      */
     public void setSize(double newSize, long seconds);
 
     /**
-     * Gets the current border center.
+     * 得到当前边界的中心.
+     * <p>
+     * 原文:Gets the current border center.
      *
-     * @return The current border center.
+     * @return 当前边界的中心.
      */
     public Location getCenter();
 
     /**
-     * Sets the new border center.
+     * 设置新的边界中心.
+     * <p>
+     * 原文:Sets the new border center.
      *
-     * @param x The new center x-coordinate.
-     * @param z The new center z-coordinate.
+     * @param x 新中心的x坐标.
+     * @param z 新中心的z坐标.
      */
     public void setCenter(double x, double z);
 
     /**
-     * Sets the new border center.
+     * 设置新的边界中心
+     * <p>
+     * 原文:Sets the new border center.
      *
-     * @param location The new location of the border center. (Only x/z used)
+     * @param location 边界新中心的位置. (该位置只包含x z)
      */
     public void setCenter(Location location);
 
     /**
-     * Gets the current border damage buffer.
+     * 得到当前边界的破坏缓冲.
+     * <p>
+     * 原文：Gets the current border damage buffer.
      *
-     * @return The current border damage buffer.
+     * @return 当前边界的破坏缓存.
      */
     public double getDamageBuffer();
 
@@ -106,4 +122,3 @@ public interface WorldBorder {
      * @param distance The distance in blocks. (The default is 5 blocks.)
      */
     public void setWarningDistance(int distance);
-}
