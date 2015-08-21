@@ -46,15 +46,18 @@ public interface BanList {
      * @param target 封禁目标
      * @param reason 封禁理由，null则使用默认
      * @param expires 封禁的截止日期(解除封口)，null则为永远封禁
-     * @param source 封禁来源，null则使用默契
+     * @param source 封禁来源，null则使用默认
      * @return 新创建的封禁条目，或为更新之前的封禁
      */
     public BanEntry addBan(String target, String reason, Date expires, String source);
 
     /**
+     * 获取在这个列表包含的每个{@link BanEntry}.
+     * <p>
+     * 原文:
      * Gets a set containing every {@link BanEntry} in this list.
      *
-     * @return an immutable set containing every entry tracked by this list
+     * @return 一个不可变的列表包含的每个跟踪条目
      */
     public Set<BanEntry> getBanEntries();
 
@@ -73,13 +76,15 @@ public interface BanList {
     public boolean isBanned(String target);
 
     /**
-     * 
+     * 从列表中移除指定目标，因此表示“无封禁”的状态。
+     * <p>
+     * 译注:其实就是解除封禁= =.
      * <p>
      * 原文:
      * Removes the specified target from this list, therefore indicating a
      * "not banned" status.
      *
-     * @param target the target to remove from this list
+     * @param target 从这个列表移除的目标(解除封禁)
      */
     public void pardon(String target);
 }
