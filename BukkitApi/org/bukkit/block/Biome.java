@@ -1,7 +1,7 @@
 package org.bukkit.block;
 
 /**
- * 服务器默认接受的所有生物群系.
+ * 服务器默认的所有生物群系.
  */
 public enum Biome {
     SWAMPLAND,
