@@ -1,7 +1,9 @@
 package org.bukkit.configuration;
 
 /**
- * Various settings for controlling the input and output of a {@link
+ * 用于控制输入输出的各种设置的{@link Configuration}.
+ * <p>
+ * 原文:Various settings for controlling the input and output of a {@link
  * Configuration}
  */
 public class ConfigurationOptions {
@@ -14,7 +16,9 @@ public class ConfigurationOptions {
     }
 
     /**
-     * Returns the {@link Configuration} that this object is responsible for.
+     * 返回这个对象的{@link Configuration}.
+     * <P>
+     * 原文:Returns the {@link Configuration} that this object is responsible for.
      *
      * @return Parent configuration
      */
@@ -23,27 +27,37 @@ public class ConfigurationOptions {
     }
 
     /**
+     * 获取用于分离{@link ConfigurationSection}中路径的char.
+     * <P>
+     * 这个char并不会影响数据的储存,它只是路径的分隔符.
+     * 只会影响你在程序中怎样读取数据.默认为 '.'.
+     * <p>
      * Gets the char that will be used to separate {@link
      * ConfigurationSection}s
      * <p>
      * This value does not affect how the {@link Configuration} is stored,
      * only in how you access the data. The default value is '.'.
      *
-     * @return Path separator
+     * @return Path 路径分割符
      */
     public char pathSeparator() {
         return pathSeparator;
     }
 
     /**
+     * 设置用于分离{@link ConfigurationSection}中路径的char.
+     * <P>
+     * 这个char并不会影响数据的储存,它只是路径的分隔符.
+     * 只会影响你在程序中怎样读取数据.默认为 '.'.
+     * <p>
      * Sets the char that will be used to separate {@link
      * ConfigurationSection}s
      * <p>
      * This value does not affect how the {@link Configuration} is stored,
      * only in how you access the data. The default value is '.'.
      *
-     * @param value Path separator
-     * @return This object, for chaining
+     * @param value Path 路径分割符
+     * @return 返回 this
      */
     public ConfigurationOptions pathSeparator(char value) {
         this.pathSeparator = value;
@@ -51,7 +65,16 @@ public class ConfigurationOptions {
     }
 
     /**
-     * Checks if the {@link Configuration} should copy values from its default
+     * 大概是说,检查这个{@link Configuration}
+     * 是不是直接从默认的{@link Configuration}那里复制过来的(?).
+     * <p>
+     * 如果值为true,将直接从默认源中复制所有的值.
+     * 机器翻译(使得不可能分别设置，默认情况下所提供的值的值和区分。?).
+     * 其结果{@link ConfigurationSection#contains(java.lang.String)},
+     * 将始终返回相同的值{@link ConfigurationSection#isSet(java.lang.String)}.
+     * 默认值是false.
+     * <p>
+     * 原文:Checks if the {@link Configuration} should copy values from its default
      * {@link Configuration} directly.
      * <p>
      * If this is true, all values in the default Configuration will be
@@ -69,7 +92,17 @@ public class ConfigurationOptions {
     }
 
     /**
-     * Sets if the {@link Configuration} should copy values from its default
+     * 如果这个{@link Configuration}从
+     * 它的默认{@link Configuration}那里直接
+     * 复制值,就设为true.
+     * <p>
+     * 如果值为true,将直接从默认源中复制所有的值.
+     * 机器翻译(使得不可能分别设置，默认情况下所提供的值的值和区分。?).
+     * 其结果{@link ConfigurationSection#contains(java.lang.String)},
+     * 将始终返回相同的值{@link ConfigurationSection#isSet(java.lang.String)}.
+     * 默认值是false.
+     * <p>
+     * 原文:Sets if the {@link Configuration} should copy values from its default
      * {@link Configuration} directly.
      * <p>
      * If this is true, all values in the default Configuration will be
@@ -81,7 +114,7 @@ public class ConfigurationOptions {
      * false.
      *
      * @param value Whether or not defaults are directly copied
-     * @return This object, for chaining
+     * @return 返回 this
      */
     public ConfigurationOptions copyDefaults(boolean value) {
         this.copyDefaults = value;

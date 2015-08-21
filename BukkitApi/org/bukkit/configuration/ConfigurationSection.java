@@ -10,11 +10,18 @@ import org.bukkit.util.Vector;
 import org.bukkit.inventory.ItemStack;
 
 /**
+ * 表示{@link Configuration}的一个部分(意义不明?)
+ * <p>
  * Represents a section of a {@link Configuration}
  */
 public interface ConfigurationSection {
     /**
-     * Gets a set containing all keys in this section.
+     * 获取这个section的key集合.
+     * <p>
+     * 如果为true,则返回key集合将包括所有的子类(child)的{@link ConfigurationSection}.
+     * 并且提供
+     * <p>
+     * 原文:Gets a set containing all keys in this section.
      * <p>
      * If deep is set to true, then this will contain all the keys within any
      * child {@link ConfigurationSection}s (and their children, etc). These
