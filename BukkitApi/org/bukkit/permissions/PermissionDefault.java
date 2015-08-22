@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 表示权限可能的默认值
+ * 表示权限的默认值.
  */
 public enum PermissionDefault {
     TRUE("true"),
@@ -27,7 +27,7 @@ public enum PermissionDefault {
      * value
      *
      * @param op 如果此目标是op
-     * @return 如果默认是真的，返回true，如果不是真的返回false
+     * @return 如果默认是true，返回true，如果不是true的返回false
      */
     public boolean getValue(boolean op) {
         switch (this) {
@@ -45,12 +45,12 @@ public enum PermissionDefault {
     }
 
     /**
-     * 查找一个默认权限的名字.
+     * 查找一个默认权限的名称.
      * <p>
      * 原文:
      * Looks up a PermissionDefault by name
      *
-     * @param name 默认名字
+     * @param name 默认名称
      * @return 指定的值，如果为null即未找到
      */
     public static PermissionDefault getByName(String name) {
@@ -70,4 +70,3 @@ public enum PermissionDefault {
         }
     }
 }
-
