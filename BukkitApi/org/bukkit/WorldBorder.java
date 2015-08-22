@@ -13,7 +13,7 @@ public interface WorldBorder {
      * 获得指定世界当前的边界长度.
      * <p>
      * 原文:Gets the current side length of the border.
-     * <p>
+     * 
      * @return 世界的当前边界长度.
      */
     public double getSize();
@@ -22,7 +22,7 @@ public interface WorldBorder {
      * 以方块为单位，将边界设置为一个指定长度的正方形.
      * <p>
      * 原文:Sets the border to a square region with the specified side length in blocks.
-     * <p>
+     * 
      * @param newSize 边界的新长度.
      */
     public void setSize(double newSize);
@@ -31,7 +31,7 @@ public interface WorldBorder {
      * 以方块为单位，将边界设置为一个指定长度的正方形.
      * <p>
      * 原文:Sets the border to a square region with the specified side length in blocks.
-     * <p>
+     * 
      * @param newSize 边界的新长度.
      * @param seconds The time in seconds in which the border grows or shrinks from the previous size to that being set.
      */
