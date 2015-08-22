@@ -7,9 +7,9 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
- * 储存一个尝试登录的玩家的详情信息.
+ * Stores details for players attempting to log in.
  * <p>
- * 这个事件不是同步的，也不用主方法运行的.
+ * This event is asynchronous, and not run using main thread.
  */
 public class AsyncPlayerPreLoginEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
@@ -34,20 +34,20 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 以enum形式获得这次事件的结果.
+     * Gets the current result of the login, as an enum
      *
-     * @return 这次登录的结果
+     * @return Current Result of the login
      */
     public Result getLoginResult() {
         return result;
     }
 
     /**
-     * 以枚举形式获得这次事件的结果
+     * Gets the current result of the login, as an enum
      *
-     * @return 这次登录的结果
-     * @deprecated 这个方法从{@link
-     *     PlayerPreLoginEvent} 里面引用了一个过时枚举类型.
+     * @return Current Result of the login
+     * @deprecated This method uses a deprecated enum from {@link
+     *     PlayerPreLoginEvent}
      * @see #getLoginResult()
      */
     @Deprecated
@@ -56,20 +56,20 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 以枚举形式设置这次登录的结果
-     * 
-     * @param result 要设置的结果
+     * Sets the new result of the login, as an enum
+     *
+     * @param result New result to set
      */
     public void setLoginResult(final Result result) {
         this.result = result;
     }
 
     /**
-     * 以枚举形式设置这次登录的结果
-     * 
-     * @param result 要设置的结果
-     * @deprecated 这个方法从 {@link
-     *     PlayerPreLoginEvent} 里面引用了一个过时的枚举类型.
+     * Sets the new result of the login, as an enum
+     *
+     * @param result New result to set
+     * @deprecated This method uses a deprecated enum from {@link
+     *     PlayerPreLoginEvent}
      * @see #setLoginResult(Result)
      */
     @Deprecated
@@ -78,25 +78,26 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 当getResult() 不等于Result.ALLOWED的时候获得这次踢出玩家的消息
-     * 
-     * @return 现在玩家踢出的消息
+     * Gets the current kick message that will be used if getResult() !=
+     * Result.ALLOWED
+     *
+     * @return Current kick message
      */
     public String getKickMessage() {
         return message;
     }
 
     /**
-     * 当getResult() 不等于Result.ALLOWED的时候设置这次踢出玩家的消息
-     * 
-     * @param message 新的踢出玩家时显示的信息
+     * Sets the kick message to display if getResult() != Result.ALLOWED
+     *
+     * @param message New kick message
      */
     public void setKickMessage(final String message) {
         this.message = message;
     }
 
     /**
-     * 是否允许玩家登录.
+     * Allows the player to log in
      */
     public void allow() {
         result = Result.ALLOWED;
@@ -104,10 +105,10 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 不允许玩家登录并且提供原因
+     * Disallows the player from logging in, with the given reason
      *
-     * @param result 是否允许玩家登录的新结果
-     * @param message 给玩家的原因
+     * @param result New result for disallowing the player
+     * @param message Kick message to display to the user
      */
     public void disallow(final Result result, final String message) {
         this.result = result;
@@ -115,12 +116,12 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 不允许玩家登录并且提供原因
+     * Disallows the player from logging in, with the given reason
      *
-     * @param result 是否允许玩家登录的新结果
-     * @param message 给玩家的原因
-     * @deprecated 这个方法从 {@link
-     *     PlayerPreLoginEvent} 里面引用了一个过时的枚举类型
+     * @param result New result for disallowing the player
+     * @param message Kick message to display to the user
+     * @deprecated This method uses a deprecated enum from {@link
+     *     PlayerPreLoginEvent}
      * @see #disallow(Result, String)
      */
     @Deprecated
@@ -130,27 +131,27 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获得玩家的名字.
+     * Gets the player's name.
      *
-     * @return 玩家的名字
+     * @return the player's name
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 获取玩家的IP地址.
+     * Gets the player IP address.
      *
-     * @return IP地址
+     * @return The IP address
      */
     public InetAddress getAddress() {
         return ipAddress;
     }
 
     /**
-     * 获得玩家独特的ID.
+     * Gets the player's unique ID.
      *
-     * @return 独特的ID
+     * @return The unique ID
      */
     public UUID getUniqueId() {
         return uniqueId;
@@ -166,28 +167,29 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 对于其他插件的基本踢出玩家的原因
+     * Basic kick reasons for communicating to plugins
      */
     public enum Result {
 
         /**
-         * 玩家被允许登录
+         * The player is allowed to log in
          */
         ALLOWED,
         /**
-         * 玩家因为服务器满了所以不允许登录
+         * The player is not allowed to log in, due to the server being full
          */
         KICK_FULL,
         /**
-         * 玩家因为被封号了所以不允许登录
+         * The player is not allowed to log in, due to them being banned
          */
         KICK_BANNED,
         /**
-         * 玩家因为不在白名单上所以不允许登录
+         * The player is not allowed to log in, due to them not being on the
+         * white list
          */
         KICK_WHITELIST,
         /**
-         * 玩家没有理由就是不让登陆
+         * The player is not allowed to log in, for reasons undefined
          */
         KICK_OTHER;
 

@@ -8,7 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当玩家用一个桶对其他东西互交时激发
+ * Called when a player interacts with a Bucket
  */
 public abstract class PlayerBucketEvent extends PlayerEvent implements Cancellable {
     private ItemStack itemStack;
@@ -26,45 +26,45 @@ public abstract class PlayerBucketEvent extends PlayerEvent implements Cancellab
     }
 
     /**
-     * 获得被使用的那个桶
+     * Returns the bucket used in this event
      *
-     * @return 萌萌的桶
+     * @return the used bucket
      */
     public Material getBucket() {
         return bucket;
     }
 
     /**
-     * 获得事件过后玩家手里的东西
+     * Get the resulting item in hand after the bucket event
      *
-     * @return 手里的物品
+     * @return Itemstack hold in hand after the event.
      */
     public ItemStack getItemStack() {
         return itemStack;
     }
 
     /**
-     * 设置事件过后玩家手里的东西
+     * Set the item in hand after the event
      *
-     * @param itemStack 要设置的东西
+     * @param itemStack the new held itemstack after the bucket event.
      */
     public void setItemStack(ItemStack itemStack) {
         this.itemStack = itemStack;
     }
 
     /**
-     * 获得被点击的方块
+     * Return the block clicked
      *
-     * @return 被点击的方块
+     * @return the blicked block
      */
     public Block getBlockClicked() {
         return blockClicked;
     }
 
     /**
-     * 获得被点击的方块的面
+     * Get the face on the clicked block
      *
-     * @return 方块的面
+     * @return the clicked face
      */
     public BlockFace getBlockFace() {
         return blockFace;

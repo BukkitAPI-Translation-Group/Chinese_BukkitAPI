@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当玩家填满一个桶的时候被激发
+ * Called when a player fills a bucket
  */
 public class PlayerBucketFillEvent extends PlayerBucketEvent {
     private static final HandlerList handlers = new HandlerList();

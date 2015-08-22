@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个玩家获得一个成就时激发.
+ * Called when a player earns an achievement.
  */
 public class PlayerAchievementAwardedEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -19,9 +19,9 @@ public class PlayerAchievementAwardedEvent extends PlayerEvent implements Cancel
     }
 
     /**
-     * 获得被颁发的成就.
+     * Gets the Achievement being awarded.
      *
-     * @return 颁发的成就
+     * @return the achievement being awarded
      */
     public Achievement getAchievement() {
         return achievement;

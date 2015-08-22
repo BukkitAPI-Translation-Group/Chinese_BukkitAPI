@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当玩家右键床即将进入床的时候这个事件会被激发.
+ * This event is fired when the player is almost about to enter the bed.
  */
 public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,9 +27,9 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获取这个 事件里面床的方块.
+     * Returns the bed block involved in this event.
      *
-     * @return 床的方块
+     * @return the bed block involved in this event
      */
     public Block getBed() {
         return bed;

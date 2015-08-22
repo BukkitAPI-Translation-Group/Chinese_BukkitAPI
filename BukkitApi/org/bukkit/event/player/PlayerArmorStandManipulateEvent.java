@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 在当玩家与盔甲架互交的时候被激发.
+ * Called when a player interacts with an armor stand and will either swap, retrieve or place an item.
  */
 public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
 
@@ -25,32 +25,35 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
     }
 
     /**
-     * 获得玩家手里握着的物品
-     * 如果玩家是空手右键而且盔甲架上面也是空的，这个事件不会被调动
-     * 如果玩家是空手而盔甲架上面有物品，玩家会获得这个物品
-     * 其他的还要解释么.....
-     * 如果事件被取消的话所有物品会保持一致
-     * @return 玩家手里的物品
+     * Returns the item held by the player. If this Item is null and the armor stand Item is also null,
+     * there will be no transaction between the player and the armor stand.
+     * If the Player's item is null, but the armor stand item is not then the player will obtain the armor stand item.
+     * In the case that the Player's item is not null, but the armor stand item is null, the players item will be placed on the armor stand.
+     * If both items are not null, the items will be swapped.
+     * In the case that the event is cancelled the original items will remain the same.
+     * @return the item held by the player.
      */
     public ItemStack getPlayerItem() {
         return this.playerItem;
     }
 
     /**
-     * 获得盔甲架上面的物品
-     * 如果玩家是空手右键而且盔甲架上面也是空的，这个事件不会被调动
-     * 如果玩家是空手而盔甲架上面有物品，玩家会获得这个物品
-     * 其他的还要解释么.....
-     * @return 盔甲架上面的物品
+     * Returns the item held by the armor stand.
+     * If this Item is null and the player's Item is also null, there will be no transaction between the player and the armor stand.
+     * If the Player's item is null, but the armor stand item is not then the player will obtain the armor stand item.
+     * In the case that the Player's item is not null, but the armor stand item is null, the players item will be placed on the armor stand.
+     * If both items are not null, the items will be swapped.
+     * In the case that the event is cancelled the original items will remain the same.
+     * @return the item held by the armor stand.
      */
     public ItemStack getArmorStandItem() {
         return this.armorStandItem;
     }
 
     /**
-     * 获得在这个事件中盔甲架被调用的物品栏编号.
+     * Returns the raw item slot of the armor stand in this event.
      *
-     * @return 盔甲架被调用的物品栏编号.
+     * @return the index of the item obtained or placed of the armor stand.
      */
     public EquipmentSlot getSlot() {
         return this.slot;

@@ -4,9 +4,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * 不会翻译怎么办
- * 机翻结果:
- * 这个事件会在一个玩家注册或者反注册一个新的插件渠道时被激发
  * This event is called after a player registers or unregisters a new plugin
  * channel.
  */

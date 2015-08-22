@@ -1,7 +1,7 @@
 package org.bukkit.event.player;
 
 /**
- * 不同种类的玩家动作
+ * Different types of player animations
  */
 public enum PlayerAnimationType {
     ARM_SWING

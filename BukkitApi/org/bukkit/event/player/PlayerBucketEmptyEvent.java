@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当玩家倒出一个桶里面的东西时被激活
+ * Called when a player empties a bucket
  */
 public class PlayerBucketEmptyEvent extends PlayerBucketEvent {
     private static final HandlerList handlers = new HandlerList();

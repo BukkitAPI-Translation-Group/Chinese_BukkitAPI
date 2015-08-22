@@ -12,19 +12,19 @@ public interface BukkitScheduler {
      * <p>
      * This task will be executed by the main server thread.
      *
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
-     * @param delay 任务执行前的延迟服务器tick数
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
+     * @param delay Delay in server ticks before executing task
+     * @return Task id number (-1 if scheduling failed)
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
     /**
      * @deprecated Use {@link BukkitRunnable#runTaskLater(Plugin, long)}
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
-     * @param delay 任务执行前的延迟服务器tick数
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
+     * @param delay Delay in server ticks before executing task
+     * @return Task id number (-1 if scheduling failed)
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task, long delay);
@@ -34,17 +34,17 @@ public interface BukkitScheduler {
      * <p>
      * This task will be executed by the main server thread.
      *
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
+     * @return Task id number (-1 if scheduling failed)
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
 
     /**
      * @deprecated Use {@link BukkitRunnable#runTask(Plugin)}
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
+     * @return Task id number (-1 if scheduling failed)
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task);
@@ -54,21 +54,21 @@ public interface BukkitScheduler {
      * <p>
      * This task will be executed by the main server thread.
      *
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @return Task id number (-1 if scheduling failed)
      */
     public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
 
     /**
      * @deprecated Use {@link BukkitRunnable#runTaskTimer(Plugin, long, long)}     *
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @return Task id number (-1 if scheduling failed)
      */
     @Deprecated
     public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period);
@@ -81,9 +81,9 @@ public interface BukkitScheduler {
      * executed by a thread managed by the scheduler.
      *
      * @param plugin Plugin that owns the task
-     * @param task 即将被执行的任务
-     * @param delay 任务执行前的延迟服务器tick数
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @param task Task to be executed
+     * @param delay Delay in server ticks before executing task
+     * @return Task id number (-1 if scheduling failed)
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -97,9 +97,9 @@ public interface BukkitScheduler {
      * Schedules a once off task to occur as soon as possible. This task will
      * be executed by a thread managed by the scheduler.
      *
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
+     * @return Task id number (-1 if scheduling failed)
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -113,11 +113,11 @@ public interface BukkitScheduler {
      * Schedules a repeating task. This task will be executed by a thread
      * managed by the scheduler.
      *
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return 返回任务的id.如果为-1，则表示调度失败.
+     * @return Task id number (-1 if scheduling failed)
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -134,8 +134,8 @@ public interface BukkitScheduler {
      *     isDone() method returns true.
      * </ul>
      * @param <T> The callable's return type
-     * @param plugin 拥有该任务的插件引用
-     * @param task 即将被执行的任务
+     * @param plugin Plugin that owns the task
+     * @param task Task to be executed
      * @return Future Future object related to the task
      */
     public <T> Future<T> callSyncMethod(Plugin plugin, Callable<T> task);

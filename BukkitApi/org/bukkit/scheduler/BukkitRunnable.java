@@ -4,27 +4,27 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 /**
- * This class is provided as an easy way to handle scheduling tasks.该类提供了一个简单的方式处理调度任务.
+ * This class is provided as an easy way to handle scheduling tasks.
  */
 public abstract class BukkitRunnable implements Runnable {
     private int taskId = -1;
 
     /**
-     * 该方法尝试关闭该任务.
+     * Attempts to cancel this task.
      *
-     * @throws IllegalStateException 如果该任务尚未被调度.
+     * @throws IllegalStateException if task was not scheduled yet
      */
     public synchronized void cancel() throws IllegalStateException {
         Bukkit.getScheduler().cancelTask(getTaskId());
     }
 
     /**
-     * 调度该任务使其下一次tick执行该任务.
+     * Schedules this in the Bukkit scheduler to run on next tick.
      *
-     * @param plugin 调度该任务的插件引用
-     * @return 返回一个包含任务id的BukkitTask
-     * @throws IllegalArgumentException 如果插件引用为空
-     * @throws IllegalStateException 如果该任务已经被调度
+     * @param plugin the reference to the plugin scheduling task
+     * @return a BukkitTask that contains the id number
+     * @throws IllegalArgumentException if plugin is null
+     * @throws IllegalStateException if this was already scheduled
      * @see BukkitScheduler#runTask(Plugin, Runnable)
      */
     public synchronized BukkitTask runTask(Plugin plugin) throws IllegalArgumentException, IllegalStateException {
@@ -33,14 +33,15 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>异步任务不应该访问任何Bukkit API. 程序调用需要非常谨慎，以保证异步任务的线程安全性</b>
+     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
-     * 调度该任务，使其在Bukkit调度器中异步执行.
+     * Schedules this in the Bukkit scheduler to run asynchronously.
      *
-     * @param plugin 调度该任务的插件引用
-     * @return 返回一个包含任务id的BukkitTask
-     * @throws IllegalArgumentException 如果插件引用为空
-     * @throws IllegalStateException 如果该任务尚未被调度
+     * @param plugin the reference to the plugin scheduling task
+     * @return a BukkitTask that contains the id number
+     * @throws IllegalArgumentException if plugin is null
+     * @throws IllegalStateException if this was already scheduled
      * @see BukkitScheduler#runTaskAsynchronously(Plugin, Runnable)
      */
     public synchronized BukkitTask runTaskAsynchronously(Plugin plugin) throws IllegalArgumentException, IllegalStateException  {
@@ -49,13 +50,13 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * 调度该任务，使其在一定服务器tick之后执行.
+     * Schedules this to run after the specified number of server ticks.
      *
-     * @param plugin 调度该任务的插件引用
-     * @param delay 任务执行前的等待tick
-     * @return 返回一个包含任务id的BukkitTask
-     * @throws IllegalArgumentException 如果插件引用为空
-     * @throws IllegalStateException 如果该任务已经被调度
+     * @param plugin the reference to the plugin scheduling task
+     * @param delay the ticks to wait before running the task
+     * @return a BukkitTask that contains the id number
+     * @throws IllegalArgumentException if plugin is null
+     * @throws IllegalStateException if this was already scheduled
      * @see BukkitScheduler#runTaskLater(Plugin, Runnable, long)
      */
     public synchronized BukkitTask runTaskLater(Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException  {
@@ -64,15 +65,17 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>异步任务不应该访问任何Bukkit API. 程序调用需要非常谨慎，以保证异步任务的线程安全性</b>
+     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
-     * 调度该任务，使其在一定服务器tick之后异步执行.
+     * Schedules this to run asynchronously after the specified number of
+     * server ticks.
      *
-     * @param plugin 调度该任务的插件引用
-     * @param delay 任务执行前的等待tick
-     * @return 返回一个包含任务id的BukkitTask
-     * @throws IllegalArgumentException 如果插件引用为空
-     * @throws IllegalStateException 如果该任务已经被调度
+     * @param plugin the reference to the plugin scheduling task
+     * @param delay the ticks to wait before running the task
+     * @return a BukkitTask that contains the id number
+     * @throws IllegalArgumentException if plugin is null
+     * @throws IllegalStateException if this was already scheduled
      * @see BukkitScheduler#runTaskLaterAsynchronously(Plugin, Runnable, long)
      */
     public synchronized BukkitTask runTaskLaterAsynchronously(Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException  {
@@ -81,14 +84,15 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * 调度该任务，使其在一定延迟之后重复地执行直到该任务被关闭.
+     * Schedules this to repeatedly run until cancelled, starting after the
+     * specified number of server ticks.
      *
-     * @param plugin 调度该任务的插件引用
-     * @param delay 任务执行前的等待tick
-     * @param period 任务执行的间隔tick
-     * @return 返回一个包含任务id的BukkitTask
-     * @throws IllegalArgumentException 如果插件引用为空
-     * @throws IllegalStateException 如果该任务已经被调度
+     * @param plugin the reference to the plugin scheduling task
+     * @param delay the ticks to wait before running the task
+     * @param period the ticks to wait between runs
+     * @return a BukkitTask that contains the id number
+     * @throws IllegalArgumentException if plugin is null
+     * @throws IllegalStateException if this was already scheduled
      * @see BukkitScheduler#runTaskTimer(Plugin, Runnable, long, long)
      */
     public synchronized BukkitTask runTaskTimer(Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException  {
@@ -97,16 +101,19 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>异步任务不应该访问任何Bukkit API. 程序调用需要非常谨慎，以保证异步任务的线程安全性</b>
+     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
-     * 调度该任务，使其在一定服务器tick延迟之后重复地异步执行直到该任务被关闭.
+     * Schedules this to repeatedly run asynchronously until cancelled,
+     * starting after the specified number of server ticks.
      *
-     * @param plugin 调度该任务的插件引用
-     * @param delay 第一次执行该任务前的等待时间
-     * @param period 任务执行的间隔tick
-     * @return 返回一个包含任务id的BukkitTask
-     * @throws IllegalArgumentException 如果插件引用为空
-     * @throws IllegalStateException 如果该任务已经被调度
+     * @param plugin the reference to the plugin scheduling task
+     * @param delay the ticks to wait before running the task for the first
+     *     time
+     * @param period the ticks to wait between runs
+     * @return a BukkitTask that contains the id number
+     * @throws IllegalArgumentException if plugin is null
+     * @throws IllegalStateException if this was already scheduled
      * @see BukkitScheduler#runTaskTimerAsynchronously(Plugin, Runnable, long,
      *     long)
      */
@@ -116,10 +123,10 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * 获取该任务的id.
+     * Gets the task id for this runnable.
      *
-     * @return 返回该任务的id
-     * @throws IllegalStateException 如果该任务尚未被调度
+     * @return the task id that this runnable was scheduled as
+     * @throws IllegalStateException if task was not scheduled yet
      */
     public synchronized int getTaskId() throws IllegalStateException {
         final int id = taskId;
