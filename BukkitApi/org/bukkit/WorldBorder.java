@@ -13,7 +13,7 @@ public interface WorldBorder {
      * 获得指定世界当前的边界长度.
      * <p>
      * 原文:Gets the current side length of the border.
-     * <p>
+     * 
      * @return 世界的当前边界长度.
      */
     public double getSize();
