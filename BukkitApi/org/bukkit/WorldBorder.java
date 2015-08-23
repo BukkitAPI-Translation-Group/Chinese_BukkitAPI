@@ -122,3 +122,4 @@ public interface WorldBorder {
      * @param distance The distance in blocks. (The default is 5 blocks.)
      */
     public void setWarningDistance(int distance);
+}
