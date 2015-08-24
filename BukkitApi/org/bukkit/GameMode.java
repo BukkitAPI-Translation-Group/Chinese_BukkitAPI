@@ -7,30 +7,27 @@ import org.bukkit.entity.HumanEntity;
 import com.google.common.collect.Maps;
 
 /**
- * Represents the various type of game modes that {@link HumanEntity}s may
+ * 代表{@link HumanEntity}能有的不同种类的游戏模式.
  * have
  */
 public enum GameMode {
     /**
-     * Creative mode may fly, build instantly, become invulnerable and create
-     * free items.
+     * 创造模式，能飞行、瞬间破坏、无敌、无限的物品.
      */
     CREATIVE(1),
 
     /**
-     * Survival mode is the "normal" gameplay type, with no special features.
+     * 生存模式，是普通的游戏类型，没有特别的特性.
      */
     SURVIVAL(0),
 
     /**
-     * Adventure mode cannot break blocks without the correct tools.
+     * 冒险模式，没有适当的工具将不能破坏方块.
      */
     ADVENTURE(2),
 
     /**
-     * Spectator mode cannot interact with the world in anyway and is 
-     * invisible to normal players. This grants the player the 
-     * ability to no-clip through the world.
+     * 旁观模式，在任何地方都不能进行交互，看不见普通玩家.旁观者会一直处于飞行状态.处于旁观模式时不会受到伤害，除了虚空或/kill伤害。
      */
     SPECTATOR(3);
 
@@ -42,10 +39,13 @@ public enum GameMode {
     }
 
     /**
+     * 获取相关模式的游戏模式值.
+     * <p>
+     * 原文:
      * Gets the mode value associated with this GameMode
      *
-     * @return An integer value of this gamemode
-     * @deprecated Magic value
+     * @return 游戏模式的整型
+     * @deprecated 魔法值
      */
     @Deprecated
     public int getValue() {
@@ -53,12 +53,14 @@ public enum GameMode {
     }
 
     /**
+     * 获取指定值表示的游戏模式.
+     * <p>
+     * 原文:
      * Gets the GameMode represented by the specified value
      *
-     * @param value Value to check
-     * @return Associative {@link GameMode} with the given value, or null if
-     *     it doesn't exist
-     * @deprecated Magic value
+     * @param value 要检测的值
+     * @return 给定值关联的{@link GameMode},如果为null则不存在
+     * @deprecated 魔法值
      */
     @Deprecated
     public static GameMode getByValue(final int value) {
