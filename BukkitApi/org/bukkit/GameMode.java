@@ -8,7 +8,6 @@ import com.google.common.collect.Maps;
 
 /**
  * 代表{@link HumanEntity}能有的不同种类的游戏模式.
- * have
  */
 public enum GameMode {
     /**
@@ -44,7 +43,7 @@ public enum GameMode {
      * 原文:
      * Gets the mode value associated with this GameMode
      *
-     * @return 游戏模式的整型
+     * @return 游戏模式
      * @deprecated 魔法值
      */
     @Deprecated
