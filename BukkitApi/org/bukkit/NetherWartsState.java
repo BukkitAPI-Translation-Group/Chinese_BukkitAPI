@@ -3,19 +3,19 @@ package org.bukkit;
 public enum NetherWartsState {
 
     /**
-     * State when first seeded
+     * 播种时的状态.
      */
     SEEDED,
     /**
-     * First growth stage
+     * 第一生长阶段.
      */
     STAGE_ONE,
     /**
-     * Second growth stage
+     * 第二生长阶段.
      */
     STAGE_TWO,
     /**
-     * Ready to harvest
+     * 成熟，准备收获.
      */
     RIPE;
 }
