@@ -4,7 +4,7 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 
 /**
- * 世界的种类
+ * 代表世界的种类.
  */
 public enum WorldType {
     NORMAL("DEFAULT"),
@@ -22,19 +22,25 @@ public enum WorldType {
     }
 
     /**
-     * 获取世界种类名
+     * 获取世界种类名称.
+     * <p>
+     * 原文:
+     * Gets the name of this WorldType
      *
-     * @return 世界种类名
+     * @return 世界种类名称
      */
     public String getName() {
         return name;
     }
 
     /**
-     * 用世界种类名获取世界种类
+     * 用世界种类名获取世界种类.
+     * <p>
+     * 原文:
+     * Gets a Worldtype by its name
      *
      * @param name 世界种类名
-     * @return 世界种类，找不到就为null
+     * @return 世界种类，不存在就为null
      */
     public static WorldType getByName(String name) {
         return BY_NAME.get(name.toUpperCase());

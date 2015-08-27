@@ -1,56 +1,56 @@
 package org.bukkit;
 
 /**
- * 树的种类
+ * 树和结构的种类.
  */
 public enum TreeType {
 
     /**
-     * 普通的树
+     * 橡树.
      */
     TREE,
     /**
-     * 大树
+     * 大橡树.
      */
     BIG_TREE,
     /**
-     * 普通云杉树
+     * 普通云杉树.
      */
     REDWOOD,
     /**
-     * 瘦长的云杉树，顶端只有几个叶子
+     * 瘦长的云杉树，顶端只有几个叶子.
      */
     TALL_REDWOOD,
     /**
-     * 桦树
+     * 桦树.
      */
     BIRCH,
     /**
-     * 大丛林树(树干2x2)
+     * 大丛林树(树干2x2).
      */
     JUNGLE,
     /**
-     * 普通丛林树
+     * 小丛林树.
      */
     SMALL_JUNGLE,
     /**
-     * 有可可在上面的丛林树
+     * 有可可在上面的丛林树.
      */
     COCOA_TREE,
     /**
-     * 丛林的小灌木从
+     * 丛林里的小灌木丛.
      */
     JUNGLE_BUSH,
     /**
-     * 大红蘑菇
+     * 大红蘑菇.
      */
     RED_MUSHROOM,
     /**
-     * 大棕色蘑菇
+     * 大棕色蘑菇.
      */
     BROWN_MUSHROOM,
     /**
-     * 沼泽树(旁边有藤蔓)
+     * 沼泽树(旁边有藤蔓).
      */
     SWAMP,
     /**
@@ -62,11 +62,11 @@ public enum TreeType {
      */
     DARK_OAK,
     /**
-     * 大云杉树(树干2x2)
+     * 大云杉树(树干2x2).
      */
     MEGA_REDWOOD,
     /**
-     * 大桦树
+     * 大桦树.
      */
     TALL_BIRCH,
 }

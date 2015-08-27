@@ -5,7 +5,7 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * 沙石的种类
+ * 代表三种不同的沙石.
  */
 public enum SandstoneType {
     CRACKED(0x0),
@@ -20,10 +20,13 @@ public enum SandstoneType {
     }
 
     /**
-     * 获取沙石的数据值
+     * 获取沙石的数据值.
+     * <p>
+     * 原文:
+     * Gets the associated data value representing this type of sandstone
      *
      * @return 沙石的数据值
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated
     public byte getData() {
@@ -31,11 +34,14 @@ public enum SandstoneType {
     }
 
     /**
-     * 用数据值获取沙石种类
+     * 用数据值获取沙石种类.
+     * <p>
+     * 原文:
+     * Gets the type of sandstone with the given data value
      *
      * @param data 数据值
-     * @return 用给定的值获取到的{@link SandstoneType},获取不到就为null, 
-     * @deprecated Magic value
+     * @return 用给定的值获取到的{@link SandstoneType},如不存在就为null, 
+     * @deprecated 魔法值
      */
     @Deprecated
     public static SandstoneType getByData(final byte data) {

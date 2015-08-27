@@ -1,12 +1,12 @@
 package org.bukkit;
 
 /**
- * 天气的种类
+ * 所有不同天气的枚举.
  */
 public enum WeatherType {
 
     /**
-     * 雪/雨
+     * 雪/雨(取决于生物群系).
      */
     DOWNFALL,
     /**
