@@ -5,20 +5,20 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * Represents the different types of grass.
+ * 代表不同种类的草丛.
  */
 public enum GrassSpecies {
 
     /**
-     * Represents the dead looking grass.
+     * 代表枯死的灌木.
      */
     DEAD(0x0),
     /**
-     * Represents the normal grass species.
+     * 代表普通种类的草丛.
      */
     NORMAL(0x1),
     /**
-     * Represents the fern-looking grass species.
+     * 代表蕨类草丛.
      */
     FERN_LIKE(0x2);
 
@@ -30,10 +30,13 @@ public enum GrassSpecies {
     }
 
     /**
+     * 获取相关数据代表的品种.
+     * <p>
+     * 原文:
      * Gets the associated data value representing this species
      *
-     * @return A byte containing the data value of this grass species
-     * @deprecated Magic value
+     * @return 包含这种草丛的数据值字节
+     * @deprecated 魔法值
      */
     @Deprecated
     public byte getData() {
@@ -41,12 +44,14 @@ public enum GrassSpecies {
     }
 
     /**
+     * 用给定值获取草丛品种.
+     * <p>
+     * 原文:
      * Gets the GrassSpecies with the given data value
      *
-     * @param data Data value to fetch
-     * @return The {@link GrassSpecies} representing the given value, or null
-     *     if it doesn't exist
-     * @deprecated Magic value
+     * @param data 要获取的数据值
+     * @return 给定值代表的草丛品种({@link GrassSpecies})，如果不存在则为null
+     * @deprecated 魔法值
      */
     @Deprecated
     public static GrassSpecies getByData(final byte data) {
