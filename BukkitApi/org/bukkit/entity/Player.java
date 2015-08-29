@@ -473,7 +473,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * This is equivalent to the following code: <p>
      * <code>incrementStatistic(Statistic, 1)</code> <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要+1的统计项
      * @throws IllegalArgumentException 如果statistic为null
@@ -489,7 +488,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * This is equivalent to the following code:
      * <code>decrementStatistic(Statistic, 1)</code> <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要减少的统计项目
      * @throws IllegalArgumentException 如果statistic为null
@@ -500,7 +498,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 把该玩家的统计信息里的某项加上指定的值. <p>
      * 原文:Increments the given statistic for this player. <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要增加的统计项
      * @param amount 要增加多少
@@ -513,7 +510,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 把该玩家的统计信息里的某项减少指定的值. <p>
      * 原文:Decrements the given statistic for this player. <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要减少的统计项
      * @param amount 要减少多少
@@ -526,7 +522,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 设置该玩家的统计信息里的某项的值. <p>
      * 原文:Sets the given statistic for this player. <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要设置的统计项
      * @param newValue 要把statistic设置成的值
@@ -539,7 +534,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 得到该玩家的统计信息中某项的值. <p>
      * 原文:Gets the value of the given statistic for this player. <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要获取值的统计项
      * @return statistic的值
@@ -725,7 +719,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 设置该玩家的统计信息中某个跟实体有关的统计项的某实体类型({@link EntityType})为某个数值. <p>
      * 原文:Sets the given statistic for this player for the given entity. <p>
-     * 译注:MC不是有"统计信息"系统吗...那些带有"Statistic"的方法都是操纵统计信息的.
      *
      * @param statistic 要设置的统计项
      * @param entityType 要设置的statistic中的某实体类型
@@ -982,7 +975,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setBedSpawnLocation(Location location, boolean force);
 
     /**
-     * 假如玩家能不能飞起来(就像创造模式)则返回true. <p>
+     * 判断玩家是否能飞起来<p>
      * 译注:如果玩家确实在创造模式,那么一般返回true,除非被setAllowFlight(false);
      * 原文:Determines if the Player is allowed to fly via jump key double-tap like
      * in creative mode.
@@ -1085,7 +1078,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 译注:不代表行走速度!
      * 原文:Gets the current allowed speed that a client can fly.
      *
-     * @return 飞行速度.从-1~1.
+     * @return 飞行速度.取值-1~1.
      */
     public float getFlySpeed();
 
@@ -1094,7 +1087,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 译注:不代表飞行速度!
      * 原文:Gets the current allowed speed that a client can walk.
      *
-     * @return 行走速度,从-1~1
+     * @return 行走速度,取值-1~1
      */
     public float getWalkSpeed();
 
