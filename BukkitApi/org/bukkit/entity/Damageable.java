@@ -1,55 +1,81 @@
 package org.bukkit.entity;
 
 /**
- * Represents an {@link Entity} that has health and can take damage.
+ * 表示一个有生命值和可以被伤害的 {@link Entity} .
  */
 public interface Damageable extends Entity {
     /**
-     * Deals the given amount of damage to this entity.
+     * 给予这个 Entity 一定的伤害.
+     * <p>
+     * 原文: Deals the given amount of damage to this entity.
      *
-     * @param amount Amount of damage to deal
+     * @param amount 伤害的数量
      */
     void damage(double amount);
 
     /**
-     * This method exists for legacy reasons to provide backwards
+     * 给予这个 Entity 一定的伤害.
+     * <p>
+     * 这个方法因为以前存在,现在被弃用.但为了兼容性.依旧保留.
+     * 在后续开发中不应该使用此方法.
+     * <p>
+     * 原文: This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      * 
-     * @param amount Amount of damage to deal
+     * @param amount 伤害的数量
      */
     @Deprecated
     void _INVALID_damage(int amount);
 
     /**
-     * Deals the given amount of damage to this entity, from a specified
-     * entity.
+     * 给予这个 Entity 一定的伤害.
+     * 并设置伤害的来源是一个 Entity.
+     * <p>
+     * 原文: Deals the given amount of damage to this entity, 
+     * from a specified entity.
      *
-     * @param amount Amount of damage to deal
-     * @param source Entity which to attribute this damage from
+     * @param amount 伤害的数量
+     * @param source 伤害来源
      */
     void damage(double amount, Entity source);
 
     /**
-     * This method exists for legacy reasons to provide backwards
+     * 给予这个 Entity 一定的伤害.
+     * 并设置伤害的来源是一个 Entity.
+     * <p>
+     * 这个方法因为以前存在,现在被弃用.但为了兼容性.依旧保留.
+     * 在后续开发中不应该使用此方法.
+     * <p>
+     * 原文: This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      *
-     * @param amount Amount of damage to deal
-     * @param source Entity which to attribute this damage from
+     * @param amount 伤害的数量
+     * @param source 伤害来源
      */
     @Deprecated
     void _INVALID_damage(int amount, Entity source);
 
     /**
-     * Gets the entity's health from 0 to {@link #getMaxHealth()}, where 0 is dead.
+     * 获取当前Entity的血量,从0到 {@link #getMaxHealth()}, 
+     * 当血量为 0 时为死亡状态.
+     * <p>
+     * 原文: Gets the entity's health from 0 to {@link #getMaxHealth()}, 
+     * where 0 is dead.
      *
-     * @return Health represented from 0 to max
+     * @return 玩家血量,范围是0到最大
      */
     double getHealth();
 
     /**
-     * This method exists for legacy reasons to provide backwards
+     * 获取当前Entity的血量,从0到 {@link #getMaxHealth()}, 
+     * 当血量为 0 时为死亡状态.
+     * <p>
+     * 这个方法因为以前存在,现在被弃用.但为了兼容性.依旧保留.
+     * 在后续开发中不应该使用此方法.
+     * <p>
+     * 原文: This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      * 
@@ -59,21 +85,30 @@ public interface Damageable extends Entity {
     int _INVALID_getHealth();
 
     /**
-     * Sets the entity's health from 0 to {@link #getMaxHealth()}, where 0 is
-     * dead.
+     * 设置这个 Entity 的血量,范围是 0 到 {@link #getMaxHealth()},
+     * 当血量为 0 时为死亡状态.
+     * <p>
+     * 原文: Sets the entity's health from 0 to 
+     * {@link #getMaxHealth()}, where 0 is dead.
      *
-     * @param health New health represented from 0 to max
+     * @param health 新的血量,范围是 0 到最大.
      * @throws IllegalArgumentException Thrown if the health is {@literal < 0 or >}
      *     {@link #getMaxHealth()}
      */
     void setHealth(double health);
 
     /**
-     * This method exists for legacy reasons to provide backwards
+     * 设置这个 Entity 的血量,范围是 0 到 {@link #getMaxHealth()},
+     * 当血量为 0 时为死亡状态
+     * <p>
+     * 这个方法因为以前存在,现在被弃用.但为了兼容性.依旧保留.
+     * 在后续开发中不应该使用此方法.
+     * <p>
+     * 原文: This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      *
-     * @param health New health represented from 0 to max
+     * @param health 新的血量,范围是 0 到最大.
      * @throws IllegalArgumentException Thrown if the health is {@literal < 0 or >}
      *     {@link #getMaxHealth()}
      */
@@ -81,13 +116,20 @@ public interface Damageable extends Entity {
     void _INVALID_setHealth(int health);
 
     /**
-     * Gets the maximum health this entity has.
+        * 获取这个 Entity 所拥有的最大血量.
+     * <p>
+     * 原文: Gets the maximum health this entity has.
      *
      * @return Maximum health
      */
     double getMaxHealth();
 
     /**
+     * 获取这个 Entity 所拥有的最大血量.
+     * <p>
+     * 这个方法因为以前存在,现在被弃用.但为了兼容性.依旧保留.
+     * 在后续开发中不应该使用此方法.
+     * <p>
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
@@ -98,7 +140,14 @@ public interface Damageable extends Entity {
     int _INVALID_getMaxHealth();
 
     /**
-     * Sets the maximum health this entity can have.
+     * 设置这个 Entity 所拥有的最大血量.
+     * <p>
+     * 如果当前血量高于这个值, 那么新的血量将会设置为这个值.
+     * <p>
+     * 贴士: Entity 有血条 ({@link Player}, {@link EnderDragon},
+     * {@link Wither}, etc...} 也将会有他们相应的血条样式.
+     * <p>
+     * 原文: Sets the maximum health this entity can have.
      * <p>
      * If the health of the entity is above the value provided it will be set
      * to that value.
@@ -111,6 +160,11 @@ public interface Damageable extends Entity {
     void setMaxHealth(double health);
 
     /**
+     * 设置这个 Entity 所拥有的最大血量.
+     * <p>
+     * 这个方法因为以前存在,现在被弃用.但为了兼容性.依旧保留.
+     * 在后续开发中不应该使用此方法.
+     * <p>
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
@@ -121,7 +175,9 @@ public interface Damageable extends Entity {
     void _INVALID_setMaxHealth(int health);
 
     /**
-     * Resets the max health to the original amount.
+     * 重置最大血量[20].
+     * <p>
+     * 原文: Resets the max health to the original amount.
      */
     void resetMaxHealth();
 }
