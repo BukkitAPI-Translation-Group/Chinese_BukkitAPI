@@ -6,7 +6,7 @@ package org.bukkit.inventory;
 public interface BeaconInventory extends Inventory {
 
     /**
-     * 设置提供给信标信号的物品.
+     * 设置提供给信标信号的Item项目.
      * <p>
      * 原文: Set the item powering the beacon.
      *
@@ -15,7 +15,7 @@ public interface BeaconInventory extends Inventory {
     void setItem(ItemStack item);
 
     /**
-     * 获取提供给信标信号的物品.
+     * 获取提供给信标信号的Item项目.
      * <p>
      * 原文: Get the item powering the beacon.
      *
