@@ -26,16 +26,20 @@ public interface EnchantingInventory extends Inventory {
     ItemStack getItem();
 
     /**
-     * Set the secondary item being used for the enchant.
+     * 设置被用来附魔的辅助材料.
+     * <p>
+     * 原文: Set the secondary item being used for the enchant.
      *
-     * @param item new item
+     * @param item 新的辅助材料.
      */
     void setSecondary(ItemStack item);
 
     /**
-     * Get the secondary item being used for the enchant.
+     * 获取当前附魔物品的辅助材料
+     * <p>
+     * 原文: Get the secondary item being used for the enchant.
      *
-     * @return The second item
+     * @return 辅助物品.
      */
     ItemStack getSecondary();
 }
