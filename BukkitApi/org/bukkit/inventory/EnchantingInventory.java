@@ -26,7 +26,7 @@ public interface EnchantingInventory extends Inventory {
     ItemStack getItem();
 
     /**
-     * 设置被用来附魔的辅助材料.
+     * 设置被用来附魔的辅助材料Item项目.
      * <p>
      * 原文: Set the secondary item being used for the enchant.
      *
@@ -35,7 +35,7 @@ public interface EnchantingInventory extends Inventory {
     void setSecondary(ItemStack item);
 
     /**
-     * 获取当前附魔物品的辅助材料
+     * 获取当前附魔物品的辅助Item项目.
      * <p>
      * 原文: Get the secondary item being used for the enchant.
      *
