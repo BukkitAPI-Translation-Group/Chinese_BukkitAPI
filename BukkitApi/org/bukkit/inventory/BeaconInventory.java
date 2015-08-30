@@ -1,21 +1,25 @@
 package org.bukkit.inventory;
 
 /**
- * Interface to the inventory of a Beacon.
+ * 与信标信号的接口.
  */
 public interface BeaconInventory extends Inventory {
 
     /**
-     * Set the item powering the beacon.
+     * 原文: Set the item powering the beacon.
+     * <p>
+     * 译文: 设置提供给信标信号的物品.
      *
-     * @param item The new item
+     * @param item 新的物品
      */
     void setItem(ItemStack item);
 
     /**
-     * Get the item powering the beacon.
+     * 原文: Get the item powering the beacon.
+     * <p>
+     * 译文: 获取提供给信标信号的物品.
      *
-     * @return The current item.
+     * @return 提供给信标信号的物品.
      */
     ItemStack getItem();
 }
