@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当一个方块被玩家放置的时候调用本事件
+ * 当一个方块被玩家放置的时候触发此事件.
  * <p>
  * 如果方块放置事件被取消，那么这个方块将不能被放置
  */
@@ -40,7 +40,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 看看是谁放置的这个方块
+     * 获得是哪个玩家放置的这个方块
      *
      * @return 谁放置的这个方块(Player对象)
      */
@@ -49,8 +49,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 更明确地获取被放置的方块，如果你要让Block对象清楚，可以
-     * 用这个方法哦~
+     * 获得被放置的方块(还未真正被放置). <p>
      *
      * @return 被放置后的方块
      */
@@ -59,8 +58,8 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取方块被放置后的 BlockState(方块状态。). Material type air
-     * mostly.例：牌子拿在手里，放在墙上后，这个牌子的方块状态就是墙上的牌子。
+     * 获取方块被放置后的方块状态({@link BlockState}). 通常是空气. <p>
+     * 例：牌子拿在手里，放在墙上后，这个牌子的方块状态就是墙上的牌子.
      *
      * @return 被放置后的方块的方块状态
      */
@@ -69,24 +68,28 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 原：Gets the block that this block was placed against
-     * 获取“反对”这个方块的方块
-     * @return Block “反对”这个方块的方块
+     * 获取这个方块是依附在哪个方块上放置的. <p>
+     * 原文：Gets the block that this block was placed against
+     * 
+     * @return Block 放置时依附的方块
      */
     public Block getBlockAgainst() {
         return placedAgainst;
     }
 
     /**
-     * 获取玩家放置的方块的物品形式（在玩家手上）
-     * @return 这个方块的物品形式的 ItemStack(物品格/物品栈)
+     * 获取玩家放置的方块的物品形式(在玩家手上). <p>
+     * 
+     * @return 这个方块的物品形式
      */
     public ItemStack getItemInHand() {
         return itemInHand;
     }
 
     /**
-     * 获取这个方块是否可以建造。
+     * 获取这个方块是否可以建造. <p>
+     * 默认为true.
+     * <p>
      * Defaults to spawn if the server was going to stop them (such as, the
      * player is in Spawn). Note that this is an entirely different check
      * than BLOCK_CANBUILD, as this refers to a player, not universe-physics
@@ -99,10 +102,9 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置这个方块是否可以建造. 想让玩家可以建造
-     * 请设为true
+     * 设置这个方块是否可以被放置. <p>
      *
-     * @param canBuild 想让玩家可以建造,请设为true
+     * @param canBuild 是否允许玩家放置这个方块
      */
     public void setBuild(boolean canBuild) {
         this.canBuild = canBuild;
