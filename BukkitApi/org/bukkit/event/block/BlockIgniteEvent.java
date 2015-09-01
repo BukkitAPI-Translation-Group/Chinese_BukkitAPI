@@ -7,8 +7,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个方块被点燃时的事件. 若要判断玩家放了个火方块，
- * 请看{@link BlockPlaceEvent}.
+ * 当一个方块被点燃时触发. <p>
+ * 若要判断玩家是否放了个火方块,请看{@link BlockPlaceEvent}.
  * <p>
  * 若本事件被取消，方块将不会被点燃
  */
@@ -49,7 +49,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的原因
+     * 获取点燃方块的原因. <p>
      *
      * @return 点燃方块的原因
      */
@@ -58,7 +58,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的玩家
+     * 获取点燃方块的玩家,如果不是玩家点燃的就返回null. <p>
      *
      * @return 点燃方块的玩家，如果不是玩家点燃的返回null
      */
@@ -80,9 +80,9 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的方块
+     * 获取点燃方块的方块. <p>
      *
-     * @return 点燃方块的方块，如果不是方块点燃的返回null
+     * @return 点燃方块的方块,如果不是方块点燃的返回null
      */
     public Block getIgnitingBlock() {
         return ignitingBlock;
