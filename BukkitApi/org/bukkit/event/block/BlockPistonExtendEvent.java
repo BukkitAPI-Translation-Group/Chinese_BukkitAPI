@@ -9,7 +9,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.HandlerList;
 
 /**
- * 活塞推出事件.
+ * 活塞臂退出/收回事件.
  */
 public class BlockPistonExtendEvent extends BlockPistonEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -34,8 +34,9 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
      * 获取被活塞移动的方块数.
      *
      * @return 被活塞移动的方块数.
-     * @deprecated slime blocks make the value of this method
-     *          inaccurate due to blocks being pushed at the side
+     * @deprecated 由于史莱姆方块的特性,
+     * 这个方法是不准确的因为它不包含史莱姆方块粘走的方块,
+     * 如MC版本低于1.8请无视此句.
      */
     @Deprecated
     public int getLength() {
