@@ -6,7 +6,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.Cancellable;
 
 /**
- * 活塞被激活,推出活塞臂的事件
+ * 活塞相关事件
  */
 public abstract class BlockPistonEvent extends BlockEvent implements Cancellable {
     private boolean cancelled;
