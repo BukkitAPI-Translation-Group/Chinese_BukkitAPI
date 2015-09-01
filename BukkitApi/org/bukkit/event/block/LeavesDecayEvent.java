@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 /**
  * 当树叶消失时触发此事件
  * <p>
- * 如果此事件被取消则树叶就不会小时.
+ * 如果此事件被取消则树叶就不会消失.
  */
 public class LeavesDecayEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
