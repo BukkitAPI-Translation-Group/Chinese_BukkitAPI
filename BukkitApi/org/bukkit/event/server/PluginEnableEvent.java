@@ -5,8 +5,6 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * 当一个插件被启用时调用.
- * <p>
- * 原文:Called when a plugin is enabled.
  */
 public class PluginEnableEvent extends PluginEvent {
     private static final HandlerList handlers = new HandlerList();
