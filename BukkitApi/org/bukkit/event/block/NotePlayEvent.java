@@ -7,7 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 音符盒播放音符的事件【玩家点击/红石触发】
+ * 音符盒播放音符的事件[玩家点击/红石触发]
  */
 public class NotePlayEvent extends BlockEvent implements Cancellable {
 
@@ -31,7 +31,7 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取被使用的 {@link Instrument}.
+     * 获取要播放的音符的乐器({@link Instrument}).
      *
      * @return Instrument;
      */
@@ -40,7 +40,7 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取被播放过的 {@link Note} .
+     * 获取要播放的音符({@link Note}).
      *
      * @return Note.
      */
@@ -49,9 +49,9 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 覆盖被使用过的 {@link Instrument} .
+     * 设置播放音符用的乐器({@link Instrument}).
      *
-     * @param instrument Instrument. 没有为null.
+     * @param instrument Instrument.没有为null.
      */
     public void setInstrument(Instrument instrument) {
         if (instrument != null) {
@@ -61,7 +61,7 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 覆盖被播放过的{@link Note}.
+     * 设置要播放的音符({@link Note})
      *
      * @param note 音符盒. 没有为null.
      */
