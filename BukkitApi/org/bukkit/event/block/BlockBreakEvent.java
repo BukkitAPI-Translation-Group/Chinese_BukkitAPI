@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 一个方块被玩家破坏的时候，调用本事件。
+ * 一个方块被玩家破坏的时候，调用本事件.
  * <p>
  * 如果你想要在方块被破坏之后掉落经验, 你必须设置经验值
  * 为0以上。 默认情况下, 如果事件是这样的，经验会被设置：
