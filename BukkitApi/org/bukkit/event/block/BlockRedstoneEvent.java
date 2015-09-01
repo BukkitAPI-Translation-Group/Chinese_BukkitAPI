@@ -4,7 +4,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当红石信号变化时，调用本事件
+ * 当方块接受到的红石信号变化时触发此事件
  */
 public class BlockRedstoneEvent extends BlockEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -18,27 +18,27 @@ public class BlockRedstoneEvent extends BlockEvent {
     }
 
     /**
-     * 获取这个方块之前的形态
+     * 获取这个方块之前的红石信号强度(0~15). <p>
      *
-     * @return 这个方块之前的形态
+     * @return 红石信号强度(0~15)
      */
     public int getOldCurrent() {
         return oldCurrent;
     }
 
     /**
-     * 获取这个方块现在的形态
+     * 获取这个方块收到的红石信号强度将要变成的值(0~15). <p>
      *
-     * @return 这个方块现在的形态
+     * @return 红石信号强度(0~15)
      */
     public int getNewCurrent() {
         return newCurrent;
     }
 
     /**
-     * 设置这个方块现在的形态
+     * 设置这个方块收到的红石信号强度将要变成的值(0~15). <p>
      *
-     * @param newCurrent 这个方块现在的形态
+     * @param newCurrent 红石信号强度,取值(0~15)
      */
     public void setNewCurrent(int newCurrent) {
         this.newCurrent = newCurrent;
