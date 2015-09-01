@@ -9,9 +9,9 @@ import org.bukkit.inventory.ItemStack;
 import java.util.List;
 
 /**
- * 当玩家放一个方块，而触发了第二个方块时（例如玩家放置一个床）调用本事件，
- * 通过 {@link #getBlockPlaced()} 和它的相关方法 返回的方块是：若该位置不仅影响一个方块，
- * 其中放置的方块会存在。
+ * 当玩家放一个方块，而连锁放置了第二个方块时(例如玩家放置一个床)触发本事件. <p>
+ * 通过 {@link #getBlockPlaced()} 和它的相关方法 返回的方块是:若该位置不仅影响一个方块，
+ * 其中放置的方块会存在.
  */
 public class BlockMultiPlaceEvent extends BlockPlaceEvent {
     private final List<BlockState> states;
@@ -22,10 +22,10 @@ public class BlockMultiPlaceEvent extends BlockPlaceEvent {
     }
 
     /**
-     * 获取所有新放置的方块的方块状态。
-     * 这些方块中的大多数方块状态都是空气。
+     * 获取所有新放置的方块的方块状态. <p>
+     * 这些方块中的大多数方块状态都是空气.
      *
-     * @return 一个不改变的BlockStates 列表
+     * @return 一个不能改变的BlockStates列表(ImmutableList);
      */
     public List<BlockState> getReplacedBlockStates() {
         return states;
