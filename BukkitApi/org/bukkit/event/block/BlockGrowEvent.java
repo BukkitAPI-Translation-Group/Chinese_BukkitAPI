@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个方块在世界中自然生长的时候，调用本事件。
+ * 当一个方块在世界中自然生长的时触发此事件(如小麦生长).
  * <p>
  * 举几个例子:
  * <ul>
@@ -17,7 +17,7 @@ import org.bukkit.event.HandlerList;
  * <li>南瓜
  * </ul>
  * <p>
- * 此事件被取消，方块将不会生长
+ * 如果此事件被取消,方块将不会生长
  */
 public class BlockGrowEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
