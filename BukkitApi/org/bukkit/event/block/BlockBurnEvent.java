@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个方块被火烧没的时候，调用本事件
+ * 当一个方块被火烧掉的时候触发此事件.
  * <p>
  * 若方块点燃事件被取消，此方块就不会被火烧没
  * 
