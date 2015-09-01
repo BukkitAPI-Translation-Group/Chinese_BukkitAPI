@@ -5,8 +5,6 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * 当一个插件被禁用时调用.
- * <p>
- * 原文:Called when a plugin is disabled.
  */
 public class PluginDisableEvent extends PluginEvent {
     private static final HandlerList handlers = new HandlerList();
