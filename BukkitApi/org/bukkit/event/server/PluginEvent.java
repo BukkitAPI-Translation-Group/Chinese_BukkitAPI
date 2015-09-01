@@ -4,8 +4,6 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * 用于插件的启用和禁用事件.
- * <p>
- * 原文:Used for plugin enable and disable events
  */
 public abstract class PluginEvent extends ServerEvent {
     private final Plugin plugin;
@@ -15,9 +13,9 @@ public abstract class PluginEvent extends ServerEvent {
     }
 
     /**
-     * Gets the plugin involved in this event
+     * 得到启用/禁用的插件. <p>
      *
-     * @return Plugin for this event
+     * @return 激活这个事件的插件
      */
     public Plugin getPlugin() {
         return plugin;
