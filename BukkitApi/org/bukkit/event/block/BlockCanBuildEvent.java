@@ -9,10 +9,10 @@ import org.bukkit.event.HandlerList;
  * <p>
  * 注意:
  * <ul>
- * <li>方法 getBlock() 返回的是我们正试图放置的方块，不是我们试图放置的方块。
+ * <li>方法 getBlock() 返回的是我们正试图放置在其上面的方块,不是我们试图放置的方块。
  * 原文：getBlock() is the block we are trying to place
  * on, not the block we are trying to place.
- * <li>如果你想知道建造了什么, 用 {@link
+ * <li>如果你想知道玩家放置的是什么方块, 用 {@link
  *     #getMaterial()} 或者 {@link #getMaterialId()} 来代替.
  * </ul>
  */
@@ -22,14 +22,14 @@ public class BlockCanBuildEvent extends BlockEvent {
 
     /**
      *
-     * @deprecated 魔法值（Magic value）
+     * @deprecated 不安全的参数
      */
     @Deprecated
     protected int material;
 
     /**
      *
-     * @deprecated 魔法值（Magic value）
+     * @deprecated 不安全的参数
      * @param block 这个事件涉及的方块
      * @param id 这个要放置的方块的ID
      * @param canBuild 是否可以建造
@@ -74,7 +74,7 @@ public class BlockCanBuildEvent extends BlockEvent {
      * 获取我们试图放置的方块的ID
      *
      * @return 我们试图放置的方块的ID
-     * @deprecated 魔法值（Magic value）
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getMaterialId() {
