@@ -5,10 +5,12 @@ import org.bukkit.block.BlockState;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个方块基于世界条件地蔓延时，调用此事件.
+ * 当一个方块基于自然法则地蔓延时触发此事件(比如菌丝的蔓延).
  * <p>
- * 用 {@link BlockFormEvent} 来捕获方块 。方块蔓延是“随意”的形式，不是
- * 实际地传播。原：that "randomly" form instead of actually spread.
+ * 用 {@link BlockFormEvent} 来获取方块 。方块蔓延是“随机”的形式，不是
+ * 实际地传播.
+ * <p>
+ * 原：that "randomly" form instead of actually spread.
  * <p>
  * 例如:
  * <ul>
@@ -16,7 +18,7 @@ import org.bukkit.event.HandlerList;
  * <li>火的蔓延
  * </ul>
  * <p>
- * 若本事件被取消，方块就不会蔓延。
+ * 若本事件被取消,方块就不会蔓延.
  *
  * @see BlockFormEvent
  */
