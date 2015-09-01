@@ -1,129 +1,136 @@
 package org.bukkit.util.noise;
-
 import java.util.Random;
 import org.bukkit.World;
-
 /**
- * Creates simplex noise through unbiased octaves
+ * 使用中音阶创建基于单纯形的噪声
+ * <p>
+ * 原文：Creates simplex noise through unbiased octaves
  */
 public class SimplexOctaveGenerator extends OctaveGenerator {
     private double wScale = 1;
-
     /**
-     * Creates a simplex octave generator for the given world
+     * 为给定的世界创建一个基于单纯形的中音阶产生器
+     * <p>
+     * 原文：Creates a simplex octave generator for the given world
      *
-     * @param world World to construct this generator for
-     * @param octaves Amount of octaves to create
+     * @param world 创建这个发生器的世界
+     * @param octaves 创建的音阶数
      */
     public SimplexOctaveGenerator(World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
-
     /**
-     * Creates a simplex octave generator for the given world
+     * 为给定的世界创建一个基于单纯形的中音阶产生器
+     * <p>
+     * 原文：Creates a simplex octave generator for the given world
+     * <p>
+     * 译注:根据参数的翻译 这里given world疑似打错应该是given seed
+     * <p>
+     * 译注2:算了不影响理解
      *
-     * @param seed Seed to construct this generator for
-     * @param octaves Amount of octaves to create
+     * @param seed 创建这个发生器的种子
+     * @param octaves 创建的音阶数
      */
     public SimplexOctaveGenerator(long seed, int octaves) {
         this(new Random(seed), octaves);
     }
-
     /**
-     * Creates a simplex octave generator for the given {@link Random}
+     * 为给定的{@link Random}创建一个基于单纯形的中音阶产生器
+     * <p>
+     * 原文：Creates a simplex octave generator for the given {@link Random}
      *
-     * @param rand Random object to construct this generator for
-     * @param octaves Amount of octaves to create
+     * @param rand 创建这个发生器的Random实例
+     * @param octaves 创建的音阶数
      */
     public SimplexOctaveGenerator(Random rand, int octaves) {
         super(createOctaves(rand, octaves));
     }
-
     @Override
     public void setScale(double scale) {
         super.setScale(scale);
         setWScale(scale);
     }
-
     /**
-     * Gets the scale used for each W-coordinates passed
+     * 获取每个W坐标通过的区间大小
+     * <p>
+     * 原文：Gets the scale used for each W-coordinates passed
      *
-     * @return W scale
+     * @return W区间大小
      */
     public double getWScale() {
         return wScale;
     }
-
     /**
-     * Sets the scale used for each W-coordinates passed
+     * 设置每个W坐标通过的区间大小
+     * <p>
+     * 原文：Sets the scale used for each W-coordinates passed
      *
-     * @param scale New W scale
+     * @param scale 新W区间大小
      */
     public void setWScale(double scale) {
         wScale = scale;
     }
-
     /**
-     * Generates noise for the 3D coordinates using the specified number of
+     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * <p>
+     * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
+     * <p>
+     * 译注:根据参数的翻译 这里3D疑似打错应该是4D
      *
-     * @param x X-coordinate
-     * @param y Y-coordinate
-     * @param z Z-coordinate
-     * @param w W-coordinate
-     * @param frequency How much to alter the frequency by each octave
-     * @param amplitude How much to alter the amplitude by each octave
-     * @return Resulting noise
+     * @param x X坐标
+     * @param y Y坐标
+     * @param z Z坐标
+     * @param w W坐标
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
+     * @return 噪音结果
      */
     public double noise(double x, double y, double z, double w, double frequency, double amplitude) {
         return noise(x, y, z, w, frequency, amplitude, false);
     }
-
     /**
-     * Generates noise for the 3D coordinates using the specified number of
+     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * <p>
+     * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
+     * <p>
+     * 译注:根据参数的翻译 这里3D疑似打错应该是4D
      *
-     * @param x X-coordinate
-     * @param y Y-coordinate
-     * @param z Z-coordinate
-     * @param w W-coordinate
-     * @param frequency How much to alter the frequency by each octave
-     * @param amplitude How much to alter the amplitude by each octave
-     * @param normalized If true, normalize the value to [-1, 1]
-     * @return Resulting noise
+     * @param x X坐标
+     * @param y Y坐标
+     * @param z Z坐标
+     * @param w W坐标
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
+     * @param normalized 如果为true，规范这个值为[-1, 1]
+     * @return 噪音结果
      */
     public double noise(double x, double y, double z, double w, double frequency, double amplitude, boolean normalized) {
         double result = 0;
         double amp = 1;
         double freq = 1;
         double max = 0;
-
         x *= xScale;
         y *= yScale;
         z *= zScale;
         w *= wScale;
-
         for (NoiseGenerator octave : octaves) {
             result += ((SimplexNoiseGenerator) octave).noise(x * freq, y * freq, z * freq, w * freq) * amp;
             max += amp;
             freq *= frequency;
             amp *= amplitude;
         }
-
         if (normalized) {
             result /= max;
         }
-
         return result;
     }
-
     private static NoiseGenerator[] createOctaves(Random rand, int octaves) {
         NoiseGenerator[] result = new NoiseGenerator[octaves];
-
         for (int i = 0; i < octaves; i++) {
             result[i] = new SimplexNoiseGenerator(rand);
         }
-
         return result;
     }
 }
