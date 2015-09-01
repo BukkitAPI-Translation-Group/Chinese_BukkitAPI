@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 /**
- * 物品被方块射出的事件.
+ * 物品被方块(比如发射器,投掷器等)射出的事件.
  * <p>
  * 取消该事件, 物品就不会被射出.
  * 
@@ -25,30 +25,29 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取被射出的物品的ItemStack. 修改返回的项目
-     * 没用, 必须用另一个 {@link
-     * #setItem(org.bukkit.inventory.ItemStack)} 代替.
+     * 获取被射出的物品. <p>
+     * 修改返回的对象没用, 必须用 {@link #setItem(org.bukkit.inventory.ItemStack)} 代替.
      *
-     * @return 被射出的物品的ItemStack
+     * @return 被射出的物品
      */
     public ItemStack getItem() {
         return item.clone();
     }
 
     /**
-     * 设置被射出的物品
+     * 设置被射出的物品. <p>
      *
-     * @param item 被射出的物品的ItemStack
+     * @param item 被射出的物品
      */
     public void setItem(ItemStack item) {
         this.item = item;
     }
 
     /**
-     * 获取射出的速度.
+     * 获取物品射出的速度、角度.
      * <p>
-     * 注意: 修改返回的项目并不会修改速度, 必须
-     * 用另一个{@link #setVelocity(org.bukkit.util.Vector)} 代替.
+     * 注意: 修改返回的对象并不会修改速度, 必须
+     * 用{@link #setVelocity(org.bukkit.util.Vector)} 代替.
      *
      * @return 射出物品的速度的Vector(向量)
      */
@@ -57,9 +56,9 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置射出的速度.
+     * 设置物品射出的速度、角度.
      *
-     * @param vel 射出的物品的速度.
+     * @param vel 射出的物品的速度、角度.
      */
     public void setVelocity(Vector vel) {
         velocity = vel;
