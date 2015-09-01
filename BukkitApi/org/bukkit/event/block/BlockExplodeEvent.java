@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * 方块爆炸事件
+ * 
+ * 译注:{@ link #getBlock}方法返回的是引起爆炸的方块(比如说TNT),并不是被炸掉的方块.
  */
 public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -31,27 +33,27 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 返回炸没的方块的列表
+     * 返回炸毁的方块的列表
      *
-     * @return 炸没的方块的列表
+     * @return 炸毁的方块的列表
      */
     public List<Block> blockList() {
         return blocks;
     }
 
     /**
-     * 返回来自这次爆炸的方块掉落的百分比 
+     * 返回这次爆炸炸毁的方块掉落的可能性(小数百分比). <p>
      *
-     * @return 百分率
+     * @return 小数百分率
      */
     public float getYield() {
         return yield;
     }
 
     /**
-     * 设置来自这次爆炸的方块掉落的百分比 
+     * 设置这次爆炸炸毁的方块掉落的可能性(小数百分比). <p>
      *
-     * @param 百分率
+     * @param 小数百分率
      */
     public void setYield(float yield) {
         this.yield = yield;
