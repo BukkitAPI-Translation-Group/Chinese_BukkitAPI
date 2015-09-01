@@ -6,9 +6,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 在玩家更改牌子的时候调用
+ * 在玩家设置牌子上的内容子时触发.
  * <p>
- * 若取消本事件，牌子将不会被更改
+ * 若取消本事件,牌子将不会被更改.
  */
 public class SignChangeEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -23,42 +23,40 @@ public class SignChangeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取更改这个牌子的玩家
+     * 获得设置这个牌子上的字的玩家. <p>
      *
-     * @return 更改这个牌子的玩家
+     * @return 玩家
      */
     public Player getPlayer() {
         return player;
     }
 
     /**
-     * 获取被更改的牌子的所有内容
+     * 获得牌子被写上的内容. <p>
      *
-     * @return 被更改的牌子的所有内容（数组）
+     * @return 牌子被设置成的内容(长度为4的数组)
      */
     public String[] getLines() {
         return lines;
     }
 
     /**
-     * 获取
+     * 获得牌子被写上的内容的某行. <p>
      *
-     * @param index 要获取的内容的行数
+     * @param index 要获取的内容的行数,取值0~3
      * @return 你获取的那行
-     * @throws IndexOutOfBoundsException 如果行数 {@literal > 3
-     *     or < 0}
+     * @throws IndexOutOfBoundsException 如果行数 {@literal > 3} 或者 {@literal < 0}
      */
     public String getLine(int index) throws IndexOutOfBoundsException {
         return lines[index];
     }
 
     /**
-     * 设置被更改的牌子指定一行的内容
+     * 修改牌子被写上的字的某行.
      *
      * @param index 要设定的内容的行数
      * @param line 要设定的内容
-     * @throws IndexOutOfBoundsException 如果行数 {@literal > 3
-     *     or < 0}
+     * @throws IndexOutOfBoundsException 如果行数 {@literal > 3} 或者 {@literal < 0}
      */
     public void setLine(int index, String line) throws IndexOutOfBoundsException {
         lines[index] = line;
