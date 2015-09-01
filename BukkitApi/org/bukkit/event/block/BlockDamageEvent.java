@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 方块被玩家损坏的事件
+ * 方块被玩家损坏的事件.
  * <p>
  * 若本事件被取消，方块将不会损坏
  */
@@ -27,7 +27,7 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取损坏这个方块的玩家
+     * 获取试图损坏这个方块的玩家.
      *
      * @return 损坏这个方块的玩家
      */
@@ -36,7 +36,7 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取方块是否立即被玩家损坏
+     * 返回方块是否立即被玩家损坏(比如创造模式).
      *
      * @return 如果方块在被玩家损坏时是被立即破坏的，返回true，反之false
      *     
@@ -46,7 +46,7 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置方块是否立即被玩家损坏
+     * 设置方块是否立即被玩家损坏(比如创造模式).
      *
      * @param bool 如果你想要方块在被玩家损坏时被立即破坏，请设置true，反之false
      */
@@ -55,9 +55,9 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取当前玩家手上的物品的ItemStack
+     * 获取当前玩家手上的物品
      *
-     * @return 当前玩家手上的物品的ItemStack
+     * @return 当前玩家手上的物品
      */
     public ItemStack getItemInHand() {
         return itemstack;
