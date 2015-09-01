@@ -6,9 +6,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 水流动/龙蛋自己传送的事件（源方块->目标方块） 
+ * 液体流动/龙蛋自己传送的事件(源方块->目标方块).
  * <p>
- * 事件被取消, 方块不会移动/流动.
+ * 如果事件被取消,方块不会移动/流动.
  */
 public class BlockFromToEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -30,7 +30,7 @@ public class BlockFromToEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取方块想要移动到的 BlockFace 
+     * 获取方块想要移动到的{@link BlockFace} (大概是方向的意思..). <p> 
      *
      * @return 方块想要移动到的 BlockFace 
      */
@@ -39,7 +39,7 @@ public class BlockFromToEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取目标方块的一个便捷的方法
+     * 获取方块要移动到的地方的一个快捷的方法.
      *
      * @return 目标方块
      */
