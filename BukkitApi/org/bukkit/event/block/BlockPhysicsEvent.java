@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 方块的物理事件.
+ * 方块物理事件(推测应该是沙子掉落事件).
  */
 public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -15,7 +15,7 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
 
     /**
      *
-     * @deprecated 不定值
+     * @deprecated 不安全的参数
      * @param block 这个事件的方块
      * @param changed 方块id
      */
@@ -29,7 +29,7 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
      * 获取事件中被改变的方块的ID
      *
      * @return 被改变的方块的id
-     * @deprecated 不定值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getChangedTypeId() {
