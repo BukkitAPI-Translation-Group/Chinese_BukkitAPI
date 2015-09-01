@@ -1,12 +1,12 @@
 package org.bukkit.inventory;
 
 /**
- * 与信标信号的接口.
+ * 信标的GUI接口
  */
 public interface BeaconInventory extends Inventory {
 
     /**
-     * 设置提供给信标信号的Item项目.
+     * 设置激活这个信标的药水效果的物品. 
      * <p>
      * 原文: Set the item powering the beacon.
      *
@@ -15,11 +15,11 @@ public interface BeaconInventory extends Inventory {
     void setItem(ItemStack item);
 
     /**
-     * 获取提供给信标信号的Item项目.
+     * 返回激活这个信标的药水效果的物品. 
      * <p>
      * 原文: Get the item powering the beacon.
      *
-     * @return 提供给信标信号的物品.
+     * @return 物品
      */
     ItemStack getItem();
 }
