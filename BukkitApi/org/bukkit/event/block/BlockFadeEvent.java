@@ -6,16 +6,17 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 方块因为世界条件消退，融化，消失的事件
+ * 方块因为自然条件消退，融化，消失的事件(比如雪融化).
  * <p>
  * 例如:
  * <ul>
  * <li>雪被附近的光源融化
  * <li>冰被附近的光源融化
  * <li>火燃烧后破坏可以作为燃料的方块
+ * <li>树叶消失(注:我不敢肯定有树叶消失这一项,原文中没有).
  * </ul>
  * <p>
- * 这事件被取消, 方块不会因为世界条件消退，融化，消失
+ * 如果这事件被取消, 方块不会因为自然条件消退，融化，消失.
  */
 public class BlockFadeEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -29,9 +30,9 @@ public class BlockFadeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取因为世界条件消退，融化，消失的事件的方块状态
+     * 获取因为世界条件消退，融化，消失的事件的方块状态({@link BlockState}).
      *
-     * @return 因为世界条件消退，融化，消失的事件的方块状态
+     * @return {@link BlockState}
      */
     public BlockState getNewState() {
         return newState;
