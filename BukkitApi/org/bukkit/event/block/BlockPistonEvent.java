@@ -6,7 +6,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.Cancellable;
 
 /**
- * 活塞被启动的事件
+ * 活塞被激活,推出活塞臂的事件
  */
 public abstract class BlockPistonEvent extends BlockEvent implements Cancellable {
     private boolean cancelled;
@@ -26,18 +26,18 @@ public abstract class BlockPistonEvent extends BlockEvent implements Cancellable
     }
 
     /**
-     * 粘性活塞返回true
+     * 判断是否是粘性活塞. <p>
      *
-     * @return 粘性活塞返回true
+     * @return 如是粘性活塞则返回true.
      */
     public boolean isSticky() {
         return block.getType() == Material.PISTON_STICKY_BASE || block.getType() == Material.PISTON_MOVING_PIECE;
     }
 
     /**
-     * 活塞的方向.
+     * 返回活塞的朝向.
      *
-     * @return 活塞的方向
+     * @return 活塞的朝向
      */
     public BlockFace getDirection() {
         // Both are meh!
