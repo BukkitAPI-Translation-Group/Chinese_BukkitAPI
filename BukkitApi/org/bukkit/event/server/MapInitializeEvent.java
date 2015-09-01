@@ -5,8 +5,6 @@ import org.bukkit.map.MapView;
 
 /**
  * 地图初始化时调用.
- * <p>
- * 原文:Called when a map is initialized.
  */
 public class MapInitializeEvent extends ServerEvent {
     private static final HandlerList handlers = new HandlerList();
