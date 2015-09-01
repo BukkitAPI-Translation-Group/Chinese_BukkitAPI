@@ -5,11 +5,12 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 
 /**
- * 方块构成实体时调用本事件.
+ * 方块搭建成实体时调用本事件.
  * <p>
  * 举个例子:
  * <ul>
- * <li>雪构成 {@link org.bukkit.entity.Snowman}.
+ * <li>用雪块、南瓜搭建成一个雪傀儡时.
+ * <li>用铁块、南瓜搭建成一个铁傀儡时.
  * </ul>
  */
 public class EntityBlockFormEvent extends BlockFormEvent {
@@ -22,9 +23,9 @@ public class EntityBlockFormEvent extends BlockFormEvent {
     }
 
     /**
-     * 获取被构成的实体
+     * 获取被建造的实体
      *
-     * @return 被构成的实体
+     * @return 被建造成的实体
      */
     public Entity getEntity() {
         return entity;
