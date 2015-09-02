@@ -5,10 +5,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Painting;
 
 /**
- * Triggered when a painting is removed by an entity
+ * 当画被一个实体摧毁时触发.
  *
- * @deprecated Use {@link org.bukkit.event.hanging.HangingBreakByEntityEvent}
- *     instead.
+ * @deprecated 用{@link org.bukkit.event.hanging.HangingBreakByEntityEvent}代替.
  */
 @Deprecated
 @Warning(reason="This event has been replaced by HangingBreakByEntityEvent")
@@ -21,9 +20,11 @@ public class PaintingBreakByEntityEvent extends PaintingBreakEvent {
     }
 
     /**
-     * Gets the entity that removed the painting
+     * 获取摧毁这幅画的实体.
+     * <p>
+     * 原文:Gets the entity that removed the painting
      *
-     * @return the entity that removed the painting.
+     * @return 摧毁这幅画的实体
      */
     public Entity getRemover() {
         return remover;

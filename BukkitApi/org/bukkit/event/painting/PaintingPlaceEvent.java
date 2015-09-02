@@ -9,9 +9,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Triggered when a painting is created in the world
+ * 当一幅画被放置时触发.
  *
- * @deprecated Use {@link org.bukkit.event.hanging.HangingPlaceEvent} instead.
+ * @deprecated 用{@link org.bukkit.event.hanging.HangingBreakByEntityEvent}代替.
  */
 @Deprecated
 @Warning(reason="This event has been replaced by HangingPlaceEvent")
@@ -30,28 +30,33 @@ public class PaintingPlaceEvent extends PaintingEvent implements Cancellable {
     }
 
     /**
-     * Returns the player placing the painting
+     * 获取放置这幅画的玩家.
+     * <p>
+     * 原文:Returns the player placing the painting
      *
-     * @return Entity returns the player placing the painting
+     * @return 放置这幅画的玩家
      */
     public Player getPlayer() {
         return player;
     }
 
     /**
-     * Returns the block that the painting was placed on
+     * 返回画被放置在哪个方块.
+     * <p>
+     * 原文:Returns the block that the painting was placed on
      *
-     * @return Block returns the block painting placed on
+     * @return 画被放置在哪个方块
      */
     public Block getBlock() {
         return block;
     }
 
     /**
-     * Returns the face of the block that the painting was placed on
+     * 返回被放置画的方块的朝向.
+     * <p>
+     * 原文:Returns the face of the block that the painting was placed on
      *
-     * @return BlockFace returns the face of the block the painting was placed
-     *     on
+     * @return 方块的朝向
      */
     public BlockFace getBlockFace() {
         return blockFace;

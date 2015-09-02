@@ -6,9 +6,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Triggered when a painting is removed
+ * 当画被摧毁时触发.
  *
- * @deprecated Use {@link org.bukkit.event.hanging.HangingBreakEvent} instead.
+ * @deprecated 用{@link org.bukkit.event.hanging.HangingBreakByEntityEvent}代替.
  */
 @Deprecated
 @Warning(reason="This event has been replaced by HangingBreakEvent")
@@ -23,9 +23,11 @@ public class PaintingBreakEvent extends PaintingEvent implements Cancellable {
     }
 
     /**
-     * Gets the cause for the painting's removal
+     * 获取画被摧毁的原因.
+     * <p>
+     * 原文:Gets the cause for the painting's removal
      *
-     * @return the RemoveCause for the painting's removal
+     * @return 画的摧毁原因
      */
     public RemoveCause getCause() {
         return cause;
@@ -40,27 +42,27 @@ public class PaintingBreakEvent extends PaintingEvent implements Cancellable {
     }
 
     /**
-     * An enum to specify the cause of the removal
+     * 指定摧毁原因的枚举.
      */
     public enum RemoveCause {
         /**
-         * Removed by an entity
+         * 被实体摧毁.
          */
         ENTITY,
         /**
-         * Removed by fire
+         * 被火摧毁.
          */
         FIRE,
         /**
-         * Removed by placing a block on it
+         * 通过放置方块在上面来摧毁.
          */
         OBSTRUCTION,
         /**
-         * Removed by water flowing over it
+         * 被水流摧毁.
          */
         WATER,
         /**
-         * Removed by destroying the block behind it, etc
+         * 通过破坏背面的方块等摧毁.
          */
         PHYSICS,
     }
