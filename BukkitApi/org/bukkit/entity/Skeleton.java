@@ -1,26 +1,30 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Skeleton.
+ * 代表骷髅.
  */
 public interface Skeleton extends Monster {
 
     /**
-     * Gets the current type of this skeleton.
+     * 获取骷髅当前的种类.
+     * <p>
+     * 原文:Gets the current type of this skeleton.
      *
-     * @return Current type
+     * @return 当前的种类
      */
     public SkeletonType getSkeletonType();
 
     /**
-     * Sets the new type of this skeleton.
+     * 设置骷髅的新种类.
+     * <p>
+     * 原文:Sets the new type of this skeleton.
      *
-     * @param type New type
+     * @param type 新的种类
      */
     public void setSkeletonType(SkeletonType type);
 
     /*
-     * Represents the various different Skeleton types.
+     * 代表各种不同的骷髅种类.
      */
     public enum SkeletonType {
         NORMAL(0),
@@ -40,10 +44,12 @@ public interface Skeleton extends Monster {
         }
 
         /**
-         * Gets the ID of this skeleton type.
+         * 获取骷髅种类ID.
+         * <p>
+         * 原文:Gets the ID of this skeleton type.
          *
-         * @return Skeleton type ID
-         * @deprecated Magic value
+         * @return 骷髅种类ID
+         * @deprecated 魔法值
          */
         @Deprecated
         public int getId() {
@@ -51,11 +57,13 @@ public interface Skeleton extends Monster {
         }
 
         /**
-         * Gets a skeleton type by its ID.
+         * 用ID获取骷髅种类.
+         * <p>
+         * 原文:Gets a skeleton type by its ID.
          *
-         * @param id ID of the skeleton type to get.
-         * @return Resulting skeleton type, or null if not found.
-         * @deprecated Magic value
+         * @param id 用来获取骷髅种类的ID
+         * @return 骷髅的种类，如果为null则没有找到
+         * @deprecated 魔法值
          */
         @Deprecated
         public static SkeletonType getType(int id) {

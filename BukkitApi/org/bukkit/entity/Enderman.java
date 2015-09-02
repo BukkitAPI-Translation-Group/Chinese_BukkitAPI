@@ -3,21 +3,25 @@ package org.bukkit.entity;
 import org.bukkit.material.MaterialData;
 
 /**
- * Represents an Enderman.
+ * 代表末影人.
  */
 public interface Enderman extends Monster {
 
     /**
-     * Get the id and data of the block that the Enderman is carrying.
+     * 获取末影人手持的方块的id和数据.
+     * <p>
+     * 原文:Get the id and data of the block that the Enderman is carrying.
      *
-     * @return MaterialData containing the id and data of the block
+     * @return 包含方块的id和数据的MaterialData
      */
     public MaterialData getCarriedMaterial();
 
     /**
-     * Set the id and data of the block that the Enderman is carring.
+     * 设置末影人手持的方块的id和数据.
+     * <p>
+     * 原文:Set the id and data of the block that the Enderman is carring.
      *
-     * @param material data to set the carried block to
+     * @param material 要设置的手持方块的数据
      */
     public void setCarriedMaterial(MaterialData material);
 }

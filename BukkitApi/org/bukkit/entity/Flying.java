@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Flying Entity.
+ * 代表能飞行的实体.
  */
 public interface Flying extends LivingEntity {}

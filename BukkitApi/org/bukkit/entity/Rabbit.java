@@ -3,46 +3,46 @@ package org.bukkit.entity;
 public interface Rabbit extends Animals {
 
     /**
-     * @return The type of rabbit.
+     * @return 兔子的种类.
      */
     public Type getRabbitType();
 
     /**
-     * @param type Sets the type of rabbit for this entity.
+     * @param type 设置兔子的种类.
      */
     public void setRabbitType(Type type);
 
     /**
-     * Represents the various types a Rabbit might be.
+     * 代表不同种类的兔子.
      */
     public enum Type {
 
         /**
-         * Chocolate colored rabbit.
+         * 棕色的兔子.
          */
         BROWN,
         /**
-         * Pure white rabbit.
+         * 白色的兔子.
          */
         WHITE,
         /**
-         * Black rabbit.
+         * 黑色的兔子.
          */
         BLACK,
         /**
-         * Black with white patches, or white with black patches?
+         * 黑白相间的兔子.
          */
         BLACK_AND_WHITE,
         /**
-         * Golden bunny.
+         * 金色的兔子.
          */
         GOLD,
         /**
-         * Salt and pepper colored, whatever that means.
+         * 胡椒盐色的兔子.
          */
         SALT_AND_PEPPER,
         /**
-         * Rabbit with pure white fur, blood red horizontal eyes, and is hostile to players.
+         * 杀手兔.
          */
         THE_KILLER_BUNNY
     }

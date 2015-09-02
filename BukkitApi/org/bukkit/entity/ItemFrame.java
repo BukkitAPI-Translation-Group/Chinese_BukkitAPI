@@ -4,36 +4,44 @@ import org.bukkit.Rotation;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Represents an Item Frame
+ * 代表物品展示框.
  */
 public interface ItemFrame extends Hanging {
 
     /**
-     * Get the item in this frame
+     * 获取在展示框内的物品.
+     * <p>
+     * 原文:Get the item in this frame
      *
-     * @return a defensive copy the item in this item frame
+     * @return 展示框内的物品
      */
     public ItemStack getItem();
 
     /**
-     * Set the item in this frame
+     * 设置在展示框内的物品.
+     * <p>
+     * 原文:Set the item in this frame
      *
-     * @param item the new item
+     * @param item 新的物品
      */
     public void setItem(ItemStack item);
 
     /**
-     * Get the rotation of the frame's item
+     * 获取展示框内物品的旋转角度.
+     * <p>
+     * 原文:Get the rotation of the frame's item
      *
-     * @return the direction
+     * @return 旋转角度
      */
     public Rotation getRotation();
 
     /**
-     * Set the rotation of the frame's item
+     * 设置展示框内物品的旋转角度.
+     * <p>
+     * 原文:Set the rotation of the frame's item
      *
-     * @param rotation the new rotation
-     * @throws IllegalArgumentException if rotation is null
+     * @param rotation 新的旋转角度
+     * @throws IllegalArgumentException 如果旋转角度为null
      */
     public void setRotation(Rotation rotation) throws IllegalArgumentException;
 }
