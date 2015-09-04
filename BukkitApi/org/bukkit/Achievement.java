@@ -1,9 +1,7 @@
 package org.bukkit;
 
 /**
- * 代表一个成就
- * <p>
- * 原文：Represents an achievement, which may be given to players.
+ * 代表成就.
  */
 public enum Achievement {
     OPEN_INVENTORY,
@@ -53,11 +51,11 @@ public enum Achievement {
     }
 
     /**
-     * 返回想获得这个成就是否需要先获得另外一个成就
+     * 返回想获得这个成就是否需要先获得另外一个成就。
      * <p>
-     * 原文：Returns whether or not this achievement has a parent achievement.
+     * 原文:Returns whether or not this achievement has a parent achievement.
      * <p>
-     * 译注：比如，获得“这是？工作台！”成就必须要先获得“获得木头！”成就
+     * 译注:比如，获得“这是？工作台！”成就必须要先获得“获得木头！”成就.
      * 
      * @return 是否需要获得另一个成就才能获得这个成就
      */
@@ -66,11 +64,11 @@ public enum Achievement {
     }
 
     /**
-     * 返回获得这个成就需要的父成就。如果没有则返回null
+     * 返回获得这个成就需要的父成就，如果没有则返回null。
      * <p>
-     * 原文：Returns the parent achievement of this achievement, or null if none.
+     * 原文:Returns the parent achievement of this achievement, or null if none.
      * 
-     * @return 父成就或null
+     * @return 父成就,不存在则为null
      */
     public Achievement getParent() {
         return parent;
