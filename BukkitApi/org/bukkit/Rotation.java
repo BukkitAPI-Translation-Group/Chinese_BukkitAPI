@@ -1,42 +1,44 @@
 package org.bukkit;
 
 /**
- * An enum to specify a rotation based orientation, like that on a clock.
+ * 指定旋转方向的一个枚举。
  * <p>
- * It represents how something is viewed, as opposed to cardinal directions.
+ * 它代表了一些物品是如何展示的，而不是基本方向。
  */
 public enum Rotation {
 
     /**
-     * No rotation
+     * 无旋转。
      */
     NONE,
     /**
-     * Rotated clockwise by 45 degrees
+     * 按顺时针方向旋转45度。
      */
     CLOCKWISE_45,
     /**
-     * Rotated clockwise by 90 degrees
+     * 按顺时针方向旋转90度。
      */
     CLOCKWISE,
     /**
-     * Rotated clockwise by 135 degrees
+     * 按顺时针方向旋转135度。
      */
     CLOCKWISE_135,
     /**
-     * Flipped upside-down, a 180 degree rotation
+     * 倒置翻转180度。
      */
     FLIPPED,
     /**
-     * Flipped upside-down + 45 degree rotation
+     * 倒置翻转+45度。
+     * <p>
+     * 译注：这里指180+45度？
      */
     FLIPPED_45,
     /**
-     * Rotated counter-clockwise by 90 degrees
+     * 按逆时针方向旋转90度。
      */
     COUNTER_CLOCKWISE,
     /**
-     * Rotated counter-clockwise by 45 degrees
+     * 按逆时针方向旋转45度。
      */
     COUNTER_CLOCKWISE_45
     ;
@@ -44,18 +46,22 @@ public enum Rotation {
     private static final Rotation [] rotations = values();
 
     /**
-     * Rotate clockwise by 90 degrees.
+     * 按顺时针方向旋转90度。
+     * <p>
+     * 原文：Rotate clockwise by 90 degrees.
      *
-     * @return the relative rotation
+     * @return 相对旋转
      */
     public Rotation rotateClockwise() {
         return rotations[(this.ordinal() + 1) & 0x7];
     }
 
     /**
+     * 按逆时针方向旋转90度。
+     * <p>
      * Rotate counter-clockwise by 90 degrees.
      *
-     * @return the relative rotation
+     * @return 相对旋转
      */
     public Rotation rotateCounterClockwise() {
         return rotations[(this.ordinal() - 1) & 0x7];
