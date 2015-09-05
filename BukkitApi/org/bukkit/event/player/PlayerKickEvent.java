@@ -21,20 +21,20 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获取某被踢出的玩家的踢出原因. <p>
+     * 获取踢出的玩家的理由. <p>
      * 原文:Gets the reason why the player is getting kicked
      *
-     * @return 玩家的踢出原因
+     * @return 踢出玩家的理由
      */
     public String getReason() {
         return kickReason;
     }
 
     /**
-     * 获取某玩家被踢出后，发送给全体玩家的留言. <p>
+     * 获取某玩家被踢出后,发送给全体玩家的离开消息(遗言). <p>
      * 原文:Gets the leave message send to all online players
      *
-     * @return 玩家的踢出原因
+     * @return 离开消息
      */
     public String getLeaveMessage() {
         return leaveMessage;
@@ -49,7 +49,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 设置将要踢出某玩家的踢出原因. <p>
+     * 设置踢出某玩家的理由. <p>
      * 原文:Sets the reason why the player is getting kicked
      *
      * @param kickReason kick reason
@@ -59,10 +59,10 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 设置将要踢出某玩家被踢出后，发送给全体玩家的留言. <p>
+     * 设置某玩家被踢出后,发送给全体玩家的离开消息(遗言). <p>
      * 原文:Sets the leave message send to all online players
      *
-     * @param leaveMessage leave message
+     * @param leaveMessage 离开消息
      */
     public void setLeaveMessage(String leaveMessage) {
         this.leaveMessage = leaveMessage;
