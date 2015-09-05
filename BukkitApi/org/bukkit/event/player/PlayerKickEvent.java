@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player gets kicked from the server
+ * 玩家被服务器踢出事件.
  */
 public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -21,18 +21,20 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the reason why the player is getting kicked
+     * 获取某被踢出的玩家的踢出原因. <p>
+     * 原文:Gets the reason why the player is getting kicked
      *
-     * @return string kick reason
+     * @return 玩家的踢出原因
      */
     public String getReason() {
         return kickReason;
     }
 
     /**
-     * Gets the leave message send to all online players
+     * 获取某玩家被踢出后，发送给全体玩家的留言. <p>
+     * 原文:Gets the leave message send to all online players
      *
-     * @return string kick reason
+     * @return 玩家的踢出原因
      */
     public String getLeaveMessage() {
         return leaveMessage;
@@ -47,7 +49,8 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Sets the reason why the player is getting kicked
+     * 设置将要踢出某玩家的踢出原因. <p>
+     * 原文:Sets the reason why the player is getting kicked
      *
      * @param kickReason kick reason
      */
@@ -56,7 +59,8 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Sets the leave message send to all online players
+     * 设置将要踢出某玩家被踢出后，发送给全体玩家的留言. <p>
+     * 原文:Sets the leave message send to all online players
      *
      * @param leaveMessage leave message
      */
