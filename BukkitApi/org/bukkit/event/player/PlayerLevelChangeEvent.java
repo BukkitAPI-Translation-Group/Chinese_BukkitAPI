@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a players level changes
+ * 玩家经验变化事件.
  */
 public class PlayerLevelChangeEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -18,18 +18,20 @@ public class PlayerLevelChangeEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the old level of the player
+     * 获得此玩家之前的经验值. <t>
+     * 原文:Gets the old level of the player
      *
-     * @return The old level of the player
+     * @return 之前的经验值
      */
     public int getOldLevel() {
         return oldLevel;
     }
 
     /**
-     * Gets the new level of the player
+     * 获得此玩家目前的经验值. <t>
+     * 原文:Gets the new level of the player
      *
-     * @return The new (current) level of the player
+     * @return 目前的经验值
      */
     public int getNewLevel() {
         return newLevel;
