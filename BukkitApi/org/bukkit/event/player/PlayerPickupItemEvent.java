@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Thrown when a player picks an item up from the ground
+ * 玩家捡起掉落物品事件.
  */
 public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -21,18 +21,20 @@ public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the Item picked up by the player.
+     * 获得此玩家在地面捡起的物品. <p>
+     * 原文:Gets the Item picked up by the player.
      *
-     * @return Item
+     * @return 此掉落物品
      */
     public Item getItem() {
         return item;
     }
 
     /**
-     * Gets the amount remaining on the ground, if any
+     * 获得地面剩余掉落物品数量(如果有的话). <p>
+     * 原文:Gets the amount remaining on the ground, if any
      *
-     * @return amount remaining on the ground
+     * @return 剩余掉落物品数量
      */
     public int getRemaining() {
         return remaining;
