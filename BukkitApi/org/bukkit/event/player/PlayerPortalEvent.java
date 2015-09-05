@@ -6,10 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player is about to teleport because it is in contact with a
- * portal.
+ * 玩家将要被传送门传送事件.
  * <p>
- * For other entities see {@link org.bukkit.event.entity.EntityPortalEvent}
+ * 其他实体可见{@link org.bukkit.event.entity.EntityPortalEvent}
  */
 public class PlayerPortalEvent extends PlayerTeleportEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -27,50 +26,58 @@ public class PlayerPortalEvent extends PlayerTeleportEvent {
     }
 
     /**
-     * Sets whether or not the Travel Agent will be used.
+     * 是否存在另一端传送门. <p>
+     * 原文:Sets whether or not the Travel Agent will be used.
      * <p>
-     * If this is set to true, the TravelAgent will try to find a Portal at
+     * 如果设置为true,传送门将试图找到与这个传送门相对的另一个传送门{@link #getTo()}，如果没有则创建一个. <p>
+     * 原文:If this is set to true, the TravelAgent will try to find a Portal at
      * the {@link #getTo()} Location, and will try to create one if there is
      * none.
      * <p>
-     * If this is set to false, the {@link #getPlayer()} will only be
+     * 如果设置为false,{@link #getPlayer()}只会被传送到{@link #getTo()}位置. <p>
+     * 原文:If this is set to false, the {@link #getPlayer()} will only be
      * teleported to the {@link #getTo()} Location.
      *
-     * @param useTravelAgent whether to use the Travel Agent
+     * @param useTravelAgent 是否使用另一端传送门true/false
      */
     public void useTravelAgent(boolean useTravelAgent) {
         this.useTravelAgent = useTravelAgent;
     }
 
     /**
-     * Gets whether or not the Travel Agent will be used.
+     * 传送门是否被使用. <p>
+     * 原文:Gets whether or not the Travel Agent will be used.
      * <p>
-     * If this is set to true, the TravelAgent will try to find a Portal at
+     * 如果设置为true,传送门将试图找到与这个传送门相对的另一个传送门{@link #getTo()}，如果没有则创建一个. <p>
+     * 原文:If this is set to true, the TravelAgent will try to find a Portal at
      * the {@link #getTo()} Location, and will try to create one if there is
      * none.
      * <p>
-     * If this is set to false, the {@link #getPlayer()}} will only be
+     * 如果设置为false,{@link #getPlayer()}只会被传送到{@link #getTo()}位置. <p>
+     * 原文:If this is set to false, the {@link #getPlayer()}} will only be
      * teleported to the {@link #getTo()} Location.
      *
-     * @return whether to use the Travel Agent
+     * @return 传送门是否被使用
      */
     public boolean useTravelAgent() {
         return useTravelAgent && travelAgent != null;
     }
 
     /**
-     * Gets the Travel Agent used (or not) in this event.
+     * 获得此事件中传送门是否正在被使用. <p>
+     * 原文:Gets the Travel Agent used (or not) in this event.
      *
-     * @return the Travel Agent used (or not) in this event
+     * @return 传送门是否在被使用
      */
     public TravelAgent getPortalTravelAgent() {
         return this.travelAgent;
     }
 
     /**
-     * Sets the Travel Agent used (or not) in this event.
+     * 设置此事件中的传送门使用状态. <p>
+     * 原文:Sets the Travel Agent used (or not) in this event.
      *
-     * @param travelAgent the Travel Agent used (or not) in this event
+     * @param 传送门使用状态
      */
     public void setPortalTravelAgent(TravelAgent travelAgent) {
         this.travelAgent = travelAgent;
