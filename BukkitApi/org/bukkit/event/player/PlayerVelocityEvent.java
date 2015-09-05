@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.util.Vector;
 
 /**
- * Called when the velocity of a player changes.
+ * 玩家移动速度变化事件.
  */
 public class PlayerVelocityEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,18 +27,20 @@ public class PlayerVelocityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the velocity vector that will be sent to the player
+     * 得到玩家目前的移动速度. <p>
+     * 原文:Gets the velocity vector that will be sent to the player
      *
-     * @return Vector the player will get
+     * @return 玩家移动速度
      */
     public Vector getVelocity() {
         return velocity;
     }
 
     /**
-     * Sets the velocity vector that will be sent to the player
+     * 设置玩家移动速度. <p>
+     * 原文:Sets the velocity vector that will be sent to the player
      *
-     * @param velocity The velocity vector that will be sent to the player
+     * @param Vector 玩家速度
      */
     public void setVelocity(Vector velocity) {
         this.velocity = velocity;
