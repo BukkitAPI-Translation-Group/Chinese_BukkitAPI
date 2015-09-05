@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Holds information for player movement events
+ * 玩家移动事件.
  */
 public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -21,64 +21,74 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the cancellation state of this event. A cancelled event will not
+     * 取消这个事件的状态,不会取消这个事件
+     * 这个事件在服务器依然执行,但传递给其他插件. <p>
+     * 原文:Gets the cancellation state of this event. A cancelled event will not
      * be executed in the server, but will still pass to other plugins
      * <p>
-     * If a move or teleport event is cancelled, the player will be moved or
+     * 如果一个移动或传送事件被取消,玩家将被移动或
+     * 传送回getFrom()定义的位置。这不会触发此事件. <p>
+     * 原文:If a move or teleport event is cancelled, the player will be moved or
      * teleported back to the Location as defined by getFrom(). This will not
      * fire an event
      *
-     * @return true if this event is cancelled
+     * @return 是否取消了这个事件
      */
     public boolean isCancelled() {
         return cancel;
     }
 
     /**
-     * Sets the cancellation state of this event. A cancelled event will not
+     * 设置取消状态的事件。被取消的事件不会在服务器执行,但仍将传递给其他插件执行. <p>
+     * 原文:Sets the cancellation state of this event. A cancelled event will not
      * be executed in the server, but will still pass to other plugins
      * <p>
-     * If a move or teleport event is cancelled, the player will be moved or
+     * 如果一个移动或传送事件被取消,玩家将被移动或传送回getFrom()定义的位置。这不会触发此事件. <p>
+     * 原文:If a move or teleport event is cancelled, the player will be moved or
      * teleported back to the Location as defined by getFrom(). This will not
      * fire an event
      *
-     * @param cancel true if you wish to cancel this event
+     * @param true 取消这个事件
      */
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 
     /**
-     * Gets the location this player moved from
+     * 得到玩家移动到此位置之前的位置. <p>
+     * 原文:Gets the location this player moved from
      *
-     * @return Location the player moved from
+     * @return 得到玩家移动之前的位置
      */
     public Location getFrom() {
         return from;
     }
 
     /**
-     * Sets the location to mark as where the player moved from
+     * 设置玩家将要移动到此位置之前的位置. <p>
+     * 原文:Sets the location to mark as where the player moved from
      *
-     * @param from New location to mark as the players previous location
+     * @param Location 记录玩家移动之前的位置
      */
     public void setFrom(Location from) {
         this.from = from;
     }
 
     /**
-     * Gets the location this player moved to
+     * 得到玩家移动到的位置. <p>
+     * 原文:Gets the location this player moved to
      *
-     * @return Location the player moved to
+     * @return 玩家移动到的位置
      */
     public Location getTo() {
         return to;
     }
 
     /**
-     * Sets the location that this player will move to
+     * 设置玩家将要移动的位置. <p>
+     * 原文:Sets the location that this player will move to
      *
-     * @param to New Location this player will move to
+     * @param Location 玩家将要移动到的位置
      */
     public void setTo(Location to) {
         this.to = to;
