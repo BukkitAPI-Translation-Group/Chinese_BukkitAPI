@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player leaves a server
+ * 玩家离开服务器事件.
  */
 public class PlayerQuitEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -16,18 +16,20 @@ public class PlayerQuitEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the quit message to send to all online players
+     * 获取某玩家离开游戏后，发送给全体玩家的留言. <p>
+     * 原文:Gets the quit message to send to all online players
      *
-     * @return string quit message
+     * @return string 玩家退出消息
      */
     public String getQuitMessage() {
         return quitMessage;
     }
 
     /**
-     * Sets the quit message to send to all online players
+     * 设置某玩家离开游戏后，发送给全体玩家的留言. <p>
+     * 原文:Sets the quit message to send to all online players
      *
-     * @param quitMessage quit message
+     * @param quitMessage 玩家退出消息
      */
     public void setQuitMessage(String quitMessage) {
         this.quitMessage = quitMessage;
