@@ -11,7 +11,7 @@ import org.bukkit.event.HandlerList;
  * 玩家尝试登录服务器事件.
  *
  * @deprecated 这个事件使登录线程同步;
- * {@link AsyncPlayerPreLoginEvent}是首选的辅助线程.
+ * 建议使用{@link AsyncPlayerPreLoginEvent}.
  */
 @Deprecated
 @Warning(reason="This event causes a login thread to synchronize with the main thread")
@@ -37,19 +37,19 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获取当前登录的结果,作为枚举常量. <p>
+     * 获取当前事件的状态. <p>
      * 原文:Gets the current result of the login, as an enum
-     * @return 当前登录的结果
+     * @return 当前事件的状态
      */
     public Result getResult() {
         return result;
     }
 
     /**
-     * 设置新的登录的结果,作为枚举常量. <p>
+     * 设置当前事件的状态. <p>
      * 原文:Sets the new result of the login, as an enum
      *
-     * @param 设置新的结果
+     * @param result 当前事件的状态
      */
     public void setResult(final Result result) {
         this.result = result;
@@ -60,7 +60,7 @@ public class PlayerPreLoginEvent extends Event {
      * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
      *
-     * @return 踢出的信息
+     * @return result 踢出的信息
      */
     public String getKickMessage() {
         return message;
@@ -70,7 +70,7 @@ public class PlayerPreLoginEvent extends Event {
      * 设置如果getResult() !=Result.ALLOWED，那么将要踢出的消息. <p>
      * 原文:Sets the kick message to display if getResult() != Result.ALLOWED
      *
-     * @param 设置踢出的消息
+     * @param message 设置踢出的消息
      */
     public void setKickMessage(final String message) {
         this.message = message;
@@ -137,34 +137,28 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 踢出玩家基本字段.
+     * PlayerPerJoinEvent的事件状态.
      */
     public enum Result {
 
         /**
-         * 玩家需要重新登陆. <p>
-         * 原文:The player is allowed to log in
+         * 允许玩家进入服务器. <p>
          */
         ALLOWED,
         /**
-         * 由于服务器限制，玩家不允许登陆. <p>
-         * 原文:The player is not allowed to log in, due to the server being full
+         * 由于服务器已满,不允许进入. <p>
          */
         KICK_FULL,
         /**
-         * 玩家被禁止登录到此服务器. <p>
-         * 原文:The player is not allowed to log in, due to them being banned
+         * 由于玩家被服务器封禁,不允许进入. <p>
          */
         KICK_BANNED,
         /**
-         * 玩家不在服务器白名单之内. <p>
-         * 原文:The player is not allowed to log in, due to them not being on the
-         * white list
+         * 由于玩家不在白名单内,不允许进入. <p>
          */
         KICK_WHITELIST,
         /**
-         * 未知原因导致玩家无法进入服务器. <p>
-         * 原文:The player is not allowed to log in, for reasons undefined
+         * 其他原因,就是不允许进入. <p>
          */
         KICK_OTHER
     }
