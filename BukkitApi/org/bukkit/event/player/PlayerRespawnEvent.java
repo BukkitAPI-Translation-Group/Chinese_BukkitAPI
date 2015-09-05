@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player respawns.
+ * 玩家重生事件.
  */
 public class PlayerRespawnEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -20,18 +20,20 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the current respawn location
+     * 获取当前重生的位置. <p>
+     * 原文:Gets the current respawn location
      *
-     * @return Location current respawn location
+     * @return 玩家重生位置
      */
     public Location getRespawnLocation() {
         return this.respawnLocation;
     }
 
     /**
-     * Sets the new respawn location
+     * 设置一个新的重生位置. <p>
+     * 原文:Sets the new respawn location
      *
-     * @param respawnLocation new location for the respawn
+     * @param location 新的重生位置
      */
     public void setRespawnLocation(Location respawnLocation) {
         Validate.notNull(respawnLocation, "Respawn location can not be null");
@@ -41,9 +43,10 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
-     * Gets whether the respawn location is the player's bed.
+     * 获取此玩家是否在他的床上重生. <p>
+     * 原文:Gets whether the respawn location is the player's bed.
      *
-     * @return true if the respawn location is the player's bed.
+     * @return 玩家是否重生在床上
      */
     public boolean isBedSpawn() {
         return this.isBedSpawn;
