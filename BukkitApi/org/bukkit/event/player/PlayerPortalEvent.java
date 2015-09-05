@@ -6,9 +6,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * 玩家将要被传送门传送事件.
+ * 玩家将要被传送门传送的事件.
  * <p>
- * 其他实体可见{@link org.bukkit.event.entity.EntityPortalEvent}
+ * 其他实体被传送门传送的事件请见{@link org.bukkit.event.entity.EntityPortalEvent}
  */
 public class PlayerPortalEvent extends PlayerTeleportEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -26,7 +26,7 @@ public class PlayerPortalEvent extends PlayerTeleportEvent {
     }
 
     /**
-     * 是否存在另一端传送门. <p>
+     * 设置是否让玩家传送到另一端的传送门. <p>
      * 原文:Sets whether or not the Travel Agent will be used.
      * <p>
      * 如果设置为true,传送门将试图找到与这个传送门相对的另一个传送门{@link #getTo()}，如果没有则创建一个. <p>
@@ -38,14 +38,14 @@ public class PlayerPortalEvent extends PlayerTeleportEvent {
      * 原文:If this is set to false, the {@link #getPlayer()} will only be
      * teleported to the {@link #getTo()} Location.
      *
-     * @param useTravelAgent 是否使用另一端传送门true/false
+     * @param useTravelAgent 是否让玩家传送到另一端的传送门true/false
      */
     public void useTravelAgent(boolean useTravelAgent) {
         this.useTravelAgent = useTravelAgent;
     }
 
     /**
-     * 传送门是否被使用. <p>
+     * 是否让玩家传送到另一端的传送门. <p>
      * 原文:Gets whether or not the Travel Agent will be used.
      * <p>
      * 如果设置为true,传送门将试图找到与这个传送门相对的另一个传送门{@link #getTo()}，如果没有则创建一个. <p>
@@ -57,27 +57,27 @@ public class PlayerPortalEvent extends PlayerTeleportEvent {
      * 原文:If this is set to false, the {@link #getPlayer()}} will only be
      * teleported to the {@link #getTo()} Location.
      *
-     * @return 传送门是否被使用
+     * @return 是否让玩家传送到另一端的传送门
      */
     public boolean useTravelAgent() {
         return useTravelAgent && travelAgent != null;
     }
 
     /**
-     * 获得此事件中传送门是否正在被使用. <p>
+     * 获得玩家在这个事件中使用的传送门. <p>
      * 原文:Gets the Travel Agent used (or not) in this event.
      *
-     * @return 传送门是否在被使用
+     * @return 玩家在这个事件中使用的传送门
      */
     public TravelAgent getPortalTravelAgent() {
         return this.travelAgent;
     }
 
     /**
-     * 设置此事件中的传送门使用状态. <p>
+     * 设置玩家在这个事件中使用的传送门. <p>
      * 原文:Sets the Travel Agent used (or not) in this event.
      *
-     * @param 传送门使用状态
+     * @param 玩家在这个事件中使用的传送门
      */
     public void setPortalTravelAgent(TravelAgent travelAgent) {
         this.travelAgent = travelAgent;
