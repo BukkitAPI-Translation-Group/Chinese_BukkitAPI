@@ -15,16 +15,16 @@ public interface BukkitScheduler {
      * @param plugin Plugin that owns the task
      * @param task Task to be executed
      * @param delay Delay in server ticks before executing task
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskLater(Plugin, long)}
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
-     * @param delay Delay in server ticks before executing task
-     * @return Task id number (-1 if scheduling failed)
+     * @deprecated 推荐使用{@link BukkitRunnable#runTaskLater(Plugin, long)}
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @return 任务id编号（如果为-1则表示调度失败）
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task, long delay);
@@ -36,7 +36,7 @@ public interface BukkitScheduler {
      *
      * @param plugin Plugin that owns the task
      * @param task Task to be executed
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
 
@@ -44,7 +44,7 @@ public interface BukkitScheduler {
      * @deprecated Use {@link BukkitRunnable#runTask(Plugin)}
      * @param plugin Plugin that owns the task
      * @param task Task to be executed
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task);
@@ -58,7 +58,7 @@ public interface BukkitScheduler {
      * @param task Task to be executed
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      */
     public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
 
@@ -68,7 +68,7 @@ public interface BukkitScheduler {
      * @param task Task to be executed
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      */
     @Deprecated
     public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period);
@@ -83,7 +83,7 @@ public interface BukkitScheduler {
      * @param plugin Plugin that owns the task
      * @param task Task to be executed
      * @param delay Delay in server ticks before executing task
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -99,7 +99,7 @@ public interface BukkitScheduler {
      *
      * @param plugin Plugin that owns the task
      * @param task Task to be executed
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -117,7 +117,7 @@ public interface BukkitScheduler {
      * @param task Task to be executed
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
-     * @return Task id number (-1 if scheduling failed)
+     * @return 任务id编号（如果为-1则表示调度失败）
      * @deprecated This name is misleading, as it does not schedule "a sync"
      *     task, but rather, "an async" task
      */
@@ -134,29 +134,35 @@ public interface BukkitScheduler {
      *     isDone() method returns true.
      * </ul>
      * @param <T> The callable's return type
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
      * @return Future Future object related to the task
      */
     public <T> Future<T> callSyncMethod(Plugin plugin, Callable<T> task);
 
     /**
-     * Removes task from scheduler.
+     * 从调度程序中移除一个任务。
+     * <p>
+     * 原文：Removes task from scheduler.
      *
-     * @param taskId Id number of task to be removed
+     * @param taskId 要移除的任务的id
      */
     public void cancelTask(int taskId);
 
     /**
-     * Removes all tasks associated with a particular plugin from the
+     * 移除与来自调度程序中特定相关的插件的所有任务。
+     * <p>
+     * 原文：Removes all tasks associated with a particular plugin from the
      * scheduler.
      *
-     * @param plugin Owner of tasks to be removed
+     * @param plugin 要移除的所有者的任务
      */
     public void cancelTasks(Plugin plugin);
 
     /**
-     * Removes all tasks from the scheduler.
+     * 从调度程序中移除所有任务。
+     * <p>
+     * 原文：Removes all tasks from the scheduler.
      */
     public void cancelAllTasks();
 
@@ -170,9 +176,9 @@ public interface BukkitScheduler {
      * Explicitly, a task is running if there exists a thread for it, and that
      * thread is alive.
      *
-     * @param taskId The task to check.
+     * @param taskId 要检测的任务
      * <p>
-     * @return If the task is currently running.
+     * @return 任务当前是否在运行
      */
     public boolean isCurrentlyRunning(int taskId);
 
@@ -348,8 +354,8 @@ public interface BukkitScheduler {
      *     time
      * @param period the ticks to wait between runs
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable task, long delay, long period) throws IllegalArgumentException;
 
@@ -361,8 +367,8 @@ public interface BukkitScheduler {
      *     time
      * @param period the ticks to wait between runs
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
     public BukkitTask runTaskTimerAsynchronously(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException;

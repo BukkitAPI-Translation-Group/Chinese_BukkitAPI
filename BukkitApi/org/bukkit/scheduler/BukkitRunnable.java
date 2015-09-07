@@ -4,15 +4,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
 /**
- * This class is provided as an easy way to handle scheduling tasks.
+ * 这个类提供了简单的处理调度任务的方法。
  */
 public abstract class BukkitRunnable implements Runnable {
     private int taskId = -1;
 
     /**
-     * Attempts to cancel this task.
+     * 尝试取消这个任务。
+     * <p>
+     * 原文：Attempts to cancel this task.
      *
-     * @throws IllegalStateException if task was not scheduled yet
+     * @throws IllegalStateException 如果任务还没有调度
      */
     public synchronized void cancel() throws IllegalStateException {
         Bukkit.getScheduler().cancelTask(getTaskId());
@@ -23,8 +25,8 @@ public abstract class BukkitRunnable implements Runnable {
      *
      * @param plugin the reference to the plugin scheduling task
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalStateException if this was already scheduled
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalStateException 如果任务已经调度
      * @see BukkitScheduler#runTask(Plugin, Runnable)
      */
     public synchronized BukkitTask runTask(Plugin plugin) throws IllegalArgumentException, IllegalStateException {
@@ -40,8 +42,8 @@ public abstract class BukkitRunnable implements Runnable {
      *
      * @param plugin the reference to the plugin scheduling task
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalStateException if this was already scheduled
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskAsynchronously(Plugin, Runnable)
      */
     public synchronized BukkitTask runTaskAsynchronously(Plugin plugin) throws IllegalArgumentException, IllegalStateException  {
@@ -55,8 +57,8 @@ public abstract class BukkitRunnable implements Runnable {
      * @param plugin the reference to the plugin scheduling task
      * @param delay the ticks to wait before running the task
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalStateException if this was already scheduled
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskLater(Plugin, Runnable, long)
      */
     public synchronized BukkitTask runTaskLater(Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException  {
@@ -74,8 +76,8 @@ public abstract class BukkitRunnable implements Runnable {
      * @param plugin the reference to the plugin scheduling task
      * @param delay the ticks to wait before running the task
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalStateException if this was already scheduled
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskLaterAsynchronously(Plugin, Runnable, long)
      */
     public synchronized BukkitTask runTaskLaterAsynchronously(Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException  {
@@ -91,8 +93,8 @@ public abstract class BukkitRunnable implements Runnable {
      * @param delay the ticks to wait before running the task
      * @param period the ticks to wait between runs
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalStateException if this was already scheduled
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskTimer(Plugin, Runnable, long, long)
      */
     public synchronized BukkitTask runTaskTimer(Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException  {
@@ -112,8 +114,8 @@ public abstract class BukkitRunnable implements Runnable {
      *     time
      * @param period the ticks to wait between runs
      * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalStateException if this was already scheduled
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskTimerAsynchronously(Plugin, Runnable, long,
      *     long)
      */
@@ -126,7 +128,7 @@ public abstract class BukkitRunnable implements Runnable {
      * Gets the task id for this runnable.
      *
      * @return the task id that this runnable was scheduled as
-     * @throws IllegalStateException if task was not scheduled yet
+     * @throws IllegalStateException 如果任务还没有调度
      */
     public synchronized int getTaskId() throws IllegalStateException {
         final int id = taskId;

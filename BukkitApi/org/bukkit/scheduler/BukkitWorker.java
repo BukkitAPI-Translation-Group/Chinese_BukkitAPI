@@ -3,31 +3,36 @@ package org.bukkit.scheduler;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Represents a worker thread for the scheduler. This gives information about
- * the Thread object for the task, owner of the task and the taskId.
+ * 代表调度程序的worker线程。这给了任务线程对象的信息、任务的所有者和任务id。
  * <p>
- * Workers are used to execute async tasks.
+ * Workers是用来执行异步任务的。
  */
 public interface BukkitWorker {
 
     /**
-     * Returns the taskId for the task being executed by this worker.
+     * 返回worker执行的任务的任务id。
+     * <p>
+     * 原文：Returns the taskId for the task being executed by this worker.
      *
-     * @return Task id number
+     * @return 任务id编号
      */
     public int getTaskId();
 
     /**
-     * Returns the Plugin that owns this task.
+     * 返回拥有这个任务的插件。
+     * <p>
+     * 原文：Returns the Plugin that owns this task.
      *
-     * @return The Plugin that owns the task
+     * @return 拥有这个任务的插件
      */
     public Plugin getOwner();
 
     /**
-     * Returns the thread for the worker.
+     * 返回worker的线程。
+     * <p>
+     * 原文：Returns the thread for the worker.
      *
-     * @return The Thread object for the worker
+     * @return worker的线程对象
      */
     public Thread getThread();
 
