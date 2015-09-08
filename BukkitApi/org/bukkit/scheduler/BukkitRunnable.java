@@ -37,7 +37,7 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>异步任务应该从不访问Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
      * <p>
      * 在Bukkit调度器运行这个异步任务。
      * <p>
