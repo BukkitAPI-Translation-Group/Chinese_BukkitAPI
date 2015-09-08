@@ -9,8 +9,7 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 物品塞入附魔台的事件 - 可以
- * 同时调用
+ * 物品塞入附魔台的事件 - 可以同时调用。
  */
 public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
