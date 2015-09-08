@@ -3,7 +3,7 @@ package org.bukkit.scheduler;
 import org.bukkit.plugin.Plugin;
 
 /**
- * 代表调度程序的worker线程。这给了任务线程对象的信息、任务的所有者和任务id。
+ * 代表调度器的worker线程。这给了任务线程对象的信息、任务的所有者和任务id。
  * <p>
  * Workers是用来执行异步任务的。
  */

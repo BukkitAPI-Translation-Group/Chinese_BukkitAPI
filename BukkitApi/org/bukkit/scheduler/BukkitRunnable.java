@@ -21,10 +21,12 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * Schedules this in the Bukkit scheduler to run on next tick.
+     * 让Bukkit调度器在下一个tick运行任务。
+     * <p>
+     * 原文：Schedules this in the Bukkit scheduler to run on next tick.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果任务已经调度
      * @see BukkitScheduler#runTask(Plugin, Runnable)
@@ -35,13 +37,17 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该不访问Bukkit里的API。着重考虑应保证异步任务的安全。</b>
+     * <p>
+     * 在Bukkit调度器运行这个异步任务。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules this in the Bukkit scheduler to run asynchronously.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskAsynchronously(Plugin, Runnable)
@@ -73,9 +79,9 @@ public abstract class BukkitRunnable implements Runnable {
      * Schedules this to run asynchronously after the specified number of
      * server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
+     * @param plugin 调度任务的插件
      * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
+     * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskLaterAsynchronously(Plugin, Runnable, long)
@@ -89,10 +95,10 @@ public abstract class BukkitRunnable implements Runnable {
      * Schedules this to repeatedly run until cancelled, starting after the
      * specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
+     * @param plugin 调度任务的插件
      * @param delay the ticks to wait before running the task
      * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskTimer(Plugin, Runnable, long, long)
@@ -109,11 +115,11 @@ public abstract class BukkitRunnable implements Runnable {
      * Schedules this to repeatedly run asynchronously until cancelled,
      * starting after the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
+     * @param plugin 调度任务的插件
      * @param delay the ticks to wait before running the task for the first
      *     time
      * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskTimerAsynchronously(Plugin, Runnable, long,
@@ -125,9 +131,11 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * Gets the task id for this runnable.
+     * 获取这个runnable的任务id。
+     * <p>
+     * 原文：Gets the task id for this runnable.
      *
-     * @return the task id that this runnable was scheduled as
+     * @return runnable调度过的任务
      * @throws IllegalStateException 如果任务还没有调度
      */
     public synchronized int getTaskId() throws IllegalStateException {

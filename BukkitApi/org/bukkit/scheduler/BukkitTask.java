@@ -3,7 +3,7 @@ package org.bukkit.scheduler;
 import org.bukkit.plugin.Plugin;
 
 /**
- * 代表由调度程序执行的任务。
+ * 代表由调度器执行的任务。
  */
 public interface BukkitTask {
 

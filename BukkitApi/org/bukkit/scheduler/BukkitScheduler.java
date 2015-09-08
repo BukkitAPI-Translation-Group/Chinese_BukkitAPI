@@ -141,7 +141,7 @@ public interface BukkitScheduler {
     public <T> Future<T> callSyncMethod(Plugin plugin, Callable<T> task);
 
     /**
-     * 从调度程序中移除一个任务。
+     * 从调度器中移除一个任务。
      * <p>
      * 原文：Removes task from scheduler.
      *
@@ -150,7 +150,7 @@ public interface BukkitScheduler {
     public void cancelTask(int taskId);
 
     /**
-     * 移除与来自调度程序中特定相关的插件的所有任务。
+     * 移除与来自调度器中特定相关的插件的所有任务。
      * <p>
      * 原文：Removes all tasks associated with a particular plugin from the
      * scheduler.
@@ -160,7 +160,7 @@ public interface BukkitScheduler {
     public void cancelTasks(Plugin plugin);
 
     /**
-     * 从调度程序中移除所有任务。
+     * 从调度器中移除所有任务。
      * <p>
      * 原文：Removes all tasks from the scheduler.
      */
