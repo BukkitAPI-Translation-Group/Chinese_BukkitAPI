@@ -58,11 +58,13 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * Schedules this to run after the specified number of server ticks.
+     * 在指定服务器tick数值过后调度任务。
+     * <p>
+     * 原文:Schedules this to run after the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @param delay 在任务执行前等待的tick
+     * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskLater(Plugin, Runnable, long)
@@ -73,14 +75,18 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 在指定服务器tick数值过后调度异步任务。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules this to run asynchronously after the specified number of
      * server ticks.
      *
      * @param plugin 调度任务的插件
-     * @param delay the ticks to wait before running the task
+     * @param delay 在任务执行前等待的tick
      * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
