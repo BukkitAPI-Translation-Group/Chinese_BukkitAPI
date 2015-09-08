@@ -20,7 +20,8 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
-     * 获取当前重生的位置. <p>
+     * 获取当前重生的位置.
+     * <p>
      * 原文:Gets the current respawn location
      *
      * @return 玩家重生位置
@@ -30,7 +31,8 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
-     * 设置一个新的重生位置. <p>
+     * 设置一个新的重生位置.
+     * <p>
      * 原文:Sets the new respawn location
      *
      * @param location 新的重生位置
@@ -43,7 +45,8 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
-     * 获取此玩家是否在他的床上重生. <p>
+     * 获取此玩家是否在他的床上重生.
+     * <p>
      * 原文:Gets whether the respawn location is the player's bed.
      *
      * @return 玩家是否重生在床上

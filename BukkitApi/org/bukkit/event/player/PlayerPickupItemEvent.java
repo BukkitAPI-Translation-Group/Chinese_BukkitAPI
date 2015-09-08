@@ -21,7 +21,8 @@ public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获得此玩家在地面捡起的物品. <p>
+     * 获得此玩家在地面捡起的物品.
+     * <p>
      * 原文:Gets the Item picked up by the player.
      *
      * @return 此掉落物品
@@ -31,7 +32,8 @@ public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获得地面剩余掉落物品数量(如果有的话). <p>
+     * 获得地面剩余掉落物品数量(如果有的话).
+     * <p>
      * 原文:Gets the amount remaining on the ground, if any
      *
      * @return 剩余掉落物品数量

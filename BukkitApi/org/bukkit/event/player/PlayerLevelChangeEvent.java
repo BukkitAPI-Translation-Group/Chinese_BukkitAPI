@@ -18,7 +18,8 @@ public class PlayerLevelChangeEvent extends PlayerEvent {
     }
 
     /**
-     * 获得此玩家改变之前的经验值. <t>
+     * 获得此玩家改变之前的经验值.
+     * <p>
      * 原文:Gets the old level of the player
      *
      * @return 之前的经验值
@@ -28,7 +29,8 @@ public class PlayerLevelChangeEvent extends PlayerEvent {
     }
 
     /**
-     * 获得此玩家要改变成的经验值. <t>
+     * 获得此玩家要改变成的经验值.
+     * <p>
      * 原文:Gets the new level of the player
      *
      * @return 目前的经验值

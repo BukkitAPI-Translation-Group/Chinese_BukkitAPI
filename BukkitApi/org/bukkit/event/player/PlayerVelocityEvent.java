@@ -27,7 +27,8 @@ public class PlayerVelocityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 得到玩家目前的移动速度. <p>
+     * 得到玩家目前的移动速度.
+     * <p>
      * 原文:Gets the velocity vector that will be sent to the player
      *
      * @return 玩家移动速度
@@ -37,7 +38,8 @@ public class PlayerVelocityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 设置玩家移动速度. <p>
+     * 设置玩家移动速度.
+     * <p>
      * 原文:Sets the velocity vector that will be sent to the player
      *
      * @param Vector 玩家速度

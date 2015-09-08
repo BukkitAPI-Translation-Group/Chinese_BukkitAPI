@@ -37,7 +37,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获取当前事件的状态. <p>
+     * 获取当前事件的状态.
+     * <p>
      * 原文:Gets the current result of the login, as an enum
      * @return 当前事件的状态
      */
@@ -46,7 +47,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 设置当前事件的状态. <p>
+     * 设置当前事件的状态.
+     * <p>
      * 原文:Sets the new result of the login, as an enum
      *
      * @param result 当前事件的状态
@@ -56,7 +58,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 如果getResult() !=Result.ALLOWED，那么获取将要踢出的信息. <p>
+     * 如果getResult() !=Result.ALLOWED，那么获取踢出的信息.
+     * <p>
      * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
      *
@@ -67,7 +70,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 设置如果getResult() !=Result.ALLOWED，那么将要踢出的消息. <p>
+     * 设置如果getResult() !=Result.ALLOWED，那么将要踢出的消息.
+     * <p>
      * 原文:Sets the kick message to display if getResult() != Result.ALLOWED
      *
      * @param message 设置踢出的消息
@@ -77,7 +81,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 允许玩家登录. <p>
+     * 允许玩家登录.
+     * <p>
      * 原文:Allows the player to log in
      */
     public void allow() {
@@ -86,7 +91,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 不允许玩家登录. <p>
+     * 不允许玩家登录.
+     * <p>
      * 原文:Disallows the player from logging in, with the given reason
      *
      * @param result 结果
@@ -98,7 +104,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获得此玩家的名字. <p>
+     * 获得此玩家的名字.
+     * <p>
      * 原文:Gets the player's name.
      *
      * @return 玩家名字
@@ -108,7 +115,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获得此玩家的IP地址. <p>
+     * 获得此玩家的IP地址.
+     * <p>
      * 原文:Gets the player IP address.
      *
      * @return 玩家IP地址
@@ -123,7 +131,8 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获得此玩家的唯一标识. <p>
+     * 获得此玩家的唯一标识.
+     * <p>
      * 原文:Gets the player's unique ID.
      *
      * @return 唯一标识
@@ -137,28 +146,28 @@ public class PlayerPreLoginEvent extends Event {
     }
 
     /**
-     * PlayerPerJoinEvent的事件状态.
+     * 踢出玩家的原因.
      */
     public enum Result {
 
         /**
-         * 允许玩家进入服务器. <p>
+         * 允许玩家进入服务器.
          */
         ALLOWED,
         /**
-         * 由于服务器已满,不允许进入. <p>
+         * 由于服务器已满,不允许进入.
          */
         KICK_FULL,
         /**
-         * 由于玩家被服务器封禁,不允许进入. <p>
+         * 由于玩家被服务器封禁,不允许进入.
          */
         KICK_BANNED,
         /**
-         * 由于玩家不在白名单内,不允许进入. <p>
+         * 由于玩家不在白名单内,不允许进入.
          */
         KICK_WHITELIST,
         /**
-         * 其他原因,就是不允许进入. <p>
+         * 其他原因,就是不允许进入.
          */
         KICK_OTHER
     }
