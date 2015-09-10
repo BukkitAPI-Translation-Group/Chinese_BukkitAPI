@@ -98,12 +98,14 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * Schedules this to repeatedly run until cancelled, starting after the
+     * 在指定服务器tick数值过后，调度重复执行的任务，直至取消。
+     * <p>
+     * 原文：Schedules this to repeatedly run until cancelled, starting after the
      * specified number of server ticks.
      *
      * @param plugin 调度任务的插件
-     * @param delay the ticks to wait before running the task
-     * @param period the ticks to wait between runs
+     * @param delay 在任务执行前等待的tick
+     * @param period 运行之间等待的tick(重复执行任务的间隔)
      * @return 包含id编号的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
@@ -115,7 +117,11 @@ public abstract class BukkitRunnable implements Runnable {
     }
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 在指定服务器tick数值过后，调度重复执行的异步任务，直至取消。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules this to repeatedly run asynchronously until cancelled,
