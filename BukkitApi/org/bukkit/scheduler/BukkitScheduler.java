@@ -41,9 +41,9 @@ public interface BukkitScheduler {
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTask(Plugin)}
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
+     * @deprecated 推荐使用{@link BukkitRunnable#runTask(Plugin)}
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
      * @return 任务id编号（如果为-1则表示调度失败）
      */
     @Deprecated
@@ -54,8 +54,8 @@ public interface BukkitScheduler {
      * <p>
      * This task will be executed by the main server thread.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
      * @return 任务id编号（如果为-1则表示调度失败）
@@ -63,9 +63,9 @@ public interface BukkitScheduler {
     public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskTimer(Plugin, long, long)}     *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
+     * @deprecated 推荐使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}     *
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
      * @param delay Delay in server ticks before executing first repeat
      * @param period Period in server ticks of the task
      * @return 任务id编号（如果为-1则表示调度失败）
@@ -80,8 +80,8 @@ public interface BukkitScheduler {
      * Schedules a once off task to occur after a delay. This task will be
      * executed by a thread managed by the scheduler.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
      * @param delay Delay in server ticks before executing task
      * @return 任务id编号（如果为-1则表示调度失败）
      * @deprecated This name is misleading, as it does not schedule "a sync"
