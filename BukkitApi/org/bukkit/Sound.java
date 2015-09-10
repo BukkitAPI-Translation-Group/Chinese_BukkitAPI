@@ -1,12 +1,9 @@
 package org.bukkit;
 
 /**
- * An Enum of Sounds the server is able to send to players.
+ * 服务器能给玩家发送的声音的一个枚举。
  * <p>
- * WARNING: At any time, sounds may be added/removed from this Enum or even
- * MineCraft itself! There is no guarantee the sounds will play. There is no
- * guarantee values will not be removed from this Enum. As such, you should
- * not depend on the ordinal values of this class.
+ * 警告：在某些时候，声音可能被这个枚举或Minecraft自己新增/移除！不保证声音能播放，不保证一些声音值会从这个枚举移除。因此，你不应该依赖这个类的顺序值。
  */
 public enum Sound {
     AMBIENCE_CAVE,
