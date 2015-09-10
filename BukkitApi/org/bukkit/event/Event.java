@@ -3,7 +3,7 @@ package org.bukkit.event;
 import org.bukkit.plugin.PluginManager;
 
 /**
- * 代表一个事件.
+ * 代表事件。
  *
  * @see PluginManager#callEvent(Event)
  * @see PluginManager#registerEvents(Listener,Plugin)
@@ -13,8 +13,7 @@ public abstract class Event {
     private final boolean async;
 
     /**
-     * 为了更简单清晰的代码而制造. 这个构造器
-     * 取得的是同步的事件。
+     * 为了更简单清晰的代码而制造。这个构造器取得的是同步的事件。
      */
     public Event() {
         this(false);
