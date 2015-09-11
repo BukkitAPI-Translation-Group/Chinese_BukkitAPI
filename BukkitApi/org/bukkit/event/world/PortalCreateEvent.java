@@ -25,7 +25,7 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
     }
 
     /**
-     * 获取与创建的传送门所相关聊的所有区块的数组列表.
+     * 获取与创建的传送门所相关连的所有区块的数组列表.
      * <p>
      * 原文:
      * Gets an array list of all the blocks associated with the created portal
