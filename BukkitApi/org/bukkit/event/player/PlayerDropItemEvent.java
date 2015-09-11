@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Thrown when a player drops an item from their inventory
+ * 玩家丢出物品事件.
  */
 public class PlayerDropItemEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -19,9 +19,11 @@ public class PlayerDropItemEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the ItemDrop created by the player
+     * 获得此玩家丢出的物品.
+     * <p>
+     * 原文:Gets the ItemDrop created by the player
      *
-     * @return ItemDrop created by the player
+     * @return 玩家丢出的物品
      */
     public Item getItemDrop() {
         return drop;
