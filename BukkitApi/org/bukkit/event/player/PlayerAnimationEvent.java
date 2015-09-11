@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Represents a player animation event
+ * 玩家动作事件.
  */
 public class PlayerAnimationEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -13,21 +13,25 @@ public class PlayerAnimationEvent extends PlayerEvent implements Cancellable {
     private boolean isCancelled = false;
 
     /**
-     * Construct a new PlayerAnimation event
+     * 构造一个新的PlayerAnimation event.
+     * <p>
+     * 原文:Construct a new PlayerAnimation event
      *
-     * @param player The player instance
+     * @param player 玩家实例
      */
     public PlayerAnimationEvent(final Player player) {
         super(player);
 
-        // Only supported animation type for now:
+        //目前只支持动作类型.
         animationType = PlayerAnimationType.ARM_SWING;
     }
 
     /**
-     * Get the type of this animation event
+     * 获得此事件中玩家的动作类型.
+     * <p>
+     * 原文:Get the type of this animation event
      *
-     * @return the animation type
+     * @return 动作类型
      */
     public PlayerAnimationType getAnimationType() {
         return animationType;
