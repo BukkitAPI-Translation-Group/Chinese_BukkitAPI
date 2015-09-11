@@ -19,7 +19,8 @@ public class PlayerItemBreakEvent extends PlayerEvent {
     }
 
     /**
-     * 获得因耐久值不足将要被销毁的物品. <p>
+     * 获得因耐久值不足将要被销毁的物品.
+     * <p>
      * 原文:Gets the item that broke
      *
      * @return 这个物品
