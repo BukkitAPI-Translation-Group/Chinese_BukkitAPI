@@ -20,7 +20,8 @@ public class PlayerItemHeldEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获得玩家上一次手持物品的物品槽位置. <p>
+     * 获得玩家上一次手持物品的物品槽位置.
+     * <p>
      * 原文:Gets the previous held slot index
      *
      * @return 上次手持物品的物品槽的位置
@@ -30,7 +31,8 @@ public class PlayerItemHeldEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获得玩家此次手持物品的物品槽位置. <p>
+     * 获得玩家此次手持物品的物品槽位置.
+     * <p>
      * 原文:Gets the new held slot index
      *
      * @return 此次物品的物品槽位置
