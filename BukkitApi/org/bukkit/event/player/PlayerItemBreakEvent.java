@@ -5,10 +5,9 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Fired when a player's item breaks (such as a shovel or flint and steel).
+ * 某玩家工具耐久消耗完毕时触发(比如铲子，打火石，铁制工具).
  * <p>
- * The item that's breaking will exist in the inventory with a stack size of
- * 0. After the event, the item's durability will be reset to 0.
+ * 当物品耐久值为0时，将触发此事件.事件结束后，物品耐久值将复位至0.
  */
 public class PlayerItemBreakEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -20,9 +19,10 @@ public class PlayerItemBreakEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the item that broke
+     * 获得因耐久值不足将要被销毁的物品. <p>
+     * 原文:Gets the item that broke
      *
-     * @return The broken item
+     * @return 这个物品
      */
     public ItemStack getBrokenItem() {
         return brokenItem;
