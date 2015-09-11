@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when a player fills a bucket
+ * 水桶装满水事件.
  */
 public class PlayerBucketFillEvent extends PlayerBucketEvent {
     private static final HandlerList handlers = new HandlerList();
