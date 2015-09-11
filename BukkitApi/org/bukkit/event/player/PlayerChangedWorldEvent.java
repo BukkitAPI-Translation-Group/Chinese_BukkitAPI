@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player switches to another world.
+ * 玩家进行世界传送时触发此事件.
  */
 public class PlayerChangedWorldEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -17,9 +17,11 @@ public class PlayerChangedWorldEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the world the player is switching from.
+     * 获得玩家传送到的世界.
+     * <p>
+     * 原文:Gets the world the player is switching from.
      *
-     * @return  player's previous world
+     * @return 玩家传送到的世界
      */
     public World getFrom() {
         return from;
