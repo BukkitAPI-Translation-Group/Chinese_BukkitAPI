@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * This event is fired when the player is almost about to enter the bed.
+ * 玩家躺在床上则触发此事件.
  */
 public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,9 +27,11 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Returns the bed block involved in this event.
+     * 返回此事件中的床.
+     * <p>
+     * 原文:Returns the bed block involved in this event.
      *
-     * @return the bed block involved in this event
+     * @return 床
      */
     public Block getBed() {
         return bed;
