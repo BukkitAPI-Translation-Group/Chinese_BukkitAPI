@@ -13,7 +13,7 @@ public class PlayerAnimationEvent extends PlayerEvent implements Cancellable {
     private boolean isCancelled = false;
 
     /**
-     * 构造一个新的PlayerAnimation event.
+     * 构造一个新的PlayerAnimation事件.
      * <p>
      * 原文:Construct a new PlayerAnimation event
      *
