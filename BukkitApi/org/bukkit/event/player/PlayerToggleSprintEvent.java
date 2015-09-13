@@ -22,7 +22,7 @@ public class PlayerToggleSprintEvent extends PlayerEvent implements Cancellable 
      * <p>
      * Gets whether the player is now sprinting or not.
      *
-     * @return 冲刺状态
+     * @return 疾跑状态
      */
     public boolean isSprinting() {
         return isSprinting;

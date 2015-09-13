@@ -18,7 +18,7 @@ public class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable 
     }
 
     /**
-     * 返回玩家是否正在尝试飞行或停止飞行.
+     * 返回玩家是否正在飞行或没有飞行.
      * <p>
      * 原文:Returns whether the player is trying to start or stop flying.
      *

@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当玩家游戏模式发生变化则调用此事件.
+ * 当玩家游戏模式发生变化时调用此事件.
  */
 public class PlayerGameModeChangeEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,7 +27,7 @@ public class PlayerGameModeChangeEvent extends PlayerEvent implements Cancellabl
     }
 
     /**
-     * 获取玩家目前的游戏模式.
+     * 获取玩家切换后的游戏模式.
      * <p>
      * 原文:Gets the GameMode the player is switched to.
      *

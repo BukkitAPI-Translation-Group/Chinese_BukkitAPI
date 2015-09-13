@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当玩家点击一个实体则调用此事件.
+ * 当玩家点击一个实体时调用此事件.
  */
 public class PlayerInteractEntityEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

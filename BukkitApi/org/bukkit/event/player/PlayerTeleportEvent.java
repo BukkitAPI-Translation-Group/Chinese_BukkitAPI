@@ -34,27 +34,27 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
 
     public enum TeleportCause {
         /**
-         * 玩家抛出末影珍珠完成传送.
+         * 玩家抛出末影珍珠传送
          */
         ENDER_PEARL,
         /**
-         * 由某玩家的命令进行传送.
+         * 由命令进行传送.
          */
         COMMAND,
         /**
-         * 由插件进行了传送.
+         * 由插件进行传送.
          */
         PLUGIN,
         /**
-         * 由地狱传送门进行了传送.
+         * 由地狱传送门进行传送.
          */
         NETHER_PORTAL,
         /**
-         * 由末地传送门进行了传送.
+         * 由末地传送门进行传送.
          */
         END_PORTAL,
         /**
-         * 由specatator菜单传送到一个实体/玩家.
+         * 由旁观者菜单传送到一个实体/玩家.
          */
         SPECTATE,
         /**

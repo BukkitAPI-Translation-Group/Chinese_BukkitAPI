@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.util.Vector;
 
 /**
- * 当玩家点击某实体上的某位置时触发此事件.
+ * 当玩家在实体上点击某实体上的某位置时触发此事件.
  */
 public class PlayerInteractAtEntityEvent extends PlayerInteractEntityEvent {
     private static final HandlerList handlers = new HandlerList();

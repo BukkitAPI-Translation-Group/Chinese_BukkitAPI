@@ -3,7 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 
 /**
- * 玩家注册之后立即开启一个与玩家通信的通道.
+ * 玩家注册通信通道之后立即触发此事件.
  */
 public class PlayerRegisterChannelEvent extends PlayerChannelEvent {
 
