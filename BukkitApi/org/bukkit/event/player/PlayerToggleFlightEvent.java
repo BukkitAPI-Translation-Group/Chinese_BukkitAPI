@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player toggles their flying state
+ * 玩家进入飞行状态则调用此事件.
  */
 public class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -18,9 +18,11 @@ public class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable 
     }
 
     /**
-     * Returns whether the player is trying to start or stop flying.
+     * 返回玩家是否正在尝试飞行或停止飞行.
+     * <p>
+     * 原文:Returns whether the player is trying to start or stop flying.
      *
-     * @return flying state
+     * @return 飞行状态
      */
     public boolean isFlying() {
         return isFlying;
