@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * 玩家离开床则触发此事件.
+ * 玩家离开床时触发此事件.
  */
 public class PlayerBedLeaveEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -17,7 +17,7 @@ public class PlayerBedLeaveEvent extends PlayerEvent {
     }
 
     /**
-     * 返回此事件中的床.
+     * 返回此事件涉及的床.
      * <p>
      * Returns the bed block involved in this event.
      *
