@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 玩家切换疾跑状态则调用此事件
+ * 玩家切换疾跑状态时调用此事件
  */
 public class PlayerToggleSprintEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
