@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player toggles their sprinting state
+ * 玩家切换疾跑状态则调用此事件
  */
 public class PlayerToggleSprintEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -18,9 +18,11 @@ public class PlayerToggleSprintEvent extends PlayerEvent implements Cancellable 
     }
 
     /**
+     * 获得玩家目前的疾跑状态(正在疾跑/没有疾跑).
+     * <p>
      * Gets whether the player is now sprinting or not.
      *
-     * @return sprinting state
+     * @return 冲刺状态
      */
     public boolean isSprinting() {
         return isSprinting;
