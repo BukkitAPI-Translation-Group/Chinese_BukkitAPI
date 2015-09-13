@@ -3,7 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 
 /**
- * This is called immediately after a player registers for a plugin channel.
+ * 玩家注册通信通道之后立即触发此事件.
  */
 public class PlayerRegisterChannelEvent extends PlayerChannelEvent {
 

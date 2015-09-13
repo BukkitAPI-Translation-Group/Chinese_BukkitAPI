@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Holds information for player teleport events
+ * 玩家传送事件.
  */
 public class PlayerTeleportEvent extends PlayerMoveEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -22,9 +22,11 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
     }
 
     /**
-     * Gets the cause of this teleportation event
+     * 获得此次传送的传送理由.
+     * <p>
+     * 原文:Gets the cause of this teleportation event
      *
-     * @return Cause of the event
+     * @return 传送理由
      */
     public TeleportCause getCause() {
         return cause;
@@ -32,37 +34,31 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
 
     public enum TeleportCause {
         /**
-         * Indicates the teleporation was caused by a player throwing an Ender
-         * Pearl
+         * 玩家抛出末影珍珠传送
          */
         ENDER_PEARL,
         /**
-         * Indicates the teleportation was caused by a player executing a
-         * command
+         * 由命令进行传送.
          */
         COMMAND,
         /**
-         * Indicates the teleportation was caused by a plugin
+         * 由插件进行传送.
          */
         PLUGIN,
         /**
-         * Indicates the teleportation was caused by a player entering a
-         * Nether portal
+         * 由地狱传送门进行传送.
          */
         NETHER_PORTAL,
         /**
-         * Indicates the teleportation was caused by a player entering an End
-         * portal
+         * 由末地传送门进行传送.
          */
         END_PORTAL,
         /**
-         * Indicates the teleportation was caused by a player teleporting to a
-         * Entity/Player via the specatator menu
+         * 由旁观者菜单传送到一个实体/玩家.
          */
         SPECTATE,
         /**
-         * Indicates the teleportation was caused by an event not covered by
-         * this enum
+         * 由除已知枚举外的其他情况进行了传送.
          */
         UNKNOWN;
     }

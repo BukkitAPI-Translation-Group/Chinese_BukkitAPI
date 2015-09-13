@@ -6,8 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.util.Vector;
 
 /**
- * Represents an event that is called when a player right clicks an entity
- * with a location on the entity the was clicked.
+ * 当玩家在实体上点击某实体上的某位置时触发此事件.
  */
 public class PlayerInteractAtEntityEvent extends PlayerInteractEntityEvent {
     private static final HandlerList handlers = new HandlerList();
