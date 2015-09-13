@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player toggles their sneaking state
+ * 玩家进入潜行状态则调用此事件.
  */
 public class PlayerToggleSneakEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -18,9 +18,11 @@ public class PlayerToggleSneakEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Returns whether the player is now sneaking or not.
+     * 获得玩家目前的潜行状态(正在潜行/没有潜行).
+     * <p>
+     * 原文:Returns whether the player is now sneaking or not.
      *
-     * @return sneaking state
+     * @return 潜行状态
      */
     public boolean isSneaking() {
         return isSneaking;
