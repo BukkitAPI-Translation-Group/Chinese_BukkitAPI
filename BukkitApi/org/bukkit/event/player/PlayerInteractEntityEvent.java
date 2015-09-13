@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Represents an event that is called when a player right clicks an entity.
+ * 当玩家点击一个实体则调用此事件.
  */
 public class PlayerInteractEntityEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -27,9 +27,11 @@ public class PlayerInteractEntityEvent extends PlayerEvent implements Cancellabl
     }
 
     /**
-     * Gets the entity that was rightclicked by the player.
+     * 获取被玩家点击的实体.
+     * <p>
+     * 原文:Gets the entity that was rightclicked by the player.
      *
-     * @return entity right clicked by player
+     * @return 被玩家点击的实体
      */
     public Entity getRightClicked() {
         return this.clickedEntity;
