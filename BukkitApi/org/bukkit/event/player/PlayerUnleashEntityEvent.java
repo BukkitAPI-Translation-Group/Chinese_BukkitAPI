@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.entity.EntityUnleashEvent;
 
 /**
- * Called prior to an entity being unleashed due to a player's action.
+ * 当一个实体将被释放.
  */
 public class PlayerUnleashEntityEvent extends EntityUnleashEvent implements Cancellable {
     private final Player player;
@@ -18,9 +18,11 @@ public class PlayerUnleashEntityEvent extends EntityUnleashEvent implements Canc
     }
 
     /**
-     * Returns the player who is unleashing the entity.
+     * 获得释放实体的玩家.
+     * <p>
+     * 原文:Returns the player who is unleashing the entity.
      *
-     * @return The player
+     * @return 玩家
      */
     public Player getPlayer() {
         return player;
