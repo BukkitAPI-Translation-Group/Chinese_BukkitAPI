@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 
 /**
- * Represents a player related event
+ * 代表玩家事件.
  */
 public abstract class PlayerEvent extends Event {
     protected Player player;
@@ -20,9 +20,11 @@ public abstract class PlayerEvent extends Event {
     }
 
     /**
-     * Returns the player involved in this event
+     * 返回哪个玩家触发了此事件.
+     * <p>
+     * 原文:Returns the player involved in this event
      *
-     * @return Player who is involved in this event
+     * @return 触发此事件的玩家
      */
     public final Player getPlayer() {
         return player;
