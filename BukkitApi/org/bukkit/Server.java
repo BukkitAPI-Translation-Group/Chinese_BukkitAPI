@@ -43,44 +43,54 @@ import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
- * Represents a server implementation.
+ * 代表执行插件的服务器.
  */
 public interface Server extends PluginMessageRecipient {
 
     /**
-     * Used for all administrative messages, such as an operator using a
+     * 用于所有的操作命令，如控制台命令.
+     * <p>
+     * 原文:Used for all administrative messages, such as an operator using a
      * command.
      * <p>
-     * For use in {@link #broadcast(java.lang.String, java.lang.String)}.
+     * 用于{@link #broadcast(java.lang.String, java.lang.String)}.
      */
     public static final String BROADCAST_CHANNEL_ADMINISTRATIVE = "bukkit.broadcast.admin";
 
     /**
-     * Used for all announcement messages, such as informing users that a
+     * 用于所有的公告信息，如通知玩家已加入的用户.
+     * <p>
+     * 原文:Used for all announcement messages, such as informing users that a
      * player has joined.
      * <p>
-     * For use in {@link #broadcast(java.lang.String, java.lang.String)}.
+     * 用于{@link #broadcast(java.lang.String, java.lang.String)}.
      */
     public static final String BROADCAST_CHANNEL_USERS = "bukkit.broadcast.user";
 
     /**
-     * Gets the name of this server implementation.
+     * 获得服务器名字.
+     * <p>
+     * 原文:Gets the name of this server implementation.
      *
-     * @return name of this server implementation
+     * @return 服务器名字
      */
     public String getName();
 
     /**
-     * Gets the version string of this server implementation.
+     * 获得服务器版本字符串.
+     * <p>
+     * 原文:Gets the version string of this server implementation.
      *
-     * @return version of this server implementation
+     * @return 服务器版本字符串
      */
     public String getVersion();
 
     /**
-     * Gets the Bukkit version that this server is running.
+     * 获得服务器运行的Bukkit版本.
+     * <p>
+     * 原文:Gets the Bukkit version that this server is running.
      *
-     * @return version of Bukkit
+     * @return Bukkit版本
      */
     public String getBukkitVersion();
 
@@ -127,16 +137,20 @@ public interface Server extends PluginMessageRecipient {
     public Collection<? extends Player> getOnlinePlayers();
 
     /**
-     * Get the maximum amount of players which can login to this server.
+     * 获得服务器可同时在线玩家最高人数.
+     * <p>
+     * 原文:Get the maximum amount of players which can login to this server.
      *
-     * @return the amount of players this server allows
+     * @return 同时在线玩家最高人数
      */
     public int getMaxPlayers();
 
     /**
-     * Get the game port that the server runs on.
+     * 获得服务器端口.
+     * <p>
+     * 原文:Get the game port that the server runs on.
      *
-     * @return the port number of this server
+     * @return 服务器端口
      */
     public int getPort();
 
@@ -214,9 +228,11 @@ public interface Server extends PluginMessageRecipient {
     public void setWhitelist(boolean value);
 
     /**
-     * Gets a list of whitelisted players.
+     * 获得所有在白名单中的玩家.
+     * <p>
+     * 原文:Gets a list of whitelisted players.
      *
-     * @return a set containing all whitelisted players
+     * @return 白名单中的玩家
      */
     public Set<OfflinePlayer> getWhitelistedPlayers();
 
