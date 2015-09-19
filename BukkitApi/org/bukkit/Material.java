@@ -60,7 +60,7 @@ import com.google.common.collect.Maps;
 import org.bukkit.material.Banner;
 
 /**
- * An enum of all material IDs accepted by the official server and client
+ * 所有物品的一个枚举.
  */
 public enum Material {
     AIR(0, 0),
@@ -499,10 +499,12 @@ public enum Material {
     }
 
     /**
-     * Gets the item ID or block ID of this Material
+     * 获取这个物品的id。
+     * <p>
+     * 原文：Gets the item ID or block ID of this Material
      *
-     * @return ID of this material
-     * @deprecated Magic value
+     * @return 物品id
+     * @deprecated 魔法值
      */
     @Deprecated
     public int getId() {
@@ -510,9 +512,11 @@ public enum Material {
     }
 
     /**
-     * Gets the maximum amount of this material that can be held in a stack
+     * 获取这个物品的最大堆叠数量。
+     * <p>
+     * 原文：Gets the maximum amount of this material that can be held in a stack
      *
-     * @return Maximum stack size for this material
+     * @return 物品的最大堆叠数量
      */
     public int getMaxStackSize() {
         return maxStack;
@@ -1125,7 +1129,7 @@ public enum Material {
     }
 
     /**
-     * @return True if this material is affected by gravity.
+     * @return 如果这个物品（仅方块）受重力影响则为true.
      */
     public boolean hasGravity() {
         if (!isBlock()) {
