@@ -60,7 +60,7 @@ import com.google.common.collect.Maps;
 import org.bukkit.material.Banner;
 
 /**
- * 所有物品的一个枚举.
+ * 所有物品的枚举.
  */
 public enum Material {
     AIR(0, 0),
@@ -631,7 +631,7 @@ public enum Material {
      * 原文:Attempts to get the Material with the given ID
      *
      * @param id 用来获取Material对象的id
-     * @return 如果找不到返回null,如果找到返回Material对象
+     * @return 如果找不到返回null,否则返回Material对象
      * @deprecated 魔法值
      */
     @Deprecated
@@ -654,13 +654,19 @@ public enum Material {
      * in the enum.
      *
      * @param name 用来获取Material对象的名称
-     * @return 如果找不到返回null,如果找到返回Material对象
+     * @return 如果找不到返回null,否则返回Material对象
      */
     public static Material getMaterial(final String name) {
         return BY_NAME.get(name);
     }
 
     /**
+     * 尝试用给定名称匹配Material对象.
+     * <p>
+     * 这是一个匹配查找;名称将转换为大写,然后格式化字符.
+     * <p>
+     * 用ID匹配已过时.
+     * <p>
      * 原文:Attempts to match the Material with the given name.
      * <p>
      * This is a match lookup; names will be converted to uppercase, then
@@ -669,8 +675,8 @@ public enum Material {
      * <p>
      * Using this for match by ID is deprecated.
      *
-     * @param name Name of the material to get
-     * @return Material if found, or null
+     * @param name 用来获取Material对象的名称
+     * @return 如果找不到返回null,否则返回Material对象
      */
     public static Material matchMaterial(final String name) {
         Validate.notNull(name, "Name cannot be null");
