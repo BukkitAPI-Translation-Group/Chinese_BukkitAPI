@@ -499,9 +499,9 @@ public enum Material {
     }
 
     /**
-     * 获取这个物品的id。
+     * 获取这个物品的id.
      * <p>
-     * 原文：Gets the item ID or block ID of this Material
+     * 原文:Gets the item ID or block ID of this Material
      *
      * @return 物品id
      * @deprecated 魔法值
@@ -512,9 +512,9 @@ public enum Material {
     }
 
     /**
-     * 获取这个物品的最大堆叠数量。
+     * 获取这个物品的最大堆叠数量.
      * <p>
-     * 原文：Gets the maximum amount of this material that can be held in a stack
+     * 原文:Gets the maximum amount of this material that can be held in a stack
      *
      * @return 物品的最大堆叠数量
      */
@@ -523,30 +523,36 @@ public enum Material {
     }
 
     /**
-     * Gets the maximum durability of this material
+     * 获取这个物品的最大耐久度.
+     * <p>
+     * 原文:Gets the maximum durability of this material
      *
-     * @return Maximum durability for this material
+     * @return 物品的最大耐久度
      */
     public short getMaxDurability() {
         return durability;
     }
 
     /**
-     * Gets the MaterialData class associated with this Material
+     * 获取这个物品相关的MaterialData类.
+     * <p>
+     * 原文:Gets the MaterialData class associated with this Material
      *
-     * @return MaterialData associated with this Material
+     * @return 物品相关的MaterialData类
      */
     public Class<? extends MaterialData> getData() {
         return ctor.getDeclaringClass();
     }
 
     /**
-     * Constructs a new MaterialData relevant for this Material, with the
+     * 用给定的初始数据构造一个新的与这个物品有关的MaterialData对象.
+     * <p>
+     * 原文:Constructs a new MaterialData relevant for this Material, with the
      * given initial data
      *
-     * @param raw Initial data to construct the MaterialData with
-     * @return New MaterialData with the given data
-     * @deprecated Magic value
+     * @param raw 用来构造MaterialData的初始数据
+     * @return 给定值的MaterialData对象
+     * @deprecated 魔法值
      */
     @Deprecated
     public MaterialData getNewData(final byte raw) {
@@ -567,18 +573,22 @@ public enum Material {
     }
 
     /**
-     * Checks if this Material is a placable block
+     * 检测这个物品能否放置(是否为方块).
+     * <p>
+     * 原文:Checks if this Material is a placable block
      *
-     * @return true if this material is a block
+     * @return 物品是否为方块
      */
     public boolean isBlock() {
         return id < 256;
     }
 
     /**
-     * Checks if this Material is edible.
+     * 检测这个物品能否食用.
+     * <p>
+     * 原文:Checks if this Material is edible.
      *
-     * @return true if this Material is edible.
+     * @return 如果物品能食用
      */
     public boolean isEdible() {
         switch (this) {
@@ -616,11 +626,13 @@ public enum Material {
     }
 
     /**
-     * Attempts to get the Material with the given ID
+     * 尝试用给定id获取Material对象.
+     * <p>
+     * 原文:Attempts to get the Material with the given ID
      *
-     * @param id ID of the material to get
-     * @return Material if found, or null
-     * @deprecated Magic value
+     * @param id 用来获取Material对象的id
+     * @return 如果找不到返回null,如果找到返回Material对象
+     * @deprecated 魔法值
      */
     @Deprecated
     public static Material getMaterial(final int id) {
@@ -632,20 +644,24 @@ public enum Material {
     }
 
     /**
-     * Attempts to get the Material with the given name.
+     * 尝试用给定名称获取Material对象.
+     * <p>
+     * 这是一个标准的查找,名称必须是枚举中给出的准确名称.
+     * <p>
+     * 原文:Attempts to get the Material with the given name.
      * <p>
      * This is a normal lookup, names must be the precise name they are given
      * in the enum.
      *
-     * @param name Name of the material to get
-     * @return Material if found, or null
+     * @param name 用来获取Material对象的名称
+     * @return 如果找不到返回null,如果找到返回Material对象
      */
     public static Material getMaterial(final String name) {
         return BY_NAME.get(name);
     }
 
     /**
-     * Attempts to match the Material with the given name.
+     * 原文:Attempts to match the Material with the given name.
      * <p>
      * This is a match lookup; names will be converted to uppercase, then
      * stripped of special characters in an attempt to format it like the
@@ -688,17 +704,19 @@ public enum Material {
     }
 
     /**
-     * @return True if this material represents a playable music disk.
+     * @return 如果这个物品代表音乐唱片则为true.
      */
     public boolean isRecord() {
         return id >= GOLD_RECORD.id && id <= RECORD_12.id;
     }
 
     /**
-     * Check if the material is a block and solid (cannot be passed through by
+     * 检测物品是否为固体方块(玩家不可穿过).
+     * <p>
+     * 原文:Check if the material is a block and solid (cannot be passed through by
      * a player)
      *
-     * @return True if this material is a block and solid
+     * @return 物品是否为固体方块
      */
     public boolean isSolid() {
         if (!isBlock() || id == 0) {
@@ -861,9 +879,11 @@ public enum Material {
     }
 
     /**
-     * Check if the material is a block and does not block any light
+     * 检测这个物品是否为透明的方块.
+     * <p>
+     * 原文:Check if the material is a block and does not block any light
      *
-     * @return True if this material is a block and does not block any light
+     * @return 这个物品是否为透明的方块
      */
     public boolean isTransparent() {
         if (!isBlock()) {
@@ -921,9 +941,11 @@ public enum Material {
     }
 
     /**
-     * Check if the material is a block and can catch fire
+     * 检测这个方块是否为可燃的.
+     * <p>
+     * 原文:Check if the material is a block and can catch fire
      *
-     * @return True if this material is a block and can catch fire
+     * @return 这个方块是否为可燃的
      */
     public boolean isFlammable() {
         if (!isBlock()) {
@@ -992,9 +1014,11 @@ public enum Material {
     }
 
     /**
-     * Check if the material is a block and can burn away
+     * 检测这个方块能否被火烧掉.
+     * <p>
+     * 原文:Check if the material is a block and can burn away
      *
-     * @return True if this material is a block and can burn away
+     * @return 这个方块能否被火烧掉
      */
     public boolean isBurnable() {
         if (!isBlock()) {
@@ -1043,7 +1067,9 @@ public enum Material {
     }
 
     /**
-     * Check if the material is a block and completely blocks vision
+     * 检测这个物品是否为阻挡目光的方块.
+     * <p>
+     * 原文:Check if the material is a block and completely blocks vision
      *
      * @return True if this material is a block and completely blocks vision
      */
