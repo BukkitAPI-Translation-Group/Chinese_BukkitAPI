@@ -1,9 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * 代表环境生物.
- * <p>
- * 代表周围的环境生物.
+ * 代表周围的生物.
  * <p>
  * 原文:Represents an ambient mob
  */
