@@ -7,16 +7,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
- * Class containing file utilities
+ * 文件工具类
  */
 public class FileUtil {
 
     /**
-     * This method copies one file to another location
+     * 复制一个文件至另一个位置.
+     * <p>
+     * 原文：This method copies one file to another location
      *
-     * @param inFile the source filename
-     * @param outFile the target filename
-     * @return true on success
+     * @param inFile 源文件名
+     * @param outFile 目标文件名
+     * @return true表成功
      */
     public static boolean copy(File inFile, File outFile) {
         if (!inFile.exists()) {
