@@ -34,8 +34,8 @@ public interface BukkitScheduler {
      * <p>
      * This task will be executed by the main server thread.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
      * @return 任务id编号（如果为-1则表示调度失败）
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
