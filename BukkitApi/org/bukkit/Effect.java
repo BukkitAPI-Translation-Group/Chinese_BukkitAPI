@@ -8,76 +8,75 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.potion.Potion;
 
 /**
- * A list of effects that the server is able to send to players.
+ * 效果列表
  */
 public enum Effect {
     /**
-     * An alternate click sound.
+     * 另一种点击声音
      */
     CLICK2(1000, Type.SOUND),
     /**
-     * A click sound.
+     * 点击声音
      */
     CLICK1(1001, Type.SOUND),
     /**
-     * Sound of a bow firing.
+     * 弓的射击声
      */
     BOW_FIRE(1002, Type.SOUND),
     /**
-     * Sound of a door opening/closing.
+     * 开关门声
      */
     DOOR_TOGGLE(1003, Type.SOUND),
     /**
-     * Sound of fire being extinguished.
+     * 火焰被熄灭
      */
     EXTINGUISH(1004, Type.SOUND),
     /**
-     * A song from a record. Needs the record item ID as additional info
+     * 播放唱片歌曲的声音
      */
     RECORD_PLAY(1005, Type.SOUND, Material.class),
     /**
-     * Sound of ghast shrieking.
+     * 恶魂的尖叫声
      */
     GHAST_SHRIEK(1007, Type.SOUND),
     /**
-     * Sound of ghast firing.
+     * 恶魂投射火球的声音
      */
     GHAST_SHOOT(1008, Type.SOUND),
     /**
-     * Sound of blaze firing.
+     * 烈焰人投射火球的声音
      */
     BLAZE_SHOOT(1009, Type.SOUND),
     /**
-     * Sound of zombies chewing on wooden doors.
+     * 僵尸破木门的声音
      */
     ZOMBIE_CHEW_WOODEN_DOOR(1010, Type.SOUND),
     /**
-     * Sound of zombies chewing on iron doors.
+     * 僵尸破铁门的声音
      */
     ZOMBIE_CHEW_IRON_DOOR(1011, Type.SOUND),
     /**
-     * Sound of zombies destroying a door.
+     * 僵尸摧毁门的声音
      */
     ZOMBIE_DESTROY_DOOR(1012, Type.SOUND),
     /**
-     * A visual smoke effect. Needs direction as additional info.
+     * 烟雾效果
      */
     SMOKE(2000, Type.VISUAL, BlockFace.class),
     /**
-     * Sound of a block breaking. Needs block ID as additional info.
+     * 方块被破坏的声音
      */
     STEP_SOUND(2001, Type.SOUND, Material.class),
     /**
-     * Visual effect of a splash potion breaking. Needs potion data value as
-     * additional info.
+     * 药水的视觉效果
      */
     POTION_BREAK(2002, Type.VISUAL, Potion.class),
     /**
-     * An ender eye signal; a visual effect.
+     * 末影颗粒视觉效果
      */
     ENDER_SIGNAL(2003, Type.VISUAL),
     /**
-     * The flames seen on a mobspawner; a visual effect.
+     * 火焰颗粒视觉效果
      */
     MOBSPAWNER_FLAMES(2004, Type.VISUAL);
 
@@ -97,10 +96,12 @@ public enum Effect {
     }
 
     /**
-     * Gets the ID for this effect.
+     * 获取这个效果的id。
+     * <p>
+     * 原文：Gets the ID for this effect.
      *
-     * @return ID of this effect
-     * @deprecated Magic value
+     * @return 效果id
+     * @deprecated 魔法值
      */
     @Deprecated
     public int getId() {
@@ -108,26 +109,27 @@ public enum Effect {
     }
 
     /**
-     * @return The type of the effect.
+     * @return 效果的类型
      */
     public Type getType() {
         return this.type;
     }
 
     /**
-     * @return The class which represents data for this effect, or null if
-     *     none
+     * @return 代表这个效果的类，不存在为null
      */
     public Class<?> getData() {
         return this.data;
     }
 
     /**
-     * Gets the Effect associated with the given ID.
+     * 获取给定id相关联的效果。
+     * <p>
+     * 原文：Gets the Effect associated with the given ID.
      *
-     * @param id ID of the Effect to return
-     * @return Effect with the given ID
-     * @deprecated Magic value
+     * @param id 效果id
+     * @return 给定id相关联效果
+     * @deprecated 魔法值
      */
     @Deprecated
     public static Effect getById(int id) {
@@ -141,7 +143,7 @@ public enum Effect {
     }
 
     /**
-     * Represents the type of an effect.
+     * 代表效果的类型
      */
     public enum Type {SOUND, VISUAL}
 }
