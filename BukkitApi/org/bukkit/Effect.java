@@ -48,11 +48,11 @@ public enum Effect {
      */
     BLAZE_SHOOT(1009, Type.SOUND),
     /**
-     * 僵尸破木门的声音
+     * 僵尸敲木门的声音
      */
     ZOMBIE_CHEW_WOODEN_DOOR(1010, Type.SOUND),
     /**
-     * 僵尸破铁门的声音
+     * 僵尸敲铁门的声音
      */
     ZOMBIE_CHEW_IRON_DOOR(1011, Type.SOUND),
     /**
