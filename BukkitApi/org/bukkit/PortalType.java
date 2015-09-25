@@ -6,7 +6,7 @@ package org.bukkit;
 public enum PortalType {
 
     /**
-     * 用黑曜石做的下界传送门.
+     * 下界传送门.
      */
     NETHER,
 
@@ -16,7 +16,7 @@ public enum PortalType {
     ENDER,
 
     /**
-     * 自定义的传送门.
+     * 自定义传送门.
      */
     CUSTOM;
 }
