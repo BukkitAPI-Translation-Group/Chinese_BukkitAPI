@@ -7,9 +7,9 @@ import org.bukkit.event.HandlerList;
 import java.util.List;
 
 /**
- * 方块爆炸事件
- * 
- * 译注:{@ link #getBlock}方法返回的是引起爆炸的方块(比如说TNT),并不是被炸掉的方块.
+ * 方块爆炸事件.
+ * <p>
+ * 译注:{@ link #getBlock}方法返回的是引起爆炸的方块(比如TNT),并不是被炸掉的方块.
  */
 public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -42,7 +42,8 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 返回这次爆炸炸毁的方块掉落的可能性(小数百分比). <p>
+     * 返回这次爆炸炸毁的方块掉落的可能性(小数百分比). 
+     * <p>
      *
      * @return 小数百分率
      */
@@ -51,9 +52,10 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置这次爆炸炸毁的方块掉落的可能性(小数百分比). <p>
+     * 设置这次爆炸炸毁的方块掉落的可能性(小数百分比).
+     * <p>
      *
-     * @param 小数百分率
+     * @param float 小数百分率
      */
     public void setYield(float yield) {
         this.yield = yield;
