@@ -2,8 +2,6 @@ package org.bukkit.inventory;
 
 /**
  * 隐藏ItemStacks的某些属性.
- * <p>
- * 原文:A ItemFlag can hide some Attributes from ItemStacks
  */
 public enum ItemFlag {
 
@@ -15,7 +13,7 @@ public enum ItemFlag {
     HIDE_ENCHANTS,
     /**
      * 设置显示/隐藏该Item的属性,例如伤害.
-     * <>
+     * <p>
      * 原文:Setting to show/hide Attributes like Damage
      */
     HIDE_ATTRIBUTES,
