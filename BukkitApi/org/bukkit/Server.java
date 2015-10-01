@@ -681,9 +681,11 @@ public interface Server extends PluginMessageRecipient {
     public void unbanIP(String address);
 
     /**
-     * Gets a set containing all banned players.
+     * 获得一组所有被服务器封禁的玩家.
+     * <p>
+     * 原文:Gets a set containing all banned players.
      *
-     * @return a set containing banned players
+     * @return 一组玩家
      */
     public Set<OfflinePlayer> getBannedPlayers();
 
@@ -706,16 +708,20 @@ public interface Server extends PluginMessageRecipient {
     public Set<OfflinePlayer> getOperators();
 
     /**
-     * Gets the default {@link GameMode} for new players.
+     * 获得新玩家的默认 {@link GameMode}.
+     * <p>
+     * 原文:Gets the default {@link GameMode} for new players.
      *
-     * @return the default game mode
+     * @return 默认游戏模式
      */
     public GameMode getDefaultGameMode();
 
     /**
-     * Sets the default {@link GameMode} for new players.
+     * 设置新玩家的默认 {@link GameMode}.
+     * <p>
+     * 原文:Sets the default {@link GameMode} for new players.
      *
-     * @param mode the new game mode
+     * @param mode 新的游戏模式
      */
     public void setDefaultGameMode(GameMode mode);
 
