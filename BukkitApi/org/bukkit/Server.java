@@ -613,7 +613,9 @@ public interface Server extends PluginMessageRecipient {
     public boolean useExactLoginLocation();
 
     /**
-     * Shutdowns the server, stopping everything.
+     * 彻底关闭服务器.
+     * <p>
+     * 原文:Shutdowns the server, stopping everything.
      */
     public void shutdown();
 
@@ -667,16 +669,20 @@ public interface Server extends PluginMessageRecipient {
     public Set<String> getIPBans();
 
     /**
-     * Bans the specified address from the server.
+     * 设置禁止此ip地址登陆到服务器.
+     * <p>
+     * 原文:Bans the specified address from the server.
      *
-     * @param address the IP address to ban
+     * @param address 禁止登陆的IP地址
      */
     public void banIP(String address);
 
     /**
-     * Unbans the specified address from the server.
+     * 解除禁止此ip地址登陆到服务器.
+     * <p>
+     * 原文:Unbans the specified address from the server.
      *
-     * @param address the IP address to unban
+     * @param address 解除禁止登陆的IP地址
      */
     public void unbanIP(String address);
 
@@ -857,9 +863,11 @@ public interface Server extends PluginMessageRecipient {
     boolean isPrimaryThread();
 
     /**
-     * Gets the message that is displayed on the server list.
+     * 获得服务器列表中服务器所显示的消息(服务器MOTD).
+     * <p>
+     * 原文:Gets the message that is displayed on the server list.
      *
-     * @return the servers MOTD
+     * @return 服务器MOTD
      */
     String getMotd();
 
