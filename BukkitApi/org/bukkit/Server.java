@@ -241,7 +241,9 @@ public interface Server extends PluginMessageRecipient {
     public Set<OfflinePlayer> getWhitelistedPlayers();
 
     /**
-     * Reloads the whitelist from disk.
+     * 重新加载服务器白名单配置.
+     * <p>
+     * 原文:Reloads the whitelist from disk.
      */
     public void reloadWhitelist();
 
