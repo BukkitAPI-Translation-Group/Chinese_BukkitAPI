@@ -171,9 +171,11 @@ public interface Server extends PluginMessageRecipient {
     public String getIp();
 
     /**
-     * Get the name of this server.
+     * 获得服务器名字.
+     * <p>
+     * 原文:Get the name of this server.
      *
-     * @return the name of this server
+     * @return 服务器名字
      */
     public String getServerName();
 
@@ -186,9 +188,11 @@ public interface Server extends PluginMessageRecipient {
     public String getServerId();
 
     /**
-     * Get world type (level-type setting) for default world.
+     * 获得主世界的世界类型(检测主世界的世界类型).
+     * <p>
+     * 原文:Get world type (level-type setting) for default world.
      *
-     * @return the value of level-type (e.g. DEFAULT, FLAT, DEFAULT_1_1)
+     * @return 世界类型(比如:DEFAULT, FLAT, DEFAULT_1_1)
      */
     public String getWorldType();
 
@@ -237,7 +241,9 @@ public interface Server extends PluginMessageRecipient {
     public Set<OfflinePlayer> getWhitelistedPlayers();
 
     /**
-     * Reloads the whitelist from disk.
+     * 重新加载服务器白名单配置.
+     * <p>
+     * 原文:Reloads the whitelist from disk.
      */
     public void reloadWhitelist();
 
@@ -459,14 +465,18 @@ public interface Server extends PluginMessageRecipient {
     public MapView createMap(World world);
 
     /**
-     * Reloads the server, refreshing settings and plugin information.
+     * 重新加载服务器并刷新设置和插件信息.
+     * <p>
+     * 原文:Reloads the server, refreshing settings and plugin information.
      */
     public void reload();
 
     /**
-     * Returns the primary logger associated with this server instance.
+     * 返回此服务器的日志记录.
+     * <p>
+     * 原文:Returns the primary logger associated with this server instance.
      *
-     * @return Logger associated with this server
+     * @return 服务器日志
      */
     public Logger getLogger();
 
@@ -546,37 +556,47 @@ public interface Server extends PluginMessageRecipient {
     public Map<String, String[]> getCommandAliases();
 
     /**
-     * Gets the radius, in blocks, around each worlds spawn point to protect.
+     * 获得此世界的出生点保护半径.
+     * <p>
+     * 原文:Gets the radius, in blocks, around each worlds spawn point to protect.
      *
-     * @return spawn radius, or 0 if none
+     * @return 半径(如果没有则返回0)
      */
     public int getSpawnRadius();
 
     /**
-     * Sets the radius, in blocks, around each worlds spawn point to protect.
+     * 设置这个世界的出生点保护半径.
+     * <p>
+     * 原文:Sets the radius, in blocks, around each worlds spawn point to protect.
      *
-     * @param value new spawn radius, or 0 if none
+     * @param value 新的半径(若没有则设置0)
      */
     public void setSpawnRadius(int value);
 
     /**
-     * Gets whether the Server is in online mode or not.
+     * 获得服务器是否开启了生存模式.
+     * <p>
+     * 原文:Gets whether the Server is in online mode or not.
      *
-     * @return true if the server authenticates clients, false otherwise
+     * @return true则开启/false反之
      */
     public boolean getOnlineMode();
 
     /**
-     * Gets whether this server allows flying or not.
+     * 获得服务器是否开启了飞行模式.
+     * <p>
+     * 原文:Gets whether this server allows flying or not.
      *
-     * @return true if the server allows flight, false otherwise
+     * @return true则开启/false反之
      */
     public boolean getAllowFlight();
 
     /**
-     * Gets whether the server is in hardcore mode or not.
+     * 获得服务器是否开启了极限生存模式.
+     * <p>
+     * 原文:Gets whether the server is in hardcore mode or not.
      *
-     * @return true if the server mode is hardcore, false otherwise
+     * @return true则开启/false反之
      */
     public boolean isHardcore();
 
@@ -595,7 +615,9 @@ public interface Server extends PluginMessageRecipient {
     public boolean useExactLoginLocation();
 
     /**
-     * Shutdowns the server, stopping everything.
+     * 彻底关闭服务器.
+     * <p>
+     * 原文:Shutdowns the server, stopping everything.
      */
     public void shutdown();
 
@@ -649,23 +671,29 @@ public interface Server extends PluginMessageRecipient {
     public Set<String> getIPBans();
 
     /**
-     * Bans the specified address from the server.
+     * 设置禁止此ip地址登陆到服务器.
+     * <p>
+     * 原文:Bans the specified address from the server.
      *
-     * @param address the IP address to ban
+     * @param address 禁止登陆的IP地址
      */
     public void banIP(String address);
 
     /**
-     * Unbans the specified address from the server.
+     * 解除禁止此ip地址登陆到服务器.
+     * <p>
+     * 原文:Unbans the specified address from the server.
      *
-     * @param address the IP address to unban
+     * @param address 解除禁止登陆的IP地址
      */
     public void unbanIP(String address);
 
     /**
-     * Gets a set containing all banned players.
+     * 获得一组所有被服务器封禁的玩家.
+     * <p>
+     * 原文:Gets a set containing all banned players.
      *
-     * @return a set containing banned players
+     * @return 一组玩家
      */
     public Set<OfflinePlayer> getBannedPlayers();
 
@@ -688,16 +716,20 @@ public interface Server extends PluginMessageRecipient {
     public Set<OfflinePlayer> getOperators();
 
     /**
-     * Gets the default {@link GameMode} for new players.
+     * 获得新玩家的默认 {@link GameMode}.
+     * <p>
+     * 原文:Gets the default {@link GameMode} for new players.
      *
-     * @return the default game mode
+     * @return 默认游戏模式
      */
     public GameMode getDefaultGameMode();
 
     /**
-     * Sets the default {@link GameMode} for new players.
+     * 设置新玩家的默认 {@link GameMode}.
+     * <p>
+     * 原文:Sets the default {@link GameMode} for new players.
      *
-     * @param mode the new game mode
+     * @param mode 新的游戏模式
      */
     public void setDefaultGameMode(GameMode mode);
 
@@ -833,9 +865,11 @@ public interface Server extends PluginMessageRecipient {
     boolean isPrimaryThread();
 
     /**
-     * Gets the message that is displayed on the server list.
+     * 获得服务器列表中服务器所显示的消息(服务器MOTD).
+     * <p>
+     * 原文:Gets the message that is displayed on the server list.
      *
-     * @return the servers MOTD
+     * @return 服务器MOTD
      */
     String getMotd();
 
