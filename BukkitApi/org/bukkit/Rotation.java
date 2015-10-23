@@ -1,7 +1,7 @@
 package org.bukkit;
 
 /**
- * 指定旋转方向的一个枚举。
+ * 指定旋转方向的枚举。
  */
 public enum Rotation {
 
@@ -26,9 +26,7 @@ public enum Rotation {
      */
     FLIPPED,
     /**
-     * 倒置翻转+45度。
-     * <p>
-     * 译注：这里指180+45度？
+     * 倒置翻转180+45度。
      */
     FLIPPED_45,
     /**
