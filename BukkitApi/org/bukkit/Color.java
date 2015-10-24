@@ -9,9 +9,15 @@ import org.bukkit.configuration.serialization.SerializableAs;
 import com.google.common.collect.ImmutableMap;
 
 /**
+<<<<<<< Updated upstream
  * A container for a color palette. This class is immutable; the set methods
  * return a new color. The color names listed as fields are HTML4 standards,
  * but subject to change.
+=======
+ * 这是一个调色板的容器。该类是不可更改的; 使用set方法可以返回一个新的自定义颜色。
+ * 这里颜色名字的列表为 HTML4 标准色,
+ * 但是随时可能更改
+>>>>>>> Stashed changes
  */
 @SerializableAs("Color")
 public final class Color implements ConfigurationSerializable {
