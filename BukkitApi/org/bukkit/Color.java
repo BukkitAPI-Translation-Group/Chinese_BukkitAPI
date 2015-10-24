@@ -9,102 +9,96 @@ import org.bukkit.configuration.serialization.SerializableAs;
 import com.google.common.collect.ImmutableMap;
 
 /**
-<<<<<<< Updated upstream
- * A container for a color palette. This class is immutable; the set methods
- * return a new color. The color names listed as fields are HTML4 standards,
- * but subject to change.
-=======
  * 这是一个调色板的容器。该类是不可更改的; 使用set方法可以返回一个新的自定义颜色。
  * 这里颜色名字的列表为 HTML4 标准色,
  * 但是随时可能更改
->>>>>>> Stashed changes
  */
 @SerializableAs("Color")
 public final class Color implements ConfigurationSerializable {
     private static final int BIT_MASK = 0xff;
 
     /**
-     * White, or (0xFF,0xFF,0xFF) in (R,G,B)
+     * 白色,或(R,G,B) 表示为 0xFF,0xFF,0xFF)
      */
     public static final Color WHITE = fromRGB(0xFFFFFF);
 
     /**
-     * Silver, or (0xC0,0xC0,0xC0) in (R,G,B)
+     * 银色,或(R,G,B) 表示为 0xC0,0xC0,0xC0)
      */
     public static final Color SILVER = fromRGB(0xC0C0C0);
 
     /**
-     * Gray, or (0x80,0x80,0x80) in (R,G,B)
+     * 灰色,或(R,G,B) 表示为 0x80,0x80,0x80)
      */
     public static final Color GRAY = fromRGB(0x808080);
 
     /**
-     * Black, or (0x00,0x00,0x00) in (R,G,B)
+     * 黑色,或(R,G,B) 表示为 0x00,0x00,0x00)
      */
     public static final Color BLACK = fromRGB(0x000000);
 
     /**
-     * Red, or (0xFF,0x00,0x00) in (R,G,B)
+     * 红色,或(R,G,B) 表示为 0xFF,0x00,0x00)
      */
     public static final Color RED = fromRGB(0xFF0000);
 
     /**
-     * Maroon, or (0x80,0x00,0x00) in (R,G,B)
+     * 栗色,或(R,G,B) 表示为 0x80,0x00,0x00)
      */
     public static final Color MAROON = fromRGB(0x800000);
 
     /**
-     * Yellow, or (0xFF,0xFF,0x00) in (R,G,B)
+     * 黄色,或(R,G,B) 表示为 0xFF,0xFF,0x00)
      */
     public static final Color YELLOW = fromRGB(0xFFFF00);
 
     /**
-     * Olive, or (0x80,0x80,0x00) in (R,G,B)
+     * 橄榄色,或(R,G,B) 表示为 0x80,0x80,0x00)
      */
     public static final Color OLIVE = fromRGB(0x808000);
 
     /**
-     * Lime, or (0x00,0xFF,0x00) in (R,G,B)
+     * 黄绿色,或(R,G,B) 表示为 0x00,0xFF,0x00)
      */
     public static final Color LIME = fromRGB(0x00FF00);
 
     /**
-     * Green, or (0x00,0x80,0x00) in (R,G,B)
+     * 绿色,或(R,G,B) 表示为 0x00,0x80,0x00)
      */
     public static final Color GREEN = fromRGB(0x008000);
 
     /**
-     * Aqua, or (0x00,0xFF,0xFF) in (R,G,B)
+     * 浅绿,或(R,G,B) 表示为 0x00,0xFF,0xFF)
      */
     public static final Color AQUA = fromRGB(0x00FFFF);
 
     /**
-     * Teal, or (0x00,0x80,0x80) in (R,G,B)
+     * 蓝绿色,或(R,G,B) 表示为 0x00,0x80,0x80)
      */
     public static final Color TEAL = fromRGB(0x008080);
 
     /**
-     * Blue, or (0x00,0x00,0xFF) in (R,G,B)
+     * 蓝色,或(R,G,B) 表示为 0x00,0x00,0xFF)
      */
     public static final Color BLUE = fromRGB(0x0000FF);
 
     /**
-     * Navy, or (0x00,0x00,0x80) in (R,G,B)
+     * 海军色,或(R,G,B) 表示为 0x00,0x00,0x80)
      */
     public static final Color NAVY = fromRGB(0x000080);
 
     /**
-     * Fuchsia, or (0xFF,0x00,0xFF) in (R,G,B)
+     * 樱红色,或(R,G,B) 表示为 0xFF,0x00,0xFF)
      */
     public static final Color FUCHSIA = fromRGB(0xFF00FF);
 
     /**
-     * Purple, or (0x80,0x00,0x80) in (R,G,B)
+     * 紫色,或(R,G,B) 表示为 0x80,0x00,0x80)
      */
     public static final Color PURPLE = fromRGB(0x800080);
 
     /**
-     * Orange, or (0xFF,0xA5,0x00) in (R,G,B)
+     * 橙色,或(R,G,B) 表示为 0xFF,0xA5,0x00)
      */
     public static final Color ORANGE = fromRGB(0xFFA500);
 
@@ -113,12 +107,12 @@ public final class Color implements ConfigurationSerializable {
     private final byte blue;
 
     /**
-     * Creates a new Color object from a red, green, and blue
+     * 用 红,绿,蓝 创建一个新的颜色对象
      *
-     * @param red integer from 0-255
-     * @param green integer from 0-255
-     * @param blue integer from 0-255
-     * @return a new Color object for the red, green, blue
+     * @param red integer 取值0-255
+     * @param green integer 取值 0-255
+     * @param blue integer 取值 0-255
+     * @return 一个RGB颜色对象
      * @throws IllegalArgumentException if any value is strictly {@literal >255 or <0}
      */
     public static Color fromRGB(int red, int green, int blue) throws IllegalArgumentException {
@@ -126,21 +120,20 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Creates a new Color object from a blue, green, and red
+     * 用 蓝,绿,红 创建一个新的颜色对象
      *
-     * @param blue integer from 0-255
-     * @param green integer from 0-255
-     * @param red integer from 0-255
+     * @param blue integer 取值 0-255
+     * @param green integer 取值 0-255
+     * @param red integer 取值 0-255
      * @return a new Color object for the red, green, blue
-     * @throws IllegalArgumentException if any value is strictly {@literal >255 or <0}
+     * @throws IllegalArgumentException 任何一个参数超出 {@literal >255 or <0} 范围
      */
     public static Color fromBGR(int blue, int green, int red) throws IllegalArgumentException {
         return new Color(red, green, blue);
     }
 
     /**
-     * Creates a new color object from an integer that contains the red,
-     * green, and blue bytes in the lowest order 24 bits.
+     * 从一个RGB整数中创建一个新的颜色对象，该对象包含最低24bits
      *
      * @param rgb the integer storing the red, green, and blue values
      * @return a new color object for specified values
