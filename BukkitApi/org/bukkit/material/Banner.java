@@ -14,8 +14,8 @@ public class Banner extends MaterialData implements Attachable {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
+     * @param type 原始类型ID
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Banner(int type) {
@@ -24,9 +24,9 @@ public class Banner extends MaterialData implements Attachable {
 
     /**
      *
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Banner(Material type, byte data) {
@@ -34,9 +34,9 @@ public class Banner extends MaterialData implements Attachable {
     }
 
     /**     *
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型ID
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Banner(int type, byte data) {
