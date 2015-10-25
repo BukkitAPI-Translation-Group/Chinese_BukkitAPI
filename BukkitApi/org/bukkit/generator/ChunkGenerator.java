@@ -207,6 +207,13 @@ public abstract class ChunkGenerator {
     }
 
     /**
+	 * 在指定的坐标生成区块。
+	 * <p>
+	 * 截至1.2，区块被表示为一个三维数组,每个区块都由16*16*16个方块组成。如果一部分是空的(都是ID为0的方块，即空气)，那么这个部分就不再需要被维持以减少内存占用
+	 * <p>
+	 *
+	 * <p>
+	 * 原文：
      * Shapes the chunk for the given coordinates.
      * <p>
      * As of 1.2, chunks are represented by a vertical array of chunk
