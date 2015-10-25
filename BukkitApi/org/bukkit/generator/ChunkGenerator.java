@@ -101,7 +101,7 @@ public abstract class ChunkGenerator {
      * @param random 使用的随机生成器
      * @param x 区块的X坐标
      * @param z 区块的Z坐标
-     * @return byte[] 包含每个被这个生成器创造的方块的类型
+     * @return 包含每个被这个生成器创造的方块的byte[]类型的数据
      */
     public byte[] generate(World world, Random random, int x, int z) {
         throw new UnsupportedOperationException("Custom generator is missing required methods: generate(), generateBlockSections() and generateExtBlockSections()");
@@ -198,7 +198,7 @@ public abstract class ChunkGenerator {
      * @param x 区块的X坐标
      * @param z 区块的Z坐标
      * @param biomes 区块预期的生物群系数值，可以被生成器更新
-     * @return short[][] 包含每个被这个生成器创造的方块的类型
+     * @return 包含每个被这个生成器创造的方块的short[][]类型的数据
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -297,22 +297,26 @@ public abstract class ChunkGenerator {
      * world
      *
      * @param world 用于提供的世界
-     * @return List containing any amount of BlockPopulators
+     * @return 包含所有方块填充器的列表
      */
     public List<BlockPopulator> getDefaultPopulators(World world) {
         return new ArrayList<BlockPopulator>();
     }
 
     /**
-	 *
+	 * 获取一个固定出生方位用于一个指定的世界。
+	 * <p>
+	 * 如果一个世界没有使用一个固定出生点就会返回空值，并且会试图随机寻找一个以代替。
+	 * <p>
+	 * 原文：
      * Gets a fixed spawn location to use for a given world.
      * <p>
      * A null value is returned if a world should not use a fixed spawn point,
      * and will instead attempt to find one randomly.
      *
-     * @param world The world to locate a spawn point for
-     * @param random Random generator to use in the calculation
-     * @return Location containing a new spawn point, otherwise null
+     * @param world 用于定位出生点的世界
+     * @param random 这个计算器中使用的随机生成器
+     * @return 包含一个新的出生点的方位，若不存在则返回null
      */
     public Location getFixedSpawnLocation(World world, Random random) {
         return null;
