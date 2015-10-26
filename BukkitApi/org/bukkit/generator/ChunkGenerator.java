@@ -211,7 +211,34 @@ public abstract class ChunkGenerator {
 	 * <p>
 	 * 截至1.2，区块被表示为一个三维数组,每个区块都由16*16*16个方块组成。如果一部分是空的(都是ID为0的方块，即空气)，那么这个部分就不再需要被维持以减少内存占用
 	 * <p>
-	 *
+	 * 这个方法会按照下面的格式返回一个byte[][]类型的数据。
+     * <pre>
+     *     byte[][] result = new byte[world-height / 16][];
+     * </pre>
+	 * 每个拥有方块的部分 {@code (sectionID = (Y>>4))} 需要为这部分中的4096个方块分配空间：
+     * <pre>
+     *     result[sectionID] = new byte[4096];
+     * </pre>
+     * 没有内容的部分可以被保留为空。
+	 * 使用下面的映射函数可以在X,Y,Z坐标放置一个在区块内的方块：
+     * <pre>
+     *    void setBlock(byte[][] result, int x, int y, int z, byte blkid) {
+     *        {@code if (result[y >> 4) == null) {}
+     *            {@code result[y >> 4] = new byte[4096];}
+     *        }
+     *        {@code result[y >> 4][((y & 0xF) << 8) | (z << 4) | x] = blkid;}
+     *    }
+     * </pre>
+	 * 使用下面的映射函数可以读取一个方块的ID：
+     * <pre>
+     *    byte getBlock(byte[][] result, int x, int y, int z) {
+     *        {@code if (result[y >> 4) == null) {}
+     *            return (byte)0;
+     *        }
+     *        {@code return result[y >> 4][((y & 0xF) << 8) | (z << 4) | x];}
+     *    }
+     * </pre>
+     * 注意这个方法<b>永远不要</b>试图去获取已经通过的坐标，不然就可能陷入死循环。
 	 * <p>
 	 * 原文：
      * Shapes the chunk for the given coordinates.
@@ -256,15 +283,13 @@ public abstract class ChunkGenerator {
      * Note that this method should <b>never</b> attempt to get the Chunk at
      * the passed coordinates, as doing so may cause an infinite loop
      *
-     * @param world The world this chunk will be used for
-     * @param random The random generator to use
-     * @param x The X-coordinate of the chunk
-     * @param z The Z-coordinate of the chunk
-     * @param biomes Proposed biome values for chunk - can be updated by
-     *     generator
-     * @return short[][] containing the types for each block created by this
-     *     generator
-     * @deprecated Magic value
+     * @param world 被指定区块的世界
+     * @param random 使用的随机生成器
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param biomes 区块预期的生物群系数值，可以被生成器更新
+     * @return 包含每个被这个生成器创造的方块的short[][]类型的数据
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
