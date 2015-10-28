@@ -74,12 +74,11 @@ public @interface Warning {
          * This method checks the provided warning should be printed for this
          * state
          *
-         * @param warning The warning annotation added to a deprecated item
+         * @param warning 添加到废弃项目的警告注释信息。
          * @return <ul>
-         *     <li>ON is always True
-         *     <li>OFF is always false
-         *     <li>DEFAULT is false if and only if annotation is not null and
-         *     specifies false for {@link Warning#value()}, true otherwise.
+         *     <li>若为ON则返回True
+         *     <li>若为OFF则返回false
+         *     <li>若为DEFAULT则当且仅当注释非空并且{@link Warning#value()}指定为false时返回false，其他情况均返回true
          *     </ul>
          */
         public boolean printFor(Warning warning) {
@@ -110,7 +109,7 @@ public @interface Warning {
     }
 
     /**
-     * 
+     * 设置反对器是否会在注册中的事件被打印时警告
      * <p>
      * 原文：
      * This sets if the deprecation warnings when registering events gets
