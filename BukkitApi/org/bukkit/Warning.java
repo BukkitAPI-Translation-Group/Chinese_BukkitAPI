@@ -71,6 +71,9 @@ public @interface Warning {
                 .build();
 
         /**
+         * 这个方法用于检查在这种状态下提供的警告是否应该被打印。
+         * <p>
+         * 原文：
          * This method checks the provided warning should be printed for this
          * state
          *
@@ -89,12 +92,14 @@ public @interface Warning {
         }
 
         /**
+         * 这个方法会返回与指定的字符串数值相应的警告状态。
+         * <p>
+         * 原文：
          * This method returns the corresponding warning state for the given
          * string value.
          *
-         * @param value The string value to check
-         * @return {@link #DEFAULT} if not found, or the respective
-         *     WarningState
+         * @param value 检查的字符串数值
+         * @return 找不到则返回{@link #DEFAULT}，否则返回各自的警告状态
          */
         public static WarningState value(final String value) {
             if (value == null) {
@@ -109,7 +114,7 @@ public @interface Warning {
     }
 
     /**
-     * 设置反对器是否会在注册中的事件被打印时警告
+     * 设置反对器在默认状态下是否会在注册中的事件被打印时警告。(不确定的翻译，校验通过的话删掉此括号)
      * <p>
      * 原文：
      * This sets if the deprecation warnings when registering events gets
