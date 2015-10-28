@@ -71,7 +71,7 @@ public @interface Warning {
                 .build();
 
         /**
-         * 这个方法用于检查在这种状态下提供的警告是否应该被打印。
+         * 检查在这种状态下提供的警告是否应该被打印。
          * <p>
          * 原文：
          * This method checks the provided warning should be printed for this
@@ -92,7 +92,7 @@ public @interface Warning {
         }
 
         /**
-         * 这个方法会返回与指定的字符串数值相应的警告状态。
+         * 返回与指定的字符串数值相应的警告状态。
          * <p>
          * 原文：
          * This method returns the corresponding warning state for the given
@@ -114,7 +114,7 @@ public @interface Warning {
     }
 
     /**
-     * 设置反对器在默认状态下是否会在注册中的事件被打印时警告。(不确定的翻译，校验通过的话删掉此括号)
+     * 设置反对器在默认状态下是否会在注册中的事件被打印时警告。(不确定的翻译)
      * <p>
      * 原文：
      * This sets if the deprecation warnings when registering events gets
