@@ -106,7 +106,11 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 调度一次任务。此任务将通过由调度器所管理的线程执行。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a once off task to occur as soon as possible. This task will
@@ -121,19 +125,22 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task);
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 调度一次重复执行的任务。此任务将通过由调度器所管理的线程执行。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a repeating task. This task will be executed by a thread
      * managed by the scheduler.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
-     * @param delay Delay in server ticks before executing first repeat
-     * @param period Period in server ticks of the task
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
+     * @param delay 服务器执行首次重复执行任务之后的延迟
+     * @param period 任务执行的时间
      * @return 任务id（如果为-1则表示调度失败）
-     * @deprecated This name is misleading, as it does not schedule "a sync"
-     *     task, but rather, "an async" task
+     * @deprecated 这个名称具有误导性，因为它没有调度“同步”任务，而是“异步”任务
      */
     @Deprecated
     public int scheduleAsyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
