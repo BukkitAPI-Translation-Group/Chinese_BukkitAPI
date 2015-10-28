@@ -5,16 +5,13 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * 实体能发生的效果的列表。
- * <p>
- * 原文：
- * A list of all Effects that can happen to entities.
+ * 实体能发生的效果列表。
  */
 public enum EntityEffect {
 
     /**
      * 当怪物收到伤害。
-     * <>
+     * <p>
      * 原文：
      * When mobs get hurt.
      */
@@ -25,8 +22,6 @@ public enum EntityEffect {
      * <p>
      * 原文：
      * When a mob dies.
-     * <p>
-     * <b>This will cause client-glitches!</b>
      */
     DEATH(3),
 
@@ -89,7 +84,7 @@ public enum EntityEffect {
     /**
      * 村民的红心。
      * <p>
-     * 实体不是村民则无此效果。
+     * 若不是村民则无此效果。
      * <p>
      * 原文：
      * Hearts from a villager.
@@ -101,7 +96,7 @@ public enum EntityEffect {
     /**
      * 村民生气时。
      * <p>
-     * 实体不是村民则无此效果。
+     * 若不是村民则无此效果。
      * <p>
      * 原文：
      * When a villager is angry.
@@ -113,7 +108,7 @@ public enum EntityEffect {
     /**
      * 村民高兴时的粒子效果。
      * <p>
-     * 实体不是村民则无此效果。
+     * 若不是村民则无此效果。
      * <p>
      * 原文：
      * Happy particles from a villager.
@@ -125,7 +120,7 @@ public enum EntityEffect {
     /**
      * 女巫的魔法粒子效果。
      * <p>
-     * 实体不是女巫则无此效果。
+     * 若不是女巫则无此效果。
      * <p>
      * 原文：
      * Magic particles from a witch.
@@ -137,7 +132,7 @@ public enum EntityEffect {
     /**
      * 僵尸被剧烈抖动转化为村民(译注：僵尸村民被喷溅虚弱药水并喂食金苹果转化为村民)。
      * <p>
-     * 实体不是僵尸则无此效果。
+     * 若不是僵尸则无此效果。
      * <p>
      * 原文：
      * When a zombie transforms into a villager by shaking violently.
@@ -149,7 +144,7 @@ public enum EntityEffect {
     /**
      * 烟花爆炸时。
      * <p>
-     * 实体不是烟花则无此效果。
+     * 若不是烟花则无此效果。
      * <p>
      * 原文：
      * When a firework explodes.
