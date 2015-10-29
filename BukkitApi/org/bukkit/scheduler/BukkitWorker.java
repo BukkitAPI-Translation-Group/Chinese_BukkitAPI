@@ -14,7 +14,7 @@ public interface BukkitWorker {
      * <p>
      * 原文：Returns the taskId for the task being executed by this worker.
      *
-     * @return 任务id编号
+     * @return 任务id
      */
     public int getTaskId();
 
@@ -32,7 +32,7 @@ public interface BukkitWorker {
      * <p>
      * 原文：Returns the thread for the worker.
      *
-     * @return worker的线程对象
+     * @return worker线程对象
      */
     public Thread getThread();
 

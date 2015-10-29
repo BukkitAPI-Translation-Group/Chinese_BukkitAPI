@@ -33,7 +33,7 @@ public class Banner extends MaterialData implements Attachable {
         super(type, data);
     }
 
-    /**     *
+    /**
      * @param type 原始类型ID
      * @param data 原始数据值
      * @deprecated 不安全的参数

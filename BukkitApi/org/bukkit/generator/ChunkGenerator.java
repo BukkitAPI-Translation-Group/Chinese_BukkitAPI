@@ -101,7 +101,7 @@ public abstract class ChunkGenerator {
      * @param random 使用的随机生成器
      * @param x 区块的X坐标
      * @param z 区块的Z坐标
-     * @return byte[] 包含每个被这个生成器创造的方块的类型
+     * @return 包含每个被这个生成器创造的方块的byte[]类型的数据
      */
     public byte[] generate(World world, Random random, int x, int z) {
         throw new UnsupportedOperationException("Custom generator is missing required methods: generate(), generateBlockSections() and generateExtBlockSections()");
@@ -198,7 +198,7 @@ public abstract class ChunkGenerator {
      * @param x 区块的X坐标
      * @param z 区块的Z坐标
      * @param biomes 区块预期的生物群系数值，可以被生成器更新
-     * @return short[][] 包含每个被这个生成器创造的方块的类型
+     * @return 包含每个被这个生成器创造的方块的short[][]类型的数据
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -207,6 +207,40 @@ public abstract class ChunkGenerator {
     }
 
     /**
+	 * 在指定的坐标生成区块。
+	 * <p>
+	 * 截至1.2，区块被表示为一个三维数组,每个区块都由16*16*16个方块组成。如果一部分是空的(都是ID为0的方块，即空气)，那么这个部分就不再需要被维持以减少内存占用
+	 * <p>
+	 * 这个方法会按照下面的格式返回一个byte[][]类型的数据。
+     * <pre>
+     *     byte[][] result = new byte[world-height / 16][];
+     * </pre>
+	 * 每个拥有方块的部分 {@code (sectionID = (Y>>4))} 需要为这部分中的4096个方块分配空间：
+     * <pre>
+     *     result[sectionID] = new byte[4096];
+     * </pre>
+     * 没有内容的部分可以被保留为空。
+	 * 使用下面的映射函数可以在X,Y,Z坐标放置一个在区块内的方块：
+     * <pre>
+     *    void setBlock(byte[][] result, int x, int y, int z, byte blkid) {
+     *        {@code if (result[y >> 4) == null) {}
+     *            {@code result[y >> 4] = new byte[4096];}
+     *        }
+     *        {@code result[y >> 4][((y & 0xF) << 8) | (z << 4) | x] = blkid;}
+     *    }
+     * </pre>
+	 * 使用下面的映射函数可以读取一个方块的ID：
+     * <pre>
+     *    byte getBlock(byte[][] result, int x, int y, int z) {
+     *        {@code if (result[y >> 4) == null) {}
+     *            return (byte)0;
+     *        }
+     *        {@code return result[y >> 4][((y & 0xF) << 8) | (z << 4) | x];}
+     *    }
+     * </pre>
+     * 注意这个方法<b>永远不要</b>试图去获取已经通过的坐标，不然就可能陷入死循环。
+	 * <p>
+	 * 原文：
      * Shapes the chunk for the given coordinates.
      * <p>
      * As of 1.2, chunks are represented by a vertical array of chunk
@@ -249,15 +283,13 @@ public abstract class ChunkGenerator {
      * Note that this method should <b>never</b> attempt to get the Chunk at
      * the passed coordinates, as doing so may cause an infinite loop
      *
-     * @param world The world this chunk will be used for
-     * @param random The random generator to use
-     * @param x The X-coordinate of the chunk
-     * @param z The Z-coordinate of the chunk
-     * @param biomes Proposed biome values for chunk - can be updated by
-     *     generator
-     * @return short[][] containing the types for each block created by this
-     *     generator
-     * @deprecated Magic value
+     * @param world 被指定区块的世界
+     * @param random 使用的随机生成器
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param biomes 区块预期的生物群系数值，可以被生成器更新
+     * @return 包含每个被这个生成器创造的方块的short[][]类型的数据
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte[][] generateBlockSections(World world, Random random, int x, int z, BiomeGrid biomes) {
@@ -297,22 +329,26 @@ public abstract class ChunkGenerator {
      * world
      *
      * @param world 用于提供的世界
-     * @return List containing any amount of BlockPopulators
+     * @return 包含所有方块填充器的列表
      */
     public List<BlockPopulator> getDefaultPopulators(World world) {
         return new ArrayList<BlockPopulator>();
     }
 
     /**
-	 *
+	 * 获取一个固定出生方位用于一个指定的世界。
+	 * <p>
+	 * 如果一个世界没有使用一个固定出生点就会返回空值，并且会试图随机寻找一个以代替。
+	 * <p>
+	 * 原文：
      * Gets a fixed spawn location to use for a given world.
      * <p>
      * A null value is returned if a world should not use a fixed spawn point,
      * and will instead attempt to find one randomly.
      *
-     * @param world The world to locate a spawn point for
-     * @param random Random generator to use in the calculation
-     * @return Location containing a new spawn point, otherwise null
+     * @param world 用于定位出生点的世界
+     * @param random 这个计算器中使用的随机生成器
+     * @return 包含一个新的出生点的方位，若不存在则返回null
      */
     public Location getFixedSpawnLocation(World world, Random random) {
         return null;
