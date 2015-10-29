@@ -1,9 +1,9 @@
 package org.bukkit.configuration;
 
 /**
- * 用于控制输入输出的各种设置的{@link Configuration}.
- * <p>
- * 原文:Various settings for controlling the input and output of a {@link
+ * {@link Configuration}的配置类.
+ * <p>原文:
+ * Various settings for controlling the input and output of a {@link
  * Configuration}
  */
 public class ConfigurationOptions {
