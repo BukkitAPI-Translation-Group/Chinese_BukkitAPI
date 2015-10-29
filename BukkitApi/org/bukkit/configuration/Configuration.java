@@ -3,7 +3,7 @@ package org.bukkit.configuration;
 import java.util.Map;
 
 /**
- * 配置文件的基类.
+ * 配置文件的基类. (需要修改)
  * <p>
  * 原文:Represents a source of configurable options and settings
  */
