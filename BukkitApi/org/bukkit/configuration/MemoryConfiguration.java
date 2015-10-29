@@ -78,7 +78,6 @@ public class MemoryConfiguration extends MemorySection implements Configuration 
         if (options == null) {
             options = new MemoryConfigurationOptions(this);
         }
-
         return options;
     }
 }

@@ -32,8 +32,7 @@ public class MemorySection implements ConfigurationSection {
      * Note that calling this without being yourself a {@link Configuration}
      * will throw an exception!
      *
-     * @throws IllegalStateException Thrown if this is not a {@link
-     *     Configuration} root.
+     * @throws IllegalStateException Thrown if this is not a {@link Configuration} root.
      */
     protected MemorySection() {
         if (!(this instanceof Configuration)) {
