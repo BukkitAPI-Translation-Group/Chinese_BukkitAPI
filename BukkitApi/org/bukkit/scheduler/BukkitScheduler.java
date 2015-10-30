@@ -369,8 +369,8 @@ public interface BukkitScheduler {
      * Returns a task that will repeatedly run asynchronously until cancelled,
      * starting after the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task for the first
      *     time
      * @param period the ticks to wait between runs
@@ -382,8 +382,8 @@ public interface BukkitScheduler {
 
     /**
      * @deprecated 建议使用 {@link BukkitRunnable#runTaskTimerAsynchronously(Plugin, long, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task for the first
      *     time
      * @param period the ticks to wait between runs
