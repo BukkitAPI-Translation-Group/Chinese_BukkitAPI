@@ -87,7 +87,9 @@ public enum Statistic {
     /**
      * 检查是否为次级统计数据。
      * <p>
-     * 
+     * 一项次级统计数据同时存在于每个方块、物品或实体(取决于{@link #getType()})。
+     * <p>
+     * 这是个多余的方法，相当于检查<code>getType() != Type.UNTYPED</code>
      * 原文：
      * Checks if this is a substatistic.
      * <p>
@@ -97,45 +99,65 @@ public enum Statistic {
      * This is a redundant method and equivalent to checking
      * <code>getType() != Type.UNTYPED</code>
      *
-     * @return true if this is a substatistic
+     * @return 如果为次级统计数据则返回true，否则返回false
      */
     public boolean isSubstatistic() {
         return type != Type.UNTYPED;
     }
 
     /**
+     * 检查是否为一项用于处理方块的次级统计数据。
+     * <p>
+     * 这是个多余的方法，相当于检查<code>getType() == Type.BLOCK</code>
+     * <p>
+     * 原文:
      * Checks if this is a substatistic dealing with blocks.
      * <p>
      * This is a redundant method and equivalent to checking
      * <code>getType() == Type.BLOCK</code>
      *
-     * @return true if this deals with blocks
+     * @return 用于处理方块则返回true，否则返回false
      */
     public boolean isBlock() {
         return type == Type.BLOCK;
     }
 
     /**
+     * 统计数据的类型。
+     * <p>
+     * 原文：
      * The type of statistic.
      *
      */
     public enum Type {
         /**
+         * 这种类型的统计数据不需要限定符。
+         * <p>
+         * 原文：
          * Statistics of this type do not require a qualifier.
          */
         UNTYPED,
 
         /**
+         * 这种类型的统计数据需要一个关于物品的限定符。(不确定的翻译，Matrial无法翻译，下同，如有建议联系本人)
+         * <p>
+         * 原文：
          * Statistics of this type require an Item Material qualifier.
          */
         ITEM,
 
         /**
+         * 这种类型的统计数据需要一个关于方块的限定符。
+         * <p>
+         * 原文：
          * Statistics of this type require a Block Material qualifier.
          */
         BLOCK,
 
         /**
+         * 这种类型的统计数据需要一个关于实体的限定符。
+         * <p>
+         * 原文：
          * Statistics of this type require an EntityType qualifier.
          */
         ENTITY;
