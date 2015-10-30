@@ -1,6 +1,9 @@
 package org.bukkit;
 
 /**
+ * 表示一项被服务器监测的统计数据。
+ * <p>
+ * 原文：
  * Represents a countable statistic, which is tracked by the server.
  */
 public enum Statistic {
@@ -70,15 +73,22 @@ public enum Statistic {
     }
 
     /**
+     * 获取这项统计数据的类型。
+     * <p>
+     * 原文：
      * Gets the type of this statistic.
      *
-     * @return the type of this statistic
+     * @return 这项统计数据的类型
      */
     public Type getType() {
         return type;
     }
 
     /**
+     * 检查是否为次级统计数据。
+     * <p>
+     * 
+     * 原文：
      * Checks if this is a substatistic.
      * <p>
      * A substatistic exists en masse for each block, item, or entitytype, depending on
