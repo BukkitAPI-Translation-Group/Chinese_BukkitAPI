@@ -2,9 +2,6 @@ package org.bukkit;
 
 /**
  * 表示一项被服务器监测的统计数据。
- * <p>
- * 原文：
- * Represents a countable statistic, which is tracked by the server.
  */
 public enum Statistic {
     DAMAGE_DEALT,
@@ -132,25 +129,16 @@ public enum Statistic {
     public enum Type {
         /**
          * 这种类型的统计数据不需要限定符。
-         * <p>
-         * 原文：
-         * Statistics of this type do not require a qualifier.
          */
         UNTYPED,
 
         /**
-         * 这种类型的统计数据需要一个关于物品的限定符。(不确定的翻译，Matrial无法翻译，下同，如有建议联系本人)
-         * <p>
-         * 原文：
-         * Statistics of this type require an Item Material qualifier.
+         * 这种类型的统计数据需要一个关于物品的限定符。
          */
         ITEM,
 
         /**
          * 这种类型的统计数据需要一个关于方块的限定符。
-         * <p>
-         * 原文：
-         * Statistics of this type require a Block Material qualifier.
          */
         BLOCK,
 
