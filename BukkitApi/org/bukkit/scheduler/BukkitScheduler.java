@@ -98,7 +98,7 @@ public interface BukkitScheduler {
      *
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @param delay Delay in server ticks before executing task
+     * @param delay 服务器执行任务之前的延迟
      * @return 任务id（如果为-1则表示调度失败）
      * @deprecated 这个名称具有误导性，因为它没有调度“同步”任务，而是“异步”任务
      */
@@ -237,9 +237,9 @@ public interface BukkitScheduler {
     /**
      * Returns a task that will run on the next server tick.
      *
-     * @param plugin the reference to the plugin scheduling task
+     * @param plugin 调度任务的插件
      * @param task 要运行的任务
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -248,9 +248,9 @@ public interface BukkitScheduler {
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTask(Plugin)}
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -263,9 +263,9 @@ public interface BukkitScheduler {
      * <p>
      * Returns a task that will run asynchronously.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -273,9 +273,9 @@ public interface BukkitScheduler {
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTaskAsynchronously(Plugin)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -286,21 +286,21 @@ public interface BukkitScheduler {
      * Returns a task that will run after the specified number of server
      * ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskLater(Plugin plugin, Runnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskLater(Plugin, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @deprecated 建议使用{@link BukkitRunnable#runTaskLater(Plugin, long)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -314,10 +314,10 @@ public interface BukkitScheduler {
      * Returns a task that will run asynchronously after the specified number
      * of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -325,10 +325,10 @@ public interface BukkitScheduler {
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTaskLaterAsynchronously(Plugin, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -339,23 +339,23 @@ public interface BukkitScheduler {
      * Returns a task that will repeatedly run until cancelled, starting after
      * the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task
      * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskTimer(Plugin plugin, Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
+     * @deprecated 建议使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
      * @param delay the ticks to wait before running the task
      * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -374,7 +374,7 @@ public interface BukkitScheduler {
      * @param delay the ticks to wait before running the task for the first
      *     time
      * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
@@ -387,7 +387,7 @@ public interface BukkitScheduler {
      * @param delay the ticks to wait before running the task for the first
      *     time
      * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */

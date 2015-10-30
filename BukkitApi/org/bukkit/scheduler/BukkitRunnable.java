@@ -26,7 +26,7 @@ public abstract class BukkitRunnable implements Runnable {
      * 原文：Schedules this in the Bukkit scheduler to run on next tick.
      *
      * @param plugin 调度任务的插件
-     * @return 包含id编号的BukkitTask
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果任务已经调度
      * @see BukkitScheduler#runTask(Plugin, Runnable)
@@ -47,7 +47,7 @@ public abstract class BukkitRunnable implements Runnable {
      * Schedules this in the Bukkit scheduler to run asynchronously.
      *
      * @param plugin 调度任务的插件
-     * @return 包含id编号的BukkitTask
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskAsynchronously(Plugin, Runnable)
@@ -64,7 +64,7 @@ public abstract class BukkitRunnable implements Runnable {
      *
      * @param plugin 调度任务的插件
      * @param delay 在任务执行前等待的时间
-     * @return 包含id编号的BukkitTask
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskLater(Plugin, Runnable, long)
@@ -87,7 +87,7 @@ public abstract class BukkitRunnable implements Runnable {
      *
      * @param plugin 调度任务的插件
      * @param delay 在任务执行前等待的时间
-     * @return 包含id编号的BukkitTask
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskLaterAsynchronously(Plugin, Runnable, long)
@@ -106,7 +106,7 @@ public abstract class BukkitRunnable implements Runnable {
      * @param plugin 调度任务的插件
      * @param delay 在任务执行前等待的时间
      * @param period 重复执行任务之间的时间间隔
-     * @return 包含id编号的BukkitTask
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskTimer(Plugin, Runnable, long, long)
@@ -130,7 +130,7 @@ public abstract class BukkitRunnable implements Runnable {
      * @param plugin 调度任务的插件
      * @param delay 在任务执行前等待的时间
      * @param period 重复执行任务之间的时间间隔
-     * @return 包含id编号的BukkitTask
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalStateException 如果这已经调度
      * @see BukkitScheduler#runTaskTimerAsynchronously(Plugin, Runnable, long,
