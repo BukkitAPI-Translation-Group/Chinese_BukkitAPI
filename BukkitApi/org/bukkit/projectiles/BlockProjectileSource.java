@@ -5,9 +5,11 @@ import org.bukkit.block.Block;
 public interface BlockProjectileSource extends ProjectileSource {
 
     /**
-     * Gets the block this projectile source belongs to.
+     * 获取这个弹射源所属的方块。
+     * <p>
+     * 原文：Gets the block this projectile source belongs to.
      *
-     * @return Block for the projectile source
+     * @return 弹射源方块
      */
     public Block getBlock();
 }
