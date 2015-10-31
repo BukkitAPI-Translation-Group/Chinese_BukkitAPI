@@ -9,6 +9,9 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.util.CachedServerIcon;
 
 /**
+ * 当收到MOTD请求时被调用。显示的玩家会被检查并会在这个事件里被{@link #iterator() iterating}移出。
+ * <p>
+ * 原文：
  * Called when a server list ping is coming in. Displayed players can be
  * checked and removed by {@link #iterator() iterating} over this event.
  */
@@ -29,13 +32,16 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
     }
 
     /**
+     * 这个构造器用于实现提供{@link #iterator()}方法，例如提供{@link #getNumPlayers()}玩家总数。
+     * <p>
+     * 原文：
      * This constructor is intended for implementations that provide the
      * {@link #iterator()} method, thus provided the {@link #getNumPlayers()}
      * count.
      * 
-     * @param address the address of the pinger
-     * @param motd the message of the day
-     * @param maxPlayers the max number of players
+     * @param address 请求者的地址
+     * @param motd 每日信息
+     * @param maxPlayers 最大玩家数量
      */
     protected ServerListPingEvent(final InetAddress address, final String motd, final int maxPlayers) {
         this.numPlayers = MAGIC_PLAYER_COUNT;
@@ -45,36 +51,48 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
     }
 
     /**
+     * 获取请求来源地址。
+     * <p>
+     * 原文：
      * Get the address the ping is coming from.
      *
-     * @return the address
+     * @return 地址
      */
     public InetAddress getAddress() {
         return address;
     }
 
     /**
+     * 获取每日信息。
+     * <p>
+     * 原文：
      * Get the message of the day message.
      *
-     * @return the message of the day
+     * @return 每日信息
      */
     public String getMotd() {
         return motd;
     }
 
     /**
+     * 更改每日信息。
+     * <p>
+     * 原文：
      * Change the message of the day message.
      *
-     * @param motd the message of the day
+     * @param motd 每日信息
      */
     public void setMotd(String motd) {
         this.motd = motd;
     }
 
     /**
+     * 获取玩家数量。
+     * <p>
+     * 原文：
      * Get the number of players sent.
      *
-     * @return the number of players
+     * @return 玩家数量
      */
     public int getNumPlayers() {
         int numPlayers = this.numPlayers;
@@ -88,32 +106,38 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
     }
 
     /**
+     * 获取最大玩家数量。
+     * <p>
+     * 原文：
      * Get the maximum number of players sent.
      *
-     * @return the maximum number of players
+     * @return 最大玩家数量
      */
     public int getMaxPlayers() {
         return maxPlayers;
     }
 
     /**
+     * 设置最大玩家数量。
+     * <p>
+     * 原文：
      * Set the maximum number of players sent.
      *
-     * @param maxPlayers the maximum number of player
+     * @param maxPlayers 最大玩家数量
      */
     public void setMaxPlayers(int maxPlayers) {
         this.maxPlayers = maxPlayers;
     }
 
     /**
+     * 设置发送给客户端的服务器图标。
+     * <p>
+     * 原文：
      * Sets the server-icon sent to the client.
      *
-     * @param icon the icon to send to the client
-     * @throws IllegalArgumentException if the {@link CachedServerIcon} is not
-     *     created by the caller of this event; null may be accepted for some
-     *     implementations
-     * @throws UnsupportedOperationException if the caller of this event does
-     *     not support setting the server icon
+     * @param icon 发送给客户端的图标
+     * @throws IllegalArgumentException 如果{@link CachedServerIcon}在这个事件中未被调用者创建则抛出错误；一些接口可能会接受null
+     * @throws UnsupportedOperationException 如果这个事件的调用者不支持设置这个服务器图标则抛出错误
      */
     public void setServerIcon(CachedServerIcon icon) throws IllegalArgumentException, UnsupportedOperationException {
         throw new UnsupportedOperationException();
@@ -131,13 +155,17 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
     /**
      * {@inheritDoc}
      * <p>
+     * 调用{@link Iterator#remove()}方法将会强制部分玩家不会在玩家列表里显示，减小{@link #getNumPlayers()}返回的大小，并且不会再被任何一个新的迭代器返回。
+     * <p>
+     * 原文：
+     * {@inheritDoc}
+     * <p>
      * Calling the {@link Iterator#remove()} method will force that particular
      * player to not be displayed on the player list, decrease the size
      * returned by {@link #getNumPlayers()}, and will not be returned again by
      * any new iterator.
      *
-     * @throws UnsupportedOperationException if the caller of this event does
-     *     not support removing players
+     * @throws UnsupportedOperationException 如果这个事件的调用者不支持移除玩家则会抛出错误。
      */
     @Override
     public Iterator<Player> iterator() throws UnsupportedOperationException {
