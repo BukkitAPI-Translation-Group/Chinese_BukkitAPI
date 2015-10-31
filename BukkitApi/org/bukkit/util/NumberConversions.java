@@ -1,7 +1,7 @@
 package org.bukkit.util;
 
 /**
- * 数字类型转换工具类
+ * 数字类型转换工具类。
  */
 public final class NumberConversions {
     private NumberConversions() {}
