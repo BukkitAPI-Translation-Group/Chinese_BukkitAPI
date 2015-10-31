@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player joins a server
+ * 玩家进入服务器事件.
  */
 public class PlayerJoinEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -16,18 +16,22 @@ public class PlayerJoinEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the join message to send to all online players
+     * 获取玩家加入游戏后发送给全体玩家的信息.
+     * <p>
+     * 原文:Gets the join message to send to all online players
      *
-     * @return string join message
+     * @return 加入信息
      */
     public String getJoinMessage() {
         return joinMessage;
     }
 
     /**
-     * Sets the join message to send to all online players
+     * 设置玩家加入游戏后发送给全体玩家的信息.
+     * <p>
+     * 原文:Sets the join message to send to all online players
      *
-     * @param joinMessage join message
+     * @param joinMessage 加入信息
      */
     public void setJoinMessage(String joinMessage) {
         this.joinMessage = joinMessage;
