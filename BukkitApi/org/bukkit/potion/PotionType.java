@@ -33,7 +33,7 @@ public enum PotionType {
     /**
      *
      * @return 伤害值
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getDamageValue() {
@@ -52,7 +52,7 @@ public enum PotionType {
      *
      * @param damage 伤害值
      * @return 匹配的药水类型，不存在为null
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static PotionType getByDamageValue(int damage) {
