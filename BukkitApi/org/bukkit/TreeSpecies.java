@@ -10,11 +10,11 @@ import com.google.common.collect.Maps;
 public enum TreeSpecies {
 
     /**
-     * 代表公共的树木种类.
+     * 代表通用的树木种类.
      */
     GENERIC(0x0),
     /**
-     * 代表叶子颜色较暗的树木种类.
+     * 代表叶子颜色较暗的树.
      */
     REDWOOD(0x1),
     /**
@@ -43,7 +43,7 @@ public enum TreeSpecies {
     }
 
     /**
-     * 获取该物种相关的数据值。
+     * 获取该树种相关的数据值。
      * <p>
      * 原文：Gets the associated data value representing this species
      *
@@ -56,7 +56,7 @@ public enum TreeSpecies {
     }
 
     /**
-     * 获取给定值代表的TreeSpecies。
+     * 获取给定值代表的树种。
      * <p>
      * 原文：Gets the TreeSpecies with the given data value
      *
