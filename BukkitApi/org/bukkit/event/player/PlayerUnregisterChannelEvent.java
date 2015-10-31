@@ -3,7 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 
 /**
- * This is called immediately after a player unregisters for a plugin channel.
+ * 玩家通过bukkit指令注销插件时触发事件.
  */
 public class PlayerUnregisterChannelEvent extends PlayerChannelEvent {
 
