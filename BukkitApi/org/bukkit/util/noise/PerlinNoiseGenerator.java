@@ -2,9 +2,9 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 使用"经典的"柏林发生器产生噪音
+ * 使用"经典的"柏林发生器产生噪音。
  * <p>
- * 译注：柏林噪声(perlin noise)，详情百度
+ * 译注：柏林噪声(perlin noise)，详情百度。
  * <p>
  * 原文：Generates noise using the "classic" perlin generator
  *
@@ -39,9 +39,9 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         }
     }
     /**
-     * 为给定的世界创建一个已经含有种子的柏林噪声发生器
+     * 为给定的世界创建一个已经含有种子的柏林噪声发生器。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Creates a seeded perlin noise generator for the given world
      *
@@ -51,9 +51,9 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         this(new Random(world.getSeed()));
     }
     /**
-     * 为给定的种子创建一个已经含有种子的柏林噪声发生器
+     * 为给定的种子创建一个已经含有种子的柏林噪声发生器。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Creates a seeded perlin noise generator for the given seed
      *
@@ -63,9 +63,9 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         this(new Random(seed));
     }
     /**
-     * 使用给定的随机数生成器创建一个已经含有种子的柏林噪声发生器
+     * 使用给定的随机数生成器创建一个已经含有种子的柏林噪声发生器。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Creates a seeded perlin noise generator with the given Random
      *
@@ -101,9 +101,9 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         return instance.noise(x);
     }
      /**
-     * 计算并返回二维的不含有种子的柏林噪声对于给定的二维空间坐标
+     * 计算并返回二维的不含有种子的柏林噪声对于给定的二维空间坐标。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Computes and returns the 2D unseeded perlin noise for the given
      * coordinates in 2D space
@@ -116,9 +116,9 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         return instance.noise(x, y);
     }
      /**
-     * 计算并返回三维的不含有种子的柏林噪声对于给定的三维空间坐标
+     * 计算并返回三维的不含有种子的柏林噪声对于给定的三维空间坐标。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Computes and returns the 3D unseeded perlin noise for the given
      * coordinates in 3D space
@@ -132,7 +132,7 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         return instance.noise(x, y, z);
     }
     /**
-     * 获取独立的没有种子的此发生器实例
+     * 获取独立的没有种子的此发生器实例。
      * <p>
      * 原文：Gets the singleton unseeded instance of this generator
      *
@@ -178,7 +178,7 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
                         grad(perm[BB + 1], x - 1, y - 1, z - 1))));
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个1维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
@@ -193,7 +193,7 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         return instance.noise(x, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个2维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
@@ -209,7 +209,7 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         return instance.noise(x, y, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters

@@ -48,7 +48,7 @@ JavaDoc用来说明某方法/成员变量等的用途.
 用法：@deprecated 为什么被弃用/这个方法被什么方法代替了
 例子：@deprecated 这个方法被setVisible(true)方法代替
 然而...BukkitAPI的javadoc里，使用@deprecated一般是这样的：
-@deprecated Magic value (魔法值)
+@deprecated Magic value (不安全的参数)
 这个magic value的真正含义还不得而知，估计是不安全、新增特性的影响或者其他原因而被弃用。
 
 其中特殊标记{@link 类名}为链接到类名Doc的一个超链接。

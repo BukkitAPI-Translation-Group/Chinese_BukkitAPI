@@ -2,13 +2,13 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 产生基于单纯形的噪声
+ * 产生基于单纯形的噪声。
  * <p>
  * 原文：Generates simplex-based noise.
  * <p>
  * 这是一个修正版的免费发布的论文，作者是Stefan Gustavson，链接：
  * <a href="http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf">
- * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf</a>
+ * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf</a>。
  * <p>
  * 原文：This is a modified version of the freely published version in the paper by
  * Stefan Gustavson at
@@ -51,7 +51,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         super();
     }
     /**
-     * 为给定的世界创建一个已经含有种子的基于单纯形的噪声发生器
+     * 为给定的世界创建一个已经含有种子的基于单纯形的噪声发生器。
      * <p>
      * 原文：Creates a seeded simplex noise generator for the given world
      *
@@ -61,7 +61,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         this(new Random(world.getSeed()));
     }
     /**
-     * 为给定的种子创建一个已经含有种子的基于单纯形的噪声发生器
+     * 为给定的种子创建一个已经含有种子的基于单纯形的噪声发生器。
      * <p>
      * 原文：Creates a seeded simplex noise generator for the given seed
      *
@@ -71,7 +71,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         this(new Random(seed));
     }
     /**
-     * 为给定的Random创建一个已经含有种子的基于单纯形的噪声发生器
+     * 为给定的Random创建一个已经含有种子的基于单纯形的噪声发生器。
      * <p>
      * 原文：Creates a seeded simplex noise generator with the given Random
      *
@@ -91,7 +91,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return g[0] * x + g[1] * y + g[2] * z + g[3] * w;
     }
     /**
-     * 计算并返回一维的不含有种子的基于单纯形的噪声对于给定的一维空间坐标
+     * 计算并返回一维的不含有种子的基于单纯形的噪声对于给定的一维空间坐标。
      * <p>
      * 原文：Computes and returns the 1D unseeded simplex noise for the given
      * coordinates in 1D space
@@ -103,7 +103,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return instance.noise(xin);
     }
     /**
-     * 计算并返回二维的不含有种子的基于单纯形的噪声对于给定的二维空间坐标
+     * 计算并返回二维的不含有种子的基于单纯形的噪声对于给定的二维空间坐标。
      * <p>
      * 原文：Computes and returns the 2D unseeded simplex noise for the given
      * coordinates in 2D space
@@ -116,7 +116,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return instance.noise(xin, yin);
     }
     /**
-     * 计算并返回三维的不含有种子的基于单纯形的噪声对于给定的三维空间坐标
+     * 计算并返回三维的不含有种子的基于单纯形的噪声对于给定的三维空间坐标。
      * <p>
      * 原文：Computes and returns the 3D unseeded simplex noise for the given
      * coordinates in 3D space
@@ -130,7 +130,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return instance.noise(xin, yin, zin);
     }
     /**
-     * 计算并返回四维的基于单纯形的噪声对于给定的四维空间坐标
+     * 计算并返回四维的基于单纯形的噪声对于给定的四维空间坐标。
      * <p>
      * 原文：Computes and returns the 4D simplex noise for the given coordinates in
      * 4D space
@@ -138,7 +138,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param w W坐标（PS:这是什么鬼？！）
+     * @param w W坐标（PS:意义不明）
      * @return 给定坐标的噪音，取值范围 -1 到 1
      */
     public static double getNoise(double x, double y, double z, double w) {
@@ -336,7 +336,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return 70.0 * (n0 + n1 + n2);
     }
     /**
-     * 计算并返回四维的基于单纯形的噪声对于给定的四维空间坐标
+     * 计算并返回四维的基于单纯形的噪声对于给定的四维空间坐标。
      * <p>
      * 原文：Computes and returns the 4D simplex noise for the given coordinates in
      * 4D space
@@ -344,7 +344,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param w W坐标（PS:这是什么鬼？！）
+     * @param w W坐标（PS:意义不明）
      * @return 给定坐标的噪音，取值范围 -1 到 1
      */
     public double noise(double x, double y, double z, double w) {
@@ -472,7 +472,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return 27.0 * (n0 + n1 + n2 + n3 + n4);
     }
     /**
-     * 获取单独的不含种子的此类发生器的实例
+     * 获取单独的不含种子的此类发生器的实例。
      * <p>
      * 原文：Gets the singleton unseeded instance of this generator
      *

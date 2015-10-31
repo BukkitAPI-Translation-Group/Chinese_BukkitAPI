@@ -1,9 +1,9 @@
 package org.bukkit.configuration;
 
 /**
- * 用于控制输入输出的各种设置的{@link Configuration}.
- * <p>
- * 原文:Various settings for controlling the input and output of a {@link
+ * {@link Configuration}的配置类.
+ * <p>原文:
+ * Various settings for controlling the input and output of a {@link
  * Configuration}
  */
 public class ConfigurationOptions {
@@ -17,8 +17,8 @@ public class ConfigurationOptions {
 
     /**
      * 返回这个对象的{@link Configuration}.
-     * <P>
-     * 原文:Returns the {@link Configuration} that this object is responsible for.
+     * <p>原文:
+     * Returns the {@link Configuration} that this object is responsible for.
      *
      * @return Parent configuration
      */
@@ -31,7 +31,7 @@ public class ConfigurationOptions {
      * <P>
      * 这个char并不会影响数据的储存,它只是路径的分隔符.
      * 只会影响你在程序中怎样读取数据.默认为 '.'.
-     * <p>
+     * <p>原文:
      * Gets the char that will be used to separate {@link
      * ConfigurationSection}s
      * <p>
@@ -49,7 +49,7 @@ public class ConfigurationOptions {
      * <P>
      * 这个char并不会影响数据的储存,它只是路径的分隔符.
      * 只会影响你在程序中怎样读取数据.默认为 '.'.
-     * <p>
+     * <p>原文:
      * Sets the char that will be used to separate {@link
      * ConfigurationSection}s
      * <p>
@@ -73,8 +73,8 @@ public class ConfigurationOptions {
      * 其结果{@link ConfigurationSection#contains(java.lang.String)},
      * 将始终返回相同的值{@link ConfigurationSection#isSet(java.lang.String)}.
      * 默认值是false.
-     * <p>
-     * 原文:Checks if the {@link Configuration} should copy values from its default
+     * <p>原文:
+     * Checks if the {@link Configuration} should copy values from its default
      * {@link Configuration} directly.
      * <p>
      * If this is true, all values in the default Configuration will be
@@ -101,8 +101,8 @@ public class ConfigurationOptions {
      * 其结果{@link ConfigurationSection#contains(java.lang.String)},
      * 将始终返回相同的值{@link ConfigurationSection#isSet(java.lang.String)}.
      * 默认值是false.
-     * <p>
-     * 原文:Sets if the {@link Configuration} should copy values from its default
+     * <p>原文:
+     * Sets if the {@link Configuration} should copy values from its default
      * {@link Configuration} directly.
      * <p>
      * If this is true, all values in the default Configuration will be

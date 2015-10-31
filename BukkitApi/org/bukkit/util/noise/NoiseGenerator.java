@@ -1,6 +1,6 @@
 package org.bukkit.util.noise;
 /**
- * 所有噪音产生器的基类
+ * 所有噪音产生器的基类。
  * <p>
  * 原文：Base class for all noise generators
  */
@@ -10,7 +10,7 @@ public abstract class NoiseGenerator {
     protected double offsetY;
     protected double offsetZ;
     /**
-     * 更快速的向下取整算法，比(int)Math.floor(x)快
+     * 更快速的向下取整算法，比(int)Math.floor(x)快。
      * <p>
      * 原文：Speedy floor, faster than (int)Math.floor(x)
      *
@@ -33,7 +33,7 @@ public abstract class NoiseGenerator {
         return ((hash & 1) == 0 ? u : -u) + ((hash & 2) == 0 ? v : -v);
     }
     /**
-     * 计算并返回给定坐标在一维空间中的一维噪音
+     * 计算并返回给定坐标在一维空间中的一维噪音。
      * <p>
      * 原文：Computes and returns the 1D noise for the given coordinate in 1D space
      *
@@ -44,7 +44,7 @@ public abstract class NoiseGenerator {
         return noise(x, 0, 0);
     }
     /**
-     * 计算并返回给定坐标在二维空间中的二维噪音
+     * 计算并返回给定坐标在二维空间中的二维噪音。
      * <p>
      * 原文：Computes and returns the 2D noise for the given coordinates in 2D space
      *
@@ -56,7 +56,7 @@ public abstract class NoiseGenerator {
         return noise(x, y, 0);
     }
     /**
-     * 计算并返回给定坐标在三维空间中的三维噪音
+     * 计算并返回给定坐标在三维空间中的三维噪音。
      * <p>
      * 原文：Computes and returns the 3D noise for the given coordinates in 3D space
      *
@@ -67,7 +67,7 @@ public abstract class NoiseGenerator {
      */
     public abstract double noise(double x, double y, double z);
     /**
-     * 使用特殊的数个音阶和参数产生一个1维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
@@ -82,7 +82,7 @@ public abstract class NoiseGenerator {
         return noise(x, 0, 0, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个1维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
@@ -98,7 +98,7 @@ public abstract class NoiseGenerator {
         return noise(x, 0, 0, octaves, frequency, amplitude, normalized);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个2维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
@@ -114,7 +114,7 @@ public abstract class NoiseGenerator {
         return noise(x, y, 0, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个2维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
@@ -131,7 +131,7 @@ public abstract class NoiseGenerator {
         return noise(x, y, 0, octaves, frequency, amplitude, normalized);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
@@ -148,7 +148,7 @@ public abstract class NoiseGenerator {
         return noise(x, y, z, octaves, frequency, amplitude, false);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters

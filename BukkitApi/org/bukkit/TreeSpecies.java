@@ -5,32 +5,32 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * Represents the different species of trees regardless of size.
+ * 代表不同的树木种类。
  */
 public enum TreeSpecies {
 
     /**
-     * Represents the common tree species.
+     * 代表公共的树木种类.
      */
     GENERIC(0x0),
     /**
-     * Represents the darker barked/leaved tree species.
+     * 代表叶子颜色较暗的树木种类.
      */
     REDWOOD(0x1),
     /**
-     * Represents birches.
+     * 代表桦树.
      */
     BIRCH(0x2),
     /**
-     * Represents jungle trees.
+     * 代表丛林树.
      */
     JUNGLE(0x3),
     /**
-     * Represents acacia trees.
+     * 代表金合欢树.
      */
     ACACIA(0x4),
     /**
-     * Represents dark oak trees.
+     * 代表深色橡木树.
      */
     DARK_OAK(0x5),
     ;
@@ -43,10 +43,12 @@ public enum TreeSpecies {
     }
 
     /**
-     * Gets the associated data value representing this species
+     * 获取该物种相关的数据值。
+     * <p>
+     * 原文：Gets the associated data value representing this species
      *
-     * @return A byte containing the data value of this tree species
-     * @deprecated Magic value
+     * @return 包含该物种相关数据值的字节
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte getData() {
@@ -54,12 +56,13 @@ public enum TreeSpecies {
     }
 
     /**
-     * Gets the TreeSpecies with the given data value
+     * 获取给定值代表的TreeSpecies。
+     * <p>
+     * 原文：Gets the TreeSpecies with the given data value
      *
-     * @param data Data value to fetch
-     * @return The {@link TreeSpecies} representing the given value, or null
-     *     if it doesn't exist
-     * @deprecated Magic value
+     * @param data 要获取的数据值
+     * @return {@link TreeSpecies}所代表的值，如果不存在则为null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static TreeSpecies getByData(final byte data) {

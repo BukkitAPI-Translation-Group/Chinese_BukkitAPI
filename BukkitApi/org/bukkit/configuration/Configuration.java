@@ -3,7 +3,7 @@ package org.bukkit.configuration;
 import java.util.Map;
 
 /**
- * 配置文件的基类.
+ * 配置文件的基类. (需要修改)
  * <p>
  * 原文:Represents a source of configurable options and settings
  */
@@ -15,8 +15,8 @@ public interface Configuration extends ConfigurationSection {
      * 那么将会建立一个新的{@link MemoryConfiguration}用于保存
      * <p>
      * 如果值为null，该值将被从默认的配置源中删除。
-     * <p>
-     * 原文: Sets the default value of the given path as provided.
+     * <p>原文:
+     *  Sets the default value of the given path as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default
      * collection, then a new {@link MemoryConfiguration} will be created to
@@ -39,8 +39,8 @@ public interface Configuration extends ConfigurationSection {
      * 那么将会建立一个新的{@link MemoryConfiguration}用于保存.
      * <p>
      * 如果值为null，该值将被从默认的配置源中删除。
-     * <p>
-     * 原文: Sets the default values of the given paths as provided.
+     * <p>原文:
+     *  Sets the default values of the given paths as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default
      * collection, then a new {@link MemoryConfiguration} will be created to
@@ -57,8 +57,8 @@ public interface Configuration extends ConfigurationSection {
      * 如果没有默认的{@link Configuration},
      * 那么将会建立一个新的{@link MemoryConfiguration}用于保存.
      * <p>
-     * <p>
-     * 原文:Sets the default values of the given paths as provided.
+     * <p>原文:
+     * Sets the default values of the given paths as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default
      * collection, then a new {@link MemoryConfiguration} will be created to
@@ -78,8 +78,8 @@ public interface Configuration extends ConfigurationSection {
      * 设置新的默认值的来源.
      * <p>
      * 如果原来有默认值列表,将不会保留,直接被替换.
-     * <p>
-     * 原文:Sets the source of all default values for this {@link Configuration}.
+     * <p>原文:
+     * Sets the source of all default values for this {@link Configuration}.
      * <p>
      * If a previous source was set, or previous default values were defined,
      * then they will not be copied to the new source.

@@ -8,14 +8,18 @@ import java.util.List;
 public interface BukkitScheduler {
 
     /**
-     * Schedules a once off task to occur after a delay.
+     * 在指定延迟后调度一次任务。
+     * <p>
+     * 这个任务将由服务器主线程执行。
+     * <p>
+     * 原文：Schedules a once off task to occur after a delay.
      * <p>
      * This task will be executed by the main server thread.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
-     * @param delay Delay in server ticks before executing task
-     * @return 任务id编号（如果为-1则表示调度失败）
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @return 任务id（如果为-1则表示调度失败）
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
@@ -24,19 +28,23 @@ public interface BukkitScheduler {
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
      * @param delay 服务器执行任务之前的延迟
-     * @return 任务id编号（如果为-1则表示调度失败）
+     * @return 任务id（如果为-1则表示调度失败）
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task, long delay);
 
     /**
-     * Schedules a once off task to occur as soon as possible.
+     * 调度一次任务。
+     * <p>
+     * 这个任务将由服务器主线程执行。
+     * <p>
+     * 原文：Schedules a once off task to occur as soon as possible.
      * <p>
      * This task will be executed by the main server thread.
      *
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @return 任务id编号（如果为-1则表示调度失败）
+     * @return 任务id（如果为-1则表示调度失败）
      */
     public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
 
@@ -44,37 +52,45 @@ public interface BukkitScheduler {
      * @deprecated 推荐使用{@link BukkitRunnable#runTask(Plugin)}
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @return 任务id编号（如果为-1则表示调度失败）
+     * @return 任务id（如果为-1则表示调度失败）
      */
     @Deprecated
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task);
 
     /**
-     * Schedules a repeating task.
+     * 调度一个重复执行的任务。
+     * <p>
+     * 这个任务将由服务器主线程执行。
+     * <p>
+     * 原文：Schedules a repeating task.
      * <p>
      * This task will be executed by the main server thread.
      *
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @param delay Delay in server ticks before executing first repeat
-     * @param period Period in server ticks of the task
-     * @return 任务id编号（如果为-1则表示调度失败）
+     * @param delay 服务器执行首次重复执行任务之后的延迟
+     * @param period 任务执行的时间
+     * @return 任务id（如果为-1则表示调度失败）
      */
     public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
 
     /**
-     * @deprecated 推荐使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}     *
+     * @deprecated 推荐使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @param delay Delay in server ticks before executing first repeat
-     * @param period Period in server ticks of the task
-     * @return 任务id编号（如果为-1则表示调度失败）
+     * @param delay 服务器执行首次重复执行任务之后的延迟
+     * @param period 任务执行的时间
+     * @return 任务id（如果为-1则表示调度失败）
      */
     @Deprecated
     public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period);
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 在指定延迟后调度一次任务。此任务将通过由调度器所管理的线程执行。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a once off task to occur after a delay. This task will be
@@ -82,50 +98,61 @@ public interface BukkitScheduler {
      *
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @param delay Delay in server ticks before executing task
-     * @return 任务id编号（如果为-1则表示调度失败）
-     * @deprecated This name is misleading, as it does not schedule "a sync"
-     *     task, but rather, "an async" task
+     * @param delay 服务器执行任务之前的延迟
+     * @return 任务id（如果为-1则表示调度失败）
+     * @deprecated 这个名称具有误导性，因为它没有调度“同步”任务，而是“异步”任务
      */
     @Deprecated
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 调度一次任务。此任务将通过由调度器所管理的线程执行。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a once off task to occur as soon as possible. This task will
      * be executed by a thread managed by the scheduler.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
-     * @return 任务id编号（如果为-1则表示调度失败）
-     * @deprecated This name is misleading, as it does not schedule "a sync"
-     *     task, but rather, "an async" task
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
+     * @return 任务id（如果为-1则表示调度失败）
+     * @deprecated 这个名称具有误导性，因为它没有调度“同步”任务，而是“异步”任务
      */
     @Deprecated
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task);
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 调度一次重复执行的任务。此任务将通过由调度器所管理的线程执行。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a repeating task. This task will be executed by a thread
      * managed by the scheduler.
      *
-     * @param plugin Plugin that owns the task
-     * @param task Task to be executed
-     * @param delay Delay in server ticks before executing first repeat
-     * @param period Period in server ticks of the task
-     * @return 任务id编号（如果为-1则表示调度失败）
-     * @deprecated This name is misleading, as it does not schedule "a sync"
-     *     task, but rather, "an async" task
+     * @param plugin 拥有这个任务的插件
+     * @param task 要执行的任务
+     * @param delay 服务器执行首次重复执行任务之后的延迟
+     * @param period 任务执行的时间
+     * @return 任务id（如果为-1则表示调度失败）
+     * @deprecated 这个名称具有误导性，因为它没有调度“同步”任务，而是“异步”任务
      */
     @Deprecated
     public int scheduleAsyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
 
     /**
-     * Calls a method on the main thread and returns a Future object. This
+     * 调用主线程的一个方法，并返回Future对象。这个任务将被服务器主线程执行。
+     * <ul>
+     * <li>注意①：Future.get()方法绝对不能从主线程调用。
+     * <li>注意②：isDone()方法返回true时的延迟平均至少10ms。
+     * </ul>
+     * <p>
+     * 原文：Calls a method on the main thread and returns a Future object. This
      * task will be executed by the main server thread.
      * <ul>
      * <li>Note: The Future.get() methods must NOT be called from the main
@@ -133,10 +160,10 @@ public interface BukkitScheduler {
      * <li>Note2: There is at least an average of 10ms latency until the
      *     isDone() method returns true.
      * </ul>
-     * @param <T> The callable's return type
+     * @param <T> callable的返回类型
      * @param plugin 拥有这个任务的插件
      * @param task 要执行的任务
-     * @return Future Future object related to the task
+     * @return 与任务相关的Future对象
      */
     public <T> Future<T> callSyncMethod(Plugin plugin, Callable<T> task);
 
@@ -167,7 +194,13 @@ public interface BukkitScheduler {
     public void cancelAllTasks();
 
     /**
-     * Check if the task currently running.
+     * 检测任务是否正在运行。
+     * <p>
+     * 一个重复执行的任务可能不是正在运行的，但将在未来运行。一个已完成的任务，不重复执行，将不再运行。
+     * <p>
+     * 明确地说就是，一个存在的线程在执行一个任务，并这个线程存活着。
+     * <p>
+     * 原文：Check if the task currently running.
      * <p>
      * A repeating task might not be running currently, but will be running in
      * the future. A task that has finished, and does not repeat, will not be
@@ -183,190 +216,216 @@ public interface BukkitScheduler {
     public boolean isCurrentlyRunning(int taskId);
 
     /**
-     * Check if the task queued to be run later.
+     * 检测这个任务是否排队等待执行。
+     * <p>
+     * 如果一个重复执行的任务正在运行，它现在可能不会被排队，但是可能会在未来发生。一个任务如果不在队列、不在运行，那么将不再排队。
+     * <p>
+     * 原文：Check if the task queued to be run later.
      * <p>
      * If a repeating task is currently running, it might not be queued now
      * but could be in the future. A task that is not queued, and not running,
      * will not be queued again.
      *
-     * @param taskId The task to check.
+     * @param taskId 要检测的task id
      * <p>
-     * @return If the task is queued to be run.
+     * @return 这个任务是否排队等待执行
      */
     public boolean isQueued(int taskId);
 
     /**
-     * Returns a list of all active workers.
+     * 返回所有激活的worker。
+     * <p>
+     * 这个列表包含了独立线程执行的异步任务。
+     * <p>
+     * 原文：Returns a list of all active workers.
      * <p>
      * This list contains asynch tasks that are being executed by separate
      * threads.
      *
-     * @return Active workers
+     * @return 激活的worker
      */
     public List<BukkitWorker> getActiveWorkers();
 
     /**
-     * Returns a list of all pending tasks. The ordering of the tasks is not
+     * 返回所有挂起(就绪/阻塞等)的任务。任务的顺序与它们的执行顺序无关。
+     * <p>
+     * 原文：Returns a list of all pending tasks. The ordering of the tasks is not
      * related to their order of execution.
      *
-     * @return Active workers
+     * @return 激活的worker
      */
     public List<BukkitTask> getPendingTasks();
 
     /**
-     * Returns a task that will run on the next server tick.
+     * 返回下一个tick服务器将运行的任务。
+     * <p>
+     * 原文：Returns a task that will run on the next server tick.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTask(Plugin plugin, Runnable task) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTask(Plugin)}
+     * @deprecated 建议使用{@link BukkitRunnable#runTask(Plugin)}
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
     public BukkitTask runTask(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException;
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 返回异步执行的任务。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskAsynchronously(Plugin plugin, Runnable task) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskAsynchronously(Plugin)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @deprecated 建议使用{@link BukkitRunnable#runTaskAsynchronously(Plugin)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
     public BukkitTask runTaskAsynchronously(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException;
 
     /**
-     * Returns a task that will run after the specified number of server
+     * 返回指定tick过后运行的任务(即延迟执行)。
+     * <p>
+     * 原文：Returns a task that will run after the specified number of server
      * ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskLater(Plugin plugin, Runnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskLater(Plugin, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @deprecated 建议使用{@link BukkitRunnable#runTaskLater(Plugin, long)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
     public BukkitTask runTaskLater(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 返回指定tick过后运行的异步任务(即延迟执行)。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously after the specified number
      * of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskLaterAsynchronously(Plugin plugin, Runnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskLaterAsynchronously(Plugin, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @deprecated 建议使用{@link BukkitRunnable#runTaskLaterAsynchronously(Plugin, long)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
     public BukkitTask runTaskLaterAsynchronously(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * Returns a task that will repeatedly run until cancelled, starting after
+     * 返回一个任务，此任务将在指定tick数值后运行。任务将重复运行直至取消。
+     * <p>
+     * 原文：Returns a task that will repeatedly run until cancelled, starting after
      * the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @param period 重复执行任务之间的时间间隔
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskTimer(Plugin plugin, Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @deprecated 建议使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟
+     * @param period 重复执行任务之间的时间间隔
+     * @return 包含id的BukkitTask
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
     public BukkitTask runTaskTimer(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务应该从不访问任何Bukkit里的API。应着重保证异步任务的安全。</b>
+     * <p>
+     * 返回一个异步任务，此任务将在指定tick数值后运行。任务将重复运行直至取消。
+     * <p>
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will repeatedly run asynchronously until cancelled,
      * starting after the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task for the first
-     *     time
-     * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 在任务首次执行前等待的时间
+     * @param period 重复执行任务之间的时间间隔
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
     public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * @deprecated Use {@link BukkitRunnable#runTaskTimerAsynchronously(Plugin, long, long)}
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task for the first
-     *     time
-     * @param period the ticks to wait between runs
-     * @return a BukkitTask that contains the id number
+     * @deprecated 建议使用 {@link BukkitRunnable#runTaskTimerAsynchronously(Plugin, long, long)}
+     * @param plugin 调度任务的插件
+     * @param task 要运行的任务
+     * @param delay 在任务首次执行前等待的时间
+     * @param period 重复执行任务之间的时间间隔
+     * @return 包含id的BukkitTask
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */

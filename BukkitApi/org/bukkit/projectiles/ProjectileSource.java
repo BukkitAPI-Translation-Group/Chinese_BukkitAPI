@@ -4,27 +4,29 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
 
 /**
- * Represents a valid source of a projectile.
+ * 代表一个有效的抛射物发射源。
  */
 public interface ProjectileSource {
 
     /**
-     * Launches a {@link Projectile} from the ProjectileSource.
+     * 让ProjectileSource发射一个{@link Projectile}。
+     * <p>
+     * 原文：Launches a {@link Projectile} from the ProjectileSource.
      *
-     * @param <T> a projectile subclass
-     * @param projectile class of the projectile to launch
-     * @return the launched projectile
+     * @param projectile 要让ProjectileSource发射的抛射物类型
+     * @return 发射的抛射物实例对象
      */
     public <T extends Projectile> T launchProjectile(Class<? extends T> projectile);
 
     /**
-     * Launches a {@link Projectile} from the ProjectileSource with an
+     * 让ProjectileSource以一个初始速度向量发射{@link Prijectile}。
+     * <p>
+     * 原文：Launches a {@link Projectile} from the ProjectileSource with an
      * initial velocity.
      *
-     * @param <T> a projectile subclass
-     * @param projectile class of the projectile to launch
-     * @param velocity the velocity with which to launch
-     * @return the launched projectile
+     * @param projectile 要让ProjectileSource发射的抛射物类型
+     * @param velocity 抛射物的速度向量
+     * @return 发射的抛射物实例对象
      */
     public <T extends Projectile> T launchProjectile(Class<? extends T> projectile, Vector velocity);
 }

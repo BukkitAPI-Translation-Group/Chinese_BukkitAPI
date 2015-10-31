@@ -1,7 +1,7 @@
 package org.bukkit;
 
 /**
- * Represents a countable statistic, which is tracked by the server.
+ * 表示一项被服务器监测的统计数据。
  */
 public enum Statistic {
     DAMAGE_DEALT,
@@ -70,15 +70,24 @@ public enum Statistic {
     }
 
     /**
+     * 获取这项统计数据的类型。
+     * <p>
+     * 原文：
      * Gets the type of this statistic.
      *
-     * @return the type of this statistic
+     * @return 这项统计数据的类型
      */
     public Type getType() {
         return type;
     }
 
     /**
+     * 检查是否为次级统计数据。
+     * <p>
+     * 一项次级统计数据同时存在于每个方块、物品或实体(取决于{@link #getType()})。
+     * <p>
+     * 这是个多余的方法，相当于检查<code>getType() != Type.UNTYPED</code>
+     * 原文：
      * Checks if this is a substatistic.
      * <p>
      * A substatistic exists en masse for each block, item, or entitytype, depending on
@@ -87,45 +96,56 @@ public enum Statistic {
      * This is a redundant method and equivalent to checking
      * <code>getType() != Type.UNTYPED</code>
      *
-     * @return true if this is a substatistic
+     * @return 如果为次级统计数据则返回true，否则返回false
      */
     public boolean isSubstatistic() {
         return type != Type.UNTYPED;
     }
 
     /**
+     * 检查是否为一项用于处理方块的次级统计数据。
+     * <p>
+     * 这是个多余的方法，相当于检查<code>getType() == Type.BLOCK</code>
+     * <p>
+     * 原文:
      * Checks if this is a substatistic dealing with blocks.
      * <p>
      * This is a redundant method and equivalent to checking
      * <code>getType() == Type.BLOCK</code>
      *
-     * @return true if this deals with blocks
+     * @return 用于处理方块则返回true，否则返回false
      */
     public boolean isBlock() {
         return type == Type.BLOCK;
     }
 
     /**
+     * 统计数据的类型。
+     * <p>
+     * 原文：
      * The type of statistic.
      *
      */
     public enum Type {
         /**
-         * Statistics of this type do not require a qualifier.
+         * 这种类型的统计数据不需要限定符。
          */
         UNTYPED,
 
         /**
-         * Statistics of this type require an Item Material qualifier.
+         * 这种类型的统计数据需要一个关于物品的限定符。
          */
         ITEM,
 
         /**
-         * Statistics of this type require a Block Material qualifier.
+         * 这种类型的统计数据需要一个关于方块的限定符。
          */
         BLOCK,
 
         /**
+         * 这种类型的统计数据需要一个关于实体的限定符。
+         * <p>
+         * 原文：
          * Statistics of this type require an EntityType qualifier.
          */
         ENTITY;

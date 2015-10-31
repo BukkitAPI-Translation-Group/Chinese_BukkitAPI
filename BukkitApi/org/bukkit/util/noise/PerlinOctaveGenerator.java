@@ -2,17 +2,17 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 使用中音阶创建一个柏林噪声
+ * 使用中音阶创建一个柏林噪声。
  * <p>
- * 译注：柏林噪声(perlin noise)，详情百度
+ * 译注：柏林噪声(perlin noise)，详情百度。
  * <p>
  * 原文：Creates perlin noise through unbiased octaves
  */
 public class PerlinOctaveGenerator extends OctaveGenerator {
     /**
-     * 为给定的世界创建一个柏林音阶发生器
+     * 为给定的世界创建一个柏林音阶发生器。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Creates a perlin octave generator for the given world
      *
@@ -23,9 +23,9 @@ public class PerlinOctaveGenerator extends OctaveGenerator {
         this(new Random(world.getSeed()), octaves);
     }
     /**
-     * 为给定的世界创建一个柏林音阶发生器
+     * 为给定的世界创建一个柏林音阶发生器。
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
+     * 译注：柏林噪声(perlin noise)，详情百度。
      * <p>
      * 原文：Creates a perlin octave generator for the given world
      * <p>
@@ -40,7 +40,7 @@ public class PerlinOctaveGenerator extends OctaveGenerator {
         this(new Random(seed), octaves);
     }
     /**
-     * 为给定的{@link Random}创建一个柏林音阶发生器
+     * 为给定的{@link Random}创建一个柏林音阶发生器。
      * <p>
      * 原文：Creates a perlin octave generator for the given {@link Random}
      *

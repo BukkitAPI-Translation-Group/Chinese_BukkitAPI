@@ -29,7 +29,7 @@ public class BlockIterator implements Iterator<Block> {
     private BlockFace secondFace;
     private BlockFace thirdFace;
     /**
-     * 创建BlockIterator
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator
      *
@@ -168,7 +168,7 @@ public class BlockIterator implements Iterator<Block> {
         return getPosition(direction.getZ(), position.getZ(), block.getZ());
     }
     /**
-     * 创建BlockIterator
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator
      *
@@ -181,7 +181,7 @@ public class BlockIterator implements Iterator<Block> {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, maxDistance);
     }
     /**
-     * 创建BlockIterator
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
@@ -192,7 +192,7 @@ public class BlockIterator implements Iterator<Block> {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, 0);
     }
     /**
-     * 创建BlockIterator
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
@@ -202,7 +202,7 @@ public class BlockIterator implements Iterator<Block> {
         this(loc, 0D);
     }
     /**
-     * 创建BlockIterator
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
@@ -214,7 +214,7 @@ public class BlockIterator implements Iterator<Block> {
         this(entity.getLocation(), entity.getEyeHeight(), maxDistance);
     }
     /**
-     * 创建BlockIterator
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
@@ -224,7 +224,7 @@ public class BlockIterator implements Iterator<Block> {
         this(entity, 0);
     }
     /**
-     * 返回true如果迭代器还有更多的元素
+     * 返回true如果迭代器还有更多的元素。
      * <p>
      * 原文：Returns true if the iteration has more elements
      */
@@ -233,7 +233,7 @@ public class BlockIterator implements Iterator<Block> {
         return currentBlock != -1;
     }
     /**
-     * 返回追踪上的下一个方块
+     * 返回追踪上的下一个方块。
      * <p>
      * 原文：Returns the next Block in the trace
      *

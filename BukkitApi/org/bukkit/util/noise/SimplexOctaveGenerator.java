@@ -2,14 +2,14 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 使用中音阶创建基于单纯形的噪声
+ * 使用中音阶创建基于单纯形的噪声。
  * <p>
  * 原文：Creates simplex noise through unbiased octaves
  */
 public class SimplexOctaveGenerator extends OctaveGenerator {
     private double wScale = 1;
     /**
-     * 为给定的世界创建一个基于单纯形的中音阶产生器
+     * 为给定的世界创建一个基于单纯形的中音阶产生器。
      * <p>
      * 原文：Creates a simplex octave generator for the given world
      *
@@ -20,13 +20,13 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         this(new Random(world.getSeed()), octaves);
     }
     /**
-     * 为给定的世界创建一个基于单纯形的中音阶产生器
+     * 为给定的世界创建一个基于单纯形的中音阶产生器。
      * <p>
      * 原文：Creates a simplex octave generator for the given world
      * <p>
-     * 译注:根据参数的翻译 这里given world疑似打错应该是given seed
+     * 译注:根据参数的翻译 这里given world疑似打错应该是given seed。
      * <p>
-     * 译注2:算了不影响理解
+     * 译注2:不影响理解。
      *
      * @param seed 创建这个发生器的种子
      * @param octaves 创建的音阶数
@@ -35,7 +35,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         this(new Random(seed), octaves);
     }
     /**
-     * 为给定的{@link Random}创建一个基于单纯形的中音阶产生器
+     * 为给定的{@link Random}创建一个基于单纯形的中音阶产生器。
      * <p>
      * 原文：Creates a simplex octave generator for the given {@link Random}
      *
@@ -51,7 +51,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         setWScale(scale);
     }
     /**
-     * 获取每个W坐标通过的区间大小
+     * 获取每个W坐标通过的区间大小。
      * <p>
      * 原文：Gets the scale used for each W-coordinates passed
      *
@@ -61,7 +61,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         return wScale;
     }
     /**
-     * 设置每个W坐标通过的区间大小
+     * 设置每个W坐标通过的区间大小。
      * <p>
      * 原文：Sets the scale used for each W-coordinates passed
      *
@@ -71,12 +71,12 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         wScale = scale;
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
      * <p>
-     * 译注:根据参数的翻译 这里3D疑似打错应该是4D
+     * 译注:根据参数的翻译 这里3D疑似打错应该是4D。
      *
      * @param x X坐标
      * @param y Y坐标
@@ -90,12 +90,12 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         return noise(x, y, z, w, frequency, amplitude, false);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音
+     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
      * <p>
-     * 译注:根据参数的翻译 这里3D疑似打错应该是4D
+     * 译注:根据参数的翻译 这里3D疑似打错应该是4D。
      *
      * @param x X坐标
      * @param y Y坐标
