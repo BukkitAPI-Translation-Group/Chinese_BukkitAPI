@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when a player empties a bucket
+ * 玩家用完一只桶后触发此事件.
  */
 public class PlayerBucketEmptyEvent extends PlayerBucketEvent {
     private static final HandlerList handlers = new HandlerList();
