@@ -12,6 +12,9 @@ import com.google.common.collect.Maps;
 public class Note {
 
     /**
+     * 一个包含音调的枚举型。
+     * <p>
+     * 原文：
      * An enum holding tones.
      */
     public enum Tone {
@@ -27,7 +30,7 @@ public class Note {
         private final byte id;
 
         private static final Map<Byte, Note.Tone> BY_DATA = Maps.newHashMap();
-        /** The number of tones including sharped tones. */
+        /**音调的数字包含升高的音调。 原文：The number of tones including sharped tones. */
         public static final byte TONES_COUNT = 12;
 
         private Tone(int id, boolean sharpable) {
@@ -36,10 +39,13 @@ public class Note {
         }
 
         /**
+         * 返回这个音调未升高的ID。
+         * <p>
+         * 原文：
          * Returns the not sharped id of this tone.
          *
-         * @return the not sharped id of this tone.
-         * @deprecated Magic value
+         * @return 这个音调未升高的ID。
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public byte getId() {
@@ -47,13 +53,16 @@ public class Note {
         }
 
         /**
+         * 返回音调ID。这些方法能够返回这个音调升高的ID。如果音调不能升高则会返回这个音调未升高的ID。
+         * <p>
+         * 原文：
          * Returns the id of this tone. These method allows to return the
          * sharped id of the tone. If the tone couldn't be sharped it always
          * return the not sharped id of this tone.
          *
-         * @param sharped Set to true to return the sharped id.
-         * @return the id of this tone.
-         * @deprecated Magic value
+         * @param sharped 设为true则返回升高的ID
+         * @return 这个音调的ID。
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public byte getId(boolean sharped) {
@@ -63,18 +72,24 @@ public class Note {
         }
 
         /**
+         * 返回音调是否能被升高。
+         * <p>
+         * 原文：
          * Returns if this tone could be sharped.
          *
-         * @return if this tone could be sharped.
+         * @return 音调是否能被升高。
          */
         public boolean isSharpable() {
             return sharpable;
         }
 
         /**
+         * 返回这个音调的ID是否为升高音调的ID。
+         * <p>
+         * 原文：
          * Returns if this tone id is the sharped id of the tone.
          *
-         * @param id the id of the tone.
+         * @param id 音调ID。
          * @return if the tone id is the sharped id of the tone.
          * @throws IllegalArgumentException if neither the tone nor the
          *     semitone have the id.
