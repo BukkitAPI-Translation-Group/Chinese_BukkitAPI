@@ -90,7 +90,7 @@ public class Note {
          * Returns if this tone id is the sharped id of the tone.
          *
          * @param id 音调ID。
-         * @return if the tone id is the sharped id of the tone.
+         * @return 这个音调的ID是否为升高音调的ID。
          * @throws IllegalArgumentException if neither the tone nor the
          *     semitone have the id.
          * @deprecated Magic value
