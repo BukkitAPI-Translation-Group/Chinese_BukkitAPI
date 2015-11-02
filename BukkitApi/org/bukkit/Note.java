@@ -7,6 +7,9 @@ import org.apache.commons.lang.Validate;
 import com.google.common.collect.Maps;
 
 /**
+ * 一个note类用于储存一个指定的音符。
+ * <p>
+ * 原文：
  * A note class to store a specific note.
  */
 public class Note {
@@ -91,9 +94,8 @@ public class Note {
          *
          * @param id 音调ID。
          * @return 这个音调的ID是否为升高音调的ID。
-         * @throws IllegalArgumentException if neither the tone nor the
-         *     semitone have the id.
-         * @deprecated Magic value
+         * @throws IllegalArgumentException 如果音调和半音都没有ID则抛出错误。
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public boolean isSharped(byte id) {
@@ -108,11 +110,14 @@ public class Note {
         }
 
         /**
+         * 返回音调对应的ID。同时返回半音。
+         * <p>
+         * 原文：
          * Returns the tone to id. Also returning the semitones.
          *
-         * @param id the id of the tone.
-         * @return the tone to id.
-         * @deprecated Magic value
+         * @param id 音调的ID。
+         * @return 音调对应的ID。
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public static Tone getById(byte id) {
@@ -135,10 +140,12 @@ public class Note {
     private final byte note;
 
     /**
+     * 创建一个新的note类。
+     * <p>
+     * 原文：
      * Creates a new note.
      *
-     * @param note Internal note id. {@link #getId()} always return this
-     *     value. The value has to be in the interval [0;&nbsp;24].
+     * @param note 内部音调ID。{@link #getId()}会返回这个数值。这个数值必须在区间[0;&nbsp;24]中。
      */
     public Note(int note) {
         Validate.isTrue(note >= 0 && note <= 24, "The note value has to be between 0 and 24.");
@@ -147,12 +154,14 @@ public class Note {
     }
 
     /**
+     * 创建一个新的note类。
+     * <p>
+     * 原文：
      * Creates a new note.
      *
-     * @param octave The octave where the note is in. Has to be 0 - 2.
-     * @param tone The tone within the octave. If the octave is 2 the note has
-     *     to be F#.
-     * @param sharped Set if the tone is sharped (e.g. for F#).
+     * @param octave 音调处于的八度音阶。必须在0-2间。
+     * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#。
+     * @param sharped 设置音调是否升高 (例如F#)。
      */
     public Note(int octave, Tone tone, boolean sharped) {
         if (sharped && !tone.isSharpable()) {
