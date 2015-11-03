@@ -156,7 +156,7 @@ public abstract class PotionEffectType {
      * Returns the unique ID of this type.
      *
      * @return Unique ID
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getId() {
