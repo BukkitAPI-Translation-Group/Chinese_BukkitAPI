@@ -6,6 +6,9 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
 
 /**
+ * 表示可能用于创建一个世界的各种类型的设置。
+ * <p>
+ * 原文：
  * Represents various types of options that may be used to create a world.
  */
 public class WorldCreator {
@@ -18,9 +21,12 @@ public class WorldCreator {
     private String generatorSettings = "";
 
     /**
+     * 为指定世界的名称创建一个空的WorldCreationOptions类型。
+     * <p>
+     * 原文：
      * Creates an empty WorldCreationOptions for the given world name
      *
-     * @param name Name of the world that will be created
+     * @param name 将被创建的世界的名称
      */
     public WorldCreator(String name) {
         if (name == null) {
@@ -32,10 +38,13 @@ public class WorldCreator {
     }
 
     /**
+     * 从指定的世界复制设置
+     * <p>
+     * 原文：
      * Copies the options from the specified world
      *
-     * @param world World to copy options from
-     * @return This object, for chaining
+     * @param world 用于复制设置的世界来源
+     * @return 用于连接的对象
      */
     public WorldCreator copy(World world) {
         if (world == null) {
@@ -50,10 +59,13 @@ public class WorldCreator {
     }
 
     /**
+     * 从指定的{@link WorldCreator}复制设置
+     * <p>
+     * 原文：
      * Copies the options from the specified {@link WorldCreator}
      *
-     * @param creator World creator to copy options from
-     * @return This object, for chaining
+     * @param creator 用于复制设置的世界来源
+     * @return 用于连接的对象
      */
     public WorldCreator copy(WorldCreator creator) {
         if (creator == null) {
@@ -68,28 +80,37 @@ public class WorldCreator {
     }
 
     /**
+     * 获取被加载或创建的世界的名称。
+     * <p>
+     * 原文：
      * Gets the name of the world that is to be loaded or created.
      *
-     * @return World name
+     * @return 世界名称
      */
     public String name() {
         return name;
     }
 
     /**
+     * 获取用于创建这个世界的种子
+     * <p>
+     * 原文：
      * Gets the seed that will be used to create this world
      *
-     * @return World seed
+     * @return 世界种子
      */
     public long seed() {
         return seed;
     }
 
     /**
+     * 设置用于创建这个世界的种子
+     * <p>
+     * 原文：
      * Sets the seed that will be used to create this world
      *
-     * @param seed World seed
-     * @return This object, for chaining
+     * @param seed 世界种子
+     * @return 用于连接的对象
      */
     public WorldCreator seed(long seed) {
         this.seed = seed;
@@ -98,19 +119,25 @@ public class WorldCreator {
     }
 
     /**
+     * 获取用于创建或加载世界的环境(不确定的翻译)
+     * <p>
+     * 原文：
      * Gets the environment that will be used to create or load the world
      *
-     * @return World environment
+     * @return 世界的环境
      */
     public World.Environment environment() {
         return environment;
     }
 
     /**
+     * 设置用于创建或加载世界的环境
+     * <p>
+     * 原文：
      * Sets the environment that will be used to create or load the world
      *
-     * @param env World environment
-     * @return This object, for chaining
+     * @param env 世界的环境
+     * @return 用于连接的对象
      */
     public WorldCreator environment(World.Environment env) {
         this.environment = env;
@@ -119,19 +146,25 @@ public class WorldCreator {
     }
 
     /**
+     * 获取将被创建或加载的世界的类型
+     * <p>
+     * 原文：
      * Gets the type of the world that will be created or loaded
      *
-     * @return World type
+     * @return 世界的类型
      */
     public WorldType type() {
         return type;
     }
 
     /**
+     * 设置将被创建或加载的世界的类型
+     * <p>
+     * 原文：
      * Sets the type of the world that will be created or loaded
      *
-     * @param type World type
-     * @return This object, for chaining
+     * @param type 世界的类型
+     * @return 用于连接的对象
      */
     public WorldCreator type(WorldType type) {
         this.type = type;
@@ -140,25 +173,35 @@ public class WorldCreator {
     }
 
     /**
+     * 获取用于创建或加载世界的生成器。
+     * <p>
+     * 可能为null值，在这种情况下会使用这个环境的"natural"型生成器。
+     * <p>
+     * 原文：
      * Gets the generator that will be used to create or load the world.
      * <p>
      * This may be null, in which case the "natural" generator for this
      * environment will be used.
      *
-     * @return Chunk generator
+     * @return 区块生成器
      */
     public ChunkGenerator generator() {
         return generator;
     }
 
     /**
+     * 设置将被用于创建或加载世界的生成器。
+     * <p>
+     * 可能为null值，在这种情况下会使用这个环境的"natural"型生成器。
+     * <p>
+     * 原文：
      * Sets the generator that will be used to create or load the world.
      * <p>
      * This may be null, in which case the "natural" generator for this
      * environment will be used.
      *
-     * @param generator Chunk generator
-     * @return This object, for chaining
+     * @param generator 区块生成器
+     * @return 用于连接的对象
      */
     public WorldCreator generator(ChunkGenerator generator) {
         this.generator = generator;
@@ -167,6 +210,13 @@ public class WorldCreator {
     }
 
     /**
+     * 设置将被用于创建或加载世界的生成器。
+     * <p>
+     * 可能为null值，在这种情况下会使用这个环境的"natural"型生成器。
+     * <p>
+     * 如果找不到指定名字的生成器，就会使用自然环境生成器以代替并且会在控制台上输出一个警告。
+     * <p>
+     * 原文：
      * Sets the generator that will be used to create or load the world.
      * <p>
      * This may be null, in which case the "natural" generator for this
@@ -176,8 +226,8 @@ public class WorldCreator {
      * environment generator will be used instead and a warning will be
      * printed to the console.
      *
-     * @param generator Name of the generator to use, in "plugin:id" notation
-     * @return This object, for chaining
+     * @param generator 使用的生成器的名字，形式为"plugin:id" 
+     * @return 用于连接的对象
      */
     public WorldCreator generator(String generator) {
         this.generator = getGeneratorForName(name, generator, Bukkit.getConsoleSender());
