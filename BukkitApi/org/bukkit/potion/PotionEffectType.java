@@ -212,7 +212,7 @@ public abstract class PotionEffectType {
      *
      * @param id Unique ID to fetch
      * @return Resulting type, or null if not found.
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static PotionEffectType getById(int id) {
