@@ -317,7 +317,7 @@ public class Potion {
      * item stacks.
      *
      * @return The damage value of this potion
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public short toDamageValue() {
