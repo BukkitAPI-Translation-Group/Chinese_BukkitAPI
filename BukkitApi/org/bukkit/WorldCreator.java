@@ -233,9 +233,16 @@ public class WorldCreator {
         this.generator = getGeneratorForName(name, generator, Bukkit.getConsoleSender());
 
         return this;
-    }
+    }.
 
     /**
+     * 设置将用于创建或加载的生成器。
+     * <p>
+     * 可能为null值，在这种情况下会使用这个环境的"natural"型生成器。
+     * <p>
+     * 如果找不到指定名字的生成器，就会使用自然环境生成器以代替并且会在控制台上输出一个警告。
+     * <p>
+     * 原文：
      * Sets the generator that will be used to create or load the world.
      * <p>
      * This may be null, in which case the "natural" generator for this
@@ -245,10 +252,9 @@ public class WorldCreator {
      * environment generator will be used instead and a warning will be
      * printed to the specified output
      *
-     * @param generator Name of the generator to use, in "plugin:id" notation
-     * @param output {@link CommandSender} that will receive any error
-     *     messages
-     * @return This object, for chaining
+     * @param generator 使用的生成器的名字，形式为"plugin:id" 
+     * @param output 将用于接受任何错误信息的{@link CommandSender}
+     * @return 用于连接的对象
      */
     public WorldCreator generator(String generator, CommandSender output) {
         this.generator = getGeneratorForName(name, generator, output);
@@ -257,10 +263,13 @@ public class WorldCreator {
     }
 
     /**
+     * 设置将被用于创建或加载世界的生成器的配置
+     * <p>
+     * 原文：
      * Sets the generator settings of the world that will be created or loaded
      *
-     * @param generatorSettings The settings that should be used by the generator
-     * @return This object, for chaining
+     * @param generatorSettings 将被使用的生成器的配置
+     * @return 用于连接的对象
      */
     public WorldCreator generatorSettings(String generatorSettings) {
         this.generatorSettings = generatorSettings;
@@ -269,15 +278,21 @@ public class WorldCreator {
     }
 
     /**
+     * 获取将被创建或加载的世界的生成器的配置
+     * <p>
+     * 原文：
      * Gets the generator settings of the world that will be created or loaded
      *
-     * @return The settings that should be used by the generator
+     * @return 将被使用的生成器的配置
      */
     public String generatorSettings() {
         return generatorSettings;
     }
 
     /**
+     *  
+     * <p>
+     * 原文：
      * Sets whether or not worlds created or loaded with this creator will
      * have structures.
      *
