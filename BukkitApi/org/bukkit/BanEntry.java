@@ -142,7 +142,7 @@ public interface BanEntry {
      * Saving the ban entry of an unbanned player will cause the player to be
      * banned once again.
      * <p>
-     * 翻译：大概就是保存刚刚的更改的意思....
+     * 翻译：保存刚刚的更改.
      */
     public void save();
 }
