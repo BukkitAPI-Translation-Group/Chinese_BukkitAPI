@@ -1,21 +1,22 @@
 package org.bukkit.configuration;
 
 import java.util.Map;
-
+//汉化修改进度: 完成
+//格式校对进度: 完成
 /**
- * 配置文件的基类.(需要修改)
- * <p>原文:
+ * 配置文件的基类.
+ * <p>原文: 
  * Represents a source of configurable options and settings
  */
 public interface Configuration extends ConfigurationSection {
     /**
      * 设置指定路径的缺省值. 
      * <p>
-     * 如果没有默认的 {@link Configuration}.
+     * 如果没有默认的 {@link Configuration}. 
      * 那么将会建立一个新的 {@link MemoryConfiguration} 用于保存.
      * <p>
      * 如果值为 null ，该值将被从默认的配置源中删除.
-     * <p>原文:
+     * <p>原文: 
      * Sets the default value of the given path as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default collection, then a new {@link MemoryConfiguration} will be created to hold the new default value.
@@ -33,13 +34,13 @@ public interface Configuration extends ConfigurationSection {
      * <p>
      * 如果没有缺省值 {@link Configuration}, 那么将会建立一个新的缺省值 {@link MemoryConfiguration} 用于保存.
      * <p>
-     * 如果值为 null ,将会删除该路径上的缺省值.
-     * <p>原文:
+     * 如果值为 null , 将会删除该路径上的缺省值.
+     * <p>原文: 
      *  Sets the default values of the given paths as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default collection, then a new {@link MemoryConfiguration} will be created to hold the new default values.
      *
-     * @param defaults Map 的键是路径,值是对应路径的值.
+     * @param defaults Map 的键是路径, 值是对应路径的值.
      * @throws IllegalArgumentException 如果defaults为null.
      */
     public void addDefaults(Map<String, Object> defaults);
@@ -50,7 +51,7 @@ public interface Configuration extends ConfigurationSection {
      * 如果没有缺省值 {@link Configuration}, 那么将会建立一个新的 {@link MemoryConfiguration} 用于保存.
      * <p>
      * 你可以使用{@link #setDefaults(org.bukkit.configuration.Configuration)}来设置缺省值列表来源. 
-     * <p>原文:
+     * <p>原文: 
      * Sets the default values of the given paths as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default collection, then a new {@link MemoryConfiguration} will be created to hold the new default value.
@@ -66,36 +67,37 @@ public interface Configuration extends ConfigurationSection {
      * 设置新的缺省值列表.
      * <p>
      * 将直接替换原有的缺省值列表(如果有).
-     * <p>原文:
+     * <p>原文: 
      * Sets the source of all default values for this {@link Configuration}.
      * <p>
      * If a previous source was set, or previous default values were defined, then they will not be copied to the new source.
      *
      * @param defaults 新的 {@link Configuration} .
-     * @throws IllegalArgumentException 当参数为 null 或 defaults == getDefaults() 时,抛出此异常.
+     * @throws IllegalArgumentException 当参数为 null 或 defaults == getDefaults() 时, 抛出此异常.
      */
     public void setDefaults(Configuration defaults);
 
     /**
-     * 获取这个 {@link Configuration} 的缺省值 {@link Configuration} .
+     * 获取这个 {@link Configuration} 的缺省值 {@link Configuration}.
      * <p>
-     * 如果设置过缺省值,即使没有设置缺省值列表,也会返回 {@link Configuration} .
-     * 如果都没有,则返回 null.
-     * <p>原文:
+     * 如果设置过缺省值, 即使没有设置缺省值列表, 也会返回 {@link Configuration}.
+     * <p>
+     * 如果都没有, 则返回 null.
+     * <p>原文: 
      * Gets the source {@link Configuration} for this configuration.
      * <p>
      * If no configuration source was set, but default values were added, then a {@link MemoryConfiguration} will be returned. 
      * If no source was set and no defaults were set, then this method will return null.
      *
-     * @return 返回缺省值列表,如果没有则返回null.
+     * @return 返回缺省值列表, 如果没有则返回 null.
      */
     public Configuration getDefaults();
 
     /**
      * 获取这个 {@link Configuration} 的 {@link ConfigurationOptions}.
      * <p>
-     * 通过这种方法,所有的配置都是直接修改.
-     * <p>原文:
+     * 如需修改配置,直接修改返回值即可.
+     * <p>原文: 
      * Gets the {@link ConfigurationOptions} for this {@link Configuration}.
      * <p>
      * All setters through this method are chainable.

@@ -1,5 +1,7 @@
 package org.bukkit.configuration;
 
+//汉化进度: 0%
+//格式校对: 0%
 /**
  * Various settings for controlling the input and output of a {@link MemoryConfiguration}.
  */

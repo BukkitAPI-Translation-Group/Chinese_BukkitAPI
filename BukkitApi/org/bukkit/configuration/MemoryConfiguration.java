@@ -4,6 +4,8 @@ import java.util.Map;
 
 import org.apache.commons.lang.Validate;
 
+//汉化进度: 0%
+//格式校对: 0%
 /**
  * This is a {@link Configuration} implementation that does not save or load from any source, and stores all values in memory only.
  * This is useful for temporary Configurations for providing defaults.

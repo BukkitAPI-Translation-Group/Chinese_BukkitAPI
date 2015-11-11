@@ -15,6 +15,8 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+//汉化进度: 0%
+//格式校对: 0%
 /**
  * A type of {@link ConfigurationSection} that is stored in memory.
  */
