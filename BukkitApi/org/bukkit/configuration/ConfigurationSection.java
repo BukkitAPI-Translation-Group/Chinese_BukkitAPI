@@ -10,7 +10,7 @@ import org.bukkit.util.Vector;
 import org.bukkit.inventory.ItemStack;
 
 //汉化未完成: 魔法值@11110154
-//格式整理到: 魔法值@11110152
+//格式整理到: 完成
 /**
  * {@link Configuration}的基类. 
  * 所有用于扩展配置文件读取的类都应当实现以下方法. 
@@ -217,41 +217,44 @@ public interface ConfigurationSection {
 
     // Primitives
     /**
-     * 在指定路径获取一个String类型的值. 
+     * 在指定路径获取一个 String 类型的值. 
      * <p>
-     * 如果这个String不存在, 但已指定一个缺省值, 这将返回缺省值. String. 
-     * 如果这个String不存在, 并且没有指定缺省值, 则返回null. 
+     * 如果这个 String 不存在, 但已指定一个缺省值, 这将返回缺省值. 
+     * <p>
+     * 如果这个 String 不存在, 并且没有指定缺省值, 则返回 null. 
      * <p>原文: 
      * Gets the requested String by path. 
      * <p>
      * If the String does not exist but a default value has been specified, this will return the default value. 
      * If the String does not exist and no default value was specified, this will return null. 
      *
-     * @param path 获取String的路径. 
-     * @return 返回一个String. 
+     * @param path 获取 String 的路径. 
+     * @return 返回一个 String. 
      *///魔法值@11110152
     public String getString(String path);
 
     /**
-     * 在指定路径上获取一个String, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 String , 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果String无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 String, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested String by path, returning a default value if not found. 
      * <p>
      * If the String does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取String的路径. 
-     * @param def 当指定路径上没有值, 或者不是String类型时, 返回这个值. 
-     * @return 返回一个String. 
+     * @param path 获取 String 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 String 类型时, 返回这个值. 
+     * @return 返回一个 String. 
      */
     public String getString(String path, String def);
 
     /**
-     * 检查指定路径是否是String. 
+     * 检查指定路径是否是 String. 
      * <p>
-     * 如果路径存在, 但不是String, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 String, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a String. 
@@ -260,47 +263,50 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a String and return appropriately. 
      *
-     * @param path 检查指定路径是否是String. 
-     * @return 指定路径是否是String. 
+     * @param path 检查指定路径是否是 String. 
+     * @return 指定路径是否是 String. 
      */
     public boolean isString(String path);
 
     /**
-     * 在指定路径获取一个int类型的值. 
+     * 在指定路径获取一个 int 类型的值. 
      * <p>
-     * 如果这个int不存在, 但已指定一个缺省值, 这将返回缺省值. int. 
-     * 如果这个int不存在, 并且没有指定缺省值, 则返回0. 
+     * 如果这个 int 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 int 不存在, 并且没有指定缺省值, 则返回 0 . 
      * <p>原文: 
      * Gets the requested int by path. 
      * <p>
      * If the int does not exist but a default value has been specified, this will return the default value. 
      * If the int does not exist and no default value was specified, this will return 0. 
      *
-     * @param path 获取int的路径. 
-     * @return 返回一个int. 
+     * @param path 获取 int 的路径. 
+     * @return 返回一个 int. 
      */
     public int getInt(String path);
 
     /**
-     * 在指定路径上获取一个int, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 int, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果int无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 int, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested int by path, returning a default value if not found. 
      * <p>
      * If the int does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取int的路径. 
-     * @param def 当指定路径上没有值, 或者不是int类型时, 返回这个值. 
-     * @return 返回一个int. 
+     * @param path 获取 int 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 int 类型时, 返回这个值. 
+     * @return 返回一个 int. 
      */
     public int getInt(String path, int def);
 
     /**
-     * 检查指定路径是否是int. 
+     * 检查指定路径是否是 int. 
      * <p>
-     * 如果路径存在, 但不是int, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 int, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a int. 
@@ -309,47 +315,50 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a int and return appropriately. 
      *
-     * @param path 检查指定路径是否是int. 
-     * @return 指定路径是否是int. 
+     * @param path 检查指定路径是否是 int. 
+     * @return 指定路径是否是 int. 
      */
     public boolean isInt(String path);
 
     /**
-     * 在指定路径获取一个boolean类型的值. 
+     * 在指定路径获取一个 boolean 类型的值. 
      * <p>
-     * 如果这个boolean不存在, 但已指定一个缺省值, 这将返回缺省值. boolean. 
-     * 如果这个boolean不存在, 并且没有指定缺省值, 则返回false. 
+     * 如果这个 boolean 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 boolean 不存在, 并且没有指定缺省值, 则返回 false. 
      * <p>原文: 
      * Gets the requested boolean by path. 
      * <p>
      * If the boolean does not exist but a default value has been specified, this will return the default value. 
      * If the boolean does not exist and no default value was specified, this will return false. 
      *
-     * @param path 获取boolean的路径. 
-     * @return 返回一个boolean. 
+     * @param path 获取 boolean 的路径. 
+     * @return 返回一个 boolean. 
      */
     public boolean getBoolean(String path);
 
     /**
-     * 在指定路径上获取一个boolean, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 boolean, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果boolean无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 boolean, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested boolean by path, returning a default value if not found. 
      * <p>
      * If the boolean does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取boolean的路径. 
-     * @param def 当指定路径上没有值, 或者不是boolean类型时, 返回这个值. 
-     * @return 返回一个boolean. 
+     * @param path 获取 boolean 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 boolean 类型时, 返回这个值. 
+     * @return 返回一个 boolean. 
      */
     public boolean getBoolean(String path, boolean def);
 
     /**
-     * 检查指定路径是否是boolean. 
+     * 检查指定路径是否是 boolean. 
      * <p>
-     * 如果路径存在, 但不是boolean, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 boolean, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a boolean. 
@@ -358,16 +367,17 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a boolean and return appropriately. 
      *
-     * @param path 检查指定路径是否是boolean. 
-     * @return 指定路径是否是boolean. 
+     * @param path 检查指定路径是否是 boolean. 
+     * @return 指定路径是否是 boolean. 
      */
     public boolean isBoolean(String path);
 
     /**
-     * 在指定路径获取一个double类型的值. 
+     * 在指定路径获取一个 double 类型的值. 
      * <p>
-     * 如果这个double不存在, 但已指定一个缺省值, 这将返回缺省值. double. 
-     * 如果这个double不存在, 并且没有指定缺省值, 则返回0. 
+     * 如果这个 double 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 double 不存在, 并且没有指定缺省值, 则返回0. 
      * <p>原文: 
      * Gets the requested double by path. 
      * <p>
@@ -382,23 +392,25 @@ public interface ConfigurationSection {
     /**
      * 在指定路径上获取一个double, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果double无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 double, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested double by path, returning a default value if not found. 
      * <p>
      * If the double does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取double的路径. 
-     * @param def 当指定路径上没有值, 或者不是double类型时, 返回这个值. 
-     * @return 返回一个double. 
+     * @param path 获取 double 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 double 类型时, 返回这个值. 
+     * @return 返回一个 double. 
      */
     public double getDouble(String path, double def);
 
     /**
-     * 检查指定路径是否是double. 
+     * 检查指定路径是否是 double. 
      * <p>
-     * 如果路径存在, 但不是double, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 double, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a double. 
@@ -407,16 +419,17 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a double and return appropriately. 
      *
-     * @param path 检查指定路径是否是double. 
-     * @return 指定路径是否是double. 
+     * @param path 检查指定路径是否是 double. 
+     * @return 指定路径是否是 double. 
      */
     public boolean isDouble(String path);
 
     /**
-     * 在指定路径获取一个long类型的值. 
+     * 在指定路径获取一个 long 类型的值. 
      * <p>
-     * 如果这个long不存在, 但已指定一个缺省值, 这将返回缺省值. long. 
-     * 如果这个long不存在, 并且没有指定缺省值, 则返回0. 
+     * 如果这个 long 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 long 不存在, 并且没有指定缺省值, 则返回 0. 
      * <p>原文: 
      * Gets the requested long by path. 
      * <p>
@@ -429,25 +442,27 @@ public interface ConfigurationSection {
     public long getLong(String path);
 
     /**
-     * 在指定路径上获取一个long, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 long, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果long无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 long, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested long by path, returning a default value if not found. 
      * <p>
      * If the long does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取long的路径. 
-     * @param def 当指定路径上没有值, 或者不是long类型时, 返回这个值. 
-     * @return 返回一个long. 
+     * @param path 获取 long 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 long 类型时, 返回这个值. 
+     * @return 返回一个 long. 
      */
     public long getLong(String path, long def);
 
     /**
-     * 检查指定路径是否是long. 
+     * 检查指定路径是否是 long. 
      * <p>
-     * 如果路径存在, 但不是long, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 long, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a long. 
@@ -456,40 +471,41 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a long and return appropriately. 
      *
-     * @param path 检查指定路径是否是long. 
-     * @return 指定路径是否是long. 
+     * @param path 检查指定路径是否是 long. 
+     * @return 指定路径是否是 long. 
      */
     public boolean isLong(String path);
 
     // Java
     /**
-     * 在指定路径获取一个List类型的值. 
+     * 在指定路径获取一个 List 类型的值. 
      * <p>
-     * 如果这个List不存在, 但已指定一个缺省值, 这将返回缺省值. List. 
-     * 如果这个List不存在, 并且没有指定缺省值, 则返回null. 
+     * 如果这个 List 不存在, 但已指定一个缺省值, 这将返回缺省值. 
+     * <p>
+     * 如果这个 List 不存在, 并且没有指定缺省值, 则返回 null. 
      * <p>原文: 
      * Gets the requested List by path. 
      * <p>
      * If the List does not exist but a default value has been specified, this will return the default value. 
      * If the List does not exist and no default value was specified, this will return null. 
      *
-     * @param path 获取List的路径. 
-     * @return 返回一个List. 
+     * @param path 获取 List 的路径. 
+     * @return 返回一个 List. 
      */
     public List<?> getList(String path);
 
     /**
-     * 在指定路径上获取一个List, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 List, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果List无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 List, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested List by path, returning a default value if not found. 
      * <p>
      * If the List does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取List的路径. 
-     * @param def 当指定路径上没有值, 或者不是List类型时, 返回这个值. 
-     * @return 返回一个List. 
+     * @param path 获取 List 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 List 类型时, 返回这个值. 
+     * @return 返回一个 List. 
      */
     public List<?> getList(String path, List<?> def);
 
@@ -497,7 +513,9 @@ public interface ConfigurationSection {
      * 检查指定路径是否是 List. 
      * <p>
      * 如果路径存在, 但不是 List, 则返回 false. 
+     * <p>
      * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a List. 
@@ -506,8 +524,8 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a List and return appropriately. 
      *
-     * @param path 检查指定路径是否是List. 
-     * @return 指定路径是否是List. 
+     * @param path 检查指定路径是否是 List. 
+     * @return 指定路径是否是 List. 
      */
     public boolean isList(String path);
 
@@ -515,9 +533,10 @@ public interface ConfigurationSection {
      * 在指定路径获取一个 List&lt;String&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为String, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 String, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of String by path. 
      * <p>
@@ -526,8 +545,8 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a String if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;String&gt;的路径. 
-     * @return 返回一个List&lt;String&gt;. 
+     * @param path 要获取 List&lt;String&gt; 的路径. 
+     * @return 返回一个 List&lt;String&gt;. 
      */
     public List<String> getStringList(String path);
 
@@ -535,9 +554,10 @@ public interface ConfigurationSection {
      * 在指定路径获取一个 List&lt;Integer&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Integer, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Integer, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Integer by path. 
      * <p>
@@ -546,18 +566,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Integer if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Integer&gt;的路径. 
-     * @return 返回一个List&lt;Integer&gt;. 
+     * @param path 要获取 List&lt;Integer&gt; 的路径. 
+     * @return 返回一个 List&lt;Integer&gt;. 
      */
     public List<Integer> getIntegerList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Boolean&gt;. 
+     * 在指定路径获取一个 List&lt;Boolean&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Boolean, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Boolean, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Boolean by path. 
      * <p>
@@ -566,18 +587,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Boolean if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Boolean&gt;的路径. 
-     * @return 返回一个List&lt;Boolean&gt;. 
+     * @param path 要获取 List&lt;Boolean&gt; 的路径. 
+     * @return 返回一个 List&lt;Boolean&gt;. 
      */
     public List<Boolean> getBooleanList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Double&gt;. 
+     * 在指定路径获取一个 List&lt;Double&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Double, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Double, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Double by path. 
      * <p>
@@ -586,18 +608,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Double if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Double&gt;的路径. 
-     * @return 返回一个List&lt;Double&gt;. 
+     * @param path 要获取 List&lt;Double&gt;的路径. 
+     * @return 要获取 List&lt;Double&gt;. 
      */
     public List<Double> getDoubleList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Float&gt;. 
+     * 在指定路径获取一个 List&lt;Float&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Float, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Float, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Float by path. 
      * <p>
@@ -606,18 +629,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Float if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Float&gt;的路径. 
-     * @return 返回一个List&lt;Float&gt;. 
+     * @param path 要获取 List&lt;Float&gt;的路径. 
+     * @return 返回一个 List&lt;Float&gt;. 
      */
     public List<Float> getFloatList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Long&gt;. 
+     * 在指定路径获取一个 List&lt;Long&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Long, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为Long, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Long by path. 
      * <p>
@@ -626,18 +650,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Long if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Long&gt;的路径. 
-     * @return 返回一个List&lt;Long&gt;. 
+     * @param path 要获取 List&lt;Long&gt;的路径. 
+     * @return 返回一个 List&lt;Long&gt;. 
      */
     public List<Long> getLongList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Byte&gt;. 
+     * 在指定路径获取一个 List&lt;Byte&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Byte, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Byte, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Byte by path. 
      * <p>
@@ -646,18 +671,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Byte if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Byte&gt;的路径. 
-     * @return 返回一个List&lt;Byte&gt;. 
+     * @param path 要获取 List&lt;Byte&gt;的路径. 
+     * @return 返回一个 List&lt;Byte&gt;. 
      */
     public List<Byte> getByteList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Character&gt;. 
+     * 在指定路径获取一个 List&lt;Character&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Character, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Character, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Character by path. 
      * <p>
@@ -666,18 +692,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Character if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Character&gt;的路径. 
-     * @return 返回一个List&lt;Character&gt;. 
+     * @param path 要获取 List&lt;Character&gt;的路径. 
+     * @return 返回一个 List&lt;Character&gt;. 
      */
     public List<Character> getCharacterList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Short&gt;. 
+     * 在指定路径获取一个 List&lt;Short&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Short, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Short, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Short by path. 
      * <p>
@@ -686,18 +713,19 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Short if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Short&gt;的路径. 
-     * @return 返回一个List&lt;Short&gt;. 
+     * @param path 要获取 List&lt;Short&gt;的路径. 
+     * @return 返回一个 List&lt;Short&gt;. 
      */
     public List<Short> getShortList(String path);
 
     /**
-     * 在指定路径获取一个List&lt;Maps&gt;. 
+     * 在指定路径获取一个 List&lt;Maps&gt;. 
      * <p>
      * 如果列表不存在，但已指定一个缺省值，这将返回默认值. 
+     * <p>
      * 如果列表不存在，并且没有指定缺省值，这将返回一个空的列表. 
      * <p>
-     * 此方法会尽可能的将list中所有的项转化为Map, 但是如果值本身不兼容, 将会发生不可预计的状况. 
+     * 此方法会尽可能的将 List 中所有的项转化为 Map, 但是如果值本身不兼容, 将会发生不可预计的状况. 
      * <p>原文: 
      * Gets the requested List of Maps by path. 
      * <p>
@@ -706,8 +734,8 @@ public interface ConfigurationSection {
      * <p>
      * This method will attempt to cast any values into a Map if possible, but may miss any values out if they are not compatible. 
      *
-     * @param path 要获取List&lt;Maps&gt;的路径. 
-     * @return 返回一个List&lt;Maps&gt;. 
+     * @param path 要获取 List&lt;Maps&gt;的路径. 
+     * @return 返回一个 List&lt;Maps&gt;. 
      */
     public List<Map<?, ?>> getMapList(String path);
 
@@ -731,23 +759,25 @@ public interface ConfigurationSection {
     /**
      * 在指定路径上获取一个{@link Vector}, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果Vector无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 {@link Vector}, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested {@link Vector} by path, returning a default value if not found. 
      * <p>
      * If the Vector does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取Vector的路径. 
-     * @param def 当指定路径上没有值, 或者不是Vector类型时, 返回这个值. 
-     * @return 返回一个Vector. 
+     * @param path 获取 {@link Vector} 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 {@link Vector} 类型时, 返回这个值. 
+     * @return 返回一个 {@link Vector}r. 
      */
     public Vector getVector(String path, Vector def);
 
     /**
-     * 检查指定路径是否是Vector. 
+     * 检查指定路径是否是 {@link Vector} . 
      * <p>
-     * 如果路径存在, 但不是Vector, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 {@link Vector} , 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a Vector. 
@@ -756,47 +786,50 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a Vector and return appropriately. 
      *
-     * @param path 检查指定路径是否是Vector. 
-     * @return 指定路径是否是Vector. 
+     * @param path 检查指定路径是否是 {@link Vector} . 
+     * @return 指定路径是否是 {@link Vector} . 
      */
     public boolean isVector(String path);
 
     /**
-     * 在指定路径获取一个OfflinePlayer类型的值. 
+     * 在指定路径获取一个 {@link OfflinePlayer} 类型的值. 
      * <p>
-     * 如果这个OfflinePlayer不存在, 但已指定一个缺省值, 这将返回缺省值. OfflinePlayer. 
-     * 如果这个OfflinePlayer不存在, 并且没有指定缺省值, 则返回null. 
+     * 如果这个 {@link OfflinePlayer} 不存在, 但已指定一个缺省值, 这将返回缺省值. 
+     * <p>
+     * 如果这个 {@link OfflinePlayer} 不存在, 并且没有指定缺省值, 则返回 null. 
      * <p>原文: 
      * Gets the requested OfflinePlayer by path. 
      * <p>
      * If the OfflinePlayer does not exist but a default value has been specified, this will return the default value. 
      * If the OfflinePlayer does not exist and no default value was specified, this will return null. 
      *
-     * @param path 获取OfflinePlayer的路径. 
-     * @return 返回一个OfflinePlayer. 
+     * @param path 获取 {@link OfflinePlayer} 的路径. 
+     * @return 返回一个 {@link OfflinePlayer}. 
      */
     public OfflinePlayer getOfflinePlayer(String path);
 
     /**
-     * 在指定路径上获取一个{@link OfflinePlayer}, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 {@link OfflinePlayer}, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果OfflinePlayer无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 {@link OfflinePlayer}, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested {@link OfflinePlayer} by path, returning a default value if not found. 
      * <p>
      * If the OfflinePlayer does not exist then the specified default value will returned regardless of if a default has been identified in the root {@link Configuration}. 
      *
-     * @param path 获取OfflinePlayer的路径. 
-     * @param def 当指定路径上没有值, 或者不是OfflinePlayer类型时, 返回这个值. 
-     * @return 返回一个OfflinePlayer. 
+     * @param path 获取 {@link OfflinePlayer} 的路径. 
+     * @param def 当指定路径上没有值, 或者不是 {@link OfflinePlayer} 类型时, 返回这个值. 
+     * @return 返回一个 {@link OfflinePlayer}. 
      */
     public OfflinePlayer getOfflinePlayer(String path, OfflinePlayer def);
 
     /**
-     * 检查指定路径是否是OfflinePlayer. 
+     * 检查指定路径是否是 {@link OfflinePlayer}. 
      * <p>
-     * 如果路径存在, 但不是OfflinePlayer, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 {@link OfflinePlayer}, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a OfflinePlayer. 
@@ -805,31 +838,32 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a OfflinePlayer and return appropriately. 
      *
-     * @param path 检查指定路径是否是OfflinePlayer. 
-     * @return 指定路径是否是OfflinePlayer. 
+     * @param path 检查指定路径是否是 {@link OfflinePlayer}. 
+     * @return 指定路径是否是 {@link OfflinePlayer}. 
      */
     public boolean isOfflinePlayer(String path);
 
     /**
      * 在指定路径获取一个ItemStack类型的值. 
      * <p>
-     * 如果这个ItemStack不存在, 但已指定一个缺省值, 这将返回缺省值. ItemStack. 
-     * 如果这个ItemStack不存在, 并且没有指定缺省值, 则返回null. 
+     * 如果这个 {@link ItemStack} 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 {@link ItemStack} 不存在, 并且没有指定缺省值, 则返回 null. 
      * <p>原文: 
      * Gets the requested ItemStack by path. 
      * <p>
      * If the ItemStack does not exist but a default value has been specified, this will return the default value. 
      * If the ItemStack does not exist and no default value was specified, this will return null. 
      *
-     * @param path 获取ItemStack的路径. 
-     * @return 返回一个ItemStack. 
+     * @param path 获取 {@link ItemStack} 的路径. 
+     * @return 返回一个 {@link ItemStack}. 
      */
     public ItemStack getItemStack(String path);
 
     /**
-     * 在指定路径上获取一个{@link ItemStack}, 如果无法获取, 则直接返回默认值. 
+     * 在指定路径上获取一个 {@link ItemStack}, 如果无法获取, 则直接返回默认值. 
      * <p>
-     * 如果ItemStack无法在{@link Configuration}中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 {@link ItemStack}, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested {@link ItemStack} by path, returning a default value if not found. 
      * <p>
@@ -842,10 +876,12 @@ public interface ConfigurationSection {
     public ItemStack getItemStack(String path, ItemStack def);
 
     /**
-     * 检查指定路径是否是ItemStack. 
+     * 检查指定路径是否是 {@link ItemStack}. 
      * <p>
-     * 如果路径存在, 但不是ItemStack, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 {@link ItemStack}, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a ItemStack. 
@@ -854,8 +890,8 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a ItemStack and return appropriately. 
      *
-     * @param path 检查指定路径是否是ItemStack. 
-     * @return 指定路径是否是ItemStack. 
+     * @param path 检查指定路径是否是 {@link ItemStack}. 
+     * @return 指定路径是否是 {@link ItemStack}. 
      */
     public boolean isItemStack(String path);
 
@@ -863,6 +899,7 @@ public interface ConfigurationSection {
      * 在指定路径获取一个Color类型的值. 
      * <p>
      * 如果这个Color不存在, 但已指定一个缺省值, 这将返回缺省值. Color. 
+     * <p>
      * 如果这个Color不存在, 并且没有指定缺省值, 则返回null. 
      * <p>原文: 
      * Gets the requested Color by path. 
@@ -876,9 +913,9 @@ public interface ConfigurationSection {
     public Color getColor(String path);
 
     /**
-     * 在指定路径上获取一个 {@link Color} , 如果无法获取, 则直接返回指定默认值. 
+     * 在指定路径上获取一个 {@link Color}, 如果无法获取, 则直接返回指定默认值. 
      * <p>
-     * 如果Color无法在 {@link Configuration} 中被获取, 则不会尝试去缺省列表中去寻找, 而是直接返回指定的默认值. 
+     * 如果无法获取到一个 {@link Color}, 将不会尝试去缺省列表中去获取, 而是直接返回指定的默认值. 
      * <p>原文: 
      * Gets the requested {@link Color} by path, returning a default value if not found. 
      * <p>
@@ -891,10 +928,12 @@ public interface ConfigurationSection {
     public Color getColor(String path, Color def);
 
     /**
-     * 检查指定路径是否是Color. 
+     * 检查指定路径是否是 {@link Color}. 
      * <p>
-     * 如果路径存在, 但不是Color, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 {@link Color}, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a Color. 
@@ -903,32 +942,35 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a Color and return appropriately. 
      *
-     * @param path 检查指定路径是否是Color. 
-     * @return 指定路径是否是Color. 
+     * @param path 检查指定路径是否是 {@link Color}. 
+     * @return 指定路径是否是 {@link Color}. 
      */
     public boolean isColor(String path);
 
     /**
-     * 在指定路径获取一个ConfigurationSection类型的值. 
+     * 在指定路径获取一个 {@link ConfigurationSection} 类型的值. 
      * <p>
-     * 如果这个ConfigurationSection不存在, 但已指定一个缺省值, 这将返回缺省值. ConfigurationSection. 
-     * 如果这个ConfigurationSection不存在, 并且没有指定缺省值, 则返回null. 
+     * 如果这个 {@link ConfigurationSection} 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 {@link ConfigurationSection} 不存在, 并且没有指定缺省值, 则返回 null. 
      * <p>原文: 
      * Gets the requested ConfigurationSection by path. 
      * <p>
      * If the ConfigurationSection does not exist but a default value has been specified, this will return the default value. 
      * If the ConfigurationSection does not exist and no default value was specified, this will return null. 
      *
-     * @param path 获取ConfigurationSection的路径. 
-     * @return 返回一个ConfigurationSection. 
+     * @param path 获取 {@link ConfigurationSection} 的路径. 
+     * @return 返回一个 {@link ConfigurationSection}. 
      */
     public ConfigurationSection getConfigurationSection(String path);
 
     /**
-     * 检查指定路径是否是ConfigurationSection. 
+     * 检查指定路径是否是 {@link ConfigurationSection}. 
      * <p>
-     * 如果路径存在, 但不是ConfigurationSection, 则返回false. 
-     * 如果路径不存在, 则返回false. 
+     * 如果路径存在, 但不是 {@link ConfigurationSection}, 则返回 false. 
+     * <p>
+     * 如果路径不存在, 则返回 false. 
+     * <p>
      * 如果路径不存在, 但在缺省列表中存在该路径, 则在缺省列表中重复匹配该规则, 直到返回一个适当的值. 
      * <p>原文: 
      * Checks if the specified path is a ConfigurationSection. 
@@ -937,8 +979,8 @@ public interface ConfigurationSection {
      * If the path does not exist, this will return false. 
      * If the path does not exist but a default value has been specified, this will check if that default value is a ConfigurationSection and return appropriately. 
      *
-     * @param path 检查指定路径是否是ConfigurationSection. 
-     * @return 指定路径是否是ConfigurationSection. 
+     * @param path 检查指定路径是否是 {@link ConfigurationSection}. 
+     * @return 指定路径是否是 {@link ConfigurationSection}. 
      */
     public boolean isConfigurationSection(String path);
 
@@ -954,11 +996,11 @@ public interface ConfigurationSection {
     /**
      * 给指定路径添加一个缺省值. 
      * <p>
-     * 如果缺省值{@link Configuration}没有被提供, 则自动创建一个新的. 
+     * 如果缺省值 {@link Configuration} 没有被提供, 则自动创建一个新的. 
      * <p>
-     * 如果值为null, 表示从缺省值{@link Configuration}中删除这个路径上的默认值
+     * 如果值为 null, 表示从缺省值 {@link Configuration} 中删除这个路径上的默认值
      * <p>
-     * 如果{@link #getDefaultSection()}返回的值为null, 则建立一个新的
+     * 如果 {@link #getDefaultSection()} 返回的值为 null, 则建立一个新的
      * <p>原文: 
      * Sets the default value in the root at the given path as provided. 
      * <p>
@@ -970,7 +1012,7 @@ public interface ConfigurationSection {
      *
      * @param path 要设置缺省值的路径. 
      * @param value 要设置的值. 
-     * @throws IllegalArgumentException 当路径为null时抛出此异常. 
+     * @throws IllegalArgumentException 当路径为 null 时抛出此异常. 
      */
     public void addDefault(String path, Object value);
 }
