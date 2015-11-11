@@ -7,11 +7,7 @@ import org.apache.commons.lang.Validate;
 import com.google.common.collect.Maps;
 
 /**
- * 原文：Represents the art on a painting
- * <p>
- * 翻译：....代表绘画艺术？
- * <p>
- * 译注：就是跟画有关的...
+ * 代表壁画.
  */
 public enum Art {
     KEBAB(0, 1, 1),
@@ -52,29 +48,29 @@ public enum Art {
     }
 
     /**
-     * 得到这幅画的宽度。单位：块
+     * 得到这幅画的宽度,单位：块
      * <p>
      * 原文：Gets the width of the painting, in blocks
      *
-     * @return 这幅画的宽度，以块为单位。
+     * @return 这幅画的宽度，以块为单位.
      */
     public int getBlockWidth() {
         return width;
     }
 
     /**
-     * 得到这幅画的高度。单位：块
+     * 得到这幅画的高度,单位：块
      * <p>
      * 原文：Gets the height of the painting, in blocks
      *
-     * @return 这幅画的高度，以块为单位。
+     * @return 这幅画的高度，以块为单位.
      */
     public int getBlockHeight() {
         return height;
     }
 
     /**
-     * 得到这幅画的ID
+     * 得到这幅画的ID.
      * <p>
      * 原文：Get the ID of this painting.
      *
@@ -87,12 +83,9 @@ public enum Art {
     }
 
     /**
-     * 通过ID获得一幅画。
+     * 通过ID获得一幅画.
      * <p>
      * 原文：Get a painting by its numeric ID
-     * <p>
-     * 译注：就是说，你给一个ID，它通过这个ID返回给你对应的幅画。跟getId()正好相反。
-     * 
      * @param id 画的ID
      * @return 画
      * @deprecated Magic value
@@ -103,11 +96,11 @@ public enum Art {
     }
 
     /**
-     * 通过一幅画的唯一名字来获取这幅画。忽略大小写和下划线。
+     * 通过一幅画的唯一名称来获取这幅画,忽略大小写和下划线。
      * <p>
      * 原文：Get a painting by its unique name.This ignores underscores and capitalization.
      *
-     * @param name 画的唯一名字
+     * @param name 画的唯一名称
      * @return 画
      */
     public static Art getByName(String name) {
