@@ -290,14 +290,14 @@ public class WorldCreator {
     }
 
     /**
-     *  
+     * 设置被这个生成器创建或加载的世界是否会拥有建筑。
      * <p>
      * 原文：
      * Sets whether or not worlds created or loaded with this creator will
      * have structures.
      *
-     * @param generate Whether to generate structures
-     * @return This object, for chaining
+     * @param generate 是否生成建筑
+     * @return 用于连接的对象
      */
     public WorldCreator generateStructures(boolean generate) {
         this.generateStructures = generate;
@@ -306,15 +306,23 @@ public class WorldCreator {
     }
 
     /**
+     * 获取世界是否生成建筑。
+     * <p>
+     * 原文:
      * Gets whether or not structures will be generated in the world.
      *
-     * @return True if structures will be generated
+     * @return True 如果生成建筑则返回true
      */
     public boolean generateStructures() {
         return generateStructures;
     }
 
     /**
+     * 使用指定的设置创建一个世界。
+     * <p>
+     * 如果世界存在，它就会从磁盘被读
+     * <p>
+     * 原文：
      * Creates a world with the specified options.
      * <p>
      * If the world already exists, it will be loaded from disk and some
