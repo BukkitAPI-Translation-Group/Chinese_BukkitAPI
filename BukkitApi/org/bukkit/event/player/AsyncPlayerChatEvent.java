@@ -8,8 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * This event will sometimes fire synchronously, depending on how it was
- * triggered.
+ * 当玩家聊天时触发这个事件.
  * <p>
  * The constructor provides a boolean to indicate if the event was fired
  * synchronously or asynchronously. When asynchronous, this event can be
@@ -32,11 +31,10 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
 
     /**
      *
-     * @param async This changes the event to a synchronous state.
-     * @param who the chat sender
-     * @param message the message sent
-     * @param players the players to receive the message. This may be a lazy
-     *     or unmodifiable collection.
+     * @param async 设置该事件为同步事件
+     * @param who 触发者
+     * @param message 发送信息
+     * @param players 消息发送者
      */
     public AsyncPlayerChatEvent(final boolean async, final Player who, final String message, final Set<Player> players) {
         super(who, async);
@@ -45,7 +43,11 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the message that the player is attempting to send. This message
+    /**
+     * 获得这个玩家试图发送的信息. 这个消息
+     * 将与 {@link #getFormat()} 伴随着发送.
+     *<p>
+     * 原文:Gets the message that the player is attempting to send. This message
      * will be used with {@link #getFormat()}.
      *
      * @return Message the player is attempting to send
@@ -55,41 +57,51 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Sets the message that the player will send. This message will be used
+     * 设置这个玩家将发送的信息.这个消息
+     * 将与 {@link #getFormat()} 伴随着发送.
+     * <p>
+     * 原文:Sets the message that the player will send. This message will be used
      * with {@link #getFormat()}.
      *
-     * @param message New message that the player will send
+     * @param message 这个玩家将发送的新消息
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * Gets the format to use to display this chat message.
+     * 获取这个消息的输出格式.
+     * <p>
+     * 当这个事件被触发,这个格式的第一个部分是
+     * {@link Player#getDisplayName()} 第二个部分是 {@link#getMessage()}
+     * <p>
+     * 原文:Gets the format to use to display this chat message.
      * <p>
      * When this event finishes execution, the first format parameter is the
      * {@link Player#getDisplayName()} and the second parameter is {@link
      * #getMessage()}
      *
-     * @return {@link String#format(String, Object...)} compatible format
-     *     string
+     * @return {@link String#format(String, Object...)} 输出格式
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * Sets the format to use to display this chat message.
+     * 设置这个消息的输出格式
+     * <p>
+     * 当这个事件被触发,这个格式的第一个部分是
+     * {@link Player#getDisplayName()} 第二个部分是 {@link#getMessage()}
+     * <p>
+     * 原文:Sets the format to use to display this chat message.
      * <p>
      * When this event finishes execution, the first format parameter is the
      * {@link Player#getDisplayName()} and the second parameter is {@link
      * #getMessage()}
      *
-     * @param format {@link String#format(String, Object...)} compatible
-     *     format string
-     * @throws IllegalFormatException if the underlying API throws the
-     *     exception
-     * @throws NullPointerException if format is null
+     * @param format {@link String#format(String, Object...)} 输出格式
+     * @throws IllegalFormatException 底层API抛出错误
+     * @throws NullPointerException 如果这个格式为null
      * @see String#format(String, Object...)
      */
     public void setFormat(final String format) throws IllegalFormatException, NullPointerException {
@@ -105,7 +117,10 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets a set of recipients that this chat message will be displayed to.
+     * 获取这个消息的最终接收玩家.
+     * 
+     * <p>
+     * 原文:Gets a set of recipients that this chat message will be displayed to.
      * <p>
      * The set returned is not guaranteed to be mutable and may auto-populate
      * on access. Any listener accessing the returned set should be aware that
@@ -115,7 +130,7 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
      * UnsupportedOperationException} if the event caller provides an
      * unmodifiable set.
      *
-     * @return All Players who will see this chat message
+     * @return 所有会看到这个消息的玩家
      */
     public Set<Player> getRecipients() {
         return recipients;
