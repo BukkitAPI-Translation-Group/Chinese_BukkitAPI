@@ -119,7 +119,7 @@ public class WorldCreator {
     }
 
     /**
-     * 获取用于创建或加载世界的环境(不确定的翻译)
+     * 获取用于创建或加载世界的环境
      * <p>
      * 原文：
      * Gets the environment that will be used to create or load the world
@@ -320,7 +320,7 @@ public class WorldCreator {
     /**
      * 使用指定的设置创建一个世界。
      * <p>
-     * 如果世界存在，它就会从磁盘被读
+     * 如果世界存在，它就会从磁盘被加载，一些设置可能被忽略。
      * <p>
      * 原文：
      * Creates a world with the specified options.
@@ -328,23 +328,33 @@ public class WorldCreator {
      * If the world already exists, it will be loaded from disk and some
      * options may be ignored.
      *
-     * @return Newly created or loaded world
+     * @return 最近创建或加载的世界
      */
     public World createWorld() {
         return Bukkit.createWorld(this);
     }
 
     /**
+     * 为指定的世界名创建一个新的{@link WorldCreator}
+     * <p>
+     * 原文：
      * Creates a new {@link WorldCreator} for the given world name
      *
-     * @param name Name of the world to load or create
-     * @return Resulting WorldCreator
+     * @param name 加载或创建的世界名
+     * @return 创建的世界生成器
      */
     public static WorldCreator name(String name) {
         return new WorldCreator(name);
     }
 
     /**
+     * 试图使用指定的名称获取{@link ChunkGenerator}。
+     * <p>
+     * 如果生成器找不到，则会返回null并会向指定的{@link CommandSender}输出一条信息来解释原因。
+     * <p>
+     * 名称的形式必须为"plugin:id"，随意点则为"plugin"，
+     * <p>
+     * 原文：
      * Attempts to get the {@link ChunkGenerator} with the given name.
      * <p>
      * If the generator is not found, null will be returned and a message will
