@@ -352,7 +352,7 @@ public class WorldCreator {
      * <p>
      * 如果生成器找不到，则会返回null并会向指定的{@link CommandSender}输出一条信息来解释原因。
      * <p>
-     * 名称的形式必须为"plugin:id"，随意点则为"plugin"，
+     * 名称的形式必须为"plugin:id"或"plugin"形式，请求的插件的"plugin"为一个插件的安全名称并且"id"是生成器的可选的唯一的标识符。
      * <p>
      * 原文：
      * Attempts to get the {@link ChunkGenerator} with the given name.
