@@ -365,10 +365,10 @@ public class WorldCreator {
      * optional unique identifier for the generator you wish to request from
      * the plugin.
      *
-     * @param world Name of the world this will be used for
-     * @param name Name of the generator to retrieve
-     * @param output Where to output if errors are present
-     * @return Resulting generator, or null
+     * @param world 将被使用的世界名
+     * @param name 检索的生成器的名字
+     * @param output 错误发生时的输出处
+     * @return 若存在则返回获取的生成器，否则返回null
      */
     public static ChunkGenerator getGeneratorForName(String world, String name, CommandSender output) {
         ChunkGenerator result = null;
