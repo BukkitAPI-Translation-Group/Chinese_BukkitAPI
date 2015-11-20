@@ -226,7 +226,7 @@ public final class MapCursor {
          * @deprecated 不安全的参数
          */
         @Deprecated
-        public static Type byValue(byte value) {
+        public static Type byValue(byte value) { 
             for (Type t : values()) {
                 if (t.value == value) return t;
             }
