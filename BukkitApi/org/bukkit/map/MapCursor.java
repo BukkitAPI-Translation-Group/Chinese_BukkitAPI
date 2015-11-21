@@ -165,7 +165,7 @@ public final class MapCursor {
      * Set the type of this cursor.
      *
      * @param type 地图光标的类型（颜色、风格）。
-     * @deprecated 不安全的参数。
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public void setRawType(byte type) {
@@ -222,11 +222,11 @@ public final class MapCursor {
         /**
          *
          * @param value 数值
-         * @return the matching type
+         * @return 匹配类型
          * @deprecated 不安全的参数
          */
         @Deprecated
-        public static Type byValue(byte value) { 
+        public static Type byValue(byte value) {
             for (Type t : values()) {
                 if (t.value == value) return t;
             }
