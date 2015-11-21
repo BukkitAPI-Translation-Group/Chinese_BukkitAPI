@@ -165,7 +165,7 @@ public final class MapCursor {
      * Set the type of this cursor.
      *
      * @param type 地图光标的类型（颜色、风格）。
-     * @deprecated 不安全的参数
+     * @deprecated 不安全的参数。
      */
     @Deprecated
     public void setRawType(byte type) {
