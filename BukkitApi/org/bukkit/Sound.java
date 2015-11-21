@@ -40,11 +40,11 @@ public enum Sound {
      */
     BURP,
     /**
-     * 胸腔闭
+     * 箱子关闭
      */
     CHEST_CLOSE,
     /**
-     * 胸部开放
+     * 箱子打开
      */
     CHEST_OPEN,
     /**
@@ -60,11 +60,11 @@ public enum Sound {
      */
     DOOR_OPEN,
     /**
-     * 喝
+     * 喝东西的声音
      */
     DRINK,
     /**
-     * 吃
+     * 吃东西的声音
      */
     EAT,
     /**
@@ -72,11 +72,11 @@ public enum Sound {
      */
     EXPLODE,
     /**
-     * 秋天大
+     * 大的摔落声音
      */
     FALL_BIG,
     /**
-     * 落小
+     * 小的摔落声音
      */
     FALL_SMALL,
     /**
@@ -84,11 +84,11 @@ public enum Sound {
      */
     FIRE,
     /**
-     * 点燃
+     * 点火
      */
     FIRE_IGNITE,
     /**
-     * 菲士
+     * 嘶嘶声
      */
     FIZZ,
     /**
