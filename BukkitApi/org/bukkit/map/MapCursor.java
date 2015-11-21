@@ -222,7 +222,7 @@ public final class MapCursor {
         /**
          *
          * @param value 数值
-         * @return the matching type
+         * @return 匹配类型
          * @deprecated 不安全的参数
          */
         @Deprecated
