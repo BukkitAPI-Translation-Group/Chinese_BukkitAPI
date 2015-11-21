@@ -48,7 +48,7 @@ public enum Sound {
      */
     CHEST_OPEN,
     /**
-     * 点击
+     * 发射器发射物品
      */
     CLICK,
     /**
@@ -100,11 +100,11 @@ public enum Sound {
      */
     GLASS,
     /**
-     * 伤肉
+     * 受伤
      */
     HURT_FLESH,
     /**
-     * 项目中断
+     * 耐久耗尽
      */
     ITEM_BREAK,
     /**
@@ -116,15 +116,15 @@ public enum Sound {
      */
     LAVA,
     /**
-     * 熔岩流行
+     * 熔岩流动
      */
     LAVA_POP,
     /**
-     * 水平上升
+     * 等级提升
      */
     LEVEL_UP,
     /**
-     * 矿车基地
+     * 矿车行走
      */
     MINECART_BASE,
     /**
@@ -172,7 +172,7 @@ public enum Sound {
      */
     PISTON_RETRACT,
     /**
-     * 门户
+     * 传送门
      */
     PORTAL,
     /**
@@ -180,23 +180,23 @@ public enum Sound {
      */
     PORTAL_TRAVEL,
     /**
-     * 门触发器
+     * 传送门传送
      */
     PORTAL_TRIGGER,
     /**
-     * 射击箭头
+     * 射箭
      */
     SHOOT_ARROW,
     /**
-     * 飞溅
+     * 跳入水中(重)
      */
     SPLASH,
     /**
-     * SPLASH2
+     * 跳入水中(轻)
      */
     SPLASH2,
     /**
-     * 步草
+     * 在草上行走
      */
     STEP_GRASS,
     /**
@@ -253,7 +253,7 @@ public enum Sound {
      */
     BAT_IDLE,
     /**
-     * 蝙蝠回路
+     * 蝙蝠飞行
      */
     BAT_LOOP,
     /**
@@ -261,15 +261,15 @@ public enum Sound {
      */
     BAT_TAKEOFF,
     /**
-     * 火焰呼吸
+     * 火焰怪呼吸
      */
     BLAZE_BREATH,
     /**
-     * 火焰死亡
+     * 火焰怪死亡
      */
     BLAZE_DEATH,
     /**
-     * 火焰击中
+     * 火焰怪击中
      */
     BLAZE_HIT,
     /**
@@ -277,7 +277,7 @@ public enum Sound {
      */
     CAT_HISS,
     /**
-     * 猫撞
+     * 猫击中
      */
     CAT_HIT,
     /**
@@ -321,11 +321,11 @@ public enum Sound {
      */
     COW_WALK,
     /**
-     * 爬山虎的嘶嘶声
+     * 苦力怕的嘶嘶声
      */
     CREEPER_HISS,
     /**
-     * 爬山虎的死亡
+     * 苦力怕的死亡
      */
     CREEPER_DEATH,
     /**
@@ -369,27 +369,27 @@ public enum Sound {
      */
     ENDERMAN_STARE,
     /**
-     * 可怕的尖叫
+     * 恶魂的尖叫
      */
     GHAST_SCREAM,
     /**
-     * scream2枯萎
+     * 恶魂的枯萎
      */
     GHAST_SCREAM2,
     /**
-     * 可怕的电荷
+     * 恶魂的电荷
      */
     GHAST_CHARGE,
     /**
-     * 可怕的死亡
+     * 恶魂的死亡
      */
     GHAST_DEATH,
     /**
-     * 可怕的火球
+     * 恶魂的火球
      */
     GHAST_FIREBALL,
     /**
-     * 可怕的呻吟
+     * 恶魂的呻吟
      */
     GHAST_MOAN,
     /**
@@ -445,47 +445,47 @@ public enum Sound {
      */
     SHEEP_WALK,
     /**
-     * 银鱼打
+     * 蠹虫打
      */
     SILVERFISH_HIT,
     /**
-     * 银鱼杀
+     * 蠹虫杀
      */
     SILVERFISH_KILL,
     /**
-     * 银鱼闲置
+     * 蠹虫闲置
      */
     SILVERFISH_IDLE,
     /**
-     * 银鱼走
+     * 蠹虫走
      */
     SILVERFISH_WALK,
     /**
-     * 骨架空闲
+     * 骷髅空闲
      */
     SKELETON_IDLE,
     /**
-     * 骨骼死亡
+     * 骷髅死亡
      */
     SKELETON_DEATH,
     /**
-     * 骨骼受伤
+     * 骷髅受伤
      */
     SKELETON_HURT,
     /**
-     * 骨骼行走
+     * 骷髅行走
      */
     SKELETON_WALK,
     /**
-     * 粘液攻击
+     * 史莱姆攻击
      */
     SLIME_ATTACK,
     /**
-     * 粘液走
+     * 史莱姆走
      */
     SLIME_WALK,
     /**
-     * 煤泥walk2
+     * 史莱姆走2
      */
     SLIME_WALK2,
     /**
@@ -501,31 +501,31 @@ public enum Sound {
      */
     SPIDER_WALK,
     /**
-     * 枯萎死亡
+     * 凋零死亡
      */
     WITHER_DEATH,
     /**
-     * 枯萎伤害
+     * 凋零伤害
      */
     WITHER_HURT,
     /**
-     * 闲置
+     * 凋零闲置
      */
     WITHER_IDLE,
     /**
-     * 枯萎射击
+     * 凋零射击
      */
     WITHER_SHOOT,
     /**
-     * 枯萎产卵
+     * 凋零出生
      */
     WITHER_SPAWN,
     /**
-     * 狼皮
+     * 狗返回
      */
     WOLF_BARK,
     /**
-     * 狼性死亡
+     * 狼死亡
      */
     WOLF_DEATH,
     /**
@@ -557,15 +557,15 @@ public enum Sound {
      */
     WOLF_WHINE,
     /**
-     * 僵尸金属
+     * 僵尸击打金属
      */
     ZOMBIE_METAL,
     /**
-     * 僵尸木
+     * 僵尸击打木
      */
     ZOMBIE_WOOD,
     /**
-     * 僵尸woodbreak
+     * 僵尸击打木碎
      */
     ZOMBIE_WOODBREAK,
     /**
@@ -585,7 +585,7 @@ public enum Sound {
      */
     ZOMBIE_INFECT,
     /**
-     * 僵尸unfect
+     * 僵尸接触感染
      */
     ZOMBIE_UNFECT,
     /**
@@ -597,24 +597,24 @@ public enum Sound {
      */
     ZOMBIE_WALK,
     /**
-     * 僵尸猪闲
+     * 猪人闲
      */
     ZOMBIE_PIG_IDLE,
     /**
-     * 僵尸猪生气
+     * 猪人生气
      */
     ZOMBIE_PIG_ANGRY,
     /**
-     * 僵尸猪死亡
+     * 猪人死亡
      */
     ZOMBIE_PIG_DEATH,
     /**
-     * 僵尸猪伤害
+     * 猪人伤害
      */
     ZOMBIE_PIG_HURT,
     // Dig Sounds
     /**
-     * 挖毛
+     * 挖羊毛
      */
     DIG_WOOL,
     /**
@@ -664,7 +664,7 @@ public enum Sound {
      */
     FIREWORK_TWINKLE,
     /**
-     * 烟花twinkle2
+     * 烟火闪烁2
      */
     FIREWORK_TWINKLE2,
     /**
@@ -672,7 +672,7 @@ public enum Sound {
      */
     FIREWORK_LAUNCH,
     /**
-     * 成功命中
+     * 叮的一声,不知道是打啥
      */
     SUCCESSFUL_HIT,
     // Horses
@@ -741,11 +741,11 @@ public enum Sound {
      */
     DONKEY_IDLE,
     /**
-     * 马骨骼死亡
+     * 骷髅马死亡
      */
     HORSE_SKELETON_DEATH,
     /**
-     * 马骨骼撞击
+     * 骷髅马撞击
      */
     HORSE_SKELETON_HIT,
     /**
