@@ -844,7 +844,7 @@ public interface ConfigurationSection {
     public boolean isOfflinePlayer(String path);
 
     /**
-     * 在指定路径获取一个ItemStack类型的值. 
+     * 在指定路径获取一个 {@link ItemStack} 类型的值. 
      * <p>
      * 如果这个 {@link ItemStack} 不存在, 但已指定一个缺省值, 这将返回缺省值.
      * <p>
