@@ -1,5 +1,4 @@
 /**
- * More generalized classes in the API.
+ * 普通的API类.
  */
 package org.bukkit;
-
