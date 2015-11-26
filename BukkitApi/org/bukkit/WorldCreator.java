@@ -119,7 +119,7 @@ public class WorldCreator {
     }
 
     /**
-     * 获取用于创建或加载世界的环境(不确定的翻译)
+     * 获取用于创建或加载世界的环境
      * <p>
      * 原文：
      * Gets the environment that will be used to create or load the world
@@ -290,14 +290,14 @@ public class WorldCreator {
     }
 
     /**
-     *  
+     * 设置被这个生成器创建或加载的世界是否会拥有建筑。
      * <p>
      * 原文：
      * Sets whether or not worlds created or loaded with this creator will
      * have structures.
      *
-     * @param generate Whether to generate structures
-     * @return This object, for chaining
+     * @param generate 是否生成建筑
+     * @return 用于连接的对象
      */
     public WorldCreator generateStructures(boolean generate) {
         this.generateStructures = generate;
@@ -306,37 +306,55 @@ public class WorldCreator {
     }
 
     /**
+     * 获取世界是否生成建筑。
+     * <p>
+     * 原文:
      * Gets whether or not structures will be generated in the world.
      *
-     * @return True if structures will be generated
+     * @return True 如果生成建筑则返回true
      */
     public boolean generateStructures() {
         return generateStructures;
     }
 
     /**
+     * 使用指定的设置创建一个世界。
+     * <p>
+     * 如果世界存在，它就会从磁盘被加载，一些设置可能被忽略。
+     * <p>
+     * 原文：
      * Creates a world with the specified options.
      * <p>
      * If the world already exists, it will be loaded from disk and some
      * options may be ignored.
      *
-     * @return Newly created or loaded world
+     * @return 最近创建或加载的世界
      */
     public World createWorld() {
         return Bukkit.createWorld(this);
     }
 
     /**
+     * 为指定的世界名创建一个新的{@link WorldCreator}
+     * <p>
+     * 原文：
      * Creates a new {@link WorldCreator} for the given world name
      *
-     * @param name Name of the world to load or create
-     * @return Resulting WorldCreator
+     * @param name 加载或创建的世界名
+     * @return 创建的世界生成器
      */
     public static WorldCreator name(String name) {
         return new WorldCreator(name);
     }
 
     /**
+     * 试图使用指定的名称获取{@link ChunkGenerator}。
+     * <p>
+     * 如果生成器找不到，则会返回null并会向指定的{@link CommandSender}输出一条信息来解释原因。
+     * <p>
+     * 名称的形式必须为"plugin:id"或"plugin"形式，请求的插件的"plugin"为一个插件的安全名称并且"id"是生成器的可选的唯一的标识符。
+     * <p>
+     * 原文：
      * Attempts to get the {@link ChunkGenerator} with the given name.
      * <p>
      * If the generator is not found, null will be returned and a message will
@@ -347,10 +365,10 @@ public class WorldCreator {
      * optional unique identifier for the generator you wish to request from
      * the plugin.
      *
-     * @param world Name of the world this will be used for
-     * @param name Name of the generator to retrieve
-     * @param output Where to output if errors are present
-     * @return Resulting generator, or null
+     * @param world 将被使用的世界名
+     * @param name 检索的生成器的名字
+     * @param output 错误发生时的输出处
+     * @return 若存在则返回获取的生成器，否则返回null
      */
     public static ChunkGenerator getGeneratorForName(String world, String name, CommandSender output) {
         ChunkGenerator result = null;
