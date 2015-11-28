@@ -33,7 +33,7 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @param async 设置该事件为同步事件
      * @param who 触发者
-     * @param message 发送信息
+     * @param message 发送的信息
      * @param players 消息发送者
      */
     public AsyncPlayerChatEvent(final boolean async, final Player who, final String message, final Set<Player> players) {
@@ -44,35 +44,35 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
 
     /**
     /**
-     * 获得这个玩家试图发送的信息. 这个消息
-     * 将与 {@link #getFormat()} 伴随着发送.
+     * 获得这个玩家试图发送的信息。这个消息
+     * 将以{@link #getFormat()}的格式被获取。
      *<p>
      * 原文:Gets the message that the player is attempting to send. This message
      * will be used with {@link #getFormat()}.
      *
-     * @return Message the player is attempting to send
+     * @return 这个玩家试图发送的信息
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * 设置这个玩家将发送的信息.这个消息
-     * 将与 {@link #getFormat()} 伴随着发送.
+     * 设置这个玩家将发送的信息。这个消息
+     * 将以{@link #getFormat()}的格式被设置。
      * <p>
      * 原文:Sets the message that the player will send. This message will be used
      * with {@link #getFormat()}.
      *
-     * @param message 这个玩家将发送的新消息
+     * @param message 设置的这个玩家将发送的新消息
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * 获取这个消息的输出格式.
+     * 获取用于展示这条字符消息的格式。
      * <p>
-     * 当这个事件被触发,这个格式的第一个部分是
+     * 这个事件执行完毕后，获取的格式的第一个部分是
      * {@link Player#getDisplayName()} 第二个部分是 {@link#getMessage()}
      * <p>
      * 原文:Gets the format to use to display this chat message.
@@ -81,16 +81,16 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
      * {@link Player#getDisplayName()} and the second parameter is {@link
      * #getMessage()}
      *
-     * @return {@link String#format(String, Object...)} 输出格式
+     * @return 输出格式：{@link String#format(String, Object...)} 
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * 设置这个消息的输出格式
+     * 设置用于展示这条字符消息的格式。
      * <p>
-     * 当这个事件被触发,这个格式的第一个部分是
+     * 这个事件执行完毕后，设置的格式的第一个部分是
      * {@link Player#getDisplayName()} 第二个部分是 {@link#getMessage()}
      * <p>
      * 原文:Sets the format to use to display this chat message.
@@ -99,9 +99,9 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
      * {@link Player#getDisplayName()} and the second parameter is {@link
      * #getMessage()}
      *
-     * @param format {@link String#format(String, Object...)} 输出格式
+     * @param format 输出格式：{@link String#format(String, Object...)}
      * @throws IllegalFormatException 底层API抛出错误
-     * @throws NullPointerException 如果这个格式为null
+     * @throws NullPointerException 如果这个格式为null则抛出错误
      * @see String#format(String, Object...)
      */
     public void setFormat(final String format) throws IllegalFormatException, NullPointerException {
@@ -117,8 +117,7 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获取这个消息的最终接收玩家.
-     * 
+     * 获取一个被展示这条字符消息的收件人的集合。
      * <p>
      * 原文:Gets a set of recipients that this chat message will be displayed to.
      * <p>
