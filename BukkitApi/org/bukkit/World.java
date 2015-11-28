@@ -103,7 +103,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Block getHighestBlockAt(int x, int z);
 
     /**
-     * 得到指定位置({@link Location})
+     * 得到指定位置({@link Location})最顶上的不是空气的方块
      * 原文：Gets the highest non-empty block at the given coordinates
      * 译注：相当于getHightestBlockYAt(location),只不过那是获得方块Y坐标,而这个是获取方块对象
      *
@@ -118,38 +118,50 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param x X坐标
      * @param z Z坐标
-     * @return Chunk at the given coordinates
+     * @return 给定坐标所在的区块
      */
     public Chunk getChunkAt(int x, int z);
 
     /**
+     * 得到给定方位{@link Location}所在的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Gets the {@link Chunk} at the given {@link Location}
      *
-     * @param location Location of the chunk
-     * @return Chunk at the given location
+     * @param location 方块的方位
+     * @return 给定方位的区块
      */
     public Chunk getChunkAt(Location location);
 
     /**
+     * 得到包含给定方块{@link Block}的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Gets the {@link Chunk} that contains the given {@link Block}
      *
-     * @param block Block to get the containing chunk from
-     * @return The chunk that contains the given block
+     * @param block 用于获取包含此方块的区块的方块（很拗口是吧。。。希望有更好的翻译）
+     * @return 包含指定方块的区块
      */
     public Chunk getChunkAt(Block block);
 
     /**
+     * 检查指定区块{@link Chunk}是否已经被加载
+     * <p>
+     * 原文：
      * Checks if the specified {@link Chunk} is loaded
      *
-     * @param chunk The chunk to check
-     * @return true if the chunk is loaded, otherwise false
+     * @param chunk 需要检查的区块
+     * @return 如果区块已经被加载则返回true，否则返回false
      */
     public boolean isChunkLoaded(Chunk chunk);
 
     /**
+     * 得到一个所有被加载的区块{@link Chunk}的数组
+     * <p>
+     * 原文：
      * Gets an array of all loaded {@link Chunk}s
      *
-     * @return Chunk[] containing all loaded chunks
+     * @return 包含所有被加载区块的数组Chunk[]
      */
     public Chunk[] getLoadedChunks();
 
