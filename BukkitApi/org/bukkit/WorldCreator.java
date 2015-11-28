@@ -233,7 +233,7 @@ public class WorldCreator {
         this.generator = getGeneratorForName(name, generator, Bukkit.getConsoleSender());
 
         return this;
-    }.
+    }
 
     /**
      * 设置将用于创建或加载的生成器。
