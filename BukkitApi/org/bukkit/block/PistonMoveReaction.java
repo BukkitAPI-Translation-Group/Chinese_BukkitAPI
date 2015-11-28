@@ -6,7 +6,7 @@ import java.util.Map;
 public enum PistonMoveReaction {
 
     /**
-     * 表示方块可以推拉
+     * 表示方块可以推拉.
      */
     MOVE(0),
     /**
@@ -31,8 +31,8 @@ public enum PistonMoveReaction {
     }
 
     /**
-     * @return 此移动的反映ID
-     * @deprecated 魔法值
+     * @return 此移动的反应ID
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getId() {
@@ -40,9 +40,9 @@ public enum PistonMoveReaction {
     }
 
     /**
-     * @param id 一个ID
+     * @param id ID
      * @return 这个移动反应的ID
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static PistonMoveReaction getById(int id) {
