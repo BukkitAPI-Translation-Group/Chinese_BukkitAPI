@@ -5,11 +5,11 @@ public class AuthorNagException extends RuntimeException {
     private final String message;
 
     /**
-     * 构建一个新的 AuthorNagException 类型错误 基于所给异常.
+     * 基于所给异常来构建一个新的AuthorNagException类型错误.
      * <p>
      * 原文:Constructs a new AuthorNagException based on the given Exception
      *
-     * @param message 对该错误的简要说明
+     * @param message 该错误原因的简要信息
      */
     public AuthorNagException(final String message) {
         this.message = message;
