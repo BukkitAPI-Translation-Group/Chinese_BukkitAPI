@@ -27,8 +27,9 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * 获取攻击这个载具的实体
-	 * 原文:Gets the Entity that is attacking the vehicle
+     * 获取攻击这个载具的实体.
+     * <p>
+     * 原文:Gets the Entity that is attacking the vehicle
      *
      * @return 攻击这个载具的实体
      */
@@ -37,8 +38,9 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * 获取载具受到的伤害
-	 * 原文:Gets the damage done to the vehicle
+     * 获取载具受到的伤害.
+     * <p>
+     * 原文:Gets the damage done to the vehicle
      *
      * @return 载具受到的伤害
      */
@@ -47,11 +49,13 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * This method exists for legacy reasons to provide backwards
+     * 这个方法存在的原因是为了向后兼容。它不会在运行时存在，并且不应该在任何情况下使用。
+     * <p>
+     * 原文：This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      * 
-     * @return the damage
+     * @return 载具受到的伤害
      */
     @Deprecated
     public int _INVALID_getDamage() {
@@ -59,8 +63,9 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * 设置载具受到的伤害
-	 * 原文:Sets the damage done to the vehicle
+     * 设置载具受到的伤害.
+     * <p>
+     * 原文:Sets the damage done to the vehicle
      *
      * @param damage 载具受到的伤害
      */
@@ -69,11 +74,13 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * This method exists for legacy reasons to provide backwards
+     * 这个方法存在的原因是为了向后兼容。它不会在运行时存在，并且不应该在任何情况下使用。
+     * <p>
+     * 原文：This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      * 
-     * @param damage the damage
+     * @param damage 载具受到的伤害
      */
     @Deprecated
     public void _INVALID_setDamage(int damage) {

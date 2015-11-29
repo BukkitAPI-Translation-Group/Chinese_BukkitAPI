@@ -17,10 +17,11 @@ public class VehicleBlockCollisionEvent extends VehicleCollisionEvent {
     }
 
     /**
-     * 获取载具撞到的方块
-	 * 原文:Gets the block the vehicle collided with
+     * 获取载具撞到的方块.
+     * <p>
+     * 原文:Gets the block the vehicle collided with
      *
-     * @return 载具撞到的方块/the block the vehicle collided with
+     * @return 载具撞到的方块
      */
     public Block getBlock() {
         return block;

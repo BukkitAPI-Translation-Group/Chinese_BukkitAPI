@@ -19,8 +19,9 @@ public class VehicleEnterEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * 获取进入到载具中的实体
-	 * 原文:Gets the Entity that entered the vehicle.
+     * 获取进入到载具中的实体.
+     * <p>
+     * 原文:Gets the Entity that entered the vehicle.
      *
      * @return 进入到载具中的实体
      */
