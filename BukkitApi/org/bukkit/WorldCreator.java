@@ -7,9 +7,6 @@ import org.bukkit.plugin.Plugin;
 
 /**
  * 表示可能用于创建一个世界的各种类型的设置。
- * <p>
- * 原文：
- * Represents various types of options that may be used to create a world.
  */
 public class WorldCreator {
     private final String name;
@@ -38,7 +35,7 @@ public class WorldCreator {
     }
 
     /**
-     * 从指定的世界复制设置
+     * 从指定的世界复制设置。
      * <p>
      * 原文：
      * Copies the options from the specified world
@@ -59,7 +56,7 @@ public class WorldCreator {
     }
 
     /**
-     * 从指定的{@link WorldCreator}复制设置
+     * 从指定的{@link WorldCreator}复制设置。
      * <p>
      * 原文：
      * Copies the options from the specified {@link WorldCreator}
@@ -92,7 +89,7 @@ public class WorldCreator {
     }
 
     /**
-     * 获取用于创建这个世界的种子
+     * 获取用于创建这个世界的种子。
      * <p>
      * 原文：
      * Gets the seed that will be used to create this world
@@ -104,7 +101,7 @@ public class WorldCreator {
     }
 
     /**
-     * 设置用于创建这个世界的种子
+     * 设置用于创建这个世界的种子。
      * <p>
      * 原文：
      * Sets the seed that will be used to create this world
@@ -119,7 +116,7 @@ public class WorldCreator {
     }
 
     /**
-     * 获取用于创建或加载世界的环境
+     * 获取用于创建或加载世界的环境。
      * <p>
      * 原文：
      * Gets the environment that will be used to create or load the world
@@ -131,7 +128,7 @@ public class WorldCreator {
     }
 
     /**
-     * 设置用于创建或加载世界的环境
+     * 设置用于创建或加载世界的环境。
      * <p>
      * 原文：
      * Sets the environment that will be used to create or load the world
@@ -146,7 +143,7 @@ public class WorldCreator {
     }
 
     /**
-     * 获取将被创建或加载的世界的类型
+     * 获取将被创建或加载的世界的类型。
      * <p>
      * 原文：
      * Gets the type of the world that will be created or loaded
@@ -158,7 +155,7 @@ public class WorldCreator {
     }
 
     /**
-     * 设置将被创建或加载的世界的类型
+     * 设置将被创建或加载的世界的类型。
      * <p>
      * 原文：
      * Sets the type of the world that will be created or loaded
@@ -263,7 +260,7 @@ public class WorldCreator {
     }
 
     /**
-     * 设置将被用于创建或加载世界的生成器的配置
+     * 设置将被用于创建或加载世界的生成器的配置。
      * <p>
      * 原文：
      * Sets the generator settings of the world that will be created or loaded
@@ -278,7 +275,7 @@ public class WorldCreator {
     }
 
     /**
-     * 获取将被创建或加载的世界的生成器的配置
+     * 获取将被创建或加载的世界的生成器的配置。
      * <p>
      * 原文：
      * Gets the generator settings of the world that will be created or loaded
@@ -335,7 +332,7 @@ public class WorldCreator {
     }
 
     /**
-     * 为指定的世界名创建一个新的{@link WorldCreator}
+     * 为指定的世界名创建一个新的{@link WorldCreator}。
      * <p>
      * 原文：
      * Creates a new {@link WorldCreator} for the given world name
