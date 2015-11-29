@@ -166,13 +166,19 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Chunk[] getLoadedChunks();
 
     /**
+     * 加载指定的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Loads the specified {@link Chunk}
      *
-     * @param chunk The chunk to load
+     * @param chunk 待加载的区块
      */
     public void loadChunk(Chunk chunk);
 
     /**
+     * 检查在指定坐标的区块{@link Chunk}是否被加载
+     * <p>
+     * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded
      *
      * @param x X-coordinate of the chunk
