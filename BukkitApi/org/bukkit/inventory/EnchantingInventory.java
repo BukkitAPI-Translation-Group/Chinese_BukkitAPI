@@ -1,7 +1,7 @@
 package org.bukkit.inventory;
 
 /**
- * 附魔的GUI界面接口
+ * 附魔GUI界面接口
  */
 public interface EnchantingInventory extends Inventory {
 
