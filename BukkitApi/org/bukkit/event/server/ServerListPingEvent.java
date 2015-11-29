@@ -10,10 +10,6 @@ import org.bukkit.util.CachedServerIcon;
 
 /**
  * 当收到MOTD请求时被调用。显示的玩家会被检查并会在这个事件里被{@link #iterator() iterating}移出。
- * <p>
- * 原文：
- * Called when a server list ping is coming in. Displayed players can be
- * checked and removed by {@link #iterator() iterating} over this event.
  */
 public class ServerListPingEvent extends ServerEvent implements Iterable<Player> {
     private static final int MAGIC_PLAYER_COUNT = Integer.MIN_VALUE;

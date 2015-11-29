@@ -11,22 +11,15 @@ import org.bukkit.event.HandlerList;
  * <p>
  * 正确使用该事件的事例如下:
  * <ul>
- * <li>Logging executed commands to a separate file
- * <li>Variable substitution. For example, replacing <code>${ip:Steve}</code>
- *     with the connection IP of the player named Steve, or simulating the
- *     <code>@a</code> and <code>@p</code> decorators used by Command Blocks
- *     for plugins that do not handle it.
- * <li>Conditionally blocking commands belonging to other plugins.
- * <li>Per-sender command aliases. For example, after the console runs the
- *     command <code>/calias cr gamemode creative</code>, the next time they
- *     run <code>/cr</code>, it gets replaced into
- *     <code>/gamemode creative</code>. (Global command aliases should be
- *     done by registering the alias.)
+ * <li>将执行的文件记录在一个单独的文件里</li>
+ * <li>变量替换.例如，用玩家Steve的ip替换<code>${ip:Steve}</code>，或者模拟<code>@a</code>和<code>@p</code>作为装饰命令方块，插件不处理它.</li>
+ * <li>有条件地阻止其它插件的命令.</li>
+ * <li>个人发送者命令别名.例如，在控制台运行命令<code>/calias cr gamemode creative</code>后，下一次运行命令<code>/cr</code>，它将会被替换成<code>/gamemode creative</code>(全局命令别名应该通过注册的别名来完成)</li>
  * </ul>
  * <p>
  * 不正确使用该事件的事例如下:
  * <ul>
- * <li>Using this event to run command logic
+ * <li>使用该事件来运行命令逻辑</li>
  * </ul>
  * <p>
  * 如果事件被取消,处理命令将停止.
