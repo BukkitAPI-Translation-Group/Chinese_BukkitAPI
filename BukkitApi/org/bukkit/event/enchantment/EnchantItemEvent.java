@@ -37,7 +37,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取附魔这个物品的玩家
+     * 获取附魔这个物品的玩家。
      * <p>
      * 原文:
      * Gets the player enchanting the item
@@ -49,7 +49,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取附魔这个物品的方块
+     * 获取附魔这个物品的方块。
      * <p>
      * 原文:
      * Gets the block being used to enchant the item
@@ -61,7 +61,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取被附魔的物品(可自定义)
+     * 获取被附魔的物品(可自定义)。
      * <p>
      * 原文:
      * Gets the item to be enchanted (can be modified)
@@ -73,7 +73,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取花费的附魔等级
+     * 获取花费的附魔等级。
      * <p>
      * 原文:
      * Get cost in exp levels of the enchantment
@@ -85,7 +85,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 设置花费的附魔等级
+     * 设置花费的附魔等级。
      * <p>
      * 原文:
      * Set cost in exp levels of the enchantment
@@ -98,7 +98,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
 
     /**
      * 获取被加到物品中的附魔的Map (等级, 附魔种类)（若要修改请直接修改Map） . 注意: 不能被添加
-     * 到物品中的附魔会被忽略哦
+     * 到物品中的附魔会被忽略哦。
      * <p>
      * 原文:
      * Get map of enchantment (levels, keyed by type) to be added to item - 
@@ -112,7 +112,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取玩家点击的附魔的按钮
+     * 获取玩家点击的附魔的按钮。
      * <p>
      * 原文:
      * Which button was pressed to initiate the enchanting.
