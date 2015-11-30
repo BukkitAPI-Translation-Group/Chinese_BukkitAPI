@@ -181,24 +181,33 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true if the chunk is loaded, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 如果区块已经被加载则返回true，否则返回false
      */
     public boolean isChunkLoaded(int x, int z);
 
     /**
+     * 检查指定坐标的区块{@link Chunk}是否被加载且被一个或更多的玩家使用
+     * <p>
+     * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded and
      * in use by one or more players
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true if the chunk is loaded and in use by one or more players,
-     *     otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 如果区块被加载且被一个或更多的玩家使用则返回true，否则返回false
      */
     public boolean isChunkInUse(int x, int z);
 
     /**
+     * 加载指定坐标的区块{@link Chunk}
+     * <p>
+     * 如果区块不存在则会被生成。
+     * <p>
+     * 这个方法类似于当generate值为true时的{@link #loadChunk(int, int, boolean)}。
+     * <p>
+     * 原文：
      * Loads the {@link Chunk} at the specified coordinates
      * <p>
      * If the chunk does not exist, it will be generated.
@@ -206,8 +215,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * This method is analogous to {@link #loadChunk(int, int, boolean)} where
      * generate is true.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
+     * @param x 区块的x坐标
+     * @param z 区块的y坐标
      */
     public void loadChunk(int x, int z);
 
