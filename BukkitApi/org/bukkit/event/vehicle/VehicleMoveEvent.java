@@ -20,20 +20,22 @@ public class VehicleMoveEvent extends VehicleEvent {
     }
 
     /**
-     * 获取载具的上一个位置
-	 * 原文:Get the previous position.
+     * 获取载具的上一个位置.
+     * <p>
+     * 原文:Get the previous position.
      *
-     * @return Old position.
+     * @return 旧的位置
      */
     public Location getFrom() {
         return from;
     }
 
     /**
-     * 获取载具新的位置
-	 * 原文:Get the next position.
+     * 获取载具新的位置.
+     * <p>
+     * 原文:Get the next position.
      *
-     * @return New position.
+     * @return 新的位置
      */
     public Location getTo() {
         return to;

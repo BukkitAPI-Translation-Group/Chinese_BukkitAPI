@@ -17,11 +17,11 @@ public final class MapCursor {
      * 原文：
      * Initialize the map cursor.
      *
-     * @param x x坐标，范围为-128到127。
-     * @param y y坐标，范围为-128到127。
-     * @param direction 光标的朝向，范围为0到15。
-     * @param type 地图光标的类型（颜色、风格）。
-     * @param visible 光标在默认情况下是否可见。
+     * @param x x坐标，范围为-128到127
+     * @param y y坐标，范围为-128到127
+     * @param direction 光标的朝向，范围为0到15
+     * @param type 地图光标的类型（颜色、风格）
+     * @param visible 光标在默认情况下是否可见
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -39,7 +39,7 @@ public final class MapCursor {
      * 原文：
      * Get the X position of this cursor.
      *
-     * @return X坐标。
+     * @return X坐标
      */
     public byte getX() {
         return x;
@@ -51,19 +51,19 @@ public final class MapCursor {
      * 原文：
      * Get the Y position of this cursor.
      *
-     * @return Y坐标。
+     * @return Y坐标
      */
     public byte getY() {
         return y;
     }
 
     /**
-     * 获取这个光标的方向。
+     * 获取这个光标的朝向。
      * <p>
      * 原文：
      * Get the direction of this cursor.
      *
-     * @return 光标的朝向，范围为0到15。
+     * @return 光标的朝向，范围为0到15
      */
     public byte getDirection() {
         return direction;
@@ -75,7 +75,7 @@ public final class MapCursor {
      * 原文：
      * Get the type of this cursor.
      *
-     * @return 地图光标的类型（颜色、风格）。
+     * @return 地图光标的类型（颜色、风格）
      */
     public Type getType() {
         return Type.byValue(type);
@@ -87,7 +87,7 @@ public final class MapCursor {
      * 原文：
      * Get the type of this cursor.
      *
-     * @return 地图光标的类型（颜色、风格）。
+     * @return 地图光标的类型（颜色、风格）
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -101,7 +101,7 @@ public final class MapCursor {
      * 原文：
      * Get the visibility status of this cursor.
      *
-     * @return 可见则返回true，否则返回false。
+     * @return 可见则返回true，否则返回false
      */
     public boolean isVisible() {
         return visible;
@@ -113,7 +113,7 @@ public final class MapCursor {
      * 原文：
      * Set the X position of this cursor.
      *
-     * @param x X坐标。
+     * @param x X坐标
      */
     public void setX(byte x) {
         this.x = x;
@@ -125,7 +125,7 @@ public final class MapCursor {
      * 原文：
      * Set the Y position of this cursor.
      *
-     * @param y Y坐标。
+     * @param y Y坐标
      */
     public void setY(byte y) {
         this.y = y;
@@ -137,7 +137,7 @@ public final class MapCursor {
      * 原文：
      * Set the direction of this cursor.
      *
-     * @param direction 这个光标的朝向，范围为0到15。
+     * @param direction 这个光标的朝向，范围为0到15
      */
     public void setDirection(byte direction) {
         if (direction < 0 || direction > 15) {
@@ -152,7 +152,7 @@ public final class MapCursor {
      * 原文：
      * Set the type of this cursor.
      *
-     * @param type 地图光标的类型（颜色、风格）。
+     * @param type 地图光标的类型（颜色、风格）
      */
     public void setType(Type type) {
         setRawType(type.value);
@@ -164,7 +164,7 @@ public final class MapCursor {
      * 原文：
      * Set the type of this cursor.
      *
-     * @param type 地图光标的类型（颜色、风格）。
+     * @param type 地图光标的类型（颜色、风格）
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -181,7 +181,7 @@ public final class MapCursor {
      * 原文：
      * Set the visibility status of this cursor.
      *
-     * @param visible 可见则为True。
+     * @param visible 可见则为true
      */
     public void setVisible(boolean visible) {
         this.visible = visible;

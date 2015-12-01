@@ -4,8 +4,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.event.HandlerList;
 
 /**
- * 这个事件当服务器RCON收到指令时调用. <p>
- * {@link ServerCommandEvent} 查看更多信息.
+ * 这个事件当服务器RCON收到指令时调用.{@link ServerCommandEvent 了解更多}.
  */
 public class RemoteServerCommandEvent extends ServerCommandEvent {
     private static final HandlerList handlers = new HandlerList();

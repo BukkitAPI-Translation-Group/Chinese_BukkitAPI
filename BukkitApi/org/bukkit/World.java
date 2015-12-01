@@ -103,7 +103,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Block getHighestBlockAt(int x, int z);
 
     /**
-     * 得到指定位置({@link Location})
+     * 得到指定位置({@link Location})最顶上的不是空气的方块
      * 原文：Gets the highest non-empty block at the given coordinates
      * 译注：相当于getHightestBlockYAt(location),只不过那是获得方块Y坐标,而这个是获取方块对象
      *
@@ -118,69 +118,96 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param x X坐标
      * @param z Z坐标
-     * @return Chunk at the given coordinates
+     * @return 给定坐标所在的区块
      */
     public Chunk getChunkAt(int x, int z);
 
     /**
+     * 得到给定方位{@link Location}所在的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Gets the {@link Chunk} at the given {@link Location}
      *
-     * @param location Location of the chunk
-     * @return Chunk at the given location
+     * @param location 方块的方位
+     * @return 给定方位的区块
      */
     public Chunk getChunkAt(Location location);
 
     /**
+     * 得到包含给定方块{@link Block}的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Gets the {@link Chunk} that contains the given {@link Block}
      *
-     * @param block Block to get the containing chunk from
-     * @return The chunk that contains the given block
+     * @param block 用于获取包含此方块的区块的方块（很拗口是吧。。。希望有更好的翻译）
+     * @return 包含指定方块的区块
      */
     public Chunk getChunkAt(Block block);
 
     /**
+     * 检查指定区块{@link Chunk}是否已经被加载
+     * <p>
+     * 原文：
      * Checks if the specified {@link Chunk} is loaded
      *
-     * @param chunk The chunk to check
-     * @return true if the chunk is loaded, otherwise false
+     * @param chunk 需要检查的区块
+     * @return 如果区块已经被加载则返回true，否则返回false
      */
     public boolean isChunkLoaded(Chunk chunk);
 
     /**
+     * 得到一个所有被加载的区块{@link Chunk}的数组
+     * <p>
+     * 原文：
      * Gets an array of all loaded {@link Chunk}s
      *
-     * @return Chunk[] containing all loaded chunks
+     * @return 包含所有被加载区块的数组Chunk[]
      */
     public Chunk[] getLoadedChunks();
 
     /**
+     * 加载指定的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Loads the specified {@link Chunk}
      *
-     * @param chunk The chunk to load
+     * @param chunk 待加载的区块
      */
     public void loadChunk(Chunk chunk);
 
     /**
+     * 检查在指定坐标的区块{@link Chunk}是否被加载
+     * <p>
+     * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true if the chunk is loaded, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 如果区块已经被加载则返回true，否则返回false
      */
     public boolean isChunkLoaded(int x, int z);
 
     /**
+     * 检查指定坐标的区块{@link Chunk}是否被加载且被一个或更多的玩家使用
+     * <p>
+     * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded and
      * in use by one or more players
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true if the chunk is loaded and in use by one or more players,
-     *     otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 如果区块被加载且被一个或更多的玩家使用则返回true，否则返回false
      */
     public boolean isChunkInUse(int x, int z);
 
     /**
+     * 加载指定坐标的区块{@link Chunk}
+     * <p>
+     * 如果区块不存在则会被生成。
+     * <p>
+     * 这个方法类似于当generate值为true时的{@link #loadChunk(int, int, boolean)}。
+     * <p>
+     * 原文：
      * Loads the {@link Chunk} at the specified coordinates
      * <p>
      * If the chunk does not exist, it will be generated.
@@ -188,23 +215,30 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * This method is analogous to {@link #loadChunk(int, int, boolean)} where
      * generate is true.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
      */
     public void loadChunk(int x, int z);
 
     /**
+     * 加载指定坐标的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Loads the {@link Chunk} at the specified coordinates
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param generate Whether or not to generate a chunk if it doesn't
-     *     already exist
-     * @return true if the chunk has loaded successfully, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @param generate 如果区块不存在是否生成
+     * @return 如果区块被成功加载则返回true，否则返回false
      */
     public boolean loadChunk(int x, int z, boolean generate);
 
     /**
+     * 安全的卸载并保存指定坐标的区块{@link Chunk}
+     * <p>
+     * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
+     * <p>
+     * 原文：
      * Safely unloads and saves the {@link Chunk} at the specified coordinates
      * <p>
      * This method is analogous to {@link #unloadChunk(int, int, boolean,

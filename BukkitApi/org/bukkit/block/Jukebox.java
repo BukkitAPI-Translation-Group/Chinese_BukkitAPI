@@ -12,7 +12,7 @@ public interface Jukebox extends BlockState {
      * 原文:
      * Get the record currently playing
      *
-     * @return 这个唱片物品,如果返回AIR就表示唱片及没有在播放
+     * @return 这个唱片物品,如果返回AIR就表示没有在播放
      */
     public Material getPlaying();
 
@@ -32,7 +32,7 @@ public interface Jukebox extends BlockState {
      * 原文:
      * Check if the jukebox is currently playing a record
      *
-     * @return 返回true就表示唱片及正在播放
+     * @return 返回true就表示唱片正在播放
      */
     public boolean isPlaying();
 

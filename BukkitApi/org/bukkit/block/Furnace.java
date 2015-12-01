@@ -28,22 +28,22 @@ public interface Furnace extends BlockState, ContainerBlock {
     public void setBurnTime(short burnTime);
 
     /**
-     * 获取烧炼时间.
+     * 获取烹饪时间.
      * <p>
      * 原文:
      * Get cook time.
      *
-     * @return 烧炼时间
+     * @return 烹饪时间
      */
     public short getCookTime();
 
     /**
-     * 设置烧炼时间.
+     * 设置烹饪时间.
      * <p>
      * 原文:
      * Set cook time.
      *
-     * @param cookTime 烧炼时间
+     * @param cookTime 烹饪时间
      */
     public void setCookTime(short cookTime);
 

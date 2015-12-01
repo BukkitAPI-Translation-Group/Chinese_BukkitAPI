@@ -13,7 +13,9 @@ public abstract class PluginEvent extends ServerEvent {
     }
 
     /**
-     * 得到启用/禁用的插件. <p>
+     * 得到启用/禁用的插件.
+     * <p>
+     * 原文： Gets the plugin involved in this event
      *
      * @return 激活这个事件的插件
      */

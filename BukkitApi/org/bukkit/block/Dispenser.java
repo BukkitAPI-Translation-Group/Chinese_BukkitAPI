@@ -22,7 +22,7 @@ public interface Dispenser extends BlockState, ContainerBlock {
     public BlockProjectileSource getBlockProjectileSource();
 
     /**
-     * 尝试发射这个方块的内容
+     * 尝试发射这个方块的物品.
      * <p>
      * 如果这个方块不是发射器,将返回null.
      * <p>

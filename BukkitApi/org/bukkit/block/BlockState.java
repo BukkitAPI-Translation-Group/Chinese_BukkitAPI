@@ -117,7 +117,7 @@ public interface BlockState extends Metadatable {
      * 原文:
      * Gets the location of this block
      *
-     * @return 位置
+     * @return 位置实例
      */
     Location getLocation();
 
@@ -143,12 +143,12 @@ public interface BlockState extends Metadatable {
     Chunk getChunk();
 
     /**
-     * 设置这个方块的元数据.
+     * 设置这个方块的属性.
      * <p>
      * 原文:
      * Sets the metadata for this block
      *
-     * @param data 新的方块的具体元数据
+     * @param data 新的方块的具体属性
      */
     void setData(MaterialData data);
 
@@ -158,7 +158,7 @@ public interface BlockState extends Metadatable {
      * 原文:
      * Sets the type of this block
      *
-     * @param type Material类型来更改方块类型
+     * @param type 更改方块的Material类型
      */
     void setType(Material type);
 
@@ -169,8 +169,8 @@ public interface BlockState extends Metadatable {
      * Sets the type-id of this block
      *
      * @param type 要让此方块改变的类型id
-     * @return 这个是否有用呢?
-     * @deprecated 魔法值
+     * @return 这个是否有用呢?（译注：不懂外国佬在说什么，你试试就知道了）
+     * @deprecated 不安全的参数
      */
     @Deprecated
     boolean setTypeId(int type);
@@ -184,7 +184,7 @@ public interface BlockState extends Metadatable {
      * type as it was when this state was taken. It will return false in this
      * eventuality.
      *
-     * @return true if the update was successful, otherwise false
+     * @return 成功更新为true，否则为false
      * @see #update(boolean)
      */
     boolean update();
@@ -197,7 +197,7 @@ public interface BlockState extends Metadatable {
      * say, this will trigger a physics update to surrounding blocks.
      *
      * @param force true to forcefully set the state
-     * @return true if the update was successful, otherwise false
+     * @return 成功更新为true，否则为false
      */
     boolean update(boolean force);
 
@@ -218,20 +218,20 @@ public interface BlockState extends Metadatable {
      * @param force true to forcefully set the state
      * @param applyPhysics false to cancel updating physics on surrounding
      *     blocks
-     * @return true if the update was successful, otherwise false
+     * @return 成功更新为true，否则为false
      */
     boolean update(boolean force, boolean applyPhysics);
 
     /**
      * @return 将数据作为原始字节
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte getRawData();
 
     /**
      * @param data 方块的新的数据值
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public void setRawData(byte data);

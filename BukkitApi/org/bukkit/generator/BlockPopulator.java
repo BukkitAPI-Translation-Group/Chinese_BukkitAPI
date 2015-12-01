@@ -5,15 +5,9 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 
 /**
- * 方块填充器用于生成一定小区域的方块。
+ * 用于生成一定小区域的方块的方块填充器。
  * <p>
  * 例如，在地狱中或生成的填满宝藏的地牢中生成萤石。
- * <p>
- * 原文：
- * A block populator is responsible for generating a small area of blocks.
- * <p>
- * For example, generating glowstone inside the nether or generating dungeons
- * full of treasure
  */
 public abstract class BlockPopulator {
 

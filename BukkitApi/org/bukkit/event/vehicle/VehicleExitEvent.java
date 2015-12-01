@@ -19,10 +19,11 @@ public class VehicleExitEvent extends VehicleEvent implements Cancellable {
     }
 
     /**
-     * 获取退出载具事件的实体
-	 * 原文:Get the living entity that exited the vehicle.
+     * 获取退出载具事件的实体.
+     * <p>
+     * 原文:Get the living entity that exited the vehicle.
      *
-     * @return The entity.
+     * @return 退出载具的实体
      */
     public LivingEntity getExited() {
         return exited;

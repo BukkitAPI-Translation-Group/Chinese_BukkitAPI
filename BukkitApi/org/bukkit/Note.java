@@ -7,18 +7,12 @@ import org.apache.commons.lang.Validate;
 import com.google.common.collect.Maps;
 
 /**
- * 一个note类用于储存一个指定的音符。
- * <p>
- * 原文：
- * A note class to store a specific note.
+ * 用于储存一个指定的音符。
  */
 public class Note {
 
     /**
-     * 一个包含音调的枚举型。
-     * <p>
-     * 原文：
-     * An enum holding tones.
+     * 一个包含音调的枚举。
      */
     public enum Tone {
         G(0x1, true),
@@ -33,7 +27,7 @@ public class Note {
         private final byte id;
 
         private static final Map<Byte, Note.Tone> BY_DATA = Maps.newHashMap();
-        /**音调的数字包含升高的音调。 原文：The number of tones including sharped tones. */
+        /** 音调的数量。 原文：The number of tones including sharped tones. */
         public static final byte TONES_COUNT = 12;
 
         private Tone(int id, boolean sharpable) {
@@ -47,7 +41,7 @@ public class Note {
          * 原文：
          * Returns the not sharped id of this tone.
          *
-         * @return 这个音调未升高的ID。
+         * @return 这个音调未升高的ID
          * @deprecated 不安全的参数
          */
         @Deprecated
@@ -64,7 +58,7 @@ public class Note {
          * return the not sharped id of this tone.
          *
          * @param sharped 设为true则返回升高的ID
-         * @return 这个音调的ID。
+         * @return 这个音调的ID
          * @deprecated 不安全的参数
          */
         @Deprecated
@@ -80,7 +74,7 @@ public class Note {
          * 原文：
          * Returns if this tone could be sharped.
          *
-         * @return 音调是否能被升高。
+         * @return 音调是否能被升高
          */
         public boolean isSharpable() {
             return sharpable;
@@ -92,9 +86,9 @@ public class Note {
          * 原文：
          * Returns if this tone id is the sharped id of the tone.
          *
-         * @param id 音调ID。
-         * @return 这个音调的ID是否为升高音调的ID。
-         * @throws IllegalArgumentException 如果音调和半音都没有ID则抛出错误。
+         * @param id 音调ID
+         * @return 这个音调的ID是否为升高音调的ID
+         * @throws IllegalArgumentException 如果音调和半音都没有ID则抛出错误
          * @deprecated 不安全的参数
          */
         @Deprecated
@@ -110,13 +104,13 @@ public class Note {
         }
 
         /**
-         * 返回音调对应的ID。同时返回半音。
+         * 返回音调对应的ID，同时返回半音。
          * <p>
          * 原文：
          * Returns the tone to id. Also returning the semitones.
          *
-         * @param id 音调的ID。
-         * @return 音调对应的ID。
+         * @param id 音调的ID
+         * @return 音调对应的ID
          * @deprecated 不安全的参数
          */
         @Deprecated
@@ -140,12 +134,12 @@ public class Note {
     private final byte note;
 
     /**
-     * 创建一个新的note类。
+     * 构造一个新的note类。
      * <p>
      * 原文：
      * Creates a new note.
      *
-     * @param note 内部音符ID。{@link #getId()}会返回这个数值。这个数值必须在区间[0;&nbsp;24]中。
+     * @param note 内部音符ID。{@link #getId()}会返回这个数值。这个数值必须在区间[0;&nbsp;24]中
      */
     public Note(int note) {
         Validate.isTrue(note >= 0 && note <= 24, "The note value has to be between 0 and 24.");
@@ -154,14 +148,14 @@ public class Note {
     }
 
     /**
-     * 创建一个新的note类。
+     * 构造一个新的note类。
      * <p>
      * 原文：
      * Creates a new note.
      *
-     * @param octave 音符处于的八度音阶。必须在0-2间。
-     * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#。
-     * @param sharped 设置音调是否升高 (例如F#)。
+     * @param octave 音符处于的八度音阶。必须在0-2间
+     * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#
+     * @param sharped 设置音调是否升高 (例如F#)
      */
     public Note(int octave, Tone tone, boolean sharped) {
         if (sharped && !tone.isSharpable()) {
@@ -181,9 +175,9 @@ public class Note {
      * 原文：
      * Creates a new note for a flat tone, such as A-flat.
      *
-     * @param octave 音符处于的八度音阶。必须为0或1。
-     * @param tone 在这个八度音阶中的音调。
-     * @return 新的note类。
+     * @param octave 音符处于的八度音阶。必须为0或1
+     * @param tone 在这个八度音阶中的音调
+     * @return 新的note类对象
      */
     public static Note flat(int octave, Tone tone) {
         Validate.isTrue(octave != 2, "Octave cannot be 2 for flats");
@@ -197,9 +191,9 @@ public class Note {
      * 原文：
      * Creates a new note for a sharp tone, such as A-sharp.
      *
-     * @param octave 音符处于的八度音阶。必须在0-2间。
-     * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#。
-     * @return 新的note类。
+     * @param octave 音符处于的八度音阶。必须在0-2间
+     * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#
+     * @return 新的note类对象
      */
     public static Note sharp(int octave, Tone tone) {
         return new Note(octave, tone, true);
@@ -211,9 +205,9 @@ public class Note {
      * 原文：
      * Creates a new note for a natural tone, such as A-natural.
      *
-     * @param octave 音符处于的八度音阶。必须为0或1。
-     * @param tone 在这个八度音阶中的音调。
-     * @return 新的note类。
+     * @param octave 音符处于的八度音阶。必须为0或1
+     * @param tone 在这个八度音阶中的音调
+     * @return 新的note类对象
      */
     public static Note natural(int octave, Tone tone) {
         Validate.isTrue(octave != 2, "Octave cannot be 2 for naturals");
@@ -221,7 +215,7 @@ public class Note {
     }
 
     /**
-     * @return 在这个音符之上的半音。
+     * @return 在这个音符之上的半音
      */
     public Note sharped() {
         Validate.isTrue(note < 24, "This note cannot be sharped because it is the highest known note!");
@@ -229,7 +223,7 @@ public class Note {
     }
 
     /**
-     * @return 在这个音符之下的半音。
+     * @return 在这个音符之下的半音
      */
     public Note flattened() {
         Validate.isTrue(note > 0, "This note cannot be flattened because it is the lowest known note!");
@@ -242,7 +236,7 @@ public class Note {
      * 原文：
      * Returns the internal id of this note.
      *
-     * @return 这个音符的内部ID。
+     * @return 这个音符的内部ID
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -256,7 +250,7 @@ public class Note {
      * 原文：
      * Returns the octave of this note.
      *
-     * @return 这个音符的八度音阶。
+     * @return 这个音符的八度音阶
      */
     public int getOctave() {
         return note / Tone.TONES_COUNT;
@@ -272,7 +266,7 @@ public class Note {
      * 原文：
      * Returns the tone of this note.
      *
-     * @return 这个音符的音调。
+     * @return 这个音符的音调
      */
     public Tone getTone() {
         return Tone.getById(getToneByte());
@@ -284,7 +278,7 @@ public class Note {
      * 原文：
      * Returns if this note is sharped.
      *
-     * @return 音符是否升高。
+     * @return 音符是否升高
      */
     public boolean isSharped() {
         byte note = getToneByte();

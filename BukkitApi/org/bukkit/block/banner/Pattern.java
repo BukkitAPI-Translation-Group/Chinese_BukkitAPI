@@ -17,14 +17,14 @@ public class Pattern implements ConfigurationSerializable {
     private final PatternType pattern;
 
     /**
-     * 从指定的颜色和正则表达式类型创建一个新的正则表达式.
+     * 从指定的颜色和图案类型创建一个新的图案.
      * <p>
      * 原文:
      * Creates a new pattern from the specified color and
      * pattern type
      *
-     * @param color   正则表达式的颜色
-     * @param pattern 正则表达式的类型
+     * @param color   图案的颜色
+     * @param pattern 图案的类型
      */
     public Pattern(DyeColor color, PatternType pattern) {
         this.color = color;
@@ -61,24 +61,24 @@ public class Pattern implements ConfigurationSerializable {
     }
 
     /**
-     * 返回正则表达式的颜色.
+     * 返回图案的颜色.
      * <p>
      * 原文:
      * Returns the color of the pattern
      *
-     * @return 正则表达式的颜色.
+     * @return 图案的颜色.
      */
     public DyeColor getColor() {
         return color;
     }
 
     /**
-     * 返回正则表达式的类型.
+     * 返回图案的类型.
      * <p>
      * 原文:
      * Returns the type of pattern
      *
-     * @return 正则表达式的类型
+     * @return 图案的类型
      */
     public PatternType getPattern() {
         return pattern;
