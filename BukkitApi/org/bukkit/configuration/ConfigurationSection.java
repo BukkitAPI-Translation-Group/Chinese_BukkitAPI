@@ -9,6 +9,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.util.Vector;
 import org.bukkit.inventory.ItemStack;
 
+//未完成翻译: 魔法值@12020113
 //汉化未完成: 魔法值@11110154
 //格式整理到: 完成
 /**
@@ -95,13 +96,21 @@ public interface ConfigurationSection {
      * <p>
      * If the value for the requested path does not exist but a default value has been specified, this will still return false. 
      *
-     * @param path Path to check for existence. 
+     * @param path 检查路径.
      * @return True if this section contains the requested path, regardless of having a default. 
-     * @throws IllegalArgumentException Thrown when path is null. 
-     */
+     * @throws IllegalArgumentException 如果路径为 null 则会抛出此异常. 
+     *///魔法值@12020113
     public boolean isSet(String path);
 
     /**
+     * 从根 {@link Configuration} 中获取这个 {@link ConfigurationSection} 的路径. 
+     * <p>
+     * 如果这个 {@link ConfigurationSection} 已经是根目录, 将返回一个空字符串.
+     * <p>
+     * 如果这个 {@link ConfigurationSection} 不属于任何根目录, 将返回 null.
+     * <p>
+     * 如果要获取这个 {@link ConfigurationSection} 名字,也就是路径中的最后一节, 你应该使用 {@link #getName()} 来获取.
+     * <p>原文: 
      * Gets the path of this {@link ConfigurationSection} from its root {@link Configuration}.
      * <p>
      * For any {@link Configuration} themselves, this will return an empty string. 
@@ -110,8 +119,8 @@ public interface ConfigurationSection {
      * <p>
      * To retrieve the single name of this section, that is, the final part of the path returned by this method, you may use {@link #getName()}. 
      *
-     * @return Path of this section relative to its root
-     *///魔法值@11110154
+     * @return 这个片段相对于其根的路径.
+     */
     public String getCurrentPath();
 
     /**
@@ -120,7 +129,7 @@ public interface ConfigurationSection {
      * This will always be the final part of {@link #getCurrentPath()}, unless the section is orphaned. 
      *
      * @return Name of this section
-     */
+     *///魔法值@11110154
     public String getName();
 
     /**
