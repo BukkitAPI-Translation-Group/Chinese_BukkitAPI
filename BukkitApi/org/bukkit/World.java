@@ -216,22 +216,29 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * generate is true.
      *
      * @param x 区块的x坐标
-     * @param z 区块的y坐标
+     * @param z 区块的z坐标
      */
     public void loadChunk(int x, int z);
 
     /**
+     * 加载指定坐标的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Loads the {@link Chunk} at the specified coordinates
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param generate Whether or not to generate a chunk if it doesn't
-     *     already exist
-     * @return true if the chunk has loaded successfully, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @param generate 如果区块不存在是否生成
+     * @return 如果区块被成功加载则返回true，否则返回false
      */
     public boolean loadChunk(int x, int z, boolean generate);
 
     /**
+     * 安全的卸载并保存指定坐标的区块{@link Chunk}
+     * <p>
+     * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
+     * <p>
+     * 原文：
      * Safely unloads and saves the {@link Chunk} at the specified coordinates
      * <p>
      * This method is analogous to {@link #unloadChunk(int, int, boolean,
