@@ -244,34 +244,44 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * This method is analogous to {@link #unloadChunk(int, int, boolean,
      * boolean)} where safe and saveis true
      *
-     * @param chunk the chunk to unload
-     * @return true if the chunk has unloaded successfully, otherwise false
+     * @param chunk 卸载的区块
+     * @return 如果区块被成功卸载则返回true，否则返回false
      */
     public boolean unloadChunk(Chunk chunk);
 
     /**
+     * 安全的卸载并保存指定坐标的区块{@link Chunk}
+     * <p>
+     * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
+     * <p>
+     * 原文：
      * Safely unloads and saves the {@link Chunk} at the specified coordinates
      * <p>
      * This method is analogous to {@link #unloadChunk(int, int, boolean,
      * boolean)} where safe and saveis true
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true if the chunk has unloaded successfully, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 如果区块被成功卸载则返回true，否则返回false
      */
     public boolean unloadChunk(int x, int z);
 
     /**
+     * 安全的卸载并选择是否保存指定坐标的区块{@link Chunk}
+     * <p>
+     * 这个方法类似于当safe值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
+     * <p>
+     * 原文：
      * Safely unloads and optionally saves the {@link Chunk} at the specified
      * coordinates
      * <p>
      * This method is analogous to {@link #unloadChunk(int, int, boolean,
      * boolean)} where save is true
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param save Whether or not to save the chunk
-     * @return true if the chunk has unloaded successfully, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @param save 是否保存区块
+     * @return 如果区块被成功卸载则返回true，否则返回false
      */
     public boolean unloadChunk(int x, int z, boolean save);
 
