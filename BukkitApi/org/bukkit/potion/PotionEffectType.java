@@ -10,118 +10,166 @@ import org.apache.commons.lang.Validate;
  */
 public abstract class PotionEffectType {
     /**
+     * 增加移动速度.
+     * <p>原文:
      * Increases movement speed.
      */
     public static final PotionEffectType SPEED = new PotionEffectTypeWrapper(1);
 
     /**
+     * 降低移动速度.
+     * <p>原文:
      * Decreases movement speed.
      */
     public static final PotionEffectType SLOW = new PotionEffectTypeWrapper(2);
 
     /**
+     * 增加挖掘速度.
+     * <p>原文:
      * Increases dig speed.
      */
     public static final PotionEffectType FAST_DIGGING = new PotionEffectTypeWrapper(3);
 
     /**
+     * 降低挖掘速度.
+     * <p>原文:
      * Decreases dig speed.
      */
     public static final PotionEffectType SLOW_DIGGING = new PotionEffectTypeWrapper(4);
 
     /**
+     * 增加伤害.
+     * <p>原文:
      * Increases damage dealt.
      */
     public static final PotionEffectType INCREASE_DAMAGE = new PotionEffectTypeWrapper(5);
 
     /**
+     * 治疗一个实体.
+     * <p>原文:
      * Heals an entity.
      */
     public static final PotionEffectType HEAL = new PotionEffectTypeWrapper(6);
 
     /**
+     * 瞬间伤害.
+     * <p>原文:
      * Hurts an entity.
      */
     public static final PotionEffectType HARM = new PotionEffectTypeWrapper(7);
 
     /**
+     * 跳跃提升.
+     * <p>原文:
      * Increases jump height.
      */
     public static final PotionEffectType JUMP = new PotionEffectTypeWrapper(8);
 
     /**
+     * 反胃. 传送门效果. 扭曲视觉.
+     * <p>原文:
      * Warps vision on the client.
      */
     public static final PotionEffectType CONFUSION = new PotionEffectTypeWrapper(9);
 
     /**
+     * 生命恢复.
+     * <p>原文:
      * Regenerates health.
      */
     public static final PotionEffectType REGENERATION = new PotionEffectTypeWrapper(10);
 
     /**
+     * 抗性提升. 减少对一个实体的伤害。
+     * <p>原文:
      * Decreases damage dealt to an entity.
      */
     public static final PotionEffectType DAMAGE_RESISTANCE = new PotionEffectTypeWrapper(11);
 
     /**
+     * 抗火.
+     * <p>原文:
      * Stops fire damage.
      */
     public static final PotionEffectType FIRE_RESISTANCE = new PotionEffectTypeWrapper(12);
 
     /**
+     * 水下呼吸
+     * <p>原文:
      * Allows breathing underwater.
      */
     public static final PotionEffectType WATER_BREATHING = new PotionEffectTypeWrapper(13);
 
     /**
+     * 隐身.
+     * <p>原文:
      * Grants invisibility.
      */
     public static final PotionEffectType INVISIBILITY = new PotionEffectTypeWrapper(14);
 
     /**
+     * 失明.
+     * <p>原文:
      * Blinds an entity.
      */
     public static final PotionEffectType BLINDNESS = new PotionEffectTypeWrapper(15);
 
     /**
+     * 夜视.
+     * <p>原文:
      * Allows an entity to see in the dark.
      */
     public static final PotionEffectType NIGHT_VISION = new PotionEffectTypeWrapper(16);
 
     /**
+     * 饥饿.
+     * <p>原文:
      * Increases hunger.
      */
     public static final PotionEffectType HUNGER = new PotionEffectTypeWrapper(17);
 
     /**
+     * 虚弱.
+     * <p>原文:
      * Decreases damage dealt by an entity.
      */
     public static final PotionEffectType WEAKNESS = new PotionEffectTypeWrapper(18);
 
     /**
+     * 中毒.
+     * <p>原文:
      * Deals damage to an entity over time.
      */
     public static final PotionEffectType POISON = new PotionEffectTypeWrapper(19);
 
     /**
+     * 凋零.
+     * 对一个实体造成伤害，并将身体健康给射击者. 感觉像吸血..
+     * <p>原文:
      * Deals damage to an entity over time and gives the health to the
      * shooter.
      */
     public static final PotionEffectType WITHER = new PotionEffectTypeWrapper(20);
 
     /**
+     * 生命恢复. 
+     * <p>原文:
      * Increases the maximum health of an entity.
      */
     public static final PotionEffectType HEALTH_BOOST = new PotionEffectTypeWrapper(21);
 
     /**
+     * 伤害吸收.
+     * 增加临时血量，每30秒恢复至满.
+     * <p>原文:
      * Increases the maximum health of an entity with health that cannot be
      * regenerated, but is refilled every 30 seconds.
      */
     public static final PotionEffectType ABSORPTION = new PotionEffectTypeWrapper(22);
 
     /**
+     * 增加饱食度. 已经实现但是没有加入药剂系统. 
+     * <p>原文:
      * Increases the food level of an entity each tick.
      */
     public static final PotionEffectType SATURATION = new PotionEffectTypeWrapper(23);
