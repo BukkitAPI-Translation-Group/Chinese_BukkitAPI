@@ -286,28 +286,35 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(int x, int z, boolean save);
 
     /**
+     * 卸载并选择是否保存指定坐标的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Unloads and optionally saves the {@link Chunk} at the specified
      * coordinates
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param save Controls whether the chunk is saved
-     * @param safe Controls whether to unload the chunk when players are
-     *     nearby
-     * @return true if the chunk has unloaded successfully, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @param save 控制是否保存区块
+     * @param safe 控制当附近有玩家时是否卸载区块
+     * @return 如果区块被成功卸载则返回true，否则返回false
      */
     public boolean unloadChunk(int x, int z, boolean save, boolean safe);
 
     /**
+     * 安全地将卸载指定坐标的区块{@link Chunk}列入队列
+     * <p>
+     * 这个方法类似于当safe值为true时的{@link #unloadChunkRequest(int, int,boolean)}
+     * <p>
+     * 原文：
      * Safely queues the {@link Chunk} at the specified coordinates for
      * unloading
      * <p>
      * This method is analogous to {@link #unloadChunkRequest(int, int,
      * boolean)} where safe is true
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true is the queue attempt was successful, otherwise false
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 如果尝试列入队列成功则返回true，否则返回false
      */
     public boolean unloadChunkRequest(int x, int z);
 
