@@ -10,7 +10,7 @@ import com.google.common.collect.Maps;
 public enum TreeSpecies {
 
     /**
-     * 代表通用的树木种类.
+     * 代表普通树种.
      */
     GENERIC(0x0),
     /**

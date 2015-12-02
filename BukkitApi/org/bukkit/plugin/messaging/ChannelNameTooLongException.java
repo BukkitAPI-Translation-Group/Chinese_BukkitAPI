@@ -1,7 +1,7 @@
 package org.bukkit.plugin.messaging;
 
 /**
- * Thrown if a Plugin Channel is too long.
+ * 如果插件通道(Plugin Channel)过长则抛出此异常.
  */
 @SuppressWarnings("serial")
 public class ChannelNameTooLongException extends RuntimeException {
