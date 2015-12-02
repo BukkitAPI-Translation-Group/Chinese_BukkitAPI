@@ -1,7 +1,7 @@
 package org.bukkit.plugin.messaging;
 
 /**
- * Thrown if a Plugin attempts to send a message on an unregistered channel.
+ * 如果插件尝试向未注册的通道发消息则抛出此异常.
  */
 @SuppressWarnings("serial")
 public class ChannelNotRegisteredException extends RuntimeException {
