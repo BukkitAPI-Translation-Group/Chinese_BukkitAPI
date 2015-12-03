@@ -319,55 +319,73 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunkRequest(int x, int z);
 
     /**
+     * 将卸载指定坐标的区块{@link Chunk}列入队列
+     * <p>
+     * 原文：
      * Queues the {@link Chunk} at the specified coordinates for unloading
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param safe Controls whether to queue the chunk when players are nearby
-     * @return Whether the chunk was actually queued
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @param safe 控制当附近有玩家时是否卸载区块
+     * @return 区块是否真的被列入队列
      */
     public boolean unloadChunkRequest(int x, int z, boolean safe);
 
     /**
+     * 重新生成指定坐标的区块{@link Chunk}
+     * <p>
+     * 原文：
      * Regenerates the {@link Chunk} at the specified coordinates
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return Whether the chunk was actually regenerated
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 区块是否真的被重新生成
      */
     public boolean regenerateChunk(int x, int z);
 
     /**
+     * 将区块{@link Chunk}重新发送给所有的客户端
+     * <p>
+     * 原文：
      * Resends the {@link Chunk} to all clients
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return Whether the chunk was actually refreshed
+     * @param x 区块的x坐标
+     * @param z 区块的z坐标
+     * @return 区块是否真的被刷新
      * 
-     * @deprecated This method is not guaranteed to work suitably across all client implementations.
+     * @deprecated 这个方法不能保证在所有的客户端接口都正常地工作。
      */
     @Deprecated
     public boolean refreshChunk(int x, int z);
 
     /**
+     * 在指定的方位{@link Location}丢出一个物品
+     * <p>
+     * 原文：
      * Drops an item at the specified {@link Location}
      *
-     * @param location Location to drop the item
-     * @param item ItemStack to drop
-     * @return ItemDrop entity created as a result of this method
+     * @param location 丢出物品的方位
+     * @param item 丢出的物品堆
+     * @return 这个方法会创建一个ItemDrop实体作为结果
      */
     public Item dropItem(Location location, ItemStack item);
 
     /**
+     * 在指定的方位{@link Location}丢出一个随机偏移的物品
+     * <p>
+     * 原文：
      * Drops an item at the specified {@link Location} with a random offset
      *
-     * @param location Location to drop the item
-     * @param item ItemStack to drop
-     * @return ItemDrop entity created as a result of this method
+     * @param location 丢出物品的方位
+     * @param item 丢出的物品堆
+     * @return 这个方法会创建一个ItemDrop实体作为结果
      */
     public Item dropItemNaturally(Location location, ItemStack item);
 
     /**
+     * 
+     * 
+     * 原文：
      * Creates an {@link Arrow} entity at the given {@link Location}
      *
      * @param location Location to spawn the arrow
