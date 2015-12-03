@@ -504,6 +504,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<LivingEntity> getLivingEntities();
 
     /**
+     * 
+     * <p>
+     * 原文：
      * Get a collection of all entities in this World matching the given
      * class/interface
      *
