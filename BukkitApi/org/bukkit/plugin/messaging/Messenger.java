@@ -5,35 +5,38 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 /**
- * A class responsible for managing the registrations of plugin channels and
- * their listeners.
+ * 负责管理插件通道和它们注册的监听器的类.
  */
 public interface Messenger {
 
     /**
-     * Represents the largest size that an individual Plugin Message may be.
+     * 代表单个插件消息的最大大小.
      */
     public static final int MAX_MESSAGE_SIZE = 32766;
 
     /**
-     * Represents the largest size that a Plugin Channel may be.
+     * 代表单个插件通道的最大大小.
      */
     public static final int MAX_CHANNEL_SIZE = 20;
 
     /**
+     * 检测指定的通道名称是否为保留名称.
+     * <p>
      * 原文：Checks if the specified channel is a reserved name.
      *
-     * @param channel Channel name to check.
-     * @return True if the channel is reserved, otherwise false.
+     * @param channel 要检测的通道名称
+     * @return 如果这个通道是保留的则为true，false反之
      * @throws IllegalArgumentException 如果参数channel为null
      */
     public boolean isReservedChannel(String channel);
 
     /**
+     * 注册特定插件所请求的传出插件通道，允许它通过这个通道向任何通道发送消息.
+     * <p>
      * 原文：Registers the specific plugin to the requested outgoing plugin channel,
      * allowing it to send messages through that channel to any clients.
      *
-     * @param plugin Plugin that wishes to send messages through the channel.
+     * @param plugin 希望通过该通过发送消息的插件
      * @param channel 要注册的通道
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
@@ -64,13 +67,12 @@ public interface Messenger {
      * 原文：Registers the specific plugin for listening on the requested incoming
      * plugin channel, allowing it to act upon any plugin messages.
      *
-     * @param plugin Plugin that wishes to register to this channel.
+     * @param plugin 希望注册这个通道的插件
      * @param channel 要注册的通道
      * @param listener Listener to receive messages on.
      * @return The resulting registration that was made as a result of this
      *     method.
-     * @throws IllegalArgumentException Thrown if plugin, channel or listener
-     *     is null, or the listener is already registered for this channel.
+     * @throws IllegalArgumentException 如果参数plugin,channel或listener为null或这个监听器已注册这个通道
      */
     public PluginMessageListenerRegistration registerIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
@@ -79,7 +81,7 @@ public interface Messenger {
      * requested incoming plugin channel, no longer allowing it to act upon
      * any plugin messages.
      *
-     * @param plugin Plugin that wishes to unregister from this channel.
+     * @param plugin 希望注销这个通道的插件
      * @param channel 要注销的通道
      * @param listener Listener to stop receiving messages on.
      * @throws IllegalArgumentException 如果参数plugin,channel或listener为null
@@ -91,7 +93,7 @@ public interface Messenger {
      * incoming plugin channel, no longer allowing it to act upon any plugin
      * messages.
      *
-     * @param plugin Plugin that wishes to unregister from this channel.
+     * @param plugin 希望注销这个通道的插件
      * @param channel 要注销的通道
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
@@ -101,7 +103,7 @@ public interface Messenger {
      * 原文：Unregisters the specific plugin from listening on all plugin channels
      * through all listeners.
      *
-     * @param plugin Plugin that wishes to unregister from this channel.
+     * @param plugin 希望注销这个通道的插件
      * @throws IllegalArgumentException 如果参数plugin为null
      */
     public void unregisterIncomingPluginChannel(Plugin plugin);
