@@ -112,9 +112,11 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin);
 
     /**
+     * 获取包含了所有传出插件通道的set集合.
+     * <p>
      * 原文：Gets a set containing all the outgoing plugin channels.
      *
-     * @return List of all registered outgoing plugin channels.
+     * @return 已注册的所有传出插件通道的列表
      */
     public Set<String> getOutgoingChannels();
 
@@ -130,9 +132,11 @@ public interface Messenger {
     public Set<String> getOutgoingChannels(Plugin plugin);
 
     /**
+     * 获取包含了所有传入插件通道的set集合.
+     * <p>
      * 原文：Gets a set containing all the incoming plugin channels.
      *
-     * @return List of all registered incoming plugin channels.
+     * @return 已注册的所有传入插件通道的列表
      */
     public Set<String> getIncomingChannels();
 
