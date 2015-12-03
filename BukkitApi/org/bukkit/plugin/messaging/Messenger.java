@@ -43,22 +43,25 @@ public interface Messenger {
     public void registerOutgoingPluginChannel(Plugin plugin, String channel);
 
     /**
+     * 注销特定插件请求的插件传出通道，不再允许它通过这个通道发送消息到任何客户端.
+     * <p>
      * 原文：Unregisters the specific plugin from the requested outgoing plugin
      * channel, no longer allowing it to send messages through that channel to
      * any clients.
      *
-     * @param plugin Plugin that no longer wishes to send messages through the
-     *     channel.
+     * @param plugin 不再希望通过此通道发送消息的插件
      * @param channel 要注销的通道
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
     public void unregisterOutgoingPluginChannel(Plugin plugin, String channel);
 
     /**
+     * 注销特定插件的所有传出插件通道，不再允许它发送任何插件消息.
+     * <p>
      * 原文：Unregisters the specific plugin from all outgoing plugin channels, no
      * longer allowing it to send any plugin messages.
      *
-     * @param plugin Plugin that no longer wishes to send plugin messages.
+     * @param plugin 不再希望发送插件消息的插件
      * @throws IllegalArgumentException 如果参数plugin为null
      */
     public void unregisterOutgoingPluginChannel(Plugin plugin);
