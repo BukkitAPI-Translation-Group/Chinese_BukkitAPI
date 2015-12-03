@@ -366,7 +366,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param location 丢出物品的方位
      * @param item 丢出的物品堆
-     * @return 这个方法会创建一个ItemDrop实体作为结果
+     * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
     public Item dropItem(Location location, ItemStack item);
 
@@ -378,104 +378,128 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param location 丢出物品的方位
      * @param item 丢出的物品堆
-     * @return 这个方法会创建一个ItemDrop实体作为结果
+     * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
     public Item dropItemNaturally(Location location, ItemStack item);
 
     /**
-     * 
-     * 
+     * 在指定的方位{@link Location}创建一个箭{@link Arrow}的实体
+     * <p>
      * 原文：
      * Creates an {@link Arrow} entity at the given {@link Location}
      *
-     * @param location Location to spawn the arrow
-     * @param direction Direction to shoot the arrow in
-     * @param speed Speed of the arrow. A recommend speed is 0.6
-     * @param spread Spread of the arrow. A recommend spread is 12
-     * @return Arrow entity spawned as a result of this method
+     * @param location 生成箭的方位
+     * @param direction 箭射向的方向
+     * @param speed 箭的射速。建议为0.6
+     * @param spread 箭的范围。建议为12（可能是距离或者箭存在的时间，确认后请校对员修改并删除括号）
+     * @return 这个方法会生成一个Arrow（箭）实体作为结果
      */
     public Arrow spawnArrow(Location location, Vector direction, float speed, float spread);
 
     /**
+     * 在指定的方位{@link Location}创建一颗树
+     * <p>
+     * 原文：
      * Creates a tree at the given {@link Location}
      *
-     * @param location Location to spawn the tree
-     * @param type Type of the tree to create
-     * @return true if the tree was created successfully, otherwise false
+     * @param location 生成树的方位
+     * @param type 创建的树的类型
+     * @return 如果树被成功生成则返回true，否则返回false
      */
     public boolean generateTree(Location location, TreeType type);
 
     /**
+     * 在指定的方位{@link Location}创建一颗树
+     * <p>
+     * 原文：
      * Creates a tree at the given {@link Location}
      *
-     * @param loc Location to spawn the tree
-     * @param type Type of the tree to create
-     * @param delegate A class to call for each block changed as a result of
-     *     this method
-     * @return true if the tree was created successfully, otherwise false
+     * @param loc 生成树的方位
+     * @param type 创建的树的类型
+     * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
+     * @return 如果树被成功生成则返回true，否则返回false
      */
     public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate);
 
     /**
+     * 在指定的方位{@link Location}创建一个实体
+     * <p>
+     * 原文：
      * Creates a entity at the given {@link Location}
      *
-     * @param loc The location to spawn the entity
-     * @param type The entity to spawn
-     * @return Resulting Entity of this method, or null if it was unsuccessful
+     * @param loc 生成实体的方位
+     * @param type 生成的实体
+     * @return 生成成功则返回此方法创建的实体，否则返回null
      */
     public Entity spawnEntity(Location loc, EntityType type);
 
     /**
+     * 在指定的方位{@link Location}创建一个生物
+     * <p>
+     * 原文：
      * Creates a creature at the given {@link Location}
      *
-     * @param loc The location to spawn the creature
-     * @param type The creature to spawn
-     * @return Resulting LivingEntity of this method, or null if it was
-     *     unsuccessful
-     * @deprecated Has issues spawning non LivingEntities. Use {@link
-     *     #spawnEntity(Location, EntityType) spawnEntity} instead.
+     * @param loc 生成生物的方位
+     * @param type 生成的生物
+     * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
+     * @deprecated 生成非LivingEntity（生物实体）有问题。使用{@link
+     *     #spawnEntity(Location, EntityType) spawnEntity} 代替。
      */
     @Deprecated
     public LivingEntity spawnCreature(Location loc, EntityType type);
 
     /**
+     * 在指定的方位{@link Location}创建一个生物
+     * <p>
+     * 原文：
      * Creates a creature at the given {@link Location}
      *
-     * @param loc The location to spawn the creature
-     * @param type The creature to spawn
-     * @return Resulting LivingEntity of this method, or null if it was
-     *     unsuccessful
+     * @param loc 生成生物的方位
+     * @param type 生成的生物
+     * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
      */
     @Deprecated
     public LivingEntity spawnCreature(Location loc, CreatureType type);
 
     /**
+     * 在指定的方位{@link Location}劈下闪电
+     * <p>
+     * 原文：
      * Strikes lightning at the given {@link Location}
      *
-     * @param loc The location to strike lightning
-     * @return The lightning entity.
+     * @param loc 劈下闪电的方位
+     * @return lightning（闪电）实体。
      */
     public LightningStrike strikeLightning(Location loc);
 
     /**
+     * 在指定的方位{@link Location}劈下不造成伤害的闪电
+     * <p>
+     * 原文：
      * Strikes lightning at the given {@link Location} without doing damage
      *
-     * @param loc The location to strike lightning
-     * @return The lightning entity.
+     * @param loc 劈下闪电的方位
+     * @return lightning（闪电）实体。
      */
     public LightningStrike strikeLightningEffect(Location loc);
 
     /**
+     * 获取一个这个世界所有实体的列表
+     * <p>
+     * 原文：
      * Get a list of all entities in this World
      *
-     * @return A List of all Entities currently residing in this world
+     * @return 一个当前处在这个世界的所有实体的列表
      */
     public List<Entity> getEntities();
 
     /**
+     * 获取一个这个世界所有生物实体的列表
+     * <p>
+     * 原文：
      * Get a list of all living entities in this World
      *
-     * @return A List of all LivingEntities currently residing in this world
+     * @return 一个当前处在这个世界的所有生物实体的列表
      */
     public List<LivingEntity> getLivingEntities();
 
