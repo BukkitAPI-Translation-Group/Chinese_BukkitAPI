@@ -1,17 +1,17 @@
 package org.bukkit.plugin.messaging;
 
 /**
- * Represents the different directions a plugin channel may go.
+ * 代表插件通道的不同方向.
  */
 public enum PluginChannelDirection {
 
     /**
-     * The plugin channel is being sent to the server from a client.
+     * 插件通道正在从客户端发往服务器(正在传入).
      */
     INCOMING,
 
     /**
-     * The plugin channel is being sent to a client from the server.
+     * 插件通道正在从服务器发往客户端(正在传出).
      */
     OUTGOING
 }

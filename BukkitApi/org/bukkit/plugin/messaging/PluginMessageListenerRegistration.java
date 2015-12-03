@@ -3,8 +3,7 @@ package org.bukkit.plugin.messaging;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Contains information about a {@link Plugin}s registration to a plugin
- * channel.
+ * 包含了关于{@link Plugin}注册的插件通道的信息.
  */
 public final class PluginMessageListenerRegistration {
     private final Messenger messenger;
@@ -33,36 +32,45 @@ public final class PluginMessageListenerRegistration {
     }
 
     /**
-     * Gets the plugin channel that this registration is about.
+     * 获取插件注册的插件通道.
+     * <p>
+     * 原文：Gets the plugin channel that this registration is about.
      *
-     * @return Plugin channel.
+     * @return 插件通道
      */
     public String getChannel() {
         return channel;
     }
 
     /**
-     * Gets the registered listener described by this registration.
+     * 获取这个注册所描述的监听器.
+     * <p>
+     * 原文：Gets the registered listener described by this registration.
      *
-     * @return Registered listener.
+     * @return 注册的监听器
      */
     public PluginMessageListener getListener() {
         return listener;
     }
 
     /**
-     * Gets the plugin that this registration is for.
+     * 获取这个注册的相关的插件.
+     * <p>
+     * 原文：Gets the plugin that this registration is for.
      *
-     * @return Registered plugin.
+     * @return 注册的插件
      */
     public Plugin getPlugin() {
         return plugin;
     }
 
     /**
-     * Checks if this registration is still valid.
+     * 检测这个注册是否仍然有效.
+     * <p>
+     * <p>
+     * 原文：Checks if this registration is still valid.
      *
-     * @return True if this registration is still valid, otherwise false.
+     * @return 如果这个注册还有效则为true，false反之
      */
     public boolean isValid() {
         return messenger.isRegistrationValid(this);
