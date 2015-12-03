@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Standard implementation to {@link Messenger}
+ * {@link Messenger}的标准实现.
  */
 public class StandardMessenger implements Messenger {
     private final Map<String, Set<PluginMessageListenerRegistration>> incomingByChannel = new HashMap<String, Set<PluginMessageListenerRegistration>>();
@@ -426,9 +426,11 @@ public class StandardMessenger implements Messenger {
     }
 
     /**
-     * Validates a Plugin Channel name.
+     * 验证一个插件通道(Plugin Channel)的名称.
+     * <p>
+     * 原文：Validates a Plugin Channel name.
      *
-     * @param channel Channel name to validate.
+     * @param channel 要验证的通道名称
      */
     public static void validateChannel(String channel) {
         if (channel == null) {
@@ -440,22 +442,20 @@ public class StandardMessenger implements Messenger {
     }
 
     /**
-     * Validates the input of a Plugin Message, ensuring the arguments are all
+     * 验证插件消息(Plugin Message)的输入，确保这些参数都是有效的.
+     * <p>
+     * 原文：Validates the input of a Plugin Message, ensuring the arguments are all
      * valid.
      *
-     * @param messenger Messenger to use for validation.
-     * @param source Source plugin of the Message.
-     * @param channel Plugin Channel to send the message by.
-     * @param message Raw message payload to send.
-     * @throws IllegalArgumentException Thrown if the source plugin is
-     *     disabled.
-     * @throws IllegalArgumentException Thrown if source, channel or message
-     *     is null.
-     * @throws MessageTooLargeException Thrown if the message is too big.
-     * @throws ChannelNameTooLongException Thrown if the channel name is too
-     *     long.
-     * @throws ChannelNotRegisteredException Thrown if the channel is not
-     *     registered for this plugin.
+     * @param messenger 用于验证的MessengerMessenger to use for validatio
+     * @param source 信息的来源插件
+     * @param channel 通过什么插件通道(Plugin Channel)来发送消息
+     * @param message 发送的原始消息的有效载荷
+     * @throws IllegalArgumentException 如果源插件被禁用则抛出
+     * @throws IllegalArgumentException 如果参数source,channel或message为null则抛出
+     * @throws MessageTooLargeException 如果消息过大则抛出
+     * @throws ChannelNameTooLongException 如果通道名称过长则抛出
+     * @throws ChannelNotRegisteredException 如果这个通道不是为这个插件注册的则抛出
      */
     public static void validatePluginMessage(Messenger messenger, Plugin source, String channel, byte[] message) {
         if (messenger == null) {
