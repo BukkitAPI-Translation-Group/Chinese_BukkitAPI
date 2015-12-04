@@ -67,31 +67,36 @@ public interface Messenger {
     public void unregisterOutgoingPluginChannel(Plugin plugin);
 
     /**
+     * 为指定插件注册一个能监听请求的传入插件通道，允许它在任何插件消息上做动作.
+     * <p>
      * 原文：Registers the specific plugin for listening on the requested incoming
      * plugin channel, allowing it to act upon any plugin messages.
      *
      * @param plugin 希望注册这个通道的插件
      * @param channel 要注册的通道
-     * @param listener Listener to receive messages on.
-     * @return The resulting registration that was made as a result of this
-     *     method.
+     * @param listener 要接收消息的监听器
+     * @return 注册后的结果(一个对象)
      * @throws IllegalArgumentException 如果参数plugin,channel或listener为null或这个监听器已注册这个通道
      */
     public PluginMessageListenerRegistration registerIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
+     * 注销指定插件请求的监听的传入插件通道，不再允许它在任何插件消息上做任何动作.
+     * <p>
      * 原文：Unregisters the specific plugin's listener from listening on the
      * requested incoming plugin channel, no longer allowing it to act upon
      * any plugin messages.
      *
      * @param plugin 希望注销这个通道的插件
      * @param channel 要注销的通道
-     * @param listener Listener to stop receiving messages on.
+     * @param listener 要停止接收消息的监听器
      * @throws IllegalArgumentException 如果参数plugin,channel或listener为null
      */
     public void unregisterIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
+     * 注销指定插件请求的监听的传入插件通道，不再允许它在任何插件消息上做动作.
+     * <p>
      * 原文：Unregisters the specific plugin from listening on the requested
      * incoming plugin channel, no longer allowing it to act upon any plugin
      * messages.
@@ -103,10 +108,12 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin, String channel);
 
     /**
+     * 注销通过所有监听器的这个插件在监听的插件通道.
+     * <p>
      * 原文：Unregisters the specific plugin from listening on all plugin channels
      * through all listeners.
      *
-     * @param plugin 希望注销这个通道的插件
+     * @param plugin 希望注销这些通道的插件
      * @throws IllegalArgumentException 如果参数plugin为null
      */
     public void unregisterIncomingPluginChannel(Plugin plugin);
@@ -194,26 +201,32 @@ public interface Messenger {
     public boolean isRegistrationValid(PluginMessageListenerRegistration registration);
 
     /**
+     * 检测指定插件是否注册过请求接收传入消息的通道.
+     * <p>
      * 原文：Checks if the specified plugin has registered to receive incoming
      * messages through the requested channel.
      *
-     * @param plugin Plugin to check registration for.
+     * @param plugin 要检测注册的插件
      * @param channel 要检测的通道
      * @return 如果通道已注册则为true，false反之
      */
     public boolean isIncomingChannelRegistered(Plugin plugin, String channel);
 
     /**
+     * 检测指定插件是否注册过请求发送传出消息的通道.
+     * <p>
      * 原文：Checks if the specified plugin has registered to send outgoing messages
      * through the requested channel.
      *
-     * @param plugin Plugin to check registration for.
+     * @param plugin 要检测注册的插件
      * @param channel 要检测的通道
      * @return 如果通道已注册则为true，false反之
      */
     public boolean isOutgoingChannelRegistered(Plugin plugin, String channel);
 
     /**
+     * 调度指定传入消息的任何注册过的监听器.
+     * <p>
      * 原文：Dispatches the specified incoming message to any registered listeners.
      *
      * @param source 消息源
