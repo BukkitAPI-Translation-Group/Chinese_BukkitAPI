@@ -504,103 +504,134 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<LivingEntity> getLivingEntities();
 
     /**
-     * 
+     * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合
      * <p>
      * 原文：
      * Get a collection of all entities in this World matching the given
      * class/interface
      *
-     * @param <T> an entity subclass
-     * @param classes The classes representing the types of entity to match
-     * @return A List of all Entities currently residing in this world that
-     *     match the given class/interface
+     * @param <T> 一个实体子类
+     * @param classes 用于匹配的表示实体类型的类
+     * @return 一个当前处在这个世界的所有与指定的类/接口相匹配的实体的列表
      */
     @Deprecated
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes);
 
     /**
+     * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合
+     * <p>
+     * 原文：
      * Get a collection of all entities in this World matching the given
      * class/interface
      * 
-     * @param <T> an entity subclass
-     * @param cls The class representing the type of entity to match
-     * @return A List of all Entities currently residing in this world that
-     *     match the given class/interface
+     * @param <T> 一个实体子类
+     * @param cls 用于匹配的表示实体类型的类
+     * @return  一个当前处在这个世界的所有与指定的类/接口相匹配的实体的列表
      */
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> cls);
 
     /**
+     * 获取一个在这个世界的所有与任一指定的类/接口相匹配的实体的集合
+     * <p>
+     * 原文：
      * Get a collection of all entities in this World matching any of the
      * given classes/interfaces
      *
-     * @param classes The classes representing the types of entity to match
-     * @return A List of all Entities currently residing in this world that
-     *     match one or more of the given classes/interfaces
+     * @param classes 用于匹配的表示实体类型的类
+     * @return 一个当前处在这个世界的所有与一个或更多指定的类/接口相匹配的实体的列表
      */
     public Collection<Entity> getEntitiesByClasses(Class<?>... classes);
 
     /**
+     * 获取一个这个世界的所有玩家的列表
+     * <p>
+     * 原文：
      * Get a list of all players in this World
      *
-     * @return A list of all Players currently residing in this world
+     * @return 一个当前处在这个世界的所有玩家的列表
      */
     public List<Player> getPlayers();
 
     /**
+     * 返回一个在指定范围内的实体的列表。（译注：此为意译，直译不符合中文习惯）
+     * 
+     * 一些执行器可能会对搜索的范围的大小施加限制。（同上）
+     * <p>
+     * 原文：
      * Returns a list of entities within a bounding box centered around a Location.
      *
      * Some implementations may impose artificial restrictions on the size of the search bounding box.
      *
-     * @param location The center of the bounding box
-     * @param x 1/2 the size of the box along x axis
-     * @param y 1/2 the size of the box along y axis
-     * @param z 1/2 the size of the box along z axis
-     * @return the collection of entities near location. This will always be a non-null collection.
+     * @param location 搜索范围的中心
+     * @param x 搜索范围的x半轴长度
+     * @param y 搜索范围的y半轴长度
+     * @param z 搜索范围的z半轴长度
+     * @return 在方位附近的实体的集合。一般不为空。
      */
     public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z);
 
     /**
+     * 获取世界的唯一名称
+     * <p>
+     * 原文：
      * Gets the unique name of this world
      *
-     * @return Name of this world
+     * @return 世界的名称
      */
     public String getName();
 
     /**
+     * 获取世界的唯一ID
+     * <p>
+     * 原文：
      * Gets the Unique ID of this world
      *
-     * @return Unique ID of this world.
+     * @return 世界的唯一ID。
      */
     public UUID getUID();
 
     /**
+     * 获取这个世界的默认出生点方位{@link Location}
+     * <p>
+     * 原文：
      * Gets the default spawn {@link Location} of this world
      *
-     * @return The spawn location of this world
+     * @return 这个世界的出生点方位
      */
     public Location getSpawnLocation();
 
     /**
+     * 设置这个世界的出生点方位
+     * <p>
+     * 原文：
      * Sets the spawn location of the world
      *
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @return True if it was successfully set.
+     * @param x x坐标
+     * @param y y坐标
+     * @param z z坐标
+     * @return 如果成功设置则返回true。
      */
     public boolean setSpawnLocation(int x, int y, int z);
 
     /**
+     * 获取这个世界在游戏中的相对时间。
+     * <p>
+     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200）
+     * <p>
+     * 原文：
      * Gets the relative in-game time of this world.
      * <p>
      * The relative time is analogous to hours * 1000
      *
-     * @return The current relative time
-     * @see #getFullTime() Returns an absolute time of this world
+     * @return 当前相对时间
+     * @see #getFullTime()返回这个世界的绝对时间
      */
     public long getTime();
 
     /**
+     * 
+     * 
+     * 原文：
      * Sets the relative in-game time on the server.
      * <p>
      * The relative time is analogous to hours * 1000
