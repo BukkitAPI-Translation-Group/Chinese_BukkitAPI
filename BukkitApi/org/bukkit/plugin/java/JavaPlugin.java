@@ -67,7 +67,7 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-     * @deprecated 这个方法在单元测试时使用, 其它的不能使用, 它的存在可能是暂时的
+     * @deprecated 这个方法在单元测试时使用, 其它的不能使用, 它的存在可能是暂时的.
 	 * <p>
 	 * 原文:
      * @deprecated This method is intended for unit testing purposes when the
