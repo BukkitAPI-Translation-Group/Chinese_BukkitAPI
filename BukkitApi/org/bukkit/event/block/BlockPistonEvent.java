@@ -26,7 +26,9 @@ public abstract class BlockPistonEvent extends BlockEvent implements Cancellable
     }
 
     /**
-     * 判断是否是粘性活塞. <p>
+     * 判断是否是粘性活塞.
+     * <p>
+     * 原文：Returns true if the Piston in the event is sticky.
      *
      * @return 如是粘性活塞则返回true.
      */
@@ -36,6 +38,8 @@ public abstract class BlockPistonEvent extends BlockEvent implements Cancellable
 
     /**
      * 返回活塞的朝向.
+     * <p>
+     * 原文：Return the direction in which the piston will operate.
      *
      * @return 活塞的朝向
      */

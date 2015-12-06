@@ -23,7 +23,9 @@ public class SignChangeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获得设置这个牌子上的字的玩家. <p>
+     * 获得设置这个牌子上的字的玩家.
+     * <p>
+     * 原文：Gets the player changing the sign involved in this event.
      *
      * @return 玩家
      */
@@ -32,7 +34,9 @@ public class SignChangeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获得牌子被写上的内容. <p>
+     * 获得牌子被写上的全部内容.
+     * <p>
+     * 原文：Gets all of the lines of text from the sign involved in this event.
      *
      * @return 牌子被设置成的内容(长度为4的数组)
      */
@@ -41,7 +45,9 @@ public class SignChangeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获得牌子被写上的内容的某行. <p>
+     * 获得牌子被写上的内容的某行.
+     * <p>
+     * 原文：Gets a single line of text from the sign involved in this event.
      *
      * @param index 要获取的内容的行数,取值0~3
      * @return 你获取的那行
@@ -53,6 +59,8 @@ public class SignChangeEvent extends BlockEvent implements Cancellable {
 
     /**
      * 修改牌子被写上的字的某行.
+     * <p>
+     * 原文：Sets a single line for the sign involved in this event
      *
      * @param index 要设定的内容的行数
      * @param line 要设定的内容

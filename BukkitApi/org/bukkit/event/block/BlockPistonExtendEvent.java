@@ -9,7 +9,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.event.HandlerList;
 
 /**
- * 活塞臂退出/收回事件.
+ * 活塞臂推出事件.
  */
 public class BlockPistonExtendEvent extends BlockPistonEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -32,6 +32,8 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
 
     /**
      * 获取被活塞移动的方块数.
+     * <p>
+     * 原文：Get the amount of blocks which will be moved while extending.
      *
      * @return 被活塞移动的方块数.
      * @deprecated 由于史莱姆方块的特性,
@@ -44,7 +46,10 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
     }
 
     /**
-     * 获取被活塞移动的方块列表.
+     * 获取被活塞移动的不可改变的方块列表.
+     * <p>
+     * 原文：Get an immutable list of the blocks which will be moved by the
+     * extending.
      *
      * @return 被活塞移动的方块列表.
      */

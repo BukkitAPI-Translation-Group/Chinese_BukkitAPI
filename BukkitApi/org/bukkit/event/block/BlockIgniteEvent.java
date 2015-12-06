@@ -7,7 +7,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个方块被点燃时触发. <p>
+ * 当一个方块被点燃时触发.
+ * <p>
  * 若要判断玩家是否放了个火方块,请看{@link BlockPlaceEvent}.
  * <p>
  * 若本事件被取消，方块将不会被点燃
@@ -49,7 +50,9 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的原因. <p>
+     * 获取点燃方块的原因.
+     * <p>
+     * 原文：Gets the cause of block ignite.
      *
      * @return 点燃方块的原因
      */
@@ -58,9 +61,11 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的玩家,如果不是玩家点燃的就返回null. <p>
+     * 获取点燃方块的玩家,如果不是玩家点燃的就返回null.
+     * <p>
+     * 原文：Gets the player who ignited this block
      *
-     * @return 点燃方块的玩家，如果不是玩家点燃的返回null
+     * @return 点燃方块/放置火方块的玩家，如果不是玩家点燃的返回null
      */
     public Player getPlayer() {
         if (ignitingEntity instanceof Player) {
@@ -71,7 +76,9 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的实体
+     * 获取点燃方块的实体.
+     * <p>
+     * 原文：Gets the entity who ignited this block
      *
      * @return 点燃方块的实体，如果不是实体点燃的返回null
      */
@@ -80,7 +87,9 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取点燃方块的方块. <p>
+     * 获取点燃方块的方块.
+     * <p>
+     * 原文：Gets the block who ignited this block.
      *
      * @return 点燃方块的方块,如果不是方块点燃的返回null
      */

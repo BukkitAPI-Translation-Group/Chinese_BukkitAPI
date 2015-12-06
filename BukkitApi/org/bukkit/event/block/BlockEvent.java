@@ -15,6 +15,8 @@ public abstract class BlockEvent extends Event {
 
     /**
      * 获取这个事件是哪个方块发生的.
+     * <p>
+     * 原文：Gets the block involved in this event.
      *
      * @return 在这个事件中触发的方块
      */

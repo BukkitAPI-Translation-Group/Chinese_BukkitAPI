@@ -32,8 +32,10 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
 
     /**
      * 获取要播放的音符的乐器({@link Instrument}).
+     * <p>
+     * 原文：Gets the {@link Instrument} to be used.
      *
-     * @return Instrument;
+     * @return 乐器
      */
     public Instrument getInstrument() {
         return instrument;
@@ -41,8 +43,10 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
 
     /**
      * 获取要播放的音符({@link Note}).
+     * <p>
+     * 原文：Gets the {@link Note} to be played.
      *
-     * @return Note.
+     * @return 音符
      */
     public Note getNote() {
         return note;
@@ -50,8 +54,10 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
 
     /**
      * 设置播放音符用的乐器({@link Instrument}).
+     * <p>
+     * 原文：Overrides the {@link Instrument} to be used.
      *
-     * @param instrument Instrument.没有为null.
+     * @param instrument 乐器，没有为null.
      */
     public void setInstrument(Instrument instrument) {
         if (instrument != null) {
@@ -61,9 +67,11 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置要播放的音符({@link Note})
+     * 设置要播放的音符({@link Note}).
+     * <p>
+     * 原文：Overrides the {@link Note} to be played.
      *
-     * @param note 音符盒. 没有为null.
+     * @param note 音符，没有为null
      */
     public void setNote(Note note) {
         if (note != null) {

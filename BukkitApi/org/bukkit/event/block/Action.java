@@ -19,7 +19,7 @@ public enum Action {
      */
     RIGHT_CLICK_AIR,
     /**
-     * 踩上一个方块 (Ass-pressure/物理事件)
+     * 踩上一个方块
      *
      * 举几个例子:
      * <ul>

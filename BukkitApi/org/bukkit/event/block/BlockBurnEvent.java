@@ -7,8 +7,7 @@ import org.bukkit.event.HandlerList;
 /**
  * 当一个方块被火烧掉的时候触发此事件.
  * <p>
- * 若方块点燃事件被取消，此方块就不会被火烧没
- * 
+ * 若方块点燃事件被取消，此方块就不会被火烧毁.
  */
 public class BlockBurnEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

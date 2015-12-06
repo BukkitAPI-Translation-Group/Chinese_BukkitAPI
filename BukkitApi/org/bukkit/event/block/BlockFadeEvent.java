@@ -30,9 +30,12 @@ public class BlockFadeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取因为世界条件消退，融化，消失的事件的方块状态({@link BlockState}).
+     * 获取因为世界条件消退，融化，消失的方块的状态({@link BlockState}).
+     * <p>
+     * 原文：Gets the state of the block that will be fading, melting or
+     * disappearing.
      *
-     * @return {@link BlockState}
+     * @return 方块的新状态({@link BlockState})
      */
     public BlockState getNewState() {
         return newState;

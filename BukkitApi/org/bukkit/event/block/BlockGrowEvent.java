@@ -30,9 +30,11 @@ public class BlockGrowEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取这个方块生长之后的新形态
+     * 获取这个方块生长之后的新状态.
+     * <p>
+     * 原文：Gets the state of the block where it will form or spread to.
      *
-     * @return 这个方块生长之后的新形态
+     * @return 这个方块生长之后的新状态
      */
     public BlockState getNewState() {
         return newState;

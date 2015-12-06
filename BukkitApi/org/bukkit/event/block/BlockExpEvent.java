@@ -4,8 +4,7 @@ import org.bukkit.block.Block;
 import org.bukkit.event.HandlerList;
 
 /**
- * 方块产生经验的时候(比如煤矿被被打破会掉落经验)时触发. <p>
- * 原文：An event that's called when a block yields experience.
+ * 方块产生经验的时候(比如煤矿被被打破会掉落经验)时触发.
  */
 public class BlockExpEvent extends BlockEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -18,7 +17,9 @@ public class BlockExpEvent extends BlockEvent {
     }
 
     /**
-     * 在事件被执行之后获取方块掉落的经验
+     * 在事件被执行之后获取方块掉落的经验.
+     * <p>
+     * 原文：Get the experience dropped by the block after the event has processed
      *
      * @return 方块掉落的经验
      */
@@ -27,7 +28,10 @@ public class BlockExpEvent extends BlockEvent {
     }
 
     /**
-     * 设置这个方块在事件被执行之后会掉落多少经验
+     * 设置这个方块在事件被执行之后会掉落多少经验.
+     * <p>
+     * 原文：Set the amount of experience dropped by the block after the event has
+     * processed
      *
      * @param exp 应该比1多,否则啥也不会掉落
      */

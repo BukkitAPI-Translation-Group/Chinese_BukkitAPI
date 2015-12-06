@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 一个方块被玩家破坏的时候，调用本事件.
+ * 当一个方块被玩家破坏的时候，调用本事件.
  * <p>
  * 如果你想要在方块被破坏之后掉落经验, 你必须设置经验值
  * 为0以上。 默认情况下, 如果事件是这样的，经验会被设置：
@@ -18,9 +18,7 @@ import org.bukkit.event.HandlerList;
  * </ol>
  * <p>
  * 注意:
- * Plugins wanting to simulate a traditional block drop should set the block
- * to air and utilize their own methods for determining what the default drop
- * for the block being broken is and what to do about it, if anything.
+ * 插件要模拟一个方块掉落应该设置空气为方块，利用自己的方法确定方块被破坏后默认掉落什么，和要做什么。
  * <p>
  * 如果方块破坏事件（即本事件）被取消，这个方块将不会被破坏，并且经验不会掉落。
  */
@@ -35,7 +33,9 @@ public class BlockBreakEvent extends BlockExpEvent implements Cancellable {
     }
 
     /**
-     * 获取破坏这个方块的玩家
+     * 获取破坏这个方块的玩家.
+     * <p>
+     * 原文：Gets the Player that is breaking the block involved in this event.
      *
      * @return 破坏这个方块的玩家
      */

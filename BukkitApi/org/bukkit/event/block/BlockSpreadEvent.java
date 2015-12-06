@@ -10,8 +10,6 @@ import org.bukkit.event.HandlerList;
  * 用 {@link BlockFormEvent} 来获取方块 。方块蔓延是“随机”的形式，不是
  * 实际地传播.
  * <p>
- * 原：that "randomly" form instead of actually spread.
- * <p>
  * 例如:
  * <ul>
  * <li>蘑菇的蔓延
@@ -32,7 +30,9 @@ public class BlockSpreadEvent extends BlockFormEvent {
     }
 
     /**
-     * 获取这个事件中蔓延的源方块
+     * 获取这个事件中蔓延的源方块.
+     * <p>
+     * 原文：Gets the source block involved in this event.
      *
      * @return 这个事件中蔓延的源方块
      */

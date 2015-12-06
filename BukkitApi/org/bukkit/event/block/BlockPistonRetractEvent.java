@@ -21,6 +21,9 @@ public class BlockPistonRetractEvent extends BlockPistonEvent {
 
     /**
      * 如果缩回的活塞是粘性的,获取被这个活塞粘住的方块的位置. 
+     * <p>
+     * 原文：Gets the location where the possible moving block might be if the
+     * retracting piston is sticky.
      *
      * @return 这个活塞粘住的方块的位置
      */
@@ -30,7 +33,10 @@ public class BlockPistonRetractEvent extends BlockPistonEvent {
     }
     
     /**
-     * 获取被活塞移动的方块列表.
+     * 获取被活塞移动的不可改变的方块列表.
+     * <p>
+     * 原文：Get an immutable list of the blocks which will be moved by the
+     * extending.
      *
      * @return 被活塞移动的方块列表.
      */

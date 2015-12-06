@@ -23,9 +23,11 @@ public class EntityBlockFormEvent extends BlockFormEvent {
     }
 
     /**
-     * 获取被建造的实体
+     * 获取被建造的实体.
+     * <p>
+     * 原文：Get the entity that formed the block.
      *
-     * @return 被建造成的实体
+     * @return 这个事件的实体
      */
     public Entity getEntity() {
         return entity;
