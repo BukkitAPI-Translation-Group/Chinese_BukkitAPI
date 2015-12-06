@@ -1,7 +1,7 @@
 package org.bukkit.inventory;
 
 /**
- * 信标的GUI接口
+ * 信标的背包GUI接口
  */
 public interface BeaconInventory extends Inventory {
 
