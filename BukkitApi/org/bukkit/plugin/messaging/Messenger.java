@@ -31,7 +31,7 @@ public interface Messenger {
     public boolean isReservedChannel(String channel);
 
     /**
-     * 注册特定插件所请求的传出插件通道，允许它通过这个通道向任何通道发送消息.
+     * 注册特定插件所请求的发送插件通道，允许它通过这个通道向任何通道发送消息.
      * <p>
      * 原文：Registers the specific plugin to the requested outgoing plugin channel,
      * allowing it to send messages through that channel to any clients.
@@ -43,7 +43,7 @@ public interface Messenger {
     public void registerOutgoingPluginChannel(Plugin plugin, String channel);
 
     /**
-     * 注销特定插件请求的插件传出通道，不再允许它通过这个通道发送消息到任何客户端.
+     * 注销特定插件请求的插件发送通道，不再允许它通过这个通道发送消息到任何客户端.
      * <p>
      * 原文：Unregisters the specific plugin from the requested outgoing plugin
      * channel, no longer allowing it to send messages through that channel to
@@ -56,7 +56,7 @@ public interface Messenger {
     public void unregisterOutgoingPluginChannel(Plugin plugin, String channel);
 
     /**
-     * 注销特定插件的所有传出插件通道，不再允许它发送任何插件消息.
+     * 注销特定插件的所有发送插件通道，不再允许它发送任何插件消息.
      * <p>
      * 原文：Unregisters the specific plugin from all outgoing plugin channels, no
      * longer allowing it to send any plugin messages.
@@ -67,7 +67,7 @@ public interface Messenger {
     public void unregisterOutgoingPluginChannel(Plugin plugin);
 
     /**
-     * 为指定插件注册一个能监听请求的传入插件通道，允许它在任何插件消息上做动作.
+     * 为指定插件注册一个能监听请求的接收插件通道，允许它在任何插件消息上做动作.
      * <p>
      * 原文：Registers the specific plugin for listening on the requested incoming
      * plugin channel, allowing it to act upon any plugin messages.
@@ -81,7 +81,7 @@ public interface Messenger {
     public PluginMessageListenerRegistration registerIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
-     * 注销指定插件请求的监听的传入插件通道，不再允许它在任何插件消息上做任何动作.
+     * 注销指定插件请求的监听的接收插件通道，不再允许它在任何插件消息上做任何动作.
      * <p>
      * 原文：Unregisters the specific plugin's listener from listening on the
      * requested incoming plugin channel, no longer allowing it to act upon
@@ -95,7 +95,7 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
-     * 注销指定插件请求的监听的传入插件通道，不再允许它在任何插件消息上做动作.
+     * 注销指定插件请求的监听的接收插件通道，不再允许它在任何插件消息上做动作.
      * <p>
      * 原文：Unregisters the specific plugin from listening on the requested
      * incoming plugin channel, no longer allowing it to act upon any plugin
@@ -119,11 +119,11 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin);
 
     /**
-     * 获取包含了所有传出插件通道的set集合.
+     * 获取包含了所有发送插件通道的set集合.
      * <p>
      * 原文：Gets a set containing all the outgoing plugin channels.
      *
-     * @return 已注册的所有传出插件通道的列表
+     * @return 已注册的所有发送插件通道的列表
      */
     public Set<String> getOutgoingChannels();
 
@@ -139,11 +139,11 @@ public interface Messenger {
     public Set<String> getOutgoingChannels(Plugin plugin);
 
     /**
-     * 获取包含了所有传入插件通道的set集合.
+     * 获取包含了所有接收插件通道的set集合.
      * <p>
      * 原文：Gets a set containing all the incoming plugin channels.
      *
-     * @return 已注册的所有传入插件通道的列表
+     * @return 已注册的所有接收插件通道的列表
      */
     public Set<String> getIncomingChannels();
 
@@ -201,7 +201,7 @@ public interface Messenger {
     public boolean isRegistrationValid(PluginMessageListenerRegistration registration);
 
     /**
-     * 检测指定插件是否注册过请求接收传入消息的通道.
+     * 检测指定插件是否注册过请求接收接收消息的通道.
      * <p>
      * 原文：Checks if the specified plugin has registered to receive incoming
      * messages through the requested channel.
@@ -213,7 +213,7 @@ public interface Messenger {
     public boolean isIncomingChannelRegistered(Plugin plugin, String channel);
 
     /**
-     * 检测指定插件是否注册过请求发送传出消息的通道.
+     * 检测指定插件是否注册过请求发送发送消息的通道.
      * <p>
      * 原文：Checks if the specified plugin has registered to send outgoing messages
      * through the requested channel.
@@ -225,7 +225,7 @@ public interface Messenger {
     public boolean isOutgoingChannelRegistered(Plugin plugin, String channel);
 
     /**
-     * 调度指定传入消息的任何注册过的监听器.
+     * 调度指定接收消息的任何注册过的监听器.
      * <p>
      * 原文：Dispatches the specified incoming message to any registered listeners.
      *
