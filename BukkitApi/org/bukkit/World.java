@@ -624,13 +624,17 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * The relative time is analogous to hours * 1000
      *
      * @return 当前相对时间
-     * @see #getFullTime()返回这个世界的绝对时间
+     * @see #getFullTime() 返回这个世界的绝对时间
      */
     public long getTime();
 
     /**
-     * 
-     * 
+     * 设置服务器的在游戏中的相对时间。
+     * <p>
+     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200） 
+     * <p>
+     * 注意设置相对时间如果小于当前时间则实际上是
+     * <p>
      * 原文：
      * Sets the relative in-game time on the server.
      * <p>
