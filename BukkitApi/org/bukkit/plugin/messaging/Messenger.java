@@ -128,13 +128,14 @@ public interface Messenger {
     public Set<String> getOutgoingChannels();
 
     /**
+     * 获取一个包含了指定插件注册的全部正在发送的插件通道的set集合.
+     * <p>
      * 原文：Gets a set containing all the outgoing plugin channels that the
      * specified plugin is registered to.
      *
-     * @param plugin Plugin to retrieve channels for.
-     * @return List of all registered outgoing plugin channels that a plugin
-     *     is registered to.
-     * @throws IllegalArgumentException Thrown if plugin is null.
+     * @param plugin 要检索通道的插件
+     * @return 所有这个插件注册的正在发送的插件通道的列表
+     * @throws IllegalArgumentException 如果参数plugin为null
      */
     public Set<String> getOutgoingChannels(Plugin plugin);
 
@@ -148,55 +149,66 @@ public interface Messenger {
     public Set<String> getIncomingChannels();
 
     /**
+     * 获取一个包含了指定插件注册的所有正在接收的插件通道的set集合.
+     * <p>
      * 原文：Gets a set containing all the incoming plugin channels that the
      * specified plugin is registered for.
      *
-     * @param plugin Plugin to retrieve channels for.
-     * @return List of all registered incoming plugin channels that the plugin
-     *     is registered for.
+     * @param plugin 要检索通道的插件
+     * @return 所有这个插件注册的正在接收的插件通道的列表
      * @throws IllegalArgumentException 如果参数plugin为null
      */
     public Set<String> getIncomingChannels(Plugin plugin);
 
     /**
+     * 获取一个包含了指定插件拥有的所有正在接收的插件通道的注册的set集合.
+     * <p>
      * 原文：Gets a set containing all the incoming plugin channel registrations
      * that the specified plugin has.
      *
-     * @param plugin Plugin to retrieve registrations for.
-     * @return List of all registrations that the plugin has.
+     * @param plugin 要检索注册的插件
+     * @return 这个插件注册的所有注册的列表
      * @throws IllegalArgumentException 如果参数plugin为null
      */
     public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(Plugin plugin);
 
     /**
+     * 获取一个包含了所有在请求通道上的正在接收的插件通道的注册的set集合.
+     * <p>
      * 原文：Gets a set containing all the incoming plugin channel registrations
      * that are on the requested channel.
      *
-     * @param channel Channel to retrieve registrations for.
-     * @return List of all registrations that are on the channel.
+     * @param channel 要检索注册的通道
+     * @return 在这个通道上注册的所有注册的列表
      * @throws IllegalArgumentException 如果参数channel为null
      */
     public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(String channel);
 
     /**
+     * 获取一个包含了指定插件在请求的通道上的所有正在接收的插件通道的注册的set集合.
+     * <p>
      * 原文：Gets a set containing all the incoming plugin channel registrations
      * that the specified plugin has on the requested channel.
      *
-     * @param plugin Plugin to retrieve registrations for.
-     * @param channel Channel to filter registrations by.
-     * @return List of all registrations that the plugin has.
+     * @param plugin 要检索注册的插件
+     * @param channel 由某个通道过滤注册
+     * @return 这个插件拥有的所有注册的列表
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
     public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(Plugin plugin, String channel);
 
     /**
+     * 检测指定插件消息监听器的注册是否有效.
+     * <p>
+     * 如果它没有注册以及插件仍然启用，那么注册就是有效的.
+     * <p>
      * 原文：Checks if the specified plugin message listener registration is valid.
      * <p>
      * A registration is considered valid if it has not be unregistered and
      * that the plugin is still enabled.
      *
-     * @param registration Registration to check.
-     * @return True if the registration is valid, otherwise false.
+     * @param registration 要检测的注册
+     * @return 如果注册是有效的则为true,false反之
      */
     public boolean isRegistrationValid(PluginMessageListenerRegistration registration);
 
