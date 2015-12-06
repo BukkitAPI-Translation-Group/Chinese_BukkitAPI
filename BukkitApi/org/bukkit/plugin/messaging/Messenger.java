@@ -227,7 +227,7 @@ public interface Messenger {
     public boolean isIncomingChannelRegistered(Plugin plugin, String channel);
 
     /**
-     * 检测指定插件是否注册过请求发送发送消息的通道.
+     * 检测指定插件注册的发送的消息是否通过了请求的通道.
      * <p>
      * 译注：按方法名来看，应该是检测指定正在发送的通道是否在这个插件上注册过.
      * <p>
