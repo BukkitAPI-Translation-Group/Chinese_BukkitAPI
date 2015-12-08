@@ -46,7 +46,7 @@ public enum BlockFace {
      * 原文:
      * Get the amount of X-coordinates to modify to get the represented block
      *
-     * @return Amount of X-coordinates to modify
+     * @return 要修改的X坐标
      */
     public int getModX() {
         return modX;
@@ -58,7 +58,7 @@ public enum BlockFace {
      * 原文:
      * Get the amount of Y-coordinates to modify to get the represented block
      *
-     * @return Amount of Y-coordinates to modify
+     * @return 要修改的Y坐标
      */
     public int getModY() {
         return modY;
@@ -70,7 +70,7 @@ public enum BlockFace {
      * 原文:
      * Get the amount of Z-coordinates to modify to get the represented block
      *
-     * @return Amount of Z-coordinates to modify
+     * @return 要修改的Z坐标
      */
     public int getModZ() {
         return modZ;

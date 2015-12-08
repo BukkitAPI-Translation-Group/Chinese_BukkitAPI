@@ -3,21 +3,25 @@ package org.bukkit.block;
 import org.bukkit.inventory.BrewerInventory;
 
 /**
- * Represents a brewing stand.
+ * 代表酿造台.
  */
 public interface BrewingStand extends BlockState, ContainerBlock {
 
     /**
-     * How much time is left in the brewing cycle
+     * 返回酿造还需多长时间.
+     * <p>
+     * 原文：How much time is left in the brewing cycle
      *
-     * @return Brew Time
+     * @return 酿造时间
      */
     int getBrewingTime();
 
     /**
-     * Set the time left before brewing completes.
+     * 设置酿造还需多长时间完成.
+     * <p>
+     * 原文：Set the time left before brewing completes.
      *
-     * @param brewTime Brewing time
+     * @param brewTime 酿造时间
      */
     void setBrewingTime(int brewTime);
 
