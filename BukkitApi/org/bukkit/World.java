@@ -633,7 +633,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200） 
      * <p>
-     * 注意设置相对时间如果小于当前时间则实际上是
+     * 注意设置的相对时间如果小于当前相对时间则实际上是将时钟向前移动了一天。如果你要倒回时间，请使用{@link #setFullTime(long)}
      * <p>
      * 原文：
      * Sets the relative in-game time on the server.
@@ -644,21 +644,28 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * will actually move the clock forward a day. If you require to rewind
      * time, please see {@link #setFullTime(long)}
      *
-     * @param time The new relative time to set the in-game time to (in
-     *     hours*1000)
-     * @see #setFullTime(long) Sets the absolute time of this world
+     * @param time 设置的在游戏中的新的相对时间（格式为小时数*1000）
+     * @see #setFullTime(long) 设置这个世界的绝对时间
      */
     public void setTime(long time);
 
     /**
+     * 获取这个世界完整的游戏时间
+     * <p>
+     * 原文：
      * Gets the full in-game time on this world
      *
-     * @return The current absolute time
-     * @see #getTime() Returns a relative time of this world
+     * @return 当前绝对时间
+     * @see #getTime() 返回这个世界的相对时间
      */
     public long getFullTime();
 
     /**
+     * 设置服务器的游戏时间
+     * <p>
+     * 
+     * <p>
+     * 原文：
      * Sets the in-game time on the server
      * <p>
      * Note that this sets the full time of the world, which may cause adverse
