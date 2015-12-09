@@ -5,9 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Represents a type of creature.
+ * 代表刷怪笼的类型.
  *
- * @deprecated Use EntityType instead.
+ * @deprecated 建议用EntityType类代替
  */
 @Deprecated
 public enum CreatureType {
@@ -71,8 +71,8 @@ public enum CreatureType {
 
     /**
      *
-     * @return the raw type id
-     * @deprecated Magic value
+     * @return 原始类型id
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public short getTypeId() {
@@ -85,9 +85,9 @@ public enum CreatureType {
 
     /**
      *
-     * @param id the raw type id
-     * @return the matching CreatureType or null
-     * @deprecated Magic value
+     * @param id 原始类型id
+     * @return 匹配的CreatureType或为null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static CreatureType fromId(int id) {

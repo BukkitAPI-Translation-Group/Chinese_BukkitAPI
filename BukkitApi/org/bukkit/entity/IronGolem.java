@@ -1,22 +1,25 @@
 package org.bukkit.entity;
 
 /**
- * An iron Golem that protects Villages.
+ * 村民守卫者——铁傀儡.
  */
 public interface IronGolem extends Golem {
 
     /**
-     * Gets whether this iron golem was built by a player.
+     * 获取这个铁傀儡是否由玩家建造.
+     * <p>
+     * 原文：Gets whether this iron golem was built by a player.
      *
-     * @return Whether this iron golem was built by a player
+     * @return 这个铁傀儡是否由玩家建造
      */
     public boolean isPlayerCreated();
 
     /**
-     * Sets whether this iron golem was built by a player or not.
+     * 设置这个铁傀儡是否由玩家建造.
+     * <p>
+     * 原文：Sets whether this iron golem was built by a player or not.
      *
-     * @param playerCreated true if you want to set the iron golem as being
-     *     player created, false if you want it to be a natural village golem.
+     * @param playerCreated 这个铁傀儡是否由玩家建造，如果想让这个铁傀儡是自然的那就false
      */
     public void setPlayerCreated(boolean playerCreated);
 }
