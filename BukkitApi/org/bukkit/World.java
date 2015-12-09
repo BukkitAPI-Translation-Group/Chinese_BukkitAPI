@@ -663,7 +663,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 设置服务器的游戏时间
      * <p>
-     * 
+     * 注意这是设置世界的全部时间，可能产生不好的影响，比如破坏红石钟或任一预定事件
      * <p>
      * 原文：
      * Sets the in-game time on the server
@@ -671,19 +671,25 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * Note that this sets the full time of the world, which may cause adverse
      * effects such as breaking redstone clocks and any scheduled events
      *
-     * @param time The new absolute time to set this world to
-     * @see #setTime(long) Sets the relative time of this world
+     * @param time 设置的世界的新绝对时间
+     * @see #setTime(long) 设置世界的相对时间
      */
     public void setFullTime(long time);
 
     /**
+     * 返回世界现在是否有风暴。
+     * <p>
+     * 原文：
      * Returns whether the world has an ongoing storm.
      *
-     * @return Whether there is an ongoing storm
+     * @return 是否有风暴
      */
     public boolean hasStorm();
 
     /**
+     * 设置是否有风暴。会根据新的当前条件设置一个持续时间。
+     * <p>
+     * 原文：
      * Set whether there is a storm. A duration will be set for the new
      * current conditions.
      *
