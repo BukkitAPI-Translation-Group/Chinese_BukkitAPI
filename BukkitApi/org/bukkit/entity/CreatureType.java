@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 代表刷怪笼的类型.
+ * 代表刷怪箱的类型.
  *
  * @deprecated 建议用EntityType类代替
  */
