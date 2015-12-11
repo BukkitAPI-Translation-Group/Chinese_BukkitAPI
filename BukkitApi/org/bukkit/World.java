@@ -687,93 +687,120 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean hasStorm();
 
     /**
-     * 设置是否有风暴。会根据新的当前条件设置一个持续时间。
+     * 设置是否有风暴。会为当前新的天气设置一段持续时间。
      * <p>
      * 原文：
      * Set whether there is a storm. A duration will be set for the new
      * current conditions.
      *
-     * @param hasStorm Whether there is rain and snow
+     * @param hasStorm 是否下雨或下雪
      */
     public void setStorm(boolean hasStorm);
 
     /**
+     * 获取当前天气的剩余时间，单位为tick。
+     * <p> 
+     * 原文：
      * Get the remaining time in ticks of the current conditions.
      *
-     * @return Time in ticks
+     * @return 时间，单位为tick
      */
     public int getWeatherDuration();
 
     /**
+     * 设置当前天气的剩余时间，单位为tick。
+     * <p>
+     * 原文：
      * Set the remaining time in ticks of the current conditions.
      *
-     * @param duration Time in ticks
+     * @param duration 时间，单位为tick
      */
     public void setWeatherDuration(int duration);
 
     /**
+     * 返回是否打雷。
+     * <p>
+     * 原文：
      * Returns whether there is thunder.
      *
-     * @return Whether there is thunder
+     * @return 是否打雷
      */
     public boolean isThundering();
 
     /**
+     * 设置是否打雷。
+     * <p>
+     * 原文：
      * Set whether it is thundering.
      *
-     * @param thundering Whether it is thundering
+     * @param thundering 是否打雷
      */
     public void setThundering(boolean thundering);
 
     /**
+     * 获取打雷持续时间。
+     * <p>
+     * 原文：
      * Get the thundering duration.
      *
-     * @return Duration in ticks
+     * @return 持续时间，单位为tick
      */
     public int getThunderDuration();
 
     /**
+     * 设置打雷持续时间。
+     * <p>
+     * 原文：
      * Set the thundering duration.
      *
-     * @param duration Duration in ticks
+     * @param duration 持续时间，单位为tick
      */
     public void setThunderDuration(int duration);
 
     /**
+     * 在指定坐标生成指定威力的爆炸
+     * <p>
+     * 原文：
      * Creates explosion at given coordinates with given power
      *
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @param power The power of explosion, where 4F is TNT
-     * @return false if explosion was canceled, otherwise true
+     * @param x x坐标
+     * @param y y坐标
+     * @param z z坐标
+     * @param power 爆炸的威力，一个TNT当量为4F
+     * @return 如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(double x, double y, double z, float power);
 
     /**
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火。
+     * <p>
+     * 原文：
      * Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire.
      *
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @param power The power of explosion, where 4F is TNT
-     * @param setFire Whether or not to set blocks on fire
-     * @return false if explosion was canceled, otherwise true
+     * @param x x坐标
+     * @param y y坐标
+     * @param z z坐标
+     * @param power 爆炸的威力，一个TNT当量为4F
+     * @param setFire 方块是否会着火
+     * @return  如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire);
 
     /**
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火或被破坏。
+     * <p>
+     * 原文：
      * Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire or breaking blocks.
      *
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @param power The power of explosion, where 4F is TNT
-     * @param setFire Whether or not to set blocks on fire
-     * @param breakBlocks Whether or not to have blocks be destroyed
-     * @return false if explosion was canceled, otherwise true
+     * @param x x坐标
+     * @param y y坐标
+     * @param z z坐标
+     * @param power 爆炸的威力，一个TNT当量为4F
+     * @param setFire 方块是否会着火
+     * @param breakBlocks 是否破坏方块
+     * @return 如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks);
 
