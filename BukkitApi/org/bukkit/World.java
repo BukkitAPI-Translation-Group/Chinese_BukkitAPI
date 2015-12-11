@@ -805,54 +805,75 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks);
 
     /**
+     * 在指定坐标生成指定威力的爆炸
+     * <p>
+     * 原文：
      * Creates explosion at given coordinates with given power
      *
-     * @param loc Location to blow up
-     * @param power The power of explosion, where 4F is TNT
-     * @return false if explosion was canceled, otherwise true
+     * @param loc 爆炸方位
+     * @param power 爆炸的威力，一个TNT当量为4F
+     * @return 如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(Location loc, float power);
 
     /**
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火。
+     * <p>
+     * 原文：
      * Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire.
      *
-     * @param loc Location to blow up
-     * @param power The power of explosion, where 4F is TNT
-     * @param setFire Whether or not to set blocks on fire
-     * @return false if explosion was canceled, otherwise true
+     * @param loc 爆炸方位
+     * @param power 爆炸的威力，一个TNT当量为4F
+     * @param setFire 方块是否会着火
+     * @return 如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(Location loc, float power, boolean setFire);
 
     /**
+     * 获取世界的环境{@link Environment}类型
+     * <p>
+     * 原文：
      * Gets the {@link Environment} type of this world
      *
-     * @return This worlds Environment type
+     * @return 这个世界的环境类型
      */
     public Environment getEnvironment();
 
     /**
+     * 获取世界的种子。
+     * <p>
+     * 原文：
      * Gets the Seed for this world.
      *
-     * @return This worlds Seed
+     * @return 这个世界的种子
      */
     public long getSeed();
 
     /**
+     * 获取世界的当前PVP设置。
+     * <p>
+     * 原文：
      * Gets the current PVP setting for this world.
      *
-     * @return True if PVP is enabled
+     * @return 如果允许PVP则返回true
      */
     public boolean getPVP();
 
     /**
+     * 设置世界的PVP设置。
+     * <p>
+     * 原文：
      * Sets the PVP setting for this world.
      *
-     * @param pvp True/False whether PVP should be Enabled.
+     * @param pvp 是否允许PVP，允许为True，不允许为False。
      */
     public void setPVP(boolean pvp);
 
     /**
+     * 获取世界的区块生成器
+     * <p>
+     * 原文：
      * Gets the chunk generator for this world
      *
      * @return ChunkGenerator associated with this world
