@@ -876,35 +876,48 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Gets the chunk generator for this world
      *
-     * @return ChunkGenerator associated with this world
+     * @return 这个世界相关的区块生成器（ChunkGenerator）。
      */
     public ChunkGenerator getGenerator();
 
     /**
+     * 保存世界到磁盘
+     * <p>
+     * 原文：
      * Saves world to disk
      */
     public void save();
 
     /**
+     * 获取一个这个世界使用的所有方块填充器{@link BlockPopulator}的列表
+     * <p>
+     * 原文：
      * Gets a list of all applied {@link BlockPopulator}s for this World
      *
-     * @return List containing any or none BlockPopulators
+     * @return 包含方块填充器的列表
      */
     public List<BlockPopulator> getPopulators();
 
     /**
+     * 在指定的方位{@link Location}根据给定的类生成一个实体
+     * <p>
+     * 原文：
      * Spawn an entity of a specific class at the given {@link Location}
      *
-     * @param location the {@link Location} to spawn the entity at
-     * @param clazz the class of the {@link Entity} to spawn
-     * @param <T> the class of the {@link Entity} to spawn
-     * @return an instance of the spawned {@link Entity}
-     * @throws IllegalArgumentException if either parameter is null or the
-     *     {@link Entity} requested cannot be spawned
+     * @param location 生成实体的方位{@link Location}
+     * @param clazz 生成实体{@link Entity}的类
+     * @param <T> 生成实体{@link Entity}的类
+     * @return 一个生成的实体{@link Entity}实例
+     * @throws IllegalArgumentException 如果参数为空或被要求生成的实体{@link Entity}不能被生成则抛出错误
      */
     public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException;
 
     /**
+     * 在指定的方位{@link Location}根据给定的材料{@link Material}生成一个下落方块{@link FallingBlock}实体。材料决定下落的东西。当下落方块碰到地时就会放置这个方块。
+     * <p>
+     * 材料必须是一个经过{@link Material#isBlock()material.isBlock()}检验的方块类型。可能不是空气。
+     * <p>
+     * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
      * the specified {@link Material}. The material dictates what is falling.
      * When the FallingBlock hits the ground, it will place that block.
@@ -912,80 +925,92 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * The Material must be a block type, check with {@link Material#isBlock()
      * material.isBlock()}. The Material may not be air.
      *
-     * @param location The {@link Location} to spawn the FallingBlock
-     * @param material The block {@link Material} type
-     * @param data The block data
-     * @return The spawned {@link FallingBlock} instance
-     * @throws IllegalArgumentException if {@link Location} or {@link
-     *     Material} are null or {@link Material} is not a block
-     * @deprecated Magic value
+     * @param location 生成下落方块的方位{@link Location}
+     * @param material 方块材料{@link Material}类型
+     * @param data 方块数据
+     * @return 生成的下落方块{@link FallingBlock}实例
+     * @throws IllegalArgumentException 如果方位{@link Location}或材料{@link Material} 为空或材料{@link Material}不是一个方块则抛出错误。
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
 
     /**
+     * 在指定的方位{@link Location}根据指定的方块ID（会被转换为材料{@link Material}）生成一个下落方块{@link FallingBlock}实体
+     * <p>
+     * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
      * the specified blockId (converted to {@link Material})
      *
-     * @param location The {@link Location} to spawn the FallingBlock
-     * @param blockId The id of the intended material
-     * @param blockData The block data
-     * @return The spawned FallingBlock instance
-     * @throws IllegalArgumentException if location is null, or blockId is
-     *     invalid
+     * @param location 生成下落方块的方位{@link Location}
+     * @param blockId 材料相应的ID
+     * @param blockData 方块数据
+     * @return 生成的下落方块实例
+     * @throws IllegalArgumentException 如果方位为空或方块无效则抛出错误
      * @see #spawnFallingBlock(org.bukkit.Location, org.bukkit.Material, byte)
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException;
 
     /**
+     * 向在以指定方位为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * <p>
+     * 原文：
      * Plays an effect to all players within a default radius around a given
      * location.
      *
-     * @param location the {@link Location} around which players must be to
-     *     hear the sound
-     * @param effect the {@link Effect}
-     * @param data a data bit needed for some effects
+     * @param location 玩家一定听得到声音的圆心方位{@link Location}
+     * @param effect 效果{@link Effect}
+     * @param data 一些效果需要的数据
      */
     public void playEffect(Location location, Effect effect, int data);
 
     /**
+     * 向在以指定方位为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * <p>
+     * 原文：
      * Plays an effect to all players within a given radius around a location.
      *
-     * @param location the {@link Location} around which players must be to
-     *     hear the effect
-     * @param effect the {@link Effect}
-     * @param data a data bit needed for some effects
-     * @param radius the radius around the location
+     * @param location 玩家一定听得到效果的圆心方位{@link Location}
+     * @param effect 效果{@link Effect}
+     * @param data 一些效果需要的数据
+     * @param radius 半径
      */
     public void playEffect(Location location, Effect effect, int data, int radius);
 
     /**
+     * 向在以指定方位为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * <p>
+     * 原文：
      * Plays an effect to all players within a default radius around a given
      * location.
      *
-     * @param <T> data dependant on the type of effect
-     * @param location the {@link Location} around which players must be to
-     *     hear the sound
-     * @param effect the {@link Effect}
-     * @param data a data bit needed for some effects
+     * @param <T> 取决于效果类型的数据
+     * @param location 玩家一定听得到声音的圆心方位{@link Location}
+     * @param effect 效果{@link Effect}
+     * @param data 一些效果需要的数据
      */
     public <T> void playEffect(Location location, Effect effect, T data);
 
     /**
+     * 向在以指定方位为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * <p>
+     * 原文：
      * Plays an effect to all players within a given radius around a location.
      *
-     * @param <T> data dependant on the type of effect
-     * @param location the {@link Location} around which players must be to
-     *     hear the effect
-     * @param effect the {@link Effect}
-     * @param data a data bit needed for some effects
-     * @param radius the radius around the location
+     * @param <T> 取决于效果类型的数据
+     * @param location 玩家一定听得到效果的圆心方位{@link Location}
+     * @param effect 效果{@link Effect}
+     * @param data 一些效果需要的数据
+     * @param radius 半径
      */
     public <T> void playEffect(Location location, Effect effect, T data, int radius);
 
     /**
+     * 
+     * <p>
+     * 原文：
      * Get empty chunk snapshot (equivalent to all air blocks), optionally
      * including valid biome data. Used for representing an ungenerated chunk,
      * or for fetching only biome data without loading a chunk.
