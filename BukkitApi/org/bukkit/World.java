@@ -1008,7 +1008,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public <T> void playEffect(Location location, Effect effect, T data, int radius);
 
     /**
-     * 
+     * 获取空区块的快照（相当于所有空气方块），
      * <p>
      * 原文：
      * Get empty chunk snapshot (equivalent to all air blocks), optionally
