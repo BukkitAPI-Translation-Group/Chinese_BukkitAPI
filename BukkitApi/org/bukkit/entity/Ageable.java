@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * 代表一个能有年龄和繁殖能力的实体./ Represents an entity that can age and breed.
+ * 代表一个有年龄和繁殖能力的实体.
  */
 public interface Ageable extends Creature {    
     /**
