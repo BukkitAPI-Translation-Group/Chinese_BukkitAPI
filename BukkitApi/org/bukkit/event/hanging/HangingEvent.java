@@ -6,7 +6,7 @@ import org.bukkit.event.Event;
 /**
  * 代表与悬挂实体有关的事件.
  * <p>
- * 译注：什么是悬挂实体？比如画，它属于实体，而且可以悬挂，那么我们就成那些实体为悬挂实体。
+ * 译注：什么是悬挂实体？比如画，它属于实体，而且可以悬挂，那么我们就称那些实体为悬挂实体。
  */
 public abstract class HangingEvent extends Event {
     protected Hanging hanging;
