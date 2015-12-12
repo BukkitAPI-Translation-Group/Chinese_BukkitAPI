@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Triggered when a hanging entity is removed
+ * 当一个悬挂实体被移除时调用.
  */
 public class HangingBreakEvent extends HangingEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -18,9 +18,11 @@ public class HangingBreakEvent extends HangingEvent implements Cancellable {
     }
 
     /**
-     * Gets the cause for the hanging entity's removal
+     * 获取这个悬挂实体被移除的原因.
+     * <p>
+     * 原文：Gets the cause for the hanging entity's removal
      *
-     * @return the RemoveCause for the hanging entity's removal
+     * @return 这个悬挂实体被移除的原因
      */
     public HangingBreakEvent.RemoveCause getCause() {
         return cause;
@@ -35,27 +37,27 @@ public class HangingBreakEvent extends HangingEvent implements Cancellable {
     }
 
     /**
-     * An enum to specify the cause of the removal
+     * 指定移除原因的一个枚举
      */
     public enum RemoveCause {
         /**
-         * Removed by an entity
+         * 被一个实体移除
          */
         ENTITY,
         /**
-         * Removed by an explosion
+         * 因爆炸而移除
          */
         EXPLOSION,
         /**
-         * Removed by placing a block on it
+         * 放置方块时自动脱落
          */
         OBSTRUCTION,
         /**
-         * Removed by destroying the block behind it, etc
+         * 破坏它背后的方块而自动脱落
          */
         PHYSICS,
         /**
-         * Removed by an uncategorised cause
+         * 未分类（未知）的移除原因（默认）
          */
         DEFAULT,
     }

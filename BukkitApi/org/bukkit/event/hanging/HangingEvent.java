@@ -4,7 +4,9 @@ import org.bukkit.entity.Hanging;
 import org.bukkit.event.Event;
 
 /**
- * Represents a hanging entity-related event.
+ * 代表与悬挂实体有关的事件.
+ * <p>
+ * 译注：什么是悬挂实体？比如画，它属于实体，而且可以悬挂，那么我们就成那些实体为悬挂实体。
  */
 public abstract class HangingEvent extends Event {
     protected Hanging hanging;
@@ -14,9 +16,11 @@ public abstract class HangingEvent extends Event {
     }
 
     /**
-     * Gets the hanging entity involved in this event.
+     * 获取涉及了这个事件的悬挂实体.
+     * <p>
+     * 原文：Gets the hanging entity involved in this event.
      *
-     * @return the hanging entity
+     * @return 悬挂实体
      */
     public Hanging getEntity() {
         return hanging;

@@ -8,7 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Triggered when a hanging entity is created in the world
+ * 当一个悬挂实体被放置时触发本事件.
  */
 public class HangingPlaceEvent extends HangingEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -25,27 +25,33 @@ public class HangingPlaceEvent extends HangingEvent implements Cancellable {
     }
 
     /**
-     * Returns the player placing the hanging entity
+     * 返回放置这个悬挂实体的玩家.
+     * <p>
+     * 原文：Returns the player placing the hanging entity
      *
-     * @return the player placing the hanging entity
+     * @return 放置这个悬挂实体的玩家
      */
     public Player getPlayer() {
         return player;
     }
 
     /**
-     * Returns the block that the hanging entity was placed on
+     * 返回这个悬挂实体被放置在哪个方块上.
+     * <p>
+     * 原文：Returns the block that the hanging entity was placed on
      *
-     * @return the block that the hanging entity was placed on
+     * @return 这个悬挂实体被放置在哪个方块上
      */
     public Block getBlock() {
         return block;
     }
 
     /**
-     * Returns the face of the block that the hanging entity was placed on
+     * 返回这个悬挂实体被放置在的方块的朝向.
+     * <p>
+     * 原文：Returns the face of the block that the hanging entity was placed on
      *
-     * @return the face of the block that the hanging entity was placed on
+     * @return 这个方块的朝向
      */
     public BlockFace getBlockFace() {
         return blockFace;

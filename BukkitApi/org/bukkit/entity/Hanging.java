@@ -5,6 +5,8 @@ import org.bukkit.material.Attachable;
 
 /**
  * 代表悬挂实体。
+ * <p>
+ * 译注：什么是悬挂实体？比如画，它属于实体，而且可以悬挂，那么我们就成那些实体为悬挂实体。
  */
 public interface Hanging extends Entity, Attachable {
 
