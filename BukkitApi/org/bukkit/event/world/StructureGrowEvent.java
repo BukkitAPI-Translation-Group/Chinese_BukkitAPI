@@ -9,11 +9,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个有机结构试图长大的时调用此事件(树苗 {@literal ->} 树, 蘑菇 {@literal ->} 巨型蘑菇, 自然的或使用骨粉).
- * 译注:翻译者暂时不明本类意义(不明structure单词在mc的意义),估计是树木之类的.本文出现的“结构”主要指树木、巨型蘑菇.
- * <p>
- * 原文:Event that is called when an organic structure attempts to grow (Sapling {@literal ->}
- * Tree), (Mushroom {@literal ->} Huge Mushroom), naturally or using bonemeal.
+ * 当一个有机结构试图生长的时调用此事件(树苗 {@literal ->} 树, 蘑菇 {@literal ->} 巨型蘑菇, 自然生长的或使用骨粉生长的).
  */
 public class StructureGrowEvent extends WorldEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
