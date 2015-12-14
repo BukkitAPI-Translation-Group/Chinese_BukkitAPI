@@ -1008,74 +1008,90 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public <T> void playEffect(Location location, Effect effect, T data, int radius);
 
     /**
-     * 获取空区块的快照（相当于所有空气方块），
+     * 获取空区块的快照（相当于所有空气方块），可设置包含有效生物群系数据。用于表示一个未生成的区块，或者只用于获取生物群系数据而不加载区块。
      * <p>
      * 原文：
      * Get empty chunk snapshot (equivalent to all air blocks), optionally
      * including valid biome data. Used for representing an ungenerated chunk,
      * or for fetching only biome data without loading a chunk.
      *
-     * @param x - chunk x coordinate
-     * @param z - chunk z coordinate
-     * @param includeBiome - if true, snapshot includes per-coordinate biome
-     *     type
-     * @param includeBiomeTempRain - if true, snapshot includes per-coordinate
-     *     raw biome temperature and rainfall
-     * @return The empty snapshot.
+     * @param x 区块x坐标
+     * @param z 区块z坐标
+     * @param includeBiome 如果为true，则快照会包含每个坐标的生物群系类型
+     * @param includeBiomeTempRain 如果为true，则快照会包含每个坐标的原始生物群系温度和降雨
+     * @return 空快照。
      */
     public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain);
 
     /**
+     * 为这个设置出生标识。
+     * <p>
+     * 原文：
      * Sets the spawn flags for this.
      *
-     * @param allowMonsters - if true, monsters are allowed to spawn in this
-     *     world.
-     * @param allowAnimals - if true, animals are allowed to spawn in this
-     *     world.
+     * @param allowMonsters 如果为true，则允许怪物在这个世界生成。
+     * @param allowAnimals 如果为true，则允许动物在这个世界生成。
      */
     public void setSpawnFlags(boolean allowMonsters, boolean allowAnimals);
 
     /**
+     * 获取动物是否能在这个世界生成。
+     * <p>
+     * 原文：
      * Gets whether animals can spawn in this world.
      *
-     * @return whether animals can spawn in this world.
+     * @return 动物是否能在这个世界生成。
      */
     public boolean getAllowAnimals();
 
     /**
+     * 获取怪物是否能在这个世界生成。
+     * <p>
+     * 原文：
      * Gets whether monsters can spawn in this world.
      *
-     * @return whether monsters can spawn in this world.
+     * @return 怪物是否能在这个世界生成。
      */
     public boolean getAllowMonsters();
 
     /**
+     * 获取指定方块坐标的生物群系。
+     * <p>
+     * 原文：
      * Gets the biome for the given block coordinates.
      *
-     * @param x X coordinate of the block
-     * @param z Z coordinate of the block
-     * @return Biome of the requested block
+     * @param x 方块的x坐标
+     * @param z 方块的z坐标
+     * @return 查询方块的生物群系
      */
     Biome getBiome(int x, int z);
 
     /**
+     * 设置指定方块坐标的生物群系
+     * <p>
+     * 原文：
      * Sets the biome for the given block coordinates
      *
-     * @param x X coordinate of the block
-     * @param z Z coordinate of the block
-     * @param bio new Biome type for this block
+     * @param x 方块的x坐标
+     * @param z 方块的z坐标
+     * @param bio 这个方块的新生物群系类型
      */
     void setBiome(int x, int z, Biome bio);
 
     /**
+     * 获取指定方块坐标的温度。
+     * <p>
+     * 方块不存在时运行这个方法是安全的，它不会创建方块。
+     * <p>
+     * 原文：
      * Gets the temperature for the given block coordinates.
      * <p>
      * It is safe to run this method when the block does not exist, it will
      * not create the block.
      *
-     * @param x X coordinate of the block
-     * @param z Z coordinate of the block
-     * @return Temperature of the requested block
+     * @param x 方块的x坐标
+     * @param z 方块的z坐标
+     * @return 查询方块的温度
      */
     public double getTemperature(int x, int z);
 
