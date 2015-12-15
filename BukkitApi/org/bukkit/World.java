@@ -1096,103 +1096,160 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public double getTemperature(int x, int z);
 
     /**
+     * 获取指定方块坐标的湿度。
+     * <p>
+     * 方块不存在时运行这个方法是安全的，它不会创建方块。
+     * <p>
+     * 原文：
      * Gets the humidity for the given block coordinates.
      * <p>
      * It is safe to run this method when the block does not exist, it will
      * not create the block.
      *
-     * @param x X coordinate of the block
-     * @param z Z coordinate of the block
-     * @return Humidity of the requested block
+     * @param x 方块的x坐标
+     * @param z 方块的z坐标
+     * @return 查询方块的湿度
      */
     public double getHumidity(int x, int z);
 
     /**
+     * 获取这个世界的最大高度。
+     * <p>
+     * 如果最大高度为100，则只有y=0到y=99才有方块。
+     * <p>
+     * 原文：
      * Gets the maximum height of this world.
      * <p>
      * If the max height is 100, there are only blocks from y=0 to y=99.
      *
-     * @return Maximum height of the world
+     * @return 世界的最大高度。
      */
     public int getMaxHeight();
 
     /**
+     * 获取世界的海平面。
+     * <p>
+     * 总是{@link #getMaxHeight()}的一半
+     * <p>
+     * 原文：
      * Gets the sea level for this world.
      * <p>
      * This is often half of {@link #getMaxHeight()}
      *
-     * @return Sea level
+     * @return 海平面
      */
     public int getSeaLevel();
 
     /**
+     * 获取世界的出生地区是否会在内存中保存加载。
+     * <p>
+     * 原文：
      * Gets whether the world's spawn area should be kept loaded into memory
      * or not.
      *
-     * @return true if the world's spawn area will be kept loaded into memory.
+     * @return 如果世界的出生地区会在内存中保存加载则返回true。
      */
     public boolean getKeepSpawnInMemory();
 
     /**
+     * 设置世界的出生地区是否会在内存中保存加载。
+     * <p>
+     * 原文：
      * Sets whether the world's spawn area should be kept loaded into memory
      * or not.
      *
-     * @param keepLoaded if true then the world's spawn area will be kept
-     *     loaded into memory.
+     * @param keepLoaded 如果为true则世界的出生地区会在内存中保存加载。
      */
     public void setKeepSpawnInMemory(boolean keepLoaded);
 
     /**
+     * 获取世界是否会自动保存
+     * <p>
+     * 原文：
      * Gets whether or not the world will automatically save
      *
-     * @return true if the world will automatically save, otherwise false
+     * @return 如果世界会自动保存则返回true，否则返回false
      */
     public boolean isAutoSave();
 
     /**
+     * 设置世界是否会自动保存
+     * <p>
+     * 原文：
      * Sets whether or not the world will automatically save
      *
-     * @param value true if the world should automatically save, otherwise
-     *     false
+     * @param value 如果为true则世界会自动保存，否则为false
      */
     public void setAutoSave(boolean value);
 
     /**
+     * 设置世界的难度。
+     * <p>
+     * 原文：
      * Sets the Difficulty of the world.
      *
-     * @param difficulty the new difficulty you want to set the world to
+     * @param difficulty 设置的世界的新难度
      */
     public void setDifficulty(Difficulty difficulty);
 
     /**
+     * 获取世界的难度。
+     * <p>
+     * 原文：
      * Gets the Difficulty of the world.
      *
-     * @return The difficulty of the world.
+     * @return 世界的难度。
      */
     public Difficulty getDifficulty();
 
     /**
+     * 获取这个世界在磁盘中的文件夹。
+     * <p>
+     * 原文：
      * Gets the folder of this world on disk.
      *
-     * @return The folder of this world.
+     * @return 这个世界的文件夹。
      */
     public File getWorldFolder();
 
     /**
+     * 获取世界类型。
+     * <p>
+     * 原文：
      * Gets the type of this world.
      *
-     * @return Type of this world.
+     * @return 世界类型。
      */
     public WorldType getWorldType();
 
     /**
+     * 获取建筑物是否会被生成。
+     * <p>
+     * 原文：
      * Gets whether or not structures are being generated.
      *
-     * @return True if structures are being generated.
+     * @return 如果建筑物会被生成则返回true。
      */
     public boolean canGenerateStructures();
 
     /**
+     * 获取世界生成动物的时间间隔（单位为tick）
+     * <p>
+     * 这个数值决定每次尝试生成动物之间的时间间隔（单位为tick）。
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成动物。
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成动物。
+     * <li>数值低于0则会被重置为Minecraft的默认值。
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0，则会禁止这个世界生成动物。我们一般使用{@link #setSpawnFlags(boolean, boolean)}来代替。
+     * <p>
+     * Minecraft的默认值：400。
+     * <p>
+     * 原文：
      * Gets the world's ticks per animal spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
@@ -1214,7 +1271,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * Minecraft default: 400.
      *
-     * @return The world's ticks per animal spawns value
+     * @return 世界生成动物的时间间隔（单位为tick）
      */
     public long getTicksPerAnimalSpawns();
 
