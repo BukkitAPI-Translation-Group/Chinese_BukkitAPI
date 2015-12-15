@@ -1418,7 +1418,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 设置这个世界一个区块内的怪物生成数限制
      * <p>
-     * <b>注意：</b>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
      * <p>
      * 原文：
      * Sets the limit for number of monsters that can spawn in a chunk in this
@@ -1427,76 +1427,105 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      * 
-     * @param limit the new mob limit
+     * @param limit 新的怪物限制
      */
     void setMonsterSpawnLimit(int limit);
 
     /**
+     * 获取这个世界一个区块内的动物生成数限制
+     * <p>
+     * 原文：
      * Gets the limit for number of animals that can spawn in a chunk in this
      * world
      *
-     * @return The animal spawn limit
+     * @return 动物生成限制
      */
     int getAnimalSpawnLimit();
 
     /**
+     * 设置这个世界一个区块内的动物生成数限制
+     * <p>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
+     * <p>
+     * 原文：
      * Sets the limit for number of animals that can spawn in a chunk in this
      * world
      * <p>
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      * 
-     * @param limit the new mob limit
+     * @param limit 新的动物限制
      */
     void setAnimalSpawnLimit(int limit);
 
     /**
+     * 获取这个世界一个区块内的水生动物生成数限制
+     * <p>
+     * 原文：
      * Gets the limit for number of water animals that can spawn in a chunk in
      * this world
      *
-     * @return The water animal spawn limit
+     * @return 水生动物生成限制
      */
     int getWaterAnimalSpawnLimit();
 
     /**
+     * 设置这个世界一个区块内的水生动物生成数限制
+     * <p>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
+     * <p>
+     * 原文：
      * Sets the limit for number of water animals that can spawn in a chunk in
      * this world
      * <p>
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      * 
-     * @param limit the new mob limit
+     * @param limit 新的水生动物限制
      */
     void setWaterAnimalSpawnLimit(int limit);
 
     /**
+     * 获取这个世界一个区块内周围的怪物的生成数限制
+     * <p>
+     * 原文：
      * Gets the limit for number of ambient mobs that can spawn in a chunk in
      * this world
      *
-     * @return The ambient spawn limit
+     * @return 周围的怪物的生成限制
      */
     int getAmbientSpawnLimit();
 
     /**
+     * 设置这个世界一个区块内周围的怪物的生成数限制
+     * <p>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
+     * <p>
+     * 原文：
      * Sets the limit for number of ambient mobs that can spawn in a chunk in
      * this world
      * <p>
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      * 
-     * @param limit the new mob limit
+     * @param limit 新的周围的怪物的限制
      */
     void setAmbientSpawnLimit(int limit);
 
     /**
+     * 在世界中指定的方位演奏一个声音
+     * <p>
+     * 如果方位或声音为空则这个函数会失效。
+     * <p>
+     * 原文：
      * Play a Sound at the provided Location in the World
      * <p>
      * This function will fail silently if Location or Sound are null.
      *
-     * @param location The location to play the sound
-     * @param sound The sound to play
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param location 演奏声音的方位
+     * @param sound 演奏的声音
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(Location location, Sound sound, float volume, float pitch);
 
