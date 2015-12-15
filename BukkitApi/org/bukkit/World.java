@@ -1276,6 +1276,23 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getTicksPerAnimalSpawns();
 
     /**
+     * 设置世界生成动物的时间间隔（单位为tick）
+     * <p>
+     * 这个数值决定每次尝试生成动物之间的时间间隔（单位为tick）。
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成动物。
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成动物。
+     * <li>数值低于0则会被重置为Minecraft的默认值。
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0，则会禁止这个世界生成动物。我们一般使用{@link #setSpawnFlags(boolean, boolean)}来代替。
+     * <p>
+     * Minecraft的默认值：400。
+     * <p>
+     * 原文：
      * Sets the world's ticks per animal spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
@@ -1297,12 +1314,28 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * Minecraft default: 400.
      *
-     * @param ticksPerAnimalSpawns the ticks per animal spawns value you want
-     *     to set the world to
+     * @param ticksPerAnimalSpawns 设置的世界生成动物的时间间隔（单位为tick）
      */
     public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns);
 
     /**
+     * 获取世界生成怪物的时间间隔（单位为tick）
+     * <p>
+     * 这个数值决定每次尝试生成怪物之间的时间间隔（单位为tick）。
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成怪物。
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成怪物。
+     * <li>数值低于0则会被重置为Minecraft的默认值。
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0，则会禁止这个世界生成怪物。我们一般使用{@link #setSpawnFlags(boolean, boolean)}来代替。
+     * <p>
+     * Minecraft的默认值：1。
+     * <p>
+     * 原文：
      * Gets the world's ticks per monster spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
@@ -1324,11 +1357,28 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * Minecraft default: 1.
      *
-     * @return The world's ticks per monster spawns value
+     * @return 世界生成怪物的时间间隔（单位为tick）
      */
     public long getTicksPerMonsterSpawns();
 
     /**
+     * 设置世界生成怪物的时间间隔（单位为tick）
+     * <p>
+     * 这个数值决定每次尝试生成怪物之间的时间间隔（单位为tick）。
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成怪物。
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成怪物。
+     * <li>数值低于0则会被重置为Minecraft的默认值。
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0，则会禁止这个世界生成怪物。我们一般使用{@link #setSpawnFlags(boolean, boolean)}来代替。
+     * <p>
+     * Minecraft的默认值：1。
+     * <p>
+     * 原文：
      * Sets the world's ticks per monster spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
@@ -1350,20 +1400,27 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * Minecraft default: 1.
      *
-     * @param ticksPerMonsterSpawns the ticks per monster spawns value you
-     *     want to set the world to
+     * @param ticksPerMonsterSpawns 设置的世界生成怪物的时间间隔（单位为tick）
      */
     public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns);
 
     /**
+     * 获取这个世界一个区块内的怪物生成数限制
+     * <p>
+     * 原文：
      * Gets limit for number of monsters that can spawn in a chunk in this
      * world
      *
-     * @return The monster spawn limit
+     * @return 怪物生成限制
      */
     int getMonsterSpawnLimit();
 
     /**
+     * 设置这个世界一个区块内的怪物生成数限制
+     * <p>
+     * <b>注意：</b>
+     * <p>
+     * 原文：
      * Sets the limit for number of monsters that can spawn in a chunk in this
      * world
      * <p>
