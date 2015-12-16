@@ -1557,7 +1557,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 将指定的游戏规则设置为指定数值。
      * <p>
-     * 规则可能会尝试验证数值
+     * 规则可能会尝试验证数值，如果数值被设置则会返回true。
+     * <p>
+     * 如果规则为空，则这个函数会返回false。
      * <p>
      * 原文：
      * Set the specified gamerule to specified value.
@@ -1567,41 +1569,59 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * If rule is null, the function will return false.
      *
-     * @param rule Rule to set
-     * @param value Value to set rule to
-     * @return True if rule was set
+     * @param rule 设置的规则
+     * @param value 设置的规则数值
+     * @return 规则被设置则返回true
      */
     public boolean setGameRuleValue(String rule, String value);
 
     /**
+     * 检查字符串是否是一个有效的游戏规则
+     * <p>
+     * 原文：
      * Checks if string is a valid game rule
      *
-     * @param rule Rule to check
-     * @return True if rule exists
+     * @param rule 检查的规则
+     * @return 如果规则存在则返回true
      */
     public boolean isGameRule(String rule);
 
     /**
+     * 获取这个世界的世界边界。
+     * <p>
+     * 原文：
      * Gets the world border for this world.
      *
-     * @return The world border for this world.
+     * @return 这个世界的世界边界。
      */
     public WorldBorder getWorldBorder();
 
     /**
+     * 表示世界可能的各种地图环境类型
+     * <p>
+     * 原文：
      * Represents various map environment types that a world may be
      */
     public enum Environment {
 
         /**
+         * 表示"normal"/"surface world"地图
+         * <p>
+         * 原文：
          * Represents the "normal"/"surface world" map
          */
         NORMAL(0),
         /**
+         * 表示一个基于（"hell"）地图的地狱
+         * <p>
+         * 原文：
          * Represents a nether based map ("hell")
          */
         NETHER(-1),
         /**
+         * 表示"end"地图
+         * <p>
+         * 原文：
          * Represents the "end" map
          */
         THE_END(1);
@@ -1614,10 +1634,13 @@ public interface World extends PluginMessageRecipient, Metadatable {
         }
 
         /**
+         * 获取这个环境的ID
+         * <p>
+         * 原文：
          * Gets the dimension ID of this environment
          *
-         * @return dimension ID
-         * @deprecated Magic value
+         * @return ID
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public int getId() {
@@ -1625,11 +1648,14 @@ public interface World extends PluginMessageRecipient, Metadatable {
         }
 
         /**
+         * 根据ID获取环境
+         * <p>
+         * 原文：
          * Get an environment by ID
          *
-         * @param id The ID of the environment
-         * @return The environment
-         * @deprecated Magic value
+         * @param id 环境ID
+         * @return 环境
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public static Environment getEnvironment(int id) {
