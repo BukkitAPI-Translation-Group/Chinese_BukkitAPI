@@ -1530,23 +1530,36 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void playSound(Location location, Sound sound, float volume, float pitch);
 
     /**
+     * 获取当前规则
+     * <p>
+     * 原文：
      * Get existing rules
      *
-     * @return An array of rules
+     * @return 规则的数组
      */
     public String[] getGameRules();
 
     /**
+     * 获取指定规则的当前状态
+     * <p>
+     * 如果规则是空则会返回null
+     * <p>
+     * 原文：
      * Gets the current state of the specified rule
      * <p>
      * Will return null if rule passed is null
      *
-     * @param rule Rule to look up value of
-     * @return String value of rule
+     * @param rule 查找数值的规则
+     * @return 规则的字符串数值
      */
     public String getGameRuleValue(String rule);
 
     /**
+     * 将指定的游戏规则设置为指定数值。
+     * <p>
+     * 规则可能会尝试验证数值
+     * <p>
+     * 原文：
      * Set the specified gamerule to specified value.
      * <p>
      * The rule may attempt to validate the value passed, will return true if
