@@ -8,7 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当一个悬挂实体被放置时触发本事件.
+ * 当一个悬挂实体被放置时触发本事件。
  */
 public class HangingPlaceEvent extends HangingEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
