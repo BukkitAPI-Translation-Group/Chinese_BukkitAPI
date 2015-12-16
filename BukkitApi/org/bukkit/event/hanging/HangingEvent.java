@@ -16,7 +16,7 @@ public abstract class HangingEvent extends Event {
     }
 
     /**
-     * 获取涉及了这个事件的悬挂实体.
+     * 获取涉及了这个事件的悬挂实体。
      * <p>
      * 原文：Gets the hanging entity involved in this event.
      *
