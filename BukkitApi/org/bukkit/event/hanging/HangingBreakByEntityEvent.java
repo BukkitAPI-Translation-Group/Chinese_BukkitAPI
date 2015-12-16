@@ -15,7 +15,7 @@ public class HangingBreakByEntityEvent extends HangingBreakEvent {
     }
 
     /**
-     * 获取移除这个悬挂实体的实体
+     * 获取移除这个悬挂实体的实体.
      * <p>
      * 原文：Gets the entity that removed the hanging entity
      *
