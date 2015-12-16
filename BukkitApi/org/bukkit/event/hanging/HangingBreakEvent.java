@@ -18,7 +18,7 @@ public class HangingBreakEvent extends HangingEvent implements Cancellable {
     }
 
     /**
-     * 获取这个悬挂实体被移除的原因.
+     * 获取这个悬挂实体被移除的原因
      * <p>
      * 原文：Gets the cause for the hanging entity's removal
      *
