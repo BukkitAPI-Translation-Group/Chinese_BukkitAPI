@@ -1,7 +1,7 @@
 package org.bukkit.plugin.messaging;
 
 /**
- * 如果要发送的插件信息(Plugin Message)过大则抛出此异常.
+ * 如果要发送的插件信息(Plugin Message)过大则抛出此异常。
  */
 @SuppressWarnings("serial")
 public class MessageTooLargeException extends RuntimeException {
