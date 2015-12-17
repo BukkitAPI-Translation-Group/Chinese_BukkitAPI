@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 /**
- * 负责管理插件通道和它们注册的监听器的类.
+ * 负责管理注册插件通道和监听器的类.
  */
 public interface Messenger {
 
@@ -25,13 +25,13 @@ public interface Messenger {
      * 原文：Checks if the specified channel is a reserved name.
      *
      * @param channel 要检测的通道名称
-     * @return 如果这个通道是保留的则为true，false反之
+     * @return 如果这个通道是保留的则为true，反之为false
      * @throws IllegalArgumentException 如果参数channel为null
      */
     public boolean isReservedChannel(String channel);
 
     /**
-     * 注册特定插件所请求的发送插件通道，允许它通过这个通道向任何通道发送消息.
+     * 注册指定插件所请求的发送插件通道，允许它通过这个通道向任何客户端发送消息.
      * <p>
      * 原文：Registers the specific plugin to the requested outgoing plugin channel,
      * allowing it to send messages through that channel to any clients.
@@ -43,7 +43,7 @@ public interface Messenger {
     public void registerOutgoingPluginChannel(Plugin plugin, String channel);
 
     /**
-     * 注销特定插件请求的插件发送通道，不再允许它通过这个通道发送消息到任何客户端.
+     * 注销指定插件请求的插件发送通道，不再允许它通过这个通道发送消息到任何客户端.
      * <p>
      * 原文：Unregisters the specific plugin from the requested outgoing plugin
      * channel, no longer allowing it to send messages through that channel to
@@ -67,7 +67,7 @@ public interface Messenger {
     public void unregisterOutgoingPluginChannel(Plugin plugin);
 
     /**
-     * 为指定插件注册一个能监听请求的正在接收的插件通道，允许它在任何插件消息上做动作.
+     * 注册指定的监听指定的正在接收的插件通道的插件，允许它在任何插件消息上做动作.
      * <p>
      * 原文：Registers the specific plugin for listening on the requested incoming
      * plugin channel, allowing it to act upon any plugin messages.
@@ -81,7 +81,7 @@ public interface Messenger {
     public PluginMessageListenerRegistration registerIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
-     * 注销指定插件请求的监听的正在接收的插件通道，不再允许它在任何插件消息上做任何动作.
+     * 注销指定插件请求的监听正在接收的插件通道的监听器，不再允许它在任何插件消息上做任何动作.
      * <p>
      * 原文：Unregisters the specific plugin's listener from listening on the
      * requested incoming plugin channel, no longer allowing it to act upon
