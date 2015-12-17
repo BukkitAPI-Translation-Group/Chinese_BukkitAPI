@@ -56,7 +56,7 @@ public interface Messenger {
     public void unregisterOutgoingPluginChannel(Plugin plugin, String channel);
 
     /**
-     * 注销特定插件的所有发送插件通道，不再允许它发送任何插件消息.
+     * 注销指定插件的所有向外发送插件通道，不再允许它发送任何插件消息.
      * <p>
      * 原文：Unregisters the specific plugin from all outgoing plugin channels, no
      * longer allowing it to send any plugin messages.
@@ -67,7 +67,7 @@ public interface Messenger {
     public void unregisterOutgoingPluginChannel(Plugin plugin);
 
     /**
-     * 注册指定的监听指定的正在接收的插件通道的插件，允许它在任何插件消息上做动作.
+     * 注册指定的监听指定的接收的插件通道的插件，允许它在任何插件消息上做动作.
      * <p>
      * 原文：Registers the specific plugin for listening on the requested incoming
      * plugin channel, allowing it to act upon any plugin messages.
@@ -81,7 +81,7 @@ public interface Messenger {
     public PluginMessageListenerRegistration registerIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
-     * 注销指定插件请求的监听正在接收的插件通道的监听器，不再允许它在任何插件消息上做任何动作.
+     * 注销指定插件请求的监听接收的插件通道的监听器，不再允许它在任何插件消息上做任何动作.
      * <p>
      * 原文：Unregisters the specific plugin's listener from listening on the
      * requested incoming plugin channel, no longer allowing it to act upon
@@ -95,7 +95,7 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
 
     /**
-     * 注销指定插件请求的监听的正在接收的插件通道，不再允许它在任何插件消息上做动作.
+     * 注销指定插件请求的监听的接收的插件通道，不再允许它在任何插件消息上做动作.
      * <p>
      * 原文：Unregisters the specific plugin from listening on the requested
      * incoming plugin channel, no longer allowing it to act upon any plugin
@@ -108,7 +108,7 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin, String channel);
 
     /**
-     * 注销通过所有监听器的这个插件在监听的插件通道.
+     * 注销指定插件在所有监听器上监听的插件通道.
      * <p>
      * 原文：Unregisters the specific plugin from listening on all plugin channels
      * through all listeners.
@@ -119,7 +119,7 @@ public interface Messenger {
     public void unregisterIncomingPluginChannel(Plugin plugin);
 
     /**
-     * 获取包含了所有发送插件通道的set集合.
+     * 获取包含了所有向外发送的插件通道的set集合.
      * <p>
      * 原文：Gets a set containing all the outgoing plugin channels.
      *
@@ -128,7 +128,7 @@ public interface Messenger {
     public Set<String> getOutgoingChannels();
 
     /**
-     * 获取一个包含了指定插件注册的全部正在发送的插件通道的set集合.
+     * 获取一个包含了指定插件注册的全部向外发送的插件通道的set集合.
      * <p>
      * 原文：Gets a set containing all the outgoing plugin channels that the
      * specified plugin is registered to.
@@ -140,7 +140,7 @@ public interface Messenger {
     public Set<String> getOutgoingChannels(Plugin plugin);
 
     /**
-     * 获取包含了所有正在接收的插件通道的set集合.
+     * 获取包含了所有接收的插件通道的set集合.
      * <p>
      * 原文：Gets a set containing all the incoming plugin channels.
      *
@@ -149,7 +149,7 @@ public interface Messenger {
     public Set<String> getIncomingChannels();
 
     /**
-     * 获取一个包含了指定插件注册的所有正在接收的插件通道的set集合.
+     * 获取一个包含了指定插件注册的所有接收的插件通道的set集合.
      * <p>
      * 原文：Gets a set containing all the incoming plugin channels that the
      * specified plugin is registered for.
@@ -161,7 +161,7 @@ public interface Messenger {
     public Set<String> getIncomingChannels(Plugin plugin);
 
     /**
-     * 获取一个包含了指定插件拥有的所有正在接收的插件通道的注册的set集合.
+     * 获取一个包含了指定插件拥有的所有接收的插件通道的注册的set集合.
      * <p>
      * 原文：Gets a set containing all the incoming plugin channel registrations
      * that the specified plugin has.
@@ -173,7 +173,7 @@ public interface Messenger {
     public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(Plugin plugin);
 
     /**
-     * 获取一个包含了所有在请求通道上的正在接收的插件通道的注册的set集合.
+     * 获取一个包含了所有在请求通道上的接收的插件通道的注册的set集合.
      * <p>
      * 原文：Gets a set containing all the incoming plugin channel registrations
      * that are on the requested channel.
@@ -185,7 +185,7 @@ public interface Messenger {
     public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(String channel);
 
     /**
-     * 获取一个包含了指定插件在请求的通道上的所有正在接收的插件通道的注册的set集合.
+     * 获取一个包含了指定插件在请求的通道上的所有接收的插件通道的注册的set集合.
      * <p>
      * 原文：Gets a set containing all the incoming plugin channel registrations
      * that the specified plugin has on the requested channel.
