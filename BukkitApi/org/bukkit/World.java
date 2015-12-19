@@ -18,12 +18,13 @@ import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.util.Vector;
 
 /**
- * 代表一个世界,包含了实体({@link Entity}),区块({@link Chunk}),方块({@link Block})
+ * 代表一个世界,包含了{@link Entity 实体},{@link Chunk 区块},{@link Block 方块}
  */
 public interface World extends PluginMessageRecipient, Metadatable {
 
     /**
-     * 得到坐标所指的方块<p>
+     * 获取坐标所指的{@link Block 方块}.
+     * <p>
      * 原文：Gets the {@link Block} at the given coordinates
      *
      * @param x 方块的X坐标
@@ -35,17 +36,19 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Block getBlockAt(int x, int y, int z);
 
     /**
-     * 得到指定位置({@link Location})的方块({@link Block})<p>
+     * 获取指定{@link Location 位置}的{@link Block 方块}.
+     * <p>
      * 原文：Gets the {@link Block} at the given {@link Location}
      *
-     * @param location 要得到的方块的位置
+     * @param location 要获取的方块的位置
      * @return 在指定位置的方块
      * @see #getBlockTypeIdAt(org.bukkit.Location) 返回这个位置({@link Location})所在方块的ID
      */
     public Block getBlockAt(Location location);
 
     /**
-     * 得到指定坐标的方块ID<p>
+     * 获取指定坐标的方块ID.
+     * <p>
      * 原文：Gets the block type ID at the given coordinates
      *
      * @param x 方块的X坐标
@@ -53,27 +56,30 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z 方块的Z坐标
      * @return 指定坐标所在的方块的ID
      * @see #getBlockAt(int, int, int) 返回这个坐标所在的方块
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getBlockTypeIdAt(int x, int y, int z);
 
     /**
-     * 得到指定位置{@link Location}的方块{@link Block}的ID
+     * 获取指定{@link Location 位置}的{@link Block 方块}的ID.
+     * <p>
      * 原文：Gets the block type ID at the given {@link Location}
      *
-     * @param location 要得到的方块ID的位置
+     * @param location 要获取的方块ID的位置
      * @return 指定位置的方块的ID
      * @see #getBlockAt(org.bukkit.Location) 返回一个位置({@link Location})所在的方块({@link Block})对象
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getBlockTypeIdAt(Location location);
 
     /**
-     * 得到指定坐标的最顶上的方块的Y坐标(不是空气)
+     * 获取指定坐标的最顶上的方块的Y坐标(不是空气).
+     * <p>
+     * 译注：就是说,获取某个坐标最上面的方块的高度(Y坐标).Essentials插件的top命令就是这个原理.
+     * <p>
      * 原文：Gets the highest non-air coordinate at the given coordinates
-     * 译注：就是说,获取某个坐标最上面的方块的高度(Y坐标).Essentials插件的top就是这个原理.
      *
      * @param x 给定的X坐标
      * @param z 给定的Z坐标
@@ -82,9 +88,11 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getHighestBlockYAt(int x, int z);
 
     /**
-     * 得到指定位置({@link Location})的最顶上的方块的Y坐标(不是空气)
-     * 原文：Gets the highest non-air coordinate at the given {@link Location}
+     * 获取指定{@link Location 位置}的最顶上的方块的Y坐标(不是空气).
+     * <p>
      * 译注：就是说,获取某个坐标最上面的方块的高度(Y坐标).Essentials插件的top就是这个原理.
+     * <p>
+     * 原文：Gets the highest non-air coordinate at the given {@link Location}
      *
      * @param location 给定的位置({@link Location})
      * @return 在给定的位置中的x坐标,y坐标位置中最高的方块的高度(忽略空气)
@@ -92,9 +100,11 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getHighestBlockYAt(Location location);
 
     /**
-     * 得到指定坐标的最顶上的不是空气的方块
-     * 原文：Gets the highest non-empty block at the given coordinates
+     * 获取指定坐标的最顶上的方块(不是空气).
+     * <p>
      * 译注：就是说,获取某个坐标最上面的方块.Essentials插件的top就是这个原理.
+     * <p>
+     * 原文：Gets the highest non-empty block at the given coordinates
      *
      * @param x X坐标
      * @param z Z坐标
@@ -103,17 +113,19 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Block getHighestBlockAt(int x, int z);
 
     /**
-     * 得到指定位置({@link Location})最顶上的不是空气的方块
+     * 获取指定{@link Location 位置}的最顶上的方块(不是空气).
+     * <p>
+     * 译注：相当于getHightestBlockYAt(location),只不过那是获得方块Y坐标,而这个是获取方块对象.
      * 原文：Gets the highest non-empty block at the given coordinates
-     * 译注：相当于getHightestBlockYAt(location),只不过那是获得方块Y坐标,而这个是获取方块对象
      *
-     * @param location 需要得到最高的方块的位置
+     * @param location 需要获取最高的方块的位置
      * @return 最高的不是空气的方块
      */
     public Block getHighestBlockAt(Location location);
 
     /**
-     * 得到给定坐标所在的区块({@link Chunk})
+     * 获取给定坐标所在的{@link Chunk 区块}.
+     * <p>
      * 原文：Gets the {@link Chunk} at the given coordinates
      *
      * @param x X坐标
@@ -123,29 +135,29 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Chunk getChunkAt(int x, int z);
 
     /**
-     * 得到给定方位{@link Location}所在的区块{@link Chunk}
+     * 获取给定{@link Location 位置}所在的{@link Chunk 区块}.
      * <p>
      * 原文：
      * Gets the {@link Chunk} at the given {@link Location}
      *
-     * @param location 方块的方位
-     * @return 给定方位的区块
+     * @param location 方块的位置
+     * @return 给定位置的区块
      */
     public Chunk getChunkAt(Location location);
 
     /**
-     * 得到包含给定方块{@link Block}的区块{@link Chunk}
+     * 获取这个{@link Block 方块}所处的{@link Chunk 区块}.
      * <p>
      * 原文：
      * Gets the {@link Chunk} that contains the given {@link Block}
      *
-     * @param block 用于获取包含此方块的区块的方块（很拗口是吧。。。希望有更好的翻译）
-     * @return 包含指定方块的区块
+     * @param block 需要检测的方块
+     * @return 方块所处的区块
      */
     public Chunk getChunkAt(Block block);
 
     /**
-     * 检查指定区块{@link Chunk}是否已经被加载
+     * 检查指定{@link Chunk 区块}是否已经被加载.
      * <p>
      * 原文：
      * Checks if the specified {@link Chunk} is loaded
@@ -156,7 +168,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isChunkLoaded(Chunk chunk);
 
     /**
-     * 得到一个所有被加载的区块{@link Chunk}的数组
+     * 获取一个所有被加载的{@link Chunk 区块}的数组.
      * <p>
      * 原文：
      * Gets an array of all loaded {@link Chunk}s
@@ -166,7 +178,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Chunk[] getLoadedChunks();
 
     /**
-     * 加载指定的区块{@link Chunk}
+     * 加载指定的{@link Chunk 区块}.
      * <p>
      * 原文：
      * Loads the specified {@link Chunk}
@@ -176,7 +188,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void loadChunk(Chunk chunk);
 
     /**
-     * 检查在指定坐标的区块{@link Chunk}是否被加载
+     * 检查在指定坐标的{@link Chunk 区块}是否被加载.
      * <p>
      * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded
@@ -188,7 +200,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isChunkLoaded(int x, int z);
 
     /**
-     * 检查指定坐标的区块{@link Chunk}是否被加载且被一个或更多的玩家使用
+     * 检查指定坐标的{@link Chunk 区块}是否被加载且被一个或更多的玩家使用.
      * <p>
      * 原文：
      * Checks if the {@link Chunk} at the specified coordinates is loaded and
@@ -201,11 +213,11 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isChunkInUse(int x, int z);
 
     /**
-     * 加载指定坐标的区块{@link Chunk}
+     * 加载指定坐标的{@link Chunk 区块}.
      * <p>
      * 如果区块不存在则会被生成。
      * <p>
-     * 这个方法类似于当generate值为true时的{@link #loadChunk(int, int, boolean)}。
+     * 这个方法类似于当generate值为true时的{@link #loadChunk(int, int, boolean)}.
      * <p>
      * 原文：
      * Loads the {@link Chunk} at the specified coordinates
@@ -221,7 +233,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void loadChunk(int x, int z);
 
     /**
-     * 加载指定坐标的区块{@link Chunk}
+     * 加载指定坐标的{@link Chunk 区块}.
      * <p>
      * 原文：
      * Loads the {@link Chunk} at the specified coordinates
@@ -234,7 +246,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean loadChunk(int x, int z, boolean generate);
 
     /**
-     * 安全的卸载并保存指定坐标的区块{@link Chunk}
+     * 安全的卸载并保存指定坐标的{@link Chunk 区块}.
      * <p>
      * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
      * <p>
@@ -250,7 +262,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(Chunk chunk);
 
     /**
-     * 安全的卸载并保存指定坐标的区块{@link Chunk}
+     * 安全的卸载并保存指定坐标的{@link Chunk 区块}.
      * <p>
      * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
      * <p>
@@ -267,7 +279,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(int x, int z);
 
     /**
-     * 安全的卸载并选择是否保存指定坐标的区块{@link Chunk}
+     * 安全的卸载并选择是否保存指定坐标的{@link Chunk 区块}.
      * <p>
      * 这个方法类似于当safe值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
      * <p>
@@ -286,7 +298,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(int x, int z, boolean save);
 
     /**
-     * 卸载并选择是否保存指定坐标的区块{@link Chunk}
+     * 卸载并选择是否保存指定坐标的{@link Chunk 区块}.
      * <p>
      * 原文：
      * Unloads and optionally saves the {@link Chunk} at the specified
@@ -301,7 +313,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(int x, int z, boolean save, boolean safe);
 
     /**
-     * 安全地将卸载指定坐标的区块{@link Chunk}列入队列
+     * 安全地将卸载指定坐标的{@link Chunk 区块}列入队列.
      * <p>
      * 这个方法类似于当safe值为true时的{@link #unloadChunkRequest(int, int,boolean)}
      * <p>
@@ -319,7 +331,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunkRequest(int x, int z);
 
     /**
-     * 将卸载指定坐标的区块{@link Chunk}列入队列
+     * 将卸载指定坐标的{@link Chunk 区块}列入队列.
      * <p>
      * 原文：
      * Queues the {@link Chunk} at the specified coordinates for unloading
@@ -332,7 +344,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunkRequest(int x, int z, boolean safe);
 
     /**
-     * 重新生成指定坐标的区块{@link Chunk}
+     * 重新生成指定坐标的{@link Chunk 区块}.
      * <p>
      * 原文：
      * Regenerates the {@link Chunk} at the specified coordinates
@@ -344,7 +356,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean regenerateChunk(int x, int z);
 
     /**
-     * 将区块{@link Chunk}重新发送给所有的客户端
+     * 将{@link Chunk 区块}重新发送给所有的客户端.
      * <p>
      * 原文：
      * Resends the {@link Chunk} to all clients
@@ -359,36 +371,36 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean refreshChunk(int x, int z);
 
     /**
-     * 在指定的方位{@link Location}丢出一个物品
+     * 在指定的{@link Location 位置}丢出一个物品.
      * <p>
      * 原文：
      * Drops an item at the specified {@link Location}
      *
-     * @param location 丢出物品的方位
+     * @param location 丢出物品的位置
      * @param item 丢出的物品堆
      * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
     public Item dropItem(Location location, ItemStack item);
 
     /**
-     * 在指定的方位{@link Location}丢出一个随机偏移的物品
+     * 在指定的{@link Location 位置}丢出一个随机偏移的物品.
      * <p>
      * 原文：
      * Drops an item at the specified {@link Location} with a random offset
      *
-     * @param location 丢出物品的方位
+     * @param location 丢出物品的位置
      * @param item 丢出的物品堆
      * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
     public Item dropItemNaturally(Location location, ItemStack item);
 
     /**
-     * 在指定的方位{@link Location}创建一个箭{@link Arrow}的实体
+     * 在指定的{@link Location 位置}创建一个{@link Arrow 箭}的实体.
      * <p>
      * 原文：
      * Creates an {@link Arrow} entity at the given {@link Location}
      *
-     * @param location 生成箭的方位
+     * @param location 生成箭的位置
      * @param direction 箭射向的方向
      * @param speed 箭的射速。建议为0.6
      * @param spread 箭的范围。建议为12（可能是距离或者箭存在的时间，确认后请校对员修改并删除括号）
@@ -397,24 +409,24 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Arrow spawnArrow(Location location, Vector direction, float speed, float spread);
 
     /**
-     * 在指定的方位{@link Location}创建一颗树
+     * 在指定的{@link Location 位置}创建一颗树.
      * <p>
      * 原文：
      * Creates a tree at the given {@link Location}
      *
-     * @param location 生成树的方位
+     * @param location 生成树的位置
      * @param type 创建的树的类型
      * @return 如果树被成功生成则返回true，否则返回false
      */
     public boolean generateTree(Location location, TreeType type);
 
     /**
-     * 在指定的方位{@link Location}创建一颗树
+     * 在指定的{@link Location 位置}创建一颗树.
      * <p>
      * 原文：
      * Creates a tree at the given {@link Location}
      *
-     * @param loc 生成树的方位
+     * @param loc 生成树的位置
      * @param type 创建的树的类型
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
@@ -422,24 +434,24 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate);
 
     /**
-     * 在指定的方位{@link Location}创建一个实体
+     * 在指定的{@link Location 位置}创建一个实体.
      * <p>
      * 原文：
      * Creates a entity at the given {@link Location}
      *
-     * @param loc 生成实体的方位
+     * @param loc 生成实体的位置
      * @param type 生成的实体
      * @return 生成成功则返回此方法创建的实体，否则返回null
      */
     public Entity spawnEntity(Location loc, EntityType type);
 
     /**
-     * 在指定的方位{@link Location}创建一个生物
+     * 在指定的{@link Location 位置}创建一个生物.
      * <p>
      * 原文：
      * Creates a creature at the given {@link Location}
      *
-     * @param loc 生成生物的方位
+     * @param loc 生成生物的位置
      * @param type 生成的生物
      * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
      * @deprecated 生成非LivingEntity（生物实体）有问题。使用{@link
@@ -449,12 +461,12 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public LivingEntity spawnCreature(Location loc, EntityType type);
 
     /**
-     * 在指定的方位{@link Location}创建一个生物
+     * 在指定的{@link Location 位置}创建一个生物.
      * <p>
      * 原文：
      * Creates a creature at the given {@link Location}
      *
-     * @param loc 生成生物的方位
+     * @param loc 生成生物的位置
      * @param type 生成的生物
      * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
      */
@@ -462,29 +474,29 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public LivingEntity spawnCreature(Location loc, CreatureType type);
 
     /**
-     * 在指定的方位{@link Location}劈下闪电
+     * 在指定的{@link Location 位置}劈下闪电.
      * <p>
      * 原文：
      * Strikes lightning at the given {@link Location}
      *
-     * @param loc 劈下闪电的方位
+     * @param loc 劈下闪电的位置
      * @return lightning（闪电）实体。
      */
     public LightningStrike strikeLightning(Location loc);
 
     /**
-     * 在指定的方位{@link Location}劈下不造成伤害的闪电
+     * 在指定的{@link Location 位置}劈下不会造成伤害的闪电.
      * <p>
      * 原文：
      * Strikes lightning at the given {@link Location} without doing damage
      *
-     * @param loc 劈下闪电的方位
+     * @param loc 劈下闪电的位置
      * @return lightning（闪电）实体。
      */
     public LightningStrike strikeLightningEffect(Location loc);
 
     /**
-     * 获取一个这个世界所有实体的列表
+     * 获取一个这个世界所有实体的列表.
      * <p>
      * 原文：
      * Get a list of all entities in this World
@@ -494,7 +506,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<Entity> getEntities();
 
     /**
-     * 获取一个这个世界所有生物实体的列表
+     * 获取一个这个世界所有生物实体的列表.
      * <p>
      * 原文：
      * Get a list of all living entities in this World
@@ -504,7 +516,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<LivingEntity> getLivingEntities();
 
     /**
-     * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合
+     * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合.
      * <p>
      * 原文：
      * Get a collection of all entities in this World matching the given
@@ -518,7 +530,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes);
 
     /**
-     * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合
+     * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合.
      * <p>
      * 原文：
      * Get a collection of all entities in this World matching the given
@@ -531,7 +543,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> cls);
 
     /**
-     * 获取一个在这个世界的所有与任一指定的类/接口相匹配的实体的集合
+     * 获取一个在这个世界的所有与任一指定的类/接口相匹配的实体的集合.
      * <p>
      * 原文：
      * Get a collection of all entities in this World matching any of the
@@ -543,7 +555,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Collection<Entity> getEntitiesByClasses(Class<?>... classes);
 
     /**
-     * 获取一个这个世界的所有玩家的列表
+     * 获取一个这个世界的所有玩家的列表.
      * <p>
      * 原文：
      * Get a list of all players in this World
@@ -553,9 +565,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<Player> getPlayers();
 
     /**
-     * 返回一个在指定范围内的实体的列表。（译注：此为意译，直译不符合中文习惯）
-     * 
-     * 一些执行器可能会对搜索的范围的大小施加限制。（同上）
+     * 返回一个在指定范围内的实体的列表。（译注：此为意译，直译不符合中文习惯）.按原文翻译是：返回一个围绕着这个位置的所有实体的列表.
+     * <p>
+     * 一些实现可能会对搜索的范围的大小施加限制。（同上）.
      * <p>
      * 原文：
      * Returns a list of entities within a bounding box centered around a Location.
@@ -566,12 +578,12 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 搜索范围的x半轴长度
      * @param y 搜索范围的y半轴长度
      * @param z 搜索范围的z半轴长度
-     * @return 在方位附近的实体的集合。一般不为空。
+     * @return 在位置附近的实体的集合。一般不为空。
      */
     public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z);
 
     /**
-     * 获取世界的唯一名称
+     * 获取世界的唯一名称.
      * <p>
      * 原文：
      * Gets the unique name of this world
@@ -581,27 +593,27 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public String getName();
 
     /**
-     * 获取世界的唯一ID
+     * 获取世界的唯一ID.
      * <p>
      * 原文：
      * Gets the Unique ID of this world
      *
-     * @return 世界的唯一ID。
+     * @return 世界的唯一ID
      */
     public UUID getUID();
 
     /**
-     * 获取这个世界的默认出生点方位{@link Location}
+     * 获取这个世界的默认出生点{@link Location 位置}.
      * <p>
      * 原文：
      * Gets the default spawn {@link Location} of this world
      *
-     * @return 这个世界的出生点方位
+     * @return 这个世界的出生点位置
      */
     public Location getSpawnLocation();
 
     /**
-     * 设置这个世界的出生点方位
+     * 设置这个世界的出生点位置.
      * <p>
      * 原文：
      * Sets the spawn location of the world
@@ -609,14 +621,14 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x x坐标
      * @param y y坐标
      * @param z z坐标
-     * @return 如果成功设置则返回true。
+     * @return 如果成功设置则返回true
      */
     public boolean setSpawnLocation(int x, int y, int z);
 
     /**
-     * 获取这个世界在游戏中的相对时间。
+     * 获取这个世界在游戏中的相对时间.
      * <p>
-     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200）
+     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200）.
      * <p>
      * 原文：
      * Gets the relative in-game time of this world.
@@ -629,11 +641,11 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getTime();
 
     /**
-     * 设置服务器的在游戏中的相对时间。
+     * 设置服务器的在游戏中的相对时间.
      * <p>
-     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200） 
+     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200） .
      * <p>
-     * 注意设置的相对时间如果小于当前相对时间则实际上是将时钟向前移动了一天。如果你要倒回时间，请使用{@link #setFullTime(long)}
+     * 注意设置的相对时间如果小于当前相对时间则实际上是将时钟向前移动了一天。如果你要倒回时间，请使用{@link #setFullTime(long)}.
      * <p>
      * 原文：
      * Sets the relative in-game time on the server.
@@ -650,7 +662,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setTime(long time);
 
     /**
-     * 获取这个世界完整的游戏时间
+     * 获取这个世界完整的游戏时间.
      * <p>
      * 原文：
      * Gets the full in-game time on this world
@@ -661,9 +673,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getFullTime();
 
     /**
-     * 设置服务器的游戏时间
+     * 设置服务器的游戏时间.
      * <p>
-     * 注意这是设置世界的全部时间，可能产生不好的影响，比如破坏红石钟或任一预定事件
+     * 注意这是设置全世界的时间，可能产生不好的影响，比如破坏红石钟或任一预定事件.
      * <p>
      * 原文：
      * Sets the in-game time on the server
@@ -677,7 +689,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setFullTime(long time);
 
     /**
-     * 返回世界现在是否有风暴。
+     * 返回世界现在是否有风暴.
      * <p>
      * 原文：
      * Returns whether the world has an ongoing storm.
@@ -687,7 +699,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean hasStorm();
 
     /**
-     * 设置是否有风暴。会为当前新的天气设置一段持续时间。
+     * 设置是否有风暴。会为当前新的天气设置一段持续时间.
      * <p>
      * 原文：
      * Set whether there is a storm. A duration will be set for the new
@@ -698,7 +710,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setStorm(boolean hasStorm);
 
     /**
-     * 获取当前天气的剩余时间，单位为tick。
+     * 获取当前天气的剩余时间，单位为tick.
      * <p> 
      * 原文：
      * Get the remaining time in ticks of the current conditions.
@@ -708,7 +720,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getWeatherDuration();
 
     /**
-     * 设置当前天气的剩余时间，单位为tick。
+     * 设置当前天气的剩余时间，单位为tick.
      * <p>
      * 原文：
      * Set the remaining time in ticks of the current conditions.
@@ -718,7 +730,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setWeatherDuration(int duration);
 
     /**
-     * 返回是否打雷。
+     * 返回这个世界是否打雷.
      * <p>
      * 原文：
      * Returns whether there is thunder.
@@ -728,7 +740,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isThundering();
 
     /**
-     * 设置是否打雷。
+     * 设置这个世界是否打雷.
      * <p>
      * 原文：
      * Set whether it is thundering.
@@ -738,7 +750,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setThundering(boolean thundering);
 
     /**
-     * 获取打雷持续时间。
+     * 获取这个世界打雷持续时间.
      * <p>
      * 原文：
      * Get the thundering duration.
@@ -748,7 +760,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getThunderDuration();
 
     /**
-     * 设置打雷持续时间。
+     * 设置这个世界打雷持续时间。
      * <p>
      * 原文：
      * Set the thundering duration.
@@ -758,7 +770,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setThunderDuration(int duration);
 
     /**
-     * 在指定坐标生成指定威力的爆炸
+     * 在指定坐标生成指定威力的爆炸.
      * <p>
      * 原文：
      * Creates explosion at given coordinates with given power
@@ -772,7 +784,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(double x, double y, double z, float power);
 
     /**
-     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火。
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火.
      * <p>
      * 原文：
      * Creates explosion at given coordinates with given power and optionally
@@ -788,7 +800,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire);
 
     /**
-     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火或被破坏。
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火或被破坏.
      * <p>
      * 原文：
      * Creates explosion at given coordinates with given power and optionally
@@ -805,25 +817,25 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks);
 
     /**
-     * 在指定坐标生成指定威力的爆炸
+     * 在指定坐标生成指定威力的爆炸.
      * <p>
      * 原文：
      * Creates explosion at given coordinates with given power
      *
-     * @param loc 爆炸方位
+     * @param loc 爆炸位置
      * @param power 爆炸的威力，一个TNT当量为4F
      * @return 如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(Location loc, float power);
 
     /**
-     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火。
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火.
      * <p>
      * 原文：
      * Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire.
      *
-     * @param loc 爆炸方位
+     * @param loc 爆炸位置
      * @param power 爆炸的威力，一个TNT当量为4F
      * @param setFire 方块是否会着火
      * @return 如果爆炸被取消则返回false，否则返回true
@@ -831,7 +843,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(Location loc, float power, boolean setFire);
 
     /**
-     * 获取世界的环境{@link Environment}类型
+     * 获取世界的{@link Environment 环境}类型.
      * <p>
      * 原文：
      * Gets the {@link Environment} type of this world
@@ -841,7 +853,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Environment getEnvironment();
 
     /**
-     * 获取世界的种子。
+     * 获取世界的种子.
      * <p>
      * 原文：
      * Gets the Seed for this world.
@@ -851,7 +863,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getSeed();
 
     /**
-     * 获取世界的当前PVP设置。
+     * 获取世界的当前PVP设置.
      * <p>
      * 原文：
      * Gets the current PVP setting for this world.
@@ -861,17 +873,17 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean getPVP();
 
     /**
-     * 设置世界的PVP设置。
+     * 设置世界的PVP设置.
      * <p>
      * 原文：
      * Sets the PVP setting for this world.
      *
-     * @param pvp 是否允许PVP，允许为True，不允许为False。
+     * @param pvp 是否允许PVP，允许为True，不允许为False.
      */
     public void setPVP(boolean pvp);
 
     /**
-     * 获取世界的区块生成器
+     * 获取世界的区块生成器.
      * <p>
      * 原文：
      * Gets the chunk generator for this world
@@ -881,7 +893,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public ChunkGenerator getGenerator();
 
     /**
-     * 保存世界到磁盘
+     * 保存世界到磁盘.
      * <p>
      * 原文：
      * Saves world to disk
@@ -889,7 +901,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void save();
 
     /**
-     * 获取一个这个世界使用的所有方块填充器{@link BlockPopulator}的列表
+     * 获取一个这个世界使用的所有方块填充器{@link BlockPopulator}的列表.
      * <p>
      * 原文：
      * Gets a list of all applied {@link BlockPopulator}s for this World
@@ -899,23 +911,23 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<BlockPopulator> getPopulators();
 
     /**
-     * 在指定的方位{@link Location}根据给定的类生成一个实体
+     * 在指定的{@link Location 位置}根据给定的类生成一个实体.
      * <p>
      * 原文：
      * Spawn an entity of a specific class at the given {@link Location}
      *
-     * @param location 生成实体的方位{@link Location}
-     * @param clazz 生成实体{@link Entity}的类
-     * @param <T> 生成实体{@link Entity}的类
-     * @return 一个生成的实体{@link Entity}实例
-     * @throws IllegalArgumentException 如果参数为空或被要求生成的实体{@link Entity}不能被生成则抛出错误
+     * @param location 生成实体的{@link Location 位置}
+     * @param clazz 生成{@link Entity 实体}的类
+     * @param <T> 生成{@link Entity 实体}的类
+     * @return 一个生成的{@link Entity 实体}实例
+     * @throws IllegalArgumentException 如果参数为空或被要求生成的{@link Entity 实体}不能被生成则抛出错误
      */
     public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException;
 
     /**
-     * 在指定的方位{@link Location}根据给定的材料{@link Material}生成一个下落方块{@link FallingBlock}实体。材料决定下落的东西。当下落方块碰到地时就会放置这个方块。
+     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
      * <p>
-     * 材料必须是一个经过{@link Material#isBlock()material.isBlock()}检验的方块类型。可能不是空气。
+     * 物品必须是一个经过{@link Material#isBlock()material.isBlock()}检验的方块类型。可能不是空气.
      * <p>
      * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
@@ -925,54 +937,55 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * The Material must be a block type, check with {@link Material#isBlock()
      * material.isBlock()}. The Material may not be air.
      *
-     * @param location 生成下落方块的方位{@link Location}
-     * @param material 方块材料{@link Material}类型
+     * @param location 生成下落方块的{@link Location 位置}
+     * @param material 方块{@link Material 物品}的类型
      * @param data 方块数据
      * @return 生成的下落方块{@link FallingBlock}实例
-     * @throws IllegalArgumentException 如果方位{@link Location}或材料{@link Material} 为空或材料{@link Material}不是一个方块则抛出错误。
+     * @throws IllegalArgumentException 如果{@link Location 位置}或{@link Material 物品} 为空或{@link Material 物品}不是一个方块则抛出错误。
      * @deprecated 不安全的参数
      */
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
 
     /**
-     * 在指定的方位{@link Location}根据指定的方块ID（会被转换为材料{@link Material}）生成一个下落方块{@link FallingBlock}实体
+     * 在指定的{@link Location 位置}根据指定的方块ID（会被转换为{@link Material 物品}）生成一个{@link FallingBlock 掉落中的方块}实体.
      * <p>
      * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
      * the specified blockId (converted to {@link Material})
      *
-     * @param location 生成下落方块的方位{@link Location}
-     * @param blockId 材料相应的ID
+     * @param location 生成下落方块的{@link Location 位置}
+     * @param blockId 物品相应的ID
      * @param blockData 方块数据
      * @return 生成的下落方块实例
-     * @throws IllegalArgumentException 如果方位为空或方块无效则抛出错误
+     * @throws IllegalArgumentException 如果位置为空或方块无效则抛出错误
      * @see #spawnFallingBlock(org.bukkit.Location, org.bukkit.Material, byte)
      * @deprecated 不安全的参数
      */
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException;
 
+    // TODO(临时的标签):还需修正，以上已被检验，by hcrgm
     /**
-     * 向在以指定方位为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）.
      * <p>
      * 原文：
      * Plays an effect to all players within a default radius around a given
      * location.
      *
-     * @param location 玩家一定听得到声音的圆心方位{@link Location}
+     * @param location 玩家一定听获取声音的圆心{@link Location 位置}
      * @param effect 效果{@link Effect}
      * @param data 一些效果需要的数据
      */
     public void playEffect(Location location, Effect effect, int data);
 
     /**
-     * 向在以指定方位为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
      * <p>
      * 原文：
      * Plays an effect to all players within a given radius around a location.
      *
-     * @param location 玩家一定听得到效果的圆心方位{@link Location}
+     * @param location 玩家一定听获取效果的圆心位置{@link Location}
      * @param effect 效果{@link Effect}
      * @param data 一些效果需要的数据
      * @param radius 半径
@@ -980,27 +993,27 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void playEffect(Location location, Effect effect, int data, int radius);
 
     /**
-     * 向在以指定方位为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
      * <p>
      * 原文：
      * Plays an effect to all players within a default radius around a given
      * location.
      *
      * @param <T> 取决于效果类型的数据
-     * @param location 玩家一定听得到声音的圆心方位{@link Location}
+     * @param location 玩家一定听获取声音的圆心位置{@link Location}
      * @param effect 效果{@link Effect}
      * @param data 一些效果需要的数据
      */
     public <T> void playEffect(Location location, Effect effect, T data);
 
     /**
-     * 向在以指定方位为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
      * <p>
      * 原文：
      * Plays an effect to all players within a given radius around a location.
      *
      * @param <T> 取决于效果类型的数据
-     * @param location 玩家一定听得到效果的圆心方位{@link Location}
+     * @param location 玩家一定听获取效果的圆心位置{@link Location}
      * @param effect 效果{@link Effect}
      * @param data 一些效果需要的数据
      * @param radius 半径
@@ -1513,16 +1526,16 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void setAmbientSpawnLimit(int limit);
 
     /**
-     * 在世界中指定的方位演奏一个声音
+     * 在世界中指定的位置演奏一个声音
      * <p>
-     * 如果方位或声音为空则这个函数会失效。
+     * 如果位置或声音为空则这个函数会失效。
      * <p>
      * 原文：
      * Play a Sound at the provided Location in the World
      * <p>
      * This function will fail silently if Location or Sound are null.
      *
-     * @param location 演奏声音的方位
+     * @param location 演奏声音的位置
      * @param sound 演奏的声音
      * @param volume 声音音量
      * @param pitch 声音音调
