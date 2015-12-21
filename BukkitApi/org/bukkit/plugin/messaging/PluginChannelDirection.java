@@ -1,7 +1,7 @@
 package org.bukkit.plugin.messaging;
 
 /**
- * 代表插件通道的不同指向.
+ * 代表插件通道的不同指向。
  */
 public enum PluginChannelDirection {
 
