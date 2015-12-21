@@ -13,9 +13,9 @@ public interface PluginMessageListener {
      * 原文：A method that will be thrown when a PluginMessageSource sends a plugin
      * message on a registered channel.
      *
-     * @param channel 通过某通道发送的消息
+     * @param channel 发送消息通过的通道
      * @param player 消息来源
-     * @param message 已发送的消息
+     * @param message 发送的原始消息
      */
     public void onPluginMessageReceived(String channel, Player player, byte[] message);
 }
