@@ -10,7 +10,7 @@ public interface PluginMessageRecipient {
     /**
      * 在指定的通道向接收者发送插件消息(Plugin Message).
      * <p>
-     * 这个消息可能不能大于{@link Messenger#MAX_MESSAGE_SIZE}字节，还有插件必须注册到指定的通道上发消息.
+     * 这个消息可能不大于{@link Messenger#MAX_MESSAGE_SIZE}字节，还有插件必须注册到指定的通道上发消息.
      * <p>
      * 原文：Sends this recipient a Plugin Message on the specified outgoing
      * channel.
