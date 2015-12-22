@@ -1661,7 +1661,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
         }
 
         /**
-         * 根据ID获取环境
+         * 根据ID获取环境.
          * <p>
          * 原文：
          * Get an environment by ID
