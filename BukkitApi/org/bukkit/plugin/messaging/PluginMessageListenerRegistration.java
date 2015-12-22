@@ -67,7 +67,6 @@ public final class PluginMessageListenerRegistration {
     /**
      * 检测这个注册是否仍然有效.
      * <p>
-     * <p>
      * 原文：Checks if this registration is still valid.
      *
      * @return 如果这个注册还有效则为true，false反之
