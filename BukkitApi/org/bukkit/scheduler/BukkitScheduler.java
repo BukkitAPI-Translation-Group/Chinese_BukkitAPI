@@ -10,7 +10,7 @@ public interface BukkitScheduler {
     /**
      * 在指定延迟后执行一次任务.
      * <p>
-     * .这个任务将由服务器主线程执行(同步).
+     * 这个任务将由服务器主线程执行(同步).
      * <p>
      * 原文：Schedules a once off task to occur after a delay.
      * <p>
@@ -97,7 +97,7 @@ public interface BukkitScheduler {
      * <p>
      * 在指定延迟后执行一次任务.此任务将通过由执行器所管理的线程执行.
      * <p>
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
