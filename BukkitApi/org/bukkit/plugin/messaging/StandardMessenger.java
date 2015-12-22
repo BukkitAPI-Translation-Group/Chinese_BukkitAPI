@@ -447,10 +447,10 @@ public class StandardMessenger implements Messenger {
      * 原文：Validates the input of a Plugin Message, ensuring the arguments are all
      * valid.
      *
-     * @param messenger 用于验证的MessengerMessenger to use for validatio
+     * @param messenger 用于验证的Messenger
      * @param source 信息的来源插件
      * @param channel 通过什么插件通道(Plugin Channel)来发送消息
-     * @param message 发送的原始消息的有效载荷
+     * @param message 发送的原始消息的有效载荷（可能是储存原始消息的数据）
      * @throws IllegalArgumentException 如果源插件被禁用则抛出
      * @throws IllegalArgumentException 如果参数source,channel或message为null则抛出
      * @throws MessageTooLargeException 如果消息过大则抛出
