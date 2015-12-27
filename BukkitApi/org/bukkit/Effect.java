@@ -12,11 +12,11 @@ import org.bukkit.potion.Potion;
  */
 public enum Effect {
     /**
-     * 另一种点击声音
+     * 另一种点击声
      */
     CLICK2(1000, Type.SOUND),
     /**
-     * 点击声音
+     * 点击声
      */
     CLICK1(1001, Type.SOUND),
     /**
@@ -28,7 +28,7 @@ public enum Effect {
      */
     DOOR_TOGGLE(1003, Type.SOUND),
     /**
-     * 火焰被熄灭
+     * 火焰熄灭的声音
      */
     EXTINGUISH(1004, Type.SOUND),
     /**
@@ -96,12 +96,12 @@ public enum Effect {
     }
 
     /**
-     * 获取这个效果的id。
+     * 获取这个效果的id.
      * <p>
      * 原文：Gets the ID for this effect.
      *
      * @return 效果id
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int getId() {
@@ -123,13 +123,13 @@ public enum Effect {
     }
 
     /**
-     * 获取给定id相关联的效果。
+     * 获取给定id相关联的效果.
      * <p>
      * 原文：Gets the Effect associated with the given ID.
      *
      * @param id 效果id
      * @return 给定id相关联效果
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static Effect getById(int id) {
