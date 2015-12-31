@@ -1,28 +1,34 @@
 package org.bukkit.inventory.meta;
 
 /**
- * Represents an item that can be repaired at an anvil.
+ * 代表可以被铁砧修复的物品.
  */
 public interface Repairable {
 
     /**
-     * Checks to see if this has a repair penalty
+     * 检测这个物品是否损耗了耐久.
+     * <p>
+     * 原文：Checks to see if this has a repair penalty
      *
-     * @return true if this has a repair penalty
+     * @return 如果这个物品损耗了耐久则为true
      */
     boolean hasRepairCost();
 
     /**
-     * Gets the repair penalty
+     * 获取这个物品的耐久度.
+     * <p>
+     * 原文：Gets the repair penalty
      *
-     * @return the repair penalty
+     * @return 耐久度
      */
     int getRepairCost();
 
     /**
-     * Sets the repair penalty
+     * 设置这个物品的耐久度.
+     * <p>
+     * 原文：Sets the repair penalty
      *
-     * @param cost repair penalty
+     * @param cost 耐久度
      */
     void setRepairCost(int cost);
 
