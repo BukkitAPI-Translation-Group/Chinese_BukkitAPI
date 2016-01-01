@@ -22,6 +22,7 @@ import org.bukkit.util.Vector;
  */
 public interface World extends PluginMessageRecipient, Metadatable {
 
+    // TODO:第一轮修正完毕，由于类比较庞大，还需第二次校验，by hcrgm
     /**
      * 获取坐标所指的{@link Block 方块}.
      * <p>
@@ -1019,7 +1020,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     public <T> void playEffect(Location location, Effect effect, T data, int radius);
 
-    // TODO:检验到此处，还需修正，by hcrgm(表示太庞大了，翻译这个真的不容易)
     /**
      * 获取空区块的快照（相当于所有空气方块），可设置包含有效生物群系数据。用于表示一个未生成的区块，或者只用于获取生物群系数据而不加载区块。
      * <p>
@@ -1032,38 +1032,38 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z 区块z坐标
      * @param includeBiome 如果为true，则快照会包含每个坐标的生物群系类型
      * @param includeBiomeTempRain 如果为true，则快照会包含每个坐标的原始生物群系温度和降雨
-     * @return 空快照。
+     * @return 空快照
      */
     public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain);
 
     /**
-     * 为这个设置出生标识。
+     * 为这个世界设置出生标识。
      * <p>
      * 原文：
      * Sets the spawn flags for this.
      *
-     * @param allowMonsters 如果为true，则允许怪物在这个世界生成。
-     * @param allowAnimals 如果为true，则允许动物在这个世界生成。
+     * @param allowMonsters 如果为true，则允许怪物在这个世界生成
+     * @param allowAnimals 如果为true，则允许动物在这个世界生成
      */
     public void setSpawnFlags(boolean allowMonsters, boolean allowAnimals);
 
     /**
-     * 获取动物是否能在这个世界生成。
+     * 获取动物能不能在这个世界生成。
      * <p>
      * 原文：
      * Gets whether animals can spawn in this world.
      *
-     * @return 动物是否能在这个世界生成。
+     * @return 动物能不能在这个世界生成
      */
     public boolean getAllowAnimals();
 
     /**
-     * 获取怪物是否能在这个世界生成。
+     * 获取怪物能不能在这个世界生成。
      * <p>
      * 原文：
      * Gets whether monsters can spawn in this world.
      *
-     * @return 怪物是否能在这个世界生成。
+     * @return 怪物能不能在这个世界生成
      */
     public boolean getAllowMonsters();
 
@@ -1075,7 +1075,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param x 方块的x坐标
      * @param z 方块的z坐标
-     * @return 查询方块的生物群系
+     * @return 所查方块的生物群系
      */
     Biome getBiome(int x, int z);
 
@@ -1135,48 +1135,48 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * If the max height is 100, there are only blocks from y=0 to y=99.
      *
-     * @return 世界的最大高度。
+     * @return 世界的最大高度
      */
     public int getMaxHeight();
 
     /**
      * 获取世界的海平面。
      * <p>
-     * 总是{@link #getMaxHeight()}的一半
+     * 这个值总是{@link #getMaxHeight()}的一半
      * <p>
      * 原文：
      * Gets the sea level for this world.
      * <p>
      * This is often half of {@link #getMaxHeight()}
      *
-     * @return 海平面
+     * @return 海平面高度
      */
     public int getSeaLevel();
 
     /**
-     * 获取世界的出生地区是否会在内存中保存加载。
+     * 获取世界的出生点是否会在内存中保存加载。
      * <p>
      * 原文：
      * Gets whether the world's spawn area should be kept loaded into memory
      * or not.
      *
-     * @return 如果世界的出生地区会在内存中保存加载则返回true。
+     * @return 如果世界的出生地区会在内存中保存加载则返回true
      */
     public boolean getKeepSpawnInMemory();
 
     /**
-     * 设置世界的出生地区是否会在内存中保存加载。
+     * 设置世界的出生点是否会在内存中保存加载。
      * <p>
      * 原文：
      * Sets whether the world's spawn area should be kept loaded into memory
      * or not.
      *
-     * @param keepLoaded 如果为true则世界的出生地区会在内存中保存加载。
+     * @param keepLoaded 如果为true则世界的出生地区会在内存中保存加载
      */
     public void setKeepSpawnInMemory(boolean keepLoaded);
 
     /**
-     * 获取世界是否会自动保存
+     * 获取世界是否会自动保存。
      * <p>
      * 原文：
      * Gets whether or not the world will automatically save
@@ -1186,7 +1186,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isAutoSave();
 
     /**
-     * 设置世界是否会自动保存
+     * 设置世界是否会自动保存。
      * <p>
      * 原文：
      * Sets whether or not the world will automatically save
@@ -1196,7 +1196,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setAutoSave(boolean value);
 
     /**
-     * 设置世界的难度。
+     * 设置世界的游戏难度。
      * <p>
      * 原文：
      * Sets the Difficulty of the world.
@@ -1206,22 +1206,22 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setDifficulty(Difficulty difficulty);
 
     /**
-     * 获取世界的难度。
+     * 获取世界的游戏难度。
      * <p>
      * 原文：
      * Gets the Difficulty of the world.
      *
-     * @return 世界的难度。
+     * @return 世界的难度
      */
     public Difficulty getDifficulty();
 
     /**
-     * 获取这个世界在磁盘中的文件夹。
+     * 获取这个世界保存在磁盘的哪个文件夹。
      * <p>
      * 原文：
      * Gets the folder of this world on disk.
      *
-     * @return 这个世界的文件夹。
+     * @return 这个世界所在的文件夹
      */
     public File getWorldFolder();
 
@@ -1231,7 +1231,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Gets the type of this world.
      *
-     * @return 世界类型。
+     * @return 世界类型
      */
     public WorldType getWorldType();
 
@@ -1241,12 +1241,12 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Gets whether or not structures are being generated.
      *
-     * @return 如果建筑物会被生成则返回true。
+     * @return 如果建筑物会被生成则返回true
      */
     public boolean canGenerateStructures();
 
     /**
-     * 获取世界生成动物的时间间隔（单位为tick）
+     * 获取世界生成动物的时间间隔（单位为tick）。
      * <p>
      * 这个数值决定每次尝试生成动物之间的时间间隔（单位为tick）。
      * <p>
@@ -1289,7 +1289,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getTicksPerAnimalSpawns();
 
     /**
-     * 设置世界生成动物的时间间隔（单位为tick）
+     * 设置世界生成动物的时间间隔（单位为tick）。
      * <p>
      * 这个数值决定每次尝试生成动物之间的时间间隔（单位为tick）。
      * <p>
@@ -1332,7 +1332,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns);
 
     /**
-     * 获取世界生成怪物的时间间隔（单位为tick）
+     * 获取世界生成怪物的时间间隔（单位为tick）。
      * <p>
      * 这个数值决定每次尝试生成怪物之间的时间间隔（单位为tick）。
      * <p>
@@ -1375,7 +1375,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getTicksPerMonsterSpawns();
 
     /**
-     * 设置世界生成怪物的时间间隔（单位为tick）
+     * 设置世界生成怪物的时间间隔（单位为tick）。
      * <p>
      * 这个数值决定每次尝试生成怪物之间的时间间隔（单位为tick）。
      * <p>
@@ -1418,7 +1418,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns);
 
     /**
-     * 获取这个世界一个区块内的怪物生成数限制
+     * 获取这个世界一个区块内的怪物生成数限制。
      * <p>
      * 原文：
      * Gets limit for number of monsters that can spawn in a chunk in this
@@ -1429,7 +1429,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     int getMonsterSpawnLimit();
 
     /**
-     * 设置这个世界一个区块内的怪物生成数限制
+     * 设置这个世界一个区块内的怪物生成数限制。
      * <p>
      * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
      * <p>
@@ -1445,7 +1445,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void setMonsterSpawnLimit(int limit);
 
     /**
-     * 获取这个世界一个区块内的动物生成数限制
+     * 获取这个世界一个区块内的动物生成数限制。
      * <p>
      * 原文：
      * Gets the limit for number of animals that can spawn in a chunk in this
@@ -1456,7 +1456,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     int getAnimalSpawnLimit();
 
     /**
-     * 设置这个世界一个区块内的动物生成数限制
+     * 设置这个世界一个区块内的动物生成数限制。
      * <p>
      * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
      * <p>
@@ -1472,7 +1472,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void setAnimalSpawnLimit(int limit);
 
     /**
-     * 获取这个世界一个区块内的水生动物生成数限制
+     * 获取这个世界一个区块内的水生动物生成数限制。
      * <p>
      * 原文：
      * Gets the limit for number of water animals that can spawn in a chunk in
@@ -1483,7 +1483,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     int getWaterAnimalSpawnLimit();
 
     /**
-     * 设置这个世界一个区块内的水生动物生成数限制
+     * 设置这个世界一个区块内的水生动物生成数限制。
      * <p>
      * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
      * <p>
@@ -1499,7 +1499,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void setWaterAnimalSpawnLimit(int limit);
 
     /**
-     * 获取这个世界一个区块内周围的怪物的生成数限制
+     * 获取这个世界一个区块内周围的怪物的生成数限制。
      * <p>
      * 原文：
      * Gets the limit for number of ambient mobs that can spawn in a chunk in
@@ -1510,7 +1510,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     int getAmbientSpawnLimit();
 
     /**
-     * 设置这个世界一个区块内周围的怪物的生成数限制
+     * 设置这个世界一个区块内周围的怪物的生成数限制。
      * <p>
      * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替。
      * <p>
@@ -1526,7 +1526,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void setAmbientSpawnLimit(int limit);
 
     /**
-     * 在世界中指定的位置演奏一个声音
+     * 在世界中指定的位置播放一个声音。
      * <p>
      * 如果位置或声音为空则这个函数会失效。
      * <p>
@@ -1536,24 +1536,26 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * This function will fail silently if Location or Sound are null.
      *
      * @param location 演奏声音的位置
-     * @param sound 演奏的声音
+     * @param sound 要播放的声音
      * @param volume 声音音量
      * @param pitch 声音音调
      */
     void playSound(Location location, Sound sound, float volume, float pitch);
 
     /**
-     * 获取当前规则
+     * 获取当前的游戏规则。
+     * <p>
+     * 译注：如果你不知道这是什么，请查阅gamerule命令。
      * <p>
      * 原文：
      * Get existing rules
      *
-     * @return 规则的数组
+     * @return 包含所有规则的数组
      */
     public String[] getGameRules();
 
     /**
-     * 获取指定规则的当前状态
+     * 获取指定游戏规则的当前状态。
      * <p>
      * 如果规则是空则会返回null
      * <p>
@@ -1562,7 +1564,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * Will return null if rule passed is null
      *
-     * @param rule 查找数值的规则
+     * @param rule 要查找的规则
      * @return 规则的字符串数值
      */
     public String getGameRuleValue(String rule);
@@ -1570,7 +1572,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 将指定的游戏规则设置为指定数值。
      * <p>
-     * 规则可能会尝试验证数值，如果数值被设置则会返回true。
+     * 规则可能会尝试验证值，如果数值被设置则会返回true。
      * <p>
      * 如果规则为空，则这个函数会返回false。
      * <p>
@@ -1582,35 +1584,35 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * <p>
      * If rule is null, the function will return false.
      *
-     * @param rule 设置的规则
-     * @param value 设置的规则数值
+     * @param rule 要设置的规则
+     * @param value 要设置的规则数值
      * @return 规则被设置则返回true
      */
     public boolean setGameRuleValue(String rule, String value);
 
     /**
-     * 检查字符串是否是一个有效的游戏规则
+     * 检查字符串是否是一个有效的游戏规则。
      * <p>
      * 原文：
      * Checks if string is a valid game rule
      *
-     * @param rule 检查的规则
+     * @param rule 要检测的规则
      * @return 如果规则存在则返回true
      */
     public boolean isGameRule(String rule);
 
     /**
-     * 获取这个世界的世界边界。
+     * 获取这个世界的世界边界对象。
      * <p>
      * 原文：
      * Gets the world border for this world.
      *
-     * @return 这个世界的世界边界。
+     * @return 这个世界的世界边界对象
      */
     public WorldBorder getWorldBorder();
 
     /**
-     * 表示世界可能的各种地图环境类型
+     * 表示世界可能的各种地图环境类型.
      * <p>
      * 原文：
      * Represents various map environment types that a world may be
@@ -1618,21 +1620,21 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public enum Environment {
 
         /**
-         * 表示"normal"/"surface world"地图
+         * 表示"normal"/"surface world"地图。
          * <p>
          * 原文：
          * Represents the "normal"/"surface world" map
          */
         NORMAL(0),
         /**
-         * 表示一个基于（"hell"）地图的地狱
+         * 表示一个基于（"hell"）地图的地狱。
          * <p>
          * 原文：
          * Represents a nether based map ("hell")
          */
         NETHER(-1),
         /**
-         * 表示"end"地图
+         * 表示"end"地图。
          * <p>
          * 原文：
          * Represents the "end" map
@@ -1647,7 +1649,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
         }
 
         /**
-         * 获取这个环境的ID
+         * 获取这个环境的ID.
          * <p>
          * 原文：
          * Gets the dimension ID of this environment
