@@ -965,61 +965,61 @@ public interface World extends PluginMessageRecipient, Metadatable {
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException;
 
-    // TODO(临时的标签):还需修正，以上已被检验，by hcrgm
     /**
-     * 向在以指定位置为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）.
+     * 向以指定位置为圆心的默认半径内的所有玩家施加(给予)一个效果.
      * <p>
      * 原文：
      * Plays an effect to all players within a default radius around a given
      * location.
      *
-     * @param location 玩家一定听获取声音的圆心{@link Location 位置}
-     * @param effect 效果{@link Effect}
+     * @param location 在这个{@link Location 位置}周围给玩家施加效果
+     * @param effect {@link Effect 效果}
      * @param data 一些效果需要的数据
      */
     public void playEffect(Location location, Effect effect, int data);
 
     /**
-     * 向在以指定位置为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的指定半径内的所有玩家施加(给予)一个效果。
      * <p>
      * 原文：
      * Plays an effect to all players within a given radius around a location.
      *
-     * @param location 玩家一定听获取效果的圆心位置{@link Location}
-     * @param effect 效果{@link Effect}
+     * @param location 在这个{@link Location 位置}周围给玩家施加效果
+     * @param effect {@link Effect 效果}
      * @param data 一些效果需要的数据
      * @param radius 半径
      */
     public void playEffect(Location location, Effect effect, int data, int radius);
 
     /**
-     * 向在以指定位置为圆心的默认半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的默认半径内的所有玩家施加(给予)一个效果。
      * <p>
      * 原文：
      * Plays an effect to all players within a default radius around a given
      * location.
      *
-     * @param <T> 取决于效果类型的数据
-     * @param location 玩家一定听获取声音的圆心位置{@link Location}
-     * @param effect 效果{@link Effect}
+     * @param <T> 与效果类型相关的数据
+     * @param location 在这个{@link Location 位置}周围给玩家施加效果
+     * @param effect {@link Effect 效果}
      * @param data 一些效果需要的数据
      */
     public <T> void playEffect(Location location, Effect effect, T data);
 
     /**
-     * 向在以指定位置为圆心的指定半径的圆内的所有玩家施加一个效果（译注：不确定的翻译，可能是演奏一个效果）。
+     * 向在以指定位置为圆心的指定半径内的所有玩家施加(给予)一个效果。
      * <p>
      * 原文：
      * Plays an effect to all players within a given radius around a location.
      *
-     * @param <T> 取决于效果类型的数据
-     * @param location 玩家一定听获取效果的圆心位置{@link Location}
-     * @param effect 效果{@link Effect}
+     * @param <T> 与效果类型相关的数据
+     * @param location 在这个{@link Location 位置}周围给玩家施加效果
+     * @param effect {@link Effect 效果}
      * @param data 一些效果需要的数据
      * @param radius 半径
      */
     public <T> void playEffect(Location location, Effect effect, T data, int radius);
 
+    // TODO:检验到此处，还需修正，by hcrgm(表示太庞大了，翻译这个真的不容易)
     /**
      * 获取空区块的快照（相当于所有空气方块），可设置包含有效生物群系数据。用于表示一个未生成的区块，或者只用于获取生物群系数据而不加载区块。
      * <p>
