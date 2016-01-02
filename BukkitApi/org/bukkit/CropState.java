@@ -5,67 +5,40 @@ import java.util.Map;
 import com.google.common.collect.Maps;
 
 /**
- * 表示农作物的不同生长阶段
- * <p>
- * 原文：
- * Represents the different growth states of crops
+ * 表示农作物的不同生长阶段.
  */
 public enum CropState {
 
     /**
      * 最开始的播种阶段
-     * <p>
-     * 原文：
-     * State when first seeded
      */
     SEEDED(0x0),
     /**
-     * 第一生长阶段
-     * <p>
-     * 原文：
-     * First growth stage
+     * 发芽阶段(第一生长阶段).
      */
     GERMINATED(0x1),
     /**
-     * 第二生长阶段
-     * <p>
-     * 原文：
-     * Second growth stage
+     * 第二生长阶段.
      */
     VERY_SMALL(0x2),
     /**
-     * 第三生长阶段
-     * <p>
-     * 原文：
-     * Third growth stage
+     * 第三生长阶段.
      */
     SMALL(0x3),
     /**
      * 第四生长阶段
-     * <p>
-     * 原文：
-     * Fourth growth stage
      */
     MEDIUM(0x4),
     /**
      * 第五生长阶段
-     * <p>
-     * 原文：
-     * Fifth growth stage
      */
     TALL(0x5),
     /**
      * 即将成熟的阶段
-     * <p>
-     * 原文：
-     * Almost ripe stage
      */
     VERY_TALL(0x6),
     /**
      * 成熟阶段
-     * <p>
-     * 原文：
-     * Ripe stage
      */
     RIPE(0x7);
 
@@ -77,7 +50,7 @@ public enum CropState {
     }
 
     /**
-     * 获取表示这个生长阶段的相关数值
+     * 获取表示这个生长阶段的相关数值.
      * <p>
      * 原文：
      * Gets the associated data value representing this growth state
@@ -91,7 +64,7 @@ public enum CropState {
     }
 
     /**
-     * 根据指定的数值获取农作物阶段
+     * 根据指定的数值获取农作物阶段.
      * <p>
      * 原文：
      * Gets the CropState with the given data value
