@@ -15,14 +15,14 @@ public @interface EventHandler {
     /**
      * 定义事件的优先级。
      * <p>
-     * 优先级从低到高排列：
+     * 优先级从高到低排列：
      * <ol>
-     * <li>LOWEST
-     * <li>LOW
-     * <li>NORMAL
-     * <li>HIGH
-     * <li>HIGHEST
-     * <li>MONITOR
+     * <li>LOWEST</li>
+     * <li>LOW</li>
+     * <li>NORMAL</li>
+     * <li>HIGH</li>
+     * <li>HIGHEST</li>
+     * <li>MONITOR</li>
      * </ol>
      * <p>
      * 原文：Define the priority of the event.
