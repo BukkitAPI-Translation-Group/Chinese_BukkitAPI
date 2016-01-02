@@ -22,7 +22,6 @@ import org.bukkit.util.Vector;
  */
 public interface World extends PluginMessageRecipient, Metadatable {
 
-    // TODO:第一轮修正完毕，由于类比较庞大，还需第二次校验，by hcrgm
     /**
      * 获取坐标所指的{@link Block 方块}.
      * <p>
@@ -403,8 +402,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param location 生成箭的位置
      * @param direction 箭射向的方向
-     * @param speed 箭的射速。建议为0.6
-     * @param spread 箭的范围。建议为12（可能是距离或者箭存在的时间，确认后请校对员修改并删除括号）
+     * @param speed 箭的射速,建议为0.6
+     * @param spread 箭存在的时间(箭在多久后会消失)
      * @return 这个方法会生成一个Arrow（箭）实体作为结果
      */
     public Arrow spawnArrow(Location location, Vector direction, float speed, float spread);
@@ -453,10 +452,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * Creates a creature at the given {@link Location}
      *
      * @param loc 生成生物的位置
-     * @param type 生成的生物
+     * @param type 生成的生物类型
      * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
-     * @deprecated 生成非LivingEntity（生物实体）有问题。使用{@link
-     *     #spawnEntity(Location, EntityType) spawnEntity} 代替。
+     * @deprecated 生成非LivingEntity（生物实体）有问题，建议用{@link #spawnEntity(Location, EntityType) spawnEntity}代替此方法。
      */
     @Deprecated
     public LivingEntity spawnCreature(Location loc, EntityType type);
@@ -481,7 +479,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * Strikes lightning at the given {@link Location}
      *
      * @param loc 劈下闪电的位置
-     * @return lightning（闪电）实体。
+     * @return lightning（闪电）实体
      */
     public LightningStrike strikeLightning(Location loc);
 
@@ -492,7 +490,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * Strikes lightning at the given {@link Location} without doing damage
      *
      * @param loc 劈下闪电的位置
-     * @return lightning（闪电）实体。
+     * @return lightning（闪电）实体
      */
     public LightningStrike strikeLightningEffect(Location loc);
 
@@ -566,9 +564,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public List<Player> getPlayers();
 
     /**
-     * 返回一个在指定范围内的实体的列表。（译注：此为意译，直译不符合中文习惯）.按原文翻译是：返回一个围绕着这个位置的所有实体的列表.
+     * 返回一个以这个位置为中心的包围着的所有实体的列表(译注:这个可能不太好理解，就是在这个位置，按指定的搜索范围，搜索这个范围里的所有实体).
      * <p>
-     * 一些实现可能会对搜索的范围的大小施加限制。（同上）.
+     * 一些实现可能会对搜索的范围的大小施加限制.
      * <p>
      * 原文：
      * Returns a list of entities within a bounding box centered around a Location.
@@ -579,7 +577,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 搜索范围的x半轴长度
      * @param y 搜索范围的y半轴长度
      * @param z 搜索范围的z半轴长度
-     * @return 在位置附近的实体的集合。一般不为空。
+     * @return 在位置附近的实体的集合,一般不为空
      */
     public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z);
 
@@ -594,12 +592,12 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public String getName();
 
     /**
-     * 获取世界的唯一ID.
+     * 获取世界的唯一UUID.
      * <p>
      * 原文：
      * Gets the Unique ID of this world
      *
-     * @return 世界的唯一ID
+     * @return 世界的唯一UUID
      */
     public UUID getUID();
 
@@ -629,7 +627,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 获取这个世界在游戏中的相对时间.
      * <p>
-     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200）.
+     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200).
      * <p>
      * 原文：
      * Gets the relative in-game time of this world.
@@ -644,7 +642,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 设置服务器的在游戏中的相对时间.
      * <p>
-     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200） .
+     * 相对时间类似于小时数*1000（译注：意思是，如果这个世界在游戏中的时间为一个小时则相对时间显示为1000，一小时十二分为1200).
      * <p>
      * 注意设置的相对时间如果小于当前相对时间则实际上是将时钟向前移动了一天。如果你要倒回时间，请使用{@link #setFullTime(long)}.
      * <p>
@@ -690,12 +688,12 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setFullTime(long time);
 
     /**
-     * 返回世界现在是否有风暴.
+     * 返回世界现在是否有雷暴.
      * <p>
      * 原文：
      * Returns whether the world has an ongoing storm.
      *
-     * @return 是否有风暴
+     * @return 是否有雷暴
      */
     public boolean hasStorm();
 
@@ -731,7 +729,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setWeatherDuration(int duration);
 
     /**
-     * 返回这个世界是否打雷.
+     * 返回这个世界是否在打雷.
      * <p>
      * 原文：
      * Returns whether there is thunder.
@@ -741,7 +739,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isThundering();
 
     /**
-     * 设置这个世界是否打雷.
+     * 设置这个世界是否在打雷.
      * <p>
      * 原文：
      * Set whether it is thundering.
@@ -751,7 +749,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setThundering(boolean thundering);
 
     /**
-     * 获取这个世界打雷持续时间.
+     * 获取这个世界打雷的持续时间.
      * <p>
      * 原文：
      * Get the thundering duration.
@@ -864,7 +862,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public long getSeed();
 
     /**
-     * 获取世界的当前PVP设置.
+     * 获取世界当前的PVP设置.
      * <p>
      * 原文：
      * Gets the current PVP setting for this world.
@@ -879,7 +877,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Sets the PVP setting for this world.
      *
-     * @param pvp 是否允许PVP，允许为True，不允许为False.
+     * @param pvp 是否允许PVP，允许为true，不允许为false.
      */
     public void setPVP(boolean pvp);
 
@@ -889,25 +887,24 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Gets the chunk generator for this world
      *
-     * @return 这个世界相关的区块生成器（ChunkGenerator）。
+     * @return 这个世界相关的{@link ChunkGenerator 区块生成器}
      */
     public ChunkGenerator getGenerator();
 
     /**
      * 保存世界到磁盘.
      * <p>
-     * 原文：
-     * Saves world to disk
+     * 原文：Saves world to disk
      */
     public void save();
 
     /**
-     * 获取一个这个世界使用的所有方块填充器{@link BlockPopulator}的列表.
+     * 获取一个这个世界使用的所有{@link BlockPopulator 方块填充器}的列表.
      * <p>
      * 原文：
      * Gets a list of all applied {@link BlockPopulator}s for this World
      *
-     * @return 包含方块填充器的列表
+     * @return 这个世界使用的所有方块填充器的列表
      */
     public List<BlockPopulator> getPopulators();
 
@@ -926,9 +923,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException;
 
     /**
-     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
+     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 正在下落的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
      * <p>
-     * 物品必须是一个经过{@link Material#isBlock()material.isBlock()}检验的方块类型。可能不是空气.
+     * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
      * <p>
      * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
@@ -941,7 +938,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location 生成下落方块的{@link Location 位置}
      * @param material 方块{@link Material 物品}的类型
      * @param data 方块数据
-     * @return 生成的下落方块{@link FallingBlock}实例
+     * @return 生成的{@link FallingBlock 正在下落的方块}实例
      * @throws IllegalArgumentException 如果{@link Location 位置}或{@link Material 物品} 为空或{@link Material 物品}不是一个方块则抛出错误。
      * @deprecated 不安全的参数
      */
@@ -949,7 +946,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
 
     /**
-     * 在指定的{@link Location 位置}根据指定的方块ID（会被转换为{@link Material 物品}）生成一个{@link FallingBlock 掉落中的方块}实体.
+     * 在指定的{@link Location 位置}根据指定的方块ID（会被转换为{@link Material 物品}）生成一个{@link FallingBlock 正在下落的方块}实体.
      * <p>
      * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
@@ -958,7 +955,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location 生成下落方块的{@link Location 位置}
      * @param blockId 物品相应的ID
      * @param blockData 方块数据
-     * @return 生成的下落方块实例
+     * @return 生成的{@link FallingBlock 正在下落的方块}实例
      * @throws IllegalArgumentException 如果位置为空或方块无效则抛出错误
      * @see #spawnFallingBlock(org.bukkit.Location, org.bukkit.Material, byte)
      * @deprecated 不安全的参数
@@ -1613,31 +1610,19 @@ public interface World extends PluginMessageRecipient, Metadatable {
 
     /**
      * 表示世界可能的各种地图环境类型.
-     * <p>
-     * 原文：
-     * Represents various map environment types that a world may be
      */
     public enum Environment {
 
         /**
          * 表示"normal"/"surface world"地图。
-         * <p>
-         * 原文：
-         * Represents the "normal"/"surface world" map
          */
         NORMAL(0),
         /**
-         * 表示一个基于（"hell"）地图的地狱。
-         * <p>
-         * 原文：
-         * Represents a nether based map ("hell")
+         * 表示一个基于"hell"地图的地狱。
          */
         NETHER(-1),
         /**
          * 表示"end"地图。
-         * <p>
-         * 原文：
-         * Represents the "end" map
          */
         THE_END(1);
 
