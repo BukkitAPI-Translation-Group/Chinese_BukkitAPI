@@ -7,30 +7,35 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- * 一个处理事件的类, 存储 per-event。 基于 lahwran's fevents.
+ * 一个处理事件的类, 存储每个事件。基于 lahwran's fevents.
  */
 public class HandlerList {
 
     /**
-     * 处理数组. 此字段是一个数组的钥匙 to this system's
-     * speed.
+     * 包含了所有处理器的数组.此数组字段是这个系统速度的关键.
      */
     private volatile RegisteredListener[] handlers = null;
 
     /**
-     * Dynamic handler lists. These are changed using register() and
+     * 动态处理器列表.使用register()和unreguster()进行改动，当有任何改动的时候自动合并处理器数组.
+     * <p>
+     * 译注:表示英语水平弱爆了，尤其是“bake”，意思是“烤”，但意思根本对不上，根据源代码来分析大概是“合并”，或者“拷贝”，某天还是问问外佬吧.下方出现的“bake”同.一般情况下这个字段的意义我们是不需要理解的.
+     * <p>
+     * 原文：Dynamic handler lists. These are changed using register() and
      * unregister() and are automatically baked to the handlers array any time
      * they have changed.
      */
     private final EnumMap<EventPriority, ArrayList<RegisteredListener>> handlerslots;
 
     /**
-     * 列出所有已经创建的处理列表, for use in bakeAll()
+     * 所有已经创建的处理器列表,用于bakeAll().
      */
     private static ArrayList<HandlerList> allLists = new ArrayList<HandlerList>();
 
     /**
-     * Bake all handler lists. Best used just after all normal event
+     * 合并(bake)所有处理器列表.最好用在所有正常的事件注册完毕后,即所有插件都加载完了,如果你使用fevents插件系统.
+     * <p>
+     * 原文：Bake all handler lists. Best used just after all normal event
      * registration is complete, ie just after all plugins are loaded if
      * you're using fevents in a plugin system.
      */
@@ -43,7 +48,9 @@ public class HandlerList {
     }
 
     /**
-     * 从所有处理列表解除注册所有监听器
+     * 从所有处理列表注销所有监听器.
+     * <p>
+     * 原文：Unregister all listeners from all handler lists.
      */
     public static void unregisterAll() {
         synchronized (allLists) {
@@ -59,9 +66,11 @@ public class HandlerList {
     }
 
     /**
-     * 从所有处理列表解除注册指定插件的所有监听器
+     * 从所有处理列表注销指定插件的所有监听器.
+     * <p>
+     * 原文：Unregister a specific plugin's listeners from all handler lists.
      *
-     * @param plugin 要解除注册的插件
+     * @param plugin 要注销监听器的插件
      */
     public static void unregisterAll(Plugin plugin) {
         synchronized (allLists) {
@@ -72,7 +81,9 @@ public class HandlerList {
     }
 
     /**
-     * 从处理列表解除注册一个指定的监听器
+     * 从处理程序列表解除注册一个指定的监听器.
+     * <p>
+     * 原文：Unregister a specific listener from all handler lists.
      *
      * @param listener 要解除注册的监听器
      */
@@ -85,7 +96,11 @@ public class HandlerList {
     }
 
     /**
-     * 带着事件优先级创建一个新的处理列表
+     * 用EventPriority来创建和初始化一个新的处理程序列表.
+     * <p>
+     * HandlerList将会被添加到元列表，为了bakeAll()方法.
+     * <p>
+     * 原文：Create a new handler list and initialize using EventPriority.
      * <p>
      * The HandlerList is then added to meta-list for use in bakeAll()
      */
@@ -100,7 +115,9 @@ public class HandlerList {
     }
 
     /**
-     * 处理列表中新建一个监听器
+     * 在处理程序列表中注册一个监听器.
+     * <p>
+     * 原文：Register a new listener in this handler list
      *
      * @param listener 要注册的监听器
      */
@@ -112,9 +129,11 @@ public class HandlerList {
     }
 
     /**
-     * 在处理列表中新建一个监听器们的Collection
+     * 在处理列表中注册一个监听器集合(批量注册监听器).
+     * <p>
+     * 原文：Register a collection of new listeners in this handler list
      *
-     * @param listeners 要新建的监听器们
+     * @param listeners 要注册的监听器
      */
     public void registerAll(Collection<RegisteredListener> listeners) {
         for (RegisteredListener listener : listeners) {
@@ -123,7 +142,11 @@ public class HandlerList {
     }
 
     /**
-     * Remove a listener from a specific order slot
+     * 从一个指定的排序的插槽删除一个监听器.
+     * <p>
+     * 译注：“插槽”的意思见本类的handlerslots变量.
+     * <p>
+     * 原文：Remove a listener from a specific order slot
      *
      * @param listener 要移除的监听器
      */
@@ -134,7 +157,9 @@ public class HandlerList {
     }
 
     /**
-     * 移除一个插件中指定的监听器
+     * 移除一个插件中指定的监听器.
+     * <p>
+     * 原文：Remove a specific plugin's listeners from this handle
      *
      * @param plugin 要移除监听器的插件
      */
@@ -153,6 +178,8 @@ public class HandlerList {
 
     /**
      * 从这个处理列表移除一个指定的监听器。
+     * <p>
+     * 原文：Remove a specific listener from this handler
      *
      * @param listener 要移除的监听器
      */
@@ -170,7 +197,8 @@ public class HandlerList {
     }
 
     /**
-     * 烤(合并？)一个HashMap和ArrayLists到二维数组 - 如果不必要，什么也不会做
+     * 合并(bake)一个HashMap和ArrayLists到二维数组 - 如果不必要，什么也不会做.
+     * <p>
      * 原文：Bake HashMap and ArrayLists to 2d arrays - does nothing if not necessary
      */
     public synchronized void bake() {
@@ -183,7 +211,9 @@ public class HandlerList {
     }
 
     /**
-     * Get the baked registered listeners associated with this handler list
+     * 获取与这个处理程序列表相关的已注册的监听器.
+     * <p>
+     * 原文：Get the baked registered listeners associated with this handler list
      *
      * @return 注册过的监听器的数组
      */
@@ -194,11 +224,13 @@ public class HandlerList {
     }
 
     /**
-     * Get a specific plugin's registered listeners associated with this
+     * 获取与这个处理程序列表相关的指定插件注册的监听器.
+     * <p>
+     * 原文：Get a specific plugin's registered listeners associated with this
      * handler list
      *
-     * @param plugin the plugin to get the listeners of
-     * @return the list of registered listeners
+     * @param plugin 要获取监听器的插件
+     * @return 注册的监听器列表
      */
     public static ArrayList<RegisteredListener> getRegisteredListeners(Plugin plugin) {
         ArrayList<RegisteredListener> listeners = new ArrayList<RegisteredListener>();
@@ -219,9 +251,11 @@ public class HandlerList {
     }
 
     /**
-     * Get a list of all handler lists for every event type
+     * 获取每个事件类型的所有处理程序的列表.
+     * <p>
+     * 原文：Get a list of all handler lists for every event type
      *
-     * @return the list of all handler lists
+     * @return 所有处理程序的列表
      */
     @SuppressWarnings("unchecked")
     public static ArrayList<HandlerList> getHandlerLists() {
