@@ -7,70 +7,88 @@ import org.bukkit.block.banner.Pattern;
 public interface BannerMeta extends ItemMeta {
 
     /**
-     * Returns the base color for this banner
+     * 返回这个旗帜的底色.
+     * <p>
+     * 原文：Returns the base color for this banner
      *
-     * @return the base color
+     * @return 底色
      */
     DyeColor getBaseColor();
 
     /**
-     * Sets the base color for this banner
+     * 设置这个旗帜的底色.
+     * <p>
+     * 原文：Sets the base color for this banner
      *
-     * @param color the base color
+     * @param color 底色
      */
     void setBaseColor(DyeColor color);
 
     /**
-     * Returns a list of patterns on this banner
+     * 返回这个旗帜的图案的列表.
+     * <p>
+     * 原文：Returns a list of patterns on this banner
      *
-     * @return the patterns
+     * @return 图案列表
      */
     List<Pattern> getPatterns();
 
     /**
-     * Sets the patterns used on this banner
+     * 设置这个旗帜的图案.
+     * <p>
+     * 原文：Sets the patterns used on this banner
      *
-     * @param patterns the new list of patterns
+     * @param patterns 新的图案的列表
      */
     void setPatterns(List<Pattern> patterns);
 
     /**
-     * Adds a new pattern on top of the existing
+     * 在现有的图案顶上新增图案.
+     * <p>
+     * 原文：Adds a new pattern on top of the existing
      * patterns
      *
-     * @param pattern the new pattern to add
+     * @param pattern 要新增的图案
      */
     void addPattern(Pattern pattern);
 
     /**
-     * Returns the pattern at the specified index
+     * 返回在指定索引处的图案.
+     * <p>
+     * 原文：Returns the pattern at the specified index
      *
-     * @param i the index
-     * @return the pattern
+     * @param i 索引
+     * @return 图案
      */
     Pattern getPattern(int i);
 
     /**
-     * Removes the pattern at the specified index
+     * 在指定索引处移除图案.
+     * <p>
+     * 原文：Removes the pattern at the specified index
      *
-     * @param i the index
-     * @return the removed pattern
+     * @param i 索引
+     * @return 移除的图案
      */
     Pattern removePattern(int i);
 
     /**
-     * Sets the pattern at the specified index
+     * 在指定的索引处设置图案.
+     * <p>
+     * 原文：Sets the pattern at the specified index
      *
-     * @param i       the index
-     * @param pattern the new pattern
+     * @param i 索引
+     * @param pattern 新的图案
      */
     void setPattern(int i, Pattern pattern);
 
     /**
-     * Returns the number of patterns on this
+     * 返回在这个旗帜的图案数量.
+     * <p>
+     * 原文：Returns the number of patterns on this
      * banner
      *
-     * @return the number of patterns
+     * @return 图案数量
      */
     int numberOfPatterns();
 }
