@@ -12,6 +12,7 @@ package org.bukkit.event;
  * <li>MONITOR</li>
  * </ol>
  * 不要被下面的翻译和本身的意思给骗了.
+ * @see EventHandler
  */
 public enum EventPriority {
 
