@@ -5,6 +5,9 @@ import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
 /**
+ * 这个接口提供数值转换
+ * <p>
+ * 原文：
  * This interface provides value conversions that may be specific to a
  * runtime, or have arbitrary meaning (read: magic values).
  * <p>
