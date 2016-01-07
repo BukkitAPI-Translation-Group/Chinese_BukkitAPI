@@ -13,7 +13,7 @@ import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 /**
- * 一个插件类加载器，允许跨插件共享.
+ * 一个插件类加载器，允许跨插件共享一个加载器.
  */
 final class PluginClassLoader extends URLClassLoader {
     private final JavaPluginLoader loader;
