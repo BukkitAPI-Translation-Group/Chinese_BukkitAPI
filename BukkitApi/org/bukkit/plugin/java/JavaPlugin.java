@@ -42,7 +42,7 @@ import com.google.common.base.Charsets;
 import com.google.common.io.ByteStreams;
 
 /**
- * 表示一个Java插件
+ * 一个Java插件的基类
  */
 public abstract class JavaPlugin extends PluginBase {
     private boolean isEnabled = false;
@@ -67,7 +67,7 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-     * @deprecated 这个方法在单元测试时使用, 其它的不能使用, 它的存在可能是暂时的.
+     * @deprecated 这个方法在单元测试时使用, 其它时候不能使用, 它的存在可能是暂时的.
 	 * <p>
 	 * 原文:
      * @deprecated This method is intended for unit testing purposes when the
@@ -99,7 +99,7 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回插件数据在哪个文件夹里.
+	 * 返回插件数据存放文件夹.
 	 * 文件夹可能不存在.
 	 * <p>
 	 * 原文:
@@ -155,24 +155,24 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回这个插件包含的文件.
+	 * 返回这个插件的文件.
 	 * <p>
 	 * 原文:
      * Returns the file which contains this plugin
      *
-     * @return 插件包含的文件
+     * @return 插件的核心文件
      */
     protected File getFile() {
         return file;
     }
 
     /**
-	 * 返回插件的plugin.yml的内容.
+	 * 返回插件的plugin.yml的内容的描述信息.
 	 * <p>
 	 * 原文:
      * Returns the plugin.yaml file containing the details for this plugin
      *
-     * @return plugin.yml的内容
+     * @return plugin.yml的内容描述信息
      */
     @Override
     public final PluginDescriptionFile getDescription() {
@@ -188,10 +188,10 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 在jar读取器提供了文本文件.
-	 * 此方法依附 {@link PluginAwareness.Flags#UTF8}, 或者没有
-     * 定义, 使用UTF-8编码, 如果 {@link FileConfiguration#UTF8_OVERRIDE} 是
-     * 指定了的, 否则使用系统默认的编码.
+	 * 提供jar中文本文件的读取器.
+	 * 此方法依赖 {@link PluginAwareness.Flags#UTF8} 提供编码, 在没有
+     * 定义的情况下, 如果指定了 {@link FileConfiguration#UTF8_OVERRIDE} 将使用UTF8编码
+     * 否则使用系统默认的编码.
 	 * <p>
 	 * 原文:
      * Provides a reader for a text file located inside the jar. The behavior
@@ -199,7 +199,7 @@ public abstract class JavaPlugin extends PluginBase {
      * defined, uses UTF8 if {@link FileConfiguration#UTF8_OVERRIDE} is
      * specified, or system default otherwise.
      *
-     * @param file 需要加载的资源文件名
+     * @param file 需要加载的文本资源文件名
      * @return null 如果 {@link #getResource(String)} 返回 null
      * @throws 如果文件为空, 抛出无效的参数(IllegalArgumentException)错误
      * @see ClassLoader#getResourceAsStream(String)
@@ -411,7 +411,7 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 提供了一个列表中的所有类, 存留在数据库里.
+	 * 提供所有应该存留在数据库中的类的列表
 	 * <p>
 	 * 原文:
      * Provides a list of all classes that should be persisted in the database
@@ -435,7 +435,7 @@ public abstract class JavaPlugin extends PluginBase {
      * Gets the initialization status of this plugin
      *
      * @return true表示插件已初始化, false就是插件未初始化
-     * @deprecated 这个方法不能返回false, 在 {@link
+     * @deprecated 这个方法永远不会返回false, 因为在 {@link
      *     JavaPlugin} 已经在构造函数里初始化
      */
     @Deprecated
@@ -460,16 +460,16 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 获取这个插件的命令的名字.
+	 * 获取这个插件在plugin.yml里注册的命令
 	 * 命令需要在{@link PluginDescriptionFile#getCommands()
-     * PluginDescriptionFile}存在运行时已经注册
+     * PluginDescriptionFile}里已被注册
 	 * <p>
 	 * 原文:
      * Gets the command with the given name, specific to this plugin. Commands
      * need to be registered in the {@link PluginDescriptionFile#getCommands()
      * PluginDescriptionFile} to exist at runtime.
      *
-     * @param name 插件的别名
+     * @param name 一个属于这个插件注册了的命令
      * @return 如果有返回值表示命令存在, 否则返回null
      */
     public PluginCommand getCommand(String name) {
@@ -541,8 +541,8 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
   /**
-	 * 这个方法提供了快速访问插件 {@link
-     * #getProvidingPlugin(Class) provided} 的类.
+	 * 这个方法可以通过{@link
+     * #getProvidingPlugin(Class) provided} 的类来快速访问插件对象 .
 	 * 这通常是创建插件对象.
 	 * <p>
 	 * 例外:如果插件jar中的类不能继承类, 将可能是不同的jar/类加载器.
