@@ -6,9 +6,11 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 /**
- * Called when an {@link Entity} breaks a door
+ * 在 {@link Entity} 破坏门时触发
+ * 原文: Called when an {@link Entity} breaks a door
  * <p>
- * Cancelling the event will cause the event to be delayed
+ * 取消该事件将导致该事件被延迟
+ * 原文: Cancelling the event will cause the event to be delayed
  */
 public class EntityBreakDoorEvent extends EntityChangeBlockEvent {
     public EntityBreakDoorEvent(final LivingEntity entity, final Block targetBlock) {
