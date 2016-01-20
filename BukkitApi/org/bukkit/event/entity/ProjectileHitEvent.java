@@ -4,7 +4,8 @@ import org.bukkit.entity.Projectile;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a projectile hits an object
+ * 当弹射物伤害实体时触发
+ * 原文：Called when a projectile hits an object
  */
 public class ProjectileHitEvent extends EntityEvent {
     private static final HandlerList handlers = new HandlerList();
