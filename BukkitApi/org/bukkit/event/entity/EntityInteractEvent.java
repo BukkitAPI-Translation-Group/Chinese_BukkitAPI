@@ -6,6 +6,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
+ * 当一个实体与其他物体互交时触发本事件
+ * 原文:
  * Called when an entity interacts with an object
  */
 public class EntityInteractEvent extends EntityEvent implements Cancellable {
@@ -27,6 +29,10 @@ public class EntityInteractEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回互交的方块
+     * 
+     * @return 被点击的方块
+     * 原文:
      * Returns the involved block
      *
      * @return the block clicked with this item.

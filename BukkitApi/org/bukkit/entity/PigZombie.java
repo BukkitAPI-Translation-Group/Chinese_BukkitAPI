@@ -26,17 +26,17 @@ public interface PigZombie extends Zombie {
     void setAnger(int level);
 
     /**
-     * 速记;设置为0或默认等级.
+     * 将僵尸猪人的愤怒程度设置为0或默认等级.
      * <p>
      * 原文:
      * Shorthand; sets to either 0 or the default level.
      *
-     * @param angry 僵尸猪人是否需要愤怒
+     * @param angry 僵尸猪人是否愤怒
      */
     void setAngry(boolean angry);
 
     /**
-     * 速记;获取僵尸是否愤怒.
+     * 获取僵尸是否愤怒.
      * <p>
      * 原文:
      * Shorthand; gets whether the zombie is angry.

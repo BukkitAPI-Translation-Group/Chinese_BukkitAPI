@@ -8,7 +8,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Thrown when a Living Entity creates a portal in a world.
+ * 当一个{@link LivingEntity}在世界中创建传送门时触发该事件.
  */
 public class EntityCreatePortalEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -29,9 +29,12 @@ public class EntityCreatePortalEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 返回与这个传送门有关的所有方块.
+     * <p>
+     * 原文:
      * Gets a list of all blocks associated with the portal.
      *
-     * @return List of blocks that will be changed.
+     * @return 将被改变的方块列表.
      */
     public List<BlockState> getBlocks() {
         return blocks;
@@ -46,9 +49,12 @@ public class EntityCreatePortalEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 返回正在尝试创建的传送门类型.
+     * <p>
+     * 原文:
      * Gets the type of portal that is trying to be created.
      *
-     * @return Type of portal.
+     * @return 传送门类型
      */
     public PortalType getPortalType() {
         return type;

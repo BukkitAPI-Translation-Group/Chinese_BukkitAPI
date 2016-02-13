@@ -5,8 +5,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.Event;
 
 /**
- * 实体相关事件.
- * 原文: Represents an Entity-related event
+ * 代表实体相关事件.
  */
 public abstract class EntityEvent extends Event {
     protected Entity entity;
@@ -17,18 +16,20 @@ public abstract class EntityEvent extends Event {
 
     /**
      * 返回这个事件所涉及的实体.
+     * <p>
      * 原文: Returns the Entity involved in this event
      * @return 涉及这个事件的实体
-     * 原文: @return Entity who is involved in this event
      */
     public Entity getEntity() {
         return entity;
     }
 
     /**
-     * Gets the EntityType of the Entity involved in this event.
+     * 获取涉及这个事件的实体的EntityType.
+     * <p>
+     * 原文：Gets the EntityType of the Entity involved in this event.
      *
-     * @return EntityType of the Entity involved in this event
+     * @return 涉及这个事件的实体的EntityType
      */
     public EntityType getEntityType() {
         return entity.getType();

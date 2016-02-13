@@ -6,8 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 在弹射物北被弹射时触发
- * 原文：Called when a projectile is launched.
+ * Called when a projectile is launched.
  */
 public class ProjectileLaunchEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

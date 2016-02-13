@@ -7,6 +7,8 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 
 /**
+ * 当一个实体受到来自方块的伤害时触发该事件
+ * 原文:
  * Called when an entity is damaged by a block
  */
 public class EntityDamageByBlockEvent extends EntityDamageEvent {
@@ -29,6 +31,10 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
     }
 
     /**
+     * 返回试玩家受到伤害的Block类
+     * 
+     * @return Block 使玩家收到伤害的方块
+     * 原文:
      * Returns the block that damaged the player.
      *
      * @return Block that damaged the player

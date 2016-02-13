@@ -2,41 +2,51 @@
 package org.bukkit.entity;
 
 /**
- * A wild tameable cat
+ * 代表豹猫.
  */
 public interface Ocelot extends Animals, Tameable {
 
     /**
-     * Gets the current type of this cat.
+     * 获取这只猫当前的种类.
+     * <p>
+     * 原文：Gets the current type of this cat.
      *
-     * @return Type of the cat.
+     * @return 这只猫的种类
      */
     public Type getCatType();
 
     /**
-     * Sets the current type of this cat.
+     * 设置这只猫的种类.
+     * <p>
+     * 原文：Sets the current type of this cat.
      *
-     * @param type New type of this cat.
+     * @param type 这只猫的新种类
      */
     public void setCatType(Type type);
 
     /**
-     * Checks if this ocelot is sitting
+     * 检测这只猫是否坐着.
+     * <p>
+     * 原文：Checks if this ocelot is sitting
      *
-     * @return true if sitting
+     * @return 这只猫是否坐着
      */
     public boolean isSitting();
 
     /**
-     * Sets if this ocelot is sitting. Will remove any path that the ocelot
+     * 设置这只猫是否坐着.这将移除豹猫的跟随路线.
+     * <p>
+     * 原文：Sets if this ocelot is sitting. Will remove any path that the ocelot
      * was following beforehand.
      *
-     * @param sitting true if sitting
+     * @param sitting 这只豹猫是否坐着
      */
     public void setSitting(boolean sitting);
 
     /**
-     * Represents the various different cat types there are.
+     * 代表不同的猫的种类.
+     * <p>
+     * 译注：具体有哪些种类及特征可以查阅MineCraft Wiki.
      */
     public enum Type {
         WILD_OCELOT(0),
@@ -58,10 +68,12 @@ public interface Ocelot extends Animals, Tameable {
         }
 
         /**
-         * Gets the ID of this cat type.
+         * 获取这个猫的种类的id.
+         * <p>
+         * 原文：Gets the ID of this cat type.
          *
-         * @return Type ID.
-         * @deprecated Magic value
+         * @return 种类id
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public int getId() {
@@ -69,11 +81,13 @@ public interface Ocelot extends Animals, Tameable {
         }
 
         /**
-         * Gets a cat type by its ID.
+         * 用id获取猫的种类.
+         * <p>
+         * 原文：Gets a cat type by its ID.
          *
-         * @param id ID of the cat type to get.
-         * @return Resulting type, or null if not found.
-         * @deprecated Magic value
+         * @param id 要获取这个种类的id
+         * @return 种类,如果是null的话就是没找到
+         * @deprecated 不安全的参数
          */
         @Deprecated
         public static Type getType(int id) {

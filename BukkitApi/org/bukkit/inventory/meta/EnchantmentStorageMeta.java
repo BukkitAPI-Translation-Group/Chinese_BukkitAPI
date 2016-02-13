@@ -13,9 +13,11 @@ import org.bukkit.enchantments.Enchantment;
 public interface EnchantmentStorageMeta extends ItemMeta {
 
     /**
-     * Checks for the existence of any stored enchantments.
+     * 检测是否存在任何附魔.
+     * <p>
+     * 原文:Checks for the existence of any stored enchantments.
      *
-     * @return true if an enchantment exists on this meta
+     * @return 这个meta是否存在一个附魔
      */
     boolean hasStoredEnchants();
 
@@ -37,9 +39,11 @@ public interface EnchantmentStorageMeta extends ItemMeta {
     int getStoredEnchantLevel(Enchantment ench);
 
     /**
-     * Gets a copy the stored enchantments in this ItemMeta.
+     * 获取在ItemMeta存储的附魔的副本.
+     * <p>
+     * 原文:Gets a copy the stored enchantments in this ItemMeta.
      *
-     * @return An immutable copy of the stored enchantments
+     * @return 一个不可变的存储的附魔的副本
      */
     Map<Enchantment, Integer> getStoredEnchants();
 
@@ -67,11 +71,13 @@ public interface EnchantmentStorageMeta extends ItemMeta {
     boolean removeStoredEnchant(Enchantment ench) throws IllegalArgumentException;
 
     /**
-     * Checks if the specified enchantment conflicts with any enchantments in
+     * 检测指定的附魔是否与任何ItemMeta里的附魔冲突.
+     * <p>
+     * 原文:Checks if the specified enchantment conflicts with any enchantments in
      * this ItemMeta.
      *
-     * @param ench enchantment to test
-     * @return true if the enchantment conflicts, false otherwise
+     * @param ench 要检测的附魔
+     * @return 附魔是否与任何ItemMeta里的附魔冲突
      */
     boolean hasConflictingStoredEnchant(Enchantment ench);
 

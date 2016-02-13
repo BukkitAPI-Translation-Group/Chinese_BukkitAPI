@@ -9,6 +9,8 @@ import org.bukkit.event.HandlerList;
 import java.util.List;
 
 /**
+ * 当一个实体爆炸的时候触发本事件
+ * 原文:
  * Called when an entity explodes
  */
 public class EntityExplodeEvent extends EntityEvent implements Cancellable {
@@ -35,6 +37,10 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回被将移除或已被这次爆炸移除的方块列表.
+     * 
+     * @return 被炸毁的所有方块
+     * 原文:
      * Returns the list of blocks that would have been removed or were removed
      * from the explosion event.
      *

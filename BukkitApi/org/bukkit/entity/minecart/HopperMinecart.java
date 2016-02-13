@@ -4,7 +4,7 @@ import org.bukkit.entity.Minecart;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
- * Represents a Minecart with a Hopper inside it
+ * 代表漏斗矿车.
  */
 public interface HopperMinecart extends Minecart, InventoryHolder {
 }

@@ -7,43 +7,52 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.List;
 
 /**
- * Represents a potion ({@link Material#POTION}) that can have custom effects.
+ * 代表{@link Material#POTION 药水}.
  */
 public interface PotionMeta extends ItemMeta {
 
     /**
-     * Checks for the presence of custom potion effects.
+     * 检测这个药水是否存在药水效果.
+     * <p>
+     * 原文：Checks for the presence of custom potion effects.
      *
-     * @return true if custom potion effects are applied
+     * @return 这个药水是否存在药水效果
      */
     boolean hasCustomEffects();
 
     /**
-     * Gets an immutable list containing all custom potion effects applied to
+     * 获取包含了这个药水存在的所有药水效果的一个不可变的列表.
+     * <p>
+     * 插件应该在调用这个方法之前检查hasCustomEffects()是否返回true.
+     * <p>
+     * 原文：Gets an immutable list containing all custom potion effects applied to
      * this potion.
      * <p>
      * Plugins should check that hasCustomEffects() returns true before
      * calling this method.
      *
-     * @return the immutable list of custom potion effects
+     * @return 所有药水效果的不可变列表
      */
     List<PotionEffect> getCustomEffects();
 
     /**
-     * Adds a custom potion effect to this potion.
+     * 添加一个自定义药水效果到这个药水上.
+     * <p>
+     * 原文：Adds a custom potion effect to this potion.
      *
-     * @param effect the potion effect to add
-     * @param overwrite true if any existing effect of the same type should be
-     *     overwritten
-     * @return true if the potion meta changed as a result of this call
+     * @param effect 要添加的药水效果
+     * @param overwrite 如果有相同类型的效果存在想要覆盖就设为true
+     * @return 如果药水的属性改变了则为true
      */
     boolean addCustomEffect(PotionEffect effect, boolean overwrite);
 
     /**
-     * Removes a custom potion effect from this potion.
+     * 移除这个药水的一个自定义效果.
+     * <p>
+     * 原文：Removes a custom potion effect from this potion.
      *
-     * @param type the potion effect type to remove
-     * @return true if the potion meta changed as a result of this call
+     * @param type 要移除的药水效果类型
+     * @return 如果药水的属性改变了则为true
      */
     boolean removeCustomEffect(PotionEffectType type);
 
@@ -56,20 +65,28 @@ public interface PotionMeta extends ItemMeta {
     boolean hasCustomEffect(PotionEffectType type);
 
     /**
-     * Moves a potion effect to the top of the potion effect list.
+     * 移动一个药水效果至这个药水效果列表的顶端.
+     * <p>
+     * 这将会使客户端上的药水名称显示成设置的药水效果.
+     * <p>
+     * 译注：第一句不好理解？比如有三个效果，有个效果在最后面是最主要的效果，我们就可以把这个效果移动到最顶上，这样玩家第一眼看到的就是这个效果啦.
+     * <p>
+     * 原文：Moves a potion effect to the top of the potion effect list.
      * <p>
      * This causes the client to display the potion effect in the potion's
      * name.
      *
-     * @param type the potion effect type to move
-     * @return true if the potion meta changed as a result of this call
+     * @param type 要移动的药水效果
+     * @return 如果药水的属性改变了则为true
      */
     boolean setMainEffect(PotionEffectType type);
 
     /**
-     * Removes all custom potion effects from this potion.
+     * 移除这个药水的全部自定义药水效果.
+     * <p>
+     * 原文：Removes all custom potion effects from this potion.
      *
-     * @return true if the potion meta changed as a result of this call
+     * @return 如果药水的属性改变了则为true
      */
     boolean clearCustomEffects();
 

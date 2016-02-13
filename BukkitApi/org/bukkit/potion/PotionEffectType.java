@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.commons.lang.Validate;
 
 /**
+ * 代表了一种药水效果和它作用在实体的效果.
+ * <p>原文: 
  * Represents a type of potion and its effect on an entity.
  */
 public abstract class PotionEffectType {

@@ -1,84 +1,87 @@
 package org.bukkit.event.inventory;
 
 /**
- * What the client did to trigger this action (not the result).
+ * 客户端是怎样触发这个动作的(非动作的结果)
  */
 public enum ClickType {
 
     /**
-     * The left (or primary) mouse button.
+     * 鼠标左键(或主键)
      */
     LEFT,
     /**
-     * Holding shift while pressing the left mouse button.
+     * Shift+鼠标左键
      */
     SHIFT_LEFT,
     /**
-     * The right mouse button.
+     * 鼠标右键
      */
     RIGHT,
     /**
-     * Holding shift while pressing the right mouse button.
+     * Shift+鼠标右键
      */
     SHIFT_RIGHT,
     /**
-     * Clicking the left mouse button on the grey area around the inventory.
+     * 在物品栏界面的灰色区域单机鼠标左键
      */
     WINDOW_BORDER_LEFT,
     /**
-     * Clicking the right mouse button on the grey area around the inventory.
+     * 在物品栏界面的灰色区域单机鼠标右键
      */
     WINDOW_BORDER_RIGHT,
     /**
-     * The middle mouse button, or a "scrollwheel click".
+     * 鼠标中键(或滚轮按键)
      */
     MIDDLE,
     /**
-     * One of the number keys 1-9, correspond to slots on the hotbar.
+     * 数字键1-9，对应快捷栏的物品槽
      */
     NUMBER_KEY,
     /**
-     * Pressing the left mouse button twice in quick succession.
+     * 双击鼠标左键
      */
     DOUBLE_CLICK,
     /**
-     * The "Drop" key (defaults to Q).
+     * 丢弃物品键(默认为Q)
      */
     DROP,
     /**
-     * Holding Ctrl while pressing the "Drop" key (defaults to Q).
+     * Ctrl+丢弃物品键(默认为Q)
      */
     CONTROL_DROP,
     /**
-     * Any action done with the Creative inventory open.
+     * 创造模式物品栏的任何动作
      */
     CREATIVE,
     /**
-     * A type of inventory manipulation not yet recognized by Bukkit.
+     * 无法被Bukkit解析的物品栏操作类型
      * <p>
-     * This is only for transitional purposes on a new Minecraft update, and
-     * should never be relied upon.
+     * 这个按键类型仅出现在Minecraft的版本过渡期，且不应该被依赖
      * <p>
-     * Any ClickType.UNKNOWN is called on a best-effort basis.
+     * 任何对 ClickType.UNKNOWN 的调用都是在最努力的基础上的
      */
     UNKNOWN,
     ;
 
     /**
-     * Gets whether this ClickType represents the pressing of a key on a
+	 * 判断这个按键类型是否为键盘按键.
+	 * <p>
+     * 原文：Gets whether this ClickType represents the pressing of a key on a
      * keyboard.
      *
-     * @return true if this ClickType represents the pressing of a key
+     * @return 如果这个按键类型为键盘按键则返回true，否则返回false
      */
     public boolean isKeyboardClick() {
         return (this == ClickType.NUMBER_KEY) || (this == ClickType.DROP) || (this == ClickType.CONTROL_DROP);
     }
 
     /**
-     * Gets whether this ClickType represents an action that can only be
+	 * 判断这个按键类型是否只能在创造模式被执行.
+	 * <p>
+     * 原文：Gets whether this ClickType represents an action that can only be
      * performed by a Player in creative mode.
      *
-     * @return true if this action requires Creative mode
+     * @return 如果这个按键类型要求玩家处在创造模式则返回true，否则返回false
      */
     public boolean isCreativeAction() {
         // Why use middle click?
@@ -86,28 +89,34 @@ public enum ClickType {
     }
 
     /**
-     * Gets whether this ClickType represents a right click.
+	 * 判断这个按键类型是否使用了右键.
+	 * <p>
+     * 原文：Gets whether this ClickType represents a right click.
      *
-     * @return true if this ClickType represents a right click
+     * @return 如果这个按键类型使用了右键则返回true，否则返回false
      */
     public boolean isRightClick() {
         return (this == ClickType.RIGHT) || (this == ClickType.SHIFT_RIGHT);
     }
 
-    /**
-     * Gets whether this ClickType represents a left click.
+	/**
+	 * 判断这个按键类型是否使用了左键.
+	 * <p>
+     * 原文：Gets whether this ClickType represents a left click.
      *
-     * @return true if this ClickType represents a left click
+     * @return 如果这个按键类型使用了左键则返回true，否则返回false
      */
     public boolean isLeftClick() {
         return (this == ClickType.LEFT) || (this == ClickType.SHIFT_LEFT) || (this == ClickType.DOUBLE_CLICK) || (this == ClickType.CREATIVE);
     }
 
     /**
-     * Gets whether this ClickType indicates that the shift key was pressed
+	 * 判断这个按键类型是否使用了Shift键.
+	 * <p>
+     * 原文：Gets whether this ClickType indicates that the shift key was pressed
      * down when the click was made.
      *
-     * @return true if the action uses Shift.
+     * @return 如果这个按键类型使用了Shift键则返回true，否则返回false
      */
     public boolean isShiftClick() {
         return (this == ClickType.SHIFT_LEFT) || (this == ClickType.SHIFT_RIGHT) || (this == ClickType.CONTROL_DROP);

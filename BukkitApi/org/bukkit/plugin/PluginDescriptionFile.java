@@ -26,6 +26,150 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
 /**
+ * 这个类是用于储存插件plugin.yml内的数据.
+ * 所有的插件都必须有自己的plugin.yml.对于插件来说 plguin.yml是必须使用的标准
+ * 这个文件必须位于jar的根目录下.
+ * <p>
+ * 当Bukkit加载插件时,它必须知道一些基础的关于这个插件的信息.
+ * Bukkit从plugin.tml读取数据.
+ * plugin.yml由一组属性构成,每个属性位于单独的一行并且没有缩进.
+ * <p>
+ * 每一个方法(几乎每一个) 都在plugin.yml有其对应的条目.
+ * 下面是每一个插件<b>所需</b>的条目.
+ *
+ * <ul>
+ * <li>{@link #getName()} - <code>name</code>
+ * <li>{@link #getVersion()} - <code>version</code>
+ * <li>{@link #getMain()} - <code>main</code>
+ * </ul>
+ * <p>
+ * 未能填写以上条目,将导致一个异常并且使Bukkit忽视你的插件.
+ * <p>
+ * 下面是plugin.yml可能拥有的条目表格,具体细节包括各自的方法:
+ * <table border=1>
+ * <caption>The description of the plugin.yml layout</caption>
+ * <tr>
+ *     <th>条目</th>
+ *     <th>方法</th>
+ *     <th>概要</th>
+ * </tr><tr>
+ *     <td><code>name</code></td>
+ *     <td>{@link #getName()}</td>
+ *     <td>该插件的名字</td>
+ * </tr><tr>
+ *     <td><code>version</code></td>
+ *     <td>{@link #getVersion()}</td>
+ *     <td>插件的版本</td>
+ * </tr><tr>
+ *     <td><code>main</code></td>
+ *     <td>{@link #getMain()}</td>
+ *     <td>插件主类的位置</td>
+ * </tr><tr>
+ *     <td><code>author</code><br><code>authors</code></td>
+ *     <td>{@link #getAuthors()}</td>
+ *     <td>插件的作者们</td>
+ * </tr><tr>
+ *     <td><code>description</code></td>
+ *     <td>{@link #getDescription()}</td>
+ *     <td>可读的插件描述</td>
+ * </tr><tr>
+ *     <td><code>website</code></td>
+ *     <td>{@link #getWebsite()}</td>
+ *     <td>插件的网址</td>
+ * </tr><tr>
+ *     <td><code>prefix</code></td>
+ *     <td>{@link #getPrefix()}</td>
+ *     <td>用于控制台的插件前缀</td>
+ * </tr><tr>
+ *     <td><code>database</code></td>
+ *     <td>{@link #isDatabaseEnabled()}</td>
+ *     <td>表示是否支持数据库</td>
+ * </tr><tr>
+ *     <td><code>load</code></td>
+ *     <td>{@link #getLoad()}</td>
+ *     <td>载入插件的时机</td>
+ * </tr><tr>
+ *     <td><code>depend</code></td>
+ *     <td>{@link #getDepend()}</td>
+ *     <td>必须的前置插件</td>
+ * </tr><tr>
+ *     <td><code>softdepend</code></td>
+ *     <td>{@link #getSoftDepend()}</td>
+ *     <td>非必须的前置插件</td>
+ * </tr><tr>
+ *     <td><code>loadbefore</code></td>
+ *     <td>{@link #getLoadBefore()}</td>
+ *     <td>反softdepend,可理解为在某些插件前加载</td>
+ * </tr><tr>
+ *     <td><code>commands</code></td>
+ *     <td>{@link #getCommands()}</td>
+ *     <td>插件将被注册的命令</td>
+ * </tr><tr>
+ *     <td><code>permissions</code></td>
+ *     <td>{@link #getPermissions()}</td>
+ *     <td>插件将被注册的权限</td>
+ * </tr><tr>
+ *     <td><code>default-permission</code></td>
+ *     <td>{@link #getPermissionDefault()}</td>
+ *     <td>插件将注册的基本的{@link Permission#getDefault() default} 权限 {@link #getPermissions() permissions}</td>
+ * </tr><tr>
+ *     <td><code>awareness</code></td>
+ *     <td>{@link #getAwareness()}</td>
+ *     <td>插件的概念</td>
+ * </tr>
+ * </table>
+ * <p>
+ * 一个 plugin.yml 的例子:<blockquote><pre>
+ *name: Inferno
+ *version: 1.4.1
+ *description: 设置自己着火.
+ *# 我们可以把所有的作者放到名单上,但不写说明
+ *# 此外,作者中有领导者,请确保他的名字位于第一个
+ *author: CaptainInflamo
+ *authors: [Cogito, verrier, EvilSeph]
+ *website: http://www.curse.com/server-mods/minecraft/myplugin
+ *
+ *main: com.captaininflamo.bukkit.inferno.Inferno
+ *database: false
+ *depend: [NewFire, FlameWire]
+ *
+ *commands:
+ *  flagrate:
+ *    description: Set yourself on fire.
+ *    aliases: [combust_me, combustMe]
+ *    permission: inferno.flagrate
+ *    usage: Syntax error! Simply type /&lt;command&gt; to ignite yourself.
+ *  burningdeaths:
+ *    description: List how many times you have died by fire.
+ *    aliases: [burning_deaths, burningDeaths]
+ *    permission: inferno.burningdeaths
+ *    usage: |
+ *      /&lt;command&gt; [player]
+ *      Example: /&lt;command&gt; - see how many times you have burned to death
+ *      Example: /&lt;command&gt; CaptainIce - see how many times CaptainIce has burned to death
+ *
+ *permissions:
+ *  inferno.*:
+ *    description: Gives access to all Inferno commands
+ *    children:
+ *      inferno.flagrate: true
+ *      inferno.burningdeaths: true
+ *      inferno.burningdeaths.others: true
+ *  inferno.flagrate:
+ *    description: Allows you to ignite yourself
+ *    default: true
+ *  inferno.burningdeaths:
+ *    description: Allows you to see how many times you have burned to death
+ *    default: true
+ *  inferno.burningdeaths.others:
+ *    description: Allows you to see how many times others have burned to death
+ *    default: op
+ *    children:
+ *      inferno.burningdeaths: true
+ *</pre></blockquote>
+ * 
+ * 
+ * 原文:
  * This type is the runtime-container for the information in the plugin.yml.
  * All plugins must have a respective plugin.yml. For plugins written in java
  * using the standard plugin loader, this file must be in the root of the jar
@@ -35,7 +179,7 @@ import com.google.common.collect.ImmutableSet;
  * it. It reads this information from a YAML file, 'plugin.yml'. This file
  * consists of a set of attributes, each defined on a new line and with no
  * indentation.
- * <p>
+ * <p>↓
  * Every (almost* every) method corresponds with a specific entry in the
  * plugin.yml. These are the <b>required</b> entries for every plugin.yml:
  * <ul>
@@ -233,22 +377,25 @@ public final class PluginDescriptionFile {
     }
 
     /**
-     * Loads a PluginDescriptionFile from the specified reader
+     * 从指定的Reader中读取PluginDescriptionFile.
+     * <p>
+     * 原文:Loads a PluginDescriptionFile from the specified reader
      *
-     * @param reader The reader
-     * @throws InvalidDescriptionException If the PluginDescriptionFile is
-     *     invalid
+     * @param reader Reader对象
+     * @throws InvalidDescriptionException 如果PluginDescriptionFile是无效的
      */
     public PluginDescriptionFile(final Reader reader) throws InvalidDescriptionException {
         loadMap(asMap(YAML.get().load(reader)));
     }
 
     /**
-     * Creates a new PluginDescriptionFile with the given detailed
+     * 构造一个新的PluginDescriptionFile.
+     * <p>
+     * 原文:Creates a new PluginDescriptionFile with the given detailed
      *
-     * @param pluginName Name of this plugin
-     * @param pluginVersion Version of this plugin
-     * @param mainClass Full location of the main class of this plugin
+     * @param pluginName 插件名称
+     * @param pluginVersion 插件版本
+     * @param mainClass 插件主类的完整路径
      */
     public PluginDescriptionFile(final String pluginName, final String pluginVersion, final String mainClass) {
         name = pluginName.replace(' ', '_');

@@ -21,7 +21,7 @@ public interface Scoreboard {
      * @throws IllegalArgumentException 如果标准为空
      * @throws IllegalArgumentException 如果该{@link Objective}名已经存在
      */
-//    Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException;
+    Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException;
 
     /**
      * 通过{@link Objective}名称得到在这个计分板中对应的{@link Objective}. 

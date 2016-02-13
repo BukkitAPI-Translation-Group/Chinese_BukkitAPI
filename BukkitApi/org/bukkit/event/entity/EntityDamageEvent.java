@@ -15,6 +15,8 @@ import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableMap;
 
 /**
+ * 储存伤害事件的数据
+ * 原文:
  * Stores data for damage events
  */
 public class EntityDamageEvent extends EntityEvent implements Cancellable {
@@ -59,6 +61,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取指定伤害类型的原始伤害,作为本次事件的结构定义 ?
+     * @param type (DamageModifier) 伤害类型
+     * @return 原始伤害
+     * @throws IllegalArgumentException 如果参数(DamageModifier)是null时
+     * 
+     * 原文:
      * Gets the original damage for the specified modifier, as defined at this
      * event's construction.
      *
@@ -78,6 +86,15 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 设置指定伤害类型的伤害
+     * @param type 伤害类型
+     * @param damage 伤害值
+     * @see #getFinalDamage()
+     * @throws IllegalArgumentException 如果类型是null时
+     * @throws UnsupportedOperationException 如果触发该事件的实体不支持该伤害类型,
+     *     或者受到修改,当 {@link  #isApplicable(DamageModifier)} 返回false
+     * 
+     * 原文:
      * Sets the damage for the specified modifier.
      *
      * @param type the damage modifier
@@ -96,6 +113,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回伤害值
+     * @param type 伤害类型
+     * @return 引起该事件的原始伤害
+     * @throws IllegalArgumentException 如果类型是null
+     * @see DamageModifier#BASE
+     * 原文:
      * Gets the damage change for some modifier
      *
      * @param type the damage modifier
@@ -110,6 +133,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 该方法将检查特定的伤害原因是否是本次触发的原因,
+     * 例如 {@link #setDamage(DamageModifier, double)}
+     * 将不会抛出 {@link UnsupportedOperationException} 异常
+     * <p>
+     * {@link DamageModifier#BASE} 总是适用的.
+     * 
+     * @param type 伤害原因
+     * @return 当伤害原因与事件触发的原因相同时返回true 反之返回false
+     * @throws IllegalArgumentException 如何传入的参数是null时
+     * 原文:
      * This checks to see if a particular modifier is valid for this event's
      * caller, such that, {@link #setDamage(DamageModifier, double)} will not
      * throw an {@link UnsupportedOperationException}.
@@ -126,6 +159,11 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回本次事件收到伤害的值
+     * 
+     * @return 一个没有进过别的处理的 伤害值
+     * @see DamageModifier#BASE
+     * 原文:
      * Gets the raw amount of damage caused by the event
      *
      * @return The raw amount of damage caused by the event
@@ -136,6 +174,9 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回此次事件最终的伤害值 (经过护甲等的修改)
+     * 
+     * @return 此次事件最终的伤害值
      * Gets the amount of damage caused by the event after all damage
      * reduction is applied.
      *

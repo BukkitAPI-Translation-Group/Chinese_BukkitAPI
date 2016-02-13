@@ -36,7 +36,7 @@ public interface CommandBlock extends BlockState {
     public String getName();
 
     /**
-     * 设置这个命令方块的名字。获取这个命令方块的名字。这个名字用于命令方块执行命令。设置名字为null与设置为“@”是一样的。
+     * 设置这个命令方块的名字。这个名字用于命令方块执行命令。设置名字为null与设置为“@”是一样的。
      * <p>
      * 原文：Sets the name of this CommandBlock.  The name is used with commands
      * that this CommandBlock executes.  Setting the name to null is the

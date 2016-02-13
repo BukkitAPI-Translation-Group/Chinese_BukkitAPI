@@ -12,67 +12,67 @@ import com.google.common.collect.Maps;
  */
 public enum ChatColor {
     /**
-     * 黑
+     * <span style="color:#000000">黑色: <span style="background:#000000"> 黑色 </span></span>
      */
     BLACK('0', 0x00),
     /**
-     * 深蓝
+     * <span style="color:#0000be">深蓝: <span style="background:#0000be"> 深蓝 </span></span>
      */
     DARK_BLUE('1', 0x1),
     /**
-     * 深绿
+     * <span style="color:#00bf00">深绿: <span style="background:#00bf00"> 深绿 </span></span>
      */
     DARK_GREEN('2', 0x2),
     /**
-     * 深蓝(有一点淡淡的绿色)
+     * <span style="color:#00bebe">深蓝: <span style="background:#00bebe"> 深蓝 </span></span>
      */
     DARK_AQUA('3', 0x3),
     /**
-     * 深红
+     * <span style="color:#be0000">深红: <span style="background:#be0000"> 深红 </span></span>
      */
     DARK_RED('4', 0x4),
     /**
-     * 深紫
+     * <span style="color:#be00be">深紫: <span style="background:#be00be"> 深紫 </span></span>
      */
     DARK_PURPLE('5', 0x5),
     /**
-     * 土豪金/橙色
+     * <span style="color:#d8a333">橙色: <span style="background:#d8a333"> 橙色 </span></span>
      */
     GOLD('6', 0x6),
     /**
-     * 灰色
+     * <span style="color:#bebebe">灰色: <span style="background:#bebebe"> 灰色 </span></span>
      */
     GRAY('7', 0x7),
     /**
-     * 深灰
+     * <span style="color:#3f3f3f">深灰: <span style="background:#3f3f3f"> 深灰 </span></span>
      */
     DARK_GRAY('8', 0x8),
     /**
-     * 蓝
+     * <span style="color:#3f40fd">蓝色: <span style="background:#3f40fd"> 蓝色 </span></span>
      */
     BLUE('9', 0x9),
     /**
-     * 绿
+     * <span style="color:#3ffe3f">绿色: <span style="background:#3ffe3f"> 绿色 </span></span>
      */
     GREEN('a', 0xA),
     /**
-     * 水色(淡蓝)
+     * <span style="color:#3dffff">淡蓝: <span style="background:#3dffff"> 淡蓝 </span></span>
      */
     AQUA('b', 0xB),
     /**
-     * 红
+     * <span style="color:#fd3f3f">红色: <span style="background:#fd3f3f"> 红色 </span></span>
      */
     RED('c', 0xC),
     /**
-     * 亮亮的紫色
+     * <span style="color:#fe3ffe">紫色: <span style="background:#fe3ffe"> 紫色 </span></span>
      */
     LIGHT_PURPLE('d', 0xD),
     /**
-     * 黄
+     * <span style="color:#fefe3e">黄色: <span style="background:#fefe3e"> 黄色 </span></span>
      */
     YELLOW('e', 0xE),
     /**
-     * 白
+     * <span style="color:#000000">白色: <span style="background:#ffffff;color:#ffffff"> 白色 </span></span>
      */
     WHITE('f', 0xF),
     /**
@@ -80,29 +80,28 @@ public enum ChatColor {
      */
     MAGIC('k', 0x10, true),
     /**
-     * 粗体
+     * 粗体: <b> 粗体 </b>
      */
     BOLD('l', 0x11, true),
     /**
-     * 删除线
+     * 删除线: <span style="text-decoration:line-through"> 删除线 </span>
      */
     STRIKETHROUGH('m', 0x12, true),
     /**
-     * 下划线
+     * 下划线: <u> 下划线 </u>
      */
     UNDERLINE('n', 0x13, true),
     /**
-     * 斜体
+     * 斜体: <i> 斜体 </i>
      */
     ITALIC('o', 0x14, true),
     /**
-     * 重置
+     * 重置字体颜色以及效果
      */
     RESET('r', 0x15);
 
     /**
-     * The special character which prefixes all chat colour codes. Use this if
-     * you need to dynamically convert colour codes from your custom format.
+     * 所有聊天颜色代码的特殊字符前辍.如果你需要动态转换您自定义格式的颜色代码，请使用这个.
      */
     public static final char COLOR_CHAR = '\u00A7';
     private static final Pattern STRIP_COLOR_PATTERN = Pattern.compile("(?i)" + String.valueOf(COLOR_CHAR) + "[0-9A-FK-OR]");
@@ -126,9 +125,11 @@ public enum ChatColor {
     }
 
     /**
-     * Gets the char value associated with this color
+     * 获取与此颜色或格式关联的单个字符. 
+     * <p>
+     * 原文:Gets the char value associated with this color
      *
-     * @return A char value of this color code
+     * @return 与此颜色或者格式关联的单个字符.
      */
     public char getChar() {
         return code;
@@ -140,40 +141,46 @@ public enum ChatColor {
     }
 
     /**
-     * Checks if this code is a format code as opposed to a color code.
+     * 检测这个代码是否为格式代码，而不是颜色代码.
+     * <p>
+     * 原文:Checks if this code is a format code as opposed to a color code.
      * 
-     * @return whether this ChatColor is a format code
+     * @return 这个ChatColor对象是不是格式代码
      */
     public boolean isFormat() {
         return isFormat;
     }
 
     /**
-     * Checks if this code is a color code as opposed to a format code.
+     * 检测这个代码是否为颜色代码，而不是格式代码.
+     * <p>
+     * 原文:Checks if this code is a color code as opposed to a format code.
      * 
-     * @return whether this ChatColor is a color code
+     * @return 这个ChatColor对象是不是颜色代码
      */
     public boolean isColor() {
         return !isFormat && this != RESET;
     }
 
     /**
-     * Gets the color represented by the specified color code
+     * 获取指定的颜色代码代表的颜色或格式.
+     * <p>
+     * 原文:Gets the color represented by the specified color code
      *
-     * @param code Code to check
-     * @return Associative {@link org.bukkit.ChatColor} with the given code,
-     *     or null if it doesn't exist
+     * @param code 要检测的代码
+     * @return 与给定代码相关联的{@link org.bukkit.ChatColor}，如果不存在则为null
      */
     public static ChatColor getByChar(char code) {
         return BY_CHAR.get(code);
     }
 
     /**
-     * Gets the color represented by the specified color code
+     * 获取指定的颜色代码代表的颜色或格式.
+     * <p>
+     * 原文:Gets the color represented by the specified color code
      *
-     * @param code Code to check
-     * @return Associative {@link org.bukkit.ChatColor} with the given code,
-     *     or null if it doesn't exist
+     * @param code 要检测的代码
+     * @return 与给定代码相关联的{@link org.bukkit.ChatColor}，如果不存在则为null
      */
     public static ChatColor getByChar(String code) {
         Validate.notNull(code, "Code cannot be null");
@@ -183,10 +190,12 @@ public enum ChatColor {
     }
 
     /**
-     * Strips the given message of all color codes
+     * 去除给定消息的所有颜色代码.
+     * <p>
+     * 原文:Strips the given message of all color codes
      *
-     * @param input String to strip of color
-     * @return A copy of the input string, without any coloring
+     * @param input 要去除颜色的字符串
+     * @return 没有颜色代码的字符串副本
      */
     public static String stripColor(final String input) {
         if (input == null) {
@@ -197,14 +206,20 @@ public enum ChatColor {
     }
 
     /**
-     * Translates a string using an alternate color code character into a
+     * 转换交替的颜色代码字符到内部的ChatColor.COLOR_CHAR颜色代码字符.如果它后面紧跟着的是0-9, A-F, a-f, K-O, k-o, R 或 r，其它的颜色代码只会被替换.
+     * <p>
+     * 译注:这个方法是用来把其他的颜色代码替换成Minecraft本身的.比如我们在Minecraft服务器聊天时，为了输入方便，就使用"&"来替换"§"，服务器要处理这种消息时就要用到本方法.
+     * <p>
+     * 范例:<code>System.out.println(translateAlternateColorCodes('&', "&cred&agreen9blue"));</code>这段代码会把"&cred&agreen&9blue"替换成"§cred§agreen§9blue"，"§"是ChatColor.COLOR_CHAR的默认值.
+     * <p>
+     * 原文:Translates a string using an alternate color code character into a
      * string that uses the internal ChatColor.COLOR_CODE color code
      * character. The alternate color code character will only be replaced if
      * it is immediately followed by 0-9, A-F, a-f, K-O, k-o, R or r.
      *
-     * @param altColorChar The alternate color code character to replace. Ex: {@literal &}
-     * @param textToTranslate Text containing the alternate color code character.
-     * @return Text containing the ChatColor.COLOR_CODE color code character.
+     * @param altColorChar 要替换的其他颜色代码.比如:{@literal &}
+     * @param textToTranslate 包含了其他颜色代码的字符
+     * @return 包含了ChatColor.COLOR_CHAR颜色代码字符的文本
      */
     public static String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
         char[] b = textToTranslate.toCharArray();
@@ -218,10 +233,12 @@ public enum ChatColor {
     }
 
     /**
-     * Gets the ChatColors used at the end of the given input string.
+     * 获取字符串中最后一个颜色代码.也就是字符串结尾的颜色.
+     * <p>
+     * 原文:Gets the ChatColors used at the end of the given input string.
      *
-     * @param input Input string to retrieve the colors from.
-     * @return Any remaining ChatColors to pass onto the next line.
+     * @param input 要检索颜色的字符串
+     * @return 传递到下一行的任何剩余的聊天颜色(不懂...总之是给定字符串最后出现的颜色代码)
      */
     public static String getLastColors(String input) {
         String result = "";

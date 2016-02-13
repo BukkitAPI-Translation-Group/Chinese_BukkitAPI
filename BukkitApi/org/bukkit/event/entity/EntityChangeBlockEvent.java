@@ -8,6 +8,8 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
+ * 当一个非玩家的实体在改变方块时调用该事件。
+ * 原文:
  * Called when any Entity, excluding players, changes a block.
  */
 public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
@@ -18,12 +20,11 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
     private final byte data;
 
     /**
-     *
-     * @param what the LivingEntity causing the change
-     * @param block the block (before the change)
-     * @param to the future material being changed to
-     * @deprecated Provided as a backward compatibility before the data byte
-     *     was provided, and type increased to all entities
+     * 
+     * @param what 造成这次方块改变的生物实体(LivingEntity)类
+     * @param block 改变前的方块(Block)类
+     * @param to 改变后的材料(Material)类
+     * @deprecated 在提供数据之前提供一个保证向后兼容的方法，类型扩大到所有实体
      */
     @Deprecated
     public EntityChangeBlockEvent(final LivingEntity what, final Block block, final Material to) {
@@ -31,12 +32,11 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     *
-     * @param what the Entity causing the change
-     * @param block the block (before the change)
-     * @param to the future material being changed to
-     * @param data the future block data
-     * @deprecated Magic value
+     * @param what 造成这次方块改变的生物实体(LivingEntity)类
+     * @param block 改变前的方块(Block)类
+     * @param to 改变后的材料(Material)类
+     * @param data 改变之后的方块数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public EntityChangeBlockEvent(final Entity what, final Block block, final Material to, final byte data) {
@@ -48,9 +48,12 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回改变之前的方块(Block)类
+     * 
+     * 原文:
      * Gets the block the entity is changing
      *
-     * @return the block that is changing
+     * @return 改变之前的方块(Block)类
      */
     public Block getBlock() {
         return block;
@@ -65,19 +68,25 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回改变后的材料(Material)类
+     * 
+     * 原文：
      * Gets the Material that the block is changing into
      *
-     * @return the material that the block is changing into
+     * @return 改变后的材料(Material)类
      */
     public Material getTo() {
         return to;
     }
 
     /**
+     * 返回改变后的数据值
+     * 
+     * 原文:
      * Gets the data for the block that would be changed into
      *
-     * @return the data for the block that would be changed into
-     * @deprecated Magic value
+     * @return 改变后的数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte getData() {

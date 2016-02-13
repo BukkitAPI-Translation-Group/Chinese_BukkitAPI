@@ -6,6 +6,8 @@ import com.google.common.base.Function;
 import org.bukkit.entity.Entity;
 
 /**
+ * 当一个实体受到另外一个实体伤害时触发该事件
+ * 原文:
  * Called when an entity is damaged by an entity
  */
 public class EntityDamageByEntityEvent extends EntityDamageEvent {
@@ -28,6 +30,10 @@ public class EntityDamageByEntityEvent extends EntityDamageEvent {
     }
 
     /**
+     * 返回造成这次伤害的实体 (Entity)类
+     * 
+     * @return 造成这次伤害的实体 (Entity)类
+     * 原文:
      * Returns the entity that damaged the defender.
      *
      * @return Entity that damaged the defender.

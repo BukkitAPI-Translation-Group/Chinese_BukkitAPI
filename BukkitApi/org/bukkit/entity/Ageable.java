@@ -36,12 +36,12 @@ public interface Ageable extends Creature {
     public void setAgeLock(boolean lock);
 
     /**
-     * 获取当前的年龄锁.
+     * 获取这个动物的年龄是否被锁定.
      * <p>
      * 原文:
      * Gets the current agelock.
      *
-     * @return 当前的年龄锁
+     * @return 这个动物的年龄是否被锁定
      */
     public boolean getAgeLock();
 
@@ -62,7 +62,7 @@ public interface Ageable extends Creature {
     public void setAdult();
 
     /**
-     * 如果动物成年，则返回true.
+     * 获取这个动物是否成年.
      * <p>
      * 原文:
      * Returns true if the animal is an adult.
@@ -72,23 +72,23 @@ public interface Ageable extends Creature {
     public boolean isAdult();
     
     /**
-     * 返回动物的繁殖能力.
+     * 返回动物是否具有繁殖能力.
      * <p>
      * 原文:
      * Return the ability to breed of the animal.
      *
-     * @return 动物的繁殖能力
+     * @return 动物是否具有繁殖能力
      */
     public boolean canBreed();
 
     /**
-     * 设置动物的繁殖能力,如果动物是年幼的设置此将立即长大.
+     * 设置动物是否具有繁殖能力,如果动物是年幼的设置此将立即长大.
      * <p>
      * 原文:
      * Set breedability of the animal, if the animal is a baby and set to
      * breed it will instantly grow up.
      *
-     * @param breed 动物的繁殖能力
+     * @param breed 动物是否具有繁殖能力
      */
     public void setBreed(boolean breed);
 }

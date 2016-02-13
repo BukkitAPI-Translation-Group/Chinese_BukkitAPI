@@ -7,7 +7,7 @@ import org.apache.commons.lang.Validate;
 import com.google.common.collect.Maps;
 
 /**
- * 代表壁画.
+ * 代表画.
  */
 public enum Art {
     KEBAB(0, 1, 1),

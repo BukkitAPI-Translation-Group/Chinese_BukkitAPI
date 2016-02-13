@@ -3,8 +3,7 @@ package org.bukkit.entity.minecart;
 import org.bukkit.entity.Minecart;
 
 /**
- * Represents a powered minecart. A powered minecart moves on its own when a
- * player deposits {@link org.bukkit.Material#COAL fuel}.
+ * 代表动力矿车.当玩家往动力矿车里放{@link org.bukkit.Material#COAL 燃料}后它就会自己移动.
  */
 public interface PoweredMinecart extends Minecart {
 }

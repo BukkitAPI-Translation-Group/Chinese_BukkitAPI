@@ -1,7 +1,7 @@
 package org.bukkit.inventory.meta;
 
 /**
- * 代表可以被铁砧修复的物品.
+ * 代表可以被修复的物品.
  */
 public interface Repairable {
 

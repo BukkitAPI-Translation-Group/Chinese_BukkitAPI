@@ -6,6 +6,8 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
+ * 当任何一个实体死亡时触发本事件
+ * 原文:
  * Thrown whenever a LivingEntity dies
  */
 public class EntityDeathEvent extends EntityEvent {
@@ -29,6 +31,12 @@ public class EntityDeathEvent extends EntityEvent {
     }
 
     /**
+     * 返回这个死亡的实体掉落的经验数量.
+     * <p>
+     * 这不表明这个实体有多少经验值,而是它死亡时应该被创建多少掉落的经验值
+     * 
+     * @return 返回掉落的经验值数量
+     * 原文:
      * Gets how much EXP should be dropped from this death.
      * <p>
      * This does not indicate how much EXP should be taken from the entity in
@@ -41,6 +49,11 @@ public class EntityDeathEvent extends EntityEvent {
     }
 
     /**
+     * 设置这个实体死亡所掉落的经验值数量.
+     * <p>
+     * 这不表明这个实体有多少经验值,而是它死亡时应该被创建多少掉落的经验值
+     * 
+     * @param exp 掉落的经验值的数量
      * Sets how much EXP should be dropped from this death.
      * <p>
      * This does not indicate how much EXP should be taken from the entity in
@@ -53,6 +66,10 @@ public class EntityDeathEvent extends EntityEvent {
     }
 
     /**
+     * 返回这实体死亡掉落物品的集合
+     * 
+     * @return 死亡时所掉落的所有物品
+     * 
      * Gets all the items which will drop when the entity dies
      *
      * @return Items to drop when the entity dies

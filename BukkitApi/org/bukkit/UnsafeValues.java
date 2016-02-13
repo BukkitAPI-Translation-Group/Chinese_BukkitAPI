@@ -5,19 +5,13 @@ import java.util.List;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 这个接口提供数值转换
+ * 这个接口提供可能在特定运行时间内或含有任意意义的数值的转换（即不安全的参数）。
  * <p>
- * 原文：
- * This interface provides value conversions that may be specific to a
- * runtime, or have arbitrary meaning (read: magic values).
+ * 这些值的存在形式和行为不能保证在未来的版本可用。可能会非法命名，抛出异常，有误导参数或其他错误。
  * <p>
- * Their existence and behavior is not guaranteed across future versions. They
- * may be poorly named, throw exceptions, have misleading parameters, or any
- * other bad programming practice.
- * <p>
- * This interface is unsupported and only for internal use.
+ * 这个接口只支持内部使用。
  *
- * @deprecated Unsupported {@literal &} internal use only
+ * @deprecated 不受支持{@literal &}只供内部使用
  */
 @Deprecated
 public interface UnsafeValues {
