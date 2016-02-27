@@ -317,7 +317,7 @@ public class Potion {
      * item stacks.
      *
      * @return The damage value of this potion
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public short toDamageValue() {
@@ -405,7 +405,7 @@ public class Potion {
         if ((damage & SPLASH_BIT) > 0) {
             potion = potion.splash();
         }
-        if ((damage & EXTENDED_BIT) > 0) {
+        if ((type == null || !type.isInstant()) && (damage & EXTENDED_BIT) > 0) {
             potion = potion.extend();
         }
         return potion;

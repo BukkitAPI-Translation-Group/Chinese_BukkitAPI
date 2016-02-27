@@ -42,7 +42,7 @@ public class PlayerVelocityEvent extends PlayerEvent implements Cancellable {
      * <p>
      * 原文:Sets the velocity vector that will be sent to the player
      *
-     * @param Vector 玩家速度
+     * @param velocity 玩家速度
      */
     public void setVelocity(Vector velocity) {
         this.velocity = velocity;

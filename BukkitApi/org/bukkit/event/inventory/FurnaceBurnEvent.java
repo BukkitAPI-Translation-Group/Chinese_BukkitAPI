@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when an ItemStack is successfully burned as fuel in a furnace.
+ * 当一个物品作为燃料被燃烧的时候触发这个事件.
  */
 public class FurnaceBurnEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -25,10 +25,12 @@ public class FurnaceBurnEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the block for the furnace involved in this event
+     * 获取参与此事件的熔炉
+     * <p>
+     * 原文：Gets the block for the furnace involved in this event
      *
-     * @return the block of the furnace
-     * @deprecated In favour of {@link #getBlock()}.
+     * @return the block of the furnace 熔炉方块
+     * @deprecated 推荐使用 {@link #getBlock()}.
      */
     @Deprecated
     public Block getFurnace() {
@@ -36,45 +38,55 @@ public class FurnaceBurnEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the fuel ItemStack for this event
+     * 获取这个事件中的燃料
+     * <p>
+     * 原文：Gets the fuel ItemStack for this event
      *
-     * @return the fuel ItemStack
+     * @return the fuel ItemStack 燃料
      */
     public ItemStack getFuel() {
         return fuel;
     }
 
     /**
-     * Gets the burn time for this fuel
+     * 获取这个事件中燃料的燃烧时间
+     * <p>
+     * 原文：Gets the burn time for this fuel
      *
-     * @return the burn time for this fuel
+     * @return the burn time for this fuel 这个事件中燃料的燃烧时间
      */
     public int getBurnTime() {
         return burnTime;
     }
 
     /**
-     * Sets the burn time for this fuel
+     * 设置此燃料的燃烧时间
+     * <p>
+     * 原文：Sets the burn time for this fuel
      *
-     * @param burnTime the burn time for this fuel
+     * @param burnTime 此燃料的燃烧时间
      */
     public void setBurnTime(int burnTime) {
         this.burnTime = burnTime;
     }
 
     /**
-     * Gets whether the furnace's fuel is burning or not.
+     * 获取熔炉中的燃料是否正在燃烧
+     * <p>
+     * 原文：Gets whether the furnace's fuel is burning or not.
      *
-     * @return whether the furnace's fuel is burning or not.
+     * @return whether the furnace's fuel is burning or not. 熔炉中的燃料是否正在燃烧
      */
     public boolean isBurning() {
         return this.burning;
     }
 
     /**
-     * Sets whether the furnace's fuel is burning or not.
+     * 设置熔炉中的燃料是否正在燃烧
+     * <p>
+     * 原文：Sets whether the furnace's fuel is burning or not.
      *
-     * @param burning true if the furnace's fuel is burning
+     * @param 熔炉中的燃料是否正在燃烧
      */
     public void setBurning(boolean burning) {
         this.burning = burning;

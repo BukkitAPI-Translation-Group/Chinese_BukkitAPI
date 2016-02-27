@@ -85,7 +85,7 @@ public class PlayerPortalEvent extends PlayerTeleportEvent {
      * <p>
      * 原文:Sets the Travel Agent used (or not) in this event.
      *
-     * @param 玩家在这个事件中使用的传送门
+     * @param travelAgent 玩家在这个事件中使用的传送门
      */
     public void setPortalTravelAgent(TravelAgent travelAgent) {
         this.travelAgent = travelAgent;

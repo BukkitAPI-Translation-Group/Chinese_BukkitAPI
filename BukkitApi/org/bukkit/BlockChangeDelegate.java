@@ -1,6 +1,9 @@
 package org.bukkit;
 
 /**
+ * 一个用于处理方块改变的代理。以一个直接的接口
+ * <p>
+ * 原文：
  * A delegate for handling block changes. This serves as a direct interface
  * between generation algorithms in the server implementation and utilizing
  * code.

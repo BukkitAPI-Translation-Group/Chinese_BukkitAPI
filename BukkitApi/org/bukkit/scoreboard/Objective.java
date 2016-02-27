@@ -103,7 +103,7 @@ public interface Objective {
      * 原文:Gets a player's Score for an Objective on this Scoreboard
      *
      * @param player 玩家ID
-     * @return指定对象和玩家的分数
+     * @return 指定对象和玩家的分数
      * @throws IllegalArgumentException 参数player（玩家ID）为空
      * @throws IllegalStateException if this 对象已被注销
      * @deprecated 计分板可以包含非玩家项

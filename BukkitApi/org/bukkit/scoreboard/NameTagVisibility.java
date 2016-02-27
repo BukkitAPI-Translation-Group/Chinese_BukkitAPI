@@ -7,7 +7,6 @@ public enum NameTagVisibility {
      * <p>
      * 原文:
      * Always show the player's nametag.
-     * <p>
      */
     ALWAYS,
     /**
@@ -15,14 +14,12 @@ public enum NameTagVisibility {
      * <p>
      * 原文:
      * Never show the player's nametag.
-     * <p>
      */
     NEVER,
     /**
      * 仅显示在玩家所在队伍玩家计分板中.
      * <p>
      * Show the player's nametag only to his own team members.
-     * <p>
      */
     HIDE_FOR_OTHER_TEAMS,
     /**
@@ -30,7 +27,6 @@ public enum NameTagVisibility {
      * <p>
      * 原文:
      * Show the player's nametag only to members of other teams.
-     * <p>
      */
     HIDE_FOR_OWN_TEAM;
 }

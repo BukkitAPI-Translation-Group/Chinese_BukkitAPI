@@ -3,7 +3,6 @@ package org.bukkit.plugin;
 import org.bukkit.event.*;
 
 /**
- * 与该插件信息相关的监听器。
  * Stores relevant information for plugin listeners
  */
 public class RegisteredListener {
@@ -22,41 +21,37 @@ public class RegisteredListener {
     }
 
     /**
-     * 注册此监听器。
-     * 原文：Gets the listener for this registration
+     * Gets the listener for this registration
      *
-     * @return 已注册该监听器。
+     * @return Registered Listener
      */
     public Listener getListener() {
         return listener;
     }
 
     /**
-     * 注册此插件。
-     * 原文：Gets the plugin for this registration
+     * Gets the plugin for this registration
      *
-     * @return 已注册该插件。
+     * @return Registered Plugin
      */
     public Plugin getPlugin() {
         return plugin;
     }
 
     /**
-     * 注册事件发生的优先次序。
-     * 原文：Gets the priority for this registration
+     * Gets the priority for this registration
      *
-     * @return 已注册优先次序
+     * @return Registered Priority
      */
     public EventPriority getPriority() {
         return priority;
     }
 
     /**
-     * 调用事件执行器。
-     * 原文：Calls the event executor.
+     * Calls the event executor
      *
-     * @param event 事件。
-     * @throws EventException 如果事件处理器抛出异常。
+     * @param event The event
+     * @throws EventException If an event handler throws an exception.
      */
     public void callEvent(final Event event) throws EventException {
         if (event instanceof Cancellable){
@@ -68,10 +63,9 @@ public class RegisteredListener {
     }
 
      /**
-      * 监听器接受是否取消该事件的指令。
-     * 原文：Whether this listener accepts cancelled events
+     * Whether this listener accepts cancelled events
      *
-     * @return 真 如果忽略被取消的事件。
+     * @return True when ignoring cancelled events
      */
     public boolean isIgnoringCancelled() {
         return ignoreCancelled;

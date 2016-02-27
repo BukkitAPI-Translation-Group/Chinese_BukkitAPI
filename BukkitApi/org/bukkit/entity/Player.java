@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import org.bukkit.Achievement;
 import org.bukkit.ChatColor;
 import org.bukkit.Effect;
+import org.bukkit.GameMode;
 import org.bukkit.Instrument;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -297,9 +298,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @param sound 要播放的声音
      * @param volume 音量 默认 1F
      * @param pitch 音高 默认 0F
-     * @deprecated 不安全的参数.
      */
-    @Deprecated
     public void playSound(Location location, String sound, float volume, float pitch);
 
     /**
@@ -1234,4 +1233,44 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @see Player#setHealthScaled(boolean)
      */
     public double getHealthScale();
+
+    /**
+     * Gets the entity which is followed by the camera when in
+     * {@link GameMode#SPECTATOR}.
+     *
+     * @return the followed entity, or null if not in spectator mode or not
+     * following a specific entity.
+     */
+    public Entity getSpectatorTarget();
+
+    /**
+     * Sets the entity which is followed by the camera when in
+     * {@link GameMode#SPECTATOR}.
+     *
+     * @param entity the entity to follow or null to reset
+     * @throws IllegalStateException if the player is not in
+     * {@link GameMode#SPECTATOR}
+     */
+    public void setSpectatorTarget(Entity entity);
+
+    /**
+     * Sends a title and a subtitle message to the player. If either of these
+     * values are null, they will not be sent and the display will remain
+     * unchanged. If they are empty strings, the display will be updated as
+     * such. If the strings contain a new line, only the first line will be
+     * sent.
+     *
+     * @param title Title text
+     * @param subtitle Subtitle text
+     * @deprecated API subject to change
+     */
+    @Deprecated
+    public void sendTitle(String title, String subtitle);
+
+    /**
+     * Resets the title displayed to the player.
+     * @deprecated API subject to change.
+     */
+    @Deprecated
+    public void resetTitle();
 }

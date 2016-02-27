@@ -611,7 +611,10 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return true if exact location locations are used for spawning, false
      *     for vanilla collision detection or otherwise
+     *
+     * @deprecated non standard and unused feature.
      */
+    @Deprecated
     public boolean useExactLoginLocation();
 
     /**
@@ -960,6 +963,17 @@ public interface Server extends PluginMessageRecipient {
      * @return the idle timeout in minutes
      */
     public int getIdleTimeout();
+
+    /**
+     * Create a ChunkData for use in a generator.
+     * 
+     * See {@link ChunkGenerator#generateChunkData(org.bukkit.World, java.util.Random, int, int, org.bukkit.generator.ChunkGenerator.BiomeGrid)}
+     * 
+     * @param world the world to create the ChunkData for
+     * @return a new ChunkData for the world
+     * 
+     */
+    public ChunkGenerator.ChunkData createChunkData(World world);
 
     /**
      * @see UnsafeValues

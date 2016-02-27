@@ -64,8 +64,8 @@ public enum ClickType {
     ;
 
     /**
-	 * 判断这个按键类型是否为键盘按键.
-	 * <p>
+     * 判断这个按键类型是否为键盘按键.
+     * <p>
      * 原文：Gets whether this ClickType represents the pressing of a key on a
      * keyboard.
      *
@@ -76,8 +76,8 @@ public enum ClickType {
     }
 
     /**
-	 * 判断这个按键类型是否只能在创造模式被执行.
-	 * <p>
+     * 判断这个按键类型是否只能在创造模式被执行.
+     * <p>
      * 原文：Gets whether this ClickType represents an action that can only be
      * performed by a Player in creative mode.
      *
@@ -89,8 +89,8 @@ public enum ClickType {
     }
 
     /**
-	 * 判断这个按键类型是否使用了右键.
-	 * <p>
+     * 判断这个按键类型是否使用了右键.
+     * <p>
      * 原文：Gets whether this ClickType represents a right click.
      *
      * @return 如果这个按键类型使用了右键则返回true，否则返回false
@@ -99,9 +99,9 @@ public enum ClickType {
         return (this == ClickType.RIGHT) || (this == ClickType.SHIFT_RIGHT);
     }
 
-	/**
-	 * 判断这个按键类型是否使用了左键.
-	 * <p>
+    /**
+     * 判断这个按键类型是否使用了左键.
+     * <p>
      * 原文：Gets whether this ClickType represents a left click.
      *
      * @return 如果这个按键类型使用了左键则返回true，否则返回false
@@ -111,8 +111,8 @@ public enum ClickType {
     }
 
     /**
-	 * 判断这个按键类型是否使用了Shift键.
-	 * <p>
+     * 判断这个按键类型是否使用了Shift键.
+     * <p>
      * 原文：Gets whether this ClickType indicates that the shift key was pressed
      * down when the click was made.
      *

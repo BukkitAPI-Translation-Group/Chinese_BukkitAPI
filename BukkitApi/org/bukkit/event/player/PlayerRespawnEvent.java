@@ -35,7 +35,7 @@ public class PlayerRespawnEvent extends PlayerEvent {
      * <p>
      * 原文:Sets the new respawn location
      *
-     * @param location 新的重生位置
+     * @param respawnLocation 新的重生位置
      */
     public void setRespawnLocation(Location respawnLocation) {
         Validate.notNull(respawnLocation, "Respawn location can not be null");

@@ -10,7 +10,7 @@ import java.util.List;
  * <ol>
  * <li>从help.yml加载总主题
  * <li>插件加载并可选择调用{@code addTopic()}添加主题
- * <li>使用{@link helptopicfactory}帮助主题工厂对象的注册插件命令，来创建主题
+ * <li>使用{@link HelpTopicFactory}帮助主题工厂对象的注册插件命令，来创建主题
  * <li>主题内容被修改为指向help.yml
  * </ol>
  * <p>

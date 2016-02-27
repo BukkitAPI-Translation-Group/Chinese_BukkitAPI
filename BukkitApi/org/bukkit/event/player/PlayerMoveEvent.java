@@ -1,5 +1,6 @@
 package org.bukkit.event.player;
 
+import com.google.common.base.Preconditions;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -50,7 +51,7 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
      * teleported back to the Location as defined by getFrom(). This will not
      * fire an event
      *
-     * @param true 取消这个事件
+     * @param cancel 是否取消这个事件
      */
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
@@ -72,9 +73,10 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
      * <p>
      * 原文:Sets the location to mark as where the player moved from
      *
-     * @param Location 记录玩家移动之前的位置
+     * @param from 记录玩家移动之前的位置
      */
     public void setFrom(Location from) {
+        validateLocation(from);
         this.from = from;
     }
 
@@ -94,10 +96,16 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
      * <p>
      * 原文:Sets the location that this player will move to
      *
-     * @param Location 玩家将要移动到的位置
+     * @param to 玩家将要移动到的位置
      */
     public void setTo(Location to) {
+        validateLocation(to);
         this.to = to;
+    }
+
+    private void validateLocation(Location loc) {
+        Preconditions.checkArgument(loc != null, "Cannot use null location!");
+        Preconditions.checkArgument(loc.getWorld() != null, "Cannot use null location with null world!");
     }
 
     @Override

@@ -5,7 +5,8 @@ import java.util.Set;
 import org.bukkit.OfflinePlayer;
 
 /**
- * A scoreboard
+ * 代表计分板.
+ * 翻译质量比较糟，一看就是机翻，做个标记。
  */
 public interface Scoreboard {
 
@@ -118,16 +119,29 @@ public interface Scoreboard {
     void resetScores(String entry) throws IllegalArgumentException;
 
     /**
-     * 得到玩家的队伍在这个计分板. 
+     * 获取在这个计分板上的玩家队伍.
      * <p>
      * 原文：Gets a player's Team on this Scoreboard.
      * <p>
      *
      * @param player 玩家
-     * @return 玩家的队伍,或当玩家没有队伍时返回null.
+     * @return 玩家队伍,或当玩家没有队伍时返回null.
      * @throws IllegalArgumentException 如果玩家为null
+     * @deprecated 记分板可以包含不玩家条目
+     * @see #getEntryTeam(String)
      */
     Team getPlayerTeam(OfflinePlayer player) throws IllegalArgumentException;
+
+    /**
+     * 获取在这个计分板上的项目队伍.
+     * <p>
+     * 原文:Gets a entries Team on this Scoreboard
+     *
+     * @param entry 要搜索的项目
+     * @return 项目队伍，如果这个项目不在这个队伍则为null
+     * @throws IllegalArgumentException 如果参数entry为null
+     */
+    Team getEntryTeam(String entry) throws IllegalArgumentException;
 
     /**
      * 得到一个给定名称的队伍在该计分板中. 

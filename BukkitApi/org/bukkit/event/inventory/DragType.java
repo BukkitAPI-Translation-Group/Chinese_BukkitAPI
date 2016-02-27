@@ -1,8 +1,7 @@
 package org.bukkit.event.inventory;
 
 /**
- * Represents the effect of a drag that will be applied to an Inventory in an
- * InventoryDragEvent.
+ * 在物品拖动事件中将要应用到物品栏的结果.
  */
 public enum DragType {
     /**

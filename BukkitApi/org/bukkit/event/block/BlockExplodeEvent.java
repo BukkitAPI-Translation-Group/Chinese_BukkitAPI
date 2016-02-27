@@ -60,7 +60,7 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Sets the percentage of blocks to drop from this explosion
      *
-     * @param float 小数百分率
+     * @param yield 小数百分率
      */
     public void setYield(float yield) {
         this.yield = yield;

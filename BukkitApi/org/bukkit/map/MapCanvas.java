@@ -55,7 +55,6 @@ public interface MapCanvas {
      *
      * @param x x坐标值,从0到127
      * @param y y坐标值,从0到127
-     * @param color 颜色,参考{@link MapPalette}
      */
     public byte getPixel(int x, int y);
 
@@ -66,7 +65,6 @@ public interface MapCanvas {
      *
      * @param x x坐标值,从0到127
      * @param y y坐标值,从0到127
-     * @param color 颜色,参考{@link MapPalette}
      */
     public byte getBasePixel(int x, int y);
 
