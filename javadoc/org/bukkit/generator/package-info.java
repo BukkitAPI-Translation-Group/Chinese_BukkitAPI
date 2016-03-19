@@ -1,4 +1,6 @@
 /**
- * 有助于{@link org.bukkit.World 世界}生成的一些类.
+ * Classes to facilitate {@link org.bukkit.World world} generation
+ * implementation.
  */
 package org.bukkit.generator;
+

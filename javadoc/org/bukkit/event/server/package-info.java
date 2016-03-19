@@ -1,4 +1,6 @@
 /**
- * 与服务器的编程状态变化有关的{@link org.bukkit.event.Event 事件}。
+ * {@link org.bukkit.event.Event Events} relating to programmatic state
+ * changes on the server.
  */
 package org.bukkit.event.server;
+

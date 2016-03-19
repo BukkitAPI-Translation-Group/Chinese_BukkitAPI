@@ -1,4 +1,6 @@
 /**
- * 用于处理额外数据时所使用的接口,这些数据可以存储在{@link org.bukkit.inventory.ItemStack}中.
+ * The interfaces used when manipulating extra data can can be stored inside
+ * {@link org.bukkit.inventory.ItemStack item stacks}.
  */
 package org.bukkit.inventory.meta;
+

@@ -1,5 +1,7 @@
 /**
- * 与{@link org.bukkit.block.Block 方块}发生的改变和交互有关的{@link org.bukkit.event.Event 事件}.
+ * {@link org.bukkit.event.Event Events} relating to when a {@link
+ * org.bukkit.block.Block block} is changed or interacts with the {@link
+ * org.bukkit.World world}.
  */
 package org.bukkit.event.block;
 

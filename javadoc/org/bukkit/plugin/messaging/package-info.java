@@ -1,4 +1,5 @@
 /**
- * 专门处理插件与客户端间的通讯协议工具类.
+ * Classes dedicated to specialized plugin to client protocols.
  */
 package org.bukkit.plugin.messaging;
+

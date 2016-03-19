@@ -1,4 +1,5 @@
 /**
- * 处理事件的代码执行类.
+ * Classes dedicated to handling triggered code executions.
  */
 package org.bukkit.event;
+

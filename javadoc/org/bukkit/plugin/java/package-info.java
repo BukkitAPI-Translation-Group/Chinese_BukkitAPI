@@ -1,5 +1,6 @@
 /**
- * 用于处理用java写的{@link org.bukkit.plugin.Plugin 插件}的类.
+ * Classes for handling {@link org.bukkit.plugin.Plugin plugins} written in
+ * java.
  */
 package org.bukkit.plugin.java;
 

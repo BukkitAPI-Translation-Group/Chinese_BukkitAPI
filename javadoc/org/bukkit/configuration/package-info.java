@@ -1,5 +1,5 @@
 /**
- * 插件运行时处理配置的工具类.
+ * Classes dedicated to handling a plugin's runtime configuration.
  */
 package org.bukkit.configuration;
 
