@@ -7,6 +7,7 @@ import java.util.Set;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.attribute.Attributable;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
@@ -16,7 +17,7 @@ import org.bukkit.projectiles.ProjectileSource;
 /**
  * Represents a living entity, such as a monster or player
  */
-public interface LivingEntity extends Entity, Damageable, ProjectileSource {
+public interface LivingEntity extends Attributable, Entity, Damageable, ProjectileSource {
 
     /**
      * Gets the height of the living entity's eyes above its Location.
@@ -126,33 +127,6 @@ public interface LivingEntity extends Entity, Damageable, ProjectileSource {
      *     line of sight
      */
     public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
-
-    /**
-     * Throws an egg from the living entity.
-     *
-     * @deprecated use launchProjectile(Egg.class) instead
-     * @return the egg thrown
-     */
-    @Deprecated
-    public Egg throwEgg();
-
-    /**
-     * Throws a snowball from the living entity.
-     *
-     * @deprecated use launchProjectile(Snowball.class) instead
-     * @return the snowball thrown
-     */
-    @Deprecated
-    public Snowball throwSnowball();
-
-    /**
-     * Shoots an arrow from the living entity.
-     *
-     * @deprecated use launchProjectile(Arrow.class) instead
-     * @return the arrow shot
-     */
-    @Deprecated
-    public Arrow shootArrow();
 
     /**
      * Returns the amount of air that the living entity has remaining, in
@@ -392,4 +366,19 @@ public interface LivingEntity extends Entity, Damageable, ProjectileSource {
      * @return whether the operation was successful
      */
     public boolean setLeashHolder(Entity holder);
+
+    /**
+     * Checks to see if an entity is gliding, such as using an Elytra.
+     * @return True if this entity is gliding.
+     */
+    public boolean isGliding();
+
+    /**
+     * Makes entity start or stop gliding. This will work even if an Elytra
+     * is not equipped, but will be reverted by the server immediately after
+     * unless an event-cancelling mechanism is put in place.
+     * @param gliding True if the entity is gliding.
+     */
+    public void setGliding(boolean gliding);
+
 }

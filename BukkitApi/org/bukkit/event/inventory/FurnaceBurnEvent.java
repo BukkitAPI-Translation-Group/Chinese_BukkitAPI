@@ -25,19 +25,6 @@ public class FurnaceBurnEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取参与此事件的熔炉
-     * <p>
-     * 原文：Gets the block for the furnace involved in this event
-     *
-     * @return the block of the furnace 熔炉方块
-     * @deprecated 推荐使用 {@link #getBlock()}.
-     */
-    @Deprecated
-    public Block getFurnace() {
-        return getBlock();
-    }
-
-    /**
      * 获取这个事件中的燃料
      * <p>
      * 原文：Gets the fuel ItemStack for this event

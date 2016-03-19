@@ -1,7 +1,6 @@
 package org.bukkit.event.entity;
 
 import org.bukkit.Location;
-import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Cancellable;
@@ -24,12 +23,6 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
     public CreatureSpawnEvent(final LivingEntity spawnee, final SpawnReason spawnReason) {
         super(spawnee);
         this.spawnReason = spawnReason;
-    }
-
-    @Deprecated
-    public CreatureSpawnEvent(Entity spawnee, CreatureType type, Location loc, SpawnReason reason) {
-        super(spawnee);
-        spawnReason = reason;
     }
 
     public boolean isCancelled() {
@@ -56,23 +49,6 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
      */
     public Location getLocation() {
         return getEntity().getLocation();
-    }
-
-    /**
-     * 返回将要生成的生物类型 (CreatureType).
-     * 
-     * @return 将要生成的生物类型 (CreatureType)
-     * @deprecated  支持 {@link #getEntityType()}.
-     * 原文:
-     * Gets the type of creature being spawned.
-     *
-     * @return A CreatureType value detailing the type of creature being
-     *     spawned
-     * @deprecated In favour of {@link #getEntityType()}.
-     */
-    @Deprecated
-    public CreatureType getCreatureType() {
-        return CreatureType.fromEntityType(getEntityType());
     }
 
     /**
@@ -250,6 +226,12 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          * jockeys)
          */
         MOUNT,
+        /**
+         * 当一个实体作为陷阱陷害玩家时.
+         * 原文:
+         * When an entity spawns as a trap for players approaching
+         */
+        TRAP,
         /**
          * 当一个生物被插件生成时
          * 原文:

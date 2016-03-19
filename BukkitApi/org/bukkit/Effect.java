@@ -34,7 +34,7 @@ public enum Effect {
     /**
      * 播放唱片歌曲的声音
      */
-    RECORD_PLAY(1005, Type.SOUND, Material.class),
+    RECORD_PLAY(1010, Type.SOUND, Material.class),
     /**
      * 恶魂的尖叫声
      */
@@ -50,7 +50,7 @@ public enum Effect {
     /**
      * 僵尸敲木门的声音
      */
-    ZOMBIE_CHEW_WOODEN_DOOR(1010, Type.SOUND),
+    ZOMBIE_CHEW_WOODEN_DOOR(1012, Type.SOUND),
     /**
      * 僵尸敲铁门的声音
      */
@@ -58,7 +58,7 @@ public enum Effect {
     /**
      * 僵尸摧毁门的声音
      */
-    ZOMBIE_DESTROY_DOOR(1012, Type.SOUND),
+    ZOMBIE_DESTROY_DOOR(1021, Type.SOUND),
     /**
      * 烟雾效果
      */

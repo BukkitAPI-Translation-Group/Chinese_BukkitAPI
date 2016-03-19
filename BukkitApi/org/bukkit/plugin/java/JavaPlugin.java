@@ -39,6 +39,7 @@ import com.avaje.ebean.config.ServerConfig;
 import com.avaje.ebeaninternal.api.SpiEbeanServer;
 import com.avaje.ebeaninternal.server.ddl.DdlGenerator;
 import com.google.common.base.Charsets;
+import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 
 /**
@@ -208,7 +209,7 @@ public abstract class JavaPlugin extends PluginBase {
     protected final Reader getTextResource(String file) {
         final InputStream in = getResource(file);
 
-        return in == null ? null : new InputStreamReader(in, isStrictlyUTF8() || FileConfiguration.UTF8_OVERRIDE ? Charsets.UTF_8 : Charset.defaultCharset());
+        return in == null ? null : new InputStreamReader(in, Charsets.UTF_8);
     }
 
     @SuppressWarnings("deprecation")
@@ -221,32 +222,7 @@ public abstract class JavaPlugin extends PluginBase {
             return;
         }
 
-        final YamlConfiguration defConfig;
-        if (isStrictlyUTF8() || FileConfiguration.UTF8_OVERRIDE) {
-            defConfig = YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8));
-        } else {
-            final byte[] contents;
-            defConfig = new YamlConfiguration();
-            try {
-                contents = ByteStreams.toByteArray(defConfigStream);
-            } catch (final IOException e) {
-                getLogger().log(Level.SEVERE, "Unexpected failure reading config.yml", e);
-                return;
-            }
-
-            final String text = new String(contents, Charset.defaultCharset());
-            if (!text.equals(new String(contents, Charsets.UTF_8))) {
-                getLogger().warning("Default system encoding may have misread config.yml from plugin jar");
-            }
-
-            try {
-                defConfig.loadFromString(text);
-            } catch (final InvalidConfigurationException e) {
-                getLogger().log(Level.SEVERE, "Cannot load configuration from jar", e);
-            }
-        }
-
-        newConfig.setDefaults(defConfig);
+        newConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8)));
     }
 
     private boolean isStrictlyUTF8() {

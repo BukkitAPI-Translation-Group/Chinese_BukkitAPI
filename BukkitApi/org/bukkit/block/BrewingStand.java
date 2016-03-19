@@ -1,11 +1,12 @@
 package org.bukkit.block;
 
 import org.bukkit.inventory.BrewerInventory;
+import org.bukkit.inventory.InventoryHolder;
 
 /**
  * 代表酿造台.
  */
-public interface BrewingStand extends BlockState, ContainerBlock {
+public interface BrewingStand extends BlockState, InventoryHolder {
 
     /**
      * 返回酿造还需多长时间.
@@ -24,6 +25,20 @@ public interface BrewingStand extends BlockState, ContainerBlock {
      * @param brewTime 酿造时间
      */
     void setBrewingTime(int brewTime);
+
+    /**
+     * Get the level of current fuel for brewing.
+     *
+     * @return The fuel level
+     */
+    int getFuelLevel();
+
+    /**
+     * Set the level of current fuel for brewing.
+     *
+     * @param level fuel level
+     */
+    void setFuelLevel(int level);
 
     public BrewerInventory getInventory();
 }

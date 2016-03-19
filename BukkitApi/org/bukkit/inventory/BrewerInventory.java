@@ -25,5 +25,24 @@ public interface BrewerInventory extends Inventory {
      */
     void setIngredient(ItemStack ingredient);
 
+    /**
+     * 获取当前用来酿造的燃料.
+     * <p>
+     * 原文:Get the current fuel for brewing.
+     *
+     * @return 燃料
+     */
+    ItemStack getFuel();
+
+    /**
+     * 设置当前用来酿造的燃料.一般只有{@link Material#BLAZE_POWDER}将使用此方法.
+     * <p>
+     * 原文:Set the current fuel for brewing. Generally only
+     * {@link Material#BLAZE_POWDER} will be of use.
+     *
+     * @param fuel 燃料
+     */
+    void setFuel(ItemStack fuel);
+
     BrewingStand getHolder();
 }

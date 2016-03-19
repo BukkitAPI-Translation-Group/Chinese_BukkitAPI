@@ -17,6 +17,10 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
         this.power = power;
     }
 
+    /**
+     * @deprecated horse jumping was moved client side.
+     */
+    @Deprecated
     public boolean isCancelled() {
         return cancelled;
     }
@@ -62,7 +66,9 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
      * event will result in no jump animation at all.
      *
      * @param power power of the jump
+     * @deprecated horse jumping was moved client side.
      */
+    @Deprecated
     public void setPower(float power) {
         this.power = power;
     }

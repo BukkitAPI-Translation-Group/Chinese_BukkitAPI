@@ -16,11 +16,9 @@ public class PotionEffectTypeWrapper extends PotionEffectType {
     }
 
     /**
-     * 获取包装类绑定的药水类型。
-     * <p>
-     * 原文：Get the potion type bound to this wrapper.
+     * Get the potion type bound to this wrapper.
      *
-     * @return 药水效果类型
+     * @return The potion effect type
      */
     public PotionEffectType getType() {
         return PotionEffectType.getById(getId());

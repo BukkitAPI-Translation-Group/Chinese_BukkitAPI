@@ -1,11 +1,12 @@
 package org.bukkit.block;
 
+import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.projectiles.BlockProjectileSource;
 
 /**
  * 代表一个发射器.
  */
-public interface Dispenser extends BlockState, ContainerBlock {
+public interface Dispenser extends BlockState, InventoryHolder {
 
     /**
      * 获取此发射器的BlockProjectileSource对象.

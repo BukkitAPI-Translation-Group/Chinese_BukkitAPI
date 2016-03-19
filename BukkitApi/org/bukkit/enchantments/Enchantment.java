@@ -91,6 +91,11 @@ public abstract class Enchantment {
     public static final Enchantment DAMAGE_ALL = new EnchantmentWrapper(16);
 
     /**
+     * Freezes any still water adjacent to ice / frost which player is walking on
+     */
+    public static final Enchantment FROST_WALKER = new EnchantmentWrapper(9);
+
+    /**
      * 附魔：亡灵杀手
      * <p>
      * 原文：
@@ -210,6 +215,11 @@ public abstract class Enchantment {
      * Increases rate of fish biting your hook
      */
     public static final Enchantment LURE = new EnchantmentWrapper(62);
+
+    /**
+     * Allows mending the item using experience orbs
+     */
+    public static final Enchantment MENDING = new EnchantmentWrapper(70);
 
     private static final Map<Integer, Enchantment> byId = new HashMap<Integer, Enchantment>();
     private static final Map<String, Enchantment> byName = new HashMap<String, Enchantment>();

@@ -11,6 +11,7 @@ import org.bukkit.material.MaterialData;
 public class FurnaceRecipe implements Recipe {
     private ItemStack output;
     private ItemStack ingredient;
+    private float experience;
 
     /**
      * 创建一个熔炉冶炼公式.
@@ -21,7 +22,7 @@ public class FurnaceRecipe implements Recipe {
      * @param source 冶炼原料.
      */
     public FurnaceRecipe(ItemStack result, Material source) {
-        this(result, source, 0);
+        this(result, source, 0, 0);
     }
 
     /**
@@ -33,7 +34,18 @@ public class FurnaceRecipe implements Recipe {
      * @param source 冶炼原料.
      */
     public FurnaceRecipe(ItemStack result, MaterialData source) {
-        this(result, source.getItemType(), source.getData());
+        this(result, source.getItemType(), source.getData(), 0);
+    }
+
+    /**
+     * 创建一个熔炉冶炼公式.
+     *
+     * @param result 填入该冶炼公式产生的生成物.
+     * @param source 冶炼原料.
+     * @param experience 冶炼公式所需经验
+     */
+    public FurnaceRecipe(ItemStack result, MaterialData source, float experience) {
+        this(result, source.getItemType(), source.getData(), experience);
     }
 
     /**
@@ -45,12 +57,28 @@ public class FurnaceRecipe implements Recipe {
      * @param source 冶炼原料.
      * @param data The data value. (Note: This is currently ignored by the
      *     CraftBukkit server.)
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FurnaceRecipe(ItemStack result, Material source, int data) {
+        this(result, source, data, 0);
+    }
+
+    /**
+     * 创建一个熔炉冶炼公式.
+     *
+     * @param result 填入该冶炼公式产生的生成物.
+     * @param source 冶炼原料.
+     * @param data The data value. (Note: This is currently ignored by the
+     *     CraftBukkit server.)
+     * @param experience 冶炼公式所需经验
+     * @deprecated 不安全的参数
+     */
+    @Deprecated
+    public FurnaceRecipe(ItemStack result, Material source, int data, float experience) {
         this.output = new ItemStack(result);
         this.ingredient = new ItemStack(source, 1, (short) data);
+        this.experience = experience;
     }
 
     /**
@@ -114,5 +142,23 @@ public class FurnaceRecipe implements Recipe {
      */
     public ItemStack getResult() {
         return output.clone();
+    }
+
+    /**
+     * Sets the experience given by this recipe.
+     *
+     * @param experience the experience level
+     */
+    public void setExperience(float experience) {
+        this.experience = experience;
+    }
+
+    /**
+     * Get the experience given by this recipe.
+     *
+     * @return experience level
+     */
+    public float getExperience() {
+        return experience;
     }
 }

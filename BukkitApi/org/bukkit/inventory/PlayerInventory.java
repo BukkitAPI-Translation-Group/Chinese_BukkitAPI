@@ -3,7 +3,7 @@ package org.bukkit.inventory;
 import org.bukkit.entity.HumanEntity;
 
 /**
- * Interface to the inventory of a Player, including the four armor slots.
+ * Interface to the inventory of a Player, including the four armor slots and any extra slots.
  */
 public interface PlayerInventory extends Inventory {
 
@@ -13,6 +13,17 @@ public interface PlayerInventory extends Inventory {
      * @return All the ItemStacks from the armor slots
      */
     public ItemStack[] getArmorContents();
+
+    /**
+     * Get all additional ItemStacks stored in this inventory.
+     * <br>
+     * NB: What defines an extra slot is up to the implementation, however it
+     * will not be contained within {@link #getStorageContents()} or
+     * {@link #getArmorContents()}
+     *
+     * @return All additional ItemStacks
+     */
+    public ItemStack[] getExtraContents();
 
     /**
      * Return the ItemStack from the helmet slot
@@ -74,6 +85,15 @@ public interface PlayerInventory extends Inventory {
     public void setArmorContents(ItemStack[] items);
 
     /**
+     * Put the given ItemStacks into the extra slots
+     * <br>
+     * See {@link #getExtraContents()} for an explanation of extra slots.
+     *
+     * @param items The ItemStacks to use as extra
+     */
+    public void setExtraContents(ItemStack[] items);
+
+    /**
      * Put the given ItemStack into the helmet slot. This does not check if
      * the ItemStack is a helmet
      *
@@ -106,17 +126,57 @@ public interface PlayerInventory extends Inventory {
     public void setBoots(ItemStack boots);
 
     /**
-     * Returns the ItemStack currently hold
+     * Gets a copy of the item the player is currently holding
+     * in their main hand.
      *
-     * @return The currently held ItemStack
+     * @return the currently held item
      */
+    ItemStack getItemInMainHand();
+
+    /**
+     * Sets the item the player is holding in their main hand.
+     *
+     * @param item The item to put into the player's hand
+     */
+    void setItemInMainHand(ItemStack item);
+
+    /**
+     * Gets a copy of the item the player is currently holding
+     * in their off hand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInOffHand();
+
+    /**
+     * Sets the item the player is holding in their off hand.
+     *
+     * @param item The item to put into the player's hand
+     */
+    void setItemInOffHand(ItemStack item);
+
+    /**
+     * Gets a copy of the item the player is currently holding
+     *
+     * @deprecated players can duel wield now use the methods for the
+     *      specific hand instead
+     * @see #getItemInMainHand()
+     * @see #getItemInOffHand()
+     * @return the currently held item
+     */
+    @Deprecated
     public ItemStack getItemInHand();
 
     /**
-     * Sets the item in hand
+     * Sets the item the player is holding
      *
-     * @param stack Stack to set
+     * @deprecated players can duel wield now use the methods for the
+     *      specific hand instead
+     * @see #setItemInMainHand(ItemStack)
+     * @see #setItemInOffHand(ItemStack)
+     * @param stack The item to put into the player's hand
      */
+    @Deprecated
     public void setItemInHand(ItemStack stack);
 
     /**

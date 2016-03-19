@@ -409,6 +409,20 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Arrow spawnArrow(Location location, Vector direction, float speed, float spread);
 
     /**
+     * Creates an arrow entity of the given class at the given {@link Location}
+     *
+     * @param <T> type of arrow to spawn
+     * @param location Location to spawn the arrow
+     * @param direction Direction to shoot the arrow in
+     * @param speed Speed of the arrow. A recommend speed is 0.6
+     * @param spread Spread of the arrow. A recommend spread is 12
+     * @param clazz the Entity class for the arrow
+     * {@link org.bukkit.entity.SpectralArrow},{@link org.bukkit.entity.Arrow},{@link org.bukkit.entity.TippedArrow}
+     * @return Arrow entity spawned as a result of this method
+     */
+    public <T extends Arrow> T spawnArrow(Location location, Vector direction, float speed, float spread, Class<T> clazz);
+
+    /**
      * 在指定的{@link Location 位置}创建一颗树.
      * <p>
      * 原文：
@@ -444,33 +458,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 生成成功则返回此方法创建的实体，否则返回null
      */
     public Entity spawnEntity(Location loc, EntityType type);
-
-    /**
-     * 在指定的{@link Location 位置}创建一个生物.
-     * <p>
-     * 原文：
-     * Creates a creature at the given {@link Location}
-     *
-     * @param loc 生成生物的位置
-     * @param type 生成的生物类型
-     * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
-     * @deprecated 生成非LivingEntity（生物实体）有问题，建议用{@link #spawnEntity(Location, EntityType) spawnEntity}代替此方法。
-     */
-    @Deprecated
-    public LivingEntity spawnCreature(Location loc, EntityType type);
-
-    /**
-     * 在指定的{@link Location 位置}创建一个生物.
-     * <p>
-     * 原文：
-     * Creates a creature at the given {@link Location}
-     *
-     * @param loc 生成生物的位置
-     * @param type 生成的生物
-     * @return 生成成功则返回此方法创建的LivingEntity（生物实体），否则返回null
-     */
-    @Deprecated
-    public LivingEntity spawnCreature(Location loc, CreatureType type);
 
     /**
      * 在指定的{@link Location 位置}劈下闪电.
@@ -1540,6 +1527,20 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void playSound(Location location, Sound sound, float volume, float pitch);
 
     /**
+     * Play a Sound at the provided Location in the World.
+     * <p>
+     * This function will fail silently if Location or Sound are null. No
+     * sound will be heard by the players if their clients do not have the
+     * respective sound for the value passed.
+     *
+     * @param location the location to play the sound
+     * @param sound the internal sound name to play
+     * @param volume the volume of the sound
+     * @param pitch the pitch of the sound
+     */
+    void playSound(Location location, String sound, float volume, float pitch);
+
+    /**
      * 获取当前的游戏规则。
      * <p>
      * 译注：如果你不知道这是什么，请查阅gamerule命令。
@@ -1607,6 +1608,199 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 这个世界的世界边界对象
      */
     public WorldBorder getWorldBorder();
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     */
+    public void spawnParticle(Particle particle, Location location, int count);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     */
+    public void spawnParticle(Particle particle, double x, double y, double z, int count);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(Particle particle, Location location, int count, T data);
+
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     */
+    public void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     */
+    public void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     */
+    public void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     */
+    public void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
 
     /**
      * 表示世界可能的各种地图环境类型.

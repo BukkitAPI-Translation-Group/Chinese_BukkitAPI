@@ -449,10 +449,22 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         THORNS,
         /**
+         * Damage caused by a dragon breathing fire.
+         * <p>
+         * Damage: variable
+         */
+        DRAGON_BREATH,
+        /**
          * Custom damage.
          * <p>
          * Damage: variable
          */
-        CUSTOM
+        CUSTOM,
+        /**
+         * Damage caused when an entity runs into a wall.
+         * <p>
+         * Damage: variable
+         */
+        FLY_INTO_WALL
     }
 }

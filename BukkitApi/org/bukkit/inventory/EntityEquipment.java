@@ -10,12 +10,47 @@ import org.bukkit.entity.Entity;
 public interface EntityEquipment {
 
     /**
+     * Gets a copy of the item the entity is currently holding
+     * in their main hand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInMainHand();
+
+    /**
+     * Sets the item the entity is holding in their main hand.
+     *
+     * @param item The item to put into the entities hand
+     */
+    void setItemInMainHand(ItemStack item);
+
+    /**
+     * Gets a copy of the item the entity is currently holding
+     * in their off hand.
+     *
+     * @return the currently held item
+     */
+    ItemStack getItemInOffHand();
+
+    /**
+     * Sets the item the entity is holding in their off hand.
+     *
+     * @param item The item to put into the entities hand
+     */
+    void setItemInOffHand(ItemStack item);
+
+    /**
      * 获取该生物实体手持的Item项目.
      * <p>
      * 原文:Gets a copy of the item the entity is currently holding
      *
+     * @deprecated entities can duel wield now use the methods for the
+     *      specific hand instead
+     * @see #getItemInMainHand()
+     * @see #getItemInOffHand()
      * @return 手持Item项目
      */
+    @Deprecated
     ItemStack getItemInHand();
 
     /**
@@ -23,8 +58,13 @@ public interface EntityEquipment {
      * <p>
      * 原文:Sets the item the entity is holding
      *
+     * @deprecated entities can duel wield now use the methods for the
+     *      specific hand instead
+     * @see #setItemInMainHand(ItemStack)
+     * @see #setItemInOffHand(ItemStack)
      * @param stack 需要设置的Item项目
      */
+    @Deprecated
     void setItemInHand(ItemStack stack);
 
     /**
@@ -144,6 +184,80 @@ public interface EntityEquipment {
      * @throws UnsupportedOperationException 当该生物实体为玩家时候抛出该报错
      */
     void setItemInHandDropChance(float chance);
+
+    /**
+     * @deprecated entities can duel wield now use the methods for the specific
+     * hand instead
+     * @see #getItemInMainHandDropChance()
+     * @see #getItemInOffHandDropChance()
+     * @return drop chance
+     */
+    @Deprecated
+    float getItemInHandDropChance();
+
+    /**
+     * @deprecated entities can duel wield now use the methods for the specific
+     * hand instead
+     * @see #setItemInMainHandDropChance(float)
+     * @see #setItemInOffHandDropChance(float)
+     * @param chance drop chance
+     */
+    @Deprecated
+    void setItemInHandDropChance(float chance);
+
+    /**
+     * Gets the chance of the main hand item being dropped upon this creature's
+     * death.
+     *
+     * <ul>
+     * <li>A drop chance of 0F will never drop
+     * <li>A drop chance of 1F will always drop
+     * </ul>
+     *
+     * @return chance of the currently held item being dropped (1 for players)
+     */
+    float getItemInMainHandDropChance();
+
+    /**
+     * Sets the chance of the item this creature is currently holding in their
+     * main hand being dropped upon this creature's death.
+     *
+     * <ul>
+     * <li>A drop chance of 0F will never drop
+     * <li>A drop chance of 1F will always drop
+     * </ul>
+     *
+     * @param chance the chance of the main hand item being dropped
+     * @throws UnsupportedOperationException when called on players
+     */
+    void setItemInMainHandDropChance(float chance);
+
+    /**
+     * Gets the chance of the off hand item being dropped upon this creature's
+     * death.
+     *
+     * <ul>
+     * <li>A drop chance of 0F will never drop
+     * <li>A drop chance of 1F will always drop
+     * </ul>
+     *
+     * @return chance of the off hand item being dropped (1 for players)
+     */
+    float getItemInOffHandDropChance();
+
+    /**
+     * Sets the chance of the off hand item being dropped upon this creature's
+     * death.
+     *
+     * <ul>
+     * <li>A drop chance of 0F will never drop
+     * <li>A drop chance of 1F will always drop
+     * </ul>
+     *
+     * @param chance the chance of off hand item being dropped
+     * @throws UnsupportedOperationException when called on players
+     */
+    void setItemInOffHandDropChance(float chance);
 
     /**
      * 获取该生物实体死亡时头盔项目的掉落概率.

@@ -3,13 +3,33 @@ package org.bukkit.inventory.meta;
 import org.bukkit.Material;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionType;
 
 import java.util.List;
 
 /**
- * 代表{@link Material#POTION 药水}.
+ * 代表{@link Material#POTION 药水}和有自定义效果的物品.
  */
 public interface PotionMeta extends ItemMeta {
+
+    /**
+     * 设置基础药水数据.
+     * <p>
+     * 原文:Sets the underlying potion data
+     *
+     * @param data PotionData设置基础药水状态的PotionData
+     */
+    void setBasePotionData(PotionData data);
+
+    /**
+     * 返回关于这个基础药水的药水数据.
+     * <p>
+     * 原文:Returns the potion data about the base potion
+     *
+     * @return PotionData对象
+     */
+    PotionData getBasePotionData();
 
     /**
      * 检测这个药水是否存在药水效果.

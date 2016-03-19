@@ -582,7 +582,7 @@ public final class SimplePluginManager implements PluginManager {
                     && Event.class.isAssignableFrom(clazz.getSuperclass())) {
                 return getRegistrationClass(clazz.getSuperclass().asSubclass(Event.class));
             } else {
-                throw new IllegalPluginAccessException("Unable to find handler list for event " + clazz.getName());
+                throw new IllegalPluginAccessException("Unable to find handler list for event " + clazz.getName() + ". Static getHandlerList method required!");
             }
         }
     }
@@ -615,7 +615,7 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     public void recalculatePermissionDefaults(Permission perm) {
-        if (permissions.containsValue(perm)) {
+        if (perm != null && permissions.containsKey(perm.getName().toLowerCase())) {
             defaultPerms.get(true).remove(perm);
             defaultPerms.get(false).remove(perm);
 
