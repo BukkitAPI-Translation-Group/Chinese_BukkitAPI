@@ -91,7 +91,9 @@ public abstract class Enchantment {
     public static final Enchantment DAMAGE_ALL = new EnchantmentWrapper(16);
 
     /**
-     * Freezes any still water adjacent to ice / frost which player is walking on
+     * 附魔：冰霜行者
+     * <p>
+     * 原文:Freezes any still water adjacent to ice / frost which player is walking on
      */
     public static final Enchantment FROST_WALKER = new EnchantmentWrapper(9);
 
@@ -217,7 +219,9 @@ public abstract class Enchantment {
     public static final Enchantment LURE = new EnchantmentWrapper(62);
 
     /**
-     * Allows mending the item using experience orbs
+     * 附魔：经验修补
+     * <p>
+     * 原文:Allows mending the item using experience orbs
      */
     public static final Enchantment MENDING = new EnchantmentWrapper(70);
 
