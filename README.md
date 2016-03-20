@@ -108,7 +108,7 @@ P.S：我们是一个团队，请保持团队合作，争取达到最大的效�
  
 ##==**如何上传**==
 注册开源中国(<http://www.oschina.net/>)和Git@OSC(<http://git.oschina.net/>)账号, 将注册邮箱或个性后辍报告给管理员(zhouhaha(周一至周五中午晚上，周末常在)/hcrgm(一般周末)) ,添加项目组成员后
-进入项目 **<http://git.coding.net/zhouhaha/Chinese_BukkitAPI>** 编辑你翻译的类，将你翻译的替换进去.
+进入项目 **<http://git.oschina.net/zhouhaha/Chinese_BukkitAPI>** 编辑你翻译的类，将你翻译的替换进去.
 注:您可以使用**在线编辑/git推送**两种方式上传代码，git是推荐方式，如果你不会，可以用在线编辑.
 ##====**关于任务**====
 任务是为了更好规划整体进度和便于统计.
