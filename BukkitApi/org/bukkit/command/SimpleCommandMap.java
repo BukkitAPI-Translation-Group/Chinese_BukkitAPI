@@ -83,15 +83,16 @@ public class SimpleCommandMap implements CommandMap {
     }
 
     /**
-     * Registers a command with the given name is possible. Also uses
+     * 用给定的可能的名称注册命令.另外使用fallbackPrefix来创建唯一名称.
+     * <p>
+     * 原文:Registers a command with the given name is possible. Also uses
      * fallbackPrefix to create a unique name.
      *
-     * @param label the name of the command, without the '/'-prefix.
-     * @param command the command to register
-     * @param isAlias whether the command is an alias
-     * @param fallbackPrefix a prefix which is prepended to the command for a
-     *     unique address
-     * @return true if command was registered, false otherwise.
+     * @param label 这个命令的名称，没有“/”前缀
+     * @param command 要注册的命令
+     * @param isAlias 这个命令是不是以别名执行的
+     * @param fallbackPrefix 添加到命令的前缀作为唯一地址
+     * @return 如果命令注册成功则为true，false反之
      */
     private synchronized boolean register(String label, Command command, boolean isAlias, String fallbackPrefix) {
         knownCommands.put(fallbackPrefix + ":" + label, command);
