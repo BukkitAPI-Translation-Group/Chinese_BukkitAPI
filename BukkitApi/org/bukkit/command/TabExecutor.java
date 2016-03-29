@@ -1,8 +1,7 @@
 package org.bukkit.command;
 
 /**
- * This class is provided as a convenience to implement both TabCompleter and
- * CommandExecutor.
+ * 这个类提供了TabCompleter和CommandExecutor两者的实现.
  */
 public interface TabExecutor extends TabCompleter, CommandExecutor {
 }
