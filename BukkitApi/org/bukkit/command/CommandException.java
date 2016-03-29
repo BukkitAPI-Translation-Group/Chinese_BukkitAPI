@@ -1,22 +1,26 @@
 package org.bukkit.command;
 
 /**
- * Thrown when an unhandled exception occurs during the execution of a Command
+ * 当执行命令过程中出现未处理的异常时抛出.
  */
 @SuppressWarnings("serial")
 public class CommandException extends RuntimeException {
 
     /**
-     * Creates a new instance of <code>CommandException</code> without detail
+     * 创建一个没有详细信息的新的<code>CommandException</code>实例.
+     * <p>
+     * 原文:Creates a new instance of <code>CommandException</code> without detail
      * message.
      */
     public CommandException() {}
 
     /**
-     * Constructs an instance of <code>CommandException</code> with the
+     * 用指定的详细信息构造一个新的<code>CommandException</code>实例.
+     * <p>
+     * 原文:Constructs an instance of <code>CommandException</code> with the
      * specified detail message.
      *
-     * @param msg the detail message.
+     * @param msg 报错详细信息
      */
     public CommandException(String msg) {
         super(msg);
