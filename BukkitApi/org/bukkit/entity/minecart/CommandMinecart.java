@@ -9,7 +9,7 @@ import org.bukkit.entity.Minecart;
 public interface CommandMinecart extends Minecart, CommandSender {
 
     /**
-     * 获取这个命令方块矿车激活时运行的命令。这将永远不会返回null，反而会返回空的字符串。
+     * 获取这个命令方块矿车激活时运行的命令。这将永远不会返回null，而会返回空的字符串。
      * <p>
      * 原文：Gets the command that this CommandMinecart will run when activated.
      * This will never return null.  If the CommandMinecart does not have a
@@ -20,7 +20,7 @@ public interface CommandMinecart extends Minecart, CommandSender {
     public String getCommand();
 
     /**
-     * 设置这个命令方块激活时运行的命令。设置这个命令为null与设置这个命令为空字符串是一样的。
+     * 设置这个命令方块激活时运行的命令。设置命令为null与设置命令为空字符串是一样的。
      * <p>
      * 原文：Sets the command that this CommandMinecart will run when activated.
      * Setting the command to null is the same as setting it to an empty
