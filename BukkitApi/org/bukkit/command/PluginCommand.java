@@ -6,7 +6,7 @@ import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
 
 /**
- * Represents a {@link Command} belonging to a plugin
+ * 代表属于某个插件的{@link Command 命令}.
  */
 public final class PluginCommand extends Command implements PluginIdentifiableCommand {
     private final Plugin owningPlugin;
@@ -21,12 +21,14 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
     }
 
     /**
-     * Executes the command, returning its success
+     * 执行一个命令.
+     * <p>
+     * 原文:Executes the command, returning its success
      *
-     * @param sender Source object which is executing this command
-     * @param commandLabel The alias of the command used
-     * @param args All arguments passed to the command, split via ' '
-     * @return true if the command was successful, otherwise false
+     * @param sender 谁正在执行这个命令
+     * @param commandLabel 命令的别名
+     * @param args 所有传递给命令的参数，用' '(空格)分割
+     * @return 如果命令执行成功则为true，false反之
      */
     @Override
     public boolean execute(CommandSender sender, String commandLabel, String[] args) {
@@ -56,48 +58,60 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
     }
 
     /**
-     * Sets the {@link CommandExecutor} to run when parsing this command
+     * 设置当命令解析时运行的{@link CommandExecutor}.
+     * <p>
+     * 原文:Sets the {@link CommandExecutor} to run when parsing this command
      *
-     * @param executor New executor to run
+     * @param executor 要运行的新Executor
      */
     public void setExecutor(CommandExecutor executor) {
         this.executor = executor == null ? owningPlugin : executor;
     }
 
     /**
-     * Gets the {@link CommandExecutor} associated with this command
+     * 获取与这个命令关联的{@link CommandExecutor}.
+     * <p>
+     * 原文:Gets the {@link CommandExecutor} associated with this command
      *
-     * @return CommandExecutor object linked to this command
+     * @return 这个命令关联的{@link CommandExecutor}
      */
     public CommandExecutor getExecutor() {
         return executor;
     }
 
     /**
-     * Sets the {@link TabCompleter} to run when tab-completing this command.
+     * 设置当(玩家)进行命令补全时执行的{@link TabCompleter}.
+     * <p>
+     * 如果没有指定 TabCompleter，这个命令执行器实现了TabCompleter，执行器将用来做命令补全.
+     * <p>
+     * 原文:Sets the {@link TabCompleter} to run when tab-completing this command.
      * <p>
      * If no TabCompleter is specified, and the command's executor implements
      * TabCompleter, then the executor will be used for tab completion.
      *
-     * @param completer New tab completer
+     * @param completer 新的TabComplete
      */
     public void setTabCompleter(TabCompleter completer) {
         this.completer = completer;
     }
 
     /**
-     * Gets the {@link TabCompleter} associated with this command.
+     * 获取与这个命令关联的{@link TabComplete}.
+     * <p>
+     * 原文:Gets the {@link TabCompleter} associated with this command.
      *
-     * @return TabCompleter object linked to this command
+     * @return 与这个命令关联的{@link TabComplete}
      */
     public TabCompleter getTabCompleter() {
         return completer;
     }
 
     /**
-     * Gets the owner of this PluginCommand
+     * 获取拥有这个PluginCommand的插件.
+     * <p>
+     * 原文:Gets the owner of this PluginCommand
      *
-     * @return Plugin that owns this command
+     * @return 拥有这个命令的插件
      */
     public Plugin getPlugin() {
         return owningPlugin;
@@ -106,7 +120,13 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
     /**
      * {@inheritDoc}
      * <p>
-     * Delegates to the tab completer if present.
+     * 委托的tab补全器(如果存在).
+     * <p>
+     * 如果它不存在或者返回null，将委托给当前命令的执行器如果它实现了{@link TabCompleter}.如果找不到非null的list，将默认在{@link Command#tabComplete(CommandSender, String, String[])}里使用玩家名字.
+     * <p>
+     * 这个方法不会判断权限.
+     * <p>
+     * 原文:Delegates to the tab completer if present.
      * <p>
      * If it is not present or returns null, will delegate to the current
      * command executor if it implements {@link TabCompleter}. If a non-null
@@ -116,9 +136,8 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      * <p>
      * This method does not consider permissions.
      *
-     * @throws CommandException if the completer or executor throw an
-     *     exception during the process of tab-completing.
-     * @throws IllegalArgumentException if sender, alias, or args is null
+     * @throws CommandException 如果补全器或执行器在补全过程中抛出了异常
+     * @throws IllegalArgumentException 如果参数sender, alias, 或 args 是null
      */
     @Override
     public java.util.List<String> tabComplete(CommandSender sender, String alias, String[] args) throws CommandException, IllegalArgumentException {
