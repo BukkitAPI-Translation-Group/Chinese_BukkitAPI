@@ -108,9 +108,11 @@ public abstract class Command {
     }
 
     /**
-     * Returns the name of this command
+     * 返回这个命令的名称.
+     * <p>
+     * 原文:Returns the name of this command
      *
-     * @return Name of this command
+     * @return 这个命令的名称
      */
     public String getName() {
         return name;
@@ -182,13 +184,17 @@ public abstract class Command {
     }
 
     /**
-     * Tests the given {@link CommandSender} to see if they can perform this
+     * 测试给定的{@link CommandSender}能否执行这个命令.
+     * <p>
+     * 不会给sender发送错误消息.
+     * <p>
+     * 原文:Tests the given {@link CommandSender} to see if they can perform this
      * command.
      * <p>
      * No error is sent to the sender.
      *
-     * @param target User to test
-     * @return true if they can use it, otherwise false
+     * @param target 要测试的用户
+     * @return 他们能不能使用命令
      */
     public boolean testPermissionSilent(CommandSender target) {
         if ((permission == null) || (permission.length() == 0)) {
@@ -205,9 +211,11 @@ public abstract class Command {
     }
 
     /**
-     * Returns the label for this command
+     * 返回这个命令的别名.
+     * <p>
+     * 原文:Returns the label for this command
      *
-     * @return Label of this command
+     * @return 这个命令的别名
      */
     public String getLabel() {
         return label;
@@ -275,46 +283,56 @@ public abstract class Command {
     }
 
     /**
-     * Returns the current registered state of this command
+     * 返回这个命令的注册状态.
+     * <p>
+     * 原文:Returns the current registered state of this command
      *
-     * @return true if this command is currently registered false otherwise
+     * @return 这个命令当前是否已注册
      */
     public boolean isRegistered() {
         return (null != this.commandMap);
     }
 
     /**
-     * Returns a list of active aliases of this command
+     * 返回这个命令激活的别名的列表.
+     * <p>
+     * 原文:Returns a list of active aliases of this command
      *
-     * @return List of aliases
+     * @return 别名列表
      */
     public List<String> getAliases() {
         return activeAliases;
     }
 
     /**
-     * Returns a message to be displayed on a failed permission check for this
+     * 返回当没有这个命令的权限时显示的消息.
+     * <p>
+     * 原文:Returns a message to be displayed on a failed permission check for this
      * command
      *
-     * @return Permission check failed message
+     * @return 无权提示消息
      */
     public String getPermissionMessage() {
         return permissionMessage;
     }
 
     /**
-     * Gets a brief description of this command
+     * 获取这个命令的简介.
+     * <p>
+     * 原文:Gets a brief description of this command
      *
-     * @return Description of this command
+     * @return 命令简介
      */
     public String getDescription() {
         return description;
     }
 
     /**
-     * Gets an example usage of this command
+     * 获取这个命令的用法示例.
+     * <p>
+     * 原文:Gets an example usage of this command
      *
-     * @return One or more example usages
+     * @return 一个或多个用法示例
      */
     public String getUsage() {
         return usageMessage;
@@ -363,10 +381,12 @@ public abstract class Command {
     }
 
     /**
-     * Sets the example usage of this command
+     * 设置这个命令的用法示例.
+     * <p>
+     * 原文:Sets the example usage of this command
      *
-     * @param usage new example usage
-     * @return this command object, for chaining
+     * @param usage 新的用法示例
+     * @return 命令对象
      */
     public Command setUsage(String usage) {
         this.usageMessage = usage;
