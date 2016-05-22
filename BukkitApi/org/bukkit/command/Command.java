@@ -59,14 +59,15 @@ public abstract class Command {
     public abstract boolean execute(CommandSender sender, String commandLabel, String[] args);
 
     /**
-     * Executed on tab completion for this command, returning a list of
+     * 执行此命令的tab补全时返回选项列表.
+     * <p>
+     * 原文：Executed on tab completion for this command, returning a list of
      * options the player can tab through.
      *
-     * @deprecated This method is not supported and returns null
-     * @param sender Source object which is executing this command
-     * @param args All arguments passed to the command, split via ' '
-     * @return a list of tab-completions for the specified arguments. This
-     *     will never be null. List may be immutable.
+     * @deprecated 这个方法已不被支持，会返回null
+     * @param sender 执行此命令的对象
+     * @param args 传递给此命令的所有参数，用' '分割
+     * @return 指定参数的tab补全项列表.这将永远不会为null（由于被弃用，所以还是null，Ctrl+V大法好.）. 列表可能是不变的
      */
     @Deprecated
     public List<String> tabComplete(CommandSender sender, String[] args) {
@@ -74,15 +75,16 @@ public abstract class Command {
     }
 
     /**
-     * Executed on tab completion for this command, returning a list of
+     * 执行此命令的tab补全时返回选项列表.
+     * <p>
+     * 原文：Executed on tab completion for this command, returning a list of
      * options the player can tab through.
      *
-     * @param sender Source object which is executing this command
-     * @param alias the alias being used
-     * @param args All arguments passed to the command, split via ' '
-     * @return a list of tab-completions for the specified arguments. This
-     *     will never be null. List may be immutable.
-     * @throws IllegalArgumentException if sender, alias, or args is null
+     * @param sender 执行此命令的对象
+     * @param alias 使用的别名
+     * @param args 传递给此命令的所有参数，用' '分割
+     * @return 指定参数的tab补全项列表.这将永远不会为null（由于被弃用，所以还是null，写doc的太会CtrlV了）. 列表可能是不变的
+     * @throws IllegalArgumentException 如果参数sender, alias或args为null
      */
     public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
         Validate.notNull(sender, "Sender cannot be null");
