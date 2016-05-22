@@ -324,9 +324,11 @@ public interface Block extends Metadatable {
     void setBiome(Biome bio);
 
     /**
-     * Returns true if the block is being powered by Redstone.
+     * 如果这个方块被红石充能返回true.
+     * <p>
+     * 原文：Returns true if the block is being powered by Redstone.
      *
-     * @return True if the block is powered.
+     * @return 这个方块是否被充能
      */
     boolean isBlockPowered();
 
@@ -363,9 +365,11 @@ public interface Block extends Metadatable {
     int getBlockPower(BlockFace face);
 
     /**
-     * Returns the redstone power being provided to this block
+     * 返回提供给这个方块的红石电能.
+     * <p>
+     * 原文：Returns the redstone power being provided to this block
      *
-     * @return The power level.
+     * @return 红石电能
      */
     int getBlockPower();
 
