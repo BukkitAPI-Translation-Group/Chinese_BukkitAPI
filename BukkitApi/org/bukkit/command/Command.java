@@ -239,15 +239,20 @@ public abstract class Command {
     }
 
     /**
-     * Sets the label of this command.
+     * 设置这个命令的别名.
+     * <p>
+     * 可能只能在注册之前使用本方法.
+     * <p>
+     * 如果新的名称被设置将返回true，命令已被注册返回false.
+     * <p>
+     * 原文：Sets the label of this command.
      * <p>
      * May only be used before registering the command.
      * Will return true if the new name is set, and false
      * if the command has already been registered.
      *
-     * @param name The command's name
-     * @return returns true if the name change happened instantly or false if
-     *     the command was already registered
+     * @param name 新的命令别名
+     * @return 如果新的别名被更改返回true，命令已被注册返回false
      */
     public boolean setLabel(String name) {
         this.nextLabel = name;
@@ -373,12 +378,14 @@ public abstract class Command {
     }
 
     /**
-     * Sets a brief description of this command. Defining a description in the
+     * 设置此命令的简介.在{@link PluginDescriptionFile#getCommands()}的 <code>description</code> 节点上定义介绍与本方法是等效的.
+     * <p>
+     * 原文：Sets a brief description of this command. Defining a description in the
      * {@link PluginDescriptionFile#getCommands()} (under the
      * `<code>description</code>' node) is equivalent to this method.
      *
-     * @param description new command description
-     * @return this command object, for chaining
+     * @param description 新的命令介绍
+     * @return 这个命令对象，可用于链式
      */
     public Command setDescription(String description) {
         this.description = description;
