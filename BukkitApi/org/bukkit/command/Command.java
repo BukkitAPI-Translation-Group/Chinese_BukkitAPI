@@ -121,15 +121,20 @@ public abstract class Command {
     }
 
     /**
-     * Sets the name of this command.
+     * 设置这个命令的名称.
+     * <p>
+     * 可能只能在注册之前使用本方法.
+     * <p>
+     * 如果新的名称被设置将返回true，命令已被注册返回false.
+     * <p>
+     * 原文：Sets the name of this command.
      * <p>
      * May only be used before registering the command.
      * Will return true if the new name is set, and false
      * if the command has already been registered.
      *
-     * @param name New command name
-     * @return returns true if the name change happened instantly or false if
-     *     the command was already registered
+     * @param name 新的命令名称
+     * @return 如果新的名称被更改返回true，命令已被注册返回false
      */
     public boolean setName(String name) {
         if (!isRegistered()) {
@@ -140,34 +145,42 @@ public abstract class Command {
     }
 
     /**
-     * Gets the permission required by users to be able to perform this
+     * 获取用户执行此命令所需的权限。
+     * <p>
+     * 原文：Gets the permission required by users to be able to perform this
      * command
      *
-     * @return Permission name, or null if none
+     * @return 权限名，没有为null
      */
     public String getPermission() {
         return permission;
     }
 
     /**
-     * Sets the permission required by users to be able to perform this
+     * 设置用户执行此命令所需的权限.
+     * <p>
+     * 原文：Sets the permission required by users to be able to perform this
      * command
      *
-     * @param permission Permission name or null
+     * @param permission 权限名，或者为null
      */
     public void setPermission(String permission) {
         this.permission = permission;
     }
 
     /**
-     * Tests the given {@link CommandSender} to see if they can perform this
+     * 测试给定的{@link CommandSender}能否执行此命令.
+     * <p>
+     * 如果他们没有权限，他们会被告知他们不能这样做.
+     * <p>
+     * 原文：Tests the given {@link CommandSender} to see if they can perform this
      * command.
      * <p>
      * If they do not have permission, they will be informed that they cannot
      * do this.
      *
-     * @param target User to test
-     * @return true if they can use it, otherwise false
+     * @param target 要测试的用户
+     * @return 如果他们有权限则为true，false反之
      */
     public boolean testPermission(CommandSender target) {
         if (testPermissionSilent(target)) {
