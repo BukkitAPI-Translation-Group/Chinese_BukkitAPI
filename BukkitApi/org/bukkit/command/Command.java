@@ -47,12 +47,14 @@ public abstract class Command {
     }
 
     /**
-     * Executes the command, returning its success
+     * 执行命令.
+     * <p>
+     * 原文：Executes the command, returning its success
      *
-     * @param sender Source object which is executing this command
-     * @param commandLabel The alias of the command used
-     * @param args All arguments passed to the command, split via ' '
-     * @return true if the command was successful, otherwise false
+     * @param sender 执行此命令的对象
+     * @param commandLabel 执行命令所用的别名
+     * @param args 传递给此命令的所有参数，用' '分割
+     * @return 如果命令执行成功则位true，false反之
      */
     public abstract boolean execute(CommandSender sender, String commandLabel, String[] args);
 
@@ -369,11 +371,12 @@ public abstract class Command {
     }
 
     /**
-     * Sets the message sent when a permission check fails
+     * 设置当没有这个命令的权限时发送的消息.
+     * <p>
+     * 原文：Sets the message sent when a permission check fails
      *
-     * @param permissionMessage new permission message, null to indicate
-     *     default message, or an empty string to indicate no message
-     * @return this command object, for chaining
+     * @param permissionMessage 新的无权提示消息，null表示默认消息，空字符串表示没有提示消息
+     * @return 这个命令对象，可用于链式
      */
     public Command setPermissionMessage(String permissionMessage) {
         this.permissionMessage = permissionMessage;
