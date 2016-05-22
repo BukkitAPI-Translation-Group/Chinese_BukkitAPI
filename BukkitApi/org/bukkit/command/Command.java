@@ -18,7 +18,7 @@ import org.bukkit.util.StringUtil;
 import com.google.common.collect.ImmutableList;
 
 /**
- * Represents a Command, which executes various tasks upon user input
+ * 代表一个命令，在用户输入时执行各种任务.
  */
 public abstract class Command {
     private final String name;
@@ -264,12 +264,15 @@ public abstract class Command {
     }
 
     /**
-     * Registers this command to a CommandMap.
+     * 把这个命令注册给一个CommandMap.
+     * <p>
+     * 只允许改变注册的CommandMap.
+     * <p>
+     * 原文：Registers this command to a CommandMap.
      * Once called it only allows changes the registered CommandMap
      *
-     * @param commandMap the CommandMap to register this command to
-     * @return true if the registration was successful (the current registered
-     *     CommandMap was the passed CommandMap or null) false otherwise
+     * @param commandMap 注册此命令给这个CommandMap
+     * @return 如果注册成功则为true(当前注册的CommandMap是传递的CommandMap或null)，false反之
      */
     public boolean register(CommandMap commandMap) {
         if (allowChangesFrom(commandMap)) {
@@ -281,13 +284,13 @@ public abstract class Command {
     }
 
     /**
-     * Unregisters this command from the passed CommandMap applying any
+     * 从传递给此方法的CommandMap参数里注销这个命令，应用所有未完成的更改.
+     * <p>
+     * 原文：Unregisters this command from the passed CommandMap applying any
      * outstanding changes
      *
-     * @param commandMap the CommandMap to unregister
-     * @return true if the unregistration was successfull (the current
-     *     registered CommandMap was the passed CommandMap or null) false
-     *     otherwise
+     * @param commandMap 要注销的CommandMap
+     * @return 如果成功注销则为true(当前注册的CommandMap是传递的CommandMap或null)，false反之
      */
     public boolean unregister(CommandMap commandMap) {
         if (allowChangesFrom(commandMap)) {
@@ -361,13 +364,18 @@ public abstract class Command {
     }
 
     /**
-     * Sets the list of aliases to request on registration for this command.
+     * 设置这个命令的别名.
+     * 若没在{@link PluginDescriptionFile#getCommands()}的 <code>aliases</code> 节点定义(就是没在plugin.yml定义)将没有效果，与此等效.
+     * <p>
+     * 译注：不懂原文第二段在说什么，根据源代码，aliases一定会赋值给这个类的aliases成员变量，如果这个命令还没有注册，aliases同样会赋值给这个类的activeAliases成员变量.第二段的意思整理为如果没在plugin.yml定义命令别名这个方法不会有效果.
+     * <p>
+     * 原文：Sets the list of aliases to request on registration for this command.
      * This is not effective outside of defining aliases in the {@link
      * PluginDescriptionFile#getCommands()} (under the
      * `<code>aliases</code>' node) is equivalent to this method.
      *
-     * @param aliases aliases to register to this command
-     * @return this command object, for chaining
+     * @param aliases 要为这个命令注册的别名
+     * @return 这个命令对象，可用于链式
      */
     public Command setAliases(List<String> aliases) {
         this.aliases = aliases;
