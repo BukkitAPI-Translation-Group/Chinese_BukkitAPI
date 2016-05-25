@@ -3,14 +3,17 @@ package org.bukkit.material;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
+/**
+ * 这是红石中继器
+ */
 public class Diode extends MaterialData implements Directional {
     public Diode() {
         super(Material.DIODE_BLOCK_ON);
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Diode(int type) {
@@ -22,9 +25,9 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Diode(int type, byte data) {
@@ -32,9 +35,9 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Diode(Material type, byte data) {
@@ -42,10 +45,11 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * Sets the delay of the repeater
+     * 设置这个红石中继器的延迟/时钟(以刻为单位)
+     * <p>
+     * 原文：Sets the delay of the repeater
      *
-     * @param delay
-     *            The new delay (1-4)
+     * @param delay 新的延迟(1-4)
      */
     public void setDelay(int delay) {
         if (delay > 4) {
@@ -60,9 +64,11 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * Gets the delay of the repeater in ticks
+     * 获取这个红石中继器的延迟
+     * <p>
+     * 原文：Gets the delay of the repeater in ticks
      *
-     * @return The delay (1-4)
+     * @return 延迟(1-4)
      */
     public int getDelay() {
         return (getData() >> 2) + 1;

@@ -3,7 +3,7 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * Represents a cauldron
+ * 代表炼药锅
  */
 public class Cauldron extends MaterialData {
     private static final int CAULDRON_FULL = 3;
@@ -15,9 +15,9 @@ public class Cauldron extends MaterialData {
 
     /**
      *
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Cauldron(int type, byte data){
@@ -26,8 +26,8 @@ public class Cauldron extends MaterialData {
 
     /**
      *
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Cauldron(byte data) {
@@ -35,18 +35,22 @@ public class Cauldron extends MaterialData {
     }
 
     /**
-     * Check if the cauldron is full.
+     * 检测这个炼药锅是不是满的
+     * <p>
+     * 原文：Check if the cauldron is full.
      *
-     * @return True if it is full.
+     * @return 这个炼药锅是不是满的
      */
     public boolean isFull() {
         return getData() >= CAULDRON_FULL;
     }
 
     /**
-     * Check if the cauldron is empty.
+     * 检测这个炼药锅是不是空的
+     * <p>
+     * 原文：Check if the cauldron is empty.
      *
-     * @return True if it is empty.
+     * @return 这个炼药锅是不是空的
      */
     public boolean isEmpty() {
         return getData() <= CAULDRON_EMPTY;
