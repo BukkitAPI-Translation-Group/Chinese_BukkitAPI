@@ -17,7 +17,7 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type 原始种类id
+     * @param type 原始类型id
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -30,7 +30,7 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type 原始种类id
+     * @param type 原始类型id
      * @param data 原始数据值
      * @deprecated 不安全的参数
      */
@@ -40,7 +40,7 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type 种类
+     * @param type 类型
      * @param data 原始数据值
      * @deprecated 不安全的参数
      */
