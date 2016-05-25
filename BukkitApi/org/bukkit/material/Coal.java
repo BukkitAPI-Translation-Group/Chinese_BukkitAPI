@@ -4,7 +4,7 @@ import org.bukkit.CoalType;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of coals.
+ * 代表不同种类的煤(煤和木炭)
  */
 public class Coal extends MaterialData {
     public Coal() {
@@ -17,8 +17,8 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
+     * @param type 原始种类id
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Coal(final int type) {
@@ -30,9 +30,9 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始种类id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Coal(final int type, final byte data) {
@@ -40,9 +40,9 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 种类
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Coal(final Material type, final byte data) {
@@ -50,18 +50,22 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * Gets the current type of this coal
+     * 获取这个煤当前的种类.
+     * <p>
+     * 原文：Gets the current type of this coal
      *
-     * @return CoalType of this coal
+     * @return 这个煤的种类(CoalType)
      */
     public CoalType getType() {
         return CoalType.getByData(getData());
     }
 
     /**
-     * Sets the type of this coal
+     * 设置这个煤的种类.
+     * <p>
+     * 原文：Sets the type of this coal
      *
-     * @param type New type of this coal
+     * @param type 这个煤的新种类
      */
     public void setType(CoalType type) {
         setData(type.getData());
