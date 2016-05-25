@@ -3,16 +3,20 @@ package org.bukkit.material;
 public interface Openable {
 
     /**
-     * Check to see if the door is open.
+     * 检测这个门是否开着.
+     * <p>
+     * 原文：Check to see if the door is open.
      *
-     * @return true if the door has swung counterclockwise around its hinge.
+     * @return 门是否开着
      */
     boolean isOpen();
 
     /**
-     * Configure this door to be either open or closed;
+     * 设置这个门是否开着.
+     * <p>
+     * 原文：Configure this door to be either open or closed;
      *
-     * @param isOpen True to open the door.
+     * @param isOpen 门是否开着
      */
     void setOpen(boolean isOpen);
 }
