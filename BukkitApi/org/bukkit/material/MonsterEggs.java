@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of monster eggs
+ * 代表不同种类的刷怪蛋
  */
 public class MonsterEggs extends TexturedMaterial {
 
@@ -22,8 +22,8 @@ public class MonsterEggs extends TexturedMaterial {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public MonsterEggs(final int type) {
@@ -38,9 +38,9 @@ public class MonsterEggs extends TexturedMaterial {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public MonsterEggs(final int type, final byte data) {
@@ -48,9 +48,9 @@ public class MonsterEggs extends TexturedMaterial {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public MonsterEggs(final Material type, final byte data) {
