@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a chest
+ * 代表箱子
  */
 public class Chest extends DirectionalContainer {
 
@@ -13,9 +13,11 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * Instantiate a chest facing in a particular direction.
+     * 实例化一个特定朝向的箱子.
+     * <p>
+     * 原文：Instantiate a chest facing in a particular direction.
      *
-     * @param direction the direction the chest's lit opens towards
+     * @param direction 箱子打开时的朝向
      */
     public Chest(BlockFace direction) {
         this();
@@ -23,8 +25,8 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Chest(final int type) {
@@ -36,9 +38,9 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Chest(final int type, final byte data) {
@@ -46,9 +48,9 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Chest(final Material type, final byte data) {
