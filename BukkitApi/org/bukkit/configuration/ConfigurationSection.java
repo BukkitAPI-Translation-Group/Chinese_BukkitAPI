@@ -957,11 +957,30 @@ public interface ConfigurationSection {
     public boolean isColor(String path);
 
     /**
-     * 在指定路径获取一个 {@link ConfigurationSection} 类型的值. 
+     * 获取一个 {@link ConfigurationSection} ,它是一个以指定路径作为基点的新的配置项,修改会同步. 
      * <p>
      * 如果这个 {@link ConfigurationSection} 不存在, 但已指定一个缺省值, 这将返回缺省值.
      * <p>
      * 如果这个 {@link ConfigurationSection} 不存在, 并且没有指定缺省值, 则返回 null. 
+     * <p>
+     * 更人性化的解释: 现在有一个配置文件如下
+     * <pre>
+     * root: 
+     *   branch1:
+     *     branch1_1: something
+     *     branch1_2: something
+     *   branch2: 
+     *     branch2_1: something
+     *     branch3_2: something
+     * </pre>
+     * 如果调用 {@link ConfigurationSection#getConfigurationSection(java.lang.String) }
+     * 参数为("branch1") ,则会返回
+     * <pre>
+     *   branch1:
+     *     branch1_1: something
+     *     branch1_2: something
+     * </pre>
+     * 并且修改会同步
      * <p>原文: 
      * Gets the requested ConfigurationSection by path. 
      * <p>
