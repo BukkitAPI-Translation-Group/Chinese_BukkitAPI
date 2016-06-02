@@ -90,7 +90,7 @@ public interface CommandMap {
      * @return 如果没有目标找到返回false，true反之
      * @throws CommandException 当给定命令的执行器执行命令时有异常未处理原文则抛出
      */
-    public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException
+    public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException;
     /**
      * 清除所有已注册命令.
      * <p>
