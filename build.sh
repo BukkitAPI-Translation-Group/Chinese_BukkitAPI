@@ -1,1 +1,0 @@
-#./jdk/bin/javadoc -locale zh_CN -charset utf-8 -encoding utf-8 -docencoding utf-8 -sourcepath BukkitApi:javadoc -d docs -stylesheetfile javadoc.css -overview javadoc/overview.html -subpackages org.bukkit > buildlog.txt

@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a skull.
+ * 代表头颅.
  */
 public class Skull extends MaterialData implements Directional {
     public Skull() {
