@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a dispenser.
+ * 代表发射器.
  */
 public class Dispenser extends FurnaceAndDispenser {
 
@@ -18,8 +18,8 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated Magic value
+     * @param type 原始类型ud
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Dispenser(final int type) {
@@ -31,9 +31,9 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Dispenser(final int type, final byte data) {
@@ -41,15 +41,18 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型id
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Dispenser(final Material type, final byte data) {
         super(type, data);
     }
 
+    /**
+     * 设置朝向(译者加)
+     */
     public void setFacingDirection(BlockFace face) {
         byte data;
 
