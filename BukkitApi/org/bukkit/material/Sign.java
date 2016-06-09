@@ -4,7 +4,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.Material;
 
 /**
- * MaterialData for signs
+ * 代表告示牌.
  */
 public class Sign extends MaterialData implements Attachable {
     public Sign() {
@@ -45,19 +45,22 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * Check if this sign is attached to a wall
+     * 检测这个告示牌是否依附在墙上.
+     * <p>
+     * 原文：Check if this sign is attached to a wall
      *
-     * @return true if this sign is attached to a wall, false if set on top of
-     *     a block
+     * @return 如果告示牌依附在墙上则为踏入额，立在方块上则为false
      */
     public boolean isWallSign() {
         return getItemType() == Material.WALL_SIGN;
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取这个木牌附着的朝向.
+     * <p>
+     * 原文：Gets the face that this block is attached on
      *
-     * @return BlockFace attached to
+     * @return 附着的朝向
      */
     public BlockFace getAttachedFace() {
         if (isWallSign()) {
@@ -84,9 +87,13 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * Gets the direction that this sign is currently facing
+     * 获取这个告示牌当前的朝向.
+     * <p>
+     * 译注：与另一个方法不同得是，本方法获得是这个告示牌方块本身得朝向，另一个方法是告示牌依附得方向（向哪依附）》
+     * <p>
+     * 原文：Gets the direction that this sign is currently facing
      *
-     * @return BlockFace indicating where this sign is facing
+     * @return 这个告示牌正朝向哪
      */
     public BlockFace getFacing() {
         byte data = getData();
