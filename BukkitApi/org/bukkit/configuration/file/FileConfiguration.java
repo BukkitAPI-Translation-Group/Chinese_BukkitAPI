@@ -246,4 +246,4 @@ public abstract class FileConfiguration extends MemoryConfiguration {
 
         return (FileConfigurationOptions) options;
     }
-}
+    }
