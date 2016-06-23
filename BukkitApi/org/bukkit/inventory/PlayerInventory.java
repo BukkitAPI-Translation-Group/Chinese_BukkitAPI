@@ -3,11 +3,15 @@ package org.bukkit.inventory;
 import org.bukkit.entity.HumanEntity;
 
 /**
+ * 玩家背包. 包括装备栏,背包和其他额外的格子. 
+ * <p>原文: 
  * Interface to the inventory of a Player, including the four armor slots and any extra slots.
  */
 public interface PlayerInventory extends Inventory {
 
     /**
+     * 获取装备槽的全部物品. 
+     * <p>原文: 
      * Get all ItemStacks from the armor slots
      *
      * @return All the ItemStacks from the armor slots
@@ -17,15 +21,15 @@ public interface PlayerInventory extends Inventory {
     /**
      * Get all additional ItemStacks stored in this inventory.
      * <br>
-     * NB: What defines an extra slot is up to the implementation, however it
-     * will not be contained within {@link #getStorageContents()} or
-     * {@link #getArmorContents()}
+     * NB: What defines an extra slot is up to the implementation, however it will not be contained within {@link #getStorageContents()} or {@link #getArmorContents()}
      *
      * @return All additional ItemStacks
      */
     public ItemStack[] getExtraContents();
 
     /**
+     * 头盔. 
+     * <p>原文: 
      * Return the ItemStack from the helmet slot
      *
      * @return The ItemStack in the helmet slot
@@ -33,6 +37,8 @@ public interface PlayerInventory extends Inventory {
     public ItemStack getHelmet();
 
     /**
+     * 胸甲. 
+     * <p>原文: 
      * Return the ItemStack from the chestplate slot
      *
      * @return The ItemStack in the chestplate slot
@@ -40,6 +46,8 @@ public interface PlayerInventory extends Inventory {
     public ItemStack getChestplate();
 
     /**
+     * 护腿. 
+     * <p>原文: 
      * Return the ItemStack from the leg slot
      *
      * @return The ItemStack in the leg slot
@@ -47,6 +55,8 @@ public interface PlayerInventory extends Inventory {
     public ItemStack getLeggings();
 
     /**
+     * 鞋子. 
+     * <p>原文: 
      * Return the ItemStack from the boots slot
      *
      * @return The ItemStack in the boots slot
@@ -78,6 +88,8 @@ public interface PlayerInventory extends Inventory {
     public void setItem(int index, ItemStack item);
 
     /**
+     * 设置装备槽的全部物品. 
+     * <p>原文: 
      * Put the given ItemStacks into the armor slots
      *
      * @param items The ItemStacks to use as armour
@@ -94,6 +106,8 @@ public interface PlayerInventory extends Inventory {
     public void setExtraContents(ItemStack[] items);
 
     /**
+     * 头盔. 不检查它是不是一个头盔.
+     * <p>原文: 
      * Put the given ItemStack into the helmet slot. This does not check if
      * the ItemStack is a helmet
      *
@@ -102,6 +116,8 @@ public interface PlayerInventory extends Inventory {
     public void setHelmet(ItemStack helmet);
 
     /**
+     * 胸甲. 不检查它是不是一个胸甲
+     * <p>原文: 
      * Put the given ItemStack into the chestplate slot. This does not check
      * if the ItemStack is a chestplate
      *
@@ -110,6 +126,8 @@ public interface PlayerInventory extends Inventory {
     public void setChestplate(ItemStack chestplate);
 
     /**
+     * 护腿. 不检查它是不是一个护腿
+     * <p>原文: 
      * Put the given ItemStack into the leg slot. This does not check if the
      * ItemStack is a pair of leggings
      *
@@ -118,6 +136,8 @@ public interface PlayerInventory extends Inventory {
     public void setLeggings(ItemStack leggings);
 
     /**
+     * 鞋子. 不检查它是不是一个鞋子
+     * <p>原文: 
      * Put the given ItemStack into the boots slot. This does not check if the
      * ItemStack is a boots
      *
@@ -126,8 +146,7 @@ public interface PlayerInventory extends Inventory {
     public void setBoots(ItemStack boots);
 
     /**
-     * Gets a copy of the item the player is currently holding
-     * in their main hand.
+     * Gets a copy of the item the player is currently holding in their main hand.
      *
      * @return the currently held item
      */
