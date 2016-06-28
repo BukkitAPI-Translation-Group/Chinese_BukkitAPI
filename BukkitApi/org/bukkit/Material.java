@@ -301,13 +301,16 @@ public enum Material {
     STONE_SPADE(273, 1, 131),
     STONE_PICKAXE(274, 1, 131),
     STONE_AXE(275, 1, 131),
+    /**钻石剑*/
     DIAMOND_SWORD(276, 1, 1561),
     DIAMOND_SPADE(277, 1, 1561),
     DIAMOND_PICKAXE(278, 1, 1561),
+    /**钻石斧头. */
     DIAMOND_AXE(279, 1, 1561),
     STICK(280),
     BOWL(281),
     MUSHROOM_SOUP(282, 1),
+    /**金剑. */
     GOLD_SWORD(283, 1, 32),
     GOLD_SPADE(284, 1, 32),
     GOLD_PICKAXE(285, 1, 32),
@@ -447,6 +450,7 @@ public enum Material {
     ARMOR_STAND(416, 16),
     IRON_BARDING(417, 1),
     GOLD_BARDING(418, 1),
+    /**钻石马鞍*/
     DIAMOND_BARDING(419, 1),
     LEASH(420),
     NAME_TAG(421),
