@@ -104,7 +104,7 @@ public enum EntityType {
     /**
      * Mechanical entity with an inventory for placing weapons / armor into.
      */
-    ARMOR_STAND("ArmorStand", ArmorStand.class, 30, false),
+    ARMOR_STAND("ArmorStand", ArmorStand.class, 30),
     /**
      * @see CommandMinecart
      */
@@ -169,6 +169,7 @@ public enum EntityType {
     IRON_GOLEM("VillagerGolem", IronGolem.class, 99),
     HORSE("EntityHorse", Horse.class, 100),
     RABBIT("Rabbit", Rabbit.class, 101),
+    POLAR_BEAR("PolarBear", PolarBear.class, 102),
     VILLAGER("Villager", Villager.class, 120),
     ENDER_CRYSTAL("EnderCrystal", EnderCrystal.class, 200),
     // These don't have an entity ID in nms.EntityTypes.
@@ -214,7 +215,7 @@ public enum EntityType {
     static {
         for (EntityType type : values()) {
             if (type.name != null) {
-                NAME_MAP.put(type.name.toLowerCase(), type);
+                NAME_MAP.put(type.name.toLowerCase(java.util.Locale.ENGLISH), type);
             }
             if (type.typeId > 0) {
                 ID_MAP.put(type.typeId, type);
@@ -271,7 +272,7 @@ public enum EntityType {
         if (name == null) {
             return null;
         }
-        return NAME_MAP.get(name.toLowerCase());
+        return NAME_MAP.get(name.toLowerCase(java.util.Locale.ENGLISH));
     }
 
     /**

@@ -10,6 +10,28 @@ import org.bukkit.Material;
 public interface BookMeta extends ItemMeta {
 
     /**
+     * Represents the generation (or level of copying) of a written book
+     */
+    enum Generation {
+        /**
+         * Book written into a book-and-quill. Can be copied. (Default value)
+         */
+        ORIGINAL,
+        /**
+         * Book that was copied from an original. Can be copied.
+         */
+        COPY_OF_ORIGINAL,
+        /**
+         * Book that was copied from a copy of an original. Can't be copied.
+         */
+        COPY_OF_COPY,
+        /**
+         * Unused; unobtainable by players. Can't be copied.
+         */
+        TATTERED;
+    }
+
+    /**
      * 检测书是否存在标题.
      * <p>
      * 原文：Checks for the existence of a title in the book.
@@ -77,6 +99,30 @@ public interface BookMeta extends ItemMeta {
      * @param author 这本书的作者
      */
     void setAuthor(String author);
+
+    /**
+     * Checks for the existence of generation level in the book.
+     *
+     * @return true if the book has a generation level
+     */
+    boolean hasGeneration();
+
+    /**
+     * Gets the generation of the book.
+     * <p>
+     * Plugins should check that hasGeneration() returns true before calling
+     * this method.
+     *
+     * @return the generation of the book
+     */
+    Generation getGeneration();
+
+    /**
+     * Sets the generation of the book. Removes generation when given null.
+     *
+     * @param generation the generation to set
+     */
+    void setGeneration(Generation generation);
 
     /**
      * 检测这本书是否存在页面.

@@ -356,4 +356,51 @@ public interface Entity extends Metadatable, CommandSender {
      * @return whether the entity is glowing
      */
     boolean isGlowing();
+
+    /**
+     * Sets whether the entity is invulnerable or not.
+     * <p>
+     * When an entity is invulnerable it can only be damaged by players in
+     * creative mode.
+     *
+     * @param flag if the entity is invulnerable
+     */
+    public void setInvulnerable(boolean flag);
+
+    /**
+     * Gets whether the entity is invulnerable or not.
+     *
+     * @return whether the entity is
+     */
+    public boolean isInvulnerable();
+
+    /**
+     * Gets whether the entity is silent or not.
+     *
+     * @return whether the entity is silent.
+     */
+    public boolean isSilent();
+
+    /**
+     * Sets whether the entity is silent or not.
+     * <p>
+     * When an entity is silent it will not produce any sound.
+     *
+     * @param flag if the entity is silent
+     */
+    public void setSilent(boolean flag);
+
+    /**
+     * Returns whether gravity applies to this entity.
+     *
+     * @return whether gravity applies
+     */
+    boolean hasGravity();
+
+    /**
+     * Sets whether gravity applies to this entity.
+     *
+     * @param gravity whether gravity should apply
+     */
+    void setGravity(boolean gravity);
 }

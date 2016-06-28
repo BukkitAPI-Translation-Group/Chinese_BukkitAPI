@@ -60,8 +60,8 @@ public class SimpleCommandMap implements CommandMap {
      * {@inheritDoc}
      */
     public boolean register(String label, String fallbackPrefix, Command command) {
-        label = label.toLowerCase().trim();
-        fallbackPrefix = fallbackPrefix.toLowerCase().trim();
+        label = label.toLowerCase(java.util.Locale.ENGLISH).trim();
+        fallbackPrefix = fallbackPrefix.toLowerCase(java.util.Locale.ENGLISH).trim();
         boolean registered = register(label, command, false, fallbackPrefix);
 
         Iterator<String> iterator = command.getAliases().iterator();
@@ -129,7 +129,7 @@ public class SimpleCommandMap implements CommandMap {
             return false;
         }
 
-        String sentCommandLabel = args[0].toLowerCase();
+        String sentCommandLabel = args[0].toLowerCase(java.util.Locale.ENGLISH);;
         Command target = getCommand(sentCommandLabel);
 
         if (target == null) {
@@ -223,7 +223,7 @@ public class SimpleCommandMap implements CommandMap {
         Map<String, String[]> values = server.getCommandAliases();
 
         for (String alias : values.keySet()) {
-            if (alias.contains(":") || alias.contains(" ")) {
+            if (alias.contains(" ")) {
                 server.getLogger().warning("Could not register alias " + alias + " because it contains illegal characters");
                 continue;
             }
@@ -253,9 +253,9 @@ public class SimpleCommandMap implements CommandMap {
 
             // We register these as commands so they have absolute priority.
             if (targets.size() > 0) {
-                knownCommands.put(alias.toLowerCase(), new FormattedCommandAlias(alias.toLowerCase(), targets.toArray(new String[targets.size()])));
+                knownCommands.put(alias.toLowerCase(java.util.Locale.ENGLISH), new FormattedCommandAlias(alias.toLowerCase(java.util.Locale.ENGLISH), targets.toArray(new String[targets.size()])));
             } else {
-                knownCommands.remove(alias.toLowerCase());
+                knownCommands.remove(alias.toLowerCase(java.util.Locale.ENGLISH));
             }
         }
     }

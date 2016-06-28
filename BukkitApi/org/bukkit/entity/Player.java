@@ -303,6 +303,20 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void playSound(Location location, String sound, float volume, float pitch);
 
     /**
+     * Stop the specified sound from playing.
+     *
+     * @param sound the sound to stop
+     */
+    public void stopSound(Sound sound);
+
+    /**
+     * Stop the specified sound from playing.
+     *
+     * @param sound the sound to stop
+     */
+    public void stopSound(String sound);
+
+    /**
      * 在某个位置({@link Location})向玩家播放一个粒子效果({@link Effect}). <p>
      * 原文:Plays an effect to just this player.
      *

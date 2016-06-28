@@ -4,16 +4,75 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 这是红石中继器
+ * Represents a diode/repeater in the on or off state, with a delay and facing
+ * in a specific direction.
+ *
+ * @see Material#DIODE_BLOCK_OFF
+ * @see Material#DIODE_BLOCK_ON
  */
-public class Diode extends MaterialData implements Directional {
+public class Diode extends MaterialData implements Directional, Redstone {
+
+    protected static final BlockFace DEFAULT_DIRECTION = BlockFace.NORTH;
+    protected static final int DEFAULT_DELAY = 1;
+    protected static final boolean DEFAULT_STATE = false;
+
+    /**
+     * Constructs a diode switched on, with a delay of 1 and facing the default
+     * direction (north).
+     *
+     * By default this constructor creates a diode that is switched on for
+     * backwards compatibility with past implementations.
+     */
     public Diode() {
-        super(Material.DIODE_BLOCK_ON);
+        this(DEFAULT_DIRECTION, DEFAULT_DELAY, true);
     }
 
     /**
-     * @param type 原始类型id
-     * @deprecated 不安全的参数
+     * Constructs a diode switched off, with a delay of 1 and facing the
+     * specified direction.
+     *
+     * @param facingDirection the direction the diode is facing
+     *
+     * @see BlockFace
+     */
+    public Diode(BlockFace facingDirection) {
+        this(facingDirection, DEFAULT_DELAY, DEFAULT_STATE);
+    }
+
+    /**
+     * Constructs a diode switched off, with the specified delay and facing the
+     * specified direction.
+     *
+     * @param facingDirection the direction the diode is facing
+     * @param delay The number of ticks (1-4) before the diode turns on after
+     * being powered
+     *
+     * @see BlockFace
+     */
+    public Diode(BlockFace facingDirection, int delay) {
+        this(facingDirection, delay, DEFAULT_STATE);
+    }
+
+    /**
+     * Constructs a diode switched on or off, with the specified delay and
+     * facing the specified direction.
+     *
+     * @param facingDirection the direction the diode is facing
+     * @param delay The number of ticks (1-4) before the diode turns on after
+     * being powered
+     * @param state True if the diode is in the on state
+     *
+     * @see BlockFace
+     */
+    public Diode(BlockFace facingDirection, int delay, boolean state) {
+        super(state ? Material.DIODE_BLOCK_ON : Material.DIODE_BLOCK_OFF);
+        setFacingDirection(facingDirection);
+        setDelay(delay);
+    }
+
+    /**
+     * @param type the raw type id
+     * @deprecated Magic value
      */
     @Deprecated
     public Diode(int type) {
@@ -25,9 +84,9 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
-     * @deprecated 不安全的参数
+     * @param type the raw type id
+     * @param data the raw data value
+     * @deprecated Magic value
      */
     @Deprecated
     public Diode(int type, byte data) {
@@ -35,9 +94,9 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * @param type 类型
-     * @param data 原始数据值
-     * @deprecated 不安全的参数
+     * @param type the type
+     * @param data the raw data value
+     * @deprecated Magic value
      */
     @Deprecated
     public Diode(Material type, byte data) {
@@ -45,11 +104,9 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * 设置这个红石中继器的延迟/时钟(以刻为单位)
-     * <p>
-     * 原文：Sets the delay of the repeater
+     * Sets the delay of the repeater.
      *
-     * @param delay 新的延迟(1-4)
+     * @param delay The new delay (1-4)
      */
     public void setDelay(int delay) {
         if (delay > 4) {
@@ -64,58 +121,69 @@ public class Diode extends MaterialData implements Directional {
     }
 
     /**
-     * 获取这个红石中继器的延迟
-     * <p>
-     * 原文：Gets the delay of the repeater in ticks
+     * Gets the delay of the repeater in ticks.
      *
-     * @return 延迟(1-4)
+     * @return The delay (1-4)
      */
     public int getDelay() {
         return (getData() >> 2) + 1;
     }
 
+    /**
+     * Sets the direction this diode is facing.
+     *
+     * @param face The direction to set this diode to
+     *
+     * @see BlockFace
+     */
+    @Override
     public void setFacingDirection(BlockFace face) {
         int delay = getDelay();
         byte data;
 
         switch (face) {
-        case EAST:
-            data = 0x1;
-            break;
-
-        case SOUTH:
-            data = 0x2;
-            break;
-
-        case WEST:
-            data = 0x3;
-            break;
-
-        case NORTH:
-        default:
-            data = 0x0;
+            case EAST:
+                data = 0x1;
+                break;
+            case SOUTH:
+                data = 0x2;
+                break;
+            case WEST:
+                data = 0x3;
+                break;
+            case NORTH:
+            default:
+                data = 0x0;
         }
 
         setData(data);
         setDelay(delay);
     }
 
+    /**
+     * Gets the direction this diode is facing
+     *
+     * @return The direction this diode is facing
+     *
+     * @see BlockFace
+     */
+    @Override
     public BlockFace getFacing() {
         byte data = (byte) (getData() & 0x3);
 
         switch (data) {
-        case 0x0:
-        default:
-            return BlockFace.NORTH;
+            case 0x0:
+            default:
+                return BlockFace.NORTH;
 
-        case 0x1:
-            return BlockFace.EAST;
+            case 0x1:
+                return BlockFace.EAST;
 
-        case 0x2:
-            return BlockFace.SOUTH;
+            case 0x2:
+                return BlockFace.SOUTH;
 
-        case 0x3:
-            return BlockFace.WEST;
+            case 0x3:
+                return BlockFace.WEST;
         }
     }
 
@@ -127,5 +195,15 @@ public class Diode extends MaterialData implements Directional {
     @Override
     public Diode clone() {
         return (Diode) super.clone();
+    }
+
+    /**
+     * Checks if the diode is powered.
+     *
+     * @return true if the diode is powered
+     */
+    @Override
+    public boolean isPowered() {
+        return getItemType() == Material.DIODE_BLOCK_ON;
     }
 }
