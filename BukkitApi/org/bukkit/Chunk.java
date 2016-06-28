@@ -119,7 +119,9 @@ public interface Chunk {
      * @param save 卸载时是否保存
      * @param safe 当该区块内存在玩家时是否继续卸载
      * @return 成功卸载返回true,反之返回false
+     * @deprecated 移除一个正在使用的区块从不安全
      */
+    @Deprecated
     boolean unload(boolean save, boolean safe);
 
     /**

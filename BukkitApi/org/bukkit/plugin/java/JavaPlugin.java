@@ -436,11 +436,11 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 获取这个插件在plugin.yml里注册的命令
-	 * 命令需要在{@link PluginDescriptionFile#getCommands()
+     * 获取这个插件在plugin.yml里注册的命令
+     * 命令需要在{@link PluginDescriptionFile#getCommands()
      * PluginDescriptionFile}里已被注册
-	 * <p>
-	 * 原文:
+     * <p>
+     * 原文:
      * Gets the command with the given name, specific to this plugin. Commands
      * need to be registered in the {@link PluginDescriptionFile#getCommands()
      * PluginDescriptionFile} to exist at runtime.
@@ -449,11 +449,11 @@ public abstract class JavaPlugin extends PluginBase {
      * @return 如果有返回值表示命令存在, 否则返回null
      */
     public PluginCommand getCommand(String name) {
-        String alias = name.toLowerCase();
+        String alias = name.toLowerCase(java.util.Locale.ENGLISH);
         PluginCommand command = getServer().getPluginCommand(alias);
 
         if (command == null || command.getPlugin() != this) {
-            command = getServer().getPluginCommand(description.getName().toLowerCase() + ":" + alias);
+            command = getServer().getPluginCommand(description.getName().toLowerCase(java.util.Locale.ENGLISH) + ":" + alias);
         }
 
         if (command != null && command.getPlugin() == this) {

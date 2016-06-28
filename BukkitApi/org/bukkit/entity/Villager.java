@@ -72,7 +72,7 @@ public interface Villager extends Ageable, NPC, InventoryHolder {
      * Note that this inventory is not the Merchant inventory, rather, it is the
      * items that a villager might have collected (from harvesting crops, etc.)
      *
-     * @inheritDoc
+     * {@inheritDoc}
      */
     @Override
     Inventory getInventory();
@@ -111,48 +111,50 @@ public interface Villager extends Ageable, NPC, InventoryHolder {
 
     /**
      * Represents the various different Villager professions there may be.
+     * Villagers have different trading options depending on their profession,
      */
     public enum Profession {
-        FARMER(0),
-        LIBRARIAN(1),
-        PRIEST(2),
-        BLACKSMITH(3),
-        BUTCHER(4);
+        /**
+         * Normal. <b>Reserved for Zombies.</b>
+         */
+        NORMAL(true),
+        /**
+         * Farmer profession. Wears a brown robe.
+         */
+        FARMER(false),
+        /**
+         * Librarian profession. Wears a white robe.
+         */
+        LIBRARIAN(false),
+        /**
+         * Priest profession. Wears a purple robe.
+         */
+        PRIEST(false),
+        /**
+         * Blacksmith profession. Wears a black apron.
+         */
+        BLACKSMITH(false),
+        /**
+         * Butcher profession. Wears a white apron.
+         */
+        BUTCHER(false),
+        /**
+         * Husk. <b>Reserved for Zombies</b>
+         */
+        HUSK(true);
+        private final boolean zombie;
 
-        private static final Profession[] professions = new Profession[Profession.values().length];
-        private final int id;
-
-        static {
-            for (Profession type : values()) {
-                professions[type.getId()] = type;
-            }
-        }
-
-        private Profession(int id) {
-            this.id = id;
+        private Profession(boolean zombie) {
+            this.zombie = zombie;
         }
 
         /**
-         * Gets the ID of this profession.
+         * Returns if this profession can only be used by zombies.
          *
-         * @return Profession ID.
-         * @deprecated Magic value
+         * @return zombie profession status
          */
-        @Deprecated
-        public int getId() {
-            return id;
-        }
-
-        /**
-         * Gets a profession by its ID.
-         *
-         * @param id ID of the profession to get.
-         * @return Resulting profession, or null if not found.
-         * @deprecated Magic value
-         */
-        @Deprecated
-        public static Profession getProfession(int id) {
-            return (id >= professions.length) ? null : professions[id];
+        public boolean isZombie() {
+            return zombie;
         }
     }
 }

@@ -54,7 +54,7 @@ public enum PermissionDefault {
      * @return 指定的值，如果为null即未找到
      */
     public static PermissionDefault getByName(String name) {
-        return lookup.get(name.toLowerCase().replaceAll("[^a-z!]", ""));
+        return lookup.get(name.toLowerCase(java.util.Locale.ENGLISH).replaceAll("[^a-z!]", ""));
     }
 
     @Override

@@ -69,4 +69,8 @@ public enum TreeType {
      * 大桦树.
      */
     TALL_BIRCH,
+    /**
+     * 紫颂植物
+     */
+    CHORUS_PLANT,
 }

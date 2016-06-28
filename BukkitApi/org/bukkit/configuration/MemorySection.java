@@ -103,7 +103,11 @@ public class MemorySection implements ConfigurationSection {
 
     @Override
     public boolean contains(String path) {
-        return get(path) != null;
+        return contains(path, false);
+    }
+
+    public boolean contains(String path, boolean ignoreDefault) {
+        return ((ignoreDefault) ? get(path, null) : get(path)) != null;
     }
 
     @Override
@@ -184,6 +188,10 @@ public class MemorySection implements ConfigurationSection {
             String node = path.substring(i2, i1);
             ConfigurationSection subSection = section.getConfigurationSection(node);
             if (subSection == null) {
+                if (value == null) {
+                    // no need to create missing sub-sections if we want to remove the value:
+                    return;
+                }
                 section = section.createSection(node);
             } else {
                 section = subSection;

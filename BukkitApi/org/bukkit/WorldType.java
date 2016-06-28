@@ -43,7 +43,7 @@ public enum WorldType {
      * @return 世界种类，不存在就为null
      */
     public static WorldType getByName(String name) {
-        return BY_NAME.get(name.toUpperCase());
+        return BY_NAME.get(name.toUpperCase(java.util.Locale.ENGLISH));
     }
 
     static {

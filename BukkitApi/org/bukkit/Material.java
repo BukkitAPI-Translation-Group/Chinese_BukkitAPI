@@ -13,6 +13,7 @@ import org.bukkit.material.Chest;
 import org.bukkit.material.Coal;
 import org.bukkit.material.CocoaPlant;
 import org.bukkit.material.Command;
+import org.bukkit.material.Comparator;
 import org.bukkit.material.Crops;
 import org.bukkit.material.DetectorRail;
 import org.bukkit.material.Diode;
@@ -23,6 +24,7 @@ import org.bukkit.material.EnderChest;
 import org.bukkit.material.FlowerPot;
 import org.bukkit.material.Furnace;
 import org.bukkit.material.Gate;
+import org.bukkit.material.Hopper;
 import org.bukkit.material.Ladder;
 import org.bukkit.material.Leaves;
 import org.bukkit.material.Lever;
@@ -207,20 +209,20 @@ public enum Material {
     BEACON(138),
     COBBLE_WALL(139),
     FLOWER_POT(140, FlowerPot.class),
-    CARROT(141),
-    POTATO(142),
+    CARROT(141, Crops.class),
+    POTATO(142, Crops.class),
     WOOD_BUTTON(143, Button.class),
     SKULL(144, Skull.class),
     ANVIL(145),
     TRAPPED_CHEST(146, Chest.class),
     GOLD_PLATE(147),
     IRON_PLATE(148),
-    REDSTONE_COMPARATOR_OFF(149),
-    REDSTONE_COMPARATOR_ON(150),
+    REDSTONE_COMPARATOR_OFF(149, Comparator.class),
+    REDSTONE_COMPARATOR_ON(150, Comparator.class),
     DAYLIGHT_DETECTOR(151),
     REDSTONE_BLOCK(152),
     QUARTZ_ORE(153),
-    HOPPER(154),
+    HOPPER(154, Hopper.class),
     QUARTZ_BLOCK(155),
     QUARTZ_STAIRS(156, Stairs.class),
     ACTIVATOR_RAIL(157, PoweredRail.class),
@@ -276,9 +278,14 @@ public enum Material {
     BEETROOT_BLOCK(207, Crops.class),
     GRASS_PATH(208),
     END_GATEWAY(209),
-    COMMAND_REPEATING(210),
-    COMMAND_CHAIN(211),
+    COMMAND_REPEATING(210, Command.class),
+    COMMAND_CHAIN(211, Command.class),
     FROSTED_ICE(212),
+    MAGMA(213),
+    NETHER_WART_BLOCK(214),
+    RED_NETHER_BRICK(215),
+    BONE_BLOCK(216),
+    STRUCTURE_VOID(217),
     STRUCTURE_BLOCK(255),
     // ----- Item Separator -----
     IRON_SPADE(256, 1, 250),
@@ -471,7 +478,7 @@ public enum Material {
     TIPPED_ARROW(440),
     LINGERING_POTION(441, 1),
     SHIELD(442, 1, 336),
-    ELYTRA(443, 1),
+    ELYTRA(443, 1, 431),
     BOAT_SPRUCE(444, 1),
     BOAT_BIRCH(445, 1),
     BOAT_JUNGLE(446, 1),
@@ -725,7 +732,7 @@ public enum Material {
         } catch (NumberFormatException ex) {}
 
         if (result == null) {
-            String filtered = name.toUpperCase();
+            String filtered = name.toUpperCase(java.util.Locale.ENGLISH);
 
             filtered = filtered.replaceAll("\\s+", "_").replaceAll("\\W", "");
             result = BY_NAME.get(filtered);
@@ -926,6 +933,10 @@ public enum Material {
             case COMMAND_REPEATING:
             case COMMAND_CHAIN:
             case FROSTED_ICE:
+            case MAGMA:
+            case NETHER_WART_BLOCK:
+            case RED_NETHER_BRICK:
+            case BONE_BLOCK:
                 return true;
             default:
                 return false;
@@ -993,6 +1004,7 @@ public enum Material {
             case CHORUS_FLOWER:
             case BEETROOT_BLOCK:
             case END_GATEWAY:
+            case STRUCTURE_VOID:
                 return true;
             default:
                 return false;
@@ -1215,6 +1227,10 @@ public enum Material {
             case STRUCTURE_BLOCK:
             case COMMAND_REPEATING:
             case COMMAND_CHAIN:
+            case MAGMA:
+            case NETHER_WART_BLOCK:
+            case RED_NETHER_BRICK:
+            case BONE_BLOCK:
                 return true;
             default:
                 return false;

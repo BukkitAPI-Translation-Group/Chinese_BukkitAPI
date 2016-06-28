@@ -309,7 +309,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param save 控制是否保存区块
      * @param safe 控制当附近有玩家时是否卸载区块
      * @return 如果区块被成功卸载则返回true，否则返回false
+     * @deprecated 移除一个正在使用的区块从不安全
      */
+    @Deprecated
     public boolean unloadChunk(int x, int z, boolean save, boolean safe);
 
     /**
