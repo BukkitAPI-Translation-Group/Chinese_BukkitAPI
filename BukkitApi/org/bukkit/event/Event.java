@@ -5,21 +5,21 @@ import org.bukkit.plugin.PluginManager;
 /**
  * 代表事件.
  * <p>
- * 所有事件需要添加一个名为getHandlerList()的静态方法，返回与{@link #getHandlers()}一样的{@link HandlerList}.
+ * 所有事件需要添加一个名为 getHandlerList() 的静态方法，返回与{@link #getHandlers()}一样的{@link HandlerList}.
  * <p>
- * 译注:说明白点，你必须向您的自定义事件里增加这两个方法:
+ * 译注:说明白点，您必须把以下代码复制到您的自定义事件:
  * <p>
  * <pre>
- *    public HandlerList getHandlers() {
- *       return handlers;
- *   }
- *
- *   public static HandlerList getHandlerList() {
- *       return handlers;
- *   }
+    private static final HandlerList handlers = new HandlerList();
+
+    public HandlerList getHandlers() {
+        return handlers;
+    }
+
+    public static HandlerList getHandlerList() {
+        return handlers;
+    }
  * </pre>
- * 另外的，还有这个字段:
- * <code>private static final HandlerList handlers = new HandlerList();</code>
  *
  * @see PluginManager#callEvent(Event)
  * @see PluginManager#registerEvents(Listener,Plugin)

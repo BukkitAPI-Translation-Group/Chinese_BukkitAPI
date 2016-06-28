@@ -42,6 +42,7 @@ import org.bukkit.util.CachedServerIcon;
 
 import com.avaje.ebean.config.ServerConfig;
 import com.google.common.collect.ImmutableList;
+import org.bukkit.generator.ChunkGenerator;
 
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.meta.ItemMeta;

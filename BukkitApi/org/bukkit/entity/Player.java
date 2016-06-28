@@ -11,6 +11,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Note;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.Particle;
 import org.bukkit.Sound;
 import org.bukkit.Statistic;
 import org.bukkit.WeatherType;

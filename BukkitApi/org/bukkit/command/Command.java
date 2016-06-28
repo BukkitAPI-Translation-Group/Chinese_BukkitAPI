@@ -21,7 +21,7 @@ import com.google.common.collect.ImmutableList;
  * 代表一个命令，在用户输入时执行各种任务.
  */
 public abstract class Command {
-    private final String name;
+    private String name;
     private String nextLabel;
     private String label;
     private List<String> aliases;
