@@ -3,13 +3,13 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * Represents a furnace or dispenser, two types of directional containers
+ * 代表熔炉或发射器，两种定向容器.
  */
 public class FurnaceAndDispenser extends DirectionalContainer {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FurnaceAndDispenser(final int type) {
@@ -23,7 +23,7 @@ public class FurnaceAndDispenser extends DirectionalContainer {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FurnaceAndDispenser(final int type, final byte data) {

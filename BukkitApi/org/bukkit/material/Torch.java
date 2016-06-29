@@ -4,7 +4,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.Material;
 
 /**
- * MaterialData for torches
+ * 代表火把
  */
 public class Torch extends SimpleAttachableMaterialData {
     public Torch() {
@@ -13,7 +13,7 @@ public class Torch extends SimpleAttachableMaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Torch(final int type) {
@@ -27,7 +27,7 @@ public class Torch extends SimpleAttachableMaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Torch(final int type, final byte data) {
@@ -37,7 +37,7 @@ public class Torch extends SimpleAttachableMaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Torch(final Material type, final byte data) {
@@ -45,9 +45,11 @@ public class Torch extends SimpleAttachableMaterialData {
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取这个火把附着的朝向.
+     * <p>
+     * 原文：Gets the face that this block is attached on
      *
-     * @return BlockFace attached to
+     * @return 附着的朝向
      */
     public BlockFace getAttachedFace() {
         byte data = getData();
