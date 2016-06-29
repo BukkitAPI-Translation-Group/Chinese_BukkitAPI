@@ -98,7 +98,9 @@ public interface PotionMeta extends ItemMeta {
      *
      * @param type 要移动的药水效果
      * @return 如果药水的属性改变了则为true
+     * @deprecated 请使用 {@link org.bukkit.potion.PotionType#PotionType}
      */
+    @Deprecated
     boolean setMainEffect(PotionEffectType type);
 
     /**
@@ -110,5 +112,6 @@ public interface PotionMeta extends ItemMeta {
      */
     boolean clearCustomEffects();
 
+    @Override
     PotionMeta clone();
 }
