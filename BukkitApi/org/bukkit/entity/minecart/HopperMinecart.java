@@ -9,7 +9,9 @@ import org.bukkit.inventory.InventoryHolder;
 public interface HopperMinecart extends Minecart, InventoryHolder {
 
     /**
-     * Checks whether or not this Minecart will pick up 
+     * 
+     * <p>
+     * 原文：Checks whether or not this Minecart will pick up 
      * items into its inventory.
      * 
      * @return true if the Minecart will pick up items
@@ -17,7 +19,9 @@ public interface HopperMinecart extends Minecart, InventoryHolder {
     boolean isEnabled();
 
     /**
-     * Sets whether this Minecart will pick up items.
+     * 
+     *
+     * 原文：Sets whether this Minecart will pick up items.
      * 
      * @param enabled new enabled state
      */
