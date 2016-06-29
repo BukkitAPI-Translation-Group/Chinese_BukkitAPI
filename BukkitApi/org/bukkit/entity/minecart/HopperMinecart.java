@@ -9,21 +9,21 @@ import org.bukkit.inventory.InventoryHolder;
 public interface HopperMinecart extends Minecart, InventoryHolder {
 
     /**
-     * 
+     * 检测这个矿车是否会将物品捡进背包.
      * <p>
      * 原文：Checks whether or not this Minecart will pick up 
      * items into its inventory.
      * 
-     * @return true if the Minecart will pick up items
+     * @return 这个矿车是否会将物品捡进背包.
      */
     boolean isEnabled();
 
     /**
-     * 
+     * 设置这个矿车是否会将物品捡进背包.
      *
      * 原文：Sets whether this Minecart will pick up items.
      * 
-     * @param enabled new enabled state
+     * @param enabled 新的启用状态
      */
     void setEnabled(boolean enabled);
 }
