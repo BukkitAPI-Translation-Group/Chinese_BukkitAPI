@@ -5,7 +5,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
- * Represents a spawn egg that can be used to spawn mobs
+ * 代表刷怪蛋.
  */
 public class SpawnEgg extends MaterialData {
 
@@ -16,7 +16,7 @@ public class SpawnEgg extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public SpawnEgg(int type, byte data){
@@ -25,7 +25,7 @@ public class SpawnEgg extends MaterialData {
 
     /**
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public SpawnEgg(byte data) {
@@ -38,10 +38,12 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * Get the type of entity this egg will spawn.
+     * 获取这个刷怪蛋将刷出的实体种类.
+     * <p>
+     * 原文:Get the type of entity this egg will spawn.
      *
-     * @return The entity type.
-     * @deprecated This is now stored in {@link ItemMeta}. See SPIGOT-1592.
+     * @return 实体种类
+     * @deprecated 现存储在 {@link ItemMeta}. 参见 SPIGOT-1592.
      */
     @Deprecated
     public EntityType getSpawnedType() {
@@ -49,10 +51,12 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * Set the type of entity this egg will spawn.
+     * 设置这个刷怪蛋将刷出的实体种类.
+     * <p>
+     * 原文:Set the type of entity this egg will spawn.
      *
-     * @param type The entity type.
-     * @deprecated This is now stored in {@link ItemMeta}. See SPIGOT-1592.
+     * @param type 实体种类
+     * @deprecated 现存储在 {@link ItemMeta}. 参见 SPIGOT-1592.
      */
     @Deprecated
     public void setSpawnedType(EntityType type) {
