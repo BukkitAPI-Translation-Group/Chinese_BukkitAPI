@@ -38,7 +38,7 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * 获取这个刷怪蛋将刷出的实体种类.
+     * 获取这个刷怪蛋将刷出的实体的种类.
      * <p>
      * 原文:Get the type of entity this egg will spawn.
      *
@@ -51,7 +51,7 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * 设置这个刷怪蛋将刷出的实体种类.
+     * 设置这个刷怪蛋将刷出的实体的种类.
      * <p>
      * 原文:Set the type of entity this egg will spawn.
      *
