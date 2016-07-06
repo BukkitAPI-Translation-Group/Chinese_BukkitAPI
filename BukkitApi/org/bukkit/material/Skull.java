@@ -12,9 +12,11 @@ public class Skull extends MaterialData implements Directional {
     }
 
     /**
-     * Instantiate a skull facing in a particular direction.
+     * 实例化一个特定朝向的头颅.
+     * <p>
+     * 原文:Instantiate a skull facing in a particular direction.
      *
-     * @param direction the direction the skull's face is facing
+     * @param direction 头颅的朝向
      */
     public Skull(BlockFace direction) {
         this();
@@ -23,7 +25,7 @@ public class Skull extends MaterialData implements Directional {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Skull(final int type) {
@@ -37,7 +39,7 @@ public class Skull extends MaterialData implements Directional {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Skull(final int type, final byte data) {
@@ -47,7 +49,7 @@ public class Skull extends MaterialData implements Directional {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Skull(final Material type, final byte data) {
