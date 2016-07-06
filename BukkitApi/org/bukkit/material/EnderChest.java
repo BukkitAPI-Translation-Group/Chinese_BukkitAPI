@@ -4,18 +4,19 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents an ender chest
- */
-public class EnderChest extends DirectionalContainer {
+ * 代表末影箱.
+ */public class EnderChest extends DirectionalContainer {
 
     public EnderChest() {
         super(Material.ENDER_CHEST);
     }
 
     /**
-     * Instantiate an ender chest facing in a particular direction.
+     * 实例化一个特定朝向的末影箱.
+     * <p>
+     * 原文：Instantiate an ender chest facing in a particular direction.
      *
-     * @param direction the direction the ender chest's lid opens towards
+     * @param direction 末影箱箱盖打开方向
      */
     public EnderChest(BlockFace direction) {
         this();
@@ -24,7 +25,7 @@ public class EnderChest extends DirectionalContainer {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public EnderChest(final int type) {
@@ -38,7 +39,7 @@ public class EnderChest extends DirectionalContainer {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public EnderChest(final int type, final byte data) {
@@ -48,7 +49,7 @@ public class EnderChest extends DirectionalContainer {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public EnderChest(final Material type, final byte data) {
