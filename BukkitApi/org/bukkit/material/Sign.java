@@ -13,7 +13,7 @@ public class Sign extends MaterialData implements Attachable {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Sign(final int type) {
@@ -27,7 +27,7 @@ public class Sign extends MaterialData implements Attachable {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Sign(final int type, final byte data) {
@@ -37,7 +37,7 @@ public class Sign extends MaterialData implements Attachable {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Sign(final Material type, final byte data) {
@@ -89,7 +89,7 @@ public class Sign extends MaterialData implements Attachable {
     /**
      * 获取这个告示牌当前的朝向.
      * <p>
-     * 译注：与另一个方法不同得是，本方法获得是这个告示牌方块本身得朝向，另一个方法是告示牌依附得方向（向哪依附）》
+     * 译注：与另一个方法不同得是，本方法获得是这个告示牌方块本身得朝向，另一个方法是告示牌依附得方向（向哪依附）.
      * <p>
      * 原文：Gets the direction that this sign is currently facing
      *
