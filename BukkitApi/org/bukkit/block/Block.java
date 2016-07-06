@@ -89,7 +89,7 @@ public interface Block extends Metadatable {
     int getTypeId();
 
     /**
-     * 得到1~15之间的亮度.
+     * 得到0~15之间的亮度.
      * <p>
      * 原文: Gets the light level between 0-15
      *
