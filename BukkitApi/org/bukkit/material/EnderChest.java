@@ -5,7 +5,8 @@ import org.bukkit.block.BlockFace;
 
 /**
  * 代表末影箱.
- */public class EnderChest extends DirectionalContainer {
+ */
+public class EnderChest extends DirectionalContainer {
 
     public EnderChest() {
         super(Material.ENDER_CHEST);
