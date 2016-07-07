@@ -4,7 +4,7 @@ import org.bukkit.GrassSpecies;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of long grasses.
+ * 代表两种不同的草丛.
  */
 public class LongGrass extends MaterialData {
     public LongGrass() {
@@ -18,7 +18,7 @@ public class LongGrass extends MaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated
     public LongGrass(final int type) {
@@ -32,7 +32,7 @@ public class LongGrass extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated
     public LongGrass(final int type, final byte data) {
@@ -42,7 +42,7 @@ public class LongGrass extends MaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public LongGrass(final Material type, final byte data) {
@@ -50,18 +50,22 @@ public class LongGrass extends MaterialData {
     }
 
     /**
-     * Gets the current species of this grass
+     * 获取这个草丛的种类.
+     * <p>
+     * 原文:Gets the current species of this grass
      *
-     * @return GrassSpecies of this grass
+     * @return 这个草丛的 GrassSpecies
      */
     public GrassSpecies getSpecies() {
         return GrassSpecies.getByData(getData());
     }
 
     /**
-     * Sets the species of this grass
+     * 设置这个草丛的种类.
+     * <p>
+     * 原文:Sets the species of this grass
      *
-     * @param species New species of this grass
+     * @param species 草丛的新种类
      */
     public void setSpecies(GrassSpecies species) {
         setData(species.getData());

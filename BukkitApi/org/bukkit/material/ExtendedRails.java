@@ -4,13 +4,12 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * This is the superclass for the {@link DetectorRail} and {@link PoweredRail}
- * classes
+ * 这是 {@link DetectorRail} 和 {@link PoweredRail} 的父类.
  */
 public class ExtendedRails extends Rails {
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public ExtendedRails(final int type) {
@@ -24,7 +23,7 @@ public class ExtendedRails extends Rails {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public ExtendedRails(final int type, final byte data) {
@@ -34,7 +33,7 @@ public class ExtendedRails extends Rails {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public ExtendedRails(final Material type, final byte data) {
@@ -48,7 +47,7 @@ public class ExtendedRails extends Rails {
 
     /**
      *
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     @Override
