@@ -66,9 +66,9 @@ public interface BukkitScheduler {
     public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task);
 
     /**
-     * 在指定延迟后开始以指定间隔重复执行任务
+     * 在指定延迟后开始以指定间隔重复执行任务.
      * <p>
-     * .这个任务将由服务器主线程执行(同步).
+     * 这个任务将由服务器主线程执行(同步).
      * <p>
      * 原文：Schedules a repeating task.
      * <p>
@@ -94,10 +94,9 @@ public interface BukkitScheduler {
     public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period);
 
     /**
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 在指定延迟后执行一次任务.此任务将通过由执行器所管理的线程执行.
-     * <p>
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
@@ -134,10 +133,9 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task);
 
     /**
+     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 执行一次重复执行的任务.此任务将通过由执行器所管理的线程执行.
-     * <p>
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
@@ -208,7 +206,7 @@ public interface BukkitScheduler {
      * <p>
      * 一个重复执行的任务可能不是正在运行的.但将在之后运行.一个已完成并且不重复执行的任务将不再运行.
      * <p>
-     * 明确地说就是,一个存在的线程在执行一个任务,并这个线程没有死亡.
+     * 直白地说就是,一个存在的线程在执行一个任务,并这个线程没有死亡.
      * <p>
      * 原文：Check if the task currently running.
      * <p>
