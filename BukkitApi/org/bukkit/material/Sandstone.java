@@ -17,7 +17,7 @@ public class Sandstone extends MaterialData {
     }
 
     /**
-     * @param type 原始类型id
+     * @param type the raw type id
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -30,8 +30,8 @@ public class Sandstone extends MaterialData {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type the raw type id
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -40,8 +40,8 @@ public class Sandstone extends MaterialData {
     }
 
     /**
-     * @param type 类型
-     * @param data 原始数据值
+     * @param type the type
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -50,11 +50,11 @@ public class Sandstone extends MaterialData {
     }
 
     /**
-     * 获取这个沙石当前的种类.
+     * 获取这个沙石的种类.
      * <p>
      * 原文：Gets the current type of this sandstone
      *
-     * @return 这个沙石的种类
+     * @return 沙石的种类
      */
     public SandstoneType getType() {
         return SandstoneType.getByData(getData());

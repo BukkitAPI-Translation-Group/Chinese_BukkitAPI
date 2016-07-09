@@ -3,7 +3,7 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * Represents a detector rail
+ * 代表探测铁轨
  */
 public class DetectorRail extends ExtendedRails implements PressureSensor {
     public DetectorRail() {
@@ -12,7 +12,7 @@ public class DetectorRail extends ExtendedRails implements PressureSensor {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public DetectorRail(final int type) {
@@ -26,7 +26,7 @@ public class DetectorRail extends ExtendedRails implements PressureSensor {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public DetectorRail(final int type, final byte data) {
@@ -36,7 +36,7 @@ public class DetectorRail extends ExtendedRails implements PressureSensor {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public DetectorRail(final Material type, final byte data) {

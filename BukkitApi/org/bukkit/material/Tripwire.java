@@ -3,7 +3,7 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * Represents the tripwire
+ * 代表绊线
  */
 public class Tripwire extends MaterialData {
     
@@ -13,7 +13,7 @@ public class Tripwire extends MaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Tripwire(final int type) {
@@ -23,7 +23,7 @@ public class Tripwire extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Tripwire(final int type, final byte data) {
@@ -31,18 +31,22 @@ public class Tripwire extends MaterialData {
     }
 
     /**
-     * Test if tripwire is currently activated
+     * 测试绊线是否被激活.
+     * <p>
+     * 原文:Test if tripwire is currently activated
      *
-     * @return true if activated, false if not
+     * @return 绊线是否被激活
      */
     public boolean isActivated() {
         return (getData() & 0x4) != 0;
     }
     
     /**
-     * Set tripwire activated state
+     * 设置绊线是否被激活.
+     * <p>
+     * 原文:Set tripwire activated state
      *
-     * @param act - true if activated, false if not
+     * @param act 绊线是否被激活
      */
     public void setActivated(boolean act) {
         int dat = getData() & (0x8 | 0x3);
@@ -53,18 +57,22 @@ public class Tripwire extends MaterialData {
     }    
     
     /**
-     * Test if object triggering this tripwire directly
+     * 测试绊线是否由物体直接触发.
+     * <p>
+     * 原文:Test if object triggering this tripwire directly
      *
-     * @return true if object activating tripwire, false if not
+     * @return 绊线是否由物体触发
      */
     public boolean isObjectTriggering() {
         return (getData() & 0x1) != 0;
     }
 
     /**
-     * Set object triggering state for this tripwire
+     * 设置绊线是否由物体触发.
+     * <p>
+     * 原文:Set object triggering state for this tripwire
      *
-     * @param trig - true if object activating tripwire, false if not
+     * @param trig 绊线是否由物体触发
      */
     public void setObjectTriggering(boolean trig) {
         int dat = getData() & 0xE;

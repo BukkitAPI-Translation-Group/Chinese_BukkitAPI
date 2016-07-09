@@ -18,7 +18,7 @@ public class LongGrass extends MaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public LongGrass(final int type) {
@@ -32,7 +32,7 @@ public class LongGrass extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public LongGrass(final int type, final byte data) {
@@ -50,18 +50,18 @@ public class LongGrass extends MaterialData {
     }
 
     /**
-     * 获取这个草丛的种类.
+     * 获取草丛的种类.
      * <p>
      * 原文:Gets the current species of this grass
      *
-     * @return 这个草丛的 GrassSpecies
+     * @return 草丛的 GrassSpecies
      */
     public GrassSpecies getSpecies() {
         return GrassSpecies.getByData(getData());
     }
 
     /**
-     * 设置这个草丛的种类.
+     * 设置草丛的种类.
      * <p>
      * 原文:Sets the species of this grass
      *

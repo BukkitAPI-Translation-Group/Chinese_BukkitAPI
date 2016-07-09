@@ -89,7 +89,7 @@ public class Sign extends MaterialData implements Attachable {
     /**
      * 获取这个告示牌当前的朝向.
      * <p>
-     * 译注：与另一个方法不同得是，本方法获得是这个告示牌方块本身得朝向，另一个方法是告示牌依附得方向（向哪依附）.
+     * 译注：与另一个方法不同的是，本方法获得是这个告示牌方块本身得朝向，另一个方法是告示牌依附得方向（向哪依附）.
      * <p>
      * 原文：Gets the direction that this sign is currently facing
      *

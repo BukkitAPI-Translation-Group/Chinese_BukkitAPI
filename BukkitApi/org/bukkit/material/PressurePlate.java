@@ -11,7 +11,7 @@ public class PressurePlate extends MaterialData implements PressureSensor {
     }
 
     /**
-     * @param type 原始类型id
+     * @param type raw type id
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -24,8 +24,8 @@ public class PressurePlate extends MaterialData implements PressureSensor {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type raw type id
+     * @param data raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -35,7 +35,7 @@ public class PressurePlate extends MaterialData implements PressureSensor {
 
     /**
      * @param type 类型
-     * @param data 原始数据值
+     * @param data raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -43,11 +43,6 @@ public class PressurePlate extends MaterialData implements PressureSensor {
         super(type, data);
     }
 
-    /**
-     * 检测这个压力板是否被触发(踩下).
-     * <p>
-     * 注：译者自加.
-     */
     public boolean isPressed() {
         return getData() == 0x1;
     }

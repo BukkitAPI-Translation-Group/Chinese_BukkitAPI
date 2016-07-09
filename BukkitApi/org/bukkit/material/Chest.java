@@ -25,7 +25,7 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * @param type 原始类型id
+     * @param type raw type id
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -38,8 +38,8 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type raw type id
+     * @param data raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -48,8 +48,8 @@ public class Chest extends DirectionalContainer {
     }
 
     /**
-     * @param type 类型
-     * @param data 原始数据值
+     * @param type the type
+     * @param data raw data
      * @deprecated 不安全的参数
      */
     @Deprecated

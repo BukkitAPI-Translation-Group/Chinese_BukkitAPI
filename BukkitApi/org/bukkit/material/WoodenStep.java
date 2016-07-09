@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * Represents the different types of wooden steps.
+ * 代表不同种类的木台阶
  *
  * @see Material#WOOD_STEP
  */
@@ -13,27 +13,33 @@ public class WoodenStep extends Wood {
     protected static final boolean DEFAULT_INVERTED = false;
 
     /**
-     * Constructs a wooden step.
+     * 构造本类.
+     * <p>
+     * 原文:Constructs a wooden step.
      */
     public WoodenStep() {
         this(DEFAULT_SPECIES, DEFAULT_INVERTED);
     }
 
     /**
-     * Constructs a wooden step of the given tree species.
+     * 以给定的树木种类构造本类.
+     * <p>
+     * 原文:Constructs a wooden step of the given tree species.
      *
-     * @param species the species of the wooden step
+     * @param species 这个台阶的树木种类
      */
     public WoodenStep(TreeSpecies species) {
         this(species, DEFAULT_INVERTED);
     }
 
     /**
-     * Constructs a wooden step of the given type and tree species, either
+     * 以给定的树木种类和台阶类型(上半台阶和普通台阶)构造本类.
+     * <p>
+     * 原文:Constructs a wooden step of the given type and tree species, either
      * inverted or not.
      *
-     * @param species the species of the wooden step
-     * @param inv true the step is at the top of the block
+     * @param species 这个台阶的树木种类
+     * @param inv 如果这是上半台阶则为true
      */
     public WoodenStep(final TreeSpecies species, boolean inv) {
         super(DEFAULT_TYPE, species);
@@ -42,7 +48,7 @@ public class WoodenStep extends Wood {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public WoodenStep(final int type) {
@@ -52,7 +58,7 @@ public class WoodenStep extends Wood {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public WoodenStep(final int type, final byte data) {
@@ -62,7 +68,7 @@ public class WoodenStep extends Wood {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public WoodenStep(final Material type, final byte data) {
@@ -70,9 +76,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * Test if step is inverted
+     * 这个台阶是否是倒置的。
+     * <p>
+     * 原文:Test if step is inverted
      *
-     * @return true if inverted (top half), false if normal (bottom half)
+     * @return true为倒置的(上半), false为普通的(下半)
      */
     @SuppressWarnings("deprecation")
     public boolean isInverted() {
@@ -80,10 +88,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * Set step inverted state
+     * 设置这个台阶是否是倒置的。
+     * <p>
+     * 原文:Set step inverted state
      *
-     * @param inv - true if step is inverted (top half), false if step is normal
-     * (bottom half)
+     * @param inv true为倒置的(上半), false为普通的(下半)
      */
     @SuppressWarnings("deprecation")
     public void setInverted(boolean inv) {

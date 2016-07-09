@@ -18,7 +18,7 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type 原始类型ud
+     * @param type the raw type id
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -31,8 +31,8 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type the raw type id
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -41,8 +41,8 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type the raw type id
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -50,9 +50,6 @@ public class Dispenser extends FurnaceAndDispenser {
         super(type, data);
     }
 
-    /**
-     * 设置朝向(译者加)
-     */
     public void setFacingDirection(BlockFace face) {
         byte data;
 

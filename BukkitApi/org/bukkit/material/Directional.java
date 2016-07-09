@@ -5,16 +5,20 @@ import org.bukkit.block.BlockFace;
 public interface Directional {
 
     /**
-     * Sets the direction that this block is facing in
+     * 设置这个方块的朝向.
+     * <p>
+     * 原文:Sets the direction that this block is facing in
      *
-     * @param face The facing direction
+     * @param face 这个方块的朝向
      */
     public void setFacingDirection(BlockFace face);
 
     /**
-     * Gets the direction this block is facing
+     * 获取这个方块的朝向.
+     * <p>
+     * 原文:Gets the direction this block is facing
      *
-     * @return the direction this block is facing
+     * @return 这个方块的朝向
      */
     public BlockFace getFacing();
 }

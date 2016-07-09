@@ -33,7 +33,7 @@ public class FurnaceAndDispenser extends DirectionalContainer {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FurnaceAndDispenser(final Material type, final byte data) {
