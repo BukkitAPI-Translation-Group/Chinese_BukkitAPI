@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * Represents textured materials like steps and smooth bricks
+ * 代表有纹理的物品，比如台阶和石砖
  */
 public abstract class TexturedMaterial extends MaterialData {
 
@@ -15,7 +15,7 @@ public abstract class TexturedMaterial extends MaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TexturedMaterial(int type) {
@@ -25,7 +25,7 @@ public abstract class TexturedMaterial extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TexturedMaterial(final int type, final byte data) {
@@ -35,7 +35,7 @@ public abstract class TexturedMaterial extends MaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TexturedMaterial(final Material type, final byte data) {
@@ -43,17 +43,21 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Retrieve a list of possible textures. The first element of the list
+     * 检索可能的纹理列表.列表的第一个元素将用来作为缺省值.
+     * <p>
+     * 原文:Retrieve a list of possible textures. The first element of the list
      * will be used as a default.
      *
-     * @return a list of possible textures for this block
+     * @return 这个方块可能的纹理列表
      */
     public abstract List<Material> getTextures();
 
     /**
-     * Gets the current Material this block is made of
+     * 获取这个方块是由什么物品制成的。
+     * <p>
+     * 原文:Gets the current Material this block is made of
      *
-     * @return Material of this block
+     * @return 这个方块由什么物品制成
      */
     public Material getMaterial() {
         int n = getTextureIndex();
@@ -65,10 +69,11 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Sets the material this block is made of
+     * 设置这个方块是由什么物品制成的.
+     * <p>
+     * 原文:Sets the material this block is made of
      *
-     * @param material
-     *            New material of this block
+     * @param material 这个方块由什么物品制成
      */
     public void setMaterial(Material material) {
         if (getTextures().contains(material)) {
@@ -79,10 +84,14 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Get material index from data
+     * 获取物品的纹理类型。
+     * <p>
+     * 译注:该方法即为获取物品数据值。关于数据值，请参考Minecraft Wiki。
+     * <p>
+     * 原文:Get material index from data
      *
-     * @return index of data in textures list
-     * @deprecated Magic value
+     * @return 物品的纹理类型
+     * @deprecated 不安全的参数
      */
     @Deprecated
     protected int getTextureIndex() {
@@ -90,10 +99,14 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Set material index
+     * 设置物品的纹理类型。
+     * <p>
+     * 译注:该方法即为设置物品数据值。关于数据值，请参考Minecraft Wiki。
+     * <p>
+     * 原文:Set material index
      *
-     * @param idx - index of data in textures list
-     * @deprecated Magic value
+     * @param idx 物品的纹理类型
+     * @deprecated 不安全的参数
      */
     @Deprecated
     protected void setTextureIndex(int idx) {

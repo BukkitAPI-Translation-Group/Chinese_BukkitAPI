@@ -4,15 +4,17 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Material data for the piston base block
+ * 活塞类方块的Material data.
  */
 public class PistonBaseMaterial extends MaterialData implements Directional, Redstone {
     
     /**
-     * Constructs a PistonBaseMaterial
+     * 构造本类.
+     * <p>
+     * 原文:Constructs a PistonBaseMaterial
      * 
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public PistonBaseMaterial(final int type) {
@@ -24,11 +26,13 @@ public class PistonBaseMaterial extends MaterialData implements Directional, Red
     }
 
     /**
-     * Constructs a PistonBaseMaterial.
+     * 构造本类.
+     * <p>
+     * 原文:Constructs a PistonBaseMaterial.
      * 
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public PistonBaseMaterial(final int type, final byte data) {
@@ -36,11 +40,13 @@ public class PistonBaseMaterial extends MaterialData implements Directional, Red
     }
 
     /**
-     * Constructs a PistonBaseMaterial.
+     * 构造本类.
+     * <p>
+     * 原文:Constructs a PistonBaseMaterial.
      * 
      * @param type the material type to use
      * @param data the raw data value 
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public PistonBaseMaterial(final Material type, final byte data) {
@@ -99,18 +105,22 @@ public class PistonBaseMaterial extends MaterialData implements Directional, Red
     }
 
     /**
-     * Sets the current state of this piston
+     * 设置这个活塞的状态.
+     * <p>
+     * 原文:Sets the current state of this piston
      *
-     * @param powered true if the piston is extended {@literal &} powered, or false
+     * @param powered 如果活塞伸出或充能为true
      */
     public void setPowered(boolean powered) {
         setData((byte) (powered ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
     /**
-     * Checks if this piston base is sticky, and returns true if so
+     * 检测这是不是一个粘性活塞。
+     * <p>
+     * 原文:Checks if this piston base is sticky, and returns true if so
      *
-     * @return true if this piston is "sticky", or false
+     * @return 这是不是一个粘性活塞
      */
     public boolean isSticky() {
         return this.getItemType() == Material.PISTON_STICKY_BASE;

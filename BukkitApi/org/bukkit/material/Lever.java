@@ -4,7 +4,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.Material;
 
 /**
- * Represents a lever
+ * 代表拉杆
  */
 public class Lever extends SimpleAttachableMaterialData implements Redstone {
     public Lever() {
@@ -13,7 +13,7 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Lever(final int type) {
@@ -27,7 +27,7 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Lever(final int type, final byte data) {
@@ -37,7 +37,7 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Lever(final Material type, final byte data) {
@@ -45,28 +45,34 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
     }
 
     /**
-     * Gets the current state of this Material, indicating if it's powered or
+     * 获取这个拉杆是否被充能.
+     * <p>
+     * 原文:Gets the current state of this Material, indicating if it's powered or
      * unpowered
      *
-     * @return true if powered, otherwise false
+     * @return 拉杆是否被充能
      */
     public boolean isPowered() {
         return (getData() & 0x8) == 0x8;
     }
 
     /**
-     * Set this lever to be powered or not.
+     * 设置拉杆是否被充能.
+     * <p>
+     * 原文:Set this lever to be powered or not.
      *
-     * @param isPowered whether the lever should be powered or not
+     * @param isPowered 拉杆是否被充能
      */
     public void setPowered(boolean isPowered) {
         setData((byte) (isPowered ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取这个方块附着的朝向.
+     * <p>
+     * 原文:Gets the face that this block is attached on
      *
-     * @return BlockFace attached to
+     * @return 附着的朝向
      */
     public BlockFace getAttachedFace() {
         byte data = (byte) (getData() & 0x7);
@@ -98,7 +104,9 @@ public class Lever extends SimpleAttachableMaterialData implements Redstone {
     }
 
     /**
-     * Sets the direction this lever is pointing in
+     * 设置拉杆被指向的方向.
+     * <p>
+     * 原文:Sets the direction this lever is pointing in
      */
     public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0x8);

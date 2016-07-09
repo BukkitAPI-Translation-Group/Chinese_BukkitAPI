@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents the tripwire hook
+ * 代表绊线钩
  */
 public class TripwireHook extends SimpleAttachableMaterialData implements Redstone {
 
@@ -14,7 +14,7 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TripwireHook(final int type) {
@@ -24,7 +24,7 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TripwireHook(final int type, final byte data) {
@@ -37,18 +37,22 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
     }
 
     /**
-     * Test if tripwire is connected
+     * 这个绊线钩是否处于连接状态.
+     * <p>
+     * 原文:Test if tripwire is connected
      *
-     * @return true if connected, false if not
+     * @return 绊线钩是否处于连接状态
      */
     public boolean isConnected() {
         return (getData() & 0x4) != 0;
     }
 
     /**
-     * Set tripwire connection state
+     * 设置这个绊线钩的连接状态.
+     * <p>
+     * 原文:Set tripwire connection state
      *
-     * @param connected - true if connected, false if not
+     * @param connected 绊线钩是否处于连接状态
      */
     public void setConnected(boolean connected) {
         int dat = getData() & (0x8 | 0x3);
@@ -59,18 +63,22 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
     }
 
     /**
-     * Test if hook is currently activated
+     * 这个绊线钩是否被激活.
+     * <p>
+     * 原文:Test if hook is currently activated
      *
-     * @return true if activated, false if not
+     * @return 绊线钩是否被激活
      */
     public boolean isActivated() {
         return (getData() & 0x8) != 0;
     }
 
     /**
-     * Set hook activated state
+     * 设置这个绊线钩的激活状态.
+     * <p>
+     * 原文:Set hook activated state
      *
-     * @param act - true if activated, false if not
+     * @param act 绊线钩是否被激活
      */
     public void setActivated(boolean act) {
         int dat = getData() & (0x4 | 0x3);

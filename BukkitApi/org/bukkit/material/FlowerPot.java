@@ -5,9 +5,9 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * Represents a flower pot.
+ * 代表花盆
  *
- * @deprecated Flower pots are now tile entities, use
+ * @deprecated 花盆现在是Tile Entity(http://minecraft-zh.gamepedia.com/%E6%96%B9%E5%9D%97%E5%AE%9E%E4%BD%93%E5%80%BC), 使用
  * {@link org.bukkit.block.FlowerPot}.
  */
 @Deprecated
@@ -22,7 +22,7 @@ public class FlowerPot extends MaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FlowerPot(final int type) {
@@ -36,7 +36,7 @@ public class FlowerPot extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FlowerPot(final int type, final byte data) {
@@ -46,7 +46,7 @@ public class FlowerPot extends MaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public FlowerPot(final Material type, final byte data) {
@@ -54,10 +54,11 @@ public class FlowerPot extends MaterialData {
     }
 
     /**
-     * Get the material in the flower pot
+     * 获取在花盆里的植物的方块.
+     * <p>
+     * 原文:Get the material in the flower pot
      *
-     * @return material MaterialData for the block currently in the flower pot
-     *     or null if empty
+     * @return material 方块的MaterialData，null为空
      */
     public MaterialData getContents() {
         switch (getData()) {
@@ -89,9 +90,11 @@ public class FlowerPot extends MaterialData {
     }
 
     /**
-     * Set the contents of the flower pot
+     * 设置在花盆里的植物的方块.
+     * <p>
+     * 原文:Set the contents of the flower pot
      *
-     * @param materialData MaterialData of the block to put in the flower pot.
+     * @param materialData 方块的MaterialData
      */
     public void setContents(MaterialData materialData) {
         Material mat = materialData.getItemType();

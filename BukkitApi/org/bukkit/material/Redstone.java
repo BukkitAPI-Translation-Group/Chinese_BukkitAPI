@@ -1,7 +1,7 @@
 package org.bukkit.material;
 
 /**
- * 代表可以带有或产生红石电流的物品.
+ * 代表可以带有或产生红石电能的物品.
  */
 public interface Redstone {
 
