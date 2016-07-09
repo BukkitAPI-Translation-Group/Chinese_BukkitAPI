@@ -50,11 +50,11 @@ public class Wool extends MaterialData implements Colorable {
     }
 
     /**
-     * 获取染料的颜色。
+     * 获取颜色。
      * <p>
      * 原文：Gets the current color of this dye
      *
-     * @return 染料的DyeColor
+     * @return 颜色
      */
     public DyeColor getColor() {
         return DyeColor.getByWoolData(getData());
