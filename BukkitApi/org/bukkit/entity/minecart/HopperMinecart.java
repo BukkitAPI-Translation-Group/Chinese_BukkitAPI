@@ -20,7 +20,7 @@ public interface HopperMinecart extends Minecart, InventoryHolder {
 
     /**
      * 设置这个矿车是否会将物品捡进背包.
-     *
+     * <p>
      * 原文：Sets whether this Minecart will pick up items.
      * 
      * @param enabled 新的启用状态
