@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * 代表有纹理的物品，比如台阶和石砖
+ * 代表有材质的物品，比如台阶和石砖
  */
 public abstract class TexturedMaterial extends MaterialData {
 
@@ -43,12 +43,12 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * 检索可能的纹理列表.列表的第一个元素将用来作为缺省值.
+     * 检索可能的材质列表.列表的第一个元素将用来作为缺省值.
      * <p>
      * 原文:Retrieve a list of possible textures. The first element of the list
      * will be used as a default.
      *
-     * @return 这个方块可能的纹理列表
+     * @return 这个方块可能的材质列表
      */
     public abstract List<Material> getTextures();
 
@@ -84,13 +84,13 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * 获取物品的纹理类型。
+     * 获取物品的材质类型。
      * <p>
      * 译注:该方法即为获取物品数据值。关于数据值，请参考Minecraft Wiki。
      * <p>
      * 原文:Get material index from data
      *
-     * @return 物品的纹理类型
+     * @return 物品的材质类型
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -99,13 +99,13 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * 设置物品的纹理类型。
+     * 设置物品的材质类型。
      * <p>
      * 译注:该方法即为设置物品数据值。关于数据值，请参考Minecraft Wiki。
      * <p>
      * 原文:Set material index
      *
-     * @param idx 物品的纹理类型
+     * @param idx 物品的材质类型
      * @deprecated 不安全的参数
      */
     @Deprecated

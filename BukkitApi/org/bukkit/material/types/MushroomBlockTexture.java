@@ -7,61 +7,60 @@ import org.bukkit.block.BlockFace;
 import com.google.common.collect.Maps;
 
 /**
- * Represents the different textured blocks of mushroom.
+ * 代表蘑菇方块的不同材质.
  */
 public enum MushroomBlockTexture {
 
     /**
-     * Pores on all faces.
+     * 各个面都是气孔材质
      */
     ALL_PORES(0, null),
     /**
-     * Cap texture on the top, north and west faces, pores on remaining sides.
+     * 上面、西面和北面是蘑菇盖材质
      */
     CAP_NORTH_WEST(1, BlockFace.NORTH_WEST),
     /**
-     * Cap texture on the top and north faces, pores on remaining sides.
+     * 上面和北面是蘑菇盖材质
      */
     CAP_NORTH(2, BlockFace.NORTH),
     /**
-     * Cap texture on the top, north and east faces, pores on remaining sides.
+     * 上面、北面和东面是蘑菇盖材质
      */
     CAP_NORTH_EAST(3, BlockFace.NORTH_EAST),
     /**
-     * Cap texture on the top and west faces, pores on remaining sides.
+     * 上面和西面是蘑菇盖材质
      */
     CAP_WEST(4, BlockFace.WEST),
     /**
-     * Cap texture on the top face, pores on remaining sides.
+     * 上面是蘑菇盖材质
      */
     CAP_TOP(5, BlockFace.UP),
     /**
-     * Cap texture on the top and east faces, pores on remaining sides.
+     * 上面和东面是蘑菇盖材质
      */
     CAP_EAST(6, BlockFace.EAST),
     /**
-     * Cap texture on the top, south and west faces, pores on remaining sides.
+     * 上面、南面和西面是蘑菇盖材质
      */
     CAP_SOUTH_WEST(7, BlockFace.SOUTH_WEST),
     /**
-     * Cap texture on the top and south faces, pores on remaining sides.
+     * 上面和南面是蘑菇盖材质
      */
     CAP_SOUTH(8, BlockFace.SOUTH),
     /**
-     * Cap texture on the top, south and east faces, pores on remaining sides.
+     * 上面、东面和南面是蘑菇盖材质
      */
     CAP_SOUTH_EAST(9, BlockFace.SOUTH_EAST),
     /**
-     * Stem texture on the north, east, south and west faces, pores on top and
-     * bottom.
+     * 4个侧面都是蘑菇茎材质，上面和下面是气孔材质
      */
     STEM_SIDES(10, null),
     /**
-     * Cap texture on all faces.
+     * 6个面都是蘑菇盖材质
      */
     ALL_CAP(14, BlockFace.SELF),
     /**
-     * Stem texture on all faces.
+     * 6个面都是蘑菇茎材质
      */
     ALL_STEM(15, null);
     private final static Map<Byte, MushroomBlockTexture> BY_DATA = Maps.newHashMap();
@@ -76,10 +75,12 @@ public enum MushroomBlockTexture {
     }
 
     /**
-     * Gets the associated data value representing this mushroom block face.
+     * 获取代表这个蘑菇方块朝向的相关数据值.
+     * <p>
+     * 原文:Gets the associated data value representing this mushroom block face.
      *
-     * @return A byte containing the data value of this mushroom block face
-     * @deprecated Magic value
+     * @return 包含这个蘑菇方块朝向的数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte getData() {
@@ -87,21 +88,24 @@ public enum MushroomBlockTexture {
     }
 
     /**
-     * Gets the face that has cap texture.
+     * 获取这个材质所对的朝向.
+     * <p>
+     * 原文:Gets the face that has cap texture.
      *
-     * @return The cap face
+     * @return 材质的朝向
      */
     public BlockFace getCapFace() {
         return capFace;
     }
 
     /**
-     * Gets the MushroomBlockType with the given data value.
+     * 以给定的数据值获取 MushroomBlockType.
+     * <p>
+     * 原文:Gets the MushroomBlockType with the given data value.
      *
-     * @param data Data value to fetch
-     * @return The {@link MushroomBlockTexture} representing the given value, or
-     * null if it doesn't exist
-     * @deprecated Magic value
+     * @param data 数据值
+     * @return 代表这个数据值的 {@link MushroomBlockTexture}，如果相关数据值不存在为null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static MushroomBlockTexture getByData(final byte data) {
@@ -109,11 +113,12 @@ public enum MushroomBlockTexture {
     }
 
     /**
-     * Gets the MushroomBlockType with cap texture on the given block face.
+     * 获取关于指定方块朝向的蘑菇盖的 MushroomBlockType.
+     * <p>
+     * 原文:Gets the MushroomBlockType with cap texture on the given block face.
      *
-     * @param face the required block face with cap texture
-     * @return The {@link MushroomBlockTexture} representing the given block
-     * face, or null if it doesn't exist
+     * @param face 方块朝向
+     * @return 代表这个朝向的 {@link MushroomBlockTexture}，如果相关数据值不存在为null
      *
      * @see BlockFace
      */
