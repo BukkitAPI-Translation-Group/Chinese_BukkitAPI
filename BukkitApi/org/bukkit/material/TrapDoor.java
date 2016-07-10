@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a trap door
+ * 代表活板门
  */
 public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
     public TrapDoor() {
@@ -13,7 +13,7 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TrapDoor(final int type) {
@@ -27,7 +27,7 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TrapDoor(final int type, final byte data) {
@@ -37,7 +37,7 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public TrapDoor(final Material type, final byte data) {
@@ -61,18 +61,22 @@ public class TrapDoor extends SimpleAttachableMaterialData implements Openable {
     }
 
     /**
-     * Test if trapdoor is inverted
+     * 这个活板门是否被反转.
+     * <p>
+     * 原文:Test if trapdoor is inverted
      *
-     * @return true if inverted (top half), false if normal (bottom half)
+     * @return true为反转的(上半), false为正常形态(下半)
      */
     public boolean isInverted() {
         return ((getData() & 0x8) != 0);
     }
 
     /**
-     * Set trapdoor inverted state
+     * 设置这个台阶是否被反转。
+     * <p>
+     * 原文:Set trapdoor inverted state
      *
-     * @param inv - true if inverted (top half), false if normal (bottom half)
+     * @param inv true为反转的(上半), false为正常形态(下半)
      */
     public void setInverted(boolean inv) {
         int dat = getData() & 0x7;

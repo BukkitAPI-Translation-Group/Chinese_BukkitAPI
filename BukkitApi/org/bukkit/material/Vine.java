@@ -7,7 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a vine
+ * 代表藤蔓
  */
 public class Vine extends MaterialData {
     private static final int VINE_NORTH = 0x4;
@@ -23,7 +23,7 @@ public class Vine extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Vine(int type, byte data){
@@ -32,7 +32,7 @@ public class Vine extends MaterialData {
 
     /**
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Vine(byte data) {
@@ -69,12 +69,14 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * Check if the vine is attached to the specified face of an adjacent
+     * 检测藤蔓是否靠在与其相邻方块的表面. 你可以通过{@link BlockFace#NORTH_EAST}等一次检查两个表面.
+     * <p>
+     * 原文:Check if the vine is attached to the specified face of an adjacent
      * block. You can check two faces at once by passing e.g. {@link
      * BlockFace#NORTH_EAST}.
      *
-     * @param face The face to check.
-     * @return Whether it is attached to that face.
+     * @param face 朝向
+     * @return 藤蔓是否靠在那个表面
      */
     public boolean isOnFace(BlockFace face) {
         switch (face) {
@@ -102,9 +104,11 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * Attach the vine to the specified face of an adjacent block.
+     * 使这个藤蔓附着在相邻方块的指定表面.
+     * <p>
+     * 原文:Attach the vine to the specified face of an adjacent block.
      *
-     * @param face The face to attach.
+     * @param face 朝向
      */
     public void putOnFace(BlockFace face) {
         switch(face) {
@@ -144,9 +148,11 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * Detach the vine from the specified face of an adjacent block.
+     * 从相邻的方块的指定表面拆除藤蔓.
+     * <p>
+     * 原文:Detach the vine from the specified face of an adjacent block.
      *
-     * @param face The face to detach.
+     * @param face 朝向
      */
     public void removeFromFace(BlockFace face) {
         switch(face) {

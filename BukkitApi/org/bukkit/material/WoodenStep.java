@@ -76,11 +76,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * 这个台阶是否是倒置的。
+     * 这个台阶是否被反转的。
      * <p>
      * 原文:Test if step is inverted
      *
-     * @return true为倒置的(上半), false为普通的(下半)
+     * @return true为反转的(上半), false为正常形态(下半)
      */
     @SuppressWarnings("deprecation")
     public boolean isInverted() {
@@ -88,11 +88,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * 设置这个台阶是否是倒置的。
+     * 设置这个台阶是否被反转。
      * <p>
      * 原文:Set step inverted state
      *
-     * @param inv true为倒置的(上半), false为普通的(下半)
+     * @param inv true为反转的(上半), false为正常形态(下半)
      */
     @SuppressWarnings("deprecation")
     public void setInverted(boolean inv) {

@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * Represents wood blocks of different species.
+ * 代表不同种类的木头方块.
  *
  * @see Material#WOOD
  * @see Material#SAPLING
@@ -15,16 +15,20 @@ public class Wood extends MaterialData {
     protected static final TreeSpecies DEFAULT_SPECIES = TreeSpecies.GENERIC;
 
     /**
-     * Constructs a wood block.
+     * 构造本类.
+     * <p>
+     * 原文：Constructs a wood block.
      */
     public Wood() {
         this(DEFAULT_TYPE, DEFAULT_SPECIES);
     }
 
     /**
-     * Constructs a wood block of the given tree species.
+     * 以给定的树木种类构造本类.
+     * <p>
+     * 原文:Constructs a wood block of the given tree species.
      * 
-     * @param species the species of the wood block
+     * @param species 木头的树木种类
      */
     public Wood(TreeSpecies species) {
         this(DEFAULT_TYPE, species);
@@ -32,7 +36,7 @@ public class Wood extends MaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Wood(final int type) {
@@ -40,19 +44,23 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * Constructs a wood block of the given type.
+     * 以给定的物品种类构造本类.
+     * <p>
+     * 原文:Constructs a wood block of the given type.
      *
-     * @param type the type of wood block
+     * @param type 木头的物品种类
      */
     public Wood(final Material type) {
         this(type, DEFAULT_SPECIES);
     }
 
     /**
-     * Constructs a wood block of the given type and tree species.
+     * 以给定的物品种类和树木种类构造本类.
+     * <p>
+     * 原文:Constructs a wood block of the given type and tree species.
      *
-     * @param type the type of wood block
-     * @param species the species of the wood block
+     * @param type 木头的物品种类
+     * @param species 木头的树木种类
      */
     public Wood(final Material type, final TreeSpecies species) {
         // Ensure only valid species-type combinations
@@ -63,7 +71,7 @@ public class Wood extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Wood(final int type, final byte data) {
@@ -73,7 +81,7 @@ public class Wood extends MaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Wood(final Material type, final byte data) {
@@ -81,9 +89,11 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * Gets the current species of this wood block
+     * 获取这个木头的树木种类.
+     * <p>
+     * 原文:Gets the current species of this wood block
      *
-     * @return TreeSpecies of this wood block
+     * @return 木头的树木种类
      */
     public TreeSpecies getSpecies() {
         switch (getItemType()) {
@@ -105,11 +115,13 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * Correct the block type for certain species-type combinations.
+     * 更正某些物种类型组合的方块类型.
+     * <p>
+     * 原文:Correct the block type for certain species-type combinations.
      *
-     * @param type The desired type
-     * @param species The required species
-     * @return The actual type for this species given the desired type
+     * @param type 类型
+     * @param species 物种
+     * @return 这个物种的实际类型/The actual type for this species given the desired type
      */
     private static Material getSpeciesType(Material type, TreeSpecies species) {
         switch (species) {
@@ -140,9 +152,11 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * Sets the species of this wood block
+     * 设置木头的树木种类.
+     * <p>
+     * 原文:Sets the species of this wood block
      *
-     * @param species New species of this wood block
+     * @param species 新种类
      */
     public void setSpecies(final TreeSpecies species) {
         boolean firstType = false;
