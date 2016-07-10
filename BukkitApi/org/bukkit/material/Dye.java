@@ -68,7 +68,7 @@ public class Dye extends MaterialData implements Colorable {
      * 原文:
      * Sets the color of this dye
      *
-     * @param color 染料的新颜色
+     * @param color 新颜色
      */
     public void setColor(DyeColor color) {
         setData(color.getDyeData());

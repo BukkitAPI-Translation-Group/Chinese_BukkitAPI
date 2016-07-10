@@ -14,7 +14,9 @@ import org.bukkit.TreeSpecies;
 public class FlowerPot extends MaterialData {
 
     /**
-     * Default constructor for a flower pot.
+     * 该类的默认构造器.
+     * <p>
+     * 原文:Default constructor for a flower pot.
      */
     public FlowerPot() {
         super(Material.FLOWER_POT);

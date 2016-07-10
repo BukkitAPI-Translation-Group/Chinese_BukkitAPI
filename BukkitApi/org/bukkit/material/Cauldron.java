@@ -15,8 +15,8 @@ public class Cauldron extends MaterialData {
 
     /**
      *
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type the raw type id
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -26,7 +26,7 @@ public class Cauldron extends MaterialData {
 
     /**
      *
-     * @param data 原始数据值
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated

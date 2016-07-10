@@ -65,7 +65,7 @@ public class LongGrass extends MaterialData {
      * <p>
      * 原文:Sets the species of this grass
      *
-     * @param species 草丛的新种类
+     * @param species 新种类
      */
     public void setSpecies(GrassSpecies species) {
         setData(species.getData());

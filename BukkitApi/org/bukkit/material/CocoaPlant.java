@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents the cocoa plant
+ * 代表可可豆
  */
 public class CocoaPlant extends MaterialData implements Directional, Attachable {
 
@@ -20,7 +20,7 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
 
     /**
      * @param type the raw type id     
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public CocoaPlant(final int type) {
@@ -30,7 +30,7 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public CocoaPlant(final int type, final byte data) {
@@ -49,9 +49,11 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
     }
 
     /**
-     * Get size of plant
+     * 获取这个可可豆的体积.
+     * <p>
+     * 原文:Get size of plant
      *
-     * @return size
+     * @return 体积
      */
     public CocoaPlantSize getSize() {
         switch (getData() & 0xC) {
@@ -65,9 +67,11 @@ public class CocoaPlant extends MaterialData implements Directional, Attachable 
     }
 
     /**
-     * Set size of plant
+     * 设置这个可可豆的体积.
+     * <p>
+     * 原文:Set size of plant
      *
-     * @param sz - size of plant
+     * @param sz 体积
      */
     public void setSize(CocoaPlantSize sz) {
         int dat = getData() & 0x3;

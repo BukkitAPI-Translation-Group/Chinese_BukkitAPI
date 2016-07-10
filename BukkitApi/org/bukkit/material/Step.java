@@ -44,7 +44,7 @@ public class Step extends TexturedMaterial {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value不安全的参数
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Step(final int type, final byte data) {

@@ -49,7 +49,7 @@ public class MonsterEggs extends TexturedMaterial {
 
     /**
      * @param type the type
-     * @param data theraw data
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated

@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a comparator in the on or off state, in normal or subtraction mode and facing in a specific direction.
+ * 代表开启或关闭状态的红石比较器.
  *
  * @see Material#REDSTONE_COMPARATOR_OFF
  * @see Material#REDSTONE_COMPARATOR_ON
@@ -15,16 +15,20 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     protected static final boolean DEFAULT_STATE = false;
 
     /**
-     * Constructs a comparator switched off, with the default mode (normal) and facing the default direction (north).
+     * 构造一个关闭状态的、默认模式默认朝向（北）的红石比较器.
+     * <p>
+     * 原文:Constructs a comparator switched off, with the default mode (normal) and facing the default direction (north).
      */
     public Comparator() {
         this(DEFAULT_DIRECTION, DEFAULT_SUBTRACTION_MODE, false);
     }
 
     /**
-     * Constructs a comparator switched off, with the default mode (normal) and facing the specified direction.
+     * 构造一个关闭状态的、默认模式指定朝向的红石比较器.
+     * <p>
+     * 原文:Constructs a comparator switched off, with the default mode (normal) and facing the specified direction.
      *
-     * @param facingDirection the direction the comparator is facing
+     * @param facingDirection 朝向
      *
      * @see BlockFace
      */
@@ -33,10 +37,12 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a comparator switched off, with the specified mode and facing the specified direction.
+     * 构造一个关闭状态的、指定模式指定朝向的红石比较器.
+     * <p>
+     * 原文:Constructs a comparator switched off, with the specified mode and facing the specified direction.
      *
-     * @param facingDirection the direction the comparator is facing
-     * @param isSubtraction True if the comparator is in subtraction mode, false for normal comparator operation
+     * @param facingDirection 朝向
+     * @param isSubtraction true 如果红石比较器为减法模式
      *
      * @see BlockFace
      */
@@ -45,11 +51,13 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a comparator switched on or off, with the specified mode and facing the specified direction.
+     * 构造一个开启或关闭状态的、指定模式指定朝向的红石比较器.
+     * <p>
+     * 原文:Constructs a comparator switched on or off, with the specified mode and facing the specified direction.
      *
-     * @param facingDirection the direction the comparator is facing
-     * @param isSubtraction True if the comparator is in subtraction mode, false for normal comparator operation
-     * @param state True if the comparator is in the on state
+     * @param facingDirection 朝向
+     * @param isSubtraction true 如果红石比较器为减法模式
+     * @param state 激活状态
      *
      * @see BlockFace
      */
@@ -61,7 +69,7 @@ public class Comparator extends MaterialData implements Directional, Redstone {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Comparator(int type) {
@@ -75,7 +83,7 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Comparator(int type, byte data) {
@@ -85,7 +93,7 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Comparator(Material type, byte data) {
@@ -93,27 +101,33 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Sets whether the comparator is in subtraction mode.
+     * 设置该红石比较器是否为减法模式.
+     * <p>
+     * 原文:Sets whether the comparator is in subtraction mode.
      *
-     * @param isSubtraction True if the comparator is in subtraction mode, false for normal comparator operation
+     * @param isSubtraction true 如果红石比较器为减法模式
      */
     public void setSubtractionMode(boolean isSubtraction) {
         setData((byte)(getData() & 0xB | (isSubtraction ? 0x4 : 0x0)));
     }
 
     /**
-     * Checks whether the comparator is in subtraction mode
+     * 检测这个红石即比较器是否为减法模式.
+     * <p>
+     * 原文:Checks whether the comparator is in subtraction mode
      *
-     * @return True if the comparator is in subtraction mode, false if normal comparator operation
+     * @return true 如果红石比较器为减法模式
      */
     public boolean isSubtractionMode() {
         return (getData() & 0x4) != 0;
     }
 
     /**
-     * Sets the direction this comparator is facing
+     * 设置这个红石比较器的朝向.
+     * <p>
+     * 原文:Sets the direction this comparator is facing
      *
-     * @param face The direction to set this comparator to
+     * @param face 朝向
      *
      * @see BlockFace
      */
@@ -143,9 +157,11 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Gets the direction this comparator is facing
+     * 获取这个红石比较器的朝向.
+     * <p>
+     * 原文:Gets the direction this comparator is facing
      *
-     * @return The direction this comparator is facing
+     * @return 朝向
      *
      * @see BlockFace
      */
@@ -180,9 +196,11 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Checks if the comparator is powered
+     * 检测这个红石比较器是否充能.
+     * <p>
+     * 原文:Checks if the comparator is powered
      *
-     * @return true if the comparator is powered
+     * @return 这个红石比较器是否充能
      */
     @Override
     public boolean isPowered() {
@@ -190,9 +208,11 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Checks if the comparator is being powered
+     * 检测这个红石比较器是否输出信号.
+     * <p>
+     * 原文:Checks if the comparator is being powered
      *
-     * @return true if the comparator is being powered
+     * @return 这个红石比较器是否输出信号
      */
     public boolean isBeingPowered() {
         return (getData() & 0x8) != 0;

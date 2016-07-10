@@ -65,7 +65,7 @@ public class Sandstone extends MaterialData {
      * <p>
      * 原文：Sets the type of this sandstone
      *
-     * @param type 沙石的新种类
+     * @param type 新种类
      */
     public void setType(SandstoneType type) {
         setData(type.getData());

@@ -15,7 +15,9 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     protected static final boolean DEFAULT_ACTIVE = true;
 
     /**
-     * Constructs a hopper facing the default direction (down) and initially
+     * 构造一个默认朝向（下）、激活的漏斗.
+     * <p>
+     * 原文:Constructs a hopper facing the default direction (down) and initially
      * active.
      */
     public Hopper() {
@@ -23,9 +25,11 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a hopper facing the specified direction and initially active.
+     * 构造一个指定朝向、激活的漏斗.
+     * <p>
+     * 原文:Constructs a hopper facing the specified direction and initially active.
      *
-     * @param facingDirection the direction the hopper is facing
+     * @param facingDirection 朝向
      *
      * @see BlockFace
      */
@@ -34,12 +38,13 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a hopper facing the specified direction and either active or
+     * 构造一个指定朝向、指定激活状态的漏斗.
+     * <p>
+     * 原文:Constructs a hopper facing the specified direction and either active or
      * not.
      *
-     * @param facingDirection the direction the hopper is facing
-     * @param isActive True if the hopper is initially active, false if
-     * deactivated
+     * @param facingDirection 朝向
+     * @param isActive 这个漏斗是否被激活
      *
      * @see BlockFace
      */
@@ -51,7 +56,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Hopper(int type) {
@@ -65,7 +70,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Hopper(int type, byte data) {
@@ -75,7 +80,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Hopper(Material type, byte data) {
@@ -83,28 +88,33 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Sets whether the hopper is active or not.
+     * 设置这个漏斗是否被激活.
+     * <p>
+     * 原文:Sets whether the hopper is active or not.
      *
-     * @param isActive True if the hopper is active, false if deactivated as if
-     * powered by redstone
+     * @param isActive 这个漏斗是否被激活
      */
     public void setActive(boolean isActive) {
         setData((byte) (getData() & 0x7 | (isActive ? 0x0 : 0x8)));
     }
 
     /**
-     * Checks whether the hopper is active or not.
+     * 检测这个漏斗是否被激活.
+     * <p>
+     * 原文:Checks whether the hopper is active or not.
      *
-     * @return True if the hopper is active, false if deactivated
+     * @return 这个漏斗是否被激活
      */
     public boolean isActive() {
         return (getData() & 0x8) == 0;
     }
 
     /**
-     * Sets the direction this hopper is facing
+     * 设置这个漏斗的朝向.
+     * <p>
+     * 原文:Sets the direction this hopper is facing
      *
-     * @param face The direction to set this hopper to
+     * @param face 朝向
      *
      * @see BlockFace
      */
@@ -134,9 +144,11 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Gets the direction this hopper is facing
+     * 获取这个漏斗的朝向.
+     * <p>
+     * 原文:Gets the direction this hopper is facing
      *
-     * @return The direction this hopper is facing
+     * @return 朝向
      *
      * @see BlockFace
      */
@@ -170,9 +182,11 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Checks if the hopper is powered.
+     * 检测这个漏斗是否充能.
+     * <p>
+     * 原文:Checks if the hopper is powered.
      *
-     * @return true if the hopper is powered
+     * @return 这个漏斗是否充能
      */
     @Override
     public boolean isPowered() {

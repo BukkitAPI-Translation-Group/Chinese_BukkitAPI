@@ -74,7 +74,7 @@ public class Mushroom extends MaterialData {
     /**
      * @param shroom the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Mushroom(Material shroom, byte data) {
@@ -85,7 +85,7 @@ public class Mushroom extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Mushroom(int type, byte data){

@@ -8,7 +8,7 @@ import org.bukkit.block.BlockFace;
  */
 public class DirectionalContainer extends MaterialData implements Directional {
     /**
-     * @param type 原始类型id
+     * @param type the raw type id
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -21,8 +21,8 @@ public class DirectionalContainer extends MaterialData implements Directional {
     }
 
     /**
-     * @param type 原始类型id
-     * @param data 原始数据值
+     * @param type the raw type id
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -31,8 +31,8 @@ public class DirectionalContainer extends MaterialData implements Directional {
     }
 
     /**
-     * @param type 类型
-     * @param data 原始数据值
+     * @param type the type
+     * @param data the raw data
      * @deprecated 不安全的参数
      */
     @Deprecated

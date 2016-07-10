@@ -4,7 +4,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.Material;
 
 /**
- * Represents a button
+ * 代表按钮
  */
 public class Button extends SimpleAttachableMaterialData implements Redstone {
     public Button() {
@@ -13,7 +13,7 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
 
     /**
      * @param type the type
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Button(final int type) {
@@ -27,7 +27,7 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Button(final int type, final byte data) {
@@ -37,7 +37,7 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Button(final Material type, final byte data) {
@@ -45,29 +45,34 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
     }
 
     /**
-     * Gets the current state of this Material, indicating if it's powered or
+     * 获取这个按钮的充能状态.
+     * <p>
+     * 原文:Gets the current state of this Material, indicating if it's powered or
      * unpowered
      *
-     * @return true if powered, otherwise false
+     * @return 按钮的充能状态
      */
     public boolean isPowered() {
         return (getData() & 0x8) == 0x8;
     }
 
     /**
-     * Sets the current state of this button
+     * 设置这个按钮的充能状态.
+     * <p>
+     * 原文:Sets the current state of this button
      *
-     * @param bool
-     *            whether or not the button is powered
+     * @param bool 按钮的充能状态
      */
     public void setPowered(boolean bool) {
         setData((byte) (bool ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取这个方块附着的方向.
+     * <p>
+     * 原文:Gets the face that this block is attached on
      *
-     * @return BlockFace attached to
+     * @return 附着的BlockFace
      */
     public BlockFace getAttachedFace() {
         byte data = (byte) (getData() & 0x7);
@@ -96,7 +101,9 @@ public class Button extends SimpleAttachableMaterialData implements Redstone {
     }
 
     /**
-     * Sets the direction this button is pointing toward
+     * 设置这个按钮所指的方向.
+     * <p>
+     * 原文:Sets the direction this button is pointing toward
      */
     public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0x8);

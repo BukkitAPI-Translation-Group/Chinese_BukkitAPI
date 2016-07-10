@@ -4,7 +4,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.Material;
 
 /**
- * Represents Ladder data
+ * 代表梯子
  */
 public class Ladder extends SimpleAttachableMaterialData {
     public Ladder() {
@@ -13,7 +13,7 @@ public class Ladder extends SimpleAttachableMaterialData {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Ladder(final int type) {
@@ -27,7 +27,7 @@ public class Ladder extends SimpleAttachableMaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Ladder(final int type, final byte data) {
@@ -37,7 +37,7 @@ public class Ladder extends SimpleAttachableMaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Ladder(final Material type, final byte data) {
@@ -45,9 +45,11 @@ public class Ladder extends SimpleAttachableMaterialData {
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取这个方块附着的方向.
+     * <p>
+     * 原文:Gets the face that this block is attached on
      *
-     * @return BlockFace attached to
+     * @return 附着的方向
      */
     public BlockFace getAttachedFace() {
         byte data = getData();
@@ -70,7 +72,9 @@ public class Ladder extends SimpleAttachableMaterialData {
     }
 
     /**
-     * Sets the direction this ladder is facing
+     * 设置这个梯子的朝向.
+     * <p>
+     * 原文:Sets the direction this ladder is facing
      */
     public void setFacingDirection(BlockFace face) {
         byte data = (byte) 0x0;

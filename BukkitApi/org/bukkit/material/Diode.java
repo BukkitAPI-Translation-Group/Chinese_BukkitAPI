@@ -4,8 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a diode/repeater in the on or off state, with a delay and facing
- * in a specific direction.
+ * 代表开启或关闭状态的红石中继器.
  *
  * @see Material#DIODE_BLOCK_OFF
  * @see Material#DIODE_BLOCK_ON
@@ -17,7 +16,11 @@ public class Diode extends MaterialData implements Directional, Redstone {
     protected static final boolean DEFAULT_STATE = false;
 
     /**
-     * Constructs a diode switched on, with a delay of 1 and facing the default
+     * 构造一个开启状态的、1延迟、默认朝向（北）的红石中继器.
+     *
+     * 默认情况下这个构造器创建的是开启状态的红石中继器，为了兼容之前的实现.
+     * <p>
+     * 原文:Constructs a diode switched on, with a delay of 1 and facing the default
      * direction (north).
      *
      * By default this constructor creates a diode that is switched on for
@@ -28,10 +31,12 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a diode switched off, with a delay of 1 and facing the
+     * 构造一个关闭状态的、1延迟、指定朝向的红石中继器.
+     * <p>
+     * 原文:Constructs a diode switched off, with a delay of 1 and facing the
      * specified direction.
      *
-     * @param facingDirection the direction the diode is facing
+     * @param facingDirection 朝向
      *
      * @see BlockFace
      */
@@ -40,12 +45,13 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a diode switched off, with the specified delay and facing the
+     * 构造一个关闭状态的、指定延迟、指定朝向的红石中继器.
+     * <p>
+     * 原文:Constructs a diode switched off, with the specified delay and facing the
      * specified direction.
      *
-     * @param facingDirection the direction the diode is facing
-     * @param delay The number of ticks (1-4) before the diode turns on after
-     * being powered
+     * @param facingDirection 朝向
+     * @param delay 红石刻 (1-4)
      *
      * @see BlockFace
      */
@@ -54,13 +60,14 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Constructs a diode switched on or off, with the specified delay and
+     * 构造一个开启或关闭状态的、指定延迟、指定朝向的红石中继器.
+     * <p>
+     * 原文:Constructs a diode switched on or off, with the specified delay and
      * facing the specified direction.
      *
-     * @param facingDirection the direction the diode is facing
-     * @param delay The number of ticks (1-4) before the diode turns on after
-     * being powered
-     * @param state True if the diode is in the on state
+     * @param facingDirection 朝向
+     * @param delay 刻 (1-4)
+     * @param state 激活状态
      *
      * @see BlockFace
      */
@@ -72,7 +79,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Diode(int type) {
@@ -86,7 +93,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Diode(int type, byte data) {
@@ -96,7 +103,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Diode(Material type, byte data) {
@@ -104,9 +111,11 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Sets the delay of the repeater.
+     * 设置这个红石中继器的延迟.
+     * <p>
+     * 原文:Sets the delay of the repeater.
      *
-     * @param delay The new delay (1-4)
+     * @param delay 延迟 (1-4)
      */
     public void setDelay(int delay) {
         if (delay > 4) {
@@ -121,18 +130,22 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Gets the delay of the repeater in ticks.
+     * 获取这个红石中继器的延迟 (以刻为单位).
+     * <p>
+     * 原文:Gets the delay of the repeater in ticks.
      *
-     * @return The delay (1-4)
+     * @return 延迟 (1-4)
      */
     public int getDelay() {
         return (getData() >> 2) + 1;
     }
 
     /**
-     * Sets the direction this diode is facing.
+     * 设置这个红石中继器的朝向.
+     * <p>
+     * 原文:Sets the direction this diode is facing.
      *
-     * @param face The direction to set this diode to
+     * @param face 朝向
      *
      * @see BlockFace
      */
@@ -161,9 +174,11 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Gets the direction this diode is facing
+     * 获取这个红石中继器的朝向.
+     * <p>
+     * 原文:Gets the direction this diode is facing
      *
-     * @return The direction this diode is facing
+     * @return 这个红石中继器的朝向
      *
      * @see BlockFace
      */
@@ -198,9 +213,11 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * Checks if the diode is powered.
+     * 检测这个红石中继器是否充能.
+     * <p>
+     * 原文：Checks if the diode is powered.
      *
-     * @return true if the diode is powered
+     * @return 这个红石中继器是否充能
      */
     @Override
     public boolean isPowered() {

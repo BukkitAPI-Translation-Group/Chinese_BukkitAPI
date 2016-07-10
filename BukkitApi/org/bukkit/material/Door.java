@@ -5,11 +5,9 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a door.
+ * 代表门
  *
- * This class was previously deprecated, but has been retrofitted to
- * work with modern doors. Some methods are undefined dependant on <code>isTopHalf()</code>
- * due to Minecraft's internal representation of doors.
+ * 这个类在以前被弃用，但现已经能与当今的门工作.由于Minecraft的门的内部表示，依赖于<code>isTopHalf()</code>的一些方法未被定义.
  *
  * @see Material.WOODEN_DOOR
  * @see Material.IRON_DOOR_BLOCK
@@ -34,7 +32,7 @@ public class Door extends MaterialData implements Directional, Openable {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Door(final int type) {
@@ -46,7 +44,9 @@ public class Door extends MaterialData implements Directional, Openable {
     }
 
     /**
-     * Constructs the bottom half of a door of the given material type, facing the specified direction and set to closed
+     * 构造一个
+     * <p>
+     * 原文:Constructs the bottom half of a door of the given material type, facing the specified direction and set to closed
      *
      * @param type The type of material this door is made of. This must match the type of the block above.
      * @param face The direction the door is facing.
@@ -168,7 +168,7 @@ public class Door extends MaterialData implements Directional, Openable {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Door(final int type, final byte data) {
@@ -178,7 +178,7 @@ public class Door extends MaterialData implements Directional, Openable {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Door(final Material type, final byte data) {

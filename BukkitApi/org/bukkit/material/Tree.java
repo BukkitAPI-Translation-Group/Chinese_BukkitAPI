@@ -43,7 +43,7 @@ public class Tree extends Wood {
 
     /**
      * @param type the raw type id
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Tree(final int type) {
@@ -85,7 +85,7 @@ public class Tree extends Wood {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Tree(final int type, final byte data) {
@@ -95,7 +95,7 @@ public class Tree extends Wood {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Tree(final Material type, final byte data) {
