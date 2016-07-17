@@ -9,217 +9,276 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
 /**
+ * 代表一片即将对处于其中的生物施加药水效果的区域效果云（译注：即喷溅药水使用后形成的雾）。
+ * 原文：
  * Represents an area effect cloud which will imbue a potion effect onto
  * entities which enter it.
  */
 public interface AreaEffectCloud extends Entity {
 
     /**
+     * 获取这片云持续的时间（单位为tick）。
+     * 原文：
      * Gets the duration which this cloud will exist for (in ticks).
      *
-     * @return cloud duration
+     * @return 持续时间
      */
     int getDuration();
 
     /**
+     * 设置这片云持续的时间（单位为tick）。
+     * 原文：
      * Sets the duration which this cloud will exist for (in ticks).
      *
-     * @param duration cloud duration
+     * @param duration 持续时间
      */
     void setDuration(int duration);
 
     /**
+     * 获取实体受到效果前的延迟时间。
+     * 原文：
      * Gets the time which an entity has to be exposed to the cloud before the
      * effect is applied.
      *
-     * @return wait time
+     * @return 延迟时间
      */
     int getWaitTime();
 
     /**
+     * 设置实体受到效果前的延迟时间。
+     * 原文：
      * Sets the time which an entity has to be exposed to the cloud before the
      * effect is applied.
      *
-     * @param waitTime wait time
+     * @param waitTime 延迟时间
      */
     void setWaitTime(int waitTime);
 
     /**
+     * 获取实体受到效果后的免疫时间。
+     * 原文：
      * Gets the time that an entity will be immune from subsequent exposure.
      *
-     * @return reapplication delay
+     * @return 免疫时间
      */
     int getReapplicationDelay();
 
     /**
+     * 设置实体受到效果后的免疫时间。
+     * 原文：
      * Sets the time that an entity will be immune from subsequent exposure.
      *
-     * @param delay reapplication delay
+     * @param delay 免疫时间
      */
     void setReapplicationDelay(int delay);
 
     /**
+     * 获取这片云对一个实体产生效果后持续时间减少的量。
+     * 原文：
      * Gets the amount that the duration of this cloud will decrease by when it
      * applies an effect to an entity.
      *
-     * @return duration on use delta
+     * @return 持续时间的变化量
      */
     int getDurationOnUse();
 
     /**
+     * 设置这片云对一个实体产生效果后持续时间减少的量。
+     * 原文：
      * Sets the amount that the duration of this cloud will decrease by when it
      * applies an effect to an entity.
      *
-     * @param duration duration on use delta
+     * @param duration 持续时间的变化量
      */
     void setDurationOnUse(int duration);
 
     /**
+     * 获取这片云的初始半径。
+     * 原文：
      * Gets the initial radius of the cloud.
      *
-     * @return radius
+     * @return 半径
      */
     float getRadius();
 
     /**
+     * 设置这片云的初始半径。
+     * 原文：
      * Sets the initial radius of the cloud.
      *
-     * @param radius radius
+     * @param radius 半径
      */
     void setRadius(float radius);
 
     /**
+     * 获取这片云对一个实体产生效果后半径的减少量。
+     * 原文：
      * Gets the amount that the radius of this cloud will decrease by when it
      * applies an effect to an entity.
      *
-     * @return radius on use delta
+     * @return 半径的变化量
      */
     float getRadiusOnUse();
 
     /**
+     * 设置这片云对一个实体产生效果后半径的减少量。
+     * 原文：
      * Sets the amount that the radius of this cloud will decrease by when it
      * applies an effect to an entity.
      *
-     * @param radius radius on use delta
+     * @param radius 半径的变化量
      */
     void setRadiusOnUse(float radius);
 
     /**
+     * 获取每一tick这片云的半径减少量。
+     * 原文：
      * Gets the amount that the radius of this cloud will decrease by each tick.
      *
-     * @return radius per tick delta
+     * @return 每一tick这片云的半径减少量
      */
     float getRadiusPerTick();
 
     /**
+     * 设置每一tick这片云的半径减少量。
+     * 原文（疑似有误，get应为set）：
      * Gets the amount that the radius of this cloud will decrease by each tick.
      *
-     * @param radius per tick delta
+     * @param radius 每一tick这片云的半径减少量
      */
     void setRadiusPerTick(float radius);
 
     /**
+     * 获取组成这片云的粒子
+     * 原文：
      * Gets the particle which this cloud will be composed of
      *
-     * @return particle the set particle type
+     * @return 粒子类型
      */
     Particle getParticle();
 
     /**
+     * 设置组成这片云的粒子
+     * 原文：
      * Sets the particle which this cloud will be composed of
      *
-     * @param particle the new particle type
+     * @param particle 新的粒子类型
      */
     void setParticle(Particle particle);
 
     /**
+     * 设置基本药水数据
+     * 原文：
      * Sets the underlying potion data
      *
-     * @param data PotionData to set the base potion state to
+     * @param data 用于设置基本药水状态的PotionData
      */
     void setBasePotionData(PotionData data);
 
     /**
+     * 返回基本药水的药水数据
+     * 原文：
      * Returns the potion data about the base potion
      *
-     * @return a PotionData object
+     * @return 一个PotionData对象
      */
     PotionData getBasePotionData();
 
     /**
+     * 检查自定义药水效果是否有效。
+     * 原文：
      * Checks for the presence of custom potion effects.
      *
-     * @return true if custom potion effects are applied
+     * @return 如果自定义药水效果有效则返回true
      */
     boolean hasCustomEffects();
 
     /**
+     * 获取一个包含这片云所有的自定义药水效果的不可变集合（immutable list）。
+     * <p>
+     * 调用此方法前插件应确保hasCustomEffects()返回true。
+     * 原文：
      * Gets an immutable list containing all custom potion effects applied to
      * this cloud.
      * <p>
      * Plugins should check that hasCustomEffects() returns true before calling
      * this method.
      *
-     * @return the immutable list of custom potion effects
+     * @return 自定义药水效果的不可变集合（immutable list）
      */
     List<PotionEffect> getCustomEffects();
 
     /**
+     * 向这片云添加一个自定义药水效果。
+     * 原文：
      * Adds a custom potion effect to this cloud.
      *
-     * @param effect the potion effect to add
-     * @param overwrite true if any existing effect of the same type should be
-     * overwritten
-     * @return true if the effect was added as a result of this call
+     * @param effect 添加的药水效果
+     * @param overwrite 是否覆盖当前存在的相同类型效果
+     * @return 如果这次调用成功添加效果则返回true
      */
     boolean addCustomEffect(PotionEffect effect, boolean overwrite);
 
     /**
+     * 从这片云移除一个自定义药水效果。
+     * 原文：
      * Removes a custom potion effect from this cloud.
      *
-     * @param type the potion effect type to remove
-     * @return true if the an effect was removed as a result of this call
+     * @param type 移除的药水效果类型
+     * @return 如果这次调用成功移除效果则返回true
      */
     boolean removeCustomEffect(PotionEffectType type);
 
     /**
+     * 检查这片云中是否存在一种特定的自定义药水效果类型。
+     * 原文：
      * Checks for a specific custom potion effect type on this cloud.
      *
-     * @param type the potion effect type to check for
-     * @return true if the potion has this effect
+     * @param type 检查的药水效果类型
+     * @return 存在这种效果则返回true
      */
     boolean hasCustomEffect(PotionEffectType type);
 
     /**
+     * 从这片云移除所有自定义药水效果。
+     * 原文：
      * Removes all custom potion effects from this cloud.
      */
     void clearCustomEffects();
 
     /**
+     * 获取这片云的颜色，即粒子的颜色。
+     * 原文：
      * Gets the color of this cloud. Will be applied as a tint to its particles.
      *
-     * @return cloud color
+     * @return 云的颜色
      */
     Color getColor();
 
     /**
+     * 设置这片云的颜色，即粒子的颜色。
+     * 原文：
      * Sets the color of this cloud. Will be applied as a tint to its particles.
      *
-     * @param color cloud color
+     * @param color 云的颜色
      */
     void setColor(Color color);
 
     /**
+     * 检索这片云的初始来源。
+     * 原文：
      * Retrieve the original source of this cloud.
      * 
-     * @return the {@link ProjectileSource} that threw the LingeringPotion
+     * @return 投掷药水的{@link ProjectileSource}
      */
     public ProjectileSource getSource();
 
     /**
+     * 设置这片云的初始来源。
+     * 原文：
      * Set the original source of this cloud.
      *
-     * @param source the {@link ProjectileSource} that threw the LingeringPotion
+     * @param source 投掷药水的{@link ProjectileSource}
      */
     public void setSource(ProjectileSource source);
 }
