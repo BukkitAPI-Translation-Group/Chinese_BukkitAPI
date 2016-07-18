@@ -1,48 +1,48 @@
 package org.bukkit.attribute;
 
 /**
- * Types of attributes which may be present on an {@link Attributable}.
+ * 在 {@link Attributable} 里面的枚举.
  */
 public enum Attribute {
 
     /**
-     * Maximum health of an Entity.
+     * 生物的最大血量
      */
     GENERIC_MAX_HEALTH,
     /**
-     * Range at which an Entity will follow others.
+     * 当一个生物正在跟随其他生物/人的时候的跟随范围
      */
     GENERIC_FOLLOW_RANGE,
     /**
-     * Resistance of an Entity to knockback.
+     * 当生物被攻击的时候的击退抗性.
      */
     GENERIC_KNOCKBACK_RESISTANCE,
     /**
-     * Movement speed of an Entity.
+     * 生物的移动速度.
      */
     GENERIC_MOVEMENT_SPEED,
     /**
-     * Attack damage of an Entity.
+     * 当生物攻击其他人时所造成的伤害.
      */
     GENERIC_ATTACK_DAMAGE,
     /**
-     * Attack speed of an Entity.
+     * 生物的攻击速率.
      */
     GENERIC_ATTACK_SPEED,
     /**
-     * Armor bonus of an Entity.
+     * 护甲的防御值
      */
     GENERIC_ARMOR,
     /**
-     * Luck bonus of an Entity.
+     * 生物的可能的掉落物
      */
     GENERIC_LUCK,
     /**
-     * Strength with which a horse will jump.
+     * 马跳起来的蓄力条.
      */
     HORSE_JUMP_STRENGTH,
     /**
-     * Chance of a zombie to spawn reinforcements.
+     * 僵尸增援的几率.
      */
     ZOMBIE_SPAWN_REINFORCEMENTS;
 }
