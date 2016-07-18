@@ -13,7 +13,7 @@ public interface Attributable {
      * be backed directly to the object and any changes will be visible at once.
      *
      * @param attribute Attribute实例
-     * @return 这个方法会返回一个Attribute实例,如果不适用于此对象,将返回null
+     * @return 这个方法会返回一个AttributeInstance,如果不适用于此对象,将返回null
      */
     AttributeInstance getAttribute(Attribute attribute);
 }
