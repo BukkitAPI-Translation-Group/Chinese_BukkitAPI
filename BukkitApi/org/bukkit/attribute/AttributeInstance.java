@@ -9,52 +9,51 @@ import java.util.Collection;
 public interface AttributeInstance {
 
     /**
-     * The attribute pertaining to this instance.
+     * 有关该实例的属性
      *
-     * @return the attribute
+     * @return 返回对应实例的属性
      */
     Attribute getAttribute();
 
     /**
-     * Base value of this instance before modifiers are applied.
+     * 获取所有属性的基准值(也就是未更改之前的默认值)
      *
-     * @return base value
+     * @return 默认属性值
      */
     double getBaseValue();
 
     /**
-     * Set the base value of this instance.
+     * 设置默认值为某个属性
      *
-     * @param value new base value
+     * @param 为了给某个值设定他的基础值
      */
     void setBaseValue(double value);
 
     /**
-     * Get all modifiers present on this instance.
+     *获取该实例上面所有被修改过的值
      *
-     * @return a copied collection of all modifiers
+     * @return 将会返回一个包含所有修改过的值的集合
      */
     Collection<AttributeModifier> getModifiers();
 
     /**
-     * Add a modifier to this instance.
+     * 向次实例添加要修改的属性
      *
-     * @param modifier to add
+     * @param 用于添加属性
      */
     void addModifier(AttributeModifier modifier);
 
     /**
-     * Remove a modifier from this instance.
+     * 从此实例内移除一个属性值
      *
-     * @param modifier to remove
+     * @param 用于移除一个属性值
      */
     void removeModifier(AttributeModifier modifier);
 
     /**
-     * Get the value of this instance after all associated modifiers have been
-     * applied.
+     * 获取当前实例的值,（所有已经应用的值）
      *
-     * @return the total attribute value
+     * @return 总的属性值
      */
     double getValue();
 }
