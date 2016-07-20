@@ -15,7 +15,9 @@ public class Tree extends Wood {
     protected static final BlockFace DEFAULT_DIRECTION = BlockFace.UP;
 
     /**
-     * Constructs a tree block.
+     * 构造一个树木方块.
+     * <p>
+     * 原文:Constructs a tree block.
      */
     public Tree() {
         this(DEFAULT_TYPE, DEFAULT_SPECIES, DEFAULT_DIRECTION);
@@ -103,14 +105,16 @@ public class Tree extends Wood {
     }
 
     /**
-     * Get direction of the log
+     * 获取木头的朝向.
+     * <p>
+     * 原文:Get direction of the log
      *
-     * @return one of:
+     * @return 其中之一:
      * <ul>
-     * <li>BlockFace.TOP for upright (default)
-     * <li>BlockFace.NORTH (east-west)
-     * <li>BlockFace.WEST (north-south)
-     * <li>BlockFace.SELF (directionless)
+     * <li>BlockFace.TOP 直立 (默认)
+     * <li>BlockFace.NORTH (东西朝向)
+     * <li>BlockFace.WEST (南北朝向)
+     * <li>BlockFace.SELF 无朝向 (仅树皮)
      * </ul>
      */
     @SuppressWarnings("deprecation")
@@ -129,9 +133,11 @@ public class Tree extends Wood {
     }
 
     /**
-     * Set direction of the log
+     * 设置木头的朝向.
+     * <p>
+     * 原文:Set direction of the log
      *
-     * @param dir - direction of end of log (BlockFace.SELF for no direction)
+     * @param dir - 木头一端的朝向，BlockFace.SELF 即为无朝向(仅树皮)
      */
     @SuppressWarnings("deprecation")
     public void setDirection(BlockFace dir) {
