@@ -1,8 +1,10 @@
 package org.bukkit.entity;
 
 /**
- * 代表末影龙
+ * Represents an Ender Dragon
  */
+public interface EnderDragon extends ComplexLivingEntity {
+
     /**
      * Represents a phase or action that an Ender Dragon can perform.
      */
