@@ -7,12 +7,9 @@ import org.bukkit.event.inventory.InventoryOpenEvent;
 import org.bukkit.inventory.Inventory;
 
 /**
- * Represents a player related inventory event; note that this event never
- * actually did anything
+ * 代表与玩家相关的背包事件;注意本事件实际上什么也不做
  *
- * @deprecated Use {@link InventoryClickEvent} or {@link InventoryOpenEvent}
- *     instead, or one of the other inventory events in {@link
- *     org.bukkit.event.inventory}.
+ * @deprecated 请使用{@link InventoryClickEvent} 或 {@link InventoryOpenEvent}，或者使用 {@link org.bukkit.event.inventory} 里的其他背包事件.
  */
 @Deprecated
 public class PlayerInventoryEvent extends PlayerEvent {
@@ -25,7 +22,9 @@ public class PlayerInventoryEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the Inventory involved in this event
+     * 获取与此事件有关的背包.
+     * <p>
+     * 原文:Gets the Inventory involved in this event
      *
      * @return Inventory
      */
