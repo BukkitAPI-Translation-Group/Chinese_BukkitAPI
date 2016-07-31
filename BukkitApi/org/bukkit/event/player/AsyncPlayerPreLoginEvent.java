@@ -7,9 +7,9 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
- * Stores details for players attempting to log in.
+ * 存储试图登录的玩家的详细信息.Stores details for players attempting to log in.
  * <p>
- * This event is asynchronous, and not run using main thread.
+ * 这个事件是异步的，不在主线程上执行.
  */
 public class AsyncPlayerPreLoginEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
@@ -34,20 +34,23 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Gets the current result of the login, as an enum
+     * 获取登录的结果 (作为枚举).
+     * <p>
+     * 原文:Gets the current result of the login, as an enum
      *
-     * @return Current Result of the login
+     * @return 登录的结果
      */
     public Result getLoginResult() {
         return result;
     }
 
     /**
-     * Gets the current result of the login, as an enum
+     * 获取登录的结果 (作为枚举).
+     * <p>
+     * 原文:Gets the current result of the login, as an enum
      *
-     * @return Current Result of the login
-     * @deprecated This method uses a deprecated enum from {@link
-     *     PlayerPreLoginEvent}
+     * @return 登录的结果
+     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #getLoginResult()
      */
     @Deprecated
@@ -56,20 +59,23 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Sets the new result of the login, as an enum
+     * 设置登录的结果 (作为枚举).
+     * <p>
+     * 原文:Sets the new result of the login, as an enum
      *
-     * @param result New result to set
+     * @param result 结果
      */
     public void setLoginResult(final Result result) {
         this.result = result;
     }
 
     /**
-     * Sets the new result of the login, as an enum
+     * 设置登录的结果 (作为枚举).
+     * <p>
+     * 原文:Sets the new result of the login, as an enum
      *
-     * @param result New result to set
-     * @deprecated This method uses a deprecated enum from {@link
-     *     PlayerPreLoginEvent}
+     * @param result 结果
+     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #setLoginResult(Result)
      */
     @Deprecated
