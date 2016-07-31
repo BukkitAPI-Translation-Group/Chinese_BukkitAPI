@@ -1,4 +1,3 @@
-
 package org.bukkit.event.inventory;
 
 import org.bukkit.entity.HumanEntity;
@@ -6,7 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.InventoryView;
 
 /**
- * Represents a player related inventory event
+ * 当玩家关闭背包时触发本事件
  */
 public class InventoryCloseEvent extends InventoryEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -16,9 +15,11 @@ public class InventoryCloseEvent extends InventoryEvent {
     }
 
     /**
-     * Returns the player involved in this event
+     * 获取涉及此事件的玩家
+     * <p>
+     * 原文:Returns the player involved in this event
      *
-     * @return Player who is involved in this event
+     * @return 涉及此事件的玩家
      */
     public final HumanEntity getPlayer() {
         return transaction.getPlayer();
