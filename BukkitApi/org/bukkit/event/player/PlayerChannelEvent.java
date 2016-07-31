@@ -4,8 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * This event is called after a player registers or unregisters a new plugin
- * channel.
+ * 当玩家注册/注销一个新的插件通道时触发本事件
  */
 public abstract class PlayerChannelEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
