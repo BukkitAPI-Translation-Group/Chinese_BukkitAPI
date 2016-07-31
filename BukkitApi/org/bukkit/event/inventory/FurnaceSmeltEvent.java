@@ -28,7 +28,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Gets the smelted ItemStack for this event
      *
-     * @return smelting source ItemStack 被熔炼的物品
+     * @return 被熔炼的物品
      */
     public ItemStack getSource() {
         return source;
@@ -39,7 +39,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Gets the resultant ItemStack for this event
      *
-     * @return smelting result ItemStack 熔炼完毕得到的物品
+     * @return 熔炼完毕得到的物品
      */
     public ItemStack getResult() {
         return result;
@@ -50,7 +50,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Sets the resultant ItemStack for this event
      *
-     * @param result new result ItemStack 熔炼完毕得到的物品
+     * @param result 熔炼完毕得到的物品
      */
     public void setResult(ItemStack result) {
         this.result = result;
