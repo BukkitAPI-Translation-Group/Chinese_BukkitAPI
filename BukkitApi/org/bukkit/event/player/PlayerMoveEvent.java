@@ -22,7 +22,7 @@ public class PlayerMoveEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 取消这个事件的状态,不会取消这个事件,这个事件在服务器依然执行,但传递给其他插件.
+     * 获取此事件的取消状态. 被取消的事件将不会在服务器上执行，但将仍然传递给其他插件.
      * <p>
      * 如果一个移动或传送事件被取消,玩家将被移动或传送回getFrom()定义的位置。这不会触发此事件.
      * <p>
