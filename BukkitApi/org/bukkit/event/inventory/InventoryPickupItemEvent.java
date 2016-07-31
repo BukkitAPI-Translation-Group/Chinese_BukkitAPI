@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.Inventory;
 
 /**
- * Called when a hopper or hopper minecart picks up a dropped item.
+ * 当漏斗/漏斗矿车收起掉落的物品时触发本事件.
  */
 public class InventoryPickupItemEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -22,7 +22,9 @@ public class InventoryPickupItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the Inventory that picked up the item
+     * 获取捡起这个物品的背包.
+     * <p>
+     * 原文:Gets the Inventory that picked up the item
      *
      * @return Inventory
      */
@@ -31,7 +33,9 @@ public class InventoryPickupItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the Item entity that was picked up
+     * 获取被捡起的物品实体.
+     * <p>
+     * 原文:Gets the Item entity that was picked up
      *
      * @return Item
      */
