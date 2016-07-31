@@ -4,8 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player takes action on a resource pack request sent via
- * {@link Player#setResourcePack(java.lang.String)}.
+ * 当玩家对通过 {@link Player#setResourcePack(java.lang.String)} 发起的资源包请求采取动作时触发本事件.
  */
 public class PlayerResourcePackStatusEvent extends PlayerEvent {
 
@@ -18,9 +17,11 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the status of this pack.
+     * 获取这个资源包的状态.
+     * <p>
+     * 原文:Gets the status of this pack.
      *
-     * @return the current status
+     * @return 当前的状态
      */
     public Status getStatus() {
         return status;
@@ -36,25 +37,24 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
     }
 
     /**
-     * Status of the resource pack.
+     * 资源包状态
      */
     public enum Status {
 
         /**
-         * The resource pack has been successfully downloaded and applied to the
-         * client.
+         * 资源包成功地下载和应用到了客户端.
          */
         SUCCESSFULLY_LOADED,
         /**
-         * The client refused to accept the resource pack.
+         * 客户端拒绝接受资源包
          */
         DECLINED,
         /**
-         * The client accepted the pack, but download failed.
+         * 客户端接受了资源包，但下载失败
          */
         FAILED_DOWNLOAD,
         /**
-         * The client accepted the pack and is beginning a download of it.
+         * 客户端接受了资源包，并开始下载
          */
         ACCEPTED;
     }
