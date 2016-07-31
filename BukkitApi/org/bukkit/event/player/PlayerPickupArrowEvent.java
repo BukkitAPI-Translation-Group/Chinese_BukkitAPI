@@ -5,7 +5,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 
 /**
- * Thrown when a player picks up an arrow from the ground.
+ * 当玩家从地上捡起箭时触发本事件.
  */
 public class PlayerPickupArrowEvent extends PlayerPickupItemEvent {
 
@@ -17,9 +17,11 @@ public class PlayerPickupArrowEvent extends PlayerPickupItemEvent {
     }
 
     /**
-     * Get the arrow being picked up by the player
+     * 获取玩家捡起的箭.
+     * <p>
+     * 原文:Get the arrow being picked up by the player
      *
-     * @return The arrow being picked up
+     * @return 被捡起的箭
      */
     public Arrow getArrow() {
         return arrow;
