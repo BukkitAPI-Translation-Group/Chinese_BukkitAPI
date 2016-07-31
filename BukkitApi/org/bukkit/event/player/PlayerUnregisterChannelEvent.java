@@ -3,7 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 
 /**
- * 玩家通过bukkit指令注销插件时触发事件.
+ * 当玩家注销插件通道时触发事件.
  */
 public class PlayerUnregisterChannelEvent extends PlayerChannelEvent {
 
