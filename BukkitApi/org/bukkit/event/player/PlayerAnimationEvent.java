@@ -22,7 +22,7 @@ public class PlayerAnimationEvent extends PlayerEvent implements Cancellable {
     public PlayerAnimationEvent(final Player player) {
         super(player);
 
-        //目前只支持动作类型.
+        // Only supported animation type for now:
         animationType = PlayerAnimationType.ARM_SWING;
     }
 
