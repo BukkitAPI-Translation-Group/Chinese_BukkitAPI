@@ -7,7 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
- * 存储试图登录的玩家的详细信息.Stores details for players attempting to log in.
+ * 存储试图登录的玩家的详细信息.
  * <p>
  * 这个事件是异步的，不在主线程上执行.
  */
@@ -34,7 +34,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获取登录的结果 (作为枚举).
+     * 获取登录的结果.
      * <p>
      * 原文:Gets the current result of the login, as an enum
      *
@@ -45,7 +45,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获取登录的结果 (作为枚举).
+     * 获取登录的结果.
      * <p>
      * 原文:Gets the current result of the login, as an enum
      *
@@ -59,7 +59,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 设置登录的结果 (作为枚举).
+     * 设置登录的结果.
      * <p>
      * 原文:Sets the new result of the login, as an enum
      *
@@ -70,7 +70,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 设置登录的结果 (作为枚举).
+     * 设置登录的结果.
      * <p>
      * 原文:Sets the new result of the login, as an enum
      *
@@ -84,26 +84,32 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Gets the current kick message that will be used if getResult() !=
+     * 获取将要使用的踢出消息，如果<code>getResult() != Result.ALLOWED</code>
+     * <p>
+     * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
      *
-     * @return Current kick message
+     * @return 当前的踢出消息
      */
     public String getKickMessage() {
         return message;
     }
 
     /**
-     * Sets the kick message to display if getResult() != Result.ALLOWED
+     * 设置要显示的踢出消息，如果<code>getResult() != Result.ALLOWED</code>
+     * <p>
+     * 原文:Sets the kick message to display if getResult() != Result.ALLOWED
      *
-     * @param message New kick message
+     * @param message 踢出消息
      */
     public void setKickMessage(final String message) {
         this.message = message;
     }
 
     /**
-     * Allows the player to log in
+     * 允许玩家登录
+     * <p>
+     * 原文:Allows the player to log in
      */
     public void allow() {
         result = Result.ALLOWED;
@@ -111,10 +117,12 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Disallows the player from logging in, with the given reason
+     * 以给定的理由不允许玩家登录
+     * <p>
+     * 原文:Disallows the player from logging in, with the given reason
      *
-     * @param result New result for disallowing the player
-     * @param message Kick message to display to the user
+     * @param result 不允许玩家登录的理由
+     * @param message 给用户显示的踢出消息
      */
     public void disallow(final Result result, final String message) {
         this.result = result;
@@ -122,12 +130,13 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Disallows the player from logging in, with the given reason
+     * 以给定的理由不允许玩家登录
+     * <p>
+     * 原文:Disallows the player from logging in, with the given reason
      *
-     * @param result New result for disallowing the player
-     * @param message Kick message to display to the user
-     * @deprecated This method uses a deprecated enum from {@link
-     *     PlayerPreLoginEvent}
+     * @param result 不允许玩家登录的理由
+     * @param message 给用户显示的踢出消息
+     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #disallow(Result, String)
      */
     @Deprecated
@@ -137,27 +146,33 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Gets the player's name.
+     * 获取玩家的名字.
+     * <p>
+     * 原文:Gets the player's name.
      *
-     * @return the player's name
+     * @return 玩家名
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Gets the player IP address.
+     * 获取玩家的IP地址.
+     * <p>
+     * 原文:Gets the player IP address.
      *
-     * @return The IP address
+     * @return IP地址
      */
     public InetAddress getAddress() {
         return ipAddress;
     }
 
     /**
-     * Gets the player's unique ID.
+     * 获取玩家的唯一标识.
+     * <p>
+     * 原文:Gets the player's unique ID.
      *
-     * @return The unique ID
+     * @return UUID
      */
     public UUID getUniqueId() {
         return uniqueId;
@@ -173,29 +188,28 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Basic kick reasons for communicating to plugins
+     * 基本的踢出理由，为了插件间的通信
      */
     public enum Result {
 
         /**
-         * The player is allowed to log in
+         * 玩家被允许登录
          */
         ALLOWED,
         /**
-         * The player is not allowed to log in, due to the server being full
+         * 由于服务器已满而不允许登录
          */
         KICK_FULL,
         /**
-         * The player is not allowed to log in, due to them being banned
+         * 由于该玩家被封禁而不允许登录
          */
         KICK_BANNED,
         /**
-         * The player is not allowed to log in, due to them not being on the
-         * white list
+         * 由于玩家不在白名单上而不允许登录
          */
         KICK_WHITELIST,
         /**
-         * The player is not allowed to log in, for reasons undefined
+         * 由于未定义的理由而不允许登录
          */
         KICK_OTHER;
 
