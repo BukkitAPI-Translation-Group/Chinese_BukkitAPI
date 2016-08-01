@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Stores details for players attempting to log in
+ * 玩家尝试登录的事件
  */
 public class PlayerLoginEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -16,8 +16,8 @@ public class PlayerLoginEvent extends PlayerEvent {
     private String message = "";
 
     /**
-     * @deprecated Address should be provided in other constructor
-     * @param player The {@link Player} for this event
+     * @deprecated IP地址应在其他构造器被提供
+     * @param player 这个事件的{@link Player 玩家}
      */
     @Deprecated
     public PlayerLoginEvent(final Player player) {
@@ -25,9 +25,9 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * @deprecated Address should be provided in other constructor
-     * @param player The {@link Player} for this event
-     * @param hostname The hostname that was used to connect to the server
+     * @deprecated IP地址应在其他构造器被提供
+     * @param player 这个事件的{@link Player 玩家}
+     * @param hostname 用于连接服务器的主机名
      */
     @Deprecated
     public PlayerLoginEvent(final Player player, final String hostname) {
@@ -35,13 +35,15 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
+     * 这个构造器默认踢出消息为空、登录状态为ALLOWED
+     * <p>
+     * 原文:
      * This constructor defaults message to an empty string, and result to
      * ALLOWED
      *
-     * @param player The {@link Player} for this event
-     * @param hostname The hostname that was used to connect to the server
-     * @param address The address the player used to connect, provided for
-     *     timing issues
+     * @param player 这个事件的{@link Player 玩家}
+     * @param hostname 用于连接服务器的主机名
+     * @param address 玩家的IP地址
      */
     public PlayerLoginEvent(final Player player, final String hostname, final InetAddress address) {
         super(player);
@@ -50,11 +52,10 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * @deprecated Address and hostname should be provided in other
-     *     constructor
-     * @param player The {@link Player} for this event
-     * @param result The result status for this event
-     * @param message The message to be displayed if result denies login
+     * @deprecated IP地址应在其他构造器被提供
+     * @param player 这个事件的{@link Player 玩家}
+     * @param result 事件的登录状态结果
+     * @param message 拒绝登录时显示的消息
      */
     @Deprecated
     public PlayerLoginEvent(final Player player, final Result result, final String message) {
@@ -62,14 +63,15 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * This constructor pre-configures the event with a result and message
+     * 此构造器预配置事件的结果和消息.
+     * <p>
+     * 原文:This constructor pre-configures the event with a result and message
      *
-     * @param player The {@link Player} for this event
-     * @param hostname The hostname that was used to connect to the server
-     * @param address The address the player used to connect, provided for
-     *     timing issues
-     * @param result The result status for this event
-     * @param message The message to be displayed if result denies login
+     * @param player 这个事件的{@link Player 玩家}
+     * @param hostname 用于连接服务器的主机名
+     * @param address 玩家的IP地址
+     * @param result 事件的登录状态结果
+     * @param message 拒绝登录时显示的消息
      */
     public PlayerLoginEvent(final Player player, String hostname, final InetAddress address, final Result result, final String message) {
         this(player, hostname, address);
@@ -78,54 +80,66 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the current result of the login, as an enum
+     * 获取当前的登录状态.
+     * <p>
+     * 原文:Gets the current result of the login, as an enum
      *
-     * @return Current Result of the login
+     * @return 登录状态
      */
     public Result getResult() {
         return result;
     }
 
     /**
-     * Sets the new result of the login, as an enum
+     * 设置登录的状态.
+     * <p>
+     * 原文:Sets the new result of the login, as an enum
      *
-     * @param result New result to set
+     * @param result 登录状态
      */
     public void setResult(final Result result) {
         this.result = result;
     }
 
     /**
-     * Gets the current kick message that will be used if getResult() !=
+     * 如果<code>getResult() != Result.ALLOWED</code>,获取将使用的踢出消息
+     * <p>
+     * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
      *
-     * @return Current kick message
+     * @return 踢出消息
      */
     public String getKickMessage() {
         return message;
     }
 
     /**
-     * Sets the kick message to display if getResult() != Result.ALLOWED
+     * 如果<code>getResult() != Result.ALLOWED</code>,设置要显示的踢出消息
+     * <p>
+     * 原文:Sets the kick message to display if getResult() != Result.ALLOWED
      *
-     * @param message New kick message
+     * @param message 踢出消息
      */
     public void setKickMessage(final String message) {
         this.message = message;
     }
 
     /**
-     * Gets the hostname that the player used to connect to the server, or
+     * 获取玩家用于连接服务器的主机名，如果未知则为空
+     * <p>
+     * 原文:Gets the hostname that the player used to connect to the server, or
      * blank if unknown
      *
-     * @return The hostname
+     * @return 主机名
      */
     public String getHostname() {
         return hostname;
     }
 
     /**
-     * Allows the player to log in
+     * 允许玩家登录
+     * <p>
+     * 原文:Allows the player to log in
      */
     public void allow() {
         result = Result.ALLOWED;
@@ -133,10 +147,12 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * Disallows the player from logging in, with the given reason
+     * 以给定的理由不允许玩家登录
+     * <p>
+     * 原文:Disallows the player from logging in, with the given reason
      *
-     * @param result New result for disallowing the player
-     * @param message Kick message to display to the user
+     * @param result 不允许玩家登录的理由
+     * @param message 给用户显示的踢出消息
      */
     public void disallow(final Result result, final String message) {
         this.result = result;
@@ -144,12 +160,14 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the {@link InetAddress} for the Player associated with this event.
+     * 获取玩家的{@link InetAddress IP地址}.
+     * 这个方法是在此事件期间使用 <code>player.getAddress()</code> 为null的解决办法
+     * <p>
+     * 原文:Gets the {@link InetAddress} for the Player associated with this event.
      * This method is provided as a workaround for player.getAddress()
      * returning null during PlayerLoginEvent.
      *
-     * @return The address for this player. For legacy compatibility, this may
-     *     be null.
+     * @return 玩家的IP地址。为兼容旧版，这可能是null
      */
     public InetAddress getAddress() {
         return address;
@@ -165,29 +183,29 @@ public class PlayerLoginEvent extends PlayerEvent {
     }
 
     /**
-     * Basic kick reasons for communicating to plugins
+     * 踢出玩家的理由
      */
     public enum Result {
 
         /**
-         * The player is allowed to log in
+         * 玩家被允许登录
          */
         ALLOWED,
         /**
-         * The player is not allowed to log in, due to the server being full
+         * 由于服务器已满,不允许登录
          */
         KICK_FULL,
         /**
-         * The player is not allowed to log in, due to them being banned
+         * 由于玩家被封禁，不允许登录
          */
         KICK_BANNED,
         /**
-         * The player is not allowed to log in, due to them not being on the
+         * 由于玩家不在白名单上而不允许登录
          * white list
          */
         KICK_WHITELIST,
         /**
-         * The player is not allowed to log in, for reasons undefined
+         * 由于其他原因而不允许登录
          */
         KICK_OTHER
     }
