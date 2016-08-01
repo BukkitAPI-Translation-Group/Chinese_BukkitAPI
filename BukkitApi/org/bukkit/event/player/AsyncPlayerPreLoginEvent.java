@@ -7,7 +7,7 @@ import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
 /**
- * 存储试图登录的玩家的详细信息.
+ * 存储尝试登录的玩家的详细信息，玩家尝试登录服务器的事件.
  * <p>
  * 这个事件是异步的，不在主线程上执行.
  */
@@ -34,22 +34,22 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获取登录的结果.
+     * 获取登录的状态.
      * <p>
      * 原文:Gets the current result of the login, as an enum
      *
-     * @return 登录的结果
+     * @return 登录的状态
      */
     public Result getLoginResult() {
         return result;
     }
 
     /**
-     * 获取登录的结果.
+     * 获取登录的状态.
      * <p>
      * 原文:Gets the current result of the login, as an enum
      *
-     * @return 登录的结果
+     * @return 登录的状态
      * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #getLoginResult()
      */
@@ -59,22 +59,22 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 设置登录的结果.
+     * 设置登录的状态.
      * <p>
      * 原文:Sets the new result of the login, as an enum
      *
-     * @param result 结果
+     * @param result 状态
      */
     public void setLoginResult(final Result result) {
         this.result = result;
     }
 
     /**
-     * 设置登录的结果.
+     * 设置登录的状态.
      * <p>
      * 原文:Sets the new result of the login, as an enum
      *
-     * @param result 结果
+     * @param result 状态
      * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #setLoginResult(Result)
      */
@@ -89,7 +89,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
      *
-     * @return 当前的踢出消息
+     * @return 踢出消息
      */
     public String getKickMessage() {
         return message;
