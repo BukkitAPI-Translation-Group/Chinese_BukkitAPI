@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a firework explodes.
+ * 当烟花爆炸时触发本事件
  */
 public class FireworkExplodeEvent extends EntityEvent implements Cancellable {
 
@@ -22,11 +22,13 @@ public class FireworkExplodeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Set the cancelled state of this event. If the firework explosion is
+     * 设置此事件的取消状态。如果烟花的爆炸被取消，烟花仍然将被移除，但烟花颗粒不会显示.
+     * <p>
+     * 原文:Set the cancelled state of this event. If the firework explosion is
      * cancelled, the firework will still be removed, but no particles will be
      * displayed.
      *
-     * @param cancel whether to cancel or not.
+     * @param cancel 是否取消事件
      */
     @Override
     public void setCancelled(boolean cancel) {
