@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Thrown whenever a {@link Player} dies
+ * 当一个{@link Player 玩家}死亡时触发本事件
  */
 public class PlayerDeathEvent extends EntityDeathEvent {
     private int newExp = 0;
@@ -38,30 +38,39 @@ public class PlayerDeathEvent extends EntityDeathEvent {
     }
 
     /**
+     * 设置广播给所有人的死亡提示.
+     * <p>
+     * 原文:
      * Set the death message that will appear to everyone on the server.
      *
-     * @param deathMessage Message to appear to other players on the server.
+     * @param deathMessage 死亡提示
      */
     public void setDeathMessage(String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
     /**
-     * Get the death message that will appear to everyone on the server.
+     * 获取广播给所有人的死亡提示.
+     * <p>
+     * 原文:Get the death message that will appear to everyone on the server.
      *
-     * @return Message to appear to other players on the server.
+     * @return 死亡提示
      */
     public String getDeathMessage() {
         return deathMessage;
     }
 
     /**
-     * Gets how much EXP the Player should have at respawn.
+     * 获取玩家重生时有多少经验.
+     * <p>
+     * 不包含多少经验会掉落，要做到这点请看{@link #getDroppedExp()}.
+     * <p>
+     * 原文:Gets how much EXP the Player should have at respawn.
      * <p>
      * This does not indicate how much EXP should be dropped, please see
      * {@link #getDroppedExp()} for that.
      *
-     * @return New EXP of the respawned player
+     * @return 重生后的玩家有多少经验
      */
     public int getNewExp() {
         return newExp;
