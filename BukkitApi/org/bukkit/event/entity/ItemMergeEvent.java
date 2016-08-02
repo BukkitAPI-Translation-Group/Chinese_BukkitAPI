@@ -31,9 +31,11 @@ public class ItemMergeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the Item entity the main Item is being merged into.
+     * 获取主物品正在合并的物品实体.
+     * <p>
+     * 原文:Gets the Item entity the main Item is being merged into.
      *
-     * @return The Item being merged with
+     * @return 被合并的物品
      */
     public Item getTarget() {
         return target;
