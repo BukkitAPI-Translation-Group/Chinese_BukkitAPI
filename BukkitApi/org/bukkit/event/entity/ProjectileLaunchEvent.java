@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a projectile is launched.
+ * 当一个抛射物被发射时触发本事件.
  */
 public class ProjectileLaunchEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
