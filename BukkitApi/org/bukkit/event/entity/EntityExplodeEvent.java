@@ -10,8 +10,6 @@ import java.util.List;
 
 /**
  * 当一个实体爆炸的时候触发本事件
- * 原文:
- * Called when an entity explodes
  */
 public class EntityExplodeEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -38,43 +36,50 @@ public class EntityExplodeEvent extends EntityEvent implements Cancellable {
 
     /**
      * 返回被将移除或已被这次爆炸移除的方块列表.
-     * 
-     * @return 被炸毁的所有方块
+     * <p>
      * 原文:
      * Returns the list of blocks that would have been removed or were removed
      * from the explosion event.
      *
-     * @return All blown-up blocks
+     * @return 被炸毁的所有方块
      */
     public List<Block> blockList() {
         return blocks;
     }
 
     /**
-     * Returns the location where the explosion happened.
+     * 返回爆炸发生的位置.
+     * <p>
+     * 从此值获取一个实体是不可能的，因为实体不存在于此世界上.
+     * <p>
+     * 原文:Returns the location where the explosion happened.
      * <p>
      * It is not possible to get this value from the Entity as the Entity no
      * longer exists in the world.
      *
-     * @return The location of the explosion
+     * @return 爆炸发生位置
      */
     public Location getLocation() {
         return location;
     }
 
     /**
-     * Returns the percentage of blocks to drop from this explosion
+     * 返回这次爆炸掉落方块占所有影响到的方块的百分比.
+     * <p>
+     * 原文:Returns the percentage of blocks to drop from this explosion
      *
-     * @return The yield.
+     * @return 掉落物占有率
      */
     public float getYield() {
         return yield;
     }
 
     /**
-     * Sets the percentage of blocks to drop from this explosion
+     * 设置这次爆炸掉落的方块的百分比.
+     * <p>
+     * 原文:Sets the percentage of blocks to drop from this explosion
      *
-     * @param yield The new yield percentage
+     * @param yield 掉落物占有率
      */
     public void setYield(float yield) {
         this.yield = yield;
