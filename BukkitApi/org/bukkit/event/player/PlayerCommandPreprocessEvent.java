@@ -9,6 +9,37 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
+ * 这个事件是,当一个玩家执行一个命令的时候将会被触发(也就是在聊天框里面输入信息以/开头的时候，算作命令，就会触发此事件)
+ * 且这个事件是早于插件的onCommand接收的命令的
+ * 如果你此时调用{@link #setMessage(String)}方法的话,其他插件收到的命令将会是你更改以后的命令
+ * 警告:如果没必要，请避免使用此事件.
+ * 如果你不知道这个事件有啥用,下面的例子可能有助于你理解该事件的作用.
+ <ul>
+ * <li>接收到一个带有变量的命令,把它用对应要替换成的
+ * <li>量来替换这个变量. 举个梨子
+ *     <code>${nearbyPlayer}</code> 是一个变量，然后我们需要把它替换成离发送命令最近的玩家的名字
+ *     又或者是替换成 <code>@a</code> 和 <code>@p</code> 这样的变量
+ *     通过插件调用命令方块来执行它，而不是插件.
+ * <li>你可以用这个事件来阻止其他插件的命令执行. 比
+ *     如, 阻止玩家在竞技场内使用 <code>/home</code> 这个命令.
+ * <li>你可以简化原本复杂的命令,将它用简单的命令替代. 比如啊, 在一个玩家输
+ *     入 <code>/calias cr gamemode creative</code> 这个命令之后, 你可以将其拦截以后替换
+ *     成 <code>/cr</code> 这个命令, 然后再把这个命令直接
+ *     替换成 <code>/gamemode creative</code>. (全局性的命令别名依然
+ *     需要在Plugin.yml内注册.)
+ * </ul>
+ * <p>
+ * 切忌这样使用,比如:
+ * <ul>
+ * <li>强制去执行一个命令
+ * </ul>
+ * <p>
+ * 如果该事件满足条件被取消掉,对应的命令将会无法发挥任何作用.
+ * <p>
+ * 另外,命令内的{@link #getMessage()}这个方法,返回的String会带有一个/
+ * 切忌删除此/,否则将出现无法预料的错误.
+ *
+ *原文:
  * This event is called whenever a player runs a command (by placing a slash
  * at the start of their message). It is called early in the command handling
  * process, and modifications in this event (via {@link #setMessage(String)})
@@ -73,25 +104,23 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * Gets the command that the player is attempting to send.
+     * 获取所发送的命令的所有字符串.
      * <p>
-     * All commands begin with a special character; implementations do not
-     * consider the first character when executing the content.
+     * 虽然所获取的命令字符串会带有一个/,但你执行命令的时候,不用输入这个/
      *
-     * @return Message the player is attempting to send
+     * @return 返回玩家所输入的命令所有字符串,包括/
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * Sets the command that the player will send.
+     * 设置玩家即将要发送的命令的字符串
      * <p>
-     * All commands begin with a special character; implementations do not
-     * consider the first character when executing the content.
+     * 虽然所获取的命令字符串会带有一个/,但你执行命令的时候,不用输入这个/
      *
-     * @param command New message that the player will send
-     * @throws IllegalArgumentException if command is null or empty
+     * @param 设置即将要发送的命令
+     * @throws IllegalArgumentException 如果这个命令为Null或者为空
      */
     public void setMessage(String command) throws IllegalArgumentException {
         Validate.notNull(command, "Command cannot be null");
@@ -100,10 +129,10 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * Sets the player that this command will be executed as.
+     * 设置这个命令的执行者
      *
-     * @param player New player which this event will execute as
-     * @throws IllegalArgumentException if the player provided is null
+     * @param 新的命令执行者
+     * @throws IllegalArgumentException 如果这个玩家无效
      */
     public void setPlayer(final Player player) throws IllegalArgumentException {
         Validate.notNull(player, "Player cannot be null");
@@ -111,11 +140,10 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * Gets the format to use to display this chat message
+     * 
      *
-     * @deprecated This method is provided for backward compatibility with no
-     *     guarantee to the use of the format.
-     * @return String.Format compatible format string
+     * @deprecated 该方法虽然向后兼容版本,但可能版本不同格式不同
+     * @return 返回聊天格式字符串
      */
     @Deprecated
     public String getFormat() {
@@ -123,15 +151,14 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * Sets the format to use to display this chat message
+     * 设置这个消息展示的格式
      *
-     * @deprecated This method is provided for backward compatibility with no
-     *     guarantee to the effect of modifying the format.
-     * @param format String.Format compatible format string
+     * @deprecated 向后兼容,不确保每个版本都有效
+     * @param 消息展示给别的玩家的格式
      */
     @Deprecated
     public void setFormat(final String format) {
-        // Oh for a better way to do this!
+        // 建议用这个方法
         try {
             String.format(format, player, message);
         } catch (RuntimeException ex) {
@@ -143,18 +170,14 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * Gets a set of recipients that this chat message will be displayed to.
+     * 获取所有能看到这个消息的玩家
      * <p>
-     * The set returned is not guaranteed to be mutable and may auto-populate
-     * on access. Any listener accessing the returned set should be aware that
-     * it may reduce performance for a lazy set implementation. Listeners
-     * should be aware that modifying the list may throw {@link
-     * UnsupportedOperationException} if the event caller provides an
-     * unmodifiable set.
+     * 返回所有能看到这个消息的玩家.但你要知道这个集合随时可能变,频繁访问必定增加服务器负担.
+     * 如果这个Set集合是个不可变集合,将会抛出 {@link
+     * UnsupportedOperationException} 异常.
      *
-     * @deprecated This method is provided for backward compatibility with no
-     *     guarantee to the effect of viewing or modifying the set.
-     * @return All Players who will see this chat message
+     * @deprecated 该方法无法保证在每个版本上的效果
+     * @return 所有看见该消息的玩家
      */
     @Deprecated
     public Set<Player> getRecipients() {
