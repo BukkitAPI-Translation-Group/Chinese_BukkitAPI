@@ -25,7 +25,7 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
     }
 
     /**
-     * Get entity which did this. May be null.
+     * 获取哪个实体触发该事件,值有可能为Null.
      *
      * @return acting entity
      */
@@ -71,39 +71,39 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
 
     public enum ChangeReason {
         /**
-         * Player emptying the cauldron by filling their bucket.
+         * 玩家将坩埚内的水装入水桶.
          */
         BUCKET_FILL,
         /**
-         * Player filling the cauldron by emptying their bucket.
+         * 玩家用水桶装满坩埚.
          */
         BUCKET_EMPTY,
         /**
-         * Player emptying the cauldron by filling their bottle.
+         * 玩家用水瓶将坩埚内的水用完.
          */
         BOTTLE_FILL,
         /**
-         * Player filling the cauldron by emptying their bottle.
+         * 玩家将瓶子内的水装入坩埚.
          */
         BOTTLE_EMPTY,
         /**
-         * Player cleaning their banner.
+         * 玩家用坩埚内的水清洗旗帜.
          */
         BANNER_WASH,
         /**
-         * Player cleaning their armor.
+         * 玩家用坩埚内的水清洗护甲装备.
          */
         ARMOR_WASH,
         /**
-         * Entity being extinguished.
+         * 玩家跳进坩埚灭火.
          */
         EXTINGUISH,
         /**
-         * Evaporating due to biome dryness.
+         * 天气过于炎热导致坩埚内的水自然蒸发.
          */
         EVAPORATE,
         /**
-         * Unknown.
+         * 未知情况.
          */
         UNKNOWN
     }
