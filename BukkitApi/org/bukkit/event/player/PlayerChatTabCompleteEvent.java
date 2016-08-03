@@ -7,7 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player attempts to tab-complete a chat message.
+ * 当玩家尝试补全聊天消息时触发本事件
  */
 public class PlayerChatTabCompleteEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -30,30 +30,38 @@ public class PlayerChatTabCompleteEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the chat message being tab-completed.
+     * 获取将被补全的聊天消息.
+     * <p>
+     * 原文:Gets the chat message being tab-completed.
      *
-     * @return the chat message
+     * @return 聊天消息
      */
     public String getChatMessage() {
         return message;
     }
 
     /**
-     * Gets the last 'token' of the message being tab-completed.
+     * 获取被补全消息的最后一个'标记'.
+     * <p>
+     * 标记是字符开始后的最后一个组成部分. (比如“res ? test”，这里的last token就是test)
+     * <p>
+     * 原文:Gets the last 'token' of the message being tab-completed.
      * <p>
      * The token is the substring starting with the character after the last
      * space in the message.
      *
-     * @return The last token for the chat message
+     * @return 聊天消息的最后一个标记
      */
     public String getLastToken() {
         return lastToken;
     }
 
     /**
-     * This is the collection of completions for this event.
+     * 获取所有补全项集合.
+     * <p>
+     * 原文:This is the collection of completions for this event.
      *
-     * @return the current completions
+     * @return 补全项
      */
     public Collection<String> getTabCompletions() {
         return completions;
