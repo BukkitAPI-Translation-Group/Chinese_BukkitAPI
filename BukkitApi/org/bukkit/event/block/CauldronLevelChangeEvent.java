@@ -29,7 +29,7 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
      * <p>
      * 原文:Get entity which did this. May be null.
      *
-     * @return acting entity
+     * @return 触发本事件的实体
      */
     public Entity getEntity() {
         return entity;
