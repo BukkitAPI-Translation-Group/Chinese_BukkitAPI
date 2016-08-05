@@ -10,6 +10,8 @@ import org.bukkit.event.HandlerList;
 /**
  * 当玩家聊天时触发这个事件.
  * <p>
+ * 构造器提供了一个表示事件同步触发还是异步触发的布尔值。当异步时，本事件可以被任何线程调用，无主线程，访问API受限。
+ * <p>
  * The constructor provides a boolean to indicate if the event was fired
  * synchronously or asynchronously. When asynchronous, this event can be
  * called from any thread, sans the main thread, and has limited access to the
