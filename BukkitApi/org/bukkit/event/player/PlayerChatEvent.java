@@ -10,14 +10,11 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Holds information for player chat and commands
+ * 存储玩家聊天和命令的信息。玩家聊天/使用命令会触发本事件。
  *
- * @deprecated This event will fire from the main thread and allows the use of
- *     all of the Bukkit API, unlike the {@link AsyncPlayerChatEvent}.
+ * @deprecated 这个事件将被主线程触发，允许使用所有的 Bukkit API，不像{@link AsyncPlayerChatEvent}.
  *     <p>
- *     Listening to this event forces chat to wait for the main thread which
- *     causes delays for chat. {@link AsyncPlayerChatEvent} is the encouraged
- *     alternative for thread safe implementations.
+ *     监听这个事件迫使聊天等待主线程，会导致聊天消息延迟展现。建议使用线程安全的{@link AsyncPlayerChatEvent}
  */
 @Deprecated
 @Warning(reason="Listening to this event forces chat to wait for the main thread, delaying chat messages.")
@@ -51,28 +48,34 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the message that the player is attempting to send
+     * 获取这个玩家尝试发送的消息。
+     * <p>
+     * 原文：Gets the message that the player is attempting to send
      *
-     * @return Message the player is attempting to send
+     * @return 玩家尝试发送的消息
      */
     public String getMessage() {
         return message;
     }
 
     /**
-     * Sets the message that the player will send
+     * 设置这个玩家将发送的消息。
+     * <p>
+     * 原文：Sets the message that the player will send
      *
-     * @param message New message that the player will send
+     * @param message 玩家将发送的新消息
      */
     public void setMessage(String message) {
         this.message = message;
     }
 
     /**
-     * Sets the player that this message will display as, or command will be
+     * 设置这条消息显示成的玩家，或谁将执行这条命令.
+     * <p>
+     * 原文:Sets the player that this message will display as, or command will be
      * executed as
      *
-     * @param player New player which this event will execute as
+     * @param player 作为这个新玩家执行这个事件
      */
     public void setPlayer(final Player player) {
         Validate.notNull(player, "Player cannot be null");
@@ -80,18 +83,22 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the format to use to display this chat message
+     * 获取用于展示这条消息的格式。
+     * <p>
+     * 原文:Gets the format to use to display this chat message
      *
-     * @return String.Format compatible format string
+     * @return 字符串格式:String.Format
      */
     public String getFormat() {
         return format;
     }
 
     /**
-     * Sets the format to use to display this chat message
+     * 设置用于展示这条消息的格式。
+     * <p>
+     * 原文:Sets the format to use to display this chat message
      *
-     * @param format String.Format compatible format string
+     * @param format 字符串格式:String.Format
      */
     public void setFormat(final String format) {
         // Oh for a better way to do this!
@@ -106,9 +113,11 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets a set of recipients that this chat message will be displayed to
+     * 获取一个将被展示这条消息的玩家的集合。
+     * <p>
+     * 原文:Gets a set of recipients that this chat message will be displayed to
      *
-     * @return All Players who will see this chat message
+     * @return 将会看到本消息的所有玩家
      */
     public Set<Player> getRecipients() {
         return recipients;
