@@ -12,17 +12,9 @@ import org.bukkit.event.HandlerList;
  * <p>
  * 构造器提供了一个表示事件同步触发还是异步触发的布尔值。当异步时，本事件可以被任何线程调用，无主线程，访问API受限。
  * <p>
- * The constructor provides a boolean to indicate if the event was fired
- * synchronously or asynchronously. When asynchronous, this event can be
- * called from any thread, sans the main thread, and has limited access to the
- * API.
+ * 如果玩家通过传入的聊天数据包导致触发本事件，本事件将是异步的。如果一个插件通过迫使玩家聊天（比如<code>Player.chat</code>）而触发本事件，本事件将是同步的。
  * <p>
- * If a player is the direct cause of this event by an incoming packet, this
- * event will be asynchronous. If a plugin triggers this event by compelling a
- * player to chat, this event will be synchronous.
- * <p>
- * Care should be taken to check {@link #isAsynchronous()} and treat the event
- * appropriately.
+ * 应注意通过{@link #isAsynchronous()}检查本事件是同步的还是异步的，适当地处理本事件。
  */
 public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
