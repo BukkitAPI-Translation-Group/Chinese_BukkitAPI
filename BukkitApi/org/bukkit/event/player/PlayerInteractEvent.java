@@ -11,6 +11,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.EquipmentSlot;
 
 /**
+ * 当玩家与一个方块或者空气交互时触发. 
+ * <p>
+ * 如果这个事件不会触发任何现象(例如点击空气)则会取消.
+ * <p>原文: 
  * Called when a player interacts with an object or air.
  * <p>
  * This event will fire as cancelled if the vanilla behavior
