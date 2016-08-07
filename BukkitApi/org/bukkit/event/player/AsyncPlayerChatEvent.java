@@ -39,10 +39,9 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-    /**
      * 获得这个玩家试图发送的信息。这个消息
      * 将以{@link #getFormat()}的格式被获取。
-     *<p>
+     * <p>
      * 原文:Gets the message that the player is attempting to send. This message
      * will be used with {@link #getFormat()}.
      *
@@ -114,6 +113,12 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
 
     /**
      * 获取一个被展示这条字符消息的收件人的集合。
+     * <p>
+     * 本方法返回的集合不保证可以改变和访问时自动填充。
+     * 任何监听器访问这个返回的集合应该知道对于一个lazy set的实现可能会降低性能.
+     * <p>
+     * 监听器应注意到如果事件传唤者提供了一个不可修改的Set集合的话修改这个列表可能会抛出{@link
+     * UnsupportedOperationException}异常。
      * <p>
      * 原文:Gets a set of recipients that this chat message will be displayed to.
      * <p>
