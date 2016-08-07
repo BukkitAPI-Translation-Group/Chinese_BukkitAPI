@@ -130,6 +130,7 @@ public interface Scoreboard {
      * @deprecated 记分板可以包含不玩家条目
      * @see #getEntryTeam(String)
      */
+    @Deprecated
     Team getPlayerTeam(OfflinePlayer player) throws IllegalArgumentException;
 
     /**

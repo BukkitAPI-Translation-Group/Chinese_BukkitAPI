@@ -1,6 +1,5 @@
 package org.bukkit.inventory.meta;
 
-import org.bukkit.Material;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionData;
@@ -9,7 +8,7 @@ import org.bukkit.potion.PotionType;
 import java.util.List;
 
 /**
- * 代表{@link Material#POTION 药水}和有自定义效果的物品.
+ * 代表药水和有自定义药水效果的物品.
  */
 public interface PotionMeta extends ItemMeta {
 

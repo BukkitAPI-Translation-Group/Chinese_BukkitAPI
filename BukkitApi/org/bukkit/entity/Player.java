@@ -133,7 +133,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param message 要发送的消息
      */
-    @Override
     public void sendRawMessage(String message);
 
     /**

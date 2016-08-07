@@ -1,11 +1,11 @@
 package org.bukkit.scoreboard;
 
-public enum NameTagVisibility {
-
 /**
  * @deprecated replaced by {@link Team.OptionStatus}
  */
 @Deprecated
+public enum NameTagVisibility {
+
     /**
      * 一直显示玩家名称.
      * <p>

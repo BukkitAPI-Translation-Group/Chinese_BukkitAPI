@@ -88,5 +88,6 @@ public enum InventoryAction {
     /**
      * 无法识别的{@link ClickType 点击类型}.
      */
-    UNKNOWN,;
+    UNKNOWN,
+    ;
 }

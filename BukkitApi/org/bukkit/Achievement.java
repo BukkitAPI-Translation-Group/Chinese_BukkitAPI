@@ -273,7 +273,8 @@ public enum Achievement {
      * <p>
      * 此成就需要前置成就: 「{@linkplain Achievement#BUILD_BETTER_PICKAXE 获得升级}」
      */
-    OVERPOWERED(BUILD_BETTER_PICKAXE);
+    OVERPOWERED(BUILD_BETTER_PICKAXE)
+    ;
 
     private final Achievement parent;
 

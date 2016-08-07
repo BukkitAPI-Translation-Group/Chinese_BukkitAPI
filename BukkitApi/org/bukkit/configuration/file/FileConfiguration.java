@@ -21,7 +21,6 @@ import java.nio.charset.Charset;
 
 import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.MemoryConfiguration;
-import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
 
 /**
  * This is a base class for all File based implementations of {@link
@@ -246,4 +245,4 @@ public abstract class FileConfiguration extends MemoryConfiguration {
 
         return (FileConfigurationOptions) options;
     }
-    }
+}

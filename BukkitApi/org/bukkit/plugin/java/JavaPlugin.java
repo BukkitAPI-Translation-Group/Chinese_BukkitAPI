@@ -225,10 +225,6 @@ public abstract class JavaPlugin extends PluginBase {
         newConfig.setDefaults(YamlConfiguration.loadConfiguration(new InputStreamReader(defConfigStream, Charsets.UTF_8)));
     }
 
-    private boolean isStrictlyUTF8() {
-        return getDescription().getAwareness().contains(PluginAwareness.Flags.UTF8);
-    }
-
     @Override
     public void saveConfig() {
         try {
@@ -489,6 +485,8 @@ public abstract class JavaPlugin extends PluginBase {
 
     @Override
     public EbeanServer getDatabase() {
+        Preconditions.checkState(description.isDatabaseEnabled(), "Plugin does not have database: true in plugin.yml");
+
         return ebean;
     }
 

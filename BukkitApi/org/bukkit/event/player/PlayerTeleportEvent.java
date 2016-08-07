@@ -54,6 +54,10 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
          */
         END_PORTAL,
         /**
+         * 由旁观者菜单传送到一个实体/玩家.
+         */
+        SPECTATE,
+        /**
          * 由末地折跃门进行传送.
          */
         END_GATEWAY,
@@ -61,10 +65,6 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
          * 由紫影果进行传送.
          */
         CHORUS_FRUIT,
-        /**
-         * 由旁观者菜单传送到一个实体/玩家.
-         */
-        SPECTATE,
         /**
          * 由除已知枚举外的其他情况进行了传送.
          */

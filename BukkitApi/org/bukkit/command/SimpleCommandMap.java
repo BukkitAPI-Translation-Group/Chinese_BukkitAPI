@@ -129,7 +129,7 @@ public class SimpleCommandMap implements CommandMap {
             return false;
         }
 
-        String sentCommandLabel = args[0].toLowerCase(java.util.Locale.ENGLISH);;
+        String sentCommandLabel = args[0].toLowerCase(java.util.Locale.ENGLISH);
         Command target = getCommand(sentCommandLabel);
 
         if (target == null) {
@@ -158,7 +158,7 @@ public class SimpleCommandMap implements CommandMap {
     }
 
     public Command getCommand(String name) {
-        Command target = knownCommands.get(name.toLowerCase());
+        Command target = knownCommands.get(name.toLowerCase(java.util.Locale.ENGLISH));
         return target;
     }
 

@@ -83,19 +83,19 @@ public abstract class Enchantment {
     public static final Enchantment DEPTH_STRIDER = new EnchantmentWrapper(8);
 
     /**
+     * 附魔：冰霜行者
+     * <p>
+     * 原文:Freezes any still water adjacent to ice / frost which player is walking on
+     */
+    public static final Enchantment FROST_WALKER = new EnchantmentWrapper(9);
+
+    /**
      * 附魔：锋利
      * <p>
      * 原文：
      * Increases damage against all targets
      */
     public static final Enchantment DAMAGE_ALL = new EnchantmentWrapper(16);
-
-    /**
-     * 附魔：冰霜行者
-     * <p>
-     * 原文:Freezes any still water adjacent to ice / frost which player is walking on
-     */
-    public static final Enchantment FROST_WALKER = new EnchantmentWrapper(9);
 
     /**
      * 附魔：亡灵杀手
