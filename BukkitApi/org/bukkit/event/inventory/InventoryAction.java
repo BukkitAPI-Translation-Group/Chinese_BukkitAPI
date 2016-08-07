@@ -1,64 +1,64 @@
 package org.bukkit.event.inventory;
 
 /**
- * An estimation of what the result will be.
+ * 用于判断物品栏的动作结果.
  */
 public enum InventoryAction {
 
     /**
-     * Nothing will happen from the click.
+     * 这一次单击什么都不会发生.
      * <p>
      * There may be cases where nothing will happen and this is value is not
      * provided, but it is guaranteed that this value is accurate when given.
      */
     NOTHING,
     /**
-     * All of the items on the clicked slot are moved to the cursor.
+     * 所单击的格子的物品(<b>所有</b>)被移到光标上.
      */
     PICKUP_ALL,
     /**
-     * Some of the items on the clicked slot are moved to the cursor.
+     * 所单击的格子的物品(<b>部分</b>)被移到光标上.
      */
     PICKUP_SOME,
     /**
-     * Half of the items on the clicked slot are moved to the cursor.
+     * 所单击的格子的物品(<b>一半</b>)被移到光标上.
      */
     PICKUP_HALF,
     /**
-     * One of the items on the clicked slot are moved to the cursor.
+     * 所单击的格子的物品(<b>一个</b>)被移到光标上.
      */
     PICKUP_ONE,
     /**
-     * All of the items on the cursor are moved to the clicked slot.
+     * 光标上的物品(<b>所有</b>)被移到所单击的格子中.
      */
     PLACE_ALL,
     /**
-     * Some of the items from the cursor are moved to the clicked slot
-     * (usually up to the max stack size).
+     * 光标上的物品(<b>部分</b>)被移到所单击的格子中.
+     * (通常会提高到该物品的最大堆叠数量).
      */
     PLACE_SOME,
     /**
-     * A single item from the cursor is moved to the clicked slot.
+     * 光标上的物品(<b>一个</b>)被移到所单击的格子中.
      */
     PLACE_ONE,
     /**
-     * The clicked item and the cursor are exchanged.
+     * 光标上的物品与所单击的格子中的物品相互交换.
      */
     SWAP_WITH_CURSOR,
     /**
-     * The entire cursor item is dropped.
+     * 丢弃光标上的物品(<b>所有</b>).
      */
     DROP_ALL_CURSOR,
     /**
-     * One item is dropped from the cursor.
+     * 丢弃光标上的物品(<b>一个</b>).
      */
     DROP_ONE_CURSOR,
     /**
-     * The entire clicked slot is dropped.
+     * 丢弃所单击的格子中的物品(<b>所有</b>).
      */
     DROP_ALL_SLOT,
     /**
-     * One item is dropped from the clicked slot.
+     * 丢弃所单击的格子中的物品(<b>一个</b>).
      */
     DROP_ONE_SLOT,
     /**
