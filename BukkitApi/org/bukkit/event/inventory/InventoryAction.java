@@ -4,7 +4,7 @@ package org.bukkit.event.inventory;
  * 用于判断物品栏的动作结果.
  */
 public enum InventoryAction {
-
+    
     /**
      * 这一次单击什么都不会发生.
      * <p>
@@ -33,8 +33,7 @@ public enum InventoryAction {
      */
     PLACE_ALL,
     /**
-     * 光标上的物品(<b>部分</b>)被移到所单击的格子中.
-     * (通常会提高到该物品的最大堆叠数量).
+     * 光标上的物品(<b>部分</b>)被移到所单击的格子中. (通常会提高到该物品的最大堆叠数量).
      */
     PLACE_SOME,
     /**
@@ -62,12 +61,14 @@ public enum InventoryAction {
      */
     DROP_ONE_SLOT,
     /**
-     * The item is moved to the opposite inventory if a space is found.
+     * 将所单击的格子中的物品移动到对面的物品栏(如果有空位)中去.
+     * <p>
+     * 译注：该物品栏动作通常是按住shift单击物品栏中的物品。
      */
     MOVE_TO_OTHER_INVENTORY,
     /**
-     * The clicked item is moved to the hotbar, and the item currently there
-     * is re-added to the player's inventory.
+     * The clicked item is moved to the hotbar, and the item currently there is
+     * re-added to the player's inventory.
      */
     HOTBAR_MOVE_AND_READD,
     /**
@@ -75,17 +76,17 @@ public enum InventoryAction {
      */
     HOTBAR_SWAP,
     /**
-     * A max-size stack of the clicked item is put on the cursor.
+     * 将所单击的物品按最大堆叠数量复制到光标上.
+     * <p>
+     * 译注：该物品栏动作通常是按住shift单击创造模式物品栏中的物品。
      */
     CLONE_STACK,
     /**
-     * The inventory is searched for the same material, and they are put on
-     * the cursor up to {@link org.bukkit.Material#getMaxStackSize()}.
+     * 在物品栏中寻找相同的物品，并添加到光标上，直到达到{@link org.bukkit.Material#getMaxStackSize() 物品的最大堆叠数量}.
      */
     COLLECT_TO_CURSOR,
     /**
-     * An unrecognized ClickType.
+     * 无法识别的{@link ClickType 点击类型}.
      */
-    UNKNOWN,
-    ;
+    UNKNOWN,;
 }
