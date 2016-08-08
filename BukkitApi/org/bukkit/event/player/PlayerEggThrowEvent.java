@@ -25,6 +25,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
 
     /**
      * 获取事件中的鸡蛋
+     * <p>
+     * 原文:
      *
      * @return 事件中的鸡蛋
      */
@@ -34,6 +36,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
 
     /**
      * 检测鸡蛋是否将被孵化。服务器可能设置无互动。
+     * <p>
+     * 原文:
      *
      * @return 布尔值 鸡蛋是否将被孵化
      */
@@ -43,6 +47,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
 
     /**
      * 设置鸡蛋是否将被孵化。
+     * <p>
+     * 原文：
      *
      * @param hatching 布尔值，你是否希望鸡蛋孵化。
      */
@@ -52,6 +58,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
 
     /**
      * 获取将被孵化的生物类型 (默认为EntityType.CHICKEN )
+     * <p>
+     * 原文:
      *
      * @return 将被孵化的生物类型
      */
@@ -61,6 +69,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
 
     /**
      * 修改将被孵化生物的类型
+     * <p>
+     * 原文:
      *
      * @param hatchType 将被孵化生物的类型
      */
@@ -76,6 +86,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      * <li>31/256 ~= 1/8 的几率生成 1 只
      * <li>1/256 的几率生成 4 只
      * </ul>
+     * <p>
+     * 原文:
      *
      * @return 将被孵化生物的数量
      */
@@ -88,6 +100,8 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      * <p>
      * 布尔值hatching(你是否希望鸡蛋孵化)的值将覆盖该数值的作用。
      * 当 hatching=false ，该数值的设定不生效。
+     * <p>
+     * 原文:
      * 
      *
      * @param numHatches 将被孵化生物的数量
