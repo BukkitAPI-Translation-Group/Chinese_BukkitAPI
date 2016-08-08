@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player throws an egg and it might hatch
+ * 玩家丢出鸡蛋时触发，鸡蛋可能孵化。
  */
 public class PlayerEggThrowEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -24,47 +24,45 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * Gets the egg involved in this event.
+     * 获取事件中的鸡蛋
      *
-     * @return the egg involved in this event
+     * @return 事件中的鸡蛋
      */
     public Egg getEgg() {
         return egg;
     }
 
     /**
-     * Gets whether the egg is hatching or not. Will be what the server
-     * would've done without interaction.
+     * 检测鸡蛋是否将被孵化。服务器可能设置无互动。
      *
-     * @return boolean Whether the egg is going to hatch or not
+     * @return 布尔值 鸡蛋是否将被孵化
      */
     public boolean isHatching() {
         return hatching;
     }
 
     /**
-     * Sets whether the egg will hatch or not.
+     * 设置鸡蛋是否将被孵化。
      *
-     * @param hatching true if you want the egg to hatch, false if you want it
-     *     not to
+     * @param hatching 布尔值，你是否希望鸡蛋孵化。
      */
     public void setHatching(boolean hatching) {
         this.hatching = hatching;
     }
 
     /**
-     * Get the type of the mob being hatched (EntityType.CHICKEN by default)
+     * 获取将被孵化的生物类型 (默认为EntityType.CHICKEN )
      *
-     * @return The type of the mob being hatched by the egg
+     * @return 将被孵化的生物类型
      */
     public EntityType getHatchingType() {
         return hatchType;
     }
 
     /**
-     * Change the type of mob being hatched by the egg
+     * 修改将被孵化生物的类型
      *
-     * @param hatchType The type of the mob being hatched by the egg
+     * @param hatchType 将被孵化生物的类型
      */
     public void setHatchingType(EntityType hatchType) {
         if(!hatchType.isSpawnable()) throw new IllegalArgumentException("Can't spawn that entity type from an egg!");
@@ -72,27 +70,27 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * Get the number of mob hatches from the egg. By default the number will
-     * be the number the server would've done
+     * 检测将被孵化生物的数量。默认由服务器进行设置。
      * <ul>
-     * <li>7/8 chance of being 0
-     * <li>31/256 ~= 1/8 chance to be 1
-     * <li>1/256 chance to be 4
+     * <li>7/8 几率不生成
+     * <li>31/256 ~= 1/8 的几率生成 1 只
+     * <li>1/256 的几率生成 4 只
      * </ul>
      *
-     * @return The number of mobs going to be hatched by the egg
+     * @return 将被孵化生物的数量
      */
     public byte getNumHatches() {
         return numHatches;
     }
 
     /**
-     * Change the number of mobs coming out of the hatched egg
+     * 改变将被孵化生物的数量
      * <p>
-     * The boolean hatching will override this number. Ie. If hatching =
-     * false, this number will not matter
+     * 布尔值hatching(你是否希望鸡蛋孵化)的值将覆盖该数值的作用。
+     * 当 hatching=false ，该数值的设定不生效。
+     * 
      *
-     * @param numHatches The number of mobs coming out of the egg
+     * @param numHatches 将被孵化生物的数量
      */
     public void setNumHatches(byte numHatches) {
         this.numHatches = numHatches;
