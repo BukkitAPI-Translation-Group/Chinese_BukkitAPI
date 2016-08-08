@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * 玩家丢出鸡蛋时触发，鸡蛋可能孵化。
+ * 玩家丢出鸡蛋时触发，鸡蛋可能孵化.
  */
 public class PlayerEggThrowEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -24,7 +24,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 获取事件中的鸡蛋
+     * 获取事件中的鸡蛋.
      * <p>
      * 原文:Gets the egg involved in this event.
      *
@@ -35,7 +35,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 检测鸡蛋是否将被孵化。服务器可能设置无互动。
+     * 检测鸡蛋是否将被孵化。服务器可能设置无互动.
      * <p>
      * 原文:Gets whether the egg is hatching or not. Will be what the server
      * would've done without interaction.
@@ -47,7 +47,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 设置鸡蛋是否将被孵化。
+     * 设置鸡蛋是否将被孵化.
      * <p>
      * 原文：Sets whether the egg will hatch or not.
      *
@@ -58,7 +58,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 获取将被孵化的生物类型 (默认为EntityType.CHICKEN )
+     * 获取将被孵化的生物类型 (默认为EntityType.CHICKEN ).
      * <p>
      * 原文:Get the type of the mob being hatched (EntityType.CHICKEN by default)
      *
@@ -69,7 +69,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 修改将被孵化生物的类型
+     * 修改将被孵化生物的类型.
      * <p>
      * 原文:Change the type of mob being hatched by the egg
      *
@@ -81,7 +81,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 检测将被孵化生物的数量。默认由服务器进行设置。
+     * 检测将被孵化生物的数量。默认由服务器进行设置.
      * <ul>
      * <li>7/8 几率不生成
      * <li>31/256 ~= 1/8 的几率生成 1 只
@@ -103,7 +103,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     }
 
     /**
-     * 改变将被孵化生物的数量
+     * 改变将被孵化生物的数量.
      * <p>
      * {@Link hatching}的值将覆盖该数值的作用。
      * 如果{@Link hatching}被设为false, 则本数值不会生效。
