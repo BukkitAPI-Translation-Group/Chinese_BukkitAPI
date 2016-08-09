@@ -1,124 +1,153 @@
-#Chinese_BukkitAPI 翻译规范 Beta v1.3
+# Chinese_BukkitAPI 翻译规范 v1.4
 __翻译前必须阅读此页！！！__
-# 1.项目说明
-本项目的目标是翻译BukkitAPI的JavaDoc，推进中国原创MC插件的发展。
-创始人是大名鼎鼎的mcbbs插件版版主andylizi。
-本项目采用Git@OSC代码托管平台，翻译工作将在此平台进行。
-
-# 2.翻译规范
-JavaDoc用来说明某方法/成员变量等的用途.
-一般写在某方法/成员变量等的上方.
-比如
+# 项目说明
+本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
+# Javadoc注释规范
+Javadoc是Sun公司提供的一个技术，它从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。
+你所看到的Javadoc，是通过特定格式的注释生成的，利用Java提供的javadoc工具可以生成与源码配套的API文档。在开始翻译前，请先掌握Javadoc注释格式。
+参阅：
+1.http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html (英文)
+2.http://www.cnblogs.com/xt0810/p/3630996.html
+3.http://openwares.net/java/javadoc_convention.html
+# 翻译规范
+## 原文保留
+为了使文档更严谨、方便比对，必须保留原文。
+方法注释必须保留原文，例如：
 ```java
-   /**
-     * 简单描述:Gets the {@link Chunk} at the given {@link Location}. 
-     * <p>
-     * 详细描述: .... 
-     * @param location Location of the chunk
-     * @return Chunk at the given location
-     */
-    public Chunk getChunkAt(Location location);
+/**
+ * 获取世界当前的PVP设置.
+ * <p>
+ * 原文：
+ * Gets the current PVP setting for this world.
+ *
+ * @return 如果允许PVP则返回true
+ */
+public boolean getPVP();
 ```
-分为三部分,第一部分为简述,即简单描述,使用简短的语言描述该东东的用途,
-使用.号结尾。 然后在换行后添加换行符<p>(直接换行[[[**无用!!!**]]]).
-
-第二部分为详细描述,用于详细说明方法用途,或举一些简单的例子。**同样使用<p>
-换行**。**该部分的最后一行不需要写<p>**。
-
-第三部分为参数说明 param,返回值说明return,抛出异常说明@throws等。
-格式:
-@param参数：
-用法：**@param 参数名 参数说明**
+关于换行：使用"<p>"进行换行。
+原文与译文用<p>分开换行。
+原文与译文必须是连贯的，译文一句原文一句是错误的。
+例外：类注释、枚举注释、标签一般不需要保留原文，若是比较难懂的、一大串的则需要保留。
+## 类注释
+类注释即为类的描述，介绍了类的作用等，比如：
+```
+/**
+ * Represents a Command, which executes various tasks upon user input
+ */
+public abstract class Command {
+...
+}
+```
+## 枚举注释
+即枚举类中对一些字段的注释，例如：
+```java
+/**
+ * 橡树
+ */
+TREE,
+...
+```
+## 方法注释
+一个例子：
+```java
+/**
+ * (1)Checks if this player is currently online
+ *
+ * (2)@return true if they are online
+ */
+public boolean isOnline();
+```
+(1)处为方法的描述，是需要翻译的地方。
+(2)处为javadoc的标签，javadoc的标签以"@"开头，对应的标签就有对应的说明。关于标签在下一部分详细说明。
+如果注释中出现了你不能理解的、或翻译过来难以理解，在原文之前加上译注，用自己的理解继续说明，比如：
+```java
+/**
+ * 获取指定坐标的最顶上的方块的Y坐标(不是空气).
+ * <p>
+ * 译注：就是说,获取某个坐标最上面的方块的高度(Y坐标).Essentials插件的top命令就是这个原理.
+ * <p>
+ * 原文：Gets the highest non-air coordinate at the given coordinates
+ *
+ * @param x 给定的X坐标
+ * @param z 给定的Z坐标
+ * @return 在x,y位置的最高的方块的高度(忽略空气)
+ */
+public int getHighestBlockYAt(int x, int z);
+```
+## 标签
+你之前已经了解了一些javadoc的标签，比如@param、@return、@see、@deprecated等等，这里详细解释下一些特别的标签该如何翻译：
+### @param
+param标签用来说明方法中各个参数的含义
+格式：
+@param 参数名 参数说明
+参数说明部分就是这里要翻译的部分。
 例子：
-> @param loc 一个位置({@link Location})
-注意！参数名不用翻译，对应的是方法中的参数！
+> @param address 要封禁的IP地址
 
-@return参数：
-用法：@return 返回值的说明
-例子：@return 返回这个类的描述,如果为null则没有描述
+有时没有说明，那就保留原样
+### @return
+return标签用来说明方法返回值的含义。
+格式：
+> @return 返回值说明
 
-@throws参数：
-用法：@throws 异常的类名 在什么情况下会抛出这个异常
-例子：@throws IllegalArgumentException 如果PlayerListName超过16个字符则抛出
-注意千万别把异常的类名丢掉！不然别人不知道会抛出什么异常....
+例子：
+> @return 踢出消息
 
-@deprecated参数：
-这个参数表示，这个方法已经被新版本弃用了！但是并不代表这个方法会失效或抛
-出什么错误之类的（当然也有可能，这个要视情况而定的。一般来说这个都表示这个
-方法有什么什么问题，比如安全性问题，所以才被弃用了。或者有其他的办法代替它。比如show方法被弃用了，doc里注明：
-@deprecated 这个方法被setVisible(true)方法代替
-用法：@deprecated 为什么被弃用/这个方法被什么方法代替了
-例子：@deprecated 这个方法被setVisible(true)方法代替
-然而...BukkitAPI的javadoc里，使用@deprecated一般是这样的：
-@deprecated Magic value (翻译为不安全的参数)
-这个magic value的真正含义还不得而知，估计是不安全、新增特性的影响或者其他原因而被弃用。
+### @see
+see标签用来引用相关链接
+格式：
+> @see 链接
 
-其中特殊标记{@link 类名}为链接到类名Doc的一个超链接。
-还可以使用{@link #方法名(形参列表)}来连!接到某个方法.
-如{@link #Chunk getChunkAt(Location location)}
-如果枚举当中出现的注释，就不要加原文了，直接翻译。
+例子：
+> @see #getOfflinePlayer(java.util.UUID)
+> @see Bukkit
+> @see <a href="xxx">xxx</a>
 
-# 3.如何翻译（任务制、翻译需要注意的地方）
-翻译以**类/包为单位**.
-翻译前请先创建任务（Issues）,非项目成员请在群里报告，说明将要翻译这个类并查看项目中的这个类是否汉化。
-创建任务之前也要检查是否有相同的任务
-**检查是否有人跟你一样在翻译这个类/包**
+### @deprecated
+deprecated标签用来解释这个方法被弃用的原因
+格式：
+> @deprecated 弃用理由
 
-首先翻译请**不要直接机翻**,若使用机翻请**加入自己的理解,并重新组织语言**.
-符号除特殊(如简述必须使用.分隔)外,请使用中文标点符号,如 。，；等
-换行使用换行符<p> (**不是<br>!**) 除了带参数的比如@return之类的会自动换行.
-先在前面写上你的翻译,然后再将原文加上,并在前面加上“原文：”,仅仅对于简述
-以及详细描述.
-因为简述是写在方法目录中的,所以请先写翻译再在最后加上原文.
-```java
-   /**
-     * 获取某位置({@link Location})所在的区块({@link Chunk})
-     * <p>
-     * 原文：Gets the {@link Chunk} at the given {@link Location}
-     *
-     * @param location 给定位置
-     * @return 给定位置所在的区块
-     */
-    public Chunk getChunkAt(Location location);
-```
-	
-对于某些意思不太明确的在群里问,要是真没人知道,在后面加上"?" ,有自己的理解/提醒的,可以加上“译注”
-对于某些不懂的或者不太清楚,请在群里问,请不要将"或许吧" "没准"这样的不确定字眼添加到翻译中.
-如:
-```java
-/**
- * ....代表绘画艺术？
- * <p>
- * 译注：就是跟画有关的...
- * <p>
- * 原文：Represents the art on a painting
- * <p>
- */ 
-```
-这里是一个标准示例:
-```java
-/**
-* 获取该区块的X轴坐标
-* <p>
-* 原文:Gets the X-coordinate of this chunk
-*
-* @return 区块X轴坐标
-*/
-```
-P.S：我们是一个团队，请保持团队合作，争取达到最大的效率 
- 
- 
-# 4.提交翻译
-进入项目 **<http://git.oschina.net/zhouhaha/Chinese_BukkitAPI>** 编辑你翻译的类，将你翻译的替换进去.
-注:您可以使用**在线编辑/git推送**两种方式上传代码，git是推荐方式，如果你不会，可以用在线编辑.
-# 5.任务说明
+例子：
+> @deprecated 请使用{@link #getPlayer(UUID)}，因为玩家名不能保证是唯一的
+
+### @throws
+throws标签用来说明抛出错误在哪些情况等
+格式：
+> @throws Throwable 解释
+
+例子：
+> @throws IllegalArgumentException 如果图像是空的
+
+这里要特别提一下，Bukkit源码里大量的弃用标示是这样的：
+> @deprecated Magic value
+
+Magic value直译即为魔法值，意义大概就是不明确的数值，这些数值一般都难以理解，所以叫做“魔法值”，在程序中不应该出现这些东西。
+在这里统一译作“不安全的参数”。
+### @link
+link标签是一个比较特殊的标签之一，可以直接用在描述注释里，可以用这个标签直接引向一个类、方法等。
+格式：
+> {@link 链接 链接文本}
+
+链接文本是非必要的，如果出现了链接文本，翻译链接文本部分
+例子：
+> {@link Bukkit}
+> {@link Player 玩家}
+
+其他标签就大同小异了
+# 翻译须知
+## 任务
 任务是为了更好规划整体进度和便于统计.
-大家可以主动申请任务，但是**不可以私自设置为完成状态**，此翻译**必须被校对后才可以算完成.**
-（由于不干活的梨子啊，所以我的翻译是特例，不过也欢迎大家纠错）
-## 项目使用Team@OSC进行项目协作，有关于任务都在team里操作.加入地址: https://team.oschina.net/home/join?invite=848834DF2CC37E842C4272AA473D53F2EF749C088BE6B5FC&inviter=BB69C58730359FE8
-（嫌麻烦地也可以直接用issues，是同步的）
-## 注意:任务申请者在完成任务的时候在任务内容末尾加上个“待校验”以便区分，**请勿直接设置任务完成状态.**
-校对专员:目前有2个:
- **andylizi** （基本不干活233）
- **hcrgm** 
-**校对完成后，任务标签“待检验”此时可更改为“已完成”并设置任务状态为已完成
+大家可以主动申请任务，翻译完成后在之后加上“待校验”以及挂上标签以便识别。
+**注意：不可以私自设置为完成状态**，此任务**必须被校对后才可以算完成.**
+例如：
+“翻译org.bukkit.Bukkit类”
+“翻译org.bukkit.event.entity包”
+“翻译org.bukkit.entity.Player类 待校验”
+## 翻译质量
+**严禁直接机翻，若机翻请加入自己的理解，重新组织语言，否则将撤回**
+## 遇到问题？
+如果您翻译时遇到了某些您不能理解的单词、专有名词、段落、概念等等，可以在群内提问。
+# 提交翻译
+方法有两种，一是通过在线编辑器直接编辑，最直接。二是将项目仓库克隆下来，编辑完后推送上去。根据您的喜好选择其中一种方式吧。
+感谢您阅读本规范，祝您工作愉快^_^
