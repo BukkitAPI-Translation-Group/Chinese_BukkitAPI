@@ -8,10 +8,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player statistic is incremented.
+ * 当玩家统计信息增长时触发本事件.
  * <p>
- * This event is not called for {@link org.bukkit.Statistic#PLAY_ONE_TICK} or
- * movement based statistics.
+ * 这个事件不会因 {@link org.bukkit.Statistic#PLAY_ONE_TICK} 或基于移动(比如玩家走动、坐矿车的距离等)的统计数据的改变而触发.
  *
  */
 public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancellable {
@@ -21,7 +20,7 @@ public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancel
     private final int newValue;
     private boolean isCancelled = false;
     private final EntityType entityType;
-    private final Material material;
+    private final Mterial material;
 
     public PlayerStatisticIncrementEvent(Player player, Statistic statistic, int initialValue, int newValue) {
         super (player);
@@ -51,47 +50,57 @@ public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancel
     }
 
     /**
-     * Gets the statistic that is being incremented.
+     * 获取正在增长的统计数据.
+     * <p>
+     * 原文:Gets the statistic that is being incremented.
      *
-     * @return the incremented statistic
+     * @return 统计数据
      */
     public Statistic getStatistic() {
         return statistic;
     }
 
     /**
-     * Gets the previous value of the statistic.
+     * 获取这个统计信息之前的数据值.
+     * <p>
+     * 原文:Gets the previous value of the statistic.
      *
-     * @return the previous value of the statistic
+     * @return 这个统计信息之前的数据值
      */
     public int getPreviousValue() {
         return initialValue;
     }
 
     /**
-     * Gets the new value of the statistic.
+     * 获取这个统计数据的新数据值.
+     * <p>
+     * 原文:Gets the new value of the statistic.
      *
-     * @return the new value of the statistic
+     * @return 这个统计数据的新数据值
      */
     public int getNewValue() {
         return newValue;
     }
 
     /**
-     * Gets the EntityType if {@link #getStatistic() getStatistic()} is an
+     * 如果{@link #getStatistic() getStatistic()}是关于实体的统计信息，获取该统计数据的实体种类，否则返回null.
+     * <p>
+     * 原文:Gets the EntityType if {@link #getStatistic() getStatistic()} is an
      * entity statistic otherwise returns null.
      *
-     * @return the EntityType of the statistic
+     * @return 这个统计数据的实体种类
      */
     public EntityType getEntityType() {
         return entityType;
     }
 
     /**
-     * Gets the Material if {@link #getStatistic() getStatistic()} is a block
+     * 如果{@link #getStatistic() getStatistic()}是关于方块或物品的统计信息，获取该统计数据的物品种类，否则返回null.
+     * <p>
+     * 原文:Gets the Material if {@link #getStatistic() getStatistic()} is a block
      * or item statistic otherwise returns null.
      *
-     * @return the Material of the statistic
+     * @return 这个统计数据的物品种类
      */
     public Material getMaterial() {
         return material;
