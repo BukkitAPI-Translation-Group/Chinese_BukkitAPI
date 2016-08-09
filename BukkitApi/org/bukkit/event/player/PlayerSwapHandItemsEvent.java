@@ -6,8 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when a player swap items between main hand and off hand using the
- * hotkey.
+ * 玩家用快捷键互换主手和副手的物品时触发本事件.
  */
 public class PlayerSwapHandItemsEvent extends PlayerEvent implements Cancellable {
 
