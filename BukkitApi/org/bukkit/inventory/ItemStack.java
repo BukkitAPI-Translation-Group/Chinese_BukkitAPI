@@ -162,10 +162,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置物品类型. 
-     * <p>
-     * 注意: 这样做会重置这个物品的{@linkplain MaterialData 物品附加属性}. 
-     * <p>原文: 
      * Sets the type of this item
      * <p>
      * Note that in doing so you will reset the MaterialData for this stack
@@ -190,7 +186,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Sets the type id of this item. 
+     * Sets the type id of this item
      * <p>
      * Note that in doing so you will reset the MaterialData for this stack
      *
@@ -207,19 +203,15 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取此物品堆栈中的物品的数量.
-     * <p>原文: 
      * Gets the amount of items in this stack
      *
-     * @return Amount of items in this stick
+     * @return Amount of items in this stack
      */
     public int getAmount() {
         return amount;
     }
 
     /**
-     * 设置此物品堆栈中的物品的数量.
-     * <p>原文: 
      * Sets the amount of items in this stack
      *
      * @param amount New amount of items in this stack
@@ -229,8 +221,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取{@linkplain MaterialData 物品附加属性}.
-     * <p>原文: 
      * Gets the MaterialData for this stack of items
      *
      * @return MaterialData for this item
@@ -245,8 +235,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置{@linkplain MaterialData 物品附加属性}.
-     * <p>原文: 
      * Sets the MaterialData for this stack of items
      *
      * @param data New MaterialData for this item
@@ -266,8 +254,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置此项目的耐久. 
-     * <p>原文: 
      * Sets the durability of this item
      *
      * @param durability Durability of this item
@@ -277,8 +263,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取此项目的耐久.
-     * <p>原文: 
      * Gets the durability of this item
      *
      * @return Durability of this item
@@ -288,9 +272,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取这个物品堆叠最大可堆叠数量.
-     * 如果不明确则返回-1
-     * <p>原文: 
      * Get the maximum stacksize for the material hold in this ItemStack.
      * (Returns -1 if it has no idea)
      *
@@ -340,8 +321,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 和{@link #equals(java.lang.Object) }基本一致,但是这个方法在比较时忽视{@linkplain #getAmount() 数量}差异. 
-     * <p>原文: 
      * This method is the same as equals, but does not consider stack size
      * (amount).
      *
@@ -380,7 +359,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
 
     @Override
     @Utility
-    public final int hashCode() {
+    public int hashCode() {
         int hash = 1;
 
         hash = hash * 31 + getTypeId();
@@ -392,8 +371,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 是否拥有指定{@linkplain Enchantment 附魔}. 
-     * <p>原文: 
      * Checks if this ItemStack contains the given {@link Enchantment}
      *
      * @param ench Enchantment to test
@@ -404,8 +381,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取指定{@linkplain Enchantment 附魔}的等级,不存在则返回0. 
-     * <p>原文: 
      * Gets the level of the specified enchantment on this item stack
      *
      * @param ench Enchantment to check
@@ -416,8 +391,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取所有{@linkplain Enchantment 附魔}. 
-     * <p>原文: 
      * Gets a map containing all enchantments and their levels on this item.
      *
      * @return Map of enchantments.
@@ -427,14 +400,11 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 以游戏允许的方式增加多个{@linkplain Enchantment 附魔}. 
-     * <p>
-     * 会直接替换掉相同的{@linkplain Enchantment 附魔}. 
-     * 这个方法如同多次调用{@link #addEnchantment(org.bukkit.enchantments.Enchantment, int)}. 
-     * <p>原文: 
      * Adds the specified enchantments to this item stack.
      * <p>
-     * This method is the same as calling {@link #addEnchantment(org.bukkit.enchantments.Enchantment, int)} for each element of the map.
+     * This method is the same as calling {@link
+     * #addEnchantment(org.bukkit.enchantments.Enchantment, int)} for each
+     * element of the map.
      *
      * @param enchantments Enchantments to add
      * @throws IllegalArgumentException if the specified enchantments is null
@@ -451,13 +421,10 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 以游戏允许的方式增加一个{@linkplain Enchantment 附魔}. 
-     * <p>
-     * 会直接替换掉相同的{@linkplain Enchantment 附魔}. 
-     * <p>原文: 
      * Adds the specified {@link Enchantment} to this item stack.
      * <p>
-     * If this item stack already contained the given enchantment (at any level), it will be replaced.
+     * If this item stack already contained the given enchantment (at any
+     * level), it will be replaced.
      *
      * @param ench Enchantment to add
      * @param level Level of the enchantment
@@ -477,15 +444,11 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 在不检查安全性的情况下增加多个{@linkplain Enchantment 附魔}. 
-     * <p>
-     * 会直接替换掉相同的{@linkplain Enchantment 附魔}. 
-     * 这种方法是不安全的，将忽略附魔等级的限制或物品对{@linkplain Enchantment 附魔}的兼容性, 混乱的{@linkplain Enchantment 附魔}有可能导致游戏崩溃, 请自行决定.
-     * 这个方法如同多次调用{@link #addUnsafeEnchantment(org.bukkit.enchantments.Enchantment, int)}
-     * <p>原文: 
      * Adds the specified enchantments to this item stack in an unsafe manner.
      * <p>
-     * This method is the same as calling {@link #addUnsafeEnchantment(org.bukkit.enchantments.Enchantment, int)} for each element of the map.
+     * This method is the same as calling {@link
+     * #addUnsafeEnchantment(org.bukkit.enchantments.Enchantment, int)} for
+     * each element of the map.
      *
      * @param enchantments Enchantments to add
      */
@@ -497,16 +460,13 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 在不检查安全性的情况下增加多个{@linkplain Enchantment 附魔}. 
-     * <p>
-     * 会直接替换掉相同的{@linkplain Enchantment 附魔}. 
-     * 这种方法是不安全的，将忽略附魔等级的限制或物品对{@linkplain Enchantment 附魔}的兼容性, 混乱的{@linkplain Enchantment 附魔}有可能导致游戏崩溃, 请自行决定.
-     * <p>原文: 
      * Adds the specified {@link Enchantment} to this item stack.
      * <p>
-     * If this item stack already contained the given enchantment (at any level), it will be replaced.
+     * If this item stack already contained the given enchantment (at any
+     * level), it will be replaced.
      * <p>
-     * This method is unsafe and will ignore level restrictions or item type. Use at your own discretion.
+     * This method is unsafe and will ignore level restrictions or item type.
+     * Use at your own discretion.
      *
      * @param ench Enchantment to add
      * @param level Level of the enchantment
@@ -516,10 +476,8 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 删除指定{@linkplain Enchantment 附魔}.
-     * 将返回被删除的{@linkplain Enchantment 附魔}的等级,如不存在则返回0. 
-     * <p>原文: 
-     * Removes the specified {@link Enchantment} if it exists on this ItemStack. 
+     * Removes the specified {@link Enchantment} if it exists on this
+     * ItemStack
      *
      * @param ench Enchantment to remove
      * @return Previous level, or 0
@@ -556,8 +514,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 用于序列化的方法. 
-     * <p>原文: 
      * Required method for configuration serialization
      *
      * @param args map to deserialize
@@ -604,8 +560,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取{@linkplain ItemMeta 物品元数据}. 
-     * <p>原文: 
      * Get a copy of this ItemStack's {@link ItemMeta}.
      *
      * @return a copy of the current ItemStack's ItemData
@@ -615,8 +569,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 检查物品是否拥有{@linkplain ItemMeta 物品元数据}. 
-     * <p>原文: 
      * Checks to see if any meta data has been defined.
      *
      * @return Returns true if some meta data has been set for this item
@@ -626,8 +578,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置{@linkplain ItemMeta 物品元数据}
-     * <p>原文: 
      * Set the ItemMeta of this ItemStack.
      *
      * @param itemMeta new ItemMeta, or null to indicate meta data be cleared.
@@ -641,7 +591,6 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     }
 
     /*
-     * 不能覆盖此函数,因为它被构造函数所调用
      * Cannot be overridden, so it's safe for constructor call
      */
     private boolean setItemMeta0(ItemMeta itemMeta, Material material) {

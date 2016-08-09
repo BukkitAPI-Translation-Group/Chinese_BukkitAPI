@@ -2,6 +2,10 @@ package org.bukkit.util;
 
 import java.lang.reflect.Array;
 
+/**
+ * @deprecated Bukkit的构建目标版本为 Java 1.6.本类将在后续的版本移除.
+ */
+@Deprecated
 public class Java15Compat {
     @SuppressWarnings("unchecked")
     public static <T> T[] Arrays_copyOfRange(T[] original, int start, int end) {

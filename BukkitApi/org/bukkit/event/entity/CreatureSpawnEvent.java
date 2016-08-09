@@ -172,6 +172,10 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          */
         TRAP,
         /**
+         * 由于末影珍珠的使用而生成.
+         */
+        ENDER_PEARL,
+        /**
          * 当生物被插件生成时
          */
         CUSTOM,
