@@ -20,7 +20,7 @@ public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancel
     private final int newValue;
     private boolean isCancelled = false;
     private final EntityType entityType;
-    private final Mterial material;
+    private final Material material;
 
     public PlayerStatisticIncrementEvent(Player player, Statistic statistic, int initialValue, int newValue) {
         super (player);
