@@ -30,7 +30,7 @@ public boolean getPVP();
 例外：类注释、枚举注释、标签一般不需要保留原文，若是比较难懂的、一大串的则需要保留。
 ## 类注释
 类注释即为类的描述，介绍了类的作用等，比如：
-```
+```java
 /**
  * Represents a Command, which executes various tasks upon user input
  */
