@@ -319,7 +319,7 @@ public interface ArmorStand extends LivingEntity {
      * Sets whether this armor stand is a marker,
      * meaning it has a very small collision box
      *
-     * @param marker 盔甲架的maker属性
+     * @param marker 盔甲架的marker属性
      */
     void setMarker(boolean marker);
 }
