@@ -51,7 +51,7 @@ public interface BukkitScheduler {
     /**
      * 在下一tick执行一次任务.
      * <p>
-     * .这个任务将由服务器主线程执行(同步).
+     * 这个任务将由服务器主线程执行(同步).
      * <p>
      * 原文：Schedules a once off task to occur as soon as possible.
      * <p>
@@ -114,7 +114,7 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task, long delay);
 
     /**
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 执行一次任务.此任务将通过由执行器所管理的线程执行.
      * <p>
@@ -133,7 +133,7 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task);
 
     /**
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 执行一次重复执行的任务.此任务将通过由执行器所管理的线程执行.
      * <p>
@@ -290,7 +290,7 @@ public interface BukkitScheduler {
     public BukkitTask runTask(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回异步执行的任务.
      * <p>
@@ -346,7 +346,7 @@ public interface BukkitScheduler {
     public BukkitTask runTaskLater(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回指定tick过后运行的异步任务(即延迟执行).
      * <p>
@@ -407,7 +407,7 @@ public interface BukkitScheduler {
     public BukkitTask runTaskTimer(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不能任何Bukkit里的API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回一个异步任务.此任务将在指定tick数值后运行.任务将重复运行直至取消.
      * <p>
