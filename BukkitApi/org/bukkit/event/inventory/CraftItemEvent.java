@@ -6,7 +6,8 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.Recipe;
 
 /**
- * Called when the recipe of an Item is completed inside a crafting matrix.
+ * 当一个物品被合成的时候触发（触发这个事件的时候，物品已经被合成出来）
+ * <P> 原文：Called when the recipe of an Item is completed inside a crafting matrix.
  */
 public class CraftItemEvent extends InventoryClickEvent {
     private Recipe recipe;
@@ -27,7 +28,8 @@ public class CraftItemEvent extends InventoryClickEvent {
     }
 
     /**
-     * @return A copy of the current recipe on the crafting matrix.
+     * 获取合成出该物品所用的合成公式.
+     * @return 返回被合成出来的物品所用的合成公式
      */
     public Recipe getRecipe() {
         return recipe;
@@ -38,3 +40,4 @@ public class CraftItemEvent extends InventoryClickEvent {
         return (CraftingInventory) super.getInventory();
     }
 }
+
