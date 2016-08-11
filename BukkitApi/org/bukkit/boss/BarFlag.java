@@ -3,15 +3,15 @@ package org.bukkit.boss;
 public enum BarFlag {
 
     /**
-     * Darkens the sky like during fighting a wither.
+     * 凋零血条的属性（战斗时天空会变暗）
      */
     DARKEN_SKY,
     /**
-     * Tells the client to play the Ender Dragon boss music.
+     * 末影龙的血条属性，告诉客户端该播放打末影龙时候的BGM
      */
     PLAY_BOSS_MUSIC,
     /**
-     * Creates fog around the world.
+     * 在血条所在的世界产生迷雾
      */
     CREATE_FOG,
 }
