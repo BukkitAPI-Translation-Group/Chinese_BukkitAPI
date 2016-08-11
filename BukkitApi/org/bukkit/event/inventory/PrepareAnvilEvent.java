@@ -6,7 +6,8 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Called when an item is put in a slot for repair by an anvil.
+ * 当物品放入铁砧内，并且可以合成出物品的时候触发该事件
+ *<P> 原文： Called when an item is put in a slot for repair by an anvil.
  */
 public class PrepareAnvilEvent extends InventoryEvent {
 
@@ -24,9 +25,10 @@ public class PrepareAnvilEvent extends InventoryEvent {
     }
 
     /**
-     * Get result item, may be null.
+     * 获取预合成时铁砧即将打造出来的物品，可能为空 .
+     *<P> 原文: Get result item,may be null.
      *
-     * @return result item
+     * @return 即将合成出来的物品
      */
     public ItemStack getResult() {
         return result;
@@ -45,3 +47,4 @@ public class PrepareAnvilEvent extends InventoryEvent {
         return handlers;
     }
 }
+
