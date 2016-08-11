@@ -7,29 +7,38 @@ import java.util.List;
 public interface BossBar {
 
     /**
-     *  用于获取该Boos血量条的标题
+     * 用于获取该Boos血量条的标题
+     * <p>
+     * 原文:Returns the title of this boss bar
      *
      * @return 当前的Boss血条的标题
      */
     String getTitle();
 
     /**
-     *  设置当前boss血条的标题
-     * 比如凋零这个boss的血条标题就叫凋零
+     * 设置当前boss血条的标题.
+     * 比如凋零这个boss的血条标题就叫凋零.
+     * <p>
+     * 原文:
+     * Sets the title of this boss bar
      *
      * @param 要设置的boss血条的标题.
      */
     void setTitle(String title);
 
     /**
-     * 获取这个boss的血条的颜色（一个BarColor的实例）
+     * 获取这个boss血条的颜色
+     * <p>
+     * 原文:Returns the color of this boss bar
      *
      * @return 返回一个BossColor的实例
      */
     BarColor getColor();
 
     /**
-     *  设置这个Boss的血条的颜色
+     * 设置这个Boss血条的颜色
+     * <p>
+     * 原文:RSets the color of this boss bar.
      *
      * @param 要设置的血条颜色
      */
@@ -37,6 +46,8 @@ public interface BossBar {
 
     /**
      * 获取该Boss血条的样式
+     * <p>
+     * 原文:Returns the style of this boss bar
      *
      * @return 这个boss血条的样式
      */
@@ -44,8 +55,10 @@ public interface BossBar {
 
     /**
      * 设置这个boss血条的样式
+     * <p>
+     * 原文:Sets the bar style of this boss bar
      *
-     * @param style:要设置的boss血条的样式
+     * @param style 要设置的boss血条的样式
      */
     void setStyle(BarStyle style);
 
