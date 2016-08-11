@@ -2,23 +2,23 @@ package org.bukkit.boss;
 
 public enum BarStyle {
     /**
-     * Makes the boss bar solid (no segments)
+     * 将血条设置为一个部分
      */
     SOLID,
     /**
-     * Splits the boss bar into 6 segments
+     * 将血条分为6个部分
      */
     SEGMENTED_6,
     /**
-     * Splits the boss bar into 10 segments
+     * 将血条分为10个部分
      */
     SEGMENTED_10,
     /**
-     * Splits the boss bar into 12 segments
+     * 将血条分为12个部分
      */
     SEGMENTED_12,
     /**
-     * Splits the boss bar into 20 segments
+     * 将血条分为20个部分
      */
     SEGMENTED_20,
 }
