@@ -75,51 +75,65 @@ public interface WorldBorder {
     public double getDamageBuffer();
 
     /**
-     * Sets the amount of blocks a player may safely be outside the border before taking damage.
+     * 设置玩家在越过结界后几个方块后受到伤害（也就是玩家越界后安全的范围），切忌填写负数参数
+     * <P>
+     * 原文：Sets the amount of blocks a player may safely be outside the border before taking damage.
      *
-     * @param blocks The amount of blocks. (The default is 5 blocks.)
+     * @param Blocks:越过结界的缓冲方块数量，如果不设置的话默认是5个方块
      */
     public void setDamageBuffer(double blocks);
 
     /**
-     * Gets the current border damage amount.
+     * 获取越过结界后所受到的伤害值
+     * <P>
+     * 原文：Gets the current border damage amount.
      *
-     * @return The current border damage amount.
+     * @return 返回越界后受到的伤害值.
      */
     public double getDamageAmount();
 
     /**
-     * Sets the amount of damage a player takes when outside the border plus the border buffer.
+     * 设置越界后所受到的伤害值
+     * <P> 
+     * 原文：Sets the amount of damage a player takes when outside the border plus the border buffer.
      *
-     * @param damage The amount of damage. (The default is 0.2 damage per second per block.)
+     * @param  damage:要设置的伤害值，默认的是超过一个方块一秒受到0.2伤害
      */
     public void setDamageAmount(double damage);
 
     /**
-     * Gets the current border warning time in seconds.
+     * 获取临近结界的时候屏幕变红警告玩家的时间
+     * <p>
+     * 原文：Gets the current border warning time in seconds.
      *
-     * @return The current border warning time in seconds.
+     * @return 接近结界的时候警告玩家的秒数.
      */
     public int getWarningTime();
 
     /**
-     * Sets the warning time that causes the screen to be tinted red when a contracting border will reach the player within the specified time.
+     * 设置玩家接近结界的时候警告玩家的秒数（警告也就是当玩家接近结界的时候，玩家的屏幕会被渲染成红色边框以此来警告玩家不要越界）
+     * <p>
+     * 原文：Sets the warning time that causes the screen to be tinted red when a contracting border will reach the player within the specified time.
      *
-     * @param seconds The amount of time in seconds. (The default is 15 seconds.)
+     * @param seconds:警告玩家的秒数，默认是15秒钟
      */
     public void setWarningTime(int seconds);
 
     /**
-     * Gets the current border warning distance.
+     * 获取玩家离方块多远时会被警告
+     * <P>
+     * 原文：Gets the current border warning distance.
      *
-     * @return The current border warning distance.
+     * @return 离结界多少方块的时候会被警告
      */
     public int getWarningDistance();
 
     /**
-     * Sets the warning distance that causes the screen to be tinted red when the player is within the specified number of blocks from the border.
+     * 设置玩家离结界几个方块的时候会被警告
+     * <P>
+     * 原文：Sets the warning distance that causes the screen to be tinted red when the player is within the specified number of blocks from the border.
      *
-     * @param distance The distance in blocks. (The default is 5 blocks.)
+     * @param distance:要设置玩家会被警告的距离
      */
     public void setWarningDistance(int distance);
 }
