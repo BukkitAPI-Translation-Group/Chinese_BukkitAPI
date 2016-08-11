@@ -22,7 +22,7 @@ public interface BossBar {
     void setTitle(String title);
 
     /**
-     * 获取这个boss的血条的颜色（一个BossColor的实例）
+     * 获取这个boss的血条的颜色（一个BarColor的实例）
      *
      * @return 返回一个BossColor的实例
      */
@@ -52,7 +52,7 @@ public interface BossBar {
     /**
      * 从该boss血条内移除一个指定的属性
      *
-     * @param 一个已有的指定boss血条内属性,参见BossFlag类
+     * @param 一个已有的指定boss血条内属性,参见BarFlag类
      */
     void removeFlag(BarFlag flag);
 
