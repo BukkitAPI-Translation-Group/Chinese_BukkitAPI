@@ -12,46 +12,32 @@ import com.google.common.collect.ImmutableMap;
 
 /**
  * 代表一个单独的烟花效果。
- * 原文：
- * Represents a single firework effect.
  */
 @SerializableAs("Firework")
 public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 效果的类型或形状。
-     * 原文：
-     * The type or shape of the effect.
      */
     public enum Type {
         /**
          * 小型球状效果。
-         * 原文：
-         * A small ball effect.
          */
         BALL,
         /**
          * 大型球状效果。
-         * 原文：
-         * A large ball effect.
          */
         BALL_LARGE,
         /**
          * 星形效果。
-         * 原文：
-         * A star-shaped effect.
          */
         STAR,
         /**
          * 爆裂效果。
-         * 原文：
-         * A burst effect.
          */
         BURST,
         /**
          * 苦力怕脸型效果。
-         * 原文：
-         * A creeper-face effect.
          */
         CREEPER,
         ;
@@ -59,6 +45,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 构建一个烟花效果。
+     * <p>
      * 原文：
      * Construct a firework effect.
      *
@@ -70,6 +57,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 这是一个烟花效果的生成器。
+     * <p>
      * 原文：
      * This is a builder for FireworkEffects.
      *
@@ -86,6 +74,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 指定烟花效果的类型。
+         * <p>
          * 原文：
          * Specify the type of the firework effect.
          *
@@ -101,6 +90,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花添加一个闪烁效果。
+         * <p>
          * 原文：
          * Add a flicker to the firework effect.
          *
@@ -113,6 +103,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 设置烟花是否具有闪烁效果。
+         * <p>
          * 原文：
          * Set whether the firework effect should flicker.
          *
@@ -126,6 +117,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花添加一个尾迹效果。
+         * <p>
          * 原文：
          * Add a trail to the firework effect.
          *
@@ -138,6 +130,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 设置烟花是否有尾迹效果。
+         * <p>
          * 原文：
          * Set whether the firework effect should have a trail.
          *
@@ -151,6 +144,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花效果添加一种主颜色。
+         * <p>
          * 原文：
          * Add a primary color to the firework effect.
          *
@@ -168,6 +162,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花效果添加几种主颜色。
+         * <p>
          * 原文：
          * Add several primary colors to the firework effect.
          *
@@ -193,6 +188,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花效果添加几种主颜色。
+         * <p>
          * 原文：
          * Add several primary colors to the firework effect.
          *
@@ -217,6 +213,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花效果添加一种淡出颜色。
+         * <p>
          * 原文：
          * Add a fade color to the firework effect.
          *
@@ -239,6 +236,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花效果添加几种淡出颜色。
+         * <p>
          * 原文：
          * Add several fade colors to the firework effect.
          *
@@ -268,6 +266,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
         /**
          * 向烟花效果添加几种淡出颜色。
+         * <p>
          * 原文：
          * Add several fade colors to the firework effect.
          *
@@ -298,6 +297,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
          * 根据这个生成器的当前内容创建一个{@link FireworkEffect}。
          * <p>
          * 成功生成需要指定至少一种颜色。
+         * <p>
          * 原文：
          * Create a {@link FireworkEffect} from the current contents of this
          * builder.
@@ -343,6 +343,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 获取烟花是否具有闪烁效果。
+     * <p>
      * 原文：
      * Get whether the firework effect flickers.
      *
@@ -354,6 +355,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 获取烟花是否具有尾迹效果。
+     * <p>
      * 原文：
      * Get whether the firework effect has a trail.
      *
@@ -365,6 +367,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 获取烟花效果的主颜色。
+     * <p>
      * 原文：
      * Get the primary colors of the firework effect.
      *
@@ -376,6 +379,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 获取烟花效果的淡出颜色。
+     * <p>
      * 原文：
      * Get the fade colors of the firework effect.
      *
@@ -387,6 +391,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * 获取烟花效果的类型。
+     * <p>
      * 原文：
      * Get the type of the firework effect.
      *
@@ -439,7 +444,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
     @Override
     public int hashCode() {
         /**
-         * TRUE and FALSE as per boolean.hashCode()
+         * TRUE和FALSE为boolean.hasCode()的值
          */
         final int PRIME = 31, TRUE = 1231, FALSE = 1237;
         int hash = 1;
