@@ -11,32 +11,46 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 
 /**
+ * 代表一个单独的烟花效果。
+ * 原文：
  * Represents a single firework effect.
  */
 @SerializableAs("Firework")
 public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
+     * 效果的类型或形状。
+     * 原文：
      * The type or shape of the effect.
      */
     public enum Type {
         /**
+         * 小型球状效果。
+         * 原文：
          * A small ball effect.
          */
         BALL,
         /**
+         * 大型球状效果。
+         * 原文：
          * A large ball effect.
          */
         BALL_LARGE,
         /**
+         * 星形效果。
+         * 原文：
          * A star-shaped effect.
          */
         STAR,
         /**
+         * 爆炸效果。
+         * 原文：
          * A burst effect.
          */
         BURST,
         /**
+         * 苦力怕脸形效果。
+         * 原文：
          * A creeper-face effect.
          */
         CREEPER,
@@ -44,15 +58,19 @@ public final class FireworkEffect implements ConfigurationSerializable {
     }
 
     /**
+     * 构建一个烟花效果。
+     * 原文：
      * Construct a firework effect.
      *
-     * @return A utility object for building a firework effect
+     * @return 一个用于构建烟花效果的实用对象
      */
     public static Builder builder() {
         return new Builder();
     }
 
     /**
+     * 这是一个烟花效果的生成器。
+     * 原文：
      * This is a builder for FireworkEffects.
      *
      * @see FireworkEffect#builder()
@@ -67,11 +85,13 @@ public final class FireworkEffect implements ConfigurationSerializable {
         Builder() {}
 
         /**
+         * 指定烟花效果的类型。
+         * 原文：
          * Specify the type of the firework effect.
          *
-         * @param type The effect type
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If type is null
+         * @param type 效果类型
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果类型为空则抛出错误
          */
         public Builder with(Type type) throws IllegalArgumentException {
             Validate.notNull(type, "Cannot have null type");
@@ -80,9 +100,11 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 添加一个闪烁的烟花效果。
+         * 原文：
          * Add a flicker to the firework effect.
          *
-         * @return This object, for chaining
+         * @return 用于链接的对象
          */
         public Builder withFlicker() {
             flicker = true;
@@ -90,10 +112,12 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 设置烟花效果是否闪烁。
+         * 原文：
          * Set whether the firework effect should flicker.
          *
-         * @param flicker true if it should flicker, false if not
-         * @return This object, for chaining
+         * @param flicker 闪烁为true，否则为false
+         * @return 用于链接的对象
          */
         public Builder flicker(boolean flicker) {
             this.flicker = flicker;
