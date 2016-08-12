@@ -43,13 +43,13 @@ public final class FireworkEffect implements ConfigurationSerializable {
          */
         STAR,
         /**
-         * 爆炸效果。
+         * 爆裂效果。
          * 原文：
          * A burst effect.
          */
         BURST,
         /**
-         * 苦力怕脸形效果。
+         * 苦力怕脸型效果。
          * 原文：
          * A creeper-face effect.
          */
@@ -100,7 +100,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
-         * 添加一个闪烁的烟花效果。
+         * 向烟花添加一个闪烁效果。
          * 原文：
          * Add a flicker to the firework effect.
          *
@@ -112,11 +112,11 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
-         * 设置烟花效果是否闪烁。
+         * 设置烟花是否具有闪烁效果。
          * 原文：
          * Set whether the firework effect should flicker.
          *
-         * @param flicker 闪烁为true，否则为false
+         * @param flicker 具有闪烁效果为true，否则为false
          * @return 用于链接的对象
          */
         public Builder flicker(boolean flicker) {
@@ -125,9 +125,11 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花添加一个尾迹效果。
+         * 原文：
          * Add a trail to the firework effect.
          *
-         * @return This object, for chaining
+         * @return 用于链接的对象
          */
         public Builder withTrail() {
             trail = true;
@@ -135,10 +137,12 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 设置烟花是否有尾迹效果。
+         * 原文：
          * Set whether the firework effect should have a trail.
          *
-         * @param trail true if it should have a trail, false for no trail
-         * @return This object, for chaining
+         * @param trail 如果具有尾迹效果则返回true，否则返回false
+         * @return 用于链接的对象
          */
         public Builder trail(boolean trail) {
             this.trail = trail;
@@ -146,11 +150,13 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花效果添加一种主颜色。
+         * 原文：
          * Add a primary color to the firework effect.
          *
-         * @param color The color to add
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If color is null
+         * @param color 添加的颜色
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果颜色为空则抛出错误
          */
         public Builder withColor(Color color) throws IllegalArgumentException {
             Validate.notNull(color, "Cannot have null color");
@@ -161,13 +167,14 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花效果添加几种主颜色。
+         * 原文：
          * Add several primary colors to the firework effect.
          *
-         * @param colors The colors to add
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If colors is null
-         * @throws IllegalArgumentException If any color is null (may be
-         *     thrown after changes have occurred)
+         * @param colors 添加的颜色
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果颜色为空则抛出错误
+         * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
         public Builder withColor(Color...colors) throws IllegalArgumentException {
             Validate.notNull(colors, "Cannot have null colors");
@@ -185,14 +192,14 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花效果添加几种主颜色。
+         * 原文：
          * Add several primary colors to the firework effect.
          *
-         * @param colors An iterable object whose iterator yields the desired
-         *     colors
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If colors is null
-         * @throws IllegalArgumentException If any color is null (may be
-         *     thrown after changes have occurred)
+         * @param colors 一个可迭代的对象，其迭代器可产生所需的颜色。
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果颜色为空则抛出错误
+         * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
         public Builder withColor(Iterable<?> colors) throws IllegalArgumentException {
             Validate.notNull(colors, "Cannot have null colors");
@@ -209,13 +216,14 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花效果添加一种淡出颜色。
+         * 原文：
          * Add a fade color to the firework effect.
          *
-         * @param color The color to add
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If colors is null
-         * @throws IllegalArgumentException If any color is null (may be
-         *     thrown after changes have occurred)
+         * @param color 添加的颜色
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果颜色为空则抛出错误
+         * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
         public Builder withFade(Color color) throws IllegalArgumentException {
             Validate.notNull(color, "Cannot have null color");
@@ -230,13 +238,14 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花效果添加几种淡出颜色。
+         * 原文：
          * Add several fade colors to the firework effect.
          *
-         * @param colors The colors to add
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If colors is null
-         * @throws IllegalArgumentException If any color is null (may be
-         *     thrown after changes have occurred)
+         * @param colors 添加的颜色
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果颜色为空则抛出错误
+         * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
         public Builder withFade(Color...colors) throws IllegalArgumentException {
             Validate.notNull(colors, "Cannot have null colors");
@@ -258,14 +267,14 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 向烟花效果添加几种淡出颜色。
+         * 原文：
          * Add several fade colors to the firework effect.
          *
-         * @param colors An iterable object whose iterator yields the desired
-         *     colors
-         * @return This object, for chaining
-         * @throws IllegalArgumentException If colors is null
-         * @throws IllegalArgumentException If any color is null (may be
-         *     thrown after changes have occurred)
+         * @param colors 一个可迭代的对象，其迭代器可产生所需的颜色。
+         * @return 用于链接的对象
+         * @throws IllegalArgumentException 如果颜色为空则抛出错误
+         * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
         public Builder withFade(Iterable<?> colors) throws IllegalArgumentException {
             Validate.notNull(colors, "Cannot have null colors");
@@ -286,12 +295,16 @@ public final class FireworkEffect implements ConfigurationSerializable {
         }
 
         /**
+         * 根据这个生成器的当前内容创建一个{@link FireworkEffect}。
+         * <p>
+         * 成功生成需要指定至少一种颜色。
+         * 原文：
          * Create a {@link FireworkEffect} from the current contents of this
          * builder.
          * <p>
          * To successfully build, you must have specified at least one color.
          *
-         * @return The representative firework effect
+         * @return 烟花效果模板
          */
         public FireworkEffect build() {
             return new FireworkEffect(
@@ -329,45 +342,55 @@ public final class FireworkEffect implements ConfigurationSerializable {
     }
 
     /**
+     * 获取烟花是否具有闪烁效果。
+     * 原文：
      * Get whether the firework effect flickers.
      *
-     * @return true if it flickers, false if not
+     * @return 如果具有闪烁效果则返回true，否则返回false
      */
     public boolean hasFlicker() {
         return flicker;
     }
 
     /**
+     * 获取烟花是否具有尾迹效果。
+     * 原文：
      * Get whether the firework effect has a trail.
      *
-     * @return true if it has a trail, false if not
+     * @return 如果具有尾迹效果则返回true，否则返回false
      */
     public boolean hasTrail() {
         return trail;
     }
 
     /**
+     * 获取烟花效果的主颜色。
+     * 原文：
      * Get the primary colors of the firework effect.
      *
-     * @return An immutable list of the primary colors
+     * @return 获取一个主颜色的不可变列表
      */
     public List<Color> getColors() {
         return colors;
     }
 
     /**
+     * 获取烟花效果的淡出颜色。
+     * 原文：
      * Get the fade colors of the firework effect.
      *
-     * @return An immutable list of the fade colors
+     * @return 获取一个淡出颜色的不可变列表
      */
     public List<Color> getFadeColors() {
         return fadeColors;
     }
 
     /**
+     * 获取烟花效果的类型。
+     * 原文：
      * Get the type of the firework effect.
      *
-     * @return The effect type
+     * @return 效果类型
      */
     public Type getType() {
         return type;
@@ -375,8 +398,8 @@ public final class FireworkEffect implements ConfigurationSerializable {
 
     /**
      * @see ConfigurationSerializable
-     * @param map the map to deserialize
-     * @return the resulting serializable
+     * @param map 用于反序列化的Map
+     * @return 序列化的结果
      */
     public static ConfigurationSerializable deserialize(Map<String, Object> map) {
         Type type = Type.valueOf((String) map.get(TYPE));
