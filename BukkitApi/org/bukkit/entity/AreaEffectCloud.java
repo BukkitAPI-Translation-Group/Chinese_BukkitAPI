@@ -10,14 +10,14 @@ import org.bukkit.projectiles.ProjectileSource;
 
 /**
  * 代表一片即将对处于其中的生物施加药水效果的区域效果云（译注：即喷溅药水使用后形成的雾）。
- * 原文：
- * Represents an area effect cloud which will imbue a potion effect onto
- * entities which enter it.
+ * <p>
+ * 参考：http://minecraft-zh.gamepedia.com/%E5%8C%BA%E5%9D%97%E6%A0%BC%E5%BC%8F#AreaEffectCloud
  */
 public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取这片云持续的时间（单位为tick）。
+     * <p>
      * 原文：
      * Gets the duration which this cloud will exist for (in ticks).
      *
@@ -27,6 +27,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置这片云持续的时间（单位为tick）。
+     * <p>
      * 原文：
      * Sets the duration which this cloud will exist for (in ticks).
      *
@@ -36,6 +37,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取实体受到效果前的延迟时间。
+     * <p>
      * 原文：
      * Gets the time which an entity has to be exposed to the cloud before the
      * effect is applied.
@@ -46,6 +48,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置实体受到效果前的延迟时间。
+     * <p>
      * 原文：
      * Sets the time which an entity has to be exposed to the cloud before the
      * effect is applied.
@@ -56,6 +59,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取实体受到效果后的免疫时间。
+     * <p>
      * 原文：
      * Gets the time that an entity will be immune from subsequent exposure.
      *
@@ -65,6 +69,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置实体受到效果后的免疫时间。
+     * <p>
      * 原文：
      * Sets the time that an entity will be immune from subsequent exposure.
      *
@@ -74,6 +79,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取这片云对一个实体产生效果后持续时间减少的量。
+     * <p>
      * 原文：
      * Gets the amount that the duration of this cloud will decrease by when it
      * applies an effect to an entity.
@@ -84,6 +90,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置这片云对一个实体产生效果后持续时间减少的量。
+     * <p>
      * 原文：
      * Sets the amount that the duration of this cloud will decrease by when it
      * applies an effect to an entity.
@@ -94,6 +101,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取这片云的初始半径。
+     * <p>
      * 原文：
      * Gets the initial radius of the cloud.
      *
@@ -103,6 +111,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置这片云的初始半径。
+     * <p>
      * 原文：
      * Sets the initial radius of the cloud.
      *
@@ -112,6 +121,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取这片云对一个实体产生效果后半径的减少量。
+     * <p>
      * 原文：
      * Gets the amount that the radius of this cloud will decrease by when it
      * applies an effect to an entity.
@@ -122,6 +132,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置这片云对一个实体产生效果后半径的减少量。
+     * <p>
      * 原文：
      * Sets the amount that the radius of this cloud will decrease by when it
      * applies an effect to an entity.
@@ -132,6 +143,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取每一tick这片云的半径减少量。
+     * <p>
      * 原文：
      * Gets the amount that the radius of this cloud will decrease by each tick.
      *
@@ -141,7 +153,8 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置每一tick这片云的半径减少量。
-     * 原文（疑似有误，get应为set）：
+     * <p>
+     * 原文（疑似有误，get应为set）:
      * Gets the amount that the radius of this cloud will decrease by each tick.
      *
      * @param radius 每一tick这片云的半径减少量
@@ -150,6 +163,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取组成这片云的粒子
+     * <p>
      * 原文：
      * Gets the particle which this cloud will be composed of
      *
@@ -159,6 +173,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置组成这片云的粒子
+     * <p>
      * 原文：
      * Sets the particle which this cloud will be composed of
      *
@@ -168,6 +183,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置基本药水数据
+     * <p>
      * 原文：
      * Sets the underlying potion data
      *
@@ -177,6 +193,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 返回基本药水的药水数据
+     * <p>
      * 原文：
      * Returns the potion data about the base potion
      *
@@ -186,6 +203,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 检查自定义药水效果是否有效。
+     * <p>
      * 原文：
      * Checks for the presence of custom potion effects.
      *
@@ -197,6 +215,7 @@ public interface AreaEffectCloud extends Entity {
      * 获取一个包含这片云所有的自定义药水效果的不可变集合（immutable list）。
      * <p>
      * 调用此方法前插件应确保hasCustomEffects()返回true。
+     * <p>
      * 原文：
      * Gets an immutable list containing all custom potion effects applied to
      * this cloud.
@@ -210,6 +229,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 向这片云添加一个自定义药水效果。
+     * <p>
      * 原文：
      * Adds a custom potion effect to this cloud.
      *
@@ -221,6 +241,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 从这片云移除一个自定义药水效果。
+     * <p>
      * 原文：
      * Removes a custom potion effect from this cloud.
      *
@@ -231,6 +252,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 检查这片云中是否存在一种特定的自定义药水效果类型。
+     * <p>
      * 原文：
      * Checks for a specific custom potion effect type on this cloud.
      *
@@ -241,6 +263,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 从这片云移除所有自定义药水效果。
+     * <p>
      * 原文：
      * Removes all custom potion effects from this cloud.
      */
@@ -248,6 +271,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 获取这片云的颜色，即粒子的颜色。
+     * <p>
      * 原文：
      * Gets the color of this cloud. Will be applied as a tint to its particles.
      *
@@ -257,6 +281,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置这片云的颜色，即粒子的颜色。
+     * <p>
      * 原文：
      * Sets the color of this cloud. Will be applied as a tint to its particles.
      *
@@ -266,6 +291,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 检索这片云的初始来源。
+     * <p>
      * 原文：
      * Retrieve the original source of this cloud.
      * 
@@ -275,6 +301,7 @@ public interface AreaEffectCloud extends Entity {
 
     /**
      * 设置这片云的初始来源。
+     * <p>
      * 原文：
      * Set the original source of this cloud.
      *
