@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a Slime splits into smaller Slimes upon death
+ * 当史莱姆死亡后分裂成小史莱姆时触发本事件
  */
 public class SlimeSplitEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -31,18 +31,22 @@ public class SlimeSplitEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the amount of smaller slimes to spawn
+     * 获取生成的小史莱姆的数量.
+     * <p>
+     * 原文:Gets the amount of smaller slimes to spawn
      *
-     * @return the amount of slimes to spawn
+     * @return 生成的小史莱姆的数量
      */
     public int getCount() {
         return count;
     }
 
     /**
-     * Sets how many smaller slimes will spawn on the split
+     * 设置分裂时将生成多少小史莱姆
+     * <p>
+     * 原文:Sets how many smaller slimes will spawn on the split
      *
-     * @param count the amount of slimes to spawn
+     * @param count 生成的小史莱姆的数量
      */
     public void setCount(int count) {
         this.count = count;
