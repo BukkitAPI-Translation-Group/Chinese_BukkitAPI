@@ -11,7 +11,7 @@ import org.bukkit.projectiles.ProjectileSource;
 /**
  * 代表一片即将对处于其中的生物施加药水效果的区域效果云（译注：即喷溅药水使用后形成的雾）。
  * <p>
- * 参考：http://minecraft-zh.gamepedia.com/%E5%8C%BA%E5%9D%97%E6%A0%BC%E5%BC%8F#AreaEffectCloud
+ * 参考：http://minecraft-zh.gamepedia.com/%E5%8C%BA%E5%9D%97%E6%A0%BC%E5%BC%8F#AreaEffectCloud、http://minecraft-zh.gamepedia.com/%E6%BB%9E%E7%95%99%E8%8D%AF%E6%B0%B4
  */
 public interface AreaEffectCloud extends Entity {
 
