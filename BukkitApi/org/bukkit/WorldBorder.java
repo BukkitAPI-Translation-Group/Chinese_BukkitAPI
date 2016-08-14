@@ -121,7 +121,7 @@ public interface WorldBorder {
 
     /**
      * 获取玩家离方块多远时会被警告
-     * <P>
+     * <p>
      * 原文：Gets the current border warning distance.
      *
      * @return 离结界多少方块的时候会被警告
@@ -130,7 +130,7 @@ public interface WorldBorder {
 
     /**
      * 设置玩家离结界几个方块的时候会被警告
-     * <P>
+     * <p>
      * 原文：Sets the warning distance that causes the screen to be tinted red when the player is within the specified number of blocks from the border.
      *
      * @param distance:要设置玩家会被警告的距离
