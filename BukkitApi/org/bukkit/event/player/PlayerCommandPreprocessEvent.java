@@ -187,7 +187,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     /**
      * 获取所有能看到这个消息的玩家
      * <p>
-     * 本方法返回的集合不保证可以改变和访问时自动填充。
+     * 本方法返回的集合不保证可以改变和访问时可能自动填充。
      * 任何监听器访问这个返回的集合应该知道对于一个lazy set的实现可能会降低性能.
      * 监听器应注意到如果事件传唤者提供了一个不可修改的Set集合的话修改这个列表可能会抛出{@link
      * UnsupportedOperationException}异常。
