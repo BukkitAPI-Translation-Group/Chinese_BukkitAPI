@@ -9,14 +9,14 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 这个事件是,当一个玩家执行一个命令的时候将会被触发(也就是在聊天框里面输入信息以/开头的时候，算作命令，就会触发此事件)
- * 且这个事件是早于插件的onCommand接收的命令的
- * 如果你此时调用{@link #setMessage(String)}方法的话,其他插件收到的命令将会是你更改以后的命令
+ * 这个事件是,当一个玩家执行一个命令的时候将会被触发(也就是在聊天框里面输入信息以/开头的时候，算作命令，就会触发此事件)。
+ * 且这个事件是早于插件的onCommand接收的命令的。
+ * 如果你此时调用{@link #setMessage(String)}方法的话,其他插件收到的命令将会是你更改以后的命令。
  * 警告:如果没必要，请避免使用此事件.
  * 如果你不知道这个事件有啥用,下面的例子可能有助于你理解该事件的作用.
- <ul>
+ * <ul>
  * <li>接收到一个带有变量的命令,把它用对应要替换成的
- * <li>量来替换这个变量. 举个梨子
+ * <li>量来替换这个变量. 举个例子
  *     <code>${nearbyPlayer}</code> 是一个变量，然后我们需要把它替换成离发送命令最近的玩家的名字
  *     又或者是替换成 <code>@a</code> 和 <code>@p</code> 这样的变量
  *     通过插件调用命令方块来执行它，而不是插件.
@@ -38,8 +38,8 @@ import org.bukkit.event.HandlerList;
  * <p>
  * 另外,命令内的{@link #getMessage()}这个方法,返回的String会带有一个/
  * 切忌删除此/,否则将出现无法预料的错误.
- *
- *原文:
+ * <p>
+ * 原文:
  * This event is called whenever a player runs a command (by placing a slash
  * at the start of their message). It is called early in the command handling
  * process, and modifications in this event (via {@link #setMessage(String)})
@@ -106,7 +106,13 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     /**
      * 获取所发送的命令的所有字符串.
      * <p>
-     * 虽然所获取的命令字符串会带有一个/,但你执行命令的时候,不用输入这个/
+     * 虽然所获取的命令字符串会带有一个“/”,但你执行命令的时候,不用输入这个“/”。
+     * <p>
+     * 原文:
+     * Gets the command that the player is attempting to send.
+     * <p>
+     * All commands begin with a special character; implementations do not
+     * consider the first character when executing the content.
      *
      * @return 返回玩家所输入的命令所有字符串,包括/
      */
@@ -117,7 +123,12 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     /**
      * 设置玩家即将要发送的命令的字符串
      * <p>
-     * 虽然所获取的命令字符串会带有一个/,但你执行命令的时候,不用输入这个/
+     * 虽然所获取的命令字符串会带有一个“/”,但你执行命令的时候,不用输入这个“/”.
+     * <p>
+     * Sets the command that the player will send.
+     * <p>
+     * All commands begin with a special character; implementations do not
+     * consider the first character when executing the content.
      *
      * @param 设置即将要发送的命令
      * @throws IllegalArgumentException 如果这个命令为Null或者为空
@@ -130,9 +141,11 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
 
     /**
      * 设置这个命令的执行者
+     * <p>
+     * 原文:Sets the player that this command will be executed as.
      *
      * @param 新的命令执行者
-     * @throws IllegalArgumentException 如果这个玩家无效
+     * @throws IllegalArgumentException 如果这个玩家为null
      */
     public void setPlayer(final Player player) throws IllegalArgumentException {
         Validate.notNull(player, "Player cannot be null");
@@ -151,14 +164,16 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * 设置这个消息展示的格式
+     * 设置这个消息展示的格式.
+     * <p>
+     * 原文:Sets the format to use to display this chat message
      *
      * @deprecated 向后兼容,不确保每个版本都有效
      * @param 消息展示给别的玩家的格式
      */
     @Deprecated
     public void setFormat(final String format) {
-        // 建议用这个方法
+        // Oh for a better way to do this!
         try {
             String.format(format, player, message);
         } catch (RuntimeException ex) {
@@ -172,9 +187,20 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     /**
      * 获取所有能看到这个消息的玩家
      * <p>
-     * 返回所有能看到这个消息的玩家.但你要知道这个集合随时可能变,频繁访问必定增加服务器负担.
-     * 如果这个Set集合是个不可变集合,将会抛出 {@link
-     * UnsupportedOperationException} 异常.
+     * 本方法返回的集合不保证可以改变和访问时自动填充。
+     * 任何监听器访问这个返回的集合应该知道对于一个lazy set的实现可能会降低性能.
+     * 监听器应注意到如果事件传唤者提供了一个不可修改的Set集合的话修改这个列表可能会抛出{@link
+     * UnsupportedOperationException}异常。
+     * <p>
+     * 原文:
+     * Gets a set of recipients that this chat message will be displayed to.
+     * <p>
+     * The set returned is not guaranteed to be mutable and may auto-populate
+     * on access. Any listener accessing the returned set should be aware that
+     * it may reduce performance for a lazy set implementation. Listeners
+     * should be aware that modifying the list may throw {@link
+     * UnsupportedOperationException} if the event caller provides an
+     * unmodifiable set.
      *
      * @deprecated 该方法无法保证在每个版本上的效果
      * @return 所有看见该消息的玩家
