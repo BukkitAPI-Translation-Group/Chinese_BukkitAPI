@@ -13,8 +13,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a lingering potion applies it's effects. Happens
- * once every 5 ticks
+ * 当滞留药水应用它的效果时触发本事件，期间每5 tick发生一次。
  */
 public class AreaEffectCloudApplyEvent extends EntityEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -31,6 +30,12 @@ public class AreaEffectCloudApplyEvent extends EntityEvent {
     }
 
     /**
+     * 获取一个受影响实体的可变列表。
+     * <p>
+     * 特别注意不是在列表里的每个实体都保证受影响。
+     * 药水效果云可能由于{@link AreaEffectCloud#getDurationOnUse()}或{@link AreaEffectCloud#getRadiusOnUse()}的消耗死在应用过程中的影响
+     * <p>
+     * 原文:
      * Retrieves a mutable list of the effected entities
      * <p>
      * It is important to note that not every entity in this list
@@ -38,7 +43,7 @@ public class AreaEffectCloudApplyEvent extends EntityEvent {
      * application of its effects due to the depletion of {@link AreaEffectCloud#getDurationOnUse()}
      * or {@link AreaEffectCloud#getRadiusOnUse()}
      *
-     * @return the affected entity list
+     * @return 受影响的实体列表
      */
     public List<LivingEntity> getAffectedEntities() {
         return affectedEntities;
