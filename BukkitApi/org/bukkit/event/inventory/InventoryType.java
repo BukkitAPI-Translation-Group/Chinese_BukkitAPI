@@ -23,13 +23,12 @@ public enum InventoryType {
      */
     WORKBENCH(10,"Crafting"),
     /**
-     * A player's crafting inventory, with 4 CRAFTING slots and a RESULT slot.
-     * Also implies that the 4 ARMOR slots are accessible.
+     * 一个有4个合成物品格子和一个合成产物格子的玩家合成背包。
+     * 同样可以访问四个盔甲格子
      */
     CRAFTING(5,"Crafting"),
     /**
-     * An enchantment table inventory, with two CRAFTING slots and three
-     * enchanting buttons.
+     * 一个有两个合成格子和三个附魔选项按钮的附魔台背包
      */
     ENCHANTING(2,"Enchanting"),
     /**
@@ -49,23 +48,23 @@ public enum InventoryType {
      */
     CREATIVE(9,"Creative"),
     /**
-     * The merchant inventory, with 2 TRADE-IN slots, and 1 RESULT slot.
+     * 一个有两个交易物格子和一个结果格子的交易背包
      */
     MERCHANT(3,"Villager"),
     /**
-     * The ender chest inventory, with 27 slots.
+     * 有27个格子的末影箱背包
      */
     ENDER_CHEST(27,"Ender Chest"),
     /**
-     * An anvil inventory, with 2 CRAFTING slots and 1 RESULT slot
+     * 一个有两个合成格子和一个结果格子的铁砧背包
      */
     ANVIL(3, "Repairing"),
     /**
-     * A beacon inventory, with 1 CRAFTING slot
+     * 一个有一个合成格子的信标背包
      */
     BEACON(1, "container.beacon"),
     /**
-     * A hopper inventory, with 5 slots of type CONTAINER.
+     * 一个有五个格子的漏斗背包容器
      */
     HOPPER(5, "Item Hopper"),
     ;
@@ -88,7 +87,7 @@ public enum InventoryType {
 
     public enum SlotType {
         /**
-         * A result slot in a furnace or crafting inventory.
+         * 在熔炉或合成背包里的结果格子
          */
         RESULT,
         /**
