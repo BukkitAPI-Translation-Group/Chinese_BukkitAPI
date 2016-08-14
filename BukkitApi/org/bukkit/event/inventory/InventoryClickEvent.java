@@ -73,27 +73,33 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
-     * Gets the type of slot that was clicked.
+     * 获取被点击的格子的类型.
+     * <p>
+     * 原文:Gets the type of slot that was clicked.
      *
-     * @return the slot type
+     * @return 格子类型
      */
     public SlotType getSlotType() {
         return slot_type;
     }
 
     /**
-     * Gets the current ItemStack on the cursor.
+     * 获取当前光标所指的物品
+     * <p>
+     * 原文:Gets the current ItemStack on the cursor.
      *
-     * @return the cursor ItemStack
+     * @return 光标上的物品
      */
     public ItemStack getCursor() {
         return getView().getCursor();
     }
 
     /**
-     * Gets the ItemStack currently in the clicked slot.
+     * 获取被点击的格子的物品
+     * <p>
+     * 原文:Gets the ItemStack currently in the clicked slot.
      *
-     * @return the item in the clicked
+     * @return 被点击的物品
      */
     public ItemStack getCurrentItem() {
         if (slot_type == SlotType.OUTSIDE) {
@@ -103,10 +109,13 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
+     * 获取是否右击背包
+     * <p>
+     * 原文:
      * Gets whether or not the ClickType for this event represents a right
      * click.
      *
-     * @return true if the ClickType uses the right mouse button.
+     * @return 是否右击背包
      * @see ClickType#isRightClick()
      */
     public boolean isRightClick() {
@@ -211,11 +220,15 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
-     * Gets the ClickType for this event.
+     * 获取本事件的ClickType.
+     * <p>
+     * ???????????????
+     * <p>
+     * 原文:Gets the ClickType for this event.
      * <p>
      * This is insulated against changes to the inventory by other plugins.
      *
-     * @return the type of inventory click
+     * @return 背包点击类型
      */
     public ClickType getClick() {
         return click;
