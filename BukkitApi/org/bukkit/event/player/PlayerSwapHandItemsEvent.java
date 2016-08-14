@@ -24,36 +24,44 @@ public class PlayerSwapHandItemsEvent extends PlayerEvent implements Cancellable
     }
 
     /**
-     * Gets the item switched to the main hand.
+     * 获取切换到主手的物品.
+     * <p>
+     * 原文:Gets the item switched to the main hand.
      *
-     * @return item in the main hand
+     * @return 主手里的物品
      */
     public ItemStack getMainHandItem() {
         return mainHandItem;
     }
 
     /**
-     * Sets the item in the main hand.
+     * 设置主手里的物品.
+     * <p>
+     * 原文:Sets the item in the main hand.
      *
-     * @param mainHandItem new item in the main hand
+     * @param mainHandItem 主手里的物品
      */
     public void setMainHandItem(ItemStack mainHandItem) {
         this.mainHandItem = mainHandItem;
     }
 
     /**
-     * Gets the item switched to the off hand.
+     * 获取切换到副手的物品.
+     * <p>
+     * 原文:Gets the item switched to the off hand.
      *
-     * @return item in the off hand
+     * @return 副手里的物品
      */
     public ItemStack getOffHandItem() {
         return offHandItem;
     }
 
     /**
-     * Sets the item in the off hand.
+     * 设置副手里的物品.
+     * <p>
+     * 原文:Sets the item in the off hand.
      *
-     * @param offHandItem new item in the off hand
+     * @param offHandItem 副手里的物品
      */
     public void setOffHandItem(ItemStack offHandItem) {
         this.offHandItem = offHandItem;

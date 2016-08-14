@@ -31,7 +31,7 @@ public class PlayerGameModeChangeEvent extends PlayerEvent implements Cancellabl
      * <p>
      * 原文:Gets the GameMode the player is switched to.
      *
-     * @return  玩家目前的游戏模式
+     * @return 新游戏模式
      */
     public GameMode getNewGameMode() {
         return newGameMode;

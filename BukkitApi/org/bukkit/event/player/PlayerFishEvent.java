@@ -7,7 +7,7 @@ import org.bukkit.entity.Entity;
 import org.bukkit.event.HandlerList;
 
 /**
- * Thrown when a player is fishing
+ * 当玩家钓鱼时触发本事件
  */
 public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -18,11 +18,11 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     private final Fish hookEntity;
 
     /**
-     * @deprecated replaced by {@link #PlayerFishEvent(Player, Entity, Fish,
-     *     State)} to include the {@link Fish} hook entity.
-     * @param player the player fishing
-     * @param entity the caught entity
-     * @param state the state of fishing
+     * @deprecated 已被{@link #PlayerFishEvent(Player, Entity, Fish,
+     *     State)}取代，以包含{@link Fish 上钩的实体}
+     * @param player 正在钓鱼的玩家
+     * @param entity 捕捉到的实体
+     * @param state 钓鱼状态
      */
     @Deprecated
     public PlayerFishEvent(final Player player, final Entity entity, final State state) {
