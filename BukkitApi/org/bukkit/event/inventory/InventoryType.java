@@ -3,25 +3,23 @@ package org.bukkit.event.inventory;
 public enum InventoryType {
 
     /**
-     * A chest inventory, with 0, 9, 18, 27, 36, 45, or 54 slots of type
-     * CONTAINER.
+     * 一个有0、9、18、27、36、45、54个格子的箱子背包容器
      */
     CHEST(27,"Chest"),
     /**
-     * A dispenser inventory, with 9 slots of type CONTAINER.
+     * 一个有9个格子的发射器背包容器
      */
     DISPENSER(9,"Dispenser"),
     /**
-     * A dropper inventory, with 9 slots of type CONTAINER.
+     * 一个有9个格子的投掷器背包容器
      */
     DROPPER(9, "Dropper"),
     /**
-     * A furnace inventory, with a RESULT slot, a CRAFTING slot, and a FUEL
-     * slot.
+     * 一个有烧炼产物格子、一个被烧连物品格子和一个放燃料的格子的熔炉背包容器
      */
     FURNACE(3,"Furnace"),
     /**
-     * A workbench inventory, with 9 CRAFTING slots and a RESULT slot.
+     * 一个有9个合成物品格子和合成产物格子的工作台背包容器
      */
     WORKBENCH(10,"Crafting"),
     /**
