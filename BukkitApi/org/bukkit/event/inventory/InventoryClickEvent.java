@@ -123,9 +123,11 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
-     * Gets whether or not the ClickType for this event represents a left click.
+     * 获取是否左击背包
+     * <p>
+     * 原文:Gets whether or not the ClickType for this event represents a left click.
      *
-     * @return true if the ClickType uses the left mouse button.
+     * @return 是否左击背包
      * @see ClickType#isLeftClick()
      */
     public boolean isLeftClick() {
@@ -133,10 +135,12 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
-     * Gets whether the ClickType for this event indicates that the key was
+     * 获取是否按住shift点击背包
+     * <p>
+     * 原文:Gets whether the ClickType for this event indicates that the key was
      * pressed down when the click was made.
      *
-     * @return true if the ClickType uses Shift or Ctrl.
+     * @return 是否使用Shift或Ctrl按键
      * @see ClickType#isShiftClick()
      */
     public boolean isShiftClick() {
@@ -174,33 +178,38 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
-     * The slot number that was clicked, ready for passing to
+     * 返回点击的格子序号，可传递给{@link Inventory#getItem(int)}。注意由于连接两个不同背包的视图，可能两个格子都是同一个格子序号
+     * <p>
+     * 原文:The slot number that was clicked, ready for passing to
      * {@link Inventory#getItem(int)}. Note that there may be two slots with the
      * same slot number, since a view links two different inventories.
      *
-     * @return The slot number.
+     * @return 格子序号
      */
     public int getSlot() {
         return whichSlot;
     }
 
     /**
-     * The raw slot number clicked, ready for passing to
+     * 返回点击的原始格子序号，可传递给{@link InventoryView #getItem(int)}。这个序号对每个视图是唯一的。
+     * <p>
+     * 原文:The raw slot number clicked, ready for passing to
      * {@link InventoryView #getItem(int)} This slot number is unique for the
      * view.
      *
-     * @return the slot number
+     * @return 格子序号
      */
     public int getRawSlot() {
         return rawSlot;
     }
 
     /**
-     * If the ClickType is NUMBER_KEY, this method will return the index of the
+     * 如果ClickType是NUMVER_KEY（按下数字切换物品），这个方法将返回按下的键的索引（0-8）
+     * <p>
+     * 原文:If the ClickType is NUMBER_KEY, this method will return the index of the
      * pressed key (0-8).
      *
-     * @return the number on the key minus 1 (range 0-8); or -1 if not a
-     *         NUMBER_KEY action
+     * @return 按下的数字减1（范围0-8），如果不是NUMBER_KEY动作为-1
      */
     public int getHotbarButton() {
         return hotbarKey;
