@@ -27,7 +27,7 @@ public enum Instrument {
      */
     SNARE_DRUM(0x2),
     /**
-     * 当音符盒在一个玻璃方块的顶部时通常会以hcrgm的棒♂状物的形式演奏。
+     * 当音符盒在一个玻璃方块的顶部时通常会以鼓槌的形式演奏。
      * 原文：
      * Sticks are normally played when a note block is on top of a glass
      * block.
