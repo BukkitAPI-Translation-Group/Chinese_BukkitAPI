@@ -15,120 +15,133 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
 /**
+ * 代表一个生物实体，如一只怪物或一名玩家。
+ * 原文：
  * Represents a living entity, such as a monster or player
  */
 public interface LivingEntity extends Attributable, Entity, Damageable, ProjectileSource {
 
     /**
+     * 获取生物实体眼睛离脚高度。
+     * 原文：
      * Gets the height of the living entity's eyes above its Location.
      *
-     * @return height of the living entity's eyes above its location
+     * @return 生物实体眼睛离脚高度
      */
     public double getEyeHeight();
 
     /**
+     * 获取生物实体眼睛离脚高度。
+     * 原文：
      * Gets the height of the living entity's eyes above its Location.
      *
-     * @param ignoreSneaking if set to true, the effects of sneaking will be
-     *     ignored
-     * @return height of the living entity's eyes above its location
+     * @param ignoreSneaking 若为true则会无视潜行效果。
+     * @return 生物实体眼睛离脚高度
      */
     public double getEyeHeight(boolean ignoreSneaking);
 
     /**
+     * 获取生物实体眼睛的详细方位的Location对象。
+     * 原文：
      * Get a Location detailing the current eye position of the living entity.
      *
-     * @return a location at the eyes of the living entity
+     * @return 生物实体眼睛的详细方位的Location对象
      */
     public Location getEyeLocation();
 
     /**
+     * 获取沿生物实体视线上的所有方块。
+     * <p>
+     * 这个列表包含生物实体眼睛到目标位置的所有方块。
+     * 原文：
      * Gets all blocks along the living entity's line of sight.
      * <p>
      * This list contains all blocks from the living entity's eye position to
      * target inclusive.
      *
-     * @param transparent HashSet containing all transparent block IDs (set to
-     *     null for only air)
-     * @param maxDistance this is the maximum distance to scan (may be limited
-     *     by server by at least 100 blocks, no less)
-     * @return list containing all blocks along the living entity's line of
-     *     sight
-     * @deprecated Magic value
+     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
+     * @return 包含沿生物实体视线上的所有方块的列表
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public List<Block> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
 
     /**
+     * 获取沿生物实体视线上的所有方块。
+     * <p>
+     * 这个列表包含生物实体眼睛到目标位置的所有方块。
+     * 原文：
      * Gets all blocks along the living entity's line of sight.
      * <p>
      * This list contains all blocks from the living entity's eye position to
      * target inclusive.
      *
-     * @param transparent HashSet containing all transparent block Materials (set to
-     *     null for only air)
-     * @param maxDistance this is the maximum distance to scan (may be limited
-     *     by server by at least 100 blocks, no less)
-     * @return list containing all blocks along the living entity's line of
-     *     sight
+     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
+     * @return 包含沿生物实体视线上的所有方块的列表
      */
     public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance);
 
     /**
+     * 获取生物实体的目标方块。
+     * 原文：
      * Gets the block that the living entity has targeted.
      *
-     * @param transparent HashSet containing all transparent block IDs (set to
-     *     null for only air)
-     * @param maxDistance this is the maximum distance to scan (may be limited
-     *     by server by at least 100 blocks, no less)
-     * @return block that the living entity has targeted
-     * @deprecated Magic value
+     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
+     * @return 生物实体的目标方块
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Block getTargetBlock(HashSet<Byte> transparent, int maxDistance);
 
     /**
+     * 获取生物实体的目标方块。
+     * 原文：
      * Gets the block that the living entity has targeted.
      *
-     * @param transparent HashSet containing all transparent block Materials (set to
-     *     null for only air)
-     * @param maxDistance this is the maximum distance to scan (may be limited
-     *     by server by at least 100 blocks, no less)
-     * @return block that the living entity has targeted
+     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
+     * @return block 生物实体的目标方块
      */
     public Block getTargetBlock(Set<Material> transparent, int maxDistance);
 
     /**
+     * 获取沿生物实体视线上最后两个方块。
+     * <p>
+     * 目标方块将是列表中最后的方块。
+     * 原文：
      * Gets the last two blocks along the living entity's line of sight.
      * <p>
      * The target block will be the last block in the list.
      *
-     * @param transparent HashSet containing all transparent block IDs (set to
-     *     null for only air)
-     * @param maxDistance this is the maximum distance to scan. This may be
-     *     further limited by the server, but never to less than 100 blocks
-     * @return list containing the last 2 blocks along the living entity's
-     *     line of sight
-     * @deprecated Magic value
+     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
+     * @return 包含沿生物实体视线上最后两个方块的列表
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public List<Block> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
 
     /**
+     * 获取沿生物实体视线上最后两个方块。
+     * <p>
+     * 目标方块将是列表中最后的方块。
+     * 原文：
      * Gets the last two blocks along the living entity's line of sight.
      * <p>
      * The target block will be the last block in the list.
      *
-     * @param transparent HashSet containing all transparent block Materials (set to
-     *     null for only air)
-     * @param maxDistance this is the maximum distance to scan. This may be
-     *     further limited by the server, but never to less than 100 blocks
-     * @return list containing the last 2 blocks along the living entity's
-     *     line of sight
+     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
+     * @return 包含沿生物实体视线上最后两个方块的列表
      */
     public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
 
     /**
+     * 返回
+     * 原文：
      * Returns the amount of air that the living entity has remaining, in
      * ticks.
      *
@@ -137,6 +150,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public int getRemainingAir();
 
     /**
+     * 设置
+     * 原文：
      * Sets the amount of air that the living entity has remaining, in ticks.
      *
      * @param ticks amount of air remaining
