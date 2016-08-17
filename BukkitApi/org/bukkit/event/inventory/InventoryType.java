@@ -3,36 +3,36 @@ package org.bukkit.event.inventory;
 public enum InventoryType {
 
     /**
-     * 一个有0、9、18、27、36、45、54个格子的箱子背包容器
+     * 有0、9、18、27、36、45、54个槽的箱子背包容器
      */
     CHEST(27,"Chest"),
     /**
-     * 一个有9个格子的发射器背包容器
+     * 有9个槽的发射器背包容器
      */
     DISPENSER(9,"Dispenser"),
     /**
-     * 一个有9个格子的投掷器背包容器
+     * 有9个槽的投掷器背包容器
      */
     DROPPER(9, "Dropper"),
     /**
-     * 一个有烧炼产物格子、一个被烧连物品格子和一个放燃料的格子的熔炉背包容器
+     * 有烧炼产物格子、一个被烧连物品格子和一个放燃料的格子的熔炉背包容器
      */
     FURNACE(3,"Furnace"),
     /**
-     * 一个有9个合成物品格子和合成产物格子的工作台背包容器
+     * 有9个合成物品槽和合成产物格子的工作台背包容器
      */
     WORKBENCH(10,"Crafting"),
     /**
-     * 一个有4个合成物品格子和一个合成产物格子的玩家合成背包。
+     * 有4个合成物品槽和一个合成产物格子的玩家合成背包。
      * 同样可以访问四个盔甲格子
      */
     CRAFTING(5,"Crafting"),
     /**
-     * 一个有两个合成格子和三个附魔选项按钮的附魔台背包
+     * 有两个合成槽和三个附魔选项按钮的附魔台背包
      */
     ENCHANTING(2,"Enchanting"),
     /**
-     * A brewing stand inventory, with one FUEL slot and three CRAFTING slots.
+     * 酿造台背包，有一个燃料槽、一个配方槽和三个药水槽
      */
     BREWING(5,"Brewing"),
     /**
@@ -48,23 +48,23 @@ public enum InventoryType {
      */
     CREATIVE(9,"Creative"),
     /**
-     * 一个有两个交易物格子和一个结果格子的交易背包
+     * 有两个交易物槽和一个结果槽的交易背包
      */
     MERCHANT(3,"Villager"),
     /**
-     * 有27个格子的末影箱背包
+     * 有27个槽的末影箱背包
      */
     ENDER_CHEST(27,"Ender Chest"),
     /**
-     * 一个有两个合成格子和一个结果格子的铁砧背包
+     * 有两个合成槽和一个结果槽的铁砧背包
      */
     ANVIL(3, "Repairing"),
     /**
-     * 一个有一个合成格子的信标背包
+     * 有一个合成槽的信标背包
      */
     BEACON(1, "container.beacon"),
     /**
-     * 一个有五个格子的漏斗背包容器
+     * 有五个槽的漏斗背包容器
      */
     HOPPER(5, "Item Hopper"),
     ;
@@ -87,7 +87,7 @@ public enum InventoryType {
 
     public enum SlotType {
         /**
-         * 在熔炉或合成背包里的结果格子
+         * 在熔炉或合成背包里的结果槽
          */
         RESULT,
         /**
@@ -97,7 +97,7 @@ public enum InventoryType {
          */
         CRAFTING,
         /**
-         * An armour slot in the player's inventory.
+         * 在玩家背包里的盔甲槽
          */
         ARMOR,
         /**
