@@ -1,7 +1,7 @@
 package org.bukkit;
 
 /**
- * 所有不同天气的枚举.
+ * 天气的种类
  */
 public enum WeatherType {
 
