@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when the amount of air an entity has remaining changes.
+ * 当实体的氧气值发生变化时触发本事件
  */
 public class EntityAirChangeEvent extends EntityEvent implements Cancellable {
 
@@ -21,18 +21,22 @@ public class EntityAirChangeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the amount of air the entity has left (measured in ticks).
+     * 获取实体剩余的氧气值 (单位为刻)
+     * <p>
+     * 原文:Gets the amount of air the entity has left (measured in ticks).
      *
-     * @return amount of air remaining
+     * @return 实体剩余的氧气值
      */
     public int getAmount() {
         return amount;
     }
 
     /**
-     * Sets the amount of air remaining for the entity (measured in ticks.
+     * 设置实体剩余的氧气值 (单位为刻)
+     * <p>
+     * 原文:Sets the amount of air remaining for the entity (measured in ticks.
      *
-     * @param amount amount of air remaining
+     * @param amount 实体剩余的氧气值
      */
     public void setAmount(int amount) {
         this.amount = amount;
