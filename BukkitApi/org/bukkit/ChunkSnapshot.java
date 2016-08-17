@@ -3,14 +3,9 @@ package org.bukkit;
 import org.bukkit.block.Biome;
 
 /**
- * 表示一个静止的，线程安全的方块的区块的快照。
+ * 表示一个静态的，线程安全的方块的区块的快照。
  * <p>
  * 目的是允许清洁高效地复制一个区块的数据，然后在另一个线程（例如，地图渲染）中处理。
- * 原文：
- * Represents a static, thread-safe snapshot of chunk of blocks.
- * <p>
- * Purpose is to allow clean, efficient copy of a chunk data to be made, and
- * then handed off for processing in another thread (e.g. map rendering)
  */
 public interface ChunkSnapshot {
 
