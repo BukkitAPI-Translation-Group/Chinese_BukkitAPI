@@ -5,7 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a human entity's food level changes
+ * 当一个人类实体的饥饿值发生变化时触发本事件
  */
 public class FoodLevelChangeEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -23,23 +23,30 @@ public class FoodLevelChangeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取本事件涉及的实体将被设置的饥饿值
+     * <p>
+     * 20为饱和状态，0为饥饿状态.
+     * <p>
+     * 原文:
      * Gets the resultant food level that the entity involved in this event
      * should be set to.
      * <p>
      * Where 20 is a full food bar and 0 is an empty one.
      *
-     * @return The resultant food level
+     * @return 饥饿值
      */
     public int getFoodLevel() {
         return level;
     }
 
     /**
+     * 设置实体将被设置的饥饿值
+     * <p>
+     * 原文:
      * Sets the resultant food level that the entity involved in this event
      * should be set to
      *
-     * @param level the resultant food level that the entity involved in this
-     *     event should be set to
+     * @param level 饥饿值
      */
     public void setFoodLevel(int level) {
         if (level > 20) level = 20;
