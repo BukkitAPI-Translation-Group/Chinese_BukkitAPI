@@ -23,42 +23,38 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.MemoryConfiguration;
 
 /**
- * This is a base class for all File based implementations of {@link
- * Configuration}
+ * 这是一个实现了 {@link #Configuration} 的配置文件的基类
  */
 public abstract class FileConfiguration extends MemoryConfiguration {
 
     /**
-     * Creates an empty {@link FileConfiguration} with no default values.
+     * 创建一个空的，没有值默认值的 {@link FileConfiguration}.
      */
     public FileConfiguration() {
         super();
     }
 
     /**
-     * Creates an empty {@link FileConfiguration} using the specified {@link
-     * Configuration} as a source for all default values.
+     * 创建一个空的 {@link FileConfiguration} 并且使用 {@link
+     * Configuration} 内的所有默认值创建它.
      *
-     * @param defaults Default value provider
+     * @param 为其创建提供缺省值的Configuration.
      */
     public FileConfiguration(Configuration defaults) {
         super(defaults);
     }
 
     /**
-     * Saves this {@link FileConfiguration} to the specified location.
+     * 以一个 {@link FileConfiguration} 调用该方法，将文件储存到指定位置.
      * <p>
-     * If the file does not exist, it will be created. If already exists, it
-     * will be overwritten. If it cannot be overwritten or created, an
-     * exception will be thrown.
+     * 如果你指定储存的这个文件不存在,这个方法会帮你自动创建一个. 如果这个文件存在,那么该方法会把所有未保存的更改直接写入文件
+     * 并且直接覆盖原文件. 如果储存或者创建失败,将会抛出一个异常
      * <p>
-     * This method will save using the system default encoding, or possibly
-     * using UTF8.
+     * 本方法会用系统默认的编码储存,不过也有可能用UTF-8出储存
      *
-     * @param file File to save to.
-     * @throws IOException Thrown when the given file cannot be written to for
-     *     any reason.
-     * @throws IllegalArgumentException Thrown when file is null.
+     * @param 要储存的文件
+     * @throws IOException 然后会给出无法创建或者保存的原因.
+     * @throws IllegalArgumentException 如果文件为空，泡出该异常
      */
     public void save(File file) throws IOException {
         Validate.notNull(file, "File cannot be null");
@@ -76,20 +72,17 @@ public abstract class FileConfiguration extends MemoryConfiguration {
         }
     }
 
-    /**
-     * Saves this {@link FileConfiguration} to the specified location.
+	/**
+     * 以一个 {@link FileConfiguration} 调用该方法，将文件储存到指定位置.
      * <p>
-     * If the file does not exist, it will be created. If already exists, it
-     * will be overwritten. If it cannot be overwritten or created, an
-     * exception will be thrown.
+     * 如果你指定储存的这个文件不存在,这个方法会帮你自动创建一个. 如果这个文件存在,那么该方法会把所有未保存的更改直接写入文件
+	 * 并且直接覆盖原文件. 如果储存或者创建失败,将会抛出一个异常
      * <p>
-     * This method will save using the system default encoding, or possibly
-     * using UTF8.
+     * 本方法会用系统默认的编码储存,不过也有可能用UTF-8出储存
      *
-     * @param file File to save to.
-     * @throws IOException Thrown when the given file cannot be written to for
-     *     any reason.
-     * @throws IllegalArgumentException Thrown when file is null.
+     * @param 要储存的文件
+     * @throws IOException 然后会给出无法创建或者保存的原因.
+     * @throws IllegalArgumentException 如果文件为空，泡出该异常
      */
     public void save(String file) throws IOException {
         Validate.notNull(file, "File cannot be null");
@@ -98,14 +91,14 @@ public abstract class FileConfiguration extends MemoryConfiguration {
     }
 
     /**
-     * Saves this {@link FileConfiguration} to a string, and returns it.
+     * 将这个 {@link FileConfiguration} 转化为String对象并且返回
      *
-     * @return String containing this configuration.
+     * @return 这个FileConfiguration包含的所有String
      */
     public abstract String saveToString();
 
     /**
-     * Loads this {@link FileConfiguration} from the specified location.
+     * 从指定位置加载 {@link FileConfiguration} 
      * <p>
      * All the values contained within this configuration will be removed,
      * leaving only settings and defaults, and the new values will be loaded
