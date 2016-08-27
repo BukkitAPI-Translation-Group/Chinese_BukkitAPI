@@ -140,183 +140,235 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
 
     /**
-     * 返回
+     * 返回生物实体剩余的氧气值，单位为tick。
      * 原文：
      * Returns the amount of air that the living entity has remaining, in
      * ticks.
      *
-     * @return amount of air remaining
+     * @return 剩余的氧气值
      */
     public int getRemainingAir();
 
     /**
-     * 设置
+     * 设置生物实体剩余的氧气值，单位为tick。
      * 原文：
      * Sets the amount of air that the living entity has remaining, in ticks.
      *
-     * @param ticks amount of air remaining
+     * @param ticks 剩余的氧气值
      */
     public void setRemainingAir(int ticks);
 
     /**
+     * 返回生物实体所能拥有的氧气最大值，单位为tick。
+     * 原文：
      * Returns the maximum amount of air the living entity can have, in ticks.
      *
-     * @return maximum amount of air
+     * @return 氧气最大值
      */
     public int getMaximumAir();
 
     /**
+     * 设置生物实体所能拥有的氧气最大值，单位为tick。
+     * 原文：
      * Sets the maximum amount of air the living entity can have, in ticks.
      *
-     * @param ticks maximum amount of air
+     * @param 氧气最大值
      */
     public void setMaximumAir(int ticks);
 
     /**
+     * 返回生物实体当前最大无伤害时间，单位为tick。
+     * <p>
+     * 即生物实体不会受到伤害的最大持续时间。
+     * 原文：
      * Returns the living entity's current maximum no damage ticks.
      * <p>
      * This is the maximum duration in which the living entity will not take
      * damage.
      *
-     * @return maximum no damage ticks
+     * @return 最大无伤害时间，单位为tick
      */
     public int getMaximumNoDamageTicks();
 
     /**
+     * 设置生物实体当前当前最大无伤害时间，单位为tick。
+     * 原文：
      * Sets the living entity's current maximum no damage ticks.
      *
-     * @param ticks maximum amount of no damage ticks
+     * @param ticks 最大无伤害时间，单位为tick
      */
     public void setMaximumNoDamageTicks(int ticks);
 
     /**
+     * 返回生物实体在当前无伤害时间最后受到的伤害。
+     * <p>
+     * 只有当伤害高于这个数值时生物实体才会进一步受到伤害。
+     * <p>
      * Returns the living entity's last damage taken in the current no damage
      * ticks time.
      * <p>
      * Only damage higher than this amount will further damage the living
      * entity.
      *
-     * @return damage taken since the last no damage ticks time period
+     * @return 上一个无伤害时间段内受到的伤害
      */
     public double getLastDamage();
 
     /**
+     * 此方法因传统原因而存在，用于提供向后兼容性。但其在运行时不存在且不应在任何情况下使用。
+     * 原文：
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      * 
-     * @return damage taken since the last no damage ticks time period
+     * @return 上一个无伤害时间段内受到的伤害
      */
     @Deprecated
     public int _INVALID_getLastDamage();
 
     /**
+     * 设置当前无伤害时间段内处理的伤害。
+     * 原文：
      * Sets the damage dealt within the current no damage ticks time period.
      *
-     * @param damage amount of damage
+     * @param damage 伤害总量
      */
     public void setLastDamage(double damage);
 
     /**
+     * 此方法因传统原因而存在，用于提供向后兼容性。但其在运行时不存在且不应在任何情况下使用。
+     * 原文：
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      * 
-     * @param damage amount of damage
+     * @param damage 伤害总量
      */
     @Deprecated
     public void _INVALID_setLastDamage(int damage);
 
     /**
+     * 返回生物实体当前无伤害时间，单位为tick。
+     * 原文：
      * Returns the living entity's current no damage ticks.
      *
-     * @return amount of no damage ticks
+     * @return 无伤害时间，单位为tick
      */
     public int getNoDamageTicks();
 
     /**
+     * 设置生物实体当前无伤害时间，单位为tick。
+     * 原文：
      * Sets the living entity's current no damage ticks.
      *
-     * @param ticks amount of no damage ticks
+     * @param ticks 无伤害时间，单位为tick
      */
     public void setNoDamageTicks(int ticks);
 
     /**
+     * 获取击杀指定生物实体的玩家。
+     * <p>
+     * 可能为空。
+     * 原文：
      * Gets the player identified as the killer of the living entity.
      * <p>
      * May be null.
      *
-     * @return killer player, or null if none found
+     * @return 击杀指定生物实体的玩家，如果找不到则返回null
      */
     public Player getKiller();
 
     /**
+     * 向生物实体添加指定的{@link PotionEffect}（药水效果）。
+     * <p>
+     * 一个指定的{@link PotionEffectType}（药水效果类型）只能有一种药水效果存在。
+     * 原文：
      * Adds the given {@link PotionEffect} to the living entity.
      * <p>
      * Only one potion effect can be present for a given {@link
      * PotionEffectType}.
      *
-     * @param effect PotionEffect to be added
-     * @return whether the effect could be added
+     * @param effect 添加的药水效果
+     * @return 效果是否添加
      */
     public boolean addPotionEffect(PotionEffect effect);
 
     /**
+     * 向生物实体添加指定的{@link PotionEffect}（药水效果）。
+     * <p>
+     * 一个指定的{@link PotionEffectType}（药水效果类型）只能有一种药水效果存在。
+     * 原文：
      * Adds the given {@link PotionEffect} to the living entity.
      * <p>
      * Only one potion effect can be present for a given {@link
      * PotionEffectType}.
      *
-     * @param effect PotionEffect to be added
-     * @param force whether conflicting effects should be removed
-     * @return whether the effect could be added
+     * @param effect 添加的药水效果
+     * @param force 是否移除冲突的效果
+     * @return 效果是否添加
      */
     public boolean addPotionEffect(PotionEffect effect, boolean force);
 
     /**
+     * 尝试向生物实体添加所有指定的{@link PotionEffect}（药水效果）。
+     * 原文：
      * Attempts to add all of the given {@link PotionEffect} to the living
      * entity.
      *
-     * @param effects the effects to add
-     * @return whether all of the effects could be added
+     * @param effects 添加的效果
+     * @return 所有效果是否添加
      */
     public boolean addPotionEffects(Collection<PotionEffect> effects);
 
     /**
+     * 返回生物实体是否已经存在一个指定的{@link PotionEffectType}效果。
+     * 原文：
      * Returns whether the living entity already has an existing effect of
      * the given {@link PotionEffectType} applied to it.
      *
-     * @param type the potion type to check
-     * @return whether the living entity has this potion effect active on them
+     * @param type 检查的药水类型
+     * @return 是否有指定的药水效果作用于生物实体
      */
     public boolean hasPotionEffect(PotionEffectType type);
 
     /**
+     * 返回指定类型的有效{@link PotionEffect}。
+     * <p>
+     * 如果效果不存在则会返回null。
+     * 原文：
      * Returns the active {@link PotionEffect} of the specified type.
      * <p>
      * If the effect is not present on the entity then null will be returned.
      *
-     * @param type the potion type to check
-     * @return the effect active on this entity, or null if not active.
+     * @param type 检查的药水类型
+     * @return 作用于实体的效果，如果没有则返回null。
      */
     public PotionEffect getPotionEffect(PotionEffectType type);
 
     /**
+     * 移除当前所有指定的{@link PotionEffectType}效果。
+     * 原文：
      * Removes any effects present of the given {@link PotionEffectType}.
      *
-     * @param type the potion type to remove
+     * @param type 移除的药水类型
      */
     public void removePotionEffect(PotionEffectType type);
 
     /**
+     * 返回当前作用于生物实体的所有{@link PotionEffect}。
+     * 原文：
      * Returns all currently active {@link PotionEffect}s on the living
      * entity.
      *
-     * @return a collection of {@link PotionEffect}s
+     * @return 一个{@link PotionEffect}的集合
      */
     public Collection<PotionEffect> getActivePotionEffects();
 
     /**
+     * 检查生物实体是否阻挡另一个的视线。（？？？）
+     * <p>
+     * 这使用了与敌对怪物用于寻找最近玩家相同的算法。
+     * 原文：
      * Checks whether the living entity has block line of sight to another.
      * <p>
      * This uses the same algorithm that hostile mobs use to find the closest
