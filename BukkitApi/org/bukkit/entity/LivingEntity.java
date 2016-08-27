@@ -374,105 +374,133 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * This uses the same algorithm that hostile mobs use to find the closest
      * player.
      *
-     * @param other the entity to determine line of sight to
-     * @return true if there is a line of sight, false if not
+     * @param other 确定视线的实体（？？？）
+     * @return 如果存在视线则返回true，否则返回false
      */
     public boolean hasLineOfSight(Entity other);
 
     /**
+     * 返回生物实体是否会在远离玩家时消失。
+     * <p>
+     * 默认情况下，动物不会被移除而怪物会。
+     * 原文：
      * Returns if the living entity despawns when away from players or not.
      * <p>
      * By default, animals are not removed while other mobs are.
      *
-     * @return true if the living entity is removed when away from players
+     * @return 如果生物实体会在远离玩家时消失则返回true
      */
     public boolean getRemoveWhenFarAway();
 
     /**
+     * 设置生物实体是否会在远离玩家时消失。
+     * 原文：
      * Sets whether or not the living entity despawns when away from players
      * or not.
      *
-     * @param remove the removal status
+     * @param remove 移除状态
      */
     public void setRemoveWhenFarAway(boolean remove);
 
     /**
+     * 获取生物实体穿戴的装备背包栏。
+     * 原文：
      * Gets the inventory with the equipment worn by the living entity.
      *
-     * @return the living entity's inventory
+     * @return 生物实体的背包栏
      */
     public EntityEquipment getEquipment();
 
     /**
+     * 设置生物实体是否能捡拾物品。
+     * 原文：
      * Sets whether or not the living entity can pick up items.
      *
-     * @param pickup whether or not the living entity can pick up items
+     * @param pickup 生物实体是否能捡拾物品
      */
     public void setCanPickupItems(boolean pickup);
 
     /**
+     * 获取生物实体是否能捡拾物品。
+     * 原文：
      * Gets if the living entity can pick up items.
      *
-     * @return whether or not the living entity can pick up items
+     * @return 生物实体是否能捡拾物品
      */
     public boolean getCanPickupItems();
 
     /**
+     * 返回实体当前是否被拴住。
+     * 原文：
      * Returns whether the entity is currently leashed.
      *
-     * @return whether the entity is leashed
+     * @return 实体是否被拴住
      */
     public boolean isLeashed();
 
     /**
+     * 获取当前牵引此实体的实体。
+     * 原文：
      * Gets the entity that is currently leading this entity.
      *
-     * @return the entity holding the leash
-     * @throws IllegalStateException if not currently leashed
+     * @return 握持拴绳的实体
+     * @throws IllegalStateException 如果当前实体没被拴住则抛出错误
      */
     public Entity getLeashHolder() throws IllegalStateException;
 
     /**
+     * 设置握持拴绳的实体。
+     * <p>
+     * 此方法对末影龙，凋零，玩家或蝙蝠无效。除拴绳外的非生物实体将不会像握持拴绳者一样坚持。（？？？）
+     * 原文：
      * Sets the leash on this entity to be held by the supplied entity.
      * <p>
      * This method has no effect on EnderDragons, Withers, Players, or Bats.
      * Non-living entities excluding leashes will not persist as leash
      * holders.
      *
-     * @param holder the entity to leash this entity to
-     * @return whether the operation was successful
+     * @param holder 握持拴绳的实体
+     * @return 操作是否成功
      */
     public boolean setLeashHolder(Entity holder);
 
     /**
+     * 检查实体是否正在滑翔，如正在使用滑翔翼。
+     * 原文：
      * Checks to see if an entity is gliding, such as using an Elytra.
-     * @return True if this entity is gliding.
+     * @return 如果实体正在滑翔则返回true。
      */
     public boolean isGliding();
 
     /**
+     * 使实体开始或停止滑翔。即使没有装备滑翔翼也会生效，但会在被服务器立即恢复（后面的无能为力）
      * Makes entity start or stop gliding. This will work even if an Elytra
      * is not equipped, but will be reverted by the server immediately after
      * unless an event-cancelling mechanism is put in place.
-     * @param gliding True if the entity is gliding.
+     * @param gliding 实体滑翔则为true
      */
     public void setGliding(boolean gliding);
 
     /**
+     * 设置实体是否具有AI。
+     * 原文：
      * Sets whether an entity will have AI.
      *
-     * @param ai whether the mob will have AI or not.
+     * @param ai 怪物是否具有AI。
      */
     void setAI(boolean ai);
 
     /**
+     * 检查实体是否具有AI。
+     * 原文：
      * Checks whether an entity has AI.
      *
-     * @return true if the entity has AI, otherwise false.
+     * @return 如果实体具有AI则返回true，否则返回false。
      */
     boolean hasAI();
 
     /**
+     * 设置实体
      * Set if this entity will be subject to collisions other entities.
      * <p>
      * Note that collisions are bidirectional, so this method would need to be
