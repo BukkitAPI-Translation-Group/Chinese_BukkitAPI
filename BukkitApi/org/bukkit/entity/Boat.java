@@ -3,35 +3,32 @@ package org.bukkit.entity;
 import org.bukkit.TreeSpecies;
 
 /**
- * 代表一个船的实体
- * <p>
- * 原文:
- * Represents a boat entity.
+ * 代表船实体
  */
 public interface Boat extends Vehicle {
 
     /**
-     * 获取船的木质类型. (例如:橡木质船/云杉木质船/白桦木质船等 ...)
+     * 获取船的木质种类. (例如:橡木质船/云杉木质船/白桦木质船等 ...)
      * <p>
      * 原文:
      * Gets the wood type of the boat.
      * 
-     * @return 船的木质类型
+     * @return 船的木质种类
      */
     TreeSpecies getWoodType();
 
     /**
-     * 设置船的木质类型.
+     * 设置船的木质种类.
      * <p>
      * 原文:
      * Sets the wood type of the boat.
      * 
-     * @param species 新的木质类型
+     * @param species 新的木质种类
      */
     void setWoodType(TreeSpecies species);
 
     /**
-     * 获取船的最高速度,该速度是无关船的方向速度的.
+     * 获取船的最高速度,该速度与船的方向速度无关.
      * <p>
      * 原文:
      * Gets the maximum speed of a boat. The speed is unrelated to the
@@ -44,7 +41,7 @@ public interface Boat extends Vehicle {
     public double getMaxSpeed();
 
     /**
-     * 设置一个船的最大速度,必须是非负数. 该默认值为0.4D
+     * 设置船的最大速度,必须是非负数. 该默认值为0.4D
      * <p>
      * 原文:
      * Sets the maximum speed of a boat. Must be nonnegative. Default is 0.4D.
@@ -84,7 +81,7 @@ public interface Boat extends Vehicle {
     public void setOccupiedDeceleration(double rate);
 
     /**
-     * 获取没人占用船的加减速度速率(新速度=当前速度*速率).
+     * 获取未占用船的加减速度速率(新速度=当前速度*速率).
      * 默认值为-1. 值低于0表示没有施加额外的加减速速率.
      * <p>
      * 原文:
@@ -99,7 +96,7 @@ public interface Boat extends Vehicle {
     public double getUnoccupiedDeceleration();
 
     /**
-     * 设置没人占用船的加减速度速率(新速度=当前速度*速率).
+     * 设置未占用船的加减速度速率(新速度=当前速度*速率).
      * 设置一个高的数值时,如果玩家下船将允许该船有更快的减速速率.
      * 默认值为-1. 值低于0表示没有施加额外的加减速速率.
      * <p>
@@ -116,24 +113,24 @@ public interface Boat extends Vehicle {
     public void setUnoccupiedDeceleration(double rate);
 
     /**
-     * 获取船是否在陆地上工作.
+     * 获取船能否在陆地上工作.
      * <p>
      * 原文:
      * Get whether boats can work on land.
      *
-     * @return 是否在陆地上工作.
+     * @return 能否在陆地上工作.
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
     @Deprecated
     public boolean getWorkOnLand();
 
     /**
-     * 设置一个船是否在陆地上工作.
+     * 设置一个船能否在陆地上工作.
      * <p>
      * 原文:
      * Set whether boats can work on land.
      *
-     * @param workOnLand 是否在陆地上工作
+     * @param workOnLand 能否在陆地上工作
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
     @Deprecated
