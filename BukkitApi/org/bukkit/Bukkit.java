@@ -525,45 +525,55 @@ public final class Bukkit {
     }
 
     /**
-     * Gets a list of all worlds on this server.
+     * 获取当前服务器加载的所有世界的集合
+     * <p>
+     * 原文:Gets a list of all worlds on this server.
      *
-     * @return a list of worlds
+     * @return 所有已经加载在服务器的世界集合
      */
     public static List<World> getWorlds() {
         return server.getWorlds();
     }
 
     /**
-     * Creates or loads a world with the given name using the specified
+     * 用一个给定的世界生成器去创建或者加载一个世界.
+     * <p>
+     * 如果这个世界已经加载了,那么就会返回一个对应世界生成器名字的世界.
+     * <p>
+     * 原文:Creates or loads a world with the given name using the specified
      * options.
      * <p>
      * If the world is already loaded, it will just return the equivalent of
      * getWorld(creator.name()).
      *
-     * @param creator the options to use when creating the world
-     * @return newly created or loaded world
+     * @param creator 加载或者创建这个世界的时候用的世界生成器
+     * @return 生成的或者加载的世界对象
      */
     public static World createWorld(WorldCreator creator) {
         return server.createWorld(creator);
     }
 
     /**
-     * Unloads a world with the given name.
+     * 卸载指定的世界
+     * <p>
+     * 原文：Unloads a world with the given name.
      *
-     * @param name Name of the world to unload
-     * @param save whether to save the chunks before unloading
-     * @return true if successful, false otherwise
+     * @param name 要卸载的世界的名字
+     * @param save 当这个世界卸载的时候是否保存数据
+     * @return 如果成功返回true，其他情况返回false
      */
     public static boolean unloadWorld(String name, boolean save) {
         return server.unloadWorld(name, save);
     }
 
     /**
-     * Unloads the given world.
+     * 卸载指定的世界
+     * <p>
+     * 原文：Unloads a world with the given name.
      *
-     * @param world the world to unload
-     * @param save whether to save the chunks before unloading
-     * @return true if successful, false otherwise
+     * @param name 要卸载的世界
+     * @param save 当这个世界卸载的时候是否保存数据
+     * @return 如果成功返回true，其他情况返回false
      */
     public static boolean unloadWorld(World world, boolean save) {
         return server.unloadWorld(world, save);
