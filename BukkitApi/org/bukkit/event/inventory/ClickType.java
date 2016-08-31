@@ -1,7 +1,9 @@
 package org.bukkit.event.inventory;
 
 /**
- * 客户端是怎样触发这个动作的(非动作的结果)
+ * 点击类型
+ * <p>
+ * 译注:定义了客户端点击物品栏的方式，位置等
  */
 public enum ClickType {
 
@@ -22,15 +24,19 @@ public enum ClickType {
      */
     SHIFT_RIGHT,
     /**
-     * 在物品栏界面的灰色区域单机鼠标左键
+     * 在物品栏界面的<s>灰色区域</s>单击鼠标左键
+     * <p>
+     * 译注:<s>灰色区域</s>指Minecraft窗口范围内<s>超出物品栏范围</s>的部分
      */
     WINDOW_BORDER_LEFT,
     /**
-     * 在物品栏界面的灰色区域单机鼠标右键
+     * 在物品栏界面的<s>灰色区域</s>单击鼠标右键
+     * <p>
+     * 译注:<s>灰色区域</s>指Minecraft窗口范围内<s>超出物品栏范围</s>的部分
      */
     WINDOW_BORDER_RIGHT,
     /**
-     * 鼠标中键(或滚轮按键)
+     * 鼠标中键(或鼠标滚轮按键)
      */
     MIDDLE,
     /**
@@ -50,15 +56,16 @@ public enum ClickType {
      */
     CONTROL_DROP,
     /**
-     * 创造模式物品栏的任何动作
+     * 创造模式物品栏的任何点击操作
      */
     CREATIVE,
     /**
-     * 无法被Bukkit解析的物品栏操作类型
+     * 无法被Bukkit解析的物品栏点击类型
      * <p>
      * 这个按键类型仅出现在Minecraft的版本过渡期，且不应该被依赖
      * <p>
      * 任何对 ClickType.UNKNOWN 的调用都是在最努力的基础上的
+     * 译注:一般只有可能在支持最新快照版本的插件中才可能需要使用
      */
     UNKNOWN,
     ;
