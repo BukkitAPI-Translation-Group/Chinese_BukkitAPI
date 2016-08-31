@@ -1133,14 +1133,17 @@ public final class Bukkit {
     }
 
     /**
+     * 创建一个Boos血量条实例。血量条的进度默认为1.0。
+     * <p>
+     * 原文:
      * Creates a boss bar instance to display to players. The progress
      * defaults to 1.0
      *
-     * @param title the title of the boss bar
-     * @param color the color of the boss bar
-     * @param style the style of the boss bar
-     * @param flags an optional list of flags to set on the boss bar
-     * @return the created boss bar
+     * @param title 血量条的标题
+     * @param color 血量条的颜色
+     * @param style 血量条的样式
+     * @param flags 血量条的附加属性列表（可选）
+     * @return 创建的Boss血量条实例
      */
     public static BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags) {
         return server.createBossBar(title, color, style, flags);
