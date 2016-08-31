@@ -318,7 +318,7 @@ public final class Bukkit {
      * 原文:
      * Sets if the server is whitelisted.
      *
-     * @param true为开，false为关
+     * @param value true为开，false为关
      */
     public static void setWhitelist(boolean value) {
         server.setWhitelist(value);
@@ -571,7 +571,7 @@ public final class Bukkit {
      * <p>
      * 原文：Unloads a world with the given name.
      *
-     * @param name 要卸载的世界
+     * @param world 要卸载的世界
      * @param save 当这个世界卸载的时候是否保存数据
      * @return 如果成功返回true，其他情况返回false
      */

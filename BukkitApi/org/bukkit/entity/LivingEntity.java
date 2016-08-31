@@ -172,7 +172,7 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * 原文：
      * Sets the maximum amount of air the living entity can have, in ticks.
      *
-     * @param 氧气最大值
+     * @param ticks 氧气最大值
      */
     public void setMaximumAir(int ticks);
 
