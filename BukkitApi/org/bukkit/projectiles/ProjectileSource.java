@@ -19,7 +19,7 @@ public interface ProjectileSource {
     public <T extends Projectile> T launchProjectile(Class<? extends T> projectile);
 
     /**
-     * 让ProjectileSource以一个初始速度向量发射{@link Prijectile}。
+     * 让ProjectileSource以一个初始速度向量发射{@link Projectile}。
      * <p>
      * 原文：Launches a {@link Projectile} from the ProjectileSource with an
      * initial velocity.

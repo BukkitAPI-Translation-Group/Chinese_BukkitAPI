@@ -253,13 +253,19 @@ public interface Server extends PluginMessageRecipient {
     public void reloadWhitelist();
 
     /**
+     * 广播一条消息到所有玩家.
+     * <p>
+     * 这与调用{@link #broadcast(java.lang.String,
+     * java.lang.String)}(第二个参数为{@link #BROADCAST_CHANNEL_USERS})是一样的。
+     * <p>
+     * 原文:
      * Broadcast a message to all players.
      * <p>
      * This is the same as calling {@link #broadcast(java.lang.String,
-     * java.lang.String)} to {@link #BROADCAST_CHANNEL_USERS}
+     * java.lang.String)} to {@link Server#BROADCAST_CHANNEL_USERS}
      *
-     * @param message the message
-     * @return the number of players
+     * @param message 要广播的消息
+     * @return 成功接收此消息的玩家数
      */
     public int broadcastMessage(String message);
 
@@ -970,31 +976,37 @@ public interface Server extends PluginMessageRecipient {
     public int getIdleTimeout();
 
     /**
+     * 创建一个 ChunkData 实例，以用于区块生成。
+     * <p>
+     * 原文:
      * Create a ChunkData for use in a generator.
      * 
      * See {@link ChunkGenerator#generateChunkData(org.bukkit.World, java.util.Random, int, int, org.bukkit.generator.ChunkGenerator.BiomeGrid)}
      * 
-     * @param world the world to create the ChunkData for
-     * @return a new ChunkData for the world
+     * @param world ChunkData对应的世界
+     * @return 这个世界的新ChunkData实例
      * 
      */
     public ChunkGenerator.ChunkData createChunkData(World world);
 
     /**
+     * 创建一个Boos血量条实例。血量条的进度默认为1.0。
+     * <p>
+     * 原文:
      * Creates a boss bar instance to display to players. The progress
      * defaults to 1.0
      *
-     * @param title the title of the boss bar
-     * @param color the color of the boss bar
-     * @param style the style of the boss bar
-     * @param flags an optional list of flags to set on the boss bar
-     * @return the created boss bar
+     * @param title 血量条的标题
+     * @param color 血量条的颜色
+     * @param style 血量条的样式
+     * @param flags 创建的Boss血量条实例
+     * @return 创建的Boss血量条实例
      */
     BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
 
     /**
      * @see UnsafeValues
-     * @return the unsafe values instance
+     * @return UnsafeValues实例
      */
     @Deprecated
     UnsafeValues getUnsafe();
