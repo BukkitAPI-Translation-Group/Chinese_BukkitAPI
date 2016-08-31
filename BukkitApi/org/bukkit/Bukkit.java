@@ -294,7 +294,10 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the name of the update folder. The update folder is used to safely
+     * 获取用于自动更新的文件夹的名字,使插件能安全的
+     * 再重启服务器后载入更新后的插件.
+     * <p>
+     * 原文:Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
      * <p>
      * The update folder name is relative to the plugins folder.
@@ -306,7 +309,9 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the update folder. The update folder is used to safely update
+     * 获取用于安全更新插件文件夹,里面对应的你的插件的File对象
+     * 使其在插件正确加载的时候替换它.
+     * <p>原文:Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
      * @return the update folder
@@ -327,7 +332,19 @@ public final class Bukkit {
     /**
      * 获取每个动物生成的默认刻
      * <p>
-     * <b>Example Usage:</b>
+     * <b>下面是一个实例:</b>
+     * <ul>
+     * <li> 如果该值为1,也就意味着服务器将会在每一个tick产生一次动物
+     * <li>如果该值为400,也就意味着服务器将会在每400个tick产生一次动物
+     * <li>如果该值低于0,那么该值将会被重置到Minecraft的默认值
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0,不会生成动物. 我们
+     * 建议在这个实例中开启动物的生成。
+     * <p>
+     * Minecraft 默认为 400.
+     * <p>
+     * <b>原文:Example Usage:</b>
      * <ul>
      * <li>A value of 1 will mean the server will attempt to spawn monsters
      *     every tick.
@@ -348,9 +365,22 @@ public final class Bukkit {
     }
 
     /**
+     * 获取每个动物生成的默认刻
+     * <p>
+     * <b>下面是一个实例:</b>
+     * <ul>
+     * <li> 如果该值为1,也就意味着服务器将会在每一个tick产生一次怪物
+     * <li>如果该值为400,也就意味着服务器将会在每400个tick产生一次怪物
+     * <li>如果该值低于0,那么该值将会被重置到Minecraft的默认值
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0,不会生成怪物. 我们
+     * 建议在这个实例中开启怪物的生成。
+     * <p>
+     * Minecraft 默认为 400.
      * 获取每个怪物生成的默认刻
      * <p>
-     * <b>Example Usage:</b>
+     * <b>原文:Example Usage:</b>
      * <ul>
      * <li>A value of 1 will mean the server will attempt to spawn monsters
      *     every tick.
@@ -399,7 +429,16 @@ public final class Bukkit {
     }
 
     /**
-     * Attempts to match any players with the given name, and returns a list
+     * 用一个给定的玩家名字来匹配所有记录在服务器的玩家,并返回一个包含所有可能
+     * 匹配到的结果的一个List<Player>集合
+     * <p>
+     * 另外说明,该集合没有什么排列顺序..完全是匹配到可能结果就放进集合
+     * 如果你的参数能完全匹配到一个玩家,那么这个集合就只有这一个完全匹配的玩家
+     *
+     * @deprecated 如果你使用 {@link #getPlayer(UUID)} 来匹配玩家
+     * 不保证匹配的唯一性.
+     * <p>
+     * 原文:Attempts to match any players with the given name, and returns a list
      * of all possibly matches.
      * <p>
      * This list is not sorted in any particular order. If an exact match is
@@ -407,8 +446,8 @@ public final class Bukkit {
      *
      * @deprecated Use {@link #getPlayer(UUID)} as player names are no longer
      *     guaranteed to be unique
-     * @param name the (partial) name to match
-     * @return list of all possible players
+     * @param name 要匹配的玩家的名字
+     * @return 可能符合匹配结果的所有玩家
      */
     @Deprecated
     public static List<Player> matchPlayer(String name) {
@@ -416,10 +455,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the player with the given UUID.
+     * 用给定的UUID来获取该UUID对应的玩家对象
+     * <p>
+     * 原文:Gets the player with the given UUID.
      *
-     * @param id UUID of the player to retrieve
-     * @return a player object if one was found, null otherwise
+     * @param id 要得到对象的玩家的UUID
+     * @return 返回该uuid对应的玩家对象,如果找不到该uuid返回null
      */
     public static Player getPlayer(UUID id) {
         return server.getPlayer(id);
@@ -435,18 +476,22 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the scheduler for managing scheduled events.
+     * 获取用于事件管理的调度器对象
+     * <p>
+     * 原文:Gets the scheduler for managing scheduled events.
      *
-     * @return a scheduling service for this server
+     * @return 调度器管理对象
      */
     public static BukkitScheduler getScheduler() {
         return server.getScheduler();
     }
 
     /**
-     * Gets a services manager.
+     * 获取服务管理器
+     * <p>
+     * 原文:Gets a services manager.
      *
-     * @return s services manager
+     * @return 服务器服务管理器
      */
     public static ServicesManager getServicesManager() {
         return server.getServicesManager();
@@ -1133,17 +1178,14 @@ public final class Bukkit {
     }
 
     /**
-     * 创建一个Boos血量条实例。血量条的进度默认为1.0。
-     * <p>
-     * 原文:
      * Creates a boss bar instance to display to players. The progress
      * defaults to 1.0
      *
-     * @param title 血量条的标题
-     * @param color 血量条的颜色
-     * @param style 血量条的样式
-     * @param flags 血量条的附加属性列表（可选）
-     * @return 创建的Boss血量条实例
+     * @param title the title of the boss bar
+     * @param color the color of the boss bar
+     * @param style the style of the boss bar
+     * @param flags an optional list of flags to set on the boss bar
+     * @return the created boss bar
      */
     public static BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags) {
         return server.createBossBar(title, color, style, flags);
