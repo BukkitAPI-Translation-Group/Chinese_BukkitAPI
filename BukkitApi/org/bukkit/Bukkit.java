@@ -58,7 +58,10 @@ public final class Bukkit {
     private Bukkit() {}
 
     /**
-     * 获取一个当前的 {@link Server}
+     * 获取一个正在运行的 {@link Server} 实例.
+     * <p>
+     * 原文:
+     * Gets the current {@link Server} singleton
      *
      * @return 正在运行的服务器的实例
      */
@@ -70,6 +73,11 @@ public final class Bukkit {
      * 请求设置一个 {@link Server}.
      * <p>
      * 如果 Server 已经被设定，这个操作不能完成
+     * <p>
+     * 原文:
+     * Attempts to set the {@link Server} singleton.
+     * <p>
+     * This cannot be done if the Server is already set.
      *
      * @param server 服务器实例
      */
@@ -84,6 +92,9 @@ public final class Bukkit {
 
     /**
      * 获取这个服务器实例的名字
+     * <p>
+     * 原文:
+     * Gets the name of this server implementation.
      *
      * @return 这个服务器实例的名字
      */
@@ -93,6 +104,9 @@ public final class Bukkit {
 
     /**
      * 获取这个服务器实例的版本
+     * <p>
+     * 原文:
+     * Gets the version string of this server implementation.
      *
      * @return 这个服务器实例的版本
      */
@@ -102,6 +116,9 @@ public final class Bukkit {
 
     /**
      * 获取这个运行的服务器的Bukkit版本
+     * <p>
+     * 原文:
+     * Gets the Bukkit version that this server is running.
      *
      * @return Bukkit版本
      */
@@ -113,9 +130,16 @@ public final class Bukkit {
      * 获取在线的所有玩家【不要用！！】
      * <p>
      * 此方法是为了兼容低版本的服务器，它不应该在任何情形下被使用
+     * <p>
+     * 原文:
+     * Gets an array copy of all currently logged in players.
+     * <p>
+     * This method exists for legacy reasons to provide backwards
+     * compatibility. It will not exist at runtime and should not be used
+     * under any circumstances.
      *
      * @deprecated superseded by {@link #getOnlinePlayers()}
-     * @return 在线所有玩家的数组
+     * @return 所有在线玩家的数组
      */
     @Deprecated
     public static Player[] _INVALID_getOnlinePlayers() {
@@ -154,7 +178,10 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的最大玩家数
+     * 获取服务器的最大玩家数.
+     * <p>
+     * 原文:
+     * Get the maximum amount of players which can login to this server.
      *
      * @return 服务器的最大玩家数
      */
@@ -164,6 +191,8 @@ public final class Bukkit {
 
     /**
      * 获取服务器的端口
+     * <p>
+     * 原文:Get the game port that the server runs on.
      *
      * @return 服务器的端口
      */
@@ -173,6 +202,9 @@ public final class Bukkit {
 
     /**
      * 获取服务器的视距
+     * <p>
+     * 原文:
+     * Get the view distance from this server.
      *
      * @return 服务器的视距
      */
@@ -182,7 +214,10 @@ public final class Bukkit {
 
     /**
      * 获取服务器绑定的IP，如果没有就返回空字符串
-     * 
+     * <p>
+     * 原文:
+     * Get the IP that this server is bound to, or empty string if not
+     * specified.
      *
      * @return 服务器绑定的IP，如果没有就返回空
      *     字符串
@@ -193,6 +228,9 @@ public final class Bukkit {
 
     /**
      * 获取服务器名【注：在服务器的配置文件中设定】
+     * <p>
+     * 原文:
+     * Get the name of this server.
      *
      * @return 服务器名
      */
@@ -202,9 +240,13 @@ public final class Bukkit {
 
     /**
      * 获取服务器的ID. 这是一个简单的字母标识，
-     * 可以唯一地识别此服务器
+     * 可以被用来唯一地识别此服务器
+     * <p>
+     * 原文:
+     * Get an ID of this server. The ID is a simple generally alphanumeric ID
+     * that can be used for uniquely identifying this server.
      *
-     * @return 服务器的ID
+     * @return 服务器的唯一标识
      */
     public static String getServerId() {
         return server.getServerId();
@@ -212,6 +254,9 @@ public final class Bukkit {
     
     /**
      * 获取主世界的种类
+     * <p>
+     * 原文:
+     * Get world type (level-type setting) for default world.
      *
      * @return 主世界的种类 (例： DEFAULT, FLAT, DEFAULT_1_1)
      */
@@ -220,9 +265,12 @@ public final class Bukkit {
     }
 
     /**
-     * 服务器是否生成建筑
+     * 获取服务器是否生成建筑
+     * <p>
+     * 原文:
+     * Get generate-structures setting.
      *
-     * @return 生成建筑返回true，反之false
+     * @return 如果生成建筑返回true
      */
     public static boolean getGenerateStructures() {
         return server.getGenerateStructures();
@@ -230,6 +278,9 @@ public final class Bukkit {
 
     /**
      * 获取这个服务器是否可以进入末路之地
+     * <p>
+     * 原文:
+     * Gets whether this server allows the End or not.
      *
      * @return 是否可以进入末路之地
      */
@@ -239,6 +290,9 @@ public final class Bukkit {
 
     /**
      * 获取这个服务器是否可以进入下界
+     * <p>
+     * 原文：
+     * Gets whether this server allows the Nether or not.
      *
      * @return 是否可以进入下界
      */
@@ -248,6 +302,9 @@ public final class Bukkit {
 
     /**
      * 服务器是否开启白名单
+     * <p>
+     * 原文:
+     * Gets whether this server has a whitelist or not.
      *
      * @return 是否开启白名单
      */
@@ -257,6 +314,9 @@ public final class Bukkit {
 
     /**
      * 设置服务器是否开启白名单
+     * <p>
+     * 原文:
+     * Sets if the server is whitelisted.
      *
      * @param true为开，false为关
      */
@@ -266,6 +326,9 @@ public final class Bukkit {
 
     /**
      * 获取所有被添加到白名单的玩家
+     * <p>
+     * 原文:
+     * Gets a list of whitelisted players.
      *
      * @return 用Set存储的所有被添加到白名单的玩家
      */
@@ -275,19 +338,28 @@ public final class Bukkit {
 
     /**
      * 重载白名单
+     * <p>
+     * 原文:
+     * Reloads the whitelist from disk.
      */
     public static void reloadWhitelist() {
         server.reloadWhitelist();
     }
 
     /**
-     * 广播一条信息到所有玩家
+     * 广播一条消息到所有玩家.
+     * <p>
+     * 这与调用{@link #broadcast(java.lang.String,
+     * java.lang.String)}(第二个参数为{@link Server#BROADCAST_CHANNEL_USERS})是一样的。
+     * <p>
+     * 原文:
+     * Broadcast a message to all players.
      * <p>
      * This is the same as calling {@link #broadcast(java.lang.String,
      * java.lang.String)} to {@link Server#BROADCAST_CHANNEL_USERS}
      *
-     * @param message 要广播的信息
-     * @return 成功接受此信息的玩家数
+     * @param message 要广播的消息
+     * @return 成功接收此消息的玩家数
      */
     public static int broadcastMessage(String message) {
         return server.broadcastMessage(message);
@@ -1120,12 +1192,15 @@ public final class Bukkit {
     }
 
     /**
+     * 创建一个 ChunkData 实例，以用于区块生成。
+     * <p>
+     * 原文:
      * Create a ChunkData for use in a generator.
      * 
      * See {@link ChunkGenerator#generateChunkData(org.bukkit.World, java.util.Random, int, int, org.bukkit.generator.ChunkGenerator.BiomeGrid)}
      * 
-     * @param world the world to create the ChunkData for
-     * @return a new ChunkData for the world
+     * @param world ChunkData对应的世界
+     * @return 这个世界的新ChunkData实例
      * 
      */
     public static ChunkGenerator.ChunkData createChunkData(World world) {
@@ -1151,7 +1226,7 @@ public final class Bukkit {
 
     /**
      * @see UnsafeValues
-     * @return the unsafe values instance
+     * @return UnsafeValues实例
      */
     @Deprecated
     public static UnsafeValues getUnsafe() {

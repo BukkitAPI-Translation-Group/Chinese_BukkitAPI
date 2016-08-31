@@ -253,13 +253,19 @@ public interface Server extends PluginMessageRecipient {
     public void reloadWhitelist();
 
     /**
+     * 广播一条消息到所有玩家.
+     * <p>
+     * 这与调用{@link #broadcast(java.lang.String,
+     * java.lang.String)}(第二个参数为{@link #BROADCAST_CHANNEL_USERS})是一样的。
+     * <p>
+     * 原文:
      * Broadcast a message to all players.
      * <p>
      * This is the same as calling {@link #broadcast(java.lang.String,
-     * java.lang.String)} to {@link #BROADCAST_CHANNEL_USERS}
+     * java.lang.String)} to {@link Server#BROADCAST_CHANNEL_USERS}
      *
-     * @param message the message
-     * @return the number of players
+     * @param message 要广播的消息
+     * @return 成功接收此消息的玩家数
      */
     public int broadcastMessage(String message);
 
@@ -970,12 +976,15 @@ public interface Server extends PluginMessageRecipient {
     public int getIdleTimeout();
 
     /**
+     * 创建一个 ChunkData 实例，以用于区块生成。
+     * <p>
+     * 原文:
      * Create a ChunkData for use in a generator.
      * 
      * See {@link ChunkGenerator#generateChunkData(org.bukkit.World, java.util.Random, int, int, org.bukkit.generator.ChunkGenerator.BiomeGrid)}
      * 
-     * @param world the world to create the ChunkData for
-     * @return a new ChunkData for the world
+     * @param world ChunkData对应的世界
+     * @return 这个世界的新ChunkData实例
      * 
      */
     public ChunkGenerator.ChunkData createChunkData(World world);
@@ -997,7 +1006,7 @@ public interface Server extends PluginMessageRecipient {
 
     /**
      * @see UnsafeValues
-     * @return the unsafe values instance
+     * @return UnsafeValues实例
      */
     @Deprecated
     UnsafeValues getUnsafe();
