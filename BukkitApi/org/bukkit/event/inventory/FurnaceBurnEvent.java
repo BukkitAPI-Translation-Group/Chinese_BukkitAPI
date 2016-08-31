@@ -51,7 +51,7 @@ public class FurnaceBurnEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Sets the burn time for this fuel
      *
-     * @param 此燃料的燃烧时间
+     * @param burnTime 此燃料的燃烧时间
      */
     public void setBurnTime(int burnTime) {
         this.burnTime = burnTime;
@@ -73,7 +73,7 @@ public class FurnaceBurnEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Sets whether the furnace's fuel is burning or not.
      *
-     * @param 熔炉中的燃料是否正在燃烧(true为正在燃烧,false为没有正在燃烧)
+     * @param burning 熔炉中的燃料是否正在燃烧(true为正在燃烧,false为没有正在燃烧)
      */
     public void setBurning(boolean burning) {
         this.burning = burning;

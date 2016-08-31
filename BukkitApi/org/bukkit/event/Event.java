@@ -8,7 +8,6 @@ import org.bukkit.plugin.PluginManager;
  * 所有事件需要添加一个名为 getHandlerList() 的静态方法，返回与{@link #getHandlers()}一样的{@link HandlerList}.
  * <p>
  * 译注:说明白点，您必须把以下代码复制到您的自定义事件:
- * <p>
  * <pre>
     private static final HandlerList handlers = new HandlerList();
 

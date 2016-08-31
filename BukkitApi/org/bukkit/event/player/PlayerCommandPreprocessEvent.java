@@ -130,7 +130,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * All commands begin with a special character; implementations do not
      * consider the first character when executing the content.
      *
-     * @param 设置即将要发送的命令
+     * @param command 设置即将要发送的命令
      * @throws IllegalArgumentException 如果这个命令为Null或者为空
      */
     public void setMessage(String command) throws IllegalArgumentException {
@@ -144,7 +144,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * <p>
      * 原文:Sets the player that this command will be executed as.
      *
-     * @param 新的命令执行者
+     * @param player 新的命令执行者
      * @throws IllegalArgumentException 如果这个玩家为null
      */
     public void setPlayer(final Player player) throws IllegalArgumentException {
@@ -169,7 +169,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * 原文:Sets the format to use to display this chat message
      *
      * @deprecated 向后兼容,不确保每个版本都有效
-     * @param 消息展示给别的玩家的格式
+     * @param format 消息展示给别的玩家的格式
      */
     @Deprecated
     public void setFormat(final String format) {

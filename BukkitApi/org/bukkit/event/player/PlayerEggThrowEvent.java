@@ -105,7 +105,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     /**
      * 改变将被孵化生物的数量.
      * <p>
-     * {@Link hatching}的值将覆盖该数值的作用。
+     * {@link hatching}的值将覆盖该数值的作用。
      * 如果{@link hatching}被设为false, 则本数值不会生效。
      * <p>
      * 原文:Change the number of mobs coming out of the hatched egg

@@ -117,7 +117,6 @@ public abstract class JavaPlugin extends PluginBase {
     /**
 	 * 获取这个插件关联的PluginLoader.
 	 * <p>
-	 * <p>
 	 * 原文:
      * Gets the associated PluginLoader responsible for this plugin
      *
@@ -202,7 +201,7 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @param file 需要加载的文本资源文件名
      * @return null 如果 {@link #getResource(String)} 返回 null
-     * @throws 如果文件为空, 抛出无效的参数(IllegalArgumentException)错误
+     * @throws IllegalArgumentException 如果文件为空, 抛出无效的参数(IllegalArgumentException)错误
      * @see ClassLoader#getResourceAsStream(String)
      */
     @SuppressWarnings("deprecation")
@@ -318,7 +317,7 @@ public abstract class JavaPlugin extends PluginBase {
 	 * 原文:
      * Sets the enabled state of this plugin
      *
-     * @param true表示设置插件为开启, false就是设置插件为关闭
+     * @param enabled true表示设置插件为开启, false就是设置插件为关闭
      */
     protected final void setEnabled(final boolean enabled) {
         if (isEnabled != enabled) {
@@ -531,12 +530,12 @@ public abstract class JavaPlugin extends PluginBase {
      * resided in a different jar / classloader.
      *
      * @param <T> 任何一个继承了JavaPlugin的类
-     * @param 类所需的类
+     * @param clazz 类所需的类
      * @return 该插件提供的类
      * @throws 如果这个类为null, 抛出无效的参数(IllegalArgumentException)错误
      * @throws 如果插件没有继承此类 {@link
      *     JavaPlugin} , 抛出无效的参数(IllegalArgumentException)错误
-     * @throws 如果这个类不是插件提供的,抛出无效的状态(IllegalStateException)错误
+     * @throws IllegalStateException 如果这个类不是插件提供的,抛出无效的状态(IllegalStateException)错误
      *     for example, if called with
      *     <code>JavaPlugin.getPlugin(JavaPlugin.class)</code>
      * @throws IllegalStateException if called from the static initializer for

@@ -50,7 +50,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
      * <p>
      * 原文：Sets the resultant ItemStack for this event
      *
-     * @param 熔炼产物
+     * @param result 熔炼产物
      */
     public void setResult(ItemStack result) {
         this.result = result;

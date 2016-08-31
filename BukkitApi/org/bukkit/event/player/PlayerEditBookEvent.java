@@ -54,7 +54,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
     /**
      * 获取玩家试图新增的书本元数据。 
      * <p>
-     * 注意：获取的元数据为副本。使用 {@link setNewBookMeta(BookMeta)}修改实际想要更新的书本元数据
+     * 注意：获取的元数据为副本。使用 {@link #setNewBookMeta(BookMeta)}修改实际想要更新的书本元数据
      * <p>
      * 原文:Gets the book meta that the player is attempting to add to the book.
      * <p>

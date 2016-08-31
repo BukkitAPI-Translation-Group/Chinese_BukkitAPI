@@ -211,7 +211,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
 
     /**
      * 加载上一次保存的数据(从在world/player文件夹中的玩家名.dat文件中加载
-     * 位置{@link Location},血量,背包{@link Inventory},移动方向及其他信息).<p>
+     * 位置,血量,背包,移动方向及其他信息).<p>
      * 这将会覆盖当前内存中的数据. <p>
      * 原文:Loads the players current location, health, inventory, motion, and
      * other information from the username.dat file, in the world/player

@@ -259,7 +259,7 @@ public enum Achievement {
      */
     BREED_COW(KILL_COW),
     /**
-     * 「给你钻石&#65281;」.
+     * 「给你钻石！」.
      * <p>
      * 向一名玩家投掷钻石.
      * <p>
