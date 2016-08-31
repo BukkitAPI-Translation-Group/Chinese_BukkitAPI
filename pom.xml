@@ -99,6 +99,7 @@
     </dependencies>
 
     <build>
+        <sourceDirectory>BukkitApi/</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -157,6 +158,14 @@
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <!-- when downloading via Maven we can pull depends individually -->
                     <shadedArtifactAttached>true</shadedArtifactAttached>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <javadocDirectory>javadoc/</javadocDirectory>
                 </configuration>
             </plugin>
         </plugins>
