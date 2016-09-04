@@ -213,7 +213,7 @@ public interface ConfigurationSection {
      * <p>
      * Some implementations may have limitations on what you may store. 
      * See their individual javadocs for details. 
-     * No implementations should allow you to store {@link Configuration}s or {@link ConfigurationSection}s, please use {@link #createSection(java. lang. String)} for that. 
+     * No implementations should allow you to store {@link Configuration}s or {@link ConfigurationSection}s, please use {@link #createSection(java.lang.String)} for that. 
      *
      * @param path Path of the object to set. 
      * @param value New value to set the path to. 

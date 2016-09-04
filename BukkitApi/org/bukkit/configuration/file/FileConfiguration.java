@@ -23,7 +23,7 @@ import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.MemoryConfiguration;
 
 /**
- * 这是一个实现了 {@link #Configuration} 的配置文件的基类
+ * 这是一个实现了 {@link Configuration} 的配置文件的基类
  */
 public abstract class FileConfiguration extends MemoryConfiguration {
 
@@ -38,7 +38,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      * 创建一个空的 {@link FileConfiguration} 并且使用 {@link
      * Configuration} 内的所有默认值创建它.
      *
-     * @param 为其创建提供缺省值的Configuration.
+     * @param defaults 为其创建提供缺省值的Configuration.
      */
     public FileConfiguration(Configuration defaults) {
         super(defaults);
@@ -52,7 +52,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      * <p>
      * 本方法会用系统默认的编码储存,不过也有可能用UTF-8出储存
      *
-     * @param 要储存的文件
+     * @param file 要储存的文件
      * @throws IOException 然后会给出无法创建或者保存的原因.
      * @throws IllegalArgumentException 如果文件为空，泡出该异常
      */
@@ -80,7 +80,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      * <p>
      * 本方法会用系统默认的编码储存,不过也有可能用UTF-8出储存
      *
-     * @param 要储存的文件
+     * @param file 要储存的文件
      * @throws IOException 然后会给出无法创建或者保存的原因.
      * @throws IllegalArgumentException 如果文件为空，泡出该异常
      */

@@ -200,7 +200,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setSprinting(boolean sprinting);
 
     /**
-     * 保存玩家数据(位置{@link Location},血量,背包{@link Inventory},移动方向
+     * 保存玩家数据(位置,血量,背包,移动方向
      * 及其他信息至在world/player文件夹中的玩家名.dat文件).
      * <p>
      * 原文 Saves the players current location, health, inventory, motion, and
@@ -211,7 +211,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
 
     /**
      * 加载上一次保存的数据(从在world/player文件夹中的玩家名.dat文件中加载
-     * 位置{@link Location},血量,背包{@link Inventory},移动方向及其他信息).<p>
+     * 位置,血量,背包,移动方向及其他信息).<p>
      * 这将会覆盖当前内存中的数据. <p>
      * 原文:Loads the players current location, health, inventory, motion, and
      * other information from the username.dat file, in the world/player
@@ -335,7 +335,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 例:playEffect(loc, {@link Effect}.StepSound, Material.REDSTONE_BLOCK)将
      * 在loc的位置播放一个红石块(REDSTONE_BLOCK)被打破的粒子效果.<p>
      * 译注2:{@link Material}只能表示主ID,不能表示副ID,所以播放绿色羊毛的打破效果貌似是不可能的,
-     * 但是由于data是泛型,我们猜测会不会data也可以是能表示任何方块{@link Block}类型?由于时间关系不能测试,请谅解.
+     * 但是由于data是泛型,我们猜测会不会data也可以是能表示任何{@link Block 方块}类型?由于时间关系不能测试,请谅解.
      * 
      * @param <T> {@link Material}
      * @param loc 要播放粒子效果的位置

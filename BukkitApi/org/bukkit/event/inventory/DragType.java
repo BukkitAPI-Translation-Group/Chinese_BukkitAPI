@@ -1,7 +1,7 @@
 package org.bukkit.event.inventory;
 
 /**
- * 在物品拖动事件中将要应用到物品栏的结果.
+ * 在物品栏中拖动物品的拖动类型
  */
 public enum DragType {
     /**

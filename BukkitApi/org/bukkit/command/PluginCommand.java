@@ -96,11 +96,11 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
     }
 
     /**
-     * 获取与这个命令关联的{@link TabComplete}.
+     * 获取与这个命令关联的{@link TabCompleter}.
      * <p>
      * 原文:Gets the {@link TabCompleter} associated with this command.
      *
-     * @return 与这个命令关联的{@link TabComplete}
+     * @return 与这个命令关联的{@link TabCompleter}
      */
     public TabCompleter getTabCompleter() {
         return completer;

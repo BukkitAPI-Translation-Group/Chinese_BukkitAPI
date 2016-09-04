@@ -19,7 +19,7 @@ public enum Achievement {
      */
     MINE_WOOD(OPEN_INVENTORY),
     /**
-     * 「这是&#65311; 工作台&#65281;」.
+     * 「这是？工作台！」.
      * <p>
      * 用四个木板来制作一个工作台.
      * <p>
@@ -27,7 +27,7 @@ public enum Achievement {
      */
     BUILD_WORKBENCH(MINE_WOOD),
     /**
-     * 「采矿时间到&#65281;」.
+     * 「采矿时间到！」.
      * <p>
      * 使用木板和木棍来制作木镐.
      * <p>
@@ -51,7 +51,7 @@ public enum Achievement {
      */
     ACQUIRE_IRON(BUILD_FURNACE),
     /**
-     * 「耕种时间到&#65281;」.
+     * 「耕种时间到！」.
      * <p>
      * 使用木板和木棍来制作木锄.
      * <p>
@@ -99,7 +99,7 @@ public enum Achievement {
      */
     ON_A_RAIL(ACQUIRE_IRON),
     /**
-     * 「出击时间到&#65281;」.
+     * 「出击时间到！」.
      * <p>
      * 使用木板和木棍来制作一把木剑！
      * <p>
@@ -179,7 +179,7 @@ public enum Achievement {
      */
     BREW_POTION(GET_BLAZE_ROD),
     /**
-     * 「结束了&#65311;」.
+     * 「结束了？」.
      * <p>
      * 找到“末地”.
      * <p>
@@ -227,7 +227,7 @@ public enum Achievement {
      */
     EXPLORE_ALL_BIOMES(END_PORTAL),
     /**
-     * 「开始了&#65311;」.
+     * 「开始了？」.
      * <p>
      * 生成凋灵.
      * <p>
@@ -259,7 +259,7 @@ public enum Achievement {
      */
     BREED_COW(KILL_COW),
     /**
-     * 「给你钻石&#65281;」.
+     * 「给你钻石！」.
      * <p>
      * 向一名玩家投掷钻石.
      * <p>

@@ -208,9 +208,9 @@ public enum ChatColor {
     /**
      * 转换交替的颜色代码字符到内部的ChatColor.COLOR_CHAR颜色代码字符.如果它后面紧跟着的是0-9, A-F, a-f, K-O, k-o, R 或 r，其它的颜色代码只会被替换.
      * <p>
-     * 译注:这个方法是用来把其他的颜色代码替换成Minecraft本身的.比如我们在Minecraft服务器聊天时，为了输入方便，就使用"&"来替换"§"，服务器要处理这种消息时就要用到本方法.
+     * 译注:这个方法是用来把其他的颜色代码替换成Minecraft本身的.比如我们在Minecraft服务器聊天时，为了输入方便，就使用"{@literal &}"来替换"§"，服务器要处理这种消息时就要用到本方法.
      * <p>
-     * 范例:<code>System.out.println(translateAlternateColorCodes('&', "&cred&agreen9blue"));</code>这段代码会把"&cred&agreen&9blue"替换成"§cred§agreen§9blue"，"§"是ChatColor.COLOR_CHAR的默认值.
+     * 范例:<code>System.out.println(translateAlternateColorCodes('{@literal &}', "{@literal &}cred{@literal &}agreen{@literal &}9blue"));</code>这段代码会把"{@literal &}cred{@literal &}agreen{@literal &}9blue"替换成"§cred§agreen§9blue"，"§"是ChatColor.COLOR_CHAR的默认值.
      * <p>
      * 原文:Translates a string using an alternate color code character into a
      * string that uses the internal ChatColor.COLOR_CODE color code

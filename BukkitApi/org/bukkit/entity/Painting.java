@@ -6,7 +6,7 @@ import org.bukkit.event.hanging.HangingBreakEvent;
 /**
  * 代表画.
  * <p>
- * 中文Wiki:<a href="http://minecraft-zh.gamepedia.com/%E7%94%BB" />，前往了解更多
+ * 前往<a href="http://minecraft-zh.gamepedia.com/%E7%94%BB">wiki</a>了解更多
  */
 public interface Painting extends Hanging {
 

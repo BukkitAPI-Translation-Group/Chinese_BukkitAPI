@@ -79,7 +79,7 @@ public interface WorldBorder {
      * <P>
      * 原文：Sets the amount of blocks a player may safely be outside the border before taking damage.
      *
-     * @param Blocks:越过结界的缓冲方块数量，如果不设置的话默认是5个方块
+     * @param blocks 越过结界的缓冲方块数量，如果不设置的话默认是5个方块
      */
     public void setDamageBuffer(double blocks);
 
@@ -97,7 +97,7 @@ public interface WorldBorder {
      * <P> 
      * 原文：Sets the amount of damage a player takes when outside the border plus the border buffer.
      *
-     * @param  damage:要设置的伤害值，默认的是超过一个方块一秒受到0.2伤害
+     * @param  damage 要设置的伤害值，默认的是超过一个方块一秒受到0.2伤害
      */
     public void setDamageAmount(double damage);
 
@@ -115,7 +115,7 @@ public interface WorldBorder {
      * <p>
      * 原文：Sets the warning time that causes the screen to be tinted red when a contracting border will reach the player within the specified time.
      *
-     * @param seconds:警告玩家的秒数，默认是15秒钟
+     * @param seconds 警告玩家的秒数，默认是15秒钟
      */
     public void setWarningTime(int seconds);
 
@@ -133,7 +133,7 @@ public interface WorldBorder {
      * <p>
      * 原文：Sets the warning distance that causes the screen to be tinted red when the player is within the specified number of blocks from the border.
      *
-     * @param distance:要设置玩家会被警告的距离
+     * @param distance 要设置玩家会被警告的距离
      */
     public void setWarningDistance(int distance);
 }

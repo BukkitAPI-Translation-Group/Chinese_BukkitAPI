@@ -49,7 +49,7 @@ public interface CommandMap {
      *
      * @param label 命令的别名，即“prefix”，没有“/”
      * @param fallbackPrefix 预置在命令之前的前缀（即fallbackPrefix:命令，用英文冒号分开，前面的部分就是fallbackPrefix），以使命令独一无二
-     * @param commands 要注册的命令
+     * @param command 要注册的命令
      * @return 如果用传递的label注册了命令则为true，如果指定的fallbackPrefix已被使用一次或多次则为false
      */
     public boolean register(String label, String fallbackPrefix, Command command);
