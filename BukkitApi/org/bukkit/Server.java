@@ -116,8 +116,9 @@ public interface Server extends PluginMessageRecipient {
     public Player[] _INVALID_getOnlinePlayers();
 
     /**
-     * 获得一个当前所有已登录玩家的集合
-     * Gets a view of all currently logged in players. This {@linkplain
+     * 获得一个当前所有已登录玩家的集合.
+     * <p>
+     * 原文:Gets a view of all currently logged in players. This {@linkplain
      * Collections#unmodifiableCollection(Collection) view} is a reused
      * object, making some operations like {@link Collection#size()}
      * zero-allocation.
@@ -141,7 +142,7 @@ public interface Server extends PluginMessageRecipient {
      * using {@link Collection#toArray(Object[])} is recommended. For making
      * snapshots, {@link ImmutableList#copyOf(Collection)} is recommended.
      *
-     * @return a view of currently online players.
+     * @return 当前所有已登录玩家的集合.
      */
     public Collection<? extends Player> getOnlinePlayers();
 
@@ -889,97 +890,113 @@ public interface Server extends PluginMessageRecipient {
     public HelpMap getHelpMap();
 
     /**
-     * Creates an empty inventory of the specified type. If the type is {@link
+     * 通过一个特定的类型来创建一个空的物品栏,如果这个类型是{@link InventoryType#CHEST},那么这个物品栏
+     * 的大小为27格(即0-26的slot可用),每个物品栏类型拥有其默认的大小
+     * <p>
+     * 原文:Creates an empty inventory of the specified type. If the type is {@link
      * InventoryType#CHEST}, the new inventory has a size of 27; otherwise the
      * new inventory has the normal size for its type.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param type the type of inventory to create
-     * @return a new inventory
+     * @param owner 该物品栏的拥有者,为null则表明无拥有者
+     * @param type 被创建的Inventory的类型
+     * @return Inventory实例
      */
     Inventory createInventory(InventoryHolder owner, InventoryType type);
 
     /**
-     * Creates an empty inventory with the specified type and title. If the type
+     * 通过一个特定的类型和标题来创建一个空的物品栏,如果这个类型是{@link InventoryType#CHEST},那么这个物品栏
+     * 的大小为27格(即0-26的slot可用),每个物品栏类型拥有其默认的大小
+     * <p>
+     * 原文:Creates an empty inventory with the specified type and title. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.<br>
-     * It should be noted that some inventory types do not support titles and
+     * 注意:某些Inventory不支持标题,这些不支持标题的Inventory将不会在客户端渲染标题(即设置标题对这类Inventory无效)
+     * <p>
+     * 原文:It should be noted that some inventory types do not support titles and
      * may not render with said titles on the Minecraft client.
      *
-     * @param owner The holder of the inventory; can be null if there's no holder.
-     * @param type The type of inventory to create.
-     * @param title The title of the inventory, to be displayed when it is viewed.
-     * @return The new inventory.
+     * @param owner 该物品栏的拥有者,为null则表明无拥有者
+     * @param type 被创建的Inventory的类型
+     * @param title 被创建的Inventory的标题
+     * @return Inventory实例
      */
     Inventory createInventory(InventoryHolder owner, InventoryType type, String title);
 
     /**
-     * Creates an empty inventory of type {@link InventoryType#CHEST} with the
+     * 使用{@link InventoryType#CHEST}创建一个给定大小的Inventory
+     * <p>
+     * 原文:Creates an empty inventory of type {@link InventoryType#CHEST} with the
      * specified size.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param size a multiple of 9 as the size of inventory to create
-     * @return a new inventory
-     * @throws IllegalArgumentException if the size is not a multiple of 9
+     * @param owner 该物品栏的拥有者,为null则表明无拥有者
+     * @param size 被创建的Inventory的大小,该值应为9的倍数
+     * @return Inventory实例
+     * @throws IllegalArgumentException 如果size不为9的倍数
      */
     Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException;
 
     /**
-     * Creates an empty inventory of type {@link InventoryType#CHEST} with the
+     * 通过一个特定的大小和标题使用{@link InventoryType#CHEST}来创建一个空的物品栏
+     * <p>
+     * 原文:Creates an empty inventory of type {@link InventoryType#CHEST} with the
      * specified size and title.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param size a multiple of 9 as the size of inventory to create
-     * @param title the title of the inventory, displayed when inventory is
-     *     viewed
-     * @return a new inventory
-     * @throws IllegalArgumentException if the size is not a multiple of 9
+     * @param owner 该物品栏的拥有者,为null则表明无拥有者
+     * @param size 被创建的Inventory的大小,该值应为9的倍数
+     * @param title 被创建的Inventory的标题
+     * @return Inventory实例
+     * @throws IllegalArgumentException 如果size不为9的倍数
      */
     Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException;
 
     /**
-     * Gets user-specified limit for number of monsters that can spawn in a
+     * 获取一个区块最大可生成怪物数
+     * <p>
+     * 原文:Gets user-specified limit for number of monsters that can spawn in a
      * chunk.
      *
-     * @return the monster spawn limit
+     * @return 生成限制数
      */
     int getMonsterSpawnLimit();
 
     /**
-     * Gets user-specified limit for number of animals that can spawn in a
+     * 获取一个区块最大可生成动物数
+     * <p>
+     * 原文:Gets user-specified limit for number of animals that can spawn in a
      * chunk.
      *
-     * @return the animal spawn limit
+     * @return 生成限制数
      */
     int getAnimalSpawnLimit();
 
     /**
-     * Gets user-specified limit for number of water animals that can spawn in
+     * 获取一个区块最大可生成水生生物数
+     * <p>
+     * 原文:Gets user-specified limit for number of water animals that can spawn in
      * a chunk.
      *
-     * @return the water animal spawn limit
+     * @return 生成限制数
      */
     int getWaterAnimalSpawnLimit();
 
     /**
+     * 获取一个区块最大生成环境怪物数(疑惑)
      * Gets user-specified limit for number of ambient mobs that can spawn in
      * a chunk.
      *
-     * @return the ambient spawn limit
+     * @return 生成限制数
      */
     int getAmbientSpawnLimit();
 
     /**
-     * Checks the current thread against the expected primary thread for the
+     * 检查当前方法是否在主线程执行
+     * <p>
+     * 原文:Checks the current thread against the expected primary thread for the
      * server.
      * <p>
-     * <b>Note:</b> this method should not be used to indicate the current
-     * synchronized state of the runtime. A current thread matching the main
-     * thread indicates that it is synchronized, but a mismatch <b>does not
-     * preclude</b> the same assumption.
+     * <b>注意:</b> 该方法不应该用于检查当前同步状态,当前线程为主线程表明它确实为同步,但是不能排除其他原因.
      *
-     * @return true if the current thread matches the expected primary thread,
-     *     false otherwise
+     * @return 为主线程返回true否则返回false
      */
     boolean isPrimaryThread();
 
@@ -993,90 +1010,110 @@ public interface Server extends PluginMessageRecipient {
     String getMotd();
 
     /**
-     * Gets the default message that is displayed when the server is stopped.
+     * 获取服务器关闭时给玩家发送的默认消息
+     * <p>
+     * 原文:Gets the default message that is displayed when the server is stopped.
      *
-     * @return the shutdown message
+     * @return 关服消息
      */
     String getShutdownMessage();
 
     /**
-     * Gets the current warning state for the server.
+     * 获取当前警告状态
+     * <p>
+     * 原文:Gets the current warning state for the server.
      *
-     * @return the configured warning state
+     * @return 被配置的警告状态
      */
     public WarningState getWarningState();
 
     /**
-     * Gets the instance of the item factory (for {@link ItemMeta}).
+     * 获取ItemFactory的实例(用于 {@link ItemMeta})
+     * <p>
+     * 原文:Gets the instance of the item factory (for {@link ItemMeta}).
      *
-     * @return the item factory
+     * @return ItenFactory实例
      * @see ItemFactory
      */
     ItemFactory getItemFactory();
 
     /**
-     * Gets the instance of the scoreboard manager.
+     * 获取ScoreboardManager实例
      * <p>
-     * This will only exist after the first world has loaded.
+     * 原文:Gets the instance of the scoreboard manager.
+     * <p>
+     * 该实例在至少有一个世界被加载后才会创建
+     * <p>
+     * 原文:This will only exist after the first world has loaded.
      *
-     * @return the scoreboard manager or null if no worlds are loaded.
+     * @return 有任何世界被加载则返回ScoreboardManager实例,否则返回null.
      */
     ScoreboardManager getScoreboardManager();
 
     /**
-     * Gets an instance of the server's default server-icon.
+     * 获取服务器默认图标
+     * <p>
+     * 原文:Gets an instance of the server's default server-icon.
      *
-     * @return the default server-icon; null values may be used by the
-     *     implementation to indicate no defined icon, but this behavior is
-     *     not guaranteed
+     * @return 服务器默认图标,当未定义服务器图标时将返回null(该行为无法担保)
      */
     CachedServerIcon getServerIcon();
 
     /**
-     * Loads an image from a file, and returns a cached image for the specific
+     * 从文件中缓存图片为CachedServerIcon
+     * <p>
+     * 原文:Loads an image from a file, and returns a cached image for the specific
      * server-icon.
      * <p>
-     * Size and type are implementation defined. An incompatible file is
+     * 大小和类型必须在允许范围内,否则将会抛出{@link Exception}.
+     * <p>
+     * 原文:Size and type are implementation defined. An incompatible file is
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
-     * @param file the file to load the from
-     * @throws IllegalArgumentException if image is null
-     * @throws Exception if the image does not meet current server server-icon
-     *     specifications
-     * @return a cached server-icon that can be used for a {@link
+     * @param file 需要被加载的文件
+     * @throws IllegalArgumentException 如果图片为null
+     * @throws Exception 如果图片规格不适用作为服务器图标
+     * @return 一个已缓存的CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
     CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception;
 
     /**
-     * Creates a cached server-icon for the specific image.
+     * 从image中缓存为CachedServerIcon
      * <p>
-     * Size and type are implementation defined. An incompatible file is
+     * 原文:Creates a cached server-icon for the specific image.
+     * <p>
+     * 大小和类型必须在允许范围内,否则将会抛出{@link Exception}.
+     * <p>
+     * 原文:Size and type are implementation defined. An incompatible file is
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
-     * @param image the image to use
-     * @throws IllegalArgumentException if image is null
-     * @throws Exception if the image does not meet current server
-     *     server-icon specifications
-     * @return a cached server-icon that can be used for a {@link
+     * @param image 用于缓存的图片
+     * @throws IllegalArgumentException 如果图片为null
+     * @throws Exception 如果图片规格不适用作为服务器图标
+     * @return 一个已缓存的CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
     CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception;
 
     /**
-     * Set the idle kick timeout. Any players idle for the specified amount of
+     * 设置自动踢出闲置玩家的时间.
+     * <p>
+     * 原文:Set the idle kick timeout. Any players idle for the specified amount of
      * time will be automatically kicked.
      * <p>
-     * A value of 0 will disable the idle kick timeout.
+     * 值为0时将不会踢出玩家
      *
-     * @param threshold the idle timeout in minutes
+     * @param threshold 闲置超时的分钟数
      */
     public void setIdleTimeout(int threshold);
 
     /**
-     * Gets the idle kick timeout.
+     * 获取自动踢出闲置玩家的时间.
+     * <p>
+     * 原文:Gets the idle kick timeout.
      *
-     * @return the idle timeout in minutes
+     * @return the 闲置超时的分钟数
      */
     public int getIdleTimeout();
 
