@@ -100,19 +100,23 @@ public interface Server extends PluginMessageRecipient {
     public String getBukkitVersion();
 
     /**
+     * 以数组形式获得当前所有在线的玩家
+     * <p>
+     * 原文:
      * Gets an array copy of all currently logged in players.
      * <p>
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      *
-     * @deprecated superseded by {@link #getOnlinePlayers()}
-     * @return an array of Players that are currently online
+     * @deprecated 被 {@link #getOnlinePlayers()}取代
+     * @return 一个当前所有在线玩家的数组
      */
     @Deprecated
     public Player[] _INVALID_getOnlinePlayers();
 
     /**
+     * 获得一个当前所有已登录玩家的集合
      * Gets a view of all currently logged in players. This {@linkplain
      * Collections#unmodifiableCollection(Collection) view} is a reused
      * object, making some operations like {@link Collection#size()}
@@ -160,18 +164,21 @@ public interface Server extends PluginMessageRecipient {
     public int getPort();
 
     /**
-     * Get the view distance from this server.
+     * 获得当前设置的视距
+     * <p>
+     * 原文:Get the view distance from this server.
      *
-     * @return the view distance from this server.
+     * @return 服务器当前设置的视距.
      */
     public int getViewDistance();
 
     /**
-     * Get the IP that this server is bound to, or empty string if not
+     * 获得当前服务器绑定的IP,当未设置时返回为空
+     * <p>
+     * 原文:Get the IP that this server is bound to, or empty string if not
      * specified.
      *
-     * @return the IP string that this server is bound to, otherwise empty
-     *     string
+     * @return 获得当前服务器绑定的IP,未绑定则为空
      */
     public String getIp();
 
@@ -185,10 +192,12 @@ public interface Server extends PluginMessageRecipient {
     public String getServerName();
 
     /**
-     * Get an ID of this server. The ID is a simple generally alphanumeric ID
+     * 获得服务器的ID,该ID通常由数字和字母组成,这个ID可以用于识别服务器
+     * <p>
+     * 原文:Get an ID of this server. The ID is a simple generally alphanumeric ID
      * that can be used for uniquely identifying this server.
      *
-     * @return the ID of this server
+     * @return 服务器的ID
      */
     public String getServerId();
 
@@ -202,20 +211,25 @@ public interface Server extends PluginMessageRecipient {
     public String getWorldType();
 
     /**
-     * Get generate-structures setting.
+     * 获得是否允许生成器构造(对应server.properties文件中的generate-structures)
+     * <p>
+     * 原文:Get generate-structures setting.
      *
-     * @return true if structure generation is enabled, false otherwise
+     * @return 当启用时返回true否则返回false
      */
     public boolean getGenerateStructures();
 
     /**
-     * Gets whether this server allows the End or not.
+     * 获取该服务器是否允许末地
+     * <p>
+     * 原文:Gets whether this server allows the End or not.
      *
-     * @return whether this server allows the End or not
+     * @return 允许则返回true,否则返回false
      */
     public boolean getAllowEnd();
 
     /**
+     * 
      * Gets whether this server allows the Nether or not.
      *
      * @return whether this server allows the Nether or not
@@ -223,16 +237,20 @@ public interface Server extends PluginMessageRecipient {
     public boolean getAllowNether();
 
     /**
-     * Gets whether this server has a whitelist or not.
+     * 获取该服务器是否有白名单
+     * <p>
+     * 原文:Gets whether this server has a whitelist or not.
      *
-     * @return whether this server has a whitelist or not
+     * @return 有则返回true,否则返回false
      */
     public boolean hasWhitelist();
 
     /**
-     * Sets if the server is whitelisted.
+     * 设置该服务器是是否开启白名单
+     * <p>
+     * 原文:Sets if the server is whitelisted.
      *
-     * @param value true for whitelist on, false for off
+     * @param value 为true时则开启白名单,false则关闭白名单
      */
     public void setWhitelist(boolean value);
 
@@ -253,219 +271,252 @@ public interface Server extends PluginMessageRecipient {
     public void reloadWhitelist();
 
     /**
-     * Broadcast a message to all players.
+     * 向服务器所有玩家发送一个消息
      * <p>
-     * This is the same as calling {@link #broadcast(java.lang.String,
-     * java.lang.String)} to {@link #BROADCAST_CHANNEL_USERS}
+     * 原文:Broadcast a message to all players.
+     * <p>
+     * 这相当于调用 {@link #broadcast(java.lang.String,
+     * java.lang.String)} 至 {@link #BROADCAST_CHANNEL_USERS}
      *
-     * @param message the message
-     * @return the number of players
+     * @param message 需要发送的消息
+     * @return 收到消息的玩家数量
      */
     public int broadcastMessage(String message);
 
     /**
-     * Gets the name of the update folder. The update folder is used to safely
-     * update plugins at the right moment on a plugin load.
+     * 获得更新文件夹的路径,这个文件夹里的文件将在插件加载时选择一个正确的时间更新插件(注意:该文件夹路径相对于插件的文件夹)
      * <p>
-     * The update folder name is relative to the plugins folder.
+     * 原文:Gets the name of the update folder. The update folder is used to safely
+     * update plugins at the right moment on a plugin load.
      *
-     * @return the name of the update folder
+     * @return 更新文件夹的路径
      */
     public String getUpdateFolder();
 
     /**
-     * Gets the update folder. The update folder is used to safely update
+     * 获得更新文件夹的File实例,这个文件夹里的文件将在插件加载时选择一个正确的时间更新插件
+     * <p>
+     * 原文:Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
-     * @return the update folder
+     * @return 更新文件夹的File实例
      */
     public File getUpdateFolderFile();
 
     /**
-     * Gets the value of the connection throttle setting.
+     * 获取玩家重连服务器的间隔(-1则为无限制)
+     * <p>
+     * 原文:Gets the value of the connection throttle setting.
      *
-     * @return the value of the connection throttle setting
+     * @return 返回玩家重连服务器的间隔
      */
     public long getConnectionThrottle();
 
     /**
-     * Gets default ticks per animal spawns value.
+     * 获得每隔多少ticks生成动物
      * <p>
-     * <b>Example Usage:</b>
+     * 原文:Gets default ticks per animal spawns value.
+     * <p>
+     * <b>示例:</b>
      * <ul>
-     * <li>A value of 1 will mean the server will attempt to spawn monsters
-     *     every tick.
-     * <li>A value of 400 will mean the server will attempt to spawn monsters
-     *     every 400th tick.
-     * <li>A value below 0 will be reset back to Minecraft's default.
+     * <li>值为1时服务器将尝试每tick都生成动物
+     * <li>值为400服务器将每400tick尝试生成一次动物
+     * <li>一个低于0的值将会被重置设为默认值(默认为400)
      * </ul>
      * <p>
-     * <b>Note:</b> If set to 0, animal spawning will be disabled. We
-     * recommend using spawn-animals to control this instead.
+     * <b>注意:</b>如果设置为0,动物生成将会被禁止,我们推荐使用spawn-animals代替用于控制动物生成
      * <p>
-     * Minecraft default: 400.
      *
-     * @return the default ticks per animal spawns value
+     * @return 返回生成动物间隔的tick
      */
     public int getTicksPerAnimalSpawns();
 
     /**
-     * Gets the default ticks per monster spawns value.
+     * 获得每隔多少ticks生成怪物
      * <p>
-     * <b>Example Usage:</b>
+     * 原文:Gets the default ticks per monster spawns value.
+     * <p>
+     * <b>示例:</b>
      * <ul>
-     * <li>A value of 1 will mean the server will attempt to spawn monsters
-     *     every tick.
-     * <li>A value of 400 will mean the server will attempt to spawn monsters
-     *     every 400th tick.
-     * <li>A value below 0 will be reset back to Minecraft's default.
+     * <li>值为1时服务器将尝试每tick都生成怪物
+     * <li>值为400服务器将每400tick尝试生成一次怪物
+     * <li>一个低于0的值将会被重重设为默认值(默认为1)
      * </ul>
      * <p>
-     * <b>Note:</b> If set to 0, monsters spawning will be disabled. We
-     * recommend using spawn-monsters to control this instead.
+     * <b>注意:</b>如果设置为0,动物生成将会被禁止,我们推荐使用spawn-monsters代替用于控制动物生成
      * <p>
-     * Minecraft default: 1.
      *
-     * @return the default ticks per monsters spawn value
+     * @return 返回生成怪物间隔的tick
      */
     public int getTicksPerMonsterSpawns();
 
     /**
-     * Gets a player object by the given username.
+     * 根据玩家的名字来获取一个玩家的实例
      * <p>
-     * This method may not return objects for offline players.
+     * 原文:Gets a player object by the given username.
+     * <p>
+     * 这个方法不会返回不在线玩家的实例(意思就是说获取的玩家必须在线,否则返回null)
      *
-     * @deprecated Use {@link #getPlayer(UUID)} as player names are no longer
-     *     guaranteed to be unique
-     * @param name the name to look up
-     * @return a player if one was found, null otherwise
+     * @deprecated 请使用 {@link #getPlayer(UUID)} 用玩家名查找无法保证唯一性
+     * @param name 被查找玩家的名字
+     * @return 一个在线玩家实例或者null
      */
     @Deprecated
     public Player getPlayer(String name);
 
     /**
-     * Gets the player with the exact given name, case insensitive.
+     * 通过玩家名准确的查找来获得一个玩家实例,避免大小写问题(译注:该方法使用频率极低)
+     * <p>
+     * 原文:Gets the player with the exact given name, case insensitive.
      *
-     * @deprecated Use {@link #getPlayer(UUID)} as player names are no longer
-     *     guaranteed to be unique
-     * @param name Exact name of the player to retrieve
-     * @return a player object if one was found, null otherwise
+     * @deprecated 请使用 {@link #getPlayer(UUID)} 用玩家名查找无法保证唯一性
+     * @param name 被查找玩家的准确名字
+     * @return 一个在线玩家的实例或者null
      */
     @Deprecated
     public Player getPlayerExact(String name);
 
     /**
-     * Attempts to match any players with the given name, and returns a list
+     * 尝试用name匹配所有玩家并且返回一个所有匹配玩家的List
+     * <p>
+     * 原文:Attempts to match any players with the given name, and returns a list
      * of all possibly matches.
      * <p>
-     * This list is not sorted in any particular order. If an exact match is
+     * 该list未排序,如果准确匹配到某个玩家则该List仅包含该玩家
+     * <p>
+     * 原文:This list is not sorted in any particular order. If an exact match is
      * found, the returned list will only contain a single result.
      *
-     * @deprecated Use {@link #getPlayer(UUID)} as player names are no longer
-     *     guaranteed to be unique
-     * @param name the (partial) name to match
-     * @return list of all possible players
+     * @deprecated 请使用 {@link #getPlayer(UUID)} 用玩家名查找无法保证唯一性
+     * @param name 匹配玩家名
+     * @return 所有匹配玩家的List(译注:遍历该List时记得检测玩家是否在线)
      */
     @Deprecated
     public List<Player> matchPlayer(String name);
 
     /**
-     * Gets the player with the given UUID.
+     * 通过UUID获取玩家的实例
+     * <p>
+     * 原文:Gets the player with the given UUID.
      *
-     * @param id UUID of the player to retrieve
-     * @return a player object if one was found, null otherwise
+     * @param id 用于检索玩家的UUID
+     * @return 一个在线玩家的实例或者null
      */
     public Player getPlayer(UUID id);
 
     /**
-     * Gets the plugin manager for interfacing with plugins.
+     * 获取PluginManager接口的实例
+     * <p>
+     * 原文:Gets the plugin manager for interfacing with plugins.
      *
-     * @return a plugin manager for this Server instance
+     * @return 返回PluginManager接口的实例
      */
     public PluginManager getPluginManager();
 
     /**
-     * Gets the scheduler for managing scheduled events.
+     * 获取BukkitScheduler接口的实例用来安排任务
+     * <p>
+     * 原文:Gets the scheduler for managing scheduled events.
      *
-     * @return a scheduling service for this server
+     * @return BukkitScheduler接口的实例
      */
     public BukkitScheduler getScheduler();
 
     /**
-     * Gets a services manager.
+     * 获取ServicesManager
+     * <p>
+     * 原文:Gets a services manager.
      *
-     * @return s services manager
+     * @return 返回ServicesManager
      */
     public ServicesManager getServicesManager();
 
     /**
-     * Gets a list of all worlds on this server.
+     * 获取服务器以List封装的所有World
+     * <p>
+     * 原文:Gets a list of all worlds on this server.
      *
-     * @return a list of worlds
+     * @return 一个包含服务器所有World的List
      */
     public List<World> getWorlds();
 
     /**
-     * Creates or loads a world with the given name using the specified
+     * 使用给定的名字和配置来创建或者加载一个World
+     * <p>
+     * 原文:Creates or loads a world with the given name using the specified
      * options.
      * <p>
-     * If the world is already loaded, it will just return the equivalent of
+     * 如果该World已经被加载,它相当于返回getWorld(creator.name())
+     * <p>
+     * 原文:If the world is already loaded, it will just return the equivalent of
      * getWorld(creator.name()).
      *
-     * @param creator the options to use when creating the world
-     * @return newly created or loaded world
+     * @param creator 世界生成器
+     * @return 返回新建的World或者已被服务器加载的World实例
      */
     public World createWorld(WorldCreator creator);
 
     /**
-     * Unloads a world with the given name.
+     * 通过给定的名字从服务器卸载一个World
+     * <p>
+     * 原文:Unloads a world with the given name.
      *
-     * @param name Name of the world to unload
-     * @param save whether to save the chunks before unloading
-     * @return true if successful, false otherwise
+     * @param name 需要被卸载的世界的名字
+     * @param save 是否在卸载World前保存区块数据
+     * @return 成功则返回true否则返回fasle
      */
     public boolean unloadWorld(String name, boolean save);
 
     /**
-     * Unloads the given world.
+     * 通过给定的Wrold实例从服务器卸载一个World
+     * <p>
+     * 原文:Unloads the given world.
      *
-     * @param world the world to unload
-     * @param save whether to save the chunks before unloading
-     * @return true if successful, false otherwise
+     * @param world 被卸载的World实例
+     * @param save 是否在卸载World前保存区块数据
+     * @return  成功则返回true否则返回fasle
      */
     public boolean unloadWorld(World world, boolean save);
 
     /**
-     * Gets the world with the given name.
+     * 通过给定的name获取一个World实例
+     * <p>
+     * 原文:Gets the world with the given name.
      *
-     * @param name the name of the world to retrieve
-     * @return a world with the given name, or null if none exists
+     * @param name 被获取世界的name
+     * @return World实例,当世界不存在时将返回null
      */
     public World getWorld(String name);
 
     /**
-     * Gets the world from the given Unique ID.
+     * 通过UUID获取World实例
+     * <p>
+     * 原文:Gets the world from the given Unique ID.
      *
-     * @param uid a unique-id of the world to retrieve
-     * @return a world with the given Unique ID, or null if none exists
+     * @param uid 被获取的World的UUID
+     * @return  World实例,当世界不存在时将返回null
      */
     public World getWorld(UUID uid);
 
     /**
-     * Gets the map from the given item ID.
+     * 通过给定的item ID获取MapView实例
+     * <p>
+     * 原文:Gets the map from the given item ID.
      *
-     * @param id the id of the map to get
-     * @return a map view if it exists, or null otherwise
-     * @deprecated Magic value
+     * @param id 需要被获取的Map的id
+     * @return MapView实例,当Map不存在时将返回null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public MapView getMap(short id);
 
     /**
+     * 创建一个新的MapView实例并且自动分配ID
+     * <p>
      * Create a new map with an automatically assigned ID.
      *
-     * @param world the world the map will belong to
-     * @return a newly created map view
+     * @param world 该Map所属的World
+     * @return 一个新的MapView实例
      */
     public MapView createMap(World world);
 
@@ -486,77 +537,95 @@ public interface Server extends PluginMessageRecipient {
     public Logger getLogger();
 
     /**
-     * Gets a {@link PluginCommand} with the given name or alias.
+     * 获取一个{@link PluginCommand}通过给定的name或者别称
+     * <p>
+     * 原文:Gets a {@link PluginCommand} with the given name or alias.
      *
-     * @param name the name of the command to retrieve
-     * @return a plugin command if found, null otherwise
+     * @param name 命令名
+     * @return 如果找到该名字的Command则返回PluginCommand实例,否则返回null
      */
     public PluginCommand getPluginCommand(String name);
 
     /**
-     * Writes loaded players to disk.
+     * 将以记载的玩家储存到硬盘
+     * <p>
+     * 原文:Writes loaded players to disk.
      */
     public void savePlayers();
 
     /**
-     * Dispatches a command on this server, and executes it if found.
+     * 在服务器执行一个命令
+     * <p>
+     * 原文:Dispatches a command on this server, and executes it if found.
      *
-     * @param sender the apparent sender of the command
-     * @param commandLine the command + arguments. Example: <code>test abc
+     * @param sender 执行该命令的对象
+     * @param commandLine sender执行的命令,由命令和参数组成. 示例: <code>test abc
      *     123</code>
-     * @return returns false if no target is found
-     * @throws CommandException thrown when the executor for the given command
-     *     fails with an unhandled exception
+     * @return 如果无法找到目标则返回false,否则返回true
+     * @throws CommandException 抛出执行期间出现的未捕获的异常
      */
     public boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException;
 
     /**
-     * Populates a given {@link ServerConfig} with values attributes to this
+     * 通过{@link ServerConfig}给服务器填充给定的属性
+     * <p>
+     * 原文:Populates a given {@link ServerConfig} with values attributes to this
      * server.
      *
-     * @param config the server config to populate
+     * @param config 填充给服务器的属性
      */
     public void configureDbConfig(ServerConfig config);
 
     /**
-     * Adds a recipe to the crafting manager.
+     * 向服务器添加一个配方
+     * <p>
+     * 原文:Adds a recipe to the crafting manager.
      *
-     * @param recipe the recipe to add
-     * @return true if the recipe was added, false if it wasn't for some
-     *     reason
+     * @param recipe 被添加的配方
+     * @return 当配方成功添加时返回true,否则返回false
      */
     public boolean addRecipe(Recipe recipe);
 
     /**
-     * Get a list of all recipes for a given item. The stack size is ignored
+     * 获取一个合成ItemStack的所有配方,如果副ID为-1将匹配所有的数据值
+     * <p>
+     * 原文:Get a list of all recipes for a given item. The stack size is ignored
      * in comparisons. If the durability is -1, it will match any data value.
      *
-     * @param result the item to match against recipe results
-     * @return a list of recipes with the given result
+     * @param result 被获取配方的ItemStack
+     * @return 配方的List实例
      */
     public List<Recipe> getRecipesFor(ItemStack result);
 
     /**
-     * Get an iterator through the list of crafting recipes.
+     * 获取配方迭代器
+     * <p>
+     * 原文:Get an iterator through the list of crafting recipes.
      *
-     * @return an iterator
+     * @return 配方的迭代器
      */
     public Iterator<Recipe> recipeIterator();
 
     /**
-     * Clears the list of crafting recipes.
+     * 清空配方
+     * <p>
+     * 原文:Clears the list of crafting recipes.
      */
     public void clearRecipes();
 
     /**
-     * Resets the list of crafting recipes to the default.
+     * 重置配方
+     * <p>
+     * 原文:Resets the list of crafting recipes to the default.
      */
     public void resetRecipes();
 
     /**
-     * Gets a list of command aliases defined in the server properties.
+     * 获取一个定义于服务器配置文件中的命令别名列表
+     * <p>
+     * 原文:Gets a list of command aliases defined in the server properties.
      *
-     * @return a map of aliases to command names
+     * @return 储存有命令及其别名List的Map实例
      */
     public Map<String, String[]> getCommandAliases();
 
@@ -630,51 +699,63 @@ public interface Server extends PluginMessageRecipient {
     public void shutdown();
 
     /**
-     * Broadcasts the specified message to every user with the given
+     * 向具有给定权限的玩家发送一条信息
+     * <p>
+     * 原文:Broadcasts the specified message to every user with the given
      * permission name.
      *
-     * @param message message to broadcast
-     * @param permission the required permission {@link Permissible
-     *     permissibles} must have to receive the broadcast
-     * @return number of message recipients
+     * @param message 需要公告的信息
+     * @param permission 需要的权限{@link Permissible permissibles}
+     * @return 收到公告的玩家数量
      */
     public int broadcast(String message, String permission);
 
     /**
-     * Gets the player by the given name, regardless if they are offline or
+     * 通过给定的name获取OfflinePlayer实例
+     * <p>
+     * 原文:Gets the player by the given name, regardless if they are offline or
      * online.
      * <p>
-     * This method may involve a blocking web request to get the UUID for the
+     * 该方法将会阻塞式调用一个网络请求用于获取给定name的UUID
+     * <p>
+     * 原文:This method may involve a blocking web request to get the UUID for the
      * given name.
      * <p>
-     * This will return an object even if the player does not exist. To this
+     * 对于该方法而言所有玩家都是存在的,即使玩家从未登录过服务器也会返回一个OfflinePlayer实例
+     * <p>
+     * 原文:This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
-     * @deprecated Persistent storage of users should be by UUID as names are no longer
-     *             unique past a single session.
-     * @param name the name the player to retrieve
-     * @return an offline player
+     * @deprecated UUID将会在不久后代替name
+     * @param name 玩家的name
+     * @return OfflinePlayer实例
      * @see #getOfflinePlayer(java.util.UUID)
      */
     @Deprecated
     public OfflinePlayer getOfflinePlayer(String name);
 
     /**
-     * Gets the player by the given UUID, regardless if they are offline or
+     * 通过UUID获取OfflinePlayer实例
+     * <p>
+     * 原文:Gets the player by the given UUID, regardless if they are offline or
      * online.
      * <p>
-     * This will return an object even if the player does not exist. To this
+     * 对于该方法而言所有玩家都是存在的,即使玩家从未登录过服务器也会返回一个OfflinePlayer实例
+     * <p>
+     * 原文:This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
-     * @param id the UUID of the player to retrieve
-     * @return an offline player
+     * @param id 玩家的UUID
+     * @return OfflinePlayer实例
      */
     public OfflinePlayer getOfflinePlayer(UUID id);
 
     /**
-     * Gets a set containing all current IPs that are banned.
+     * 获取一个被ban的IP的Set实例
+     * <p>
+     * 原文:Gets a set containing all current IPs that are banned.
      *
-     * @return a set containing banned IP addresses
+     * @return 一个包含被ban的IP的set实例
      */
     public Set<String> getIPBans();
 
@@ -706,20 +787,26 @@ public interface Server extends PluginMessageRecipient {
     public Set<OfflinePlayer> getBannedPlayers();
 
     /**
-     * Gets a ban list for the supplied type.
+     * 通过提供的BanList.Type来获取一个BanList
      * <p>
-     * Bans by name are no longer supported and this method will return
+     * 原文:Gets a ban list for the supplied type.
+     * <p>
+     * ban玩家name将不会受到支持,ban UUID更好
+     * <p>
+     * 原文:Bans by name are no longer supported and this method will return
      * null when trying to request them. The replacement is bans by UUID.
      *
-     * @param type the type of list to fetch, cannot be null
-     * @return a ban list of the specified type
+     * @param type 需要获取的BanList的类型
+     * @return BanList实例
      */
     public BanList getBanList(BanList.Type type);
 
     /**
-     * Gets a set containing all player operators.
+     * 获取一个包含所有OP的Set实例
+     * <p>
+     * 原文:Gets a set containing all player operators.
      *
-     * @return a set containing player operators
+     * @return 一个包含所有OP的Set实例
      */
     public Set<OfflinePlayer> getOperators();
 
@@ -742,38 +829,42 @@ public interface Server extends PluginMessageRecipient {
     public void setDefaultGameMode(GameMode mode);
 
     /**
-     * Gets a {@link ConsoleCommandSender} that may be used as an input source
-     * for this server.
+     * 获取一个{@link ConsoleCommandSender} 将被作为服务器的标准输入(译注:该方法用于获取控制台)
      *
-     * @return a console command sender
+     * @return 控制台对象
      */
     public ConsoleCommandSender getConsoleSender();
 
     /**
-     * Gets the folder that contains all of the various {@link World}s.
+     * 获取 {@link World}的文件夹的File实例.
      *
-     * @return folder that contains all worlds
+     * @return 包含所有World的文件夹的File实例
      */
     public File getWorldContainer();
 
     /**
-     * Gets every player that has ever played on this server.
-     *
-     * @return an array containing all previous players
+     * 获取所有登陆过服务器的玩家
+     * <p>
+     * 原文:Gets every player that has ever played on this server.     
+     * @return 包含所有登录过的玩家的数组
      */
     public OfflinePlayer[] getOfflinePlayers();
 
     /**
-     * Gets the {@link Messenger} responsible for this server.
+     * 获取{@link Messenger}实例
+     * <p>
+     * 原文:Gets the {@link Messenger} responsible for this server.
      *
-     * @return messenger responsible for this server
+     * @return 负责该服务器的Messenger
      */
     public Messenger getMessenger();
 
     /**
-     * Gets the {@link HelpMap} providing help topics for this server.
+     * 获取该服务器用于提供帮助的{@link HelpMap}
+     * <p>
+     * 原文:Gets the {@link HelpMap} providing help topics for this server.
      *
-     * @return a help map for this server
+     * @return HelpMap实例
      */
     public HelpMap getHelpMap();
 
