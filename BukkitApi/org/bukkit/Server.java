@@ -272,35 +272,18 @@ public interface Server extends PluginMessageRecipient {
     public void reloadWhitelist();
 
     /**
-<<<<<<< HEAD
-     * 向服务器所有玩家发送一个消息
-=======
      * 广播一条消息到所有玩家.
      * <p>
      * 这与调用{@link #broadcast(java.lang.String,
-     * java.lang.String)}(第二个参数为{@link #BROADCAST_CHANNEL_USERS})是一样的。
+     * java.lang.String)}(第二个参数为{@link #BROADCAST_CHANNEL_USERS})相当。
      * <p>
-     * 原文:
-     * Broadcast a message to all players.
->>>>>>> branch 'master' of https://git.oschina.net/zhouhaha/Chinese_BukkitAPI.git
-     * <p>
-<<<<<<< HEAD
      * 原文:Broadcast a message to all players.
      * <p>
-     * 这相当于调用 {@link #broadcast(java.lang.String,
-     * java.lang.String)} 至 {@link #BROADCAST_CHANNEL_USERS}
-=======
      * This is the same as calling {@link #broadcast(java.lang.String,
      * java.lang.String)} to {@link Server#BROADCAST_CHANNEL_USERS}
->>>>>>> branch 'master' of https://git.oschina.net/zhouhaha/Chinese_BukkitAPI.git
      *
-<<<<<<< HEAD
-     * @param message 需要发送的消息
-     * @return 收到消息的玩家数量
-=======
      * @param message 要广播的消息
      * @return 成功接收此消息的玩家数
->>>>>>> branch 'master' of https://git.oschina.net/zhouhaha/Chinese_BukkitAPI.git
      */
     public int broadcastMessage(String message);
 
