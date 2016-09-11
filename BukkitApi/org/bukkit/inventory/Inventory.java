@@ -10,8 +10,8 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
 
 /**
- * Interface to the various inventories. Behavior relating to {@link
- * Material#AIR} is unspecified.
+ * 各种背包的接口。有关{@link
+ * Material#AIR}的行为时是未指定的.
  */
 public interface Inventory extends Iterable<ItemStack> {
 
@@ -139,9 +139,11 @@ public interface Inventory extends Iterable<ItemStack> {
     public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException;
 
     /**
-     * Returns all ItemStacks from the inventory
+     * 返回这个背包的所有物品堆
+     * <p>
+     * 原文:Returns all ItemStacks from the inventory
      *
-     * @return An array of ItemStacks from the inventory.
+     * @return 存储了此背包所有物品的数组
      */
     public ItemStack[] getContents();
 
@@ -179,36 +181,43 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setStorageContents(ItemStack[] items) throws IllegalArgumentException;
 
     /**
-     * Checks if the inventory contains any ItemStacks with the given
+     * 检测这个背包是否含有指定物品ID的物品堆
+     * <p>
+     * 原文:Checks if the inventory contains any ItemStacks with the given
      * materialId
      *
-     * @param materialId The materialId to check for
-     * @return true if an ItemStack in this inventory contains the materialId
-     * @deprecated Magic value
+     * @param materialId 要检测的物品ID
+     * @return 是否含有此物品
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public boolean contains(int materialId);
 
     /**
-     * Checks if the inventory contains any ItemStacks with the given
+     * 检测这个背包是否含有指定物品的物品堆
+     * <p>
+     * 原文:Checks if the inventory contains any ItemStacks with the given
      * material.
      *
-     * @param material The material to check for
-     * @return true if an ItemStack is found with the given Material
-     * @throws IllegalArgumentException if material is null
+     * @param material 要检测的物品
+     * @return 是否含有此物品
+     * @throws IllegalArgumentException 如果material为null
      */
     public boolean contains(Material material) throws IllegalArgumentException;
 
     /**
-     * Checks if the inventory contains any ItemStacks matching the given
+     * 检测这个背包是否含有与给定的物品堆匹配的物品堆
+     * <p>
+     * 当物品堆的种类和数量都匹配时才返回true
+     * <p>
+     * 原文:Checks if the inventory contains any ItemStacks matching the given
      * ItemStack.
      * <p>
      * This will only return true if both the type and the amount of the stack
      * match.
      *
-     * @param item The ItemStack to match against
-     * @return false if item is null, true if any exactly matching ItemStacks
-     *     were found
+     * @param item 要匹配的物品堆
+     * @return 如果item为null返回false，如果有完全匹配的物品堆找到返回true
      */
     public boolean contains(ItemStack item);
 
