@@ -16,20 +16,35 @@ import org.bukkit.event.inventory.InventoryType;
 public interface Inventory extends Iterable<ItemStack> {
 
     /**
-     * Returns the size of the inventory
+     * 返回此背包的大小
+     * <p>
+     * 原文:Returns the size of the inventory
      *
-     * @return The size of the inventory
+     * @return 此背包的大小
      */
     public int getSize();
 
     /**
-     * Returns the maximum stack size for an ItemStack in this inventory.
+     * 返回这个背包的最大物品堆叠数量
+     * <p>
+     * 原文:Returns the maximum stack size for an ItemStack in this inventory.
      *
-     * @return The maximum size for an ItemStack in this inventory.
+     * @return 最大物品堆叠数量
      */
     public int getMaxStackSize();
 
     /**
+     * 此方法可以让你改变一个背包的最大物品堆叠数量.
+     * <p>
+     * <b>警告:</b>
+     * <ul>
+     * <li>不是所有种类的的背包都遵循本值。
+     * <li>若本值大于127，当世界保存和时可能会被缩减缩减。
+     * <li>本值不保证被保存；一定要在设置一个格子的最大堆叠数之前修改本值
+     * <li>若本值大于这种背包默认的大小种种，可能不会正确地在客户端上显示
+     * </ul>
+     * <p>
+     * 原文:
      * This method allows you to change the maximum stack size for an
      * inventory.
      * <p>
@@ -43,30 +58,36 @@ public interface Inventory extends Iterable<ItemStack> {
      *     may not display correctly in the client.
      * </ul>
      *
-     * @param size The new maximum stack size for items in this inventory.
+     * @param size 最大物品堆叠数量
      */
     public void setMaxStackSize(int size);
 
     /**
-     * Returns the name of the inventory
+     * 返回此背包的名字
+     * <p>
+     * 原文:Returns the name of the inventory
      *
-     * @return The String with the name of the inventory
+     * @return 背包名
      */
     public String getName();
 
     /**
-     * Returns the ItemStack found in the slot at the given index
+     * 返回在指定索引的物品堆.
+     * <p>
+     * 原文:Returns the ItemStack found in the slot at the given index
      *
-     * @param index The index of the Slot's ItemStack to return
-     * @return The ItemStack in the slot
+     * @param index 要查找的格子
+     * @return 在此格子的物品堆
      */
     public ItemStack getItem(int index);
 
     /**
-     * Stores the ItemStack at the given index of the inventory.
+     * 在背包指定索引存放物品堆
+     * <p>
+     * 原文:Stores the ItemStack at the given index of the inventory.
      *
-     * @param index The index where to put the ItemStack
-     * @param item The ItemStack to set
+     * @param index 在哪里存放这个物品堆
+     * @param item 要设置的物品堆
      */
     public void setItem(int index, ItemStack item);
 
@@ -317,9 +338,12 @@ public interface Inventory extends Iterable<ItemStack> {
     public int first(ItemStack item);
 
     /**
+     * 返回第一个空格子的格子数.
+     * <p>
+     * 原文:
      * Returns the first empty Slot.
      *
-     * @return The first empty Slot found, or -1 if no empty slots.
+     * @return 第一个空格子的格子数，-1就没有空格子
      */
     public int firstEmpty();
 
@@ -351,14 +375,18 @@ public interface Inventory extends Iterable<ItemStack> {
     public void remove(ItemStack item);
 
     /**
-     * Clears out a particular slot in the index.
+     * 清理单个格子.
+     * <p>
+     * 原文:Clears out a particular slot in the index.
      *
-     * @param index The index to empty.
+     * @param index 格子索引
      */
     public void clear(int index);
 
     /**
-     * Clears out the whole Inventory.
+     * 清理整个背包.
+     * <p>
+     * 原文:Clears out the whole Inventory.
      */
     public void clear();
 
@@ -376,16 +404,20 @@ public interface Inventory extends Iterable<ItemStack> {
     public List<HumanEntity> getViewers();
 
     /**
-     * Returns the title of this inventory.
+     * 返回此背包的标题
+     * <p>
+     * 原文:Returns the title of this inventory.
      *
-     * @return A String with the title.
+     * @return 背包的标题
      */
     public String getTitle();
 
     /**
-     * Returns what type of inventory this is.
+     * 返回这个背包的种类
+     * <p>
+     * 原文:Returns what type of inventory this is.
      *
-     * @return The InventoryType representing the type of inventory.
+     * @return 背包的种类
      */
     public InventoryType getType();
 
