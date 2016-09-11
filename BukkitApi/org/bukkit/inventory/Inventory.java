@@ -316,33 +316,39 @@ public interface Inventory extends Iterable<ItemStack> {
     public HashMap<Integer, ? extends ItemStack> all(ItemStack item);
 
     /**
-     * Finds the first slot in the inventory containing an ItemStack with the
+     * 查找包含此物品的第一个格子
+     * <p>
+     * 原文:Finds the first slot in the inventory containing an ItemStack with the
      * given materialId.
      *
-     * @param materialId The materialId to look for
-     * @return The slot index of the given materialId or -1 if not found
-     * @deprecated Magic value
+     * @param materialId 要查找的物品的ID
+     * @return 包含此物品的第一个格子序号
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int first(int materialId);
 
     /**
-     * Finds the first slot in the inventory containing an ItemStack with the
+     * 查找包含此物品的第一个格子
+     * <p>
+     * 原文:Finds the first slot in the inventory containing an ItemStack with the
      * given material
      *
-     * @param material The material to look for
-     * @return The slot index of the given Material or -1 if not found
-     * @throws IllegalArgumentException if material is null
+     * @param material 要查找的物品
+     * @return 包含此物品的第一个格子序号
+     * @throws IllegalArgumentException 如果material为null
      */
     public int first(Material material) throws IllegalArgumentException;
 
     /**
-     * Returns the first slot in the inventory containing an ItemStack with
+     * 查找包含此物品堆的第一个格子堆堆。当物品堆的种类和数量都匹配时才返回true。
+     * <p>
+     * 原文:Returns the first slot in the inventory containing an ItemStack with
      * the given stack. This will only match a slot if both the type and the
      * amount of the stack match
      *
-     * @param item The ItemStack to match against
-     * @return The slot index of the given ItemStack or -1 if not found
+     * @param item 要匹配的物品堆
+     * @return 给定物品堆所在的格子序号，如果未找到返回-1
      */
     public int first(ItemStack item);
 
