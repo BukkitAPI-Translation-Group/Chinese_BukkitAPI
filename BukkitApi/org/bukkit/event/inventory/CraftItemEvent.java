@@ -7,8 +7,6 @@ import org.bukkit.inventory.Recipe;
 
 /**
  * 当一个物品被合成的时候触发这个事件. 
- * <p>
- * 译注: 发生这个事件的时候, 物品已经被合成出来.
  */
 public class CraftItemEvent extends InventoryClickEvent {
     private Recipe recipe;
@@ -29,7 +27,7 @@ public class CraftItemEvent extends InventoryClickEvent {
     }
 
     /**
-     * 获取合成出该物品所用的合成公式.
+     * 获取合成出该物品所用的合成公式. 
      * 
      * @return 被合成出来的物品所用的合成公式
      */

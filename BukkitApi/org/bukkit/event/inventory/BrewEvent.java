@@ -21,7 +21,7 @@ public class BrewEvent extends BlockEvent implements Cancellable {
 
     /**
      * 获取此事件中的酿造台的物品栏. 
-     * <p>
+     * 
      * 原文：Gets the contents of the Brewing Stand.
      *
      * @return 酿造台的物品栏

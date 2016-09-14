@@ -61,9 +61,7 @@ public enum InventoryAction {
      */
     DROP_ONE_SLOT,
     /**
-     * 将所单击的格子中的物品移动到对面的物品栏(如果有空位)中去. 
-     * <p>
-     * 译注：该物品栏动作通常是按住shift点击物品栏中的物品.
+     * 将所单击的格子中的物品移动到对面的物品栏中去(如果有空位). 
      */
     MOVE_TO_OTHER_INVENTORY,
     /**
@@ -77,8 +75,6 @@ public enum InventoryAction {
     HOTBAR_SWAP,
     /**
      * 将所单击的物品按最大堆叠数量复制到光标上. 
-     * <p>
-     * 译注：该物品栏动作通常是按住shift单击创造模式物品栏中的物品.
      */
     CLONE_STACK,
     /**
