@@ -11,6 +11,7 @@ body {
     color:#353833;
     font-size:14px;
     margin:0;
+    font-family:'Roboto', 'Microsoft Yahei', monospace;
 }
 a:link, a:visited {
     text-decoration:none;
@@ -32,7 +33,7 @@ a[name]:hover {
     color:#353833;
 }
 pre {
-    font-family:'DejaVu Sans Mono', monospace;
+    font-family:'Consolas', 'Roboto', 'Microsoft Yahei', monospace;
     font-size:14px;
 }
 h1 {
@@ -58,19 +59,19 @@ ul {
     list-style-type:disc;
 }
 code, tt {
-    font-family:'DejaVu Sans Mono', monospace;
+    font-family:'Consolas', 'Roboto', 'Microsoft Yahei', monospace;
     font-size:14px;
     padding-top:4px;
     margin-top:8px;
     line-height:1.4em;
 }
 dt code {
-    font-family:'DejaVu Sans Mono', monospace;
+    font-family:'Consolas', 'Roboto', 'Microsoft Yahei', monospace;
     font-size:14px;
     padding-top:4px;
 }
 table tr td dt code {
-    font-family:'DejaVu Sans Mono', monospace;
+    font-family:'Consolas', 'Roboto', 'Microsoft Yahei', monospace;
     font-size:14px;
     vertical-align:top;
     padding-top:4px;
@@ -128,13 +129,11 @@ Navigation bar styles
     width:100%;
     clear:right;
     height:2.8em;
-    padding-top:10px;
     overflow:hidden;
     font-size:12px; 
-background:#e9e9e9;
-border-bottom: 1px solid #CCC;
-margin: 0;
-  
+    background:#e9e9e9;
+    border-bottom: 1px solid #CCC;
+    margin: 0;
 }
 .bottomNav {
     margin-top:10px;
@@ -294,7 +293,7 @@ Page layout container styles
 .contentContainer .description dl dd, .contentContainer .details dl dd, .serializedFormContainer dl dd {
     margin:5px 0 10px 0px;
     font-size:14px;
-    font-family:'DejaVu Sans Mono',monospace;
+    font-family:'Roboto', 'Microsoft Yahei', monospace;
 }
 .serializedFormContainer dl.nameValue dt {
     margin-left:1px;
@@ -430,7 +429,7 @@ Table styles
     margin-right:3px;
     display:inline-block;
     float:left;
-    background-color:#87CEFF;
+    background-color:#03A9F4;
     height:16px;
 }
 .memberSummary caption span.tableTab, .memberSummary caption span.activeTableTab {
@@ -534,7 +533,7 @@ ul.blockList ul.blockList ul.blockList li.blockList h3 {
 
 div.block {
     font-size:14px;
-    font-family:'DejaVu Serif', Georgia, "Times New Roman", Times, serif;
+    font-family:'Consolas', 'Roboto', 'Microsoft Yahei', monospace;
 }
 
 td.colLast div {

@@ -166,6 +166,10 @@
                 <version>2.10.4</version>
                 <configuration>
                     <javadocDirectory>javadoc/</javadocDirectory>
+                    <javadocVersion>1.8</javadocVersion>
+                    <stylesheetfile>javadoc/stylesheet.css</stylesheetfile>
+                    <doctitle>Bukkit 中文文档（${project.version})</doctitle>
+                    <windowtitle>Bukkit 中文文档（${project.version})</windowtitle>
                 </configuration>
             </plugin>
         </plugins>

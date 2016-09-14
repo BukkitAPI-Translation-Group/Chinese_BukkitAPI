@@ -1,6 +1,5 @@
 /**
- * Commands for emulating the Minecraft commands and other necessary ones for
- * use by a Bukkit implementation.
+ * 通过Bukkit实现模拟某些Minecraft原生命令，并包含一些其他必要的命令。
  */
 package org.bukkit.command.defaults;
 
