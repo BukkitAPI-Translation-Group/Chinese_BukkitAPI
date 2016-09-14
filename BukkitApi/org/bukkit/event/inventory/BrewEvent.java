@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.BrewerInventory;
 
 /**
- * 当酿造完成时触发这个事件。
+ * 当酿造完成时触发这个事件. 
  */
 public class BrewEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -20,7 +20,7 @@ public class BrewEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取发生酿造事件的酿造台的物品栏.
+     * 获取此事件中的酿造台的物品栏. 
      * <p>
      * 原文：Gets the contents of the Brewing Stand.
      *

@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当一个物品被熔炼完毕时触发这个事件。
+ * 当一个物品被熔炼完毕时触发这个事件. 
  */
 public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
 
@@ -24,7 +24,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取被熔炼的物品
+     * 获取被熔炼的物品. 
      * <p>
      * 原文：Gets the smelted ItemStack for this event
      *
@@ -35,7 +35,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取熔炼产物
+     * 获取熔炼产物. 
      * <p>
      * 原文：Gets the resultant ItemStack for this event
      *
@@ -46,7 +46,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置熔炼产物
+     * 设置熔炼产物. 
      * <p>
      * 原文：Sets the resultant ItemStack for this event
      *

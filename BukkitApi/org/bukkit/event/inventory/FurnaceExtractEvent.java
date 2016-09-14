@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockExpEvent;
 
 /**
- * 当玩家从熔炉取出产物时触发这个事件。
+ * 当玩家从熔炉取出产物时触发这个事件. 
  */
 public class FurnaceExtractEvent extends BlockExpEvent {
     private final Player player;
@@ -21,7 +21,7 @@ public class FurnaceExtractEvent extends BlockExpEvent {
     }
 
     /**
-     * 获取触发这个事件的玩家.
+     * 获取触发这个事件的玩家. 
      * <p>
      * 原文:Get the player that triggered the event
      *
@@ -32,7 +32,7 @@ public class FurnaceExtractEvent extends BlockExpEvent {
     }
 
     /**
-     * 获取被取出的物品的类型.
+     * 获取被取出的物品的类型. 
      * <p>
      * 原文：Get the Material of the item being retrieved
      *
@@ -43,7 +43,7 @@ public class FurnaceExtractEvent extends BlockExpEvent {
     }
 
     /**
-     * 获取被取出的物品的数量.
+     * 获取被取出的物品的数量. 
      * <p>
      * 原文:Get the item count being retrieved
      *
