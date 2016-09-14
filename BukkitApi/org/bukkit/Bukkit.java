@@ -142,6 +142,7 @@ public final class Bukkit {
         return server._INVALID_getOnlinePlayers();
     }
 
+    // TODO
     /**
      * 获取所有在线玩家的集合的视图. 
      * 此 {@linkplain Collections#unmodifiableCollection(Collection) 视图} is a reused
@@ -206,7 +207,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的端口
+     * 获取服务器的端口.
      * <p>
      * 原文:Get the game port that the server runs on.
      *
@@ -217,7 +218,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的视距
+     * 获取服务器的视距.
      * <p>
      * 原文:
      * Get the view distance from this server.
@@ -229,7 +230,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器绑定的IP，如果没有就返回空字符串
+     * 获取服务器绑定的IP，如果没有就返回空字符串.
      * <p>
      * 原文:
      * Get the IP that this server is bound to, or empty string if not
@@ -243,7 +244,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器名【注：在服务器的配置文件中设定】
+     * 获取服务器名【注：在服务器的配置文件中设定】.
      * <p>
      * 原文:
      * Get the name of this server.
@@ -256,7 +257,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器的ID. 这是一个简单的字母标识，
-     * 可以被用来唯一地识别此服务器
+     * 可以被用来唯一地识别此服务器.
      * <p>
      * 原文:
      * Get an ID of this server. The ID is a simple generally alphanumeric ID
@@ -269,7 +270,7 @@ public final class Bukkit {
     }
     
     /**
-     * 获取主世界的种类
+     * 获取主世界的种类.
      * <p>
      * 原文:
      * Get world type (level-type setting) for default world.
@@ -281,7 +282,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器是否生成建筑
+     * 获取服务器是否生成建筑.
      * <p>
      * 原文:
      * Get generate-structures setting.
@@ -293,7 +294,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个服务器是否可以进入末路之地
+     * 获取这个服务器是否可以进入末路之地.
      * <p>
      * 原文:
      * Gets whether this server allows the End or not.
@@ -305,7 +306,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个服务器是否可以进入下界
+     * 获取这个服务器是否可以进入下界.
      * <p>
      * 原文：
      * Gets whether this server allows the Nether or not.
@@ -317,7 +318,7 @@ public final class Bukkit {
     }
 
     /**
-     * 服务器是否开启白名单
+     * 服务器是否开启白名单.
      * <p>
      * 原文:
      * Gets whether this server has a whitelist or not.
@@ -329,7 +330,7 @@ public final class Bukkit {
     }
 
     /**
-     * 设置服务器是否开启白名单
+     * 设置服务器是否开启白名单.
      * <p>
      * 原文:
      * Sets if the server is whitelisted.
@@ -341,7 +342,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取所有被添加到白名单的玩家
+     * 获取所有被添加到白名单的玩家.
      * <p>
      * 原文:
      * Gets a list of whitelisted players.
@@ -353,7 +354,7 @@ public final class Bukkit {
     }
 
     /**
-     * 重载白名单
+     * 重载白名单.
      * <p>
      * 原文:
      * Reloads the whitelist from disk.
@@ -403,6 +404,7 @@ public final class Bukkit {
         return server.getUpdateFolderFile();
     }
 
+    // TODO:原文丢失
     /**
      * 获取服务器的最大连接数设定
      *
@@ -412,6 +414,7 @@ public final class Bukkit {
         return server.getConnectionThrottle();
     }
 
+    // TODO:不完整
     /**
      * 获取每个动物生成的默认刻
      * <p>
@@ -435,6 +438,7 @@ public final class Bukkit {
         return server.getTicksPerAnimalSpawns();
     }
 
+    // TODO:不完整
     /**
      * 获取每个怪物生成的默认刻
      * <p>
@@ -458,6 +462,7 @@ public final class Bukkit {
         return server.getTicksPerMonsterSpawns();
     }
 
+    //TODO:原文丢失
     /**
      * 用给定的玩家名获取一个玩家对象
      * <p>
@@ -473,8 +478,9 @@ public final class Bukkit {
         return server.getPlayer(name);
     }
 
+    // TODO:乱
     /**
-     * Gets the player with the exact given name, 不区分大小写.
+     * Gets the player with the exact given name,
      *
      * @deprecated 像玩家名一样使用 {@link #getPlayer(UUID)} 不保证
      *     是唯一的
@@ -541,11 +547,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取当前服务器加载的所有世界的集合
+     * 获取当前服务器加载的所有世界的列表.
      * <p>
      * 原文:Gets a list of all worlds on this server.
      *
-     * @return 所有已经加载在服务器的世界集合
+     * @return 所有已经加载在服务器的世界列表
      */
     public static List<World> getWorlds() {
         return server.getWorlds();
@@ -570,7 +576,7 @@ public final class Bukkit {
     }
 
     /**
-     * 卸载指定的世界
+     * 卸载指定的世界.
      * <p>
      * 原文：Unloads a world with the given name.
      *
@@ -583,7 +589,7 @@ public final class Bukkit {
     }
 
     /**
-     * 卸载指定的世界
+     * 卸载指定的世界.
      * <p>
      * 原文：Unloads a world with the given name.
      *
