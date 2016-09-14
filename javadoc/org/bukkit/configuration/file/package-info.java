@@ -1,7 +1,6 @@
 /**
- * Classes dedicated facilitating {@link 
- * org.bukkit.configuration.Configuration configurations} to be read and
- * stored on the filesystem.
+ * 本包的类为读取和存储{@link 
+ * org.bukkit.configuration.Configuration 配置}提供了便利.
  */
 package org.bukkit.configuration.file;
 
