@@ -10,26 +10,41 @@ import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryType;
 
 /**
- * Interface to the various inventories. Behavior relating to {@link
- * Material#AIR} is unspecified.
+ * 各种背包的接口。有关{@link
+ * Material#AIR}的行为时是未指定的.
  */
 public interface Inventory extends Iterable<ItemStack> {
 
     /**
-     * Returns the size of the inventory
+     * 返回此背包的大小
+     * <p>
+     * 原文:Returns the size of the inventory
      *
-     * @return The size of the inventory
+     * @return 此背包的大小
      */
     public int getSize();
 
     /**
-     * Returns the maximum stack size for an ItemStack in this inventory.
+     * 返回这个背包的最大物品堆叠数量
+     * <p>
+     * 原文:Returns the maximum stack size for an ItemStack in this inventory.
      *
-     * @return The maximum size for an ItemStack in this inventory.
+     * @return 最大物品堆叠数量
      */
     public int getMaxStackSize();
 
     /**
+     * 此方法可以让你改变一个背包的最大物品堆叠数量.
+     * <p>
+     * <b>警告:</b>
+     * <ul>
+     * <li>不是所有种类的的背包都遵循本值。
+     * <li>若本值大于127，当世界保存和时可能会被缩减。
+     * <li>本值不保证被保存；一定要在设置一个格子的最大堆叠数之前修改本值
+     * <li>若本值大于这种背包默认的大小，可能不会正确地在客户端上显示
+     * </ul>
+     * <p>
+     * 原文:
      * This method allows you to change the maximum stack size for an
      * inventory.
      * <p>
@@ -43,30 +58,36 @@ public interface Inventory extends Iterable<ItemStack> {
      *     may not display correctly in the client.
      * </ul>
      *
-     * @param size The new maximum stack size for items in this inventory.
+     * @param size 最大物品堆叠数量
      */
     public void setMaxStackSize(int size);
 
     /**
-     * Returns the name of the inventory
+     * 返回此背包的名字
+     * <p>
+     * 原文:Returns the name of the inventory
      *
-     * @return The String with the name of the inventory
+     * @return 背包名
      */
     public String getName();
 
     /**
-     * Returns the ItemStack found in the slot at the given index
+     * 返回在指定索引的物品堆.
+     * <p>
+     * 原文:Returns the ItemStack found in the slot at the given index
      *
-     * @param index The index of the Slot's ItemStack to return
-     * @return The ItemStack in the slot
+     * @param index 要查找的格子
+     * @return 在此格子的物品堆
      */
     public ItemStack getItem(int index);
 
     /**
-     * Stores the ItemStack at the given index of the inventory.
+     * 在背包指定索引存放物品堆
+     * <p>
+     * 原文:Stores the ItemStack at the given index of the inventory.
      *
-     * @param index The index where to put the ItemStack
-     * @param item The ItemStack to set
+     * @param index 在哪里存放这个物品堆
+     * @param item 要设置的物品堆
      */
     public void setItem(int index, ItemStack item);
 
@@ -118,9 +139,11 @@ public interface Inventory extends Iterable<ItemStack> {
     public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException;
 
     /**
-     * Returns all ItemStacks from the inventory
+     * 返回这个背包的所有物品堆
+     * <p>
+     * 原文:Returns all ItemStacks from the inventory
      *
-     * @return An array of ItemStacks from the inventory.
+     * @return 存储了此背包所有物品的数组
      */
     public ItemStack[] getContents();
 
@@ -158,36 +181,43 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setStorageContents(ItemStack[] items) throws IllegalArgumentException;
 
     /**
-     * Checks if the inventory contains any ItemStacks with the given
+     * 检测这个背包是否含有指定物品ID的物品堆
+     * <p>
+     * 原文:Checks if the inventory contains any ItemStacks with the given
      * materialId
      *
-     * @param materialId The materialId to check for
-     * @return true if an ItemStack in this inventory contains the materialId
-     * @deprecated Magic value
+     * @param materialId 要检测的物品ID
+     * @return 是否含有此物品
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public boolean contains(int materialId);
 
     /**
-     * Checks if the inventory contains any ItemStacks with the given
+     * 检测这个背包是否含有指定物品的物品堆
+     * <p>
+     * 原文:Checks if the inventory contains any ItemStacks with the given
      * material.
      *
-     * @param material The material to check for
-     * @return true if an ItemStack is found with the given Material
-     * @throws IllegalArgumentException if material is null
+     * @param material 要检测的物品
+     * @return 是否含有此物品
+     * @throws IllegalArgumentException 如果material为null
      */
     public boolean contains(Material material) throws IllegalArgumentException;
 
     /**
-     * Checks if the inventory contains any ItemStacks matching the given
+     * 检测这个背包是否含有与给定的物品堆匹配的物品堆
+     * <p>
+     * 当物品堆的种类和数量都匹配时才返回true
+     * <p>
+     * 原文:Checks if the inventory contains any ItemStacks matching the given
      * ItemStack.
      * <p>
      * This will only return true if both the type and the amount of the stack
      * match.
      *
-     * @param item The ItemStack to match against
-     * @return false if item is null, true if any exactly matching ItemStacks
-     *     were found
+     * @param item 要匹配的物品堆
+     * @return 如果item为null返回false，如果有完全匹配的物品堆找到返回true
      */
     public boolean contains(ItemStack item);
 
@@ -286,40 +316,49 @@ public interface Inventory extends Iterable<ItemStack> {
     public HashMap<Integer, ? extends ItemStack> all(ItemStack item);
 
     /**
-     * Finds the first slot in the inventory containing an ItemStack with the
+     * 查找包含此物品的第一个格子
+     * <p>
+     * 原文:Finds the first slot in the inventory containing an ItemStack with the
      * given materialId.
      *
-     * @param materialId The materialId to look for
-     * @return The slot index of the given materialId or -1 if not found
-     * @deprecated Magic value
+     * @param materialId 要查找的物品的ID
+     * @return 包含此物品的第一个格子序号
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public int first(int materialId);
 
     /**
-     * Finds the first slot in the inventory containing an ItemStack with the
+     * 查找包含此物品的第一个格子
+     * <p>
+     * 原文:Finds the first slot in the inventory containing an ItemStack with the
      * given material
      *
-     * @param material The material to look for
-     * @return The slot index of the given Material or -1 if not found
-     * @throws IllegalArgumentException if material is null
+     * @param material 要查找的物品
+     * @return 包含此物品的第一个格子序号
+     * @throws IllegalArgumentException 如果material为null
      */
     public int first(Material material) throws IllegalArgumentException;
 
     /**
-     * Returns the first slot in the inventory containing an ItemStack with
+     * 查找包含此物品堆的第一个格子堆堆。当物品堆的种类和数量都匹配时才返回true。
+     * <p>
+     * 原文:Returns the first slot in the inventory containing an ItemStack with
      * the given stack. This will only match a slot if both the type and the
      * amount of the stack match
      *
-     * @param item The ItemStack to match against
-     * @return The slot index of the given ItemStack or -1 if not found
+     * @param item 要匹配的物品堆
+     * @return 给定物品堆所在的格子序号，如果未找到返回-1
      */
     public int first(ItemStack item);
 
     /**
+     * 返回第一个空格子的格子数.
+     * <p>
+     * 原文:
      * Returns the first empty Slot.
      *
-     * @return The first empty Slot found, or -1 if no empty slots.
+     * @return 第一个空格子的格子数，-1就没有空格子
      */
     public int firstEmpty();
 
@@ -351,14 +390,18 @@ public interface Inventory extends Iterable<ItemStack> {
     public void remove(ItemStack item);
 
     /**
-     * Clears out a particular slot in the index.
+     * 清理单个格子.
+     * <p>
+     * 原文:Clears out a particular slot in the index.
      *
-     * @param index The index to empty.
+     * @param index 格子索引
      */
     public void clear(int index);
 
     /**
-     * Clears out the whole Inventory.
+     * 清理整个背包.
+     * <p>
+     * 原文:Clears out the whole Inventory.
      */
     public void clear();
 
@@ -376,16 +419,20 @@ public interface Inventory extends Iterable<ItemStack> {
     public List<HumanEntity> getViewers();
 
     /**
-     * Returns the title of this inventory.
+     * 返回此背包的标题
+     * <p>
+     * 原文:Returns the title of this inventory.
      *
-     * @return A String with the title.
+     * @return 背包的标题
      */
     public String getTitle();
 
     /**
-     * Returns what type of inventory this is.
+     * 返回这个背包的种类
+     * <p>
+     * 原文:Returns what type of inventory this is.
      *
-     * @return The InventoryType representing the type of inventory.
+     * @return 背包的种类
      */
     public InventoryType getType();
 
