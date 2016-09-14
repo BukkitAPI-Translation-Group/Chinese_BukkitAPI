@@ -47,19 +47,19 @@ import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
- * 代表一个Bukkit核心, 用来负责单个服务器
+ * 代表一个 Bukkit 核心, 用来转发 {@link Server} 单例的调用.  
  */
 public final class Bukkit {
     private static Server server;
 
     /**
-     * 静态类不能被初始化
+     * 工具类不能被初始化
      */
     private Bukkit() {}
 
     /**
-     * 获取一个正在运行的 {@link Server} 实例.
-     * <p>
+     * 获取当前持有的 {@link Server} 实例. 
+     * 
      * 原文:
      * Gets the current {@link Server} singleton
      *
@@ -70,13 +70,11 @@ public final class Bukkit {
     }
 
     /**
-     * 请求设置一个 {@link Server}.
-     * <p>
-     * 如果 Server 已经被设定，这个操作不能完成
-     * <p>
+     * 请求设置所持有的 {@link Server} 实例.
+     * 如果 Server 已经被设定过了, 这个操作无法完成. 
+     * 
      * 原文:
      * Attempts to set the {@link Server} singleton.
-     * <p>
      * This cannot be done if the Server is already set.
      *
      * @param server 服务器实例
@@ -91,8 +89,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个服务器实例的名字
-     * <p>
+     * 获取这个 {@link Server} 实例的名字. 
+     * 
      * 原文:
      * Gets the name of this server implementation.
      *
@@ -103,8 +101,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个服务器实例的版本
-     * <p>
+     * 获取这个 {@link Server} 实例的版本. 
+     * 
      * 原文:
      * Gets the version string of this server implementation.
      *
@@ -115,8 +113,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个运行的服务器的Bukkit版本
-     * <p>
+     * 获取正在运行的服务器的Bukkit版本. 
+     * 
      * 原文:
      * Gets the Bukkit version that this server is running.
      *
@@ -127,18 +125,16 @@ public final class Bukkit {
     }
 
     /**
-     * 获取在线的所有玩家【不要用！！】
-     * <p>
-     * 此方法是为了兼容低版本的服务器，它不应该在任何情形下被使用
-     * <p>
+     * 获取在线的所有玩家的数组副本.  
+     * 此方法的设计是为了对低版本服务器提供向下兼容性, 它不应该在任何情形下被使用. 
+     * 
      * 原文:
      * Gets an array copy of all currently logged in players.
-     * <p>
      * This method exists for legacy reasons to provide backwards
      * compatibility. It will not exist at runtime and should not be used
      * under any circumstances.
      *
-     * @deprecated superseded by {@link #getOnlinePlayers()}
+     * @deprecated 被 {@link #getOnlinePlayers()} 取代
      * @return 所有在线玩家的数组
      */
     @Deprecated
@@ -147,7 +143,27 @@ public final class Bukkit {
     }
 
     /**
-     * 获取所有在线玩家的视图. 这个 {@linkplain
+     * 获取所有在线玩家的集合的视图. 
+     * 此 {@linkplain Collections#unmodifiableCollection(Collection) 视图} is a reused
+     * object, making some operations like {@link Collection#size()}
+     * zero-allocation.
+     * (以下翻译仅供参考)
+     * <p>
+     * 此集合是由内部表示支持的视图, 因此, 一切修改服务器内部状态的操作将会
+     * 立即反映到此集合上. 并不严格保证未来或所有实现都会遵守
+     * 返回一个可再利用集合 (一致性)的约定. 不赞成对这个集合执行强制转换或
+     * 依赖于接口实现 (例如 {@link Serializable} or {@link List}). 
+     * <p>
+     * 迭代操作 is undefined outside of self-contained main-thread
+     * uses. 正常且立即的迭代器会影响集合是否被完全支持. 
+     * {@link Entity#teleport(Location) 传送}, 
+     * {@link Player#setHealth(double) 死亡}, 
+     * {@link Player#kickPlayer(String) 踢出} 等操作的结果是未知的 (没有罗列完全). 
+     * 任何对这个集合的异步操作都是安全的. 
+     * <p>
+     * 
+     * 原文: 
+     * This {@linkplain
      * Collections#unmodifiableCollection(Collection) view} is a reused
      * object, making some operations like {@link Collection#size()}
      * zero-allocation.
