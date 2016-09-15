@@ -142,7 +142,6 @@ public final class Bukkit {
         return server._INVALID_getOnlinePlayers();
     }
 
-    // TODO
     /**
      * 获取所有在线玩家的集合的视图. 
      * 此 {@linkplain Collections#unmodifiableCollection(Collection) 视图} is a reused
@@ -196,7 +195,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器的最大玩家数.
-     * <p>
+     *
      * 原文:
      * Get the maximum amount of players which can login to this server.
      *
@@ -208,7 +207,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器的端口.
-     * <p>
+     *
      * 原文:Get the game port that the server runs on.
      *
      * @return 服务器的端口
@@ -219,7 +218,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器的视距.
-     * <p>
+     *
      * 原文:
      * Get the view distance from this server.
      *
@@ -231,7 +230,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器绑定的IP，如果没有就返回空字符串.
-     * <p>
+     *
      * 原文:
      * Get the IP that this server is bound to, or empty string if not
      * specified.
@@ -245,7 +244,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器名【注：在服务器的配置文件中设定】.
-     * <p>
+     *
      * 原文:
      * Get the name of this server.
      *
@@ -257,8 +256,8 @@ public final class Bukkit {
 
     /**
      * 获取服务器的ID. 这是一个简单的字母标识，
-     * 可以被用来唯一地识别此服务器.
-     * <p>
+     * 可以用来唯一地识别此服务器.
+     *
      * 原文:
      * Get an ID of this server. The ID is a simple generally alphanumeric ID
      * that can be used for uniquely identifying this server.
@@ -271,7 +270,7 @@ public final class Bukkit {
     
     /**
      * 获取主世界的种类.
-     * <p>
+     *
      * 原文:
      * Get world type (level-type setting) for default world.
      *
@@ -283,7 +282,7 @@ public final class Bukkit {
 
     /**
      * 获取服务器是否生成建筑.
-     * <p>
+     *
      * 原文:
      * Get generate-structures setting.
      *
@@ -295,7 +294,7 @@ public final class Bukkit {
 
     /**
      * 获取这个服务器是否可以进入末路之地.
-     * <p>
+     *
      * 原文:
      * Gets whether this server allows the End or not.
      *
@@ -307,7 +306,7 @@ public final class Bukkit {
 
     /**
      * 获取这个服务器是否可以进入下界.
-     * <p>
+     *
      * 原文：
      * Gets whether this server allows the Nether or not.
      *
@@ -319,7 +318,7 @@ public final class Bukkit {
 
     /**
      * 服务器是否开启白名单.
-     * <p>
+     *
      * 原文:
      * Gets whether this server has a whitelist or not.
      *
@@ -331,7 +330,7 @@ public final class Bukkit {
 
     /**
      * 设置服务器是否开启白名单.
-     * <p>
+     *
      * 原文:
      * Sets if the server is whitelisted.
      *
@@ -343,7 +342,7 @@ public final class Bukkit {
 
     /**
      * 获取所有被添加到白名单的玩家.
-     * <p>
+     *
      * 原文:
      * Gets a list of whitelisted players.
      *
@@ -355,9 +354,8 @@ public final class Bukkit {
 
     /**
      * 重载白名单.
-     * <p>
-     * 原文:
-     * Reloads the whitelist from disk.
+     *
+     * 原文:Reloads the whitelist from disk.
      */
     public static void reloadWhitelist() {
         server.reloadWhitelist();
@@ -366,9 +364,9 @@ public final class Bukkit {
     /**
      * 广播一条消息到所有玩家.
      * <p>
-     * 这与调用{@link #broadcast(java.lang.String,
-     * java.lang.String)}(第二个参数为{@link Server#BROADCAST_CHANNEL_USERS})是一样的。
-     * <p>
+     * 这与调用 {@link #broadcast(java.lang.String,
+     * java.lang.String)} (第二个参数为{@link Server#BROADCAST_CHANNEL_USERS}) 等效。
+     *
      * 原文:
      * Broadcast a message to all players.
      * <p>
