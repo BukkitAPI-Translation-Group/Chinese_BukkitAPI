@@ -59,7 +59,7 @@ public final class Bukkit {
 
     /**
      * 获取当前持有的 {@link Server} 实例. 
-     * 
+     * <p>
      * 原文:
      * Gets the current {@link Server} singleton
      *
@@ -72,7 +72,7 @@ public final class Bukkit {
     /**
      * 请求设置所持有的 {@link Server} 实例.
      * 如果 Server 已经被设定过了, 这个操作无法完成. 
-     * 
+     * <p>
      * 原文:
      * Attempts to set the {@link Server} singleton.
      * This cannot be done if the Server is already set.
@@ -90,7 +90,7 @@ public final class Bukkit {
 
     /**
      * 获取这个 {@link Server} 实例的名字. 
-     * 
+     * <p>
      * 原文:
      * Gets the name of this server implementation.
      *
@@ -102,7 +102,7 @@ public final class Bukkit {
 
     /**
      * 获取这个 {@link Server} 实例的版本. 
-     * 
+     * <p>
      * 原文:
      * Gets the version string of this server implementation.
      *
@@ -114,7 +114,7 @@ public final class Bukkit {
 
     /**
      * 获取正在运行的服务器的Bukkit版本. 
-     * 
+     * <p>
      * 原文:
      * Gets the Bukkit version that this server is running.
      *
@@ -127,7 +127,7 @@ public final class Bukkit {
     /**
      * 获取在线的所有玩家的数组副本.  
      * 此方法的设计是为了对低版本服务器提供向下兼容性, 它不应该在任何情形下被使用. 
-     * 
+     * <p>
      * 原文:
      * Gets an array copy of all currently logged in players.
      * This method exists for legacy reasons to provide backwards
@@ -144,6 +144,7 @@ public final class Bukkit {
 
     /**
      * 获取所有在线玩家的集合的视图. 
+     * <p>
      * 此 {@linkplain Collections#unmodifiableCollection(Collection) 视图} is a reused
      * object, making some operations like {@link Collection#size()}
      * zero-allocation.
@@ -161,7 +162,10 @@ public final class Bukkit {
      * {@link Player#kickPlayer(String) 踢出} 等操作的结果是未知的 (没有罗列完全). 
      * 任何对这个集合的异步操作都是安全的. 
      * <p>
-     * 
+     * For safe consequential iteration or mimicking the old array behavior,
+     * using {@link Collection#toArray(Object[])} is recommended. For making
+     * snapshots, {@link ImmutableList#copyOf(Collection)} is recommended.
+     * <p>
      * 原文: 
      * This {@linkplain
      * Collections#unmodifiableCollection(Collection) view} is a reused
@@ -194,8 +198,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的最大玩家数.
-     *
+     * 获取服务器允许进入的最大玩家数. 
+     * <p>
      * 原文:
      * Get the maximum amount of players which can login to this server.
      *
@@ -206,8 +210,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的端口.
-     *
+     * 获取运行的服务器所在的端口号. 
+     * <p>
      * 原文:Get the game port that the server runs on.
      *
      * @return 服务器的端口
@@ -217,8 +221,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的视距.
-     *
+     * 获取服务器的视距. 
+     * <p>
      * 原文:
      * Get the view distance from this server.
      *
@@ -229,8 +233,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器绑定的IP，如果没有就返回空字符串.
-     *
+     * 获取服务器绑定的IP, 如果没有就返回空字符串. 
+     * <p>
      * 原文:
      * Get the IP that this server is bound to, or empty string if not
      * specified.
@@ -243,8 +247,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器名【注：在服务器的配置文件中设定】.
-     *
+     * 获取服务器的名称. 
+     * <p>
      * 原文:
      * Get the name of this server.
      *
@@ -255,9 +259,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的ID. 这是一个简单的字母标识，
+     * 获取服务器的ID. 这是一个简单的字母标识, 
      * 可以用来唯一地识别此服务器.
-     *
+     * <p>
      * 原文:
      * Get an ID of this server. The ID is a simple generally alphanumeric ID
      * that can be used for uniquely identifying this server.
@@ -269,32 +273,32 @@ public final class Bukkit {
     }
     
     /**
-     * 获取主世界的种类.
-     *
+     * 获取默认世界的世界类型 (level-type 设置). 
+     * <p>
      * 原文:
      * Get world type (level-type setting) for default world.
      *
-     * @return 主世界的种类 (例： DEFAULT, FLAT, DEFAULT_1_1)
+     * @return 默认世界的世界类型 (例： DEFAULT, FLAT, DEFAULT_1_1)
      */
     public static String getWorldType() {
         return server.getWorldType();
     }
 
     /**
-     * 获取服务器是否生成建筑.
-     *
+     * 获取此服务器是否自然生成结构. 
+     * <p>
      * 原文:
      * Get generate-structures setting.
      *
-     * @return 如果生成建筑返回true
+     * @return 是否生成结构
      */
     public static boolean getGenerateStructures() {
         return server.getGenerateStructures();
     }
 
     /**
-     * 获取这个服务器是否可以进入末路之地.
-     *
+     * 获取此服务器是否开启了末路之地. 
+     * <p>
      * 原文:
      * Gets whether this server allows the End or not.
      *
@@ -305,8 +309,8 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个服务器是否可以进入下界.
-     *
+     * 获取此服务器是否开启了下界. 
+     * <p>
      * 原文：
      * Gets whether this server allows the Nether or not.
      *
@@ -317,8 +321,8 @@ public final class Bukkit {
     }
 
     /**
-     * 服务器是否开启白名单.
-     *
+     * 获取此服务器是否开启了白名单. 
+     * <p>
      * 原文:
      * Gets whether this server has a whitelist or not.
      *
@@ -329,20 +333,20 @@ public final class Bukkit {
     }
 
     /**
-     * 设置服务器是否开启白名单.
-     *
+     * 设置此服务器是否开启白名单. 
+     * <p>
      * 原文:
      * Sets if the server is whitelisted.
      *
-     * @param value true为开，false为关
+     * @param value true为开, false为关
      */
     public static void setWhitelist(boolean value) {
         server.setWhitelist(value);
     }
 
     /**
-     * 获取所有被添加到白名单的玩家.
-     *
+     * 获取所有已被添加到白名单的玩家. 
+     * <p>
      * 原文:
      * Gets a list of whitelisted players.
      *
@@ -353,8 +357,8 @@ public final class Bukkit {
     }
 
     /**
-     * 重载白名单.
-     *
+     * 从硬盘重载白名单列表. 
+     * <p>
      * 原文:Reloads the whitelist from disk.
      */
     public static void reloadWhitelist() {
@@ -362,12 +366,13 @@ public final class Bukkit {
     }
 
     /**
-     * 广播一条消息到所有玩家.
+     * 广播一条消息到所有在线玩家. 
      * <p>
      * 这与调用 {@link #broadcast(java.lang.String,
-     * java.lang.String)} (第二个参数为{@link Server#BROADCAST_CHANNEL_USERS}) 等效。
+     * java.lang.String)} 并将第二个参数设为 {@link 
+     * Server#BROADCAST_CHANNEL_USERS} 等效. 
      *
-     * 原文:
+     * 原文: 
      * Broadcast a message to all players.
      * <p>
      * This is the same as calling {@link #broadcast(java.lang.String,
@@ -381,18 +386,13 @@ public final class Bukkit {
     }
 
     /**
-     * 获取更新文件夹的名字. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     * 获取更新文件夹的名字. 
      * <p>
-     * 更新文件夹相对于插件文件夹.
+     * 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
      * <p>
-     * Tips：如何使用更新文件夹来实现更新您的插件呢？（服主和开发者都可以了解下)：
-     * <ol>
-     * <li>创建更新文件夹，已有则跳过此步.
-     * <li>下载您要更新的插件到此目录 (注意：jar文件名必须和在插件目录下的jar文件名一样，否则不起作用。).
-     * <li>重载/重启服务器.
-     * <li>OK，看效果吧.
-     * </ol>
-     *
+     * 更新文件夹的位置相对于插件文件夹.
+     * <p>
+     * 
      * 原文:
      * Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
@@ -406,7 +406,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取表示更新文件夹的 File 实例，系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     * 获取更新文件夹的 {@link File} 实例. 
+     * <p>
+     * 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
      * <p>
      * 原文:
      * Gets the update folder. The update folder is used to safely update
@@ -418,19 +420,34 @@ public final class Bukkit {
         return server.getUpdateFolderFile();
     }
 
-    // TODO:原文丢失
     /**
-     * 获取服务器的最大连接数设定
-     *
-     * @return 服务器的最大连接数设定
+     * 获取服务器的最小连接间隔设定. 
+     * <p>
+     * 译注: 单位为毫秒. 
+     * <p>
+     * 
+     * 原文: Gets the value of the connection throttle setting.
+     * @return 服务器的最小连接间隔数设定
      */
     public static long getConnectionThrottle() {
         return server.getConnectionThrottle();
     }
 
-    // TODO:不完整
     /**
-     * 获取每个动物生成的默认刻
+     * 获取每隔多少tick应该生成一次动物. 
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成动物. 
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成动物. 
+     * <li>此值小于 0 表示会使用Minecraft的默认设置. 
+     * </ul>
+     * <b>注意:</b> 如果设为 0, 动物生成会被禁用. 
+     * 我们推荐使用 spawn-animals 选项来代替将其设为0.
+     * <p>
+     * Minecraft使用的默认值: 400.
+     * <p>
+     * 原文: <hr>
+     * Gets default ticks per animal spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -441,10 +458,10 @@ public final class Bukkit {
      * <li>A value below 0 will be reset back to Minecraft's default.
      * </ul>
      * <p>
-     * <b>注意:</b> 如果设为 0,不会生成动物. 我们
-     * 建议在这个实例中开启动物的生成。
+     * <b>Note:</b> If set to 0, animal spawning will be disabled. 
+     * We recommend using spawn-animals to control this instead.
      * <p>
-     * Minecraft 默认为 400.
+     * Minecraft default: 400.
      *
      * @return 每个动物生成的默认刻
      */
@@ -452,9 +469,21 @@ public final class Bukkit {
         return server.getTicksPerAnimalSpawns();
     }
 
-    // TODO:不完整
     /**
-     * 获取每个怪物生成的默认刻
+     * 获取每隔多少tick应该生成一次怪物. 
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成怪物. 
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成怪物. 
+     * <li>此值小于 0 表示会使用Minecraft的默认设置. 
+     * </ul>
+     * <b>注意:</b> 如果设为 0, 怪物生成会被禁用. 
+     * 我们推荐使用 spawn-monsters 选项来代替将其设为0.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文: 
+     * Gets default ticks per monster spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -465,41 +494,48 @@ public final class Bukkit {
      * <li>A value below 0 will be reset back to Minecraft's default.
      * </ul>
      * <p>
-     * <b>注意:</b> 如果设为 0,不会生成怪物. 我们
-     * 建议在这个实例中开启怪物的生成。
+     * <b>Note:</b> If set to 0, monster spawning will be disabled. 
+     * We recommend using spawn-monsters to control this instead.
      * <p>
-     * Minecraft 默认为 1.
+     * Minecraft default: 1.
      *
-     * @return 每个怪物生成的默认刻
+     * @return 每个动物生成的默认刻
      */
     public static int getTicksPerMonsterSpawns() {
         return server.getTicksPerMonsterSpawns();
     }
 
-    //TODO:原文丢失
     /**
-     * 用给定的玩家名获取一个玩家对象
+     * 使用给定玩家名模糊搜索玩家. 
+     * 这个方法不可能返回离线玩家的对象. 
      * <p>
-     * 此方法可能不会给离线的玩家返回对象
+     * 译注: 注意此方法用于模糊搜索——当服务器内有玩家 aaa, aab, abc 时, 
+     * 使用 <code>getPlayer("ab")</code> 会返回玩家 abc 的实例, 而如果 ab 在线则会返回 ab 的实例
+     * 因此<b>可能存在严重的安全问题</b>, 需要精确搜索(例如给予OP时)请用
+     * {@link #getPlayerExact(java.lang.String) } 或 {@link 
+     * #getPlayer(java.util.UUID) } 代替. 
+     * <p>
+     * 原文: 
+     * Gets a player object by the given username.
+     * This method may not return objects for offline players.
      *
-     * @deprecated 像玩家名一样使用 {@link #getPlayer(UUID)} 不保证
-     *     是唯一的
-     * @param name 要获取的玩家对象的玩家名
-     * @return 一个玩家对象，反之为null
+     * @deprecated 被 {@link #getPlayer(UUID)} 取代, 因为玩家名不再一定是唯一的. 
+     * @param name 用来查找的玩家名
+     * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Deprecated
     public static Player getPlayer(String name) {
         return server.getPlayer(name);
     }
 
-    // TODO:乱
     /**
-     * Gets the player with the exact given name,
+     * 使用给定玩家名精确查找玩家, 不区分大小写. 
+     * <p>
+     * 原文: Gets the player with the exact given name, case insensitive. 
      *
-     * @deprecated 像玩家名一样使用 {@link #getPlayer(UUID)} 不保证
-     *     是唯一的
-     * @param name Exact name of the player to retrieve
-     * @return 一个玩家对象，反之为null
+     * @deprecated 被 {@link #getPlayer(UUID)} 取代, 因为玩家名不再一定是唯一的. 
+     * @param name 用于检索的精确玩家名称, 不区分大小写 
+     * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Deprecated
     public static Player getPlayerExact(String name) {
@@ -507,16 +543,25 @@ public final class Bukkit {
     }
 
     /**
+     * 尝试获取所有匹配给定名称的玩家, 并返回包含了一切可能匹配的列表. 
+     * <p>
+     * 这个列表没有经过任何特殊排序. 如果能在在线玩家内精确匹配到给定名称,
+     * 则返回一个只包含单个结果的列表. 
+     * <p>
+     * 译注: 设有在线玩家 abcd, efg, dbca 那么 <code>matchPlayer("bc")</code> 会
+     * 返回一个包含 [abcd, dbca] 的列表. 但如果此时玩家 bc 上线了, 再执行相同的查找
+     * 就只会返回包含一个结果的列表 [bc]. 
+     * <p>
+     * 原文: 
      * Attempts to match any players with the given name, and returns a list
      * of all possibly matches.
      * <p>
      * This list is not sorted in any particular order. If an exact match is
      * found, the returned list will only contain a single result.
      *
-     * @deprecated Use {@link #getPlayer(UUID)} as player names are no longer
-     *     guaranteed to be unique
-     * @param name the (partial) name to match
-     * @return list of all possible players
+     * @deprecated 被 {@link #getPlayer(UUID)} 取代, 因为玩家名不再一定是唯一的. 
+     * @param name 需要匹配的(部分)名称
+     * @return 包含所有可能的匹配结果的列表
      */
     @Deprecated
     public static List<Player> matchPlayer(String name) {
@@ -524,65 +569,74 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the player with the given UUID.
+     * 使用给定{@link UUID}获取玩家. 
+     * <p>
+     * 原文: Gets the player with the given UUID.
      *
-     * @param id UUID of the player to retrieve
-     * @return a player object if one was found, null otherwise
+     * @param id 要获取的玩家的{@link UUID}
+     * @return 如果找到了则返回玩家对象, 否则返回null
      */
     public static Player getPlayer(UUID id) {
         return server.getPlayer(id);
     }
 
     /**
-     * 获取插件管理器以联系其他插件.
+     * 获取插件管理器以与其他插件进行交互. 
+     * <p>
+     * 原文: Gets the plugin manager for interfacing with plugins.
      *
-     * @return 这个服务器实例的插件管理器
+     * @return 此服务器的插件管理器
      */
     public static PluginManager getPluginManager() {
         return server.getPluginManager();
     }
 
     /**
-     * Gets the scheduler for managing scheduled events.
+     * 获取用于管理调度任务的调度器. 
+     * <p>
+     * 原文: Gets the scheduler for managing scheduled events.
      *
-     * @return a scheduling service for this server
+     * @return 此服务器的调度器服务
      */
     public static BukkitScheduler getScheduler() {
         return server.getScheduler();
     }
 
     /**
-     * Gets a services manager.
+     * 获取服务管理器. 
+     * <p>
+     * 原文: Gets a services manager.
      *
-     * @return s services manager
+     * @return 服务管理器. 
      */
     public static ServicesManager getServicesManager() {
         return server.getServicesManager();
     }
 
     /**
-     * 获取当前服务器加载的所有世界的列表.
+     * 获取当前服务器加载的所有世界的列表. 
+     * <p>
+     * 原文: Gets a list of all worlds on this server.
      *
-     * 原文:Gets a list of all worlds on this server.
-     *
-     * @return 所有已经加载在服务器的世界列表
+     * @return 所有已经被服务器加载的世界列表
      */
     public static List<World> getWorlds() {
         return server.getWorlds();
     }
 
     /**
-     * 用一个给定的世界生成器去创建或者加载一个世界.
+     * 用给定的世界生成器来创建或者加载一个世界. 
      * <p>
-     * 如果这个世界已经加载了,那么就会返回一个对应世界生成器名字的世界.
+     * 如果这个世界已经被加载了, 那么就会返回等同于调用 
+     * <code>getWorld(creator.name())</code> 的结果. 
      * <p>
-     * 原文:Creates or loads a world with the given name using the specified
+     * 原文: Creates or loads a world with the given name using the specified
      * options.
      * <p>
      * If the world is already loaded, it will just return the equivalent of
      * getWorld(creator.name()).
      *
-     * @param creator 加载或者创建这个世界的时候用的世界生成器
+     * @param creator 加载或者创建这个世界的时候要用的世界生成器
      * @return 生成的或者加载的世界对象
      */
     public static World createWorld(WorldCreator creator) {
@@ -590,57 +644,63 @@ public final class Bukkit {
     }
 
     /**
-     * 卸载指定的世界.
+     * 卸载给定名称对应的世界. 
      * <p>
-     * 原文：Unloads a world with the given name.
+     * 原文: Unloads a world with the given name.
      *
      * @param name 要卸载的世界的名字
-     * @param save 当这个世界卸载的时候是否保存数据
-     * @return 如果成功返回true，其他情况返回false
+     * @param save 卸载时是否要保存数据
+     * @return 如果成功返回true, 否则返回false
      */
     public static boolean unloadWorld(String name, boolean save) {
         return server.unloadWorld(name, save);
     }
 
     /**
-     * 卸载指定的世界.
+     * 卸载指定的世界. 
      * <p>
-     * 原文：Unloads a world with the given name.
+     * 原文: Unloads a world with the given name.
      *
      * @param world 要卸载的世界
-     * @param save 当这个世界卸载的时候是否保存数据
-     * @return 如果成功返回true，其他情况返回false
+     * @param save 卸载时是否要保存数据
+     * @return 如果成功返回true, 否则返回false
      */
     public static boolean unloadWorld(World world, boolean save) {
         return server.unloadWorld(world, save);
     }
 
     /**
-     * Gets the world with the given name.
+     * 使用给定名称查找世界. 
+     * <p>
+     * 原文: Gets the world with the given name.
      *
-     * @param name the name of the world to retrieve
-     * @return a world with the given name, or null if none exists
+     * @param name 世界名称
+     * @return 没找到则返回null
      */
     public static World getWorld(String name) {
         return server.getWorld(name);
     }
 
     /**
-     * Gets the world from the given Unique ID.
+     * 使用给定{@linkplain UUID 唯一ID}查找世界. 
+     * <p>
+     * 原文: Gets the world from the given Unique ID.
      *
-     * @param uid a unique-id of the world to retrieve
-     * @return a world with the given Unique ID, or null if none exists
+     * @param uid 要查找的世界的唯一ID
+     * @return 没找到则返回null
      */
     public static World getWorld(UUID uid) {
         return server.getWorld(uid);
     }
 
     /**
-     * Gets the map from the given item ID.
+     * 使用给定物品ID获取地图. 
+     * <p>
+     * 原文: Gets the map from the given item ID. 
      *
-     * @param id the id of the map to get
-     * @return a map view if it exists, or null otherwise
-     * @deprecated Magic value
+     * @param id 要获取的地图的ID
+     * @return 如果找到则返回对应的 {@link MapView}, 否则返回null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static MapView getMap(short id) {
@@ -648,36 +708,44 @@ public final class Bukkit {
     }
 
     /**
-     * Create a new map with an automatically assigned ID.
+     * 创建一个新地图并自动分配一个ID. 
+     * <p>
+     * 原文: Create a new map with an automatically assigned ID.
      *
-     * @param world the world the map will belong to
-     * @return a newly created map view
+     * @param world 地图所属的世界
+     * @return 新创建的 {@link MapView}
      */
     public static MapView createMap(World world) {
         return server.createMap(world);
     }
 
     /**
-     * Reloads the server, refreshing settings and plugin information.
+     * 重载服务器, 刷新设置与插件信息. 
+     * <p>
+     * 原文: Reloads the server, refreshing settings and plugin information.
      */
     public static void reload() {
         server.reload();
     }
 
     /**
-     * Returns the primary logger associated with this server instance.
+     * 返回与此服务器实例绑定的主{@link Logger}. 
+     * <p>
+     * 原文: Returns the primary logger associated with this server instance.
      *
-     * @return Logger associated with this server
+     * @return 与此服务器绑定的 {@link Logger}
      */
     public static Logger getLogger() {
         return server.getLogger();
     }
 
     /**
-     * Gets a {@link PluginCommand} with the given name or alias.
+     * 用给定命令名或别名获取 {@link PluginCommand}. 
+     * <p>
+     * 原文: Gets a {@link PluginCommand} with the given name or alias.
      *
-     * @param name the name of the command to retrieve
-     * @return a plugin command if found, null otherwise
+     * @param name 命令名或命令别名
+     * @return 找不到则返回null
      */
     public static PluginCommand getPluginCommand(String name) {
         return server.getPluginCommand(name);
