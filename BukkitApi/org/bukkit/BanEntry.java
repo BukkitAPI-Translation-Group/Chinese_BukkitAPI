@@ -7,7 +7,7 @@ import java.util.Date;
  * <p>
  * 封禁条目包括以下属性:
  * <table border=1>
- * <caption>Property information</caption>
+ * <caption>属性信息</caption>
  * <tr>
  *     <th>属性</th>
  *     <th>描述</th>
