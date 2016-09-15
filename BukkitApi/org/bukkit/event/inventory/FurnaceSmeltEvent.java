@@ -25,7 +25,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
 
     /**
      * 获取被熔炼的物品. 
-     * 
+     * <p>
      * 原文：Gets the smelted ItemStack for this event
      *
      * @return 被熔炼的物品
@@ -36,7 +36,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
 
     /**
      * 获取熔炼产物. 
-     * 
+     * <p>
      * 原文：Gets the resultant ItemStack for this event
      *
      * @return 熔炼产物
@@ -47,7 +47,7 @@ public class FurnaceSmeltEvent extends BlockEvent implements Cancellable {
 
     /**
      * 设置熔炼产物. 
-     * 
+     * <p>
      * 原文：Sets the resultant ItemStack for this event
      *
      * @param result 熔炼产物
