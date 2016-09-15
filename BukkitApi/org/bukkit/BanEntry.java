@@ -34,6 +34,8 @@ import java.util.Date;
  * 如果本封禁条目已经过期(例如unban命令)或不再存在于封禁列表中，{@link #save()} 方法的调用将重新添加本条目至封禁列表，
  * 因而导致再次封禁指定的受害者.
  * 同样地，对相关的{@link BanList}或其他的条目的更改可能或可能不会反映在此条目上.
+ * <p>
+ * 译注：最后一句是什么意思呢？您每次从BanList里获取的BanEntry都是不同的对象(不同的内存地址)，您对其中一个BanEntry进行了修改，但这并不会影响另一个已经获取到的BanEntry，另一个BanEntry获取到的信息自然跟您修改后的信息不符.
  */
 public interface BanEntry {
 
