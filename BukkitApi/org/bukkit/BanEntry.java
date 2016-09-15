@@ -13,7 +13,7 @@ import java.util.Date;
  *     <th>描述</th>
  * </tr><tr>
  *     <td>目标玩家名 / IP地址</td>
- *     <td>目标的玩家名或IP地址/td>
+ *     <td>目标的玩家名或IP地址</td>
  * </tr><tr>
  *     <td>创建日期</td>
  *     <td>本次封禁的创建日期(开始日期)</td>
@@ -135,8 +135,8 @@ public interface BanEntry {
     public String getReason();
 
     /**
-     * 设置本次封禁的理由.
-     * <p>
+     * 设置本次封禁的理由. 
+     *
      * 原文:
      * Sets the reason for this ban. Reasons must not be null.
      *
