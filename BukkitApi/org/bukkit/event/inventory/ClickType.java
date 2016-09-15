@@ -23,13 +23,13 @@ public enum ClickType {
     SHIFT_RIGHT,
     /**
      * 在物品栏界面的<b>“灰色区域”</b>单击鼠标左键. 
-     * 
+     * <p>
      * 译注:“灰色区域”指Minecraft窗口范围内<b>超出物品栏范围</b>的部分
      */
     WINDOW_BORDER_LEFT,
     /**
      * 在物品栏界面的<s>灰色区域</s>单击鼠标右键. 
-     * 
+     * <p>
      * 译注:<s>灰色区域</s>指Minecraft窗口范围内<s>超出物品栏范围</s>的部分
      */
     WINDOW_BORDER_RIGHT,
@@ -59,7 +59,7 @@ public enum ClickType {
     CREATIVE,
     /**
      * 无法被Bukkit解析的物品栏点击类型. 
-     * 
+     * <p>
      * 这个按键类型仅出现在Minecraft的版本过渡期, 且不应该被依赖. <br>
      * 任何对 ClickType.UNKNOWN 的调用都是在最努力的基础上的. 
      * <p>
@@ -70,7 +70,7 @@ public enum ClickType {
 
     /**
      * 判断这个按键类型是否为键盘按键. 
-     * 
+     * <p>
      * 原文：Gets whether this ClickType represents the pressing of a key on a
      * keyboard.
      * 
@@ -82,7 +82,7 @@ public enum ClickType {
 
     /**
      * 判断这个按键类型所定义的操作是否只能在创造模式被执行. 
-     * 
+     * <p>
      * 原文：Gets whether this ClickType represents an action that can only be
      * performed by a Player in creative mode.
      * 
@@ -95,7 +95,7 @@ public enum ClickType {
 
     /**
      * 判断这个按键类型是否使用了鼠标右键. 
-     * 
+     * <p>
      * 原文：Gets whether this ClickType represents a right click.
      * 
      * @return 如果这个按键类型使用了鼠标右键则返回true，否则返回false.
@@ -106,7 +106,7 @@ public enum ClickType {
 
     /**
      * 判断这个按键类型是否使用了鼠标左键. 
-     * 
+     * <p>
      * 原文：Gets whether this ClickType represents a left click.
      * 
      * @return 如果这个按键类型使用了鼠标左键则返回true，否则返回false.
@@ -117,7 +117,7 @@ public enum ClickType {
 
     /**
      * 判断这个按键类型是否使用了Shift键. 
-     * 
+     * <p>
      * 原文：Gets whether this ClickType indicates that the shift key was pressed
      * down when the click was made.
      *

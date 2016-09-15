@@ -1,5 +1,5 @@
 /**
- * Classes used to facilitate stream processing for specific Bukkit concepts.
+ * 用于处理Bukkit对象流的相关类.
  */
 package org.bukkit.util.io;
 

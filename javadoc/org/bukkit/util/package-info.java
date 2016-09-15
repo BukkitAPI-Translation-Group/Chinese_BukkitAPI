@@ -1,6 +1,5 @@
 /**
- * Multi and single purpose classes to facilitate various programmatic
- * concepts.
+ * 让编程更便捷的相关工具.
  */
 package org.bukkit.util;
 

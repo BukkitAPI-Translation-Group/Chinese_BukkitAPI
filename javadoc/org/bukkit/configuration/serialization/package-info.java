@@ -1,7 +1,5 @@
 /**
- * Classes dedicated to being able to perform serialization specialized for
- * the Bukkit {@link org.bukkit.configuration.Configuration configuration}
- * implementation.
+ * 用于序列化Bukkit{@link org.bukkit.configuration.Configuration 配置}实现.
  */
 package org.bukkit.configuration.serialization;
 

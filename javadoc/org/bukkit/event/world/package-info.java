@@ -1,6 +1,6 @@
 /**
- * {@link org.bukkit.event.Event Events} triggered by various {@link
- * org.bukkit.World world} states or changes.
+ * 与{@link
+ * org.bukkit.World 世界}状态和变化有关的{@link org.bukkit.event.Event 事件}.
  */
 package org.bukkit.event.world;
 

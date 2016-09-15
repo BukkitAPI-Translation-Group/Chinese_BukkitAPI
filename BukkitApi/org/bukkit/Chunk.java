@@ -6,13 +6,11 @@ import org.bukkit.entity.Entity;
 
 /**
  * 代表一个16*256*16的空间
- * <p>
- * 原文:Represents a chunk of blocks
  */
 public interface Chunk {
 
     /**
-     * 获取该区块的X轴坐标
+     * 获取该区块的X轴坐标.
      * <p>
      * 原文:Gets the X-coordinate of this chunk
      *
@@ -21,7 +19,7 @@ public interface Chunk {
     int getX();
 
     /**
-     * 获取该区块的Z轴坐标
+     * 获取该区块的Z轴坐标.
      * <p>
      * Gets the Z-coordinate of this chunk
      *
@@ -30,7 +28,7 @@ public interface Chunk {
     int getZ();
 
     /**
-     * 获取该区块属于哪个世界
+     * 获取该区块属于哪个世界.
      * <p>
      * 原文:Gets the world containing this chunk
      *
@@ -39,7 +37,7 @@ public interface Chunk {
     World getWorld();
 
     /**
-     * 从区块中获取某个方块({@link Block})
+     * 从区块中获取某个方块({@link Block}).
      * <p>
      * 原文:Gets a block from this chunk
      *
@@ -79,7 +77,7 @@ public interface Chunk {
     Entity[] getEntities();
 
     /**
-     * 获取该区块内所有的TileEntity列表数组.
+     * 获取该区块内所有的TileEntity的列表.
      * <p>
      * 原文:Get a list of all tile entities in the chunk.
      * 
@@ -95,7 +93,7 @@ public interface Chunk {
      * @return 成功加载返回true,否则返回false
      */
     boolean isLoaded();
-
+    //TODO
     /**
      * 加载区块.
      * 
