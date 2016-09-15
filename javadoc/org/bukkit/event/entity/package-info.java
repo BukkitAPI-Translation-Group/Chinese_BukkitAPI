@@ -1,7 +1,6 @@
 /**
- * {@link org.bukkit.event.Event Events} relating to {@link
- * org.bukkit.entity.Entity entities}, excluding some directly referencing
- * some more specific entity types.
+ * 与{@link
+ * org.bukkit.entity.Entity 实体}有关的{@link org.bukkit.event.Event 事件}.
  */
 package org.bukkit.event.entity;
 
