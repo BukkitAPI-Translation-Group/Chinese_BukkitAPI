@@ -288,22 +288,35 @@ public interface Server extends PluginMessageRecipient {
     public int broadcastMessage(String message);
 
     /**
-     * 获得更新文件夹的路径,这个文件夹里的文件将在插件加载时选择一个正确的时间更新插件(注意:该文件夹路径相对于插件的文件夹)
+     * 获取更新文件夹的名字. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
      * <p>
-     * 原文:Gets the name of the update folder. The update folder is used to safely
-     * update plugins at the right moment on a plugin load.
+     * 更新文件夹相对于插件文件夹，也就是说，你可以在插件文件夹下找到本文件夹.
+     * <p>
+     * Tips：如何使用更新文件夹来实现更新您的插件呢？（服主和开发者都可以了解下)：
+     * <ol>
+     * <li>创建更新文件夹，已有则跳过此步.
+     * <li>下载您要更新的插件到此目录 (注意：1:jar文件名必须和在插件目录下的jar文件名一样 2:您只需要放置插件jar文件，不需要干别的).
+     * <li>重载/重启服务器.
+     * <li>OK，看效果吧.
+     * </ol>
      *
-     * @return 更新文件夹的路径
+     * 原文:
+     * Gets the name of the update folder. The update folder is used to safely
+     * update plugins at the right moment on a plugin load.
+     * <p>
+     * The update folder name is relative to the plugins folder.
+     *
+     * @return 更新文件夹的名字
      */
     public String getUpdateFolder();
 
     /**
-     * 获得更新文件夹的File实例,这个文件夹里的文件将在插件加载时选择一个正确的时间更新插件
-     * <p>
+     * 获取表示更新文件夹的 File 实例. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     *
      * 原文:Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
-     * @return 更新文件夹的File实例
+     * @return 表示更新文件夹的 File 实例
      */
     public File getUpdateFolderFile();
 

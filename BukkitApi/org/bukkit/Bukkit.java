@@ -381,22 +381,37 @@ public final class Bukkit {
     }
 
     /**
+     * 获取更新文件夹的名字. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     * <p>
+     * 更新文件夹相对于插件文件夹，也就是说，你可以在插件文件夹下找到本文件夹.
+     * <p>
+     * Tips：如何使用更新文件夹来实现更新您的插件呢？（服主和开发者都可以了解下)：
+     * <ol>
+     * <li>创建更新文件夹，已有则跳过此步.
+     * <li>下载您要更新的插件到此目录 (注意：1:jar文件名必须和在插件目录下的jar文件名一样 2:您只需要放置插件jar文件，不需要干别的).
+     * <li>重载/重启服务器.
+     * <li>OK，看效果吧.
+     * </ol>
+     *
+     * 原文:
      * Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
      * <p>
      * The update folder name is relative to the plugins folder.
      *
-     * @return the name of the update folder
+     * @return 更新文件夹的名字
      */
     public static String getUpdateFolder() {
         return server.getUpdateFolder();
     }
 
     /**
-     * Gets the update folder. The update folder is used to safely update
+     * 获取表示更新文件夹的 File 实例. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     *
+     * 原文:Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
-     * @return the update folder
+     * @return 表示更新文件夹的 File 实例
      */
     public static File getUpdateFolderFile() {
         return server.getUpdateFolderFile();
