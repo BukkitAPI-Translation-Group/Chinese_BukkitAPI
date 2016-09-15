@@ -3,146 +3,156 @@ package org.bukkit;
 import java.util.Date;
 
 /**
- * 封禁列表的entry 包括玩家封禁列表和IP封禁列表
+ * 封禁列表里的单个封禁条目.本封禁条目可以代表关于一个玩家的封禁或关于一个IP地址的封禁.
  * <p>
- * 封禁列表包括以下属性:
+ * 封禁条目包括以下属性:
  * <table border=1>
- * <caption>Property信息</caption>
+ * <caption>Property information</caption>
  * <tr>
  *     <th>属性</th>
  *     <th>描述</th>
  * </tr><tr>
- *     <td>目标昵称 / IP地址</td>
- *     <td>目标的昵称或IP地址</td>
+ *     <td>目标玩家名 / IP地址</td>
+ *     <td>目标的玩家名或IP地址/td>
  * </tr><tr>
- *     <td>封禁日期</td>
- *     <td>封禁的开始时间</td>
+ *     <td>创建日期</td>
+ *     <td>本次封禁的创建日期(开始日期)</td>
  * </tr><tr>
- *     <td>创建人</td>
- *     <td>封禁命令的发出者。可能是玩家、控制台、插件等。</td>
+ *     <td>创建者</td>
+ *     <td>封禁的创建者，可以是玩家、控制台、插件等</td>
  * </tr><tr>
  *     <td>到期时间</td>
- *     <td>封禁的到期时间</td>
+ *     <td>封禁的到期事件</td>
  * </tr><tr>
  *     <td>理由</td>
  *     <td>封禁的理由</td>
  * </tr>
  * </table>
  * <p>
- * Unsaved information is not automatically written to the implementation's
- * ban list, instead, the {@link #save()} method must be called to write the
- * changes to the ban list. If this ban entry has expired (such as from an
- * unban) and is no longer found in the list, the {@link #save()} call will
- * re-add it to the list, therefore banning the victim specified.
- * <p>
- * Likewise, changes to the associated {@link BanList} or other entries may or
- * may not be reflected in this entry.
+ * 未保存的信息不会自动写入到实现的封禁列表中，
+ * 反而，{@link #save()} 方法必须被调用，以保存到封禁列表中.
+ * 如果本封禁条目已经过期(例如unban命令)或不再存在于封禁列表中，{@link #save()} 方法的调用将重新添加本条目至封禁列表，
+ * 因而导致再次封禁指定的受害者.
+ * 同样地，对相关的{@link BanList}或其他的条目的更改可能或可能不会反映在此条目上.
  */
 public interface BanEntry {
 
     /**
-     * 原文：Gets the target involved. This may be in the form of an IP or a player
-     * name.
+     * 获取本次封禁的目标.这可能是一个IP地址或玩家名.
      * <p>
-     * 翻译：得到被封禁者。可能返回一个IP地址或一个玩家昵称。
+     * 原文:
+     * Gets the target involved. This may be in the form of an IP or a player
+     * name.
      *
-     * @return 玩家昵称或IP地址
+     * @return 被封禁的玩家的名字或IP地址
      */
     public String getTarget();
 
     /**
-     * 原文：Gets the date this ban entry was created.
+     * 获取本次封禁的开始时间.
      * <p>
-     * 翻译：得到封禁开始日期。
+     * 原文:
+     * Gets the date this ban entry was created.
      *
-     * @return 封禁开始日期
+     * @return 封禁开始时间
      */
     public Date getCreated();
 
     /**
-     * 原文：Sets the date this ban entry was created.
+     * 设置本次封禁的开始时间.
      * <p>
-     * 翻译：设置封禁开始日期。
+     * 原文:
+     * Sets the date this ban entry was created.
      *
-     * @param created 要设置的日期。不能为null
+     * @param created 要设置的日期,不能为null
      * @see #save() 保存更改
      */
     public void setCreated(Date created);
 
     /**
-     * 原文：Gets the source of this ban.
+     * 获取本次封禁的创建者.
+     * <p>
+     * 注意:创建者可以是任何字符串，虽然大部分情况是玩家名.
+     * <p>
+     * 原文:
+     * Gets the source of this ban.
      * <p>
      * Note: A source is considered any String, although this is generally a
      * player name.
-     * <p>
-     * 翻译：得到封禁的创建人。
-     * <p>
-     * 注意：返回的有可能是任何一个字符串，虽然大多数时候是一个玩家名。
      *
-     * @return 封禁的创建人
+     * @return 封禁创建者
      */
     public String getSource();
 
     /**
-     * 原文：Sets the source of this ban.
+     * 设置本次封禁的创建者.
+     * <p>
+     * 注意:创建者可以是任何字符串，虽然大部分情况是玩家名.
+     * <p>
+     * 原文:
+     * Sets the source of this ban.
      * <p>
      * Note: A source is considered any String, although this is generally a
      * player name.
-     * 翻译：设置封禁的创建人。
-     * <p>
-     * 注意：设置的可以是任何一个字符串，但大多数时候是一个玩家名。
-     * <p>
-     * @param source 要设置成的创建人，不能为null
+     *
+     * @param source 新的创建者，若设为null将变为空字符串
      * @see #save() 保存更改
      */
     public void setSource(String source);
 
     /**
-     * 原文：Gets the date this ban expires on, or null for no defined end date.
+     * 获取本次封禁的到期时间。null为未定义到期时间(永不到期).
      * <p>
-     * 翻译：得到封禁的到期时间，如果不会到期则为null。
-     * <p>
-     * @return 到期时间。
+     * 原文:
+     * Gets the date this ban expires on, or null for no defined end date.
+     *
+     * @return 到期时间
      */
     public Date getExpiration();
 
     /**
-     * 原文：Sets the date this ban expires on. Null values are considered
-     * "infinite" bans.
+     * 设置本次封禁的到期时间.设为null则表示永不到期.
      * <p>
-     * 翻译：设置封禁的到期时间。如果为null，则为永久封禁。
+     * 原文:
+     * Sets the date this ban expires on. Null values are considered
+     * "infinite" bans.
      *
-     * @param expiration 新的到期时间。null则为永久封禁。
+     * @param expiration 新的封禁到期时间，null则表示永不到期
      * @see #save() 保存更改
      */
     public void setExpiration(Date expiration);
 
     /**
-     * 原文：Gets the reason for this ban.
+     * 获取此次封禁的理由.
      * <p>
-     * 翻译：得到封禁理由。
+     * 原文:
+     * Gets the reason for this ban.
      *
-     * @return 封禁理由。如果没有则返回null
+     * @return 封禁理由，null为尚未设置，使用默认值
      */
     public String getReason();
 
     /**
-     * 原文：Sets the reason for this ban. Reasons must not be null.
+     * 设置本次封禁的理由.
      * <p>
-     * 翻译：设置封禁的理由。不能为null。
+     * 原文:
+     * Sets the reason for this ban. Reasons must not be null.
      *
-     * @param reason 要设置成的理由
+     * @param reason 新的封禁理由，null表示使用默认值
      * @see #save() 保存更改
      */
     public void setReason(String reason);
 
     /**
-     * 原文：Saves the ban entry, overwriting any previous data in the ban list.
+     * 保存这个封禁条目，将覆盖在封禁列表里的数据.
+     * <p>
+     * 保存关于一个未被封禁的玩家的封禁条目，将导致这个玩家再一次被封禁.
+     * <p>
+     * 原文:
+     * Saves the ban entry, overwriting any previous data in the ban list.
      * <p>
      * Saving the ban entry of an unbanned player will cause the player to be
      * banned once again.
-     * <p>
-     * 翻译：保存刚刚的更改.
      */
     public void save();
 }
