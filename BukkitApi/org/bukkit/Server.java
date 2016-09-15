@@ -312,8 +312,9 @@ public interface Server extends PluginMessageRecipient {
 
     /**
      * 获取表示更新文件夹的 File 实例. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
-     *
-     * 原文:Gets the update folder. The update folder is used to safely update
+     * <p>
+     * 原文:
+     * Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
      * @return 表示更新文件夹的 File 实例
