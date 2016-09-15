@@ -19,105 +19,74 @@ import org.bukkit.metadata.Metadatable;
 public interface BlockState extends Metadatable {
 
     /**
-     * 获取这个方块所代表的BlockState对象.
-     * <p>
-     * 原文:
      * Gets the block represented by this BlockState
      *
-     * @return 这个方块代表的BlockState对象
+     * @return Block that this BlockState represents
      */
     Block getBlock();
 
     /**
-     * 获取这个方块的元数据.
-     * <p>
-     * 原文:
      * Gets the metadata for this block
      *
-     * @return 方块具体的元数据
+     * @return block specific metadata
      */
     MaterialData getData();
 
     /**
-     * 获取这个方块的类型.
-     * <p>
-     * 原文:
      * Gets the type of this block
      *
-     * @return 方块类型
+     * @return block type
      */
     Material getType();
 
     /**
-     * 获取这个方块的类型id.
-     * <p>
-     * 原文:
      * Gets the type-id of this block
      *
-     * @return 方块类型id
-     * @deprecated 魔法值
+     * @return block type-id
+     * @deprecated Magic value
      */
     @Deprecated
     int getTypeId();
 
     /**
-     * 获取光照强度，在0-15之间.
-     * <p>
-     * 原文:
      * Gets the light level between 0-15
      *
-     * @return 光照强度
+     * @return light level
      */
     byte getLightLevel();
 
     /**
-     * 获取方块包含在哪一个世界里.
-     * 
-     * <p>
-     * 原文:
      * Gets the world which contains this Block
      *
-     * @return 方块所处世界
+     * @return World containing this block
      */
     World getWorld();
 
-    /*
-     * 获取这个方块的X坐标.
-     * <p>
-     * 原文:
+    /**
      * Gets the x-coordinate of this block
      *
-     * @return X坐标
+     * @return x-coordinate
      */
     int getX();
 
     /**
-     * 获取这个方块的Y坐标.
-     * <p>
-     * 原文:
      * Gets the y-coordinate of this block
      *
-     * @return Y坐标
+     * @return y-coordinate
      */
     int getY();
 
     /**
-     * 获取这个方块的Z坐标.
-     * <p>
-     * 原文:
      * Gets the z-coordinate of this block
      *
-     * @return Z坐标
+     * @return z-coordinate
      */
     int getZ();
 
     /**
-     * 获取这个方块的位置.
-     * <p>
-     * 原文:
      * Gets the location of this block
      *
-     * @return 位置实例
+     * @return location
      */
     Location getLocation();
 
@@ -133,44 +102,32 @@ public interface BlockState extends Metadatable {
     Location getLocation(Location loc);
 
     /**
-     * 获取方块包含在哪一个区块里.
-     * <p>
-     * 原文:
      * Gets the chunk which contains this block
      *
-     * @return 方块所处区块
+     * @return Containing Chunk
      */
     Chunk getChunk();
 
     /**
-     * 设置这个方块的属性.
-     * <p>
-     * 原文:
      * Sets the metadata for this block
      *
-     * @param data 新的方块的具体属性
+     * @param data New block specific metadata
      */
     void setData(MaterialData data);
 
     /**
-     * 设置这个方块的类型.
-     * <p>
-     * 原文:
      * Sets the type of this block
      *
-     * @param type 更改方块的Material类型
+     * @param type Material to change this block to
      */
     void setType(Material type);
 
     /**
-     * 设置这个方块的类型id.
-     * <p>
-     * 原文:
      * Sets the type-id of this block
      *
-     * @param type 要让此方块改变的类型id
-     * @return 这个是否有用呢?（译注：不懂外国佬在说什么，你试试就知道了）
-     * @deprecated 不安全的参数
+     * @param type Type-Id to change this block to
+     * @return Whether it worked?
+     * @deprecated Magic value
      */
     @Deprecated
     boolean setTypeId(int type);
@@ -184,7 +141,7 @@ public interface BlockState extends Metadatable {
      * type as it was when this state was taken. It will return false in this
      * eventuality.
      *
-     * @return 成功更新为true，否则为false
+     * @return true if the update was successful, otherwise false
      * @see #update(boolean)
      */
     boolean update();
@@ -197,7 +154,7 @@ public interface BlockState extends Metadatable {
      * say, this will trigger a physics update to surrounding blocks.
      *
      * @param force true to forcefully set the state
-     * @return 成功更新为true，否则为false
+     * @return true if the update was successful, otherwise false
      */
     boolean update(boolean force);
 
@@ -218,20 +175,20 @@ public interface BlockState extends Metadatable {
      * @param force true to forcefully set the state
      * @param applyPhysics false to cancel updating physics on surrounding
      *     blocks
-     * @return 成功更新为true，否则为false
+     * @return true if the update was successful, otherwise false
      */
     boolean update(boolean force, boolean applyPhysics);
 
     /**
-     * @return 将数据作为原始字节
-     * @deprecated 不安全的参数
+     * @return The data as a raw byte.
+     * @deprecated Magic value
      */
     @Deprecated
     public byte getRawData();
 
     /**
-     * @param data 方块的新的数据值
-     * @deprecated 不安全的参数
+     * @param data The new data value for the block.
+     * @deprecated Magic value
      */
     @Deprecated
     public void setRawData(byte data);
