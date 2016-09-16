@@ -1055,7 +1055,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器新玩家的的默认{@link GameMode 游戏模式}.
+     * 获取服务器的的默认{@link GameMode 游戏模式}.
      * <p>
      * 原文:Gets the default {@link GameMode} for new players.
      *
