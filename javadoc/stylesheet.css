@@ -14,8 +14,8 @@ body {
     font-family:'Roboto', 'Microsoft Yahei', monospace;
 }
 ::selection {
-    background: #b3d4fc;
-    color: #fff;
+    background: #66ccff;
+    color: currentColor;
 }
 a:link, a:visited {
     text-decoration:none;
