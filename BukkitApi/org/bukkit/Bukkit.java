@@ -752,7 +752,9 @@ public final class Bukkit {
     }
 
     /**
-     * Writes loaded players to disk.
+     * 保存已加载的玩家信息.
+     * <p>
+     * 原文:Writes loaded players to disk.
      */
     public static void savePlayers() {
         server.savePlayers();
@@ -783,11 +785,12 @@ public final class Bukkit {
     }
 
     /**
-     * Adds a recipe to the crafting manager.
+     * 向合成管理器添加一个合成配方.
+     * <p>
+     * 原文:Adds a recipe to the crafting manager.
      *
-     * @param recipe the recipe to add
-     * @return true if the recipe was added, false if it wasn't for some
-     *     reason
+     * @param recipe 要添加的合成配方
+     * @return 是否成功的地添加了合成配方
      */
     public static boolean addRecipe(Recipe recipe) {
         return server.addRecipe(recipe);
@@ -805,77 +808,95 @@ public final class Bukkit {
     }
 
     /**
-     * Get an iterator through the list of crafting recipes.
+     * 通过自定义合成配方列表获取迭代器.
+     * <p>
+     * 原文:Get an iterator through the list of crafting recipes.
      *
-     * @return an iterator
+     * @return 迭代器
      */
     public static Iterator<Recipe> recipeIterator() {
         return server.recipeIterator();
     }
 
     /**
-     * Clears the list of crafting recipes.
+     * 清理所有已添加的合成配方.
+     * <p>
+     * 原文:Clears the list of crafting recipes.
      */
     public static void clearRecipes() {
         server.clearRecipes();
     }
 
     /**
-     * Resets the list of crafting recipes to the default.
+     * 重置自定义合成配方列表值至默认.
+     * <p>
+     * 原文:Resets the list of crafting recipes to the default.
      */
     public static void resetRecipes() {
         server.resetRecipes();
     }
     
     /**
-     * Gets a list of command aliases defined in the server properties.
+     * 获取服务器配置定义的命令别名列表.
+     * <p>
+     * 原文:Gets a list of command aliases defined in the server properties.
      *
-     * @return a map of aliases to command names
+     * @return 命令别名map
      */
     public static Map<String, String[]> getCommandAliases() {
         return server.getCommandAliases();
     }
 
     /**
-     * Gets the radius, in blocks, around each worlds spawn point to protect.
+     * 获取出生地保护的范围（以方块为单位）.
+     * <p>
+     * 原文:Gets the radius, in blocks, around each worlds spawn point to protect.
      *
-     * @return spawn radius, or 0 if none
+     * @return 出生地保护范围，0为没有保护
      */
     public static int getSpawnRadius() {
         return server.getSpawnRadius();
     }
 
     /**
-     * Sets the radius, in blocks, around each worlds spawn point to protect.
+     * 设置出生地保护的范围.
+     * <p>
+     * 原文:Sets the radius, in blocks, around each worlds spawn point to protect.
      *
-     * @param value new spawn radius, or 0 if none
+     * @param value 新的出生地保护的范围，0设为没有保护
      */
     public static void setSpawnRadius(int value) {
         server.setSpawnRadius(value);
     }
 
     /**
-     * Gets whether the Server is in online mode or not.
+     * 获取服务器是否处于正版模式.
+     * <p>
+     * 原文:Gets whether the Server is in online mode or not.
      *
-     * @return true if the server authenticates clients, false otherwise
+     * @return 服务器是否处于正版模式
      */
     public static boolean getOnlineMode() {
         return server.getOnlineMode();
     }
 
     /**
-     * Gets whether this server allows flying or not.
+     * 获取服务器是否允许飞行.
+     * <p>
+     * 原文:Gets whether this server allows flying or not.
      *
-     * @return true if the server allows flight, false otherwise
+     * @return 服务器是否允许飞行
      */
     public static boolean getAllowFlight() {
         return server.getAllowFlight();
     }
 
     /**
-     * Gets whether the server is in hardcore mode or not.
+     * 获取服务器是否处于极限模式.
+     * <p>
+     * 原文:Gets whether the server is in hardcore mode or not.
      *
-     * @return true if the server mode is hardcore, false otherwise
+     * @return 服务器是否处于极限模式
      */
     public static boolean isHardcore() {
         return server.isHardcore();
@@ -901,7 +922,9 @@ public final class Bukkit {
     }
  
     /**
-     * Shutdowns the server, stopping everything.
+     * 关闭服务器，停止一切在运行的东西.
+     * <p>
+     * 原文:Shutdowns the server, stopping everything.
      */
     public static void shutdown() {
         server.shutdown();
@@ -942,90 +965,112 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the player by the given UUID, regardless if they are offline or
+     * 以指定的UUID获取玩家，无论他们使用正版模式还是离线模式.
+     * <p>
+     * 本方法都将返回一个对象，甚至此玩家并不存在.对于此方法来说，任何玩家都存在.
+     * <p>
+     * 原文:Gets the player by the given UUID, regardless if they are offline or
      * online.
      * <p>
      * This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
-     * @param id the UUID of the player to retrieve
-     * @return an offline player
+     * @param id 要检索的玩家UUID
+     * @return 表示此玩家的OfflinePlayer对象
      */
     public static OfflinePlayer getOfflinePlayer(UUID id) {
         return server.getOfflinePlayer(id);
     }
 
     /**
-     * Gets a set containing all current IPs that are banned.
+     * 获取包含了已被封禁的IP地址的集合.
+     * <p>
+     * 原文:Gets a set containing all current IPs that are banned.
      *
-     * @return a set containing banned IP addresses
+     * @return 被封禁IP集合
      */
     public static Set<String> getIPBans() {
         return server.getIPBans();
     }
 
     /**
-     * Bans the specified address from the server.
+     * 封禁指定的IP地址.
+     * <p>
+     * 原文:Bans the specified address from the server.
      *
-     * @param address the IP address to ban
+     * @param address 要封禁的IP地址
      */
     public static void banIP(String address) {
         server.banIP(address);
     }
 
     /**
-     * Unbans the specified address from the server.
+     * 解禁指定的IP地址.
+     * <p>
+     * 原文:Unbans the specified address from the server.
      *
-     * @param address the IP address to unban
+     * @param address 要解禁的IP地址
      */
     public static void unbanIP(String address) {
         server.unbanIP(address);
     }
 
     /**
-     * Gets a set containing all banned players.
+     * 获取包含了已被封禁的玩家的集合.
+     * <p>
+     * 原文:Gets a set containing all banned players.
      *
-     * @return a set containing banned players
+     * @return 已被封禁的玩家
      */
     public static Set<OfflinePlayer> getBannedPlayers() {
         return server.getBannedPlayers();
     }
 
     /**
-     * Gets a ban list for the supplied type.
+     * 获取指定类型的封禁列表.
+     * <p>
+     * 以玩家名封禁已不再支持，尝试请求获取将返回null（Is it true? 经测试并没有返回null）.替代方法是封禁UUID.
+     * <p>
+     * 原文:Gets a ban list for the supplied type.
      * <p>
      * Bans by name are no longer supported and this method will return
      * null when trying to request them. The replacement is bans by UUID.
      *
-     * @param type the type of list to fetch, cannot be null
-     * @return a ban list of the specified type
+     * @param type 要获取的封禁列表的类型，不能为null
+     * @return 指定类型的封禁列表
      */
     public static BanList getBanList(BanList.Type type){
         return server.getBanList(type);
     }
 
     /**
-     * Gets a set containing all player operators.
+     * 获取包含了所有OP的集合.
+     * <p>
+     * 原文:Gets a set containing all player operators.
      *
-     * @return a set containing player operators
+     * @return 服务器OP集合
      */
     public static Set<OfflinePlayer> getOperators() {
         return server.getOperators();
     }
 
     /**
-     * Gets the default {@link GameMode} for new players.
+     * 获取服务器新玩家的的默认{@link GameMode 游戏模式}.
+     * <p>
+     * 原文:Gets the default {@link GameMode} for new players.
      *
-     * @return the default game mode
+     * @return 默认游戏模式
      */
     public static GameMode getDefaultGameMode() {
         return server.getDefaultGameMode();
     }
 
     /**
-     * Sets the default {@link GameMode} for new players.
+     * 设置服务器的默认游戏模式.
+     * <p>
+     * 原文:Sets the default {@link GameMode} for new players.
      *
-     * @param mode the new game mode
+     * @param mode 新的默认游戏模式
      */
     public static void setDefaultGameMode(GameMode mode) {
         server.setDefaultGameMode(mode);
@@ -1191,18 +1236,22 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the message that is displayed on the server list.
+     * 获取在客户端服务器列表里显示的消息.
+     * <p>
+     * 原文:Gets the message that is displayed on the server list.
      *
-     * @return the servers MOTD
+     * @return 服务器的每日消息
      */
     public static String getMotd() {
         return server.getMotd();
     }
 
     /**
-     * Gets the default message that is displayed when the server is stopped.
+     * 获取服务器关闭时显示的提示消息.
+     * <p>
+     * 原文:Gets the default message that is displayed when the server is stopped.
      *
-     * @return the shutdown message
+     * @return 服务器关闭提示消息
      */
     public static String getShutdownMessage() {
         return server.getShutdownMessage();
