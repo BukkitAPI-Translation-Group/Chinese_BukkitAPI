@@ -13,6 +13,10 @@ body {
     margin:0;
     font-family:'Roboto', 'Microsoft Yahei', monospace;
 }
+::selection {
+    background: #b3d4fc;
+    color: #fff;
+}
 a:link, a:visited {
     text-decoration:none;
     color:#4A6782;
