@@ -720,7 +720,7 @@ public final class Bukkit {
     }
 
     /**
-     * 重载服务器, 刷新设置与插件信息. 
+     * 重载服务器, 刷新设置与插件信息.
      * <p>
      * 原文: Reloads the server, refreshing settings and plugin information.
      */
@@ -1096,9 +1096,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets every player that has ever played on this server.
+     * 获取曾在此服务器游戏的玩家.
+     * <p>
+     * 原文:Gets every player that has ever played on this server.
      *
-     * @return an array containing all previous players
+     * @return 曾在此服务器游戏的玩家
      */
     public static OfflinePlayer[] getOfflinePlayers() {
         return server.getOfflinePlayers();

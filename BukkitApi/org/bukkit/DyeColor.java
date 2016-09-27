@@ -116,7 +116,7 @@ public enum DyeColor {
      *
      * @return 包含这种颜色的羊毛的数据值字节
      * @see #getDyeData()
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte getWoolData() {
@@ -124,7 +124,7 @@ public enum DyeColor {
     }
 
     /**
-     * 获取代表这种颜色的染料相关的数据值.
+     * 获取代表这种颜色的染料数据值.
      * <p>
      * 原文:
      * Gets the associated dye data value representing this color.
@@ -201,7 +201,7 @@ public enum DyeColor {
     }
 
     /**
-     * 获取给定的染料数据值的染料颜色.
+     * 用给定的数据值获取DyeColor.
      * <p>
      * 原文:
      * Gets the DyeColor with the given dye data value.
@@ -209,7 +209,7 @@ public enum DyeColor {
      * @param data 要获取的染料数据值
      * @return 给定值代表的染料颜色({@link DyeColor})，如果不存在则为null
      * @see #getByWoolData(byte)
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static DyeColor getByDyeData(final byte data) {
