@@ -130,6 +130,7 @@ Navigation bar styles
   background: rgba(0, 0, 0, 0.05); /* matches #nav li.expanded */
 }
 .topNav {
+    font-weight:bold;
     float:left;
     padding:0;
     width:100%;
@@ -143,6 +144,7 @@ Navigation bar styles
     color: #6c6c6c;
 }
 .bottomNav {
+    font-weight:bold;
     margin-top:10px;
     background-color:#E9E9E9;
     color:#6c6c6c;
