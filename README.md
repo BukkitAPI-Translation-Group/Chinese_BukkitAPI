@@ -1,6 +1,4 @@
 # Chinese_BukkitAPI 翻译规范 v1.4
-__翻译前必须阅读此页！！！__
-
 ![Logo](Chinese_BukkitAPI.png)
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
