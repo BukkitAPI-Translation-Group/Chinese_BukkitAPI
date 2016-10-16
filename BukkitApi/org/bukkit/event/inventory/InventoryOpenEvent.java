@@ -69,5 +69,5 @@ public class InventoryOpenEvent extends InventoryEvent implements Cancellable {
 
     public static HandlerList getHandlerList() {
         return handlers;
-    }
+    } 
 }
