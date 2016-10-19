@@ -174,6 +174,7 @@ Magic value具体是什么意思有点难以解释, 请查阅百度百科 "Magic
    
 ### **{@linkplain 类名#成员名 显示名}**   
 跟 @link 相似, 但区别是可以自定义显示的名称. ***显示名称需要进行翻译***.  
+(注: @link 也是可以定义显示名的, 所以在某种意义上 @link 与 @linkplain 功能是一样的, 但在 @link 里定义显示名并不是规范的用法.)  
 > 获得此 {@link org.bukkit.Block} 的类型, 如果为空气则返回 {@linkplain Material#AIR AIR}.   
 
 会被JavaDoc工具解析为
