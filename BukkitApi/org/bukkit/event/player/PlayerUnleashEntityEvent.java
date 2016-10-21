@@ -6,9 +6,9 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.entity.EntityUnleashEvent;
 
 /**
- * 当一个实体由于玩家的动作释放时调用.
+ * 当一个实体被玩家解开拴绳时调用.
  * <p>
- * 译注:译者不知道“unleash”在此处的含义.
+ *
  */
 public class PlayerUnleashEntityEvent extends EntityUnleashEvent implements Cancellable {
     private final Player player;
@@ -20,7 +20,7 @@ public class PlayerUnleashEntityEvent extends EntityUnleashEvent implements Canc
     }
 
     /**
-     * 获得释放实体的玩家.
+     * 获得解开拴绳的玩家.
      * <p>
      * 原文:Returns the player who is unleashing the entity.
      *
