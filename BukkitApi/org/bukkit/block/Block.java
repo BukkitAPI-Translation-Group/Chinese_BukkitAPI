@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.Metadatable;
 
 /**
- * Represents a block. This is a live object, and only one Block may exist for
+ * 代表方块. This is a live object, and only one Block may exist for
  * any given location in a world. The state of the block may change
  * concurrently to your own handling of it; use block.getState() to get a
  * snapshot state of a block which will not be modified.
@@ -18,21 +18,25 @@ import org.bukkit.metadata.Metadatable;
 public interface Block extends Metadatable {
 
     /**
-     * Gets the metadata for this block
+     * 获取此方块的元数据.
+     * <p>
+     * 原文:Gets the metadata for this block
      *
-     * @return block specific metadata
-     * @deprecated Magic value
+     * @return 方块元数据
+     * @deprecated 不安全的参数
      */
     @Deprecated
     byte getData();
 
     /**
-     * Gets the block at the given offsets
+     * 以指定坐标偏移量获取方块 （相对与方块位置的偏移量）.
+     * <p>
+     * 原文：Gets the block at the given offsets
      *
-     * @param modX X-coordinate offset
-     * @param modY Y-coordinate offset
-     * @param modZ Z-coordinate offset
-     * @return Block at the given offsets
+     * @param modX X坐标偏移量
+     * @param modY Y坐标偏移量
+     * @param modZ Z坐标偏移量
+     * @return 在此坐标偏移量的方块
      */
     Block getRelative(int modX, int modY, int modZ);
 
@@ -66,25 +70,31 @@ public interface Block extends Metadatable {
     Block getRelative(BlockFace face, int distance);
 
     /**
-     * Gets the type of this block
+     * 获取此方块的种类.
+     * <p>
+     * 原文:Gets the type of this block
      *
-     * @return block type
+     * @return 方块种类
      */
     Material getType();
 
     /**
-     * Gets the type-id of this block
+     * 获取此方块的种类ID.
+     * <p>
+     * 原文：Gets the type-id of this block
      *
-     * @return block type-id
-     * @deprecated Magic value
+     * @return 方块种类ID
+     * @deprecated 不安全的参数
      */
     @Deprecated
     int getTypeId();
 
     /**
-     * Gets the light level between 0-15
+     * 获取此方块的光亮等级，范围0~15.
+     * <p>
+     * 原文：Gets the light level between 0-15
      *
-     * @return light level
+     * @return 光亮等级
      */
     byte getLightLevel();
 
@@ -108,30 +118,38 @@ public interface Block extends Metadatable {
     byte getLightFromBlocks();
 
     /**
-     * Gets the world which contains this Block
+     * 获取此方块所处的世界.
+     * <p>
+     * 原文：Gets the world which contains this Block
      *
-     * @return World containing this block
+     * @return 方块所处的世界
      */
     World getWorld();
 
     /**
-     * Gets the x-coordinate of this block
+     * 获取此方块的X坐标.
+     * <p>
+     * 原文：Gets the x-coordinate of this block
      *
-     * @return x-coordinate
+     * @return X坐标
      */
     int getX();
 
     /**
-     * Gets the y-coordinate of this block
+     * 获取此方块的Y坐标.
+     * <p>
+     * 原文：Gets the y-coordinate of this block
      *
-     * @return y-coordinate
+     * @return Y坐标
      */
     int getY();
 
     /**
-     * Gets the z-coordinate of this block
+     * 获取此方块的Z坐标.
+     * <p>
+     * 原文：Gets the z-coordinate of this block
      *
-     * @return z-coordinate
+     * @return Z坐标
      */
     int getZ();
 
