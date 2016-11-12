@@ -2,7 +2,7 @@
 
 ![Logo](Chinese_BukkitAPI.png)
 
-文档地址：https://docs.windit.net/Chinese_BukkitAPI/ | http://jd.ddmcloud.com/Bukkit/
+文档地址：https://docs.windit.net/Chinese_BukkitAPI/ | https://jd.ddmcloud.com/Bukkit/
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
