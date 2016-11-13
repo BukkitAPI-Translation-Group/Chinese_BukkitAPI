@@ -100,14 +100,14 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回插件数据存放文件夹.
-	 * 文件夹可能不存在.
-	 * <p>
-	 * 原文:
+     * 返回存放插件文件数据的文件夹.
+     * 文件夹可能不存在.
+     * <p>
+     * 原文:
      * Returns the folder that the plugin data's files are located in. The
      * folder may not yet exist.
      *
-     * @return 文件夹.
+     * @return 文件夹
      */
     @Override
     public final File getDataFolder() {
@@ -141,13 +141,13 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回一个值表示此插件是否开启.
+	 * 返回插件是否已正常启用.
 	 * <p>
 	 * 原文:
      * Returns a value indicating whether or not this plugin is currently
      * enabled
      *
-     * @return 返回true就是表示开启, false就表示没有开启.
+     * @return 插件是否启用
      */
     @Override
     public final boolean isEnabled() {
