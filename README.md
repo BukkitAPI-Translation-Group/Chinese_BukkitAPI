@@ -2,7 +2,8 @@
 
 ![Logo](Chinese_BukkitAPI.png)
 
-文档地址：https://docs.windit.net/Chinese_BukkitAPI/ | https://jd.ddmcloud.com/Bukkit/
+文档地址：https://docs.windit.net/Chinese_BukkitAPI/
+离线板：https://docs.windit.net/Chinese_BukkitAPI/release.zip
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
@@ -192,5 +193,5 @@ Magic value具体是什么意思有点难以解释, 请查阅百度百科 "Magic
 ## 遇到问题？
 如果您翻译时遇到了某些您不能理解的单词、专有名词、段落、概念等等，欢迎在群内提问, **在不能肯定的情况下请别擅下定论**.  
 # 提交翻译
-方法有两种，一是通过在线编辑器直接编辑，最直接。二是将项目仓库克隆下来，编辑完后推送上去。根据您的喜好选择其中一种方式吧。
-感谢您阅读本规范，祝您工作愉快^_^
+Fork本项目并作出您的修改，之后向我们发 Pull Request.
+或者您可以申请成员权限，成为成员后可以自由编辑.
