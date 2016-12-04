@@ -4,7 +4,7 @@
 
 文档地址：https://docs.windit.net/Chinese_BukkitAPI/
 
-离线板：https://docs.windit.net/Chinese_BukkitAPI/release.zip
+离线版：https://docs.windit.net/Chinese_BukkitAPI/release.zip
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
