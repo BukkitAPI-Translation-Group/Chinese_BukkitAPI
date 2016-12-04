@@ -2,7 +2,7 @@
 
 ![Logo](Chinese_BukkitAPI.png)
 
-文档地址：https://docs.windit.net/Chinese_BukkitAPI/
+文档地址：https://docs.windit.net/Chinese_BukkitAPI/ | http://jd.ddmcloud.com/Bukkit/
 
 离线版：https://docs.windit.net/Chinese_BukkitAPI/release.zip
 # 项目说明
