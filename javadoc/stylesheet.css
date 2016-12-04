@@ -582,3 +582,7 @@ div.block div.block span.interfaceName {
 div.contentContainer ul.blockList li.blockList h2{
     padding-bottom:0px;
 }
+/* InstantClick Bar */
+#instantclick-bar{
+    background: #8bc34a;
+}
