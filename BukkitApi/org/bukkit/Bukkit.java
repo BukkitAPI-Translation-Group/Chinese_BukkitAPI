@@ -1192,10 +1192,13 @@ public final class Bukkit {
     }
 
     /**
+     * 获取用户指定的可以在一个区块内生成的动物的数量的限制.
+     * <p>
+     * 原文:
      * Gets user-specified limit for number of animals that can spawn in a
      * chunk.
      *
-     * @return the animal spawn limit
+     * @return 同一区块内的动物数量限制
      */
     public static int getAnimalSpawnLimit() {
         return server.getAnimalSpawnLimit();
