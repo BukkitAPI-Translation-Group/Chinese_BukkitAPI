@@ -47,6 +47,15 @@ public class EnchantmentWrapper extends Enchantment {
     public String getName() {
         return getEnchantment().getName();
     }
+    @Override
+    public boolean isTreasure() {
+        return getEnchantment().isTreasure();
+    }
+
+    @Override
+    public boolean isCursed() {
+        return getEnchantment().isCursed();
+    }
 
     @Override
     public boolean conflictsWith(Enchantment other) {

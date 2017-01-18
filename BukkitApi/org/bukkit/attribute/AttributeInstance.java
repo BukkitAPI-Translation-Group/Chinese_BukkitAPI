@@ -70,4 +70,11 @@ public interface AttributeInstance {
      * @return 总属性值
      */
     double getValue();
+
+    /**
+     * Gets the default value of the Attribute attached to this instance.
+     *
+     * @return server default value
+     */
+    double getDefaultValue();
 }

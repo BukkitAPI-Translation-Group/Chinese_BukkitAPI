@@ -8,6 +8,7 @@ import java.util.Set;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.minecart.CommandMinecart;
@@ -64,14 +65,14 @@ public abstract class Command {
      * 原文：Executed on tab completion for this command, returning a list of
      * options the player can tab through.
      *
-     * @deprecated 这个方法已不被支持，会返回null
      * @param sender 执行此命令的对象
+     * @param alias 被使用的别名
      * @param args 传递给此命令的所有参数，用' '分割
-     * @return 指定参数的tab补全项列表.这将永远不会为null（由于被弃用，所以还是null，Ctrl+V大法好.）. 列表可能是不变的
+     * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的.
+     * @throws IllegalArgumentException 如果sender, alias, args任意一参数为null
      */
-    @Deprecated
-    public List<String> tabComplete(CommandSender sender, String[] args) {
-        return null;
+    public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
+        return tabComplete0(sender, alias, args, null);
     }
 
     /**
@@ -83,10 +84,15 @@ public abstract class Command {
      * @param sender 执行此命令的对象
      * @param alias 使用的别名
      * @param args 传递给此命令的所有参数，用' '分割
-     * @return 指定参数的tab补全项列表.这将永远不会为null（由于被弃用，所以还是null，写doc的太会CtrlV了）. 列表可能是不变的
+     * @param location The position looked at by the sender, or null if none (不懂，且依源码看，该参数无任何作用，可以传null)
+     * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的
      * @throws IllegalArgumentException 如果参数sender, alias或args为null
      */
-    public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
+    public List<String> tabComplete(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
+        return tabComplete(sender, alias, args);
+    }
+
+    private List<String> tabComplete0(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(args, "Arguments cannot be null");
         Validate.notNull(alias, "Alias cannot be null");

@@ -90,6 +90,11 @@ public abstract class Enchantment {
     public static final Enchantment FROST_WALKER = new EnchantmentWrapper(9);
 
     /**
+     * Item cannot be removed
+     */
+    public static final Enchantment BINDING_CURSE = new EnchantmentWrapper(10);
+
+    /**
      * 附魔：锋利
      * <p>
      * 原文：
@@ -136,6 +141,11 @@ public abstract class Enchantment {
      * Provides a chance of gaining extra loot when killing monsters
      */
     public static final Enchantment LOOT_BONUS_MOBS = new EnchantmentWrapper(21);
+
+    /**
+     * Increases damage against targets when using a sweep attack
+     */
+    public static final Enchantment SWEEPING_EDGE = new EnchantmentWrapper(22);
 
     /**
      * 附魔：效率
@@ -225,6 +235,11 @@ public abstract class Enchantment {
      */
     public static final Enchantment MENDING = new EnchantmentWrapper(70);
 
+    /**
+     * Item disappears instead of dropping
+     */
+    public static final Enchantment VANISHING_CURSE = new EnchantmentWrapper(71);
+
     private static final Map<Integer, Enchantment> byId = new HashMap<Integer, Enchantment>();
     private static final Map<String, Enchantment> byName = new HashMap<String, Enchantment>();
     private static boolean acceptingNew = true;
@@ -287,6 +302,25 @@ public abstract class Enchantment {
      * @return 这个附魔的目标物品.
      */
     public abstract EnchantmentTarget getItemTarget();
+
+    /**
+     * Checks if this enchantment is a treasure enchantment.
+     * <br>
+     * Treasure enchantments can only be received via looting, trading, or
+     * fishing.
+     *
+     * @return true if the enchantment is a treasure enchantment
+     */
+    public abstract boolean isTreasure();
+
+    /**
+     * Checks if this enchantment is a cursed enchantment
+     * <br>
+     * Cursed enchantments are found the same way treasure enchantments are
+     *
+     * @return true if the enchantment is cursed
+     */
+    public abstract boolean isCursed();
 
     /**
      * 检查这个附魔是否与另外的附魔冲突. 

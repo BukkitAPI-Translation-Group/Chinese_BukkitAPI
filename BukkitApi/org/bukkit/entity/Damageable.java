@@ -1,5 +1,7 @@
 package org.bukkit.entity;
 
+import org.bukkit.attribute.Attribute;
+
 /**
  * 表示一个有生命值和可以被伤害的实体({@link Entity})。
  */
@@ -114,8 +116,10 @@ public interface Damageable extends Entity {
      * <p>
      * 原文: Gets the maximum health this entity has.
      *
-     * @return Maximum health
+     * @return 最大血量
+     * @deprecated 请使用 {@link Attribute#GENERIC_MAX_HEALTH}.
      */
+    @Deprecated
     double getMaxHealth();
 
     /**
@@ -138,7 +142,7 @@ public interface Damageable extends Entity {
      * <p>
      * 如果当前血量高于这个值，那么新的血量将会设置为这个值。
      * <p>
-     * 贴士: 如果实体有血条,比如({@link Player}， {@link EnderDragon}，{@link Wither}， etc...} 也将会有他们相应的血条样式。
+     * Tips: 如果实体有血条,比如({@link Player}， {@link EnderDragon}，{@link Wither}， etc...} 也将会有他们相应的血条样式。
      * <p>
      * 原文: Sets the maximum health this entity can have.
      * <p>
@@ -149,7 +153,9 @@ public interface Damageable extends Entity {
      * {@link Wither}, etc...} will have their bar scaled accordingly.
      *
      * @param health amount of health to set the maximum to
+     * @deprecated 请使用 {@link Attribute#GENERIC_MAX_HEALTH}.
      */
+    @Deprecated
     void setMaxHealth(double health);
 
     /**
@@ -171,6 +177,8 @@ public interface Damageable extends Entity {
      * 重置最大血量为 20。
      * <p>
      * 原文: Resets the max health to the original amount.
+     * @deprecated 请使用 {@link Attribute#GENERIC_MAX_HEALTH}.
      */
+    @Deprecated
     void resetMaxHealth();
 }

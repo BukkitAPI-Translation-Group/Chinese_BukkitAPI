@@ -1,6 +1,7 @@
 package org.bukkit.block;
 
 import java.util.Collection;
+import org.bukkit.Nameable;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.potion.PotionEffect;
@@ -9,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 /**
  * 代表信标.
  */
-public interface Beacon extends BlockState, InventoryHolder {
+public interface Beacon extends BlockState, InventoryHolder, Lockable, Nameable {
 
     /**
      * Returns the list of players within the beacon's range of effect.

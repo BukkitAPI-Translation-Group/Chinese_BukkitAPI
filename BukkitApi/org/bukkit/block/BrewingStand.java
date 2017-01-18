@@ -1,12 +1,13 @@
 package org.bukkit.block;
 
+import org.bukkit.Nameable;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
  * 代表酿造台.
  */
-public interface BrewingStand extends BlockState, InventoryHolder {
+public interface BrewingStand extends BlockState, InventoryHolder, Lockable, Nameable {
 
     /**
      * 返回酿造还需多长时间.

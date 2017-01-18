@@ -903,25 +903,6 @@ public final class Bukkit {
     }
 
     /**
-     * Gets whether to use vanilla (false) or exact behaviour (true).
-     *
-     * <ul>
-     * <li>Vanilla behaviour: check for collisions and move the player if
-     *     needed.
-     * <li>Exact behaviour: spawn players exactly where they should be.
-     * </ul>
-     *
-     * @return true if exact location locations are used for spawning, false
-     *     for vanilla collision detection or otherwise
-     *
-     * @deprecated non standard and unused feature.
-     */
-    @Deprecated
-    public static boolean useExactLoginLocation() {
-        return server.useExactLoginLocation();
-    }
- 
-    /**
      * 关闭服务器，停止一切在运行的东西.
      * <p>
      * 原文:Shutdowns the server, stopping everything.
@@ -1182,6 +1163,17 @@ public final class Bukkit {
     }
 
     /**
+     * Creates an empty merchant.
+     *
+     * @param title the title of the corresponding merchant inventory, displayed
+     * when the merchant inventory is viewed
+     * @return a new merchant
+     */
+    public static Merchant createMerchant(String title) {
+        return server.createMerchant(title);
+    }
+
+    /**
      * Gets user-specified limit for number of monsters that can spawn in a
      * chunk.
      *
@@ -1390,6 +1382,16 @@ public final class Bukkit {
      */
     public static BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags) {
         return server.createBossBar(title, color, style, flags);
+    }
+
+    /**
+     * Gets an entity on the server by its UUID
+     *
+     * @param uuid the UUID of the entity
+     * @return the entity with the given UUID, or null if it isn't found
+     */
+    public static Entity getEntity(UUID uuid) {
+        return server.getEntity(uuid);
     }
 
     /**

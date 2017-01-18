@@ -29,6 +29,7 @@ import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
@@ -693,23 +694,6 @@ public interface Server extends PluginMessageRecipient {
     public boolean isHardcore();
 
     /**
-     * Gets whether to use vanilla (false) or exact behaviour (true).
-     *
-     * <ul>
-     * <li>Vanilla behaviour: check for collisions and move the player if
-     *     needed.
-     * <li>Exact behaviour: spawn players exactly where they should be.
-     * </ul>
-     *
-     * @return true if exact location locations are used for spawning, false
-     *     for vanilla collision detection or otherwise
-     *
-     * @deprecated non standard and unused feature.
-     */
-    @Deprecated
-    public boolean useExactLoginLocation();
-
-    /**
      * 彻底关闭服务器.
      * <p>
      * 原文:Shutdowns the server, stopping everything.
@@ -947,6 +931,15 @@ public interface Server extends PluginMessageRecipient {
     Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException;
 
     /**
+     * Creates an empty merchant.
+     *
+     * @param title the title of the corresponding merchant inventory, displayed
+     * when the merchant inventory is viewed
+     * @return a new merchant
+     */
+    Merchant createMerchant(String title);
+
+    /**
      * 获取一个区块最大可生成怪物数
      * <p>
      * 原文:Gets user-specified limit for number of monsters that can spawn in a
@@ -1142,6 +1135,14 @@ public interface Server extends PluginMessageRecipient {
      * @return 创建的Boss血量条实例
      */
     BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
+
+    /**
+     * Gets an entity on the server by its UUID
+     *
+     * @param uuid the UUID of the entity
+     * @return the entity with the given UUID, or null if it isn't found
+     */
+    Entity getEntity(UUID uuid);
 
     /**
      * @see UnsafeValues

@@ -1,12 +1,13 @@
 package org.bukkit.block;
 
+import org.bukkit.Nameable;
 import org.bukkit.inventory.FurnaceInventory;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
  * 代表一个熔炉.
  */
-public interface Furnace extends BlockState, InventoryHolder {
+public interface Furnace extends BlockState, InventoryHolder, Lockable, Nameable {
 
     /**
      * 获取燃烧时间.

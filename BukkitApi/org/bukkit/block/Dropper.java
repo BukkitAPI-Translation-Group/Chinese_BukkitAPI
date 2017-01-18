@@ -1,11 +1,12 @@
 package org.bukkit.block;
 
+import org.bukkit.Nameable;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
  * 代表一个投掷器.
  */
-public interface Dropper extends BlockState, InventoryHolder {
+public interface Dropper extends BlockState, InventoryHolder, Lockable, Nameable {
     /**
      * 一个投掷器的正常行为是尝试从投掷器类型的背包随机进行投掷物品.
      * <p>

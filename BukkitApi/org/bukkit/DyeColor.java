@@ -93,22 +93,6 @@ public enum DyeColor {
     }
 
     /**
-     * 获取相关值(羊毛)的数据表示的颜色.
-     * <p>
-     * 原文:
-     * Gets the associated (wool) data value representing this color.
-     *
-     * @return 包含这种颜色(羊毛)的数据值字节
-     * @deprecated 这个名称具有误导性.但这将意味着{@link Material#INK_SACK}使用{@link Material#WOOL}.
-     * @see #getWoolData()
-     * @see #getDyeData()
-     */
-    @Deprecated
-    public byte getData() {
-        return getWoolData();
-    }
-
-    /**
      * 获取这个颜色代表的相关羊毛的数据值.
      * <p>
      * 原文:
@@ -160,24 +144,6 @@ public enum DyeColor {
      */
     public Color getFireworkColor() {
         return firework;
-    }
-
-    /**
-     * 获取给定的(羊毛)数据值的染料颜色.
-     * <p>
-     * 原文:
-     * Gets the DyeColor with the given (wool) data value.
-     *
-     * @param data 要获取的(羊毛)数据值
-     * @return The {@link DyeColor} representing the given value, or null if
-     *     it doesn't exist
-     * @deprecated 这个名称具有误导性.但这将意味着{@link Material#INK_SACK}使用{@link Material#WOOL}.
-     * @see #getByDyeData(byte)
-     * @see #getByWoolData(byte)
-     */
-    @Deprecated
-    public static DyeColor getByData(final byte data) {
-        return getByWoolData(data);
     }
 
     /**

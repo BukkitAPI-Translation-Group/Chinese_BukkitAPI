@@ -1,12 +1,13 @@
 package org.bukkit.block;
 
+import org.bukkit.Nameable;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
 /**
  * 代表一个箱子.
  */
-public interface Chest extends BlockState, InventoryHolder {
+public interface Chest extends BlockState, InventoryHolder, Lockable, Nameable {
 
     /**
      * 返回箱子类型的背包。如果这是大型箱子，也将返回此类型背包.

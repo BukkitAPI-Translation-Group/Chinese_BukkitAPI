@@ -1,6 +1,7 @@
 package org.bukkit.command;
 
 import java.util.List;
+import org.bukkit.Location;
 
 public interface CommandMap {
 
@@ -91,6 +92,7 @@ public interface CommandMap {
      * @throws CommandException 当给定命令的执行器执行命令时有异常未处理原文则抛出
      */
     public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException;
+
     /**
      * 清除所有已注册命令.
      * <p>
@@ -107,6 +109,7 @@ public interface CommandMap {
      * @return 指定名称的Cimmand，如果不存在指定名称/别名的命令则返回false
      */
     public Command getCommand(String name);
+
     /**
      * 查找请求的命令并执行适当的tab补全器，如果找到了.
      * <p>
@@ -121,4 +124,21 @@ public interface CommandMap {
      * @throws IllegalArgumentException 如果sender或cmdLine其一为null
      */
     public List<String> tabComplete(CommandSender sender, String cmdLine) throws IllegalArgumentException;
+
+    /**
+     * Looks for the requested command and executes an appropriate
+     * tab-completer if found. This method will also tab-complete partial
+     * commands.
+     *
+     * @param sender The command's sender.
+     * @param cmdLine The entire command string to tab-complete, excluding
+     *     initial slash.
+     * @param location The position looked at by the sender, or null if none
+     * @return a list of possible tab-completions. This list may be immutable.
+     *     Will be null if no matching command of which sender has permission.
+     * @throws CommandException Thrown when the tab-completer for the given
+     *     command fails with an unhandled exception
+     * @throws IllegalArgumentException if either sender or cmdLine are null
+     */
+    public List<String> tabComplete(CommandSender sender, String cmdLine, Location location) throws IllegalArgumentException;
 }
