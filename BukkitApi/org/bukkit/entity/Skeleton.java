@@ -11,21 +11,21 @@ public interface Skeleton extends Monster {
      * 原文:Gets the current type of this skeleton.
      *
      * @return 当前的种类
+     * @deprecated 应检查这是什么类实例
      */
+    @Deprecated
     public SkeletonType getSkeletonType();
 
     /**
-     * 设置骷髅的新种类.
-     * <p>
-     * 原文:Sets the new type of this skeleton.
-     *
-     * @param type 新的种类
+     * @deprecated Must spawn a new subtype variant
      */
+    @Deprecated
     public void setSkeletonType(SkeletonType type);
 
     /*
-     * 代表各种不同的骷髅种类.
+     * @deprecated classes are different types
      */
+    @Deprecated
     public enum SkeletonType {
 
         /**

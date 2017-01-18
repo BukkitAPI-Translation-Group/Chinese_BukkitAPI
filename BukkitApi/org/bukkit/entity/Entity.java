@@ -1,7 +1,9 @@
+/* 该文件会随着版本的更新而大幅度修改，因此建议你不要翻译标记为Deprecated的方法. */
 package org.bukkit.entity;
 
 import org.bukkit.Location;
 import org.bukkit.EntityEffect;
+import org.bukkit.Nameable;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -9,6 +11,7 @@ import org.bukkit.metadata.Metadatable;
 import org.bukkit.util.Vector;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
@@ -16,7 +19,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 /**
  * Represents a base entity in the world
  */
-public interface Entity extends Metadatable, CommandSender {
+public interface Entity extends Metadatable, CommandSender, Nameable {
 
     /**
      * Gets the entity's current position
@@ -177,30 +180,62 @@ public interface Entity extends Metadatable, CommandSender {
      * multiple passengers, this will only return the primary passenger.
      *
      * @return an entity
+     * @deprecated entities may have multiple passengers, use
+     * {@link #getPassengers()}
      */
-    public abstract Entity getPassenger();
+    @Deprecated
+    public Entity getPassenger();
 
     /**
      * Set the passenger of a vehicle.
      *
      * @param passenger The new passenger.
      * @return false if it could not be done for whatever reason
+     * @deprecated entities may have multiple passengers, use
+     * {@link #getPassengers()}
      */
-    public abstract boolean setPassenger(Entity passenger);
+    @Deprecated
+    public boolean setPassenger(Entity passenger);
+
+    /**
+     * Gets a list of passengers of this vehicle.
+     * <p>
+     * The returned list will not be directly linked to the entity's current
+     * passengers, and no guarantees are made as to its mutability.
+     *
+     * @return list of entities corresponding to current passengers.
+     */
+    public List<Entity> getPassengers();
+
+    /**
+     * Add a passenger to the vehicle.
+     *
+     * @param passenger The passenger to add
+     * @return false if it could not be done for whatever reason
+     */
+    public boolean addPassenger(Entity passenger);
+
+    /**
+     * Remove a passenger from the vehicle.
+     *
+     * @param passenger The passenger to remove
+     * @return false if it could not be done for whatever reason
+     */
+    public boolean removePassenger(Entity passenger);
 
     /**
      * Check if a vehicle has passengers.
      *
      * @return True if the vehicle has no passengers.
      */
-    public abstract boolean isEmpty();
+    public boolean isEmpty();
 
     /**
      * Eject any passenger.
      *
      * @return True if there was a passenger.
      */
-    public abstract boolean eject();
+    public boolean eject();
 
     /**
      * Returns the distance this entity has fallen
@@ -299,30 +334,6 @@ public interface Entity extends Metadatable, CommandSender {
     public Entity getVehicle();
 
     /**
-     * Sets a custom name on a mob. This name will be used in death messages
-     * and can be sent to the client as a nameplate over the mob.
-     * <p>
-     * Setting the name to null or an empty string will clear it.
-     * <p>
-     * This value has no effect on players, they will always use their real
-     * name.
-     *
-     * @param name the name to set
-     */
-    public void setCustomName(String name);
-
-    /**
-     * Gets the custom name on a mob. If there is no name this method will
-     * return null.
-     * <p>
-     * This value has no effect on players, they will always use their real
-     * name.
-     *
-     * @return name of the mob or null
-     */
-    public String getCustomName();
-
-    /**
      * Sets whether or not to display the mob's custom name client side. The
      * name will be displayed above the mob similarly to a player.
      * <p>
@@ -403,4 +414,45 @@ public interface Entity extends Metadatable, CommandSender {
      * @param gravity whether gravity should apply
      */
     void setGravity(boolean gravity);
+
+    /**
+     * Gets the period of time (in ticks) before this entity can use a portal.
+     *
+     * @return portal cooldown ticks
+     */
+    int getPortalCooldown();
+
+    /**
+     * Sets the period of time (in ticks) before this entity can use a portal.
+     *
+     * @param cooldown portal cooldown ticks
+     */
+    void setPortalCooldown(int cooldown);
+
+    /**
+     * Returns a set of tags for this entity.
+     * <br>
+     * Entities can have no more than 1024 tags.
+     *
+     * @return a set of tags for this entity
+     */
+    Set<String> getScoreboardTags();
+
+    /**
+     * Add a tag to this entity.
+     * <br>
+     * Entities can have no more than 1024 tags.
+     *
+     * @param tag the tag to add
+     * @return true if the tag was successfully added
+     */
+    boolean addScoreboardTag(String tag);
+
+    /**
+     * Removes a given tag from this entity.
+     *
+     * @param tag the tag to remove
+     * @return true if the tag was successfully removed
+     */
+    boolean removeScoreboardTag(String tag);
 }

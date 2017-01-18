@@ -120,20 +120,33 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
     public void openInventory(InventoryView inventory);
 
     /**
-     * 创建一个玩家与村民间的交易。
+     * 创建一个玩家与村民间的交易.
      * 
-     * 注意一个村民同时只能有一名玩家交易。因此必须使用force参数。
+     * 注意一个村民同时只能有一名玩家交易。因此必须使用force参数.
      * 原文：
      * Starts a trade between the player and the villager.
      *
      * Note that only one player may trade with a villager at once. You must use
      * the force parameter for this.
      *
-     * @param trader 交易的村民。不能为空。
-     * @param force 如果当前有另一名玩家正在交易是否强制创建交易。
-     * @return 如果打开成功则返回最近被打开的库存视图，否则返回null。
+     * @param trader 交易的村民。不能为空
+     * @param force 如果当前有另一名玩家正在交易是否强制创建交易
+     * @return 如果打开成功则返回最近被打开的库存视图，否则返回null
      */
     public InventoryView openMerchant(Villager trader, boolean force);
+
+    /**
+     * Starts a trade between the player and the merchant.
+     *
+     * Note that only one player may trade with a merchant at once. You must use
+     * the force parameter for this.
+     *
+     * @param merchant The merchant to trade with. Cannot be null.
+     * @param force whether to force the trade even if another player is trading
+     * @return The newly opened inventory view, or null if it could not be
+     * opened.
+     */
+    public InventoryView openMerchant(Merchant merchant, boolean force);
 
     /**
      * 强制关闭指定玩家当前打开的库存视图。
@@ -230,6 +243,14 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * @return 是否正在格挡。
      */
     public boolean isBlocking();
+
+    /**
+     * Check if the player currently has their hand raised (ie about to begin
+     * blocking).
+     *
+     * @return Whether their hand is raised
+     */
+    public boolean isHandRaised();
 
     /**
      * 获取玩家升级所需经验总额

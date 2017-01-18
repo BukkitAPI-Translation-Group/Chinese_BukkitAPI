@@ -13,6 +13,7 @@ import org.bukkit.Note;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
 import org.bukkit.Sound;
+import org.bukkit.SoundCategory;
 import org.bukkit.Statistic;
 import org.bukkit.WeatherType;
 import org.bukkit.command.CommandSender;
@@ -302,6 +303,34 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void playSound(Location location, String sound, float volume, float pitch);
 
     /**
+     * Play a sound for a player at the location.
+     * <p>
+     * This function will fail silently if Location or Sound are null.
+     *
+     * @param location The location to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    public void playSound(Location location, Sound sound, SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a sound for a player at the location.
+     * <p>
+     * This function will fail silently if Location or Sound are null. No sound
+     * will be heard by the player if their client does not have the respective
+     * sound for the value passed.
+     *
+     * @param location the location to play the sound
+     * @param sound the internal sound name to play
+     * @param category The category of the sound
+     * @param volume the volume of the sound
+     * @param pitch the pitch of the sound
+     */
+    public void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
+
+    /**
      * Stop the specified sound from playing.
      *
      * @param sound the sound to stop
@@ -314,6 +343,23 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @param sound the sound to stop
      */
     public void stopSound(String sound);
+
+
+    /**
+     * Stop the specified sound from playing.
+     *
+     * @param sound the sound to stop
+     * @param category the category of the sound
+     */
+    public void stopSound(Sound sound, SoundCategory category);
+
+    /**
+     * Stop the specified sound from playing.
+     *
+     * @param sound the sound to stop
+     * @param category the category of the sound
+     */
+    public void stopSound(String sound, SoundCategory category);
 
     /**
      * 在某个位置({@link Location})向玩家播放一个粒子效果({@link Effect}). <p>
@@ -1033,20 +1079,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public boolean canSee(Player player);
 
     /**
-     * 检查玩家是否在地面上(脚下是否为不是空气方块). <p>
-     * 这个方法得到的值不一定可靠,因为它是来自客户端的. <p>
-     * 原文:Checks to see if this player is currently standing on a block. This
-     * information may not be reliable, as it is a state provided by the
-     * client, and may therefore not be accurate.
-     *
-     * @return true表示该玩家站在一个不为空气的方块上,false反之.
-     * @deprecated 不符合 {@link
-     *     org.bukkit.entity.Entity#isOnGround()}
-     */
-    @Deprecated
-    public boolean isOnGround();
-
-    /**
      * 检查玩家是否在飞. <p>
      * 原文:Checks to see if this player is currently flying or not.
      *
@@ -1272,20 +1304,36 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * values are null, they will not be sent and the display will remain
      * unchanged. If they are empty strings, the display will be updated as
      * such. If the strings contain a new line, only the first line will be
-     * sent.
+     * sent. The titles will be displayed with the client's default timings.
      *
      * @param title Title text
      * @param subtitle Subtitle text
-     * @deprecated API subject to change
+     * @deprecated API behavior subject to change
      */
     @Deprecated
     public void sendTitle(String title, String subtitle);
 
     /**
-     * Resets the title displayed to the player.
-     * @deprecated API subject to change.
+     * Sends a title and a subtitle message to the player. If either of these
+     * values are null, they will not be sent and the display will remain
+     * unchanged. If they are empty strings, the display will be updated as
+     * such. If the strings contain a new line, only the first line will be
+     * sent. All timings values may take a value of -1 to indicate that they
+     * will use the last value sent (or the defaults if no title has been
+     * displayed).
+     *
+     * @param title Title text
+     * @param subtitle Subtitle text
+     * @param fadeIn time in ticks for titles to fade in. Defaults to 10.
+     * @param stay time in ticks for titles to stay. Defaults to 70.
+     * @param fadeOut time in ticks for titles to fade out. Defaults to 20.
      */
-    @Deprecated
+    public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
+
+    /**
+     * Resets the title displayed to the player. This will clear the displayed
+     * title / subtitle and reset timings to their default values.
+     */
     public void resetTitle();
 
     /**
