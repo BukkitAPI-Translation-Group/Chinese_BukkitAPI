@@ -596,7 +596,7 @@ public enum Material {
      *
      * @param raw 用来构造MaterialData的初始数据
      * @return 给定值的MaterialData对象
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public MaterialData getNewData(final byte raw) {
@@ -679,7 +679,7 @@ public enum Material {
      *
      * @param id 用来获取Material对象的id
      * @return 如果找不到返回null,否则返回Material对象
-     * @deprecated 魔法值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public static Material getMaterial(final int id) {
