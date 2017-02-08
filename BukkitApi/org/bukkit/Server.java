@@ -667,7 +667,7 @@ public interface Server extends PluginMessageRecipient {
     public void setSpawnRadius(int value);
 
     /**
-     * 获得服务器是否开启了生存模式.
+     * 获得服务器是否开启了正版模式.
      * <p>
      * 原文:Gets whether the Server is in online mode or not.
      *
