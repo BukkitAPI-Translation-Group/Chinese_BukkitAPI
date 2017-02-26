@@ -412,9 +412,14 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public EntityEquipment getEquipment();
 
     /**
-     * 设置生物实体是否能捡拾物品。
+     * 设置生物实体是否能捡拾物品.
+	 * <p>
+     * 该方法在 {@link HumanEntity} 上无效.
+	 * <p>
      * 原文：
      * Sets whether or not the living entity can pick up items.
+	 * <p>
+     * This method has no effect on a {@link HumanEntity}.
      *
      * @param pickup 生物实体是否能捡拾物品
      */

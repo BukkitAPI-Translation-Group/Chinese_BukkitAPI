@@ -1385,10 +1385,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets an entity on the server by its UUID
+	 * 用UUID获取实体.
+	 * <p>
+     * 原文:Gets an entity on the server by its UUID
      *
-     * @param uuid the UUID of the entity
-     * @return the entity with the given UUID, or null if it isn't found
+     * @param uuid 实体的UUID
+     * @return 该UUID代表的实体，如果不存在为null
      */
     public static Entity getEntity(UUID uuid) {
         return server.getEntity(uuid);

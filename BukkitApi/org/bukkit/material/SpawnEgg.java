@@ -2,11 +2,13 @@ package org.bukkit.material;
 
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SpawnEggMeta;
 
 /**
  * 代表刷怪蛋.
+ * @deprecated 请使用 {@link SpawnEggMeta}
  */
+@Deprecated
 public class SpawnEgg extends MaterialData {
 
     public SpawnEgg() {
@@ -43,7 +45,7 @@ public class SpawnEgg extends MaterialData {
      * 原文:Get the type of entity this egg will spawn.
      *
      * @return 实体种类
-     * @deprecated 现存储在 {@link ItemMeta}. 参见 SPIGOT-1592.
+     * @deprecated 现存储在 {@link SpawnEggMeta}.
      */
     @Deprecated
     public EntityType getSpawnedType() {
@@ -56,7 +58,7 @@ public class SpawnEgg extends MaterialData {
      * 原文:Set the type of entity this egg will spawn.
      *
      * @param type 实体种类
-     * @deprecated 现存储在 {@link ItemMeta}. 参见 SPIGOT-1592.
+     * @deprecated 现存储在 {@link SpawnEggMeta}.
      */
     @Deprecated
     public void setSpawnedType(EntityType type) {

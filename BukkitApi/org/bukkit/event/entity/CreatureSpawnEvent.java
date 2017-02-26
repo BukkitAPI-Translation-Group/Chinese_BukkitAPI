@@ -101,13 +101,6 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          */
         LIGHTNING,
         /**
-         * 当生物由于玩家睡觉而生成时
-         *
-         * @deprecated 已不再使用
-         */
-        @Deprecated
-        BED,
-        /**
          * 当雪人被建造时
          */
         BUILD_SNOWMAN,

@@ -61,7 +61,9 @@ import org.bukkit.material.WoodenStep;
 import org.bukkit.material.Wool;
 
 import com.google.common.collect.Maps;
+
 import org.bukkit.material.Banner;
+import org.bukkit.material.Observer;
 
 /**
  * 所有物品的枚举.
@@ -285,6 +287,23 @@ public enum Material {
     RED_NETHER_BRICK(215),
     BONE_BLOCK(216),
     STRUCTURE_VOID(217),
+	OBSERVER(218, Observer.class),
+    WHITE_SHULKER_BOX(219, 1),
+    ORANGE_SHULKER_BOX(220, 1),
+    MAGENTA_SHULKER_BOX(221, 1),
+    LIGHT_BLUE_SHULKER_BOX(222, 1),
+    YELLOW_SHULKER_BOX(223, 1),
+    LIME_SHULKER_BOX(224, 1),
+    PINK_SHULKER_BOX(225, 1),
+    GRAY_SHULKER_BOX(226, 1),
+    SILVER_SHULKER_BOX(227, 1),
+    CYAN_SHULKER_BOX(228, 1),
+    PURPLE_SHULKER_BOX(229, 1),
+    BLUE_SHULKER_BOX(230, 1),
+    BROWN_SHULKER_BOX(231, 1),
+    GREEN_SHULKER_BOX(232, 1),
+    RED_SHULKER_BOX(233, 1),
+    BLACK_SHULKER_BOX(234, 1),
     STRUCTURE_BLOCK(255),
     // ----- Item Separator -----
     IRON_SPADE(256, 1, 250),
@@ -487,6 +506,9 @@ public enum Material {
     BOAT_JUNGLE(446, 1),
     BOAT_ACACIA(447, 1),
     BOAT_DARK_OAK(448, 1),
+	TOTEM(449, 1),
+    SHULKER_SHELL(450),
+    IRON_NUGGET(452),
     GOLD_RECORD(2256, 1),
     GREEN_RECORD(2257, 1),
     RECORD_3(2258, 1),
@@ -764,7 +786,7 @@ public enum Material {
     }
 
     /**
-     * 检测物品是否为固体方块(玩家不可穿过).
+     * 检测物品是否为固体方块(可被放置).
      * <p>
      * 原文:Check if the material is a block and solid (cannot be passed through by
      * a player)
@@ -940,6 +962,23 @@ public enum Material {
             case NETHER_WART_BLOCK:
             case RED_NETHER_BRICK:
             case BONE_BLOCK:
+			case OBSERVER:
+            case WHITE_SHULKER_BOX:
+            case ORANGE_SHULKER_BOX:
+            case MAGENTA_SHULKER_BOX:
+            case LIGHT_BLUE_SHULKER_BOX:
+            case YELLOW_SHULKER_BOX:
+            case LIME_SHULKER_BOX:
+            case PINK_SHULKER_BOX:
+            case GRAY_SHULKER_BOX:
+            case SILVER_SHULKER_BOX:
+            case CYAN_SHULKER_BOX:
+            case PURPLE_SHULKER_BOX:
+            case BLUE_SHULKER_BOX:
+            case BROWN_SHULKER_BOX:
+            case GREEN_SHULKER_BOX:
+            case RED_SHULKER_BOX:
+            case BLACK_SHULKER_BOX:
                 return true;
             default:
                 return false;

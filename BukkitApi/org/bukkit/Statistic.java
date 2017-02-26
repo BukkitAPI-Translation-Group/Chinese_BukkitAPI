@@ -11,8 +11,6 @@ public enum Statistic {
     PLAYER_KILLS,
     FISH_CAUGHT,
     ANIMALS_BRED,
-    TREASURE_FISHED,
-    JUNK_FISHED,
     LEAVE_GAME,
     JUMP,
     DROP(Type.ITEM),
@@ -61,7 +59,8 @@ public enum Statistic {
     FURNACE_INTERACTION,
     CRAFTING_TABLE_INTERACTION,
     CHEST_OPENED,
-    SLEEP_IN_BED;
+    SLEEP_IN_BED,
+    SHULKER_BOX_OPENED;
 
     private final Type type;
 

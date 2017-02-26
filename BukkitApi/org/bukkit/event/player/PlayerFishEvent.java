@@ -17,18 +17,6 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     private final State state;
     private final Fish hookEntity;
 
-    /**
-     * @deprecated 已被{@link #PlayerFishEvent(Player, Entity, Fish,
-     *     State)}取代，以包含{@link Fish 上钩的实体}
-     * @param player 正在钓鱼的玩家
-     * @param entity 捕捉到的实体
-     * @param state 钓鱼状态
-     */
-    @Deprecated
-    public PlayerFishEvent(final Player player, final Entity entity, final State state) {
-        this(player, entity, null, state);
-    }
-
     public PlayerFishEvent(final Player player, final Entity entity, final Fish hookEntity, final State state) {
         super(player);
         this.entity = entity;

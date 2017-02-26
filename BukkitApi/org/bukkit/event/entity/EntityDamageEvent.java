@@ -31,11 +31,6 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     private final DamageCause cause;
 
     @Deprecated
-    public EntityDamageEvent(final Entity damagee, final DamageCause cause, final int damage) {
-        this(damagee, cause, (double) damage);
-    }
-
-    @Deprecated
     public EntityDamageEvent(final Entity damagee, final DamageCause cause, final double damage) {
         this(damagee, cause, new EnumMap<DamageModifier, Double>(ImmutableMap.of(DamageModifier.BASE, damage)), new EnumMap<DamageModifier, Function<? super Double, Double>>(ImmutableMap.of(DamageModifier.BASE, ZERO)));
     }
@@ -333,6 +328,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * Damage: variable
          */
         ENTITY_ATTACK,
+		/**
+         * Damage caused when an entity attacks another entity in a sweep attack.
+         * <p>
+         * Damage: variable
+         */
+        ENTITY_SWEEP_ATTACK,
         /**
          * Damage caused when attacked by a projectile.
          * <p>
@@ -472,6 +473,13 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * <p>
          * Damage: 1
          */
-        HOT_FLOOR
+        HOT_FLOOR,
+        /**
+         * Damage caused when an entity is colliding with too many entities due
+         * to the maxEntityCramming game rule.
+         * <p>
+         * Damage: 6
+         */
+        CRAMMING
     }
 }

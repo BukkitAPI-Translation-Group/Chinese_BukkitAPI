@@ -80,7 +80,6 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     private static final HandlerList handlers = new HandlerList();
     private boolean cancel = false;
     private String message;
-    private String format = "<%1$s> %2$s";
     private final Set<Player> recipients;
 
     public PlayerCommandPreprocessEvent(final Player player, final String message) {
@@ -150,38 +149,6 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     public void setPlayer(final Player player) throws IllegalArgumentException {
         Validate.notNull(player, "Player cannot be null");
         this.player = player;
-    }
-
-    /**
-     * 
-     *
-     * @deprecated 该方法虽然向后兼容版本,但可能版本不同格式不同
-     * @return 返回聊天格式字符串
-     */
-    @Deprecated
-    public String getFormat() {
-        return format;
-    }
-
-    /**
-     * 设置这个消息展示的格式.
-     * <p>
-     * 原文:Sets the format to use to display this chat message
-     *
-     * @deprecated 向后兼容,不确保每个版本都有效
-     * @param format 消息展示给别的玩家的格式
-     */
-    @Deprecated
-    public void setFormat(final String format) {
-        // Oh for a better way to do this!
-        try {
-            String.format(format, player, message);
-        } catch (RuntimeException ex) {
-            ex.fillInStackTrace();
-            throw ex;
-        }
-
-        this.format = format;
     }
 
     /**

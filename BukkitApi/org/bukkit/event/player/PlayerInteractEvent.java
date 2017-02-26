@@ -11,9 +11,12 @@ import org.bukkit.event.block.Action;
 import org.bukkit.inventory.EquipmentSlot;
 
 /**
- * 当玩家与一个方块/空气/压力板交互时触发. 
+ * Represents an event that is called when a player interacts with an object or
+ * air, potentially fired once for each hand. The hand can be determined using
+ * {@link #getHand()}.
  * <p>
- * 如果这个事件不会触发任何现象(例如点击空气)则默认会被设为取消状态.
+ * This event will fire as cancelled if the vanilla behavior
+ * is to do nothing (e.g interacting with air)
  */
 public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

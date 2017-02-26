@@ -13,8 +13,10 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.*;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
+import org.bukkit.util.Consumer;
 import org.bukkit.util.Vector;
 
 /**
@@ -75,27 +77,22 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getBlockTypeIdAt(Location location);
 
     /**
-     * 获取指定坐标的最顶上的方块的Y坐标(不是空气).
-     * <p>
-     * 译注：就是说,获取某个坐标最上面的方块的高度(Y坐标).Essentials插件的top命令就是这个原理.
-     * <p>
-     * 原文：Gets the highest non-air coordinate at the given coordinates
+     * Gets the y coordinate of the lowest block at this position such that the
+     * block and all blocks above it are transparent for lighting purposes.
      *
-     * @param x 给定的X坐标
-     * @param z 给定的Z坐标
-     * @return 在x,y位置的最高的方块的高度(忽略空气)
+     * @param x X-coordinate of the blocks
+     * @param z Z-coordinate of the blocks
+     * @return Y-coordinate of the described block
      */
     public int getHighestBlockYAt(int x, int z);
 
     /**
-     * 获取指定{@link Location 位置}的最顶上的方块的Y坐标(不是空气).
-     * <p>
-     * 译注：就是说,获取某个坐标最上面的方块的高度(Y坐标).Essentials插件的top就是这个原理.
-     * <p>
-     * 原文：Gets the highest non-air coordinate at the given {@link Location}
+     * Gets the y coordinate of the lowest block at the given {@link Location}
+     * such that the block and all blocks above it are transparent for lighting
+     * purposes.
      *
-     * @param location 给定的位置({@link Location})
-     * @return 在给定的位置中的x坐标,y坐标位置中最高的方块的高度(忽略空气)
+     * @param location Location of the blocks
+     * @return Y-coordinate of the highest non-air block
      */
     public int getHighestBlockYAt(Location location);
 
@@ -912,6 +909,40 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException;
 
     /**
+     * Spawn an entity of a specific class at the given {@link Location}, with
+     * the supplied function run before the entity is added to the world.
+     * <br>
+     * Note that when the function is run, the entity will not be actually in
+     * the world. Any operation involving such as teleporting the entity is undefined
+     * until after this function returns.
+     *
+     * @param location the {@link Location} to spawn the entity at
+     * @param clazz the class of the {@link Entity} to spawn
+     * @param function the function to be run before the entity is spawned.
+     * @param <T> the class of the {@link Entity} to spawn
+     * @return an instance of the spawned {@link Entity}
+     * @throws IllegalArgumentException if either parameter is null or the
+     *     {@link Entity} requested cannot be spawned
+     */
+    public <T extends Entity> T spawn(Location location, Class<T> clazz, Consumer<T> function) throws IllegalArgumentException;
+
+    /**
+     * Spawn a {@link FallingBlock} entity at the given {@link Location} of
+     * the specified {@link Material}. The material dictates what is falling.
+     * When the FallingBlock hits the ground, it will place that block.
+     * <p>
+     * The Material must be a block type, check with {@link Material#isBlock()
+     * material.isBlock()}. The Material may not be air.
+     *
+     * @param location The {@link Location} to spawn the FallingBlock
+     * @param data The block data
+     * @return The spawned {@link FallingBlock} instance
+     * @throws IllegalArgumentException if {@link Location} or {@link
+     *     MaterialData} are null or {@link Material} of the {@link MaterialData} is not a block
+     */
+    public FallingBlock spawnFallingBlock(Location location, MaterialData data) throws IllegalArgumentException;
+
+    /**
      * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 正在下落的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
      * <p>
      * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
@@ -1541,6 +1572,34 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param pitch the pitch of the sound
      */
     void playSound(Location location, String sound, float volume, float pitch);
+
+	/**
+     * Play a Sound at the provided Location in the World.
+     * <p>
+     * This function will fail silently if Location or Sound are null.
+     *
+     * @param location The location to play the sound
+     * @param sound The sound to play
+     * @param category the category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    void playSound(Location location, Sound sound, SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a Sound at the provided Location in the World.
+     * <p>
+     * This function will fail silently if Location or Sound are null. No sound
+     * will be heard by the players if their clients do not have the respective
+     * sound for the value passed.
+     *
+     * @param location the location to play the sound
+     * @param sound the internal sound name to play
+     * @param category the category of the sound
+     * @param volume the volume of the sound
+     * @param pitch the pitch of the sound
+     */
+    void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
 
     /**
      * 获取当前的游戏规则。

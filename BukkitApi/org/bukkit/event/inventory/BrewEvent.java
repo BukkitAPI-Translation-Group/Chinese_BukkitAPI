@@ -12,11 +12,13 @@ import org.bukkit.inventory.BrewerInventory;
 public class BrewEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private BrewerInventory contents;
+	private int fuelLevel;
     private boolean cancelled;
 
-    public BrewEvent(Block brewer, BrewerInventory contents) {
+    public BrewEvent(Block brewer, BrewerInventory contents, int fuelLevel) {
         super(brewer);
         this.contents = contents;
+        this.fuelLevel = fuelLevel;
     }
 
     /**
@@ -28,6 +30,15 @@ public class BrewEvent extends BlockEvent implements Cancellable {
      */
     public BrewerInventory getContents() {
         return contents;
+    }
+
+	/**
+     * Gets the remaining fuel level.
+     *
+     * @return the remaining fuel
+     */
+    public int getFuelLevel() {
+        return fuelLevel;
     }
 
     public boolean isCancelled() {

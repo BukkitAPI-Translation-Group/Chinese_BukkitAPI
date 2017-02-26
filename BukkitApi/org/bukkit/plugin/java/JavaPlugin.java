@@ -67,30 +67,6 @@ public abstract class JavaPlugin extends PluginBase {
         ((PluginClassLoader) classLoader).initialize(this);
     }
 
-    /**
-     * @deprecated 这个方法在单元测试时使用, 其它时候不能使用, 它的存在可能是暂时的.
-	 * <p>
-	 * 原文:
-     * @deprecated This method is intended for unit testing purposes when the
-     *     other {@linkplain #JavaPlugin(JavaPluginLoader,
-     *     PluginDescriptionFile, File, File) constructor} cannot be used.
-     *     <p>
-     *     Its existence may be temporary.
-     * @param loader 插件加载器
-     * @param server 服务器对象
-     * @param description 插件的描述
-     * @param dataFolder 插件的数据文件夹
-     * @param file 插件文件的位置
-     */
-    @Deprecated
-    protected JavaPlugin(final PluginLoader loader, final Server server, final PluginDescriptionFile description, final File dataFolder, final File file) {
-        final ClassLoader classLoader = this.getClass().getClassLoader();
-        if (classLoader instanceof PluginClassLoader) {
-            throw new IllegalStateException("Cannot use initialization constructor at runtime");
-        }
-        init(loader, server, description, dataFolder, file, classLoader);
-    }
-
     protected JavaPlugin(final JavaPluginLoader loader, final PluginDescriptionFile description, final File dataFolder, final File file) {
         final ClassLoader classLoader = this.getClass().getClassLoader();
         if (classLoader instanceof PluginClassLoader) {
@@ -331,24 +307,6 @@ public abstract class JavaPlugin extends PluginBase {
         }
     }
 
-    /**
-     * @param loader 插件加载器
-     * @param server 服务器对象
-     * @param description 插件的描述
-     * @param dataFolder 插件的数据文件夹
-     * @param file 插件文件的位置
-     * @param classLoader 类加载器
-     * @deprecated 这个方法已被废弃, 将要被移除 - 它们必须
-     *     由专门的构造器替换
-     */
-    @Deprecated
-    protected final void initialize(PluginLoader loader, Server server, PluginDescriptionFile description, File dataFolder, File file, ClassLoader classLoader) {
-        if (server.getWarningState() == WarningState.OFF) {
-            return;
-        }
-        getLogger().log(Level.WARNING, getClass().getName() + " is already initialized", server.getWarningState() == WarningState.DEFAULT ? null : new AuthorNagException("Explicit initialization"));
-    }
-
     final void init(PluginLoader loader, Server server, PluginDescriptionFile description, File dataFolder, File file, ClassLoader classLoader) {
         this.loader = loader;
         this.server = server;
@@ -397,21 +355,6 @@ public abstract class JavaPlugin extends PluginBase {
         input = input.replaceAll("\\{DIR\\}", dataFolder.getPath().replaceAll("\\\\", "/") + "/");
         input = input.replaceAll("\\{NAME\\}", description.getName().replaceAll("[^\\w_-]", ""));
         return input;
-    }
-
-    /**
-	 * 获取此插件的初始化状态.
-	 * <p>
-	 * 原文:
-     * Gets the initialization status of this plugin
-     *
-     * @return true表示插件已初始化, false就是插件未初始化
-     * @deprecated 这个方法永远不会返回false, 因为在 {@link
-     *     JavaPlugin} 已经在构造函数里初始化
-     */
-    @Deprecated
-    public final boolean isInitialized() {
-        return true;
     }
 
     /**

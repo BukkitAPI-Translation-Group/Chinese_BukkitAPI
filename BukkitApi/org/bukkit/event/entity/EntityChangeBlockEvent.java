@@ -3,7 +3,6 @@ package org.bukkit.event.entity;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
@@ -18,18 +17,6 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
     private boolean cancel;
     private final Material to;
     private final byte data;
-
-    /**
-     * 
-     * @param what 造成这次方块改变的生物实体(LivingEntity)类
-     * @param block 改变前的方块(Block)类
-     * @param to 改变后的材料(Material)类
-     * @deprecated 在提供数据之前提供一个保证向后兼容的方法，类型扩大到所有实体
-     */
-    @Deprecated
-    public EntityChangeBlockEvent(final LivingEntity what, final Block block, final Material to) {
-        this (what, block, to, (byte) 0);
-    }
 
     /**
      * @param what 造成这次方块改变的生物实体(LivingEntity)类
