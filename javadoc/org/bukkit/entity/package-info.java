@@ -1,6 +1,5 @@
 /**
- * Interfaces for non-voxel objects that can exist in a {@link
- * org.bukkit.World world}, including all players, monsters, projectiles, etc.
+ * 实体对象，包括所有的玩家，怪物，抛射物等. 
  */
 package org.bukkit.entity;
 
