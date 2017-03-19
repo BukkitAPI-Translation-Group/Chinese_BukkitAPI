@@ -1,10 +1,11 @@
-# Chinese_BukkitAPI 翻译规范 v1.4
-
+# Bukkit 中文文档
 ![Logo](Chinese_BukkitAPI.png)
 
 文档地址：https://docs.windit.net/Chinese_BukkitAPI/ | http://jd.ddmcloud.com/Bukkit/
 
 离线版：https://docs.windit.net/Chinese_BukkitAPI/release.zip
+
+**遇到问题请发Issues或PR，以帮助我们解决相关问题。**
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
@@ -90,19 +91,19 @@ public int getHighestBlockYAt(int x, int z);
 -----
 ## 标签
 你之前已经了解了一些javadoc的标签，比如@param、@return、@see、@deprecated等等，这里详细解释下一些特别的标签该如何翻译：    
-### **@param 参数名 参数说明**   
+### **@param 参数名 参数说明**
 > @param loc 一个位置({@link Location})    
 
-注意: 参数名不用翻译, 对应的是方法中的参数.    
+注意: 参数名不用翻译, 对应的是方法中的参数.
    
    
 ### **@return 返回值说明**   
-> @return 此方块的位置   
+> @return 此方块的位置
    
 ### **@throws 异常类型 在什么情况下会抛出这个异常**    
-> @throws IllegalArgumentException 如果PlayerListName超过16个字符    
+> @throws IllegalArgumentException 如果PlayerListName超过16个字符
   
-注意别把异常的类名去掉. @throws 标签的说明应该以"if"或"如果"开头.    
+注意别把异常的类名去掉. @throws 标签的说明通常以"if"或"如果"开头.
    
 ### **@deprecated 原因**  
 这个标签代表此方法已过时被弃用/不推荐使用, 并说明了原因.    
@@ -133,17 +134,10 @@ Magic value具体是什么意思有点难以解释, 请查阅百度百科 "Magic
 > block.setType(Material.COMMAND_BLOCK);
 
 阅读代码的人: "一看就明白这代码的意思是把这个方块的类型设置为命令方块"  
-  
-### **@author 作者**  
-不必翻译.   
-  
-  
-### **@version 版本号**  
-不必翻译.  
    
    
 ### **@see 另请参见**   
-不必翻译.   
+不必翻译. 
   
   
 ### **@since 版本号**  
@@ -191,8 +185,8 @@ Magic value具体是什么意思有点难以解释, 请查阅百度百科 "Magic
 如果看到了一些Minecraft上的专有名词，请前往[Minecraft Wiki](http://minecraft-zh.gamepedia.com/Minecraft_Wiki:%E8%AF%91%E5%90%8D%E6%A0%87%E5%87%86%E5%8C%96)查阅，尽量使用官译名。
 # 翻译须知
 ## 翻译质量  
-**严禁直接机翻, 若实在不会*请以单词为单位进行查询, 不要一大片一大片的扔进百度翻译*, 加入自己的理解, 重新组织语言. 否则将撤回**    
-为什么要以单词为单位? 因为也许电脑程序能当成一本合格的字典来使用, 但绝无法进行合理的语法组织.  
+**严禁直接机翻, 若实在不会*请以单词和句子结构为单位进行查询*, 加入自己的理解, 重新组织语言. 否则将撤回**
+为什么要以单词为单位? 因为也许电脑程序能当成一本合格的字典来使用, 但绝无法进行合理的语法组织.
 ## 遇到问题？
 如果您翻译时遇到了某些您不能理解的单词、专有名词、段落、概念等等，欢迎在群内提问, **在不能肯定的情况下请别擅下定论**.  
 # 提交翻译
