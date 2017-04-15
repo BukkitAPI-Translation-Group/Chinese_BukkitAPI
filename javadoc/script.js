@@ -102,6 +102,9 @@ var _hmt = _hmt || [];
 		InstantClick.on('change', function (isInitialLoad) {
 			if (isInitialLoad === false) {
 				if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
+				if (typeof DUOSHUO != 'undefined' || typeof LivereTower != 'undefined') {
+					loadcomment();
+				}
 			}
 		});
 		InstantClick.init();
