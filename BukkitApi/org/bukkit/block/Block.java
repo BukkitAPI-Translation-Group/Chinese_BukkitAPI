@@ -154,9 +154,11 @@ public interface Block extends Metadatable {
     int getZ();
 
     /**
-     * Gets the Location of the block
+     * 获取方块的位置信息.
+     * <p>
+     * 原文:Gets the Location of the block
      *
-     * @return Location of block
+     * @return 方块的位置
      */
     Location getLocation();
 
@@ -172,35 +174,43 @@ public interface Block extends Metadatable {
     Location getLocation(Location loc);
 
     /**
-     * Gets the chunk which contains this block
+     * 获取包含此方块的区块(方块所在的区块).
+     * <p>
+     * 原文:Gets the chunk which contains this block
      *
-     * @return Containing Chunk
+     * @return 包含此方块的区块
      */
     Chunk getChunk();
 
     /**
-     * Sets the metadata for this block
+     * 为这个方块设置元数据.
+     * <p>
+     * 原文:Sets the metadata for this block
      *
-     * @param data New block specific metadata
-     * @deprecated Magic value
+     * @param data 元数据
+     * @deprecated 不安全的参数
      */
     @Deprecated
     void setData(byte data);
-
+ 
     /**
-     * Sets the metadata for this block
+     * 为这个方块设置元数据.
+     * <p>
+     * 原文:Sets the metadata for this block
      *
-     * @param data New block specific metadata
+     * @param data 元数据
      * @param applyPhysics False to cancel physics from the changed block.
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     void setData(byte data, boolean applyPhysics);
 
     /**
-     * Sets the type of this block
+     * 设置这个方块的类型.
+     * <p>
+     * 原文:Sets the type of this block
      *
-     * @param type Material to change this block to
+     * @param type 方块的Material类型
      */
     void setType(Material type);
 
