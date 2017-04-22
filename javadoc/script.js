@@ -26,59 +26,15 @@ function updateTabs(type) {
 }
 // My Functions
 function loadcomment() {
-	// 过渡至新评论系统
-	// 2017年5月5日后自动切换
-	var date = new Date();
-	date.setFullYear(2017, 4, 5);
-	if (date > new Date()) {
-		loadduoshuo();
-	} else {
+	if (document.getElementById("notice")) return;
+	var appendToFooter = document.createElement("b");
+	appendToFooter.setAttribute("id", "notice");
+	appendToFooter.innerHTML = '评论栏消失了，但很快就会回来的 *\(๑• ₃ •๑)*';
 		var contentContainers = document.getElementsByClassName("contentContainer");
 		if (contentContainers.length > 0) {
 			var lastContentContainer = contentContainers[contentContainers.length - 1];
-			var div = document.createElement("div");
-			div.setAttribute("id", "lv-container");
-			div.setAttribute("data-id", "city");
-			div.setAttribute("data-uid", "MTAyMC8yODIzNC80ODA2");
-			lastContentContainer.appendChild(div);
-			var script = document.createElement("script");
-			script.innerHTML = "(function(d, s) {\
-       var j, e = d.getElementsByTagName(s)[0];\
-       if (typeof LivereTower === 'function') { return; }\
-       j = d.createElement(s);\
-       j.src = \"https://cdn-city.livere.com/js/embed.dist.js\";\
-       j.async = true;\
-       e.parentNode.insertBefore(j, e);\
-   })(document, 'script');";
-			lastContentContainer.appendChild(script);
+			lastContentContainer.appendChild(appendToFooter);
 		}
-	}
-}
-function loadduoshuo() {
-	var appendToFooter = document.createElement("script");
-	appendToFooter.innerHTML = 'var contentContainers = document.getElementsByClassName("contentContainer");\
-		if (contentContainers.length > 0) {\
-			var lastContentContainer = contentContainers[contentContainers.length - 1];\
-			var div = document.createElement("div");\
-			div.setAttribute("class", "ds-thread");\
-			div.setAttribute("data-title", document.title);\
-			div.setAttribute("data-url", "");\
-			var loc = window.location;\
-			if (loc.pathname.includes("org")) {\
-				div.setAttribute("data-thread-key", loc.pathname.slice(window.location.pathname.indexOf("org")));\
-			} else {\
-				div.setAttribute("data-thread-key", window.location.pathname.slice(window.location.pathname.lastIndexOf("/") + 1));\
-			}\
-			lastContentContainer.appendChild(div);\
-			var script = document.createElement("script");\
-			script.innerHTML = \'var duoshuoQuery = {short_name:\"bukkitcomm\"};(function() {var ds = document.createElement("script");ds.type = "text/javascript";ds.async = true;ds.charset = "UTF-8";(document.getElementsByTagName("head")[0]  || document.getElementsByTagName("body")[0]).appendChild(ds);})();\';\
-			lastContentContainer.appendChild(script);\
-			$script("https://dn-hb0716.qbox.me/duoshuo.js", function () {\
-			DUOSHUO.EmbedThread(".ds-thread");\
-			DUOSHUO.ThreadCount(".ds-thread-count");\
-			});\
-		}';
-	document.getElementsByTagName("body")[0].appendChild(appendToFooter);
 }
 // $script.js - start
 /*!
@@ -102,10 +58,8 @@ var _hmt = _hmt || [];
 		InstantClick.on('change', function (isInitialLoad) {
 			if (isInitialLoad === false) {
 				if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
-				if (typeof DUOSHUO != 'undefined' || typeof LivereTower != 'undefined') {
-					loadcomment();
-				}
 			}
+				loadcomment();
 		});
 		InstantClick.init();
 	});
