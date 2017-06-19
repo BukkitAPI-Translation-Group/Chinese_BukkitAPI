@@ -1,17 +1,7 @@
 package org.bukkit.event;
 
 /**
- * 代表一个事件的优先级。
- * 译注：经过测试,正确的优先级排序如下(由高到低)：
- * <ol>
- * <li>LOWEST</li>
- * <li>LOW</li>
- * <li>NORMAL</li>
- * <li>HIGH</li>
- * <li>HIGHEST</li>
- * <li>MONITOR</li>
- * </ol>
- * 不要被下面的翻译和本身的意思给骗了.
+ * 代表一个事件的优先级.
  * @see EventHandler
  */
 public enum EventPriority {
