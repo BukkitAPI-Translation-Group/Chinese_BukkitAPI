@@ -15,7 +15,7 @@ public @interface EventHandler {
     /**
      * 定义事件的优先级。
      * <p>
-     * 优先级从高到低排列：
+     * 事件被执行的顺序（先后排列）：
      * <ol>
      * <li>LOWEST</li>
      * <li>LOW</li>
