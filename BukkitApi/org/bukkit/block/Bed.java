@@ -3,6 +3,6 @@ package org.bukkit.block;
 import org.bukkit.material.Colorable;
 
 /**
- * Represents a bed.
+ * 代表床.
  */
 public interface Bed extends BlockState, Colorable { }

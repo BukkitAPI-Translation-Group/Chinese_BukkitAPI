@@ -4,7 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * Called when a player changes their locale in the client settings.
+ * 当玩家改变他们的语言设置时触发本事件.
  */
 public class PlayerLocaleChangeEvent extends PlayerEvent {
 
@@ -20,7 +20,7 @@ public class PlayerLocaleChangeEvent extends PlayerEvent {
     /**
      * @see Player#getLocale()
      *
-     * @return the player's new locale
+     * @return 玩家选择的语言
      */
     public String getLocale() {
         return locale;
