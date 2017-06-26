@@ -16,8 +16,11 @@ import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.Statistic;
 import org.bukkit.WeatherType;
+import org.bukkit.advancement.Advancement;
+import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.command.CommandSender;
 import org.bukkit.conversations.Conversable;
+import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.scoreboard.Scoreboard;
@@ -500,7 +503,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param achievement 要给玩家的成就(不包括父成就)
      * @throws IllegalArgumentException 当成就为null时抛出.
+     * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
      */
+    @Deprecated
     public void awardAchievement(Achievement achievement);
 
     /**
@@ -511,7 +516,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param achievement 要移除的成就
      * @throws IllegalArgumentException 当成就为null时抛出.
+     * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
      */
+    @Deprecated
     public void removeAchievement(Achievement achievement);
 
     /**
@@ -928,8 +935,14 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setLevel(int level);
 
     /**
-     * 得到总共的经验值(等级和经验). <p>
+     * 得到总共的经验值(等级和经验).
+     * <br>
+     * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
+     * <p>
      * 原文:Gets the players total experience points
+     * <br>
+     * This refers to the total amount of experience the player has collected
+     * over time and is only displayed as the player's "score" upon dying.
      *
      * @return 玩家总共有多少经验
      */
@@ -1144,19 +1157,24 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * The player's client will download the new texture pack asynchronously
      * in the background, and will automatically switch to it once the
      * download is complete. If the client has downloaded and cached the same
-     * texture pack in the past, it will perform a quick timestamp check over
-     * the network to determine if the texture pack has changed and needs to
-     * be downloaded again. When this request is sent for the very first time
-     * from a given server, the client will first display a confirmation GUI
-     * to the player before proceeding with the download.
+     * texture pack in the past, it will perform a file size check against
+     * the response content to determine if the texture pack has changed and
+     * needs to be downloaded again. When this request is sent for the very
+     * first time from a given server, the client will first display a
+     * confirmation GUI to the player before proceeding with the download.
      * <p>
      * Notes:
      * <ul>
      * <li>Players can disable server textures on their client, in which
-     *     case this method will have no affect on them.
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
      * <li>There is no concept of resetting texture packs back to default
-     *     within Minecraft, so players will have to relog to do so.
-     * </ul>
+     *     within Minecraft, so players will have to relog to do so or you
+     *     have to send an empty pack.
+     * <li>The request is send with "null" as the hash. This might result
+     *     in newer versions not loading the pack correctly.
+     * <ul>
      *
      * @param url The URL from which the client will download the texture
      *     pack. The string must contain only US-ASCII characters and should
@@ -1171,28 +1189,40 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 请求玩家的客户端下载并且使用指定资源包. <p>
      * 玩家的客户端将在后台异步下载新的资源包,并且下载完成后会自动使用那个资源包.如果
-     * 这个资源包已经下载好了,客户端先会检查给定URL的资源包跟已经下载的资源包一不一样. 
+     * 这个资源包已经下载好了,客户端先会检查给定URL的资源包跟已经下载的资源包是否一样. 
      * 如果不一样就会重新下载,一样就直接使用. <p>
      * 在开始下载之前,客户端会显示一个GUI确定界面,提示要不要下载资源包.如果玩家选择不要,
      * 就不能下载. <p>
-     * 如果玩家的客户端没有开启"使用服务器资源包"这个方法将失效. <p>
-     * 原文:Request that the player's client download and switch resource packs.
+     * 注意:
+     * <ul>
+     * <li>如果玩家的客户端没有开启"使用服务器资源包"这个方法将失效. 使用
+     * {@link PlayerResourcePackStatusEvent} 方法以推断玩家是否加载了你设置的资源包!
+     * <li>在Minecraft中没有将资源包重置为默认的概念,所以玩家必须重新登陆才能这么做,或者你必须发送一个空白的资源包.
+     * <li>请求以"null"作hash发送. 这可能导致较新版本的客户端不能正确加载资源包.
+     * </ul>
      * <p>
-     * The player's client will download the new resource pack asynchronously
+     * 原文:Request that the player's client download and switch texture packs.
+     * <p>
+     * The player's client will download the new texture pack asynchronously
      * in the background, and will automatically switch to it once the
      * download is complete. If the client has downloaded and cached the same
-     * resource pack in the past, it will perform a quick timestamp check
-     * over the network to determine if the resource pack has changed and
+     * texture pack in the past, it will perform a file size check against
+     * the response content to determine if the texture pack has changed and
      * needs to be downloaded again. When this request is sent for the very
      * first time from a given server, the client will first display a
      * confirmation GUI to the player before proceeding with the download.
      * <p>
      * Notes:
      * <ul>
-     * <li>Players can disable server resources on their client, in which
-     *     case this method will have no affect on them.
-     * <li>There is no concept of resetting resource packs back to default
-     *     within Minecraft, so players will have to relog to do so.
+     * <li>Players can disable server textures on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>There is no concept of resetting texture packs back to default
+     *     within Minecraft, so players will have to relog to do so or you
+     *     have to send an empty pack.
+     * <li>The request is send with "null" as the hash. This might result
+     *     in newer versions not loading the pack correctly.
      * </ul>
      *
      * @param url 资源包的URL地址.只能包含US-ASCII字符并且使用RFC 1738编码.
@@ -1202,7 +1232,52 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setResourcePack(String url);
 
     /**
-     * 得到玩家的计分板. <p>
+     * 请求玩家的客户端下载并且使用指定资源包. <p>
+     * 玩家的客户端将在后台异步下载新的资源包,并且下载完成后会自动使用那个资源包.如果
+     * 这个资源包已经下载好了,客户端先会检查给定URL的资源包跟已经下载的资源包是否一样. 
+     * 如果不一样就会重新下载,一样就直接使用. <p>
+     * 在开始下载之前,客户端会显示一个GUI确定界面,提示要不要下载资源包.如果玩家选择不要,
+     * 就不能下载. <p>
+     * 注意:
+     * <ul>
+     * <li>如果玩家的客户端没有开启"使用服务器资源包"这个方法将失效. 使用
+     * {@link PlayerResourcePackStatusEvent} 方法以推断玩家是否加载了你设置的资源包!
+     * <li>在Minecraft中没有将资源包重置为默认的概念,所以玩家必须重新登陆才能这么做,或者你必须发送一个空白的资源包.
+     * </ul>
+     * <p>
+     * 原文:Request that the player's client download and switch resource packs.
+     * <p>
+     * The player's client will download the new resource pack asynchronously
+     * in the background, and will automatically switch to it once the
+     * download is complete. If the client has downloaded and cached a
+     * resource pack with the same hash in the past it will not download but
+     * directly apply the cached pack. When this request is sent for the very
+     * first time from a given server, the client will first display a
+     * confirmation GUI to the player before proceeding with the download.
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Players can disable server resources on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>There is no concept of resetting resource packs back to default
+     *     within Minecraft, so players will have to relog to do so or you
+     *     have to send an empty pack.
+     * </ul>
+     *
+     * @param url 资源包的URL地址.只能包含US-ASCII字符并且使用RFC 1738编码.
+     * @param hash 资源包文件的sha1哈希值，被用于正确地应用缓存版本的资源包而不需再重新下载(如果之前下载过).必须是20字节长!
+     * @throws IllegalArgumentException 当URL为null时抛出
+     * @throws IllegalArgumentException 当URL太长或者不符合规范时抛出
+     * @throws IllegalArgumentException 当hash为null时抛出Thrown if the hash is null.
+     * @throws IllegalArgumentException 当hash不是20字节长时抛出
+     *     long.
+     */
+    public void setResourcePack(String url, byte[] hash);
+
+    /**
+     * 获取玩家的计分板. <p>
      * 原文:Gets the Scoreboard displayed to this player
      *
      * @return The current scoreboard seen by this player
@@ -1223,7 +1298,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException;
 
     /**
-     * 得到客户端显示的玩家血量是否被"压缩"了. <p>
+     * 获取客户端显示的玩家血量是否被"压缩"了. <p>
      * 译注:当玩家的最大血量过多时({@link #setMaxHealth(double) }),每一排血量将会被
      * 挤在一起,以免挡住玩家的视线,这就是"压缩".这个方法就是判断血量是否被压缩了.(完全没用的说..). <p>
      * 原文:Gets if the client is displayed a 'scaled' health, that is, health on a
@@ -1270,7 +1345,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setHealthScale(double scale) throws IllegalArgumentException;
 
     /**
-     * 得到客户端显示的血量的"压缩率".  <p>
+     * 获取客户端显示的血量的"压缩率".  <p>
      * 详见{@link #setHealthScale(double) }
      * 原文:Gets the number that health is scaled to for the client.
      *
@@ -1528,4 +1603,25 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *             the type of this depends on {@link Particle#getDataType()}
      */
     public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+
+    /**
+     * Return the player's progression on the specified advancement.
+     *
+     * @param advancement advancement
+     * @return object detailing the player's progress
+     */
+    public AdvancementProgress getAdvancementProgress(Advancement advancement);
+
+    /**
+     * Gets the player's current locale.
+     *
+     * The value of the locale String is not defined properly.
+     * <br>
+     * The vanilla Minecraft client will use lowercase language / country pairs
+     * separated by an underscore, but custom resource packs may use any format
+     * they wish.
+     *
+     * @return the player's locale
+     */
+    public String getLocale();
 }
