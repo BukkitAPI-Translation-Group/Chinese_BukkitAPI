@@ -62,24 +62,6 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
      * @return 包含沿生物实体视线上的所有方块的列表
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public List<Block> getLineOfSight(HashSet<Byte> transparent, int maxDistance);
-
-    /**
-     * 获取沿生物实体视线上的所有方块。
-     * <p>
-     * 这个列表包含生物实体眼睛到目标位置的所有方块。
-     * 原文：
-     * Gets all blocks along the living entity's line of sight.
-     * <p>
-     * This list contains all blocks from the living entity's eye position to
-     * target inclusive.
-     *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
-     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
-     * @return 包含沿生物实体视线上的所有方块的列表
      */
     public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance);
 
@@ -215,18 +197,6 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public double getLastDamage();
 
     /**
-     * 此方法因传统原因而存在，用于提供向后兼容性。但其在运行时不存在且不应在任何情况下使用。
-     * 原文：
-     * This method exists for legacy reasons to provide backwards
-     * compatibility. It will not exist at runtime and should not be used
-     * under any circumstances.
-     * 
-     * @return 上一个无伤害时间段内受到的伤害
-     */
-    @Deprecated
-    public int _INVALID_getLastDamage();
-
-    /**
      * 设置当前无伤害时间段内处理的伤害。
      * 原文：
      * Sets the damage dealt within the current no damage ticks time period.
@@ -234,18 +204,6 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * @param damage 伤害总量
      */
     public void setLastDamage(double damage);
-
-    /**
-     * 此方法因传统原因而存在，用于提供向后兼容性。但其在运行时不存在且不应在任何情况下使用。
-     * 原文：
-     * This method exists for legacy reasons to provide backwards
-     * compatibility. It will not exist at runtime and should not be used
-     * under any circumstances.
-     * 
-     * @param damage 伤害总量
-     */
-    @Deprecated
-    public void _INVALID_setLastDamage(int damage);
 
     /**
      * 返回生物实体当前无伤害时间，单位为tick。

@@ -1,13 +1,17 @@
 package org.bukkit.entity;
 
 /**
- * Represents an Evoker.
+ * Represents an Evoker "Illager".
  */
-public interface Evoker extends Monster {
+public interface Evoker extends Spellcaster {
 
     /**
      * Represents the current spell the Evoker is using.
+     *
+     * @deprecated future versions of Minecraft have additional spell casting
+     * entities.
      */
+    @Deprecated
     public enum Spell {
 
         /**
@@ -25,20 +29,35 @@ public interface Evoker extends Monster {
         /**
          * The "wololo" spell.
          */
-        WOLOLO;
+        WOLOLO,
+        /**
+         * The spell that makes the casting entity invisible.
+         */
+        DISAPPEAR,
+        /**
+         * The spell that makes the target blind.
+         */
+        BLINDNESS;
     }
 
     /**
      * Gets the {@link Spell} the Evoker is currently using.
      *
      * @return the current spell
+     * @deprecated future versions of Minecraft have additional spell casting
+     * entities.
+     *
      */
+    @Deprecated
     Spell getCurrentSpell();
 
     /**
      * Sets the {@link Spell} the Evoker is currently using.
      *
      * @param spell the spell the evoker should be using
+     * @deprecated future versions of Minecraft have additional spell casting
+     * entities.
      */
+    @Deprecated
     void setCurrentSpell(Spell spell);
 }

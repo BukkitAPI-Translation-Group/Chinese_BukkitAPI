@@ -2,7 +2,9 @@ package org.bukkit;
 
 /**
  * 代表成就.
+ * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
  */
+@Deprecated
 public enum Achievement {
     /**
      * 「打开物品栏」.

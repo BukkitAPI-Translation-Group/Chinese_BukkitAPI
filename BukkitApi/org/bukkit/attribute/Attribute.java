@@ -22,6 +22,10 @@ public enum Attribute {
      */
     GENERIC_MOVEMENT_SPEED,
     /**
+     * Flying speed of an Entity.
+     */
+    GENERIC_FLYING_SPEED,
+    /**
      * 当生物攻击其他人时所造成的伤害.
      */
     GENERIC_ATTACK_DAMAGE,
@@ -33,6 +37,10 @@ public enum Attribute {
      * 护甲的防御值
      */
     GENERIC_ARMOR,
+    /**
+     * Armor durability bonus of an Entity.
+     */
+    GENERIC_ARMOR_TOUGHNESS,
     /**
      * 生物的可能的掉落物
      */

@@ -4,7 +4,7 @@ package org.bukkit.entity;
 /**
  * 代表豹猫.
  */
-public interface Ocelot extends Animals, Tameable {
+public interface Ocelot extends Animals, Tameable, Sittable {
 
     /**
      * 获取这只猫当前的种类.
@@ -23,25 +23,6 @@ public interface Ocelot extends Animals, Tameable {
      * @param type 这只猫的新种类
      */
     public void setCatType(Type type);
-
-    /**
-     * 检测这只猫是否坐着.
-     * <p>
-     * 原文：Checks if this ocelot is sitting
-     *
-     * @return 这只猫是否坐着
-     */
-    public boolean isSitting();
-
-    /**
-     * 设置这只猫是否坐着.这将移除豹猫的跟随路线.
-     * <p>
-     * 原文：Sets if this ocelot is sitting. Will remove any path that the ocelot
-     * was following beforehand.
-     *
-     * @param sitting 这只豹猫是否坐着
-     */
-    public void setSitting(boolean sitting);
 
     /**
      * 代表不同的猫的种类.
