@@ -41,8 +41,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 
-import com.avaje.ebean.config.ServerConfig;
 import com.google.common.collect.ImmutableList;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.generator.ChunkGenerator;
 
 import org.bukkit.inventory.ItemFactory;
@@ -99,22 +99,6 @@ public interface Server extends PluginMessageRecipient {
      * @return Bukkit版本
      */
     public String getBukkitVersion();
-
-    /**
-     * 以数组形式获得当前所有在线的玩家
-     * <p>
-     * 原文:
-     * Gets an array copy of all currently logged in players.
-     * <p>
-     * This method exists for legacy reasons to provide backwards
-     * compatibility. It will not exist at runtime and should not be used
-     * under any circumstances.
-     *
-     * @deprecated 被 {@link #getOnlinePlayers()}取代
-     * @return 一个当前所有在线玩家的数组
-     */
-    @Deprecated
-    public Player[] _INVALID_getOnlinePlayers();
 
     /**
      * 获得一个当前所有已登录玩家的集合.
@@ -547,6 +531,14 @@ public interface Server extends PluginMessageRecipient {
     public void reload();
 
     /**
+     * 只重载Minecraft游戏数据. 这包括自定义的进度和掉落表.
+     * <p>
+     * 原文:Reload only the Minecraft data for the server. This includes custom
+     * advancements and loot tables.
+     */
+    public static void reloadData();  
+
+    /**
      * 返回此服务器的日志记录.
      * <p>
      * 原文:Returns the primary logger associated with this server instance.
@@ -584,16 +576,6 @@ public interface Server extends PluginMessageRecipient {
      * @throws CommandException 抛出执行期间出现的未捕获的异常
      */
     public boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException;
-
-    /**
-     * 通过{@link ServerConfig}给服务器填充给定的属性
-     * <p>
-     * 原文:Populates a given {@link ServerConfig} with values attributes to this
-     * server.
-     *
-     * @param config 填充给服务器的属性
-     */
-    public void configureDbConfig(ServerConfig config);
 
     /**
      * 向服务器添加一个配方
@@ -1145,6 +1127,22 @@ public interface Server extends PluginMessageRecipient {
      * @return 该UUID代表的实体，如果找不到为null
      */
     Entity getEntity(UUID uuid);
+
+    /**
+     * Get the advancement specified by this key.
+     *
+     * @param key unique advancement key
+     * @return advancement or null if not exists
+     */
+    Advancement getAdvancement(NamespacedKey key);
+
+    /**
+     * Get an iterator through all advancements. Advancements cannot be removed
+     * from this iterator,
+     *
+     * @return an advancement iterator
+     */
+    Iterator<Advancement> advancementIterator();
 
     /**
      * @see UnsafeValues

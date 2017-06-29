@@ -47,16 +47,6 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
     public boolean isBanned();
 
     /**
-     * 对玩家进行封禁或解封
-     *
-     * @param banned 如果要对其封禁使用true
-     * @deprecated 可使用 {@link org.bukkit.BanList#addBan(String, String, Date,
-     *     String)} 或 {@link org.bukkit.BanList#pardon(String)} 来增强功能
-     */
-    @Deprecated
-    public void setBanned(boolean banned);
-
-    /**
      * 检测玩家是否存在白名单列表中
      *
      * @return 是否加白

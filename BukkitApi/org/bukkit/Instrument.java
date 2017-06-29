@@ -25,7 +25,28 @@ public enum Instrument {
     /**
      * 当音符盒在一个木类方块的顶部时通常会以低音吉他的形式演奏。
      */
-    BASS_GUITAR(0x4);
+    BASS_GUITAR(0x4),
+    /**
+     * Flute is normally played when a note block is on top of a clay block.
+     */
+    FLUTE(0x5),
+    /**
+     * Bell is normally played when a note block is on top of a gold block.
+     */
+    BELL(0x6),
+    /**
+     * Guitar is normally played when a note block is on top of a woolen block.
+     */
+    GUITAR(0x7),
+    /**
+     * Chime is normally played when a note block is on top of a packed ice
+     * block.
+     */
+    CHIME(0x8),
+    /**
+     * Xylophone is normally played when a note block is on top of a bone block.
+     */
+    XYLOPHONE(0x9);
 
     private final byte type;
     private final static Map<Byte, Instrument> BY_DATA = Maps.newHashMap();

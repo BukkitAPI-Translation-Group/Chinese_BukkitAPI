@@ -12,7 +12,9 @@ public interface BannerMeta extends ItemMeta {
      * 原文：Returns the base color for this banner
      *
      * @return 底色
+     * @deprecated 旗帜底色现以数据值的形式存储，而不是元数据.
      */
+    @Deprecated
     DyeColor getBaseColor();
 
     /**
@@ -21,7 +23,9 @@ public interface BannerMeta extends ItemMeta {
      * 原文：Sets the base color for this banner
      *
      * @param color 底色
+     * @deprecated 旗帜底色现以数据值的形式存储，而不是元数据.
      */
+    @Deprecated
     void setBaseColor(DyeColor color);
 
     /**
