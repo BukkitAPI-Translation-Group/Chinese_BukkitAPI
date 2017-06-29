@@ -67,6 +67,10 @@ public enum InventoryType {
      * 有五个槽的漏斗背包容器
      */
     HOPPER(5, "Item Hopper"),
+    /**
+     * A shulker box inventory, with 27 slots of type CONTAINER.
+     */
+    SHULKER_BOX(27, "Shulker Box"),
     ;
 
     private final int size;

@@ -12,10 +12,27 @@ import org.bukkit.event.HandlerList;
 public class BlockBurnEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean cancelled;
+    private final Block ignitingBlock;
 
+    @Deprecated
     public BlockBurnEvent(final Block block) {
+        this(block, null);
+    }
+
+    public BlockBurnEvent(final Block block, final Block ignitingBlock) {
         super(block);
-        this.cancelled = false;
+        this.ignitingBlock = ignitingBlock;
+    }
+
+    /**
+     * 获取点燃这个方块的方块.
+     * <p>
+     * 原文:Gets the block which ignited this block.
+     *
+     * @return 点燃这个方块的方块，或如果源方块不存在时为null
+     */
+    public Block getIgnitingBlock() {
+        return ignitingBlock;
     }
 
     public boolean isCancelled() {
