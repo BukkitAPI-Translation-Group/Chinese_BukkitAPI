@@ -26,7 +26,7 @@ function updateTabs(type) {
 }
 // My Functions
 function showAnnouncement() {
-	if (window.name != "classFrame") return;
+	if (window.name != "classFrame" && window.name.length != 0) return;
 	ajax().get("https://docs.windit.net/announcement_bukkitdocument.php").then(function (response, xhr) {
 		if (Cookies.get("ignored_announcement") == response.timestamp) {
 			Cookies.set("ignored_announcement", response.timestamp, { expires: 30 });
