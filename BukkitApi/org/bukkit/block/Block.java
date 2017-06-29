@@ -192,7 +192,7 @@ public interface Block extends Metadatable {
      */
     @Deprecated
     void setData(byte data);
- 
+
     /**
      * 为这个方块设置元数据.
      * <p>
