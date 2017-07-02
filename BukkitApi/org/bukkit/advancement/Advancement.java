@@ -9,7 +9,7 @@ import org.bukkit.Keyed;
 public interface Advancement extends Keyed {
 
     /**
-     * 获取此进度的所有标准. (即取得该成就要达到的条件).
+     * 获取此进度的所有标准. (即达成该进度所需的条件).
      * <p>
      * 原文:Get all the criteria present in this advancement.
      *
