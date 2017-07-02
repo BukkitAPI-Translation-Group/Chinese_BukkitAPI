@@ -4,15 +4,16 @@ import java.util.Collection;
 import org.bukkit.Keyed;
 
 /**
- * Represents an advancement that may be awarded to a player. This class is not
- * reference safe as the underlying advancement may be reloaded.
+ * 代表可以被授予给玩家的进度. 这个类不是指针安全的，因为底层的进度可能会被重载.
  */
 public interface Advancement extends Keyed {
 
     /**
-     * Get all the criteria present in this advancement.
+     * 获取此进度的所有标准. (即取得该成就要达到的条件).
+     * <p>
+     * 原文:Get all the criteria present in this advancement.
      *
-     * @return a unmodifiable copy of all criteria
+     * @return 一个不可编辑的所有条件的副本
      */
     Collection<String> getCriteria();
 }
