@@ -50,7 +50,7 @@ function loadcomment() {
 		var div = document.createElement("div");
 		div.setAttribute("id", "SOHUCS");
 		var loc = window.location;
-		if (loc.pathname.includes("org")) {
+		if (loc.pathname.indexOf("org") > 0) {
 			div.setAttribute("sid", loc.pathname.slice(window.location.pathname.indexOf("org")));
 		} else {
 			div.setAttribute("sid", window.location.pathname.slice(window.location.pathname.lastIndexOf("/") + 1));
@@ -101,16 +101,6 @@ function loadcomment() {
 // Additional code
 var _hmt = _hmt || [];
 (function () {
-	// InstantClick
-	$script.get('https://cdn.staticfile.org/instantclick/3.0.1/instantclick.min.js', function () {
-		InstantClick.on('change', function (isInitialLoad) {
-			if (isInitialLoad === false) {
-				if (typeof _hmt !== 'undefined') _hmt.push(['_trackPageview', location.pathname + location.search]);
-			}
-			loadcomment();
-		});
-		InstantClick.init();
-	});
 	// 评论框
 	domready(function () {
 		showAnnouncement();
