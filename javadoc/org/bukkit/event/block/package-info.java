@@ -1,6 +1,6 @@
 /**
- * 与{@link
- * org.bukkit.block.Block block}有关的{@link org.bukkit.event.Event 事件} (例如状态改变、发生交互等）.
+ * 与{@link org.bukkit.block.Block 方块}被改变或与{@link
+ * org.bukkit.World 世界}进行交互等情况相关的{@link org.bukkit.event.Event 事件}.
  */
 package org.bukkit.event.block;
 

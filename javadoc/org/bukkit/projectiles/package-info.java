@@ -1,5 +1,5 @@
 /**
- * Classes to represent the source of a projectile
+ * 代表一个抛射物的抛射源的类的集合.
  */
 package org.bukkit.projectiles;
 
