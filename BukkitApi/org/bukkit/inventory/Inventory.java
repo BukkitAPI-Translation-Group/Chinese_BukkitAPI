@@ -38,10 +38,10 @@ public interface Inventory extends Iterable<ItemStack> {
      * <p>
      * <b>警告:</b>
      * <ul>
-     * <li>不是所有种类的的背包都遵循本值。
+     * <li>不是所有种类的的物品栏都遵循本值。
      * <li>若本值大于127，当世界保存时可能会被缩减。
      * <li>本值不保证被保存；一定要在设置一个格子的最大堆叠数之前修改本值
-     * <li>若本值大于这种背包默认的大小，可能不会正确地在客户端上显示
+     * <li>若本值大于这种物品栏默认的大小，可能不会正确地在客户端上显示
      * </ul>
      * <p>
      * 原文:
@@ -63,11 +63,11 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setMaxStackSize(int size);
 
     /**
-     * 返回此背包的名字
+     * 返回此物品栏的名字.
      * <p>
      * 原文:Returns the name of the inventory
      *
-     * @return 背包名
+     * @return 物品栏名
      */
     public String getName();
 
@@ -82,7 +82,7 @@ public interface Inventory extends Iterable<ItemStack> {
     public ItemStack getItem(int index);
 
     /**
-     * 在背包指定索引存放物品堆
+     * 在物品栏指定索引存放物品堆.
      * <p>
      * 原文:Stores the ItemStack at the given index of the inventory.
      *
@@ -92,7 +92,20 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setItem(int index, ItemStack item);
 
     /**
-     * Stores the given ItemStacks in the inventory. This will try to fill
+     * 在物品栏存放所给的物品堆.本方法将尽可能完美地尝试填充已有的但还未达到堆叠上限的物品堆
+     * 和空格子.
+     * <p>
+     * 返回的HashMap包含不能存放的物品堆，键是你所给的参数的索引值，
+     * 值是你所给的参数指定索引处的物品堆.如果所有物品都被存放，将返回一个空HashMap.
+     * <p>
+     * (以下翻译不保证准确性，自己试试呗)如果你传递的物品堆超过了物品的最大堆叠量,首先它们将被按
+     * 最大堆叠量[Material.getMaxStackSize()]添加一部分.如果当没有部分的物品堆剩余时，
+     * 物品堆将被以Inventory.getMaxStackSize()的数量分割，允许你超过那个物品的最大堆叠量.
+     * <p>
+     * 已知在一些实现里本方法也将会设置输入的argument amount to the number of that item not placed in
+     * slots.
+     * <p>
+     * 原文:Stores the given ItemStacks in the inventory. This will try to fill
      * existing stacks and empty slots as well as it can.
      * <p>
      * The returned HashMap contains what it couldn't store, where the key is
@@ -111,14 +124,22 @@ public interface Inventory extends Iterable<ItemStack> {
      * the inputted argument amount to the number of that item not placed in
      * slots.
      *
-     * @param items The ItemStacks to add
-     * @return A HashMap containing items that didn't fit.
-     * @throws IllegalArgumentException if items or any element in it is null
+     * @param items 要存放的物品
+     * @return 包含不能被存放的物品的HashMap
+     * @throws IllegalArgumentException 如果items或在内的任何元素为null
      */
     public HashMap<Integer, ItemStack> addItem(ItemStack... items) throws IllegalArgumentException;
 
     /**
-     * Removes the given ItemStacks from the inventory.
+     * 移除在物品栏内的指定物品堆.
+     * <p>
+     * 本方法将按照你所给的物品堆的数量和种类作为参数尽可能多地移除物品堆.
+     * <p>
+     * 返回的HashMap包含不能移除的物品堆，map的键
+     * 是你所给的参数的索引值，值是在你所给的参数指定索引处的物品堆.如果
+     * 所给的物品堆全部被移除，将返回一个空HashMap.
+     * <p>
+     * 原文:Removes the given ItemStacks from the inventory.
      * <p>
      * It will try to remove 'as much as possible' from the types and amounts
      * you give as arguments.
@@ -132,34 +153,39 @@ public interface Inventory extends Iterable<ItemStack> {
      * inputted argument amount to the number of that item not removed from
      * slots.
      *
-     * @param items The ItemStacks to remove
-     * @return A HashMap containing items that couldn't be removed.
-     * @throws IllegalArgumentException if items is null
+     * @param items 要移除的物品堆
+     * @return 包含不能被移除的物品堆的HashMap
+     * @throws IllegalArgumentException 如果items为null
      */
     public HashMap<Integer, ItemStack> removeItem(ItemStack... items) throws IllegalArgumentException;
 
     /**
-     * 返回这个背包的所有物品堆
+     * 返回这个物品栏内的所有物品堆.
      * <p>
      * 原文:Returns all ItemStacks from the inventory
      *
-     * @return 存储了此背包所有物品的数组
+     * @return 存储了此物品栏所有物品的数组
      */
     public ItemStack[] getContents();
 
     /**
-     * Completely replaces the inventory's contents. Removes all existing
+     * 完全地覆盖物品栏的内容.移除所有存在的内容并替换为指定的物品堆.
+     * <p>
+     * 原文:Completely replaces the inventory's contents. Removes all existing
      * contents and replaces it with the ItemStacks given in the array.
      *
-     * @param items A complete replacement for the contents; the length must
-     *     be less than or equal to {@link #getSize()}.
-     * @throws IllegalArgumentException If the array has more items than the
-     *     inventory.
+     * @param items 内容的完全替换;数组长度必须小于或等于{@link #getSize()}.
+     * @throws IllegalArgumentException 如果数组容量超越了物品栏的容量
      */
     public void setContents(ItemStack[] items) throws IllegalArgumentException;
 
     /**
-     * Return the contents from the section of the inventory where items can
+     * 返回.大部分情况下本方法返回的内容代表整个物品栏，
+     * 但某些情况下返回的内容可能不包括盔甲或格子.
+     * <br>
+     * 这些内容会被用于add/contains/remove方法查找指定的物品堆.
+     * <p>
+     * 原文:Return the contents from the section of the inventory where items can
      * reasonably be expected to be stored. In most cases this will represent
      * the entire inventory, but in some cases it may exclude armor or result
      * slots.
@@ -167,21 +193,22 @@ public interface Inventory extends Iterable<ItemStack> {
      * It is these contents which will be used for add / contains / remove
      * methods which look for a specific stack.
      *
-     * @return inventory storage contents
+     * @return 物品栏存放的物品堆
      */
     public ItemStack[] getStorageContents();
 
     /**
-     * Put the given ItemStacks into the storage slots
+     * 放置所给的物品堆至物品栏.
+     * <p>
+     * 原文:Put the given ItemStacks into the storage slots
      *
-     * @param items The ItemStacks to use as storage contents
-     * @throws IllegalArgumentException If the array has more items than the
-     * inventory.
+     * @param items 作为物品栏内容的物品堆
+     * @throws IllegalArgumentException 如果数组容量超越了物品栏的容量
      */
     public void setStorageContents(ItemStack[] items) throws IllegalArgumentException;
 
     /**
-     * 检测这个背包是否含有指定物品ID的物品堆
+     * 检测这个物品栏是否含有指定物品ID的物品堆.
      * <p>
      * 原文:Checks if the inventory contains any ItemStacks with the given
      * materialId
@@ -206,9 +233,9 @@ public interface Inventory extends Iterable<ItemStack> {
     public boolean contains(Material material) throws IllegalArgumentException;
 
     /**
-     * 检测这个背包是否含有与给定的物品堆匹配的物品堆
+     * 检测这个物品栏是否含有与给定的物品堆匹配的物品堆.
      * <p>
-     * 当物品堆的种类和数量都匹配时才返回true
+     * 当物品堆的种类和数量都匹配时才返回true.
      * <p>
      * 原文:Checks if the inventory contains any ItemStacks matching the given
      * ItemStack.
@@ -235,47 +262,50 @@ public interface Inventory extends Iterable<ItemStack> {
     public boolean contains(int materialId, int amount);
 
     /**
-     * 检查物品栏内是否包含指定的物品
+     * 检查物品栏内是否包含指定的物品，并检查物品堆的数量是否足够(译者自述).
      * <p>
      * 原文:Checks if the inventory contains any ItemStacks with the given
      * material, adding to at least the minimum amount specified.
      *
-     * @param material The material to check for
-     * @param amount The minimum amount
-     * @return true if amount is less than 1, true if enough ItemStacks were
-     *     found to add to the given amount
-     * @throws IllegalArgumentException if material is null
+     * @param material 要检测的物品
+     * @param amount 物品堆数量最小值
+     * @return 如果参数amount小于1返回true;如果物品堆的数量小于等于参数amount返回true(自述)
+     * @throws IllegalArgumentException 如果material为null
      */
     public boolean contains(Material material, int amount) throws IllegalArgumentException;
 
     /**
-     * Checks if the inventory contains at least the minimum amount specified
+     * 检测物品栏是否含有一定数量的完全匹配的物品堆.
+     * <p>
+     * 如果物品堆的种类和数量都匹配时才会计数.
+     * <p>
+     * 原文:Checks if the inventory contains at least the minimum amount specified
      * of exactly matching ItemStacks.
      * <p>
      * An ItemStack only counts if both the type and the amount of the stack
      * match.
      *
-     * @param item the ItemStack to match against
-     * @param amount how many identical stacks to check for
-     * @return false if item is null, true if amount less than 1, true if
-     *     amount of exactly matching ItemStacks were found
+     * @param item 要匹配的物品
+     * @param amount 要检查多少相同的物品堆
+     * @return item为null返回false;amount小于1返回true;如果完全匹配物品堆指定次数返回true
      * @see #containsAtLeast(ItemStack, int)
      */
     public boolean contains(ItemStack item, int amount);
 
     /**
-     * Checks if the inventory contains ItemStacks matching the given
+     * 检测物品栏是否含有与所给物品堆匹配的并数量足够的物品堆.
+     * <p>
+     * 原文:Checks if the inventory contains ItemStacks matching the given
      * ItemStack whose amounts sum to at least the minimum amount specified.
      *
-     * @param item the ItemStack to match against
-     * @param amount the minimum amount
-     * @return false if item is null, true if amount less than 1, true if
-     *     enough ItemStacks were found to add to the given amount
+     * @param item 要匹配的物品堆
+     * @param amount 物品堆数量最小值
+     * @return item为null返回false;amount小于1返回true;如果物品堆的数量小于等于参数amount返回true
      */
     public boolean containsAtLeast(ItemStack item, int amount);
 
     /**
-     * Returns a HashMap with all slots and ItemStacks in the inventory with
+     * 介绍如下一个方法.Returns a HashMap with all slots and ItemStacks in the inventory with
      * given materialId.
      * <p>
      * The HashMap contains entries where, the key is the slot index, and the
@@ -290,21 +320,32 @@ public interface Inventory extends Iterable<ItemStack> {
     public HashMap<Integer, ? extends ItemStack> all(int materialId);
 
     /**
-     * Returns a HashMap with all slots and ItemStacks in the inventory with
+     * 查找在物品栏内的包含指定物品的所有格子与物品堆.
+     * <p>
+     * 返回的HashMap的键是格子的索引，值是在那个格子的物品堆.如果
+     * 没有找到指定的物品，将返回一个空map.
+     * <p>
+     * 原文:Returns a HashMap with all slots and ItemStacks in the inventory with
      * the given Material.
      * <p>
      * The HashMap contains entries where, the key is the slot index, and the
      * value is the ItemStack in that slot. If no matching ItemStack with the
      * given Material is found, an empty map is returned.
      *
-     * @param material The material to look for
-     * @return A HashMap containing the slot index, ItemStack pairs
-     * @throws IllegalArgumentException if material is null
+     * @param material 要查找的物品
+     * @return 包含格子索引和对应物品堆的map
+     * @throws IllegalArgumentException 如果material为null
      */
     public HashMap<Integer, ? extends ItemStack> all(Material material) throws IllegalArgumentException;
 
     /**
-     * Finds all slots in the inventory containing any ItemStacks with the
+     * 查找在物品栏内的包含指定物品堆的所有格子与物品堆.只有
+     * 物品堆的数目和种类都相同时才会匹配.
+     * <p>
+     * 返回的HashMap的键是格子的索引，值是在那个格子的物品堆.如果
+     * 没有找到指定的物品堆，将返回一个空map.
+     * <p>
+     * 原文:Finds all slots in the inventory containing any ItemStacks with the
      * given ItemStack. This will only match slots if both the type and the
      * amount of the stack match
      * <p>
@@ -312,8 +353,8 @@ public interface Inventory extends Iterable<ItemStack> {
      * value is the ItemStack in that slot. If no matching ItemStack with the
      * given Material is found, an empty map is returned.
      *
-     * @param item The ItemStack to match against
-     * @return A map from slot indexes to item at index
+     * @param item 要查找的物品堆
+     * @return 包含格子索引和对应物品堆的map
      */
     public HashMap<Integer, ? extends ItemStack> all(ItemStack item);
 
@@ -365,7 +406,7 @@ public interface Inventory extends Iterable<ItemStack> {
     public int firstEmpty();
 
     /**
-     * Removes all stacks in the inventory matching the given materialId.
+   　* 介绍如下一个方法.Removes all stacks in the inventory matching the given materialId.
      *
      * @param materialId The material to remove
      * @deprecated 不安全的参数
@@ -374,7 +415,7 @@ public interface Inventory extends Iterable<ItemStack> {
     public void remove(int materialId);
 
     /**
-     * 移除在此物品栏内与给定物品匹配的所有物品堆.
+     * 移除在物品栏内与给定物品匹配的所有物品堆.
      * <p>
      * 原文:Removes all stacks in the inventory matching the given material.
      *
@@ -414,7 +455,10 @@ public interface Inventory extends Iterable<ItemStack> {
     public void clear();
 
     /**
-     * 获得正在查看此物品栏的玩家. 注意:玩家被认为是
+     * 获得正在查看此物品栏的玩家. (以下翻译仅供参考，不保证准确性)注意:玩家被认为是在查看他们自己的物品栏
+     * 和合成屏幕甚至当所说的物品栏没有打开.他们将通常被考虑为查看他们
+     * 的物品栏甚至当他们打开了不同的物品栏，但对自定义物品栏来说有可能排除查看者
+     * 的物品栏，所以返回的内容应该从不被呈现为非空(？？？).
      * <p>
      * 原文:Gets a list of players viewing the inventory. Note that a player is
      * considered to be viewing their own inventory and internal crafting
@@ -424,12 +468,12 @@ public interface Inventory extends Iterable<ItemStack> {
      * inventory screens to exclude the viewer's inventory, so this should
      * never be assumed to be non-empty.
      *
-     * @return A list of HumanEntities who are viewing this Inventory.
+     * @return 正在查看此物品栏的HumanEntities列表
      */
     public List<HumanEntity> getViewers();
 
     /**
-     * 返回此物品栏的标题
+     * 返回此物品栏的标题.
      * <p>
      * 原文:Returns the title of this inventory.
      *
