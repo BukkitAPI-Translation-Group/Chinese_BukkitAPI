@@ -84,7 +84,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 获取将要使用的踢出消息，如果<code>getResult() != Result.ALLOWED</code>
+     * 获取将要使用的踢出消息，如果getResult() != Result.ALLOWED.
      * <p>
      * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
@@ -96,7 +96,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 设置要显示的踢出消息，如果<code>getResult() != Result.ALLOWED</code>
+     * 设置要显示的踢出消息，如果getResult() != Result.ALLOWED.
      * <p>
      * 原文:Sets the kick message to display if getResult() != Result.ALLOWED
      *
@@ -107,7 +107,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 允许玩家登录
+     * 允许玩家登录.
      * <p>
      * 原文:Allows the player to log in
      */
@@ -117,7 +117,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 以给定的理由不允许玩家登录
+     * 以给定的理由不允许玩家登录.
      * <p>
      * 原文:Disallows the player from logging in, with the given reason
      *
@@ -130,7 +130,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * 以给定的理由不允许玩家登录
+     * 以给定的理由不允许玩家登录.
      * <p>
      * 原文:Disallows the player from logging in, with the given reason
      *
