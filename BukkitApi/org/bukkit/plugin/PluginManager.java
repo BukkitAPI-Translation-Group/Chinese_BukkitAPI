@@ -34,9 +34,11 @@ public interface PluginManager {
     public Plugin getPlugin(String name);
 
     /**
-     * Gets a list of all currently loaded plugins
-     *
-     * @return Array of Plugins
+     * 获取所有已载入的插件对象.
+     * <p/>
+     * 原文:
+     * Gets a list of all currently loaded plugins.
+     * @return 返回类型为Plugin的数组
      */
     public Plugin[] getPlugins();
 
@@ -51,7 +53,10 @@ public interface PluginManager {
     public boolean isPluginEnabled(String name);
 
     /**
-     * Checks if the given plugin is enabled or not
+     * 检查指定插件是否启用.
+     * <p/>
+     * 原文:
+     * Checks if the given plugin is enabled or not.
      *
      * @param plugin Plugin to check
      * @return true if the plugin is enabled, otherwise false
@@ -75,20 +80,29 @@ public interface PluginManager {
     public Plugin loadPlugin(File file) throws InvalidPluginException, InvalidDescriptionException, UnknownDependencyException;
 
     /**
-     * Loads the plugins contained within the specified directory
+     * 载入指定目录内的插件.
+     * <p/>
+     * 原文:
+     * Loads the plugins contained within the specified directory.
      *
-     * @param directory Directory to check for plugins
-     * @return A list of all plugins loaded
+     * @param 指定目录的File对象
+     * @return 返回带有已成功载入的插件Plugin对象的数组
      */
     public Plugin[] loadPlugins(File directory);
 
     /**
-     * Disables all the loaded plugins
+     * 停用所有已载入的插件.
+     * <p/>
+     * 原文:
+     * Disables all the loaded plugins.
      */
     public void disablePlugins();
 
     /**
-     * Disables and removes all plugins
+     * 停用并清除所有已启用插件的Plugin对象.
+     * <p/>
+     * 原文:
+     * Disables and removes all plugins.
      */
     public void clearPlugins();
 
@@ -201,10 +215,13 @@ public interface PluginManager {
     public void removePermission(String name);
 
     /**
+     * 获取普通玩家默认拥有的权限或op默认拥有的权限.
+     * <p/>
+     * 原文:
      * Gets the default permissions for the given op status
      *
-     * @param op Which set of default permissions to get
-     * @return The default permissions
+     * @param 是否获取op状态下默认拥有的权限
+     * @return 返回 普通玩家/OP 默认拥有的权限
      */
     public Set<Permission> getDefaultPermissions(boolean op);
 
