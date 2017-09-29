@@ -34,7 +34,7 @@ public interface PluginManager {
     public Plugin getPlugin(String name);
 
     /**
-     * 获取已成功载入的插件对象.
+     * 获取所有已载入的插件对象.
      * <p/>
      * 原文:
      * Gets a list of all currently loaded plugins.
@@ -99,7 +99,7 @@ public interface PluginManager {
     public void disablePlugins();
 
     /**
-     * 停用并删除所有插件.
+     * 停用并清除所有已启用插件的Plugin对象.
      * <p/>
      * 原文:
      * Disables and removes all plugins.
@@ -215,13 +215,13 @@ public interface PluginManager {
     public void removePermission(String name);
 
     /**
-     * 获取默认权限或op所拥有的权限
+     * 获取普通玩家默认拥有的权限或op默认拥有的权限.
      * <p/>
      * 原文:
      * Gets the default permissions for the given op status
      *
-     * @param 是否获取op状态下的权限
-     * @return 返回 默认/OP 所拥有的权限
+     * @param 是否获取op状态下默认拥有的权限
+     * @return 返回 普通玩家/OP 默认拥有的权限
      */
     public Set<Permission> getDefaultPermissions(boolean op);
 
