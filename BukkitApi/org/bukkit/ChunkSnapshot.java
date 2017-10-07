@@ -130,7 +130,9 @@ public interface ChunkSnapshot {
      * @param x X坐标
      * @param z Z坐标
      * @return 指定坐标的降雨量
+     * @deprecated 在当前的Minecraft版本(1.12)中不存在这个区块属性
      */
+    @Deprecated
     double getRawBiomeRainfall(int x, int z);
 
     /**

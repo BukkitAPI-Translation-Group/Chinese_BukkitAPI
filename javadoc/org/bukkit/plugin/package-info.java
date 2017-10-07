@@ -1,5 +1,5 @@
 /**
- * Classes specifically relating to loading software modules at runtime.
+ * 专门用于在运行时加载软件模组(插件)的类.
  */
 package org.bukkit.plugin;
 

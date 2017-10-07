@@ -1,23 +1,20 @@
 package org.bukkit.plugin;
 
 /**
- * Thrown when a plugin attempts to interact with the server when it is not
- * enabled
+ * 当插件在未启用的状态下尝试与服务器交互时抛出异常
  */
 @SuppressWarnings("serial")
 public class IllegalPluginAccessException extends RuntimeException {
 
     /**
-     * Creates a new instance of <code>IllegalPluginAccessException</code>
-     * without detail message.
+     * 创建一个没有细节信息的<code>IllegalPluginAccessException</code>实例.
      */
     public IllegalPluginAccessException() {}
 
     /**
-     * Constructs an instance of <code>IllegalPluginAccessException</code>
-     * with the specified detail message.
+     * 创建一个有错误细节的<code>IllegalPluginAccessException</code>实例.
      *
-     * @param msg the detail message.
+     * @param msg 细节信息
      */
     public IllegalPluginAccessException(String msg) {
         super(msg);

@@ -24,43 +24,43 @@ public enum Effect {
      */
     BOW_FIRE(1002, Type.SOUND),
     /**
-     * 开关门声
+     * 开门声（木门）
      */
     DOOR_TOGGLE(1006, Type.SOUND),
     /**
-     * Sound of a door opening.
+     * 开门声（铁门）
      */
     IRON_DOOR_TOGGLE(1005, Type.SOUND),
     /**
-     * Sound of a trapdoor opening.
+     * 开门声（木活板门）
      */
     TRAPDOOR_TOGGLE(1007, Type.SOUND),
     /**
-     * Sound of a door opening.
+     * 开门声（铁活板门）
      */
     IRON_TRAPDOOR_TOGGLE(1037, Type.SOUND),
     /**
-     * Sound of a door opening.
+     * 开门声（栅栏门）
      */
     FENCE_GATE_TOGGLE(1008, Type.SOUND),
     /**
-     * Sound of a door closing.
+     * 关门声（木门）
      */
     DOOR_CLOSE(1012, Type.SOUND),
     /**
-     * Sound of a door closing.
+     * 关门声（铁门）
      */
     IRON_DOOR_CLOSE(1011, Type.SOUND),
     /**
-     * Sound of a trapdoor closing.
+     * 关门声（木活板门）
      */
     TRAPDOOR_CLOSE(1013, Type.SOUND),
     /**
-     * Sound of a door closing.
+     * 关门声（铁活板门）
      */
     IRON_TRAPDOOR_CLOSE(1036, Type.SOUND),
     /**
-     * Sound of a door closing.
+     * 关门声（栅栏门）
      */
     FENCE_GATE_CLOSE(1014, Type.SOUND),
     /**
@@ -116,83 +116,80 @@ public enum Effect {
      */
     MOBSPAWNER_FLAMES(2004, Type.VISUAL),
     /**
-     * The sound played by brewing stands when brewing
-      */
+     * 酿造台酿造的声音
+     */
     BREWING_STAND_BREW(1035, Type.SOUND),
     /**
-     * The sound played when a chorus flower grows
+     * 紫颂果生长的声音
      */
     CHORUS_FLOWER_GROW(1033, Type.SOUND),
     /**
-     * The sound played when a chorus flower dies
+     * 紫颂果凋谢的声音
      */
     CHORUS_FLOWER_DEATH(1034, Type.SOUND),
     /**
-     * The sound played when traveling through a portal
+     * 通过传送门的声音
      */
     PORTAL_TRAVEL(1032, Type.SOUND),
     /**
-     * The sound played when launching an endereye
+     * 安置末影之眼的声音
      */
     ENDEREYE_LAUNCH(1003, Type.SOUND),
     /**
-     * The sound played when launching a firework
+     * 发射烟花的声音
      */
     FIREWORK_SHOOT(1004, Type.SOUND),
     /**
-     * Particles displayed when a villager grows a plant, data
-     * is the number of particles
+     * 村民种植植物的声音
+     * 数据是颗粒的数量
      */
     VILLAGER_PLANT_GROW(2005, Type.VISUAL, Integer.class),
     /**
-     * The sound/particles used by the enderdragon's breath
-     * attack.
+     * 末影龙攻击和呼吸的声音
      */
     DRAGON_BREATH(2006, Type.VISUAL),
     /**
-     * The sound played when an anvil breaks
+     * 铁砧破坏的声音
      */
     ANVIL_BREAK(1029, Type.SOUND),
     /**
-     * The sound played when an anvil is used
+     * 使用铁砧的声音
      */
     ANVIL_USE(1030, Type.SOUND),
     /**
-     * The sound played when an anvil lands after
-     * falling
+     * 铁砧落地声音（坠落）
      */
     ANVIL_LAND(1031, Type.SOUND),
     /**
-     * Sound of an enderdragon firing
+     * 末影龙喷火的声音
      */
     ENDERDRAGON_SHOOT(1017, Type.SOUND),
     /**
-     * The sound played when a wither breaks a block
+     * 凋零破坏方块的声音
      */
     WITHER_BREAK_BLOCK(1022, Type.SOUND),
     /**
-     * Sound of a wither shooting
+     * 凋零射击的声音
      */
     WITHER_SHOOT(1024, Type.SOUND),
     /**
-     * The sound played when a zombie infects a target
+     * 僵尸感染目标（村民）的声音
      */
     ZOMBIE_INFECT(1026, Type.SOUND),
     /**
-     * The sound played when a villager is converted by
-     * a zombie
+     * 僵尸被转化成村民的声音
      */
     ZOMBIE_CONVERTED_VILLAGER(1027, Type.SOUND),
     /**
-     * Sound played by a bat taking off
+     * 蝙蝠起飞的声音
      */
     BAT_TAKEOFF(1025, Type.SOUND),
     /**
-     * The sound/particles caused by a end gateway spawning
+     * 末地传送门生成的声音和粒子效果
      */
     END_GATEWAY_SPAWN(3000, Type.VISUAL),
     /**
-     * The sound of an enderdragon growling
+     * 末影龙咆哮的声音
      */
     ENDERDRAGON_GROWL(3001, Type.SOUND),
     ;

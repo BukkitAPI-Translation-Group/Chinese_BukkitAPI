@@ -34,7 +34,10 @@ public interface CreatureSpawner extends BlockState {
      * Set the spawner mob type.
      *
      * @param creatureType 刷怪笼类型的名称.
+     * @deprecated 不安全的参数，请使用
+     * {@link #setSpawnedType(org.bukkit.entity.EntityType)}.
      */
+    @Deprecated
     public void setCreatureTypeByName(String creatureType);
 
     /**
@@ -44,7 +47,9 @@ public interface CreatureSpawner extends BlockState {
      * Get the spawner's creature type.
      *
      * @return 要刷出的生物的名称.
+     * @deprecated 不安全的参数，请使用{@link #getSpawnedType()}.
      */
+    @Deprecated
     public String getCreatureTypeName();
 
     /**

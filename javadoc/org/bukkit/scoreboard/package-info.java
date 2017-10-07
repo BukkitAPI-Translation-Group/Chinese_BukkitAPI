@@ -1,5 +1,5 @@
 /**
- * Interfaces used to manage the client side score display system.
+ * 用于管理客户端计分板显示系统的类.
  */
 package org.bukkit.scoreboard;
 

@@ -187,18 +187,6 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * This method exists for legacy reasons to provide backwards
-     * compatibility. It will not exist at runtime and should not be used
-     * under any circumstances.
-     * 
-     * @return the (rounded) damage
-     */
-    @Deprecated
-    public int _INVALID_getDamage() {
-        return NumberConversions.ceil(getDamage());
-    }
-
-    /**
      * Sets the raw amount of damage caused by the event.
      * <p>
      * For compatibility this also recalculates the modifiers and scales
@@ -236,18 +224,6 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * This method exists for legacy reasons to provide backwards
-     * compatibility. It will not exist at runtime and should not be used
-     * under any circumstances.
-     * 
-     * @param damage the new damage value
-     */
-    @Deprecated
-    public void _INVALID_setDamage(int damage) {
-        setDamage(damage);
-    }
-
-    /**
      * Gets the cause of the damage.
      *
      * @return A DamageCause value detailing the cause of the damage.
@@ -267,7 +243,13 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
 
     /**
      * An enum to specify the types of modifier
+     *
+     * @deprecated 这个API被废弃了，具体见后面的网址，很快就要被移除了，就不深入解释了.This API is responsible for a large number of implementation
+     * problems and is in general unsustainable to maintain. It is likely to be
+     * removed very soon in a subsequent release. Please see
+     * https://www.spigotmc.org/threads/194446/ for more information.
      */
+    @Deprecated
     public enum DamageModifier {
         /**
          * This represents the amount of damage being done, also known as the

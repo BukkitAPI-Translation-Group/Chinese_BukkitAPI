@@ -7,7 +7,9 @@ import org.bukkit.event.HandlerList;
 
 /**
  * 当玩家获得某个成就时触发此事件.
+ * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
  */
+@Deprecated
 public class PlayerAchievementAwardedEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private final Achievement achievement;

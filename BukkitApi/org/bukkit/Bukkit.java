@@ -39,8 +39,8 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
 
-import com.avaje.ebean.config.ServerConfig;
 import com.google.common.collect.ImmutableList;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.generator.ChunkGenerator;
 
 import org.bukkit.inventory.ItemFactory;
@@ -122,24 +122,6 @@ public final class Bukkit {
      */
     public static String getBukkitVersion() {
         return server.getBukkitVersion();
-    }
-
-    /**
-     * 获取在线的所有玩家的数组副本.  
-     * 此方法的设计是为了对低版本服务器提供向下兼容性, 它不应该在任何情形下被使用. 
-     * <p>
-     * 原文:
-     * Gets an array copy of all currently logged in players.
-     * This method exists for legacy reasons to provide backwards
-     * compatibility. It will not exist at runtime and should not be used
-     * under any circumstances.
-     *
-     * @deprecated 被 {@link #getOnlinePlayers()} 取代
-     * @return 所有在线玩家的数组
-     */
-    @Deprecated
-    public static Player[] _INVALID_getOnlinePlayers() {
-        return server._INVALID_getOnlinePlayers();
     }
 
     /**
@@ -729,6 +711,16 @@ public final class Bukkit {
     }
 
     /**
+     * 只重载Minecraft游戏数据. 这包括自定义的进度和掉落表.
+     * <p>
+     * 原文:Reload only the Minecraft data for the server. This includes custom
+     * advancements and loot tables.
+     */
+    public static void reloadData() {
+        server.reloadData();
+    }
+
+    /**
      * 返回与此服务器实例绑定的主{@link Logger}. 
      * <p>
      * 原文: Returns the primary logger associated with this server instance.
@@ -772,16 +764,6 @@ public final class Bukkit {
      */
     public static boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException {
         return server.dispatchCommand(sender, commandLine);
-    }
-
-    /**
-     * Populates a given {@link ServerConfig} with values attributes to this
-     * server.
-     *
-     * @param config the server config to populate
-     */
-    public static void configureDbConfig(ServerConfig config) {
-        server.configureDbConfig(config);
     }
 
     /**
@@ -1394,6 +1376,26 @@ public final class Bukkit {
      */
     public static Entity getEntity(UUID uuid) {
         return server.getEntity(uuid);
+    }
+
+    /**
+     * Get the advancement specified by this key.
+     *
+     * @param key unique advancement key
+     * @return advancement or null if not exists
+     */
+    public static Advancement getAdvancement(NamespacedKey key) {
+        return server.getAdvancement(key);
+    }
+
+    /**
+     * Get an iterator through all advancements. Advancements cannot be removed
+     * from this iterator,
+     *
+     * @return an advancement iterator
+     */
+    public static Iterator<Advancement> advancementIterator() {
+        return server.advancementIterator();
     }
 
     /**

@@ -100,7 +100,10 @@ public class MaterialData implements Cloneable {
      * 原文：Creates a new ItemStack based on this MaterialData
      *
      * @return 新的ItemSatck，包含这个Material的副本
+     * @deprecated 这个方法创建一个大小为0的物品堆，通常没有用.
+     * 考虑使用 {@link #toItemStack(int)}.
      */
+    @Deprecated
     public ItemStack toItemStack() {
         return new ItemStack(type, 0, data);
     }

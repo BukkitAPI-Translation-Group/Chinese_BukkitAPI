@@ -1,33 +1,47 @@
 package org.bukkit.inventory;
 
+import com.google.common.base.Preconditions;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang.Validate;
 
+import org.bukkit.Keyed;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.material.MaterialData;
 
 /**
  * Represents a shaped (ie normal) crafting recipe.
  */
-public class ShapedRecipe implements Recipe {
-    private ItemStack output;
+public class ShapedRecipe implements Recipe, Keyed {
+    private final NamespacedKey key;
+    private final ItemStack output;
     private String[] rows;
     private Map<Character, ItemStack> ingredients = new HashMap<Character, ItemStack>();
+
+    @Deprecated
+    public ShapedRecipe(ItemStack result) {
+        this.key = NamespacedKey.randomKey();
+        this.output = new ItemStack(result);
+    }
 
     /**
      * Create a shaped recipe to craft the specified ItemStack. The
      * constructor merely determines the result and type; to set the actual
      * recipe, you'll need to call the appropriate methods.
      *
+     * @param key the unique recipe key
      * @param result The item you want the recipe to create.
      * @see ShapedRecipe#shape(String...)
      * @see ShapedRecipe#setIngredient(char, Material)
      * @see ShapedRecipe#setIngredient(char, Material, int)
      * @see ShapedRecipe#setIngredient(char, MaterialData)
      */
-    public ShapedRecipe(ItemStack result) {
+    public ShapedRecipe(NamespacedKey key, ItemStack result) {
+        Preconditions.checkArgument(key != null, "key");
+
+        this.key = key;
         this.output = new ItemStack(result);
     }
 
@@ -46,9 +60,13 @@ public class ShapedRecipe implements Recipe {
         Validate.notNull(shape, "Must provide a shape");
         Validate.isTrue(shape.length > 0 && shape.length < 4, "Crafting recipes should be 1, 2, 3 rows, not ", shape.length);
 
+        int lastLen = -1;
         for (String row : shape) {
             Validate.notNull(row, "Shape cannot have null rows");
             Validate.isTrue(row.length() > 0 && row.length() < 4, "Crafting rows should be 1, 2, or 3 characters, not ", row.length());
+
+            Validate.isTrue(lastLen == -1 || lastLen == row.length(), "Crafting recipes must be rectangular");
+            lastLen = row.length();
         }
         this.rows = new String[shape.length];
         for (int i = 0; i < shape.length; i++) {
@@ -144,5 +162,10 @@ public class ShapedRecipe implements Recipe {
      */
     public ItemStack getResult() {
         return output.clone();
+    }
+
+    @Override
+    public NamespacedKey getKey() {
+        return key;
     }
 }

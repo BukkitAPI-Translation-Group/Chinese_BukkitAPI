@@ -1,3 +1,4 @@
+/* 该文件会随着版本的更新而大幅度修改，因此建议你不要翻译标记为Deprecated的方法. */
 package org.bukkit.entity;
 
 import org.bukkit.GameMode;
@@ -200,6 +201,37 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
     public void setItemOnCursor(ItemStack item);
 
     /**
+     * Check whether a cooldown is active on the specified material.
+     *
+     * @param material the material to check
+     * @return if a cooldown is active on the material
+     */
+    public boolean hasCooldown(Material material);
+
+    /**
+     * Get the cooldown time in ticks remaining for the specified material.
+     *
+     * @param material the material to check
+     * @return the remaining cooldown time in ticks
+     */
+    public int getCooldown(Material material);
+
+    /**
+     * Set a cooldown on the specified material for a certain amount of ticks.
+     * ticks. 0 ticks will result in the removal of the cooldown.
+     * <p>
+     * Cooldowns are used by the server for items such as ender pearls and
+     * shields to prevent them from being used repeatedly.
+     * <p>
+     * Note that cooldowns will not by themselves stop an item from being used
+     * for attacking.
+     *
+     * @param material the material to set the cooldown for
+     * @param ticks the amount of ticks to set or 0 to remove
+     */
+    public void setCooldown(Material material, int ticks);
+
+    /**
      * 返回指定玩家是否正在睡眠。
      * 原文：
      * Returns whether this player is slumbering.
@@ -259,4 +291,66 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * @return 升级所需经验
      */
     public int getExpToLevel();
+
+    /**
+     * Gets the entity currently perched on the left shoulder or null if no
+     * entity.
+     * <br>
+     * The returned entity will not be spawned within the world, so most
+     * operations are invalid unless the entity is first spawned in.
+     *
+     * @return left shoulder entity
+     * @deprecated There are currently no well defined semantics regarding
+     * serialized entities in Bukkit. Use with care.
+     */
+    @Deprecated
+    public Entity getShoulderEntityLeft();
+
+    /**
+     * Sets the entity currently perched on the left shoulder, or null to
+     * remove. This method will remove the entity from the world.
+     * <br>
+     * Note that only a copy of the entity will be set to display on the
+     * shoulder.
+     * <br>
+     * Also note that the client will currently only render {@link Parrot}
+     * entities.
+     *
+     * @param entity left shoulder entity
+     * @deprecated There are currently no well defined semantics regarding
+     * serialized entities in Bukkit. Use with care.
+     */
+    @Deprecated
+    public void setShoulderEntityLeft(Entity entity);
+
+    /**
+     * Gets the entity currently perched on the right shoulder or null if no
+     * entity.
+     * <br>
+     * The returned entity will not be spawned within the world, so most
+     * operations are invalid unless the entity is first spawned in.
+     *
+     * @return right shoulder entity
+     * @deprecated There are currently no well defined semantics regarding
+     * serialized entities in Bukkit. Use with care.
+     */
+    @Deprecated
+    public Entity getShoulderEntityRight();
+
+    /**
+     * Sets the entity currently perched on the right shoulder, or null to
+     * remove. This method will remove the entity from the world.
+     * <br>
+     * Note that only a copy of the entity will be set to display on the
+     * shoulder.
+     * <br>
+     * Also note that the client will currently only render {@link Parrot}
+     * entities.
+     *
+     * @param entity right shoulder entity
+     * @deprecated There are currently no well defined semantics regarding
+     * serialized entities in Bukkit. Use with care.
+     */
+    @Deprecated
+    public void setShoulderEntityRight(Entity entity);
 }

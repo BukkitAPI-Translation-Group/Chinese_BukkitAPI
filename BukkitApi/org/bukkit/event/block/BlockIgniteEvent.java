@@ -73,7 +73,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     /**
      * 获取点燃方块的实体.
      * <p>
-     * 原文：Gets the entity who ignited this block
+     * 原文：Gets the entity which ignited this block
      *
      * @return 点燃方块的实体，如果不是实体点燃的返回null
      */

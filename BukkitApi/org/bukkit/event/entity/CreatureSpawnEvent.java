@@ -169,6 +169,11 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          */
         ENDER_PEARL,
         /**
+         * When an entity is spawned as a result of the entity it is being
+         * perched on jumping or being damaged
+         */
+        SHOULDER_ENTITY,
+        /**
          * 当生物被插件生成时
          */
         CUSTOM,

@@ -6,13 +6,17 @@ import java.util.Map;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.util.NumberConversions;
-import static org.bukkit.util.NumberConversions.checkFinite;
 import org.bukkit.util.Vector;
 
 /**
  * 世界中的三维位置,包含x,y,z
  * <p>
- * 原文:Represents a 3-dimensional position in a world
+ * 原文:Represents a 3-dimensional position in a world.
+ * <br>
+ * No constraints are placed on any angular values other than that they be
+ * specified in degrees. This means that negative angles or angles of greater
+ * magnitude than 360 are valid, but may be normalized to any other equivalent
+ * representation by the implementation.
  */
 public class Location implements Cloneable, ConfigurationSerializable {
     private World world;
@@ -589,32 +593,47 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Safely converts a double (location coordinate) to an int (block
+     * Check if each component of this Location is finite.
+     *
+     * @throws IllegalArgumentException if any component is not finite
+     */
+    public void checkFinite() throws IllegalArgumentException {
+        NumberConversions.checkFinite(x, "x not finite");
+        NumberConversions.checkFinite(y, "y not finite");
+        NumberConversions.checkFinite(z, "z not finite");
+        NumberConversions.checkFinite(pitch, "pitch not finite");
+        NumberConversions.checkFinite(yaw, "yaw not finite");
+    }
+
+    /**
+     * 把double类型数值(位置坐标)安全地转换为int类型数值(方块坐标).
+     * <p>
+     * 原文:Safely converts a double (location coordinate) to an int (block
      * coordinate)
      *
-     * @param loc Precise coordinate
-     * @return Block coordinate
+     * @param loc 精确坐标
+     * @return 方块坐标
      */
     public static int locToBlock(double loc) {
         return NumberConversions.floor(loc);
     }
 
-	@Utility
-	public Map<String, Object> serialize() {
-		Map<String, Object> data = new HashMap<String, Object>();
-		data.put("world", this.world.getName());
+    @Utility
+    public Map<String, Object> serialize() {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("world", this.world.getName());
 
-		data.put("x", this.x);
-		data.put("y", this.y);
-		data.put("z", this.z);
+        data.put("x", this.x);
+        data.put("y", this.y);
+        data.put("z", this.z);
 
-		data.put("yaw", this.yaw);
-		data.put("pitch", this.pitch);
+        data.put("yaw", this.yaw);
+        data.put("pitch", this.pitch);
 
-		return data;
-	}
-	
-	 /**
+        return data;
+    }
+
+    /**
      * Required method for deserialization
      *
      * @param args map to deserialize
@@ -622,12 +641,12 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @throws IllegalArgumentException if the world don't exists
      * @see ConfigurationSerializable
      */
-	public static Location deserialize(Map<String, Object> args) {
-		World world = Bukkit.getWorld((String) args.get("world"));
-		if (world == null) {
-			throw new IllegalArgumentException("unknown world");
-		}
+    public static Location deserialize(Map<String, Object> args) {
+        World world = Bukkit.getWorld((String) args.get("world"));
+        if (world == null) {
+            throw new IllegalArgumentException("unknown world");
+        }
 
-		return new Location(world, NumberConversions.toDouble(args.get("x")), NumberConversions.toDouble(args.get("y")), NumberConversions.toDouble(args.get("z")), NumberConversions.toFloat(args.get("yaw")), NumberConversions.toFloat(args.get("pitch")));
-	}
+        return new Location(world, NumberConversions.toDouble(args.get("x")), NumberConversions.toDouble(args.get("y")), NumberConversions.toDouble(args.get("z")), NumberConversions.toFloat(args.get("yaw")), NumberConversions.toFloat(args.get("pitch")));
+    }
 }

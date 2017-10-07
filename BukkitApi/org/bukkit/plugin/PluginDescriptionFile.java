@@ -81,10 +81,6 @@ import com.google.common.collect.ImmutableSet;
  *     <td>{@link #getPrefix()}</td>
  *     <td>用于控制台的插件前缀</td>
  * </tr><tr>
- *     <td><code>database</code></td>
- *     <td>{@link #isDatabaseEnabled()}</td>
- *     <td>表示是否支持数据库</td>
- * </tr><tr>
  *     <td><code>load</code></td>
  *     <td>{@link #getLoad()}</td>
  *     <td>载入插件的时机</td>
@@ -130,7 +126,6 @@ import com.google.common.collect.ImmutableSet;
  *website: http://www.curse.com/server-mods/minecraft/myplugin
  *
  *main: com.captaininflamo.bukkit.inferno.Inferno
- *database: false
  *depend: [NewFire, FlameWire]
  *
  *commands:
@@ -228,10 +223,6 @@ import com.google.common.collect.ImmutableSet;
  *     <td>{@link #getPrefix()}</td>
  *     <td>The token to prefix plugin log entries</td>
  * </tr><tr>
- *     <td><code>database</code></td>
- *     <td>{@link #isDatabaseEnabled()}</td>
- *     <td>Indicator to enable database support</td>
- * </tr><tr>
  *     <td><code>load</code></td>
  *     <td>{@link #getLoad()}</td>
  *     <td>The phase of server-startup this plugin will load during</td>
@@ -280,7 +271,6 @@ import com.google.common.collect.ImmutableSet;
  *website: http://www.curse.com/server-mods/minecraft/myplugin
  *
  *main: com.captaininflamo.bukkit.inferno.Inferno
- *database: false
  *depend: [NewFire, FlameWire]
  *
  *commands:
@@ -365,7 +355,6 @@ public final class PluginDescriptionFile {
     private List<String> authors = null;
     private String website = null;
     private String prefix = null;
-    private boolean database = false;
     private PluginLoadOrder order = PluginLoadOrder.POSTWORLD;
     private List<Permission> permissions = null;
     private Map<?, ?> lazyPermissions = null;
@@ -572,25 +561,6 @@ public final class PluginDescriptionFile {
      */
     public String getWebsite() {
         return website;
-    }
-
-    /**
-     * Gives if the plugin uses a database.
-     * <ul>
-     * <li>Using a database is non-trivial.
-     * <li>Valid values include <code>true</code> and <code>false</code>
-     * </ul>
-     * <p>
-     * In the plugin.yml, this entry is named <code>database</code>.
-     * <p>
-     * Example:
-     * <blockquote><pre>database: false</pre></blockquote>
-     *
-     * @return if this plugin requires a database
-     * @see Plugin#getDatabase()
-     */
-    public boolean isDatabaseEnabled() {
-        return database;
     }
 
     /**
@@ -1020,10 +990,6 @@ public final class PluginDescriptionFile {
         return classLoaderOf;
     }
 
-    public void setDatabaseEnabled(boolean database) {
-        this.database = database;
-    }
-
     /**
      * Saves this PluginDescriptionFile to the given writer
      *
@@ -1102,14 +1068,6 @@ public final class PluginDescriptionFile {
         depend = makePluginNameList(map, "depend");
         softDepend = makePluginNameList(map, "softdepend");
         loadBefore = makePluginNameList(map, "loadbefore");
-
-        if (map.get("database") != null) {
-            try {
-                database = (Boolean) map.get("database");
-            } catch (ClassCastException ex) {
-                throw new InvalidDescriptionException(ex, "database is of wrong type");
-            }
-        }
 
         if (map.get("website") != null) {
             website = map.get("website").toString();
@@ -1208,7 +1166,6 @@ public final class PluginDescriptionFile {
         map.put("name", name);
         map.put("main", main);
         map.put("version", version);
-        map.put("database", database);
         map.put("order", order.toString());
         map.put("default-permission", defaultPerm.toString());
 

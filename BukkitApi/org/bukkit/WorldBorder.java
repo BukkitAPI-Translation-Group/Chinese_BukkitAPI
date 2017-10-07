@@ -136,4 +136,14 @@ public interface WorldBorder {
      * @param distance 要设置玩家会被警告的距离
      */
     public void setWarningDistance(int distance);
+
+    /**
+     * 检查指定的位置是否在这个边界里面.
+     * <p>
+     * 原文:Check if the specified location is inside this border.
+     *
+     * @param location 要检查的位置
+     * @return 指定的位置是否在这个边界里面
+     */
+    public boolean isInside(Location location);
 }
