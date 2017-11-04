@@ -2,8 +2,6 @@ package org.bukkit.inventory;
 
 /**
  * 马匹的用户界面接口.
- * <p>
- * 原文:An interface to the inventory of a Horse.
  */
 public interface HorseInventory extends Inventory {
 
