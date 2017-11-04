@@ -1,7 +1,7 @@
 package org.bukkit.inventory;
 
 /**
- * Represents the chosen main hand of a player
+ * 代表玩家的主手。
  */
 public enum MainHand {
     LEFT,
