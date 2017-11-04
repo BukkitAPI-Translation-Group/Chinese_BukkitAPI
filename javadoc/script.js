@@ -37,6 +37,7 @@ function showAnnouncement() {
 		}
 		swal({
 			title: "公告",
+			html: true,
 			text: response.message,
 			confirmButtonText: "知道了(本公告将不再提示)"
 		}, function () {
