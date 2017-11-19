@@ -1,43 +1,43 @@
 package org.bukkit.inventory;
 
 /**
- * 马匹的用户界面接口.
+ * 马的界面接口.
  */
 public interface HorseInventory extends Inventory {
 
     /**
-     * 获取马匹的马鞍Item项目.
+     * 获取马所装备的马鞍.
      * <p>
      * 原文:Gets the item in the horse's saddle slot.
      *
-     * @return 马鞍Item
+     * @return 马鞍
      */
     ItemStack getSaddle();
 
     /**
-     * 获取马匹的盔甲Item项目.
+     * 获取马所装备的盔甲.
      * <p>
      * 原文:Gets the item in the horse's armor slot.
      *
-     * @return 盔甲Item项目
+     * @return 盔甲
      */
     ItemStack getArmor();
 
     /**
-     * 设置马匹的马鞍Item项目.
+     * 为这匹马装备一个马鞍.
      * <p>
      * 原文:Sets the item in the horse's saddle slot.
      *
-     * @param stack 需要设置的马鞍Item项目
+     * @param stack 马鞍
      */
     void setSaddle(ItemStack stack);
 
     /**
-     * 设置马匹的盔甲Item项目.
+     * 为这匹马装备盔甲.
      * <p>
      * 原文:Sets the item in the horse's armor slot.
      *
-     * @param stack 盔甲Item项目
+     * @param stack 盔甲
      */
     void setArmor(ItemStack stack);
 }
