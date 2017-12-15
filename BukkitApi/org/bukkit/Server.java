@@ -536,7 +536,7 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Reload only the Minecraft data for the server. This includes custom
      * advancements and loot tables.
      */
-    public static void reloadData();  
+    public void reloadData();  
 
     /**
      * 返回此服务器的日志记录.
