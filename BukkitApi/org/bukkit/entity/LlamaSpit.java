@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents Llama spit.
+ * 代表羊驼唾沫.
  */
 public interface LlamaSpit extends Projectile { }
