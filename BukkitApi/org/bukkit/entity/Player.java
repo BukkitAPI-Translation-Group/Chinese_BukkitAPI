@@ -131,7 +131,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 发送一条不含颜色代码的消息
      * <p>
-     * 译注:就是会把颜色代码过滤掉然后{#link sendMessage}
+     * 译注:就是会把颜色代码过滤掉然后{@link #sendMessage}
      * <p>
      * 原文:Sends this sender a message raw
      *
