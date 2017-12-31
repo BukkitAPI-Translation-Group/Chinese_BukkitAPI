@@ -853,7 +853,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器是否处于正版模式.
+     * 获取服务器的正版准入设定.
      * <p>
      * 原文:Gets whether the Server is in online mode or not.
      *
@@ -947,7 +947,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取包含了已被封禁的IP地址的集合.
+     * 获取已被封禁的IP地址.
      * <p>
      * 原文:Gets a set containing all current IPs that are banned.
      *
@@ -980,7 +980,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取包含了已被封禁的玩家的集合.
+     * 获取已被封禁的玩家.
      * <p>
      * 原文:Gets a set containing all banned players.
      *
@@ -1008,11 +1008,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取包含了所有OP的集合.
+     * 获取服务器的所有OP(管理员).
      * <p>
      * 原文:Gets a set containing all player operators.
      *
-     * @return 服务器OP集合
+     * @return 服务器OP
      */
     public static Set<OfflinePlayer> getOperators() {
         return server.getOperators();
