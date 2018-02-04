@@ -68,6 +68,22 @@ function loadcomment() {
             });";
 			lastContentContainer.appendChild(script);
 		});
+		$script(["https://changyan.sohu.com/upload/changyan.js","https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js","https://www.googletagmanager.com/gtag/js?id=UA-113488090-1"], function () {
+			var script = document.createElement("script");
+			script.innerHTML = "window.changyan.api.config({\
+            appid: 'cyt5tMDqL',\
+            conf: 'prod_1dc953f5be68de59e7af0d96b732e4c1'\
+            });\
+  (adsbygoogle = window.adsbygoogle || []).push({\
+    google_ad_client: "ca-pub-3420822492072643",\
+    enable_page_level_ads: true\
+  });\
+  window.dataLayer = window.dataLayer || [];\
+  function gtag(){dataLayer.push(arguments);}\
+  gtag('js', new Date());\
+  gtag('config', 'UA-113488090-1');\";
+			lastContentContainer.appendChild(script);
+		});
 	}
 }
 // js-cookie start
