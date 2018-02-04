@@ -75,7 +75,7 @@ function loadcomment() {
             conf: 'prod_1dc953f5be68de59e7af0d96b732e4c1'\
             });\
   (adsbygoogle = window.adsbygoogle || []).push({\
-    google_ad_client: "ca-pub-3420822492072643",\
+    google_ad_client: \"ca-pub-3420822492072643\",\
     enable_page_level_ads: true\
   });\
   window.dataLayer = window.dataLayer || [];\
