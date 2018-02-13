@@ -31,9 +31,9 @@ import org.bukkit.scoreboard.Scoreboard;
 public interface Player extends HumanEntity, Conversable, CommandSender, OfflinePlayer, PluginMessageRecipient {
 
     /**
-     * 获得玩家在聊天中的昵称.
+     * 获得玩家在聊天信息中的昵称.
      * <p>
-     * 这个名字只显示在聊天中,可以包括颜色 
+     * 这个昵称只显示在聊天信息中，能以颜色加以修饰.
      * <p>
      * 原文:Gets the "friendly" name to display of this player. This may include
      * color.
@@ -46,9 +46,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public String getDisplayName();
 
     /**
-     * 设置玩家在聊天中的昵称.
+     * 设置玩家在聊天信息中的昵称.
      * <p>
-     * 这个名字只显示在聊天中,可以包括颜色.
+     * 这个名字只显示在聊天信息中,能以颜色加以修饰.
      * <p>
      * 原文Sets the "friendly" name to display of this player. This may include
      * color.
@@ -65,7 +65,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文:Gets the name that is shown on the player list.
      * 
-     * @return the player list name
+     * @return 玩家名(显示于tab列表)
      */
     public String getPlayerListName();
 
@@ -75,6 +75,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 不允许超过16个字符,不允许重复.但支持{@link ChatColor}颜色代码.
      * <p>
      * 如果设置为null则不在玩家列表中显示.(玩家自己还是看得到的,只不过别人看不到).
+     * <p>
+     * ("list name"指代“玩家显示在Tab列表中的名称”)(以下解释的是服务器如何处理冲突玩家名，你用代码违法操作肯定是会抛出异常的)
+     * 这个名字区分大小写且唯一，也就意味着两个字母相同但字母大小写有别的名字被当作为两个不同的人.
+     * 如果一玩家以与某个游戏内玩家的自定义的"list name"相冲突的名字加入游戏，
+     * 则追加一个随机数字至这个玩家的"list name".
+     * 如果这个玩家的名字较长，那么名字末尾的部分会被截除.
      * <p>
      * 原文:Sets the name that is shown on the in-game player list.
      * <p>
@@ -102,7 +108,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文:Set the target of the player's compass.
      *
-     * @param loc Location to point to
+     * @param loc 指向
      */
     public void setCompassTarget(Location loc);
 
@@ -113,14 +119,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文: Get the previously set compass target.
      *
-     * @return location of the target
+     * @return 指向
      */
     public Location getCompassTarget();
 
     /**
      * 得到一个Address对象,包括这个玩家的IP以及登入端口.
-     * <p>
-     * 可以使用toString()方法得到 "xxx.xxx.xxx.xxx:xxxxx"
      * <p>
      * 原文:Gets the socket address of this player
      *
@@ -129,7 +133,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public InetSocketAddress getAddress();
 
     /**
-     * 发送一条不含颜色代码的消息
+     * 发送一条不含颜色代码的消息.
      * <p>
      * 译注:就是会把颜色代码过滤掉然后{@link #sendMessage}
      * <p>
@@ -172,7 +176,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文:Returns if the player is in sneak mode
      *
-     * @return 如果在潜行模式返回true,false反之.
+     * @return 如果在潜行模式返回true
      */
     public boolean isSneaking();
 
@@ -205,9 +209,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
 
     /**
      * 保存玩家数据(位置,血量,背包,移动方向
-     * 及其他信息至在world/player文件夹中的玩家名.dat文件).
+     * 及其他信息至在world/player文件夹中的"玩家名.dat"文件).
      * <p>
-     * 原文 Saves the players current location, health, inventory, motion, and
+     * 原文:Saves the players current location, health, inventory, motion, and
      * other information into the username.dat file, in the world/player
      * folder
      */
