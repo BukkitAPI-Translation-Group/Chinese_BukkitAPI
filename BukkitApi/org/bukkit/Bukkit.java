@@ -1216,11 +1216,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取在客户端服务器列表里显示的消息.
+     * 获取在客户端服务器列表里显示的消息(服务器的欢迎消息，又称message of the day).
      * <p>
      * 原文:Gets the message that is displayed on the server list.
      *
-     * @return 服务器的列表显示信息内容
+     * @return 服务器motd
      */
     public static String getMotd() {
         return server.getMotd();
@@ -1315,14 +1315,14 @@ public final class Bukkit {
 
     /**
      * 设置一个空闲超时阈值(IDLE_KICK). 玩家空闲达到这个特定的时间后会被自动踢出服务器.
-	 * 如果设置为0，该功能将被关闭.
-	 * 
-	 * 原文: Set the idle kick timeout. Any players idle for the specified amount of
+     * 如果设置为0，该功能将被关闭.
+     * <p>
+     * 原文: Set the idle kick timeout. Any players idle for the specified amount of
      * time will be automatically kicked.
      * <p>
      * A value of 0 will disable the idle kick timeout.
      *
-     * @param threshold the idle timeout in minutes
+     * @param threshold 玩家空闲时间阈值，以分钟为单位
      */
     public static void setIdleTimeout(int threshold) {
         server.setIdleTimeout(threshold);
@@ -1330,8 +1330,8 @@ public final class Bukkit {
 
     /**
      * 获取服务器空闲超时阈值(IDLE_KICK).
-	 * 
-	 * 原文: Gets the idle kick timeout.
+     * <p>
+     * 原文: Gets the idle kick timeout.
      *
      * @return 以分钟为单位的空闲超时阈值
      */
@@ -1373,8 +1373,8 @@ public final class Bukkit {
     }
 
     /**
-	 * 用UUID获取实体.
-	 * <p>
+     * 用UUID获取实体.
+     * <p>
      * 原文:Gets an entity on the server by its UUID
      *
      * @param uuid 实体的UUID
@@ -1385,9 +1385,9 @@ public final class Bukkit {
     }
 
     /**
-	 * 通过Key获得特定的进度对象.
-     * 
-	 * 原文: Get the advancement specified by this key.
+     * 通过Key获得特定的进度对象.
+     * <p>
+     * 原文: Get the advancement specified by this key.
      *
      * @param 寻找进度对象所需的key
      * @return 一个进度对象. 如果它不存在，将返回null.
@@ -1397,9 +1397,9 @@ public final class Bukkit {
     }
 
     /**
-	 * 获取一个用以遍历所有进度的迭代器对象。
-	 * 进度不能够从该迭代器上被删除。
-	 * 
+     * 获取一个用以遍历所有进度的迭代器对象。
+     * 进度不能够从该迭代器上被删除。
+     * <p>
      * 原文: Get an iterator through all advancements. Advancements cannot be removed
      * from this iterator,
      *
