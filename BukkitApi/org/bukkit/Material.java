@@ -66,479 +66,1859 @@ import org.bukkit.material.Banner;
 import org.bukkit.material.Observer;
 
 /**
- * æ‰€æœ‰ç‰©å“çš„æšä¸¾.
+ * ËùÓĞÎïÆ·µÄÃ¶¾Ù.
  */
 public enum Material {
+    /**
+     * ¿ÕÆø
+     */
     AIR(0, 0),
+    /**
+     * Ê¯Í·
+     */
     STONE(1),
+    /**
+     * ²İ·½¿é
+     */
     GRASS(2),
+    /**
+     * ÄàÍÁ
+     */
     DIRT(3),
+    /**
+     * Ô²Ê¯
+     */
     COBBLESTONE(4),
+    /**
+     * Ä¾°å
+     */
     WOOD(5, Wood.class),
+    /**
+     * Ê÷Ãç
+     */
     SAPLING(6, Sapling.class),
+    /**
+     * »ùÑÒ
+     */
     BEDROCK(7),
+    /**
+     * Ë®
+     */
     WATER(8, MaterialData.class),
+    /**
+     * ¾²Ì¬Ë®
+     */
     STATIONARY_WATER(9, MaterialData.class),
+    /**
+     * ÈÛÑÒ
+     */
     LAVA(10, MaterialData.class),
+    /**
+     * ¾²Ì¬ÈÛÑÒ
+     */
     STATIONARY_LAVA(11, MaterialData.class),
+    /**
+     * É³×Ó
+     */
     SAND(12),
+    /**
+     * É°Àù
+     */
     GRAVEL(13),
+    /**
+     * ½ğ¿óÊ¯
+     */
     GOLD_ORE(14),
+    /**
+     * Ìú¿óÊ¯
+     */
     IRON_ORE(15),
+    /**
+     * Ãº¿óÊ¯
+     */
     COAL_ORE(16),
+    /**
+     * Ä¾Í·(Ô­Ä¾)
+     */
     LOG(17, Tree.class),
+    /**
+     * Ê÷Ò¶
+     */
     LEAVES(18, Leaves.class),
+    /**
+     * º£Ãà
+     */
     SPONGE(19),
+    /**
+     * ²£Á§
+     */
     GLASS(20),
+    /**
+     * Çà½ğÊ¯¿óÊ¯
+     */
     LAPIS_ORE(21),
+    /**
+     * Çà½ğÊ¯¿é
+     */
     LAPIS_BLOCK(22),
+    /**
+     * ·¢ÉäÆ÷
+     */
     DISPENSER(23, Dispenser.class),
+    /**
+     * É°ÑÒ
+     */
     SANDSTONE(24, Sandstone.class),
+    /**
+     * Òô·ûºĞ
+     */
     NOTE_BLOCK(25),
+    /**
+     * ´²
+     */
     BED_BLOCK(26, Bed.class),
+    /**
+     * ³äÄÜÌú¹ì
+     */
     POWERED_RAIL(27, PoweredRail.class),
+    /**
+     * Ì½²âÌú¹ì
+     */
     DETECTOR_RAIL(28, DetectorRail.class),
+    /**
+     * Õ³ĞÔ»îÈû
+     */
     PISTON_STICKY_BASE(29, PistonBaseMaterial.class),
+    /**
+     * Ö©ÖëÍø(ÖëÍø/Íø)
+     */
     WEB(30),
+    /**
+     * ²İ´Ô(¸ß²İ´Ô/²İ±¾Ìå·½¿é)
+     */
     LONG_GRASS(31, LongGrass.class),
+    /**
+     * ¿İËÀµÄ¹àÄ¾
+     */
     DEAD_BUSH(32),
+    /**
+     * »îÈû
+     */
     PISTON_BASE(33, PistonBaseMaterial.class),
+    /**
+     * »îÈû±Û
+     */
     PISTON_EXTENSION(34, PistonExtensionMaterial.class),
+    /**
+     * ÑòÃ«
+     */
     WOOL(35, Wool.class),
+    /**
+     * ÒÆ¶¯µÄ»îÈû±Û
+     */
     PISTON_MOVING_PIECE(36),
+    /**
+     * ÆÑ¹«Ó¢(Ğ¡»Æ»¨/¾Õ»¨)
+     */
     YELLOW_FLOWER(37),
+    /**
+     * ÓİÃÀÈË(Ğ¡ºì»¨/ó¿ËÚ/Ãµ¹å)
+     */
     RED_ROSE(38),
+    /**
+     * ×ØÉ«Ä¢¹½(×ØÄ¢¹½)
+     */
     BROWN_MUSHROOM(39),
+    /**
+     * ºìÉ«Ä¢¹½(ºìÄ¢¹½)
+     */
     RED_MUSHROOM(40),
+    /**
+     * ½ğ¿é
+     */
     GOLD_BLOCK(41),
+    /**
+     * Òø¿é
+     */
     IRON_BLOCK(42),
+    /**
+     * Ë«Ê¯Ì¨½×
+     */
     DOUBLE_STEP(43, Step.class),
+    /**
+     * Ê¯Ì¨½×
+     */
     STEP(44, Step.class),
+    /**
+     * ×©¿é
+     */
     BRICK(45),
+    /**
+     * TNT(Õ¨Ò©·½¿é)
+     */
     TNT(46),
+    /**
+     * Êé¼Ü
+     */
     BOOKSHELF(47),
+    /**
+     * Ì¦Ê¯(²¼ÓĞÌ¦ŞºµÄÊ¯Í·)
+     */
     MOSSY_COBBLESTONE(48),
+    /**
+     * ºÚê×Ê¯
+     */
     OBSIDIAN(49),
+    /**
+     * »ğ°Ñ
+     */
     TORCH(50, Torch.class),
+    /**
+     * »ğ(»ğ±¾Ìå·½¿é)
+     */
     FIRE(51),
+    /**
+     * Ë¢¹ÖÏä(Ë¢¹ÖÆ÷/Ë¢¹ÖÁı/¹ÖÎïÁı/¹ÖÎïºĞ)
+     */
     MOB_SPAWNER(52),
+    /**
+     * Ä¾ÖÊÂ¥Ìİ(ÏîÄ¿Â¥Ìİ)
+     */
     WOOD_STAIRS(53, Stairs.class),
+    /**
+     * Ïä×Ó
+     */
     CHEST(54, Chest.class),
+    /**
+     * ºìÊ¯Ïß
+     */
     REDSTONE_WIRE(55, RedstoneWire.class),
+    /**
+     * ×êÊ¯¿óÊ¯
+     */
     DIAMOND_ORE(56),
+    /**
+     * ×êÊ¯¿é
+     */
     DIAMOND_BLOCK(57),
+    /**
+     * ¹¤×÷Ì¨(¹¤¾ßÌ¨/ºÏ³ÉÌ¨)
+     */
     WORKBENCH(58),
+    /**
+     * Ğ¡Âó(Ğ¡Âó±¾Ìå·½¿é)
+     */
     CROPS(59, Crops.class),
+    /**
+     * ¸ûµØ(¸û¹ıµÄÄàÍÁ/·ÊÎÖµÄÄàÍÁ/Å©ÌïÄàÍÁ)
+     */
     SOIL(60, MaterialData.class),
+    /**
+     * ÈÛÂ¯
+     */
     FURNACE(61, Furnace.class),
+    /**
+     * È¼ÉÕµÄÈÛÂ¯(È¼ÉÕ×ÅµÄÈÛÂ¯/¹¤×÷×ÅµÄÈÛÂ¯)
+     */
     BURNING_FURNACE(62, Furnace.class),
+    /**
+     * ¸æÊ¾ÅÆ
+     */
     SIGN_POST(63, 64, Sign.class),
+    /**
+     * Ä¾ÃÅ
+     */
     WOODEN_DOOR(64, Door.class),
+    /**
+     * Ìİ×Ó
+     */
     LADDER(65, Ladder.class),
+    /**
+     * Ìú¹ì
+     */
     RAILS(66, Rails.class),
+    /**
+     * Ô²Ê¯Â¥Ìİ
+     */
     COBBLESTONE_STAIRS(67, Stairs.class),
+    /**
+     * Ç½ÉÏµÄ¸æÊ¾ÅÆ
+     */
     WALL_SIGN(68, 64, Sign.class),
+    /**
+     * À­¸Ë
+     */
     LEVER(69, Lever.class),
+    /**
+     * Ê¯ÖÊÑ¹Á¦°å
+     */
     STONE_PLATE(70, PressurePlate.class),
+    /**
+     * ÌúÃÅ
+     */
     IRON_DOOR_BLOCK(71, Door.class),
+    /**
+     * Ä¾ÖÊÑ¹Á¦°å
+     */
     WOOD_PLATE(72, PressurePlate.class),
+    /**
+     * ºìÊ¯¿óÊ¯
+     */
     REDSTONE_ORE(73),
+    /**
+     * ·¢¹âµÄºìÊ¯¿óÊ¯
+     */
     GLOWING_REDSTONE_ORE(74),
+    /**
+     * ºìÊ¯»ğ°Ñ(¹Ø±Õ×´Ì¬)
+     */
     REDSTONE_TORCH_OFF(75, RedstoneTorch.class),
+    /**
+     * ºìÊ¯»ğ°Ñ(µãÁÁ/¿ªÆô/³äÄÜ×´Ì¬)
+     */
     REDSTONE_TORCH_ON(76, RedstoneTorch.class),
+    /**
+     * Ê¯ÖÊ°´Å¥
+     */
     STONE_BUTTON(77, Button.class),
+    /**
+     * Ñ©(Ñ©¿é)
+     */
     SNOW(78),
+    /**
+     * ±ù(±ù¿é)
+     */
     ICE(79),
+    /**
+     * Ñ©¿é
+     */
     SNOW_BLOCK(80),
+    /**
+     * ÏÉÈËÕÆ
+     */
     CACTUS(81, MaterialData.class),
+    /**
+     * ğ¤ÍÁ
+     */
     CLAY(82),
+    /**
+     * ¸ÊÕá
+     */
     SUGAR_CANE_BLOCK(83, MaterialData.class),
+    /**
+     * ³ªÆ¬»ú
+     */
     JUKEBOX(84),
+    /**
+     * ÏîÄ¿Õ¤À¸
+     */
     FENCE(85),
+    /**
+     * ÄÏ¹Ï
+     */
     PUMPKIN(86, Pumpkin.class),
+    /**
+     * µØÓüÑÒ
+     */
     NETHERRACK(87),
+    /**
+     * Áé»êÉ³
+     */
     SOUL_SAND(88),
+    /**
+     * Ó©Ê¯
+     */
     GLOWSTONE(89),
+    /**
+     * ÏÂ½ì´«ËÍÃÅ(ÏÂ½ì´«ËÍÃÅÄÚÈİÎï±¾Ìå·½¿é)
+     */
     PORTAL(90),
+    /**
+     * ÄÏ¹ÏµÆ
+     */
     JACK_O_LANTERN(91, Pumpkin.class),
+    /**
+     * µ°¸â(µ°¸â±¾Ìå·½¿é)
+     */
     CAKE_BLOCK(92, 64, Cake.class),
+    /**
+     * ºìÊ¯ÖĞ¼ÌÆ÷(¹Ø±Õ×´Ì¬)
+     */
     DIODE_BLOCK_OFF(93, Diode.class),
+    /**
+     * ºìÊ¯ÖĞ¼ÌÆ÷(¹¤×÷/¿ªÆô/³äÄÜ×´Ì¬)
+     */
     DIODE_BLOCK_ON(94, Diode.class),
+    /**
+     * È¾É«²£Á§
+     */
     STAINED_GLASS(95),
+    /**
+     * »î°åÃÅ(ºáÖÃÃÅ)
+     */
     TRAP_DOOR(96, TrapDoor.class),
+    /**
+     * ¹ÖÎïµ°(Ë¢¹Öµ°/¹ÖÎïÉú³Éµ°)
+     */
     MONSTER_EGGS(97, MonsterEggs.class),
+    /**
+     * Ê¯×©
+     */
     SMOOTH_BRICK(98, SmoothBrick.class),
+    /**
+     * ×ØÉ«¾ŞĞÍÄ¢¹½
+     */
     HUGE_MUSHROOM_1(99, Mushroom.class),
+    /**
+     * ºìÉ«¾ŞĞÍÄ¢¹½
+     */
     HUGE_MUSHROOM_2(100, Mushroom.class),
+    /**
+     * ÌúÀ¸¸Ë(ÌúÕ¤À¸)
+     */
     IRON_FENCE(101),
+    /**
+     * ²£Á§°å
+     */
     THIN_GLASS(102),
+    /**
+     * Î÷¹Ï
+     */
     MELON_BLOCK(103),
+    /**
+     * ÄÏ¹Ï¹£(ÄÏ¹Ï¹£±¾Ìå·½¿é)
+     */
     PUMPKIN_STEM(104, MaterialData.class),
+    /**
+     * Î÷¹Ï¹£(Î÷¹Ï¹£±¾Ìå·½¿é)
+     */
     MELON_STEM(105, MaterialData.class),
+    /**
+     * ÌÙÂû(ÅÀÇ½»¢)
+     */
     VINE(106, Vine.class),
+    /**
+     * Õ¤À¸ÃÅ
+     */
     FENCE_GATE(107, Gate.class),
+    /**
+     * ×©¿éÂ¥Ìİ
+     */
     BRICK_STAIRS(108, Stairs.class),
+    /**
+     * Ê¯×©Â¥Ìİ
+     */
     SMOOTH_STAIRS(109, Stairs.class),
+    /**
+     * ¾úË¿
+     */
     MYCEL(110),
+    /**
+     * Ë¯Á«
+     */
     WATER_LILY(111),
+    /**
+     * µØÓü×©¿é(µØÓü×©)
+     */
     NETHER_BRICK(112),
+    /**
+     * µØÓü×©À¸¸Ë(µØÓü×©Õ¤À¸)
+     */
     NETHER_FENCE(113),
+    /**
+     * µØÓü×©Â¥Ìİ
+     */
     NETHER_BRICK_STAIRS(114, Stairs.class),
+    /**
+     * µØÓüğà
+     */
     NETHER_WARTS(115, NetherWarts.class),
+    /**
+     * ¸½Ä§Ì¨
+     */
     ENCHANTMENT_TABLE(116),
+    /**
+     * ÄğÔìÌ¨
+     */
     BREWING_STAND(117, MaterialData.class),
+    /**
+     * Á¶Ò©¹ø
+     */
     CAULDRON(118, Cauldron.class),
+    /**
+     * Ä©µØ´«ËÍÃÅ·½¿é(Ä©µØ´«ËÍÃÅÄÚÈİÎï±¾Ìå·½¿é)
+     */
     ENDER_PORTAL(119),
+    /**
+     * Ä©µØ´«ËÍÃÅ(Ä©µØ´«ËÍÃÅ¿ò¼Ü)
+     */
     ENDER_PORTAL_FRAME(120),
+    /**
+     * Ä©µØÊ¯
+     */
     ENDER_STONE(121),
+    /**
+     * Áúµ°
+     */
     DRAGON_EGG(122),
+    /**
+     * ºìÊ¯µÆ(¹Ø±Õ×´Ì¬)
+     */
     REDSTONE_LAMP_OFF(123),
+    /**
+     * ºìÊ¯µÆ(¿ªÆô/³äÄÜ×´Ì¬)
+     */
     REDSTONE_LAMP_ON(124),
+    /**
+     * Ë«Ä¾Ì¨½×
+     */
     WOOD_DOUBLE_STEP(125, Wood.class),
+    /**
+     * Ä¾Ì¨½×
+     */
     WOOD_STEP(126, WoodenStep.class),
+    /**
+     * ¿É¿É¹û(¿É¿É¹û±¾Ìå·½¿é)
+     */
     COCOA(127, CocoaPlant.class),
+    /**
+     * É³Ê¯Â¥Ìİ
+     */
     SANDSTONE_STAIRS(128, Stairs.class),
+    /**
+     * ÂÌ±¦Ê¯¿óÊ¯
+     */
     EMERALD_ORE(129),
+    /**
+     * Ä©Ó°Ïä(Ä©Ó°ºĞ)
+     */
     ENDER_CHEST(130, EnderChest.class),
+    /**
+     * °èÏß¹³
+     */
     TRIPWIRE_HOOK(131, TripwireHook.class),
+    /**
+     * °èÏß(Ïß±¾Ìå·½¿é)
+     */
     TRIPWIRE(132, Tripwire.class),
+    /**
+     * ÂÌ±¦Ê¯¿é
+     */
     EMERALD_BLOCK(133),
+    /**
+     * ÔÆÉ¼Ä¾Â¥Ìİ(ÔÆÉ¼Â¥Ìİ)
+     */
     SPRUCE_WOOD_STAIRS(134, Stairs.class),
+    /**
+     * èëÄ¾Â¥Ìİ
+     */
     BIRCH_WOOD_STAIRS(135, Stairs.class),
+    /**
+     * ´ÔÁÖÄ¾Â¥Ìİ(´ÔÁÖÂ¥Ìİ)
+     */
     JUNGLE_WOOD_STAIRS(136, Stairs.class),
+    /**
+     * ÃüÁî·½¿é
+     */
     COMMAND(137, Command.class),
+    /**
+     * ĞÅ±ê
+     */
     BEACON(138),
+    /**
+     * Ô²Ê¯Ç½
+     */
     COBBLE_WALL(139),
+    /**
+     * »¨Åè
+     */
     FLOWER_POT(140, FlowerPot.class),
+    /**
+     * ºúÂÜ²·
+     */
     CARROT(141, Crops.class),
+    /**
+     * ÂíÁåÊí
+     */
     POTATO(142, Crops.class),
+    /**
+     * Ä¾ÖÊ°´Å¥
+     */
     WOOD_BUTTON(143, Button.class),
+    /**
+     * Í·Â­(ÉúÎïÍ·Â­)
+     */
     SKULL(144, Skull.class),
+    /**
+     * ÌúÕè
+     */
     ANVIL(145),
+    /**
+     * ÏİÚåÏä
+     */
     TRAPPED_CHEST(146, Chest.class),
+    /**
+     * ²âÖØÑ¹Á¦°å(ÇáÖÊ/½ğÖÊ)
+     */
     GOLD_PLATE(147),
+    /**
+     * ²âÖØÑ¹Á¦°å(ÖØÖÊ/ÌúÖÊ)
+     */
     IRON_PLATE(148),
+    /**
+     * ºìÊ¯±È½ÏÆ÷
+     */
     REDSTONE_COMPARATOR_OFF(149, Comparator.class),
+    /**
+     * ºìÊ¯±È½ÏÆ÷
+     */
     REDSTONE_COMPARATOR_ON(150, Comparator.class),
+    /**
+     * Ñô¹â´«¸ĞÆ÷(ÈÕ¹â°å)
+     */
     DAYLIGHT_DETECTOR(151),
+    /**
+     * ºìÊ¯¿é
+     */
     REDSTONE_BLOCK(152),
+    /**
+     * ÏÂ½ìÊ¯Ó¢¿óÊ¯
+     */
     QUARTZ_ORE(153),
+    /**
+     * Â©¶·
+     */
     HOPPER(154, Hopper.class),
+    /**
+     * Ê¯Ó¢¿é
+     */
     QUARTZ_BLOCK(155),
+    /**
+     * Ê¯Ó¢Â¥Ìİ
+     */
     QUARTZ_STAIRS(156, Stairs.class),
+    /**
+     * ¼¤»îÌú¹ì
+     */
     ACTIVATOR_RAIL(157, PoweredRail.class),
+    /**
+     * Í¶ÖÀÆ÷
+     */
     DROPPER(158, Dispenser.class),
+    /**
+     * ğ¤ÍÁ¿é(È¾É«ÌÕÍß)
+     */
     STAINED_CLAY(159),
+    /**
+     * È¾É«²£Á§°å
+     */
     STAINED_GLASS_PANE(160),
+    /**
+     * Ê÷Ò¶(½ğºÏ»¶/ÉîÉ«ÏğÄ¾)
+     */
     LEAVES_2(161, Leaves.class),
+    /**
+     * Ä¾Í·(½ğºÏ»¶/ÉîÉ«ÏğÄ¾)
+     */
     LOG_2(162, Tree.class),
+    /**
+     * ½ğºÏ»¶Â¥Ìİ
+     */
     ACACIA_STAIRS(163, Stairs.class),
+    /**
+     * ÉîÉ«ÏğÄ¾Â¥Ìİ
+     */
     DARK_OAK_STAIRS(164, Stairs.class),
+    /**
+     * Õ³Òº¿é(Ê·À³Ä·¿é)
+     */
     SLIME_BLOCK(165),
+    /**
+     * ÆÁÕÏ
+     */
     BARRIER(166),
+    /**
+     * º£¾§Ê¯
+     */
     IRON_TRAPDOOR(167, TrapDoor.class),
+    /**
+     * º£¾§µÆ
+     */
     PRISMARINE(168),
+    /**
+     * ¸É²İ¿é
+     */
     SEA_LANTERN(169),
+    /**
+     * µØÌº
+     */
     HAY_BLOCK(170),
+    /**
+     * µØÌº
+     */
     CARPET(171),
+    /**
+     * ÌÕÍß
+     */
     HARD_CLAY(172),
+    /**
+     * ÃºÌ¿¿é
+     */
     COAL_BLOCK(173),
+    /**
+     * ¸¡±ù
+     */
     PACKED_ICE(174),
+    /**
+     * ´óĞÍ»¨
+     */
     DOUBLE_PLANT(175),
+    /**
+     * Õ¾Á¢µÄÆìÖÄ
+     */
     STANDING_BANNER(176, Banner.class),
+    /**
+     * Ç½ÉÏµÄÆìÖÄ
+     */
     WALL_BANNER(177, Banner.class),
+    /**
+     * ·´ÏòÑô¹â´«¸ĞÆ÷
+     */
     DAYLIGHT_DETECTOR_INVERTED(178),
+    /**
+     * ºìÉ°ÑÒ
+     */
     RED_SANDSTONE(179),
+    /**
+     * ºìÉ°ÑÒÂ¥Ìİ
+     */
     RED_SANDSTONE_STAIRS(180, Stairs.class),
+    /**
+     * Ë«ºìÉ°ÑÒÌ¨½×
+     */
     DOUBLE_STONE_SLAB2(181),
+    /**
+     * ºìÉ°ÑÒÌ¨½×
+     */
     STONE_SLAB2(182),
+    /**
+     * ÔÆÉ¼Ä¾Õ¤À¸ÃÅ
+     */
     SPRUCE_FENCE_GATE(183, Gate.class),
+    /**
+     * °×èëÄ¾Õ¤À¸ÃÅ
+     */
     BIRCH_FENCE_GATE(184, Gate.class),
+    /**
+     * ´ÔÁÖÄ¾Õ¤À¸ÃÅ
+     */
     JUNGLE_FENCE_GATE(185, Gate.class),
+    /**
+     * ÉîÉ«ÏğÄ¾Õ¤À¸ÃÅ
+     */
     DARK_OAK_FENCE_GATE(186, Gate.class),
+    /**
+     * ½ğºÏ»¶Õ¤À¸ÃÅ
+     */
     ACACIA_FENCE_GATE(187, Gate.class),
+    /**
+     * ÔÆÉ¼Ä¾Õ¤À¸
+     */
     SPRUCE_FENCE(188),
+    /**
+     * °×èëÄ¾Õ¤À¸
+     */
     BIRCH_FENCE(189),
+    /**
+     * ´ÔÁÖÄ¾Õ¤À¸
+     */
     JUNGLE_FENCE(190),
+    /**
+     * ÉîÉ«ÏğÄ¾Õ¤À¸
+     */
     DARK_OAK_FENCE(191),
+    /**
+     * ½ğºÏ»¶Õ¤À¸
+     */
     ACACIA_FENCE(192),
+    /**
+     * ÔÆÉ¼Ä¾ÃÅ
+     */
     SPRUCE_DOOR(193, Door.class),
+    /**
+     * °×èëÄ¾ÃÅ
+     */
     BIRCH_DOOR(194, Door.class),
+    /**
+     * ´ÔÁÖÄ¾ÃÅ
+     */
     JUNGLE_DOOR(195, Door.class),
+    /**
+     * ½ğºÏ»¶Ä¾ÃÅ
+     */
     ACACIA_DOOR(196, Door.class),
+    /**
+     * ÉîÉ«ÏğÄ¾ÃÅ
+     */
     DARK_OAK_DOOR(197, Door.class),
+    /**
+     * Ä©µØÖò
+     */
     END_ROD(198),
+    /**
+     * ×ÏËÌÖ²Îï
+     */
     CHORUS_PLANT(199),
+    /**
+     * ×ÏËÌ»¨
+     */
     CHORUS_FLOWER(200),
+    /**
+     * ×Ïçê¿é
+     */
     PURPUR_BLOCK(201),
+    /**
+     * ÊúÎÆ×Ïçê¿é
+     */
     PURPUR_PILLAR(202),
+    /**
+     * ×Ïçê¿éÂ¥Ìİ
+     */
     PURPUR_STAIRS(203, Stairs.class),
+    /**
+     * Ë«×ÏçêÌ¨½×
+     */
     PURPUR_DOUBLE_SLAB(204),
+    /**
+     * ×Ïçê¿éÌ¨½×
+     */
     PURPUR_SLAB(205),
+    /**
+     * Ä©µØÊ¯×©
+     */
     END_BRICKS(206),
+    /**
+     * Ìğ²ËÖÖ×Ó
+     */
     BEETROOT_BLOCK(207, Crops.class),
+    /**
+     * ²İ¾¶
+     */
     GRASS_PATH(208),
+    /**
+     * Ä©µØÕÛÔ¾ÃÅ·½¿é
+     */
     END_GATEWAY(209),
+    /**
+     * Ñ­»·ĞÔÃüÁî·½¿é
+     */
     COMMAND_REPEATING(210, Command.class),
+    /**
+     * Á¬ËøĞÔÃüÁî·½¿é
+     */
     COMMAND_CHAIN(211, Command.class),
+    /**
+     * Ëª±ù
+     */
     FROSTED_ICE(212),
+    /**
+     * ÑÒ½¬¿é(ÈÛÑÒ¿é)
+     */
     MAGMA(213),
+    /**
+     * µØÓüğà¿é
+     */
     NETHER_WART_BLOCK(214),
+    /**
+     * ºìÉ«µØÓü×©
+     */
     RED_NETHER_BRICK(215),
+    /**
+     * ¹Ç¿é
+     */
     BONE_BLOCK(216),
+    /**
+     * ½á¹¹¿ÕÎ»
+     */
     STRUCTURE_VOID(217),
-	OBSERVER(218, Observer.class),
+    /**
+     * Õì²âÆ÷
+     */
+    OBSERVER(218, Observer.class),
+    /**
+     * °×É«Ç±Ó°ºĞ
+     */
     WHITE_SHULKER_BOX(219, 1),
+    /**
+     * ³ÈÉ«Ç±Ó°ºĞ
+     */
     ORANGE_SHULKER_BOX(220, 1),
+    /**
+     * Æ·ºìÉ«Ç±Ó°ºĞ
+     */
     MAGENTA_SHULKER_BOX(221, 1),
+    /**
+     * µ­À¶É«Ç±Ó°ºĞ
+     */
     LIGHT_BLUE_SHULKER_BOX(222, 1),
+    /**
+     * »ÆÉ«Ç±Ó°ºĞ
+     */
     YELLOW_SHULKER_BOX(223, 1),
+    /**
+     * »ÆÂÌÉ«Ç±Ó°ºĞ
+     */
     LIME_SHULKER_BOX(224, 1),
+    /**
+     * ·ÛºìÉ«Ç±Ó°ºĞ
+     */
     PINK_SHULKER_BOX(225, 1),
+    /**
+     * »ÒÉ«Ç±Ó°ºĞ
+     */
     GRAY_SHULKER_BOX(226, 1),
+    /**
+     * µ­»ÒÉ«Ç±Ó°ºĞ
+     */
     SILVER_SHULKER_BOX(227, 1),
+    /**
+     * ÇàÉ«Ç±Ó°ºĞ
+     */
     CYAN_SHULKER_BOX(228, 1),
+    /**
+     * ×ÏÉ«Ç±Ó°ºĞ
+     */
     PURPLE_SHULKER_BOX(229, 1),
+    /**
+     * À¶É«Ç±Ó°ºĞ
+     */
     BLUE_SHULKER_BOX(230, 1),
+    /**
+     * ×ØÉ«Ç±Ó°ºĞ
+     */
     BROWN_SHULKER_BOX(231, 1),
+    /**
+     * ÂÌÉ«Ç±Ó°ºĞ
+     */
     GREEN_SHULKER_BOX(232, 1),
+    /**
+     * ºìÉ«Ç±Ó°ºĞ
+     */
     RED_SHULKER_BOX(233, 1),
+    /**
+     * ºÚÉ«Ç±Ó°ºĞ
+     */
     BLACK_SHULKER_BOX(234, 1),
+    /**
+     * °×É«´øÓÔÌÕÍß
+     */
     WHITE_GLAZED_TERRACOTTA(235),
+    /**
+     * éÙÉ«´øÓÔÌÕÍß(³ÈÉ«´øÓÔÌÕÍß)
+     */
     ORANGE_GLAZED_TERRACOTTA(236),
+    /**
+     * Æ·ºìÉ«´øÓÔÌÕÍß
+     */
     MAGENTA_GLAZED_TERRACOTTA(237),
+    /**
+     * µ­À¶É«´øÓÔÌÕÍß
+     */
     LIGHT_BLUE_GLAZED_TERRACOTTA(238),
+    /**
+     * »ÆÉ«´øÓÔÌÕÍß
+     */
     YELLOW_GLAZED_TERRACOTTA(239),
+    /**
+     * »ÆÂÌÉ«´øÓÔÌÕÍß
+     */
     LIME_GLAZED_TERRACOTTA(240),
+    /**
+     * ·ÛºìÉ«´øÓÔÌÕÍß
+     */
     PINK_GLAZED_TERRACOTTA(241),
+    /**
+     * »ÒÉ«´øÓÔÌÕÍß
+     */
     GRAY_GLAZED_TERRACOTTA(242),
+    /**
+     * Ç³»ÒÉ«´øÓÔÌÕÍß(ÒøÉ«´øÓÔÌÕÍß)
+     */
     SILVER_GLAZED_TERRACOTTA(243),
+    /**
+     * ÇàÉ«´øÓÔÌÕÍß
+     */
     CYAN_GLAZED_TERRACOTTA(244),
+    /**
+     * ×ÏÉ«´øÓÔÌÕÍß
+     */
     PURPLE_GLAZED_TERRACOTTA(245),
+    /**
+     * À¶É«´øÓÔÌÕÍß
+     */
     BLUE_GLAZED_TERRACOTTA(246),
+    /**
+     * ×ØÉ«´øÓÔÌÕÍß
+     */
     BROWN_GLAZED_TERRACOTTA(247),
+    /**
+     * ÂÌÉ«´øÓÔÌÕÍß
+     */
     GREEN_GLAZED_TERRACOTTA(248),
+    /**
+     * ºìÉ«´øÓÔÌÕÍß
+     */
     RED_GLAZED_TERRACOTTA(249),
+    /**
+     * ºÚÉ«´øÓÔÌÕÍß
+     */
     BLACK_GLAZED_TERRACOTTA(250),
+    /**
+     * »ìÄıÍÁ
+     */
     CONCRETE(251),
+    /**
+     * »ìÄıÍÁ·ÛÄ©
+     */
     CONCRETE_POWDER(252),
+    /**
+     * ½á¹¹·½¿é
+     */
     STRUCTURE_BLOCK(255),
     // ----- Item Separator -----
+    /**
+     * ÌúÇÂ
+     */
     IRON_SPADE(256, 1, 250),
+    /**
+     * Ìú¸ä
+     */
     IRON_PICKAXE(257, 1, 250),
+    /**
+     * Ìú¸«
+     */
     IRON_AXE(258, 1, 250),
+    /**
+     * ´ò»ğÊ¯
+     */
     FLINT_AND_STEEL(259, 1, 64),
+    /**
+     * Æ»¹û
+     */
     APPLE(260),
+    /**
+     * ¹­
+     */
     BOW(261, 1, 384),
+    /**
+     * ¼ı
+     */
     ARROW(262),
+    /**
+     * ÃºÌ¿
+     */
     COAL(263, Coal.class),
+    /**
+     * ×êÊ¯
+     */
     DIAMOND(264),
+    /**
+     * Ìú¶§
+     */
     IRON_INGOT(265),
+    /**
+     * ½ğ¶§
+     */
     GOLD_INGOT(266),
+    /**
+     * Ìú½£
+     */
     IRON_SWORD(267, 1, 250),
+    /**
+     * Ä¾½£
+     */
     WOOD_SWORD(268, 1, 59),
+    /**
+     * Ä¾ÇÂ
+     */
     WOOD_SPADE(269, 1, 59),
+    /**
+     * Ä¾¸ä
+     */
     WOOD_PICKAXE(270, 1, 59),
+    /**
+     * Ä¾¸«
+     */
     WOOD_AXE(271, 1, 59),
+    /**
+     * Ê¯½£
+     */
     STONE_SWORD(272, 1, 131),
+    /**
+     * Ê¯ÇÂ
+     */
     STONE_SPADE(273, 1, 131),
+    /**
+     * Ê¯¸ä
+     */
     STONE_PICKAXE(274, 1, 131),
+    /**
+     * Ê¯¸«
+     */
     STONE_AXE(275, 1, 131),
-    /**é’»çŸ³å‰‘*/
+    /**
+     * ×êÊ¯½£
+     */
     DIAMOND_SWORD(276, 1, 1561),
+    /**
+     * ×êÊ¯ÇÂ
+     */
     DIAMOND_SPADE(277, 1, 1561),
+    /**
+     * ×êÊ¯¸ä
+     */
     DIAMOND_PICKAXE(278, 1, 1561),
-    /**é’»çŸ³æ–§å¤´. */
+    /**
+     * ×êÊ¯¸«
+     */
     DIAMOND_AXE(279, 1, 1561),
+    /**
+     * Ä¾¹÷(¹÷/¹÷×Ó)
+     */
     STICK(280),
+    /**
+     * Íë(Ä¾Íë)
+     */
     BOWL(281),
+    /**
+     * Ä¢¹½ìÒ
+     */
     MUSHROOM_SOUP(282, 1),
-    /**é‡‘å‰‘. */
+    /**
+     * ½ğ½£
+     */
     GOLD_SWORD(283, 1, 32),
+    /**
+     * ½ğÇÂ
+     */
     GOLD_SPADE(284, 1, 32),
+    /**
+     * ½ğ¸ä
+     */
     GOLD_PICKAXE(285, 1, 32),
+    /**
+     * ½ğ¸«
+     */
     GOLD_AXE(286, 1, 32),
+    /**
+     * Ïß
+     */
     STRING(287),
+    /**
+     * ÓğÃ«
+     */
     FEATHER(288),
+    /**
+     * »ğÒ©
+     */
     SULPHUR(289),
+    /**
+     * Ä¾³ú
+     */
     WOOD_HOE(290, 1, 59),
+    /**
+     * Ê¯³ú
+     */
     STONE_HOE(291, 1, 131),
+    /**
+     * Ìú³ú
+     */
     IRON_HOE(292, 1, 250),
+    /**
+     * ×êÊ¯³ú
+     */
     DIAMOND_HOE(293, 1, 1561),
+    /**
+     * ½ğ³ú
+     */
     GOLD_HOE(294, 1, 32),
+    /**
+     * Ğ¡ÂóÖÖ×Ó
+     */
     SEEDS(295),
+    /**
+     * Ğ¡Âó
+     */
     WHEAT(296),
+    /**
+     * Ãæ°ü
+     */
     BREAD(297),
+    /**
+     * Æ¤¸ïÃ±×Ó
+     */
     LEATHER_HELMET(298, 1, 55),
+    /**
+     * Æ¤¸ïÍâÌ×
+     */
     LEATHER_CHESTPLATE(299, 1, 80),
+    /**
+     * Æ¤¸ï¿ã×Ó
+     */
     LEATHER_LEGGINGS(300, 1, 75),
+    /**
+     * Æ¤¸ïÑ¥×Ó
+     */
     LEATHER_BOOTS(301, 1, 65),
+    /**
+     * ËøÁ´Ã±×Ó
+     */
     CHAINMAIL_HELMET(302, 1, 165),
+    /**
+     * ËøÁ´Í·¿ø
+     */
     CHAINMAIL_CHESTPLATE(303, 1, 240),
+    /**
+     * ËøÁ´»¤ÍÈ
+     */
     CHAINMAIL_LEGGINGS(304, 1, 225),
+    /**
+     * ËøÁ´Ñ¥×Ó
+     */
     CHAINMAIL_BOOTS(305, 1, 195),
+    /**
+     * ÌúÍ·¿ø
+     */
     IRON_HELMET(306, 1, 165),
+    /**
+     * ÌúĞØ¼×
+     */
     IRON_CHESTPLATE(307, 1, 240),
+    /**
+     * Ìú»¤ÍÈ
+     */
     IRON_LEGGINGS(308, 1, 225),
+    /**
+     * ÌúÍ·¿ø
+     */
     IRON_BOOTS(309, 1, 195),
+    /**
+     * ×êÊ¯Í·¿ø
+     */
     DIAMOND_HELMET(310, 1, 363),
+    /**
+     * ×êÊ¯ĞØ¼×
+     */
     DIAMOND_CHESTPLATE(311, 1, 528),
+    /**
+     * ×êÊ¯»¤ÍÈ
+     */
     DIAMOND_LEGGINGS(312, 1, 495),
+    /**
+     * ×êÊ¯Ñ¥×Ó
+     */
     DIAMOND_BOOTS(313, 1, 429),
+    /**
+     * ½ğÍ·¿ø
+     */
     GOLD_HELMET(314, 1, 77),
+    /**
+     * ½ğĞØ¼×
+     */
     GOLD_CHESTPLATE(315, 1, 112),
+    /**
+     * ½ğ»¤ÍÈ
+     */
     GOLD_LEGGINGS(316, 1, 105),
+    /**
+     * ½ğÑ¥×Ó
+     */
     GOLD_BOOTS(317, 1, 91),
+    /**
+     * ìİÊ¯
+     */
     FLINT(318),
+    /**
+     * ÉúÖíÅÅ
+     */
     PORK(319),
+    /**
+     * ÊìÖíÅÅ
+     */
     GRILLED_PORK(320),
+    /**
+     * »­
+     */
     PAINTING(321),
+    /**
+     * ½ğÆ»¹û
+     */
     GOLDEN_APPLE(322),
+    /**
+     * ¸æÊ¾ÅÆ
+     */
     SIGN(323, 16),
+    /**
+     * ÏğÄ¾ÃÅ
+     */
     WOOD_DOOR(324, 64),
+    /**
+     * Í°(¿ÕÍ°)
+     */
     BUCKET(325, 16),
+    /**
+     * Ë®Í°
+     */
     WATER_BUCKET(326, 1),
+    /**
+     * ÑÒ½¬Í°(ÈÛÑÒÍ°)
+     */
     LAVA_BUCKET(327, 1),
+    /**
+     * ¿ó³µ
+     */
     MINECART(328, 1),
+    /**
+     * °°
+     */
     SADDLE(329, 1),
+    /**
+     * ÌúÃÅ
+     */
     IRON_DOOR(330, 64),
+    /**
+     * ºìÊ¯·Û
+     */
     REDSTONE(331),
+    /**
+     * Ñ©Çò
+     */
     SNOW_BALL(332, 16),
+    /**
+     * ´¬
+     */
     BOAT(333, 1),
+    /**
+     * Æ¤¸ï
+     */
     LEATHER(334),
+    /**
+     * Å£ÄÌ(Ê¢ÓĞÅ£ÄÌµÄË®Í°)
+     */
     MILK_BUCKET(335, 1),
+    /**
+     * ºì×©
+     */
     CLAY_BRICK(336),
+    /**
+     * ğ¤ÍÁ(Õ³ÍÁ)
+     */
     CLAY_BALL(337),
+    /**
+     * ¸ÊÕá
+     */
     SUGAR_CANE(338),
+    /**
+     * Ö½(Ö½ÕÅ/Ô­Ö½)
+     */
     PAPER(339),
+    /**
+     * Êé
+     */
     BOOK(340),
+    /**
+     * Õ³ÒºÇò
+     */
     SLIME_BALL(341),
+    /**
+     * ÔËÊä¿ó³µ
+     */
     STORAGE_MINECART(342, 1),
+    /**
+     * ¶¯Á¦¿ó³µ
+     */
     POWERED_MINECART(343, 1),
+    /**
+     * ¼¦µ°(µ°)
+     */
     EGG(344, 16),
+    /**
+     * Ö¸ÄÏÕë
+     */
     COMPASS(345),
+    /**
+     * µöÓã¸Í
+     */
     FISHING_ROD(346, 1, 64),
+    /**
+     * ÖÓ(±í/ÖÓ±í)
+     */
     WATCH(347),
+    /**
+     * Ó«Ê¯·Û(Ó©Ê¯·Û)
+     */
     GLOWSTONE_DUST(348),
+    /**
+     * Óã(ÉúÓã)
+     */
     RAW_FISH(349),
+    /**
+     * Óã(ÊìÓã)
+     */
     COOKED_FISH(350),
+    /**
+     * È¾ÁÏ(Ä«´ø/ÕÂÓãÄ«ÄÒ)
+     */
     INK_SACK(351, Dye.class),
+    /**
+     * ¹ÇÍ·
+     */
     BONE(352),
+    /**
+     * ÌÇ(ÌÇ·Û)
+     */
     SUGAR(353),
+    /**
+     * µ°¸â
+     */
     CAKE(354, 1),
+    /**
+     * ´²
+     */
     BED(355, 1),
+    /**
+     * ºìÊ¯ÖĞ¼ÌÆ÷
+     */
     DIODE(356),
+    /**
+     * ÇúÆæ
+     */
     COOKIE(357),
     /**
+     * µØÍ¼
      * @see MapView
      */
     MAP(358, MaterialData.class),
+    /**
+     * ¼ôµ¶
+     */
     SHEARS(359, 1, 238),
+    /**
+     * Î÷¹ÏÆ¬
+     */
     MELON(360),
+    /**
+     * ÄÏ¹ÏÖÖ×Ó
+     */
     PUMPKIN_SEEDS(361),
+    /**
+     * Î÷¹ÏÖÖ×Ó
+     */
     MELON_SEEDS(362),
+    /**
+     * ÉúÅ£Èâ
+     */
     RAW_BEEF(363),
+    /**
+     * Å£ÅÅ
+     */
     COOKED_BEEF(364),
+    /**
+     * Éú¼¦Èâ
+     */
     RAW_CHICKEN(365),
+    /**
+     * Êì¼¦Èâ
+     */
     COOKED_CHICKEN(366),
+    /**
+     * ¸¯Èâ
+     */
     ROTTEN_FLESH(367),
+    /**
+     * Ä©Ó°ÕäÖé
+     */
     ENDER_PEARL(368, 16),
+    /**
+     * ÁÒÑæ°ô
+     */
     BLAZE_ROD(369),
+    /**
+     * ¶ñ»êÖ®Àá
+     */
     GHAST_TEAR(370),
+    /**
+     * ½ğÁ£
+     */
     GOLD_NUGGET(371),
+    /**
+     * µØÓüğà(µØÓüğàÖÖ×Ó)
+     */
     NETHER_STALK(372),
+    /**
+     * Ò©Ë®
+     */
     POTION(373, 1, MaterialData.class),
+    /**
+     * ²£Á§Æ¿
+     */
     GLASS_BOTTLE(374),
+    /**
+     * Ö©ÖëÑÛ
+     */
     SPIDER_EYE(375),
+    /**
+     * ·¢½ÍÖ©ÖëÑÛ(·¢½ÍµÄÖ©ÖëÑÛ/·¢½ÍÖëÑÛ)
+     */
     FERMENTED_SPIDER_EYE(376),
+    /**
+     * ÁÒÑæ·Û
+     */
     BLAZE_POWDER(377),
+    /**
+     * ÑÒ½¬¸à
+     */
     MAGMA_CREAM(378),
+    /**
+     * ÄğÔìÌ¨
+     */
     BREWING_STAND_ITEM(379),
+    /**
+     * Á¶Ò©¹ø
+     */
     CAULDRON_ITEM(380),
+    /**
+     * Ä©Ó°Ö®ÑÛ
+     */
     EYE_OF_ENDER(381),
+    /**
+     * ÉÁË¸µÄÎ÷¹Ï
+     */
     SPECKLED_MELON(382),
+    /**
+     * Ë¢¹Öµ°
+     */
     MONSTER_EGG(383, 64, SpawnEgg.class),
+    /**
+     * ¾­ÑéÆ¿(¸½Ä§Ö®Æ¿)
+     */
     EXP_BOTTLE(384, 64),
+    /**
+     * »ğÑæµ¯(»ğÑæÇò/Åùö¨Çò)
+     */
     FIREBALL(385, 64),
+    /**
+     * ÊéÓë±Ê(¿ÉĞ´µÄÊé)
+     */
     BOOK_AND_QUILL(386, 1),
+    /**
+     * ³ÉÊé
+     */
     WRITTEN_BOOK(387, 16),
+    /**
+     * ÂÌ±¦Ê¯
+     */
     EMERALD(388, 64),
+    /**
+     * ÎïÆ·Õ¹Ê¾¿ò
+     */
     ITEM_FRAME(389),
+    /**
+     * »¨Åè
+     */
     FLOWER_POT_ITEM(390),
+    /**
+     * ºúÂÜ²·
+     */
     CARROT_ITEM(391),
+    /**
+     * ÂíÁåÊí
+     */
     POTATO_ITEM(392),
+    /**
+     * ¿¾ÂíÁåÊí
+     */
     BAKED_POTATO(393),
+    /**
+     * ¶¾ÂíÁåÊí
+     */
     POISONOUS_POTATO(394),
+    /**
+     * ¿ÕµØÍ¼
+     */
     EMPTY_MAP(395),
+    /**
+     * ½ğºúÂÜ²·
+     */
     GOLDEN_CARROT(396),
+    /**
+     * ÉúÎïÍ·Â­
+     */
     SKULL_ITEM(397),
+    /**
+     * ºúÂÜ²·µö¸Í
+     */
     CARROT_STICK(398, 1, 25),
+    /**
+     * ÏÂ½çÖ®ĞÇ
+     */
     NETHER_STAR(399),
+    /**
+     * ÄÏ¹ÏÅÉ
+     */
     PUMPKIN_PIE(400),
+    /**
+     * ÑÌ»¨Ö®¼ı(ÑÌ»ğ/±¬Öñ/ÑÌ»¨)
+     */
     FIREWORK(401),
+    /**
+     * ÑÌ»ğÖ®ĞÇ
+     */
     FIREWORK_CHARGE(402),
+    /**
+     * ¸½Ä§Êé
+     */
     ENCHANTED_BOOK(403, 1),
+    /**
+     * ºìÊ¯±È½ÏÆ÷
+     */
     REDSTONE_COMPARATOR(404),
+    /**
+     * µØÓü×©¿é
+     */
     NETHER_BRICK_ITEM(405),
+    /**
+     * ÏÂ½çÊ¯Ó¢
+     */
     QUARTZ(406),
+    /**
+     * TNT¿ó³µ(±¬ÆÆ³µ)
+     */
     EXPLOSIVE_MINECART(407, 1),
+    /**
+     * Â©¶·¿ó³µ
+     */
     HOPPER_MINECART(408, 1),
+    /**
+     * º£¾§ËéÆ¬
+     */
     PRISMARINE_SHARD(409),
+    /**
+     * º£¾§É°Àù
+     */
     PRISMARINE_CRYSTALS(410),
+    /**
+     * ÉúÍÃÈâ
+     */
     RABBIT(411),
+    /**
+     * ÊìÍÃÈâ
+     */
     COOKED_RABBIT(412),
+    /**
+     * ÍÃ×ÓìÒ
+     */
     RABBIT_STEW(413, 1),
+    /**
+     * ÍÃ×Ó½Å
+     */
     RABBIT_FOOT(414),
+    /**
+     * ÍÃ×ÓÆ¤
+     */
     RABBIT_HIDE(415),
+    /**
+     * ¿ø¼×¼Ü
+     */
     ARMOR_STAND(416, 16),
+    /**
+     * ÌúÂíîø
+     */
     IRON_BARDING(417, 1),
+    /**
+     * ½ğÂíîø
+     */
     GOLD_BARDING(418, 1),
-    /**é’»çŸ³é©¬é*/
+    /**
+     * ×êÊ¯Âí°°
+     */
     DIAMOND_BARDING(419, 1),
+    /**
+     * Ë¨Éş
+     */
     LEASH(420),
+    /**
+     * ÃüÃûÅÆ
+     */
     NAME_TAG(421),
+    /**
+     * ÃüÁî·½¿é¿ó³µ
+     */
     COMMAND_MINECART(422, 1),
+    /**
+     * ÉúÑòÈâ
+     */
     MUTTON(423),
+    /**
+     * ÊìÑòÈâ
+     */
     COOKED_MUTTON(424),
+    /**
+     * ÆìÖÄ
+     */
     BANNER(425, 16),
+    /**
+     * Ä©Ó°Ë®¾§
+     */
     END_CRYSTAL(426),
+    /**
+     * ÔÆÉ¼Ä¾ÃÅ
+     */
     SPRUCE_DOOR_ITEM(427),
+    /**
+     * °×èëÄ¾ÃÅ
+     */
     BIRCH_DOOR_ITEM(428),
+    /**
+     * ´ÔÁÖÄ¾ÃÅ
+     */
     JUNGLE_DOOR_ITEM(429),
+    /**
+     * ½ğºÏ»¶Ä¾ÃÅ
+     */
     ACACIA_DOOR_ITEM(430),
+    /**
+     * ÉîÉ«ÏğÄ¾ÃÅ
+     */
     DARK_OAK_DOOR_ITEM(431),
+    /**
+     * ×ÏËÌ¹û
+     */
     CHORUS_FRUIT(432),
+    /**
+     * ±¬ÁÑ×ÏËÌ¹û
+     */
     CHORUS_FRUIT_POPPED(433),
+    /**
+     * Ìğ²Ë¸ù
+     */
     BEETROOT(434),
+    /**
+     * Ìğ²ËÖÖ×Ó
+     */
     BEETROOT_SEEDS(435),
+    /**
+     * Ìğ²ËÌÀ
+     */
     BEETROOT_SOUP(436, 1),
+    /**
+     * ÁúÏ¢
+     */
     DRAGONS_BREATH(437),
+    /**
+     * Åç½¦Ò©Ë®
+     */
     SPLASH_POTION(438, 1),
+    /**
+     * ¹âÁé¼ı
+     */
     SPECTRAL_ARROW(439),
+    /**
+     * Ò©¼ı
+     */
     TIPPED_ARROW(440),
+    /**
+     * ÖÍÁôÒ©Ë®
+     */
     LINGERING_POTION(441, 1),
+    /**
+     * ¶ÜÅÆ
+     */
     SHIELD(442, 1, 336),
+    /**
+     * ÇÊ³á
+     */
     ELYTRA(443, 1, 431),
+    /**
+     * ÔÆÉ¼Ä¾´¬
+     */
     BOAT_SPRUCE(444, 1),
+    /**
+     * °×èëÄ¾´¬
+     */
     BOAT_BIRCH(445, 1),
+    /**
+     * ´ÔÁÖÄ¾´¬
+     */
     BOAT_JUNGLE(446, 1),
+    /**
+     * ½ğºÏ»¶Ä¾´¬
+     */
     BOAT_ACACIA(447, 1),
+    /**
+     * ÉîÉ«ÏğÄ¾´¬
+     */
     BOAT_DARK_OAK(448, 1),
-	TOTEM(449, 1),
+    /**
+     * ²»ËÀÍ¼ÌÚ
+     */
+    TOTEM(449, 1),
+    /**
+     * Ç±Ó°¿Ç
+     */
     SHULKER_SHELL(450),
+    /**
+     * ÌúÁ£
+     */
     IRON_NUGGET(452),
     KNOWLEDGE_BOOK(453, 1),
+    /**
+     * ³ªÆ¬(13)
+     */
     GOLD_RECORD(2256, 1),
+    /**
+     * ³ªÆ¬(CAT)
+     */
     GREEN_RECORD(2257, 1),
+    /**
+     * ³ªÆ¬(BLOCKS)
+     */
     RECORD_3(2258, 1),
+    /**
+     * ³ªÆ¬(CHIRP)
+     */
     RECORD_4(2259, 1),
+    /**
+     * ³ªÆ¬(FAR)
+     */
     RECORD_5(2260, 1),
+    /**
+     * ³ªÆ¬(mall)
+     */
     RECORD_6(2261, 1),
+    /**
+     * ³ªÆ¬(MELLOHI)
+     */
     RECORD_7(2262, 1),
+    /**
+     * ³ªÆ¬(STAL)
+     */
     RECORD_8(2263, 1),
+    /**
+     * ³ªÆ¬(STRAD)
+     */
     RECORD_9(2264, 1),
+    /**
+     * ³ªÆ¬(WARD)
+     */
     RECORD_10(2265, 1),
+    /**
+     * ³ªÆ¬(11)
+     */
     RECORD_11(2266, 1),
+    /**
+     * ³ªÆ¬(WAIT)
+     */
     RECORD_12(2267, 1),
     ;
 
@@ -584,12 +1964,12 @@ public enum Material {
     }
 
     /**
-     * è·å–è¿™ä¸ªç‰©å“çš„id.
+     * »ñÈ¡Õâ¸öÎïÆ·µÄid.
      * <p>
-     * åŸæ–‡:Gets the item ID or block ID of this Material
+     * Ô­ÎÄ:Gets the item ID or block ID of this Material
      *
-     * @return ç‰©å“id
-     * @deprecated é­”æ³•å€¼
+     * @return ÎïÆ·id
+     * @deprecated Ä§·¨Öµ
      */
     @Deprecated
     public int getId() {
@@ -597,47 +1977,47 @@ public enum Material {
     }
 
     /**
-     * è·å–è¿™ä¸ªç‰©å“çš„æœ€å¤§å †å æ•°é‡.
+     * »ñÈ¡Õâ¸öÎïÆ·µÄ×î´ó¶ÑµşÊıÁ¿.
      * <p>
-     * åŸæ–‡:Gets the maximum amount of this material that can be held in a stack
+     * Ô­ÎÄ:Gets the maximum amount of this material that can be held in a stack
      *
-     * @return ç‰©å“çš„æœ€å¤§å †å æ•°é‡
+     * @return ÎïÆ·µÄ×î´ó¶ÑµşÊıÁ¿
      */
     public int getMaxStackSize() {
         return maxStack;
     }
 
     /**
-     * è·å–è¿™ä¸ªç‰©å“çš„æœ€å¤§è€ä¹…åº¦.
+     * »ñÈ¡Õâ¸öÎïÆ·µÄ×î´óÄÍ¾Ã¶È.
      * <p>
-     * åŸæ–‡:Gets the maximum durability of this material
+     * Ô­ÎÄ:Gets the maximum durability of this material
      *
-     * @return ç‰©å“çš„æœ€å¤§è€ä¹…åº¦
+     * @return ÎïÆ·µÄ×î´óÄÍ¾Ã¶È
      */
     public short getMaxDurability() {
         return durability;
     }
 
     /**
-     * è·å–è¿™ä¸ªç‰©å“ç›¸å…³çš„MaterialDataç±».
+     * »ñÈ¡Õâ¸öÎïÆ·Ïà¹ØµÄMaterialDataÀà.
      * <p>
-     * åŸæ–‡:Gets the MaterialData class associated with this Material
+     * Ô­ÎÄ:Gets the MaterialData class associated with this Material
      *
-     * @return ç‰©å“ç›¸å…³çš„MaterialDataç±»
+     * @return ÎïÆ·Ïà¹ØµÄMaterialDataÀà
      */
     public Class<? extends MaterialData> getData() {
         return ctor.getDeclaringClass();
     }
 
     /**
-     * ç”¨ç»™å®šçš„åˆå§‹æ•°æ®æ„é€ ä¸€ä¸ªæ–°çš„ä¸è¿™ä¸ªç‰©å“æœ‰å…³çš„MaterialDataå¯¹è±¡.
+     * ÓÃ¸ø¶¨µÄ³õÊ¼Êı¾İ¹¹ÔìÒ»¸öĞÂµÄÓëÕâ¸öÎïÆ·ÓĞ¹ØµÄMaterialData¶ÔÏó.
      * <p>
-     * åŸæ–‡:Constructs a new MaterialData relevant for this Material, with the
+     * Ô­ÎÄ:Constructs a new MaterialData relevant for this Material, with the
      * given initial data
      *
-     * @param raw ç”¨æ¥æ„é€ MaterialDataçš„åˆå§‹æ•°æ®
-     * @return ç»™å®šå€¼çš„MaterialDataå¯¹è±¡
-     * @deprecated ä¸å®‰å…¨çš„å‚æ•°
+     * @param raw ÓÃÀ´¹¹ÔìMaterialDataµÄ³õÊ¼Êı¾İ
+     * @return ¸ø¶¨ÖµµÄMaterialData¶ÔÏó
+     * @deprecated ²»°²È«µÄ²ÎÊı
      */
     @Deprecated
     public MaterialData getNewData(final byte raw) {
@@ -658,22 +2038,22 @@ public enum Material {
     }
 
     /**
-     * æ£€æµ‹è¿™ä¸ªç‰©å“èƒ½å¦æ”¾ç½®(æ˜¯å¦ä¸ºæ–¹å—).
+     * ¼ì²âÕâ¸öÎïÆ·ÄÜ·ñ·ÅÖÃ(ÊÇ·ñÎª·½¿é).
      * <p>
-     * åŸæ–‡:Checks if this Material is a placable block
+     * Ô­ÎÄ:Checks if this Material is a placable block
      *
-     * @return ç‰©å“æ˜¯å¦ä¸ºæ–¹å—
+     * @return ÎïÆ·ÊÇ·ñÎª·½¿é
      */
     public boolean isBlock() {
         return id < 256;
     }
 
     /**
-     * æ£€æµ‹è¿™ä¸ªç‰©å“èƒ½å¦é£Ÿç”¨.
+     * ¼ì²âÕâ¸öÎïÆ·ÄÜ·ñÊ³ÓÃ.
      * <p>
-     * åŸæ–‡:Checks if this Material is edible.
+     * Ô­ÎÄ:Checks if this Material is edible.
      *
-     * @return å¦‚æœç‰©å“èƒ½é£Ÿç”¨
+     * @return Èç¹ûÎïÆ·ÄÜÊ³ÓÃ
      */
     public boolean isEdible() {
         switch (this) {
@@ -714,13 +2094,13 @@ public enum Material {
     }
 
     /**
-     * å°è¯•ç”¨ç»™å®šidè·å–Materialå¯¹è±¡.
+     * ³¢ÊÔÓÃ¸ø¶¨id»ñÈ¡Material¶ÔÏó.
      * <p>
-     * åŸæ–‡:Attempts to get the Material with the given ID
+     * Ô­ÎÄ:Attempts to get the Material with the given ID
      *
-     * @param id ç”¨æ¥è·å–Materialå¯¹è±¡çš„id
-     * @return å¦‚æœæ‰¾ä¸åˆ°è¿”å›null,å¦åˆ™è¿”å›Materialå¯¹è±¡
-     * @deprecated ä¸å®‰å…¨çš„å‚æ•°
+     * @param id ÓÃÀ´»ñÈ¡Material¶ÔÏóµÄid
+     * @return Èç¹ûÕÒ²»µ½·µ»Ønull,·ñÔò·µ»ØMaterial¶ÔÏó
+     * @deprecated ²»°²È«µÄ²ÎÊı
      */
     @Deprecated
     public static Material getMaterial(final int id) {
@@ -732,30 +2112,30 @@ public enum Material {
     }
 
     /**
-     * å°è¯•ç”¨ç»™å®šåç§°è·å–Materialå¯¹è±¡.
+     * ³¢ÊÔÓÃ¸ø¶¨Ãû³Æ»ñÈ¡Material¶ÔÏó.
      * <p>
-     * è¿™æ˜¯ä¸€ä¸ªæ ‡å‡†çš„æŸ¥æ‰¾,åç§°å¿…é¡»æ˜¯æšä¸¾ä¸­ç»™å‡ºçš„å‡†ç¡®åç§°.
+     * ÕâÊÇÒ»¸ö±ê×¼µÄ²éÕÒ,Ãû³Æ±ØĞëÊÇÃ¶¾ÙÖĞ¸ø³öµÄ×¼È·Ãû³Æ.
      * <p>
-     * åŸæ–‡:Attempts to get the Material with the given name.
+     * Ô­ÎÄ:Attempts to get the Material with the given name.
      * <p>
      * This is a normal lookup, names must be the precise name they are given
      * in the enum.
      *
-     * @param name ç”¨æ¥è·å–Materialå¯¹è±¡çš„åç§°
-     * @return å¦‚æœæ‰¾ä¸åˆ°è¿”å›null,å¦åˆ™è¿”å›Materialå¯¹è±¡
+     * @param name ÓÃÀ´»ñÈ¡Material¶ÔÏóµÄÃû³Æ
+     * @return Èç¹ûÕÒ²»µ½·µ»Ønull,·ñÔò·µ»ØMaterial¶ÔÏó
      */
     public static Material getMaterial(final String name) {
         return BY_NAME.get(name);
     }
 
     /**
-     * å°è¯•ç”¨ç»™å®šåç§°åŒ¹é…Materialå¯¹è±¡.
+     * ³¢ÊÔÓÃ¸ø¶¨Ãû³ÆÆ¥ÅäMaterial¶ÔÏó.
      * <p>
-     * è¿™æ˜¯ä¸€ä¸ªåŒ¹é…æŸ¥æ‰¾;åç§°å°†è½¬æ¢ä¸ºå¤§å†™,ç„¶åæ ¼å¼åŒ–å­—ç¬¦.
+     * ÕâÊÇÒ»¸öÆ¥Åä²éÕÒ;Ãû³Æ½«×ª»»Îª´óĞ´,È»ºó¸ñÊ½»¯×Ö·û.
      * <p>
-     * ç”¨IDåŒ¹é…å·²è¿‡æ—¶.
+     * ÓÃIDÆ¥ÅäÒÑ¹ıÊ±.
      * <p>
-     * åŸæ–‡:Attempts to match the Material with the given name.
+     * Ô­ÎÄ:Attempts to match the Material with the given name.
      * <p>
      * This is a match lookup; names will be converted to uppercase, then
      * stripped of special characters in an attempt to format it like the
@@ -763,8 +2143,8 @@ public enum Material {
      * <p>
      * Using this for match by ID is deprecated.
      *
-     * @param name ç”¨æ¥è·å–Materialå¯¹è±¡çš„åç§°
-     * @return å¦‚æœæ‰¾ä¸åˆ°è¿”å›null,å¦åˆ™è¿”å›Materialå¯¹è±¡
+     * @param name ÓÃÀ´»ñÈ¡Material¶ÔÏóµÄÃû³Æ
+     * @return Èç¹ûÕÒ²»µ½·µ»Ønull,·ñÔò·µ»ØMaterial¶ÔÏó
      */
     public static Material matchMaterial(final String name) {
         Validate.notNull(name, "Name cannot be null");
@@ -798,19 +2178,19 @@ public enum Material {
     }
 
     /**
-     * @return å¦‚æœè¿™ä¸ªç‰©å“ä»£è¡¨éŸ³ä¹å”±ç‰‡åˆ™ä¸ºtrue.
+     * @return Èç¹ûÕâ¸öÎïÆ·´ú±íÒôÀÖ³ªÆ¬ÔòÎªtrue.
      */
     public boolean isRecord() {
         return id >= GOLD_RECORD.id && id <= RECORD_12.id;
     }
 
     /**
-     * æ£€æµ‹ç‰©å“æ˜¯å¦ä¸ºå›ºä½“æ–¹å—(å¯è¢«æ”¾ç½®).
+     * ¼ì²âÎïÆ·ÊÇ·ñÎª¹ÌÌå·½¿é(¿É±»·ÅÖÃ).
      * <p>
-     * åŸæ–‡:Check if the material is a block and solid (cannot be passed through by
+     * Ô­ÎÄ:Check if the material is a block and solid (cannot be passed through by
      * a player)
      *
-     * @return ç‰©å“æ˜¯å¦ä¸ºå›ºä½“æ–¹å—
+     * @return ÎïÆ·ÊÇ·ñÎª¹ÌÌå·½¿é
      */
     public boolean isSolid() {
         if (!isBlock() || id == 0) {
@@ -981,7 +2361,7 @@ public enum Material {
             case NETHER_WART_BLOCK:
             case RED_NETHER_BRICK:
             case BONE_BLOCK:
-			case OBSERVER:
+            case OBSERVER:
             case WHITE_SHULKER_BOX:
             case ORANGE_SHULKER_BOX:
             case MAGENTA_SHULKER_BOX:
@@ -1023,11 +2403,11 @@ public enum Material {
     }
 
     /**
-     * æ£€æµ‹è¿™ä¸ªç‰©å“æ˜¯å¦ä¸ºé€æ˜çš„æ–¹å—.
+     * ¼ì²âÕâ¸öÎïÆ·ÊÇ·ñÎªÍ¸Ã÷µÄ·½¿é.
      * <p>
-     * åŸæ–‡:Check if the material is a block and does not block any light
+     * Ô­ÎÄ:Check if the material is a block and does not block any light
      *
-     * @return è¿™ä¸ªç‰©å“æ˜¯å¦ä¸ºé€æ˜çš„æ–¹å—
+     * @return Õâ¸öÎïÆ·ÊÇ·ñÎªÍ¸Ã÷µÄ·½¿é
      */
     public boolean isTransparent() {
         if (!isBlock()) {
@@ -1091,11 +2471,11 @@ public enum Material {
     }
 
     /**
-     * æ£€æµ‹è¿™ä¸ªæ–¹å—æ˜¯å¦ä¸ºå¯ç‡ƒçš„.
+     * ¼ì²âÕâ¸ö·½¿éÊÇ·ñÎª¿ÉÈ¼µÄ.
      * <p>
-     * åŸæ–‡:Check if the material is a block and can catch fire
+     * Ô­ÎÄ:Check if the material is a block and can catch fire
      *
-     * @return è¿™ä¸ªæ–¹å—æ˜¯å¦ä¸ºå¯ç‡ƒçš„
+     * @return Õâ¸ö·½¿éÊÇ·ñÎª¿ÉÈ¼µÄ
      */
     public boolean isFlammable() {
         if (!isBlock()) {
@@ -1164,11 +2544,11 @@ public enum Material {
     }
 
     /**
-     * æ£€æµ‹è¿™ä¸ªæ–¹å—èƒ½å¦è¢«ç«çƒ§æ‰.
+     * ¼ì²âÕâ¸ö·½¿éÄÜ·ñ±»»ğÉÕµô.
      * <p>
-     * åŸæ–‡:Check if the material is a block and can burn away
+     * Ô­ÎÄ:Check if the material is a block and can burn away
      *
-     * @return è¿™ä¸ªæ–¹å—èƒ½å¦è¢«ç«çƒ§æ‰
+     * @return Õâ¸ö·½¿éÄÜ·ñ±»»ğÉÕµô
      */
     public boolean isBurnable() {
         if (!isBlock()) {
@@ -1219,11 +2599,11 @@ public enum Material {
     }
 
     /**
-     * æ£€æŸ¥è¿™ä¸ªç‰©å“æ˜¯å¦å¯ä½œä¸ºç‡ƒæ–™ä½¿ç”¨.
+     * ¼ì²éÕâ¸öÎïÆ·ÊÇ·ñ¿É×÷ÎªÈ¼ÁÏÊ¹ÓÃ.
      * <p>
-     * åŸæ–‡:Checks if this Material can be used as fuel in a Furnace
+     * Ô­ÎÄ:Checks if this Material can be used as fuel in a Furnace
      *
-     * @return è¿™ä¸ªç‰©å“æ˜¯å¦å¯ä½œä¸ºç‡ƒæ–™ä½¿ç”¨
+     * @return Õâ¸öÎïÆ·ÊÇ·ñ¿É×÷ÎªÈ¼ÁÏÊ¹ÓÃ
      */
     public boolean isFuel() {
         switch (this) {
@@ -1299,9 +2679,9 @@ public enum Material {
     }
 
     /**
-     * æ£€æµ‹è¿™ä¸ªç‰©å“æ˜¯å¦ä¸ºé˜»æŒ¡ç›®å…‰çš„æ–¹å—.
+     * ¼ì²âÕâ¸öÎïÆ·ÊÇ·ñÎª×èµ²Ä¿¹âµÄ·½¿é.
      * <p>
-     * åŸæ–‡:Check if the material is a block and completely blocks vision
+     * Ô­ÎÄ:Check if the material is a block and completely blocks vision
      *
      * @return True if this material is a block and completely blocks vision
      */
@@ -1415,7 +2795,7 @@ public enum Material {
     }
 
     /**
-     * @return å¦‚æœè¿™ä¸ªç‰©å“ï¼ˆä»…æ–¹å—ï¼‰å—é‡åŠ›å½±å“åˆ™ä¸ºtrue.
+     * @return Èç¹ûÕâ¸öÎïÆ·£¨½ö·½¿é£©ÊÜÖØÁ¦Ó°ÏìÔòÎªtrue.
      */
     public boolean hasGravity() {
         if (!isBlock()) {
