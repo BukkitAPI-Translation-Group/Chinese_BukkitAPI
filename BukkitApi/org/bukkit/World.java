@@ -443,7 +443,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param type 创建的树的类型
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
+     * @deprecated 该API很少使用，基本上是出于实现自身功能的目的而创造的
      */
+    @Deprecated
     public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate);
 
     /**
@@ -596,6 +598,20 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 这个世界的出生点位置
      */
     public Location getSpawnLocation();
+
+    /**
+     * 设置这个世界的出生点位置.
+     * <br>
+     * 提供的位置所处世界必须与这个世界相同.
+     * <p>
+     * 原文:Sets the spawn location of the world.
+     * <br>
+     * The location provided must be equal to this world.
+     *
+     * @param location 要设置的出生点位置
+     * @return 若成功设置返回true
+     */
+    public boolean setSpawnLocation(Location location);
 
     /**
      * 设置这个世界的出生点位置.

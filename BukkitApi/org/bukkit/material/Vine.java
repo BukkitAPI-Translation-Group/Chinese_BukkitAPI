@@ -14,7 +14,7 @@ public class Vine extends MaterialData {
     private static final int VINE_EAST = 0x8;
     private static final int VINE_WEST = 0x2;
     private static final int VINE_SOUTH = 0x1;
-    EnumSet<BlockFace> possibleFaces = EnumSet.of(BlockFace.WEST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST);
+    private static final EnumSet<BlockFace> possibleFaces = EnumSet.of(BlockFace.WEST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST);
 
     public Vine() {
         super(Material.VINE);
@@ -26,7 +26,7 @@ public class Vine extends MaterialData {
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public Vine(int type, byte data){
+    public Vine(int type, byte data) {
         super(type, data);
     }
 
@@ -111,7 +111,7 @@ public class Vine extends MaterialData {
      * @param face 朝向
      */
     public void putOnFace(BlockFace face) {
-        switch(face) {
+        switch (face) {
             case WEST:
                 setData((byte) (getData() | VINE_WEST));
                 break;
@@ -155,7 +155,7 @@ public class Vine extends MaterialData {
      * @param face 朝向
      */
     public void removeFromFace(BlockFace face) {
-        switch(face) {
+        switch (face) {
             case WEST:
                 setData((byte) (getData() & ~VINE_WEST));
                 break;

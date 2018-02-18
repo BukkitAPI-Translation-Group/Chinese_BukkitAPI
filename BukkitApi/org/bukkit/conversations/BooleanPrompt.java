@@ -6,7 +6,7 @@ import org.apache.commons.lang.BooleanUtils;
 /**
  * BooleanPrompt是那些需要用户判断操作是与否的提示的基类.
  */
-public abstract class BooleanPrompt extends ValidatingPrompt{
+public abstract class BooleanPrompt extends ValidatingPrompt {
 
     public BooleanPrompt() {
         super();

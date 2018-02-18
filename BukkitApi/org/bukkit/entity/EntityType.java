@@ -189,7 +189,7 @@ public enum EntityType {
     /**
      * @see PoweredMinecart
      */
-    MINECART_FURNACE("chest_minecart", PoweredMinecart.class, 44),
+    MINECART_FURNACE("furnace_minecart", PoweredMinecart.class, 44),
     /**
      * @see ExplosiveMinecart
      */
@@ -262,7 +262,7 @@ public enum EntityType {
      * Like {@link #ARROW} but tipped with a specific potion which is applied on
      * contact.
      */
-    TIPPED_ARROW("TippedArrow", TippedArrow.class, -1),
+    TIPPED_ARROW(null, TippedArrow.class, -1),
     /**
      * An unknown entity without an Entity Class
      */

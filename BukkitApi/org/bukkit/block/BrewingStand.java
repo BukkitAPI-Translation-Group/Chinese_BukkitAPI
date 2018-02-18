@@ -2,12 +2,11 @@ package org.bukkit.block;
 
 import org.bukkit.Nameable;
 import org.bukkit.inventory.BrewerInventory;
-import org.bukkit.inventory.InventoryHolder;
 
 /**
- * 代表酿造台.
+ * 代表酿造台(快照).
  */
-public interface BrewingStand extends BlockState, InventoryHolder, Lockable, Nameable {
+public interface BrewingStand extends Container, Nameable {
 
     /**
      * 返回酿造还需多长时间.
@@ -45,5 +44,9 @@ public interface BrewingStand extends BlockState, InventoryHolder, Lockable, Nam
      */
     void setFuelLevel(int level);
 
-    public BrewerInventory getInventory();
+    @Override
+    BrewerInventory getInventory();
+
+    @Override
+    BrewerInventory getSnapshotInventory();
 }

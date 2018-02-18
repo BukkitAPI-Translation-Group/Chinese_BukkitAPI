@@ -50,7 +50,7 @@ public interface AdvancementProgress {
     /**
      * 获取指定条件被授予的日期.
      * <p>
-     * 原文:Get the date the specified critera was awarded.
+     * 原文:Get the date the specified criteria was awarded.
      *
      * @param criteria 要检查的条件
      * @return 条件被授予的时间，如果条件不存在或还未达到则为null

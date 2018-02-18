@@ -5,7 +5,7 @@ import org.bukkit.entity.Llama;
 /**
  * {@linkplain Llama 羊驼}的用户界面接口
  */
-public interface LlamaInventory extends Inventory {
+public interface LlamaInventory extends AbstractHorseInventory {
 
     /**
 	 * 得到羊驼背包中装饰槽的物品, 通常是毛毯. 

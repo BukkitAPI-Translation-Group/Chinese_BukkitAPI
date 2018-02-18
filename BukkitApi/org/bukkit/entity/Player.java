@@ -22,6 +22,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.map.MapView;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -1075,16 +1076,43 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 原文:Hides a player from this player
      *
      * @param player 要让该玩家看不见的玩家.
+     * @deprecated 另请参阅 {@link #hidePlayer(Plugin, Player)}
      */
+    @Deprecated
     public void hidePlayer(Player player);
+
+    /**
+     * 让该玩家看不见某玩家.
+     * <p>
+     * 原文:Hides a player from this player
+     *
+     * @param plugin Plugin 要隐藏该玩家的插件
+     * @param player Player 要让该玩家看不见的玩家.
+     */
+    public void hidePlayer(Plugin plugin, Player player);
 
     /**
      * 让该玩家能看到某玩家. <p>
      * 原文:Allows this player to see a player that was previously hidden
      *
      * @param player 要让该玩家看得见的玩家.
+     * @deprecated 另请参阅 {@link #showPlayer(Plugin, Player)}
      */
+    @Deprecated
     public void showPlayer(Player player);
+
+    /**
+     * 让该玩家能看到之前被隐藏的玩家. 如果另一个插件也隐藏了这个玩家,
+     * 那么玩家将继续处于隐藏状态直至其他插件也调用了此方法.
+     * <p>
+     * 原文:Allows this player to see a player that was previously hidden. If
+     * another another plugin had hidden the player too, then the player will
+     * remain hidden until the other plugin calls this method too.
+     *
+     * @param plugin Plugin 要使某玩家现身的插件
+     * @param player Player 使某玩家现身
+     */
+    public void showPlayer(Plugin plugin, Player player);
 
     /**
      * 检查该玩家是否能看到某玩家. <p>

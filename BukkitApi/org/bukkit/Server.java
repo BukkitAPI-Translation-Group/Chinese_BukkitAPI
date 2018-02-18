@@ -1116,7 +1116,7 @@ public interface Server extends PluginMessageRecipient {
      * @param flags 创建的Boss血量条实例
      * @return 创建的Boss血量条实例
      */
-    BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
+    BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags);
 
     /**
 	 * 用UUID获取实体.

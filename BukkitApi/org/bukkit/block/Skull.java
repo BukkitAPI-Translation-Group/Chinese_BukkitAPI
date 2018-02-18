@@ -1,11 +1,10 @@
 package org.bukkit.block;
 
-import java.util.UUID;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
 
 /**
- * 代表一个头颅.
+ * 代表一个头颅(快照).
  */
 public interface Skull extends BlockState {
 

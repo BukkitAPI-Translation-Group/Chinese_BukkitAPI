@@ -35,10 +35,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * 原文：
      * Gets the height of the living entity's eyes above its Location.
      *
-     * @param ignoreSneaking 若为true则会无视潜行效果。
+     * @param ignorePose 若为true则会无视姿势改变的效果,例如潜行和滑翔
      * @return 生物实体眼睛离脚高度
      */
-    public double getEyeHeight(boolean ignoreSneaking);
+    public double getEyeHeight(boolean ignorePose);
 
     /**
      * 获取生物实体眼睛的详细方位的Location对象。
@@ -72,39 +72,9 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      *
      * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
-     * @return 生物实体的目标方块
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Block getTargetBlock(HashSet<Byte> transparent, int maxDistance);
-
-    /**
-     * 获取生物实体的目标方块。
-     * 原文：
-     * Gets the block that the living entity has targeted.
-     *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
-     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
      * @return block 生物实体的目标方块
      */
     public Block getTargetBlock(Set<Material> transparent, int maxDistance);
-
-    /**
-     * 获取沿生物实体视线上最后两个方块。
-     * <p>
-     * 目标方块将是列表中最后的方块。
-     * 原文：
-     * Gets the last two blocks along the living entity's line of sight.
-     * <p>
-     * The target block will be the last block in the list.
-     *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
-     * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
-     * @return 包含沿生物实体视线上最后两个方块的列表
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public List<Block> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
 
     /**
      * 获取沿生物实体视线上最后两个方块。
@@ -372,12 +342,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     /**
      * 设置生物实体是否能捡拾物品.
 	 * <p>
-     * 该方法在 {@link HumanEntity} 上无效.
-	 * <p>
      * 原文：
      * Sets whether or not the living entity can pick up items.
-	 * <p>
-     * This method has no effect on a {@link HumanEntity}.
      *
      * @param pickup 生物实体是否能捡拾物品
      */

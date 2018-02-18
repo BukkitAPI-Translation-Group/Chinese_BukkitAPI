@@ -254,7 +254,7 @@ public final class Bukkit {
     public static String getServerId() {
         return server.getServerId();
     }
-    
+
     /**
      * 获取默认世界的世界类型 (level-type 设置). 
      * <p>
@@ -752,7 +752,7 @@ public final class Bukkit {
     public static void savePlayers() {
         server.savePlayers();
     }
-    
+
     /**
      * Dispatches a command on this server, and executes it if found.
      *
@@ -818,7 +818,7 @@ public final class Bukkit {
     public static void resetRecipes() {
         server.resetRecipes();
     }
-    
+
     /**
      * 获取服务器配置定义的命令别名列表.
      * <p>
@@ -1003,7 +1003,7 @@ public final class Bukkit {
      * @param type 要获取的封禁列表的类型，不能为null
      * @return 指定类型的封禁列表
      */
-    public static BanList getBanList(BanList.Type type){
+    public static BanList getBanList(BanList.Type type) {
         return server.getBanList(type);
     }
 
@@ -1188,7 +1188,7 @@ public final class Bukkit {
     public static int getWaterAnimalSpawnLimit() {
         return server.getWaterAnimalSpawnLimit();
     }
-    
+
     /**
      * Gets user-specified limit for number of ambient mobs that can spawn in
      * a chunk.

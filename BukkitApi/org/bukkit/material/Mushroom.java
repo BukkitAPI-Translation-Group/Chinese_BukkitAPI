@@ -74,7 +74,7 @@ public class Mushroom extends MaterialData {
     /**
      * @param shroom the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Mushroom(Material shroom, byte data) {
@@ -85,10 +85,10 @@ public class Mushroom extends MaterialData {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
-    public Mushroom(int type, byte data){
+    public Mushroom(int type, byte data) {
         super(type, data);
         Validate.isTrue(type == Material.HUGE_MUSHROOM_1.getId() || type == Material.HUGE_MUSHROOM_2.getId(), "Not a mushroom!");
     }
@@ -237,8 +237,7 @@ public class Mushroom extends MaterialData {
             case DOWN:
                 if (painted) {
                     data = MushroomBlockTexture.ALL_CAP.getData();
-                }
-                else {
+                } else {
                     data = MushroomBlockTexture.ALL_PORES.getData();
                 }
                 break;
