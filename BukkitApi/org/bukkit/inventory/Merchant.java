@@ -5,7 +5,8 @@ import java.util.List;
 import org.bukkit.entity.HumanEntity;
 
 /**
- * 代表一个商人.商人是一种特殊类型的库存，便于以物换物的自定义交易。
+ * 代表一个商人.商人是一种特殊类型的库存，是一种以物换物的自定义交易.
+ * <p>
  * Represents a merchant. A merchant is a special type of inventory which can
  * facilitate custom trades between items.
  */
