@@ -940,7 +940,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setLevel(int level);
 
     /**
-     * 得到总共的经验值(等级和经验).
+     * 得到玩家总共获得了多少经验(等级和经验).
      * <br>
      * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
      * <p>
@@ -954,10 +954,17 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public int getTotalExperience();
 
     /**
-     * 设置总共的经验值. <p>
-     * 原文:Sets the players current experience level
+     * 设置玩家的总经验值(等级和经验).
+     * <br>
+     * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
+     * <p>
+     * 原文:
+     * Sets the players current experience points.
+     * <br>
+     * This refers to the total amount of experience the player has collected
+     * over time and is only displayed as the player's "score" upon dying.
      *
-     * @param exp 新的玩家总经验
+     * @param exp 总经验值
      */
     public void setTotalExperience(int exp);
 
