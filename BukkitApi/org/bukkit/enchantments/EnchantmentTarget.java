@@ -192,6 +192,22 @@ public enum EnchantmentTarget {
         public boolean includes(Material item) {
             return item.getMaxDurability() > 0 && item.getMaxStackSize() == 1;
         }
+    },
+
+    /**
+     * 允许将这类附魔附加于可穿戴物品.
+     * <p>
+     * 原文:Allows the enchantment to be placed on wearable items.
+     */
+    WEARABLE {
+        @Override
+        public boolean includes(Material item) {
+            return ARMOR.includes(item)
+                    || item.equals(Material.ELYTRA)
+                    || item.equals(Material.PUMPKIN)
+                    || item.equals(Material.JACK_O_LANTERN)
+                    || item.equals(Material.SKULL_ITEM);
+        }
     };
 
     /**
@@ -201,7 +217,7 @@ public enum EnchantmentTarget {
      * Check whether this target includes the specified item.
      *
      * @param item 物品
-     * @return 如果包含则返回true。
+     * @return 如果包含则返回true
      */
     public abstract boolean includes(Material item);
 
@@ -211,7 +227,7 @@ public enum EnchantmentTarget {
      * 原文：Check whether this target includes the specified item.
      *
      * @param item 物品
-     * @return 如果包含则返回true。
+     * @return 如果包含则返回true
      */
     public boolean includes(ItemStack item) {
         return includes(item.getType());
