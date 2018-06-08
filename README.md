@@ -9,13 +9,11 @@
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
-Javadoc是Sun公司提供的一个技术，它从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。      
-你所看到的Javadoc，是通过特定格式的注释生成的，利用Java提供的javadoc工具可以生成与源码配套的API文档。   
-在开始翻译前, 请先掌握Javadoc文档注释. 
+Javadoc是JDK提供的一个工具，它可以从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。       
+在开始翻译前, 请先掌握Javadoc文档注释样式. 
 参阅:           
 1.http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html (英文)       
-2.http://www.cnblogs.com/xt0810/p/3630996.html    
-3.http://openwares.net/java/javadoc_convention.html             
+2.http://www.cnblogs.com/xt0810/p/3630996.html              
 # 翻译规范
 ## 原文保留
 为了使文档更严谨、方便比对，必须保留原文。例如：
