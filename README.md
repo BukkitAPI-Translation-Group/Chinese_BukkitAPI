@@ -3,7 +3,7 @@
 
 文档地址：https://docs.windit.net/Chinese_BukkitAPI/
 
-离线版：https://docs.windit.net/Chinese_BukkitAPI/release.zip
+离线版：https://dr.windit.net/release.zip
 
 **遇到问题请发Issues或PR，以帮助我们解决相关问题。**
 # 项目说明
