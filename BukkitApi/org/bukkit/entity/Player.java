@@ -339,9 +339,11 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
 
     /**
-     * Stop the specified sound from playing.
+     * 停止播放某个指定的声音.
+     * <p>
+     * 原文:Stop the specified sound from playing.
      *
-     * @param sound the sound to stop
+     * @param sound 指定声音
      */
     public void stopSound(Sound sound);
 
@@ -357,7 +359,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * Stop the specified sound from playing.
      *
      * @param sound the sound to stop
-     * @param category the category of the sound
+     * @param category 声音类别
      */
     public void stopSound(Sound sound, SoundCategory category);
 
@@ -521,7 +523,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param achievement 要移除的成就
      * @throws IllegalArgumentException 当成就为null时抛出.
-     * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
+     * @deprecated 未来的Minecraft将不会有成就(取而代之的是进度).
      */
     @Deprecated
     public void removeAchievement(Achievement achievement);
