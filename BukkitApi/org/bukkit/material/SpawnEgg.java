@@ -21,7 +21,7 @@ public class SpawnEgg extends MaterialData {
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public SpawnEgg(int type, byte data){
+    public SpawnEgg(int type, byte data) {
         super(type, data);
     }
 

@@ -171,7 +171,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
          * @throws IllegalArgumentException 如果颜色为空则抛出错误
          * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
-        public Builder withColor(Color...colors) throws IllegalArgumentException {
+        public Builder withColor(Color... colors) throws IllegalArgumentException {
             Validate.notNull(colors, "Cannot have null colors");
             if (colors.length == 0) {
                 return this;
@@ -245,7 +245,7 @@ public final class FireworkEffect implements ConfigurationSerializable {
          * @throws IllegalArgumentException 如果颜色为空则抛出错误
          * @throws IllegalArgumentException 如果任一颜色为空则抛出错误（可能在改变生效后抛出）
          */
-        public Builder withFade(Color...colors) throws IllegalArgumentException {
+        public Builder withFade(Color... colors) throws IllegalArgumentException {
             Validate.notNull(colors, "Cannot have null colors");
             if (colors.length == 0) {
                 return this;
@@ -408,9 +408,6 @@ public final class FireworkEffect implements ConfigurationSerializable {
      */
     public static ConfigurationSerializable deserialize(Map<String, Object> map) {
         Type type = Type.valueOf((String) map.get(TYPE));
-        if (type == null) {
-            throw new IllegalArgumentException(map.get(TYPE) + " is not a valid Type");
-        }
 
         return builder()
             .flicker((Boolean) map.get(FLICKER))

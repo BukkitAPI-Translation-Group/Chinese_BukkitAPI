@@ -44,6 +44,7 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.generator.ChunkGenerator;
 
 import org.bukkit.inventory.ItemFactory;
+import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
@@ -253,7 +254,7 @@ public final class Bukkit {
     public static String getServerId() {
         return server.getServerId();
     }
-    
+
     /**
      * 获取默认世界的世界类型 (level-type 设置). 
      * <p>
@@ -751,7 +752,7 @@ public final class Bukkit {
     public static void savePlayers() {
         server.savePlayers();
     }
-    
+
     /**
      * Dispatches a command on this server, and executes it if found.
      *
@@ -817,7 +818,7 @@ public final class Bukkit {
     public static void resetRecipes() {
         server.resetRecipes();
     }
-    
+
     /**
      * 获取服务器配置定义的命令别名列表.
      * <p>
@@ -852,7 +853,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器是否处于正版模式.
+     * 获取服务器的正版准入设定.
      * <p>
      * 原文:Gets whether the Server is in online mode or not.
      *
@@ -946,7 +947,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取包含了已被封禁的IP地址的集合.
+     * 获取已被封禁的IP地址.
      * <p>
      * 原文:Gets a set containing all current IPs that are banned.
      *
@@ -979,7 +980,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取包含了已被封禁的玩家的集合.
+     * 获取已被封禁的玩家.
      * <p>
      * 原文:Gets a set containing all banned players.
      *
@@ -1002,16 +1003,16 @@ public final class Bukkit {
      * @param type 要获取的封禁列表的类型，不能为null
      * @return 指定类型的封禁列表
      */
-    public static BanList getBanList(BanList.Type type){
+    public static BanList getBanList(BanList.Type type) {
         return server.getBanList(type);
     }
 
     /**
-     * 获取包含了所有OP的集合.
+     * 获取服务器的所有OP(管理员).
      * <p>
      * 原文:Gets a set containing all player operators.
      *
-     * @return 服务器OP集合
+     * @return 服务器OP
      */
     public static Set<OfflinePlayer> getOperators() {
         return server.getOperators();
@@ -1187,7 +1188,7 @@ public final class Bukkit {
     public static int getWaterAnimalSpawnLimit() {
         return server.getWaterAnimalSpawnLimit();
     }
-    
+
     /**
      * Gets user-specified limit for number of ambient mobs that can spawn in
      * a chunk.
@@ -1215,11 +1216,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取在客户端服务器列表里显示的消息.
+     * 获取在客户端服务器列表里显示的消息(服务器的欢迎消息，又称message of the day).
      * <p>
      * 原文:Gets the message that is displayed on the server list.
      *
-     * @return 服务器的每日消息
+     * @return 服务器motd
      */
     public static String getMotd() {
         return server.getMotd();
@@ -1230,7 +1231,7 @@ public final class Bukkit {
      * <p>
      * 原文:Gets the default message that is displayed when the server is stopped.
      *
-     * @return 服务器关闭提示消息
+     * @return 服务器关闭提示消息内容
      */
     public static String getShutdownMessage() {
         return server.getShutdownMessage();
@@ -1313,21 +1314,26 @@ public final class Bukkit {
     }
 
     /**
-     * Set the idle kick timeout. Any players idle for the specified amount of
+     * 设置一个空闲超时阈值(IDLE_KICK). 玩家空闲达到这个特定的时间后会被自动踢出服务器.
+     * 如果设置为0，该功能将被关闭.
+     * <p>
+     * 原文: Set the idle kick timeout. Any players idle for the specified amount of
      * time will be automatically kicked.
      * <p>
      * A value of 0 will disable the idle kick timeout.
      *
-     * @param threshold the idle timeout in minutes
+     * @param threshold 玩家空闲时间阈值，以分钟为单位
      */
     public static void setIdleTimeout(int threshold) {
         server.setIdleTimeout(threshold);
     }
 
     /**
-     * Gets the idle kick timeout.
+     * 获取服务器空闲超时阈值(IDLE_KICK).
+     * <p>
+     * 原文: Gets the idle kick timeout.
      *
-     * @return the idle timeout in minutes
+     * @return 以分钟为单位的空闲超时阈值
      */
     public static int getIdleTimeout() {
         return server.getIdleTimeout();
@@ -1367,8 +1373,8 @@ public final class Bukkit {
     }
 
     /**
-	 * 用UUID获取实体.
-	 * <p>
+     * 用UUID获取实体.
+     * <p>
      * 原文:Gets an entity on the server by its UUID
      *
      * @param uuid 实体的UUID
@@ -1379,20 +1385,25 @@ public final class Bukkit {
     }
 
     /**
-     * Get the advancement specified by this key.
+     * 通过Key获得特定的进度对象.
+     * <p>
+     * 原文: Get the advancement specified by this key.
      *
-     * @param key unique advancement key
-     * @return advancement or null if not exists
+     * @param 寻找进度对象所需的key
+     * @return 一个进度对象. 如果它不存在，将返回null.
      */
     public static Advancement getAdvancement(NamespacedKey key) {
         return server.getAdvancement(key);
     }
 
     /**
-     * Get an iterator through all advancements. Advancements cannot be removed
+     * 获取一个用以遍历所有进度的迭代器对象。
+     * 进度不能够从该迭代器上被删除。
+     * <p>
+     * 原文: Get an iterator through all advancements. Advancements cannot be removed
      * from this iterator,
      *
-     * @return an advancement iterator
+     * @return 一个进度迭代器对象
      */
     public static Iterator<Advancement> advancementIterator() {
         return server.advancementIterator();

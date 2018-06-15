@@ -108,7 +108,7 @@ public class Comparator extends MaterialData implements Directional, Redstone {
      * @param isSubtraction true 如果红石比较器为减法模式
      */
     public void setSubtractionMode(boolean isSubtraction) {
-        setData((byte)(getData() & 0xB | (isSubtraction ? 0x4 : 0x0)));
+        setData((byte) (getData() & 0xB | (isSubtraction ? 0x4 : 0x0)));
     }
 
     /**
@@ -153,7 +153,7 @@ public class Comparator extends MaterialData implements Directional, Redstone {
             data |= 0x0;
         }
 
-        setData((byte)data);
+        setData((byte) data);
     }
 
     /**

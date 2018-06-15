@@ -141,18 +141,18 @@ public enum EnchantmentTarget {
                 || item.equals(Material.IRON_PICKAXE)
                 || item.equals(Material.DIAMOND_PICKAXE)
                 || item.equals(Material.GOLD_PICKAXE)
-                || item.equals(Material.WOOD_HOE)         // 注: 并没有一个适用于它的附魔(锄头没有附魔)
-                || item.equals(Material.STONE_HOE)        // 注: 并没有一个适用于它的附魔(锄头没有附魔)
-                || item.equals(Material.IRON_HOE)         // 注: 并没有一个适用于它的附魔(锄头没有附魔)
-                || item.equals(Material.DIAMOND_HOE)      // 注: 并没有一个适用于它的附魔(锄头没有附魔)
-                || item.equals(Material.GOLD_HOE)         // 注: 并没有一个适用于它的附魔(锄头没有附魔)
+                || item.equals(Material.WOOD_HOE)
+                || item.equals(Material.STONE_HOE)
+                || item.equals(Material.IRON_HOE)
+                || item.equals(Material.DIAMOND_HOE)
+                || item.equals(Material.GOLD_HOE)
                 || item.equals(Material.WOOD_AXE)
                 || item.equals(Material.STONE_AXE)
                 || item.equals(Material.IRON_AXE)
                 || item.equals(Material.DIAMOND_AXE)
                 || item.equals(Material.GOLD_AXE)
-                || item.equals(Material.SHEARS)           // NOTE: 并没有一个适用于它的附魔(剪刀没有附魔)
-                || item.equals(Material.FLINT_AND_STEEL); // NOTE: 并没有一个适用于它的附魔(打火石没有附魔)
+                || item.equals(Material.SHEARS)
+                || item.equals(Material.FLINT_AND_STEEL);
         }
     },
 
@@ -192,6 +192,22 @@ public enum EnchantmentTarget {
         public boolean includes(Material item) {
             return item.getMaxDurability() > 0 && item.getMaxStackSize() == 1;
         }
+    },
+
+    /**
+     * 允许将这类附魔附加于可穿戴物品.
+     * <p>
+     * 原文:Allows the enchantment to be placed on wearable items.
+     */
+    WEARABLE {
+        @Override
+        public boolean includes(Material item) {
+            return ARMOR.includes(item)
+                    || item.equals(Material.ELYTRA)
+                    || item.equals(Material.PUMPKIN)
+                    || item.equals(Material.JACK_O_LANTERN)
+                    || item.equals(Material.SKULL_ITEM);
+        }
     };
 
     /**
@@ -201,7 +217,7 @@ public enum EnchantmentTarget {
      * Check whether this target includes the specified item.
      *
      * @param item 物品
-     * @return 如果包含则返回true。
+     * @return 如果包含则返回true
      */
     public abstract boolean includes(Material item);
 
@@ -211,7 +227,7 @@ public enum EnchantmentTarget {
      * 原文：Check whether this target includes the specified item.
      *
      * @param item 物品
-     * @return 如果包含则返回true。
+     * @return 如果包含则返回true
      */
     public boolean includes(ItemStack item) {
         return includes(item.getType());

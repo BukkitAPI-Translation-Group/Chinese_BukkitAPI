@@ -36,6 +36,7 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 
+import com.avaje.ebean.EbeanServer;
 /**
  * 一个Java插件的基类
  */

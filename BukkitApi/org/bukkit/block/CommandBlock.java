@@ -1,5 +1,8 @@
 package org.bukkit.block;
 
+/**
+ * 代表命令方块(快照)/Represents a captured state of a command block.
+ */
 public interface CommandBlock extends BlockState {
 
     /**

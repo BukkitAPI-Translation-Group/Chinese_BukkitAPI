@@ -536,7 +536,7 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Reload only the Minecraft data for the server. This includes custom
      * advancements and loot tables.
      */
-    public static void reloadData();  
+    public void reloadData();  
 
     /**
      * 返回此服务器的日志记录.
@@ -1116,7 +1116,7 @@ public interface Server extends PluginMessageRecipient {
      * @param flags 创建的Boss血量条实例
      * @return 创建的Boss血量条实例
      */
-    BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag ...flags);
+    BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags);
 
     /**
 	 * 用UUID获取实体.

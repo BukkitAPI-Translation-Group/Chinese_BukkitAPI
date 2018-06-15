@@ -1,7 +1,7 @@
 package org.bukkit.map;
 
 /**
- * 表示一个地图上的光标。
+ * 表示一个地图上的光标.
  * <p>
  * 原文：
  * Represents a cursor on a map.
@@ -12,7 +12,7 @@ public final class MapCursor {
     private boolean visible;
 
     /**
-     * 初始化地图光标。
+     * 初始化地图光标.
      * <p>
      * 原文：
      * Initialize the map cursor.
@@ -34,7 +34,27 @@ public final class MapCursor {
     }
 
     /**
-     * 获取这个光标的X位置。
+     * 初始化地图光标.
+     * <p>
+     * 原文：
+     * Initialize the map cursor.
+     *
+     * @param x The x coordinate, from -128 to 127.
+     * @param y The y coordinate, from -128 to 127.
+     * @param direction The facing of the cursor, from 0 to 15.
+     * @param type The type (color/style) of the map cursor.
+     * @param visible Whether the cursor is visible by default.
+     */
+    public MapCursor(byte x, byte y, byte direction, Type type, boolean visible) {
+        this.x = x;
+        this.y = y;
+        setDirection(direction);
+        setType(type);
+        this.visible = visible;
+    }
+
+    /**
+     * 获取这个光标的X坐标.
      * <p>
      * 原文：
      * Get the X position of this cursor.
@@ -46,7 +66,7 @@ public final class MapCursor {
     }
 
     /**
-     * 获取这个光标的Y位置。
+     * 获取这个光标的Y坐标.
      * <p>
      * 原文：
      * Get the Y position of this cursor.
@@ -58,7 +78,7 @@ public final class MapCursor {
     }
 
     /**
-     * 获取这个光标的朝向。
+     * 获取这个光标的朝向.
      * <p>
      * 原文：
      * Get the direction of this cursor.
@@ -70,7 +90,7 @@ public final class MapCursor {
     }
 
     /**
-     * 获取这个光标的类型。
+     * 获取这个光标的类型.
      * <p>
      * 原文：
      * Get the type of this cursor.
@@ -82,7 +102,7 @@ public final class MapCursor {
     }
 
     /**
-     * 获取这个光标的类型。
+     * 获取这个光标的类型.
      * <p>
      * 原文：
      * Get the type of this cursor.
@@ -96,7 +116,7 @@ public final class MapCursor {
     }
 
     /**
-     * 获取这个光标的可见情况。
+     * 获取这个光标的可见情况.
      * <p>
      * 原文：
      * Get the visibility status of this cursor.
@@ -108,7 +128,7 @@ public final class MapCursor {
     }
 
     /**
-     * 设置这个光标的X方位。
+     * 设置这个光标的X坐标.
      * <p>
      * 原文：
      * Set the X position of this cursor.
@@ -120,7 +140,7 @@ public final class MapCursor {
     }
 
     /**
-     * 设置这个光标的Y方位。
+     * 设置这个光标的Y坐标.
      * <p>
      * 原文：
      * Set the Y position of this cursor.
@@ -132,7 +152,7 @@ public final class MapCursor {
     }
 
     /**
-     * 设置这个光标的方向。
+     * 设置这个光标的方向.
      * <p>
      * 原文：
      * Set the direction of this cursor.
@@ -147,7 +167,7 @@ public final class MapCursor {
     }
 
     /**
-     * 设置这个光标的类型。
+     * 设置这个光标的类型.
      * <p>
      * 原文：
      * Set the type of this cursor.
@@ -159,7 +179,7 @@ public final class MapCursor {
     }
 
     /**
-     * 设置这个光标的类型。
+     * 设置这个光标的类型.
      * <p>
      * 原文：
      * Set the type of this cursor.
@@ -176,7 +196,7 @@ public final class MapCursor {
     }
 
     /**
-     * 设置这个光标的可见情况。
+     * 设置这个光标的可见情况.
      * <p>
      * 原文：
      * Set the visibility status of this cursor.

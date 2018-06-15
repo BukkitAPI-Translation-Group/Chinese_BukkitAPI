@@ -1,7 +1,7 @@
 package org.bukkit.block;
 
 /**
- * 代表一个告示牌或者墙上告示牌.
+ * 代表一个告示牌或者墙上告示牌(快照).
  */
 public interface Sign extends BlockState {
 

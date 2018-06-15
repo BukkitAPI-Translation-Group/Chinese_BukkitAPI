@@ -2,12 +2,11 @@ package org.bukkit.block;
 
 import org.bukkit.Nameable;
 import org.bukkit.inventory.FurnaceInventory;
-import org.bukkit.inventory.InventoryHolder;
 
 /**
- * 代表一个熔炉.
+ * 代表一个熔炉(快照).
  */
-public interface Furnace extends BlockState, InventoryHolder, Lockable, Nameable {
+public interface Furnace extends Container, Nameable {
 
     /**
      * 获取燃烧时间.
@@ -49,5 +48,9 @@ public interface Furnace extends BlockState, InventoryHolder, Lockable, Nameable
      */
     public void setCookTime(short cookTime);
 
+    @Override
     public FurnaceInventory getInventory();
+
+    @Override
+    public FurnaceInventory getSnapshotInventory();
 }

@@ -4,10 +4,9 @@ import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.BooleanUtils;
 
 /**
- * BooleanPrompt is the base class for any prompt that requires a boolean
- * response from the user.
+ * BooleanPrompt是那些需要用户判断操作是与否的提示的基类.
  */
-public abstract class BooleanPrompt extends ValidatingPrompt{
+public abstract class BooleanPrompt extends ValidatingPrompt {
 
     public BooleanPrompt() {
         super();
@@ -25,12 +24,14 @@ public abstract class BooleanPrompt extends ValidatingPrompt{
     }
 
     /**
-     * Override this method to perform some action with the user's boolean
+     * 您可以重写这个方法，根据用户对提示的响应来执行对应的操作.
+     * <p>
+     * 原文:Override this method to perform some action with the user's boolean
      * response.
      *
-     * @param context Context information about the conversation.
-     * @param input The user's boolean response.
-     * @return The next {@link Prompt} in the prompt graph.
+     * @param context 关于这个会话的Context 信息
+     * @param input 用户响应的布尔值(true/false)
+     * @return 对话流程中的下一个 {@link Prompt}
      */
     protected abstract Prompt acceptValidatedInput(ConversationContext context, boolean input);
 }

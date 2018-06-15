@@ -6,7 +6,7 @@ import org.bukkit.Material;
  * 代表绊线
  */
 public class Tripwire extends MaterialData {
-    
+
     public Tripwire() {
         super(Material.TRIPWIRE);
     }
@@ -40,7 +40,7 @@ public class Tripwire extends MaterialData {
     public boolean isActivated() {
         return (getData() & 0x4) != 0;
     }
-    
+
     /**
      * 设置绊线是否被激活.
      * <p>
@@ -54,8 +54,8 @@ public class Tripwire extends MaterialData {
             dat |= 0x4;
         }
         setData((byte) dat);
-    }    
-    
+    }   
+
     /**
      * 测试绊线是否由物体直接触发.
      * <p>
@@ -89,6 +89,6 @@ public class Tripwire extends MaterialData {
 
     @Override
     public String toString() {
-        return super.toString() + (isActivated()?" Activated":"") + (isObjectTriggering()?" Triggered":"");
+        return super.toString() + (isActivated() ? " Activated" : "") + (isObjectTriggering() ? " Triggered" : "");
     }
 }

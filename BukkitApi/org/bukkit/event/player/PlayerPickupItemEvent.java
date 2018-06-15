@@ -1,13 +1,18 @@
 package org.bukkit.event.player;
 
+import org.bukkit.Warning;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.entity.EntityPickupItemEvent;
 
 /**
  * 玩家捡起掉落物品事件.
+ * @deprecated {@link EntityPickupItemEvent}
  */
+@Deprecated
+@Warning(false)
 public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private final Item item;
