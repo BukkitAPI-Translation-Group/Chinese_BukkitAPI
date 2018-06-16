@@ -32,9 +32,7 @@ public class BukkitObjectInputStream extends ObjectInputStream {
         super.enableResolveObject(true);
     }
     /**
-     * 对象输入流装饰构造函数？
-     * <p>
-     * 译注：原文真心难以理解。相对于上面的构造函数，此函数添加了一个输入流参数
+     * 输入流作为参数的构造函数
      * <p>
      * 原文：Object input stream decoration constructor.
      *
