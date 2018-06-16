@@ -101,7 +101,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * @param w W坐标
      * @param frequency 每一个音阶改变多少频率
      * @param amplitude 每一个音阶改变多少振幅
-     * @param normalized 如果使用true，规范这个值为[-1, 1]
+     * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
     public double noise(double x, double y, double z, double w, double frequency, double amplitude, boolean normalized) {
