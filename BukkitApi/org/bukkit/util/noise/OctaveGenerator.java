@@ -100,7 +100,7 @@ public abstract class OctaveGenerator {
         return octaves.clone();
     }
     /**
-     * 使用既定的倍频和参数产生一个1维坐标的噪音。
+     * 使用既定的倍频和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
@@ -114,7 +114,7 @@ public abstract class OctaveGenerator {
         return noise(x, 0, 0, frequency, amplitude);
     }
     /**
-     * 使用既定倍频和参数产生一个1维坐标的噪音。
+     * 使用既定倍频和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
@@ -129,7 +129,7 @@ public abstract class OctaveGenerator {
         return noise(x, 0, 0, frequency, amplitude, normalized);
     }
     /**
-     * 使用既定倍频和参数产生一个2维坐标的噪音。
+     * 使用既定倍频和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
@@ -144,7 +144,7 @@ public abstract class OctaveGenerator {
         return noise(x, y, 0, frequency, amplitude);
     }
     /**
-     * 使用既定倍频和参数产生一个2维坐标的噪音。
+     * 使用既定倍频和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
@@ -160,7 +160,7 @@ public abstract class OctaveGenerator {
         return noise(x, y, 0, frequency, amplitude, normalized);
     }
     /**
-     * 使用既定倍频和参数产生一个3维坐标的噪音。
+     * 使用既定倍频和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
@@ -176,7 +176,7 @@ public abstract class OctaveGenerator {
         return noise(x, y, z, frequency, amplitude, false);
     }
     /**
-     * 使用既定倍频和参数产生一个3维坐标的噪音。
+     * 使用既定倍频和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
