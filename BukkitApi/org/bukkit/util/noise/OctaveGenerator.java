@@ -1,6 +1,6 @@
 package org.bukkit.util.noise;
 /**
- * 使用无偏倍频创建一个噪音。
+ * 使用中音阶创建一个噪音。
  * <p>
  * 原文：Creates noise using unbiased octaves
  */
@@ -90,38 +90,40 @@ public abstract class OctaveGenerator {
         zScale = scale;
     }
     /**
-     * 获取一个复制的单个倍频在这个生成器内使用。
+     * 获取一个复制的单个音阶在这个生成器内使用。
      * <p>
      * 原文：Gets a clone of the individual octaves used within this generator
      *
-     * @return 复制产生的单个倍频
+     * @return 复制产生的单个音阶
      */
     public NoiseGenerator[] getOctaves() {
         return octaves.clone();
     }
     /**
-     * 使用既定的倍频和参数产生一个一维坐标的噪音。
+     * 使用特殊的数个音阶和参数产生一个1维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
-     * @param frequency 每一个倍频改变多少频率
-     * @param amplitude 每一个倍频改变多少振幅
+     * @param octaves 使用的音阶序号
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
      * @return 噪音结果
      */
     public double noise(double x, double frequency, double amplitude) {
         return noise(x, 0, 0, frequency, amplitude);
     }
     /**
-     * 使用既定倍频和参数产生一个一维坐标的噪音。
+     * 使用特殊的数个音阶和参数产生一个1维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
-     * @param frequency 每一个倍频改变多少频率
-     * @param amplitude 每一个倍频改变多少振幅
+     * @param octaves 使用的音阶序号
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
      * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
@@ -129,30 +131,32 @@ public abstract class OctaveGenerator {
         return noise(x, 0, 0, frequency, amplitude, normalized);
     }
     /**
-     * 使用既定倍频和参数产生一个二维坐标的噪音。
+     * 使用特殊的数个音阶和参数产生一个2维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
      * @param y Y坐标
-     * @param frequency 每一个倍频改变多少频率
-     * @param amplitude 每一个倍频改变多少振幅
+     * @param octaves 使用的音阶序号
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
      * @return 噪音结果
      */
     public double noise(double x, double y, double frequency, double amplitude) {
         return noise(x, y, 0, frequency, amplitude);
     }
     /**
-     * 使用既定倍频和参数产生一个二维坐标的噪音。
+     * 使用特殊的数个音阶和参数产生一个2维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
      * @param y Y坐标
-     * @param frequency 每一个倍频改变多少频率
-     * @param amplitude 每一个倍频改变多少振幅
+     * @param octaves 使用的音阶序号
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
      * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
@@ -160,7 +164,7 @@ public abstract class OctaveGenerator {
         return noise(x, y, 0, frequency, amplitude, normalized);
     }
     /**
-     * 使用既定倍频和参数产生一个三维坐标的噪音。
+     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
@@ -168,15 +172,16 @@ public abstract class OctaveGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param frequency 每一个倍频改变多少频率
-     * @param amplitude 每一个倍频改变多少振幅
+     * @param octaves 使用的音阶序号
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
      * @return 噪音结果
      */
     public double noise(double x, double y, double z, double frequency, double amplitude) {
         return noise(x, y, z, frequency, amplitude, false);
     }
     /**
-     * 使用既定倍频和参数产生一个三维坐标的噪音。
+     * 使用特殊的数个音阶和参数产生一个3维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
@@ -184,8 +189,9 @@ public abstract class OctaveGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param frequency 每一个倍频改变多少频率
-     * @param amplitude 每一个倍频改变多少振幅
+     * @param octaves 使用的音阶序号
+     * @param frequency 每一个音阶改变多少频率
+     * @param amplitude 每一个音阶改变多少振幅
      * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */

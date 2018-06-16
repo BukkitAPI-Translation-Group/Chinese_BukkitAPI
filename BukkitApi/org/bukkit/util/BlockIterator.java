@@ -8,7 +8,7 @@ import org.bukkit.entity.LivingEntity;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 /**
- * 这个类执行射线追踪并迭代一条直线上的所有单个方块。
+ * 这个类执行射线追踪(ray tracing)和迭代一条直线上的单独方块。
  * <p>
  * 原文：This class performs ray tracing and iterates along blocks on a line
  */
@@ -29,16 +29,16 @@ public class BlockIterator implements Iterator<Block> {
     private BlockFace secondFace;
     private BlockFace thirdFace;
     /**
-     * BlockIterator的构造函数
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator
      *
-     * @param world 使用此追踪的世界
-     * @param start 追踪的初位置向量
-     * @param direction 追踪的方向向量
-     * @param yOffset 垂直偏移量，追踪从初向量开始垂直偏移这个值的范围
+     * @param world 使用追踪的世界
+     * @param start 追踪的初始位置的向量(Vector)
+     * @param direction 指向追踪方向的向量(Vector)
+     * @param yOffset 通过这个值，追踪从初始向量(Vector)开始垂直偏移
      * @param maxDistance 这是在方块中追踪的最大距离。
-     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题。值0表示无限制。
+     * 设置此值在140以上可能导致卸载块的问题。值0表示无限制。
      *
      */
     public BlockIterator(World world, Vector start, Vector direction, double yOffset, int maxDistance) {
@@ -168,31 +168,31 @@ public class BlockIterator implements Iterator<Block> {
         return getPosition(direction.getZ(), position.getZ(), block.getZ());
     }
     /**
-     * BlockIterator的构造函数
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator
      *
      * @param loc 射线追踪的开始位置
-     * @param yOffset 垂直偏移量，追踪从初向量开始垂直偏移这个值的范围
+     * @param yOffset 通过这个值，追踪从初始向量(Vector)开始垂直偏移
      * @param maxDistance 这是在方块中追踪的最大距离。
-     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题。值0表示无限制。
+     * 设置此值在140以上可能导致卸载块的问题。值0表示无限制。
      */
     public BlockIterator(Location loc, double yOffset, int maxDistance) {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, maxDistance);
     }
     /**
-     * BlockIterator的构造函数
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
      * @param loc 射线追踪的开始位置
-     * @param yOffset 垂直偏移量，追踪从初向量开始垂直偏移这个值的范围
+     * @param yOffset 通过这个值，追踪从初始向量(Vector)开始垂直偏移
      */
     public BlockIterator(Location loc, double yOffset) {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, 0);
     }
     /**
-     * BlockIterator的构造函数
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
@@ -202,13 +202,13 @@ public class BlockIterator implements Iterator<Block> {
         this(loc, 0D);
     }
     /**
-     * BlockIterator的构造函数
+     * 创建BlockIterator。
      * <p>
      * 原文：Constructs the BlockIterator.
      *
-     * @param entity 被用来设置追踪的实体
+     * @param entity 被用来设置追踪的实体信息
      * @param maxDistance 这是在方块中追踪的最大距离。
-     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题。值0表示无限制。
+     * 设置此值在140以上可能导致卸载块的问题。值0表示无限制。
      */
     public BlockIterator(LivingEntity entity, int maxDistance) {
         this(entity.getLocation(), entity.getEyeHeight(), maxDistance);
@@ -224,7 +224,7 @@ public class BlockIterator implements Iterator<Block> {
         this(entity, 0);
     }
     /**
-     * 如果迭代器还有更多的元素则返回true
+     * 返回true如果迭代器还有更多的元素。
      * <p>
      * 原文：Returns true if the iteration has more elements
      */
@@ -233,11 +233,11 @@ public class BlockIterator implements Iterator<Block> {
         return currentBlock != -1;
     }
     /**
-     * 返回追踪的下一个方块
+     * 返回追踪上的下一个方块。
      * <p>
      * 原文：Returns the next Block in the trace
      *
-     * @return 追踪的下一个方块
+     * @return 追踪上的下一个方块
      */
     public Block next() {
         scan();

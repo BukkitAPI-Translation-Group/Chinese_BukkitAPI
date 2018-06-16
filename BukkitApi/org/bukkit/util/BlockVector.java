@@ -4,10 +4,7 @@ import java.util.Map;
 import org.bukkit.configuration.serialization.SerializableAs;
 
 /**
- * 这是一个带有可以向下取整XYZ坐标函数的向量类，就像世界编辑器中的方块向量。方块向量可以用于哈希集和哈希表。
- * 注意方块向量是可变的，但是重要的是一旦被扔到一个哈希集或哈希表中方块向量就不可变了。
- * <p>
- * 原文：A vector with a hash function that floors the X, Y, Z components, a la
+ * A vector with a hash function that floors the X, Y, Z components, a la
  * BlockVector in WorldEdit. BlockVectors can be used in hash sets and
  * hash maps. Be aware that BlockVectors are mutable, but it is important
  * that BlockVectors are never changed once put into a hash set or hash map.
@@ -16,9 +13,7 @@ import org.bukkit.configuration.serialization.SerializableAs;
 public class BlockVector extends Vector {
 
     /**
-     * 使用原点坐标来创建向量。
-     * <p>
-     * 原文：Construct the vector with all components as 0.
+     * Construct the vector with all components as 0.
      */
     public BlockVector() {
         this.x = 0;
@@ -27,11 +22,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用另一个向量来创建向量。
-     * <p>
-     * 原文：Construct the vector with another vector.
+     * Construct the vector with another vector.
      *
-     * @param vec 另一个向量。
+     * @param vec The other vector.
      */
     public BlockVector(Vector vec) {
         this.x = vec.getX();
@@ -40,13 +33,11 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用给定整数坐标来创建向量。
-     * <p>
-     * 原文：Construct the vector with provided integer components.
+     * Construct the vector with provided integer components.
      *
-     * @param x X坐标
-     * @param y Y坐标
-     * @param z Z坐标
+     * @param x X component
+     * @param y Y component
+     * @param z Z component
      */
     public BlockVector(int x, int y, int z) {
         this.x = x;
@@ -55,13 +46,11 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用给定双精度浮点数坐标来创建向量。
-     * <p>
-     * 原文：Construct the vector with provided double components.
+     * Construct the vector with provided double components.
      *
-     * @param x X坐标
-     * @param y Y坐标
-     * @param z Z坐标
+     * @param x X component
+     * @param y Y component
+     * @param z Z component
      */
     public BlockVector(double x, double y, double z) {
         this.x = x;
@@ -70,13 +59,11 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用给定单精度浮点数坐标来创建向量。
-     * <p>
-     * 原文：Construct the vector with provided float components.
+     * Construct the vector with provided float components.
      *
-     * @param x X坐标
-     * @param y Y坐标
-     * @param z Z坐标
+     * @param x X component
+     * @param y Y component
+     * @param z Z component
      */
     public BlockVector(float x, float y, float z) {
         this.x = x;
@@ -85,12 +72,10 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 检查是否同另一个对象相等。
-     * <p>
-     * 原文：Checks if another object is equivalent.
+     * Checks if another object is equivalent.
      *
-     * @param obj 另一个对象
-     * @return 是否同另一个对象相等
+     * @param obj The other object
+     * @return whether the other object is equivalent
      */
     @Override
     public boolean equals(Object obj) {
@@ -104,11 +89,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 返回这个向量的哈希码。
-     * <p>
-     * 原文：Returns a hash code for this vector.
+     * Returns a hash code for this vector.
      *
-     * @return 哈希码
+     * @return hash code
      */
     @Override
     public int hashCode() {
@@ -116,11 +99,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 克隆生成新的方块向量。
-     * <p>
-     * 原文：Get a new block vector.
+     * Get a new block vector.
      *
-     * @return 向量
+     * @return vector
      */
     @Override
     public BlockVector clone() {
