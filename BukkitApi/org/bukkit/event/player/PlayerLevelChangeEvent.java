@@ -29,11 +29,11 @@ public class PlayerLevelChangeEvent extends PlayerEvent {
     }
 
     /**
-     * 获得此玩家升级后的等级.
+     * 获得此玩家升级/降级后的等级.
      * <p>
      * 原文:Gets the new level of the player
      *
-     * @return 升级后的等级
+     * @return 升级/降级后的等级
      */
     public int getNewLevel() {
         return newLevel;
