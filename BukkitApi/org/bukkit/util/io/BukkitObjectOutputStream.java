@@ -32,7 +32,9 @@ public class BukkitObjectOutputStream extends ObjectOutputStream {
         super.enableReplaceObject(true);
     }
     /**
-     * 输出流作为参数的构造函数
+     * 对象输出流装饰构造函数？
+     * <p>
+     * 译注：原文真心难以理解。相对于上面的构造函数，此函数添加了一个输出流参数。
      * <p>
      * 原文：Object output stream decoration constructor.
      *
