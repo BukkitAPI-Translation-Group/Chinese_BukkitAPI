@@ -2,45 +2,43 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 使用中音阶创建基于单纯形的噪声。
+ * 使用倍频创建单纯形噪声。
  * <p>
  * 原文：Creates simplex noise through unbiased octaves
  */
 public class SimplexOctaveGenerator extends OctaveGenerator {
     private double wScale = 1;
     /**
-     * 为给定的世界创建一个基于单纯形的中音阶产生器。
+     * 使用给定的世界创建一个单纯形倍频产生器。
      * <p>
      * 原文：Creates a simplex octave generator for the given world
      *
      * @param world 创建这个发生器的世界
-     * @param octaves 创建的音阶数
+     * @param octaves 创建的音阶值
      */
     public SimplexOctaveGenerator(World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
     /**
-     * 为给定的世界创建一个基于单纯形的中音阶产生器。
+     * 使用给定的世界创建一个单纯形倍频产生器。
      * <p>
      * 原文：Creates a simplex octave generator for the given world
      * <p>
      * 译注:根据参数的翻译 这里given world疑似打错应该是given seed。
-     * <p>
-     * 译注2:不影响理解。
      *
      * @param seed 创建这个发生器的种子
-     * @param octaves 创建的音阶数
+     * @param octaves 创建的音阶值
      */
     public SimplexOctaveGenerator(long seed, int octaves) {
         this(new Random(seed), octaves);
     }
     /**
-     * 为给定的{@link Random}创建一个基于单纯形的中音阶产生器。
+     * 使用给定的{@link Random}创建一个单纯形倍频产生器。
      * <p>
      * 原文：Creates a simplex octave generator for the given {@link Random}
      *
-     * @param rand 创建这个发生器的Random实例
-     * @param octaves 创建的音阶数
+     * @param rand 创建这个发生器的随机数生成器实例
+     * @param octaves 创建的音阶值
      */
     public SimplexOctaveGenerator(Random rand, int octaves) {
         super(createOctaves(rand, octaves));
@@ -103,7 +101,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * @param w W坐标
      * @param frequency 每一个音阶改变多少频率
      * @param amplitude 每一个音阶改变多少振幅
-     * @param normalized 如果为true，规范这个值为[-1, 1]
+     * @param normalized 如果使用true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
     public double noise(double x, double y, double z, double w, double frequency, double amplitude, boolean normalized) {

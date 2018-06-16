@@ -67,30 +67,30 @@ public abstract class NoiseGenerator {
      */
     public abstract double noise(double x, double y, double z);
     /**
-     * 使用特殊的数个音阶和参数产生一个一维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @return 噪音结果
      */
     public double noise(double x, int octaves, double frequency, double amplitude) {
         return noise(x, 0, 0, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个一维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个一维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
@@ -98,32 +98,32 @@ public abstract class NoiseGenerator {
         return noise(x, 0, 0, octaves, frequency, amplitude, normalized);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个二维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
      * @param y Y坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @return 噪音结果
      */
     public double noise(double x, double y, int octaves, double frequency, double amplitude) {
         return noise(x, y, 0, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个二维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个二维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
      * @param y Y坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
@@ -131,7 +131,7 @@ public abstract class NoiseGenerator {
         return noise(x, y, 0, octaves, frequency, amplitude, normalized);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
@@ -139,16 +139,16 @@ public abstract class NoiseGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @return 噪音结果
      */
     public double noise(double x, double y, double z, int octaves, double frequency, double amplitude) {
         return noise(x, y, z, octaves, frequency, amplitude, false);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个三维坐标的噪音。
      * <p>
      * 原文：Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
@@ -156,9 +156,9 @@ public abstract class NoiseGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @param normalized 如果为true，规范这个值为[-1, 1]
      * @return 噪音结果
      */
