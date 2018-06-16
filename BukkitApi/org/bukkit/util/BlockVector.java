@@ -116,7 +116,7 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 克隆新的方块向量。
+     * 克隆生成新的方块向量。
      * <p>
      * 原文：Get a new block vector.
      *
