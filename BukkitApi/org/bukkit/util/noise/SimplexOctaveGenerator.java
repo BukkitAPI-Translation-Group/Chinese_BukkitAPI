@@ -27,7 +27,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * 译注:根据参数的翻译 这里given world疑似打错应该是given seed。
      *
      * @param seed 创建这个发生器的种子
-     * @param octaves 创建的音阶值
+     * @param octaves 创建的倍频值
      */
     public SimplexOctaveGenerator(long seed, int octaves) {
         this(new Random(seed), octaves);
@@ -38,7 +38,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * 原文：Creates a simplex octave generator for the given {@link Random}
      *
      * @param rand 创建这个发生器的随机数生成器实例
-     * @param octaves 创建的音阶值
+     * @param octaves 创建的倍频值
      */
     public SimplexOctaveGenerator(Random rand, int octaves) {
         super(createOctaves(rand, octaves));
