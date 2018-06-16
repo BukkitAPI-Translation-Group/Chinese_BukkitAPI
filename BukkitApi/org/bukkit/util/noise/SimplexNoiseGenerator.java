@@ -6,7 +6,7 @@ import org.bukkit.World;
  * <p>
  * 原文：Generates simplex-based noise.
  * <p>
- * 这是一个修正版的免费发布的论文，作者是Stefan Gustavson，链接：
+ * 这是一个免费发布的修正版论文，作者是Stefan Gustavson，链接：
  * <a href="http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf">
  * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf</a>。
  * <p>
@@ -51,31 +51,31 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         super();
     }
     /**
-     * 使用给定的世界创建一个已设种子的单纯形噪声发生器
+     * 使用给定的World创建一个已设种子的SimplexNoiseGenerator
      * <p>
      * 原文：Creates a seeded simplex noise generator for the given world
      *
-     * @param world 创建这个发生器的世界
+     * @param world 创建这个Generator的World实例
      */
     public SimplexNoiseGenerator(World world) {
         this(new Random(world.getSeed()));
     }
     /**
-     * 使用给定的种子创建一个已设种子的单纯形噪声发生器
+     * 使用给定的种子创建一个已设种子的SimplexNoiseGenerator
      * <p>
      * 原文：Creates a seeded simplex noise generator for the given seed
      *
-     * @param seed 创建这个发生器的种子
+     * @param seed 创建这个Generator的long型种子
      */
     public SimplexNoiseGenerator(long seed) {
         this(new Random(seed));
     }
     /**
-     * 使用给定的随机数生成器创建一个已设种子的单纯形噪声发生器
+     * 使用给定的Random创建一个已设种子的SimplexNoiseGenerator
      * <p>
      * 原文：Creates a seeded simplex noise generator with the given Random
      *
-     * @param rand 创建这个发生器的随机数生成器
+     * @param rand 创建这个Generator的Random
      */
     public SimplexNoiseGenerator(Random rand) {
         super(rand);
@@ -344,7 +344,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param w W坐标（PS:意义不明）
+     * @param w W坐标
      * @return 给定坐标的噪音，取值范围 -1 到 1
      */
     public double noise(double x, double y, double z, double w) {
@@ -472,7 +472,7 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return 27.0 * (n0 + n1 + n2 + n3 + n4);
     }
     /**
-     * 获取单独的未设种子的此类发生器的实例。
+     * 获取单独的未设种子的此类Generator的实例。
      * <p>
      * 原文：Gets the singleton unseeded instance of this generator
      *

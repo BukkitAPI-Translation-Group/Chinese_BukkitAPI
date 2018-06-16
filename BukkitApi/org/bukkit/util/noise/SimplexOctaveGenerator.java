@@ -9,35 +9,35 @@ import org.bukkit.World;
 public class SimplexOctaveGenerator extends OctaveGenerator {
     private double wScale = 1;
     /**
-     * 使用给定的世界创建一个单纯形倍频产生器。
+     * 使用给定的World创建一个SimplexOctaveGenerator。
      * <p>
      * 原文：Creates a simplex octave generator for the given world
      *
-     * @param world 创建这个发生器的世界
-     * @param octaves 创建的音阶值
+     * @param world 创建这个Generator的World实例
+     * @param octaves 创建的倍频值
      */
     public SimplexOctaveGenerator(World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
     /**
-     * 使用给定的世界创建一个单纯形倍频产生器。
+     * 使用给定的种子创建一个SimplexOctaveGenerator。
      * <p>
      * 原文：Creates a simplex octave generator for the given world
      * <p>
      * 译注:根据参数的翻译 这里given world疑似打错应该是given seed。
      *
-     * @param seed 创建这个发生器的种子
+     * @param seed 创建这个Generator的long型种子
      * @param octaves 创建的倍频值
      */
     public SimplexOctaveGenerator(long seed, int octaves) {
         this(new Random(seed), octaves);
     }
     /**
-     * 使用给定的{@link Random}创建一个单纯形倍频产生器。
+     * 使用给定的{@link Random}创建一个SimplexOctaveGenerator。
      * <p>
      * 原文：Creates a simplex octave generator for the given {@link Random}
      *
-     * @param rand 创建这个发生器的随机数生成器实例
+     * @param rand 创建这个Generator的Random
      * @param octaves 创建的倍频值
      */
     public SimplexOctaveGenerator(Random rand, int octaves) {

@@ -36,8 +36,8 @@ public class BukkitObjectOutputStream extends ObjectOutputStream {
      * <p>
      * 原文：Object output stream decoration constructor.
      *
-     * @param out 输出流包
-     * @throws IOException 如果一个I/O连接在写出数据流的头数据时发生错误则抛出
+     * @param out OutputStream对象
+     * @throws IOException 如果一个I/O连接在写出输出流的头数据时发生错误则抛出
      * @see ObjectOutputStream#ObjectOutputStream(OutputStream)
      */
     public BukkitObjectOutputStream(OutputStream out) throws IOException {

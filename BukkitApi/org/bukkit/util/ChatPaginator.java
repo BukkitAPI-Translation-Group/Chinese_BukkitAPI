@@ -7,7 +7,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * The ChatPaginator takes a raw string of arbitrary length and breaks it down
+ * ChatPaginator是聊天分页器，它会读取一长串任意长度的字符串并分割成字符串数组，
+ * 这些数组中的字符串能适当的显示在Minecraft的玩家控制台中。
+ * <p>
+ * 原文：The ChatPaginator takes a raw string of arbitrary length and breaks it down
  * into an array of strings appropriate for displaying on the Minecraft player
  * console.
  */
@@ -20,24 +23,28 @@ public class ChatPaginator {
     public static final int UNBOUNDED_PAGE_HEIGHT = Integer.MAX_VALUE;
 
     /**
-     * Breaks a raw string up into pages using the default width and height.
+     * 使用默认的宽度和高度将原字符串分割为多页。
+     * <p>
+     * 原文：Breaks a raw string up into pages using the default width and height.
      *
-     * @param unpaginatedString The raw string to break.
-     * @param pageNumber The page number to fetch.
-     * @return A single chat page.
+     * @param unpaginatedString 需要分割的原串。
+     * @param pageNumber 承载的页数。
+     * @return 一个单独的聊天页。
      */
     public static ChatPage paginate(String unpaginatedString, int pageNumber) {
         return paginate(unpaginatedString, pageNumber, GUARANTEED_NO_WRAP_CHAT_PAGE_WIDTH, CLOSED_CHAT_PAGE_HEIGHT);
     }
 
     /**
-     * Breaks a raw string up into pages using a provided width and height.
+     * 使用给定的宽度和高度将原字符串分割为多页。
+     * <p>
+     * 原文：Breaks a raw string up into pages using a provided width and height.
      *
-     * @param unpaginatedString The raw string to break.
-     * @param pageNumber The page number to fetch.
-     * @param lineLength The desired width of a chat line.
-     * @param pageHeight The desired number of lines in a page.
-     * @return A single chat page.
+     * @param unpaginatedString 需要分割的原串。
+     * @param pageNumber 承载的页数。
+     * @param lineLength 一个聊天行期望的长度。
+     * @param pageHeight 一页中聊天行期望的高度。
+     * @return 一个单独的聊天页。
      */
     public static ChatPage paginate(String unpaginatedString, int pageNumber, int lineLength, int pageHeight) {
         String[] lines = wordWrap(unpaginatedString, lineLength);
@@ -53,12 +60,14 @@ public class ChatPaginator {
     }
 
     /**
-     * Breaks a raw string up into a series of lines. Words are wrapped using
+     * 将原字符串分割成一系列行。单词会被使用空格作为分割符进行包装，并在包装时考虑换行符。
+     * <p>
+     * 原文：Breaks a raw string up into a series of lines. Words are wrapped using
      * spaces as decimeters and the newline character is respected.
      *
-     * @param rawString The raw string to break.
-     * @param lineLength The length of a line of text.
-     * @return An array of word-wrapped lines.
+     * @param rawString 需要分割的原串。
+     * @param lineLength 文本行的长度。
+     * @return 包装后的文本数组。
      */
     public static String[] wordWrap(String rawString, int lineLength) {
         // A null string is a single line

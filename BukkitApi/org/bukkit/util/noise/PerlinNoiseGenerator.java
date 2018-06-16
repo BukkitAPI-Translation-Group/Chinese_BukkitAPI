@@ -37,33 +37,33 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         }
     }
     /**
-     * 使用给定的世界创建一个已设种子的柏林噪声发生器。
+     * 使用给定的World创建一个已设种子的PerlinNoiseGenerator。
      * <p>
-     * 使用世界的种子作为随机器的种子。
+     * 使用World的种子作为Generator的种子。
      * <p>
      * 原文：Creates a seeded perlin noise generator for the given world
      *
-     * @param world 创建这个发生器的世界
+     * @param world 创建这个发生器的World实例
      */
     public PerlinNoiseGenerator(World world) {
         this(new Random(world.getSeed()));
     }
     /**
-     * 使用给定的种子创建一个已设种子的柏林噪声发生器。
+     * 使用给定的种子创建一个已设种子的PerlinNoiseGenerator。
      * <p>
      * 原文：Creates a seeded perlin noise generator for the given seed
      *
-     * @param seed 创建这个发生器的种子
+     * @param seed 创建这个发生器的long型种子
      */
     public PerlinNoiseGenerator(long seed) {
         this(new Random(seed));
     }
     /**
-     * 使用给定的随机数生成器创建一个已设种子的柏林噪声发生器。
+     * 使用给定的Random创建一个已设种子的PerlinNoiseGenerator。
      * <p>
      * 原文：Creates a seeded perlin noise generator with the given Random
      *
-     * @param rand 创建这个发生器的随机数生成器
+     * @param rand 创建这个Generator的Random
      */
     public PerlinNoiseGenerator(Random rand) {
         offsetX = rand.nextDouble() * 256;

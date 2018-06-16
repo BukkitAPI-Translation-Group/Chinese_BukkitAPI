@@ -90,11 +90,11 @@ public abstract class OctaveGenerator {
         zScale = scale;
     }
     /**
-     * 获取一个复制的单个倍频在这个生成器内使用。
+     * 获取这个生成器内的倍频的复制
      * <p>
      * 原文：Gets a clone of the individual octaves used within this generator
      *
-     * @return 复制产生的单个倍频
+     * @return 复制产生的倍频
      */
     public NoiseGenerator[] getOctaves() {
         return octaves.clone();

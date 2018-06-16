@@ -4,8 +4,9 @@ import java.util.Map;
 import org.bukkit.configuration.serialization.SerializableAs;
 
 /**
- * 这是一个带有可以向下取整XYZ坐标函数的向量类，就像世界编辑器中的方块向量。方块向量可以用于哈希集和哈希表。
- * 注意方块向量是可变的，但是重要的是一旦被扔到一个哈希集或哈希表中方块向量就不可变了。
+ * 这是一个带有可以向下取整XYZ坐标函数的向量类，就像WorldEdit中的BlockVector。
+ * BlockVector可以用于HashSet和HashMap。注意BlockVector是可变的，
+ * 但重要的是请确保BlockVector被扔到一个HashSet或HashMap后就不要修改它了。
  * <p>
  * 原文：A vector with a hash function that floors the X, Y, Z components, a la
  * BlockVector in WorldEdit. BlockVectors can be used in hash sets and

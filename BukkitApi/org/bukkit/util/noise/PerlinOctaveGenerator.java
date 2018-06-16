@@ -8,35 +8,35 @@ import org.bukkit.World;
  */
 public class PerlinOctaveGenerator extends OctaveGenerator {
     /**
-     * 使用给定的世界创建一个柏林倍频发生器。
+     * 使用给定的World创建一个PerlinOctaveGenerator。
      * <p>
      * 原文：Creates a perlin octave generator for the given world
      *
-     * @param world 创建这个发生器的世界
+     * @param world 创建这个Generator的World实例
      * @param octaves 倍频值
      */
     public PerlinOctaveGenerator(World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
     /**
-     * 使用给定的种子创建一个柏林倍频发生器。
+     * 使用给定的种子创建一个PerlinOctaveGenerator。
      * <p>
      * 原文：Creates a perlin octave generator for the given world
      * <p>
      * 译注:根据上一个类的翻译 这里given world疑似打错应该是given seed
      *
-     * @param seed 创建这个发生器的种子
+     * @param seed 创建这个Generator的long型种子
      * @param octaves 倍频值
      */
     public PerlinOctaveGenerator(long seed, int octaves) {
         this(new Random(seed), octaves);
     }
     /**
-     * 使用给定的{@link Random}创建一个柏林倍频发生器。
+     * 使用给定的{@link Random}创建一个PerlinOctaveGenerator。
      * <p>
      * 原文：Creates a perlin octave generator for the given {@link Random}
      *
-     * @param rand 创建这个发生器的随机数生成器
+     * @param rand 创建这个Generator的Random
      * @param octaves 倍频值
      */
     public PerlinOctaveGenerator(Random rand, int octaves) {
