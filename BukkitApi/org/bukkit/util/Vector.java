@@ -172,7 +172,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * 获取向量的模值,定义为 sqrt(x^2+y^2+z^2).
      * 这个方法的返回值没有被缓存,且使用了开销较大的平方以及开根函数,
      * 所以不要反复调用这个方法来获取向量的模值.
-     * 当向量的模过大时,开根函数有可能发生溢出,并会返回{@link Double#NaN}.
+     * 当向量的模过大时,开根函数有可能发生溢出,并会返回{@link java.lang.Double#NaN}.
      * <p>
      * 原文:Gets the magnitude of the vector, defined as sqrt(x^2+y^2+z^2). The
      * value of this method is not cached and uses a costly square-root
@@ -201,7 +201,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * 获取本向量与与另一个向量之间的距离. 
      * 这个方法的返回值没有被缓存,且使用了开销较大的平方以及开根函数,
      * 所以不要反复调用这个方法来获取向量的模值.
-     * 当向量的模过大时,开根函数有可能发生溢出,并会返回{@link Double#NaN}.
+     * 当向量的模过大时,开根函数有可能发生溢出,并会返回{@link java.lang.Double#NaN}.
      * <p>
      * 原文:Get the distance between this vector and another. The value of this
      * method is not cached and uses a costly square-root function, so do not
@@ -374,7 +374,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * 译注:叉积是a向量和b向量的垂直向量的积的模,方向使用右手定则判断.
      * <p>
      * 原文:Calculates the cross product of this vector with another without mutating
-     * the original. The cross product is defined as...
+     * the original. The cross product is defined as:
+     * <ul>
+     * <li>x = y1 * z2 - y2 * z1
+     * <li>y = z1 * x2 - z2 * x1
+     * <li>z = x1 * y2 - x2 * y1
+     * </ul>
      *
      * @param o 给定向量
      * @return 新向量表示叉积的结果
@@ -419,6 +424,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
 
     /**
      * 判断本向量是否在一个AABB包围盒中.
+     * <p>
      * 参数 min 和 max 必须真的是最小坐标和最大坐标,也就是说必须是能构成长方体的对角点.
      * <p>
      * 原文:Returns whether this vector is in an axis-aligned bounding box.

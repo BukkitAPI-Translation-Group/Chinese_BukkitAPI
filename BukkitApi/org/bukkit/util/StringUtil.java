@@ -39,8 +39,8 @@ public class StringUtil {
     /**
      * 检查一个字符串是否以另一个字符串开头, 不区分大小写.
      * <p>
-     * 这个方法使用 {@link String#regionMatches(boolean, int, String, int, int)} 进行比较,
-     * 因此不像 {@link String#toLowerCase()} 一样需要拷贝整个数组.
+     * 这个方法使用 {@link java.lang.String#regionMatches(boolean, int, String, int, int)} 进行比较,
+     * 因此不像 {@link java.lang.String#toLowerCase()} 一样需要拷贝整个数组.
      * <p>
      * This method uses a region to check case-insensitive equality. This
      * means the internal array does not need to be copied like a
