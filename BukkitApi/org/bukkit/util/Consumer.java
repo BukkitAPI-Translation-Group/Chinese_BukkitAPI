@@ -1,7 +1,7 @@
 package org.bukkit.util;
 
 /**
- * 表示一个接受单独的输入参数并没有返回值的操作.
+ * 表示接受一个输入参数且没有返回值的操作.
  * <p>
  * 原文:Represents an operation that accepts a single input argument and returns no
  * result.
