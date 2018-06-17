@@ -13,7 +13,7 @@ public interface Consumer<T> {
     /**
      * 使用给定的参数执行操作.
      * <p>
-     * 原文：Performs this operation on the given argument.
+     * 原文:Performs this operation on the given argument.
      *
      * @param t 输入参数
      */
