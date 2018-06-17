@@ -10,7 +10,7 @@ import java.util.NoSuchElementException;
 /**
  * 这个类执行射线追踪并迭代一条直线上的所有单个方块. 
  * <p>
- * 原文：This class performs ray tracing and iterates along blocks on a line
+ * 原文:This class performs ray tracing and iterates along blocks on a line
  */
 public class BlockIterator implements Iterator<Block> {
     private final World world;
@@ -31,7 +31,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文：Constructs the BlockIterator
+     * 原文:Constructs the BlockIterator
      *
      * @param world 使用此追踪的世界
      * @param start 追踪的初位置向量
@@ -170,7 +170,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文：Constructs the BlockIterator
+     * 原文:Constructs the BlockIterator
      *
      * @param loc 射线追踪的起始位置
      * @param yOffset 垂直偏移量,追踪从初向量开始垂直偏移这个值的范围
@@ -183,7 +183,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文：Constructs the BlockIterator.
+     * 原文:Constructs the BlockIterator.
      *
      * @param loc 射线追踪的开始位置
      * @param yOffset 垂直偏移量,追踪从初向量开始垂直偏移这个值的范围
@@ -194,7 +194,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文：Constructs the BlockIterator.
+     * 原文:Constructs the BlockIterator.
      *
      * @param loc 射线追踪的开始位置
      */
@@ -204,7 +204,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文：Constructs the BlockIterator.
+     * 原文:Constructs the BlockIterator.
      *
      * @param entity 被用来设置追踪的实体
      * @param maxDistance 这是在方块中追踪的最大距离,
@@ -216,7 +216,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * 创建BlockIterator.
      * <p>
-     * 原文：Constructs the BlockIterator.
+     * 原文:Constructs the BlockIterator.
      *
      * @param entity 被用来设置追踪的实体信息
      */
@@ -226,7 +226,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * 如果迭代器还有更多的元素则返回true.
      * <p>
-     * 原文：Returns true if the iteration has more elements
+     * 原文:Returns true if the iteration has more elements
      */
     public boolean hasNext() {
         scan();
@@ -235,7 +235,7 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * 返回追踪的下一个方块.
      * <p>
-     * 原文：Returns the next Block in the trace
+     * 原文:Returns the next Block in the trace
      *
      * @return 追踪的下一个方块
      */
