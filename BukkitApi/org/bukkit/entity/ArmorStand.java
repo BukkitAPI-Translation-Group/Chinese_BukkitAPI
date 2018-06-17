@@ -345,7 +345,7 @@ public interface ArmorStand extends LivingEntity {
     boolean isMarker();
 
     /**
-     * 设置盔甲架的marker属性，即是否具有非常小的碰撞箱
+     * 设置盔甲架的marker属性，即是否具有非常小的碰撞箱.
      * <p>
      * 原文:
      * Sets whether this armor stand is a marker,
