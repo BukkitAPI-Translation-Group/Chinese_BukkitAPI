@@ -5,17 +5,16 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 /**
- * 这个类旨在被用于连接到{@link ConfigurationSerializable}的API.
- * 它把对象转化为一个内部的实现，为了之后反序列化使用{@link BukkitObjectInputStream}.
+ * 这个类旨在用于与 {@link ConfigurationSerializable} API 一起使用.
+ * 它把对象转换为其内部表示,之后便可使用 {@link BukkitObjectInputStream} 反序列化.
+ * <p>
+ * 直接继承实现这个类的语法可能在未来版本被取消.
  * <p>
  * 原文：This class is designed to be used in conjunction with the {@link
  * ConfigurationSerializable} API. It translates objects to an internal
  * implementation for later deserialization using {@link
  * BukkitObjectInputStream}.
- * <p>
- * 直接继承实现这个类的语法可能在未来版本被取消.
- * <p>
- * 原文:Behavior of implementations extending this class is not guaranteed across
+ * Behavior of implementations extending this class is not guaranteed across
  * future versions.
  */
 public class BukkitObjectOutputStream extends ObjectOutputStream {
@@ -24,7 +23,7 @@ public class BukkitObjectOutputStream extends ObjectOutputStream {
      * <p>
      * 原文:Constructor provided to mirror super functionality.
      *
-     * @throws IOException 如果一个I/O连接从数据流写出头数据时发生错误则抛出
+     * @throws IOException 如果向输入流写入头数据时发生错误
      * @see ObjectOutputStream#ObjectOutputStream()
      */
     protected BukkitObjectOutputStream() throws IOException, SecurityException {
@@ -37,7 +36,7 @@ public class BukkitObjectOutputStream extends ObjectOutputStream {
      * 原文:Object output stream decoration constructor.
      *
      * @param out OutputStream对象
-     * @throws IOException 如果一个I/O连接从数据流写出头数据时发生错误则抛出
+     * @throws IOException 如果向输入流写入头数据时发生错误
      * @see ObjectOutputStream#ObjectOutputStream(OutputStream)
      */
     public BukkitObjectOutputStream(OutputStream out) throws IOException {
