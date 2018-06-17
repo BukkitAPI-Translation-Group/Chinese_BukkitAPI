@@ -6,21 +6,21 @@ import org.apache.commons.lang.Validate;
 public class StringUtil {
 
     /**
-     * 复制所有源集合中的元素到给定的集合中，这个集合必须是可迭代的。
+     * 复制所有可迭代集合中的元素到给定的另一个集合中.
      * <p>
-     * 原文：Copies all elements from the iterable collection of originals to the
+     * 原文:Copies all elements from the iterable collection of originals to the
      * collection provided.
      *
      * @param <T> 字符串的集合
-     * @param token 寻找的串
+     * @param token 要寻找的字符串
      * @param originals 用来检索的可遍历字符串集合
      * @param collection 用来储存检索到的对象的集合
-     * @return 用来存放检索到的元素拷贝的集合
-     * @throws UnsupportedOperationException 如果这个集合是不可变的，
-     * 并且源中包含一个以特定检索字符串开头的元素，则抛出。
-     * @throws IllegalArgumentException 当任何一个参数是null时抛出。
-     * @throws IllegalArgumentException 当任何一个源具有null元素时抛出。
-     *     <b>注意：这个集合可能会在这个异常抛出之前被修改</b>
+     * @return 用来储存检索到的元素拷贝的集合
+     * @throws UnsupportedOperationException 如果这个集合是不可变的,
+     * 并且源中包含一个以特定检索字符串开头的元素,则抛出
+     * @throws IllegalArgumentException 当任何一个参数是null时抛出
+     * @throws IllegalArgumentException 当任何一个源具有null元素时抛出.
+     *     <b>注意:这个集合可能会在这个异常抛出之前被修改</b>
      */
     public static <T extends Collection<? super String>> T copyPartialMatches(final String token, final Iterable<String> originals, final T collection) throws UnsupportedOperationException, IllegalArgumentException {
         Validate.notNull(token, "Search token cannot be null");
@@ -37,8 +37,10 @@ public class StringUtil {
     }
 
     /**
-     * 这个方法使用一个区块检查不分大小写的相等。
-     * 这意味着这个函数像toLowerCase()一样，数组不需要拷贝即可判断。
+     * 检查一个字符串是否以另一个字符串开头, 不区分大小写.
+     * <p>
+     * 这个方法使用 {@link String#regionMatches(boolean, int, String, int, int)} 进行比较,
+     * 因此不像 {@link String#toLowerCase()} 一样需要拷贝整个数组.
      * <p>
      * This method uses a region to check case-insensitive equality. This
      * means the internal array does not need to be copied like a
