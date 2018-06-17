@@ -46,7 +46,7 @@ public class StringUtil {
      * means the internal array does not need to be copied like a
      * toLowerCase() call would.
      *
-     * @param string 检查的字符串
+     * @param string 要检查的字符串
      * @param prefix 用来比较的字符串前缀
      * @return 若提供的字符串忽略大小写符合前缀则返回true
      * @throws NullPointerException 若前缀为null则抛出
