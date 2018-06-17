@@ -9,8 +9,9 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
 
 /**
- * Vector代表一个可变向量.因为这个组件是可变的,如果之后的代码修改了这个Vector,长期存储这些Vector是危险的.
- * 如果你想要长期保存一个向量,最明智的方法是使用<code>clone()</code>来获得一个拷贝.
+ * Vector代表一个可变向量.
+ * 这个组件是可变的,长期存储这些向量可能导致问题,因为之后的代码可能对其进行修改.
+ * 如果你想要长期存储一个向量,最好使用 <code>clone()</code> 获得一个拷贝.
  * <p>
  * 原文:Represents a mutable vector. Because the components of Vectors are mutable,
  * storing Vectors long term may be dangerous if passing code modifies the
@@ -91,7 +92,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 把一个向量添加到现在的向量里.
+     * 将本向量的坐标加上另一个向量的坐标.
      * <p>
      * 原文:Adds a vector to this one
      *
@@ -106,7 +107,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 减去另一个向量.
+     * 从本向量的坐标中减去另一个向量的坐标.
      * <p>
      * 原文:Subtracts a vector from this one.
      *
@@ -121,7 +122,9 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 向量的坐标相乘,注意,不是叉积也不是点积,只是单纯的相乘.
+     * 将本向量的坐标乘上另一个向量的坐标.
+     * <p>
+     * 译注:这不是叉积也不是点积,只是单纯的乘法.
      * <p>
      * 原文:Multiplies the vector by another.
      *
@@ -136,9 +139,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 向量的坐标相除.
-	 * <p>
-	 * 译注:向量不存在除法.
+     * 将本向量的坐标除以另一个向量的坐标.
      * <p>
      * 原文:Divides the vector by another.
      *
@@ -153,7 +154,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 复制一个向量的坐标.
+     * 将本向量的坐标全部设为另一个向量的坐标.
      * <p>
      * 原文:Copies another vector
      *
@@ -168,10 +169,10 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取向量的模值,定义为sqrt(x^2+y^2+z^2).
-     * 这个方法的返回值不进行缓存并且使用一个代价更高的平方以及开根函数,
-     * 所以不要重复多次调用这个方法来获取向量的模值.
-     * 如果开平方的函数出现溢出会返回不存在的数字(NaN),这会发生在向量的模过大的时候.
+     * 获取向量的模值,定义为 sqrt(x^2+y^2+z^2).
+     * 这个方法的返回值没有被缓存,且使用了开销较大的平方以及开根函数,
+     * 所以不要反复调用这个方法来获取向量的模值.
+     * 当向量的模过大时,开根函数有可能发生溢出,并会返回{@link Double#NaN}.
      * <p>
      * 原文:Gets the magnitude of the vector, defined as sqrt(x^2+y^2+z^2). The
      * value of this method is not cached and uses a costly square-root
@@ -186,7 +187,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取向量模的平方.
+     * 获取向量的模的平方.
      * <p>
      * 原文:Gets the magnitude of the vector squared.
      *
@@ -197,9 +198,10 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取与给定向量间的距离.这个方法的返回值不进行缓存并且使用一个代价更高的平方以及开根函数,
-     * 所以不要重复多次调用这个方法来获取向量的模值.
-     * 如果开平方的函数出现溢出会返回NaN,这会发生在向量的模过大的时候.
+     * 获取本向量与与另一个向量之间的距离. 
+     * 这个方法的返回值没有被缓存,且使用了开销较大的平方以及开根函数,
+     * 所以不要反复调用这个方法来获取向量的模值.
+     * 当向量的模过大时,开根函数有可能发生溢出,并会返回{@link Double#NaN}.
      * <p>
      * 原文:Get the distance between this vector and another. The value of this
      * method is not cached and uses a costly square-root function, so do not
@@ -215,7 +217,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取与给定向量间的距离的平方.
+     * 获取本向量与与另一个向量之间的距离的平方.
      * <p>
      * 原文:Get the squared distance between this vector and another.
      *
@@ -227,7 +229,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取与给定向量的夹角,以弧度表示.
+     * 获取本向量与另一个向量的夹角,用弧度表示.
      * <p>
      * 原文:Gets the angle between this vector and another in radians.
      *
@@ -241,7 +243,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置这个向量为两个向量连线的中点向量.
+     * 设置本向量的坐标为两个向量连线的中点.
      * <p>
      * 原文:Sets this vector to the midpoint between this vector and another.
      *
@@ -256,7 +258,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取一个新的两个向量连线的中点向量.
+     * 获取一个新的向量,它的值为本向量和另一个向量间的连线的中点.
      * <p>
      * 原文:Gets a new midpoint vector between this vector and another.
      *
@@ -271,7 +273,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 向量的数乘,将向量在所有轴上扩展一个倍数,给定参数为整数.
+     * 向量的数乘,将向量在所有轴上扩展某个倍数.
      * <p>
      * 原文:Performs scalar multiplication, multiplying all components with a
      * scalar.
@@ -287,7 +289,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 向量的数乘,将向量在所有轴上扩展一个倍数,给定参数为双精度浮点数.
+     * 向量的数乘,将向量在所有轴上扩展某个倍数.
      * <p>
      * 原文:Performs scalar multiplication, multiplying all components with a
      * scalar.
@@ -303,7 +305,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 向量的数乘,将向量在所有轴上扩展一个倍数,给定参数为单精度浮点数.
+     * 向量的数乘,将向量在所有轴上扩展某个倍数.
      * <p>
      * 原文:Performs scalar multiplication, multiplying all components with a
      * scalar.
@@ -319,7 +321,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 计算与给定向量的点积.点积的定义为x1*x2+y1*y2+z1*z2.此函数返回值是个标量.
+     * 计算本向量与另一个向量的点积,定义为x1*x2+y1*y2+z1*z2. 此函数的返回值是个标量.
      * <p>
      * 原文:Calculates the dot product of this vector with another. The dot product
      * is defined as x1*x2+y1*y2+z1*z2. The returned value is a scalar.
@@ -332,21 +334,19 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 计算与给定向量的叉积,叉积的大小等同于向量积的模,方向使用右手定则判断,一般计算时使用矩阵行列式公式.
-     * 其定义如下:
+     * 将本向量的坐标设为两个向量的叉积.
+     * <p>
+     * 其计算过程如下:
      * <ul>
      * <li>x = y1 * z2 - y2 * z1
      * <li>y = z1 * x2 - z2 * x1
      * <li>z = x1 * y2 - x2 * y1
      * </ul>
      * <p>
+     * 译注:叉积是a向量和b向量的垂直向量的积的模,方向使用右手定则判断.
+     * <p>
      * 原文:Calculates the cross product of this vector with another. The cross
-     * product is defined as:
-     * <ul>
-     * <li>x = y1 * z2 - y2 * z1
-     * <li>y = z1 * x2 - z2 * x1
-     * <li>z = x1 * y2 - x2 * y1
-     * </ul>
+     * product is defined as...
      *
      * @param o 给定向量
      * @return 返回自身作为结果向量
@@ -354,7 +354,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     public Vector crossProduct(Vector o) {
         double newX = y * o.z - o.y * z;
         double newY = z * o.x - o.z * x;
-        double newZ = x * o.y - o.x * y;返回自身作为结果向量
+        double newZ = x * o.y - o.x * y;
 
         x = newX;
         y = newY;
@@ -363,21 +363,18 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 计算与给定向量的叉积,叉积的大小等同于向量积的模,方向使用右手定则判断,一般计算时使用矩阵行列式公式.
-     * 其定义如下:(这里返回一个新向量)
+     * 返回一个新的向量,其坐标为本向量与另一个向量的叉积.
+     * 其计算过程如下:
      * <ul>
      * <li>x = y1 * z2 - y2 * z1
      * <li>y = z1 * x2 - z2 * x1
      * <li>z = x1 * y2 - x2 * y1
      * </ul>
      * <p>
+     * 译注:叉积是a向量和b向量的垂直向量的积的模,方向使用右手定则判断.
+     * <p>
      * 原文:Calculates the cross product of this vector with another without mutating
-     * the original. The cross product is defined as:
-     * <ul>
-     * <li>x = y1 * z2 - y2 * z1
-     * <li>y = z1 * x2 - z2 * x1
-     * <li>z = x1 * y2 - x2 * y1
-     * </ul>
+     * the original. The cross product is defined as...
      *
      * @param o 给定向量
      * @return 新向量表示叉积的结果
@@ -390,7 +387,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 将这个向量转化为单位向量(模为1的向量).一半算法为向量数乘自己的模分之一.
+     * 将本向量转化为单位向量(模为1的向量).
      * <p>
      * 原文:Converts this vector to a unit vector (a vector with length of 1).
      *
@@ -407,7 +404,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置自身为0向量.
+     * 将本向量设为原点向量.
      * <p>
      * 原文:Zero this vector's components.
      *
@@ -421,15 +418,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 返回此向量是否在一个AABB(axis-aligned bounding box)包围盒中.
-     * <p>
-     * 在游戏中,为了简化物体之间的碰撞检测运算,通常会对物体创建一个规则的几何外形将其包围.
-     * 我们称这个包围的规则几何外形叫做AABB包围盒.
-     * <p>
-     * 三维空间中的AABB判断是通过长方体对角线的两个点来构造一个长方体.
-     * 进而判断向量的xyz坐标是否处于最小和最大之间,从而判断是否位于AABB包围盒中.
-     * <p>
-     * 这个最小和最大的向量必须是真的最小的xyz坐标和最大的xyz坐标,也就是说必须是能构成长方体的对角点.
+     * 判断本向量是否在一个AABB包围盒中.
+     * 参数 min 和 max 必须真的是最小坐标和最大坐标,也就是说必须是能构成长方体的对角点.
      * <p>
      * 原文:Returns whether this vector is in an axis-aligned bounding box.
      * <p>
@@ -445,7 +435,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 返回此向量是否在一个球形空间中.一般通过向量和点的距离同半径比较获得.
+     * 判断本向量是否在一个球形空间中.
      * <p>
      * 原文:Returns whether this vector is within a sphere.
      *
@@ -527,7 +517,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置X坐标,参数为整数.
+     * 设置X坐标.
      * <p>
      * 原文:Set the X component.
      *
@@ -540,7 +530,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置X坐标,参数为双精度浮点数.
+     * 设置X坐标.
      * <p>
      * 原文:Set the X component.
      *
@@ -553,7 +543,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置X坐标,参数为单精度浮点数.
+     * 设置X坐标.
      * <p>
      * 原文:Set the X component.
      *
@@ -566,7 +556,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置Y坐标,参数为整数.
+     * 设置Y坐标.
      * <p>
      * 原文:Set the Y component.
      *
@@ -579,7 +569,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置Y坐标,参数为双精度浮点数.
+     * 设置Y坐标.
      * <p>
      * 原文:Set the Y component.
      *
@@ -592,7 +582,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置Y坐标,参数为单精度浮点数.
+     * 设置Y坐标.
      * <p>
      * 原文:Set the Y component.
      *
@@ -605,7 +595,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置Z坐标,参数为整数.
+     * 设置Z坐标.
      * <p>
      * 原文:Set the Z component.
      *
@@ -618,7 +608,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置Z坐标,参数为双精度浮点数.
+     * 设置Z坐标.
      * <p>
      * 原文:Set the Z component.
      *
@@ -631,7 +621,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置Z坐标,参数为单精度浮点数.
+     * 设置Z坐标.
      * <p>
      * 原文:Set the Z component.
      *
@@ -646,7 +636,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     /**
      * 检查两个对象是否相同.
      * <p>
-     * 只要两个向量坐标均相同则返回true.这个函数使用一种模糊匹配来回避浮点错误.
+     * 只要两个向量的所有坐标均相同则返回true.这个方法使用模糊匹配来回避浮点错误.
      * 这个误差量(epsilon)可以通过自身恢复,即不会影响向量本身.
      * <p>
      * 原文:Checks to see if two objects are equal.
@@ -684,7 +674,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取一个此向量的克隆.
+     * 克隆此向量.
      * <p>
      * 原文:Get a new vector.
      *
@@ -700,7 +690,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 返回这个向量的坐标表示(x,y,z).
+     * 返回这个向量的坐标表示 x,y,z.
      * <p>
      * Returns this vector's components as x,y,z.
      */
@@ -710,7 +700,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取一个可作为Location的向量,
+     * 将向量转换为 Location, 
      * 其自转角(也叫偏航角,Yaw)、旋进角(也叫进动角、俯仰角,Pitch)为0.
      * <p>
      * 原文:Gets a Location version of this vector with yaw and pitch being 0.
@@ -723,7 +713,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取一个可作为Location的向量.
+     * 将向量转换为 Location.
      * <p>
      * 原文:Gets a Location version of this vector.
      *
@@ -772,7 +762,9 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取两个向量坐标中更小坐标的向量,即逐个比对两个向量的坐标,均取最小的那个组成一个新的向量.
+     * 获取两个向量坐标中更小的那些坐标组成的新向量.
+     * <p>
+     * 译注:即逐个比对两个向量的坐标,均取最小的那个组成一个新的向量.
      * <p>
      * 原文:Gets the minimum components of two vectors.
      *
@@ -785,7 +777,9 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取两个向量坐标中更大坐标的向量,即逐个比对两个向量的坐标,均取最大的那个组成一个新的向量.
+     * 获取两个向量坐标中更大的那些坐标组成的新向量.
+     * <p>
+     * 译注:即逐个比对两个向量的坐标,均取更大的那个组成一个新的向量.
      * <p>
      * 原文:Gets the maximum components of two vectors.
      *
@@ -798,8 +792,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a random vector with components having a random value between 0
-     * and 1.
+     * 获取一个随机向量,其坐标值均为0到1之间(不含1).
      *
      * @return A random vector.
      */
