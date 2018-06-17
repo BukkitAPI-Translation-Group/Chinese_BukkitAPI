@@ -1,15 +1,17 @@
 package org.bukkit.util;
 
 /**
- * EulerAngle即欧拉角，欧拉角是指用给定的三个角，
- * 每一个表示一个轴(x,y,z)的偏转角。这些角用弧度表示
+ * EulerAngle即欧拉角,欧拉角是指用给定的三个角,
+ * 每一个表示一个轴(x,y,z)的偏转角.这些角用弧度表示.
  * <p>
- * 原文：EulerAngle is used to represent 3 angles, one for each
+ * 原文:EulerAngle is used to represent 3 angles, one for each
  * axis (x, y, z). The angles are in radians
  */
 public class EulerAngle {
 
     /**
+     * 一个所有偏转角都为0的欧拉角.
+     * <p>
      * A EulerAngle with every axis set to 0
      */
     public static final EulerAngle ZERO = new EulerAngle(0, 0, 0);
@@ -19,9 +21,9 @@ public class EulerAngle {
     private final double z;
 
     /**
-     * 创建一个EularAngle，每一个坐标轴都设置成给定弧度角
+     * 创建一个EularAngle,每一个坐标轴都设置成给定弧度角.
      * <p>
-     * 原文：Creates a EularAngle with each axis set to the
+     * 原文:Creates a EularAngle with each axis set to the
      * passed angle in radians
      *
      * @param x x轴的弧度角
@@ -35,9 +37,9 @@ public class EulerAngle {
     }
 
     /**
-     * 返回x轴的弧度角
+     * 返回x轴的弧度角.
      * <p>
-     * 原文：Returns the angle on the x axis in radians
+     * 原文:Returns the angle on the x axis in radians
      *
      * @return 弧度角
      */
@@ -46,9 +48,9 @@ public class EulerAngle {
     }
 
     /**
-     * 返回y轴的弧度角
+     * 返回y轴的弧度角.
      * <p>
-     * 原文：Returns the angle on the y axis in radians
+     * 原文:Returns the angle on the y axis in radians
      *
      * @return 弧度角
      */
@@ -57,9 +59,9 @@ public class EulerAngle {
     }
 
     /**
-     * 返回z轴的弧度角
+     * 返回z轴的弧度角.
      * <p>
-     * 原文：Returns the angle on the z axis in radians
+     * 原文:Returns the angle on the z axis in radians
      *
      * @return 弧度角
      */
@@ -68,54 +70,54 @@ public class EulerAngle {
     }
 
     /**
-     * 返回改变成给定x轴弧度角的EulerAngle对象
+     * 返回改变成给定x轴弧度角的EulerAngle对象.
      * <p>
-     * 原文：Return a EulerAngle which is the result of changing
+     * 原文:Return a EulerAngle which is the result of changing
      * the x axis to the passed angle
      *
      * @param x x轴弧度角
-     * @return 返回EulerAngle
+     * @return 一个新的EulerAngle
      */
     public EulerAngle setX(double x) {
         return new EulerAngle(x, y, z);
     }
 
     /**
-     * 返回改变成给定y轴弧度角的EulerAngle对象
+     * 返回改变成给定y轴弧度角的EulerAngle对象.
      * <p>
-     * 原文：Return a EulerAngle which is the result of changing
+     * 原文:Return a EulerAngle which is the result of changing
      * the y axis to the passed angle
      *
      * @param y y轴弧度角
-     * @return 返回EulerAngle
+     * @return 一个新的EulerAngle
      */
     public EulerAngle setY(double y) {
         return new EulerAngle(x, y, z);
     }
 
     /**
-     * 返回改变成给定z轴弧度角的EulerAngle对象
+     * 返回改变成给定z轴弧度角的EulerAngle对象.
      * <p>
-     * 原文：Return a EulerAngle which is the result of changing
+     * 原文:Return a EulerAngle which is the result of changing
      * the z axis to the passed angle
      *
      * @param z z轴弧度角
-     * @return 返回EulerAngle
+     * @return 一个新的EulerAngle
      */
     public EulerAngle setZ(double z) {
         return new EulerAngle(x, y, z);
     }
 
     /**
-     * 创建一个新的EulerAngle，这个新的欧拉角将原欧拉角的三个轴的弧度均添加某个偏移量
+     * 创建一个新的EulerAngle,这个新的欧拉角将原欧拉角的三个轴的弧度均添加某个偏移量.
      * <p>
-     * 原文：Creates a new EulerAngle which is the result of adding
+     * 原文:Creates a new EulerAngle which is the result of adding
      * the x, y, z components to this EulerAngle
      *
      * @param x x轴的弧度偏移量
      * @param y y轴的弧度偏移量
      * @param z z轴的弧度偏移量
-     * @return 返回EulerAngle
+     * @return 一个新的EulerAngle
      */
     public EulerAngle add(double x, double y, double z) {
         return new EulerAngle(
@@ -126,15 +128,15 @@ public class EulerAngle {
     }
 
     /**
-     * 创建一个新的EulerAngle，这个新的欧拉角将给定的三个轴的弧度添加某个偏移量的相反数
+     * 创建一个新的EulerAngle,这个新的欧拉角将给定的三个轴的弧度减去某个偏移量.
      * <p>
-     * 原文：Creates a new EulerAngle which is the result of subtracting
+     * 原文:Creates a new EulerAngle which is the result of subtracting
      * the x, y, z components to this EulerAngle
      *
      * @param x x轴的弧度偏移量
      * @param y y轴的弧度偏移量
      * @param z z轴的弧度偏移量
-     * @return 返回EulerAngle
+     * @return 一个新的EulerAngle
      */
     public EulerAngle subtract(double x, double y, double z) {
         return add(-x, -y, -z);
