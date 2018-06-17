@@ -37,8 +37,8 @@ public class BlockIterator implements Iterator<Block> {
      * @param start 追踪的初位置向量
      * @param direction 追踪的方向向量
      * @param yOffset 垂直偏移量，追踪从初向量开始垂直偏移这个值的范围
-     * @param maxDistance 这是在方块中追踪的最大距离。
-     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题。值0表示无限制。
+     * @param maxDistance 这是在方块中追踪的最大距离，
+     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题，值0表示无限制
      *
      */
     public BlockIterator(World world, Vector start, Vector direction, double yOffset, int maxDistance) {
@@ -174,8 +174,8 @@ public class BlockIterator implements Iterator<Block> {
      *
      * @param loc 射线追踪的起始位置
      * @param yOffset 垂直偏移量，追踪从初向量开始垂直偏移这个值的范围
-     * @param maxDistance 这是在方块中追踪的最大距离。
-     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题。值0表示无限制。
+     * @param maxDistance 这是在方块中追踪的最大距离，
+     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题，值0表示无限制
      */
     public BlockIterator(Location loc, double yOffset, int maxDistance) {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, maxDistance);
@@ -207,8 +207,8 @@ public class BlockIterator implements Iterator<Block> {
      * 原文：Constructs the BlockIterator.
      *
      * @param entity 被用来设置追踪的实体
-     * @param maxDistance 这是在方块中追踪的最大距离。
-     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题。值0表示无限制。
+     * @param maxDistance 这是在方块中追踪的最大距离，
+     * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题，值0表示无限制
      */
     public BlockIterator(LivingEntity entity, int maxDistance) {
         this(entity.getLocation(), entity.getEyeHeight(), maxDistance);
