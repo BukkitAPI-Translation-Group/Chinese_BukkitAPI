@@ -1,17 +1,21 @@
 package org.bukkit.util;
 
 /**
- * Represents an operation that accepts a single input argument and returns no
+ * 表示接受一个输入参数且没有返回值的操作.
+ * <p>
+ * 原文:Represents an operation that accepts a single input argument and returns no
  * result.
  *
- * @param <T> the type of the input to the operation
+ * @param <T> 输入参数类型
  */
 public interface Consumer<T> {
 
     /**
-     * Performs this operation on the given argument.
+     * 使用给定的参数执行操作.
+     * <p>
+     * 原文:Performs this operation on the given argument.
      *
-     * @param t the input argument
+     * @param t 输入参数
      */
     void accept(T t);
 }

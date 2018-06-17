@@ -4,10 +4,11 @@ import java.util.Map;
 import org.bukkit.configuration.serialization.SerializableAs;
 
 /**
- * 这是一个带有可以向下取整XYZ坐标函数的向量类，就像世界编辑器中的方块向量。方块向量可以用于哈希集和哈希表。
- * 注意方块向量是可变的，但是重要的是一旦被扔到一个哈希集或哈希表中方块向量就不可变了。
+ * 这是一个带有可以向下取整XYZ坐标函数的向量类,就像WorldEdit中的BlockVector.
+ * BlockVector可以用于HashSet和HashMap.注意BlockVector是可变的,
+ * 但重要的是请确保BlockVector被扔到一个HashSet或HashMap后就不要修改它了.
  * <p>
- * 原文：A vector with a hash function that floors the X, Y, Z components, a la
+ * 原文:A vector with a hash function that floors the X, Y, Z components, a la
  * BlockVector in WorldEdit. BlockVectors can be used in hash sets and
  * hash maps. Be aware that BlockVectors are mutable, but it is important
  * that BlockVectors are never changed once put into a hash set or hash map.
@@ -16,9 +17,9 @@ import org.bukkit.configuration.serialization.SerializableAs;
 public class BlockVector extends Vector {
 
     /**
-     * 使用原点坐标来创建向量。
+     * 使用原点坐标来创建向量.
      * <p>
-     * 原文：Construct the vector with all components as 0.
+     * 原文:Construct the vector with all components as 0.
      */
     public BlockVector() {
         this.x = 0;
@@ -27,9 +28,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用另一个向量来创建向量。
+     * 使用另一个向量来创建向量.
      * <p>
-     * 原文：Construct the vector with another vector.
+     * 原文:Construct the vector with another vector.
      *
      * @param vec 另一个向量。
      */
@@ -40,9 +41,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用给定整数坐标来创建向量。
+     * 使用给定整数坐标来创建向量.
      * <p>
-     * 原文：Construct the vector with provided integer components.
+     * 原文:Construct the vector with provided integer components.
      *
      * @param x X坐标
      * @param y Y坐标
@@ -55,9 +56,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用给定双精度浮点数坐标来创建向量。
+     * 使用给定双精度浮点数坐标来创建向量.
      * <p>
-     * 原文：Construct the vector with provided double components.
+     * 原文:Construct the vector with provided double components.
      *
      * @param x X坐标
      * @param y Y坐标
@@ -70,9 +71,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 使用给定单精度浮点数坐标来创建向量。
+     * 使用给定单精度浮点数坐标来创建向量.
      * <p>
-     * 原文：Construct the vector with provided float components.
+     * 原文:Construct the vector with provided float components.
      *
      * @param x X坐标
      * @param y Y坐标
@@ -85,9 +86,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 检查是否同另一个对象相等。
+     * 检查是否同另一个对象相等.
      * <p>
-     * 原文：Checks if another object is equivalent.
+     * 原文:Checks if another object is equivalent.
      *
      * @param obj 另一个对象
      * @return 是否同另一个对象相等
@@ -104,9 +105,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 返回这个向量的哈希码。
+     * 返回这个向量的哈希码.
      * <p>
-     * 原文：Returns a hash code for this vector.
+     * 原文:Returns a hash code for this vector.
      *
      * @return 哈希码
      */
@@ -116,9 +117,9 @@ public class BlockVector extends Vector {
     }
 
     /**
-     * 克隆生成新的方块向量。
+     * 克隆生成新的方块向量.
      * <p>
-     * 原文：Get a new block vector.
+     * 原文:Get a new block vector.
      *
      * @return 向量
      */
