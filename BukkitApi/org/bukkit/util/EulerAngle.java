@@ -1,7 +1,7 @@
 package org.bukkit.util;
 
 /**
- * EulerAngle即欧拉角,欧拉角是指用给定的三个角,
+ * EulerAngle即欧拉角,是指用给定的三个角,
  * 每一个表示一个轴(x,y,z)的偏转角.这些角用弧度表示.
  * <p>
  * 原文:EulerAngle is used to represent 3 angles, one for each
@@ -70,7 +70,7 @@ public class EulerAngle {
     }
 
     /**
-     * 返回改变成给定x轴弧度角的EulerAngle对象.
+     * 返回x轴设为了给定弧度角的新EulerAngle对象.
      * <p>
      * 原文:Return a EulerAngle which is the result of changing
      * the x axis to the passed angle
@@ -83,7 +83,7 @@ public class EulerAngle {
     }
 
     /**
-     * 返回改变成给定y轴弧度角的EulerAngle对象.
+     * 返回y轴设为了给定弧度角的新EulerAngle对象.
      * <p>
      * 原文:Return a EulerAngle which is the result of changing
      * the y axis to the passed angle
@@ -96,7 +96,7 @@ public class EulerAngle {
     }
 
     /**
-     * 返回改变成给定z轴弧度角的EulerAngle对象.
+     * 返回z轴设为了给定弧度角的新EulerAngle对象.
      * <p>
      * 原文:Return a EulerAngle which is the result of changing
      * the z axis to the passed angle
@@ -128,7 +128,7 @@ public class EulerAngle {
     }
 
     /**
-     * 创建一个新的EulerAngle,这个新的欧拉角将给定的三个轴的弧度减去某个偏移量.
+     * 创建一个新的EulerAngle,这个新的欧拉角将给定的三个轴的弧度均减去某个偏移量.
      * <p>
      * 原文:Creates a new EulerAngle which is the result of subtracting
      * the x, y, z components to this EulerAngle
