@@ -10,160 +10,195 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.generator.ChunkGenerator;
 
 /**
- * Represents a Plugin
+ * 表示插件<br>
+ * 对于实际实现,建议使用 {@link PluginBase}. 
  * <p>
- * The use of {@link PluginBase} is recommended for actual Implementation
+ * 原文: Represents a Plugin. The use of {@link PluginBase} is recommended for actual Implementation
  */
 public interface Plugin extends TabExecutor {
     /**
-     * Returns the folder that the plugin data's files are located in. The
+     * 返回插件数据文件所在的文件夹. 文件夹可能尚未存在. 
+     * <p>
+     * 原文:Returns the folder that the plugin data's files are located in. The
      * folder may not yet exist.
      *
-     * @return The folder
+     * @return 此文件夹
      */
     public File getDataFolder();
 
     /**
-     * Returns the plugin.yaml file containing the details for this plugin
+     * 返回包含该插件详细信息的plugin.yaml文件. 
+     * <p>
+     * 原文:Returns the plugin.yaml file containing the details for this plugin
      *
-     * @return Contents of the plugin.yaml file
+     * @return plugin.yaml文件内容
      */
     public PluginDescriptionFile getDescription();
 
     /**
-     * Gets a {@link FileConfiguration} for this plugin, read through
-     * "config.yml"
+     * 获取此插件的{@link FileConfiguration},读入"config.yml".<br>
+     * 如果在这个插件中嵌入了默认的config.yml,它将作为这个配置的默认设置.
      * <p>
+     * 原文: Gets a {@link FileConfiguration} for this plugin, read through
+     * "config.yml"</br>
      * If there is a default config.yml embedded in this plugin, it will be
      * provided as a default for this Configuration.
      *
-     * @return Plugin configuration
+     * @return Plugin 配置
      */
     public FileConfiguration getConfig();
 
     /**
-     * Gets an embedded resource in this plugin
+     * 获取此插件中的嵌入资源
+     * <p>
+     * 原文: Gets an embedded resource in this plugin
      *
-     * @param filename Filename of the resource
-     * @return File if found, otherwise null
+     * @param filename 资源文件名
+     * @return 如果文件找到则返回相应的InputStream,否则为null
      */
     public InputStream getResource(String filename);
 
     /**
-     * Saves the {@link FileConfiguration} retrievable by {@link #getConfig()}.
+     * 保存{@link FileConfiguration},可通过{@link #getConfig()}检索. 
+     * <p>
+     * 原文: Saves the {@link FileConfiguration} retrievable by {@link #getConfig()}.
      */
     public void saveConfig();
 
     /**
-     * Saves the raw contents of the default config.yml file to the location
-     * retrievable by {@link #getConfig()}.
+	 * 将默认config.yml文件的原始内容保存到由{@link #getConfig()}检索的位置.<br>
+	 * 如果config.yml已经存在，这将是必然失败.
      * <p>
+     * 原文:Saves the raw contents of the default config.yml file to the location
+     * retrievable by {@link #getConfig()}.<br>
      * This should fail silently if the config.yml already exists.
      */
     public void saveDefaultConfig();
 
-    /**
-     * Saves the raw contents of any resource embedded with a plugin's .jar
-     * file assuming it can be found using {@link #getResource(String)}.
-     * <p>
-     * The resource is saved into the plugin's data folder using the same
-     * hierarchy as the .jar file (subdirectories are preserved).
-     *
-     * @param resourcePath the embedded resource path to look for within the
-     *     plugin's .jar file. (No preceding slash).
-     * @param replace if true, the embedded resource will overwrite the
-     *     contents of an existing file.
-     * @throws IllegalArgumentException if the resource path is null, empty,
-     *     or points to a nonexistent resource.
-     */
+	/**
+	 * 用插件的.jar文件保存所有资源的原始内容,确保可以使用{@link #getResource(String)}找到.<br>
+	 * 使用与.jar文件相同的层次结构将资源保存到插件的数据文件夹中(保存子目录).
+	 * <p>
+	 * 原文:Saves the raw contents of any resource embedded with a plugin's .jar file
+	 * assuming it can be found using {@link #getResource(String)}.<br>
+	 * The resource is saved into the plugin's data folder using the same hierarchy
+	 * as the .jar file (subdirectories are preserved).
+	 *
+	 * @param resourcePath 在插件的.jar文件中查找的嵌入式资源路径.(没有前面的斜杠)
+	 * @param replace 如果为true，则嵌入的资源将覆盖现有文件的内容
+	 * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源
+	 */
     public void saveResource(String resourcePath, boolean replace);
 
     /**
-     * Discards any data in {@link #getConfig()} and reloads from disk.
+     * 丢弃 {@link #getConfig()}中所有数据 并且从磁盘重载.
+     * <p>
+     * 原文:Discards any data in {@link #getConfig()} and reloads from disk.
      */
     public void reloadConfig();
 
     /**
-     * Gets the associated PluginLoader responsible for this plugin
+     * 获取负责此插件的关联PluginLoader.
+     * <p>
+     * 原文:Gets the associated PluginLoader responsible for this plugin
      *
-     * @return PluginLoader that controls this plugin
+     * @return 控制插件的PluginLoader
      */
     public PluginLoader getPluginLoader();
 
     /**
-     * Returns the Server instance currently running this plugin
+     * 返回当前运行此插件的服务器实例.
+     * <p>
+     * 原文:Returns the Server instance currently running this plugin
      *
-     * @return Server running this plugin
+     * @return 运行此插件的服务器
      */
     public Server getServer();
 
     /**
-     * Returns a value indicating whether or not this plugin is currently
+     * 返回一个布尔值,该值指示当前是否启用此插件
+     * <p>
+     * 原文:Returns a value indicating whether or not this plugin is currently
      * enabled
      *
-     * @return true if this plugin is enabled, otherwise false
+     * @return 如果启用此插件,则为true，否则为false.
      */
     public boolean isEnabled();
 
     /**
-     * Called when this plugin is disabled
+     * 当这个插件被关闭时调用.
+     * <p>
+     * 原文:Called when this plugin is disabled
      */
     public void onDisable();
 
     /**
-     * Called after a plugin is loaded but before it has been enabled.
+     * 加载插件后调用,但在启用之前调用.<br>
+     * 当加载多个插件时,在调用任何onEnable()之前调用所有插件的onLoad().
      * <p>
+     * 原文:Called after a plugin is loaded but before it has been enabled.<br>
      * When multiple plugins are loaded, the onLoad() for all plugins is
      * called before any onEnable() is called.
      */
     public void onLoad();
 
     /**
-     * Called when this plugin is enabled
+     * 启用此插件时调用.
+     * <p>
+     * 原文:Called when this plugin is enabled
      */
     public void onEnable();
 
     /**
-     * Simple boolean if we can still nag to the logs about things
+     * 使用一个简单的布尔值表达 我们是否可以把一些东西记录到日志文件.
+     * <p>
+     * 原文:Simple boolean if we can still nag to the logs about things
      *
-     * @return boolean whether we can nag
+     * @return 返回一个布尔值如果这个插件是否可以进行记录
      */
     public boolean isNaggable();
 
     /**
-     * Set naggable state
+     * 设置 Naggable 状态
+     * <p>
+     * 原文: Set naggable state
      *
-     * @param canNag is this plugin still naggable?
+     * @param canNag 这个插件是可以被记录的吗
      */
     public void setNaggable(boolean canNag);
 
     /**
-     * Gets a {@link ChunkGenerator} for use in a default world, as specified
+     * 获取在服务器配置中指定的默认世界中使用的{@link ChunkGenerator}.
+     * <p>
+     * 原文:Gets a {@link ChunkGenerator} for use in a default world, as specified
      * in the server configuration
      *
-     * @param worldName Name of the world that this will be applied to
-     * @param id Unique ID, if any, that was specified to indicate which
-     *     generator was requested
-     * @return ChunkGenerator for use in the default world generation
+     * @param worldName 将应用于世界的名称
+     * @param id Unique ID,如果有的话,被指定来指示哪个生成器被调用
+     * @return 用于默认世界生成的 ChunkGenerator
      */
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id);
 
     /**
-     * Returns the plugin logger associated with this server's logger. The
+     * 返回与此服务器记录器关联的插件记录器.返回的记录器自动地用插件的名称标记所有日志消息.
+     * <p>
+     * 原文: Returns the plugin logger associated with this server's logger. The
      * returned logger automatically tags all log messages with the plugin's
      * name.
      *
-     * @return Logger associated with this plugin
+     * @return 与此插件相关联的记录器
      */
     public Logger getLogger();
 
     /**
-     * Returns the name of the plugin.
+     * 返回插件的名称.<br>
+     * 这应该返回插件的裸名,并且应该用于比较.
      * <p>
+     * 原文:Returns the name of the plugin.<br>
      * This should return the bare name of the plugin and should be used for
      * comparison.
      *
-     * @return name of the plugin
+     * @return 插件名称
      */
     public String getName();
 }
