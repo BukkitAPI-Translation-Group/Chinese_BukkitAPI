@@ -10,14 +10,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.generator.ChunkGenerator;
 
 /**
- * 表示插件<br>
- * 对于实际实现,建议使用 {@link PluginBase}. 
+ * 表示一个插件<br>
+ * 这只是一个接口,如果想要一个实际的实现,建议使用 {@link PluginBase}. 
  * <p>
  * 原文: Represents a Plugin. The use of {@link PluginBase} is recommended for actual Implementation
  */
 public interface Plugin extends TabExecutor {
     /**
-     * 返回插件数据文件所在的文件夹. 文件夹可能尚未存在. 
+     * 返回插件的数据文件夹, 该文件夹可能尚未创建. 
      * <p>
      * 原文:Returns the folder that the plugin data's files are located in. The
      * folder may not yet exist.
@@ -27,7 +27,7 @@ public interface Plugin extends TabExecutor {
     public File getDataFolder();
 
     /**
-     * 返回包含该插件详细信息的plugin.yaml文件. 
+     * 返回封装有该插件plugin.yaml文件中详细信息的实例.
      * <p>
      * 原文:Returns the plugin.yaml file containing the details for this plugin
      *
@@ -36,8 +36,8 @@ public interface Plugin extends TabExecutor {
     public PluginDescriptionFile getDescription();
 
     /**
-     * 获取此插件的{@link FileConfiguration},读入"config.yml".<br>
-     * 如果在这个插件中嵌入了默认的config.yml,它将作为这个配置的默认设置.
+     * 获取这个插件的{@link FileConfiguration}实例, 它将读取config.yml中的内容.
+     * 如果这个插件中含有config.yml文件, 那么这个config.yml将作为默认的配置文件.
      * <p>
      * 原文: Gets a {@link FileConfiguration} for this plugin, read through
      * "config.yml"</br>
@@ -49,7 +49,7 @@ public interface Plugin extends TabExecutor {
     public FileConfiguration getConfig();
 
     /**
-     * 获取此插件中的嵌入资源
+     * 获取此插件包中的资源
      * <p>
      * 原文: Gets an embedded resource in this plugin
      *
@@ -59,15 +59,15 @@ public interface Plugin extends TabExecutor {
     public InputStream getResource(String filename);
 
     /**
-     * 保存{@link FileConfiguration},可通过{@link #getConfig()}检索. 
+     * 保存插件的 {@link FileConfiguration}, 这可以使用{@link #getConfig()}获取.
      * <p>
      * 原文: Saves the {@link FileConfiguration} retrievable by {@link #getConfig()}.
      */
     public void saveConfig();
 
     /**
-	 * 将默认config.yml文件的原始内容保存到由{@link #getConfig()}检索的位置.<br>
-	 * 如果config.yml已经存在，这将是必然失败.
+	 * 将默认的config.yml文件数据保存到{@link #getConfig()}获取的config.yml所在的位置.<br>
+	 * 这不会覆盖已经存在的config.yml.
      * <p>
      * 原文:Saves the raw contents of the default config.yml file to the location
      * retrievable by {@link #getConfig()}.<br>
@@ -76,8 +76,8 @@ public interface Plugin extends TabExecutor {
     public void saveDefaultConfig();
 
 	/**
-	 * 用插件的.jar文件保存所有资源的原始内容,确保可以使用{@link #getResource(String)}找到.<br>
-	 * 使用与.jar文件相同的层次结构将资源保存到插件的数据文件夹中(保存子目录).
+	 * 用插件的.jar文件保存某个资源的原始内容, 并确保可以使用{@link #getResource(String)}找到.<br>
+	 * 这将使用与.jar文件相同的层次结构将资源保存到插件的数据文件夹中(同时保存子目录).
 	 * <p>
 	 * 原文:Saves the raw contents of any resource embedded with a plugin's .jar file
 	 * assuming it can be found using {@link #getResource(String)}.<br>
@@ -86,7 +86,7 @@ public interface Plugin extends TabExecutor {
 	 *
 	 * @param resourcePath 在插件的.jar文件中查找的嵌入式资源路径.(没有前面的斜杠)
 	 * @param replace 如果为true，则嵌入的资源将覆盖现有文件的内容
-	 * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源
+	 * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源则抛出
 	 */
     public void saveResource(String resourcePath, boolean replace);
 
@@ -116,12 +116,12 @@ public interface Plugin extends TabExecutor {
     public Server getServer();
 
     /**
-     * 返回一个布尔值,该值指示当前是否启用此插件
+     * 返回一个布尔值,表示该插件此时是否已经启动.
      * <p>
      * 原文:Returns a value indicating whether or not this plugin is currently
      * enabled
      *
-     * @return 如果启用此插件,则为true，否则为false.
+     * @return 如果此插件已经启动,则为true,否则为false.
      */
     public boolean isEnabled();
 
@@ -133,8 +133,8 @@ public interface Plugin extends TabExecutor {
     public void onDisable();
 
     /**
-     * 加载插件后调用,但在启用之前调用.<br>
-     * 当加载多个插件时,在调用任何onEnable()之前调用所有插件的onLoad().
+     * 在一个插件被加载之后启动之前调用.<br>
+     * 当有多个插件加载时,确保所有插件的onLoad()全部调用完毕后才会调用onEnable().
      * <p>
      * 原文:Called after a plugin is loaded but before it has been enabled.<br>
      * When multiple plugins are loaded, the onLoad() for all plugins is
@@ -192,7 +192,7 @@ public interface Plugin extends TabExecutor {
 
     /**
      * 返回插件的名称.<br>
-     * 这应该返回插件的裸名,并且应该用于比较.
+     * 这应该返回插件的无修饰名称,并且应该用于比较.
      * <p>
      * 原文:Returns the name of the plugin.<br>
      * This should return the bare name of the plugin and should be used for
