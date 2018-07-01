@@ -1,65 +1,65 @@
 package org.bukkit.entity;
 
 /**
- * 表示箭矢.
+ * 表示一只箭矢.
  * <p>
  * 原文: Represents an arrow.
  */
 public interface Arrow extends Projectile {
 
     /**
-     * 获取箭头的击退强度,这是射箭的{@link org.bukkit.enchantments.Enchantment#KNOCKBACK 力量}等级.
+     * 获取箭头的击退强度,这表示附魔{@link org.bukkit.enchantments.Enchantment#KNOCKBACK 力量}等级. 
      * <p>
      * 原文:Gets the knockback strength for an arrow, which is the
      * {@link org.bukkit.enchantments.Enchantment#KNOCKBACK KnockBack} level
      * of the bow that shot it.
      *
-     * @return 击退强度值
+     * @return 附魔击退等级
      */
     public int getKnockbackStrength();
 
     /**
-     * 设置箭矢的击退强度.
+     * 设置箭矢的附魔击退等级. 
      * <p>
      * 原文: Sets the knockback strength for an arrow.
      *
-     * @param knockbackStrength 击退强度值
+     * @param knockbackStrength 附魔击退等级
      */
     public void setKnockbackStrength(int knockbackStrength);
 
     /**
-     * 获取此箭头是否重要.</br>
-     * 重要的箭增加了伤害并产生粒子效果.</br>
-     * 重要的箭通常发生在玩家在射箭前拉满弓.
+     * 获取此箭矢是否产生暴击. </br>
+     * 产生暴击的箭矢会产生更多的伤害并伴随粒子效果. </br>
+     * 暴击箭矢通常发生在玩家满弓射箭时.
      * <p>
      * 原文: Gets whether this arrow is critical.</br>
      * Critical arrows have increased damage and cause particle effects.</br>
      * Critical arrows generally occur when a player fully draws a bow before firing.
      *
-     * @return 如果是重要的就返回true
+     * @return 如果是暴击箭矢则返回true
      */
     public boolean isCritical();
 
     /**
-     * 设置这个箭矢是否应该是重要的.
+     * 设置这个箭矢是否是否产生了暴击. 
      * <p>
      * 原文:Sets whether or not this arrow should be critical.
      *
-     * @param critical 它是否应该是重要的
+     * @param critical 它是否是否产生了暴击
      */
     public void setCritical(boolean critical);
 
     /**
-     * 获取此箭矢的当前拾取状态.
+     * 获取此箭矢的当前拾取状态. 
      * <p>
      * 原文:Gets the current pickup status of this arrow.
      *
-     * @return 此箭头的拾取状态
+     * @return 此箭矢的拾取状态
      */
     public PickupStatus getPickupStatus();
 
     /**
-     * 设置此箭矢的当前拾取状态.
+     * 设置此箭矢的当前拾取状态. 
      * <p>
      * 原文:Sets the current pickup status of this arrow.
      *
@@ -68,7 +68,7 @@ public interface Arrow extends Projectile {
     public void setPickupStatus(PickupStatus status);
 
     /**
-     * 表示此箭头的拾取状态 .
+     * 表示此箭矢的拾取状态. 
      * <p>
      * 原文:Represents the pickup status of this arrow.
      */
