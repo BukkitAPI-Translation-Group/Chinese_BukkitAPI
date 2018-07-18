@@ -69,8 +69,8 @@ public interface Plugin extends TabExecutor {
     public void saveConfig();
 
     /**
-	 * 将默认的config.yml文件数据保存到{@link #getConfig()}获取的config.yml所在的位置.<br>
-	 * 这不会覆盖已经存在的config.yml.
+     * 将默认的config.yml文件数据保存到{@link #getConfig()}获取的config.yml所在的位置.<br>
+     * 这不会覆盖已经存在的config.yml.
      * <p>
      * 原文:Saves the raw contents of the default config.yml file to the location
      * retrievable by {@link #getConfig()}.<br>
@@ -78,19 +78,19 @@ public interface Plugin extends TabExecutor {
      */
     public void saveDefaultConfig();
 
-	/**
-     * 保存内置于插件的.jar文件的某个资源的原始内容(假使该资源可以使用{@link #getResource(String)}找到).<br>
-     * 保存于插件数据文件夹的资源的结构层次与.jar文件(内容)相同 (同时保存子目录).
-	 * <p>
-	 * 原文:Saves the raw contents of any resource embedded with a plugin's .jar file
-	 * assuming it can be found using {@link #getResource(String)}.<br>
-	 * The resource is saved into the plugin's data folder using the same hierarchy
-	 * as the .jar file (subdirectories are preserved).
-	 *
-	 * @param resourcePath 在插件的.jar文件中查找的内置资源路径.(没有前面的斜杠)
-	 * @param replace 如果为true，则内置的资源将覆盖现有文件的内容
-	 * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源则抛出
-	 */
+    /**
+    * 保存内置于插件的.jar文件的某个资源的原始内容(假使该资源可以使用{@link #getResource(String)}找到).<br>
+    * 保存于插件数据文件夹的资源的结构层次与.jar文件(内容)相同 (同时保存子目录).
+    * <p>
+    * 原文:Saves the raw contents of any resource embedded with a plugin's .jar file
+    * assuming it can be found using {@link #getResource(String)}.<br>
+    * The resource is saved into the plugin's data folder using the same hierarchy
+    * as the .jar file (subdirectories are preserved).
+    *
+    * @param resourcePath 在插件的.jar文件中查找的内置资源路径.(没有前面的斜杠)
+    * @param replace 如果为true，则内置的资源将覆盖现有文件的内容
+    * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源则抛出
+    */
     public void saveResource(String resourcePath, boolean replace);
 
     /**
