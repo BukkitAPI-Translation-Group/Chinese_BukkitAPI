@@ -1,6 +1,8 @@
 # Bukkit 中文文档
 ![Logo](Chinese_BukkitAPI.png)
 
+**提示：** 该分支(master)用于进行**Bukkit 1.13**及以上版本的翻译工作，目前，1.12.2版本继续维护(暂更时间未定)，若要关注Bukkit 1.12.2版本，请前往[1.12.2分支](https://github.com/BukkitAPI-Translation-Group/Chinese_BukkitAPI/tree/1.12.2)。
+
 文档地址：https://docs.windit.net/Chinese_BukkitAPI/
 
 离线版：https://dr.windit.net/release.zip
