@@ -2,8 +2,6 @@ package org.bukkit.entity;
 
 /**
  * 表示一只箭矢.
- * <p>
- * 原文: Represents an arrow.
  */
 public interface Arrow extends Projectile {
 
@@ -12,7 +10,7 @@ public interface Arrow extends Projectile {
      * <p>
      * 原文:Gets the knockback strength for an arrow, which is the
      * {@link org.bukkit.enchantments.Enchantment#KNOCKBACK KnockBack} level
-     * of the bow that shot it.
+     * of the bow that shot it.mine
      *
      * @return 附魔击退等级
      */
@@ -69,26 +67,18 @@ public interface Arrow extends Projectile {
 
     /**
      * 表示此箭矢的拾取状态. 
-     * <p>
-     * 原文:Represents the pickup status of this arrow.
      */
     public enum PickupStatus {
         /**
          * 此箭矢不能被拾取. 
-         * <p>
-         * 原文: The arrow cannot be picked up.
          */
         DISALLOWED,
         /**
          * 此箭矢能被拾取. 
-         * <p>
-         * 原文: The arrow can be picked up.
          */
         ALLOWED,
         /**
-         * 此箭矢只能被创造玩家拾取. 
-         * <p>
-         * 原文: The arrow can only be picked up by players in creative mode.
+         * 此箭矢只能被处于创造模式的玩家拾取. 
          */
         CREATIVE_ONLY
     }

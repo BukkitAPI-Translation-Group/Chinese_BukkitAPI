@@ -4,13 +4,11 @@ import org.bukkit.inventory.HorseInventory;
 
 /**
  * 代表一匹马.
- * <p>
- * 原文:Represents a Horse.
  */
 public interface Horse extends AbstractHorse {
 
     /**
-     * @deprecated 不同的种类是不同的类.
+     * @deprecated 不同的种类对应不同的类.
      */
     @Deprecated
     public enum Variant {
@@ -42,9 +40,7 @@ public interface Horse extends AbstractHorse {
     }
 
     /**
-     * 标示马拥有的基本颜色. 
-     * <p>
-     * 原文:Represents the base color that the horse has.
+     * 表示马拥有的基本颜色. 
      */
     public enum Color {
         /**
@@ -52,7 +48,7 @@ public interface Horse extends AbstractHorse {
          */
         WHITE,
         /**
-         * 非常浅棕色
+         * 奶油色
          */
         CREAMY,
         /**
@@ -60,11 +56,11 @@ public interface Horse extends AbstractHorse {
          */
         CHESTNUT,
         /**
-         * 浅棕色
+         * 褐色
          */
         BROWN,
         /**
-         * 漆黑色
+         * 黑色
          */
         BLACK,
         /**
@@ -72,24 +68,24 @@ public interface Horse extends AbstractHorse {
          */
         GRAY,
         /**
-         * 深棕色
+         * 深褐色
          */
         DARK_BROWN,
         ;
     }
 
     /**
-     * 代表马的风格或标记. 
+     * 代表马的花纹图案. 
      * <p>
      * 原文:Represents the style, or markings, that the horse has.
      */
     public enum Style {
         /**
-         * 无标记
+         * 无花纹
          */
         NONE,
         /**
-         * 白短袜或条♂纹
+         * 白短袜或条纹
          */
         WHITE,
         /**
@@ -109,13 +105,13 @@ public interface Horse extends AbstractHorse {
 
     /**
      * 获取马的颜色. </br>
-     * 颜色只适用于马,而不是驴,骡子,骷髅马或僵尸马.
+     * 该颜色只适用于马,而不适用于驴,骡子,骷髅马或僵尸马.
      * <p>
      * 原文:Gets the horse's color.</br>
      * Colors only apply to horses, not to donkeys, mules, skeleton horses
      * or undead horses.
      *
-     * @return {@link Color} 代表马的颜色.
+     * @return {@link Color} 马的颜色.
      */
     public Color getColor();
 
@@ -128,46 +124,47 @@ public interface Horse extends AbstractHorse {
      * Attempting to set a color for any donkey, mule, skeleton horse or
      * undead horse will not result in a change.
      *
-     * @param color 一个{@link Color}为这匹马
+     * @param color 马的{@link Color 颜色}
      */
     public void setColor(Color color);
 
     /**
-     * 得到马的风格. 风格决定马有什么样的标记或图案.</br>
-     * 风格只适用于马,而不是驴,骡子,骷髅马或僵尸马.
+     * 得到马的外貌特征.
+     * 这些特征决定马有什么样的图案.</br>
+     * 这些特征只适用于马,而不适用于驴,骡子,骷髅马或僵尸马.
      * <p> 
      * 原文:Gets the horse's style.
      * Styles determine what kind of markings or patterns a horse has.</br>
      * Styles only apply to horses, not to donkeys, mules, skeleton horses
      * or undead horses.
      *
-     * @return 一个 {@link Style} 代表马的风格
+     * @return 马的{@link Style 花纹与图案}
      */
     public Style getStyle();
 
     /**
-     * 设置马的风格. 风格决定马有什么样的标记或图案.</br>
-     * 试图为任何驴,骡子,骷髅马或僵尸马设定风格不会有任何变化. 
+     * 设置马的外貌特征. 风格决定马有什么样的标记或图案.</br>
+     * 试图为任何驴,骡子,骷髅马或僵尸马设定这些特征不会有任何变化. 
      * <p>
      * 原文:Sets the style of this horse.
      * Styles determine what kind of markings or patterns a horse has.</br>
      * Attempting to set a style for any donkey, mule, skeleton horse or
      * undead horse will not result in a change.
      *
-     * @param style 一个 {@link Style} 为这匹马
+     * @param style 马的{@link Style 花纹与图案}
      */
     public void setStyle(Style style);
 
     /**
      * @return 是否携带箱子
-     * @deprecated 看 {@link ChestedHorse}
+     * @deprecated 请参阅 {@link ChestedHorse}
      */
     @Deprecated
     public boolean isCarryingChest();
 
     /**
-     * @param chest
-     * @deprecated 看 {@link ChestedHorse}
+     * @param chest 是否携带箱子
+     * @deprecated 请参阅 {@link ChestedHorse}
      */
     @Deprecated
     public void setCarryingChest(boolean chest);

@@ -10,10 +10,13 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.generator.ChunkGenerator;
 
 /**
- * 表示一个插件<br>
- * 这只是一个接口,如果想要一个实际的实现,建议使用 {@link PluginBase}. 
+ * 表示一个插件.
  * <p>
- * 原文: Represents a Plugin. The use of {@link PluginBase} is recommended for actual Implementation
+ * 这只是一个接口,若要实际上实现该接口,建议使用 {@link PluginBase}. 
+ * <p>
+ * 原文:Represents a Plugin.
+ * <p>
+ * The use of {@link PluginBase} is recommended for actual Implementation
  */
 public interface Plugin extends TabExecutor {
     /**
@@ -27,7 +30,7 @@ public interface Plugin extends TabExecutor {
     public File getDataFolder();
 
     /**
-     * 返回封装有该插件plugin.yaml文件中详细信息的实例.
+     * 返回包含该插件详细信息的 plugin.yaml 文件.
      * <p>
      * 原文:Returns the plugin.yaml file containing the details for this plugin
      *
@@ -39,17 +42,17 @@ public interface Plugin extends TabExecutor {
      * 获取这个插件的{@link FileConfiguration}实例, 它将读取config.yml中的内容.
      * 如果这个插件中含有config.yml文件, 那么这个config.yml将作为默认的配置文件.
      * <p>
-     * 原文: Gets a {@link FileConfiguration} for this plugin, read through
+     * 原文:Gets a {@link FileConfiguration} for this plugin, read through
      * "config.yml"</br>
      * If there is a default config.yml embedded in this plugin, it will be
      * provided as a default for this Configuration.
      *
-     * @return Plugin 配置
+     * @return 此插件的配置
      */
     public FileConfiguration getConfig();
 
     /**
-     * 获取此插件包中的资源
+     * 获取此插件包中的资源.
      * <p>
      * 原文: Gets an embedded resource in this plugin
      *
@@ -76,29 +79,29 @@ public interface Plugin extends TabExecutor {
     public void saveDefaultConfig();
 
 	/**
-	 * 用插件的.jar文件保存某个资源的原始内容, 并确保可以使用{@link #getResource(String)}找到.<br>
-	 * 这将使用与.jar文件相同的层次结构将资源保存到插件的数据文件夹中(同时保存子目录).
+     * 保存内置于插件的.jar文件的某个资源的原始内容(假使该资源可以使用{@link #getResource(String)}找到).<br>
+     * 保存于插件数据文件夹的资源的结构层次与.jar文件(内容)相同 (同时保存子目录).
 	 * <p>
 	 * 原文:Saves the raw contents of any resource embedded with a plugin's .jar file
 	 * assuming it can be found using {@link #getResource(String)}.<br>
 	 * The resource is saved into the plugin's data folder using the same hierarchy
 	 * as the .jar file (subdirectories are preserved).
 	 *
-	 * @param resourcePath 在插件的.jar文件中查找的嵌入式资源路径.(没有前面的斜杠)
-	 * @param replace 如果为true，则嵌入的资源将覆盖现有文件的内容
+	 * @param resourcePath 在插件的.jar文件中查找的内置资源路径.(没有前面的斜杠)
+	 * @param replace 如果为true，则内置的资源将覆盖现有文件的内容
 	 * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源则抛出
 	 */
     public void saveResource(String resourcePath, boolean replace);
 
     /**
-     * 丢弃 {@link #getConfig()}中所有数据 并且从磁盘重载.
+     * 丢弃 {@link #getConfig()}中所有数据并且从磁盘重载.
      * <p>
      * 原文:Discards any data in {@link #getConfig()} and reloads from disk.
      */
     public void reloadConfig();
 
     /**
-     * 获取负责此插件的关联PluginLoader.
+     * 获取对此插件负责的关联PluginLoader.
      * <p>
      * 原文:Gets the associated PluginLoader responsible for this plugin
      *
@@ -134,7 +137,7 @@ public interface Plugin extends TabExecutor {
 
     /**
      * 在一个插件被加载之后启动之前调用.<br>
-     * 当有多个插件加载时,确保所有插件的onLoad()全部调用完毕后才会调用onEnable().
+     * 当有多个插件被加载时,确保所有插件的onLoad()全部调用完毕后才会调用onEnable().
      * <p>
      * 原文:Called after a plugin is loaded but before it has been enabled.<br>
      * When multiple plugins are loaded, the onLoad() for all plugins is
@@ -174,13 +177,13 @@ public interface Plugin extends TabExecutor {
      * in the server configuration
      *
      * @param worldName 将应用于世界的名称
-     * @param id Unique ID,如果有的话,被指定来指示哪个生成器被调用
+     * @param id 唯一 ID,如果有的话,被指定来指示哪个生成器被调用
      * @return 用于默认世界生成的 ChunkGenerator
      */
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id);
 
     /**
-     * 返回与此服务器记录器关联的插件记录器.返回的记录器自动地用插件的名称标记所有日志消息.
+     * 返回与此服务器日志记录器关联的插件日志记录器.返回的日志记录器自动地用插件的名称标记所有日志消息.
      * <p>
      * 原文: Returns the plugin logger associated with this server's logger. The
      * returned logger automatically tags all log messages with the plugin's

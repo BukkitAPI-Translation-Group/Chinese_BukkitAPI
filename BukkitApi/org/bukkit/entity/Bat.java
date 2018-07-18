@@ -2,8 +2,6 @@ package org.bukkit.entity;
 
 /**
  * 表示一只蝙蝠. 
- * <p>
- * 原文:Represents a Bat
  */
 public interface Bat extends Ambient {
 
