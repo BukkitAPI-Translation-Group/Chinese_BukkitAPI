@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -309,6 +310,7 @@ import com.google.common.collect.ImmutableSet;
  *</pre></blockquote>
  */
 public final class PluginDescriptionFile {
+    private static final Pattern VALID_NAME = Pattern.compile("^[A-Za-z0-9 _.-]+$");
     private static final ThreadLocal<Yaml> YAML = new ThreadLocal<Yaml>() {
         @Override
         protected Yaml initialValue() {
@@ -387,7 +389,12 @@ public final class PluginDescriptionFile {
      * @param mainClass 插件主类的完整路径
      */
     public PluginDescriptionFile(final String pluginName, final String pluginVersion, final String mainClass) {
-        name = pluginName.replace(' ', '_');
+        name = rawName = pluginName;
+
+        if (!VALID_NAME.matcher(name).matches()) {
+            throw new IllegalArgumentException("name '" + name + "' contains invalid characters.");
+        }
+        name = name.replace(' ', '_');
         version = pluginVersion;
         main = mainClass;
     }
@@ -1003,7 +1010,7 @@ public final class PluginDescriptionFile {
         try {
             name = rawName = map.get("name").toString();
 
-            if (!name.matches("^[A-Za-z0-9 _.-]+$")) {
+            if (!VALID_NAME.matcher(name).matches()) {
                 throw new InvalidDescriptionException("name '" + name + "' contains invalid characters.");
             }
             name = name.replace(' ', '_');
