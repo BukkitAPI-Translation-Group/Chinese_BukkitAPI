@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 
 /**
  * Represents a falling block
@@ -11,26 +12,16 @@ public interface FallingBlock extends Entity {
      * Get the Material of the falling block
      *
      * @return Material of the block
+     * @deprecated 请使用 {@link #getBlockData()}
      */
     Material getMaterial();
-
-    /**
-     * Get the ID of the falling block
-     *
-     * @return ID type of the block
-     * @deprecated Magic value
-     */
-    @Deprecated
-    int getBlockId();
 
     /**
      * Get the data for the falling block
      *
      * @return data of the block
-     * @deprecated Magic value
      */
-    @Deprecated
-    byte getBlockData();
+    BlockData getBlockData();
 
     /**
      * Get if the falling block will break into an item if it cannot be placed

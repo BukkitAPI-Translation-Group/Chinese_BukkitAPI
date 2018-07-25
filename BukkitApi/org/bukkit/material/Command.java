@@ -3,20 +3,11 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * 代表命令方块
+ * Represents a command block
  */
 public class Command extends MaterialData implements Redstone {
     public Command() {
-        super(Material.COMMAND);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Command(final int type) {
-        super(type);
+        super(Material.LEGACY_COMMAND);
     }
 
     public Command(final Material type) {
@@ -24,19 +15,9 @@ public class Command extends MaterialData implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Command(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Command(final Material type, final byte data) {
@@ -44,23 +25,20 @@ public class Command extends MaterialData implements Redstone {
     }
 
     /**
-     * 获取这个方块是否充能.
-     * <p>
-     * 原文：Gets the current state of this Material, indicating if it's powered or
+     * Gets the current state of this Material, indicating if it's powered or
      * unpowered
      *
-     * @return 这个方块是否充能
+     * @return true if powered, otherwise false
      */
     public boolean isPowered() {
         return (getData() & 1) != 0;
     }
 
     /**
-     * 设置这个方块是否充能。
-     * <p>
-     * 原文：Sets the current state of this Material
+     * Sets the current state of this Material
      *
-     * @param bool 这个方块是否充能
+     * @param bool
+     *            whether or not the command block is powered
      */
     public void setPowered(boolean bool) {
         setData((byte) (bool ? (getData() | 1) : (getData() & -2)));

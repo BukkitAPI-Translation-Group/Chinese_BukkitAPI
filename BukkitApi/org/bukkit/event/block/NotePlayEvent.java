@@ -58,7 +58,9 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
      * 原文：Overrides the {@link Instrument} to be used.
      *
      * @param instrument 乐器，没有为null.
+     * @deprecated 在较新版本的Minecraft(1.13及以上)无效
      */
+    @Deprecated
     public void setInstrument(Instrument instrument) {
         if (instrument != null) {
             this.instrument = instrument;
@@ -72,6 +74,7 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
      * 原文：Overrides the {@link Note} to be played.
      *
      * @param note 音符，没有为null
+     * @deprecated 在较新版本的Minecraft(1.13及以上)无效
      */
     public void setNote(Note note) {
         if (note != null) {

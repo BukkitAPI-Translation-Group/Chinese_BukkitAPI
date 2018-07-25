@@ -4,33 +4,22 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表南瓜.
+ * Represents a pumpkin.
  */
 public class Pumpkin extends MaterialData implements Directional {
 
     public Pumpkin() {
-        super(Material.PUMPKIN);
+        super(Material.LEGACY_PUMPKIN);
     }
 
     /**
-     * 实例化一个特定朝向的南瓜.
-     * <p>
-     * 原文:Instantiate a pumpkin facing in a particular direction.
+     * Instantiate a pumpkin facing in a particular direction.
      *
-     * @param direction 南瓜面对的方向
+     * @param direction the direction the pumkin's face is facing
      */
     public Pumpkin(BlockFace direction) {
         this();
         setFacingDirection(direction);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Pumpkin(final int type) {
-        super(type);
     }
 
     public Pumpkin(final Material type) {
@@ -38,19 +27,9 @@ public class Pumpkin extends MaterialData implements Directional {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Pumpkin(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Pumpkin(final Material type, final byte data) {
@@ -58,7 +37,7 @@ public class Pumpkin extends MaterialData implements Directional {
     }
 
     public boolean isLit() {
-        return getItemType() == Material.JACK_O_LANTERN;
+        return getItemType() == Material.LEGACY_JACK_O_LANTERN;
     }
 
     public void setFacingDirection(BlockFace face) {

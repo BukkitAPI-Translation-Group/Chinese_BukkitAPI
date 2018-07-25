@@ -2,55 +2,39 @@ package org.bukkit.material;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 
 /**
- * 为某些物品或方块处理特定的元数据.
+ * Handles specific metadata for certain items or blocks
+ *
+ * @deprecated all usage of MaterialData is deprecated and subject to removal.
+ * Use {@link BlockData}.
  */
+@Deprecated
 public class MaterialData implements Cloneable {
-    private final int type;
+    private final Material type;
     private byte data = 0;
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public MaterialData(final int type) {
-        this(type, (byte) 0);
-    }
 
     public MaterialData(final Material type) {
         this(type, (byte) 0);
     }
 
     /**
-     * @param type the raw type id
+     * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
-    public MaterialData(final int type, final byte data) {
+    public MaterialData(final Material type, final byte data) {
         this.type = type;
         this.data = data;
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public MaterialData(final Material type, final byte data) {
-        this(type.getId(), data);
-    }
-
-    /**
-     * 获取这个物品的原始数据。
-     * <p>
-     * 原文:Gets the raw data in this material
+     * Gets the raw data in this material
      *
-     * @return 原始数据
-     * @deprecated 不安全的参数
+     * @return Raw data
+     * @deprecated Magic value
      */
     @Deprecated
     public byte getData() {
@@ -58,12 +42,10 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * 设置这个物品的原始数据.
-     * <p>
-     * 原文：Sets the raw data of this material
+     * Sets the raw data of this material
      *
-     * @param data 新的原始数据
-     * @deprecated 不安全的参数
+     * @param data New raw data
+     * @deprecated Magic value
      */
     @Deprecated
     public void setData(byte data) {
@@ -71,37 +53,20 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * 获取这个MaterialData代表的Material.
-     * <p>
-     * 原文:Gets the Material that this MaterialData represents
+     * Gets the Material that this MaterialData represents
      *
-     * @return 这个MaterialData代表的Material
+     * @return Material represented by this MaterialData
      */
     public Material getItemType() {
-        return Material.getMaterial(type);
-    }
-
-    /**
-     * 获取这个MaterialData代表的Material ID.
-     * <p>
-     * 原文：Gets the Material Id that this MaterialData represents
-     *
-     * @return 这个MaterialData代表的Material ID
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public int getItemTypeId() {
         return type;
     }
 
     /**
-     * 基于这个MaterialData创建一个新的ItemStack.
-     * <p>
-     * 原文：Creates a new ItemStack based on this MaterialData
+     * Creates a new ItemStack based on this MaterialData
      *
-     * @return 新的ItemSatck，包含这个Material的副本
-     * @deprecated 这个方法创建一个大小为0的物品堆，通常没有用.
-     * 考虑使用 {@link #toItemStack(int)}.
+     * @return New ItemStack containing a copy of this MaterialData
+     * @deprecated this method creates an ItemStack of size 0 which is not
+     * generally useful. Consider {@link #toItemStack(int)}.
      */
     @Deprecated
     public ItemStack toItemStack() {
@@ -109,12 +74,10 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * 基于这个MaterialData创建一个新的ItemStack.
-     * <p>
-     * 原文:Creates a new ItemStack based on this MaterialData
+     * Creates a new ItemStack based on this MaterialData
      *
-     * @param amount 这个新的ItemStack的堆大小
-     * @return 新的ItemSatck，包含这个Material的副本
+     * @param amount The stack size of the new stack
+     * @return New ItemStack containing a copy of this MaterialData
      */
     public ItemStack toItemStack(int amount) {
         return new ItemStack(type, amount, data);
@@ -127,7 +90,7 @@ public class MaterialData implements Cloneable {
 
     @Override
     public int hashCode() {
-        return ((getItemTypeId() << 8) ^ getData());
+        return ((getItemType().hashCode() << 8) ^ getData());
     }
 
     @Override
@@ -135,7 +98,7 @@ public class MaterialData implements Cloneable {
         if (obj != null && obj instanceof MaterialData) {
             MaterialData md = (MaterialData) obj;
 
-            return (md.getItemTypeId() == getItemTypeId() && md.getData() == getData());
+            return (md.getItemType() == getItemType() && md.getData() == getData());
         } else {
             return false;
         }

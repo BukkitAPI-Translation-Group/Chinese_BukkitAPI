@@ -310,7 +310,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * Damage: variable
          */
         ENTITY_ATTACK,
-		/**
+        /**
          * Damage caused when an entity attacks another entity in a sweep attack.
          * <p>
          * Damage: variable
@@ -451,7 +451,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         FLY_INTO_WALL,
         /**
-         * Damage caused when an entity steps on {@link Material#MAGMA}.
+         * Damage caused when an entity steps on {@link Material#MAGMA_BLOCK}.
          * <p>
          * Damage: 1
          */
@@ -462,6 +462,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * <p>
          * Damage: 6
          */
-        CRAMMING
+        CRAMMING,
+        /**
+         * Damage caused when an entity that should be in water is not.
+         * <p>
+         * Damage: 1
+         */
+        DRYOUT
     }
 }

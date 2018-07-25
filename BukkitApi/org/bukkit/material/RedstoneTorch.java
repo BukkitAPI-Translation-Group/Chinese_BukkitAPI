@@ -3,20 +3,11 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * 代表红石火把
+ * Represents a redstone torch
  */
 public class RedstoneTorch extends Torch implements Redstone {
     public RedstoneTorch() {
-        super(Material.REDSTONE_TORCH_ON);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public RedstoneTorch(final int type) {
-        super(type);
+        super(Material.LEGACY_REDSTONE_TORCH_ON);
     }
 
     public RedstoneTorch(final Material type) {
@@ -24,19 +15,9 @@ public class RedstoneTorch extends Torch implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public RedstoneTorch(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public RedstoneTorch(final Material type, final byte data) {
@@ -44,15 +25,13 @@ public class RedstoneTorch extends Torch implements Redstone {
     }
 
     /**
-     * 获取这个红石火把是否充能.
-     * <p>
-     * 原文：Gets the current state of this Material, indicating if it's powered or
+     * Gets the current state of this Material, indicating if it's powered or
      * unpowered
      *
-     * @return 这个红石火把是否充能
+     * @return true if powered, otherwise false
      */
     public boolean isPowered() {
-        return getItemType() == Material.REDSTONE_TORCH_ON;
+        return getItemType() == Material.LEGACY_REDSTONE_TORCH_ON;
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.*;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.inventory.ItemStack;
@@ -62,29 +63,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @Deprecated
     public int getBlockTypeIdAt(int x, int y, int z);
-
-    /**
-     * 获取指定{@link Location 位置}的{@link Block 方块}的ID.
-     * <p>
-     * 原文：Gets the block type ID at the given {@link Location}
-     *
-     * @param location 要获取的方块ID的位置
-     * @return 指定位置的方块的ID
-     * @see #getBlockAt(org.bukkit.Location) 返回一个位置({@link Location})所在的方块({@link Block})对象
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public int getBlockTypeIdAt(Location location);
-
-    /**
-     * Gets the y coordinate of the lowest block at this position such that the
-     * block and all blocks above it are transparent for lighting purposes.
-     *
-     * @param x X-coordinate of the blocks
-     * @param z Z-coordinate of the blocks
-     * @return Y-coordinate of the described block
-     */
-    public int getHighestBlockYAt(int x, int z);
 
     /**
      * Gets the y coordinate of the lowest block at the given {@link Location}
@@ -443,9 +421,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param type 创建的树的类型
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
-     * @deprecated 该API很少使用，基本上是出于实现自身功能的目的而创造的
      */
-    @Deprecated
     public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate);
 
     /**
@@ -959,7 +935,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public FallingBlock spawnFallingBlock(Location location, MaterialData data) throws IllegalArgumentException;
 
     /**
-     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 正在下落的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
+     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
      * <p>
      * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
      * <p>
@@ -972,32 +948,36 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * material.isBlock()}. The Material may not be air.
      *
      * @param location 生成下落方块的{@link Location 位置}
-     * @param material 方块{@link Material 物品}的类型
      * @param data 方块数据
      * @return 生成的{@link FallingBlock 正在下落的方块}实例
-     * @throws IllegalArgumentException 如果{@link Location 位置}或{@link Material 物品} 为空或{@link Material 物品}不是一个方块则抛出错误。
+     * @throws IllegalArgumentException 如果 {@link Location} 或 {@link BlockData} 为null
+     */
+    public FallingBlock spawnFallingBlock(Location location, BlockData data) throws IllegalArgumentException;
+
+    /**
+     * 在指定的{@link Location 位置}根据指定的方块{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体.
+     * 物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
+     * <p>
+     * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
+     * <p>
+     * 原文：
+     * Spawn a {@link FallingBlock} entity at the given {@link Location} of the
+     * specified {@link Material}. The material dictates what is falling.
+     * When the FallingBlock hits the ground, it will place that block.
+     * <p>
+     * The Material must be a block type, check with {@link Material#isBlock()
+     * material.isBlock()}. The Material may not be air.
+     *
+     * @param location 生成下落方块的{@link Location 位置}
+     * @param @param material 方块 {@link Material} 类型
+     * @param data 方块数据
+     * @return 生成的{@link FallingBlock 正在下落的方块}实例
+     * @throws IllegalArgumentException 如果 {@link Location} 或 {@link
+     *     Material} 为null 或 {@link Material} 不是方块
      * @deprecated 不安全的参数
      */
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
-
-    /**
-     * 在指定的{@link Location 位置}根据指定的方块ID（会被转换为{@link Material 物品}）生成一个{@link FallingBlock 正在下落的方块}实体.
-     * <p>
-     * 原文：
-     * Spawn a {@link FallingBlock} entity at the given {@link Location} of
-     * the specified blockId (converted to {@link Material})
-     *
-     * @param location 生成下落方块的{@link Location 位置}
-     * @param blockId 物品相应的ID
-     * @param blockData 方块数据
-     * @return 生成的{@link FallingBlock 正在下落的方块}实例
-     * @throws IllegalArgumentException 如果位置为空或方块无效则抛出错误
-     * @see #spawnFallingBlock(org.bukkit.Location, org.bukkit.Material, byte)
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException;
 
     /**
      * 向以指定位置为圆心的默认半径内的所有玩家施加(给予)一个效果.
@@ -1064,10 +1044,10 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 区块x坐标
      * @param z 区块z坐标
      * @param includeBiome 如果为true，则快照会包含每个坐标的生物群系类型
-     * @param includeBiomeTempRain 如果为true，则快照会包含每个坐标的原始生物群系温度和降雨
+     * @param includeBiomeTemp 如果为true，则快照会包含每个坐标的原始生物群系温度
      * @return 空快照
      */
-    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain);
+    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTemp);
 
     /**
      * 为这个世界设置出生标识。

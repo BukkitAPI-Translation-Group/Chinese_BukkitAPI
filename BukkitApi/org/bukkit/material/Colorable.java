@@ -3,25 +3,21 @@ package org.bukkit.material;
 import org.bukkit.DyeColor;
 
 /**
- * 代表可染色的物品.
+ * An object that can be colored.
  */
 public interface Colorable {
 
     /**
-     * 获取这个物品的颜色.
-     * <p>
-     * 原文:Gets the color of this object.
+     * Gets the color of this object.
      *
-     * @return 物品的DyeColor
+     * @return The DyeColor of this object.
      */
     public DyeColor getColor();
 
     /**
-     * 设置这个物品的颜色.
-     * <p>
-     * 原文:Sets the color of this object to the specified DyeColor.
+     * Sets the color of this object to the specified DyeColor.
      *
-     * @param color 物品的DyeColor
+     * @param color The color of the object, as a DyeColor.
      */
     public void setColor(DyeColor color);
 

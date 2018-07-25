@@ -4,38 +4,25 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表床.
+ * Represents a bed.
  */
 public class Bed extends MaterialData implements Directional {
 
     /**
-     * 床的默认构造器。
-     * <p>
-	 * 原文：Default constructor for a bed.
+     * Default constructor for a bed.
      */
     public Bed() {
-        super(Material.BED_BLOCK);
+        super(Material.LEGACY_BED_BLOCK);
     }
 
     /**
-     * 使用特定的朝向以实例化一个床。
-     * <p>
-     * 原文：Instantiate a bed facing in a particular direction.
-     * @param direction 床头的朝向
+     * Instantiate a bed facing in a particular direction.
+     *
+     * @param direction the direction the bed's head is facing
      */
     public Bed(BlockFace direction) {
         this();
         setFacingDirection(direction);
-    }
-
-    /**
-     *
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Bed(final int type) {
-        super(type);
     }
 
     public Bed(final Material type) {
@@ -43,19 +30,9 @@ public class Bed extends MaterialData implements Directional {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Bed(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Bed(final Material type, final byte data) {
@@ -63,31 +40,25 @@ public class Bed extends MaterialData implements Directional {
     }
 
     /**
-     * 限定于此方块是否代表床头
-     * <p>
-	 * 原文：Determine if this block represents the head of the bed
+     * Determine if this block represents the head of the bed
      *
-     * @return true 方块是床头, false 如果不是
+     * @return true if this is the head of the bed, false if it is the foot
      */
     public boolean isHeadOfBed() {
         return (getData() & 0x8) == 0x8;
     }
 
     /**
-     * 设置方块是床头还是床尾
-     * <p>
-     * 原文：Configure this to be either the head or the foot of the bed
+     * Configure this to be either the head or the foot of the bed
      *
-     * @param isHeadOfBed 想要弄成床头就设成true
+     * @param isHeadOfBed True to make it the head.
      */
     public void setHeadOfBed(boolean isHeadOfBed) {
         setData((byte) (isHeadOfBed ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
     /**
-     * 设置床头的朝向.注意这只会影响到两个方块的床。
-     * <p>
-     * 原文：Set which direction the head of the bed is facing. Note that this will
+     * Set which direction the head of the bed is facing. Note that this will
      * only affect one of the two blocks the bed is made of.
      */
     public void setFacingDirection(BlockFace face) {
@@ -119,10 +90,9 @@ public class Bed extends MaterialData implements Directional {
     }
 
     /**
-     * 获取床头的朝向。
-     * 原文：Get the direction that this bed's head is facing toward
+     * Get the direction that this bed's head is facing toward
      *
-     * @return 床头的朝向
+     * @return the direction the head of the bed is facing
      */
     public BlockFace getFacing() {
         byte data = (byte) (getData() & 0x7);

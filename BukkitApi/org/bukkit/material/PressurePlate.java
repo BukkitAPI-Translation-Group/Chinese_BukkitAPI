@@ -3,20 +3,11 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * 代表压力板
+ * Represents a pressure plate
  */
 public class PressurePlate extends MaterialData implements PressureSensor {
     public PressurePlate() {
-        super(Material.WOOD_PLATE);
-    }
-
-    /**
-     * @param type raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public PressurePlate(int type) {
-        super(type);
+        super(Material.LEGACY_WOOD_PLATE);
     }
 
     public PressurePlate(Material type) {
@@ -24,19 +15,9 @@ public class PressurePlate extends MaterialData implements PressureSensor {
     }
 
     /**
-     * @param type raw type id
-     * @param data raw data
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public PressurePlate(int type, byte data) {
-        super(type, data);
-    }
-
-    /**
-     * @param type 类型
-     * @param data raw data
-     * @deprecated 不安全的参数
+     * @param type the type
+     * @param data the raw data value
+     * @deprecated Magic value
      */
     @Deprecated
     public PressurePlate(Material type, byte data) {

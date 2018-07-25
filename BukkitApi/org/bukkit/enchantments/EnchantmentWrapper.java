@@ -1,5 +1,6 @@
 package org.bukkit.enchantments;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
 /**
@@ -8,8 +9,8 @@ import org.bukkit.inventory.ItemStack;
  * 大多数方法于{@link Enchantment}。
  */
 public class EnchantmentWrapper extends Enchantment {
-    public EnchantmentWrapper(int id) {
-        super(id);
+    public EnchantmentWrapper(String name) {
+        super(NamespacedKey.minecraft(name));
     }
 
     /**
@@ -20,7 +21,7 @@ public class EnchantmentWrapper extends Enchantment {
      * @return 附魔
      */
     public Enchantment getEnchantment() {
-        return Enchantment.getById(getId());
+        return Enchantment.getByKey(getKey());
     }
 
     @Override

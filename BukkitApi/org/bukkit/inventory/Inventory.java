@@ -208,19 +208,6 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setStorageContents(ItemStack[] items) throws IllegalArgumentException;
 
     /**
-     * 检测这个物品栏是否含有指定物品ID的物品堆.
-     * <p>
-     * 原文:Checks if the inventory contains any ItemStacks with the given
-     * materialId
-     *
-     * @param materialId 要检测的物品ID
-     * @return 是否含有此物品
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public boolean contains(int materialId);
-
-    /**
      * 检测这个物品栏是否含有指定的物品.
      * <p>
      * 原文:Checks if the inventory contains any ItemStacks with the given
@@ -247,19 +234,6 @@ public interface Inventory extends Iterable<ItemStack> {
      * @return 如果item为null返回false，如果有完全匹配的物品堆找到返回true
      */
     public boolean contains(ItemStack item);
-
-    /**
-     * 介绍如下一个方法，本方法已被弃用，不作翻译.Checks if the inventory contains any ItemStacks with the given
-     * materialId, adding to at least the minimum amount specified.
-     *
-     * @param materialId The materialId to check for
-     * @param amount The minimum amount to look for
-     * @return true if this contains any matching ItemStack with the given
-     *     materialId and amount
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public boolean contains(int materialId, int amount);
 
     /**
      * 检查物品栏内是否包含指定的物品，并检查物品堆的数量是否足够(译者自述).
@@ -305,21 +279,6 @@ public interface Inventory extends Iterable<ItemStack> {
     public boolean containsAtLeast(ItemStack item, int amount);
 
     /**
-     * 介绍如下一个方法.Returns a HashMap with all slots and ItemStacks in the inventory with
-     * given materialId.
-     * <p>
-     * The HashMap contains entries where, the key is the slot index, and the
-     * value is the ItemStack in that slot. If no matching ItemStack with the
-     * given materialId is found, an empty map is returned.
-     *
-     * @param materialId The materialId to look for
-     * @return A HashMap containing the slot index, ItemStack pairs
-     * @deprecated Magic value
-     */
-    @Deprecated
-    public HashMap<Integer, ? extends ItemStack> all(int materialId);
-
-    /**
      * 查找在物品栏内的包含指定物品的所有格子与物品堆.
      * <p>
      * 返回的HashMap的键是格子的索引，值是在那个格子的物品堆.如果
@@ -362,19 +321,6 @@ public interface Inventory extends Iterable<ItemStack> {
      * 查找包含此物品的第一个格子.
      * <p>
      * 原文:Finds the first slot in the inventory containing an ItemStack with the
-     * given materialId.
-     *
-     * @param materialId 要查找的物品的ID
-     * @return 包含此物品的格子序号
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public int first(int materialId);
-
-    /**
-     * 查找包含此物品的第一个格子.
-     * <p>
-     * 原文:Finds the first slot in the inventory containing an ItemStack with the
      * given material
      *
      * @param material 要查找的物品
@@ -404,15 +350,6 @@ public interface Inventory extends Iterable<ItemStack> {
      * @return 第一个空格子的格子数，-1就没有空格子
      */
     public int firstEmpty();
-
-    /**
-   　* 介绍如下一个方法.Removes all stacks in the inventory matching the given materialId.
-     *
-     * @param materialId The material to remove
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public void remove(int materialId);
 
     /**
      * 移除在物品栏内与给定物品匹配的所有物品堆.

@@ -4,63 +4,46 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * 代表不同种类的木头方块.
+ * Represents wood blocks of different species.
  *
- * @see Material#WOOD
- * @see Material#SAPLING
- * @see Material#WOOD_DOUBLE_STEP
+ * @see Material#LEGACY_WOOD
+ * @see Material#LEGACY_SAPLING
+ * @see Material#LEGACY_WOOD_DOUBLE_STEP
  */
 public class Wood extends MaterialData {
-    protected static final Material DEFAULT_TYPE = Material.WOOD;
+    protected static final Material DEFAULT_TYPE = Material.LEGACY_WOOD;
     protected static final TreeSpecies DEFAULT_SPECIES = TreeSpecies.GENERIC;
 
     /**
-     * 构造本类.
-     * <p>
-     * 原文：Constructs a wood block.
+     * Constructs a wood block.
      */
     public Wood() {
         this(DEFAULT_TYPE, DEFAULT_SPECIES);
     }
 
     /**
-     * 以给定的树木种类构造本类.
-     * <p>
-     * 原文:Constructs a wood block of the given tree species.
+     * Constructs a wood block of the given tree species.
      * 
-     * @param species 木头的树木种类
+     * @param species the species of the wood block
      */
     public Wood(TreeSpecies species) {
         this(DEFAULT_TYPE, species);
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Wood(final int type) {
-        super(type);
-    }
-
-    /**
-     * 以给定的物品种类构造本类.
-     * <p>
-     * 原文:Constructs a wood block of the given type.
+     * Constructs a wood block of the given type.
      *
-     * @param type 木头的物品种类
+     * @param type the type of wood block
      */
     public Wood(final Material type) {
         this(type, DEFAULT_SPECIES);
     }
 
     /**
-     * 以给定的物品种类和树木种类构造本类.
-     * <p>
-     * 原文:Constructs a wood block of the given type and tree species.
+     * Constructs a wood block of the given type and tree species.
      *
-     * @param type 木头的物品种类
-     * @param species 木头的树木种类
+     * @param type the type of wood block
+     * @param species the species of the wood block
      */
     public Wood(final Material type, final TreeSpecies species) {
         // Ensure only valid species-type combinations
@@ -69,19 +52,9 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Wood(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Wood(final Material type, final byte data) {
@@ -89,25 +62,23 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * 获取这个木头的树木种类.
-     * <p>
-     * 原文:Gets the current species of this wood block
+     * Gets the current species of this wood block
      *
-     * @return 木头的树木种类
+     * @return TreeSpecies of this wood block
      */
     public TreeSpecies getSpecies() {
         switch (getItemType()) {
-            case WOOD:
-            case WOOD_DOUBLE_STEP:
+            case LEGACY_WOOD:
+            case LEGACY_WOOD_DOUBLE_STEP:
                 return TreeSpecies.getByData((byte) getData());
-            case LOG:
-            case LEAVES:
+            case LEGACY_LOG:
+            case LEGACY_LEAVES:
                 return TreeSpecies.getByData((byte) (getData() & 0x3));
-            case LOG_2:
-            case LEAVES_2:
+            case LEGACY_LOG_2:
+            case LEGACY_LEAVES_2:
                 return TreeSpecies.getByData((byte) ((getData() & 0x3) | 0x4));
-            case SAPLING:
-            case WOOD_STEP:
+            case LEGACY_SAPLING:
+            case LEGACY_WOOD_STEP:
                 return TreeSpecies.getByData((byte) (getData() & 0x7));
             default:
                 throw new IllegalArgumentException("Invalid block type for tree species");
@@ -115,13 +86,11 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * 更正某些物种类型组合的方块类型.
-     * <p>
-     * 原文:Correct the block type for certain species-type combinations.
+     * Correct the block type for certain species-type combinations.
      *
-     * @param type 类型
-     * @param species 物种
-     * @return 这个物种的实际类型/The actual type for this species given the desired type
+     * @param type The desired type
+     * @param species The required species
+     * @return The actual type for this species given the desired type
      */
     private static Material getSpeciesType(Material type, TreeSpecies species) {
         switch (species) {
@@ -130,20 +99,20 @@ public class Wood extends MaterialData {
             case BIRCH:
             case JUNGLE:
                 switch (type) {
-                    case LOG_2:
-                        return Material.LOG;
-                    case LEAVES_2:
-                        return Material.LEAVES;
+                    case LEGACY_LOG_2:
+                        return Material.LEGACY_LOG;
+                    case LEGACY_LEAVES_2:
+                        return Material.LEGACY_LEAVES;
                     default:
                 }
                 break;
             case ACACIA:
             case DARK_OAK:
                 switch (type) {
-                    case LOG:
-                        return Material.LOG_2;
-                    case LEAVES:
-                        return Material.LEAVES_2;
+                    case LEGACY_LOG:
+                        return Material.LEGACY_LOG_2;
+                    case LEGACY_LEAVES:
+                        return Material.LEGACY_LEAVES_2;
                     default:
                 }
                 break;
@@ -152,25 +121,23 @@ public class Wood extends MaterialData {
     }
 
     /**
-     * 设置木头的树木种类.
-     * <p>
-     * 原文:Sets the species of this wood block
+     * Sets the species of this wood block
      *
-     * @param species 新种类
+     * @param species New species of this wood block
      */
     public void setSpecies(final TreeSpecies species) {
         boolean firstType = false;
         switch (getItemType()) {
-            case WOOD:
-            case WOOD_DOUBLE_STEP:
+            case LEGACY_WOOD:
+            case LEGACY_WOOD_DOUBLE_STEP:
                 setData(species.getData());
                 break;
-            case LOG:
-            case LEAVES:
+            case LEGACY_LOG:
+            case LEGACY_LEAVES:
                 firstType = true;
             // fall through to next switch statement below
-            case LOG_2:
-            case LEAVES_2:
+            case LEGACY_LOG_2:
+            case LEGACY_LEAVES_2:
                 switch (species) {
                     case GENERIC:
                     case REDWOOD:
@@ -189,8 +156,8 @@ public class Wood extends MaterialData {
                 }
                 setData((byte) ((getData() & 0xC) | (species.getData() & 0x3)));
                 break;
-            case SAPLING:
-            case WOOD_STEP:
+            case LEGACY_SAPLING:
+            case LEGACY_WOOD_STEP:
                 setData((byte) ((getData() & 0x8) | species.getData()));
                 break;
             default:

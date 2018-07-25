@@ -2,6 +2,7 @@ package org.bukkit.event.block;
 
 import org.bukkit.block.Block;
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
@@ -10,32 +11,12 @@ import org.bukkit.event.HandlerList;
  */
 public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
-    private final int changed;
+    private final BlockData changed;
     private boolean cancel = false;
 
-    /**
-     *
-     * @deprecated 不安全的参数
-     * @param block 这个事件的方块
-     * @param changed 方块id
-     */
-    @Deprecated
-    public BlockPhysicsEvent(final Block block, final int changed) {
+    public BlockPhysicsEvent(final Block block, final BlockData changed) {
         super(block);
         this.changed = changed;
-    }
-
-    /**
-     * 获取事件中被改变的方块的ID.
-     * <p>
-     * 原文：Gets the type of block that changed, causing this event
-     *
-     * @return 被改变的方块的id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public int getChangedTypeId() {
-        return changed;
     }
 
     /**
@@ -46,7 +27,7 @@ public class BlockPhysicsEvent extends BlockEvent implements Cancellable {
      * @return 事件中被改变的方块的种类
      */
     public Material getChangedType() {
-        return Material.getMaterial(changed);
+        return changed.getMaterial();
     }
 
     public boolean isCancelled() {

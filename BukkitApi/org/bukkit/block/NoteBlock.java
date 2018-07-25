@@ -5,7 +5,9 @@ import org.bukkit.Note;
 
 /**
  * 代表音符盒(快照).
+ * @deprecated not a tile entity in future versions of Minecraft
  */
+@Deprecated
 public interface NoteBlock extends BlockState {
 
     /**

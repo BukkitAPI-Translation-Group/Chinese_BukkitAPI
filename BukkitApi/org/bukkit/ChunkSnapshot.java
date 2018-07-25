@@ -1,6 +1,7 @@
 package org.bukkit;
 
 import org.bukkit.block.Biome;
+import org.bukkit.block.data.BlockData;
 
 /**
  * 表示一个静态的，线程安全的方块的区块的快照.
@@ -49,18 +50,14 @@ public interface ChunkSnapshot {
     Material getBlockType(int x, int y, int z);
 
     /**
-     * 获取区块中对应坐标方块的方块类型.
-     * 原文：
-     * Get block type for block at corresponding coordinate in the chunk
+     * Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
      * @param y 0-127
      * @param z 0-15
-     * @return 0-255
-     * @deprecated 不安全的参数
+     * @return block material type
      */
-    @Deprecated
-    int getBlockTypeId(int x, int y, int z);
+    BlockData getBlockData(int x, int y, int z);
 
     /**
      * 获取区块中对应坐标方块的方块数据.
@@ -74,7 +71,7 @@ public interface ChunkSnapshot {
      * @deprecated 不安全的参数
      */
     @Deprecated
-    int getBlockData(int x, int y, int z);
+    int getData(int x, int y, int z);
 
     /**
      * 获取区块中对应坐标方块的天空亮度等级.
@@ -133,19 +130,6 @@ public interface ChunkSnapshot {
      * @return 指定坐标的温度
      */
     double getRawBiomeTemperature(int x, int z);
-
-    /**
-     * 获取指定坐标原始生物群系的降雨量（范围为0.0到1.0）.
-     * 原文：
-     * Get raw biome rainfall (0.0-1.0) at given coordinate
-     *
-     * @param x X坐标
-     * @param z Z坐标
-     * @return 指定坐标的降雨量
-     * @deprecated 在当前的Minecraft版本(1.12)中不存在这个区块属性
-     */
-    @Deprecated
-    double getRawBiomeRainfall(int x, int z);
 
     /**
      * 抓取区块快照时获取世界的完整时间.

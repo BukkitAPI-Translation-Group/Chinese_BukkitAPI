@@ -5,17 +5,19 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表门
+ * Represents a door.
  *
- * 这个类在以前被弃用，但现已经能与当今的门工作.由于Minecraft的门的内部表示，依赖于<code>isTopHalf()</code>的一些方法未被定义.
+ * This class was previously deprecated, but has been retrofitted to
+ * work with modern doors. Some methods are undefined dependant on <code>isTopHalf()</code>
+ * due to Minecraft's internal representation of doors.
  *
- * @see Material.WOODEN_DOOR
- * @see Material.IRON_DOOR_BLOCK
- * @see Material.SPRUCE_DOOR
- * @see Material.BIRCH_DOOR
- * @see Material.JUNGLE_DOOR
- * @see Material.ACACIA_DOOR
- * @see Material.DARK_OAK_DOOR
+ * @see Material#LEGACY_WOODEN_DOOR
+ * @see Material#LEGACY_IRON_DOOR_BLOCK
+ * @see Material#LEGACY_SPRUCE_DOOR
+ * @see Material#LEGACY_BIRCH_DOOR
+ * @see Material#LEGACY_JUNGLE_DOOR
+ * @see Material#LEGACY_ACACIA_DOOR
+ * @see Material#LEGACY_DARK_OAK_DOOR
  */
 public class Door extends MaterialData implements Directional, Openable {
 
@@ -23,20 +25,11 @@ public class Door extends MaterialData implements Directional, Openable {
     // of the way doors are currently implemented. Beware!
 
     /**
-     * @deprecated Artifact of old API, equivalent to new <code>Door(Material.WOODEN_DOOR);</code>
+     * @deprecated Artifact of old API, equivalent to new <code>Door(Material.LEGACY_WOODEN_DOOR);</code>
      */
     @Deprecated
     public Door() {
-        super(Material.WOODEN_DOOR);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Door(final int type) {
-        super(type);
+        super(Material.LEGACY_WOODEN_DOOR);
     }
 
     public Door(final Material type) {
@@ -44,25 +37,23 @@ public class Door extends MaterialData implements Directional, Openable {
     }
 
     /**
-     * 构造一个
-     * <p>
-     * 原文:Constructs the bottom half of a door of the given material type, facing the specified direction and set to closed
+     * Constructs the bottom half of a door of the given material type, facing the specified direction and set to closed
      *
      * @param type The type of material this door is made of. This must match the type of the block above.
      * @param face The direction the door is facing.
      *
-     * @see Material.WOODEN_DOOR
-     * @see Material.IRON_DOOR_BLOCK
-     * @see Material.SPRUCE_DOOR
-     * @see Material.BIRCH_DOOR
-     * @see Material.JUNGLE_DOOR
-     * @see Material.ACACIA_DOOR
-     * @see Material.DARK_OAK_DOOR
+     * @see Material#LEGACY_WOODEN_DOOR
+     * @see Material#LEGACY_IRON_DOOR_BLOCK
+     * @see Material#LEGACY_SPRUCE_DOOR
+     * @see Material#LEGACY_BIRCH_DOOR
+     * @see Material#LEGACY_JUNGLE_DOOR
+     * @see Material#LEGACY_ACACIA_DOOR
+     * @see Material#LEGACY_DARK_OAK_DOOR
      *
-     * @see BlockFace.WEST
-     * @see BlockFace.NORTH
-     * @see BlockFace.EAST
-     * @see BlockFace.SOUTH
+     * @see BlockFace#WEST
+     * @see BlockFace#NORTH
+     * @see BlockFace#EAST
+     * @see BlockFace#SOUTH
      */
     public Door(final Material type, BlockFace face) {
         this(type, face, false);
@@ -76,18 +67,18 @@ public class Door extends MaterialData implements Directional, Openable {
      * @param face The direction the door is facing.
      * @param isOpen Whether the door is currently opened.
      *
-     * @see Material.WOODEN_DOOR
-     * @see Material.IRON_DOOR_BLOCK
-     * @see Material.SPRUCE_DOOR
-     * @see Material.BIRCH_DOOR
-     * @see Material.JUNGLE_DOOR
-     * @see Material.ACACIA_DOOR
-     * @see Material.DARK_OAK_DOOR
+     * @see Material#LEGACY_WOODEN_DOOR
+     * @see Material#LEGACY_IRON_DOOR_BLOCK
+     * @see Material#LEGACY_SPRUCE_DOOR
+     * @see Material#LEGACY_BIRCH_DOOR
+     * @see Material#LEGACY_JUNGLE_DOOR
+     * @see Material#LEGACY_ACACIA_DOOR
+     * @see Material#LEGACY_DARK_OAK_DOOR
      *
-     * @see BlockFace.WEST
-     * @see BlockFace.NORTH
-     * @see BlockFace.EAST
-     * @see BlockFace.SOUTH
+     * @see BlockFace#WEST
+     * @see BlockFace#NORTH
+     * @see BlockFace#EAST
+     * @see BlockFace#SOUTH
      */
     public Door(final Material type, BlockFace face, boolean isOpen) {
         super(type);
@@ -102,13 +93,13 @@ public class Door extends MaterialData implements Directional, Openable {
      * @param type The type of material this door is made of. This must match the type of the block below.
      * @param isHingeRight True if the hinge is on the right hand side, false if the hinge is on the left hand side.
      *
-     * @see Material.WOODEN_DOOR
-     * @see Material.IRON_DOOR_BLOCK
-     * @see Material.SPRUCE_DOOR
-     * @see Material.BIRCH_DOOR
-     * @see Material.JUNGLE_DOOR
-     * @see Material.ACACIA_DOOR
-     * @see Material.DARK_OAK_DOOR
+     * @see Material#LEGACY_WOODEN_DOOR
+     * @see Material#LEGACY_IRON_DOOR_BLOCK
+     * @see Material#LEGACY_SPRUCE_DOOR
+     * @see Material#LEGACY_BIRCH_DOOR
+     * @see Material#LEGACY_JUNGLE_DOOR
+     * @see Material#LEGACY_ACACIA_DOOR
+     * @see Material#LEGACY_DARK_OAK_DOOR
      */
     public Door(final Material type, boolean isHingeRight) {
         super(type);
@@ -125,10 +116,10 @@ public class Door extends MaterialData implements Directional, Openable {
      *
      * @see TreeSpecies
      *
-     * @see BlockFace.WEST
-     * @see BlockFace.NORTH
-     * @see BlockFace.EAST
-     * @see BlockFace.SOUTH
+     * @see BlockFace#WEST
+     * @see BlockFace#NORTH
+     * @see BlockFace#EAST
+     * @see BlockFace#SOUTH
      */
     public Door(final TreeSpecies species, BlockFace face) {
         this(getWoodDoorOfSpecies(species), face, false);
@@ -144,10 +135,10 @@ public class Door extends MaterialData implements Directional, Openable {
      *
      * @see TreeSpecies
      *
-     * @see BlockFace.WEST
-     * @see BlockFace.NORTH
-     * @see BlockFace.EAST
-     * @see BlockFace.SOUTH
+     * @see BlockFace#WEST
+     * @see BlockFace#NORTH
+     * @see BlockFace#EAST
+     * @see BlockFace#SOUTH
      */
     public Door(final TreeSpecies species, BlockFace face, boolean isOpen) {
         this(getWoodDoorOfSpecies(species), face, isOpen);
@@ -166,19 +157,9 @@ public class Door extends MaterialData implements Directional, Openable {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Door(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Door(final Material type, final byte data) {
@@ -191,28 +172,28 @@ public class Door extends MaterialData implements Directional, Openable {
      * @param species The species of wood door required.
      * @return The item type for the given species.
      *
-     * @see Material.WOODEN_DOOR
-     * @see Material.SPRUCE_DOOR
-     * @see Material.BIRCH_DOOR
-     * @see Material.JUNGLE_DOOR
-     * @see Material.ACACIA_DOOR
-     * @see Material.DARK_OAK_DOOR
+     * @see Material#LEGACY_WOODEN_DOOR
+     * @see Material#LEGACY_SPRUCE_DOOR
+     * @see Material#LEGACY_BIRCH_DOOR
+     * @see Material#LEGACY_JUNGLE_DOOR
+     * @see Material#LEGACY_ACACIA_DOOR
+     * @see Material#LEGACY_DARK_OAK_DOOR
      */
     public static Material getWoodDoorOfSpecies(TreeSpecies species) {
         switch (species) {
             default:
             case GENERIC:
-                return Material.WOODEN_DOOR;
+                return Material.LEGACY_WOODEN_DOOR;
             case BIRCH:
-                return Material.BIRCH_DOOR;
+                return Material.LEGACY_BIRCH_DOOR;
             case REDWOOD:
-                return Material.SPRUCE_DOOR;
+                return Material.LEGACY_SPRUCE_DOOR;
             case JUNGLE:
-                return Material.JUNGLE_DOOR;
+                return Material.LEGACY_JUNGLE_DOOR;
             case ACACIA:
-                return Material.ACACIA_DOOR;
+                return Material.LEGACY_ACACIA_DOOR;
             case DARK_OAK:
-                return Material.DARK_OAK_DOOR;
+                return Material.LEGACY_DARK_OAK_DOOR;
         }
     }
 

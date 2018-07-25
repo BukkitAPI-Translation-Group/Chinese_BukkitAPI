@@ -4,16 +4,7 @@ import org.bukkit.Material;
 
 public class Cake extends MaterialData {
     public Cake() {
-        super(Material.CAKE_BLOCK);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Cake(int type) {
-        super(type);
+        super(Material.LEGACY_CAKE_BLOCK);
     }
 
     public Cake(Material type) {
@@ -21,19 +12,9 @@ public class Cake extends MaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Cake(int type, byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Cake(Material type, byte data) {
@@ -41,33 +22,27 @@ public class Cake extends MaterialData {
     }
 
     /**
-     * 获取这个蛋糕吃了多少片
-     * <p>
-     * 原文:Gets the number of slices eaten from this cake
+     * Gets the number of slices eaten from this cake
      *
-     * @return 蛋糕被吃的片数
+     * @return The number of slices eaten
      */
     public int getSlicesEaten() {
         return getData();
     }
 
     /**
-     * 获取这个蛋糕还剩多少片
-     * <p>
-     * 原文:Gets the number of slices remaining on this cake
+     * Gets the number of slices remaining on this cake
      *
-     * @return 蛋糕剩于的片数
+     * @return The number of slices remaining
      */
     public int getSlicesRemaining() {
         return 6 - getData();
     }
 
     /**
-     * 设置这个蛋糕吃了多少片.
-     * <p>
-     * 原文:Sets the number of slices eaten from this cake
+     * Sets the number of slices eaten from this cake
      *
-     * @param n 蛋糕被吃的片数
+     * @param n The number of slices eaten
      */
     public void setSlicesEaten(int n) {
         if (n < 6) {
@@ -76,11 +51,9 @@ public class Cake extends MaterialData {
     }
 
     /**
-     * 设置这个蛋糕还剩多少片.
-     * <p>
-     * 原文:Sets the number of slices remaining on this cake
+     * Sets the number of slices remaining on this cake
      *
-     * @param n 蛋糕剩于的片数
+     * @param n The number of slices remaining
      */
     public void setSlicesRemaining(int n) {
         if (n > 6) {

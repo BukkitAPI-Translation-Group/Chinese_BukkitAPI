@@ -5,33 +5,33 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 
 /**
- * 代表刷怪蛋.
- * @deprecated 请使用 {@link SpawnEggMeta}
+ * Represents a spawn egg that can be used to spawn mobs
+ * @deprecated use {@link SpawnEggMeta}
  */
 @Deprecated
 public class SpawnEgg extends MaterialData {
 
     public SpawnEgg() {
-        super(Material.MONSTER_EGG);
+        super(Material.LEGACY_MONSTER_EGG);
     }
 
     /**
-     * @param type the raw type id
+     * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
-    public SpawnEgg(int type, byte data) {
+    public SpawnEgg(final Material type, final byte data) {
         super(type, data);
     }
 
     /**
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public SpawnEgg(byte data) {
-        super(Material.MONSTER_EGG, data);
+        super(Material.LEGACY_MONSTER_EGG, data);
     }
 
     public SpawnEgg(EntityType type) {
@@ -40,12 +40,10 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * 获取这个刷怪蛋将刷出的实体的种类.
-     * <p>
-     * 原文:Get the type of entity this egg will spawn.
+     * Get the type of entity this egg will spawn.
      *
-     * @return 实体种类
-     * @deprecated 现存储在 {@link SpawnEggMeta}.
+     * @return The entity type.
+     * @deprecated This is now stored in {@link SpawnEggMeta}.
      */
     @Deprecated
     public EntityType getSpawnedType() {
@@ -53,12 +51,10 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * 设置这个刷怪蛋将刷出的实体的种类.
-     * <p>
-     * 原文:Set the type of entity this egg will spawn.
+     * Set the type of entity this egg will spawn.
      *
-     * @param type 实体种类
-     * @deprecated 现存储在 {@link SpawnEggMeta}.
+     * @param type The entity type.
+     * @deprecated This is now stored in {@link SpawnEggMeta}.
      */
     @Deprecated
     public void setSpawnedType(EntityType type) {

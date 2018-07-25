@@ -1,82 +1,63 @@
 package org.bukkit.inventory;
 
+import com.google.common.base.Preconditions;
+import org.bukkit.Keyed;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.material.MaterialData;
 
 /**
  * 熔炉冶炼配方.
- * <p>
- * 原文:Represents a smelting recipe.
  */
 public class FurnaceRecipe implements Recipe {
+    private final NamespacedKey key;
     private ItemStack output;
     private ItemStack ingredient;
     private float experience;
+    private int cookingTime;
 
-    /**
-     * 创建一个熔炉冶炼配方.
-     * <p>
-     * 原文:Create a furnace recipe to craft the specified ItemStack.
-     *
-     * @param result 填入该冶炼配方产生的生成物.
-     * @param source 冶炼原料.
-     */
+    @Deprecated
     public FurnaceRecipe(ItemStack result, Material source) {
-        this(result, source, 0, 0);
+        this(NamespacedKey.randomKey(), result, source, 0, 0, 200);
     }
 
-    /**
-     * 创建一个熔炉冶炼配方.
-     * <p>
-     * 原文:Create a furnace recipe to craft the specified ItemStack.
-     *
-     * @param result 填入该冶炼配方产生的生成物.
-     * @param source 冶炼原料.
-     */
+    @Deprecated
     public FurnaceRecipe(ItemStack result, MaterialData source) {
-        this(result, source.getItemType(), source.getData(), 0);
+        this(NamespacedKey.randomKey(), result, source.getItemType(), source.getData(), 0, 200);
     }
 
-    /**
-     * 创建一个熔炉冶炼配方.
-     *
-     * @param result 填入该冶炼配方产生的生成物.
-     * @param source 冶炼原料.
-     * @param experience 熔炼后玩家所得经验
-     */
+    @Deprecated
     public FurnaceRecipe(ItemStack result, MaterialData source, float experience) {
-        this(result, source.getItemType(), source.getData(), experience);
+        this(NamespacedKey.randomKey(), result, source.getItemType(), source.getData(), experience, 200);
     }
 
-    /**
-     * 创建一个熔炉冶炼公式.
-     * <p>
-     * 原文:Create a furnace recipe to craft the specified ItemStack.
-     *
-     * @param result 填入该冶炼配方产生的生成物.
-     * @param source 冶炼原料.
-     * @param data 数据值. (注意: 该值目前被CraftBukkit服务器忽略，也就是说没有作用)
-     * @deprecated 不安全的参数
-     */
     @Deprecated
     public FurnaceRecipe(ItemStack result, Material source, int data) {
-        this(result, source, data, 0);
+        this(NamespacedKey.randomKey(), result, source, data, 0, 200);
     }
 
     /**
      * 创建一个熔炉冶炼配方.
+     * <p>
+     * 原文:Create a furnace recipe to craft the specified ItemStack.
      *
-     * @param result 填入该冶炼公式产生的生成物.
-     * @param source 冶炼原料.
-     * @param data 数据值. (注意: 该值目前被CraftBukkit服务器忽略，也就是说没有作用)
-     * @param experience 冶炼后玩家所得经验
-     * @deprecated 不安全的参数
+     * @param key 冶炼配方的唯一键值
+     * @param result 填入该冶炼配方产生的生成物
+     * @param source 冶炼原料
+     * @param experience 熔炼后玩家所得经验
+     * @param cookingTime 熔炼时间 (以ticks为单位)
      */
+    public FurnaceRecipe(NamespacedKey key, ItemStack result, Material source, float experience, int cookingTime) {
+        this(key, result, source, 0, experience, cookingTime);
+    }
+
     @Deprecated
-    public FurnaceRecipe(ItemStack result, Material source, int data, float experience) {
+    public FurnaceRecipe(NamespacedKey key, ItemStack result, Material source, int data, float experience, int cookingTime) {
+        this.key = key;
         this.output = new ItemStack(result);
         this.ingredient = new ItemStack(source, 1, (short) data);
         this.experience = experience;
+        this.cookingTime = cookingTime;
     }
 
     /**
@@ -161,5 +142,33 @@ public class FurnaceRecipe implements Recipe {
      */
     public float getExperience() {
         return experience;
+    }
+
+    /**
+     * 设置冶炼所需时间(以ticks为单位).
+     * <p>
+     * 原文:Set the cooking time for this recipe in ticks.
+     *
+     * @param cookingTime 冶炼时间
+     */
+    public void setCookingTime(int cookingTime) {
+        Preconditions.checkArgument(cookingTime >= 0, "cookingTime must be >= 0");
+        this.cookingTime = cookingTime;
+    }
+
+    /**
+     * 获取冶炼所需时间(以ticks为单位).
+     * <p>
+     * 原文:Get the cooking time for this recipe in ticks.
+     *
+     * @return 冶炼时间
+     */
+    public int getCookingTime() {
+        return cookingTime;
+    }
+
+    @Override
+    public NamespacedKey getKey() {
+        return key;
     }
 }

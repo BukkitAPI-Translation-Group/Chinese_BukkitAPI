@@ -40,7 +40,7 @@ public class Pattern implements ConfigurationSerializable {
      * @param map 从地图反序列化
      */
     public Pattern(Map<String, Object> map) {
-        color = DyeColor.valueOf(getString(map, COLOR));
+        color = DyeColor.legacyValueOf(getString(map, COLOR));
         pattern = PatternType.getByIdentifier(getString(map, PATTERN));
     }
 

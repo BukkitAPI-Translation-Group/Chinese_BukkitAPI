@@ -4,11 +4,11 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 
 /**
- * 代表羊毛/地毯方块。
+ * Represents a Wool/Cloth block
  */
 public class Wool extends MaterialData implements Colorable {
     public Wool() {
-        super(Material.WOOL);
+        super(Material.LEGACY_WOOL);
     }
 
     public Wool(DyeColor color) {
@@ -16,33 +16,14 @@ public class Wool extends MaterialData implements Colorable {
         setColor(color);
     }
 
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Wool(final int type) {
-        super(type);
-    }
-
     public Wool(final Material type) {
         super(type);
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Wool(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Wool(final Material type, final byte data) {
@@ -50,22 +31,18 @@ public class Wool extends MaterialData implements Colorable {
     }
 
     /**
-     * 获取颜色。
-     * <p>
-     * 原文：Gets the current color of this dye
+     * Gets the current color of this dye
      *
-     * @return 颜色
+     * @return DyeColor of this dye
      */
     public DyeColor getColor() {
         return DyeColor.getByWoolData(getData());
     }
 
     /**
-     * 设置颜色。
-     * <p>
-     * 原文：Sets the color of this dye
+     * Sets the color of this dye
      *
-     * @param color 新颜色
+     * @param color New color of this dye
      */
     public void setColor(DyeColor color) {
         setData(color.getWoolData());
