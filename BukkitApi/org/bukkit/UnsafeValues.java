@@ -16,9 +16,6 @@ import org.bukkit.plugin.PluginDescriptionFile;
 @Deprecated
 public interface UnsafeValues {
 
-    @Deprecated
-public interface UnsafeValues {
-
     Material toLegacy(Material material);
 
     Material fromLegacy(Material material);
