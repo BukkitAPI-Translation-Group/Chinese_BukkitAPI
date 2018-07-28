@@ -4,22 +4,25 @@ import org.bukkit.block.data.Directional;
 import org.bukkit.block.data.Powerable;
 
 /**
- * Similar to {@link Powerable}, 'triggered' indicates whether or not the
- * dispenser is currently activated.
+ * 与{@link Powerable}相似, 'triggered'数据值表示此发射器是否被激活.
  */
 public interface Dispenser extends Directional {
 
     /**
-     * Gets the value of the 'triggered' property.
+     * 获取'triggered'数据值.
+     * <p>
+     * 原文:Gets the value of the 'triggered' property.
      *
-     * @return the 'triggered' value
+     * @return 此发射器是否被激活
      */
     boolean isTriggered();
 
     /**
-     * Sets the value of the 'triggered' property.
+     * 设置'triggered'数据值.
+     * <p>
+     * 原文:Sets the value of the 'triggered' property.
      *
-     * @param triggered the new 'triggered' value
+     * @param triggered 此发射器是否被激活
      */
     void setTriggered(boolean triggered);
 }

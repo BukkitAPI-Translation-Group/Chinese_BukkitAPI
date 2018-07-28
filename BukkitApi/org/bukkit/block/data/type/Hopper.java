@@ -4,25 +4,28 @@ import org.bukkit.block.data.Directional;
 import org.bukkit.block.data.Powerable;
 
 /**
- * Similar to {@link Powerable}, 'enabled' indicates whether or not the hopper
- * is currently activated.
+ * 与{@link Powerable}相似, 'enabled'数据值表示此漏斗是否被激活.
  * <br>
- * Unlike most other blocks, a hopper is only enabled when it is <b>not</b>
- * receiving any power.
+ * 不像其它大多数方块，漏斗不接受任何红石信号时为激活态.
+ * (当它被激活时，漏斗停止工作，可以玩玩红石试得)
  */
 public interface Hopper extends Directional {
 
     /**
-     * Gets the value of the 'enabled' property.
+     * 获取'enabled'属性数据值.
+     * <p>
+     * 原文:Gets the value of the 'enabled' property.
      *
-     * @return the 'enabled' value
+     * @return 'enabled'数据值
      */
     boolean isEnabled();
 
     /**
-     * Sets the value of the 'enabled' property.
+     * 设置'enabled'属性数据值.
+     * <p>
+     * 原文:Sets the value of the 'enabled' property.
      *
-     * @param enabled the new 'enabled' value
+     * @param enabled 'enabled'数据值
      */
     void setEnabled(boolean enabled);
 }

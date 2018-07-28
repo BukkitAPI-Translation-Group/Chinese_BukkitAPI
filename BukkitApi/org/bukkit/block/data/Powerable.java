@@ -1,22 +1,25 @@
 package org.bukkit.block.data;
 
 /**
- * 'powered' indicates whether this block is in the powered state or not, i.e.
- * receiving a redstone current of power &gt; 0.
+ * 'powered'数据值表示该方块是否被充能.也就是说，方块正接受大于0的红石信号.
  */
 public interface Powerable extends BlockData {
 
     /**
-     * Gets the value of the 'powered' property.
+     * 获取'powered'数据值.
+     * <p>
+     * 原文:Gets the value of the 'powered' property.
      *
-     * @return the 'powered' value
+     * @return 方块是否被充能
      */
     boolean isPowered();
 
     /**
-     * Sets the value of the 'powered' property.
+     * 设置'powered'数据值.
+     * <p>
+     * 原文:Sets the value of the 'powered' property.
      *
-     * @param powered the new 'powered' value
+     * @param powered 方块是否被充能
      */
     void setPowered(boolean powered);
 }

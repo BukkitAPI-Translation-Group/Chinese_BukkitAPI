@@ -3,22 +3,26 @@ package org.bukkit.block.data.type;
 import org.bukkit.block.data.Directional;
 
 /**
- * 'conditional' denotes whether this command block is conditional or not, i.e.
- * will only execute if the preceeding command block also executed successfully.
+ * 'conditional'数据值表示触发此命令方块是否需要条件，
+ * 换句话说只有在此命令方块前的命令方块执行成功时才会触发本命令方块.
  */
 public interface CommandBlock extends Directional {
 
     /**
-     * Gets the value of the 'conditional' property.
+     * 获取'conditional'数据值.
+     * <p>
+     * 原文:Gets the value of the 'conditional' property.
      *
-     * @return the 'conditional' value
+     * @return 'conditional'数据值
      */
     boolean isConditional();
 
     /**
-     * Sets the value of the 'conditional' property.
+     * 设置'conditional'数据值.
+     * <p>
+     * 原文:Sets the value of the 'conditional' property.
      *
-     * @param conditional the new 'conditional' value
+     * @param conditional 'conditional'数据值
      */
     void setConditional(boolean conditional);
 }
