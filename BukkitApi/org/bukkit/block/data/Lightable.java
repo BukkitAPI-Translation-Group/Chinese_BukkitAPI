@@ -1,22 +1,25 @@
 package org.bukkit.block.data;
 
 /**
- * 'lit' denotes whether this block (either a redstone torch or furnace) is
- * currently lit - that is not burned out.
+ * 'lit'表示此方块(红石或熔炉)是否在发光 ———— 不是烧毁他们的意思.
  */
 public interface Lightable extends BlockData {
 
     /**
-     * Gets the value of the 'lit' property.
+     * 获取'lit'属性值.
+     * <p>
+     * 原文:Gets the value of the 'lit' property.
      *
-     * @return the 'lit' value
+     * @return 方块是否在发光
      */
     boolean isLit();
 
     /**
-     * Sets the value of the 'lit' property.
+     * 设置'lit'属性值.
+     * <p>
+     * 原文:Sets the value of the 'lit' property.
      *
-     * @param lit the new 'lit' value
+     * @param lit 方块是否在发光
      */
     void setLit(boolean lit);
 }

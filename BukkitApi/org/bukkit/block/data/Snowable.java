@@ -1,22 +1,25 @@
 package org.bukkit.block.data;
 
 /**
- * 'snowy' denotes whether this block has a snow covered side and top texture
- * (normally because the block above is snow).
+ * 'snowy'属性表示此方块是否被雪覆盖 (通常情况下时因为“它”的头顶下着雪).
  */
 public interface Snowable extends BlockData {
 
     /**
-     * Gets the value of the 'snowy' property.
+     * 获取'snowy'属性值.
+     * <p>
+     * 原文:Gets the value of the 'snowy' property.
      *
-     * @return the 'snowy' value
+     * @return 方块是否被雪覆盖
      */
     boolean isSnowy();
 
     /**
-     * Sets the value of the 'snowy' property.
+     * 设置'snowy'属性值.
+     * <p>
+     * 原文:Sets the value of the 'snowy' property.
      *
-     * @param snowy the new 'snowy' value
+     * @param snowy 方块是否被雪覆盖
      */
     void setSnowy(boolean snowy);
 }

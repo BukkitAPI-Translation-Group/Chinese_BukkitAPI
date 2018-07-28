@@ -6,25 +6,32 @@ import org.bukkit.Server;
 public interface BlockData extends Cloneable {
 
     /**
-     * Get the Material represented by this block data.
+     * 获取该BlockData实例描述的物品.
+     * <p>
+     * 原文:Get the Material represented by this block data.
      *
-     * @return the material
+     * @return 物品
      */
     Material getMaterial();
 
     /**
-     * Gets a string, which when passed into a method such as
+     * 获取方块数据值,当将此数据值传入给 {@link Server#createBlockData(java.lang.String)}
+     * 方法时,将无缝重建此实例.
+     * <p>
+     * 原文:Gets a string, which when passed into a method such as
      * {@link Server#createBlockData(java.lang.String)} will unambiguously
      * recreate this instance.
      *
-     * @return serialized data string for this block
+     * @return 方块序列化的数据值
      */
     String getAsString();
 
     /**
-     * Returns a copy of this BlockData.
+     * 返回该BlockData实例的副本.
+     * <p>
+     * 原文:Returns a copy of this BlockData.
      *
-     * @return a copy of the block data
+     * @return BlockData副本
      */
     BlockData clone();
 }

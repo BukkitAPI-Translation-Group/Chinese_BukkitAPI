@@ -1,21 +1,25 @@
 package org.bukkit.block.data;
 
 /**
- * 'open' denotes whether this door-like block is currently opened.
+ * 'open'表示门类方块是否开着.
  */
 public interface Openable extends BlockData {
 
     /**
-     * Gets the value of the 'open' property.
+     * 获取'open'属性值.
+     * <p>
+     * 原文:Gets the value of the 'open' property.
      *
-     * @return the 'open' value
+     * @return 门是否开着
      */
     boolean isOpen();
 
     /**
-     * Sets the value of the 'open' property.
+     * 设置'open'属性值.
+     * <p>
+     * 原文:Sets the value of the 'open' property.
      *
-     * @param open the new 'open' value
+     * @param open 门是否开着
      */
     void setOpen(boolean open);
 }

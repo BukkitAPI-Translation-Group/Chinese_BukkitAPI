@@ -3,21 +3,25 @@ package org.bukkit.block.data;
 import org.bukkit.block.BlockFace;
 
 /**
- * 'rotation' represents the current rotation of this block.
+ * 'rotation'表示方块的旋转方向.
  */
 public interface Rotatable extends BlockData {
 
     /**
-     * Gets the value of the 'rotation' property.
+     * 获取'rotation'属性值.
+     * <p>
+     * 原文:Gets the value of the 'rotation' property.
      *
-     * @return the 'rotation' value
+     * @return 方块的旋转方向
      */
     BlockFace getRotation();
 
     /**
-     * Sets the value of the 'rotation' property.
+     * 设置'rotation'属性值.
+     * <p>
+     * 原文:Sets the value of the 'rotation' property.
      *
-     * @param rotation the new 'rotation' value
+     * @param rotation 方块的旋转方向
      */
     void setRotation(BlockFace rotation);
 }
