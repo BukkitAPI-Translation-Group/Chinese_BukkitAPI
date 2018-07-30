@@ -6,7 +6,7 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of steps.
+ * 代表不同的台阶.
  */
 public class Step extends TexturedMaterial {
     private static final List<Material> textures = new ArrayList<Material>();
@@ -35,7 +35,7 @@ public class Step extends TexturedMaterial {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Step(final Material type, final byte data) {
@@ -48,19 +48,22 @@ public class Step extends TexturedMaterial {
     }
 
     /**
-     * Test if step is inverted
+     * 检查此台阶是否被反转.
+     * <p>
+     * 原文:Test if step is inverted
      *
-     * @return true if inverted (top half), false if normal (bottom half)
+     * @return 上半台阶(反转的台阶)为true，普通台阶(底部台阶)为false
      */
     public boolean isInverted() {
         return ((getData() & 0x8) != 0);
     }
 
     /**
-     * Set step inverted state
+     * 设置台阶是否被反转.
+     * <p>
+     * 原文:Set step inverted state
      *
-     * @param inv - true if step is inverted (top half), false if step is
-     *     normal (bottom half)
+     * @param inv - 上半台阶(反转的台阶)为true，普通台阶(底部台阶)为false
      */
     public void setInverted(boolean inv) {
         int dat = getData() & 0x7;
@@ -72,7 +75,7 @@ public class Step extends TexturedMaterial {
 
     /**
      *
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     @Override
@@ -82,7 +85,7 @@ public class Step extends TexturedMaterial {
 
     /**
      *
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     @Override

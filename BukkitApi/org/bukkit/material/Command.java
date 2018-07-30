@@ -3,7 +3,7 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * Represents a command block
+ * 代表命令方块.
  */
 public class Command extends MaterialData implements Redstone {
     public Command() {
@@ -17,7 +17,7 @@ public class Command extends MaterialData implements Redstone {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Command(final Material type, final byte data) {
@@ -25,20 +25,23 @@ public class Command extends MaterialData implements Redstone {
     }
 
     /**
-     * Gets the current state of this Material, indicating if it's powered or
+     * 获取这个方块是否充能.
+     * <p>
+     * 原文:Gets the current state of this Material, indicating if it's powered or
      * unpowered
      *
-     * @return true if powered, otherwise false
+     * @return 这个方块是否充能
      */
     public boolean isPowered() {
         return (getData() & 1) != 0;
     }
 
     /**
-     * Sets the current state of this Material
+     * 设置这个方块是否充能.
+     * <p>
+     * 原文:Sets the current state of this Material
      *
-     * @param bool
-     *            whether or not the command block is powered
+     * @param bool 这个方块是否充能
      */
     public void setPowered(boolean bool) {
         setData((byte) (bool ? (getData() | 1) : (getData() & -2)));

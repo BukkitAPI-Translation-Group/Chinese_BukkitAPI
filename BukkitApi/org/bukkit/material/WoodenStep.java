@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * Represents the different types of wooden steps.
+ * 代表不同的木台阶.
  *
  * @see Material#LEGACY_WOOD_STEP
  */
@@ -13,26 +13,32 @@ public class WoodenStep extends Wood {
     protected static final boolean DEFAULT_INVERTED = false;
 
     /**
-     * Constructs a wooden step.
+     * 构造本类.
+     * <p>
+     * 原文:Constructs a wooden step.
      */
     public WoodenStep() {
         this(DEFAULT_SPECIES, DEFAULT_INVERTED);
     }
 
     /**
-     * Constructs a wooden step of the given tree species.
+     * 以指定的树种构造本类.
+     * <p>
+     * 原文:Constructs a wooden step of the given tree species.
      *
-     * @param species the species of the wooden step
+     * @param species 木台阶的树种
      */
     public WoodenStep(TreeSpecies species) {
         this(species, DEFAULT_INVERTED);
     }
 
     /**
-     * Constructs a wooden step of the given type and tree species, either
+     * 以指定的树种和台阶类型(上半台阶和普通台阶)构造本类.
+     * <p>
+     * 原文:Constructs a wooden step of the given type and tree species, either
      * inverted or not.
      *
-     * @param species the species of the wooden step
+     * @param species 木台阶的树种
      * @param inv true the step is at the top of the block
      */
     public WoodenStep(final TreeSpecies species, boolean inv) {
@@ -43,7 +49,7 @@ public class WoodenStep extends Wood {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public WoodenStep(final Material type, final byte data) {
@@ -51,9 +57,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * Test if step is inverted
+     * 检查此台阶是否被反转.
+     * <p>
+     * 原文:Test if step is inverted
      *
-     * @return true if inverted (top half), false if normal (bottom half)
+     * @return 上半台阶(反转的台阶)为true，普通台阶(底部台阶)为false
      */
     @SuppressWarnings("deprecation")
     public boolean isInverted() {
@@ -61,10 +69,11 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * Set step inverted state
+     * 设置台阶是否被反转.
+     * <p>
+     * 原文:Set step inverted state
      *
-     * @param inv - true if step is inverted (top half), false if step is normal
-     * (bottom half)
+     * @param inv - 上半台阶(反转的台阶)为true，普通台阶(底部台阶)为false
      */
     @SuppressWarnings("deprecation")
     public void setInverted(boolean inv) {

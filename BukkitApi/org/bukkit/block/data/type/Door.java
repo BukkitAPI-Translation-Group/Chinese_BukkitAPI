@@ -6,35 +6,38 @@ import org.bukkit.block.data.Openable;
 import org.bukkit.block.data.Powerable;
 
 /**
- * 'hinge' indicates which hinge this door is attached to and will rotate around
- * when opened.
+ * 'hinge'数据值表示门的门轴依靠哪一边，并且开关门时会旋转.
  */
 public interface Door extends Bisected, Directional, Openable, Powerable {
 
     /**
-     * Gets the value of the 'hinge' property.
+     * 获取'hinge'数据值.
+     * <p>
+     * 原文:Gets the value of the 'hinge' property.
      *
-     * @return the 'hinge' value
+     * @return 门轴依靠哪一侧
      */
     Hinge getHinge();
 
     /**
-     * Sets the value of the 'hinge' property.
+     * 设置'hinge'数据值.
+     * <p>
+     * 原文:Sets the value of the 'hinge' property.
      *
-     * @param hinge the new 'hinge' value
+     * @param hinge 门轴依靠哪一侧
      */
     void setHinge(Hinge hinge);
 
     /**
-     * The hinge of a door.
+     * 门轴.
      */
     public enum Hinge {
         /**
-         * Door is attached to the left side.
+         * 门(轴)依靠在左侧.
          */
         LEFT,
         /**
-         * Door is attached to the right side.
+         * 门(轴)依靠在右侧.
          */
         RIGHT;
     }

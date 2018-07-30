@@ -5,10 +5,10 @@ import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 
 /**
- * Handles specific metadata for certain items or blocks
+ * 为某些物品或方块处理特定的元数据.
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link BlockData}.
+ * @deprecated 所有关于MaterialData的用法已过时，并且将来会被移除.
+ * 请使用 {@link BlockData}.
  */
 @Deprecated
 public class MaterialData implements Cloneable {
@@ -22,7 +22,7 @@ public class MaterialData implements Cloneable {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public MaterialData(final Material type, final byte data) {
@@ -31,10 +31,12 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * Gets the raw data in this material
+     * 获取此物品的原始数据值.
+     * <p>
+     * 原文:Gets the raw data in this material
      *
-     * @return Raw data
-     * @deprecated Magic value
+     * @return 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public byte getData() {
@@ -42,10 +44,12 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * Sets the raw data of this material
+     * 设置此物品的原始数据值.
+     * <p>
+     * 原文:Sets the raw data of this material
      *
-     * @param data New raw data
-     * @deprecated Magic value
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public void setData(byte data) {
@@ -53,20 +57,24 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * Gets the Material that this MaterialData represents
+     * 获取此MaterialData代表的Material.
+     * <p>
+     * 原文:Gets the Material that this MaterialData represents
      *
-     * @return Material represented by this MaterialData
+     * @return 此MaterialData代表的Material物品
      */
     public Material getItemType() {
         return type;
     }
 
     /**
-     * Creates a new ItemStack based on this MaterialData
+     * 基于此MaterialData创建一个新的物品堆实例.
+     * <p>
+     * 原文:Creates a new ItemStack based on this MaterialData
      *
-     * @return New ItemStack containing a copy of this MaterialData
-     * @deprecated this method creates an ItemStack of size 0 which is not
-     * generally useful. Consider {@link #toItemStack(int)}.
+     * @return 包含此MaterialData所含数据的ItemStack实例
+     * @deprecated 该方法创建了一个堆叠数为0的物品堆，一般没什么用.
+     * 请考虑 {@link #toItemStack(int)}.
      */
     @Deprecated
     public ItemStack toItemStack() {
@@ -74,10 +82,12 @@ public class MaterialData implements Cloneable {
     }
 
     /**
-     * Creates a new ItemStack based on this MaterialData
+     * 基于此MaterialData创建一个新的物品堆实例.
+     * <p>
+     * 原文:Creates a new ItemStack based on this MaterialData
      *
-     * @param amount The stack size of the new stack
-     * @return New ItemStack containing a copy of this MaterialData
+     * @param amount 物品堆叠数量
+     * @return 包含此MaterialData所含数据的ItemStack实例
      */
     public ItemStack toItemStack(int amount) {
         return new ItemStack(type, amount, data);

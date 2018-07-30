@@ -3,36 +3,42 @@ package org.bukkit.block.data;
 import java.util.Set;
 
 /**
- * 'shape' represents the current layout of a minecart rail.
+ * 'shape'数据值表示此铁轨的形态(铁轨连接方向).
  * <br>
- * Some types of rail may not be able to be laid out in all shapes, use
- * {@link #getShapes()} to get those applicable to this block.
+ * 某些铁轨可能不能够摆放成所有的形态，使用
+ * {@link #getShapes()}来获悉此铁轨可以怎样摆放.
  */
 public interface Rail extends BlockData {
 
     /**
-     * Gets the value of the 'shape' property.
+     * 获取'shape'的数据值.
+     * <p>
+     * 原文:Gets the value of the 'shape' property.
      *
-     * @return the 'shape' value
+     * @return 铁轨的形态
      */
     Shape getShape();
 
     /**
-     * Sets the value of the 'shape' property.
+     * 设置'shape'的数据值.
+     * <p>
+     * 原文:Sets the value of the 'shape' property.
      *
-     * @param shape the new 'shape' value
+     * @param shape 铁轨的形态
      */
     void setShape(Shape shape);
 
     /**
-     * Gets the shapes which are applicable to this block.
+     * 获取适用于此铁轨的形态.
+     * <p>
+     * 原文:Gets the shapes which are applicable to this block.
      *
-     * @return the allowed 'shape' values
+     * @return 适用于此铁轨的形态
      */
     Set<Shape> getShapes();
 
     /**
-     * The different types of shapes a rail block can occupy.
+     * 铁轨方块可使用的不同形态.
      */
     public enum Shape {
 

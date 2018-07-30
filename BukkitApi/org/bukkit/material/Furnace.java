@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a furnace.
+ * 代表熔炉.
  */
 public class Furnace extends FurnaceAndDispenser {
 
@@ -13,9 +13,11 @@ public class Furnace extends FurnaceAndDispenser {
     }
 
     /**
-     * Instantiate a furnace facing in a particular direction.
+     * 以指定朝向实例化一个熔炉.
+     * <p>
+     * 原文:Instantiate a furnace facing in a particular direction.
      *
-     * @param direction the direction the furnace's "opening" is facing
+     * @param direction 熔炉正面的朝向
      */
     public Furnace(BlockFace direction) {
         this();
@@ -29,7 +31,7 @@ public class Furnace extends FurnaceAndDispenser {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public Furnace(final Material type, final byte data) {

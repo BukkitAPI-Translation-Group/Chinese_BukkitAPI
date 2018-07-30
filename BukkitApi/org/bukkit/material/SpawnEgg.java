@@ -5,8 +5,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 
 /**
- * Represents a spawn egg that can be used to spawn mobs
- * @deprecated use {@link SpawnEggMeta}
+ * 代表刷怪蛋.
+ * @deprecated 请使用 {@link SpawnEggMeta}
  */
 @Deprecated
 public class SpawnEgg extends MaterialData {
@@ -18,7 +18,7 @@ public class SpawnEgg extends MaterialData {
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public SpawnEgg(final Material type, final byte data) {
@@ -27,7 +27,7 @@ public class SpawnEgg extends MaterialData {
 
     /**
      * @param data the raw data value
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public SpawnEgg(byte data) {
@@ -40,10 +40,12 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * Get the type of entity this egg will spawn.
+     * 获取这个刷怪蛋刷出实体的种类.
+     * <p>
+     * 原文:Get the type of entity this egg will spawn.
      *
-     * @return The entity type.
-     * @deprecated This is now stored in {@link SpawnEggMeta}.
+     * @return 实体种类
+     * @deprecated 现存储在 {@link SpawnEggMeta}.
      */
     @Deprecated
     public EntityType getSpawnedType() {
@@ -51,10 +53,12 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * Set the type of entity this egg will spawn.
+     * 设置这个刷怪蛋刷出实体的种类.
+     * <p>
+     * 原文:Set the type of entity this egg will spawn.
      *
-     * @param type The entity type.
-     * @deprecated This is now stored in {@link SpawnEggMeta}.
+     * @param type 实体种类
+     * @deprecated 现存储在 {@link SpawnEggMeta}.
      */
     @Deprecated
     public void setSpawnedType(EntityType type) {
