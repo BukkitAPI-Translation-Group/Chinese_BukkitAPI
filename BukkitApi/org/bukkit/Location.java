@@ -27,14 +27,14 @@ public class Location implements Cloneable, ConfigurationSerializable {
     private float yaw;
 
     /**
-     * 给定的坐标获取一个Location对象
+     * 以给定的坐标获取一个Location对象.
      * <p>
      * 原文:Constructs a new Location with the given coordinates
      *
-     * @param world 需要生成的地点世界名
-     * @param x 需要生成的地点的X轴坐标
-     * @param y 需要生成的地点的Y轴坐标
-     * @param z 需要生成的地点的Z轴坐标
+     * @param world 地点所在世界的名称
+     * @param x 地点的X轴坐标
+     * @param y 地点的Y轴坐标
+     * @param z 地点的Z轴坐标
      */
     public Location(final World world, final double x, final double y, final double z) {
         this(world, x, y, z, 0, 0);
@@ -45,17 +45,12 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Constructs a new Location with the given coordinates and direction
      *
-     * @param world 需要生成的地点世界名
-     * @param x 需要生成的地点的X轴坐标
-     * @param y 需要生成的地点的Y轴坐标
-     * @param z 需要生成的地点的Z轴坐标
-     * @param yaw 在X轴平面上的旋转角度的绝对值.以度为单位?
-     * <p>
-     * 原文: The absolute rotation on the x-plane, in degrees
-     * <p>
-     * @param pitch 在Y轴平面上旋转角度的绝对值.以度为单位?
-     * <p>
-     * 原文:The absolute rotation on the y-plane, in degrees
+     * @param world 地点所在世界的名称
+     * @param x 地点的X轴坐标
+     * @param y 地点的Y轴坐标
+     * @param z 地点的Z轴坐标
+     * @param yaw 在X轴平面上的旋转角度的绝对值,单位为角度制
+     * @param pitch 在Y轴平面上旋转角度的绝对值,单位为角度制
      */
     public Location(final World world, final double x, final double y, final double z, final float yaw, final float pitch) {
         this.world = world;
@@ -76,7 +71,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取该location对象所在的世界名
+     * 获取该location对象所在的世界名.
      * <p>
      * 原文:Gets the world that this location resides in
      *
@@ -87,7 +82,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取该Chunk的Location对象信息
+     * 获取该Chunk的Location对象信息.
      * <p>
      * 原文:Gets the chunk at the represented location
      *
@@ -98,18 +93,18 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取该方块的Location对象信息
+     * 获取此位置对应的方块.
      * <p>
      * 原文:Gets the block at the represented location
      *
-     * @return 方块Location对象信息
+     * @return 所在位置对应的方块
      */
     public Block getBlock() {
         return world.getBlockAt(this);
     }
 
     /**
-     * 设置该Location对象中的X坐标数据
+     * 设置该Location对象中的X坐标数据.
      * <p>
      * 原文:Sets the x-coordinate of this location
      *
@@ -120,7 +115,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取该Location对象中的X坐标
+     * 获取该Location对象中的X坐标.
      *
      * @return X坐标
      */
@@ -142,7 +137,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 设置该Location对象中的Y轴数据
+     * 设置该Location对象中的Y轴数据.
      *
      * @param y 需要设置的Y轴坐标
      */
@@ -151,7 +146,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 获取该Location对象中的Y坐标
+     * 获取该Location对象中的Y坐标.
      *
      * @return Y坐标
      */
