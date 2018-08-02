@@ -6,7 +6,7 @@ package org.bukkit.block.data;
 public interface Lightable extends BlockData {
 
     /**
-     * 获取'lit'属性值.
+     * 获取'lit'数据值.
      * <p>
      * 原文:Gets the value of the 'lit' property.
      *
@@ -15,7 +15,7 @@ public interface Lightable extends BlockData {
     boolean isLit();
 
     /**
-     * 设置'lit'属性值.
+     * 设置'lit'数据值.
      * <p>
      * 原文:Sets the value of the 'lit' property.
      *
