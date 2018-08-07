@@ -9,9 +9,13 @@ body {
     margin:0;
     font-family:'Roboto', 'Microsoft Yahei', monospace;
 }
+::-moz-selection {
+    background: #8c9eff;
+    color: #ffffff;
+}
 ::selection {
-    background: #66ccff;
-    color: currentColor;
+    background: #8c9eff;
+    color: #ffffff;
 }
 a:link, a:visited {
     text-decoration:none;
