@@ -685,14 +685,15 @@ public interface Server extends PluginMessageRecipient {
     public void shutdown();
 
     /**
-     * 向具有给定权限的玩家发送一条信息
+     * 向有给定权限的用户广播一条消息.
      * <p>
      * 原文:Broadcasts the specified message to every user with the given
      * permission name.
      *
-     * @param message 需要公告的信息
-     * @param permission 需要的权限{@link Permissible permissibles}
-     * @return 收到公告的玩家数量
+     * @param message 需要广播的消息
+     * @param permission 接受这条公告需要拥有的{@link Permissible
+     *     权限许可}
+     * @return 成功接收此消息的玩家数
      */
     public int broadcast(String message, String permission);
 
