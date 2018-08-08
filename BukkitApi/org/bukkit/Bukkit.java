@@ -897,13 +897,15 @@ public final class Bukkit {
     }
 
     /**
-     * Broadcasts the specified message to every user with the given
+     * 向有给定权限的用户广播一条消息.
+     * <p>
+     * 原文:Broadcasts the specified message to every user with the given
      * permission name.
      *
-     * @param message message to broadcast
-     * @param permission the required permission {@link Permissible
-     *     permissibles} must have to receive the broadcast
-     * @return number of message recipients
+     * @param message 要广播的消息
+     * @param permission 接受这条公告需要拥有的{@link Permissible
+     *     权限许可}
+     * @return 成功接收此消息的玩家数
      */
     public static int broadcast(String message, String permission) {
         return server.broadcast(message, permission);
