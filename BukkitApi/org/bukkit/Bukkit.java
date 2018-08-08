@@ -145,7 +145,7 @@ public final class Bukkit {
      * {@link Entity#teleport(Location) 传送}, 
      * {@link Player#setHealth(double) 死亡}, 
      * {@link Player#kickPlayer(String) 踢出} 等操作的结果是未知的 (没有罗列完全). 
-     * 任何对这个集合的异步操作都是安全的. 
+     * 任何对这个集合的异步操作都是不安全的. 
      * <p>
      * For safe consequential iteration or mimicking the old array behavior,
      * using {@link Collection#toArray(Object[])} is recommended. For making
