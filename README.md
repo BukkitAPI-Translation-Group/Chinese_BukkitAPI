@@ -3,9 +3,9 @@
 
 **提示：** 该分支(1.12.2)用于进行**Bukkit 1.12.2**版本的翻译工作，目前，1.12.2版本继续维护(暂更时间未定)，若要关注Bukkit 1.13版本，请前往[master分支](https://github.com/BukkitAPI-Translation-Group/Chinese_BukkitAPI/)。
 
-文档地址：https://docs.windit.net/Chinese_BukkitAPI/
+文档地址：[1.12.2版本](https://docs.windit.net/Chinese_BukkitAPI/) | [1.13及以上版本](https://bukkit.windit.net/javadoc/) (链接可用于IDE)
 
-离线版：https://dr.windit.net/release.zip
+离线版：[1.12.2版本](https://dr.windit.net/release.zip) | [1.13及以上版本](https://dr.windit.net/master.zip)
 
 **遇到问题请发Issues或PR，以帮助我们解决相关问题。**
 # 项目说明
