@@ -106,6 +106,53 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setPlayerListName(String name);
 
     /**
+     * Gets the currently displayed player list header for this player.
+     *
+     * @return player list header or null
+     * @deprecated 草案API
+     */
+    @Deprecated
+    public String getPlayerListHeader();
+
+    /**
+     * Gets the currently displayed player list footer for this player.
+     *
+     * @return player list header or null
+     * @deprecated 草案API
+     */
+    @Deprecated
+    public String getPlayerListFooter();
+
+    /**
+     * Sets the currently displayed player list header for this player.
+     *
+     * @param header player list header, null for empty
+     * @deprecated 草案API
+     */
+    @Deprecated
+    public void setPlayerListHeader(String header);
+
+    /**
+     * Sets the currently displayed player list footer for this player.
+     *
+     * @param footer player list footer, null for empty
+     * @deprecated 草案API
+     */
+    @Deprecated
+    public void setPlayerListFooter(String footer);
+
+    /**
+     * Sets the currently displayed player list header and footer for this
+     * player.
+     *
+     * @param header player list header, null for empty
+     * @param footer player list footer, null for empty
+     * @deprecated 草案API
+     */
+    @Deprecated
+    public void setPlayerListHeaderFooter(String header, String footer);
+
+    /**
      * 设置玩家指南针的指向的位置({@link Location}).
      * <p>
      * 原文:Set the target of the player's compass.
@@ -1664,4 +1711,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @return the player's locale
      */
     public String getLocale();
+
+    /**
+     * Update the list of commands sent to the client.
+     * <br>
+     * Generally useful to ensure the client has a complete list of commands
+     * after permission changes are done.
+     */
+    public void updateCommands();
 }

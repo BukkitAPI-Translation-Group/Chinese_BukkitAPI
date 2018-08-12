@@ -22,6 +22,8 @@ public interface UnsafeValues {
 
     Material fromLegacy(MaterialData material);
 
+    Material fromLegacy(MaterialData material, boolean itemPriority);
+
     BlockData fromLegacy(Material material, byte data);
 
     int getDataVersion();
@@ -30,7 +32,7 @@ public interface UnsafeValues {
 
     void checkSupported(PluginDescriptionFile pdf);
 
-    byte[] processClass(PluginDescriptionFile pdf, byte[] clazz);
+    byte[] processClass(PluginDescriptionFile pdf, String path, byte[] clazz);
 
     /**
      * Load an advancement represented by the specified string into the server.

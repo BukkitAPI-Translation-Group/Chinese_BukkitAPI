@@ -284,7 +284,8 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
         if (stack == this) {
             return true;
         }
-        return getType()== stack.getType()&& getDurability() == stack.getDurability() && hasItemMeta() == stack.hasItemMeta() && (hasItemMeta() ? Bukkit.getItemFactory().equals(getItemMeta(), stack.getItemMeta()) : true);
+        Material comparisonType = Bukkit.getUnsafe().fromLegacy(this.getType()); // This may be called from legacy item stacks, try to get the right material
+        return comparisonType == stack.getType() && getDurability() == stack.getDurability() && hasItemMeta() == stack.hasItemMeta() && (hasItemMeta() ? Bukkit.getItemFactory().equals(getItemMeta(), stack.getItemMeta()) : true);
     }
 
     @Override
@@ -509,7 +510,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
             type = Material.getMaterial(Material.LEGACY_PREFIX + (String) args.get("type"));
 
             byte dataVal = (type.getMaxDurability() == 0) ? (byte) damage : 0; // Actually durable items get a 0 passed into conversion
-            type = Bukkit.getUnsafe().fromLegacy(new MaterialData(type, dataVal));
+            type = Bukkit.getUnsafe().fromLegacy(new MaterialData(type, dataVal), true);
 
             // We've converted now so the data val isn't a thing and can be reset
             if (dataVal != 0) {
@@ -543,6 +544,13 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
             Object raw = args.get("meta");
             if (raw instanceof ItemMeta) {
                 result.setItemMeta((ItemMeta) raw);
+            }
+        }
+
+        if (version < 0) {
+            // Set damage again incase meta overwrote it
+            if (args.containsKey("damage")) {
+                result.setDurability(damage);
             }
         }
 

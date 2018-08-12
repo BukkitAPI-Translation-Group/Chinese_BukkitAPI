@@ -79,12 +79,12 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
     }
 
     /**
-     * 获取与结构有关的所有方块的ArrayList.
+     * 获取与结构有关的所有方块的列表.
      * <p>
      * 原文:
-     * Gets an ArrayList of all blocks associated with the structure.
+     * Gets a list of all blocks associated with the structure.
      *
-     * @return 与结构有关的所有方块的ArrayList
+     * @return 与结构有关的所有方块的列表
      */
     public List<BlockState> getBlocks() {
         return blocks;

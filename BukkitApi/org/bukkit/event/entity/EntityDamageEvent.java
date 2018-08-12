@@ -17,8 +17,6 @@ import com.google.common.collect.ImmutableMap;
 
 /**
  * 储存伤害事件的数据
- * 原文:
- * Stores data for damage events
  */
 public class EntityDamageEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -30,7 +28,6 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     private boolean cancelled;
     private final DamageCause cause;
 
-    @Deprecated
     public EntityDamageEvent(final Entity damagee, final DamageCause cause, final double damage) {
         this(damagee, cause, new EnumMap<DamageModifier, Double>(ImmutableMap.of(DamageModifier.BASE, damage)), new EnumMap<DamageModifier, Function<? super Double, Double>>(ImmutableMap.of(DamageModifier.BASE, ZERO)));
     }

@@ -8,13 +8,10 @@ import org.bukkit.entity.Entity;
 
 /**
  * 当一个实体受到来自方块的伤害时触发该事件
- * 原文:
- * Called when an entity is damaged by a block
  */
 public class EntityDamageByBlockEvent extends EntityDamageEvent {
     private final Block damager;
 
-    @Deprecated
     public EntityDamageByBlockEvent(final Block damager, final Entity damagee, final DamageCause cause, final double damage) {
         super(damagee, cause, damage);
         this.damager = damager;

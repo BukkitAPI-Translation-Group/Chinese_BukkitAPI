@@ -856,35 +856,53 @@ public interface Server extends PluginMessageRecipient {
     public HelpMap getHelpMap();
 
     /**
-     * 通过一个特定的类型来创建一个空的物品栏,如果这个类型是{@link InventoryType#CHEST},那么这个物品栏
-     * 的大小为27格(即0-26的slot可用),每个物品栏类型拥有其默认的大小
-     * <p>
-     * 原文:Creates an empty inventory of the specified type. If the type is {@link
-     * InventoryType#CHEST}, the new inventory has a size of 27; otherwise the
-     * new inventory has the normal size for its type.
+     * Creates an empty inventory with the specified type and title. If the type
+     * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
+     * otherwise the new inventory has the normal size for its type.<br>
+     * It should be noted that some inventory types do not support titles and
+     * may not render with said titles on the Minecraft client.
+     * <br>
+     * {@link InventoryType#WORKBENCH} will not process crafting recipes if
+     * created with this method. Use
+     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * <br>
+     * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
+     * for possible enchanting results. Use
+     * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner 该物品栏的拥有者,为null则表明无拥有者
-     * @param type 被创建的Inventory的类型
-     * @return Inventory实例
+     * @param owner the holder of the inventory, or null to indicate no holder
+     * @param type the type of inventory to create
+     * @return a new inventory
+     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
+     * viewed.
+     *
+     * @see InventoryType#isCreatable()
      */
     Inventory createInventory(InventoryHolder owner, InventoryType type);
 
     /**
-     * 通过一个特定的类型和标题来创建一个空的物品栏,如果这个类型是{@link InventoryType#CHEST},那么这个物品栏
-     * 的大小为27格(即0-26的slot可用),每个物品栏类型拥有其默认的大小
-     * <p>
-     * 原文:Creates an empty inventory with the specified type and title. If the type
+     * Creates an empty inventory with the specified type and title. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.<br>
-     * 注意:某些Inventory不支持标题,这些不支持标题的Inventory将不会在客户端渲染标题(即设置标题对这类Inventory无效)
-     * <p>
-     * 原文:It should be noted that some inventory types do not support titles and
+     * It should be noted that some inventory types do not support titles and
      * may not render with said titles on the Minecraft client.
+     * <br>
+     * {@link InventoryType#WORKBENCH} will not process crafting recipes if
+     * created with this method. Use
+     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * <br>
+     * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
+     * for possible enchanting results. Use
+     * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner 该物品栏的拥有者,为null则表明无拥有者
-     * @param type 被创建的Inventory的类型
-     * @param title 被创建的Inventory的标题
-     * @return Inventory实例
+     * @param owner The holder of the inventory; can be null if there's no holder.
+     * @param type The type of inventory to create.
+     * @param title The title of the inventory, to be displayed when it is viewed.
+     * @return The new inventory.
+     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
+     * viewed.
+     *
+     * @see InventoryType#isCreatable()
      */
     Inventory createInventory(InventoryHolder owner, InventoryType type, String title);
 

@@ -100,7 +100,7 @@ final class PluginClassLoader extends URLClassLoader {
                         throw new ClassNotFoundException(name, ex);
                     }
 
-                    classBytes = loader.server.getUnsafe().processClass(description, classBytes);
+                    classBytes = loader.server.getUnsafe().processClass(description, path, classBytes);
 
                     int dot = name.lastIndexOf('.');
                     if (dot != -1) {

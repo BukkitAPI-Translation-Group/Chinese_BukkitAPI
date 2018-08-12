@@ -70,6 +70,17 @@ public class BlockCanBuildEvent extends BlockEvent {
         return blockData.getMaterial();
     }
 
+    /**
+     * 获取我们想要放置的方块的BlockData数据.
+     * <p>
+     * 原文:Gets the BlockData that we are trying to place.
+     *
+     * @return 尝试放置的方块的BlockData数据
+     */
+    public BlockData getBlockData() {
+        return blockData;
+    }
+
     @Override
     public HandlerList getHandlers() {
         return handlers;

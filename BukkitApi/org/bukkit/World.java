@@ -329,7 +329,10 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 区块的x坐标
      * @param z 区块的z坐标
      * @return 区块是否真的被重新生成
+     * 
+     * @deprecated 无法保证重新生成单个区块会产生与之前相同的区块, 因为地形装饰可分布在区块上
      */
+    @Deprecated
     public boolean regenerateChunk(int x, int z);
 
     /**
@@ -1598,21 +1601,18 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
 
     /**
-     * 获取当前的游戏规则。
+     * 获取包含所有{@link GameRule 游戏规则}的数组.
      * <p>
-     * 译注：如果你不知道这是什么，请查阅gamerule命令。
-     * <p>
-     * 原文：
-     * Get existing rules
+     * 原文:Get an array containing the names of all the {@link GameRule}s.
      *
-     * @return 包含所有规则的数组
+     * @return {@link GameRule 游戏规则}名列表.
      */
     public String[] getGameRules();
 
     /**
-     * 获取指定游戏规则的当前状态。
+     * 获取指定游戏规则的当前状态.
      * <p>
-     * 如果规则是空则会返回null
+     * 如果rule为null则会返回null.
      * <p>
      * 原文：
      * Gets the current state of the specified rule
@@ -1621,15 +1621,17 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param rule 要查找的规则
      * @return 规则的字符串数值
+     * @deprecated 请使用 {@link #getGameRuleValue(GameRule)}
      */
+    @Deprecated
     public String getGameRuleValue(String rule);
 
     /**
-     * 将指定的游戏规则设置为指定数值。
+     * 将指定的游戏规则设置为指定数值.
      * <p>
-     * 规则可能会尝试验证值，如果数值被设置则会返回true。
+     * 规则可能会尝试验证值，如果数值被设置则会返回true.
      * <p>
-     * 如果规则为空，则这个函数会返回false。
+     * 如果rule为null，则这个函数会返回false.
      * <p>
      * 原文：
      * Set the specified gamerule to specified value.
@@ -1642,11 +1644,13 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param rule 要设置的规则
      * @param value 要设置的规则数值
      * @return 规则被设置则返回true
+     * @deprecated 请使用 {@link #setGameRule(GameRule, Object)}
      */
+    @Deprecated
     public boolean setGameRuleValue(String rule, String value);
 
     /**
-     * 检查字符串是否是一个有效的游戏规则。
+     * 检查字符串是否是一个有效的游戏规则.
      * <p>
      * 原文：
      * Checks if string is a valid game rule
@@ -1655,6 +1659,41 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 如果规则存在则返回true
      */
     public boolean isGameRule(String rule);
+
+    /**
+     * 获取给定的{@link GameRule 游戏规则}的数据值.
+     * <p>
+     * 原文:Get the current value for a given {@link GameRule}.
+     *
+     * @param rule 游戏规则
+     * @param <T> 游戏规则数据类型
+     * @return 游戏规则值
+     */
+    public <T> T getGameRuleValue(GameRule<T> rule);
+
+    /**
+     * 获取给定{@link GameRule 游戏规则}的默认值. 不保证该值与当前值匹配.
+     * <p>
+     * 原文:Get the default value for a given {@link GameRule}. This value is not
+     * guaranteed to match the current value.
+     *
+     * @param rule 游戏规则
+     * @param <T> 游戏规则数据类型
+     * @return 游戏规则默认值
+     */
+    public <T> T getGameRuleDefault(GameRule<T> rule);
+
+    /**
+     * 设置给定{@link GameRule 游戏规则}的数据值.
+     * <p>
+     * 原文:Set the given {@link GameRule}'s new value.
+     *
+     * @param rule 要更新的游戏规则
+     * @param newValue 值
+     * @param <T> 对应游戏规则的数据类型
+     * @return 若设置成功返回true
+     */
+    public <T> boolean setGameRule(GameRule<T> rule, T newValue);
 
     /**
      * 获取这个世界的世界边界对象。
