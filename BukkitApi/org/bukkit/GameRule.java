@@ -8,10 +8,10 @@ import java.util.Map;
  * 游戏规则控制着Minecraft自身的某些行为.
  * <br>
  * 欲了解更多信息请访问
- * <a href="https://minecraft-zh.gamepedia.com/%E5%91%BD%E4%BB%A4#gamerule">Minecraft
+ * <a href="https://minecraft-zh.gamepedia.com/%E5%91%BD%E4%BB%A4#gamerule" target="_blank">Minecraft
  * Wiki</a>
  * <p>
- * 版权说明:枚举翻译大部分引自 Minecraft Wiki.
+ * 版权说明:以下常量翻译大部分引自 Minecraft Wiki.
  */
 public final class GameRule<T> {
 
