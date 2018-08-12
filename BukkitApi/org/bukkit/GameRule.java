@@ -87,7 +87,7 @@ public final class GameRule<T> {
      * 怪物能否捡起物品或修改方块.
      * <p>
      * 译注:其实这里的“怪物”(英文原文为mob)的范围非常广, 不仅指怪物, 还有村民动物等.
-     * Mob包括的实体详见{@link Mob Mob接口文档}.
+     * Mob包括的实体详见{@link org.bukkit.entity.Mob Mob接口文档}.
      */
     public static final GameRule<Boolean> MOB_GRIEFING = new GameRule<>("mobGriefing", Boolean.class);
 
