@@ -5,144 +5,142 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * GameRules dictate certain behavior within Minecraft itself
+ * 游戏规则控制着Minecraft自身的某些行为.
  * <br>
- * For more information please visit the
- * <a href="https://minecraft.gamepedia.com/Commands/gamerule">Minecraft
+ * 欲了解更多信息请访问
+ * <a href="https://minecraft-zh.gamepedia.com/%E5%91%BD%E4%BB%A4#gamerule">Minecraft
  * Wiki</a>
+ * <p>
+ * 版权说明:枚举翻译大部分引自 Minecraft Wiki.
  */
 public final class GameRule<T> {
 
     private static Map<String, GameRule<?>> gameRules = new HashMap<>();
     // Boolean rules
     /**
-     * Toggles the announcing of advancements.
+     * 是否在聊天框中公告玩家进度的达成.
      */
     public static final GameRule<Boolean> ANNOUNCE_ADVANCEMENTS = new GameRule<>("announceAdvancements", Boolean.class);
 
     /**
-     * Whether command blocks should notify admins when they perform commands.
+     * 命令方块执行命令时是否在聊天框中向管理员显示.
      */
     public static final GameRule<Boolean> COMMAND_BLOCK_OUTPUT = new GameRule<>("commandBlockOutput", Boolean.class);
 
     /**
-     * Whether the server should skip checking player speed when the player is
-     * wearing elytra.
+     * 是否让服务器停止检查使用鞘翅玩家的移动速度.
+     * 有助于减轻因服务器延迟而导致的飞行卡顿, 但有可能导致生存模式下玩家飞行过快 (作弊).
      */
     public static final GameRule<Boolean> DISABLE_ELYTRA_MOVEMENT_CHECK = new GameRule<>("disableElytraMovementCheck", Boolean.class);
 
     /**
-     * Whether time progresses from the current moment.
+     * 是否进行日夜交替和月相变化.
      */
     public static final GameRule<Boolean> DO_DAYLIGHT_CYCLE = new GameRule<>("doDaylightCycle", Boolean.class);
 
     /**
-     * Whether entities that are not mobs should have drops.
+     * 非生物实体是否掉落物品.
      */
     public static final GameRule<Boolean> DO_ENTITY_DROPS = new GameRule<>("doEntityDrops", Boolean.class);
 
     /**
-     * Whether fire should spread and naturally extinguish.
+     * 火是否蔓延及自然熄灭.
      */
     public static final GameRule<Boolean> DO_FIRE_TICK = new GameRule<>("doFireTick", Boolean.class);
 
     /**
-     * Whether players should only be able to craft recipes they've unlocked
-     * first.
+     * 玩家的合成配方是否需要解锁才能使用.
      */
     public static final GameRule<Boolean> DO_LIMITED_CRAFTING = new GameRule<>("doLimitedCrafting", Boolean.class);
 
     /**
-     * Whether mobs should drop items.
+     * 生物在死亡是否掉落物品 (战利品).
      */
     public static final GameRule<Boolean> DO_MOB_LOOT = new GameRule<>("doMobLoot", Boolean.class);
 
     /**
-     * Whether mobs should naturally spawn.
+     * 生物是否自然生成. 不影响刷怪箱.
      */
     public static final GameRule<Boolean> DO_MOB_SPAWNING = new GameRule<>("doMobSpawning", Boolean.class);
 
     /**
-     * Whether blocks should have drops.
+     * 方块被破坏时是否掉落物品.
      */
     public static final GameRule<Boolean> DO_TILE_DROPS = new GameRule<>("doTileDrops", Boolean.class);
 
     /**
-     * Whether the weather will change from the current moment.
+     * 天气是否变化.
      */
     public static final GameRule<Boolean> DO_WEATHER_CYCLE = new GameRule<>("doWeatherCycle", Boolean.class);
 
     /**
-     * Whether the player should keep items in their inventory after death.
+     * 玩家死亡后是否保留物品栏物品 (死亡时物品不掉落).
      */
     public static final GameRule<Boolean> KEEP_INVENTORY = new GameRule<>("keepInventory", Boolean.class);
 
     /**
-     * Whether to log admin commands to server log.
+     * 是否在服务器日志中记录管理员使用过的命令.
      */
     public static final GameRule<Boolean> LOG_ADMIN_COMMANDS = new GameRule<>("logAdminCommands", Boolean.class);
 
     /**
-     * Whether mobs can pick up items or change blocks.
+     * 怪物能否捡起物品或修改方块.
+     * <p>
+     * 译注:其实这里的“怪物”(英文原文为mob)的范围非常广, 不仅指怪物, 还有村民动物等.
+     * Mob包括的实体详见{@link Mob Mob接口文档}.
      */
     public static final GameRule<Boolean> MOB_GRIEFING = new GameRule<>("mobGriefing", Boolean.class);
 
     /**
-     * Whether players can regenerate health naturally through their hunger bar.
+     * 玩家是否能在饥饿值足够时自然恢复生命值
+     * (不影响外部治疗效果, 如金苹果、生命恢复状态效果等).
      */
     public static final GameRule<Boolean> NATURAL_REGENERATION = new GameRule<>("naturalRegeneration", Boolean.class);
 
     /**
-     * Whether the debug screen shows all or reduced information.
+     * 调式屏幕是否显示简化的信息而非详细信息.
      */
     public static final GameRule<Boolean> REDUCED_DEBUG_INFO = new GameRule<>("reducedDebugInfo", Boolean.class);
 
     /**
-     * Whether the feedback from commands executed by a player should show up in
-     * chat. Also affects the default behavior of whether command blocks store
-     * their output text.
+     * 玩家执行命令的返回信息是否在聊天框中显示.
+     * 同时影响命令方块是否保存命令输出文本.
      */
     public static final GameRule<Boolean> SEND_COMMAND_FEEDBACK = new GameRule<>("sendCommandFeedback", Boolean.class);
 
     /**
-     * Whether a message appears in chat when a player dies.
+     * 是否在聊天框中显示玩家以及驯养宠物的死亡信息.
      */
     public static final GameRule<Boolean> SHOW_DEATH_MESSAGES = new GameRule<>("showDeathMessages", Boolean.class);
 
     /**
-     * Whether players in spectator mode can generate chunks.
+     * 是否允许旁观模式的玩家生成区块.
      */
     public static final GameRule<Boolean> SPECTATORS_GENERATE_CHUNKS = new GameRule<>("spectatorsGenerateChunks", Boolean.class);
 
     // Numerical rules
     /**
-     * How often a random block tick occurs (such as plant growth, leaf decay,
-     * etc.) per chunk section per game tick. 0 will disable random ticks,
-     * higher numbers will increase random ticks.
+     * 每游戏刻每区块中随机的方块刻发生的频率 (例如植物生长，树叶腐烂等).
+     * 为0时禁用随机刻, 较高的数字将增大随机刻频率.
      */
     public static final GameRule<Integer> RANDOM_TICK_SPEED = new GameRule<>("randomTickSpeed", Integer.class);
 
     /**
-     * The number of blocks outward from the world spawn coordinates that a
-     * player will spawn in when first joining a server or when dying without a
-     * spawnpoint.
+     * 首次进入服务器的玩家和没有重生点的死亡玩家在重生时与世界重生点坐标的距离.
      */
     public static final GameRule<Integer> SPAWN_RADIUS = new GameRule<>("spawnRadius", Integer.class);
 
     /**
-     * The maximum number of other pushable entities a mob or player can push,
-     * before taking suffocation damage.
+     * 玩家或生物能同时推动其它可推动实体的数量, 超过此数量时将承受窒息伤害.
      * <br>
-     * Setting to 0 disables this rule.
+     * 设置成0可以停用这个规则.
      */
     public static final GameRule<Integer> MAX_ENTITY_CRAMMING = new GameRule<>("maxEntityCramming", Integer.class);
 
     /**
-     * Determines the number at which the chain of command blocks act as a
-     * "chain."
+     * 指定工作在连锁模式的命令方块的总数量.
      * <br>
-     * This is the maximum amount of command blocks that can be activated in a
-     * single tick from a single chain.
+     * 该值是在同一连锁同一tick时可激活的最大命令方块数量.
      */
     public static final GameRule<Integer> MAX_COMMAND_CHAIN_LENGTH = new GameRule<>("maxCommandChainLength", Integer.class);
 
@@ -160,18 +158,22 @@ public final class GameRule<T> {
     }
 
     /**
-     * Get the name of this GameRule.
+     * 获取此游戏规则的名称.
+     * <p>
+     * 原文:Get the name of this GameRule.
      *
-     * @return the name of this GameRule
+     * @return 游戏规则名
      */
     public String getName() {
         return name;
     }
 
     /**
-     * Get the type of this rule.
+     * 获取此游戏规则的数据类型.
+     * <p>
+     * 原文:Get the type of this rule.
      *
-     * @return the rule type; Integer or Boolean
+     * @return 游戏规则的数据类型;Integer 或 Boolean
      */
     public Class<T> getType() {
         return type;
@@ -195,11 +197,12 @@ public final class GameRule<T> {
     }
 
     /**
-     * Get a {@link GameRule} by its name.
+     * 按名称获取{@link GameRule 游戏规则}.
+     * <p>
+     * 原文:Get a {@link GameRule} by its name.
      *
-     * @param rule the name of the GameRule
-     * @return the {@link GameRule} or null if no GameRule matches the given
-     * name
+     * @param rule 游戏规则名
+     * @return {@link GameRule 游戏规则}, 若没有与给定名称相匹配的GameRule返回null
      */
     public static GameRule<?> getByName(String rule) {
         Preconditions.checkNotNull(rule, "Rule cannot be null");
@@ -207,9 +210,11 @@ public final class GameRule<T> {
     }
 
     /**
-     * Get an immutable collection of {@link GameRule}s.
+     * 获取一个不可变的{@link GameRule 游戏规则}集合.
+     * <p>
+     * 原文:Get an immutable collection of {@link GameRule}s.
      *
-     * @return an immutable collection containing all registered GameRules.
+     * @return 包含所有已注册游戏规则的不可变集合
      */
     public static GameRule<?>[] values() {
         return gameRules.values().toArray(new GameRule<?>[gameRules.size()]);
