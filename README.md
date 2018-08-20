@@ -15,7 +15,9 @@ Javadoc是JDK提供的一个工具，它可以从程序源代码中抽取类、�
 在开始翻译前, 请先掌握Javadoc文档注释样式. 
 参阅:           
 1.http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html (英文)       
-2.http://www.cnblogs.com/xt0810/p/3630996.html              
+2.http://www.cnblogs.com/xt0810/p/3630996.html
+# 许可说明
+本文档的翻译部分使用[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)许可协议发布，您不得将任何译文出于商业化的目的而使用。其它所有源代码属SpigotMC所有，以[GPLv3](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/browse/LICENCE.txt)许可协议发布.
 # 翻译规范
 ## 原文保留
 为了使文档更严谨、方便比对，必须保留原文。例如：
