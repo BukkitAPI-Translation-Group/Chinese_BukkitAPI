@@ -11,11 +11,13 @@
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
-Javadoc是JDK提供的一个工具，它可以从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。       
-在开始翻译前, 请先掌握Javadoc文档注释样式. 
-参阅:           
-1.http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html (英文)       
-2.http://www.cnblogs.com/xt0810/p/3630996.html              
+Javadoc是JDK提供的一个工具，它可以从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。
+在开始翻译前, 请先掌握Javadoc文档注释样式.参阅:
+
+1.http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html (英文)
+2.http://www.cnblogs.com/xt0810/p/3630996.html
+# 许可说明
+本文档的翻译部分使用[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)许可协议发布，您不得将任何译文出于商业化的目的而使用。其它所有源代码属SpigotMC所有，以[GPLv3](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/browse/LICENCE.txt)许可协议发布.
 # 翻译规范
 ## 原文保留
 为了使文档更严谨、方便比对，必须保留原文。例如：
@@ -30,14 +32,14 @@ Javadoc是JDK提供的一个工具，它可以从程序源代码中抽取类、�
  */
 public boolean getPVP();
 ```
-分为三部分, 第一部分为简述: 使用简短的语言描述的用途.    
-使用 . 号加一个空格给简述结尾. JavaDoc工具使用". "(英文句号后跟一个空格)来区分简单描述与详细描述, **但不会自动在这两种描述之间添加换行**   
+分为三部分, 第一部分为简述: 使用简短的语言描述的用途.
+使用 . 号加一个空格给简述结尾. JavaDoc工具使用". "(英文句号后跟一个空格)来区分简单描述与详细描述, **但不会自动在这两种描述之间添加换行**
 
-请**统一使用英文标点符号**.    
+请**统一使用英文标点符号**.
 
-第二部分为详细描述, 用于详细说明方法用途, 或举一些简单的例子.    
+第二部分为详细描述, 用于详细说明方法用途, 或举一些简单的例子.
 
-第三部分为JavaDoc标签, 其中有: 参数说明 @param, 返回值说明 @return, 抛出异常说明 @throws 等, 后面会详细说明.    
+第三部分为JavaDoc标签, 其中有: 参数说明 @param, 返回值说明 @return, 抛出异常说明 @throws 等, 后面会详细说明.
 
 **请在需要换行的地方请使用 &lt;p&gt; 否则不会换行**
 
