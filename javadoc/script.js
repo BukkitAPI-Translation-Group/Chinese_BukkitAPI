@@ -91,8 +91,4 @@ var _hmt = _hmt || [];
         gtag('js', new Date());
         gtag('config', 'UA-113488090-1');
     });
-    var hm = document.createElement("script");
-    hm.src = "//hm.baidu.com/hm.js?b5403b0006ff36b96e269c5bad28d40e";
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(hm, s);
 })();
