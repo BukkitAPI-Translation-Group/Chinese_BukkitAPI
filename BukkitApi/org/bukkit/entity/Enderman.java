@@ -31,7 +31,7 @@ public interface Enderman extends Monster {
      * <p>
      * 原文:Gets the data of the block that the Enderman is carrying.
      *
-     * @return 包含该方块数据的BlockData对象
+     * @return 包含该方块数据的BlockData对象, 如果没有手持方块返回null
      */
     public BlockData getCarriedBlock();
 
@@ -40,7 +40,7 @@ public interface Enderman extends Monster {
      * <p>
      * 原文:Sets the data of the block that the Enderman is carrying.
      *
-     * @param blockData 为该方块设置的BlockData对象
+     * @param blockData 为该方块设置的BlockData对象, 设为null移除末影人手持的方块
      */
     public void setCarriedBlock(BlockData blockData);
 }

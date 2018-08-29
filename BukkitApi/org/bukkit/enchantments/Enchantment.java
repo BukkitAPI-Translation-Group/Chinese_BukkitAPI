@@ -248,7 +248,7 @@ public abstract class Enchantment implements Keyed {
      * Strikes lightning when a mob is hit with a trident if conditions are
      * stormy
      */
-    public static final Enchantment CHANNELING = new EnchantmentWrapper("chanelling");
+    public static final Enchantment CHANNELING = new EnchantmentWrapper("channeling");
 
     /**
      * 附魔：经验修补

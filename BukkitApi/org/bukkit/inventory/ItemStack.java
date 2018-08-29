@@ -57,6 +57,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param type 物品种类
      * @param amount 堆叠数
      * @param damage 损耗值
+     * @deprecated see {@link #setDurability(short)}
      */
     public ItemStack(final Material type, final int amount, final short damage) {
         this(type, amount, damage, null);
@@ -201,7 +202,12 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * 原文:Sets the durability of this item
      *
      * @param durability 物品耐久度
+     * @deprecated 耐久度现在是 ItemMeta 的一部分. 为避免疑虑和误用, 请使用
+     * {@link #getItemMeta()}, {@link #setItemMeta(ItemMeta)} 和
+     * {@link Damageable#setDamage(int)}. 这是因为在调用此方法之前创建的 ItemMeta
+     * 的后续变动将覆盖调用此方法设置的物品元数据.
      */
+    @Deprecated
     public void setDurability(final short durability) {
         ItemMeta meta = getItemMeta();
         if (meta != null) {

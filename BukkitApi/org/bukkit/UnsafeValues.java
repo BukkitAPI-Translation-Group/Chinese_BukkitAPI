@@ -6,6 +6,7 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
+import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 /**
@@ -30,7 +31,7 @@ public interface UnsafeValues {
 
     ItemStack modifyItemStack(ItemStack stack, String arguments);
 
-    void checkSupported(PluginDescriptionFile pdf);
+    void checkSupported(PluginDescriptionFile pdf) throws InvalidPluginException;
 
     byte[] processClass(PluginDescriptionFile pdf, String path, byte[] clazz);
 

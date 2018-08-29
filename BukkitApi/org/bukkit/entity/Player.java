@@ -109,36 +109,28 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * Gets the currently displayed player list header for this player.
      *
      * @return player list header or null
-     * @deprecated 草案API
      */
-    @Deprecated
     public String getPlayerListHeader();
 
     /**
      * Gets the currently displayed player list footer for this player.
      *
      * @return player list header or null
-     * @deprecated 草案API
      */
-    @Deprecated
     public String getPlayerListFooter();
 
     /**
      * Sets the currently displayed player list header for this player.
      *
      * @param header player list header, null for empty
-     * @deprecated 草案API
      */
-    @Deprecated
     public void setPlayerListHeader(String header);
 
     /**
      * Sets the currently displayed player list footer for this player.
      *
      * @param footer player list footer, null for empty
-     * @deprecated 草案API
      */
-    @Deprecated
     public void setPlayerListFooter(String footer);
 
     /**
@@ -147,9 +139,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param header player list header, null for empty
      * @param footer player list footer, null for empty
-     * @deprecated 草案API
      */
-    @Deprecated
     public void setPlayerListHeaderFooter(String header, String footer);
 
     /**

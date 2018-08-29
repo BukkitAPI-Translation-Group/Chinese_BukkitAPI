@@ -43,7 +43,7 @@ public interface ChunkSnapshot {
      * 原文:Get block type for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 方块物品类型
      */
@@ -53,7 +53,7 @@ public interface ChunkSnapshot {
      * Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return block material type
      */
@@ -65,7 +65,7 @@ public interface ChunkSnapshot {
      * Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 0-15
      * @deprecated 不安全的参数
@@ -79,7 +79,7 @@ public interface ChunkSnapshot {
      * Get sky light level for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 0-15
      */
@@ -92,7 +92,7 @@ public interface ChunkSnapshot {
      * chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 0-15
      */
@@ -103,8 +103,8 @@ public interface ChunkSnapshot {
      * 原文：
      * Gets the highest non-air coordinate at the given coordinates
      *
-     * @param x X-coordinate of the blocks
-     * @param z Z-coordinate of the blocks
+     * @param x 方块X坐标 (0-15)
+     * @param z 方块Z坐标 (0-15)
      * @return 最高非空气方块的Y坐标
      */
     int getHighestBlockYAt(int x, int z);
@@ -114,8 +114,8 @@ public interface ChunkSnapshot {
      * 原文：
      * Get biome at given coordinates
      *
-     * @param x X坐标
-     * @param z Z坐标
+     * @param x X坐标 (0-15)
+     * @param z Z坐标 (0-15)
      * @return 指定坐标的生物群系
      */
     Biome getBiome(int x, int z);
@@ -125,8 +125,8 @@ public interface ChunkSnapshot {
      * 原文：
      * Get raw biome temperature (0.0-1.0) at given coordinate
      *
-     * @param x X坐标
-     * @param z Z坐标
+     * @param x X坐标 (0-15)
+     * @param z Z坐标 (0-15)
      * @return 指定坐标的温度
      */
     double getRawBiomeTemperature(int x, int z);
@@ -145,7 +145,7 @@ public interface ChunkSnapshot {
      * 原文：
      * Test if section is empty
      *
-     * @param sy -区块的Y坐标（方块Y坐标整除16）
+     * @param sy -区块的Y坐标（方块Y坐标整除16, 0-255）
      * @return 如果为空则返回true，否则返回false
      */
     boolean isSectionEmpty(int sy);

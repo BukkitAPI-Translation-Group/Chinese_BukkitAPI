@@ -15,6 +15,7 @@ public class FurnaceRecipe implements Recipe {
     private ItemStack ingredient;
     private float experience;
     private int cookingTime;
+    private String group = "";
 
     @Deprecated
     public FurnaceRecipe(ItemStack result, Material source) {
@@ -170,5 +171,27 @@ public class FurnaceRecipe implements Recipe {
     @Override
     public NamespacedKey getKey() {
         return key;
+    }
+
+    /**
+     * Get the group of this recipe. Recipes with the same group may be grouped
+     * together when displayed in the client.
+     *
+     * @return recipe group. An empty string denotes no group. May not be null.
+     */
+    public String getGroup() {
+        return group;
+    }
+
+    /**
+     * Set the group of this recipe. Recipes with the same group may be grouped
+     * together when displayed in the client.
+     *
+     * @param group recipe group. An empty string denotes no group. May not be
+     * null.
+     */
+    public void setGroup(String group) {
+        Preconditions.checkArgument(group != null, "group");
+        this.group = group;
     }
 }
