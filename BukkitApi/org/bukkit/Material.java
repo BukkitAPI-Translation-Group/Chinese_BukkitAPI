@@ -74,54 +74,201 @@ import org.bukkit.material.MaterialData;
  */
 public enum Material implements Keyed {
     //<editor-fold desc="Materials" defaultstate="collapsed">
+		/**
+     * 金合欢木船
+     */
     ACACIA_BOAT(27326, 1),
+	/**
+     * 金合欢木按钮
+     */
     ACACIA_BUTTON(13993, Switch.class),
+	/**
+     * 金合欢木门
+     */
     ACACIA_DOOR(23797, Door.class),
+	/**
+     * 金合欢栅栏
+     */
     ACACIA_FENCE(4569, Fence.class),
+	/**
+     * 金合欢栅栏门
+     */
     ACACIA_FENCE_GATE(14145, Gate.class),
+	/**
+     * 金合欢树叶
+     */
     ACACIA_LEAVES(16606, Leaves.class),
+	/**
+     * 金合欢原木
+     */
     ACACIA_LOG(8385, Orientable.class),
+	/**
+     * 金合欢木板
+     */
     ACACIA_PLANKS(31312),
+	/**
+     * 金合欢木压力板
+     */
     ACACIA_PRESSURE_PLATE(17586, Powerable.class),
+	/**
+     * 金合欢树苗
+     */
     ACACIA_SAPLING(20806, Sapling.class),
+	/**
+     * 金合欢台阶
+     */
     ACACIA_SLAB(23730, Slab.class),
+	/**
+     * 金合欢楼梯
+     */
     ACACIA_STAIRS(17453, Stairs.class),
+	/**
+     * 金合欢木活板门
+     */
     ACACIA_TRAPDOOR(18343, TrapDoor.class),
+	/**
+     * 金合欢木
+     */
     ACACIA_WOOD(9541, Orientable.class),
+	/**
+     * 激活铁轨
+     */
     ACTIVATOR_RAIL(5834, RedstoneRail.class),
+	/**
+     * 空气
+     */
     AIR(9648, 0),
+	/**
+     * 绒球葱
+     */
     ALLIUM(6871),
+	/**
+     * 安山岩
+     */
     ANDESITE(25975),
+	/**
+     * 铁砧
+     */
     ANVIL(18718, Directional.class),
+	/**
+     * 苹果
+     */
     APPLE(7720),
+	/**
+     * 盔甲架
+     */
     ARMOR_STAND(12852, 16),
+	/**
+     * 箭
+     */
     ARROW(31091),
+	/**
+     * 附魔西瓜梗
+     */
     ATTACHED_MELON_STEM(30882, Directional.class),
+	/**
+     * 附魔南瓜梗
+     */
     ATTACHED_PUMPKIN_STEM(12724, Directional.class),
+	/**
+     * 茜草花
+     */
     AZURE_BLUET(17608),
+	/**
+     * 烤马铃薯
+     */
     BAKED_POTATO(14624),
+	/**
+     * 屏障
+     */
     BARRIER(26453),
+	/**
+     * 蝙蝠刷怪蛋
+     */
     BAT_SPAWN_EGG(14607),
+	/**
+     * 信标
+     */
     BEACON(6608),
+	/**
+     * 基岩
+     */
     BEDROCK(23130),
+	/**
+     * 牛肉
+     */
     BEEF(4803),
+	/**
+     * 甜菜
+     */
     BEETROOT(23305),
+	/**
+     * 甜菜
+     */
     BEETROOTS(22075, Ageable.class),
+	/**
+     * 甜菜种子
+     */
     BEETROOT_SEEDS(21282),
+	/**
+     * 甜菜汤
+     */
     BEETROOT_SOUP(16036, 1),
+	/**
+     * 白桦木船
+     */
     BIRCH_BOAT(28104, 1),
+	/**
+     * 白桦木按钮
+     */
     BIRCH_BUTTON(26934, Switch.class),
+	/**
+     * 白桦木门
+     */
     BIRCH_DOOR(14759, Door.class),
+	/**
+     * 白桦木栅栏
+     */
     BIRCH_FENCE(17347, Fence.class),
+	/**
+     * 白桦木栅栏门
+     */
     BIRCH_FENCE_GATE(6322, Gate.class),
+	/**
+     * 白桦木树叶
+     */
     BIRCH_LEAVES(12601, Leaves.class),
+	/**
+     * 白桦木原木
+     */
     BIRCH_LOG(26727, Orientable.class),
+	/**
+     * 白桦木板
+     */
     BIRCH_PLANKS(29322),
+	/**
+     * 白桦木压力板
+     */
     BIRCH_PRESSURE_PLATE(9664, Powerable.class),
+	/**
+     * 白桦树苗
+     */
     BIRCH_SAPLING(31533, Sapling.class),
+	/**
+     * 白桦木台阶
+     */
     BIRCH_SLAB(13807, Slab.class),
+	/**
+     * 白桦木楼梯
+     */
     BIRCH_STAIRS(7657, Stairs.class),
+	/**
+     * 白桦木活板门
+     */
     BIRCH_TRAPDOOR(32585, TrapDoor.class),
+	/**
+     * 白桦木
+     */
     BIRCH_WOOD(20913, Orientable.class),
     BLACK_BANNER(9365, 16, Rotatable.class),
     BLACK_BED(20490, 1, Bed.class),
@@ -155,19 +302,52 @@ public enum Material implements Keyed {
     BONE(5686),
     BONE_BLOCK(17312, Orientable.class),
     BONE_MEAL(32458),
+	/**
+     * 书
+     */
     BOOK(23097),
     BOOKSHELF(10069),
     BOW(8745, 1, 384),
+	/**
+     * 碗
+     */
     BOWL(32661),
+	/**
+     * 脑纹珊瑚
+     */
     BRAIN_CORAL(31316, Waterlogged.class),
+	/**
+     * 脑纹珊瑚块
+     */
     BRAIN_CORAL_BLOCK(30618),
+	/**
+     * 脑纹珊瑚扇
+     */
     BRAIN_CORAL_FAN(13849, Waterlogged.class),
     BRAIN_CORAL_WALL_FAN(22685, CoralWallFan.class),
+	/**
+     * 面包
+     */
     BREAD(32049),
+	/**
+     * 酿造台
+     */
     BREWING_STAND(14539, BrewingStand.class),
+	/**
+     * 砖块
+     */
     BRICK(6820),
+	/**
+     * 砖块
+     */
     BRICKS(14165),
+	/**
+     * 砖台阶
+     */
     BRICK_SLAB(26333, Slab.class),
+	/**
+     * 砖楼梯
+     */
     BRICK_STAIRS(21534, Stairs.class),
     BROWN_BANNER(11481, 16, Rotatable.class),
     BROWN_BED(25624, 1, Bed.class),
@@ -191,67 +371,250 @@ public enum Material implements Keyed {
     BUCKET(15215, 16),
     CACTUS(12191, Ageable.class),
     CACTUS_GREEN(17296),
+	/**
+     * 蛋糕
+     */
     CAKE(27048, 1, Cake.class),
+	/**
+     * 胡萝卜
+     */
     CARROT(22824),
+	/**
+     * 胡萝卜
+     */
     CARROTS(17258, Ageable.class),
+	/**
+     * 胡萝卜钓竿
+     */
     CARROT_ON_A_STICK(27809, 1, 25),
+	/**
+     * 雕刻过的南瓜
+     */
     CARVED_PUMPKIN(25833, Directional.class),
+	/**
+     * 炼药锅
+     */
     CAULDRON(26531, Levelled.class),
+	/**
+     * 洞穴空气
+     */
     CAVE_AIR(17422),
+	/**
+     * 洞穴蜘蛛刷怪蛋
+     */
     CAVE_SPIDER_SPAWN_EGG(23341),
+	/**
+     * 锁链靴子
+     */
     CHAINMAIL_BOOTS(17953, 1, 195),
+	/**
+     * 锁链胸甲
+     */
     CHAINMAIL_CHESTPLATE(23602, 1, 240),
+	/**
+     * 锁链头盔
+     */
     CHAINMAIL_HELMET(26114, 1, 165),
+	/**
+     * 锁链护腿
+     */
     CHAINMAIL_LEGGINGS(19087, 1, 225),
+	/**
+     * 连锁型命令方块
+     */
     CHAIN_COMMAND_BLOCK(26798, CommandBlock.class),
+	/**
+     * 木炭
+     */
     CHARCOAL(5390),
+	/**
+     * 箱子
+     */
     CHEST(22969, Chest.class),
+	/**
+     * 运输矿车
+     */
     CHEST_MINECART(4497, 1),
+	/**
+     * 鸡
+     */
     CHICKEN(17281),
+	/**
+     * 鸡刷怪蛋
+     */
     CHICKEN_SPAWN_EGG(5462),
+	/**
+     * 开裂的铁砧
+     */
     CHIPPED_ANVIL(10623, Directional.class),
+	/**
+     * 錾制石英块
+     */
     CHISELED_QUARTZ_BLOCK(30964),
+	/**
+     * 錾制红砂岩
+     */
     CHISELED_RED_SANDSTONE(15529),
+	/**
+     * 錾制砂岩
+     */
     CHISELED_SANDSTONE(31763),
+	/**
+     * 錾制石砖
+     */
     CHISELED_STONE_BRICKS(9087),
+	/**
+     * 紫颂花
+     */
     CHORUS_FLOWER(28542, Ageable.class),
+	/**
+     * 紫颂果
+     */
     CHORUS_FRUIT(7652),
+	/**
+     * 紫颂植物
+     */
     CHORUS_PLANT(28243, MultipleFacing.class),
+	/**
+     * 黏土
+     */
     CLAY(27880),
+	/**
+     * 黏土
+     */
     CLAY_BALL(24603),
+	/**
+     * 种
+     */
     CLOCK(14980),
+	/**
+     * 煤炭
+     */
     COAL(29067),
+	/**
+     * 煤炭块
+     */
     COAL_BLOCK(27968),
+	/**
+     * 煤炭矿石
+     */
     COAL_ORE(30965),
+	/**
+     * 砂土
+     */
     COARSE_DIRT(15411),
+	/**
+     * 圆石
+     */
     COBBLESTONE(32147),
+	/**
+     * 圆石台阶
+     */
     COBBLESTONE_SLAB(6340, Slab.class),
+	/**
+     * 圆石楼梯
+     */
     COBBLESTONE_STAIRS(24715, Stairs.class),
+	/**
+     * 圆石墙
+     */
     COBBLESTONE_WALL(12616, Fence.class),
+	/**
+     * 蜘蛛网
+     */
     COBWEB(9469),
+	/**
+     * 可可果
+     */
     COCOA(29709, Cocoa.class),
+	/**
+     * 可可豆
+     */
     COCOA_BEANS(27381),
+	/**
+     * 鳕鱼
+     */
     COD(24691),
+	/**
+     * 鳕鱼桶
+     */
     COD_BUCKET(28601, 1),
+	/**
+     * 鳕鱼刷怪蛋
+     */
     COD_SPAWN_EGG(27248),
+	/**
+     * 命令方块
+     */
     COMMAND_BLOCK(4355, CommandBlock.class),
+	/**
+     * 命令方块矿车
+     */
     COMMAND_BLOCK_MINECART(7992, 1),
+	/**
+     * 红石比较器
+     */
     COMPARATOR(18911, Comparator.class),
+	/**
+     * 指南针
+     */
     COMPASS(24139),
     CONDUIT(5148, Waterlogged.class),
+	/**
+     * 熟牛肉
+     */
     COOKED_BEEF(21595),
+	/**
+     * 熟鸡肉
+     */
     COOKED_CHICKEN(20780),
+	/**
+     * 熟鳕鱼肉
+     */
     COOKED_COD(9681),
+	/**
+     * 熟羊肉
+     */
     COOKED_MUTTON(31447),
+	/**
+     * 熟猪排
+     */
     COOKED_PORKCHOP(27231),
+	/**
+     * 熟兔肉
+     */
     COOKED_RABBIT(4454),
+	/**
+     * 熟鲑鱼肉
+     */
     COOKED_SALMON(5615),
+	/**
+     * 曲奇饼干
+     */
     COOKIE(27431),
+	/**
+     * 牛刷怪蛋
+     */
     COW_SPAWN_EGG(14761),
+	/**
+     * 裂石砖
+     */
     CRACKED_STONE_BRICKS(27869),
+	/**
+     * 工作台
+     */
     CRAFTING_TABLE(20706),
+	/**
+     * 苦力怕头
+     */
     CREEPER_HEAD(29146, Rotatable.class),
+	/**
+     * 苦力怕刷怪蛋
+     */
     CREEPER_SPAWN_EGG(9653),
+	/**
+     * 苦力怕头(墙面放置)
+     */
     CREEPER_WALL_HEAD(30123, Directional.class),
     CUT_RED_SANDSTONE(26842),
     CUT_SANDSTONE(6118),
@@ -312,103 +675,373 @@ public enum Material implements Keyed {
     DEAD_TUBE_CORAL_WALL_FAN(5128, CoralWallFan.class),
     DEBUG_STICK(24562, 1),
     DETECTOR_RAIL(13475, RedstoneRail.class),
+	/**
+     * 钻石
+     */
     DIAMOND(20865),
+	/**
+     * 钻石斧
+     */
     DIAMOND_AXE(27277, 1, 1561),
+	/**
+     * 钻石块
+     */
     DIAMOND_BLOCK(5944),
+	/**
+     * 钻石靴子
+     */
     DIAMOND_BOOTS(16522, 1, 429),
+	/**
+     * 钻石胸甲
+     */
     DIAMOND_CHESTPLATE(32099, 1, 528),
+	/**
+     * 钻石头盔
+     */
     DIAMOND_HELMET(10755, 1, 363),
+	/**
+     * 钻石锄
+     */
     DIAMOND_HOE(24050, 1, 1561),
+	/**
+     * 钻石马铠
+     */
     DIAMOND_HORSE_ARMOR(10321, 1),
+	/**
+     * 钻石护腿
+     */
     DIAMOND_LEGGINGS(11202, 1, 495),
+	/**
+     * 钻石矿石
+     */
     DIAMOND_ORE(9292),
+	/**
+     * 钻石镐
+     */
     DIAMOND_PICKAXE(24291, 1, 1561),
+	/**
+     * 钻石锹
+     */
     DIAMOND_SHOVEL(25415, 1, 1561),
+	/**
+     * 钻石剑
+     */
     DIAMOND_SWORD(27707, 1, 1561),
+	/**
+     * 闪长岩
+     */
     DIORITE(24688),
+	/**
+     * 泥土
+     */
     DIRT(10580),
+	/**
+     * 发射器
+     */
     DISPENSER(20871, Dispenser.class),
+	/**
+     * 海豚刷怪蛋
+     */
     DOLPHIN_SPAWN_EGG(20787),
+	/**
+     * 驴刷怪蛋
+     */
     DONKEY_SPAWN_EGG(14513),
     DRAGON_BREATH(20154),
+	/**
+     * 龙蛋
+     */
     DRAGON_EGG(29946),
+	/**
+     * 龙首
+     */
     DRAGON_HEAD(20084, Rotatable.class),
+	/**
+     * 龙首(墙面放置)
+     */
     DRAGON_WALL_HEAD(19818, Directional.class),
+	/**
+     * 干海带
+     */
     DRIED_KELP(21042),
+	/**
+     * 干海带块
+     */
     DRIED_KELP_BLOCK(12966),
+	/**
+     * 投掷器
+     */
     DROPPER(31273, Dispenser.class),
+	/**
+     * 溺尸刷怪蛋
+     */
     DROWNED_SPAWN_EGG(19368),
+	/**
+     * 鸡蛋
+     */
     EGG(21603, 16),
+	/**
+     * 远古守卫者
+     */
     ELDER_GUARDIAN_SPAWN_EGG(11418),
+	/**
+     * 鞘翅
+     */
     ELYTRA(23829, 1, 432),
+	/**
+     * 绿宝石
+     */
     EMERALD(5654),
+	/**
+     * 绿宝石块
+     */
     EMERALD_BLOCK(9914),
+	/**
+     * 绿宝石矿石
+     */
     EMERALD_ORE(16630),
+	/**
+     * 附魔书
+     */
     ENCHANTED_BOOK(11741, 1),
+	/**
+     * 附魔金苹果
+     */
     ENCHANTED_GOLDEN_APPLE(8280),
+	/**
+     * 附魔台
+     */
     ENCHANTING_TABLE(16255),
+	/**
+     * 末影人刷怪蛋
+     */
     ENDERMAN_SPAWN_EGG(29488),
+	/**
+     * 末影螨刷怪蛋
+     */
     ENDERMITE_SPAWN_EGG(16617),
+	/**
+     * 末影箱
+     */
     ENDER_CHEST(32349, EnderChest.class),
+	/**
+     * 末影之眼
+     */
     ENDER_EYE(24860),
+	/**
+     * 末影珍珠
+     */
     ENDER_PEARL(5259, 16),
+	/**
+     * 末影水晶
+     */
     END_CRYSTAL(19090),
+	/**
+     * 末地折跃门
+     */
     END_GATEWAY(26605),
+	/**
+     * 末地传送门
+     */
     END_PORTAL(16782),
+	/**
+     * 末地传送门框架
+     */
     END_PORTAL_FRAME(15480, EndPortalFrame.class),
+	/**
+     * 末地烛
+     */
     END_ROD(24832, Directional.class),
+	/**
+     * 末地石
+     */
     END_STONE(29686),
+	/**
+     * 末地石转
+     */
     END_STONE_BRICKS(20314),
+	/**
+     * 唤魔者刷怪蛋
+     */
     EVOKER_SPAWN_EGG(21271),
+	/**
+     * 经验瓶
+     */
     EXPERIENCE_BOTTLE(12858),
+	/**
+     * 耕地
+     */
     FARMLAND(31166, Farmland.class),
+	/**
+     * 羽毛
+     */
     FEATHER(30548),
+	/**
+     * 发酵蛛眼
+     */
     FERMENTED_SPIDER_EYE(19386),
+	/**
+     * 蕨
+     */
     FERN(15794),
     FILLED_MAP(23504),
+	/**
+     * 火
+     */
     FIRE(16396, Fire.class),
+	/**
+     * 烟花火箭
+     */
     FIREWORK_ROCKET(23841),
+	/**
+     * 烟火之星
+     */
     FIREWORK_STAR(12190),
+	/**
+     * 火焰弹
+     */
     FIRE_CHARGE(4842),
+	/**
+     * 火珊瑚
+     */
     FIRE_CORAL(29151, Waterlogged.class),
+	/**
+     * 火珊瑚块
+     */
     FIRE_CORAL_BLOCK(12119),
+	/**
+     * 火珊瑚扇
+     */
     FIRE_CORAL_FAN(11112, Waterlogged.class),
     FIRE_CORAL_WALL_FAN(20100, CoralWallFan.class),
+	/**
+     * 钓鱼竿
+     */
     FISHING_ROD(4167, 1, 64),
+	/**
+     * 燧石
+     */
     FLINT(23596),
+	/**
+     * 打火石
+     */
     FLINT_AND_STEEL(28620, 1, 64),
+	/**
+     * 花盆
+     */
     FLOWER_POT(30567),
+	/**
+     * 霜冰
+     */
     FROSTED_ICE(21814, Ageable.class),
+	/**
+     * 熔炉
+     */
     FURNACE(8133, Furnace.class),
+	/**
+     * 动力矿车
+     */
     FURNACE_MINECART(14196, 1),
+	/**
+     * 恶魂刷怪蛋
+     */
     GHAST_SPAWN_EGG(9970),
+	/**
+     * 恶魂之泪
+     */
     GHAST_TEAR(18222),
+	/**
+     * 玻璃
+     */
     GLASS(6195),
     GLASS_BOTTLE(6116),
     GLASS_PANE(5709, GlassPane.class),
     GLISTERING_MELON_SLICE(20158),
     GLOWSTONE(32713),
     GLOWSTONE_DUST(6665),
+	/**
+     * 金苹果
+     */
     GOLDEN_APPLE(27732),
+	/**
+     * 金斧
+     */
     GOLDEN_AXE(4878, 1, 32),
+	/**
+     * 金靴子
+     */
     GOLDEN_BOOTS(7859, 1, 91),
+	/**
+     * 金胡萝卜
+     */
     GOLDEN_CARROT(5300),
+	/**
+     * 金胸甲
+     */
     GOLDEN_CHESTPLATE(4507, 1, 112),
+	/**
+     * 金头盔
+     */
     GOLDEN_HELMET(7945, 1, 77),
+	/**
+     * 金锄
+     */
     GOLDEN_HOE(19337, 1, 32),
+	/**
+     * 金马铠
+     */
     GOLDEN_HORSE_ARMOR(7996, 1),
+	/**
+     * 金护腿
+     */
     GOLDEN_LEGGINGS(21002, 1, 105),
+	/**
+     * 金镐
+     */
     GOLDEN_PICKAXE(10901, 1, 32),
+	/**
+     * 金锹
+     */
     GOLDEN_SHOVEL(15597, 1, 32),
+	/**
+     * 金剑
+     */
     GOLDEN_SWORD(10505, 1, 32),
+	/**
+     * 金块
+     */
     GOLD_BLOCK(27392),
+	/**
+     * 金锭
+     */
     GOLD_INGOT(28927),
+	/**
+     * 金粒
+     */
     GOLD_NUGGET(28814),
+	/**
+     * 金矿石
+     */
     GOLD_ORE(32625),
+	/**
+     * 花岗岩
+     */
     GRANITE(21091),
+	/**
+     * 草
+     */
     GRASS(6155),
+	/**
+     * 草方块
+     */
     GRASS_BLOCK(28346, Snowable.class),
+	/**
+     * 草径
+     */
     GRASS_PATH(8604),
+	/**
+     * 砂砾
+     */
     GRAVEL(7804),
     GRAY_BANNER(12053, 16, Rotatable.class),
     GRAY_BED(15745, 1, Bed.class),
@@ -455,24 +1088,75 @@ public enum Material implements Keyed {
     INFESTED_MOSSY_STONE_BRICKS(9850),
     INFESTED_STONE(18440),
     INFESTED_STONE_BRICKS(19749),
+	/**
+     * 墨囊
+     */
     INK_SAC(7184),
+	/**
+     * 铁斧
+     */
     IRON_AXE(15894, 1, 250),
     IRON_BARS(9378, Fence.class),
+	/**
+     * 铁块
+     */
     IRON_BLOCK(24754),
+	/**
+     * 铁靴子
+     */
     IRON_BOOTS(8531, 1, 195),
+	/**
+     * 铁胸甲
+     */
     IRON_CHESTPLATE(28112, 1, 240),
+	/**
+     * 铁门
+     */
     IRON_DOOR(4788, Door.class),
+	/**
+     * 铁头盔
+     */
     IRON_HELMET(12025, 1, 165),
+	/**
+     * 铁锄
+     */
     IRON_HOE(11339, 1, 250),
+	/**
+     * 铁马铠
+     */
     IRON_HORSE_ARMOR(30108, 1),
+	/**
+     * 铁锭
+     */
     IRON_INGOT(24895),
+	/**
+     * 铁护腿
+     */
     IRON_LEGGINGS(18951, 1, 225),
+	/**
+     * 铁粒
+     */
     IRON_NUGGET(13715),
+	/**
+     * 铁锭
+     */
     IRON_ORE(19834),
+	/**
+     * 铁镐
+     */
     IRON_PICKAXE(8842, 1, 250),
+	/**
+     * 铁锹
+     */
     IRON_SHOVEL(30045, 1, 250),
+	/**
+     * 铁剑
+     */
     IRON_SWORD(10904, 1, 250),
     IRON_TRAPDOOR(17095, TrapDoor.class),
+	/**
+     * 物品展示框
+     */
     ITEM_FRAME(27318),
     JACK_O_LANTERN(31612, Directional.class),
     JUKEBOX(19264, Jukebox.class),
@@ -498,7 +1182,13 @@ public enum Material implements Keyed {
     LAPIS_LAZULI(11075),
     LAPIS_ORE(22934),
     LARGE_FERN(30177, Bisected.class),
+	/**
+     * 岩浆
+     */
     LAVA(8415, Levelled.class),
+	/**
+     * 岩浆桶
+     */
     LAVA_BUCKET(9228, 1),
     LEAD(29539),
     LEATHER(16414),
@@ -678,7 +1368,13 @@ public enum Material implements Keyed {
     POPPED_CHORUS_FRUIT(27844),
     POPPY(12851),
     PORKCHOP(30896),
+	/**
+     * 土豆
+     */
     POTATO(21088),
+	/**
+     * 土豆
+     */
     POTATOES(10879, Ageable.class),
     POTION(24020, 1),
     POTTED_ACACIA_SAPLING(14096),
@@ -714,8 +1410,17 @@ public enum Material implements Keyed {
     PUFFERFISH(8115),
     PUFFERFISH_BUCKET(8861, 1),
     PUFFERFISH_SPAWN_EGG(24573),
+	/**
+     * 南瓜
+     */
     PUMPKIN(19170),
+	/**
+     * 南瓜派
+     */
     PUMPKIN_PIE(28725),
+	/**
+     * 南瓜种子
+     */
     PUMPKIN_SEEDS(28985),
     PUMPKIN_STEM(19021, Ageable.class),
     PURPLE_BANNER(29027, 16, Rotatable.class),
@@ -735,23 +1440,53 @@ public enum Material implements Keyed {
     PURPUR_PILLAR(26718, Orientable.class),
     PURPUR_SLAB(11487, Slab.class),
     PURPUR_STAIRS(8921, Stairs.class),
+	/**
+     * 石英
+     */
     QUARTZ(23608),
+	/**
+     * 石英块
+     */
     QUARTZ_BLOCK(11987),
     QUARTZ_PILLAR(16452, Orientable.class),
     QUARTZ_SLAB(4423, Slab.class),
     QUARTZ_STAIRS(24079, Stairs.class),
+	/**
+     * 兔子
+     */
     RABBIT(23068),
     RABBIT_FOOT(13864),
     RABBIT_HIDE(12467),
     RABBIT_SPAWN_EGG(26496),
     RABBIT_STEW(10611, 1),
     RAIL(13285, Rail.class),
+	/**
+     * 红石
+     */
     REDSTONE(11233),
+	/**
+     * 红石块
+     */
     REDSTONE_BLOCK(19496),
+	/**
+     * 红石灯
+     */
     REDSTONE_LAMP(8217, Lightable.class),
+	/**
+     * 红石矿石
+     */
     REDSTONE_ORE(10887, Lightable.class),
+	/**
+     * 红石火把
+     */
     REDSTONE_TORCH(22547, Lightable.class),
+	/**
+     * 红石火把(墙面放置)
+     */
     REDSTONE_WALL_TORCH(7595, RedstoneWallTorch.class),
+	/**
+     * 红石线
+     */
     REDSTONE_WIRE(25984, RedstoneWire.class),
     RED_BANNER(26961, 16, Rotatable.class),
     RED_BED(30910, 1, Bed.class),
@@ -779,12 +1514,33 @@ public enum Material implements Keyed {
     ROSE_RED(15694),
     ROTTEN_FLESH(21591),
     SADDLE(30206, 1),
+	/**
+     * 鲑鱼
+     */
     SALMON(18516),
+	/**
+     * 鲑鱼桶
+     */
     SALMON_BUCKET(31427, 1),
+	/**
+     * 鲑鱼刷怪蛋
+     */
     SALMON_SPAWN_EGG(18739),
+	/**
+     * 沙子
+     */
     SAND(11542),
+	/**
+     * 砂石
+     */
     SANDSTONE(13141),
+	/**
+     * 砂石台阶
+     */
     SANDSTONE_SLAB(29830, Slab.class),
+	/**
+     * 砂石楼梯
+     */
     SANDSTONE_STAIRS(18474, Stairs.class),
     SCUTE(11914),
     SEAGRASS(23942),
@@ -818,6 +1574,9 @@ public enum Material implements Keyed {
     SPIDER_EYE(9318),
     SPIDER_SPAWN_EGG(14984),
     SPLASH_POTION(30248, 1),
+	/**
+     * 海绵
+     */
     SPONGE(15860),
     SPRUCE_BOAT(9606, 1),
     SPRUCE_BUTTON(23281, Switch.class),
@@ -836,42 +1595,153 @@ public enum Material implements Keyed {
     SQUID_SPAWN_EGG(10682),
     STICK(9773),
     STICKY_PISTON(18127, Piston.class),
+	/**
+     * 石头
+     */
     STONE(22948),
+	/**
+     * 石斧
+     */
     STONE_AXE(6338, 1, 131),
+	/**
+     * 石砖
+     */
     STONE_BRICKS(6962),
+	/**
+     * 石砖台阶
+     */
     STONE_BRICK_SLAB(19676, Slab.class),
+	/**
+     * 石砖楼梯
+     */
     STONE_BRICK_STAIRS(27032, Stairs.class),
+	/**
+     * 石质按钮
+     */
     STONE_BUTTON(12279, Switch.class),
+	/**
+     * 石锄
+     */
     STONE_HOE(22855, 1, 131),
+	/**
+     * 石镐
+     */
     STONE_PICKAXE(14611, 1, 131),
+	/**
+     * 石质压力板
+     */
     STONE_PRESSURE_PLATE(22591, Powerable.class),
+	/**
+     * 石锹
+     */
     STONE_SHOVEL(9520, 1, 131),
+	/**
+     * 石台阶
+     */
     STONE_SLAB(19838, Slab.class),
+	/**
+     * 石剑
+     */
     STONE_SWORD(25084, 1, 131),
+	/**
+     * 流浪者刷怪蛋
+     */
     STRAY_SPAWN_EGG(30153),
+	/**
+     * 线
+     */
     STRING(12806),
+	/**
+     * 去皮金合欢原木
+     */
     STRIPPED_ACACIA_LOG(18167, Orientable.class),
+	/**
+     * 去皮金合欢木
+     */
     STRIPPED_ACACIA_WOOD(27193, Orientable.class),
+	/**
+     * 去皮白桦原木
+     */
     STRIPPED_BIRCH_LOG(8838, Orientable.class),
+	/**
+     * 去皮白桦木
+     */
     STRIPPED_BIRCH_WOOD(22350, Orientable.class),
+	/**
+     * 去皮深色橡木原木
+     */
     STRIPPED_DARK_OAK_LOG(6492, Orientable.class),
+	/**
+     * 去皮深色橡木
+     */
     STRIPPED_DARK_OAK_WOOD(16000, Orientable.class),
+	/**
+     * 去皮丛林原木
+     */
     STRIPPED_JUNGLE_LOG(15476, Orientable.class),
+	/**
+     * 去皮丛林木
+     */
     STRIPPED_JUNGLE_WOOD(30315, Orientable.class),
+	/**
+     * 去皮橡木原木
+     */
     STRIPPED_OAK_LOG(20523, Orientable.class),
+	/**
+     * 去皮橡木
+     */
     STRIPPED_OAK_WOOD(31455, Orientable.class),
+	/**
+     * 去皮云杉原木
+     */
     STRIPPED_SPRUCE_LOG(6140, Orientable.class),
+	/**
+     * 去皮云杉木
+     */
     STRIPPED_SPRUCE_WOOD(6467, Orientable.class),
+	/**
+     * 结构方块
+     */
     STRUCTURE_BLOCK(26831, StructureBlock.class),
+	/**
+     * 结构空位
+     */
     STRUCTURE_VOID(30806),
+	/**
+     * 糖
+     */
     SUGAR(30638),
+	/**
+     * 甘蔗
+     */
     SUGAR_CANE(7726, Ageable.class),
+	/**
+     * 向日葵
+     */
     SUNFLOWER(7408, Bisected.class),
+	/**
+     * 草丛
+     */
     TALL_GRASS(21559, Bisected.class),
+	/**
+     * 高海草
+     */
     TALL_SEAGRASS(27189, Bisected.class),
+	/**
+     * 陶瓦
+     */
     TERRACOTTA(16544),
+	/**
+     * 药箭
+     */
     TIPPED_ARROW(25164),
+	/**
+     * TNT
+     */
     TNT(7896, TNT.class),
+	/**
+     * TNT矿车 爆破矿车
+     */
     TNT_MINECART(4277, 1),
     TORCH(6063),
     TOTEM_OF_UNDYING(10139, 1),
@@ -889,10 +1759,19 @@ public enum Material implements Keyed {
     TURTLE_EGG(32101, TurtleEgg.class),
     TURTLE_HELMET(30120, 1, 275),
     TURTLE_SPAWN_EGG(17324),
+	/**
+     * 恼鬼刷怪蛋
+     */
     VEX_SPAWN_EGG(27751),
     VILLAGER_SPAWN_EGG(30348),
     VINDICATOR_SPAWN_EGG(25324),
+	/**
+     * 藤蔓
+     */
     VINE(14564, MultipleFacing.class),
+	/**
+     * 虚空空气
+     */
     VOID_AIR(13668),
     WALL_SIGN(10644, WallSign.class),
     WALL_TORCH(25890, Directional.class),
@@ -919,10 +1798,25 @@ public enum Material implements Keyed {
     WITHER_SKELETON_SPAWN_EGG(10073),
     WITHER_SKELETON_WALL_SKULL(9326, Directional.class),
     WOLF_SPAWN_EGG(21692),
+	/**
+     * 木斧
+     */
     WOODEN_AXE(6292, 1, 59),
+	/**
+     * 木锄
+     */
     WOODEN_HOE(16043, 1, 59),
+	/**
+     * 木镐
+     */
     WOODEN_PICKAXE(12792, 1, 59),
+	/**
+     * 木锹
+     */
     WOODEN_SHOVEL(28432, 1, 59),
+	/**
+     * 木剑
+     */
     WOODEN_SWORD(7175, 1, 59),
     WRITABLE_BOOK(13393, 1),
     WRITTEN_BOOK(24164, 16),
@@ -944,6 +1838,7 @@ public enum Material implements Keyed {
     ZOMBIE_SPAWN_EGG(5814),
     ZOMBIE_VILLAGER_SPAWN_EGG(10311),
     ZOMBIE_WALL_HEAD(16296, Directional.class),
+
     // ----- Legacy Separator -----
     @Deprecated
     LEGACY_AIR(0, 0),
