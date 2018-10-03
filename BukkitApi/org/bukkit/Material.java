@@ -1272,20 +1272,62 @@ public enum Material implements Keyed {
     MULE_SPAWN_EGG(11229),
     MUSHROOM_STEM(16543, MultipleFacing.class),
     MUSHROOM_STEW(16336, 1),
+	/**
+     * 唱片(11)
+     */
     MUSIC_DISC_11(27426, 1),
+	/**
+     * 唱片(13)
+     */
     MUSIC_DISC_13(16359, 1),
+	/**
+     * 唱片(BLOCKS)
+     */
     MUSIC_DISC_BLOCKS(26667, 1),
+	/**
+     * 唱片(CAT)
+     */
     MUSIC_DISC_CAT(16246, 1),
+	/**
+     * 唱片(CHIRP)
+     */
     MUSIC_DISC_CHIRP(19436, 1),
+	/**
+     * 唱片(FAR)
+     */
     MUSIC_DISC_FAR(13823, 1),
+	/**
+     * 唱片(MALL)
+     */
     MUSIC_DISC_MALL(11517, 1),
+	/**
+     * 唱片(MELLOHI)
+     */
     MUSIC_DISC_MELLOHI(26117, 1),
+	/**
+     * 唱片(STAL)
+     */
     MUSIC_DISC_STAL(14989, 1),
+	/**
+     * 唱片(STRAD)
+     */
     MUSIC_DISC_STRAD(16785, 1),
+	/**
+     * 唱片(WALT)
+     */
     MUSIC_DISC_WAIT(26499, 1),
+	/**
+     * 唱片(WARD)
+     */
     MUSIC_DISC_WARD(24026, 1),
+	/**
+     * 生羊肉
+     */
     MUTTON(4792),
     MYCELIUM(9913, Snowable.class),
+	/**
+     * 命名牌
+     */
     NAME_TAG(30731),
     NAUTILUS_SHELL(19989),
     NETHERRACK(23425),
