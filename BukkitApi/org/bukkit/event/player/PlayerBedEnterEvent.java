@@ -6,7 +6,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
 /**
- * 玩家躺在床上时触发此事件.
+ * 玩家准备躺到床上时触发此事件.
  */
 public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
