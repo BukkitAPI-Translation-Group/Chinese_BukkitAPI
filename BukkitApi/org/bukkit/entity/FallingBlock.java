@@ -60,8 +60,7 @@ public interface FallingBlock extends Entity {
 	 * 原文: 
 	 * Set if the falling block will break into an item if it cannot be placed
 	 *
-	 * @param drop
-	 *            true: 当被阻挡时变为掉落物
+	 * @param drop true: 当被阻挡时变为掉落物
 	 */
 	void setDropItem(boolean drop);
 
@@ -81,8 +80,7 @@ public interface FallingBlock extends Entity {
 	 * 原文: 
 	 * Set the HurtEntities state of this block.
 	 *
-	 * @param hurtEntities
-	 *            实体是否会被此方块伤害
+	 * @param hurtEntities 实体是否会被此方块伤害
 	 */
 	void setHurtEntities(boolean hurtEntities);
 }
