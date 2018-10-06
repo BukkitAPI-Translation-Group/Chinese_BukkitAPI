@@ -1,21 +1,21 @@
-/* 该文件会随着版本的更新而大幅度修改，因此建议你不要翻译标记为Deprecated的方法. (翻译者留言：就不！)*/
-package org. bukkit. entity;
+/* 该文件会随着版本的更新而大幅度修改，因此建议你不要翻译标记为Deprecated的方法.(翻译者留言：就不！)*/
+package org.bukkit.entity;
 
-import org. bukkit. Location;
-import org. bukkit. EntityEffect;
-import org. bukkit. Nameable;
-import org. bukkit. Server;
-import org. bukkit. World;
-import org. bukkit. event. entity. EntityDamageEvent;
-import org. bukkit. metadata. Metadatable;
-import org. bukkit. util. Vector;
+import org.bukkit.Location;
+import org.bukkit.EntityEffect;
+import org.bukkit.Nameable;
+import org.bukkit.Server;
+import org.bukkit.World;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.metadata.Metadatable;
+import org.bukkit.util.Vector;
 
-import java. util. List;
-import java. util. Set;
-import java. util. UUID;
-import org. bukkit. block. PistonMoveReaction;
-import org. bukkit. command. CommandSender;
-import org. bukkit. event. player. PlayerTeleportEvent. TeleportCause;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+import org.bukkit.block.PistonMoveReaction;
+import org.bukkit.command.CommandSender;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 /**
  * 表示世界中的基本实体

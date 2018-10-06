@@ -60,7 +60,7 @@ public interface FallingBlock extends Entity {
 	 * 原文: 
 	 * Set if the falling block will break into an item if it cannot be placed
 	 *
-	 * @param drop true: 当被阻挡时变为掉落物
+	 * @param drop 当被阻挡时变为掉落物时返回 true
 	 */
 	void setDropItem(boolean drop);
 
