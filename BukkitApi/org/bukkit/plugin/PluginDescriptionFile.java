@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.PluginCommand;
@@ -31,7 +32,7 @@ import com.google.common.collect.ImmutableSet;
  * 这个文件必须位于jar的根目录下.
  * <p>
  * 当Bukkit加载插件时,它必须知道一些基础的关于这个插件的信息.
- * Bukkit从plugin.tml读取数据.
+ * Bukkit从plugin.yml读取数据.
  * plugin.yml由一组属性构成,每个属性位于单独的一行并且没有缩进.
  * <p>
  * 每一个方法(几乎每一个) 都在plugin.yml有其对应的条目.
@@ -115,151 +116,7 @@ import com.google.common.collect.ImmutableSet;
  * </tr>
  * </table>
  * <p>
- * 一个 plugin.yml 的例子:<blockquote><pre>
- *name: Inferno
- *version: 1.4.1
- *description: 设置自己着火.
- *# 我们可以把所有的作者放到名单上,但不写说明
- *# 此外,作者中有领导者,请确保他的名字位于第一个
- *author: CaptainInflamo
- *authors: [Cogito, verrier, EvilSeph]
- *website: http://www.curse.com/server-mods/minecraft/myplugin
- *
- *main: com.captaininflamo.bukkit.inferno.Inferno
- *depend: [NewFire, FlameWire]
- *
- *commands:
- *  flagrate:
- *    description: Set yourself on fire.
- *    aliases: [combust_me, combustMe]
- *    permission: inferno.flagrate
- *    usage: Syntax error! Simply type /&lt;command&gt; to ignite yourself.
- *  burningdeaths:
- *    description: List how many times you have died by fire.
- *    aliases: [burning_deaths, burningDeaths]
- *    permission: inferno.burningdeaths
- *    usage: |
- *      /&lt;command&gt; [player]
- *      Example: /&lt;command&gt; - see how many times you have burned to death
- *      Example: /&lt;command&gt; CaptainIce - see how many times CaptainIce has burned to death
- *
- *permissions:
- *  inferno.*:
- *    description: Gives access to all Inferno commands
- *    children:
- *      inferno.flagrate: true
- *      inferno.burningdeaths: true
- *      inferno.burningdeaths.others: true
- *  inferno.flagrate:
- *    description: Allows you to ignite yourself
- *    default: true
- *  inferno.burningdeaths:
- *    description: Allows you to see how many times you have burned to death
- *    default: true
- *  inferno.burningdeaths.others:
- *    description: Allows you to see how many times others have burned to death
- *    default: op
- *    children:
- *      inferno.burningdeaths: true
- *</pre></blockquote>
- * 
- * 
- * 原文:
- * This type is the runtime-container for the information in the plugin.yml.
- * All plugins must have a respective plugin.yml. For plugins written in java
- * using the standard plugin loader, this file must be in the root of the jar
- * file.
- * <p>
- * When Bukkit loads a plugin, it needs to know some basic information about
- * it. It reads this information from a YAML file, 'plugin.yml'. This file
- * consists of a set of attributes, each defined on a new line and with no
- * indentation.
- * <p>↓
- * Every (almost* every) method corresponds with a specific entry in the
- * plugin.yml. These are the <b>required</b> entries for every plugin.yml:
- * <ul>
- * <li>{@link #getName()} - <code>name</code>
- * <li>{@link #getVersion()} - <code>version</code>
- * <li>{@link #getMain()} - <code>main</code>
- * </ul>
- * <p>
- * Failing to include any of these items will throw an exception and cause the
- * server to ignore your plugin.
- * <p>
- * This is a list of the possible yaml keys, with specific details included in
- * the respective method documentations:
- * <table border=1>
- * <caption>The description of the plugin.yml layout</caption>
- * <tr>
- *     <th>Node</th>
- *     <th>Method</th>
- *     <th>Summary</th>
- * </tr><tr>
- *     <td><code>name</code></td>
- *     <td>{@link #getName()}</td>
- *     <td>The unique name of plugin</td>
- * </tr><tr>
- *     <td><code>version</code></td>
- *     <td>{@link #getVersion()}</td>
- *     <td>A plugin revision identifier</td>
- * </tr><tr>
- *     <td><code>main</code></td>
- *     <td>{@link #getMain()}</td>
- *     <td>The plugin's initial class file</td>
- * </tr><tr>
- *     <td><code>author</code><br><code>authors</code></td>
- *     <td>{@link #getAuthors()}</td>
- *     <td>The plugin contributors</td>
- * </tr><tr>
- *     <td><code>description</code></td>
- *     <td>{@link #getDescription()}</td>
- *     <td>Human readable plugin summary</td>
- * </tr><tr>
- *     <td><code>website</code></td>
- *     <td>{@link #getWebsite()}</td>
- *     <td>The URL to the plugin's site</td>
- * </tr><tr>
- *     <td><code>prefix</code></td>
- *     <td>{@link #getPrefix()}</td>
- *     <td>The token to prefix plugin log entries</td>
- * </tr><tr>
- *     <td><code>load</code></td>
- *     <td>{@link #getLoad()}</td>
- *     <td>The phase of server-startup this plugin will load during</td>
- * </tr><tr>
- *     <td><code>depend</code></td>
- *     <td>{@link #getDepend()}</td>
- *     <td>Other required plugins</td>
- * </tr><tr>
- *     <td><code>softdepend</code></td>
- *     <td>{@link #getSoftDepend()}</td>
- *     <td>Other plugins that add functionality</td>
- * </tr><tr>
- *     <td><code>loadbefore</code></td>
- *     <td>{@link #getLoadBefore()}</td>
- *     <td>The inverse softdepend</td>
- * </tr><tr>
- *     <td><code>commands</code></td>
- *     <td>{@link #getCommands()}</td>
- *     <td>The commands the plugin will register</td>
- * </tr><tr>
- *     <td><code>permissions</code></td>
- *     <td>{@link #getPermissions()}</td>
- *     <td>The permissions the plugin will register</td>
- * </tr><tr>
- *     <td><code>default-permission</code></td>
- *     <td>{@link #getPermissionDefault()}</td>
- *     <td>The default {@link Permission#getDefault() default} permission
- *         state for defined {@link #getPermissions() permissions} the plugin
- *         will register</td>
- * </tr><tr>
- *     <td><code>awareness</code></td>
- *     <td>{@link #getAwareness()}</td>
- *     <td>The concepts that the plugin acknowledges</td>
- * </tr>
- * </table>
- * <p>
- * A plugin.yml example:<blockquote><pre>
+ * 一个plugin.yml的例子:<blockquote><pre>
  *name: Inferno
  *version: 1.4.1
  *description: This plugin is so 31337. You can set yourself on fire.
@@ -272,6 +129,7 @@ import com.google.common.collect.ImmutableSet;
  *
  *main: com.captaininflamo.bukkit.inferno.Inferno
  *depend: [NewFire, FlameWire]
+ *api-version: 1.13
  *
  *commands:
  *  flagrate:
@@ -309,6 +167,7 @@ import com.google.common.collect.ImmutableSet;
  *</pre></blockquote>
  */
 public final class PluginDescriptionFile {
+    private static final Pattern VALID_NAME = Pattern.compile("^[A-Za-z0-9 _.-]+$");
     private static final ThreadLocal<Yaml> YAML = new ThreadLocal<Yaml>() {
         @Override
         protected Yaml initialValue() {
@@ -360,6 +219,7 @@ public final class PluginDescriptionFile {
     private Map<?, ?> lazyPermissions = null;
     private PermissionDefault defaultPerm = PermissionDefault.OP;
     private Set<PluginAwareness> awareness = ImmutableSet.of();
+    private String apiVersion = null;
 
     public PluginDescriptionFile(final InputStream stream) throws InvalidDescriptionException {
         loadMap(asMap(YAML.get().load(stream)));
@@ -387,7 +247,12 @@ public final class PluginDescriptionFile {
      * @param mainClass 插件主类的完整路径
      */
     public PluginDescriptionFile(final String pluginName, final String pluginVersion, final String mainClass) {
-        name = pluginName.replace(' ', '_');
+        name = rawName = pluginName;
+
+        if (!VALID_NAME.matcher(name).matches()) {
+            throw new IllegalArgumentException("name '" + name + "' contains invalid characters.");
+        }
+        name = name.replace(' ', '_');
         version = pluginVersion;
         main = mainClass;
     }
@@ -982,6 +847,23 @@ public final class PluginDescriptionFile {
     }
 
     /**
+     * Gives the API version which this plugin is designed to support. No
+     * specific format is guaranteed.
+     * <ul>
+     * <li>Refer to release notes for supported API versions.
+     * </ul>
+     * <p>
+     * In the plugin.yml, this entry is named <code>api-version</code>.
+     * <p>
+     * Example:<blockquote><pre>api-version: 1.13</pre></blockquote>
+     *
+     * @return the version of the plugin
+     */
+    public String getAPIVersion() {
+        return apiVersion;
+    }
+
+    /**
      * @return unused
      * @deprecated unused
      */
@@ -1003,7 +885,7 @@ public final class PluginDescriptionFile {
         try {
             name = rawName = map.get("name").toString();
 
-            if (!name.matches("^[A-Za-z0-9 _.-]+$")) {
+            if (!VALID_NAME.matcher(name).matches()) {
                 throw new InvalidDescriptionException("name '" + name + "' contains invalid characters.");
             }
             name = name.replace(' ', '_');
@@ -1130,6 +1012,10 @@ public final class PluginDescriptionFile {
             this.awareness = ImmutableSet.copyOf(awareness);
         }
 
+        if (map.get("api-version") != null) {
+            apiVersion = map.get("api-version").toString();
+        }
+
         try {
             lazyPermissions = (Map<?, ?>) map.get("permissions");
         } catch (ClassCastException ex) {
@@ -1189,6 +1075,10 @@ public final class PluginDescriptionFile {
             map.put("author", authors.get(0));
         } else if (authors.size() > 1) {
             map.put("authors", authors);
+        }
+
+        if (apiVersion != null) {
+            map.put("api-version", apiVersion);
         }
 
         if (classLoaderOf != null) {

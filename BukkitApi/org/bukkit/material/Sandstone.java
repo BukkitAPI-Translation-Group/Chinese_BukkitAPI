@@ -4,11 +4,11 @@ import org.bukkit.Material;
 import org.bukkit.SandstoneType;
 
 /**
- * 代表不同种类的沙石.
+ * Represents the different types of sandstone.
  */
 public class Sandstone extends MaterialData {
     public Sandstone() {
-        super(Material.SANDSTONE);
+        super(Material.LEGACY_SANDSTONE);
     }
 
     public Sandstone(SandstoneType type) {
@@ -16,33 +16,14 @@ public class Sandstone extends MaterialData {
         setType(type);
     }
 
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Sandstone(final int type) {
-        super(type);
-    }
-
     public Sandstone(final Material type) {
         super(type);
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Sandstone(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
-     * @param data the raw data
-     * @deprecated 不安全的参数
+     * @param data the raw data value
+     * @deprecated Magic value
      */
     @Deprecated
     public Sandstone(final Material type, final byte data) {
@@ -50,22 +31,18 @@ public class Sandstone extends MaterialData {
     }
 
     /**
-     * 获取这个沙石的种类.
-     * <p>
-     * 原文：Gets the current type of this sandstone
+     * Gets the current type of this sandstone
      *
-     * @return 沙石的种类
+     * @return SandstoneType of this sandstone
      */
     public SandstoneType getType() {
         return SandstoneType.getByData(getData());
     }
 
     /**
-     * 设置这个沙石的种类.
-     * <p>
-     * 原文：Sets the type of this sandstone
+     * Sets the type of this sandstone
      *
-     * @param type 新种类
+     * @param type New type of this sandstone
      */
     public void setType(SandstoneType type) {
         setData(type.getData());

@@ -195,13 +195,6 @@ public interface BukkitScheduler {
     public void cancelTasks(Plugin plugin);
 
     /**
-     * 取消执行所有在执行器中的任务.
-     * <p>
-     * 原文：Removes all tasks from the scheduler.
-     */
-    public void cancelAllTasks();
-
-    /**
      * 检测任务是否正在运行.
      * <p>
      * 一个重复执行的任务可能不是正在运行的.但将在之后运行.一个已完成并且不重复执行的任务将不再运行.

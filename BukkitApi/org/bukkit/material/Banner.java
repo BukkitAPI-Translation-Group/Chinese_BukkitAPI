@@ -6,7 +6,7 @@ import org.bukkit.block.BlockFace;
 public class Banner extends MaterialData implements Attachable {
 
     public Banner() {
-        super(Material.BANNER);
+        super(Material.LEGACY_BANNER);
     }
 
     public Banner(Material type) {
@@ -14,37 +14,18 @@ public class Banner extends MaterialData implements Attachable {
     }
 
     /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Banner(int type) {
-        super(type);
-    }
-
-    /**
      *
      * @param type the type
-     * @param data the raw data
-     * @deprecated 不安全的参数
+     * @param data the raw data value
+     * @deprecated Magic value
      */
     @Deprecated
     public Banner(Material type, byte data) {
         super(type, data);
     }
 
-    /**
-     * @param type the raw type id
-     * @param data the raw data
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Banner(int type, byte data) {
-        super(type, data);
-    }
-
     public boolean isWallBanner() {
-        return getItemType() == Material.WALL_BANNER;
+        return getItemType() == Material.LEGACY_WALL_BANNER;
     }
 
     public BlockFace getAttachedFace() {

@@ -6,6 +6,7 @@ import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.Location;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.Metadatable;
 
@@ -14,6 +15,11 @@ import org.bukkit.metadata.Metadatable;
  * any given location in a world. The state of the block may change
  * concurrently to your own handling of it; use block.getState() to get a
  * snapshot state of a block which will not be modified.
+ *
+ * <br>
+ * Note that parts of this class which require access to the world at large
+ * (i.e. lighting and power) may not be able to be safely accessed during world
+ * generation when used in cases like BlockPhysicsEvent!!!!
  */
 public interface Block extends Metadatable {
 
@@ -27,6 +33,13 @@ public interface Block extends Metadatable {
      */
     @Deprecated
     byte getData();
+
+    /**
+     * Gets the complete block data for this block
+     *
+     * @return block specific data
+     */
+    BlockData getBlockData();
 
     /**
      * 以指定坐标偏移量获取方块 （相对与方块位置的偏移量）.
@@ -77,17 +90,6 @@ public interface Block extends Metadatable {
      * @return 方块种类
      */
     Material getType();
-
-    /**
-     * 获取此方块的种类ID.
-     * <p>
-     * 原文：Gets the type-id of this block
-     *
-     * @return 方块种类ID
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    int getTypeId();
 
     /**
      * 获取此方块的光亮等级，范围0~15.
@@ -183,27 +185,19 @@ public interface Block extends Metadatable {
     Chunk getChunk();
 
     /**
-     * 为这个方块设置元数据.
-     * <p>
-     * 原文:Sets the metadata for this block
+     * Sets the complete data for this block
      *
-     * @param data 元数据
-     * @deprecated 不安全的参数
+     * @param data new block specific data
      */
-    @Deprecated
-    void setData(byte data);
+    void setBlockData(BlockData data);
 
     /**
-     * 为这个方块设置元数据.
-     * <p>
-     * 原文:Sets the metadata for this block
+     * Sets the complete data for this block
      *
-     * @param data 元数据
-     * @param applyPhysics False to cancel physics from the changed block.
-     * @deprecated 不安全的参数
+     * @param data new block specific data
+     * @param applyPhysics false to cancel physics from the changed block
      */
-    @Deprecated
-    void setData(byte data, boolean applyPhysics);
+    void setBlockData(BlockData data, boolean applyPhysics);
 
     /**
      * 设置这个方块的类型.
@@ -221,39 +215,6 @@ public interface Block extends Metadatable {
      * @param applyPhysics False to cancel physics on the changed block.
      */
     void setType(Material type, boolean applyPhysics);
-
-    /**
-     * Sets the type-id of this block
-     *
-     * @param type Type-Id to change this block to
-     * @return whether the block was changed
-     * @deprecated Magic value
-     */
-    @Deprecated
-    boolean setTypeId(int type);
-
-    /**
-     * Sets the type-id of this block
-     *
-     * @param type Type-Id to change this block to
-     * @param applyPhysics False to cancel physics on the changed block.
-     * @return whether the block was changed
-     * @deprecated Magic value
-     */
-    @Deprecated
-    boolean setTypeId(int type, boolean applyPhysics);
-
-    /**
-     * Sets the type-id of this block
-     *
-     * @param type Type-Id to change this block to
-     * @param data The data value to change this block to
-     * @param applyPhysics False to cancel physics on the changed block
-     * @return whether the block was changed
-     * @deprecated Magic value
-     */
-    @Deprecated
-    boolean setTypeIdAndData(int type, byte data, boolean applyPhysics);
 
     /**
      * Gets the face relation of this block compared to the given block.
@@ -358,8 +319,7 @@ public interface Block extends Metadatable {
      * Checks if this block is liquid.
      * <p>
      * A block is considered liquid when {@link #getType()} returns {@link
-     * Material#WATER}, {@link Material#STATIONARY_WATER}, {@link
-     * Material#LAVA} or {@link Material#STATIONARY_LAVA}.
+     * Material#WATER} or {@link Material#LAVA}.
      *
      * @return true if this block is liquid
      */

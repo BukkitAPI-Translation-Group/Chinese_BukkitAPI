@@ -48,6 +48,28 @@ public interface Arrow extends Projectile {
     public void setCritical(boolean critical);
 
     /**
+     * 获取此箭矢是否嵌入于一个方块中.
+     * <p>
+     * 嵌入于方块中的箭矢是静止的，并且可能被玩家拾取.
+     * <p>
+     * 原文:Gets whether this arrow is in a block or not.
+     * <p>
+     * Arrows in a block are motionless and may be picked up by players.
+     *
+     * @return 此箭矢是否嵌入于方块中
+     */
+    public boolean isInBlock();
+
+    /**
+     * 获取该箭矢附着在哪个方块上.
+     * <p>
+     * 原文:Gets the block to which this arrow is attached.
+     *
+     * @return 箭矢附着(嵌入)的方块，若箭矢没有嵌入于方块中返回null
+     */
+    public Block getAttachedBlock();
+
+    /**
      * 获取此箭矢的当前拾取状态. 
      * <p>
      * 原文:Gets the current pickup status of this arrow.

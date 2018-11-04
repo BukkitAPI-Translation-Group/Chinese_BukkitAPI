@@ -1,4 +1,3 @@
-/* 该文件会随着版本的更新而大幅度修改，因此建议你不要翻译标记为Deprecated的方法.(翻译者留言：就不！)*/
 package org.bukkit.entity;
 
 import org.bukkit.Location;
@@ -269,12 +268,41 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
     public Server getServer();
 
     /**
-     * 获取乘坐载具的主要乘客. 
-     * <br>
-     * 可能会有多个乘客, 这个方法只返回主要乘客. 
+     * Returns true if the entity gets persisted.
      * <p>
-     * 原文:
-     * Gets the primary passenger of a vehicle. For vehicles that could have
+     * By default all entities are persistent. An entity will also not get
+     * persisted, if it is riding an entity that is not persistent.
+     * <p>
+     * The persistent flag has no effect on players. If a player is directly or
+     * indirectly riding a non-persistent entity, the vehicle at the root and
+     * all its passengers won't get persisted.
+     * <p>
+     * <b>This should not be confused with
+     * {@link LivingEntity#setRemoveWhenFarAway(boolean)} which controls
+     * despawning of living entities. </b>
+     *
+     * @return true if this entity is persistent
+     * @deprecated draft API
+     */
+    @Deprecated
+    public boolean isPersistent();
+
+    /**
+     * Sets whether or not the entity gets persisted.
+     *
+     * @param persistent the persistence status
+     * @see #isPersistent()
+     * @deprecated draft API
+     */
+    @Deprecated
+    public void setPersistent(boolean persistent);
+
+    /**
+     * 获取乘坐载具的主要乘客.
+     * <br>
+     * 可能会有多个乘客, 这个方法只返回主要乘客.
+     * <p>
+     * 原文:Gets the primary passenger of a vehicle. For vehicles that could have
      * multiple passengers, this will only return the primary passenger. 
      *
      * @return 一个实体

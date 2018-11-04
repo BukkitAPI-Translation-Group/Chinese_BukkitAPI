@@ -6,5 +6,4 @@ package org.bukkit.entity;
  * 原文:Represents a fishing hook.
  * @deprecated 赞成使用 {@link FishHook}
  */
-public interface Fish extends FishHook {
-}
+public interface Fish extends WaterMob { }

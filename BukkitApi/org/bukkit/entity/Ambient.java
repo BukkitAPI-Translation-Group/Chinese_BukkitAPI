@@ -1,8 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * 代表周围的生物.
- * <p>
- * 原文:Represents an ambient mob
+ * 代表环境生物(目前只有蝙蝠属于这一行列).
  */
-public interface Ambient extends LivingEntity {}
+public interface Ambient extends Mob {}

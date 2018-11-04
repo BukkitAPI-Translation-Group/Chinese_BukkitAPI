@@ -7,17 +7,15 @@ import org.bukkit.block.BlockFace;
 /**
  * Represents the different types of Tree block that face a direction.
  *
- * @see Material#LOG
- * @see Material#LOG_2
+ * @see Material#LEGACY_LOG
+ * @see Material#LEGACY_LOG_2
  */
 public class Tree extends Wood {
-    protected static final Material DEFAULT_TYPE = Material.LOG;
+    protected static final Material DEFAULT_TYPE = Material.LEGACY_LOG;
     protected static final BlockFace DEFAULT_DIRECTION = BlockFace.UP;
 
     /**
-     * 构造一个树木方块.
-     * <p>
-     * 原文:Constructs a tree block.
+     * Constructs a tree block.
      */
     public Tree() {
         this(DEFAULT_TYPE, DEFAULT_SPECIES, DEFAULT_DIRECTION);
@@ -41,15 +39,6 @@ public class Tree extends Wood {
      */
     public Tree(TreeSpecies species, BlockFace dir) {
         this(DEFAULT_TYPE, species, dir);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Tree(final int type) {
-        super(type);
     }
 
     /**
@@ -85,19 +74,9 @@ public class Tree extends Wood {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Tree(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Tree(final Material type, final byte data) {
@@ -105,16 +84,14 @@ public class Tree extends Wood {
     }
 
     /**
-     * 获取木头的朝向.
-     * <p>
-     * 原文:Get direction of the log
+     * Get direction of the log
      *
-     * @return 其中之一:
+     * @return one of:
      * <ul>
-     * <li>BlockFace.TOP 直立 (默认)
-     * <li>BlockFace.NORTH (东西朝向)
-     * <li>BlockFace.WEST (南北朝向)
-     * <li>BlockFace.SELF 无朝向 (仅树皮)
+     * <li>BlockFace.TOP for upright (default)
+     * <li>BlockFace.NORTH (east-west)
+     * <li>BlockFace.WEST (north-south)
+     * <li>BlockFace.SELF (directionless)
      * </ul>
      */
     @SuppressWarnings("deprecation")
@@ -133,11 +110,9 @@ public class Tree extends Wood {
     }
 
     /**
-     * 设置木头的朝向.
-     * <p>
-     * 原文:Set direction of the log
+     * Set direction of the log
      *
-     * @param dir - 木头一端的朝向，BlockFace.SELF 即为无朝向(仅树皮)
+     * @param dir - direction of end of log (BlockFace.SELF for no direction)
      */
     @SuppressWarnings("deprecation")
     public void setDirection(BlockFace dir) {

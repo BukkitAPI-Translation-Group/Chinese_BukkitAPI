@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.Material;
+import org.bukkit.block.data.BlockData;
 
 /**
  * 代表一个下落方块. 
@@ -14,35 +15,19 @@ public interface FallingBlock extends Entity {
      * 获取下落方块的类型. 
      * <p>
      * 原文:
-     *  Get the Material of the falling block
+     * Get the Material of the falling block
      *
-     * @return 方块材料. 
+     * @return Material of the block
+     * @deprecated 请使用 {@link #getBlockData()}
      */
     Material getMaterial();
 
     /**
-     * 获取下落方块的ID. 
-     * <p>
-     * 原文: 
-     * Get the ID of the falling block
-     *
-     * @return 方块ID. 
-     * @deprecated Magic value
-     */
-    @Deprecated
-    int getBlockId();
-
-    /**
-     * 获取下落方块的数据值. 
-     * <p>
-     * 原文: 
      * Get the data for the falling block
      *
-     * @return 方块数据值. 
-     * @deprecated Magic value
+     * @return data of the block
      */
-    @Deprecated
-    byte getBlockData();
+    BlockData getBlockData();
 
     /**
      * 获取下落方块被阻挡时是否会变为掉落物. 

@@ -37,7 +37,7 @@ public interface Objective {
      * @param displayName 用于显示的名称
      * @throws IllegalStateException 对象已被注销
      * @throws IllegalArgumentException 参数displayName（显示名称）为空
-     * @throws IllegalArgumentException 参数displayName（显示名称）大于32个字符
+     * @throws IllegalArgumentException 参数displayName（显示名称）大于128个字符
      *     characters.
      */
     void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException;

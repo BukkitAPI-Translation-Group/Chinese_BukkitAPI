@@ -8,6 +8,31 @@ import org.bukkit.Color;
 public interface MapMeta extends ItemMeta {
 
     /**
+     * Checks for existence of a map ID number.
+     *
+     * @return true if this has a map ID number.
+     */
+    boolean hasMapId();
+
+    /**
+     * Gets the map ID that is set. This is used to determine what map is
+     * displayed.
+     * <p>
+     * Plugins should check that hasMapId() returns <code>true</code> before
+     * calling this method.
+     *
+     * @return the map ID that is set
+     */
+    int getMapId();
+
+    /**
+     * Sets the map ID. This is used to determine what map is displayed.
+     *
+     * @param id the map id to set
+     */
+    void setMapId(int id);
+
+    /**
      * 检测这个地图是否有缩放比例.
      * <p>
      * 原文：Checks to see if this map is scaling.

@@ -36,7 +36,7 @@ public class BukkitObjectInputStream extends ObjectInputStream {
      * 原文:Object input stream decoration constructor.
      *
      * @param in InputStream对象
-     * @throws 如果从输入流读取头数据时发生错误
+     * @throws IOException 如果从输入流读取头数据时发生错误
      * @see ObjectInputStream#ObjectInputStream(InputStream)
      */
     public BukkitObjectInputStream(InputStream in) throws IOException {

@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import org.bukkit.Warning.WarningState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
@@ -29,7 +31,9 @@ import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
@@ -44,7 +48,6 @@ import org.bukkit.advancement.Advancement;
 import org.bukkit.generator.ChunkGenerator;
 
 import org.bukkit.inventory.ItemFactory;
-import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.meta.ItemMeta;
 
 /**
@@ -143,7 +146,7 @@ public final class Bukkit {
      * {@link Entity#teleport(Location) 传送}, 
      * {@link Player#setHealth(double) 死亡}, 
      * {@link Player#kickPlayer(String) 踢出} 等操作的结果是未知的 (没有罗列完全). 
-     * 任何对这个集合的异步操作都是安全的. 
+     * 任何对这个集合的异步操作都是不安全的. 
      * <p>
      * For safe consequential iteration or mimicking the old array behavior,
      * using {@link Collection#toArray(Object[])} is recommended. For making
@@ -895,13 +898,15 @@ public final class Bukkit {
     }
 
     /**
-     * Broadcasts the specified message to every user with the given
+     * 向有给定权限的用户广播一条消息.
+     * <p>
+     * 原文:Broadcasts the specified message to every user with the given
      * permission name.
      *
-     * @param message message to broadcast
-     * @param permission the required permission {@link Permissible
-     *     permissibles} must have to receive the broadcast
-     * @return number of message recipients
+     * @param message 要广播的消息
+     * @param permission 接受这条公告需要拥有的{@link Permissible
+     *     权限许可}
+     * @return 成功接收此消息的玩家数
      */
     public static int broadcast(String message, String permission) {
         return server.broadcast(message, permission);
@@ -1089,13 +1094,27 @@ public final class Bukkit {
     }
 
     /**
-     * Creates an empty inventory of the specified type. If the type is {@link
-     * InventoryType#CHEST}, the new inventory has a size of 27; otherwise the
-     * new inventory has the normal size for its type.
+     * Creates an empty inventory with the specified type and title. If the type
+     * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
+     * otherwise the new inventory has the normal size for its type.<br>
+     * It should be noted that some inventory types do not support titles and
+     * may not render with said titles on the Minecraft client.
+     * <br>
+     * {@link InventoryType#WORKBENCH} will not process crafting recipes if
+     * created with this method. Use
+     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * <br>
+     * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
+     * for possible enchanting results. Use
+     * {@link Player#openEnchanting(Location, boolean)} instead.
      *
      * @param owner the holder of the inventory, or null to indicate no holder
      * @param type the type of inventory to create
      * @return a new inventory
+     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
+     * viewed.
+     *
+     * @see InventoryType#isCreatable()
      */
     public static Inventory createInventory(InventoryHolder owner, InventoryType type) {
         return server.createInventory(owner, type);
@@ -1107,11 +1126,23 @@ public final class Bukkit {
      * otherwise the new inventory has the normal size for its type.<br>
      * It should be noted that some inventory types do not support titles and
      * may not render with said titles on the Minecraft client.
+     * <br>
+     * {@link InventoryType#WORKBENCH} will not process crafting recipes if
+     * created with this method. Use
+     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * <br>
+     * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
+     * for possible enchanting results. Use
+     * {@link Player#openEnchanting(Location, boolean)} instead.
      *
      * @param owner The holder of the inventory; can be null if there's no holder.
      * @param type The type of inventory to create.
      * @param title The title of the inventory, to be displayed when it is viewed.
      * @return The new inventory.
+     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
+     * viewed.
+     *
+     * @see InventoryType#isCreatable()
      */
     public static Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
         return server.createInventory(owner, type, title);
@@ -1407,6 +1438,87 @@ public final class Bukkit {
      */
     public static Iterator<Advancement> advancementIterator() {
         return server.advancementIterator();
+    }
+
+    /**
+     * Creates a new {@link BlockData} instance for the specified Material, with
+     * all properties initialized to unspecified defaults.
+     *
+     * @param material the material
+     * @return new data instance
+     */
+    public static BlockData createBlockData(Material material) {
+        return server.createBlockData(material);
+    }
+
+    /**
+     * Creates a new {@link BlockData} instance for the specified Material, with
+     * all properties initialized to unspecified defaults.
+     *
+     * @param material the material
+     * @param consumer consumer to run on new instance before returning
+     * @return new data instance
+     */
+    public static BlockData createBlockData(Material material, Consumer<BlockData> consumer) {
+        return server.createBlockData(material, consumer);
+    }
+
+    /**
+     * Creates a new {@link BlockData} instance with material and properties
+     * parsed from provided data.
+     *
+     * @param data data string
+     * @return new data instance
+     * @throws IllegalArgumentException if the specified data is not valid
+     */
+    public static BlockData createBlockData(String data) throws IllegalArgumentException {
+        return server.createBlockData(data);
+    }
+
+    /**
+     * Creates a new {@link BlockData} instance for the specified Material, with
+     * all properties initialized to unspecified defaults, except for those
+     * provided in data.
+     *
+     * @param material the material
+     * @param data data string
+     * @return new data instance
+     * @throws IllegalArgumentException if the specified data is not valid
+     */
+    public static BlockData createBlockData(Material material, String data) throws IllegalArgumentException {
+        return server.createBlockData(material, data);
+    }
+
+    /**
+     * Gets a tag which has already been defined within the server. Plugins are
+     * suggested to use the concrete tags in {@link Tag} rather than this method
+     * which makes no guarantees about which tags are available, and may also be
+     * less performant due to lack of caching.
+     * <br>
+     * Tags will be searched for in an implementation specific manner, but a
+     * path consisting of namespace/tags/registry/key is expected.
+     * <br>
+     * Server implementations are allowed to handle only the registries
+     * indicated in {@link Tag}.
+     *
+     * @param <T> type of the tag
+     * @param registry the tag registry to look at
+     * @param tag the name of the tag
+     * @param clazz the class of the tag entries
+     * @return the tag or null
+     */
+    public static <T extends Keyed> Tag<T> getTag(String registry, NamespacedKey tag, Class<T> clazz) {
+        return server.getTag(registry, tag, clazz);
+    }
+
+    /**
+     * Gets the specified {@link LootTable}.
+     *
+     * @param key the name of the LootTable
+     * @return the LootTable, or null if no LootTable is found with that name
+     */
+    public static LootTable getLootTable(NamespacedKey key) {
+        return server.getLootTable(key);
     }
 
     /**

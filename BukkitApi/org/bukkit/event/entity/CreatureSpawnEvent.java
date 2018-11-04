@@ -174,6 +174,10 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          */
         SHOULDER_ENTITY,
         /**
+         * 当一个实体溺亡而生成时
+         */
+        DROWNED,
+        /**
          * 当生物被插件生成时
          */
         CUSTOM,

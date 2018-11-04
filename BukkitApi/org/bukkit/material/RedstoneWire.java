@@ -3,20 +3,11 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * 代表红石线.
+ * Represents redstone wire
  */
 public class RedstoneWire extends MaterialData implements Redstone {
     public RedstoneWire() {
-        super(Material.REDSTONE_WIRE);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public RedstoneWire(final int type) {
-        super(type);
+        super(Material.LEGACY_REDSTONE_WIRE);
     }
 
     public RedstoneWire(final Material type) {
@@ -24,19 +15,9 @@ public class RedstoneWire extends MaterialData implements Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public RedstoneWire(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public RedstoneWire(final Material type, final byte data) {
@@ -44,12 +25,10 @@ public class RedstoneWire extends MaterialData implements Redstone {
     }
 
     /**
-     * 这个物品有没有充能.
-     * <p>
-     * 原文:Gets the current state of this Material, indicating if it's powered or
+     * Gets the current state of this Material, indicating if it's powered or
      * unpowered
      *
-     * @return true代表充能
+     * @return true if powered, otherwise false
      */
     public boolean isPowered() {
         return getData() > 0;

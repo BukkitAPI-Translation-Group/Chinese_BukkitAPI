@@ -22,9 +22,12 @@ public interface Banner extends BlockState {
 
     /**
      * 设置这个旗帜的底色.
+     * <b>仅对盾牌伪旗帜有效, 否则取决于方块的类型</b>.
      * <p>
      * 原文:
-     * Sets the base color for this banner
+     * Sets the base color for this banner.
+     * <b>Only valid for shield pseudo banners, otherwise base depends on block
+     * type</b>
      *
      * @param color 底色
      */

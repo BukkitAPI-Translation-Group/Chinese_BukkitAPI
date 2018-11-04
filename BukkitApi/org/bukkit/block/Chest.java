@@ -2,11 +2,12 @@ package org.bukkit.block;
 
 import org.bukkit.Nameable;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.loot.Lootable;
 
 /**
  * 代表一个箱子(快照).
  */
-public interface Chest extends Container, Nameable {
+public interface Chest extends Container, Nameable, Lootable {
 
     /**
      * 返回箱子类型的物品栏.

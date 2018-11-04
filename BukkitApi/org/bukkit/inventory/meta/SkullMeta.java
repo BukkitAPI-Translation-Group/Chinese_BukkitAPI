@@ -1,10 +1,9 @@
 package org.bukkit.inventory.meta;
 
-import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 
 /**
- * 代表{@link Material#SKULL_ITEM 头颅}.
+ * 代表头颅.
  */
 public interface SkullMeta extends ItemMeta {
 

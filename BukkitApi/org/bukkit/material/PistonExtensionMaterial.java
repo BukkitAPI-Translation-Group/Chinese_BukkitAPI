@@ -4,36 +4,18 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表活塞臂
+ * Material data for the piston extension block
  */
 public class PistonExtensionMaterial extends MaterialData implements Attachable {
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public PistonExtensionMaterial(final int type) {
-        super(type);
-    }
 
     public PistonExtensionMaterial(final Material type) {
         super(type);
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public PistonExtensionMaterial(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public PistonExtensionMaterial(final Material type, final byte data) {
@@ -85,22 +67,18 @@ public class PistonExtensionMaterial extends MaterialData implements Attachable 
     }
 
     /**
-     * 检测这个活塞臂是否是粘性的.
-     * <p>
-     * 原文:Checks if this piston extension is sticky, and returns true if so
+     * Checks if this piston extension is sticky, and returns true if so
      *
-     * @return 这个活塞是否是粘性的
+     * @return true if this piston is "sticky", or false
      */
     public boolean isSticky() {
         return (getData() & 8) == 8;
     }
 
     /**
-     * 设置这个活塞臂是否是粘性的.
-     * <p>
-     * 原文:Sets whether or not this extension is sticky
+     * Sets whether or not this extension is sticky
      *
-     * @param sticky 这个活塞是否是粘性的
+     * @param sticky true if sticky, otherwise false
      */
     public void setSticky(boolean sticky) {
         setData((byte) (sticky ? (getData() | 0x8) : (getData() & ~0x8)));

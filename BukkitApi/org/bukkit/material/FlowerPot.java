@@ -5,30 +5,19 @@ import org.bukkit.Material;
 import org.bukkit.TreeSpecies;
 
 /**
- * 代表花盆
+ * Represents a flower pot.
  *
- * @deprecated 花盆现在是Tile Entity(http://minecraft-zh.gamepedia.com/%E6%96%B9%E5%9D%97%E5%AE%9E%E4%BD%93%E5%80%BC), 使用
+ * @deprecated Flower pots are now tile entities, use
  * {@link org.bukkit.block.FlowerPot}.
  */
 @Deprecated
 public class FlowerPot extends MaterialData {
 
     /**
-     * 该类的默认构造器.
-     * <p>
-     * 原文:Default constructor for a flower pot.
+     * Default constructor for a flower pot.
      */
     public FlowerPot() {
-        super(Material.FLOWER_POT);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public FlowerPot(final int type) {
-        super(type);
+        super(Material.LEGACY_FLOWER_POT);
     }
 
     public FlowerPot(final Material type) {
@@ -36,19 +25,9 @@ public class FlowerPot extends MaterialData {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public FlowerPot(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public FlowerPot(final Material type, final byte data) {
@@ -56,18 +35,17 @@ public class FlowerPot extends MaterialData {
     }
 
     /**
-     * 获取在花盆里的植物的方块.
-     * <p>
-     * 原文:Get the material in the flower pot
+     * Get the material in the flower pot
      *
-     * @return material 方块的MaterialData，null为空
+     * @return material MaterialData for the block currently in the flower pot
+     *     or null if empty
      */
     public MaterialData getContents() {
         switch (getData()) {
             case 1:
-                return new MaterialData(Material.RED_ROSE);
+                return new MaterialData(Material.LEGACY_RED_ROSE);
             case 2:
-                return new MaterialData(Material.YELLOW_FLOWER);
+                return new MaterialData(Material.LEGACY_YELLOW_FLOWER);
             case 3:
                 return new Tree(TreeSpecies.GENERIC);
             case 4:
@@ -77,13 +55,13 @@ public class FlowerPot extends MaterialData {
             case 6:
                 return new Tree(TreeSpecies.JUNGLE);
             case 7:
-                return new MaterialData(Material.RED_MUSHROOM);
+                return new MaterialData(Material.LEGACY_RED_MUSHROOM);
             case 8:
-                return new MaterialData(Material.BROWN_MUSHROOM);
+                return new MaterialData(Material.LEGACY_BROWN_MUSHROOM);
             case 9:
-                return new MaterialData(Material.CACTUS);
+                return new MaterialData(Material.LEGACY_CACTUS);
             case 10:
-                return new MaterialData(Material.DEAD_BUSH);
+                return new MaterialData(Material.LEGACY_DEAD_BUSH);
             case 11:
                 return new LongGrass(GrassSpecies.FERN_LIKE);
             default:
@@ -92,28 +70,26 @@ public class FlowerPot extends MaterialData {
     }
 
     /**
-     * 设置在花盆里的植物的方块.
-     * <p>
-     * 原文:Set the contents of the flower pot
+     * Set the contents of the flower pot
      *
-     * @param materialData 方块的MaterialData
+     * @param materialData MaterialData of the block to put in the flower pot.
      */
     public void setContents(MaterialData materialData) {
         Material mat = materialData.getItemType();
 
-        if (mat == Material.RED_ROSE) {
+        if (mat == Material.LEGACY_RED_ROSE) {
             setData((byte) 1);
-        } else if (mat == Material.YELLOW_FLOWER) {
+        } else if (mat == Material.LEGACY_YELLOW_FLOWER) {
             setData((byte) 2);
-        } else if (mat == Material.RED_MUSHROOM) {
+        } else if (mat == Material.LEGACY_RED_MUSHROOM) {
             setData((byte) 7);
-        } else if (mat == Material.BROWN_MUSHROOM) {
+        } else if (mat == Material.LEGACY_BROWN_MUSHROOM) {
             setData((byte) 8);
-        } else if (mat == Material.CACTUS) {
+        } else if (mat == Material.LEGACY_CACTUS) {
             setData((byte) 9);
-        } else if (mat == Material.DEAD_BUSH) {
+        } else if (mat == Material.LEGACY_DEAD_BUSH) {
             setData((byte) 10);
-        } else if (mat == Material.SAPLING) {
+        } else if (mat == Material.LEGACY_SAPLING) {
             TreeSpecies species = ((Tree) materialData).getSpecies();
 
             if (species == TreeSpecies.GENERIC) {
@@ -125,7 +101,7 @@ public class FlowerPot extends MaterialData {
             } else {
                 setData((byte) 6);
             }
-        } else if (mat == Material.LONG_GRASS) {
+        } else if (mat == Material.LEGACY_LONG_GRASS) {
             GrassSpecies species = ((LongGrass) materialData).getSpecies();
 
             if (species == GrassSpecies.FERN_LIKE) {

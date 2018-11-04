@@ -151,4 +151,17 @@ public interface ItemFactory {
      * @return 所有皮甲的默认颜色.
      */
     Color getDefaultLeatherColor();
+
+    /**
+     * Apply a material change for an item meta. Do not use under any
+     * circumstances.
+     *
+     * @param meta
+     * @param material
+     * @return updated material
+     * @throws IllegalArgumentException
+     * @deprecated for internal use only
+     */
+    @Deprecated
+    Material updateMaterial(final ItemMeta meta, final Material material) throws IllegalArgumentException;
 }

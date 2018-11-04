@@ -1,12 +1,13 @@
 package org.bukkit.block;
 
 import org.bukkit.Nameable;
+import org.bukkit.loot.Lootable;
 import org.bukkit.projectiles.BlockProjectileSource;
 
 /**
  * 代表一个发射器(快照).
  */
-public interface Dispenser extends Container, Nameable {
+public interface Dispenser extends Container, Nameable, Lootable {
 
     /**
      * 获取此发射器的BlockProjectileSource对象.

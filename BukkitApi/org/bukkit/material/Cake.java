@@ -4,30 +4,11 @@ import org.bukkit.Material;
 
 public class Cake extends MaterialData {
     public Cake() {
-        super(Material.CAKE_BLOCK);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Cake(int type) {
-        super(type);
+        super(Material.LEGACY_CAKE_BLOCK);
     }
 
     public Cake(Material type) {
         super(type);
-    }
-
-    /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Cake(int type, byte data) {
-        super(type, data);
     }
 
     /**
@@ -41,33 +22,33 @@ public class Cake extends MaterialData {
     }
 
     /**
-     * 获取这个蛋糕吃了多少片
+     * 获取蛋糕被吃掉了多少片.
      * <p>
      * 原文:Gets the number of slices eaten from this cake
      *
-     * @return 蛋糕被吃的片数
+     * @return 蛋糕被吃掉了多少片
      */
     public int getSlicesEaten() {
         return getData();
     }
 
     /**
-     * 获取这个蛋糕还剩多少片
+     * 获取剩下多少片蛋糕没吃.
      * <p>
      * 原文:Gets the number of slices remaining on this cake
      *
-     * @return 蛋糕剩于的片数
+     * @return 剩下多少片蛋糕没吃
      */
     public int getSlicesRemaining() {
         return 6 - getData();
     }
 
     /**
-     * 设置这个蛋糕吃了多少片.
+     * 设置蛋糕被吃掉了多少片.
      * <p>
      * 原文:Sets the number of slices eaten from this cake
      *
-     * @param n 蛋糕被吃的片数
+     * @param n 蛋糕被吃掉了多少片.
      */
     public void setSlicesEaten(int n) {
         if (n < 6) {
@@ -76,11 +57,11 @@ public class Cake extends MaterialData {
     }
 
     /**
-     * 设置这个蛋糕还剩多少片.
+     * 设置剩下多少片蛋糕没吃.
      * <p>
      * 原文:Sets the number of slices remaining on this cake
      *
-     * @param n 蛋糕剩于的片数
+     * @param n 剩下多少片蛋糕没吃
      */
     public void setSlicesRemaining(int n) {
         if (n > 6) {

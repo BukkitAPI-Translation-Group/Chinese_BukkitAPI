@@ -18,6 +18,7 @@ import org.bukkit.Statistic;
 import org.bukkit.WeatherType;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.command.CommandSender;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
@@ -103,6 +104,43 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @throws IllegalArgumentException 当名称超过16个字符时抛出
      */
     public void setPlayerListName(String name);
+
+    /**
+     * Gets the currently displayed player list header for this player.
+     *
+     * @return player list header or null
+     */
+    public String getPlayerListHeader();
+
+    /**
+     * Gets the currently displayed player list footer for this player.
+     *
+     * @return player list header or null
+     */
+    public String getPlayerListFooter();
+
+    /**
+     * Sets the currently displayed player list header for this player.
+     *
+     * @param header player list header, null for empty
+     */
+    public void setPlayerListHeader(String header);
+
+    /**
+     * Sets the currently displayed player list footer for this player.
+     *
+     * @param footer player list footer, null for empty
+     */
+    public void setPlayerListFooter(String footer);
+
+    /**
+     * Sets the currently displayed player list header and footer for this
+     * player.
+     *
+     * @param header player list header, null for empty
+     * @param footer player list footer, null for empty
+     */
+    public void setPlayerListHeaderFooter(String header, String footer);
 
     /**
      * 设置玩家指南针的指向的位置({@link Location}).
@@ -410,13 +448,24 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 但其实并没有改变.<p>
      * 例2:sendBlockChange(loc,Material.WOOL,(byte)14)将让玩家的客户端认为loc的位置是一个红色羊毛(附加值为14的WOOL).
      *
-     * @param loc 要改变的方块
+     * @param loc 要改变的方块的位置
      * @param material 要改变成的方块的类型
      * @param data 要改变成的方块的副ID
      * @deprecated 不安全的参数
      */
     @Deprecated
     public void sendBlockChange(Location loc, Material material, byte data);
+
+    /**
+     * 向该玩家发送一个伪造的指定位置的方块({@link Block})更改数据包.这不会改变世界中的方块.
+     * <p>
+     * 原文:Send a block change. This fakes a block change packet for a user at a
+     * certain location. This will not actually change the world in any way.
+     *
+     * @param loc 要改变的方块的位置
+     * @param block 新方块
+     */
+    public void sendBlockChange(Location loc, BlockData block);
 
     /**
      * 向该玩家发送一个伪造的指定位置的长方体的更改数据包.这不会改变世界中的方块.<p>
@@ -445,19 +494,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      */
     @Deprecated
     public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data);
-
-    /**
-     * 类似于 {@link #sendBlockChange(Location loc, Material material, byte data)}方法. <p>
-     * Send a block change. This fakes a block change packet for a user at a
-     * certain location. This will not actually change the world in any way.
-     *
-     * @param loc 要改变的方块的位置
-     * @param material 要改变成的方块的ID
-     * @param data 要改变成的方块的副ID
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public void sendBlockChange(Location loc, int material, byte data);
 
     /**
      * 向该玩家发送一个伪造的牌子({@link Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
@@ -1665,4 +1701,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @return the player's locale
      */
     public String getLocale();
+
+    /**
+     * Update the list of commands sent to the client.
+     * <br>
+     * Generally useful to ensure the client has a complete list of commands
+     * after permission changes are done.
+     */
+    public void updateCommands();
 }

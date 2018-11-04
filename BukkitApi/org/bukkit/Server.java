@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 import org.bukkit.Warning.WarningState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
@@ -31,6 +33,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
@@ -683,14 +686,15 @@ public interface Server extends PluginMessageRecipient {
     public void shutdown();
 
     /**
-     * 向具有给定权限的玩家发送一条信息
+     * 向有给定权限的用户广播一条消息.
      * <p>
      * 原文:Broadcasts the specified message to every user with the given
      * permission name.
      *
-     * @param message 需要公告的信息
-     * @param permission 需要的权限{@link Permissible permissibles}
-     * @return 收到公告的玩家数量
+     * @param message 需要广播的消息
+     * @param permission 接受这条公告需要拥有的{@link Permissible
+     *     权限许可}
+     * @return 成功接收此消息的玩家数
      */
     public int broadcast(String message, String permission);
 
@@ -853,35 +857,53 @@ public interface Server extends PluginMessageRecipient {
     public HelpMap getHelpMap();
 
     /**
-     * 通过一个特定的类型来创建一个空的物品栏,如果这个类型是{@link InventoryType#CHEST},那么这个物品栏
-     * 的大小为27格(即0-26的slot可用),每个物品栏类型拥有其默认的大小
-     * <p>
-     * 原文:Creates an empty inventory of the specified type. If the type is {@link
-     * InventoryType#CHEST}, the new inventory has a size of 27; otherwise the
-     * new inventory has the normal size for its type.
+     * Creates an empty inventory with the specified type and title. If the type
+     * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
+     * otherwise the new inventory has the normal size for its type.<br>
+     * It should be noted that some inventory types do not support titles and
+     * may not render with said titles on the Minecraft client.
+     * <br>
+     * {@link InventoryType#WORKBENCH} will not process crafting recipes if
+     * created with this method. Use
+     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * <br>
+     * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
+     * for possible enchanting results. Use
+     * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner 该物品栏的拥有者,为null则表明无拥有者
-     * @param type 被创建的Inventory的类型
-     * @return Inventory实例
+     * @param owner the holder of the inventory, or null to indicate no holder
+     * @param type the type of inventory to create
+     * @return a new inventory
+     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
+     * viewed.
+     *
+     * @see InventoryType#isCreatable()
      */
     Inventory createInventory(InventoryHolder owner, InventoryType type);
 
     /**
-     * 通过一个特定的类型和标题来创建一个空的物品栏,如果这个类型是{@link InventoryType#CHEST},那么这个物品栏
-     * 的大小为27格(即0-26的slot可用),每个物品栏类型拥有其默认的大小
-     * <p>
-     * 原文:Creates an empty inventory with the specified type and title. If the type
+     * Creates an empty inventory with the specified type and title. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.<br>
-     * 注意:某些Inventory不支持标题,这些不支持标题的Inventory将不会在客户端渲染标题(即设置标题对这类Inventory无效)
-     * <p>
-     * 原文:It should be noted that some inventory types do not support titles and
+     * It should be noted that some inventory types do not support titles and
      * may not render with said titles on the Minecraft client.
+     * <br>
+     * {@link InventoryType#WORKBENCH} will not process crafting recipes if
+     * created with this method. Use
+     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * <br>
+     * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
+     * for possible enchanting results. Use
+     * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner 该物品栏的拥有者,为null则表明无拥有者
-     * @param type 被创建的Inventory的类型
-     * @param title 被创建的Inventory的标题
-     * @return Inventory实例
+     * @param owner The holder of the inventory; can be null if there's no holder.
+     * @param type The type of inventory to create.
+     * @param title The title of the inventory, to be displayed when it is viewed.
+     * @return The new inventory.
+     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
+     * viewed.
+     *
+     * @see InventoryType#isCreatable()
      */
     Inventory createInventory(InventoryHolder owner, InventoryType type, String title);
 
@@ -1143,6 +1165,78 @@ public interface Server extends PluginMessageRecipient {
      * @return an advancement iterator
      */
     Iterator<Advancement> advancementIterator();
+
+    /**
+     * Creates a new {@link BlockData} instance for the specified Material, with
+     * all properties initialized to unspecified defaults.
+     *
+     * @param material the material
+     * @return new data instance
+     */
+    BlockData createBlockData(Material material);
+
+    /**
+     * Creates a new {@link BlockData} instance for the specified Material, with
+     * all properties initialized to unspecified defaults.
+     *
+     * @param material the material
+     * @param consumer consumer to run on new instance before returning
+     * @return new data instance
+     */
+    public BlockData createBlockData(Material material, Consumer<BlockData> consumer);
+
+    /**
+     * Creates a new {@link BlockData} instance with material and properties
+     * parsed from provided data.
+     *
+     * @param data data string
+     * @return new data instance
+     * @throws IllegalArgumentException if the specified data is not valid
+     */
+    BlockData createBlockData(String data) throws IllegalArgumentException;
+
+    /**
+     * Creates a new {@link BlockData} instance for the specified Material, with
+     * all properties initialized to unspecified defaults, except for those
+     * provided in data.
+     * <br>
+     * If <code>material</code> is specified, then the data string must not also
+     * contain the material.
+     *
+     * @param material the material
+     * @param data data string
+     * @return new data instance
+     * @throws IllegalArgumentException if the specified data is not valid
+     */
+    BlockData createBlockData(Material material, String data) throws IllegalArgumentException;
+
+    /**
+     * Gets a tag which has already been defined within the server. Plugins are
+     * suggested to use the concrete tags in {@link Tag} rather than this method
+     * which makes no guarantees about which tags are available, and may also be
+     * less performant due to lack of caching.
+     * <br>
+     * Tags will be searched for in an implementation specific manner, but a
+     * path consisting of namespace/tags/registry/key is expected.
+     * <br>
+     * Server implementations are allowed to handle only the registries
+     * indicated in {@link Tag}.
+     *
+     * @param <T> type of the tag
+     * @param registry the tag registry to look at
+     * @param tag the name of the tag
+     * @param clazz the class of the tag entries
+     * @return the tag or null
+     */
+    <T extends Keyed> Tag<T> getTag(String registry, NamespacedKey tag, Class<T> clazz);
+
+    /**
+     * Gets the specified {@link LootTable}.
+     *
+     * @param key the name of the LootTable
+     * @return the LootTable, or null if no LootTable is found with that name
+     */
+    LootTable getLootTable(NamespacedKey key);
 
     /**
      * @see UnsafeValues

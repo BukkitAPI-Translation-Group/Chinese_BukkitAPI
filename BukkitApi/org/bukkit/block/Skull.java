@@ -1,7 +1,9 @@
 package org.bukkit.block;
 
+import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
+import org.bukkit.block.data.BlockData;
 
 /**
  * 代表一个头颅(快照).
@@ -71,7 +73,9 @@ public interface Skull extends BlockState {
      * Gets the rotation of the skull in the world
      *
      * @return 头颅的角度
+     * @deprecated 请使用 {@link BlockData}
      */
+    @Deprecated
     public BlockFace getRotation();
 
     /**
@@ -81,7 +85,9 @@ public interface Skull extends BlockState {
      * Sets the rotation of the skull in the world
      *
      * @param rotation 头颅的角度
+     * @deprecated 请使用 {@link BlockData}
      */
+    @Deprecated
     public void setRotation(BlockFace rotation);
 
     /**
@@ -91,7 +97,9 @@ public interface Skull extends BlockState {
      * Gets the type of skull
      *
      * @return 头颅的类型
+     * @deprecated 请检查 {@link Material} 类型
      */
+    @Deprecated
     public SkullType getSkullType();
 
     /**
@@ -101,6 +109,8 @@ public interface Skull extends BlockState {
      * Sets the type of skull
      *
      * @param skullType 头颅的类型
+     * @deprecated 请检查 {@link Material} 类型
      */
+    @Deprecated
     public void setSkullType(SkullType skullType);
 }

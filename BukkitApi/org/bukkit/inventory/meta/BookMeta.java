@@ -5,7 +5,7 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * 代表书({@link Material#BOOK_AND_QUILL 书与笔}或者{@link Material#WRITTEN_BOOK 成书})，可以有标题，作者，页面.
+ * 代表书({@link Material#WRITABLE_BOOK}或者{@link Material#WRITTEN_BOOK 成书})，可以有标题，作者，页面.
  */
 public interface BookMeta extends ItemMeta {
 
