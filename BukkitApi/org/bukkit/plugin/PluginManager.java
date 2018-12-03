@@ -15,7 +15,7 @@ import org.bukkit.permissions.Permission;
 public interface PluginManager {
 
     /**
-     * 注册给定的插件加载器
+     * 注册给定的插件加载器. 
      * <p/>
      * 原文:
      * Registers the specified plugin loader
@@ -26,7 +26,7 @@ public interface PluginManager {
     public void registerInterface(Class<? extends PluginLoader> loader) throws IllegalArgumentException;
 
     /**
-     * 检查指定名称的插件是否被加载,在已被加载的情况下返回插件所属的对象.
+     * 检查指定名称的插件是否被加载,在已被加载的情况下返回插件所属的对象. 
      * 注意,插件的名称是区分大小写的.
      * <p/>
      * 原文:
@@ -40,7 +40,7 @@ public interface PluginManager {
     public Plugin getPlugin(String name);
 
     /**
-     * 获取所有已载入的插件对象.
+     * 获取所有已载入的插件对象. 
      * <p/>
      * 原文:
      * Gets a list of all currently loaded plugins.
@@ -49,7 +49,7 @@ public interface PluginManager {
     public Plugin[] getPlugins();
 
     /**
-     * 检查指定名称的插件是否启用.
+     * 检查指定名称的插件是否启用. 
      * 注意,插件的名称是区分大小写的.
      * <p/>
      * 原文:
@@ -63,7 +63,7 @@ public interface PluginManager {
     public boolean isPluginEnabled(String name);
 
     /**
-     * 检查指定插件是否启用.
+     * 检查指定插件是否启用. 
      * <p/>
      * 原文:
      * Checks if the given plugin is enabled or not.
@@ -90,7 +90,7 @@ public interface PluginManager {
     public Plugin loadPlugin(File file) throws InvalidPluginException, InvalidDescriptionException, UnknownDependencyException;
 
     /**
-     * 载入指定目录内的插件.
+     * 载入指定目录内的插件. 
      * <p/>
      * 原文:
      * Loads the plugins contained within the specified directory.
@@ -101,7 +101,7 @@ public interface PluginManager {
     public Plugin[] loadPlugins(File directory);
 
     /**
-     * 停用所有已载入的插件.
+     * 停用所有已载入的插件. 
      * <p/>
      * 原文:
      * Disables all the loaded plugins.
@@ -109,7 +109,7 @@ public interface PluginManager {
     public void disablePlugins();
 
     /**
-     * 停用并清除所有已启用插件的Plugin对象.
+     * 停用并清除所有已启用插件的Plugin对象. 
      * <p/>
      * 原文:
      * Disables and removes all plugins.
@@ -129,7 +129,7 @@ public interface PluginManager {
     public void callEvent(Event event) throws IllegalStateException;
 
     /**
-     * 注册指定事件监听器中的所有事件执行器所属的事件.
+     * 注册指定事件监听器中的所有事件执行器所属的事件. 
      * <p/>
      * 原文:
      * Registers all the events in the given listener class
@@ -163,7 +163,7 @@ public interface PluginManager {
     public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin, boolean ignoreCancelled);
 
     /**
-     * 启用指定的插件.
+     * 启用指定的插件. 
      * 对已经启用的插件调用本方法将没有任何作用.
      * <p/>
      * 原文:
@@ -177,7 +177,7 @@ public interface PluginManager {
     public void enablePlugin(Plugin plugin);
 
     /**
-     * 启用指定的插件.
+     * 启用指定的插件. 
      * 对已经启用的插件调用本方法将没有任何作用.
      * <p/>
      * 原文:
@@ -234,7 +234,7 @@ public interface PluginManager {
     public void removePermission(String name);
 
     /**
-     * 获取普通玩家默认拥有的权限或op默认拥有的权限.
+     * 获取普通玩家默认拥有的权限或op默认拥有的权限. 
      * <p/>
      * 原文:
      * Gets the default permissions for the given op status
@@ -313,7 +313,7 @@ public interface PluginManager {
     public Set<Permissible> getDefaultPermSubscriptions(boolean op);
 
     /**
-     * 获得所有已注册的权限的集合(Set).
+     * 获得所有已注册的权限的集合(Set). 
      * 返回的Set对象是复制原有对象获得的,对返回的Set对象进行修改不会影响原本的Set对象.
      * Gets a set of all registered permissions.
      * <p>
