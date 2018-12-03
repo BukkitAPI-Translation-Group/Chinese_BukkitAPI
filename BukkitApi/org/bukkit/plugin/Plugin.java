@@ -16,10 +16,14 @@ import org.bukkit.generator.ChunkGenerator;
  */
 public interface Plugin extends TabExecutor {
     /**
+     * 返回用于存放插件数据的文件夹File对象. 
+     * 文件夹可能不存在.
+     * <p/>
+     * 原文:
      * Returns the folder that the plugin data's files are located in. The
      * folder may not yet exist.
      *
-     * @return The folder
+     * @return 文件夹的File对象
      */
     public File getDataFolder();
 
@@ -42,10 +46,13 @@ public interface Plugin extends TabExecutor {
     public FileConfiguration getConfig();
 
     /**
+     * 获取插件jar内的资源文件. 
+     * <p/>
+     * 原文:
      * Gets an embedded resource in this plugin
      *
-     * @param filename Filename of the resource
-     * @return File if found, otherwise null
+     * @param filename 资源文件的文件名
+     * @return 如果文件存在返回文件File对象,否则返回null
      */
     public InputStream getResource(String filename);
 
@@ -149,21 +156,29 @@ public interface Plugin extends TabExecutor {
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id);
 
     /**
+     * 返回与该服务器日志记录器关联的插件日志记录器. 
+     * 返回的日志记录器会在日志内容的开头加上插件名称以表示该日志由指定插件输出. 
+     * <p/>
+     * 原文:
      * Returns the plugin logger associated with this server's logger. The
      * returned logger automatically tags all log messages with the plugin's
      * name.
      *
-     * @return Logger associated with this plugin
+     * @return 与插件关联的日志记录器
      */
     public Logger getLogger();
 
     /**
+     * 返回插件的名称. 
+     * 本方法会返回插件的裸名(bare name),并且返回的文本应只用于比较.
+     * <p/>
+     * 原文: 
      * Returns the name of the plugin.
      * <p>
      * This should return the bare name of the plugin and should be used for
      * comparison.
      *
-     * @return name of the plugin
+     * @return 返回插件的名称
      */
     public String getName();
 }
