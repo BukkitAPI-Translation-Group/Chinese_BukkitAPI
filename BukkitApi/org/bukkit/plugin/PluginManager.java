@@ -15,15 +15,21 @@ import org.bukkit.permissions.Permission;
 public interface PluginManager {
 
     /**
+     * 注册给定的插件加载器
+     * <p/>
+     * 原文:
      * Registers the specified plugin loader
      *
-     * @param loader Class name of the PluginLoader to register
-     * @throws IllegalArgumentException Thrown when the given Class is not a
-     *     valid PluginLoader
+     * @param loader 要注册的插件加载器的类
+     * @throws IllegalArgumentException 当给定的类不是有效的插件加载器时抛出
      */
     public void registerInterface(Class<? extends PluginLoader> loader) throws IllegalArgumentException;
 
     /**
+     * 检查指定名称的插件是否被加载,在已被加载的情况下返回插件所属的对象.
+     * 注意,插件的名称是区分大小写的.
+     * <p/>
+     * 原文:
      * Checks if the given plugin is loaded and returns it when applicable
      * <p>
      * Please note that the name of the plugin is case-sensitive
@@ -43,12 +49,16 @@ public interface PluginManager {
     public Plugin[] getPlugins();
 
     /**
+     * 检查指定名称的插件是否启用.
+     * 注意,插件的名称是区分大小写的.
+     * <p/>
+     * 原文:
      * Checks if the given plugin is enabled or not
      * <p>
      * Please note that the name of the plugin is case-sensitive.
      *
-     * @param name Name of the plugin to check
-     * @return true if the plugin is enabled, otherwise false
+     * @param name 要检查的插件的名称
+     * @return 如果插件已经启用了,返回true;反之,没有启用择返回false
      */
     public boolean isPluginEnabled(String name);
 
@@ -58,8 +68,8 @@ public interface PluginManager {
      * 原文:
      * Checks if the given plugin is enabled or not.
      *
-     * @param plugin Plugin to check
-     * @return true if the plugin is enabled, otherwise false
+     * @param plugin 要检查的插件所属的Plugin对象
+     * @return 如果插件已经启用了,返回true;反之,没有启用则返回false
      */
     public boolean isPluginEnabled(Plugin plugin);
 
@@ -119,10 +129,13 @@ public interface PluginManager {
     public void callEvent(Event event) throws IllegalStateException;
 
     /**
+     * 注册指定事件监听器中的所有事件执行器所属的事件.
+     * <p/>
+     * 原文:
      * Registers all the events in the given listener class
      *
-     * @param listener Listener to register
-     * @param plugin Plugin to register
+     * @param listener 要注册的监听器
+     * @param plugin 监听器所属的插件
      */
     public void registerEvents(Listener listener, Plugin plugin);
 
@@ -150,21 +163,27 @@ public interface PluginManager {
     public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin, boolean ignoreCancelled);
 
     /**
+     * 启用指定的插件.
+     * 对已经启用的插件调用本方法将没有任何作用.
+     * <p/>
+     * 原文:
      * Enables the specified plugin
      * <p>
      * Attempting to enable a plugin that is already enabled will have no
      * effect
      *
-     * @param plugin Plugin to enable
+     * @param plugin 要启用的插件
      */
     public void enablePlugin(Plugin plugin);
 
     /**
-     * Disables the specified plugin
-     * <p>
+     * 启用指定的插件.
+     * 对已经启用的插件调用本方法将没有任何作用.
+     * <p/>
+     * 原文:
      * Attempting to disable a plugin that is not enabled will have no effect
      *
-     * @param plugin Plugin to disable
+     * @param plugin 要停用的插件
      */
     public void disablePlugin(Plugin plugin);
 
@@ -294,11 +313,13 @@ public interface PluginManager {
     public Set<Permissible> getDefaultPermSubscriptions(boolean op);
 
     /**
+     * 获得所有已注册的权限的集合(Set).
+     * 返回的Set对象是复制原有对象获得的,对返回的Set对象进行修改不会影响原本的Set对象.
      * Gets a set of all registered permissions.
      * <p>
      * This set is a copy and will not be modified live.
      *
-     * @return Set containing all current registered permissions
+     * @return 包含当前所有已注册权限的集合(Set)对象
      */
     public Set<Permission> getPermissions();
 
