@@ -4,37 +4,18 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表楼梯
+ * Represents stairs.
  */
 public class Stairs extends MaterialData implements Directional {
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Stairs(final int type) {
-        super(type);
-    }
 
     public Stairs(final Material type) {
         super(type);
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Stairs(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Stairs(final Material type, final byte data) {
@@ -42,7 +23,7 @@ public class Stairs extends MaterialData implements Directional {
     }
 
     /**
-     * @return 楼梯上升的方向
+     * @return the direction the stairs ascend towards
      */
     public BlockFace getAscendingDirection() {
         byte data = getData();
@@ -64,16 +45,14 @@ public class Stairs extends MaterialData implements Directional {
     }
 
     /**
-     * @return 楼梯下降的方向
+     * @return the direction the stairs descend towards
      */
     public BlockFace getDescendingDirection() {
         return getAscendingDirection().getOppositeFace();
     }
 
     /**
-     * 设置楼梯部分的朝向.
-     * <p>
-     * 原文:Set the direction the stair part of the block is facing
+     * Set the direction the stair part of the block is facing
      */
     public void setFacingDirection(BlockFace face) {
         byte data;
@@ -101,29 +80,26 @@ public class Stairs extends MaterialData implements Directional {
     }
 
     /**
-     * @return 楼梯的朝向
+     * @return the direction the stair part of the block is facing
      */
     public BlockFace getFacing() {
         return getDescendingDirection();
     }
 
     /**
-     * 测试这个台阶是否被反转.
-     * <p>
-     * 原文:Test if step is inverted
+     * Test if step is inverted
      *
-     * @return true为台阶被反转(上半)，false为一般状态(下半)
+     * @return true if inverted (top half), false if normal (bottom half)
      */
     public boolean isInverted() {
         return ((getData() & 0x4) != 0);
     }
 
     /**
-     * 设置台阶的反转状态.
-     * <p>
-     * 原文:Set step inverted state
+     * Set step inverted state
      *
-     * @param inv - true为台阶被反转(上半)，false为一般状态(下半)
+     * @param inv - true if step is inverted (top half), false if step is
+     *     normal (bottom half)
      */
     public void setInverted(boolean inv) {
         int dat = getData() & 0x3;
@@ -135,7 +111,7 @@ public class Stairs extends MaterialData implements Directional {
 
     @Override
     public String toString() {
-        return super.toString() + " facing " + getFacing() + (isInverted()?" inverted":"");
+        return super.toString() + " facing " + getFacing() + (isInverted() ? " inverted" : "");
     }
 
     @Override

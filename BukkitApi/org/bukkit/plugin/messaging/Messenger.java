@@ -1,11 +1,16 @@
 package org.bukkit.plugin.messaging;
 
 import java.util.Set;
+import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
 /**
  * 负责管理注册插件通道和监听器的类.
+ *
+ * Channel names must contain a colon separator and consist of only [a-z0-9/._-]
+ * - i.e. they MUST be valid {@link NamespacedKey}. The "BungeeCord" channel is
+ * an exception and may only take this form.
  */
 public interface Messenger {
 
@@ -17,7 +22,7 @@ public interface Messenger {
     /**
      * 代表单个插件通道的最大大小.
      */
-    public static final int MAX_CHANNEL_SIZE = 20;
+    public static final int MAX_CHANNEL_SIZE = 32;
 
     /**
      * 检测指定的通道名称是否为保留名称.

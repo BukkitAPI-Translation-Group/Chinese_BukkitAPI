@@ -15,23 +15,13 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private final Block block;
     private boolean cancel;
-    private final Material to;
-    private final byte data;
+    private final BlockData to;
 
-    /**
-     * @param what 造成这次方块改变的生物实体(LivingEntity)类
-     * @param block 改变前的方块(Block)类
-     * @param to 改变后的材料(Material)类
-     * @param data 改变之后的方块数据值
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public EntityChangeBlockEvent(final Entity what, final Block block, final Material to, final byte data) {
+    public EntityChangeBlockEvent(final Entity what, final Block block, final BlockData to) {
         super(what);
         this.block = block;
         this.cancel = false;
         this.to = to;
-        this.data = data;
     }
 
     /**
@@ -63,21 +53,18 @@ public class EntityChangeBlockEvent extends EntityEvent implements Cancellable {
      * @return 改变后的材料(Material)类
      */
     public Material getTo() {
-        return to;
+        return to.getMaterial();
     }
 
     /**
-     * 返回改变后的数据值
-     * 
-     * 原文:
-     * Gets the data for the block that would be changed into
+     * 返回方块改变后的数据.
+     * <p>
+     * 原文:Gets the data for the block that would be changed into
      *
-     * @return 改变后的数据值
-     * @deprecated 不安全的参数
+     * @return 改变后的数据
      */
-    @Deprecated
-    public byte getData() {
-        return data;
+    public BlockData getBlockData() {
+        return to;
     }
 
     @Override

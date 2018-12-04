@@ -18,10 +18,12 @@ import org.bukkit.Statistic;
 import org.bukkit.WeatherType;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.command.CommandSender;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.map.MapView;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.scoreboard.Scoreboard;
 
@@ -31,9 +33,9 @@ import org.bukkit.scoreboard.Scoreboard;
 public interface Player extends HumanEntity, Conversable, CommandSender, OfflinePlayer, PluginMessageRecipient {
 
     /**
-     * 获得玩家在聊天中的昵称.
+     * 获得玩家在聊天信息中的昵称.
      * <p>
-     * 这个名字只显示在聊天中,可以包括颜色 
+     * 这个昵称只显示在聊天信息中，能以颜色加以修饰.
      * <p>
      * 原文:Gets the "friendly" name to display of this player. This may include
      * color.
@@ -46,9 +48,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public String getDisplayName();
 
     /**
-     * 设置玩家在聊天中的昵称.
+     * 设置玩家在聊天信息中的昵称.
      * <p>
-     * 这个名字只显示在聊天中,可以包括颜色.
+     * 这个名字只显示在聊天信息中,能以颜色加以修饰.
      * <p>
      * 原文Sets the "friendly" name to display of this player. This may include
      * color.
@@ -65,7 +67,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文:Gets the name that is shown on the player list.
      * 
-     * @return the player list name
+     * @return 玩家名(显示于tab列表)
      */
     public String getPlayerListName();
 
@@ -75,6 +77,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 不允许超过16个字符,不允许重复.但支持{@link ChatColor}颜色代码.
      * <p>
      * 如果设置为null则不在玩家列表中显示.(玩家自己还是看得到的,只不过别人看不到).
+     * <p>
+     * ("list name"指代“玩家显示在Tab列表中的名称”)(以下解释的是服务器如何处理冲突玩家名，你用代码违法操作肯定是会抛出异常的)
+     * 这个名字区分大小写且唯一，也就意味着两个字母相同但字母大小写有别的名字被当作为两个不同的人.
+     * 如果一玩家以与某个游戏内玩家的自定义的"list name"相冲突的名字加入游戏，
+     * 则追加一个随机数字至这个玩家的"list name".
+     * 如果这个玩家的名字较长，那么名字末尾的部分会被截除.
      * <p>
      * 原文:Sets the name that is shown on the in-game player list.
      * <p>
@@ -98,11 +106,48 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setPlayerListName(String name);
 
     /**
+     * Gets the currently displayed player list header for this player.
+     *
+     * @return player list header or null
+     */
+    public String getPlayerListHeader();
+
+    /**
+     * Gets the currently displayed player list footer for this player.
+     *
+     * @return player list header or null
+     */
+    public String getPlayerListFooter();
+
+    /**
+     * Sets the currently displayed player list header for this player.
+     *
+     * @param header player list header, null for empty
+     */
+    public void setPlayerListHeader(String header);
+
+    /**
+     * Sets the currently displayed player list footer for this player.
+     *
+     * @param footer player list footer, null for empty
+     */
+    public void setPlayerListFooter(String footer);
+
+    /**
+     * Sets the currently displayed player list header and footer for this
+     * player.
+     *
+     * @param header player list header, null for empty
+     * @param footer player list footer, null for empty
+     */
+    public void setPlayerListHeaderFooter(String header, String footer);
+
+    /**
      * 设置玩家指南针的指向的位置({@link Location}).
      * <p>
      * 原文:Set the target of the player's compass.
      *
-     * @param loc Location to point to
+     * @param loc 指向
      */
     public void setCompassTarget(Location loc);
 
@@ -113,14 +158,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文: Get the previously set compass target.
      *
-     * @return location of the target
+     * @return 指向
      */
     public Location getCompassTarget();
 
     /**
      * 得到一个Address对象,包括这个玩家的IP以及登入端口.
-     * <p>
-     * 可以使用toString()方法得到 "xxx.xxx.xxx.xxx:xxxxx"
      * <p>
      * 原文:Gets the socket address of this player
      *
@@ -129,9 +172,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public InetSocketAddress getAddress();
 
     /**
-     * 发送一条不含颜色代码的消息
+     * 发送一条不含颜色代码的消息.
      * <p>
-     * 译注:就是会把颜色代码过滤掉然后{#link sendMessage}
+     * 译注:就是会把颜色代码过滤掉然后{@link #sendMessage}
      * <p>
      * 原文:Sends this sender a message raw
      *
@@ -172,7 +215,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * <p>
      * 原文:Returns if the player is in sneak mode
      *
-     * @return 如果在潜行模式返回true,false反之.
+     * @return 如果在潜行模式返回true
      */
     public boolean isSneaking();
 
@@ -205,9 +248,9 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
 
     /**
      * 保存玩家数据(位置,血量,背包,移动方向
-     * 及其他信息至在world/player文件夹中的玩家名.dat文件).
+     * 及其他信息至在world/player文件夹中的"玩家名.dat"文件).
      * <p>
-     * 原文 Saves the players current location, health, inventory, motion, and
+     * 原文:Saves the players current location, health, inventory, motion, and
      * other information into the username.dat file, in the world/player
      * folder
      */
@@ -334,9 +377,11 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
 
     /**
-     * Stop the specified sound from playing.
+     * 停止播放某个指定的声音.
+     * <p>
+     * 原文:Stop the specified sound from playing.
      *
-     * @param sound the sound to stop
+     * @param sound 指定声音
      */
     public void stopSound(Sound sound);
 
@@ -352,7 +397,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * Stop the specified sound from playing.
      *
      * @param sound the sound to stop
-     * @param category the category of the sound
+     * @param category 声音类别
      */
     public void stopSound(Sound sound, SoundCategory category);
 
@@ -403,13 +448,24 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 但其实并没有改变.<p>
      * 例2:sendBlockChange(loc,Material.WOOL,(byte)14)将让玩家的客户端认为loc的位置是一个红色羊毛(附加值为14的WOOL).
      *
-     * @param loc 要改变的方块
+     * @param loc 要改变的方块的位置
      * @param material 要改变成的方块的类型
      * @param data 要改变成的方块的副ID
      * @deprecated 不安全的参数
      */
     @Deprecated
     public void sendBlockChange(Location loc, Material material, byte data);
+
+    /**
+     * 向该玩家发送一个伪造的指定位置的方块({@link Block})更改数据包.这不会改变世界中的方块.
+     * <p>
+     * 原文:Send a block change. This fakes a block change packet for a user at a
+     * certain location. This will not actually change the world in any way.
+     *
+     * @param loc 要改变的方块的位置
+     * @param block 新方块
+     */
+    public void sendBlockChange(Location loc, BlockData block);
 
     /**
      * 向该玩家发送一个伪造的指定位置的长方体的更改数据包.这不会改变世界中的方块.<p>
@@ -438,19 +494,6 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      */
     @Deprecated
     public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data);
-
-    /**
-     * 类似于 {@link #sendBlockChange(Location loc, Material material, byte data)}方法. <p>
-     * Send a block change. This fakes a block change packet for a user at a
-     * certain location. This will not actually change the world in any way.
-     *
-     * @param loc 要改变的方块的位置
-     * @param material 要改变成的方块的ID
-     * @param data 要改变成的方块的副ID
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public void sendBlockChange(Location loc, int material, byte data);
 
     /**
      * 向该玩家发送一个伪造的牌子({@link Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
@@ -516,7 +559,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      *
      * @param achievement 要移除的成就
      * @throws IllegalArgumentException 当成就为null时抛出.
-     * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
+     * @deprecated 未来的Minecraft将不会有成就(取而代之的是进度).
      */
     @Deprecated
     public void removeAchievement(Achievement achievement);
@@ -935,7 +978,7 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public void setLevel(int level);
 
     /**
-     * 得到总共的经验值(等级和经验).
+     * 得到玩家总共获得了多少经验(等级和经验).
      * <br>
      * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
      * <p>
@@ -949,10 +992,17 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     public int getTotalExperience();
 
     /**
-     * 设置总共的经验值. <p>
-     * 原文:Sets the players current experience level
+     * 设置玩家的总经验值(等级和经验).
+     * <br>
+     * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
+     * <p>
+     * 原文:
+     * Sets the players current experience points.
+     * <br>
+     * This refers to the total amount of experience the player has collected
+     * over time and is only displayed as the player's "score" upon dying.
      *
-     * @param exp 新的玩家总经验
+     * @param exp 总经验值
      */
     public void setTotalExperience(int exp);
 
@@ -1071,16 +1121,43 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * 原文:Hides a player from this player
      *
      * @param player 要让该玩家看不见的玩家.
+     * @deprecated 另请参阅 {@link #hidePlayer(Plugin, Player)}
      */
+    @Deprecated
     public void hidePlayer(Player player);
+
+    /**
+     * 让该玩家看不见某玩家.
+     * <p>
+     * 原文:Hides a player from this player
+     *
+     * @param plugin Plugin 要隐藏该玩家的插件
+     * @param player Player 要让该玩家看不见的玩家.
+     */
+    public void hidePlayer(Plugin plugin, Player player);
 
     /**
      * 让该玩家能看到某玩家. <p>
      * 原文:Allows this player to see a player that was previously hidden
      *
      * @param player 要让该玩家看得见的玩家.
+     * @deprecated 另请参阅 {@link #showPlayer(Plugin, Player)}
      */
+    @Deprecated
     public void showPlayer(Player player);
+
+    /**
+     * 让该玩家能看到之前被隐藏的玩家. 如果另一个插件也隐藏了这个玩家,
+     * 那么玩家将继续处于隐藏状态直至其他插件也调用了此方法.
+     * <p>
+     * 原文:Allows this player to see a player that was previously hidden. If
+     * another another plugin had hidden the player too, then the player will
+     * remain hidden until the other plugin calls this method too.
+     *
+     * @param plugin Plugin 要使某玩家现身的插件
+     * @param player Player 使某玩家现身
+     */
+    public void showPlayer(Plugin plugin, Player player);
 
     /**
      * 检查该玩家是否能看到某玩家. <p>
@@ -1624,4 +1701,12 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @return the player's locale
      */
     public String getLocale();
+
+    /**
+     * Update the list of commands sent to the client.
+     * <br>
+     * Generally useful to ensure the client has a complete list of commands
+     * after permission changes are done.
+     */
+    public void updateCommands();
 }

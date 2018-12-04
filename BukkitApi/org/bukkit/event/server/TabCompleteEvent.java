@@ -6,9 +6,14 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.event.player.PlayerCommandSendEvent;
 
 /**
  * 当一个 {@link CommandSender} 尝试补全命令时触发本事件.
+ * <br>
+ * 请注意由于客户端的更改, 如果命令发起者是玩家, 本事件
+ * 将只有在指定了命令参数后触发, 而不是命令本身.建议希望从tab补全列表删除命令的插件
+ * 确保客户端没有相关命令的执行权限, 或使用{@link PlayerCommandSendEvent}.
  */
 public class TabCompleteEvent extends Event implements Cancellable {
 

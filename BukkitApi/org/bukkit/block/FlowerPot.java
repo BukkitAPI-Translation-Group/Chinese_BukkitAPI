@@ -2,6 +2,11 @@ package org.bukkit.block;
 
 import org.bukkit.material.MaterialData;
 
+/**
+ * Represents a captured state of a flower pot.
+ * @deprecated not a tile entity in future versions of Minecraft
+ */
+@Deprecated
 public interface FlowerPot extends BlockState {
 
     /**

@@ -4,7 +4,7 @@ import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
 
 /**
- * 代表可以存储单个FireworkEffect的meta.例如包含{@link Material#FIREWORK_CHARGE}.
+ * 代表可以存储单个FireworkEffect的meta.例如包含{@link Material#FIREWORK_STAR}.
  */
 public interface FireworkEffectMeta extends ItemMeta {
 

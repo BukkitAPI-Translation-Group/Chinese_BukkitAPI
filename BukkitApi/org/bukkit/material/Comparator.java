@@ -4,10 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表开启或关闭状态的红石比较器.
+ * Represents a comparator in the on or off state, in normal or subtraction mode and facing in a specific direction.
  *
- * @see Material#REDSTONE_COMPARATOR_OFF
- * @see Material#REDSTONE_COMPARATOR_ON
+ * @see Material#LEGACY_REDSTONE_COMPARATOR_OFF
+ * @see Material#LEGACY_REDSTONE_COMPARATOR_ON
  */
 public class Comparator extends MaterialData implements Directional, Redstone {
     protected static final BlockFace DEFAULT_DIRECTION = BlockFace.NORTH;
@@ -15,20 +15,16 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     protected static final boolean DEFAULT_STATE = false;
 
     /**
-     * 构造一个关闭状态的、默认模式默认朝向（北）的红石比较器.
-     * <p>
-     * 原文:Constructs a comparator switched off, with the default mode (normal) and facing the default direction (north).
+     * Constructs a comparator switched off, with the default mode (normal) and facing the default direction (north).
      */
     public Comparator() {
         this(DEFAULT_DIRECTION, DEFAULT_SUBTRACTION_MODE, false);
     }
 
     /**
-     * 构造一个关闭状态的、默认模式指定朝向的红石比较器.
-     * <p>
-     * 原文:Constructs a comparator switched off, with the default mode (normal) and facing the specified direction.
+     * Constructs a comparator switched off, with the default mode (normal) and facing the specified direction.
      *
-     * @param facingDirection 朝向
+     * @param facingDirection the direction the comparator is facing
      *
      * @see BlockFace
      */
@@ -37,43 +33,30 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * 构造一个关闭状态的、指定模式指定朝向的红石比较器.
-     * <p>
-     * 原文:Constructs a comparator switched off, with the specified mode and facing the specified direction.
+     * Constructs a comparator switched off, with the specified mode and facing the specified direction.
      *
-     * @param facingDirection 朝向
-     * @param isSubtraction true 如果红石比较器为减法模式
+     * @param facingDirection the direction the comparator is facing
+     * @param isSubtraction True if the comparator is in subtraction mode, false for normal comparator operation
      *
      * @see BlockFace
      */
     public Comparator(BlockFace facingDirection, boolean isSubtraction) {
-    	this(facingDirection, isSubtraction, DEFAULT_STATE);
+        this(facingDirection, isSubtraction, DEFAULT_STATE);
     }
 
     /**
-     * 构造一个开启或关闭状态的、指定模式指定朝向的红石比较器.
-     * <p>
-     * 原文:Constructs a comparator switched on or off, with the specified mode and facing the specified direction.
+     * Constructs a comparator switched on or off, with the specified mode and facing the specified direction.
      *
-     * @param facingDirection 朝向
-     * @param isSubtraction true 如果红石比较器为减法模式
-     * @param state 激活状态
+     * @param facingDirection the direction the comparator is facing
+     * @param isSubtraction True if the comparator is in subtraction mode, false for normal comparator operation
+     * @param state True if the comparator is in the on state
      *
      * @see BlockFace
      */
     public Comparator(BlockFace facingDirection, boolean isSubtraction, boolean state) {
-        super(state ? Material.REDSTONE_COMPARATOR_ON : Material.REDSTONE_COMPARATOR_OFF);
+        super(state ? Material.LEGACY_REDSTONE_COMPARATOR_ON : Material.LEGACY_REDSTONE_COMPARATOR_OFF);
         setFacingDirection(facingDirection);
         setSubtractionMode(isSubtraction);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Comparator(int type) {
-        super(type);
     }
 
     public Comparator(Material type) {
@@ -81,19 +64,9 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Comparator(int type, byte data) {
-        super(type, data);
-    }
-
-    /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Comparator(Material type, byte data) {
@@ -101,33 +74,27 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * 设置该红石比较器是否为减法模式.
-     * <p>
-     * 原文:Sets whether the comparator is in subtraction mode.
+     * Sets whether the comparator is in subtraction mode.
      *
-     * @param isSubtraction true 如果红石比较器为减法模式
+     * @param isSubtraction True if the comparator is in subtraction mode, false for normal comparator operation
      */
     public void setSubtractionMode(boolean isSubtraction) {
-        setData((byte)(getData() & 0xB | (isSubtraction ? 0x4 : 0x0)));
+        setData((byte) (getData() & 0xB | (isSubtraction ? 0x4 : 0x0)));
     }
 
     /**
-     * 检测这个红石即比较器是否为减法模式.
-     * <p>
-     * 原文:Checks whether the comparator is in subtraction mode
+     * Checks whether the comparator is in subtraction mode
      *
-     * @return true 如果红石比较器为减法模式
+     * @return True if the comparator is in subtraction mode, false if normal comparator operation
      */
     public boolean isSubtractionMode() {
         return (getData() & 0x4) != 0;
     }
 
     /**
-     * 设置这个红石比较器的朝向.
-     * <p>
-     * 原文:Sets the direction this comparator is facing
+     * Sets the direction this comparator is facing
      *
-     * @param face 朝向
+     * @param face The direction to set this comparator to
      *
      * @see BlockFace
      */
@@ -153,15 +120,13 @@ public class Comparator extends MaterialData implements Directional, Redstone {
             data |= 0x0;
         }
 
-        setData((byte)data);
+        setData((byte) data);
     }
 
     /**
-     * 获取这个红石比较器的朝向.
-     * <p>
-     * 原文:Gets the direction this comparator is facing
+     * Gets the direction this comparator is facing
      *
-     * @return 朝向
+     * @return The direction this comparator is facing
      *
      * @see BlockFace
      */
@@ -196,23 +161,19 @@ public class Comparator extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * 检测这个红石比较器是否充能.
-     * <p>
-     * 原文:Checks if the comparator is powered
+     * Checks if the comparator is powered
      *
-     * @return 这个红石比较器是否充能
+     * @return true if the comparator is powered
      */
     @Override
     public boolean isPowered() {
-        return getItemType() == Material.REDSTONE_COMPARATOR_ON;
+        return getItemType() == Material.LEGACY_REDSTONE_COMPARATOR_ON;
     }
 
     /**
-     * 检测这个红石比较器是否输出信号.
-     * <p>
-     * 原文:Checks if the comparator is being powered
+     * Checks if the comparator is being powered
      *
-     * @return 这个红石比较器是否输出信号
+     * @return true if the comparator is being powered
      */
     public boolean isBeingPowered() {
         return (getData() & 0x8) != 0;

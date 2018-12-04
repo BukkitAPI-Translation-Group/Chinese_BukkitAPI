@@ -1,9 +1,10 @@
-/* 该文件会随着版本的更新而大幅度修改，因此建议你不要翻译标记为Deprecated的方法. */
 package org.bukkit.entity;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.inventory.MainHand;
+import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.InventoryView;
@@ -12,212 +13,227 @@ import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.permissions.Permissible;
 
 /**
- * 代表一个人类实体，如一个NPC（村民）或一名玩家
- * 原文：
- * Represents a human entity, such as an NPC or a player
+ * 代表人类实体, 比如一个NPC或一名玩家
  */
 public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, InventoryHolder {
 
     /**
-     * 返回玩家名称
-     * 原文：
-     * Returns the name of this player
+     * 返回该玩家的玩家名.
+     * <p>
+     * 原文:Returns the name of this player
      *
-     * @return 玩家名称
+     * @return 玩家名
      */
     public String getName();
 
     /**
-     * 获取玩家的背包。
-     * 原文：
-     * Get the player's inventory.
+     * 获取玩家的物品栏(俗称背包).
+     * <p>
+     * 原文:Get the player's inventory.
      *
-     * @return 玩家的背包，包含防具槽。
+     * @return 玩家物品栏, 包含盔甲槽
      */
     public PlayerInventory getInventory();
 
     /**
-     * 获取玩家的末影箱库存
-     * 原文：
-     * Get the player's EnderChest inventory
+     * 获取玩家的末影箱物品栏.
+     * <p>
+     * 原文:Get the player's EnderChest inventory
      *
      * @return 玩家的末影箱
      */
     public Inventory getEnderChest();
 
     /**
-     * 获取玩家选定的主手
-     * 原文：
-     * Gets the player's selected main hand
+     * 获取玩家设置的主手.
+     * <p>
+     * 原文:Gets the player's selected main hand
      *
-     * @return 玩家的主手
+     * @return 玩家主手
      */
     public MainHand getMainHand();
 
     /**
-     * 如果玩家当前打开了一个库存窗口，这个方法能够设置窗口的属性，如进度条的状态。
-     * 原文：
-     * If the player currently has an inventory window open, this method will
+     * 若玩家当前打开了一个物品栏窗口, 此方法将设置窗口的属性, 比如酿造台的酿造进度.
+     * <p>
+     * 原文:If the player currently has an inventory window open, this method will
      * set a property of that window, such as the state of a progress bar.
      *
-     * @param prop 选定的属性
-     * @param value 属性的设定值
-     * @return 成功设置属性则返回true。
+     * @param prop 窗口属性
+     * @param value 要设置的属性值
+     * @return 若属性成功设置返回true
      */
     public boolean setWindowProperty(InventoryView.Property prop, int value);
 
     /**
-     * 获取玩家当前浏览的库存视图。如果他们没有打开库存窗口，就会返回他们的背包视图（？）。
-     * 原文：
-     * Gets the inventory view the player is currently viewing. If they do not
+     * 获取玩家正在查看的物品栏. 如果他们没有打开任何物品栏窗口, 将返回他们的内部合成视图(玩家背包的那四个格子?).
+     * <p>
+     * 原文:Gets the inventory view the player is currently viewing. If they do not
      * have an inventory window open, it returns their internal crafting view.
      *
-     * @return 库存视图。
+     * @return 物品栏视图
      */
     public InventoryView getOpenInventory();
 
     /**
-     * 打开一个库存窗口，窗口的顶部为指定的库存，底部为玩家的背包。
-     * 原文：
-     * Opens an inventory window with the specified inventory on the top and
+     * 打开一个物品栏, 窗口顶部为你指定的物品栏, 底部为玩家物品栏(背包).
+     * <p>
+     * 原文:Opens an inventory window with the specified inventory on the top and
      * the player's inventory on the bottom.
      *
-     * @param inventory 打开的库存
-     * @return 最近被打开的库存视图
+     * @param inventory 要打开的物品栏
+     * @return 新打开的物品栏的视图
      */
     public InventoryView openInventory(Inventory inventory);
 
     /**
-     * 打开一个空的工作台库存窗口，底部为玩家的背包。
-     * 原文：
-     * Opens an empty workbench inventory window with the player's inventory
+     * 打开一个空白工作台物品栏界面, 玩家物品栏(背包)在底部.
+     * <p>
+     * 原文:Opens an empty workbench inventory window with the player's inventory
      * on the bottom.
      *
-     * @param location 工作台位置。如果为空，则使用玩家的位置。
-     * @param force 如果为false且指定位置没有工作台方块，则不会打开窗口且返回null。
-     * @return 如果打开成功则返回最近被打开的库存视图，否则返回null。
+     * @param location 工作台位置. 若为null, 将使用玩家所处位置
+     * @param force 若为false, 同时指定位置不是工作台方块, 将不会打开工作台物品栏, 并返回null(true就是不管怎样都向
+     * 玩家展示工作台界面)
+     * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
     public InventoryView openWorkbench(Location location, boolean force);
 
     /**
-     * 打开一个空的附魔台库存窗口，底部为玩家的背包。
-     * 原文：
-     * Opens an empty enchanting inventory window with the player's inventory
+     * 打开一个空白附魔台物品栏界面, 玩家物品栏(背包)在底部.
+     * <p>
+     * 原文:Opens an empty enchanting inventory window with the player's inventory
      * on the bottom.
      *
-     * @param location 附魔台位置。如果为空，则使用玩家的位置。
-     * @param force 如果为false且指定位置没有附魔台方块，则不会打开窗口且返回null。
-     * @return 如果打开成功则返回最近被打开的库存视图，否则返回null。
+     * @param location 附魔台位置. 若为null, 将使用玩家所处位置
+     * @param force 若为false, 同时指定位置不是附魔台方块, 将不会打开工作台物品栏, 并返回null(true就是不管怎样都向
+     * 玩家展示附魔台界面)
+     * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
     public InventoryView openEnchanting(Location location, boolean force);
 
     /**
-     * 打开指定的库存窗口。
-     * 原文：
-     * Opens an inventory window to the specified inventory view.
+     * 打开指定的物品栏.
+     * <p>
+     * 原文:Opens an inventory window to the specified inventory view.
      *
-     * @param inventory 指定的库存
+     * @param inventory 要打开的物品栏视图
      */
     public void openInventory(InventoryView inventory);
 
     /**
-     * 创建一个玩家与村民间的交易.
-     * 
-     * 注意一个村民同时只能有一名玩家交易。因此必须使用force参数.
-     * 原文：
-     * Starts a trade between the player and the villager.
+     * 与某村民开始交易.
+     *
+     * 注意: 同一时间内只有一名玩家可以与此村民进行交易. 欲使多名玩家能同时与此村民进行交易, 请将“force”参数设为true.
+     * <p>
+     * 原文:Starts a trade between the player and the villager.
      *
      * Note that only one player may trade with a villager at once. You must use
      * the force parameter for this.
      *
-     * @param trader 交易的村民。不能为空
-     * @param force 如果当前有另一名玩家正在交易是否强制创建交易
-     * @return 如果打开成功则返回最近被打开的库存视图，否则返回null
+     * @param trader 与哪位村民交易. 不能为null
+     * @param force 是否强制开始交易, 即使另一名玩家正在与此村民交易
+     * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
     public InventoryView openMerchant(Villager trader, boolean force);
 
     /**
-     * Starts a trade between the player and the merchant.
+     * 与某商人开始交易.
+     *
+     * 注意: 同一时间内只有一名玩家可以与此商人进行交易. 欲使多名玩家能同时与此商人进行交易, 请将“force”参数设为true.
+     * <p>
+     * 原文:Starts a trade between the player and the merchant.
      *
      * Note that only one player may trade with a merchant at once. You must use
      * the force parameter for this.
      *
-     * @param merchant The merchant to trade with. Cannot be null.
-     * @param force whether to force the trade even if another player is trading
-     * @return The newly opened inventory view, or null if it could not be
-     * opened.
+     * @param merchant 与哪个商人交易. 不能为null
+     * @param force 是否强制开始交易, 即使另一名玩家正在与此商人交易
+     * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
     public InventoryView openMerchant(Merchant merchant, boolean force);
 
     /**
-     * 强制关闭指定玩家当前打开的库存视图。
-     * 原文：
-     * Force-closes the currently open inventory view for this player, if any.
+     * 强制关闭玩家当前打开的物品栏视图.
+     * <p>
+     * 原文:Force-closes the currently open inventory view for this player, if any.
      */
     public void closeInventory();
 
     /**
-     * 返回当前手里的ItemStack（物品堆），可为空。
-     * 原文：
-     * Returns the ItemStack currently in your hand, can be empty.
+     * 返回你手握的物品, 可能为空.
+     * <p>
+     * 原文:Returns the ItemStack currently in your hand, can be empty.
      *
-     * @return 当前手里物品的ItemStack对象。
-     * @deprecated 人类现在能够双持，请使用{@link PlayerInventory}中更明确的方法。
+     * @return 你正在握持的物品的ItemStack(物品堆)对象
+     * @deprecated 人类现能双持, 请使用 {@link PlayerInventory} 中更明确的方法
      */
     @Deprecated
     public ItemStack getItemInHand();
 
     /**
-     * 设置指定物品堆（ItemStack）中的物品，将替换原本的物品。
-     * 原文：
-     * Sets the item to the given ItemStack, this will replace whatever the
+     * 设置你手握的物品, 将替换你所持的任何物品.
+     * <p>
+     * 原文:Sets the item to the given ItemStack, this will replace whatever the
      * user was holding.
      *
-     * @param item 最终设置的物品堆（ItemStack）
-     * @deprecated 人类现在能够双持，请使用{@link PlayerInventory}中更明确的方法。
+     * @param item 要设置的物品堆
+     * @deprecated 人类现能双持, 请使用 {@link PlayerInventory} 中更明确的方法
      */
     @Deprecated
     public void setItemInHand(ItemStack item);
 
     /**
-     * 返回当前光标中的物品堆（ItemStack），可为空。如果玩家当前没有打开窗口则返回空。
-     * 原文：
-     * Returns the ItemStack currently on your cursor, can be empty. Will
+     * 返回你的鼠标正在拖动的物品, 可能为空. 如果玩家没有打开任何窗口, 将永远为空(AIR).
+     * <p>
+     * 译注:这个方法是适用于物品拖动场景的, 只有鼠标指针在物品上而没有拖动它是获取不到的(AIR).
+     * <p>
+     * 原文:Returns the ItemStack currently on your cursor, can be empty. Will
      * always be empty if the player currently has no open window.
      *
-     * @return 正在移动的物品的ItemStack对象。
+     * @return 你正在拖动的物品的ItemStack对象
      */
     public ItemStack getItemOnCursor();
 
     /**
-     * 设置指定物品堆（ItemStack）中的物品，将替换原本的物品。如果玩家当前没有打开窗口则返回空。
-     * 原文：
-     * Sets the item to the given ItemStack, this will replace whatever the
+     * 设置你正在拖动的物品, 将替换你所拖动的任何物品. 如果玩家没有打开任何窗口, 将永远为空(AIR).
+     * <p>
+     * 原文:Sets the item to the given ItemStack, this will replace whatever the
      * user was moving. Will always be empty if the player currently has no
      * open window.
      *
-     * @param item 最终设置的物品堆（ItemStack）
+     * @param item 要设置的物品堆
      */
     public void setItemOnCursor(ItemStack item);
 
     /**
-     * Check whether a cooldown is active on the specified material.
+     * 检查指定物品是否处于冷却状态.
+     * <p>
+     * 原文:Check whether a cooldown is active on the specified material.
      *
-     * @param material the material to check
-     * @return if a cooldown is active on the material
+     * @param material 要检查的物品种类
+     * @return 该物品是否进入了冷却
      */
     public boolean hasCooldown(Material material);
 
     /**
-     * Get the cooldown time in ticks remaining for the specified material.
+     * 获取指定物品的冷却时长 (以tick为单位).
+     * <p>
+     * 原文:Get the cooldown time in ticks remaining for the specified material.
      *
-     * @param material the material to check
-     * @return the remaining cooldown time in ticks
+     * @param material 要检查的物品种类
+     * @return 剩余冷却时长 (以tick为单位)
      */
     public int getCooldown(Material material);
 
     /**
-     * Set a cooldown on the specified material for a certain amount of ticks.
+     * 设置指定物品的冷却时长. 设为0 tick将导致移除此物品的冷却.
+     * <p>
+     * 冷却被服务器用来针对某些物品比如末影珍珠、盾牌等以防止它们被经常重复使用.
+     * <p>
+     * 请注意: 冷却时间自身不会阻止某个物品被用来使用或攻击.
+     * <p>
+     * 原文:Set a cooldown on the specified material for a certain amount of ticks.
      * ticks. 0 ticks will result in the removal of the cooldown.
      * <p>
      * Cooldowns are used by the server for items such as ender pearls and
@@ -226,88 +242,101 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * Note that cooldowns will not by themselves stop an item from being used
      * for attacking.
      *
-     * @param material the material to set the cooldown for
-     * @param ticks the amount of ticks to set or 0 to remove
+     * @param material 为哪个物品设置冷却
+     * @param ticks 冷却时长(以tick为单位)或设为0来移除它
      */
     public void setCooldown(Material material, int ticks);
 
     /**
-     * 返回指定玩家是否正在睡眠。
-     * 原文：
-     * Returns whether this player is slumbering.
+     * 返回玩家是否处于睡眠状态.
+     * <p>
+     * 原文:Returns whether this player is slumbering.
      *
      * @return 睡眠状态
      */
     public boolean isSleeping();
 
     /**
-     * 获取玩家的睡眠时间（单位为tick）。这个值可能被封顶。
-     * 原文：
-     * Get the sleep ticks of the player. This value may be capped.
+     * 获取玩家的睡眠时间 (以tick为单位), 该值可能有上限.
+     * <p>
+     * 原文:Get the sleep ticks of the player. This value may be capped.
      *
-     * @return 睡眠时间（单位为tick）
+     * @return 玩家睡了多久
      */
     public int getSleepTicks();
 
     /**
-     * 获取玩家当前{@link GameMode}（游戏模式）
-     * 原文：
-     * Gets this human's current {@link GameMode}
+     * 获取此人类当前的{@link GameMode 游戏模式}.
+     * <p>
+     * 原文:Gets this human's current {@link GameMode}
      *
-     * @return 当前游戏模式
+     * @return 游戏模式
      */
     public GameMode getGameMode();
 
     /**
-     * 设置玩家当前{@link GameMode}（游戏模式）
-     * 原文：
-     * Sets this human's current {@link GameMode}
+     * 设置此人类的{@link GameMode 游戏模式}.
+     * <p>
+     * 原文:Sets this human's current {@link GameMode}
      *
-     * @param mode 新的游戏模式
+     * @param mode 新游戏模式
      */
     public void setGameMode(GameMode mode);
 
     /**
-     * 检查指定玩家是否正在格挡（使用剑）。
-     * 原文：
-     * Check if the player is currently blocking (ie with a sword).
+     * 检查玩家是否正在格挡 (换言之, 就是他们使用盾牌, 进入了格挡状态).
+     * <p>
+     * 原文:Check if the player is currently blocking (ie with a shield).
      *
-     * @return 是否正在格挡。
+     * @return 玩家是否正在格挡
      */
     public boolean isBlocking();
 
     /**
-     * Check if the player currently has their hand raised (ie about to begin
+     * 检查玩家是否举起了他们的手 (换言之, 就是他们刚使用盾牌(这时isBlocking返回false),
+     * 数百毫秒后将进入格挡状态(这时isBlocking返回true)).
+     * <p>
+     * 原文:Check if the player currently has their hand raised (ie about to begin
      * blocking).
      *
-     * @return Whether their hand is raised
+     * @return 玩家是否举起了他们的手
      */
     public boolean isHandRaised();
 
     /**
-     * 获取玩家升级所需经验总额
-     * Get the total amount of experience required for the player to level
+     * 获取玩家升级所需经验总额.
+     * <p>
+     * 原文:Get the total amount of experience required for the player to level
      *
      * @return 升级所需经验
      */
     public int getExpToLevel();
 
     /**
-     * Gets the entity currently perched on the left shoulder or null if no
+     * 获取栖息在玩家左肩上的实体 (通常情况下这是鹦鹉的行为, 目前客户端没有为其他实体定义这一行为), 若没有则返回null.
+     * <p>
+     * 返回的实体不会在世界内生成, 因此除非这个实体是首次生成的, 大部分对该实体的操作是无效的.
+     * <p>
+     * 原文:Gets the entity currently perched on the left shoulder or null if no
      * entity.
      * <br>
      * The returned entity will not be spawned within the world, so most
      * operations are invalid unless the entity is first spawned in.
      *
-     * @return left shoulder entity
-     * @deprecated There are currently no well defined semantics regarding
-     * serialized entities in Bukkit. Use with care.
+     * @return 坐在玩家左肩的实体
+     * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
     public Entity getShoulderEntityLeft();
 
     /**
-     * Sets the entity currently perched on the left shoulder, or null to
+     * 设置栖息在玩家左肩上的实体(设为null则移除). 该方法将从世界中删除该实体.
+     * <p>
+     * 请注意: 只有实体的副本将被设置为显示在肩膀上的实体.
+     * <p>
+     * 也请注意游戏客户端目前只会渲染{@link Parrot 鹦鹉}的坐在肩膀上的行为.
+     * <p>
+     * 原文:Sets the entity currently perched on the left shoulder, or null to
      * remove. This method will remove the entity from the world.
      * <br>
      * Note that only a copy of the entity will be set to display on the
@@ -316,29 +345,37 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * Also note that the client will currently only render {@link Parrot}
      * entities.
      *
-     * @param entity left shoulder entity
-     * @deprecated There are currently no well defined semantics regarding
-     * serialized entities in Bukkit. Use with care.
+     * @param entity 坐在玩家左肩的实体
+     * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
     public void setShoulderEntityLeft(Entity entity);
 
     /**
-     * Gets the entity currently perched on the right shoulder or null if no
+     * 获取栖息在玩家右肩上的实体, 若没有则返回null.
+     * <p>
+     * 返回的实体不会在世界内生成, 因此除非这个实体是首次生成的, 大部分对该实体的操作是无效的.
+     * <p>
+     * 原文:Gets the entity currently perched on the right shoulder or null if no
      * entity.
      * <br>
      * The returned entity will not be spawned within the world, so most
      * operations are invalid unless the entity is first spawned in.
      *
-     * @return right shoulder entity
-     * @deprecated There are currently no well defined semantics regarding
-     * serialized entities in Bukkit. Use with care.
+     * @return 坐在玩家右肩的实体
+     * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
     public Entity getShoulderEntityRight();
 
     /**
-     * Sets the entity currently perched on the right shoulder, or null to
+     * 设置栖息在玩家右肩上的实体(设为null则移除). 该方法将从世界中删除该实体.
+     * <p>
+     * 请注意: 只有实体的副本将被设置为显示在肩膀上的实体.
+     * <p>
+     * 也请注意游戏客户端目前只会渲染{@link Parrot 鹦鹉}的坐在肩膀上的行为.
+     * <p>
+     * 原文:Sets the entity currently perched on the right shoulder, or null to
      * remove. This method will remove the entity from the world.
      * <br>
      * Note that only a copy of the entity will be set to display on the
@@ -347,9 +384,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * Also note that the client will currently only render {@link Parrot}
      * entities.
      *
-     * @param entity right shoulder entity
-     * @deprecated There are currently no well defined semantics regarding
-     * serialized entities in Bukkit. Use with care.
+     * @param entity 坐在玩家右肩的实体
+     * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
     public void setShoulderEntityRight(Entity entity);

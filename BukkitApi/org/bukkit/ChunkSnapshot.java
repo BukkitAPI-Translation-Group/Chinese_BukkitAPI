@@ -1,16 +1,17 @@
 package org.bukkit;
 
 import org.bukkit.block.Biome;
+import org.bukkit.block.data.BlockData;
 
 /**
- * 表示一个静态的，线程安全的方块的区块的快照。
+ * 表示一个静态的，线程安全的方块的区块的快照.
  * <p>
- * 目的是允许清洁高效地复制一个区块的数据，然后在另一个线程（例如，地图渲染）中处理。
+ * 目的是允许清洁高效地复制一个区块的数据，然后在另一个线程（例如，地图渲染）中处理.
  */
 public interface ChunkSnapshot {
 
     /**
-     * 获取指定区块的X坐标。
+     * 获取指定区块的X坐标.
      * 原文：
      * Gets the X-coordinate of this chunk
      *
@@ -19,7 +20,7 @@ public interface ChunkSnapshot {
     int getX();
 
     /**
-     * 获取指定区块的Z坐标。
+     * 获取指定区块的Z坐标.
      * 原文：
      * Gets the Z-coordinate of this chunk
      *
@@ -28,7 +29,7 @@ public interface ChunkSnapshot {
     int getZ();
 
     /**
-     * 获取指定区块所在世界的名称。
+     * 获取指定区块所在世界的名称.
      * 原文：
      * Gets name of the world containing this chunk
      *
@@ -37,106 +38,101 @@ public interface ChunkSnapshot {
     String getWorldName();
 
     /**
-     * 获取区块中对应坐标方块的方块类型。
-     * 原文：
-     * Get block type for block at corresponding coordinate in the chunk
+     * 获取区块中对应坐标方块的方块类型.
+     * <p>
+     * 原文:Get block type for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
-     * @return 0-255
-     * @deprecated 不安全的参数
+     * @return 方块物品类型
      */
-    @Deprecated
-    int getBlockTypeId(int x, int y, int z);
+    Material getBlockType(int x, int y, int z);
 
     /**
-     * 获取区块中对应坐标方块的方块数据。
+     * Get block data for block at corresponding coordinate in the chunk
+     *
+     * @param x 0-15
+     * @param y 0-255
+     * @param z 0-15
+     * @return block material type
+     */
+    BlockData getBlockData(int x, int y, int z);
+
+    /**
+     * 获取区块中对应坐标方块的方块数据.
      * 原文：
      * Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 0-15
      * @deprecated 不安全的参数
      */
     @Deprecated
-    int getBlockData(int x, int y, int z);
+    int getData(int x, int y, int z);
 
     /**
-     * 获取区块中对应坐标方块的天空亮度等级。
+     * 获取区块中对应坐标方块的天空亮度等级.
      * 原文：
      * Get sky light level for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 0-15
      */
     int getBlockSkyLight(int x, int y, int z);
 
     /**
-     * 获取区块中对应坐标方块的发光亮度等级。
+     * 获取区块中对应坐标方块的发光亮度等级.
      * 原文：
      * Get light level emitted by block at corresponding coordinate in the
      * chunk
      *
      * @param x 0-15
-     * @param y 0-127
+     * @param y 0-255
      * @param z 0-15
      * @return 0-15
      */
     int getBlockEmittedLight(int x, int y, int z);
 
     /**
-     * 获取指定坐标最高非空气方块的Y坐标。
+     * 获取指定坐标最高非空气方块的Y坐标.
      * 原文：
      * Gets the highest non-air coordinate at the given coordinates
      *
-     * @param x X-coordinate of the blocks
-     * @param z Z-coordinate of the blocks
+     * @param x 方块X坐标 (0-15)
+     * @param z 方块Z坐标 (0-15)
      * @return 最高非空气方块的Y坐标
      */
     int getHighestBlockYAt(int x, int z);
 
     /**
-     * 获取指定坐标的生物群系。
+     * 获取指定坐标的生物群系.
      * 原文：
      * Get biome at given coordinates
      *
-     * @param x X坐标
-     * @param z Z坐标
+     * @param x X坐标 (0-15)
+     * @param z Z坐标 (0-15)
      * @return 指定坐标的生物群系
      */
     Biome getBiome(int x, int z);
 
     /**
-     * 获取指定坐标原始生物群系的温度（范围为0.0到1.0）。
+     * 获取指定坐标原始生物群系的温度（范围为0.0到1.0）.
      * 原文：
      * Get raw biome temperature (0.0-1.0) at given coordinate
      *
-     * @param x X坐标
-     * @param z Z坐标
+     * @param x X坐标 (0-15)
+     * @param z Z坐标 (0-15)
      * @return 指定坐标的温度
      */
     double getRawBiomeTemperature(int x, int z);
 
     /**
-     * 获取指定坐标原始生物群系的降雨量（范围为0.0到1.0）。
-     * 原文：
-     * Get raw biome rainfall (0.0-1.0) at given coordinate
-     *
-     * @param x X坐标
-     * @param z Z坐标
-     * @return 指定坐标的降雨量
-     * @deprecated 在当前的Minecraft版本(1.12)中不存在这个区块属性
-     */
-    @Deprecated
-    double getRawBiomeRainfall(int x, int z);
-
-    /**
-     * 抓取区块快照时获取世界的完整时间。
+     * 抓取区块快照时获取世界的完整时间.
      * 原文：
      * Get world full time when chunk snapshot was captured
      *
@@ -145,11 +141,11 @@ public interface ChunkSnapshot {
     long getCaptureFullTime();
 
     /**
-     * 测试区块是否为空。
+     * 测试区块是否为空.
      * 原文：
      * Test if section is empty
      *
-     * @param sy -区块的Y坐标（方块Y坐标整除16）
+     * @param sy -区块的Y坐标（方块Y坐标整除16, 0-255）
      * @return 如果为空则返回true，否则返回false
      */
     boolean isSectionEmpty(int sy);

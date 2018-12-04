@@ -12,16 +12,16 @@ import org.bukkit.inventory.meta.SpawnEggMeta;
 public class SpawnEgg extends MaterialData {
 
     public SpawnEgg() {
-        super(Material.MONSTER_EGG);
+        super(Material.LEGACY_MONSTER_EGG);
     }
 
     /**
-     * @param type the raw type id
+     * @param type the type
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public SpawnEgg(int type, byte data){
+    public SpawnEgg(final Material type, final byte data) {
         super(type, data);
     }
 
@@ -31,7 +31,7 @@ public class SpawnEgg extends MaterialData {
      */
     @Deprecated
     public SpawnEgg(byte data) {
-        super(Material.MONSTER_EGG, data);
+        super(Material.LEGACY_MONSTER_EGG, data);
     }
 
     public SpawnEgg(EntityType type) {
@@ -40,7 +40,7 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * 获取这个刷怪蛋将刷出的实体的种类.
+     * 获取这个刷怪蛋刷出实体的种类.
      * <p>
      * 原文:Get the type of entity this egg will spawn.
      *
@@ -53,7 +53,7 @@ public class SpawnEgg extends MaterialData {
     }
 
     /**
-     * 设置这个刷怪蛋将刷出的实体的种类.
+     * 设置这个刷怪蛋刷出实体的种类.
      * <p>
      * 原文:Set the type of entity this egg will spawn.
      *

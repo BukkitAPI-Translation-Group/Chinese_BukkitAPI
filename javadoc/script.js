@@ -37,37 +37,13 @@ function showAnnouncement() {
 		}
 		swal({
 			title: "公告",
+			html: true,
 			text: response.message,
 			confirmButtonText: "知道了(本公告将不再提示)"
 		}, function () {
 			Cookies.set("ignored_announcement", response.lastUpdated, { expires: 30 });
 		});
 	});
-}
-function loadcomment() {
-	if (document.getElementById("SOHUCS")) return;
-
-	var contentContainers = document.getElementsByClassName("contentContainer");
-	if (contentContainers.length > 0) {
-		var lastContentContainer = contentContainers[contentContainers.length - 1];
-		var div = document.createElement("div");
-		div.setAttribute("id", "SOHUCS");
-		var loc = window.location;
-		if (loc.pathname.indexOf("org") > 0) {
-			div.setAttribute("sid", loc.pathname.slice(window.location.pathname.indexOf("org")));
-		} else {
-			div.setAttribute("sid", window.location.pathname.slice(window.location.pathname.lastIndexOf("/") + 1));
-		}
-		lastContentContainer.appendChild(div);
-		$script("https://changyan.sohu.com/upload/changyan.js", function () {
-			var script = document.createElement("script");
-			script.innerHTML = "window.changyan.api.config({\
-            appid: 'cyt5tMDqL',\
-            conf: 'prod_1dc953f5be68de59e7af0d96b732e4c1'\
-            });";
-			lastContentContainer.appendChild(script);
-		});
-	}
 }
 // js-cookie start
 /*! js-cookie v2.1.4 | MIT */
@@ -104,14 +80,15 @@ function loadcomment() {
 // Additional code
 var _hmt = _hmt || [];
 (function () {
-	// 评论框
-	domready(function () {
-		showAnnouncement();
-		loadcomment();
-	});
-	// 统计
-	var hm = document.createElement("script");
-	hm.src = "//hm.baidu.com/hm.js?b5403b0006ff36b96e269c5bad28d40e";
-	var s = document.getElementsByTagName("script")[0];
-	s.parentNode.insertBefore(hm, s);
+    // 公告
+    domready(function () {
+        showAnnouncement();
+    });
+    // 统计
+    $script("https://www.googletagmanager.com/gtag/js?id=UA-113488090-1", function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-113488090-1');
+    });
 })();

@@ -3,7 +3,7 @@ package org.bukkit.entity;
 /**
  * 代表史莱姆.
  */
-public interface Slime extends LivingEntity {
+public interface Slime extends Mob {
 
     /**
      * @return 史莱姆的大小

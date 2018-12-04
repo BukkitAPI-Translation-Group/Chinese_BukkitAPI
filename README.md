@@ -1,21 +1,23 @@
 # Bukkit 中文文档
 ![Logo](Chinese_BukkitAPI.png)
 
-文档地址：https://docs.windit.net/Chinese_BukkitAPI/ | http://jd.ddmcloud.com/Bukkit/
+**提示：** 该分支(master)用于进行**Bukkit 1.13**及以上版本的翻译工作，目前，1.12.2版本继续维护(暂更时间未定)，若要关注Bukkit 1.12.2版本，请前往[1.12.2分支](https://github.com/BukkitAPI-Translation-Group/Chinese_BukkitAPI/tree/1.12.2)。
 
-离线版：https://docs.windit.net/Chinese_BukkitAPI/release.zip
+文档地址：[1.12.2版本](https://docs.windit.net/Chinese_BukkitAPI/) | [1.13及以上版本](https://bukkit.windit.net/javadoc/) (链接可用于IDE)
+
+离线版：[1.12.2版本](https://dr.windit.net/release.zip) | [1.13及以上版本](https://dr.windit.net/master.zip)
 
 **遇到问题请发Issues或PR，以帮助我们解决相关问题。**
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
 # Javadoc注释规范
-Javadoc是Sun公司提供的一个技术，它从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。      
-你所看到的Javadoc，是通过特定格式的注释生成的，利用Java提供的javadoc工具可以生成与源码配套的API文档。   
-在开始翻译前, 请先掌握Javadoc文档注释. 
+Javadoc是JDK提供的一个工具，它可以从程序源代码中抽取类、方法、成员等注释形成一个和源代码配套的API帮助文档。       
+在开始翻译前, 请先掌握Javadoc文档注释样式. 
 参阅:           
 1.http://www.oracle.com/technetwork/java/javase/documentation/index-137868.html (英文)       
-2.http://www.cnblogs.com/xt0810/p/3630996.html    
-3.http://openwares.net/java/javadoc_convention.html             
+2.http://www.cnblogs.com/xt0810/p/3630996.html
+# 许可说明
+本文档的翻译部分使用[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)许可协议发布，您不得将任何译文出于商业化的目的而使用。其它所有源代码属SpigotMC所有，以[GPLv3](https://hub.spigotmc.org/stash/projects/SPIGOT/repos/bukkit/browse/LICENCE.txt)许可协议发布.
 # 翻译规范
 ## 原文保留
 为了使文档更严谨、方便比对，必须保留原文。例如：
@@ -182,7 +184,7 @@ Magic value具体是什么意思有点难以解释, 请查阅百度百科 "Magic
 ```
 -----
 # 译名标准
-如果看到了一些Minecraft上的专有名词，请前往[Minecraft Wiki](http://minecraft-zh.gamepedia.com/Minecraft_Wiki:%E8%AF%91%E5%90%8D%E6%A0%87%E5%87%86%E5%8C%96)查阅，尽量使用官译名。
+对于 Minecraft 上的名词, 如果你不知道其确切的意义, 可以参考[译名标准化](https://minecraft-zh.gamepedia.com/Minecraft_Wiki:%E8%AF%91%E5%90%8D%E6%A0%87%E5%87%86%E5%8C%96) 和 [1.13 扁平化](https://minecraft-zh.gamepedia.com/1.13/%E6%89%81%E5%B9%B3%E5%8C%96). 尽量使用官译名.
 # 翻译须知
 ## 翻译质量  
 **严禁直接机翻, 若实在不会*请以单词和句子结构为单位进行查询*, 加入自己的理解, 重新组织语言. 否则将撤回**

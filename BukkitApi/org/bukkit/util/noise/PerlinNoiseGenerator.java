@@ -2,13 +2,11 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 使用"经典的"柏林发生器产生噪音。
+ * 使用"经典的"柏林发生器产生噪音.
  * <p>
- * 译注：柏林噪声(perlin noise)，详情百度。
- * <p>
- * 原文：Generates noise using the "classic" perlin generator
+ * 原文:Generates noise using the "classic" perlin generator
  *
- * @see SimplexNoiseGenerator "提升的" 和更快的版本且只有微小的不同
+ * @see SimplexNoiseGenerator "升级的" 和更快的版本且只有微小的不同
  */
 public class PerlinNoiseGenerator extends NoiseGenerator {
     protected static final int grad3[][] = {{1, 1, 0}, {-1, 1, 0}, {1, -1, 0}, {-1, -1, 0},
@@ -39,37 +37,33 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         }
     }
     /**
-     * 为给定的世界创建一个已经含有种子的柏林噪声发生器。
+     * 使用给定的World创建一个已设种子的PerlinNoiseGenerator.
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度。
+     * 使用World的种子作为Generator的种子.
      * <p>
-     * 原文：Creates a seeded perlin noise generator for the given world
+     * 原文:Creates a seeded perlin noise generator for the given world
      *
-     * @param world 创建这个发生器的世界
+     * @param world 创建这个发生器的World实例
      */
     public PerlinNoiseGenerator(World world) {
         this(new Random(world.getSeed()));
     }
     /**
-     * 为给定的种子创建一个已经含有种子的柏林噪声发生器。
+     * 使用给定的种子创建一个已设种子的PerlinNoiseGenerator.
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度。
-     * <p>
-     * 原文：Creates a seeded perlin noise generator for the given seed
+     * 原文:Creates a seeded perlin noise generator for the given seed
      *
-     * @param seed 创建这个发生器的种子
+     * @param seed 创建这个发生器的long型种子
      */
     public PerlinNoiseGenerator(long seed) {
         this(new Random(seed));
     }
     /**
-     * 使用给定的随机数生成器创建一个已经含有种子的柏林噪声发生器。
+     * 使用给定的Random创建一个已设种子的PerlinNoiseGenerator.
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度。
-     * <p>
-     * 原文：Creates a seeded perlin noise generator with the given Random
+     * 原文:Creates a seeded perlin noise generator with the given Random
      *
-     * @param rand 创建这个发生器的随机数生成器
+     * @param rand 创建这个Generator的Random
      */
     public PerlinNoiseGenerator(Random rand) {
         offsetX = rand.nextDouble() * 256;
@@ -87,54 +81,48 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         }
     }
     /**
-     * 计算并返回一维的不含有种子的柏林噪声对于给定的一维空间坐标
+     * 给定一维空间坐标计算并返回一维的未设种子的柏林噪声
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度
-     * <p>
-     * 原文：Computes and returns the 1D unseeded perlin noise for the given
+     * 原文:Computes and returns the 1D unseeded perlin noise for the given
      * coordinates in 1D space
      *
      * @param x X坐标
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @return 给定坐标处的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double x) {
         return instance.noise(x);
     }
      /**
-     * 计算并返回二维的不含有种子的柏林噪声对于给定的二维空间坐标。
+     * 给定二维空间坐标计算并返回二维的未设种子的柏林噪声
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度。
-     * <p>
-     * 原文：Computes and returns the 2D unseeded perlin noise for the given
+     * 原文:Computes and returns the 2D unseeded perlin noise for the given
      * coordinates in 2D space
      *
      * @param x X坐标
      * @param y Y坐标
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @return 给定坐标处的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double x, double y) {
         return instance.noise(x, y);
     }
      /**
-     * 计算并返回三维的不含有种子的柏林噪声对于给定的三维空间坐标。
+     * 给定三维空间坐标计算并返回三维的未设种子的柏林噪声
      * <p>
-     * 译注：柏林噪声(perlin noise)，详情百度。
-     * <p>
-     * 原文：Computes and returns the 3D unseeded perlin noise for the given
+     * 原文:Computes and returns the 3D unseeded perlin noise for the given
      * coordinates in 3D space
      *
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @return 给定坐标处的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double x, double y, double z) {
         return instance.noise(x, y, z);
     }
     /**
-     * 获取独立的没有种子的此发生器实例。
+     * 获取独立的没有种子的此发生器实例.
      * <p>
-     * 原文：Gets the singleton unseeded instance of this generator
+     * 原文:Gets the singleton unseeded instance of this generator
      *
      * @return Singleton
      */
@@ -149,18 +137,22 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
         int floorX = floor(x);
         int floorY = floor(y);
         int floorZ = floor(z);
+        //找寻包含这个点的单位方块
         // Find unit cube containing the point
         int X = floorX & 255;
         int Y = floorY & 255;
         int Z = floorZ & 255;
+        //获取含有这个点的方块的相关xyz坐标
         // Get relative xyz coordinates of the point within the cube
         x -= floorX;
         y -= floorY;
         z -= floorZ;
+        //计算xyz上的消退曲线
         // Compute fade curves for xyz
         double fX = fade(x);
         double fY = fade(y);
         double fZ = fade(z);
+        //哈希编码方块角
         // Hash coordinates of the cube corners
         int A = perm[X] + Y;
         int AA = perm[A] + Z;
@@ -178,48 +170,48 @@ public class PerlinNoiseGenerator extends NoiseGenerator {
                         grad(perm[BB + 1], x - 1, y - 1, z - 1))));
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个一维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个一维坐标的噪音.
      * <p>
-     * 原文：Generates noise for the 1D coordinates using the specified number of
+     * 原文:Generates noise for the 1D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @return 噪音结果
      */
     public static double getNoise(double x, int octaves, double frequency, double amplitude) {
         return instance.noise(x, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个二维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个二维坐标的噪音.
      * <p>
-     * 原文：Generates noise for the 2D coordinates using the specified number of
+     * 原文:Generates noise for the 2D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
      * @param y Y坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @return 噪音结果
      */
     public static double getNoise(double x, double y, int octaves, double frequency, double amplitude) {
         return instance.noise(x, y, octaves, frequency, amplitude);
     }
     /**
-     * 使用特殊的数个音阶和参数产生一个三维坐标的噪音。
+     * 使用特殊的数个倍频和参数产生一个三维坐标的噪音.
      * <p>
-     * 原文：Generates noise for the 3D coordinates using the specified number of
+     * 原文:Generates noise for the 3D coordinates using the specified number of
      * octaves and parameters
      *
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param octaves 使用的音阶序号
-     * @param frequency 每一个音阶改变多少频率
-     * @param amplitude 每一个音阶改变多少振幅
+     * @param octaves 使用的倍频值
+     * @param frequency 每一个倍频改变多少频率
+     * @param amplitude 每一个倍频改变多少振幅
      * @return 噪音结果
      */
     public static double getNoise(double x, double y, double z, int octaves, double frequency, double amplitude) {

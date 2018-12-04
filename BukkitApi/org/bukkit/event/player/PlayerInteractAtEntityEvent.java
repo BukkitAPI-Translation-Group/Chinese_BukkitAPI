@@ -8,6 +8,9 @@ import org.bukkit.util.Vector;
 
 /**
  * 当玩家在实体上点击某实体上的某位置时触发此事件.
+ * <br>
+ * Note that the client may sometimes spuriously send this packet in addition to {@link PlayerInteractEntityEvent}.
+ * Users are advised to listen to this (parent) class unless specifically required.
  */
 public class PlayerInteractAtEntityEvent extends PlayerInteractEntityEvent {
     private static final HandlerList handlers = new HandlerList();

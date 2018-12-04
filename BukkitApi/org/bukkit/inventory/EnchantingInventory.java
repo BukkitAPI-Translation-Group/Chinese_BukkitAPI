@@ -1,43 +1,43 @@
 package org.bukkit.inventory;
 
 /**
- * 附魔GUI界面接口
+ * 附魔界面接口
  */
 public interface EnchantingInventory extends Inventory {
 
     /**
-     * 设置要被附魔主要效果的Item项目.
+     * 设置将被附魔的物品.
      * <p>
      * 原文:Set the item being enchanted.
      *
-     * @param item 需要设置的Item项目.
+     * @param item 将被附魔的物品
      */
     void setItem(ItemStack item);
 
     /**
-     * 获取被附魔主要效果的Item项目.
+     * 获取将被附魔的物品.
      * <p>
      * 原文:Get the item being enchanted.
      *
-     * @return Item项目.
+     * @return 将被附魔的物品.
      */
     ItemStack getItem();
 
     /**
-     * 设置被用来附魔的辅助材料的物品. 
+     * 设置将被用于附魔的第二物品(如青金石).
      * <p>
      * 原文: Set the secondary item being used for the enchant.
      *
-     * @param item 新的辅助物品.
+     * @param item 将被用于附魔的第二物品
      */
     void setSecondary(ItemStack item);
 
     /**
-     * 获取当前附魔物品的辅助的物品. 
+     * 获取将被用于附魔的第二物品(如青金石).
      * <p>
      * 原文: Get the secondary item being used for the enchant.
      *
-     * @return 辅助物品
+     * @return 将被用于附魔的第二物品
      */
     ItemStack getSecondary();
 }

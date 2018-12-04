@@ -40,7 +40,7 @@ public interface PluginManager {
     public Plugin getPlugin(String name);
 
     /**
-     * 获取所有已载入的插件对象. 
+     * 获取所有已载入的插件对象.
      * <p/>
      * 原文:
      * Gets a list of all currently loaded plugins.
@@ -63,7 +63,7 @@ public interface PluginManager {
     public boolean isPluginEnabled(String name);
 
     /**
-     * 检查指定插件是否启用. 
+     * 检查指定插件是否启用.
      * <p/>
      * 原文:
      * Checks if the given plugin is enabled or not.
@@ -101,7 +101,7 @@ public interface PluginManager {
     public Plugin[] loadPlugins(File directory);
 
     /**
-     * 停用所有已载入的插件. 
+     * 停用所有已载入的插件.
      * <p/>
      * 原文:
      * Disables all the loaded plugins.

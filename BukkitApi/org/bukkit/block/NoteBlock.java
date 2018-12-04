@@ -4,8 +4,10 @@ import org.bukkit.Instrument;
 import org.bukkit.Note;
 
 /**
- * 代表音符盒.
+ * 代表音符盒(快照).
+ * @deprecated not a tile entity in future versions of Minecraft
  */
+@Deprecated
 public interface NoteBlock extends BlockState {
 
     /**
@@ -53,16 +55,18 @@ public interface NoteBlock extends BlockState {
     public void setRawNote(byte note);
 
     /**
-     * 尝试让一个方块播放.
+     * 尝试播放一个音符.
      * <p>
      * 如果这个方块不是音符盒,将返回false.
      * <p>
      * 原文:
-     * Attempts to play the note at block
+     * Attempts to play the note at the block.
      * <p>
-     * If the block is no longer a note block, this will return false
+     * If the block represented by this block state is no longer a note block,
+     * this will return false.
      *
      * @return true true表示成功,否则返回false
+     * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种表示而未应用到实际的方块上)
      */
     public boolean play();
 
@@ -75,20 +79,27 @@ public interface NoteBlock extends BlockState {
      * @param instrument 乐器id
      * @param note 音符盒id
      * @return 成功为true,否则为false
+     * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种表示而未应用到实际的方块上)
      * @deprecated 不安全的参数
      */
     @Deprecated
     public boolean play(byte instrument, byte note);
 
     /**
-     * 用任意乐器播放任意音符盒.
+     * 用任意乐器播放任意音符.
      * <p>
+     * 如果这个方块不是一个音符盒，
+     * 那么使用本方法将返回false.
      * 原文:
-     * Plays an arbitrary note with an arbitrary instrument
+     * Plays an arbitrary note with an arbitrary instrument at the block.
+     * <p>
+     * If the block represented by this block state is no longer a note block,
+     * this will return false.
      *
      * @param instrument 乐器
      * @param note 音符盒
      * @return 成功为true,否则为false
+     * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种表示而未应用到实际的方块上)
      * @see Instrument Note
      */
     public boolean play(Instrument instrument, Note note);

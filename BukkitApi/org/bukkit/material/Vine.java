@@ -7,36 +7,36 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * 代表藤蔓
+ * Represents a vine
  */
 public class Vine extends MaterialData {
     private static final int VINE_NORTH = 0x4;
     private static final int VINE_EAST = 0x8;
     private static final int VINE_WEST = 0x2;
     private static final int VINE_SOUTH = 0x1;
-    EnumSet<BlockFace> possibleFaces = EnumSet.of(BlockFace.WEST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST);
+    private static final EnumSet<BlockFace> possibleFaces = EnumSet.of(BlockFace.WEST, BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST);
 
     public Vine() {
-        super(Material.VINE);
+        super(Material.LEGACY_VINE);
     }
 
     /**
-     * @param type the raw type id
+     * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
-    public Vine(int type, byte data){
+    public Vine(final Material type, final byte data) {
         super(type, data);
     }
 
     /**
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Vine(byte data) {
-        super(Material.VINE, data);
+        super(Material.LEGACY_VINE, data);
     }
 
     public Vine(BlockFace... faces) {
@@ -69,14 +69,12 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * 检测藤蔓是否靠在与其相邻方块的表面. 你可以通过{@link BlockFace#NORTH_EAST}等一次检查两个表面.
-     * <p>
-     * 原文:Check if the vine is attached to the specified face of an adjacent
+     * Check if the vine is attached to the specified face of an adjacent
      * block. You can check two faces at once by passing e.g. {@link
      * BlockFace#NORTH_EAST}.
      *
-     * @param face 朝向
-     * @return 藤蔓是否靠在那个表面
+     * @param face The face to check.
+     * @return Whether it is attached to that face.
      */
     public boolean isOnFace(BlockFace face) {
         switch (face) {
@@ -104,14 +102,12 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * 使这个藤蔓附着在相邻方块的指定表面.
-     * <p>
-     * 原文:Attach the vine to the specified face of an adjacent block.
+     * Attach the vine to the specified face of an adjacent block.
      *
-     * @param face 朝向
+     * @param face The face to attach.
      */
     public void putOnFace(BlockFace face) {
-        switch(face) {
+        switch (face) {
             case WEST:
                 setData((byte) (getData() | VINE_WEST));
                 break;
@@ -148,14 +144,12 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * 从相邻的方块的指定表面拆除藤蔓.
-     * <p>
-     * 原文:Detach the vine from the specified face of an adjacent block.
+     * Detach the vine from the specified face of an adjacent block.
      *
-     * @param face 朝向
+     * @param face The face to detach.
      */
     public void removeFromFace(BlockFace face) {
-        switch(face) {
+        switch (face) {
             case WEST:
                 setData((byte) (getData() & ~VINE_WEST));
                 break;

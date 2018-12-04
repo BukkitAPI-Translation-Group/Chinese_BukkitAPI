@@ -42,7 +42,7 @@ public interface Chunk {
      * 原文:Gets a block from this chunk
      *
      * @param x 获取方块的X轴坐标,在0-15之间
-     * @param y 获取方块的Y轴坐标,在0-127之间
+     * @param y 获取方块的Y轴坐标,在0-255之间
      * @param z 获取方块的Z轴坐标,在0-15之间
      * @return 方块对象
      */

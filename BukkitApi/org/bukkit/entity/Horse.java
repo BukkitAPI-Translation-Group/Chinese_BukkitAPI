@@ -3,156 +3,168 @@ package org.bukkit.entity;
 import org.bukkit.inventory.HorseInventory;
 
 /**
- * Represents a Horse.
+ * 代表一匹马.
  */
 public interface Horse extends AbstractHorse {
 
     /**
-     * @deprecated different variants are differing classes
+     * @deprecated 不同的种类对应不同的类.
      */
     @Deprecated
     public enum Variant {
         /**
-         * A normal horse
+         * 普通马.
          */
         HORSE,
         /**
-         * A donkey
+         * 驴. 
          */
         DONKEY,
         /**
-         * A mule
+         * 骡子. 
          */
         MULE,
         /**
-         * An undead horse
+         * 不死马(僵尸马). 
          */
         UNDEAD_HORSE,
         /**
-         * A skeleton horse
+         * 骷髅马. 
          */
         SKELETON_HORSE,
         /**
-         * Not really a horse :)
+         * 不是真的马:(
          */
         LLAMA
         ;
     }
 
     /**
-     * Represents the base color that the horse has.
+     * 表示马拥有的基本颜色. 
      */
     public enum Color {
         /**
-         * Snow white
+         * 雪白色
          */
         WHITE,
         /**
-         * Very light brown
+         * 奶油色
          */
         CREAMY,
         /**
-         * Chestnut
+         * 栗色
          */
         CHESTNUT,
         /**
-         * Light brown
+         * 褐色
          */
         BROWN,
         /**
-         * Pitch black
+         * 黑色
          */
         BLACK,
         /**
-         * Gray
+         * 灰色
          */
         GRAY,
         /**
-         * Dark brown
+         * 深褐色
          */
         DARK_BROWN,
         ;
     }
 
     /**
-     * Represents the style, or markings, that the horse has.
+     * 代表马的花纹图案. 
+     * <p>
+     * 原文:Represents the style, or markings, that the horse has.
      */
     public enum Style {
         /**
-         * No markings
+         * 无花纹
          */
         NONE,
         /**
-         * White socks or stripes
+         * 白短袜或条纹
          */
         WHITE,
         /**
-         * Milky splotches
+         * 乳白色斑点
          */
         WHITEFIELD,
         /**
-         * Round white dots
+         * 圆白点
          */
         WHITE_DOTS,
         /**
-         * Small black dots
+         * 小黑点
          */
         BLACK_DOTS,
         ;
     }
 
     /**
-     * Gets the horse's color.
+     * 获取马的颜色. </br>
+     * 该颜色只适用于马,而不适用于驴,骡子,骷髅马或僵尸马.
      * <p>
+     * 原文:Gets the horse's color.</br>
      * Colors only apply to horses, not to donkeys, mules, skeleton horses
      * or undead horses.
      *
-     * @return a {@link Color} representing the horse's group
+     * @return {@link Color} 马的颜色.
      */
     public Color getColor();
 
     /**
-     * Sets the horse's color.
+     * 设置马的颜色. </br>
+     * 试图为任何驴,骡子,骷髅马或僵尸马设定颜色不会有任何变化. 
      * <p>
+     * 原文:
+     * Sets the horse's color.</br>
      * Attempting to set a color for any donkey, mule, skeleton horse or
      * undead horse will not result in a change.
      *
-     * @param color a {@link Color} for this horse
+     * @param color 马的{@link Color 颜色}
      */
     public void setColor(Color color);
 
     /**
-     * Gets the horse's style.
-     * Styles determine what kind of markings or patterns a horse has.
-     * <p>
+     * 得到马的外貌特征.
+     * 这些特征决定马有什么样的图案.</br>
+     * 这些特征只适用于马,而不适用于驴,骡子,骷髅马或僵尸马.
+     * <p> 
+     * 原文:Gets the horse's style.
+     * Styles determine what kind of markings or patterns a horse has.</br>
      * Styles only apply to horses, not to donkeys, mules, skeleton horses
      * or undead horses.
      *
-     * @return a {@link Style} representing the horse's style
+     * @return 马的{@link Style 花纹与图案}
      */
     public Style getStyle();
 
     /**
-     * Sets the style of this horse.
-     * Styles determine what kind of markings or patterns a horse has.
+     * 设置马的外貌特征. 风格决定马有什么样的标记或图案.</br>
+     * 试图为任何驴,骡子,骷髅马或僵尸马设定这些特征不会有任何变化. 
      * <p>
+     * 原文:Sets the style of this horse.
+     * Styles determine what kind of markings or patterns a horse has.</br>
      * Attempting to set a style for any donkey, mule, skeleton horse or
      * undead horse will not result in a change.
      *
-     * @param style a {@link Style} for this horse
+     * @param style 马的{@link Style 花纹与图案}
      */
     public void setStyle(Style style);
 
     /**
-     * @return carrying chest status
-     * @deprecated see {@link ChestedHorse}
+     * @return 是否携带箱子
+     * @deprecated 请参阅 {@link ChestedHorse}
      */
     @Deprecated
     public boolean isCarryingChest();
 
     /**
-     * @param chest
-     * @deprecated see {@link ChestedHorse}
+     * @param chest 是否携带箱子
+     * @deprecated 请参阅 {@link ChestedHorse}
      */
     @Deprecated
     public void setCarryingChest(boolean chest);

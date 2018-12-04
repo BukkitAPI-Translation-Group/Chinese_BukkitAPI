@@ -4,20 +4,11 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.Material;
 
 /**
- * 代表告示牌.
+ * MaterialData for signs
  */
 public class Sign extends MaterialData implements Attachable {
     public Sign() {
-        super(Material.SIGN_POST);
-    }
-
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Sign(final int type) {
-        super(type);
+        super(Material.LEGACY_SIGN_POST);
     }
 
     public Sign(final Material type) {
@@ -27,17 +18,7 @@ public class Sign extends MaterialData implements Attachable {
     /**
      * @param type the raw type id
      * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Sign(final int type, final byte data) {
-        super(type, data);
-    }
-
-    /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public Sign(final Material type, final byte data) {
@@ -45,22 +26,19 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * 检测这个告示牌是否依附在墙上.
-     * <p>
-     * 原文：Check if this sign is attached to a wall
+     * Check if this sign is attached to a wall
      *
-     * @return 如果告示牌依附在墙上则为踏入额，立在方块上则为false
+     * @return true if this sign is attached to a wall, false if set on top of
+     *     a block
      */
     public boolean isWallSign() {
-        return getItemType() == Material.WALL_SIGN;
+        return getItemType() == Material.LEGACY_WALL_SIGN;
     }
 
     /**
-     * 获取这个木牌附着的朝向.
-     * <p>
-     * 原文：Gets the face that this block is attached on
+     * Gets the face that this block is attached on
      *
-     * @return 附着的朝向
+     * @return BlockFace attached to
      */
     public BlockFace getAttachedFace() {
         if (isWallSign()) {
@@ -87,13 +65,9 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * 获取这个告示牌当前的朝向.
-     * <p>
-     * 译注：与另一个方法不同的是，本方法获得是这个告示牌方块本身得朝向，另一个方法是告示牌依附得方向（向哪依附）.
-     * <p>
-     * 原文：Gets the direction that this sign is currently facing
+     * Gets the direction that this sign is currently facing
      *
-     * @return 这个告示牌正朝向哪
+     * @return BlockFace indicating where this sign is facing
      */
     public BlockFace getFacing() {
         byte data = getData();

@@ -10,6 +10,7 @@ import java.util.UUID;
 
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.*;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.inventory.ItemStack;
@@ -62,29 +63,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @Deprecated
     public int getBlockTypeIdAt(int x, int y, int z);
-
-    /**
-     * 获取指定{@link Location 位置}的{@link Block 方块}的ID.
-     * <p>
-     * 原文：Gets the block type ID at the given {@link Location}
-     *
-     * @param location 要获取的方块ID的位置
-     * @return 指定位置的方块的ID
-     * @see #getBlockAt(org.bukkit.Location) 返回一个位置({@link Location})所在的方块({@link Block})对象
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public int getBlockTypeIdAt(Location location);
-
-    /**
-     * Gets the y coordinate of the lowest block at this position such that the
-     * block and all blocks above it are transparent for lighting purposes.
-     *
-     * @param x X-coordinate of the blocks
-     * @param z Z-coordinate of the blocks
-     * @return Y-coordinate of the described block
-     */
-    public int getHighestBlockYAt(int x, int z);
 
     /**
      * Gets the y coordinate of the lowest block at the given {@link Location}
@@ -351,7 +329,10 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 区块的x坐标
      * @param z 区块的z坐标
      * @return 区块是否真的被重新生成
+     * 
+     * @deprecated 无法保证重新生成单个区块会产生与之前相同的区块, 因为地形装饰可分布在区块上
      */
+    @Deprecated
     public boolean regenerateChunk(int x, int z);
 
     /**
@@ -596,6 +577,20 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 这个世界的出生点位置
      */
     public Location getSpawnLocation();
+
+    /**
+     * 设置这个世界的出生点位置.
+     * <br>
+     * 提供的位置所处世界必须与这个世界相同.
+     * <p>
+     * 原文:Sets the spawn location of the world.
+     * <br>
+     * The location provided must be equal to this world.
+     *
+     * @param location 要设置的出生点位置
+     * @return 若成功设置返回true
+     */
+    public boolean setSpawnLocation(Location location);
 
     /**
      * 设置这个世界的出生点位置.
@@ -943,7 +938,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public FallingBlock spawnFallingBlock(Location location, MaterialData data) throws IllegalArgumentException;
 
     /**
-     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 正在下落的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
+     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
      * <p>
      * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
      * <p>
@@ -956,32 +951,36 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * material.isBlock()}. The Material may not be air.
      *
      * @param location 生成下落方块的{@link Location 位置}
-     * @param material 方块{@link Material 物品}的类型
      * @param data 方块数据
      * @return 生成的{@link FallingBlock 正在下落的方块}实例
-     * @throws IllegalArgumentException 如果{@link Location 位置}或{@link Material 物品} 为空或{@link Material 物品}不是一个方块则抛出错误。
+     * @throws IllegalArgumentException 如果 {@link Location} 或 {@link BlockData} 为null
+     */
+    public FallingBlock spawnFallingBlock(Location location, BlockData data) throws IllegalArgumentException;
+
+    /**
+     * 在指定的{@link Location 位置}根据指定的方块{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体.
+     * 物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
+     * <p>
+     * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
+     * <p>
+     * 原文：
+     * Spawn a {@link FallingBlock} entity at the given {@link Location} of the
+     * specified {@link Material}. The material dictates what is falling.
+     * When the FallingBlock hits the ground, it will place that block.
+     * <p>
+     * The Material must be a block type, check with {@link Material#isBlock()
+     * material.isBlock()}. The Material may not be air.
+     *
+     * @param location 生成下落方块的{@link Location 位置}
+     * @param @param material 方块 {@link Material} 类型
+     * @param data 方块数据
+     * @return 生成的{@link FallingBlock 正在下落的方块}实例
+     * @throws IllegalArgumentException 如果 {@link Location} 或 {@link
+     *     Material} 为null 或 {@link Material} 不是方块
      * @deprecated 不安全的参数
      */
     @Deprecated
     public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
-
-    /**
-     * 在指定的{@link Location 位置}根据指定的方块ID（会被转换为{@link Material 物品}）生成一个{@link FallingBlock 正在下落的方块}实体.
-     * <p>
-     * 原文：
-     * Spawn a {@link FallingBlock} entity at the given {@link Location} of
-     * the specified blockId (converted to {@link Material})
-     *
-     * @param location 生成下落方块的{@link Location 位置}
-     * @param blockId 物品相应的ID
-     * @param blockData 方块数据
-     * @return 生成的{@link FallingBlock 正在下落的方块}实例
-     * @throws IllegalArgumentException 如果位置为空或方块无效则抛出错误
-     * @see #spawnFallingBlock(org.bukkit.Location, org.bukkit.Material, byte)
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public FallingBlock spawnFallingBlock(Location location, int blockId, byte blockData) throws IllegalArgumentException;
 
     /**
      * 向以指定位置为圆心的默认半径内的所有玩家施加(给予)一个效果.
@@ -1048,10 +1047,10 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 区块x坐标
      * @param z 区块z坐标
      * @param includeBiome 如果为true，则快照会包含每个坐标的生物群系类型
-     * @param includeBiomeTempRain 如果为true，则快照会包含每个坐标的原始生物群系温度和降雨
+     * @param includeBiomeTemp 如果为true，则快照会包含每个坐标的原始生物群系温度
      * @return 空快照
      */
-    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTempRain);
+    public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTemp);
 
     /**
      * 为这个世界设置出生标识。
@@ -1602,21 +1601,18 @@ public interface World extends PluginMessageRecipient, Metadatable {
     void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
 
     /**
-     * 获取当前的游戏规则。
+     * 获取包含所有{@link GameRule 游戏规则}的数组.
      * <p>
-     * 译注：如果你不知道这是什么，请查阅gamerule命令。
-     * <p>
-     * 原文：
-     * Get existing rules
+     * 原文:Get an array containing the names of all the {@link GameRule}s.
      *
-     * @return 包含所有规则的数组
+     * @return {@link GameRule 游戏规则}名列表.
      */
     public String[] getGameRules();
 
     /**
-     * 获取指定游戏规则的当前状态。
+     * 获取指定游戏规则的当前状态.
      * <p>
-     * 如果规则是空则会返回null
+     * 如果rule为null则会返回null.
      * <p>
      * 原文：
      * Gets the current state of the specified rule
@@ -1625,15 +1621,17 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param rule 要查找的规则
      * @return 规则的字符串数值
+     * @deprecated 请使用 {@link #getGameRuleValue(GameRule)}
      */
+    @Deprecated
     public String getGameRuleValue(String rule);
 
     /**
-     * 将指定的游戏规则设置为指定数值。
+     * 将指定的游戏规则设置为指定数值.
      * <p>
-     * 规则可能会尝试验证值，如果数值被设置则会返回true。
+     * 规则可能会尝试验证值，如果数值被设置则会返回true.
      * <p>
-     * 如果规则为空，则这个函数会返回false。
+     * 如果rule为null，则这个函数会返回false.
      * <p>
      * 原文：
      * Set the specified gamerule to specified value.
@@ -1646,11 +1644,13 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param rule 要设置的规则
      * @param value 要设置的规则数值
      * @return 规则被设置则返回true
+     * @deprecated 请使用 {@link #setGameRule(GameRule, Object)}
      */
+    @Deprecated
     public boolean setGameRuleValue(String rule, String value);
 
     /**
-     * 检查字符串是否是一个有效的游戏规则。
+     * 检查字符串是否是一个有效的游戏规则.
      * <p>
      * 原文：
      * Checks if string is a valid game rule
@@ -1659,6 +1659,41 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 如果规则存在则返回true
      */
     public boolean isGameRule(String rule);
+
+    /**
+     * 获取给定的{@link GameRule 游戏规则}的数据值.
+     * <p>
+     * 原文:Get the current value for a given {@link GameRule}.
+     *
+     * @param rule 游戏规则
+     * @param <T> 游戏规则数据类型
+     * @return 游戏规则值
+     */
+    public <T> T getGameRuleValue(GameRule<T> rule);
+
+    /**
+     * 获取给定{@link GameRule 游戏规则}的默认值. 不保证该值与当前值匹配.
+     * <p>
+     * 原文:Get the default value for a given {@link GameRule}. This value is not
+     * guaranteed to match the current value.
+     *
+     * @param rule 游戏规则
+     * @param <T> 游戏规则数据类型
+     * @return 游戏规则默认值
+     */
+    public <T> T getGameRuleDefault(GameRule<T> rule);
+
+    /**
+     * 设置给定{@link GameRule 游戏规则}的数据值.
+     * <p>
+     * 原文:Set the given {@link GameRule}'s new value.
+     *
+     * @param rule 要更新的游戏规则
+     * @param newValue 值
+     * @param <T> 对应游戏规则的数据类型
+     * @return 若设置成功返回true
+     */
+    public <T> boolean setGameRule(GameRule<T> rule, T newValue);
 
     /**
      * 获取这个世界的世界边界对象。
@@ -1862,6 +1897,52 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *             the type of this depends on {@link Particle#getDataType()}
      */
     public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     * @param force whether to send the particle to players within an extended
+     *              range and encourage their client to render it regardless of
+     *              settings
+     */
+    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     * @param force whether to send the particle to players within an extended
+     *              range and encourage their client to render it regardless of
+     *              settings
+     */
+    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force);
 
     /**
      * 表示世界可能的各种地图环境类型.

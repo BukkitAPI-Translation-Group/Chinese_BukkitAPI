@@ -2,15 +2,15 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 /**
- * 产生基于单纯形的噪声。
+ * 使用单纯形噪声发生器产生噪音.
  * <p>
- * 原文：Generates simplex-based noise.
+ * 原文:Generates simplex-based noise.
  * <p>
- * 这是一个修正版的免费发布的论文，作者是Stefan Gustavson，链接：
+ * 这是一个免费发布的修正版论文,作者是Stefan Gustavson,链接:
  * <a href="http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf">
- * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf</a>。
+ * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf</a>.
  * <p>
- * 原文：This is a modified version of the freely published version in the paper by
+ * 原文:This is a modified version of the freely published version in the paper by
  * Stefan Gustavson at
  * <a href="http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf">
  * http://staffwww.itn.liu.se/~stegu/simplexnoise/simplexnoise.pdf</a>
@@ -45,37 +45,37 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0},
         {2, 0, 1, 3}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {3, 0, 1, 2}, {3, 0, 2, 1}, {0, 0, 0, 0}, {3, 1, 2, 0},
         {2, 1, 0, 3}, {0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}, {3, 1, 0, 2}, {0, 0, 0, 0}, {3, 2, 0, 1}, {3, 2, 1, 0}};
-    protected static double offsetW;
+    protected double offsetW;
     private static final SimplexNoiseGenerator instance = new SimplexNoiseGenerator();
     protected SimplexNoiseGenerator() {
         super();
     }
     /**
-     * 为给定的世界创建一个已经含有种子的基于单纯形的噪声发生器。
+     * 使用给定的World创建一个已设种子的SimplexNoiseGenerator.
      * <p>
-     * 原文：Creates a seeded simplex noise generator for the given world
+     * 原文:Creates a seeded simplex noise generator for the given world
      *
-     * @param world 创建这个发生器的世界
+     * @param world 创建这个Generator的World实例
      */
     public SimplexNoiseGenerator(World world) {
         this(new Random(world.getSeed()));
     }
     /**
-     * 为给定的种子创建一个已经含有种子的基于单纯形的噪声发生器。
+     * 使用给定的种子创建一个已设种子的SimplexNoiseGenerator.
      * <p>
-     * 原文：Creates a seeded simplex noise generator for the given seed
+     * 原文:Creates a seeded simplex noise generator for the given seed
      *
-     * @param seed 创建这个发生器的种子
+     * @param seed 创建这个Generator的long型种子
      */
     public SimplexNoiseGenerator(long seed) {
         this(new Random(seed));
     }
     /**
-     * 为给定的Random创建一个已经含有种子的基于单纯形的噪声发生器。
+     * 使用给定的Random创建一个已设种子的SimplexNoiseGenerator.
      * <p>
-     * 原文：Creates a seeded simplex noise generator with the given Random
+     * 原文:Creates a seeded simplex noise generator with the given Random
      *
-     * @param rand 创建这个发生器的Random
+     * @param rand 创建这个Generator的Random
      */
     public SimplexNoiseGenerator(Random rand) {
         super(rand);
@@ -91,55 +91,55 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return g[0] * x + g[1] * y + g[2] * z + g[3] * w;
     }
     /**
-     * 计算并返回一维的不含有种子的基于单纯形的噪声对于给定的一维空间坐标。
+     * 给定一维空间坐标计算并返回一维的未设种子的单纯形噪声.
      * <p>
-     * 原文：Computes and returns the 1D unseeded simplex noise for the given
+     * 原文:Computes and returns the 1D unseeded simplex noise for the given
      * coordinates in 1D space
      *
      * @param xin X坐标
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @return 给定坐标的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double xin) {
         return instance.noise(xin);
     }
     /**
-     * 计算并返回二维的不含有种子的基于单纯形的噪声对于给定的二维空间坐标。
+     * 给定二维空间坐标计算并返回二维的未设种子的单纯形噪声.
      * <p>
-     * 原文：Computes and returns the 2D unseeded simplex noise for the given
+     * 原文:Computes and returns the 2D unseeded simplex noise for the given
      * coordinates in 2D space
      *
      * @param xin X坐标
      * @param yin Y坐标
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @return 给定坐标的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double xin, double yin) {
         return instance.noise(xin, yin);
     }
     /**
-     * 计算并返回三维的不含有种子的基于单纯形的噪声对于给定的三维空间坐标。
+     * 给定三维空间坐标计算并返回三维的未设种子的单纯形噪声.
      * <p>
-     * 原文：Computes and returns the 3D unseeded simplex noise for the given
+     * 原文:Computes and returns the 3D unseeded simplex noise for the given
      * coordinates in 3D space
      *
      * @param xin X坐标
      * @param yin Y坐标
      * @param zin Z坐标
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @return 给定坐标的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double xin, double yin, double zin) {
         return instance.noise(xin, yin, zin);
     }
     /**
-     * 计算并返回四维的基于单纯形的噪声对于给定的四维空间坐标。
+     * 给定四维空间坐标计算并返回四维的单纯形噪声.
      * <p>
-     * 原文：Computes and returns the 4D simplex noise for the given coordinates in
+     * 原文:Computes and returns the 4D simplex noise for the given coordinates in
      * 4D space
      *
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param w W坐标（PS:意义不明）
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @param w W坐标
+     * @return 给定坐标的噪音,取值范围 -1 到 1
      */
     public static double getNoise(double x, double y, double z, double w) {
         return instance.noise(x, y, z, w);
@@ -336,16 +336,16 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return 70.0 * (n0 + n1 + n2);
     }
     /**
-     * 计算并返回四维的基于单纯形的噪声对于给定的四维空间坐标。
+     * 计算并返回四维的单纯形噪声对于给定的四维空间坐标.
      * <p>
-     * 原文：Computes and returns the 4D simplex noise for the given coordinates in
+     * 原文:Computes and returns the 4D simplex noise for the given coordinates in
      * 4D space
      *
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
-     * @param w W坐标（PS:意义不明）
-     * @return 给定坐标的噪音，取值范围 -1 到 1
+     * @param w W坐标
+     * @return 给定坐标的噪音,取值范围 -1 到 1
      */
     public double noise(double x, double y, double z, double w) {
         x += offsetX;
@@ -472,9 +472,9 @@ public class SimplexNoiseGenerator extends PerlinNoiseGenerator {
         return 27.0 * (n0 + n1 + n2 + n3 + n4);
     }
     /**
-     * 获取单独的不含种子的此类发生器的实例。
+     * 获取单独的未设种子的此类Generator的实例.
      * <p>
-     * 原文：Gets the singleton unseeded instance of this generator
+     * 原文:Gets the singleton unseeded instance of this generator
      *
      * @return 单独的实例
      */

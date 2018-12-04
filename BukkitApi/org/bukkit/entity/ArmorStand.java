@@ -6,28 +6,31 @@ import org.bukkit.util.EulerAngle;
 public interface ArmorStand extends LivingEntity {
 
     /**
-     * 返回当前握持的盔甲架物品
-     * 原文：
+     * 返回盔甲架当前握持的物品.
+     * <p>
+     * 原文:
      * Returns the item the armor stand is
      * currently holding
      *
-     * @return 握持的盔甲架物品
+     * @return 盔甲架当前握持的物品
      */
     ItemStack getItemInHand();
 
     /**
-     * 设置当前握持的盔甲架物品
-     * 原文：
+     * 设置盔甲架当前握持的物品.
+     * <p>
+     * 原文:
      * Sets the item the armor stand is currently
      * holding
      *
-     * @param item 握持的盔甲架物品
+     * @param item 盔甲架当前握持的物品
      */
     void setItemInHand(ItemStack item);
 
     /**
-     * 返回盔甲架当前穿在脚上的物品
-     * 原文；
+     * 返回盔甲架当前穿在脚上的物品.
+     * <p>
+     * 原文:
      * Returns the item currently being worn
      * by the armor stand on its feet
      *
@@ -36,8 +39,9 @@ public interface ArmorStand extends LivingEntity {
     ItemStack getBoots();
 
     /**
-     * 设置盔甲架当前穿在脚上的物品
-     * 原文：
+     * 设置盔甲架当前穿在脚上的物品.
+     * <p>
+     * 原文:
      * Sets the item currently being worn
      * by the armor stand on its feet
      *
@@ -46,8 +50,9 @@ public interface ArmorStand extends LivingEntity {
     void setBoots(ItemStack item);
 
     /**
-     * 返回盔甲架当前穿在腿上的物品
-     * 原文：
+     * 返回盔甲架当前穿在腿上的物品.
+     * <p>
+     * 原文:
      * Returns the item currently being worn
      * by the armor stand on its legs
      *
@@ -56,8 +61,9 @@ public interface ArmorStand extends LivingEntity {
     ItemStack getLeggings();
 
     /**
-     * 设置盔甲架当前穿在腿上的物品
-     * 原文：
+     * 设置盔甲架当前穿在腿上的物品.
+     * <p>
+     * 原文:
      * Sets the item currently being worn
      * by the armor stand on its legs
      *
@@ -66,8 +72,9 @@ public interface ArmorStand extends LivingEntity {
     void setLeggings(ItemStack item);
 
     /**
-     * 返回盔甲架当前穿在胸上的物品
-     * 原文：
+     * 返回盔甲架当前穿在胸上的物品.
+     * <p>
+     * 原文:
      * Returns the item currently being worn
      * by the armor stand on its chest
      *
@@ -76,8 +83,9 @@ public interface ArmorStand extends LivingEntity {
     ItemStack getChestplate();
 
     /**
-     * 设置盔甲架当前穿在胸上的物品
-     * 原文：
+     * 设置盔甲架当前穿在胸上的物品.
+     * <p>
+     * 原文:
      * Sets the item currently being worn
      * by the armor stand on its chest
      *
@@ -86,8 +94,9 @@ public interface ArmorStand extends LivingEntity {
     void setChestplate(ItemStack item);
 
     /**
-     * 返回盔甲架当前穿在头上的物品
-     * 原文：
+     * 返回盔甲架当前戴在头上的物品.
+     * <p>
+     * 原文:
      * Returns the item currently being worn
      * by the armor stand on its head
      *
@@ -96,8 +105,9 @@ public interface ArmorStand extends LivingEntity {
     ItemStack getHelmet();
 
     /**
-     * 设置盔甲架当前穿在头上的物品
-     * 原文：
+     * 设置盔甲架当前戴在头上的物品.
+     * <p>
+     * 原文:
      * Sets the item currently being worn
      * by the armor stand on its head
      *
@@ -106,8 +116,9 @@ public interface ArmorStand extends LivingEntity {
     void setHelmet(ItemStack item);
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架身体的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架身体的姿势.
+     * <p>
+     * 原文:
      * Returns the armor stand's body's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -116,8 +127,9 @@ public interface ArmorStand extends LivingEntity {
     EulerAngle getBodyPose();
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架身体的当前姿势
-     * 原文；
+     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架身体的姿势.
+     * <p>
+     * 原文:
      * Sets the armor stand's body's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -126,8 +138,9 @@ public interface ArmorStand extends LivingEntity {
     void setBodyPose(EulerAngle pose);
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左臂的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左臂的姿势.
+     * <p>
+     * 原文:
      * Returns the armor stand's left arm's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -136,8 +149,9 @@ public interface ArmorStand extends LivingEntity {
     EulerAngle getLeftArmPose();
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架左臂的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架左臂的姿势.
+     * <p>
+     * 原文:
      * Sets the armor stand's left arm's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -146,8 +160,9 @@ public interface ArmorStand extends LivingEntity {
     void setLeftArmPose(EulerAngle pose);
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右臂的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右臂的姿势.
+     * <p>
+     * 原文:
      * Returns the armor stand's right arm's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -156,8 +171,9 @@ public interface ArmorStand extends LivingEntity {
     EulerAngle getRightArmPose();
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架右臂的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架右臂的姿势.
+     * <p>
+     * 原文:
      * Sets the armor stand's right arm's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -166,8 +182,9 @@ public interface ArmorStand extends LivingEntity {
     void setRightArmPose(EulerAngle pose);
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左腿的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左腿的姿势.
+     * <p>
+     * 原文:
      * Returns the armor stand's left leg's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -176,8 +193,9 @@ public interface ArmorStand extends LivingEntity {
     EulerAngle getLeftLegPose();
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架身左腿的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架身左腿的姿势.
+     * <p>
+     * 原文:
      * Sets the armor stand's left leg's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -186,8 +204,9 @@ public interface ArmorStand extends LivingEntity {
     void setLeftLegPose(EulerAngle pose);
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右腿的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右腿的姿势.
+     * <p>
+     * 原文:
      * Returns the armor stand's right leg's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -196,8 +215,9 @@ public interface ArmorStand extends LivingEntity {
     EulerAngle getRightLegPose();
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架右腿的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架右腿的姿势.
+     * <p>
+     * 原文:
      * Sets the armor stand's right leg's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -206,8 +226,9 @@ public interface ArmorStand extends LivingEntity {
     void setRightLegPose(EulerAngle pose);
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架头的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架头的姿势.
+     * <p>
+     * 原文:
      * Returns the armor stand's head's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -216,8 +237,9 @@ public interface ArmorStand extends LivingEntity {
     EulerAngle getHeadPose();
 
     /**
-     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架头的当前姿势
-     * 原文：
+     * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架头的姿势.
+     * <p>
+     * 原文:
      * Sets the armor stand's head's
      * current pose as a {@link org.bukkit.util.EulerAngle}
      *
@@ -226,8 +248,9 @@ public interface ArmorStand extends LivingEntity {
     void setHeadPose(EulerAngle pose);
 
     /**
-     * 返回盔甲架是否有底盘
-     * 原文：
+     * 返回盔甲架是否有底盘.
+     * <p>
+     * 原文:
      * Returns whether the armor stand has
      * a base plate
      *
@@ -236,8 +259,9 @@ public interface ArmorStand extends LivingEntity {
     boolean hasBasePlate();
 
     /**
-     * 设置盔甲架是否有底盘
-     * 原文：
+     * 设置盔甲架是否有底盘.
+     * <p>
+     * 原文:
      * Sets whether the armor stand has a
      * base plate
      *
@@ -246,8 +270,9 @@ public interface ArmorStand extends LivingEntity {
     void setBasePlate(boolean basePlate);
 
     /**
-     * 返回盔甲架是否可视
-     * 原文：
+     * 返回盔甲架是否可视.
+     * <p>
+     * 原文:
      * Returns whether the armor stand should be
      * visible or not
      *
@@ -256,8 +281,9 @@ public interface ArmorStand extends LivingEntity {
     boolean isVisible();
 
     /**
-     * 设置盔甲架是否可视
-     * 原文：
+     * 设置盔甲架是否可视.
+     * <p>
+     * 原文:
      * Sets whether the armor stand should be
      * visible or not
      *
@@ -266,8 +292,9 @@ public interface ArmorStand extends LivingEntity {
     void setVisible(boolean visible);
 
     /**
-     * 返回盔甲架是否有双臂
-     * 原文：
+     * 返回盔甲架是否有双臂.
+     * <p>
+     * 原文:
      * Returns whether this armor stand has arms
      *
      * @return 是否有双臂
@@ -275,8 +302,9 @@ public interface ArmorStand extends LivingEntity {
     boolean hasArms();
 
     /**
-     * 设置盔甲架是否有双臂
-     * 原文：
+     * 设置盔甲架是否有双臂.
+     * <p>
+     * 原文:
      * Sets whether this armor stand has arms
      *
      * @param arms 是否有双臂
@@ -284,28 +312,31 @@ public interface ArmorStand extends LivingEntity {
     void setArms(boolean arms);
 
     /**
-     * 返回盔甲架是否缩小
-     * 原文：
+     * 返回盔甲架是否被缩小了.
+     * <p>
+     * 原文:
      * Returns whether this armor stand is scaled
      * down
      *
-     * @return 是否缩小
+     * @return 是否被缩小
      */
     boolean isSmall();
 
     /**
-     * 设置盔甲架是否缩小
-     * 原文：
+     * 设置盔甲架是否被缩小.
+     * <p>
+     * 原文:
      * Sets whether this armor stand is scaled
      * down
      *
-     * @param small 是否缩小
+     * @param small 是否被缩小
      */
     void setSmall(boolean small);
 
     /**
-     * 返回盔甲架的marker属性，即是否具有非常小的碰撞箱
-     * 原文：
+     * 返回盔甲架的marker属性，即是否具有非常小的碰撞箱.
+     * <p>
+     * 原文:
      * Returns whether this armor stand is a marker,
      * meaning it has a very small collision box
      *
@@ -314,8 +345,9 @@ public interface ArmorStand extends LivingEntity {
     boolean isMarker();
 
     /**
-     * 设置盔甲架的marker属性，即是否具有非常小的碰撞箱
-     * 原文：
+     * 设置盔甲架的marker属性，即是否具有非常小的碰撞箱.
+     * <p>
+     * 原文:
      * Sets whether this armor stand is a marker,
      * meaning it has a very small collision box
      *

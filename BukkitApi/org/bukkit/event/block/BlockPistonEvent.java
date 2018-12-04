@@ -33,7 +33,7 @@ public abstract class BlockPistonEvent extends BlockEvent implements Cancellable
      * @return 如是粘性活塞则返回true.
      */
     public boolean isSticky() {
-        return block.getType() == Material.PISTON_STICKY_BASE || block.getType() == Material.PISTON_MOVING_PIECE;
+        return block.getType() == Material.STICKY_PISTON || block.getType() == Material.MOVING_PISTON;
     }
 
     /**

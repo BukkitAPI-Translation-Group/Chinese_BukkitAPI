@@ -10,8 +10,7 @@ import org.bukkit.event.HandlerList;
 /**
  * 当玩家统计信息增长时触发本事件.
  * <p>
- * 这个事件不会因 {@link org.bukkit.Statistic#PLAY_ONE_TICK} 或基于移动(比如玩家走动、坐矿车的距离等)的统计数据的改变而触发.
- *
+ * 这个事件不会因一些高频率统计项(如玩家走动)的数值更变而触发.
  */
 public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -23,7 +22,7 @@ public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancel
     private final Material material;
 
     public PlayerStatisticIncrementEvent(Player player, Statistic statistic, int initialValue, int newValue) {
-        super (player);
+        super(player);
         this.statistic = statistic;
         this.initialValue = initialValue;
         this.newValue = newValue;
@@ -32,7 +31,7 @@ public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancel
     }
 
     public PlayerStatisticIncrementEvent(Player player, Statistic statistic, int initialValue, int newValue, EntityType entityType) {
-        super (player);
+        super(player);
         this.statistic = statistic;
         this.initialValue = initialValue;
         this.newValue = newValue;
@@ -41,7 +40,7 @@ public class PlayerStatisticIncrementEvent extends PlayerEvent implements Cancel
     }
 
     public PlayerStatisticIncrementEvent(Player player, Statistic statistic, int initialValue, int newValue, Material material) {
-        super (player);
+        super(player);
         this.statistic = statistic;
         this.initialValue = initialValue;
         this.newValue = newValue;

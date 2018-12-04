@@ -36,6 +36,7 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 
+import com.avaje.ebean.EbeanServer;
 /**
  * 一个Java插件的基类
  */
@@ -85,9 +86,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 获取这个插件关联的PluginLoader.
-	 * <p>
-	 * 原文:
+     * 获取这个插件关联的PluginLoader.
+     * <p>
+     * 原文:
      * Gets the associated PluginLoader responsible for this plugin
      *
      * @return PluginLoader控制的插件.
@@ -98,9 +99,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回正在运行此插件的服务器对象.
-	 * <p>
-	 * 原文:
+     * 返回正在运行此插件的服务器对象.
+     * <p>
+     * 原文:
      * Returns the Server instance currently running this plugin
      *
      * @return 服务器正在运行的插件
@@ -111,9 +112,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回插件是否已正常启用.
-	 * <p>
-	 * 原文:
+     * 返回插件是否已正常启用.
+     * <p>
+     * 原文:
      * Returns a value indicating whether or not this plugin is currently
      * enabled
      *
@@ -125,9 +126,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回这个插件的文件.
-	 * <p>
-	 * 原文:
+     * 返回这个插件的文件.
+     * <p>
+     * 原文:
      * Returns the file which contains this plugin
      *
      * @return 插件的核心文件
@@ -137,9 +138,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回插件的plugin.yml的内容的描述信息.
-	 * <p>
-	 * 原文:
+     * 返回插件的plugin.yml的内容的描述信息.
+     * <p>
+     * 原文:
      * Returns the plugin.yaml file containing the details for this plugin
      *
      * @return plugin.yml的内容描述信息
@@ -158,12 +159,12 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 提供jar中文本文件的读取器.
-	 * 此方法依赖 {@link PluginAwareness.Flags#UTF8} 提供编码, 在没有
+     * 提供jar中文本文件的读取器.
+     * 此方法依赖 {@link PluginAwareness.Flags#UTF8} 提供编码, 在没有
      * 定义的情况下, 如果指定了 {@link FileConfiguration#UTF8_OVERRIDE} 将使用UTF8编码
      * 否则使用系统默认的编码.
-	 * <p>
-	 * 原文:
+     * <p>
+     * 原文:
      * Provides a reader for a text file located inside the jar. The behavior
      * of this method adheres to {@link PluginAwareness.Flags#UTF8}, or if not
      * defined, uses UTF8 if {@link FileConfiguration#UTF8_OVERRIDE} is
@@ -270,9 +271,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 返回这个插件的ClassLoader.
-	 * <p>
-	 * 原文:
+     * 返回这个插件的ClassLoader.
+     * <p>
+     * 原文:
      * Returns the ClassLoader which holds this plugin
      *
      * @return ClassLoader控制的这个插件
@@ -282,9 +283,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 设置插件开启的状态.
-	 * <p>
-	 * 原文:
+     * 设置插件开启的状态.
+     * <p>
+     * 原文:
      * Sets the enabled state of this plugin
      *
      * @param enabled true表示设置插件为开启, false就是设置插件为关闭
@@ -397,13 +398,13 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 这个方法可以通过{@link
+     * 这个方法可以通过{@link
      * #getProvidingPlugin(Class) provided} 的类来快速访问插件对象 .
-	 * 这通常是创建插件对象.
-	 * <p>
-	 * 例外:如果插件jar中的类不能继承类, 将可能是不同的jar/类加载器.
-	 * <p>
-	 * 原文:
+     * 这通常是创建插件对象.
+     * <p>
+     * 例外:如果插件jar中的类不能继承类, 将可能是不同的jar/类加载器.
+     * <p>
+     * 原文:
      * This method provides fast access to the plugin that has {@link
      * #getProvidingPlugin(Class) provided} the given plugin class, which is
      * usually the plugin that implemented it.
@@ -423,7 +424,7 @@ public abstract class JavaPlugin extends PluginBase {
      *     <code>JavaPlugin.getPlugin(JavaPlugin.class)</code>
      * @throws IllegalStateException if called from the static initializer for
      *     given JavaPlugin
-     * @throws 如果插件提供的类没有继承类, 抛出(ClassCastException)错误
+     * @throws ClassCastException 如果插件提供的类没有继承类, 抛出(ClassCastException)错误
      */
     public static <T extends JavaPlugin> T getPlugin(Class<T> clazz) {
         Validate.notNull(clazz, "Null class cannot have a plugin");
@@ -442,9 +443,9 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-	 * 此方法给给定的类提供了快速访问.
-	 * <p>
-	 * 原文:
+     * 此方法给给定的类提供了快速访问.
+     * <p>
+     * 原文:
      * This method provides fast access to the plugin that has provided the
      * given class.
      *
@@ -452,10 +453,8 @@ public abstract class JavaPlugin extends PluginBase {
      * @return 这个插件提供的类
      * @throws IllegalArgumentException 如果这个类不是JavaPlugin提供的,
      * 抛出无效的参数(IllegalArgumentException)错误
-     * @throws IllegalArgumentException 如果这个类为null,
-	 * 抛出无效的参数(IllegalArgumentException)错误
-     * @throws IllegalStateException 如果从给定的JavaPlugin静态初始化,
-     * 抛出无效的状态(IllegalStateException)错误
+     * @throws IllegalArgumentException 如果这个类为null, 抛出无效的参数(IllegalArgumentException)错误
+     * @throws IllegalStateException 如果从给定的JavaPlugin静态初始化,抛出无效的状态(IllegalStateException)错误
      */
     public static JavaPlugin getProvidingPlugin(Class<?> clazz) {
         Validate.notNull(clazz, "Null class cannot have a plugin");

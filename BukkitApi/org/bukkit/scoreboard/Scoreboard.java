@@ -5,76 +5,87 @@ import java.util.Set;
 import org.bukkit.OfflinePlayer;
 
 /**
- * 代表计分板.
- * 翻译质量比较糟，一看就是机翻，做个标记。
+ * A scoreboard
  */
 public interface Scoreboard {
 
     /**
-     * 注册一个新的{@link Objective}在这个计分板中. 
-     * <p>
-     * 原文：Registers an Objective on this Scoreboard
-     * <p>
-     * @param name {@link Objective}名称
-     * @param criteria {@link Objective}标准
-     * @return 这个注册了的{@link Objective}.
-     * @throws IllegalArgumentException 如果名字为空
-     * @throws IllegalArgumentException 如果标准为空
-     * @throws IllegalArgumentException 如果该{@link Objective}名已经存在
+     * Registers an Objective on this Scoreboard
+     *
+     * @param name Name of the Objective
+     * @param criteria Criteria for the Objective
+     * @return The registered Objective
+     * @throws IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if name is longer than 16
+     *     characters.
+     * @throws IllegalArgumentException if criteria is null
+     * @throws IllegalArgumentException if an objective by that name already
+     *     exists
+     * @deprecated a displayName should be explicitly specified
      */
+    @Deprecated
     Objective registerNewObjective(String name, String criteria) throws IllegalArgumentException;
 
     /**
-     * 通过{@link Objective}名称得到在这个计分板中对应的{@link Objective}. 
-     * <p>
-     * 原文：Gets an Objective on this Scoreboard by name
-     * <p>
-     * @param name {@link Objective}名称
-     * @return 返回这个{@link Objective}，假如不存在这个名称的{@link Objective}则返回null
-     * @throws IllegalArgumentException 如果名字为空
+     * Registers an Objective on this Scoreboard
+     *
+     * @param name Name of the Objective
+     * @param criteria Criteria for the Objective
+     * @param displayName Name displayed to players for the Objective.
+     * @return The registered Objective
+     * @throws IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if name is longer than 16
+     *     characters.
+     * @throws IllegalArgumentException if criteria is null
+     * @throws IllegalArgumentException if displayName is null
+     * @throws IllegalArgumentException if displayName is longer than 128
+     *     characters.
+     * @throws IllegalArgumentException if an objective by that name already
+     *     exists
+     */
+    Objective registerNewObjective(String name, String criteria, String displayName) throws IllegalArgumentException;
+
+    /**
+     * Gets an Objective on this Scoreboard by name
+     *
+     * @param name Name of the Objective
+     * @return the Objective or null if it does not exist
+     * @throws IllegalArgumentException if name is null
      */
     Objective getObjective(String name) throws IllegalArgumentException;
 
     /**
-     * 通过{@link Objective}标准来得到在这个计分板中对应的{@link Objective}. 
-     * <p>
-     * 原文：Gets all Objectives of a Criteria on the Scoreboard.
-     * <p>
-     * @param criteria 标准
-     * @return 计分板中使用该标准的{@link Objective}的set视图.
+     * Gets all Objectives of a Criteria on the Scoreboard
+     *
+     * @param criteria Criteria to search by
+     * @return an immutable set of Objectives using the specified Criteria
      */
     Set<Objective> getObjectivesByCriteria(String criteria) throws IllegalArgumentException;
 
     /**
-     * 得到所有的{@link Objective}在该计分板中. 
-     * <p>
-     * 原文：Gets all Objectives on this Scoreboard.
-     * <p>
-     * @return 计分板中所有的{@link Objective}的set视图.
+     * Gets all Objectives on this Scoreboard
+     *
+     * @return An immutable set of all Objectives on this Scoreboard
      */
     Set<Objective> getObjectives();
 
     /**
-     * 得到该计分板显示在某{@link DisplaySlot}的{@link Objective}. 
-     * <p>
-     * 原文：Gets the Objective currently displayed in a DisplaySlot on this
-     * Scoreboard.
-     * <p>
-     * @param slot 这个{@link DisplaySlot}
-     * @return the 返回显示在这个{@link DisplaySlot}上的{@link Objective}
-     * @throws IllegalArgumentException 如果 {@link DisplaySlot} 为null.
+     * Gets the Objective currently displayed in a DisplaySlot on this
+     * Scoreboard
+     *
+     * @param slot The DisplaySlot
+     * @return the Objective currently displayed or null if nothing is
+     *     displayed in that DisplaySlot
+     * @throws IllegalArgumentException if slot is null
      */
     Objective getObjective(DisplaySlot slot) throws IllegalArgumentException;
 
     /**
-     * 得到这个玩家所有的分数在该计分板中. 
-     * <p>
-     * 原文：Gets all scores for a player on this Scoreboard.
-     * <p>
+     * Gets all scores for a player on this Scoreboard
      *
-     * @param player 玩家.
-     * @return 这个玩家在该计分板中所有分数的set视图.
-     * @throws IllegalArgumentException 如果玩家为null.
+     * @param player the player whose scores are being retrieved
+     * @return immutable set of all scores tracked for the player
+     * @throws IllegalArgumentException if player is null
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #getScores(String)
      */
@@ -82,25 +93,19 @@ public interface Scoreboard {
     Set<Score> getScores(OfflinePlayer player) throws IllegalArgumentException;
 
     /**
-     * 获取这个计分板上的所有分数. 
-     * <p>
-     * 原文：Gets all scores for an entry on this Scoreboard.
-     * <p>
+     * Gets all scores for an entry on this Scoreboard
      *
      * @param entry the entry whose scores are being retrieved
-     * @return 该计分板中所有分数的set视图.
+     * @return immutable set of all scores tracked for the entry
      * @throws IllegalArgumentException if entry is null
      */
     Set<Score> getScores(String entry) throws IllegalArgumentException;
 
     /**
-     * 移除该玩家计分板的的所有分数 (重置). 
-     * <p>
-     * ywRemoves all scores for a player on this Scoreboard.
-     * <p>
+     * Removes all scores for a player on this Scoreboard
      *
-     * @param player 玩家
-     * @throws IllegalArgumentException 如果玩家为null
+     * @param player the player to drop all current scores for
+     * @throws IllegalArgumentException if player is null
      * @deprecated Scoreboards can contain entries that aren't players
      * @see #resetScores(String)
      */
@@ -108,10 +113,7 @@ public interface Scoreboard {
     void resetScores(OfflinePlayer player) throws IllegalArgumentException;
 
     /**
-     * 移除这个计分板中所有的分数(重置) .
-     * <p>
-     * Removes all scores for an entry on this Scoreboard.
-     * <p>
+     * Removes all scores for an entry on this Scoreboard
      *
      * @param entry the entry to drop all current scores for
      * @throws IllegalArgumentException if entry is null
@@ -119,71 +121,54 @@ public interface Scoreboard {
     void resetScores(String entry) throws IllegalArgumentException;
 
     /**
-     * 获取在这个计分板上的玩家队伍.
-     * <p>
-     * 原文：Gets a player's Team on this Scoreboard.
-     * <p>
+     * Gets a player's Team on this Scoreboard
      *
-     * @param player 玩家
-     * @return 玩家队伍,或当玩家没有队伍时返回null.
-     * @throws IllegalArgumentException 如果玩家为null
-     * @deprecated 记分板可以包含不玩家条目
+     * @param player the player to search for
+     * @return the player's Team or null if the player is not on a team
+     * @throws IllegalArgumentException if player is null
+     * @deprecated Scoreboards can contain entries that aren't players
      * @see #getEntryTeam(String)
      */
     @Deprecated
     Team getPlayerTeam(OfflinePlayer player) throws IllegalArgumentException;
 
     /**
-     * 获取在这个计分板上的项目队伍.
-     * <p>
-     * 原文:Gets a entries Team on this Scoreboard
+     * Gets a entries Team on this Scoreboard
      *
-     * @param entry 要搜索的项目
-     * @return 项目队伍，如果这个项目不在这个队伍则为null
-     * @throws IllegalArgumentException 如果参数entry为null
+     * @param entry the entry to search for
+     * @return the entries Team or null if the entry is not on a team
+     * @throws IllegalArgumentException if entry is null
      */
     Team getEntryTeam(String entry) throws IllegalArgumentException;
 
     /**
-     * 得到一个给定名称的队伍在该计分板中. 
-     * <p>
-     * 原文：Gets a Team by name on this Scoreboard.
-     * <p>
+     * Gets a Team by name on this Scoreboard
      *
-     * @param teamName 队伍名字
-     * @return 一个队伍,如果找不到匹配的队伍则返回Null。
-     * @throws IllegalArgumentException 当队伍名为空
+     * @param teamName Team name
+     * @return the matching Team or null if no matches
+     * @throws IllegalArgumentException if teamName is null
      */
     Team getTeam(String teamName) throws IllegalArgumentException;
 
     /**
-     * 得到这个计分板中所有的队伍. 
-     * <p>
-     * 原文：Gets all teams on this Scoreboard.
-     * <p>
+     * Gets all teams on this Scoreboard
      *
-     * @return 所有队伍的set视图.
+     * @return an immutable set of Teams
      */
     Set<Team> getTeams();
 
     /**
-     * 注册一个新的队伍在这个计分板中. 
-     * <p>
-     * 原文：Registers a Team on this Scoreboard.
-     * <p>
+     * Registers a Team on this Scoreboard
      *
-     * @param name 队伍名称
-     * @return 这个被注册的队伍
-     * @throws IllegalArgumentException 如果名称为null
-     * @throws IllegalArgumentException 如果该队伍名已经存在.
+     * @param name Team name
+     * @return registered Team
+     * @throws IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if team by that name already exists
      */
     Team registerNewTeam(String name) throws IllegalArgumentException;
 
     /**
-     * 获取所有目标玩家追踪信息.
-     * <p>
-     * Gets all players tracked by this Scoreboard.
-     * <p>
+     * Gets all players tracked by this Scoreboard
      *
      * @return immutable set of all tracked players
      * @deprecated Scoreboards can contain entries that aren't players
@@ -200,12 +185,10 @@ public interface Scoreboard {
     Set<String> getEntries();
 
     /**
-     * 清除指定的{@link DisplaySlot}位置的{@link Objective}.
-     * <p>
-     * 原文：Clears any objective in the specified slot.
+     * Clears any objective in the specified slot.
      *
-     * @param slot 位置.
-     * @throws IllegalArgumentException 如果slot为null.
+     * @param slot the slot to remove objectives
+     * @throws IllegalArgumentException if slot is null
      */
     void clearSlot(DisplaySlot slot) throws IllegalArgumentException;
 }

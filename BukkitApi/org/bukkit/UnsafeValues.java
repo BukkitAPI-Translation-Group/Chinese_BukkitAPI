@@ -3,27 +3,37 @@ package org.bukkit;
 import java.util.List;
 
 import org.bukkit.advancement.Advancement;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.material.MaterialData;
+import org.bukkit.plugin.InvalidPluginException;
+import org.bukkit.plugin.PluginDescriptionFile;
 
 /**
- * 这个接口提供可能在特定运行时间内或含有任意意义的数值的转换（即不安全的参数）。
+ * 这个接口提供可能在特定运行时间内或含有任意意义的数值的转换（即不安全的参数）.
  * <p>
- * 这些值的存在形式和行为不能保证在未来的版本可用。可能会非法命名，抛出异常，有误导参数或其他错误。
+ * 这些值的存在形式和行为不能保证在未来的版本可用。可能会非法命名，抛出异常，有误导参数或其他错误.
  */
 @Deprecated
 public interface UnsafeValues {
 
-    Material getMaterialFromInternalName(String name);
+    Material toLegacy(Material material);
 
-    List<String> tabCompleteInternalMaterialName(String token, List<String> completions);
+    Material fromLegacy(Material material);
+
+    Material fromLegacy(MaterialData material);
+
+    Material fromLegacy(MaterialData material, boolean itemPriority);
+
+    BlockData fromLegacy(Material material, byte data);
+
+    int getDataVersion();
 
     ItemStack modifyItemStack(ItemStack stack, String arguments);
 
-    Statistic getStatisticFromInternalName(String name);
+    void checkSupported(PluginDescriptionFile pdf) throws InvalidPluginException;
 
-    Achievement getAchievementFromInternalName(String name);
-
-    List<String> tabCompleteInternalStatisticOrAchievementName(String token, List<String> completions);
+    byte[] processClass(PluginDescriptionFile pdf, String path, byte[] clazz);
 
     /**
      * Load an advancement represented by the specified string into the server.

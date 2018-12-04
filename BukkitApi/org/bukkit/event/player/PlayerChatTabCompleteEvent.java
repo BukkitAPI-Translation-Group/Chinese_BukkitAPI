@@ -3,12 +3,17 @@ package org.bukkit.event.player;
 import java.util.Collection;
 
 import org.apache.commons.lang.Validate;
+import org.bukkit.Warning;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
  * 当玩家尝试补全聊天消息时触发本事件
+ *
+ * @deprecated 因客户端的改变(1.13更新较大幅度改善了命令输入的体验), 该事件不再触发
  */
+@Deprecated
+@Warning(reason = "This event is no longer fired due to client changes")
 public class PlayerChatTabCompleteEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final String message;

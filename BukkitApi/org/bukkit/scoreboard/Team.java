@@ -33,7 +33,7 @@ public interface Team {
      * Sets the name displayed to entries for this team
      *
      * @param displayName New display name
-     * @throws IllegalArgumentException if displayName is longer than 32
+     * @throws IllegalArgumentException if displayName is longer than 128
      *     characters.
      * @throws IllegalStateException if this team has been unregistered
      */
@@ -52,7 +52,7 @@ public interface Team {
      *
      * @param prefix New prefix
      * @throws IllegalArgumentException if prefix is null
-     * @throws IllegalArgumentException if prefix is longer than 16
+     * @throws IllegalArgumentException if prefix is longer than 64
      *     characters
      * @throws IllegalStateException if this team has been unregistered
      */
@@ -71,7 +71,7 @@ public interface Team {
      *
      * @param suffix the new suffix for this team.
      * @throws IllegalArgumentException if suffix is null
-     * @throws IllegalArgumentException if suffix is longer than 16
+     * @throws IllegalArgumentException if suffix is longer than 64
      *     characters
      * @throws IllegalStateException if this team has been unregistered
      */
@@ -136,7 +136,7 @@ public interface Team {
     /**
      * Gets the team's ability to see name tags
      *
-     * @return the current name tag visibilty for the team
+     * @return the current name tag visibility for the team
      * @throws IllegalArgumentException if this team has been unregistered
      * @deprecated see {@link #getOption(org.bukkit.scoreboard.Team.Option)}
      */
@@ -264,7 +264,7 @@ public interface Team {
      * @throws IllegalArgumentException if entry is null
      * @throws IllegalStateException if this team has been unregistered
      */
-    boolean hasEntry(String entry) throws IllegalArgumentException,IllegalStateException;
+    boolean hasEntry(String entry) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * Get an option for this team

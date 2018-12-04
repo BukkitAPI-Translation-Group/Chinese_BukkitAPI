@@ -4,11 +4,11 @@ import org.bukkit.Material;
 import org.bukkit.NetherWartsState;
 
 /**
- * 代表地狱疣
+ * Represents nether wart
  */
 public class NetherWarts extends MaterialData {
     public NetherWarts() {
-        super(Material.NETHER_WARTS);
+        super(Material.LEGACY_NETHER_WARTS);
     }
 
     public NetherWarts(NetherWartsState state) {
@@ -16,33 +16,14 @@ public class NetherWarts extends MaterialData {
         setState(state);
     }
 
-    /**
-     * @param type the raw type id
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public NetherWarts(final int type) {
-        super(type);
-    }
-
     public NetherWarts(final Material type) {
-        super (type);
-    }
-
-    /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public NetherWarts(final int type, final byte data) {
-        super(type, data);
+        super(type);
     }
 
     /**
      * @param type the type
      * @param data the raw data value
-     * @deprecated 不安全的参数
+     * @deprecated Magic value
      */
     @Deprecated
     public NetherWarts(final Material type, final byte data) {
@@ -50,11 +31,9 @@ public class NetherWarts extends MaterialData {
     }
 
     /**
-     * 获取这个地狱疣的生长状态.
-     * <p>
-     * 原文:Gets the current growth state of this nether wart
+     * Gets the current growth state of this nether wart
      *
-     * @return 这个地狱疣的 NetherWartsState
+     * @return NetherWartsState of this nether wart
      */
     public NetherWartsState getState() {
         switch (getData()) {
@@ -70,11 +49,9 @@ public class NetherWarts extends MaterialData {
     }
 
     /**
-     * 设置这个地狱疣的生长状态.
-     * <p>
-     * 原文:Sets the growth state of this nether wart
+     * Sets the growth state of this nether wart
      *
-     * @param state 这个地狱疣的生长状态
+     * @param state New growth state of this nether wart
      */
     public void setState(NetherWartsState state) {
         switch (state) {

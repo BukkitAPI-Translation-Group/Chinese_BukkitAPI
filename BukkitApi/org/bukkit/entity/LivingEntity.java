@@ -15,14 +15,13 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 
 /**
- * 代表一个生物实体，如一只怪物或一名玩家。
- * 原文：
- * Represents a living entity, such as a monster or player
+ * 代表一个生物实体，比如一只怪物或一名玩家.
  */
 public interface LivingEntity extends Attributable, Entity, Damageable, ProjectileSource {
 
     /**
-     * 获取生物实体眼睛离脚高度。
+     * 获取生物实体眼睛离脚高度.
+     * <p>
      * 原文：
      * Gets the height of the living entity's eyes above its Location.
      *
@@ -31,17 +30,19 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public double getEyeHeight();
 
     /**
-     * 获取生物实体眼睛离脚高度。
+     * 获取生物实体眼睛离脚高度.
+     * <p>
      * 原文：
      * Gets the height of the living entity's eyes above its Location.
      *
-     * @param ignoreSneaking 若为true则会无视潜行效果。
+     * @param ignorePose 若为true则会无视姿势改变的效果,例如潜行和滑翔
      * @return 生物实体眼睛离脚高度
      */
-    public double getEyeHeight(boolean ignoreSneaking);
+    public double getEyeHeight(boolean ignorePose);
 
     /**
-     * 获取生物实体眼睛的详细方位的Location对象。
+     * 获取生物实体眼睛的详细方位的Location对象.
+     * <p>
      * 原文：
      * Get a Location detailing the current eye position of the living entity.
      *
@@ -50,9 +51,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public Location getEyeLocation();
 
     /**
-     * 获取沿生物实体视线上的所有方块。
+     * 获取沿生物实体视线上的所有方块.
      * <p>
-     * 这个列表包含生物实体眼睛到目标位置的所有方块。
+     * 这个列表包含生物实体眼睛到目标位置的所有方块.
+     * <p>
      * 原文：
      * Gets all blocks along the living entity's line of sight.
      * <p>
@@ -66,20 +68,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance);
 
     /**
-     * 获取生物实体的目标方块。
-     * 原文：
-     * Gets the block that the living entity has targeted.
-     *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
-     * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
-     * @return 生物实体的目标方块
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public Block getTargetBlock(HashSet<Byte> transparent, int maxDistance);
-
-    /**
-     * 获取生物实体的目标方块。
+     * 获取生物实体的目标方块.
+     * <p>
      * 原文：
      * Gets the block that the living entity has targeted.
      *
@@ -90,26 +80,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public Block getTargetBlock(Set<Material> transparent, int maxDistance);
 
     /**
-     * 获取沿生物实体视线上最后两个方块。
+     * 获取沿生物实体视线上最后两个方块.
      * <p>
-     * 目标方块将是列表中最后的方块。
-     * 原文：
-     * Gets the last two blocks along the living entity's line of sight.
+     * 目标方块将是列表中最后的方块.
      * <p>
-     * The target block will be the last block in the list.
-     *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
-     * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
-     * @return 包含沿生物实体视线上最后两个方块的列表
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public List<Block> getLastTwoTargetBlocks(HashSet<Byte> transparent, int maxDistance);
-
-    /**
-     * 获取沿生物实体视线上最后两个方块。
-     * <p>
-     * 目标方块将是列表中最后的方块。
      * 原文：
      * Gets the last two blocks along the living entity's line of sight.
      * <p>
@@ -122,7 +96,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
 
     /**
-     * 返回生物实体剩余的氧气值，单位为tick。
+     * 返回生物实体剩余的氧气值，单位为tick.
+     * <p>
      * 原文：
      * Returns the amount of air that the living entity has remaining, in
      * ticks.
@@ -132,7 +107,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public int getRemainingAir();
 
     /**
-     * 设置生物实体剩余的氧气值，单位为tick。
+     * 设置生物实体剩余的氧气值，单位为tick.
+     * <p>
      * 原文：
      * Sets the amount of air that the living entity has remaining, in ticks.
      *
@@ -141,7 +117,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setRemainingAir(int ticks);
 
     /**
-     * 返回生物实体所能拥有的氧气最大值，单位为tick。
+     * 返回生物实体所能拥有的氧气最大值，单位为tick.
+     * <p>
      * 原文：
      * Returns the maximum amount of air the living entity can have, in ticks.
      *
@@ -150,7 +127,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public int getMaximumAir();
 
     /**
-     * 设置生物实体所能拥有的氧气最大值，单位为tick。
+     * 设置生物实体所能拥有的氧气最大值，单位为tick.
+     * <p>
      * 原文：
      * Sets the maximum amount of air the living entity can have, in ticks.
      *
@@ -159,9 +137,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setMaximumAir(int ticks);
 
     /**
-     * 返回生物实体当前最大无伤害时间，单位为tick。
+     * 返回生物实体当前最大无伤害时间，单位为tick.
      * <p>
-     * 即生物实体不会受到伤害的最大持续时间。
+     * 即生物实体不会受到伤害的最大持续时间.
+     * <p>
      * 原文：
      * Returns the living entity's current maximum no damage ticks.
      * <p>
@@ -173,7 +152,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public int getMaximumNoDamageTicks();
 
     /**
-     * 设置生物实体当前当前最大无伤害时间，单位为tick。
+     * 设置生物实体当前当前最大无伤害时间，单位为tick.
+     * <p>
      * 原文：
      * Sets the living entity's current maximum no damage ticks.
      *
@@ -182,11 +162,11 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setMaximumNoDamageTicks(int ticks);
 
     /**
-     * 返回生物实体在当前无伤害时间最后受到的伤害。
+     * 返回生物实体在当前无伤害时间最后受到的伤害.
      * <p>
-     * 只有当伤害高于这个数值时生物实体才会进一步受到伤害。
+     * 只有当伤害高于这个数值时生物实体才会进一步受到伤害.
      * <p>
-     * Returns the living entity's last damage taken in the current no damage
+     * 原文:Returns the living entity's last damage taken in the current no damage
      * ticks time.
      * <p>
      * Only damage higher than this amount will further damage the living
@@ -197,7 +177,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public double getLastDamage();
 
     /**
-     * 设置当前无伤害时间段内处理的伤害。
+     * 设置当前无伤害时间段内处理的伤害.
+     * <p>
      * 原文：
      * Sets the damage dealt within the current no damage ticks time period.
      *
@@ -206,7 +187,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setLastDamage(double damage);
 
     /**
-     * 返回生物实体当前无伤害时间，单位为tick。
+     * 返回生物实体当前无伤害时间，单位为tick.
+     * <p>
      * 原文：
      * Returns the living entity's current no damage ticks.
      *
@@ -215,7 +197,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public int getNoDamageTicks();
 
     /**
-     * 设置生物实体当前无伤害时间，单位为tick。
+     * 设置生物实体当前无伤害时间，单位为tick.
+     * <p>
      * 原文：
      * Sets the living entity's current no damage ticks.
      *
@@ -224,9 +207,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setNoDamageTicks(int ticks);
 
     /**
-     * 获取击杀指定生物实体的玩家。
+     * 获取击杀指定生物实体的玩家.
      * <p>
-     * 可能为空。
+     * 可能为空.
+     * <p>
      * 原文：
      * Gets the player identified as the killer of the living entity.
      * <p>
@@ -237,9 +221,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public Player getKiller();
 
     /**
-     * 向生物实体添加指定的{@link PotionEffect}（药水效果）。
+     * 向生物实体添加指定的{@link PotionEffect}（药水效果）.
      * <p>
-     * 一个指定的{@link PotionEffectType}（药水效果类型）只能有一种药水效果存在。
+     * 一个指定的{@link PotionEffectType}（药水效果类型）只能有一种药水效果存在.
+     * <p>
      * 原文：
      * Adds the given {@link PotionEffect} to the living entity.
      * <p>
@@ -252,9 +237,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean addPotionEffect(PotionEffect effect);
 
     /**
-     * 向生物实体添加指定的{@link PotionEffect}（药水效果）。
+     * 向生物实体添加指定的{@link PotionEffect}（药水效果）.
      * <p>
-     * 一个指定的{@link PotionEffectType}（药水效果类型）只能有一种药水效果存在。
+     * 一个指定的{@link PotionEffectType}（药水效果类型）只能有一种药水效果存在.
+     * <p>
      * 原文：
      * Adds the given {@link PotionEffect} to the living entity.
      * <p>
@@ -268,7 +254,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean addPotionEffect(PotionEffect effect, boolean force);
 
     /**
-     * 尝试向生物实体添加所有指定的{@link PotionEffect}（药水效果）。
+     * 尝试向生物实体添加所有指定的{@link PotionEffect}（药水效果）.
+     * <p>
      * 原文：
      * Attempts to add all of the given {@link PotionEffect} to the living
      * entity.
@@ -279,7 +266,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean addPotionEffects(Collection<PotionEffect> effects);
 
     /**
-     * 返回生物实体是否已经存在一个指定的{@link PotionEffectType}效果。
+     * 返回生物实体是否已经存在一个指定的{@link PotionEffectType}效果.
+     * <p>
      * 原文：
      * Returns whether the living entity already has an existing effect of
      * the given {@link PotionEffectType} applied to it.
@@ -290,9 +278,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean hasPotionEffect(PotionEffectType type);
 
     /**
-     * 返回指定类型的有效{@link PotionEffect}。
+     * 返回指定类型的有效{@link PotionEffect}.
      * <p>
-     * 如果效果不存在则会返回null。
+     * 如果效果不存在则会返回null.
+     * <p>
      * 原文：
      * Returns the active {@link PotionEffect} of the specified type.
      * <p>
@@ -304,7 +293,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public PotionEffect getPotionEffect(PotionEffectType type);
 
     /**
-     * 移除当前所有指定的{@link PotionEffectType}效果。
+     * 移除当前所有指定的{@link PotionEffectType}效果.
+     * <p>
      * 原文：
      * Removes any effects present of the given {@link PotionEffectType}.
      *
@@ -313,7 +303,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void removePotionEffect(PotionEffectType type);
 
     /**
-     * 返回当前作用于生物实体的所有{@link PotionEffect}。
+     * 返回当前作用于生物实体的所有{@link PotionEffect}.
+     * <p>
      * 原文：
      * Returns all currently active {@link PotionEffect}s on the living
      * entity.
@@ -323,24 +314,26 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public Collection<PotionEffect> getActivePotionEffects();
 
     /**
-     * 检查生物实体是否阻挡另一个的视线。（？？？）
+     * 检查生物实体是否阻挡另一个的视线.
      * <p>
-     * 这使用了与敌对怪物用于寻找最近玩家相同的算法。
+     * 这使用了与敌对怪物寻找最近玩家相同的算法.
+     * <p>
      * 原文：
      * Checks whether the living entity has block line of sight to another.
      * <p>
      * This uses the same algorithm that hostile mobs use to find the closest
      * player.
      *
-     * @param other 确定视线的实体（？？？）
+     * @param other 确定视线的实体
      * @return 如果存在视线则返回true，否则返回false
      */
     public boolean hasLineOfSight(Entity other);
 
     /**
-     * 返回生物实体是否会在远离玩家时消失。
+     * 返回生物实体是否会在远离玩家时消失.
      * <p>
-     * 默认情况下，动物不会被移除而怪物会。
+     * 默认情况下，动物不会被移除而怪物会.
+     * <p>
      * 原文：
      * Returns if the living entity despawns when away from players or not.
      * <p>
@@ -351,7 +344,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean getRemoveWhenFarAway();
 
     /**
-     * 设置生物实体是否会在远离玩家时消失。
+     * 设置生物实体是否会在远离玩家时消失.
+     * <p>
      * 原文：
      * Sets whether or not the living entity despawns when away from players
      * or not.
@@ -361,7 +355,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public void setRemoveWhenFarAway(boolean remove);
 
     /**
-     * 获取生物实体穿戴的装备背包栏。
+     * 获取生物实体穿戴的装备背包栏.
+     * <p>
      * 原文：
      * Gets the inventory with the equipment worn by the living entity.
      *
@@ -372,19 +367,16 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     /**
      * 设置生物实体是否能捡拾物品.
 	 * <p>
-     * 该方法在 {@link HumanEntity} 上无效.
-	 * <p>
      * 原文：
      * Sets whether or not the living entity can pick up items.
-	 * <p>
-     * This method has no effect on a {@link HumanEntity}.
      *
      * @param pickup 生物实体是否能捡拾物品
      */
     public void setCanPickupItems(boolean pickup);
 
     /**
-     * 获取生物实体是否能捡拾物品。
+     * 获取生物实体是否能捡拾物品.
+     * <p>
      * 原文：
      * Gets if the living entity can pick up items.
      *
@@ -393,7 +385,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean getCanPickupItems();
 
     /**
-     * 返回实体当前是否被拴住。
+     * 返回实体当前是否被拴住.
+     * <p>
      * 原文：
      * Returns whether the entity is currently leashed.
      *
@@ -402,7 +395,8 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean isLeashed();
 
     /**
-     * 获取当前牵引此实体的实体。
+     * 获取当前牵引此实体的实体.
+     * <p>
      * 原文：
      * Gets the entity that is currently leading this entity.
      *
@@ -412,9 +406,10 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public Entity getLeashHolder() throws IllegalStateException;
 
     /**
-     * 设置握持拴绳的实体。
+     * 设置握持拴绳的实体.
      * <p>
-     * 此方法对末影龙，凋零，玩家或蝙蝠无效。除拴绳外的非生物实体将不会像握持拴绳者一样坚持。（？？？）
+     * 此方法对末影龙，凋零，玩家或蝙蝠无效。除拴绳外的非生物实体将不会像握持拴绳者一样持续存在.
+     * <p>
      * 原文：
      * Sets the leash on this entity to be held by the supplied entity.
      * <p>
@@ -428,42 +423,66 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     public boolean setLeashHolder(Entity holder);
 
     /**
-     * 检查实体是否正在滑翔，如正在使用滑翔翼。
+     * 检查实体是否正在滑翔，如正在使用滑翔翼.
+     * <p>
      * 原文：
      * Checks to see if an entity is gliding, such as using an Elytra.
-     * @return 如果实体正在滑翔则返回true。
+     * @return 如果实体正在滑翔则返回true
      */
     public boolean isGliding();
 
     /**
-     * 使实体开始或停止滑翔。即使没有装备滑翔翼也会生效，但会在被服务器立即恢复（后面的无能为力）
      * Makes entity start or stop gliding. This will work even if an Elytra
      * is not equipped, but will be reverted by the server immediately after
      * unless an event-cancelling mechanism is put in place.
-     * @param gliding 实体滑翔则为true
+     * @param gliding True if the entity is gliding.
      */
     public void setGliding(boolean gliding);
 
     /**
-     * 设置实体是否具有AI。
+     * Checks to see if an entity is swimming.
+     *
+     * @return True if this entity is swimming.
+     */
+    public boolean isSwimming();
+
+    /**
+     * Makes entity start or stop swimming.
+     *
+     * This may have unexpected results if the entity is not in water.
+     *
+     * @param swimming True if the entity is swimming.
+     */
+    public void setSwimming(boolean swimming);
+
+    /**
+     * Checks to see if an entity is currently using the Riptide enchantment.
+     *
+     * @return True if this entity is currently riptiding.
+     */
+    public boolean isRiptiding();
+
+    /**
+     * 设置实体是否具有AI.
+     * <p>
      * 原文：
      * Sets whether an entity will have AI.
      *
-     * @param ai 怪物是否具有AI。
+     * @param ai 怪物是否具有AI
      */
     void setAI(boolean ai);
 
     /**
-     * 检查实体是否具有AI。
+     * 检查实体是否具有AI.
+     * <p>
      * 原文：
      * Checks whether an entity has AI.
      *
-     * @return 如果实体具有AI则返回true，否则返回false。
+     * @return 如果实体具有AI则返回true
      */
     boolean hasAI();
 
     /**
-     * 设置实体
      * Set if this entity will be subject to collisions other entities.
      * <p>
      * Note that collisions are bidirectional, so this method would need to be
