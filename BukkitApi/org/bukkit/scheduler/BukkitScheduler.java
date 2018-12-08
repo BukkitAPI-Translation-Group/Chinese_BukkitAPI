@@ -5,6 +5,12 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 import java.util.List;
 
+/**
+ * Bukkit的任务调度器.
+ * <p>
+ * Note:从注释可以看出Bukkit官方不推荐您在异步任务中调用Bukkit的API
+ * , 若不得不调用, 需要注意调用的API是否线程安全.
+ */
 public interface BukkitScheduler {
 
     /**
@@ -199,7 +205,7 @@ public interface BukkitScheduler {
      * <p>
      * 一个重复执行的任务可能不是正在运行的.但将在之后运行.一个已完成并且不重复执行的任务将不再运行.
      * <p>
-     * 直白地说就是,一个存在的线程在执行一个任务,并这个线程没有死亡.
+     * 直白地说就是,一个存在的线程在执行一个任务,并且这个线程没有死亡.
      * <p>
      * 原文：Check if the task currently running.
      * <p>
@@ -219,7 +225,7 @@ public interface BukkitScheduler {
     /**
      * 检测这个任务是否正在排队等待执行.
      * <p>
-     * 如果一个重复执行的任务正在运行,它现在可能不会被排队,但是可能会在之后发生.一个任务如果不在队列、不在运行.那么将不再排队.
+     * 如果一个重复执行的任务正在运行,它现在可能不会被置于列队,但是可能会在之后发生.一个任务如果不在队列、不在运行.那么将不再排队.
      * <p>
      * 原文：Check if the task queued to be run later.
      * <p>
@@ -253,12 +259,12 @@ public interface BukkitScheduler {
      * 原文：Returns a list of all pending tasks. The ordering of the tasks is not
      * related to their order of execution.
      *
-     * @return 激活的worker
+     * @return 待执行/挂起的任务
      */
     public List<BukkitTask> getPendingTasks();
 
     /**
-     * 返回下一个tick服务器将运行的任务.
+     * 返回下一个tick服务器将运行的任务(即于下一tick执行指定任务).
      * <p>
      * 原文：Returns a task that will run on the next server tick.
      *
