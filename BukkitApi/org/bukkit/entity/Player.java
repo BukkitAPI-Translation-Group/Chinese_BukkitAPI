@@ -1451,22 +1451,32 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      */
     public void setSpectatorTarget(Entity entity);
 
-    /**
-     * Sends a title and a subtitle message to the player. If either of these
+   /**
+     * 向玩家发送屏幕标题.如果标题和副标题内容都为null, 那么标题将不会被发送出去, 玩家的屏幕也不会有变化.
+     * 如果这些参数是空字符串(注意空字符串与null有区别), 那么玩家的屏幕将会被更新(本质上讲, 虽然看起来没啥变化)
+     * 如果字符串包含多行文本, 那么只有第一行文本才会被发送出去.
+     * 标题将以玩家客户端默认的淡入淡出时间显示.
+     * <p>
+     * 原文:Sends a title and a subtitle message to the player. If either of these
      * values are null, they will not be sent and the display will remain
      * unchanged. If they are empty strings, the display will be updated as
      * such. If the strings contain a new line, only the first line will be
-     * sent. The titles will be displayed with the client's default timings.
+     * sent. be displayed with the client's default timings.
      *
-     * @param title Title text
-     * @param subtitle Subtitle text
-     * @deprecated API behavior subject to change
+     * @param title 标题文本
+     * @param subtitle 副标题文本
+     * @deprecated API行为有所改变
      */
     @Deprecated
     public void sendTitle(String title, String subtitle);
 
-    /**
-     * Sends a title and a subtitle message to the player. If either of these
+   /**
+     * 向玩家发送屏幕标题.如果标题和副标题内容都为null, 那么标题将不会被发送出去, 玩家的屏幕也不会有变化.
+     * 如果这些参数是空字符串(注意空字符串与null有区别), 那么玩家的屏幕将会被更新(本质上讲, 虽然看起来没啥变化)
+     * 如果字符串包含多行文本, 那么只有第一行文本才会被发送出去.
+     * 所有时间值都可以取-1来表示最后一次(或者上一次)发送标题所用的值(如果尚无任何标题曾被显示过则取默认值).
+     * <p>
+     * 原文:Sends a title and a subtitle message to the player. If either of these
      * values are null, they will not be sent and the display will remain
      * unchanged. If they are empty strings, the display will be updated as
      * such. If the strings contain a new line, only the first line will be
@@ -1474,16 +1484,19 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * will use the last value sent (or the defaults if no title has been
      * displayed).
      *
-     * @param title Title text
-     * @param subtitle Subtitle text
-     * @param fadeIn time in ticks for titles to fade in. Defaults to 10.
-     * @param stay time in ticks for titles to stay. Defaults to 70.
-     * @param fadeOut time in ticks for titles to fade out. Defaults to 20.
+     * @param title 标题文本
+     * @param subtitle 副标题文本
+     * @param fadeIn 标题淡入时间,以tick为单位.默认值取10.
+     * @param stay 标题停留/展示时长,以tick为单位.默认值取70.
+     * @param fadeOut 标题淡出时间,以tick为单位.默认值取20.
      */
     public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
 
-    /**
-     * Resets the title displayed to the player. This will clear the displayed
+   /**
+     * 重置想转玩家显示的屏幕标题.
+     * 这将清除已显示的标题/副标题并重置标题显示计时器至默认值.
+     * <p>
+     * 原文:Resets the title displayed to the player. This will clear the displayed
      * title / subtitle and reset timings to their default values.
      */
     public void resetTitle();
