@@ -7,8 +7,14 @@ public interface CommandExecutor {
 
     /**
      * 执行给定的命令，成功时返回.
+     * <br>
+     * If false is returned, then the "usage" plugin.yml entry for this command
+     * (if defined) will be sent to the player.
      * <p>
-     * 原文:Executes the given command, returning its success
+     * 原文:Executes the given command, returning its success.
+     * <br>
+     * If false is returned, then the "usage" plugin.yml entry for this command
+     * (if defined) will be sent to the player.
      *
      * @param sender 命令执行的来源
      * @param command 被执行的命令

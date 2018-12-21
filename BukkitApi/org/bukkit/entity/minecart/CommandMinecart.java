@@ -1,12 +1,11 @@
 package org.bukkit.entity.minecart;
 
-import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Minecart;
 
 /**
  * 代表命令方块矿车.
  */
-public interface CommandMinecart extends Minecart, CommandSender {
+public interface CommandMinecart extends Minecart {
 
     /**
      * 获取这个命令方块矿车激活时运行的命令。这将永远不会返回null，而会返回空的字符串。

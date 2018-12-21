@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.function.Predicate;
 
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -17,7 +18,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Consumer;
+import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 
 /**
@@ -141,6 +144,15 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 如果区块已经被加载则返回true，否则返回false
      */
     public boolean isChunkLoaded(Chunk chunk);
+
+    /**
+     * Checks if the {@link Chunk} at the specified coordinates is generated
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @return true if the chunk is generated, otherwise false
+     */
+    public boolean isChunkGenerated(int x, int z);
 
     /**
      * 获取一个所有被加载的{@link Chunk 区块}的数组.
@@ -533,12 +545,15 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 返回一个以这个位置为中心的包围着的所有实体的列表(译注:这个可能不太好理解，就是在这个位置，按指定的搜索范围，搜索这个范围里的所有实体).
      * <p>
-     * 一些实现可能会对搜索的范围的大小施加限制.
+     * 这可能不会考虑当前尚未加载的区块中的实体. 一些实现可能会对搜索的范围的大小施加限制.
      * <p>
      * 原文：
-     * Returns a list of entities within a bounding box centered around a Location.
-     *
-     * Some implementations may impose artificial restrictions on the size of the search bounding box.
+     * Returns a list of entities within a bounding box centered around a
+     * Location.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the size of the
+     * search bounding box.
      *
      * @param location 搜索范围的中心
      * @param x 搜索范围的x半轴长度
@@ -547,6 +562,216 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 在位置附近的实体的集合,一般不为空
      */
     public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z);
+
+    /**
+     * Returns a list of entities within a bounding box centered around a
+     * Location.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the size of the
+     * search bounding box.
+     *
+     * @param location The center of the bounding box
+     * @param x 1/2 the size of the box along x axis
+     * @param y 1/2 the size of the box along y axis
+     * @param z 1/2 the size of the box along z axis
+     * @param filter only entities that fulfill this predicate are considered,
+     *     or <code>null</code> to consider all entities
+     * @return the collection of entities near location. This will always be a
+     *     non-null collection.
+     */
+    public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z, Predicate<Entity> filter);
+
+    /**
+     * Returns a list of entities within the given bounding box.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the size of the
+     * search bounding box.
+     *
+     * @param boundingBox the bounding box
+     * @return the collection of entities within the bounding box, will always
+     *     be a non-null collection
+     */
+    public Collection<Entity> getNearbyEntities(BoundingBox boundingBox);
+
+    /**
+     * Returns a list of entities within the given bounding box.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the size of the
+     * search bounding box.
+     *
+     * @param boundingBox the bounding box
+     * @param filter only entities that fulfill this predicate are considered,
+     *     or <code>null</code> to consider all entities
+     * @return the collection of entities within the bounding box, will always
+     *     be a non-null collection
+     */
+    public Collection<Entity> getNearbyEntities(BoundingBox boundingBox, Predicate<Entity> filter);
+
+    /**
+     * Performs a ray trace that checks for entity collisions.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the maximum
+     * distance.
+     *
+     * @param start the start position
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @return the closest ray trace hit result, or <code>null</code> if there
+     *     is no hit
+     * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
+     */
+    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance);
+
+    /**
+     * Performs a ray trace that checks for entity collisions.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the maximum
+     * distance.
+     *
+     * @param start the start position
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param raySize entity bounding boxes will be uniformly expanded (or
+     *     shrinked) by this value before doing collision checks
+     * @return the closest ray trace hit result, or <code>null</code> if there
+     *     is no hit
+     * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
+     */
+    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, double raySize);
+
+    /**
+     * Performs a ray trace that checks for entity collisions.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the maximum
+     * distance.
+     *
+     * @param start the start position
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param filter only entities that fulfill this predicate are considered,
+     *     or <code>null</code> to consider all entities
+     * @return the closest ray trace hit result, or <code>null</code> if there
+     *     is no hit
+     * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
+     */
+    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, Predicate<Entity> filter);
+
+    /**
+     * Performs a ray trace that checks for entity collisions.
+     * <p>
+     * This may not consider entities in currently unloaded chunks. Some
+     * implementations may impose artificial restrictions on the maximum
+     * distance.
+     *
+     * @param start the start position
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param raySize entity bounding boxes will be uniformly expanded (or
+     *     shrinked) by this value before doing collision checks
+     * @param filter only entities that fulfill this predicate are considered,
+     *     or <code>null</code> to consider all entities
+     * @return the closest ray trace hit result, or <code>null</code> if there
+     *     is no hit
+     */
+    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, double raySize, Predicate<Entity> filter);
+
+    /**
+     * Performs a ray trace that checks for block collisions using the blocks'
+     * precise collision shapes.
+     * <p>
+     * This takes collisions with passable blocks into account, but ignores
+     * fluids.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param start the start location
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @return the ray trace hit result, or <code>null</code> if there is no hit
+     * @see #rayTraceBlocks(Location, Vector, double, FluidCollisionMode, boolean)
+     */
+    public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance);
+
+    /**
+     * Performs a ray trace that checks for block collisions using the blocks'
+     * precise collision shapes.
+     * <p>
+     * This takes collisions with passable blocks into account.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param start the start location
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param fluidCollisionMode the fluid collision mode
+     * @return the ray trace hit result, or <code>null</code> if there is no hit
+     * @see #rayTraceBlocks(Location, Vector, double, FluidCollisionMode, boolean)
+     */
+    public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode);
+
+    /**
+     * Performs a ray trace that checks for block collisions using the blocks'
+     * precise collision shapes.
+     * <p>
+     * If collisions with passable blocks are ignored, fluid collisions are
+     * ignored as well regardless of the fluid collision mode.
+     * <p>
+     * Portal blocks are only considered passable if the ray starts within
+     * them. Apart from that collisions with portal blocks will be considered
+     * even if collisions with passable blocks are otherwise ignored.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param start the start location
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param fluidCollisionMode the fluid collision mode
+     * @param ignorePassableBlocks whether to ignore passable but collidable
+     *     blocks (ex. tall grass, signs, fluids, ..)
+     * @return the ray trace hit result, or <code>null</code> if there is no hit
+     */
+    public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks);
+
+    /**
+     * Performs a ray trace that checks for both block and entity collisions.
+     * <p>
+     * Block collisions use the blocks' precise collision shapes. The
+     * <code>raySize</code> parameter is only taken into account for entity
+     * collision checks.
+     * <p>
+     * If collisions with passable blocks are ignored, fluid collisions are
+     * ignored as well regardless of the fluid collision mode.
+     * <p>
+     * Portal blocks are only considered passable if the ray starts within them.
+     * Apart from that collisions with portal blocks will be considered even if
+     * collisions with passable blocks are otherwise ignored.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param start the start location
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param fluidCollisionMode the fluid collision mode
+     * @param ignorePassableBlocks whether to ignore passable but collidable
+     *     blocks (ex. tall grass, signs, fluids, ..)
+     * @param raySize entity bounding boxes will be uniformly expanded (or
+     *     shrinked) by this value before doing collision checks
+     * @param filter only entities that fulfill this predicate are considered,
+     *     or <code>null</code> to consider all entities
+     * @return the closest ray trace hit result with either a block or an
+     *     entity, or <code>null</code> if there is no hit
+     */
+    public RayTraceResult rayTrace(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, Predicate<Entity> filter);
 
     /**
      * 获取世界的唯一名称.
@@ -1110,13 +1335,18 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 获取指定方块坐标的温度。
      * <p>
-     * 方块不存在时运行这个方法是安全的，它不会创建方块。
+     * 方块不存在时运行这个方法是安全的，它不会创建方块.
+     * <p>
+     * 本方法将返回原始温度值, 不以方块高度所带来的影响而判断.
      * <p>
      * 原文：
      * Gets the temperature for the given block coordinates.
      * <p>
      * It is safe to run this method when the block does not exist, it will
      * not create the block.
+     * <p>
+     * This method will return the raw temperature without adjusting for block
+     * height effects.
      *
      * @param x 方块的x坐标
      * @param z 方块的z坐标
@@ -1943,6 +2173,32 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *              settings
      */
     public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force);
+
+    /**
+     * Find the closest nearby structure of a given {@link StructureType}.
+     * Finding unexplored structures can, and will, block if the world is
+     * looking in chunks that gave not generated yet. This can lead to the world
+     * temporarily freezing while locating an unexplored structure.
+     * <p>
+     * The {@code radius} is not a rigid square radius. Each structure may alter
+     * how many chunks to check for each iteration. Do not assume that only a
+     * radius x radius chunk area will be checked. For example,
+     * {@link StructureType#WOODLAND_MANSION} can potentially check up to 20,000
+     * blocks away (or more) regardless of the radius used.
+     * <p>
+     * This will <i>not</i> load or generate chunks. This can also lead to
+     * instances where the server can hang if you are only looking for
+     * unexplored structures. This is because it will keep looking further and
+     * further out in order to find the structure.
+     *
+     * @param origin where to start looking for a structure
+     * @param structureType the type of structure to find
+     * @param radius the radius, in chunks, around which to search
+     * @param findUnexplored true to only find unexplored structures
+     * @return the closest {@link Location}, or null if no structure of the
+     * specified type exists.
+     */
+    public Location locateNearestStructure(Location origin, StructureType structureType, int radius, boolean findUnexplored);
 
     /**
      * 表示世界可能的各种地图环境类型.

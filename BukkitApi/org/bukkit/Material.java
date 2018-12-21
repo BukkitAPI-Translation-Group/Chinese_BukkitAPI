@@ -74,1010 +74,827 @@ import org.bukkit.material.MaterialData;
  */
 public enum Material implements Keyed {
     //<editor-fold desc="Materials" defaultstate="collapsed">
-    /**
-     * 金合欢木船
-     */
     ACACIA_BOAT(27326, 1),
     /**
-     * 金合欢木按钮
+     * BlockData: {@link Switch}
      */
     ACACIA_BUTTON(13993, Switch.class),
     /**
-     * 金合欢木门
+     * BlockData: {@link Door}
      */
     ACACIA_DOOR(23797, Door.class),
     /**
-     * 金合欢栅栏
+     * BlockData: {@link Fence}
      */
     ACACIA_FENCE(4569, Fence.class),
     /**
-     * 金合欢栅栏门
+     * BlockData: {@link Gate}
      */
     ACACIA_FENCE_GATE(14145, Gate.class),
     /**
-     * 金合欢树叶
+     * BlockData: {@link Leaves}
      */
     ACACIA_LEAVES(16606, Leaves.class),
     /**
-     * 金合欢原木
+     * BlockData: {@link Orientable}
      */
     ACACIA_LOG(8385, Orientable.class),
-    /**
-     * 金合欢木板
-     */
     ACACIA_PLANKS(31312),
     /**
-     * 金合欢木压力板
+     * BlockData: {@link Powerable}
      */
     ACACIA_PRESSURE_PLATE(17586, Powerable.class),
     /**
-     * 金合欢树苗
+     * BlockData: {@link Sapling}
      */
     ACACIA_SAPLING(20806, Sapling.class),
     /**
-     * 金合欢台阶
+     * BlockData: {@link Slab}
      */
     ACACIA_SLAB(23730, Slab.class),
     /**
-     * 金合欢楼梯
+     * BlockData: {@link Stairs}
      */
     ACACIA_STAIRS(17453, Stairs.class),
     /**
-     * 金合欢木活板门
+     * BlockData: {@link TrapDoor}
      */
     ACACIA_TRAPDOOR(18343, TrapDoor.class),
     /**
-     * 金合欢木
+     * BlockData: {@link Orientable}
      */
     ACACIA_WOOD(9541, Orientable.class),
     /**
-     * 激活铁轨
+     * BlockData: {@link RedstoneRail}
      */
     ACTIVATOR_RAIL(5834, RedstoneRail.class),
-    /**
-     * 空气
-     */
     AIR(9648, 0),
-    /**
-     * 绒球葱
-     */
     ALLIUM(6871),
-    /**
-     * 安山岩
-     */
     ANDESITE(25975),
     /**
-     * 铁砧
+     * BlockData: {@link Directional}
      */
     ANVIL(18718, Directional.class),
-    /**
-     * 苹果
-     */
     APPLE(7720),
-    /**
-     * 盔甲架
-     */
     ARMOR_STAND(12852, 16),
-    /**
-     * 箭
-     */
     ARROW(31091),
     /**
-     * 附魔西瓜梗
+     * BlockData: {@link Directional}
      */
     ATTACHED_MELON_STEM(30882, Directional.class),
     /**
-     * 附魔南瓜梗
+     * BlockData: {@link Directional}
      */
     ATTACHED_PUMPKIN_STEM(12724, Directional.class),
-    /**
-     * 茜草花
-     */
     AZURE_BLUET(17608),
-    /**
-     * 烤马铃薯
-     */
     BAKED_POTATO(14624),
-    /**
-     * 屏障
-     */
     BARRIER(26453),
-    /**
-     * 蝙蝠刷怪蛋
-     */
     BAT_SPAWN_EGG(14607),
-    /**
-     * 信标
-     */
     BEACON(6608),
-    /**
-     * 基岩
-     */
     BEDROCK(23130),
-    /**
-     * 牛肉
-     */
     BEEF(4803),
-    /**
-     * 甜菜
-     */
     BEETROOT(23305),
     /**
-     * 甜菜
+     * BlockData: {@link Ageable}
      */
     BEETROOTS(22075, Ageable.class),
-    /**
-     * 甜菜种子
-     */
     BEETROOT_SEEDS(21282),
-    /**
-     * 甜菜汤
-     */
     BEETROOT_SOUP(16036, 1),
-    /**
-     * 白桦木船
-     */
     BIRCH_BOAT(28104, 1),
     /**
-     * 白桦木按钮
+     * BlockData: {@link Switch}
      */
     BIRCH_BUTTON(26934, Switch.class),
     /**
-     * 白桦木门
+     * BlockData: {@link Door}
      */
     BIRCH_DOOR(14759, Door.class),
     /**
-     * 白桦木栅栏
+     * BlockData: {@link Fence}
      */
     BIRCH_FENCE(17347, Fence.class),
     /**
-     * 白桦木栅栏门
+     * BlockData: {@link Gate}
      */
     BIRCH_FENCE_GATE(6322, Gate.class),
     /**
-     * 白桦木树叶
+     * BlockData: {@link Leaves}
      */
     BIRCH_LEAVES(12601, Leaves.class),
     /**
-     * 白桦木原木
+     * BlockData: {@link Orientable}
      */
     BIRCH_LOG(26727, Orientable.class),
-    /**
-     * 白桦木板
-     */
     BIRCH_PLANKS(29322),
     /**
-     * 白桦木压力板
+     * BlockData: {@link Powerable}
      */
     BIRCH_PRESSURE_PLATE(9664, Powerable.class),
     /**
-     * 白桦树苗
+     * BlockData: {@link Sapling}
      */
     BIRCH_SAPLING(31533, Sapling.class),
     /**
-     * 白桦木台阶
+     * BlockData: {@link Slab}
      */
     BIRCH_SLAB(13807, Slab.class),
     /**
-     * 白桦木楼梯
+     * BlockData: {@link Stairs}
      */
     BIRCH_STAIRS(7657, Stairs.class),
     /**
-     * 白桦木活板门
+     * BlockData: {@link TrapDoor}
      */
     BIRCH_TRAPDOOR(32585, TrapDoor.class),
     /**
-     * 白桦木
+     * BlockData: {@link Orientable}
      */
     BIRCH_WOOD(20913, Orientable.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     BLACK_BANNER(9365, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     BLACK_BED(20490, 1, Bed.class),
     BLACK_CARPET(6056),
     BLACK_CONCRETE(13338),
     BLACK_CONCRETE_POWDER(16150),
+    /**
+     * BlockData: {@link Directional}
+     */
     BLACK_GLAZED_TERRACOTTA(29678, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     BLACK_SHULKER_BOX(24076, 1, Directional.class),
     BLACK_STAINED_GLASS(13941),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     BLACK_STAINED_GLASS_PANE(13201, GlassPane.class),
     BLACK_TERRACOTTA(26691),
+    /**
+     * BlockData: {@link Directional}
+     */
     BLACK_WALL_BANNER(4919, Directional.class),
     BLACK_WOOL(16693),
     BLAZE_POWDER(18941),
     BLAZE_ROD(8289),
     BLAZE_SPAWN_EGG(4759),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     BLUE_BANNER(18481, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     BLUE_BED(12714, 1, Bed.class),
     BLUE_CARPET(13292),
     BLUE_CONCRETE(18756),
     BLUE_CONCRETE_POWDER(17773),
+    /**
+     * BlockData: {@link Directional}
+     */
     BLUE_GLAZED_TERRACOTTA(23823, Directional.class),
     BLUE_ICE(22449),
     BLUE_ORCHID(13432),
+    /**
+     * BlockData: {@link Directional}
+     */
     BLUE_SHULKER_BOX(11476, 1, Directional.class),
     BLUE_STAINED_GLASS(7107),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     BLUE_STAINED_GLASS_PANE(28484, GlassPane.class),
     BLUE_TERRACOTTA(5236),
+    /**
+     * BlockData: {@link Directional}
+     */
     BLUE_WALL_BANNER(17757, Directional.class),
     BLUE_WOOL(15738),
     BONE(5686),
+    /**
+     * BlockData: {@link Orientable}
+     */
     BONE_BLOCK(17312, Orientable.class),
     BONE_MEAL(32458),
-    /**
-     * 书
-     */
     BOOK(23097),
     BOOKSHELF(10069),
     BOW(8745, 1, 384),
-    /**
-     * 碗
-     */
     BOWL(32661),
     /**
-     * 脑纹珊瑚
+     * BlockData: {@link Waterlogged}
      */
     BRAIN_CORAL(31316, Waterlogged.class),
-    /**
-     * 脑纹珊瑚块
-     */
     BRAIN_CORAL_BLOCK(30618),
     /**
-     * 脑纹珊瑚扇
+     * BlockData: {@link Waterlogged}
      */
     BRAIN_CORAL_FAN(13849, Waterlogged.class),
-    BRAIN_CORAL_WALL_FAN(22685, CoralWallFan.class),
     /**
-     * 面包
+     * BlockData: {@link CoralWallFan}
      */
+    BRAIN_CORAL_WALL_FAN(22685, CoralWallFan.class),
     BREAD(32049),
     /**
-     * 酿造台
+     * BlockData: {@link BrewingStand}
      */
     BREWING_STAND(14539, BrewingStand.class),
-    /**
-     * 砖块
-     */
     BRICK(6820),
-    /**
-     * 砖块
-     */
     BRICKS(14165),
     /**
-     * 砖台阶
+     * BlockData: {@link Slab}
      */
     BRICK_SLAB(26333, Slab.class),
     /**
-     * 砖楼梯
+     * BlockData: {@link Stairs}
      */
     BRICK_STAIRS(21534, Stairs.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     BROWN_BANNER(11481, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     BROWN_BED(25624, 1, Bed.class),
     BROWN_CARPET(23352),
     BROWN_CONCRETE(19006),
     BROWN_CONCRETE_POWDER(21485),
+    /**
+     * BlockData: {@link Directional}
+     */
     BROWN_GLAZED_TERRACOTTA(5655, Directional.class),
     BROWN_MUSHROOM(9665),
+    /**
+     * BlockData: {@link MultipleFacing}
+     */
     BROWN_MUSHROOM_BLOCK(6291, MultipleFacing.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     BROWN_SHULKER_BOX(24230, 1, Directional.class),
     BROWN_STAINED_GLASS(20945),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     BROWN_STAINED_GLASS_PANE(17557, GlassPane.class),
     BROWN_TERRACOTTA(23664),
+    /**
+     * BlockData: {@link Directional}
+     */
     BROWN_WALL_BANNER(14731, Directional.class),
     BROWN_WOOL(32638),
+    /**
+     * BlockData: {@link BubbleColumn}
+     */
     BUBBLE_COLUMN(13758, BubbleColumn.class),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     BUBBLE_CORAL(12464, Waterlogged.class),
     BUBBLE_CORAL_BLOCK(15437),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     BUBBLE_CORAL_FAN(10795, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     BUBBLE_CORAL_WALL_FAN(20382, CoralWallFan.class),
     BUCKET(15215, 16),
+    /**
+     * BlockData: {@link Ageable}
+     */
     CACTUS(12191, Ageable.class),
     CACTUS_GREEN(17296),
     /**
-     * 蛋糕
+     * BlockData: {@link Cake}
      */
     CAKE(27048, 1, Cake.class),
-    /**
-     * 胡萝卜
-     */
     CARROT(22824),
     /**
-     * 胡萝卜
+     * BlockData: {@link Ageable}
      */
     CARROTS(17258, Ageable.class),
-    /**
-     * 胡萝卜钓竿
-     */
     CARROT_ON_A_STICK(27809, 1, 25),
     /**
-     * 雕刻过的南瓜
+     * BlockData: {@link Directional}
      */
     CARVED_PUMPKIN(25833, Directional.class),
     /**
-     * 炼药锅
+     * BlockData: {@link Levelled}
      */
     CAULDRON(26531, Levelled.class),
-    /**
-     * 洞穴空气
-     */
     CAVE_AIR(17422),
-    /**
-     * 洞穴蜘蛛刷怪蛋
-     */
     CAVE_SPIDER_SPAWN_EGG(23341),
-    /**
-     * 锁链靴子
-     */
     CHAINMAIL_BOOTS(17953, 1, 195),
-    /**
-     * 锁链胸甲
-     */
     CHAINMAIL_CHESTPLATE(23602, 1, 240),
-    /**
-     * 锁链头盔
-     */
     CHAINMAIL_HELMET(26114, 1, 165),
-    /**
-     * 锁链护腿
-     */
     CHAINMAIL_LEGGINGS(19087, 1, 225),
     /**
-     * 连锁型命令方块
+     * BlockData: {@link CommandBlock}
      */
     CHAIN_COMMAND_BLOCK(26798, CommandBlock.class),
-    /**
-     * 木炭
-     */
     CHARCOAL(5390),
     /**
-     * 箱子
+     * BlockData: {@link Chest}
      */
     CHEST(22969, Chest.class),
-    /**
-     * 运输矿车
-     */
     CHEST_MINECART(4497, 1),
-    /**
-     * 鸡
-     */
     CHICKEN(17281),
-    /**
-     * 鸡刷怪蛋
-     */
     CHICKEN_SPAWN_EGG(5462),
     /**
-     * 开裂的铁砧
+     * BlockData: {@link Directional}
      */
     CHIPPED_ANVIL(10623, Directional.class),
-    /**
-     * 錾制石英块
-     */
     CHISELED_QUARTZ_BLOCK(30964),
-    /**
-     * 錾制红砂岩
-     */
     CHISELED_RED_SANDSTONE(15529),
-    /**
-     * 錾制砂岩
-     */
     CHISELED_SANDSTONE(31763),
-    /**
-     * 錾制石砖
-     */
     CHISELED_STONE_BRICKS(9087),
     /**
-     * 紫颂花
+     * BlockData: {@link Ageable}
      */
     CHORUS_FLOWER(28542, Ageable.class),
-    /**
-     * 紫颂果
-     */
     CHORUS_FRUIT(7652),
     /**
-     * 紫颂植物
+     * BlockData: {@link MultipleFacing}
      */
     CHORUS_PLANT(28243, MultipleFacing.class),
-    /**
-     * 黏土
-     */
     CLAY(27880),
-    /**
-     * 黏土
-     */
     CLAY_BALL(24603),
-    /**
-     * 种
-     */
     CLOCK(14980),
-    /**
-     * 煤炭
-     */
     COAL(29067),
-    /**
-     * 煤炭块
-     */
     COAL_BLOCK(27968),
-    /**
-     * 煤炭矿石
-     */
     COAL_ORE(30965),
-    /**
-     * 砂土
-     */
     COARSE_DIRT(15411),
-    /**
-     * 圆石
-     */
     COBBLESTONE(32147),
     /**
-     * 圆石台阶
+     * BlockData: {@link Slab}
      */
     COBBLESTONE_SLAB(6340, Slab.class),
     /**
-     * 圆石楼梯
+     * BlockData: {@link Stairs}
      */
     COBBLESTONE_STAIRS(24715, Stairs.class),
     /**
-     * 圆石墙
+     * BlockData: {@link Fence}
      */
     COBBLESTONE_WALL(12616, Fence.class),
-    /**
-     * 蜘蛛网
-     */
     COBWEB(9469),
     /**
-     * 可可果
+     * BlockData: {@link Cocoa}
      */
     COCOA(29709, Cocoa.class),
-    /**
-     * 可可豆
-     */
     COCOA_BEANS(27381),
-    /**
-     * 鳕鱼
-     */
     COD(24691),
-    /**
-     * 鳕鱼桶
-     */
     COD_BUCKET(28601, 1),
-    /**
-     * 鳕鱼刷怪蛋
-     */
     COD_SPAWN_EGG(27248),
     /**
-     * 命令方块
+     * BlockData: {@link CommandBlock}
      */
     COMMAND_BLOCK(4355, CommandBlock.class),
-    /**
-     * 命令方块矿车
-     */
     COMMAND_BLOCK_MINECART(7992, 1),
     /**
-     * 红石比较器
+     * BlockData: {@link Comparator}
      */
     COMPARATOR(18911, Comparator.class),
-    /**
-     * 指南针
-     */
     COMPASS(24139),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     CONDUIT(5148, Waterlogged.class),
-    /**
-     * 熟牛肉
-     */
     COOKED_BEEF(21595),
-    /**
-     * 熟鸡肉
-     */
     COOKED_CHICKEN(20780),
-    /**
-     * 熟鳕鱼肉
-     */
     COOKED_COD(9681),
-    /**
-     * 熟羊肉
-     */
     COOKED_MUTTON(31447),
-    /**
-     * 熟猪排
-     */
     COOKED_PORKCHOP(27231),
-    /**
-     * 熟兔肉
-     */
     COOKED_RABBIT(4454),
-    /**
-     * 熟鲑鱼肉
-     */
     COOKED_SALMON(5615),
-    /**
-     * 曲奇饼干
-     */
     COOKIE(27431),
-    /**
-     * 牛刷怪蛋
-     */
     COW_SPAWN_EGG(14761),
-    /**
-     * 裂石砖
-     */
     CRACKED_STONE_BRICKS(27869),
-    /**
-     * 工作台
-     */
     CRAFTING_TABLE(20706),
     /**
-     * 苦力怕头
+     * BlockData: {@link Rotatable}
      */
     CREEPER_HEAD(29146, Rotatable.class),
-    /**
-     * 苦力怕刷怪蛋
-     */
     CREEPER_SPAWN_EGG(9653),
     /**
-     * 苦力怕头(墙面放置)
+     * BlockData: {@link Directional}
      */
     CREEPER_WALL_HEAD(30123, Directional.class),
     CUT_RED_SANDSTONE(26842),
     CUT_SANDSTONE(6118),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     CYAN_BANNER(9839, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     CYAN_BED(16746, 1, Bed.class),
     CYAN_CARPET(31495),
     CYAN_CONCRETE(26522),
     CYAN_CONCRETE_POWDER(15734),
     CYAN_DYE(8043),
+    /**
+     * BlockData: {@link Directional}
+     */
     CYAN_GLAZED_TERRACOTTA(9550, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     CYAN_SHULKER_BOX(28123, 1, Directional.class),
     CYAN_STAINED_GLASS(30604),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     CYAN_STAINED_GLASS_PANE(11784, GlassPane.class),
     CYAN_TERRACOTTA(25940),
+    /**
+     * BlockData: {@link Directional}
+     */
     CYAN_WALL_BANNER(10889, Directional.class),
     CYAN_WOOL(12221),
+    /**
+     * BlockData: {@link Directional}
+     */
     DAMAGED_ANVIL(10274, Directional.class),
     DANDELION(30558),
     DANDELION_YELLOW(21789),
     DARK_OAK_BOAT(28618, 1),
+    /**
+     * BlockData: {@link Switch}
+     */
     DARK_OAK_BUTTON(6214, Switch.class),
+    /**
+     * BlockData: {@link Door}
+     */
     DARK_OAK_DOOR(10669, Door.class),
+    /**
+     * BlockData: {@link Fence}
+     */
     DARK_OAK_FENCE(21767, Fence.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     DARK_OAK_FENCE_GATE(10679, Gate.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
     DARK_OAK_LEAVES(22254, Leaves.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     DARK_OAK_LOG(14831, Orientable.class),
     DARK_OAK_PLANKS(20869),
+    /**
+     * BlockData: {@link Powerable}
+     */
     DARK_OAK_PRESSURE_PLATE(31375, Powerable.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
     DARK_OAK_SAPLING(14933, Sapling.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     DARK_OAK_SLAB(28852, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     DARK_OAK_STAIRS(22921, Stairs.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     DARK_OAK_TRAPDOOR(10355, TrapDoor.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     DARK_OAK_WOOD(16995, Orientable.class),
     DARK_PRISMARINE(19940),
+    /**
+     * BlockData: {@link Slab}
+     */
     DARK_PRISMARINE_SLAB(7577, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     DARK_PRISMARINE_STAIRS(26511, Stairs.class),
+    /**
+     * BlockData: {@link DaylightDetector}
+     */
     DAYLIGHT_DETECTOR(8864, DaylightDetector.class),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_BRAIN_CORAL(9116, Waterlogged.class),
     DEAD_BRAIN_CORAL_BLOCK(12979),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_BRAIN_CORAL_FAN(26150, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     DEAD_BRAIN_CORAL_WALL_FAN(23718, CoralWallFan.class),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_BUBBLE_CORAL(30583, Waterlogged.class),
     DEAD_BUBBLE_CORAL_BLOCK(28220),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_BUBBLE_CORAL_FAN(17322, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     DEAD_BUBBLE_CORAL_WALL_FAN(18453, CoralWallFan.class),
     DEAD_BUSH(22888),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_FIRE_CORAL(8365, Waterlogged.class),
     DEAD_FIRE_CORAL_BLOCK(5307),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_FIRE_CORAL_FAN(27073, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     DEAD_FIRE_CORAL_WALL_FAN(23375, CoralWallFan.class),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_HORN_CORAL(5755, Waterlogged.class),
     DEAD_HORN_CORAL_BLOCK(15103),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_HORN_CORAL_FAN(11387, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     DEAD_HORN_CORAL_WALL_FAN(27550, CoralWallFan.class),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_TUBE_CORAL(18028, Waterlogged.class),
     DEAD_TUBE_CORAL_BLOCK(28350),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     DEAD_TUBE_CORAL_FAN(17628, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     DEAD_TUBE_CORAL_WALL_FAN(5128, CoralWallFan.class),
     DEBUG_STICK(24562, 1),
+    /**
+     * BlockData: {@link RedstoneRail}
+     */
     DETECTOR_RAIL(13475, RedstoneRail.class),
-    /**
-     * 钻石
-     */
     DIAMOND(20865),
-    /**
-     * 钻石斧
-     */
     DIAMOND_AXE(27277, 1, 1561),
-    /**
-     * 钻石块
-     */
     DIAMOND_BLOCK(5944),
-    /**
-     * 钻石靴子
-     */
     DIAMOND_BOOTS(16522, 1, 429),
-    /**
-     * 钻石胸甲
-     */
     DIAMOND_CHESTPLATE(32099, 1, 528),
-    /**
-     * 钻石头盔
-     */
     DIAMOND_HELMET(10755, 1, 363),
-    /**
-     * 钻石锄
-     */
     DIAMOND_HOE(24050, 1, 1561),
-    /**
-     * 钻石马铠
-     */
     DIAMOND_HORSE_ARMOR(10321, 1),
-    /**
-     * 钻石护腿
-     */
     DIAMOND_LEGGINGS(11202, 1, 495),
-    /**
-     * 钻石矿石
-     */
     DIAMOND_ORE(9292),
-    /**
-     * 钻石镐
-     */
     DIAMOND_PICKAXE(24291, 1, 1561),
-    /**
-     * 钻石锹
-     */
     DIAMOND_SHOVEL(25415, 1, 1561),
-    /**
-     * 钻石剑
-     */
     DIAMOND_SWORD(27707, 1, 1561),
-    /**
-     * 闪长岩
-     */
     DIORITE(24688),
-    /**
-     * 泥土
-     */
     DIRT(10580),
     /**
-     * 发射器
+     * BlockData: {@link Dispenser}
      */
     DISPENSER(20871, Dispenser.class),
-    /**
-     * 海豚刷怪蛋
-     */
     DOLPHIN_SPAWN_EGG(20787),
-    /**
-     * 驴刷怪蛋
-     */
     DONKEY_SPAWN_EGG(14513),
     DRAGON_BREATH(20154),
-    /**
-     * 龙蛋
-     */
     DRAGON_EGG(29946),
     /**
-     * 龙首
+     * BlockData: {@link Rotatable}
      */
     DRAGON_HEAD(20084, Rotatable.class),
     /**
-     * 龙首(墙面放置)
+     * BlockData: {@link Directional}
      */
     DRAGON_WALL_HEAD(19818, Directional.class),
-    /**
-     * 干海带
-     */
     DRIED_KELP(21042),
-    /**
-     * 干海带块
-     */
     DRIED_KELP_BLOCK(12966),
     /**
-     * 投掷器
+     * BlockData: {@link Dispenser}
      */
     DROPPER(31273, Dispenser.class),
-    /**
-     * 溺尸刷怪蛋
-     */
     DROWNED_SPAWN_EGG(19368),
-    /**
-     * 鸡蛋
-     */
     EGG(21603, 16),
-    /**
-     * 远古守卫者
-     */
     ELDER_GUARDIAN_SPAWN_EGG(11418),
-    /**
-     * 鞘翅
-     */
     ELYTRA(23829, 1, 432),
-    /**
-     * 绿宝石
-     */
     EMERALD(5654),
-    /**
-     * 绿宝石块
-     */
     EMERALD_BLOCK(9914),
-    /**
-     * 绿宝石矿石
-     */
     EMERALD_ORE(16630),
-    /**
-     * 附魔书
-     */
     ENCHANTED_BOOK(11741, 1),
-    /**
-     * 附魔金苹果
-     */
     ENCHANTED_GOLDEN_APPLE(8280),
-    /**
-     * 附魔台
-     */
     ENCHANTING_TABLE(16255),
-    /**
-     * 末影人刷怪蛋
-     */
     ENDERMAN_SPAWN_EGG(29488),
-    /**
-     * 末影螨刷怪蛋
-     */
     ENDERMITE_SPAWN_EGG(16617),
     /**
-     * 末影箱
+     * BlockData: {@link EnderChest}
      */
     ENDER_CHEST(32349, EnderChest.class),
-    /**
-     * 末影之眼
-     */
     ENDER_EYE(24860),
-    /**
-     * 末影珍珠
-     */
     ENDER_PEARL(5259, 16),
-    /**
-     * 末影水晶
-     */
     END_CRYSTAL(19090),
-    /**
-     * 末地折跃门
-     */
     END_GATEWAY(26605),
-    /**
-     * 末地传送门
-     */
     END_PORTAL(16782),
     /**
-     * 末地传送门框架
+     * BlockData: {@link EndPortalFrame}
      */
     END_PORTAL_FRAME(15480, EndPortalFrame.class),
     /**
-     * 末地烛
+     * BlockData: {@link Directional}
      */
     END_ROD(24832, Directional.class),
-    /**
-     * 末地石
-     */
     END_STONE(29686),
-    /**
-     * 末地石转
-     */
     END_STONE_BRICKS(20314),
-    /**
-     * 唤魔者刷怪蛋
-     */
     EVOKER_SPAWN_EGG(21271),
-    /**
-     * 经验瓶
-     */
     EXPERIENCE_BOTTLE(12858),
     /**
-     * 耕地
+     * BlockData: {@link Farmland}
      */
     FARMLAND(31166, Farmland.class),
-    /**
-     * 羽毛
-     */
     FEATHER(30548),
-    /**
-     * 发酵蛛眼
-     */
     FERMENTED_SPIDER_EYE(19386),
-    /**
-     * 蕨
-     */
     FERN(15794),
     FILLED_MAP(23504),
     /**
-     * 火
+     * BlockData: {@link Fire}
      */
     FIRE(16396, Fire.class),
-    /**
-     * 烟花火箭
-     */
     FIREWORK_ROCKET(23841),
-    /**
-     * 烟火之星
-     */
     FIREWORK_STAR(12190),
-    /**
-     * 火焰弹
-     */
     FIRE_CHARGE(4842),
     /**
-     * 火珊瑚
+     * BlockData: {@link Waterlogged}
      */
     FIRE_CORAL(29151, Waterlogged.class),
-    /**
-     * 火珊瑚块
-     */
     FIRE_CORAL_BLOCK(12119),
     /**
-     * 火珊瑚扇
+     * BlockData: {@link Waterlogged}
      */
     FIRE_CORAL_FAN(11112, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     FIRE_CORAL_WALL_FAN(20100, CoralWallFan.class),
-    /**
-     * 钓鱼竿
-     */
     FISHING_ROD(4167, 1, 64),
-    /**
-     * 燧石
-     */
     FLINT(23596),
-    /**
-     * 打火石
-     */
     FLINT_AND_STEEL(28620, 1, 64),
-    /**
-     * 花盆
-     */
     FLOWER_POT(30567),
     /**
-     * 霜冰
+     * BlockData: {@link Ageable}
      */
     FROSTED_ICE(21814, Ageable.class),
     /**
-     * 熔炉
+     * BlockData: {@link Furnace}
      */
     FURNACE(8133, Furnace.class),
-    /**
-     * 动力矿车
-     */
     FURNACE_MINECART(14196, 1),
-    /**
-     * 恶魂刷怪蛋
-     */
     GHAST_SPAWN_EGG(9970),
-    /**
-     * 恶魂之泪
-     */
     GHAST_TEAR(18222),
-    /**
-     * 玻璃
-     */
     GLASS(6195),
     GLASS_BOTTLE(6116),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     GLASS_PANE(5709, GlassPane.class),
     GLISTERING_MELON_SLICE(20158),
     GLOWSTONE(32713),
     GLOWSTONE_DUST(6665),
-    /**
-     * 金苹果
-     */
     GOLDEN_APPLE(27732),
-    /**
-     * 金斧
-     */
     GOLDEN_AXE(4878, 1, 32),
-    /**
-     * 金靴子
-     */
     GOLDEN_BOOTS(7859, 1, 91),
-    /**
-     * 金胡萝卜
-     */
     GOLDEN_CARROT(5300),
-    /**
-     * 金胸甲
-     */
     GOLDEN_CHESTPLATE(4507, 1, 112),
-    /**
-     * 金头盔
-     */
     GOLDEN_HELMET(7945, 1, 77),
-    /**
-     * 金锄
-     */
     GOLDEN_HOE(19337, 1, 32),
-    /**
-     * 金马铠
-     */
     GOLDEN_HORSE_ARMOR(7996, 1),
-    /**
-     * 金护腿
-     */
     GOLDEN_LEGGINGS(21002, 1, 105),
-    /**
-     * 金镐
-     */
     GOLDEN_PICKAXE(10901, 1, 32),
-    /**
-     * 金锹
-     */
     GOLDEN_SHOVEL(15597, 1, 32),
-    /**
-     * 金剑
-     */
     GOLDEN_SWORD(10505, 1, 32),
-    /**
-     * 金块
-     */
     GOLD_BLOCK(27392),
-    /**
-     * 金锭
-     */
     GOLD_INGOT(28927),
-    /**
-     * 金粒
-     */
     GOLD_NUGGET(28814),
-    /**
-     * 金矿石
-     */
     GOLD_ORE(32625),
-    /**
-     * 花岗岩
-     */
     GRANITE(21091),
-    /**
-     * 草
-     */
     GRASS(6155),
     /**
-     * 草方块
+     * BlockData: {@link Snowable}
      */
     GRASS_BLOCK(28346, Snowable.class),
-    /**
-     * 草径
-     */
     GRASS_PATH(8604),
-    /**
-     * 砂砾
-     */
     GRAVEL(7804),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     GRAY_BANNER(12053, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     GRAY_BED(15745, 1, Bed.class),
     GRAY_CARPET(26991),
     GRAY_CONCRETE(13959),
     GRAY_CONCRETE_POWDER(13031),
     GRAY_DYE(9184),
+    /**
+     * BlockData: {@link Directional}
+     */
     GRAY_GLAZED_TERRACOTTA(6256, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     GRAY_SHULKER_BOX(12754, 1, Directional.class),
     GRAY_STAINED_GLASS(29979),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     GRAY_STAINED_GLASS_PANE(25272, GlassPane.class),
     GRAY_TERRACOTTA(18004),
+    /**
+     * BlockData: {@link Directional}
+     */
     GRAY_WALL_BANNER(24275, Directional.class),
     GRAY_WOOL(27209),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     GREEN_BANNER(10698, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     GREEN_BED(13797, 1, Bed.class),
     GREEN_CARPET(7780),
     GREEN_CONCRETE(17949),
     GREEN_CONCRETE_POWDER(6904),
+    /**
+     * BlockData: {@link Directional}
+     */
     GREEN_GLAZED_TERRACOTTA(6958, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     GREEN_SHULKER_BOX(9377, 1, Directional.class),
     GREEN_STAINED_GLASS(22503),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     GREEN_STAINED_GLASS_PANE(4767, GlassPane.class),
     GREEN_TERRACOTTA(4105),
+    /**
+     * BlockData: {@link Directional}
+     */
     GREEN_WALL_BANNER(15046, Directional.class),
     GREEN_WOOL(25085),
     GUARDIAN_SPAWN_EGG(20113),
     GUNPOWDER(29974),
+    /**
+     * BlockData: {@link Orientable}
+     */
     HAY_BLOCK(17461, Orientable.class),
     HEART_OF_THE_SEA(11807),
+    /**
+     * BlockData: {@link AnaloguePowerable}
+     */
     HEAVY_WEIGHTED_PRESSURE_PLATE(16970, AnaloguePowerable.class),
+    /**
+     * BlockData: {@link Hopper}
+     */
     HOPPER(31974, Hopper.class),
     HOPPER_MINECART(19024, 1),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     HORN_CORAL(19511, Waterlogged.class),
     HORN_CORAL_BLOCK(19958),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     HORN_CORAL_FAN(13610, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     HORN_CORAL_WALL_FAN(28883, CoralWallFan.class),
     HORSE_SPAWN_EGG(25981),
     HUSK_SPAWN_EGG(20178),
@@ -1088,107 +905,113 @@ public enum Material implements Keyed {
     INFESTED_MOSSY_STONE_BRICKS(9850),
     INFESTED_STONE(18440),
     INFESTED_STONE_BRICKS(19749),
-    /**
-     * 墨囊
-     */
     INK_SAC(7184),
-    /**
-     * 铁斧
-     */
     IRON_AXE(15894, 1, 250),
+    /**
+     * BlockData: {@link Fence}
+     */
     IRON_BARS(9378, Fence.class),
-    /**
-     * 铁块
-     */
     IRON_BLOCK(24754),
-    /**
-     * 铁靴子
-     */
     IRON_BOOTS(8531, 1, 195),
-    /**
-     * 铁胸甲
-     */
     IRON_CHESTPLATE(28112, 1, 240),
     /**
-     * 铁门
+     * BlockData: {@link Door}
      */
     IRON_DOOR(4788, Door.class),
-    /**
-     * 铁头盔
-     */
     IRON_HELMET(12025, 1, 165),
-    /**
-     * 铁锄
-     */
     IRON_HOE(11339, 1, 250),
-    /**
-     * 铁马铠
-     */
     IRON_HORSE_ARMOR(30108, 1),
-    /**
-     * 铁锭
-     */
     IRON_INGOT(24895),
-    /**
-     * 铁护腿
-     */
     IRON_LEGGINGS(18951, 1, 225),
-    /**
-     * 铁粒
-     */
     IRON_NUGGET(13715),
-    /**
-     * 铁锭
-     */
     IRON_ORE(19834),
-    /**
-     * 铁镐
-     */
     IRON_PICKAXE(8842, 1, 250),
-    /**
-     * 铁锹
-     */
     IRON_SHOVEL(30045, 1, 250),
-    /**
-     * 铁剑
-     */
     IRON_SWORD(10904, 1, 250),
-    IRON_TRAPDOOR(17095, TrapDoor.class),
     /**
-     * 物品展示框
+     * BlockData: {@link TrapDoor}
      */
+    IRON_TRAPDOOR(17095, TrapDoor.class),
     ITEM_FRAME(27318),
+    /**
+     * BlockData: {@link Directional}
+     */
     JACK_O_LANTERN(31612, Directional.class),
+    /**
+     * BlockData: {@link Jukebox}
+     */
     JUKEBOX(19264, Jukebox.class),
     JUNGLE_BOAT(4495, 1),
+    /**
+     * BlockData: {@link Switch}
+     */
     JUNGLE_BUTTON(25317, Switch.class),
+    /**
+     * BlockData: {@link Door}
+     */
     JUNGLE_DOOR(28163, Door.class),
+    /**
+     * BlockData: {@link Fence}
+     */
     JUNGLE_FENCE(14358, Fence.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     JUNGLE_FENCE_GATE(21360, Gate.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
     JUNGLE_LEAVES(5133, Leaves.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     JUNGLE_LOG(20721, Orientable.class),
     JUNGLE_PLANKS(26445),
+    /**
+     * BlockData: {@link Powerable}
+     */
     JUNGLE_PRESSURE_PLATE(11376, Powerable.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
     JUNGLE_SAPLING(17951, Sapling.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     JUNGLE_SLAB(19117, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     JUNGLE_STAIRS(20636, Stairs.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     JUNGLE_TRAPDOOR(8626, TrapDoor.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     JUNGLE_WOOD(10341, Orientable.class),
+    /**
+     * BlockData: {@link Ageable}
+     */
     KELP(21916, Ageable.class),
     KELP_PLANT(29697),
     KNOWLEDGE_BOOK(12646, 1),
+    /**
+     * BlockData: {@link Ladder}
+     */
     LADDER(23599, Ladder.class),
     LAPIS_BLOCK(14485),
     LAPIS_LAZULI(11075),
     LAPIS_ORE(22934),
+    /**
+     * BlockData: {@link Bisected}
+     */
     LARGE_FERN(30177, Bisected.class),
     /**
-     * 岩浆
+     * BlockData: {@link Levelled}
      */
     LAVA(8415, Levelled.class),
-    /**
-     * 岩浆桶
-     */
     LAVA_BUCKET(9228, 1),
     LEAD(29539),
     LEATHER(16414),
@@ -1196,62 +1019,143 @@ public enum Material implements Keyed {
     LEATHER_CHESTPLATE(29275, 1, 80),
     LEATHER_HELMET(11624, 1, 55),
     LEATHER_LEGGINGS(28210, 1, 75),
+    /**
+     * BlockData: {@link Switch}
+     */
     LEVER(15319, Switch.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     LIGHT_BLUE_BANNER(18060, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     LIGHT_BLUE_BED(20957, 1, Bed.class),
     LIGHT_BLUE_CARPET(21194),
     LIGHT_BLUE_CONCRETE(29481),
     LIGHT_BLUE_CONCRETE_POWDER(31206),
     LIGHT_BLUE_DYE(28738),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIGHT_BLUE_GLAZED_TERRACOTTA(4336, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIGHT_BLUE_SHULKER_BOX(18226, 1, Directional.class),
     LIGHT_BLUE_STAINED_GLASS(17162),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     LIGHT_BLUE_STAINED_GLASS_PANE(18721, GlassPane.class),
     LIGHT_BLUE_TERRACOTTA(31779),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIGHT_BLUE_WALL_BANNER(12011, Directional.class),
     LIGHT_BLUE_WOOL(21073),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     LIGHT_GRAY_BANNER(11417, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     LIGHT_GRAY_BED(5090, 1, Bed.class),
     LIGHT_GRAY_CARPET(11317),
     LIGHT_GRAY_CONCRETE(14453),
     LIGHT_GRAY_CONCRETE_POWDER(21589),
     LIGHT_GRAY_DYE(27643),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIGHT_GRAY_GLAZED_TERRACOTTA(10707, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIGHT_GRAY_SHULKER_BOX(21345, 1, Directional.class),
     LIGHT_GRAY_STAINED_GLASS(5843),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     LIGHT_GRAY_STAINED_GLASS_PANE(19008, GlassPane.class),
     LIGHT_GRAY_TERRACOTTA(26388),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIGHT_GRAY_WALL_BANNER(31088, Directional.class),
     LIGHT_GRAY_WOOL(22936),
+    /**
+     * BlockData: {@link AnaloguePowerable}
+     */
     LIGHT_WEIGHTED_PRESSURE_PLATE(14875, AnaloguePowerable.class),
+    /**
+     * BlockData: {@link Bisected}
+     */
     LILAC(22837, Bisected.class),
     LILY_PAD(19271),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     LIME_BANNER(18887, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     LIME_BED(27860, 1, Bed.class),
     LIME_CARPET(15443),
     LIME_CONCRETE(5863),
     LIME_CONCRETE_POWDER(28859),
     LIME_DYE(6147),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIME_GLAZED_TERRACOTTA(13861, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIME_SHULKER_BOX(28360, 1, Directional.class),
     LIME_STAINED_GLASS(24266),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     LIME_STAINED_GLASS_PANE(10610, GlassPane.class),
     LIME_TERRACOTTA(24013),
+    /**
+     * BlockData: {@link Directional}
+     */
     LIME_WALL_BANNER(21422, Directional.class),
     LIME_WOOL(10443),
     LINGERING_POTION(25857, 1),
     LLAMA_SPAWN_EGG(23640),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     MAGENTA_BANNER(15591, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     MAGENTA_BED(20061, 1, Bed.class),
     MAGENTA_CARPET(6180),
     MAGENTA_CONCRETE(20591),
     MAGENTA_CONCRETE_POWDER(8272),
     MAGENTA_DYE(11788),
+    /**
+     * BlockData: {@link Directional}
+     */
     MAGENTA_GLAZED_TERRACOTTA(8067, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     MAGENTA_SHULKER_BOX(21566, 1, Directional.class),
     MAGENTA_STAINED_GLASS(26814),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     MAGENTA_STAINED_GLASS_PANE(14082, GlassPane.class),
     MAGENTA_TERRACOTTA(25900),
+    /**
+     * BlockData: {@link Directional}
+     */
     MAGENTA_WALL_BANNER(23291, Directional.class),
     MAGENTA_WOOL(11853),
     MAGMA_BLOCK(25927),
@@ -1261,116 +1165,167 @@ public enum Material implements Keyed {
     MELON(25172),
     MELON_SEEDS(18340),
     MELON_SLICE(5347),
+    /**
+     * BlockData: {@link Ageable}
+     */
     MELON_STEM(8247, Ageable.class),
     MILK_BUCKET(9680, 1),
     MINECART(14352, 1),
     MOOSHROOM_SPAWN_EGG(22125),
+    /**
+     * BlockData: {@link MultipleFacing}
+     */
     MOSSY_COBBLESTONE(21900, MultipleFacing.class),
+    /**
+     * BlockData: {@link Fence}
+     */
     MOSSY_COBBLESTONE_WALL(11536, Fence.class),
     MOSSY_STONE_BRICKS(16415),
+    /**
+     * BlockData: {@link TechnicalPiston}
+     */
     MOVING_PISTON(13831, TechnicalPiston.class),
     MULE_SPAWN_EGG(11229),
+    /**
+     * BlockData: {@link MultipleFacing}
+     */
     MUSHROOM_STEM(16543, MultipleFacing.class),
     MUSHROOM_STEW(16336, 1),
-    /**
-     * 唱片(11)
-     */
     MUSIC_DISC_11(27426, 1),
-    /**
-     * 唱片(13)
-     */
     MUSIC_DISC_13(16359, 1),
-    /**
-     * 唱片(BLOCKS)
-     */
     MUSIC_DISC_BLOCKS(26667, 1),
-    /**
-     * 唱片(CAT)
-     */
     MUSIC_DISC_CAT(16246, 1),
-    /**
-     * 唱片(CHIRP)
-     */
     MUSIC_DISC_CHIRP(19436, 1),
-    /**
-     * 唱片(FAR)
-     */
     MUSIC_DISC_FAR(13823, 1),
-    /**
-     * 唱片(MALL)
-     */
     MUSIC_DISC_MALL(11517, 1),
-    /**
-     * 唱片(MELLOHI)
-     */
     MUSIC_DISC_MELLOHI(26117, 1),
-    /**
-     * 唱片(STAL)
-     */
     MUSIC_DISC_STAL(14989, 1),
-    /**
-     * 唱片(STRAD)
-     */
     MUSIC_DISC_STRAD(16785, 1),
-    /**
-     * 唱片(WALT)
-     */
     MUSIC_DISC_WAIT(26499, 1),
-    /**
-     * 唱片(WARD)
-     */
     MUSIC_DISC_WARD(24026, 1),
-    /**
-     * 生羊肉
-     */
     MUTTON(4792),
-    MYCELIUM(9913, Snowable.class),
     /**
-     * 命名牌
+     * BlockData: {@link Snowable}
      */
+    MYCELIUM(9913, Snowable.class),
     NAME_TAG(30731),
     NAUTILUS_SHELL(19989),
     NETHERRACK(23425),
     NETHER_BRICK(19996),
     NETHER_BRICKS(27802),
+    /**
+     * BlockData: {@link Fence}
+     */
     NETHER_BRICK_FENCE(5286, Fence.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     NETHER_BRICK_SLAB(26586, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     NETHER_BRICK_STAIRS(12085, Stairs.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     NETHER_PORTAL(19469, Orientable.class),
     NETHER_QUARTZ_ORE(4807),
     NETHER_STAR(12469),
+    /**
+     * BlockData: {@link Ageable}
+     */
     NETHER_WART(29227, Ageable.class),
     NETHER_WART_BLOCK(15486),
+    /**
+     * BlockData: {@link NoteBlock}
+     */
     NOTE_BLOCK(20979, NoteBlock.class),
     OAK_BOAT(17570, 1),
+    /**
+     * BlockData: {@link Switch}
+     */
     OAK_BUTTON(13510, Switch.class),
+    /**
+     * BlockData: {@link Door}
+     */
     OAK_DOOR(20341, Door.class),
+    /**
+     * BlockData: {@link Fence}
+     */
     OAK_FENCE(6442, Fence.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     OAK_FENCE_GATE(16689, Gate.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
     OAK_LEAVES(4385, Leaves.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     OAK_LOG(26723, Orientable.class),
     OAK_PLANKS(14905),
+    /**
+     * BlockData: {@link Powerable}
+     */
     OAK_PRESSURE_PLATE(20108, Powerable.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
     OAK_SAPLING(9636, Sapling.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     OAK_SLAB(12002, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     OAK_STAIRS(5449, Stairs.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     OAK_TRAPDOOR(16927, TrapDoor.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     OAK_WOOD(7378, Orientable.class),
+    /**
+     * BlockData: {@link Observer}
+     */
     OBSERVER(10726, Observer.class),
     OBSIDIAN(32723),
     OCELOT_SPAWN_EGG(30080),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     ORANGE_BANNER(4839, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     ORANGE_BED(11194, 1, Bed.class),
     ORANGE_CARPET(24752),
     ORANGE_CONCRETE(19914),
     ORANGE_CONCRETE_POWDER(30159),
     ORANGE_DYE(13866),
+    /**
+     * BlockData: {@link Directional}
+     */
     ORANGE_GLAZED_TERRACOTTA(27451, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     ORANGE_SHULKER_BOX(21673, 1, Directional.class),
     ORANGE_STAINED_GLASS(25142),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     ORANGE_STAINED_GLASS_PANE(21089, GlassPane.class),
     ORANGE_TERRACOTTA(18684),
     ORANGE_TULIP(26038),
+    /**
+     * BlockData: {@link Directional}
+     */
     ORANGE_WALL_BANNER(9936, Directional.class),
     ORANGE_WOOL(23957),
     OXEYE_DAISY(11709),
@@ -1378,29 +1333,68 @@ public enum Material implements Keyed {
     PAINTING(23945),
     PAPER(9923),
     PARROT_SPAWN_EGG(23614),
+    /**
+     * BlockData: {@link Bisected}
+     */
     PEONY(21155, Bisected.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     PETRIFIED_OAK_SLAB(18658, Slab.class),
     PHANTOM_MEMBRANE(18398),
     PHANTOM_SPAWN_EGG(24648),
     PIG_SPAWN_EGG(22584),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     PINK_BANNER(19439, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     PINK_BED(13795, 1, Bed.class),
     PINK_CARPET(30186),
     PINK_CONCRETE(5227),
     PINK_CONCRETE_POWDER(6421),
     PINK_DYE(31151),
+    /**
+     * BlockData: {@link Directional}
+     */
     PINK_GLAZED_TERRACOTTA(10260, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     PINK_SHULKER_BOX(24968, 1, Directional.class),
     PINK_STAINED_GLASS(16164),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     PINK_STAINED_GLASS_PANE(24637, GlassPane.class),
     PINK_TERRACOTTA(23727),
     PINK_TULIP(27319),
+    /**
+     * BlockData: {@link Directional}
+     */
     PINK_WALL_BANNER(9421, Directional.class),
     PINK_WOOL(7611),
+    /**
+     * BlockData: {@link Piston}
+     */
     PISTON(21130, Piston.class),
+    /**
+     * BlockData: {@link PistonHead}
+     */
     PISTON_HEAD(30226, PistonHead.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     PLAYER_HEAD(21174, Rotatable.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     PLAYER_WALL_HEAD(13164, Directional.class),
+    /**
+     * BlockData: {@link Snowable}
+     */
     PODZOL(24068, Snowable.class),
     POISONOUS_POTATO(32640),
     POLAR_BEAR_SPAWN_EGG(17015),
@@ -1410,12 +1404,9 @@ public enum Material implements Keyed {
     POPPED_CHORUS_FRUIT(27844),
     POPPY(12851),
     PORKCHOP(30896),
-    /**
-     * 土豆
-     */
     POTATO(21088),
     /**
-     * 土豆
+     * BlockData: {@link Ageable}
      */
     POTATOES(10879, Ageable.class),
     POTION(24020, 1),
@@ -1440,165 +1431,234 @@ public enum Material implements Keyed {
     POTTED_RED_TULIP(28594),
     POTTED_SPRUCE_SAPLING(29498),
     POTTED_WHITE_TULIP(24330),
+    /**
+     * BlockData: {@link RedstoneRail}
+     */
     POWERED_RAIL(11064, RedstoneRail.class),
     PRISMARINE(7539),
     PRISMARINE_BRICKS(29118),
+    /**
+     * BlockData: {@link Slab}
+     */
     PRISMARINE_BRICK_SLAB(26672, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     PRISMARINE_BRICK_STAIRS(15445, Stairs.class),
     PRISMARINE_CRYSTALS(31546),
     PRISMARINE_SHARD(10993),
+    /**
+     * BlockData: {@link Slab}
+     */
     PRISMARINE_SLAB(31323, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     PRISMARINE_STAIRS(19217, Stairs.class),
     PUFFERFISH(8115),
     PUFFERFISH_BUCKET(8861, 1),
     PUFFERFISH_SPAWN_EGG(24573),
-    /**
-     * 南瓜
-     */
     PUMPKIN(19170),
-    /**
-     * 南瓜派
-     */
     PUMPKIN_PIE(28725),
-    /**
-     * 南瓜种子
-     */
     PUMPKIN_SEEDS(28985),
+    /**
+     * BlockData: {@link Ageable}
+     */
     PUMPKIN_STEM(19021, Ageable.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     PURPLE_BANNER(29027, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     PURPLE_BED(29755, 1, Bed.class),
     PURPLE_CARPET(5574),
     PURPLE_CONCRETE(20623),
     PURPLE_CONCRETE_POWDER(26808),
     PURPLE_DYE(6347),
+    /**
+     * BlockData: {@link Directional}
+     */
     PURPLE_GLAZED_TERRACOTTA(4818, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     PURPLE_SHULKER_BOX(10373, 1, Directional.class),
     PURPLE_STAINED_GLASS(21845),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     PURPLE_STAINED_GLASS_PANE(10948, GlassPane.class),
     PURPLE_TERRACOTTA(10387),
+    /**
+     * BlockData: {@link Directional}
+     */
     PURPLE_WALL_BANNER(14298, Directional.class),
     PURPLE_WOOL(11922),
     PURPUR_BLOCK(7538),
+    /**
+     * BlockData: {@link Orientable}
+     */
     PURPUR_PILLAR(26718, Orientable.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     PURPUR_SLAB(11487, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     PURPUR_STAIRS(8921, Stairs.class),
-    /**
-     * 石英
-     */
     QUARTZ(23608),
-    /**
-     * 石英块
-     */
     QUARTZ_BLOCK(11987),
-    QUARTZ_PILLAR(16452, Orientable.class),
-    QUARTZ_SLAB(4423, Slab.class),
-    QUARTZ_STAIRS(24079, Stairs.class),
     /**
-     * 兔子
+     * BlockData: {@link Orientable}
      */
+    QUARTZ_PILLAR(16452, Orientable.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    QUARTZ_SLAB(4423, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    QUARTZ_STAIRS(24079, Stairs.class),
     RABBIT(23068),
     RABBIT_FOOT(13864),
     RABBIT_HIDE(12467),
     RABBIT_SPAWN_EGG(26496),
     RABBIT_STEW(10611, 1),
+    /**
+     * BlockData: {@link Rail}
+     */
     RAIL(13285, Rail.class),
-    /**
-     * 红石
-     */
     REDSTONE(11233),
-    /**
-     * 红石块
-     */
     REDSTONE_BLOCK(19496),
     /**
-     * 红石灯
+     * BlockData: {@link Lightable}
      */
     REDSTONE_LAMP(8217, Lightable.class),
     /**
-     * 红石矿石
+     * BlockData: {@link Lightable}
      */
     REDSTONE_ORE(10887, Lightable.class),
     /**
-     * 红石火把
+     * BlockData: {@link Lightable}
      */
     REDSTONE_TORCH(22547, Lightable.class),
     /**
-     * 红石火把(墙面放置)
+     * BlockData: {@link RedstoneWallTorch}
      */
     REDSTONE_WALL_TORCH(7595, RedstoneWallTorch.class),
     /**
-     * 红石线
+     * BlockData: {@link RedstoneWire}
      */
     REDSTONE_WIRE(25984, RedstoneWire.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     RED_BANNER(26961, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     RED_BED(30910, 1, Bed.class),
     RED_CARPET(5424),
     RED_CONCRETE(8032),
     RED_CONCRETE_POWDER(13286),
+    /**
+     * BlockData: {@link Directional}
+     */
     RED_GLAZED_TERRACOTTA(24989, Directional.class),
     RED_MUSHROOM(19728),
+    /**
+     * BlockData: {@link MultipleFacing}
+     */
     RED_MUSHROOM_BLOCK(20766, MultipleFacing.class),
     RED_NETHER_BRICKS(18056),
     RED_SAND(16279),
     RED_SANDSTONE(9092),
+    /**
+     * BlockData: {@link Slab}
+     */
     RED_SANDSTONE_SLAB(17550, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     RED_SANDSTONE_STAIRS(25466, Stairs.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     RED_SHULKER_BOX(32448, 1, Directional.class),
     RED_STAINED_GLASS(9717),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     RED_STAINED_GLASS_PANE(8630, GlassPane.class),
     RED_TERRACOTTA(5086),
     RED_TULIP(16781),
+    /**
+     * BlockData: {@link Directional}
+     */
     RED_WALL_BANNER(4378, Directional.class),
     RED_WOOL(11621),
+    /**
+     * BlockData: {@link Repeater}
+     */
     REPEATER(28823, Repeater.class),
+    /**
+     * BlockData: {@link CommandBlock}
+     */
     REPEATING_COMMAND_BLOCK(12405, CommandBlock.class),
+    /**
+     * BlockData: {@link Bisected}
+     */
     ROSE_BUSH(6080, Bisected.class),
     ROSE_RED(15694),
     ROTTEN_FLESH(21591),
     SADDLE(30206, 1),
-    /**
-     * 鲑鱼
-     */
     SALMON(18516),
-    /**
-     * 鲑鱼桶
-     */
     SALMON_BUCKET(31427, 1),
-    /**
-     * 鲑鱼刷怪蛋
-     */
     SALMON_SPAWN_EGG(18739),
-    /**
-     * 沙子
-     */
     SAND(11542),
-    /**
-     * 砂石
-     */
     SANDSTONE(13141),
     /**
-     * 砂石台阶
+     * BlockData: {@link Slab}
      */
     SANDSTONE_SLAB(29830, Slab.class),
     /**
-     * 砂石楼梯
+     * BlockData: {@link Stairs}
      */
     SANDSTONE_STAIRS(18474, Stairs.class),
     SCUTE(11914),
     SEAGRASS(23942),
     SEA_LANTERN(16984),
+    /**
+     * BlockData: {@link SeaPickle}
+     */
     SEA_PICKLE(19562, SeaPickle.class),
     SHEARS(27971, 1, 238),
     SHEEP_SPAWN_EGG(24488),
     SHIELD(29943, 1, 336),
+    /**
+     * BlockData: {@link Directional}
+     */
     SHULKER_BOX(7776, 1, Directional.class),
     SHULKER_SHELL(27848),
     SHULKER_SPAWN_EGG(31848),
+    /**
+     * BlockData: {@link Sign}
+     */
     SIGN(16918, 16, Sign.class),
     SILVERFISH_SPAWN_EGG(14537),
     SKELETON_HORSE_SPAWN_EGG(21356),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     SKELETON_SKULL(13270, Rotatable.class),
     SKELETON_SPAWN_EGG(15261),
+    /**
+     * BlockData: {@link Directional}
+     */
     SKELETON_WALL_SKULL(31650, Directional.class),
     SLIME_BALL(5242),
     SLIME_BLOCK(31892),
@@ -1607,6 +1667,9 @@ public enum Material implements Keyed {
     SMOOTH_RED_SANDSTONE(25180),
     SMOOTH_SANDSTONE(30039),
     SMOOTH_STONE(21910),
+    /**
+     * BlockData: {@link Snow}
+     */
     SNOW(14146, Snow.class),
     SNOWBALL(19487, 16),
     SNOW_BLOCK(19913),
@@ -1616,271 +1679,324 @@ public enum Material implements Keyed {
     SPIDER_EYE(9318),
     SPIDER_SPAWN_EGG(14984),
     SPLASH_POTION(30248, 1),
-    /**
-     * 海绵
-     */
     SPONGE(15860),
     SPRUCE_BOAT(9606, 1),
+    /**
+     * BlockData: {@link Switch}
+     */
     SPRUCE_BUTTON(23281, Switch.class),
+    /**
+     * BlockData: {@link Door}
+     */
     SPRUCE_DOOR(10642, Door.class),
+    /**
+     * BlockData: {@link Fence}
+     */
     SPRUCE_FENCE(25416, Fence.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     SPRUCE_FENCE_GATE(26423, Gate.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
     SPRUCE_LEAVES(20039, Leaves.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     SPRUCE_LOG(9726, Orientable.class),
     SPRUCE_PLANKS(14593),
+    /**
+     * BlockData: {@link Powerable}
+     */
     SPRUCE_PRESSURE_PLATE(15932, Powerable.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
     SPRUCE_SAPLING(19874, Sapling.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     SPRUCE_SLAB(4348, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     SPRUCE_STAIRS(11192, Stairs.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     SPRUCE_TRAPDOOR(10289, TrapDoor.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     SPRUCE_WOOD(32328, Orientable.class),
     SQUID_SPAWN_EGG(10682),
     STICK(9773),
+    /**
+     * BlockData: {@link Piston}
+     */
     STICKY_PISTON(18127, Piston.class),
-    /**
-     * 石头
-     */
     STONE(22948),
-    /**
-     * 石斧
-     */
     STONE_AXE(6338, 1, 131),
-    /**
-     * 石砖
-     */
     STONE_BRICKS(6962),
     /**
-     * 石砖台阶
+     * BlockData: {@link Slab}
      */
     STONE_BRICK_SLAB(19676, Slab.class),
     /**
-     * 石砖楼梯
+     * BlockData: {@link Stairs}
      */
     STONE_BRICK_STAIRS(27032, Stairs.class),
     /**
-     * 石质按钮
+     * BlockData: {@link Switch}
      */
     STONE_BUTTON(12279, Switch.class),
-    /**
-     * 石锄
-     */
     STONE_HOE(22855, 1, 131),
-    /**
-     * 石镐
-     */
     STONE_PICKAXE(14611, 1, 131),
     /**
-     * 石质压力板
+     * BlockData: {@link Powerable}
      */
     STONE_PRESSURE_PLATE(22591, Powerable.class),
-    /**
-     * 石锹
-     */
     STONE_SHOVEL(9520, 1, 131),
     /**
-     * 石台阶
+     * BlockData: {@link Slab}
      */
     STONE_SLAB(19838, Slab.class),
-    /**
-     * 石剑
-     */
     STONE_SWORD(25084, 1, 131),
-    /**
-     * 流浪者刷怪蛋
-     */
     STRAY_SPAWN_EGG(30153),
-    /**
-     * 线
-     */
     STRING(12806),
     /**
-     * 去皮金合欢原木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_ACACIA_LOG(18167, Orientable.class),
     /**
-     * 去皮金合欢木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_ACACIA_WOOD(27193, Orientable.class),
     /**
-     * 去皮白桦原木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_BIRCH_LOG(8838, Orientable.class),
     /**
-     * 去皮白桦木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_BIRCH_WOOD(22350, Orientable.class),
     /**
-     * 去皮深色橡木原木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_DARK_OAK_LOG(6492, Orientable.class),
     /**
-     * 去皮深色橡木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_DARK_OAK_WOOD(16000, Orientable.class),
     /**
-     * 去皮丛林原木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_JUNGLE_LOG(15476, Orientable.class),
     /**
-     * 去皮丛林木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_JUNGLE_WOOD(30315, Orientable.class),
     /**
-     * 去皮橡木原木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_OAK_LOG(20523, Orientable.class),
     /**
-     * 去皮橡木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_OAK_WOOD(31455, Orientable.class),
     /**
-     * 去皮云杉原木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_SPRUCE_LOG(6140, Orientable.class),
     /**
-     * 去皮云杉木
+     * BlockData: {@link Orientable}
      */
     STRIPPED_SPRUCE_WOOD(6467, Orientable.class),
     /**
-     * 结构方块
+     * BlockData: {@link StructureBlock}
      */
     STRUCTURE_BLOCK(26831, StructureBlock.class),
-    /**
-     * 结构空位
-     */
     STRUCTURE_VOID(30806),
-    /**
-     * 糖
-     */
     SUGAR(30638),
     /**
-     * 甘蔗
+     * BlockData: {@link Ageable}
      */
     SUGAR_CANE(7726, Ageable.class),
     /**
-     * 向日葵
+     * BlockData: {@link Bisected}
      */
     SUNFLOWER(7408, Bisected.class),
     /**
-     * 草丛
+     * BlockData: {@link Bisected}
      */
     TALL_GRASS(21559, Bisected.class),
     /**
-     * 高海草
+     * BlockData: {@link Bisected}
      */
     TALL_SEAGRASS(27189, Bisected.class),
-    /**
-     * 陶瓦
-     */
     TERRACOTTA(16544),
-    /**
-     * 药箭
-     */
     TIPPED_ARROW(25164),
     /**
-     * TNT
+     * BlockData: {@link TNT}
      */
     TNT(7896, TNT.class),
-    /**
-     * TNT矿车 爆破矿车
-     */
     TNT_MINECART(4277, 1),
     TORCH(6063),
     TOTEM_OF_UNDYING(10139, 1),
+    /**
+     * BlockData: {@link Chest}
+     */
     TRAPPED_CHEST(18970, Chest.class),
     TRIDENT(7534, 1, 250),
+    /**
+     * BlockData: {@link Tripwire}
+     */
     TRIPWIRE(8810, Tripwire.class),
+    /**
+     * BlockData: {@link TripwireHook}
+     */
     TRIPWIRE_HOOK(8130, TripwireHook.class),
     TROPICAL_FISH(24879),
     TROPICAL_FISH_BUCKET(29995, 1),
     TROPICAL_FISH_SPAWN_EGG(19713),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     TUBE_CORAL(23048, Waterlogged.class),
     TUBE_CORAL_BLOCK(23723),
+    /**
+     * BlockData: {@link Waterlogged}
+     */
     TUBE_CORAL_FAN(19929, Waterlogged.class),
+    /**
+     * BlockData: {@link CoralWallFan}
+     */
     TUBE_CORAL_WALL_FAN(25282, CoralWallFan.class),
+    /**
+     * BlockData: {@link TurtleEgg}
+     */
     TURTLE_EGG(32101, TurtleEgg.class),
     TURTLE_HELMET(30120, 1, 275),
     TURTLE_SPAWN_EGG(17324),
-    /**
-     * 恼鬼刷怪蛋
-     */
     VEX_SPAWN_EGG(27751),
     VILLAGER_SPAWN_EGG(30348),
     VINDICATOR_SPAWN_EGG(25324),
     /**
-     * 藤蔓
+     * BlockData: {@link MultipleFacing}
      */
     VINE(14564, MultipleFacing.class),
-    /**
-     * 虚空空气
-     */
     VOID_AIR(13668),
+    /**
+     * BlockData: {@link WallSign}
+     */
     WALL_SIGN(10644, WallSign.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     WALL_TORCH(25890, Directional.class),
+    /**
+     * BlockData: {@link Levelled}
+     */
     WATER(24998, Levelled.class),
     WATER_BUCKET(8802, 1),
     WET_SPONGE(9043),
+    /**
+     * BlockData: {@link Ageable}
+     */
     WHEAT(27709, Ageable.class),
     WHEAT_SEEDS(28742),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     WHITE_BANNER(17562, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     WHITE_BED(8185, 1, Bed.class),
     WHITE_CARPET(15117),
     WHITE_CONCRETE(6281),
     WHITE_CONCRETE_POWDER(10363),
+    /**
+     * BlockData: {@link Directional}
+     */
     WHITE_GLAZED_TERRACOTTA(11326, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     WHITE_SHULKER_BOX(31750, 1, Directional.class),
     WHITE_STAINED_GLASS(31190),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     WHITE_STAINED_GLASS_PANE(10557, GlassPane.class),
     WHITE_TERRACOTTA(20975),
     WHITE_TULIP(9742),
+    /**
+     * BlockData: {@link Directional}
+     */
     WHITE_WALL_BANNER(15967, Directional.class),
     WHITE_WOOL(8624),
     WITCH_SPAWN_EGG(11837),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     WITHER_SKELETON_SKULL(31487, Rotatable.class),
     WITHER_SKELETON_SPAWN_EGG(10073),
+    /**
+     * BlockData: {@link Directional}
+     */
     WITHER_SKELETON_WALL_SKULL(9326, Directional.class),
     WOLF_SPAWN_EGG(21692),
-    /**
-     * 木斧
-     */
     WOODEN_AXE(6292, 1, 59),
-    /**
-     * 木锄
-     */
     WOODEN_HOE(16043, 1, 59),
-    /**
-     * 木镐
-     */
     WOODEN_PICKAXE(12792, 1, 59),
-    /**
-     * 木锹
-     */
     WOODEN_SHOVEL(28432, 1, 59),
-    /**
-     * 木剑
-     */
     WOODEN_SWORD(7175, 1, 59),
     WRITABLE_BOOK(13393, 1),
     WRITTEN_BOOK(24164, 16),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     YELLOW_BANNER(30382, 16, Rotatable.class),
+    /**
+     * BlockData: {@link Bed}
+     */
     YELLOW_BED(30410, 1, Bed.class),
     YELLOW_CARPET(18149),
     YELLOW_CONCRETE(15722),
     YELLOW_CONCRETE_POWDER(10655),
+    /**
+     * BlockData: {@link Directional}
+     */
     YELLOW_GLAZED_TERRACOTTA(10914, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
     YELLOW_SHULKER_BOX(28700, 1, Directional.class),
     YELLOW_STAINED_GLASS(12182),
+    /**
+     * BlockData: {@link GlassPane}
+     */
     YELLOW_STAINED_GLASS_PANE(20298, GlassPane.class),
     YELLOW_TERRACOTTA(32129),
+    /**
+     * BlockData: {@link Directional}
+     */
     YELLOW_WALL_BANNER(32004, Directional.class),
     YELLOW_WOOL(29507),
+    /**
+     * BlockData: {@link Rotatable}
+     */
     ZOMBIE_HEAD(9304, Rotatable.class),
     ZOMBIE_HORSE_SPAWN_EGG(4275),
     ZOMBIE_PIGMAN_SPAWN_EGG(11531),
     ZOMBIE_SPAWN_EGG(5814),
     ZOMBIE_VILLAGER_SPAWN_EGG(10311),
+    /**
+     * BlockData: {@link Directional}
+     */
     ZOMBIE_WALL_HEAD(16296, Directional.class),
-
     // ----- Legacy Separator -----
     @Deprecated
     LEGACY_AIR(0, 0),
@@ -3753,15 +3869,11 @@ public enum Material implements Keyed {
     }
 
     /**
-     * 尝试用给定名称匹配Material对象.
+     * Attempts to match the Material with the given name.
      * <p>
-     * 这是一个匹配查找;名称将转换为大写,然后格式化字符.
-     * <p>
-     * 原文:Attempts to match the Material with the given name.
-     * <p>
-     * This is a match lookup; names will be converted to uppercase, then
-     * stripped of special characters in an attempt to format it like the
-     * enum.
+     * This is a match lookup; names will be stripped of the "minecraft:"
+     * namespace, converted to uppercase, then stripped of special characters in
+     * an attempt to format it like the enum.
      *
      * @param name 用来获取Material对象的名称
      * @return 如果找不到返回null,否则返回Material对象
@@ -3771,15 +3883,11 @@ public enum Material implements Keyed {
     }
 
     /**
-     * 尝试用给定名称匹配Material对象.
+     * Attempts to match the Material with the given name.
      * <p>
-     * 这是一个匹配查找;名称将转换为大写,然后格式化字符.
-     * <p>
-     * 原文:Attempts to match the Material with the given name.
-     * <p>
-     * This is a match lookup; names will be converted to uppercase, then
-     * stripped of special characters in an attempt to format it like the
-     * enum.
+     * This is a match lookup; names will be stripped of the "minecraft:"
+     * namespace, converted to uppercase, then stripped of special characters in
+     * an attempt to format it like the enum.
      *
      * @param name 用来获取Material对象的名称
      * @param legacyName 传入的名称是否为旧版表示方式

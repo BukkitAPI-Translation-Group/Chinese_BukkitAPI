@@ -44,4 +44,28 @@ public interface PigZombie extends Zombie {
      * @return 僵尸猪人愤怒为true,否则为false
      */
     boolean isAngry();
+
+    /**
+     * <b>Not applicable to this entity</b>
+     *
+     * @return false
+     */
+    @Override
+    public boolean isConverting();
+
+    /**
+     * <b>Not applicable to this entity</b>
+     *
+     * @return UnsuppotedOperationException
+     */
+    @Override
+    public int getConversionTime();
+
+    /**
+     * <b>Not applicable to this entity</b>
+     *
+     * @param time unused
+     */
+    @Override
+    public void setConversionTime(int time);
 }

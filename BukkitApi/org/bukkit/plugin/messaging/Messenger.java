@@ -26,8 +26,13 @@ public interface Messenger {
 
     /**
      * 检测指定的通道名称是否为保留名称.
+     * <br>
+     * 所有处于"minecraft"命名空间的通道都是被保留的, 除了"minecraft:brand".
      * <p>
      * 原文：Checks if the specified channel is a reserved name.
+     * <br>
+     * All channels within the "minecraft" namespace except for
+     * "minecraft:brand" are reserved.
      *
      * @param channel 要检测的通道名称
      * @return 如果这个通道是保留的则为true，反之为false

@@ -1,23 +1,26 @@
 package org.bukkit.entity;
 
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.attribute.Attributable;
 import org.bukkit.block.Block;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 
 /**
  * 代表一个生物实体，比如一只怪物或一名玩家.
  */
-public interface LivingEntity extends Attributable, Entity, Damageable, ProjectileSource {
+public interface LivingEntity extends Attributable, Damageable, ProjectileSource {
 
     /**
      * 获取生物实体眼睛离脚高度.
@@ -54,12 +57,13 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
      * 获取沿生物实体视线上的所有方块.
      * <p>
      * 这个列表包含生物实体眼睛到目标位置的所有方块.
+     * 本方法认为所有方块体积为1x1x1.
      * <p>
      * 原文：
      * Gets all blocks along the living entity's line of sight.
      * <p>
      * This list contains all blocks from the living entity's eye position to
-     * target inclusive.
+     * target inclusive. This method considers all blocks as 1x1x1 in size.
      *
      * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
@@ -70,8 +74,16 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     /**
      * 获取生物实体的目标方块.
      * <p>
+     * 本方法认为所有方块体积为1x1x1. To take exact block
+     * collision shapes into account, see {@link #getTargetBlockExact(int,
+     * FluidCollisionMode)}.
+     * <p>
      * 原文：
      * Gets the block that the living entity has targeted.
+     * <p>
+     * This method considers all blocks as 1x1x1 in size. To take exact block
+     * collision shapes into account, see {@link #getTargetBlockExact(int,
+     * FluidCollisionMode)}.
      *
      * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
@@ -82,18 +94,81 @@ public interface LivingEntity extends Attributable, Entity, Damageable, Projecti
     /**
      * 获取沿生物实体视线上最后两个方块.
      * <p>
-     * 目标方块将是列表中最后的方块.
+     * 目标方块将是列表中最后的方块. 本方法认为所有方块体积为1x1x1.
      * <p>
      * 原文：
      * Gets the last two blocks along the living entity's line of sight.
      * <p>
-     * The target block will be the last block in the list.
+     * The target block will be the last block in the list. This method
+     * considers all blocks as 1x1x1 in size.
      *
      * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
      * @return 包含沿生物实体视线上最后两个方块的列表
      */
     public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
+
+    /**
+     * Gets the block that the living entity has targeted.
+     * <p>
+     * This takes the blocks' precise collision shapes into account. Fluids are
+     * ignored.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @return block that the living entity has targeted
+     * @see #getTargetBlockExact(int, org.bukkit.FluidCollisionMode)
+     */
+    public Block getTargetBlockExact(int maxDistance);
+
+    /**
+     * Gets the block that the living entity has targeted.
+     * <p>
+     * This takes the blocks' precise collision shapes into account.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @param fluidCollisionMode the fluid collision mode
+     * @return block that the living entity has targeted
+     * @see #rayTraceBlocks(double, FluidCollisionMode)
+     */
+    public Block getTargetBlockExact(int maxDistance, FluidCollisionMode fluidCollisionMode);
+
+    /**
+     * Performs a ray trace that provides information on the targeted block.
+     * <p>
+     * This takes the blocks' precise collision shapes into account. Fluids are
+     * ignored.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @return information on the targeted block, or <code>null</code> if there
+     *     is no targeted block in range
+     * @see #rayTraceBlocks(double, FluidCollisionMode)
+     */
+    public RayTraceResult rayTraceBlocks(double maxDistance);
+
+    /**
+     * Performs a ray trace that provides information on the targeted block.
+     * <p>
+     * This takes the blocks' precise collision shapes into account.
+     * <p>
+     * This may cause loading of chunks! Some implementations may impose
+     * artificial restrictions on the maximum distance.
+     *
+     * @param maxDistance the maximum distance to scan
+     * @param fluidCollisionMode the fluid collision mode
+     * @return information on the targeted block, or <code>null</code> if there
+     *     is no targeted block in range
+     * @see World#rayTraceBlocks(Location, Vector, double, FluidCollisionMode)
+     */
+    public RayTraceResult rayTraceBlocks(double maxDistance, FluidCollisionMode fluidCollisionMode);
 
     /**
      * 返回生物实体剩余的氧气值，单位为tick.

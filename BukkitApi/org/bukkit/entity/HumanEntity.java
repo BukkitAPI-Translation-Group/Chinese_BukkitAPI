@@ -1,8 +1,10 @@
 package org.bukkit.entity;
 
+import java.util.Collection;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.MainHand;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Inventory;
@@ -10,12 +12,11 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
-import org.bukkit.permissions.Permissible;
 
 /**
  * 代表人类实体, 比如一个NPC或一名玩家
  */
-public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, InventoryHolder {
+public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder {
 
     /**
      * 返回该玩家的玩家名.
@@ -311,6 +312,57 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, Permissible, Inv
      * @return 升级所需经验
      */
     public int getExpToLevel();
+
+    /**
+     * Discover a recipe for this player such that it has not already been
+     * discovered. This method will add the key's associated recipe to the
+     * player's recipe book.
+     *
+     * @param recipe the key of the recipe to discover
+     *
+     * @return whether or not the recipe was newly discovered
+     */
+    public boolean discoverRecipe(NamespacedKey recipe);
+
+    /**
+     * Discover a collection of recipes for this player such that they have not
+     * already been discovered. This method will add the keys' associated
+     * recipes to the player's recipe book. If a recipe in the provided
+     * collection has already been discovered, it will be silently ignored.
+     *
+     * @param recipes the keys of the recipes to discover
+     *
+     * @return the amount of newly discovered recipes where 0 indicates that
+     * none were newly discovered and a number equal to {@code recipes.size()}
+     * indicates that all were new
+     */
+    public int discoverRecipes(Collection<NamespacedKey> recipes);
+
+    /**
+     * Undiscover a recipe for this player such that it has already been
+     * discovered. This method will remove the key's associated recipe from the
+     * player's recipe book.
+     *
+     * @param recipe the key of the recipe to undiscover
+     *
+     * @return whether or not the recipe was successfully undiscovered (i.e. it
+     * was previously discovered)
+     */
+    public boolean undiscoverRecipe(NamespacedKey recipe);
+
+    /**
+     * Undiscover a collection of recipes for this player such that they have
+     * already been discovered. This method will remove the keys' associated
+     * recipes from the player's recipe book. If a recipe in the provided
+     * collection has not yet been discovered, it will be silently ignored.
+     *
+     * @param recipes the keys of the recipes to undiscover
+     *
+     * @return the amount of undiscovered recipes where 0 indicates that none
+     * were undiscovered and a number equal to {@code recipes.size()} indicates
+     * that all were undiscovered
+     */
+    public int undiscoverRecipes(Collection<NamespacedKey> recipes);
 
     /**
      * 获取栖息在玩家左肩上的实体 (通常情况下这是鹦鹉的行为, 目前客户端没有为其他实体定义这一行为), 若没有则返回null.

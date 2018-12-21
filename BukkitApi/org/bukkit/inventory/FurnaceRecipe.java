@@ -1,6 +1,7 @@
 package org.bukkit.inventory;
 
 import com.google.common.base.Preconditions;
+import java.util.Collections;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -12,7 +13,7 @@ import org.bukkit.material.MaterialData;
 public class FurnaceRecipe implements Recipe {
     private final NamespacedKey key;
     private ItemStack output;
-    private ItemStack ingredient;
+    private RecipeChoice ingredient;
     private float experience;
     private int cookingTime;
     private String group = "";
@@ -38,15 +39,13 @@ public class FurnaceRecipe implements Recipe {
     }
 
     /**
-     * 创建一个熔炉冶炼配方.
-     * <p>
-     * 原文:Create a furnace recipe to craft the specified ItemStack.
+     * Create a furnace recipe to craft the specified ItemStack.
      *
-     * @param key 冶炼配方的唯一键值
-     * @param result 填入该冶炼配方产生的生成物
-     * @param source 冶炼原料
-     * @param experience 熔炼后玩家所得经验
-     * @param cookingTime 熔炼时间 (以ticks为单位)
+     * @param key The unique recipe key
+     * @param result The item you want the recipe to create.
+     * @param source The input material.
+     * @param experience The experience given by this recipe
+     * @param cookingTime The cooking time (in ticks)
      */
     public FurnaceRecipe(NamespacedKey key, ItemStack result, Material source, float experience, int cookingTime) {
         this(key, result, source, 0, experience, cookingTime);
@@ -54,9 +53,22 @@ public class FurnaceRecipe implements Recipe {
 
     @Deprecated
     public FurnaceRecipe(NamespacedKey key, ItemStack result, Material source, int data, float experience, int cookingTime) {
+        this(key, result, new RecipeChoice.MaterialChoice(Collections.singletonList(source)), experience, cookingTime);
+    }
+
+    /**
+     * Create a furnace recipe to craft the specified ItemStack.
+     *
+     * @param key The unique recipe key
+     * @param result The item you want the recipe to create.
+     * @param input The input choices.
+     * @param experience The experience given by this recipe
+     * @param cookingTime The cooking time (in ticks)
+     */
+    public FurnaceRecipe(NamespacedKey key, ItemStack result, RecipeChoice input, float experience, int cookingTime) {
         this.key = key;
         this.output = new ItemStack(result);
-        this.ingredient = new ItemStack(source, 1, (short) data);
+        this.ingredient = input;
         this.experience = experience;
         this.cookingTime = cookingTime;
     }
@@ -70,7 +82,7 @@ public class FurnaceRecipe implements Recipe {
      * @return 返回新的冶炼配方.
      */
     public FurnaceRecipe setInput(MaterialData input) {
-        return setInput(input.getItemType(), input.getData());
+        return new RecipeChoice.MaterialChoice(Collections.singletonList(input));
     }
 
     /**
@@ -83,6 +95,26 @@ public class FurnaceRecipe implements Recipe {
      */
     public FurnaceRecipe setInput(Material input) {
         return setInput(input, 0);
+    }
+
+    /**
+     * Sets the input of this furnace recipe.
+     *
+     * @param input The input choice.
+     * @return The changed recipe, so you can chain calls.
+     */
+    public FurnaceRecipe setInputChoice(RecipeChoice input) {
+        this.ingredient = input;
+        return this;
+    }
+
+    /**
+     * Get the input choice.
+     *
+     * @return The input choice.
+     */
+    public RecipeChoice getInputChoice() {
+        return this.ingredient.clone();
     }
 
     /**

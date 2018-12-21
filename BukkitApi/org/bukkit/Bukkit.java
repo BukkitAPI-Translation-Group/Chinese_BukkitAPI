@@ -19,6 +19,7 @@ import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -703,6 +704,47 @@ public final class Bukkit {
      */
     public static MapView createMap(World world) {
         return server.createMap(world);
+    }
+
+    /**
+     * Create a new explorer map targeting the closest nearby structure of a
+     * given {@link StructureType}.
+     * <br>
+     * This method uses implementation default values for radius and
+     * findUnexplored (usually 100, true).
+     *
+     * @param world the world the map will belong to
+     * @param location the origin location to find the nearest structure
+     * @param structureType the type of structure to find
+     * @return a newly created item stack
+     *
+     * @see World#locateNearestStructure(org.bukkit.Location,
+     *      org.bukkit.StructureType, int, boolean)
+     */
+    public static ItemStack createExplorerMap(World world, Location location, StructureType structureType) {
+        return server.createExplorerMap(world, location, structureType);
+    }
+
+    /**
+     * Create a new explorer map targeting the closest nearby structure of a
+     * given {@link StructureType}.
+     * <br>
+     * This method uses implementation default values for radius and
+     * findUnexplored (usually 100, true).
+     *
+     * @param world the world the map will belong to
+     * @param location the origin location to find the nearest structure
+     * @param structureType the type of structure to find
+     * @param radius radius to search, see World#locateNearestStructure for more
+     *               information
+     * @param findUnexplored whether to find unexplored structures
+     * @return the newly created item stack
+     *
+     * @see World#locateNearestStructure(org.bukkit.Location,
+     *      org.bukkit.StructureType, int, boolean)
+     */
+    public static ItemStack createExplorerMap(World world, Location location, StructureType structureType, int radius, boolean findUnexplored) {
+        return server.createExplorerMap(world, location, structureType, radius, findUnexplored);
     }
 
     /**
@@ -1401,6 +1443,80 @@ public final class Bukkit {
      */
     public static BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags) {
         return server.createBossBar(title, color, style, flags);
+    }
+
+    /**
+     * Creates a boss bar instance to display to players. The progress defaults
+     * to 1.0.
+     * <br>
+     * This instance is added to the persistent storage of the server and will
+     * be editable by commands and restored after restart.
+     *
+     * @param key the key of the boss bar that is used to access the boss bar
+     * @param title the title of the boss bar
+     * @param color the color of the boss bar
+     * @param style the style of the boss bar
+     * @param flags an optional list of flags to set on the boss bar
+     * @return the created boss bar
+     */
+    public static KeyedBossBar createBossBar(NamespacedKey key, String title, BarColor color, BarStyle style, BarFlag... flags) {
+        return server.createBossBar(key, title, color, style, flags);
+    }
+
+    /**
+     * Gets an unmodifiable iterator through all persistent bossbars.
+     * <ul>
+     *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
+     *   <li>
+     *     <b>not</b> created using
+     *     {@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}
+     *   </li>
+     * </ul>
+     *
+     * e.g. bossbars created using the bossbar command
+     *
+     * @return a bossbar iterator
+     */
+    public static Iterator<KeyedBossBar> getBossBars() {
+        return server.getBossBars();
+    }
+
+    /**
+     * Gets the {@link KeyedBossBar} specified by this key.
+     * <ul>
+     *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
+     *   <li>
+     *     <b>not</b> created using
+     *     {@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}
+     *   </li>
+     * </ul>
+     *
+     * e.g. bossbars created using the bossbar command
+     *
+     * @param key unique bossbar key
+     * @return bossbar or null if not exists
+     */
+    public static KeyedBossBar getBossBar(NamespacedKey key) {
+        return server.getBossBar(key);
+    }
+
+    /**
+     * Removes a {@link KeyedBossBar} specified by this key.
+     * <ul>
+     *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
+     *   <li>
+     *     <b>not</b> created using
+     *     {@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}
+     *   </li>
+     * </ul>
+     *
+     * e.g. bossbars created using the bossbar command
+     *
+     * @param key unique bossbar key
+     * @return true if removal succeeded or false
+     */
+    public static boolean removeBossBar(NamespacedKey key) {
+        return server.removeBossBar(key);
     }
 
     /**

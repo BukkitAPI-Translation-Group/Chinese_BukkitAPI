@@ -67,10 +67,12 @@ public interface Skull extends BlockState {
     public void setOwningPlayer(OfflinePlayer player);
 
     /**
-     * 获取这个头颅在世界的角度.
+     * 获取这个头颅在世界的角度 (or facing direction if this
+     * is a wall mounted skull).
      * <p>
      * 原文:
-     * Gets the rotation of the skull in the world
+     * Gets the rotation of the skull in the world (or facing direction if this
+     * is a wall mounted skull).
      *
      * @return 头颅的角度
      * @deprecated 请使用 {@link BlockData}
@@ -79,10 +81,12 @@ public interface Skull extends BlockState {
     public BlockFace getRotation();
 
     /**
-     * 设置这个头颅在世界的角度.
+     * 设置这个头颅在世界的角度 (or facing direction if this
+     * is a wall mounted skull).
      * <p>
      * 原文:
-     * Sets the rotation of the skull in the world
+     * Sets the rotation of the skull in the world (or facing direction if this
+     * is a wall mounted skull).
      *
      * @param rotation 头颅的角度
      * @deprecated 请使用 {@link BlockData}

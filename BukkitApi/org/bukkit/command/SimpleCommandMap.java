@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
@@ -18,7 +17,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
 
 public class SimpleCommandMap implements CommandMap {
-    private static final Pattern PATTERN_ON_SPACE = Pattern.compile(" ", Pattern.LITERAL);
     protected final Map<String, Command> knownCommands = new HashMap<String, Command>();
     private final Server server;
 
@@ -123,7 +121,7 @@ public class SimpleCommandMap implements CommandMap {
      * {@inheritDoc}
      */
     public boolean dispatch(CommandSender sender, String commandLine) throws CommandException {
-        String[] args = PATTERN_ON_SPACE.split(commandLine);
+        String[] args = commandLine.split(" ");
 
         if (args.length == 0) {
             return false;
@@ -207,8 +205,7 @@ public class SimpleCommandMap implements CommandMap {
             return null;
         }
 
-        String argLine = cmdLine.substring(spaceIndex + 1, cmdLine.length());
-        String[] args = PATTERN_ON_SPACE.split(argLine, -1);
+        String[] args = cmdLine.substring(spaceIndex + 1, cmdLine.length()).split(" ", -1);
 
         try {
             return target.tabComplete(sender, commandName, args, location);

@@ -170,7 +170,7 @@ public class StandardMessenger implements Messenger {
     public boolean isReservedChannel(String channel) {
         channel = validateAndCorrectChannel(channel);
 
-        return channel.contains("minecraft");
+        return channel.contains("minecraft") && !channel.equals("minecraft:brand");
     }
 
     public void registerOutgoingPluginChannel(Plugin plugin, String channel) {
@@ -471,11 +471,11 @@ public class StandardMessenger implements Messenger {
             throw new ChannelNameTooLongException(channel);
         }
         if (channel.indexOf(':') == -1) {
-            throw new IllegalArgumentException("Channel must contain : separator");
+            throw new IllegalArgumentException("Channel must contain : separator (attempted to use " + channel + ")");
         }
         if (!channel.toLowerCase(Locale.ROOT).equals(channel)) {
             // TODO: use NamespacedKey validation here
-            throw new IllegalArgumentException("Channel must be entirely lowercase");
+            throw new IllegalArgumentException("Channel must be entirely lowercase (attempted to use " + channel + ")");
         }
         return channel;
     }

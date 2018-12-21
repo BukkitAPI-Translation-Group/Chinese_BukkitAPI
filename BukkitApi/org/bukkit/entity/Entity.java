@@ -5,8 +5,11 @@ import org.bukkit.EntityEffect;
 import org.bukkit.Nameable;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.block.BlockFace;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.material.Directional;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Vector;
 
 import java.util.List;
@@ -89,6 +92,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @return 实体宽度
      */
     public double getWidth();
+
+    /**
+     * Gets the entity's current bounding box.
+     * <p>
+     * The returned bounding box reflects the entity's current location and
+     * size.
+     *
+     * @return the entity's current bounding box
+     */
+    public BoundingBox getBoundingBox();
 
     /**
      * 返回实体是否站在地面上. 
@@ -273,9 +286,10 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * By default all entities are persistent. An entity will also not get
      * persisted, if it is riding an entity that is not persistent.
      * <p>
-     * The persistent flag has no effect on players. If a player is directly or
-     * indirectly riding a non-persistent entity, the vehicle at the root and
-     * all its passengers won't get persisted.
+     * The persistent flag on players controls whether or not to save their
+     * playerdata file when they quit. If a player is directly or indirectly
+     * riding a non-persistent entity, the vehicle at the root and all its
+     * passengers won't get persisted.
      * <p>
      * <b>This should not be confused with
      * {@link LivingEntity#setRemoveWhenFarAway(boolean)} which controls
@@ -712,4 +726,20 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @return 反应
      */
     PistonMoveReaction getPistonMoveReaction();
+
+    /**
+     * Get the closest cardinal {@link BlockFace} direction an entity is
+     * currently facing.
+     * <br>
+     * This will not return any non-cardinal directions such as
+     * {@link BlockFace#UP} or {@link BlockFace#DOWN}.
+     * <br>
+     * {@link Hanging} entities will override this call and thus their behavior
+     * may be different.
+     *
+     * @return the entity's current cardinal facing.
+     * @see Hanging
+     * @see Directional#getFacing()
+     */
+    BlockFace getFacing();
 }

@@ -31,7 +31,11 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文:Constructs the BlockIterator
+     * 本方法认为所有方块的体积均为1x1x1.
+     * <p>
+     * 原文:Constructs the BlockIterator.
+     * <p>
+     * This considers all blocks as 1x1x1 in size.
      *
      * @param world 使用此追踪的世界
      * @param start 追踪的初位置向量
@@ -170,7 +174,11 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
-     * 原文:Constructs the BlockIterator
+     * 本方法认为所有方块的体积均为1x1x1.
+     * <p>
+     * 原文:Constructs the BlockIterator.
+     * <p>
+     * This considers all blocks as 1x1x1 in size.
      *
      * @param loc 射线追踪的起始位置
      * @param yOffset 垂直偏移量,追踪从初向量开始垂直偏移这个值的范围
@@ -183,7 +191,11 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
+     * 本方法认为所有方块的体积均为1x1x1.
+     * <p>
      * 原文:Constructs the BlockIterator.
+     * <p>
+     * This considers all blocks as 1x1x1 in size.
      *
      * @param loc 射线追踪的开始位置
      * @param yOffset 垂直偏移量,追踪从初向量开始垂直偏移这个值的范围
@@ -194,7 +206,11 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
+     * 本方法认为所有方块的体积均为1x1x1.
+     * <p>
      * 原文:Constructs the BlockIterator.
+     * <p>
+     * This considers all blocks as 1x1x1 in size.
      *
      * @param loc 射线追踪的开始位置
      */
@@ -204,7 +220,11 @@ public class BlockIterator implements Iterator<Block> {
     /**
      * BlockIterator的构造函数.
      * <p>
+     * 本方法认为所有方块的体积均为1x1x1.
+     * <p>
      * 原文:Constructs the BlockIterator.
+     * <p>
+     * This considers all blocks as 1x1x1 in size.
      *
      * @param entity 被用来设置追踪的实体
      * @param maxDistance 这是在方块中追踪的最大距离,

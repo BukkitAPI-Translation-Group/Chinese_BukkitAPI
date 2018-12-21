@@ -3,7 +3,6 @@ package org.bukkit.event.block;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
-import org.bukkit.event.HandlerList;
 
 /**
  * 当一个方块被玩家破坏的时候，调用本事件.

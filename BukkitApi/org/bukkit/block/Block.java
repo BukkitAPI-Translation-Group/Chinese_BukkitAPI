@@ -3,12 +3,16 @@ package org.bukkit.block;
 import java.util.Collection;
 
 import org.bukkit.Chunk;
+import org.bukkit.FluidCollisionMode;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.Location;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.Vector;
 
 /**
  * 代表方块. This is a live object, and only one Block may exist for
@@ -326,7 +330,10 @@ public interface Block extends Metadatable {
     boolean isLiquid();
 
     /**
-     * Gets the temperature of the biome of this block
+     * Gets the temperature of this block.
+     * <p>
+     * If the raw biome temperature without adjusting for height effects is
+     * required then please use {@link World#getTemperature(int, int)}.
      *
      * @return Temperature of this block
      */
@@ -378,4 +385,45 @@ public interface Block extends Metadatable {
      */
     Collection<ItemStack> getDrops(ItemStack tool);
 
+    /**
+     * Checks if this block is passable.
+     * <p>
+     * A block is passable if it has no colliding parts that would prevent
+     * players from moving through it.
+     * <p>
+     * Examples: Tall grass, flowers, signs, etc. are passable, but open doors,
+     * fence gates, trap doors, etc. are not because they still have parts that
+     * can be collided with.
+     *
+     * @return <code>true</code> if passable
+     */
+    boolean isPassable();
+
+    /**
+     * Performs a ray trace that checks for collision with this specific block
+     * in its current state using its precise collision shape.
+     *
+     * @param start the start location
+     * @param direction the ray direction
+     * @param maxDistance the maximum distance
+     * @param fluidCollisionMode the fluid collision mode
+     * @return the ray trace hit result, or <code>null</code> if there is no hit
+     */
+    RayTraceResult rayTrace(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode);
+
+    /**
+     * Gets the approximate bounding box for this block.
+     * <p>
+     * This isn't exact as some blocks {@link org.bukkit.block.data.type.Stairs}
+     * contain many bounding boxes to establish their complete form.
+     *
+     * Also, the box may not be exactly the same as the collision shape (such as
+     * cactus, which is 16/16 of a block with 15/16 collisional bounds).
+     *
+     * This method will return an empty bounding box if the geometric shape of
+     * the block is empty (such as air blocks).
+     *
+     * @return the approximate bounding box of the block
+     */
+    BoundingBox getBoundingBox();
 }

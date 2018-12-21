@@ -1,7 +1,6 @@
 package org.bukkit.event.entity;
 
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -177,6 +176,10 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          * 当一个实体溺亡而生成时
          */
         DROWNED,
+        /**
+         * When an cow is spawned by shearing a mushroom cow
+         */
+        SHEARED,
         /**
          * 当生物被插件生成时
          */

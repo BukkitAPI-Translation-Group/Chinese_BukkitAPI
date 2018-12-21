@@ -49,4 +49,26 @@ public interface Sign extends BlockState {
      * @throws IndexOutOfBoundsException 如果索引超出了0-3的范围
      */
     public void setLine(int index, String line) throws IndexOutOfBoundsException;
+
+    /**
+     * Marks whether this sign can be edited by players.
+     * <br>
+     * This is a special value, which is not persisted. It should only be set if
+     * a placed sign is manipulated during the BlockPlaceEvent. Behaviour
+     * outside of this event is undefined.
+     *
+     * @return if this sign is currently editable
+     */
+    public boolean isEditable();
+
+    /**
+     * Marks whether this sign can be edited by players.
+     * <br>
+     * This is a special value, which is not persisted. It should only be set if
+     * a placed sign is manipulated during the BlockPlaceEvent. Behaviour
+     * outside of this event is undefined.
+     *
+     * @param editable if this sign is currently editable
+     */
+    public void setEditable(boolean editable);
 }

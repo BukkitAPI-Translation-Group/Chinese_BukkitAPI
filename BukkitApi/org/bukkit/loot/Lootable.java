@@ -1,5 +1,7 @@
 package org.bukkit.loot;
 
+import org.bukkit.Bukkit;
+
 /**
  * Represents a {@link org.bukkit.block.Container} or a
  * {@link org.bukkit.entity.Mob} that can have a loot table.
@@ -48,4 +50,14 @@ public interface Lootable {
      * @return the seed
      */
     long getSeed();
+
+    /**
+     * Get the {@link LootTable} corresponding to this constant. This is
+     * equivalent to calling {@code Bukkit.getLootTable(this.getKey());}.
+     *
+     * @return the associated LootTable
+     */
+    public LootTable getLootTable() {
+        return Bukkit.getLootTable(getKey());
+    }
 }

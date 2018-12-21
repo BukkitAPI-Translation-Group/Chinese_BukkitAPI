@@ -19,7 +19,6 @@ import org.bukkit.WeatherType;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.command.CommandSender;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.map.MapView;
@@ -30,7 +29,7 @@ import org.bukkit.scoreboard.Scoreboard;
 /**
  * 玩家对象
  */
-public interface Player extends HumanEntity, Conversable, CommandSender, OfflinePlayer, PluginMessageRecipient {
+public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient {
 
     /**
      * 获得玩家在聊天信息中的昵称.
@@ -74,30 +73,11 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
     /**
      * 设置玩家显示在Tab列表中的名称.
      * <p>
-     * 不允许超过16个字符,不允许重复.但支持{@link ChatColor}颜色代码.
-     * <p>
-     * 如果设置为null则不在玩家列表中显示.(玩家自己还是看得到的,只不过别人看不到).
-     * <p>
-     * ("list name"指代“玩家显示在Tab列表中的名称”)(以下解释的是服务器如何处理冲突玩家名，你用代码违法操作肯定是会抛出异常的)
-     * 这个名字区分大小写且唯一，也就意味着两个字母相同但字母大小写有别的名字被当作为两个不同的人.
-     * 如果一玩家以与某个游戏内玩家的自定义的"list name"相冲突的名字加入游戏，
-     * 则追加一个随机数字至这个玩家的"list name".
-     * 如果这个玩家的名字较长，那么名字末尾的部分会被截除.
+     * 如果设置为null则此名字与{@link #getName()}相同.
      * <p>
      * 原文:Sets the name that is shown on the in-game player list.
      * <p>
-     * The name cannot be longer than 16 characters, but {@link ChatColor} is
-     * supported.
-     * <p>
      * If the value is null, the name will be identical to {@link #getName()}.
-     * <p>
-     * This name is case sensitive and unique, two names with different casing
-     * will appear as two different people. If a player joins afterwards with
-     * a name that conflicts with a player's custom list name, the joining
-     * player's player list name will have a random number appended to it (1-2
-     * characters long in the default implementation). If the joining player's
-     * name is 15 or 16 characters long, part of the name will be truncated at
-     * the end to allow the addition of the two digits.
      *
      * @param name 新的显示在玩家列表中的名字
      * @throws IllegalArgumentException 当有名称相同时抛出
@@ -1701,6 +1681,16 @@ public interface Player extends HumanEntity, Conversable, CommandSender, Offline
      * @return object detailing the player's progress
      */
     public AdvancementProgress getAdvancementProgress(Advancement advancement);
+
+    /**
+     * Get the player's current client side view distance.
+     * <br>
+     * Will default to the server view distance if the client has not yet
+     * communicated this information,
+     *
+     * @return client view distance as above
+     */
+    public int getClientViewDistance();
 
     /**
      * Gets the player's current locale.
