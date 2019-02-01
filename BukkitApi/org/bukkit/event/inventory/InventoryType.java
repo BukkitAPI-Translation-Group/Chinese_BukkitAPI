@@ -51,15 +51,11 @@ public enum InventoryType {
      */
     BREWING(5,"Brewing"),
     /**
-     * A player's inventory, with 9 QUICKBAR slots, 27 CONTAINER slots, 4 ARMOR
-     * slots and 1 offhand slot. The ARMOR and offhand slots may not be visible
-     * to the player, though.
+     * 一个玩家的背包, 有9个快速切换槽, 27个背包槽, 4个盔甲槽和1个副手槽. 不过, 玩家可能看不到护甲和副手槽
      */
     PLAYER(41,"Player"),
     /**
-     * The creative mode inventory, with only 9 QUICKBAR slots and nothing
-     * else. (The actual creative interface with the items is client-side and
-     * cannot be altered by the server.)
+     * 表示一个创造模式的背包, 只有9个快速切换槽 (实际来说这几个槽是客户端控制的)
      */
     CREATIVE(9,"Creative", false),
     /**
@@ -83,6 +79,7 @@ public enum InventoryType {
      */
     HOPPER(5, "Item Hopper"),
     /**
+     * 表示一个潜影盒，有27个背包槽
      * A shulker box inventory, with 27 slots of type CONTAINER.
      */
     SHULKER_BOX(27, "Shulker Box"),
