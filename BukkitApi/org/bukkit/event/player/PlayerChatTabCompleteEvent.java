@@ -10,7 +10,8 @@ import org.bukkit.event.HandlerList;
 /**
  * 当玩家尝试补全聊天消息时触发本事件
  *
- * @deprecated 因客户端的改变(1.13更新较大幅度改善了命令输入的体验), 该事件不再触发
+ * @deprecated 因客户端的改变(1.13更新较大幅度改善了命令输入的体验), 该事件不再触发.
+ * 1.13+版本可以参考:{@link PlayerCommandSendEvent}
  */
 @Deprecated
 @Warning(reason = "This event is no longer fired due to client changes")
