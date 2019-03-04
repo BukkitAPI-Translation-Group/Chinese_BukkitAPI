@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 
 /**
- * 当玩家完成一个进度中所有的标准时触发此事件
+ * 当玩家完成一个进度中所有的标准时触发此事件.
  * <p>
  * 原文: Called when a player has completed all criteria in an advancement.
  */
@@ -21,7 +21,7 @@ public class PlayerAdvancementDoneEvent extends PlayerEvent {
     }
 
     /**
-     * 获得已完成的进度对象
+     * 获得已完成的进度.
      * <p>
      * 原文: Get the advancement which has been completed.
      *
