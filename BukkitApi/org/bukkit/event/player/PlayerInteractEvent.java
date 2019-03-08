@@ -12,9 +12,9 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当玩家对一个对象或空气进行交互时触发本事件, 可能在左右手交互时也会被触发
+ * 当玩家对一个对象或空气进行交互时触发本事件.
  * <p>
- * 你可以使用 {@link #getHand()} 方法来确定是哪只手
+ * 无论玩家使用的是左手还是右手, 都有可能分别触发本事件. 你可以使用 {@link #getHand()} 方法来确定玩家使用的是哪只手.
  * <p>
  * 如果是原版行为触发了本事件, 则本事件将会被取消(例如与空气进行交互).
  * For the purpose of avoiding doubt, this means
@@ -61,18 +61,19 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获取本次交互的类型
+     * 获取本次交互的动作类型.
      * <p>
      * 原文:Returns the action type
      *
-     * @return Action 返回交互的类型
+     * @return Action 返回交互的动作类型
      */
     public Action getAction() {
         return action;
     }
 
     /**
-     * 获取本事件的取消状态.
+     * 获取这个事件是否被取消.
+     * 如果你想防止通过水桶放水等操作, 则可以取消这个事件.
      * <p>
      * 原文:Gets the cancellation state of this event. Set to true if you want to
      * prevent buckets from placing water and so forth
@@ -84,9 +85,10 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 设置本事件的取消状态, 取消的事件不会在服务器中执行, 但仍然会传递给其他插件对本事件的监听
+     * 取消这个事件. 一个被取消的事件不会在
+     * 服务器里被执行，但是仍然会传递事件到其他插件.
      * <p>
-     * 取消这个事件将会阻止玩家吃东西(玩家不会失去食物), 阻止弓箭/雪球/蛋发射...(玩家不会失去弹药)
+     * 取消本事件将阻止玩家食用食物(玩家不会失去食物), 阻止弓箭/雪球/蛋的发射等(玩家不会失去弹药).
      * <p>
      * 原文:Sets the cancellation state of this event. A canceled event will not be
      * executed in the server, but will still pass to other plugins
@@ -103,7 +105,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获取本事件玩家手中的物品, 手中物品为空时会返回null
+     * 获取玩家手中的物品, 手中未拿物品时会返回null.
      * <p>
      * 原文:Returns the item in hand represented by this event
      *
@@ -114,7 +116,8 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 方便的方法, 返回由此事件表示的物品的材质
+     * 返回玩家所用物品的材质 (相当于getItem()后再getMateria(),但更简便一些).
+     * <p>
      * 原文:Convenience method. Returns the material of the item represented by
      * this event
      *
@@ -129,7 +132,8 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 检查这个事件是否涉及到一个方块
+     * 检查交互事件是否涉及方块(与方块交互、放置方块等).
+     * <p>
      * 原文:Check if this event involved a block
      *
      * @return boolean 如果涉及到则返回true
@@ -139,7 +143,10 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 检查这个事件是否涉及一个物品
+     * 检查玩家交互时是否手拿物品或与物品交互/交互是否涉及到物品.
+     * <p>
+     * 猜测(译注):只要不是与空气交互一般都会返回一个物品?等待验证.
+     * <p>
      * 原文:Check if this event involved an item
      *
      * @return boolean 如果涉及到则返回true
@@ -149,12 +156,12 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 返回这个事件触发是否由放置方块所触发的
+     * 判断本次交互事件是否为方块放置事件 (由玩家放置方块引起的交互事件).
      * <p>
      * 原文:Convenience method to inform the user whether this was a block
      * placement event.
      *
-     * @return boolean 如果手中的物品是一个方块，则为true
+     * @return boolean 如果玩家交互时手拿方块,返回true
      */
     public boolean isBlockInHand() {
         if (!hasItem()) {
@@ -165,18 +172,18 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 返回被点击的方块
+     * 返回被点击的方块.
      * <p>
      * 原文:Returns the clicked block
      *
-     * @return Block 点击的方块
+     * @return Block 被点击的方块
      */
     public Block getClickedBlock() {
         return blockClicked;
     }
 
     /**
-     * 返回被点击的方块的朝向
+     * 返回被点击的方块的朝向.
      * <p>
      * Returns the face of the block that was clicked
      *
@@ -187,61 +194,56 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 该方法会得到在对方块进行点击后(如果有的话)所采取的动作.
+     * 获取(控制见对应set方法)对被交互的方块采取的动作(如果有).
+     * 任意方块都能触发本事件, 不过大部分情况下都没有默认动作.
      * <p>
-     * 这个事件将会处理所有被点击的方块, 但是大多数的方块都没有默认的动作.
-     * <p>
-     * 原文:This event gets processed for all blocks, but most don't have a default action
-     * This controls the action to take with the block (if any) that was
+     * 原文:This controls the action to take with the block (if any) that was
      * clicked on. This event gets processed for all blocks, but most don't
      * have a default action
      *
-     * @return 被交互的方块进行的动作
+     * @return 对被交互的方块采取的动作
      */
     public Result useInteractedBlock() {
         return useClickedBlock;
     }
 
     /**
-     * @param useInteractedBlock 被交互的方块进行的动作
+     * @param useInteractedBlock 对被交互的方块采取的动作
      */
     public void setUseInteractedBlock(Result useInteractedBlock) {
         this.useClickedBlock = useInteractedBlock;
     }
 
     /**
-     * 该方法会得到玩家拿着的物品的动作.
-     * <p>
-     * 这包括方块和物品(如打火石和铁锭或唱片).
-     * <p>
-     * 当其动作设置为默认值，如果不采取行动的被交互的方块将被允许。
+     * 获取(控制见下一个方法)对玩家手持的物品采取的动作/行动.
+     * 同时包含方块和物品(如打火石、铁锭或唱片).
+     * 当其动作被设为默认值, 如果未对玩家所交互的方块采取行动, 此交互动作将被允许.
      * <p>
      * 原文:This controls the action to take with the item the player is holding.
      * This includes both blocks and items (such as flint and steel or
      * records). When this is set to default, it will be allowed if no action
      * is taken on the interacted block.
      *
-     * @return 手中的物品采取的行动
+     * @return 对玩家手持的物品采取的动作(the action to take with the item in hand)
      */
     public Result useItemInHand() {
         return useItemInHand;
     }
 
     /**
-     * @param useItemInHand 手中的物品采取的行动
+     * @param useItemInHand 对玩家手持的物品采取的动作(the action to take with the item in hand)
      */
     public void setUseItemInHand(Result useItemInHand) {
         this.useItemInHand = useItemInHand;
     }
 
     /**
-     * 获取用来执行本次交互的手, 但当 {@link Action#PHYSICAL} 时可能为空
-     * 译注:也就是 {@link #getAction()} 为 {@link Action#PHYSICAL} 时
+     * 获取用来进行本次交互的手, 但当玩家的交互动作类型为 {@link Action#PHYSICAL} 时可能为空.
      * <p>
-     * The hand used to perform this interaction. May be null in the case of
+     * 原文:The hand used to perform this interaction. May be null in the case of
      * {@link Action#PHYSICAL}.
      *
-     * @return 用来交互的手, 可能为null。
+     * @return 用来交互的手, 可能为null
      */
     public EquipmentSlot getHand() {
         return hand;
