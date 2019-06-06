@@ -314,7 +314,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
 
     /**
      * 向玩家在某个位置播放一个声音. <p>
-     * 当位置或声音为null或玩家的客户端没开启声音时,这个方法无效. <p>
+     * 当位置或声音为null或玩家的客户端没开启声音时,这个方法无效. 玩家客户端不存在指定声音本操作也将无效. <p>
      * 原文:Play a sound for a player at the location.
      * <p>
      * This function will fail silently if Location or Sound are null. No
@@ -329,35 +329,43 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void playSound(Location location, String sound, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location.
+     * 向玩家在指定位置播放声音.
+     * <p>
+     * 当位置或声音为null或玩家的客户端没开启声音时,这个方法无效.
+     * <p>
+     * 原文:Play a sound for a player at the location.
      * <p>
      * This function will fail silently if Location or Sound are null.
      *
-     * @param location The location to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param location 声音播放位置
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
      */
     public void playSound(Location location, Sound sound, SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location.
+     * 向玩家在指定位置播放声音.
+     * <p>
+     * 当位置或声音为null或玩家的客户端没开启声音时,这个方法无效. 玩家客户端不存在指定声音本操作也将无效.
+     * <p>
+     * 原文:Play a sound for a player at the location.
      * <p>
      * This function will fail silently if Location or Sound are null. No sound
      * will be heard by the player if their client does not have the respective
      * sound for the value passed.
      *
-     * @param location the location to play the sound
-     * @param sound the internal sound name to play
-     * @param category The category of the sound
-     * @param volume the volume of the sound
-     * @param pitch the pitch of the sound
+     * @param location 声音播放位置
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
      */
     public void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
 
     /**
-     * 停止播放某个指定的声音.
+     * 停止播放指定的声音.
      * <p>
      * 原文:Stop the specified sound from playing.
      *
@@ -366,26 +374,32 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void stopSound(Sound sound);
 
     /**
-     * Stop the specified sound from playing.
+     * 停止播放指定的声音.
+     * <p>
+     * 原文:Stop the specified sound from playing.
      *
-     * @param sound the sound to stop
+     * @param sound 指定声音
      */
     public void stopSound(String sound);
 
 
     /**
-     * Stop the specified sound from playing.
+     * 停止播放指定的声音.
+     * <p>
+     * 原文:Stop the specified sound from playing.
      *
-     * @param sound the sound to stop
+     * @param sound 指定声音
      * @param category 声音类别
      */
     public void stopSound(Sound sound, SoundCategory category);
 
     /**
-     * Stop the specified sound from playing.
+     * 停止播放指定的声音.
+     * <p>
+     * 原文:Stop the specified sound from playing.
      *
-     * @param sound the sound to stop
-     * @param category the category of the sound
+     * @param sound 指定声音
+     * @param category 声音类别
      */
     public void stopSound(String sound, SoundCategory category);
 
@@ -1413,21 +1427,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public double getHealthScale();
 
     /**
-     * Gets the entity which is followed by the camera when in
+     * 获取旁观者模式下镜头跟随的实体.
+     * <p>
+     * 原文:Gets the entity which is followed by the camera when in
      * {@link GameMode#SPECTATOR}.
      *
-     * @return the followed entity, or null if not in spectator mode or not
-     * following a specific entity.
+     * @return 正在跟随的实体, 如果未跟随实体或不处于旁观者模式返回null
      */
     public Entity getSpectatorTarget();
 
     /**
-     * Sets the entity which is followed by the camera when in
+     * 设置模式下镜头跟随的实体.
+     * <p>
+     * 原文:ets the entity which is followed by the camera when in
      * {@link GameMode#SPECTATOR}.
      *
-     * @param entity the entity to follow or null to reset
-     * @throws IllegalStateException if the player is not in
-     * {@link GameMode#SPECTATOR}
+     * @param entity 要跟随的实体, 设为null重置
+     * @throws IllegalStateException 若玩家不处于
+     * {@link GameMode#SPECTATOR 旁观者模式}
      */
     public void setSpectatorTarget(Entity entity);
 
@@ -1481,34 +1498,40 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      */
     public void resetTitle();
 
-    /**
-     * Spawns the particle (the number of times specified by count)
+    /** 
+     * 在指定位置产生粒子效果 (the number of times specified by count).
+     * <p>
+     * 原文:Sawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
+     * @param particle 要产生的粒子效果
+     * @param location 粒子效果产生位置
      * @param count the number of particles
      */
     public void spawnParticle(Particle particle, Location location, int count);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果 (the number of times specified by count).
+     * <p>
+     * 原文:Sawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
+     * @param particle 要产生的粒子效果
+     * @param x 粒子效果产生位置x轴
+     * @param y 粒子效果产生位置y轴
+     * @param z 粒子效果产生位置z轴
      * @param count the number of particles
      */
     public void spawnParticle(Particle particle, double x, double y, double z, int count);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果 (the number of times specified by count).
+     * <p>
+     * 原文:Sawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
+     * @param particle 要产生的粒子效果
+     * @param location 粒子效果产生位置
      * @param count the number of particles
      * @param data the data to use for the particle or null,
      *             the type of this depends on {@link Particle#getDataType()}
@@ -1675,10 +1698,11 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
 
     /**
-     * Return the player's progression on the specified advancement.
+     * 返回玩家指定进度的完成进度.
+     * 原文:Return the player's progression on the specified advancement.
      *
-     * @param advancement advancement
-     * @return object detailing the player's progress
+     * @param advancement 进度
+     * @return 有关玩家进度的详细信息
      */
     public AdvancementProgress getAdvancementProgress(Advancement advancement);
 
@@ -1693,7 +1717,12 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public int getClientViewDistance();
 
     /**
-     * Gets the player's current locale.
+     * 返回玩家本地语言环境.
+     * 语言环境值的格式尚未被适当地定义.
+     * <br>
+     * 原生 Minecraft 客户端将使用全小写 语言/国家, 用短下划线分隔. 但自定义资源包可能会使用他们想要的任意格式.
+     * <p>
+     * 原文:Gets the player's current locale.
      *
      * The value of the locale String is not defined properly.
      * <br>
@@ -1701,7 +1730,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * separated by an underscore, but custom resource packs may use any format
      * they wish.
      *
-     * @return the player's locale
+     * @return 玩家语言环境
      */
     public String getLocale();
 
