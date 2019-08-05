@@ -1,12 +1,12 @@
 package org.bukkit.block;
 
-import org.bukkit.Nameable;
 import org.bukkit.inventory.BrewerInventory;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表酿造台(快照).
  */
-public interface BrewingStand extends Container, Nameable {
+public interface BrewingStand extends Container {
 
     /**
      * 返回酿造还需多长时间.
@@ -44,9 +44,11 @@ public interface BrewingStand extends Container, Nameable {
      */
     void setFuelLevel(int level);
 
+    @NotNull
     @Override
     BrewerInventory getInventory();
 
+    @NotNull
     @Override
     BrewerInventory getSnapshotInventory();
 }

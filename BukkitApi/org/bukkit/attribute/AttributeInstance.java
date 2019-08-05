@@ -1,6 +1,7 @@
 package org.bukkit.attribute;
 
 import java.util.Collection;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个属性的可变实例以及它的修饰符和数据值.
@@ -14,6 +15,7 @@ public interface AttributeInstance {
      *
      * @return 返回对应实例的属性
      */
+    @NotNull
     Attribute getAttribute();
 
     /**
@@ -41,6 +43,7 @@ public interface AttributeInstance {
      *
      * @return 所有修饰符的副本
      */
+    @NotNull
     Collection<AttributeModifier> getModifiers();
 
     /**
@@ -50,7 +53,7 @@ public interface AttributeInstance {
      *
      * @param modifier 添加的属性
      */
-    void addModifier(AttributeModifier modifier);
+    void addModifier(@NotNull AttributeModifier modifier);
 
     /**
      * 从此实例内移除一个修饰符(属性).
@@ -59,7 +62,7 @@ public interface AttributeInstance {
      *
      * @param modifier 移除的属性
      */
-    void removeModifier(AttributeModifier modifier);
+    void removeModifier(@NotNull AttributeModifier modifier);
 
     /**
      * 获取当前实例的值,（所有已经应用的值）

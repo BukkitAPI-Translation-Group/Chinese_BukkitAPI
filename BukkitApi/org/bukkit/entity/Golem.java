@@ -6,5 +6,5 @@ package org.bukkit.entity;
  * 原文:A mechanical creature that may harm enemies.
  */
 public interface Golem extends Creature {
-    
+
 }

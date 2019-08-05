@@ -1,6 +1,8 @@
 package org.bukkit;
 
 import java.util.Date;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 封禁列表里的单个封禁条目. 
@@ -52,6 +54,7 @@ public interface BanEntry {
      *
      * @return 被封禁的玩家的名字或IP地址
      */
+    @NotNull
     public String getTarget();
 
     /**
@@ -61,6 +64,7 @@ public interface BanEntry {
      *
      * @return 封禁开始时间
      */
+    @NotNull
     public Date getCreated();
 
     /**
@@ -71,7 +75,7 @@ public interface BanEntry {
      * @param created 要设置的日期,不能为null
      * @see #save() 保存更改
      */
-    public void setCreated(Date created);
+    public void setCreated(@NotNull Date created);
 
     /**
      * 获取本次封禁的操作者. 
@@ -86,6 +90,7 @@ public interface BanEntry {
      *
      * @return 封禁操作者
      */
+    @NotNull
     public String getSource();
 
     /**
@@ -102,7 +107,7 @@ public interface BanEntry {
      * @param source 新的操作者, 若设为null将变为空字符串
      * @see #save() 保存更改
      */
-    public void setSource(String source);
+    public void setSource(@NotNull String source);
 
     /**
      * 获取本次封禁的过期时间. 
@@ -113,6 +118,7 @@ public interface BanEntry {
      *
      * @return 过期时间
      */
+    @Nullable
     public Date getExpiration();
 
     /**
@@ -126,7 +132,7 @@ public interface BanEntry {
      * @param expiration 新的封禁过期时间, null则表示永不过期
      * @see #save() 保存更改
      */
-    public void setExpiration(Date expiration);
+    public void setExpiration(@Nullable Date expiration);
 
     /**
      * 获取此次封禁的理由. 
@@ -135,6 +141,7 @@ public interface BanEntry {
      *
      * @return 封禁理由, null为尚未设置, 使用默认值
      */
+    @Nullable
     public String getReason();
 
     /**
@@ -145,7 +152,7 @@ public interface BanEntry {
      * @param reason 新的封禁理由, null表示使用默认值
      * @see #save() 保存更改
      */
-    public void setReason(String reason);
+    public void setReason(@Nullable String reason);
 
     /**
      * 保存这个封禁条目, 将覆盖在封禁列表里的数据. 

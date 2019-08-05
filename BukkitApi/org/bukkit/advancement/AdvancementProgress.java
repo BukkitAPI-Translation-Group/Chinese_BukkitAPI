@@ -2,6 +2,8 @@ package org.bukkit.advancement;
 
 import java.util.Collection;
 import java.util.Date;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 玩家达成一个进度的状态. 这个类不是指针安全的，因为底层的进度可能会被重载.
@@ -16,6 +18,7 @@ public interface AdvancementProgress {
      *
      * @return 相应的进度
      */
+    @NotNull
     Advancement getAdvancement();
 
     /**
@@ -35,7 +38,7 @@ public interface AdvancementProgress {
      * @param criteria 要标记的条件
      * @return 若操作成功返回true，若条件不存在或已经达到返回false
      */
-    boolean awardCriteria(String criteria);
+    boolean awardCriteria(@NotNull String criteria);
 
     /**
      * 标记指定的条件为未完成的条件.
@@ -45,7 +48,7 @@ public interface AdvancementProgress {
      * @param criteria 要标记的条件
      * @return 若移除条件成功返回true，若条件不存在或还未达到返回false
      */
-    boolean revokeCriteria(String criteria);
+    boolean revokeCriteria(@NotNull String criteria);
 
     /**
      * 获取指定条件被授予的日期.
@@ -55,7 +58,8 @@ public interface AdvancementProgress {
      * @param criteria 要检查的条件
      * @return 条件被授予的时间，如果条件不存在或还未达到则为null
      */
-    Date getDateAwarded(String criteria);
+    @Nullable
+    Date getDateAwarded(@NotNull String criteria);
 
     /**
      * 获取达成某一进度还未达到的条件(剩余的条件).
@@ -64,6 +68,7 @@ public interface AdvancementProgress {
      *
      * @return 剩余的条件的不可编辑的副本
      */
+    @NotNull
     Collection<String> getRemainingCriteria();
 
     /**
@@ -73,5 +78,6 @@ public interface AdvancementProgress {
      *
      * @return 已达到的条件的不可编辑的副本
      */
+    @NotNull
     Collection<String> getAwardedCriteria();
 }

@@ -1,14 +1,14 @@
 package org.bukkit.block;
 
+import java.util.List;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
-
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表旗帜(快照)/Represents a captured state of a banner.
  */
-public interface Banner extends BlockState {
+public interface Banner extends TileState {
 
     /**
      * 返回这个旗帜的底色.
@@ -18,6 +18,7 @@ public interface Banner extends BlockState {
      *
      * @return 底色
      */
+    @NotNull
     DyeColor getBaseColor();
 
     /**
@@ -31,7 +32,7 @@ public interface Banner extends BlockState {
      *
      * @param color 底色
      */
-    void setBaseColor(DyeColor color);
+    void setBaseColor(@NotNull DyeColor color);
 
     /**
      * 返回这个旗帜的图案.
@@ -41,6 +42,7 @@ public interface Banner extends BlockState {
      *
      * @return 图案
      */
+    @NotNull
     List<Pattern> getPatterns();
 
     /**
@@ -51,7 +53,7 @@ public interface Banner extends BlockState {
      *
      * @param patterns 新的图案列表
      */
-    void setPatterns(List<Pattern> patterns);
+    void setPatterns(@NotNull List<Pattern> patterns);
 
     /**
      * 在现有的图案上添加一个图案.
@@ -62,7 +64,7 @@ public interface Banner extends BlockState {
      *
      * @param pattern 要添加的新的图案
      */
-    void addPattern(Pattern pattern);
+    void addPattern(@NotNull Pattern pattern);
 
     /**
      * 返回这个图案指定的索引处.
@@ -73,6 +75,7 @@ public interface Banner extends BlockState {
      * @param i 索引
      * @return 图案
      */
+    @NotNull
     Pattern getPattern(int i);
 
     /**
@@ -84,6 +87,7 @@ public interface Banner extends BlockState {
      * @param i 索引
      * @return 移除的图案
      */
+    @NotNull
     Pattern removePattern(int i);
 
     /**
@@ -95,7 +99,7 @@ public interface Banner extends BlockState {
      * @param i 索引
      * @param pattern 新的图案
      */
-    void setPattern(int i, Pattern pattern);
+    void setPattern(int i, @NotNull Pattern pattern);
 
     /**
      * 返回在这个旗帜上的图案的编号.

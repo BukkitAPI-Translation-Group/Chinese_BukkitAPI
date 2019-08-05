@@ -1,9 +1,11 @@
 package org.bukkit.util.io;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+
 /**
  * 这个类旨在用于与 {@link ConfigurationSerializable} API 一起使用.
  * 它把对象转换为其内部表示,之后便可使用 {@link BukkitObjectInputStream} 反序列化.

@@ -3,7 +3,7 @@ package org.bukkit.entity;
 /**
  * 代表一个有年龄和繁殖能力的实体.
  */
-public interface Ageable extends Creature {    
+public interface Ageable extends Creature {
     /**
      * 获取这只动物的年龄.
      * <p>
@@ -70,7 +70,7 @@ public interface Ageable extends Creature {
      * @return 如果动物成年，则返回true
      */
     public boolean isAdult();
-    
+
     /**
      * 返回动物是否具有繁殖能力.
      * <p>

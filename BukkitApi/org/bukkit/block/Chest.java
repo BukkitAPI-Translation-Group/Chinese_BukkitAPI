@@ -1,13 +1,13 @@
 package org.bukkit.block;
 
-import org.bukkit.Nameable;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.loot.Lootable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个箱子(快照).
  */
-public interface Chest extends Container, Nameable, Lootable {
+public interface Chest extends Container, Lootable {
 
     /**
      * 返回箱子类型的物品栏.
@@ -30,6 +30,7 @@ public interface Chest extends Container, Nameable, Lootable {
      *
      * @return 箱子类型的物品栏
      */
+    @NotNull
     Inventory getBlockInventory();
 }
 

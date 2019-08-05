@@ -1,5 +1,7 @@
 package org.bukkit;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 代表成就.
  * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
@@ -284,7 +286,7 @@ public enum Achievement {
         parent = null;
     }
 
-    private Achievement(Achievement parent) {
+    private Achievement(/*@Nullable*/ Achievement parent) {
         this.parent = parent;
     }
 
@@ -308,6 +310,7 @@ public enum Achievement {
      *
      * @return 父成就,不存在则为null
      */
+    @Nullable
     public Achievement getParent() {
         return parent;
     }

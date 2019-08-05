@@ -2,6 +2,9 @@ package org.bukkit.block.banner;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public enum PatternType {
     BASE("b"),
@@ -42,7 +45,8 @@ public enum PatternType {
     BRICKS("bri"),
     SKULL("sku"),
     FLOWER("flo"),
-    MOJANG("moj");
+    MOJANG("moj"),
+    GLOBE("glb");
 
     private final String identifier;
     private static final Map<String, PatternType> byString = new HashMap<String, PatternType>();
@@ -53,7 +57,7 @@ public enum PatternType {
         }
     }
 
-    private PatternType(String key) {
+    private PatternType(/*@NotNull*/ String key) {
         this.identifier = key;
     }
 
@@ -66,6 +70,7 @@ public enum PatternType {
      *
      * @return 图案的标识符
      */
+    @NotNull
     public String getIdentifier() {
         return identifier;
     }
@@ -80,7 +85,9 @@ public enum PatternType {
      * @param identifier 标识符
      * @return 匹配的图案类型或为null
      */
-    public static PatternType getByIdentifier(String identifier) {
+    @Contract("null -> null")
+    @Nullable
+    public static PatternType getByIdentifier(@Nullable String identifier) {
         return byString.get(identifier);
     }
 }

@@ -1,5 +1,8 @@
 package org.bukkit.attribute;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 用于表示一个可以包含属性的对象
  */
@@ -15,5 +18,6 @@ public interface Attributable {
      * @param attribute Attribute实例
      * @return 这个方法会返回一个AttributeInstance,如果不适用于此对象,将返回null
      */
-    AttributeInstance getAttribute(Attribute attribute);
+    @Nullable
+    AttributeInstance getAttribute(@NotNull Attribute attribute);
 }

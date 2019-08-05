@@ -1,9 +1,11 @@
 package org.bukkit.util.io;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.ObjectInputStream;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
+
 /**
  * 这个类旨在用于与 {@link ConfigurationSerializable} API 一起使用.
  * 它将对象转换回被 {@link BukkitObjectInputStream} 序列化之前的原始表示.

@@ -1,6 +1,7 @@
 package org.bukkit.block;
 
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表方块的朝向.
@@ -83,6 +84,7 @@ public enum BlockFace {
      *
      * @return the normal vector
      */
+    @NotNull
     public Vector getDirection() {
         Vector direction = new Vector(modX, modY, modZ);
         if (modX != 0 || modY != 0 || modZ != 0) {
@@ -91,6 +93,7 @@ public enum BlockFace {
         return direction;
     }
 
+    @NotNull
     public BlockFace getOppositeFace() {
         switch (this) {
         case NORTH:

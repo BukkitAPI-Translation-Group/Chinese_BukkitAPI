@@ -2,6 +2,8 @@ package org.bukkit;
 
 import java.util.Date;
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 一个封禁列表，包含了一些{@link Type 封禁类型}
@@ -35,7 +37,8 @@ public interface BanList {
      * @param target 封禁目标(IP地址或玩家名)
      * @return 这个封禁的BanEntry。如果没有则返回null
      */
-    public BanEntry getBanEntry(String target);
+    @Nullable
+    public BanEntry getBanEntry(@NotNull String target);
 
     /**
      * 添加一个封禁到这个列表。如果以前的封禁存在，这将更新以前的封禁.
@@ -49,7 +52,8 @@ public interface BanList {
      * @param source 封禁来源，null则使用默认
      * @return 新创建的封禁条目，或为更新之前的封禁
      */
-    public BanEntry addBan(String target, String reason, Date expires, String source);
+    @Nullable
+    public BanEntry addBan(@NotNull String target, @Nullable String reason, @Nullable Date expires, @Nullable String source);
 
     /**
      * 获取此列表包含的所有{@link BanEntry}.
@@ -59,6 +63,7 @@ public interface BanList {
      *
      * @return 包含了通过此列表跟踪的每个BanEntry的一个不可变列表
      */
+    @NotNull
     public Set<BanEntry> getBanEntries();
 
     /**
@@ -71,7 +76,7 @@ public interface BanList {
      * @param target 寻找的目标
      * @return 如果{@link BanEntry}存在这个名称则表示被封禁了，否则为false
      */
-    public boolean isBanned(String target);
+    public boolean isBanned(@NotNull String target);
 
     /**
      * 从列表中移除指定目标，因此表示“无封禁”的状态(即解除封禁).
@@ -82,5 +87,5 @@ public interface BanList {
      *
      * @param target 从这个列表移除的目标(解除封禁)
      */
-    public void pardon(String target);
+    public void pardon(@NotNull String target);
 }
