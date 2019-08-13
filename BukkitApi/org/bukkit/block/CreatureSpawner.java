@@ -1,11 +1,12 @@
 package org.bukkit.block;
 
 import org.bukkit.entity.EntityType;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个刷怪笼(快照).
  */
-public interface CreatureSpawner extends BlockState {
+public interface CreatureSpawner extends TileState {
 
     /**
      * 获取刷怪笼的类型.
@@ -15,6 +16,7 @@ public interface CreatureSpawner extends BlockState {
      *
      * @return 刷怪笼的类型.
      */
+    @NotNull
     public EntityType getSpawnedType();
 
     /**
@@ -25,7 +27,7 @@ public interface CreatureSpawner extends BlockState {
      *
      * @param creatureType 刷怪笼的类型.
      */
-    public void setSpawnedType(EntityType creatureType);
+    public void setSpawnedType(@NotNull EntityType creatureType);
 
     /**
      * 设置刷怪笼要生成的生物类型.
@@ -38,7 +40,7 @@ public interface CreatureSpawner extends BlockState {
      * {@link #setSpawnedType(org.bukkit.entity.EntityType)}.
      */
     @Deprecated
-    public void setCreatureTypeByName(String creatureType);
+    public void setCreatureTypeByName(@NotNull String creatureType);
 
     /**
      * 获取要刷出的生物的名称.
@@ -50,6 +52,7 @@ public interface CreatureSpawner extends BlockState {
      * @deprecated 不安全的参数，请使用{@link #getSpawnedType()}.
      */
     @Deprecated
+    @NotNull
     public String getCreatureTypeName();
 
     /**

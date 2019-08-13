@@ -3,6 +3,7 @@ package org.bukkit.block;
 import org.bukkit.Nameable;
 import org.bukkit.loot.Lootable;
 import org.bukkit.projectiles.BlockProjectileSource;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个发射器(快照).
@@ -23,6 +24,7 @@ public interface Dispenser extends Container, Nameable, Lootable {
      * @return 如果一个BlockProjectileSource对象有效将返回,否则返回null
      * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种表示而未应用到实际的方块上)
      */
+    @Nullable
     public BlockProjectileSource getBlockProjectileSource();
 
     /**

@@ -4,6 +4,7 @@ import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.Directional;
 import org.bukkit.block.data.Openable;
 import org.bukkit.block.data.Powerable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 'hinge'数据值表示门的门轴依靠哪一边，并且开关门时会旋转.
@@ -17,6 +18,7 @@ public interface Door extends Bisected, Directional, Openable, Powerable {
      *
      * @return 门轴依靠哪一侧
      */
+    @NotNull
     Hinge getHinge();
 
     /**
@@ -26,7 +28,7 @@ public interface Door extends Bisected, Directional, Openable, Powerable {
      *
      * @param hinge 门轴依靠哪一侧
      */
-    void setHinge(Hinge hinge);
+    void setHinge(@NotNull Hinge hinge);
 
     /**
      * 门轴.

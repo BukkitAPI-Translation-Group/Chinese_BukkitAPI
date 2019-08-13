@@ -2,6 +2,7 @@ package org.bukkit.block.data;
 
 import java.util.Set;
 import org.bukkit.block.BlockFace;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 'facing'代表方块的朝向.
@@ -18,6 +19,7 @@ public interface Directional extends BlockData {
      *
      * @return 方块朝向属性
      */
+    @NotNull
     BlockFace getFacing();
 
     /**
@@ -27,7 +29,7 @@ public interface Directional extends BlockData {
      *
      * @param facing 方块的朝向
      */
-    void setFacing(BlockFace facing);
+    void setFacing(@NotNull BlockFace facing);
 
     /**
      * 获取可应用于此方块的朝向.
@@ -36,5 +38,6 @@ public interface Directional extends BlockData {
      *
      * @return 允许的朝向值
      */
+    @NotNull
     Set<BlockFace> getFaces();
 }

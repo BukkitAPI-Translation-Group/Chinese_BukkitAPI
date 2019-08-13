@@ -1,6 +1,7 @@
 package org.bukkit.block.data;
 
 import org.bukkit.block.BlockFace;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 'rotation'表示方块的旋转方向.
@@ -14,6 +15,7 @@ public interface Rotatable extends BlockData {
      *
      * @return 方块的旋转方向
      */
+    @NotNull
     BlockFace getRotation();
 
     /**
@@ -23,5 +25,5 @@ public interface Rotatable extends BlockData {
      *
      * @param rotation 方块的旋转方向
      */
-    void setRotation(BlockFace rotation);
+    void setRotation(@NotNull BlockFace rotation);
 }

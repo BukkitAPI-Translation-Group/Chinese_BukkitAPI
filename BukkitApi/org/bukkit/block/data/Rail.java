@@ -1,6 +1,7 @@
 package org.bukkit.block.data;
 
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 'shape'数据值表示此铁轨的形态(铁轨连接方向).
@@ -17,6 +18,7 @@ public interface Rail extends BlockData {
      *
      * @return 铁轨的形态
      */
+    @NotNull
     Shape getShape();
 
     /**
@@ -26,7 +28,7 @@ public interface Rail extends BlockData {
      *
      * @param shape 铁轨的形态
      */
-    void setShape(Shape shape);
+    void setShape(@NotNull Shape shape);
 
     /**
      * 获取适用于此铁轨的形态.
@@ -35,6 +37,7 @@ public interface Rail extends BlockData {
      *
      * @return 适用于此铁轨的形态
      */
+    @NotNull
     Set<Shape> getShapes();
 
     /**

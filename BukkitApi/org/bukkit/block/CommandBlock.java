@@ -1,9 +1,12 @@
 package org.bukkit.block;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 代表命令方块(快照)/Represents a captured state of a command block.
  */
-public interface CommandBlock extends BlockState {
+public interface CommandBlock extends TileState {
 
     /**
      * 获取这个命令方块激活时运行的命令。本方法不会返回null，若此命令方块还没有设置命令，会返回空字符.
@@ -14,6 +17,7 @@ public interface CommandBlock extends BlockState {
      *
      * @return 当激活时这个命令方块将要运行的命令
      */
+    @NotNull
     public String getCommand();
 
     /**
@@ -25,7 +29,7 @@ public interface CommandBlock extends BlockState {
      *
      * @param command 当激活时这个命令方块将要运行的命令
      */
-    public void setCommand(String command);
+    public void setCommand(@Nullable String command);
 
     /**
      * 获取这个命令方块的名字.这个名字被用于命令方块执行命令。这个名字永远不会为空，默认为“@”.
@@ -36,6 +40,7 @@ public interface CommandBlock extends BlockState {
      *
      * @return 这个命令方块的名字
      */
+    @NotNull
     public String getName();
 
     /**
@@ -47,5 +52,5 @@ public interface CommandBlock extends BlockState {
      *
      * @param name 这个命令方块的新名字
      */
-    public void setName(String name);
+    public void setName(@Nullable String name);
 }

@@ -2,6 +2,8 @@ package org.bukkit.block.data;
 
 import org.bukkit.Material;
 import org.bukkit.Server;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface BlockData extends Cloneable {
 
@@ -12,6 +14,7 @@ public interface BlockData extends Cloneable {
      *
      * @return 物品
      */
+    @NotNull
     Material getMaterial();
 
     /**
@@ -24,6 +27,7 @@ public interface BlockData extends Cloneable {
      *
      * @return 方块序列化的数据值
      */
+    @NotNull
     String getAsString();
 
     /**
@@ -52,6 +56,7 @@ public interface BlockData extends Cloneable {
      *
      * @return serialized data string for this block
      */
+    @NotNull
     String getAsString(boolean hideUnspecified);
 
     /**
@@ -66,7 +71,8 @@ public interface BlockData extends Cloneable {
      * @param data the data to merge from
      * @return a new instance of this blockdata with the merged data
      */
-    BlockData merge(BlockData data);
+    @NotNull
+    BlockData merge(@NotNull BlockData data);
 
     /**
      * Checks if the specified BlockData matches this block data.
@@ -83,7 +89,7 @@ public interface BlockData extends Cloneable {
      * @param data the data to match against (normally a parsed constant)
      * @return if there is a match
      */
-    boolean matches(BlockData data);
+    boolean matches(@Nullable BlockData data);
 
     /**
      * 返回该BlockData实例的副本.
@@ -92,5 +98,6 @@ public interface BlockData extends Cloneable {
      *
      * @return BlockData副本
      */
+    @NotNull
     BlockData clone();
 }

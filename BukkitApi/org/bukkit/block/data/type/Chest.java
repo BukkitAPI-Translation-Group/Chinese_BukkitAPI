@@ -2,6 +2,7 @@ package org.bukkit.block.data.type;
 
 import org.bukkit.block.data.Directional;
 import org.bukkit.block.data.Waterlogged;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 'type'数据值表示这个方块是大型箱子的哪一部分，亦或是它为一个独立的箱子.
@@ -15,6 +16,7 @@ public interface Chest extends Directional, Waterlogged {
      *
      * @return 'type'数据值
      */
+    @NotNull
     Type getType();
 
     /**
@@ -24,7 +26,7 @@ public interface Chest extends Directional, Waterlogged {
      *
      * @param type 'type'数据值
      */
-    void setType(Type type);
+    void setType(@NotNull Type type);
 
     /**
      * 箱子方块的类型.
