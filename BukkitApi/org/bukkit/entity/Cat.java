@@ -17,7 +17,7 @@ public interface Cat extends Animals, Tameable, Sittable {
      * 原文：
      * Gets the current type of this cat.
      *
-     * @return 猫的类型.
+     * @return 猫的类型
      */
     @NotNull
     public Type getCatType();
@@ -28,7 +28,7 @@ public interface Cat extends Animals, Tameable, Sittable {
      * 原文：
      * Sets the current type of this cat.
      *
-     * @param type 为这只猫设置的新类型.
+     * @param type 为这只猫设置的新类型
      */
     public void setCatType(@NotNull Type type);
 
@@ -38,7 +38,7 @@ public interface Cat extends Animals, Tameable, Sittable {
      * 原文:
      * Get the collar color of this cat
      *
-     * @return 项圈的颜色.
+     * @return 项圈的颜色
      */
     @NotNull
     public DyeColor getCollarColor();
@@ -49,7 +49,7 @@ public interface Cat extends Animals, Tameable, Sittable {
      * 原文:
      * Set the collar color of this cat
      *
-     * @param color 要设置的颜色.
+     * @param color 要设置的颜色
      */
     public void setCollarColor(@NotNull DyeColor color);
 
