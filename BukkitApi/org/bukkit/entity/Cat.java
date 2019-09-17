@@ -12,23 +12,23 @@ import org.jetbrains.annotations.NotNull;
 public interface Cat extends Animals, Tameable, Sittable {
 
     /**
-     * 获取这只猫的当前类型.
+     * 获取这只猫的品种.
      * <p>
      * 原文：
      * Gets the current type of this cat.
      *
-     * @return 猫的类型
+     * @return 猫的品种
      */
     @NotNull
     public Type getCatType();
 
     /**
-     * 设置这只猫的当前类型.
+     * 设置这只猫的品种.
      * <p>
      * 原文：
      * Sets the current type of this cat.
      *
-     * @param type 为这只猫设置的新类型
+     * @param type 为这只猫设置的新品种
      */
     public void setCatType(@NotNull Type type);
 
@@ -54,7 +54,7 @@ public interface Cat extends Animals, Tameable, Sittable {
     public void setCollarColor(@NotNull DyeColor color);
 
     /**
-     * 代表了各种猫的类型.
+     * 代表了各种猫的品种.
      * <p>
      * Represents the various different cat types there are.
      */
