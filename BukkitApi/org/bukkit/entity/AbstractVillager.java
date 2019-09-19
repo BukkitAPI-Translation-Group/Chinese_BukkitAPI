@@ -15,7 +15,8 @@ public interface AbstractVillager extends Ageable, NPC, InventoryHolder, Merchan
 
     /**
      * 获得这个村民的物品栏.
-     * 注意这个物品栏不是商人村民交易的物品, 而是村民收集的物品(收割庄稼)
+     * <br>
+     * 注意这个物品栏不是商人村民交易的物品, 而是村民收集的物品(收割庄稼).
      * <p>
      * 原文:
      * Gets this villager's inventory.
