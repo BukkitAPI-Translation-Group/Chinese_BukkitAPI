@@ -27,7 +27,7 @@ public interface Fox extends Animals, Sittable {
      * 原文:
      * Sets the current type of this fox.
      *
-     * @param type New type of this fox.
+     * @param type 要设置的新品种.
      */
     public void setFoxType(@NotNull Type type);
 
@@ -47,7 +47,7 @@ public interface Fox extends Animals, Sittable {
      * 原文:
      * Sets if this animal is crouching.
      *
-     * @param 设置为true则蜷缩.
+     * @param crouching 设置为true则蜷缩.
      */
     void setCrouching(boolean crouching);
 
@@ -57,12 +57,12 @@ public interface Fox extends Animals, Sittable {
      * 原文:
      * Sets if this animal is sleeping.
      *
-     * @param 设置为true则进入睡觉状态
+     * @param sleeping 设置为true则进入睡眠状态
      */
     void setSleeping(boolean sleeping);
 
     /**
-     * 代表许多的狐狸品种.
+     * 代表各种狐狸品种.
      * <p>
      * 原文:
      * Represents the various different fox types there are.
