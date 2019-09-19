@@ -1,11 +1,17 @@
 # Bukkit 中文文档
 ![Logo](Chinese_BukkitAPI.png)
 
-**提示：** 该分支(master)用于进行**Bukkit 1.13**及以上版本的翻译工作，目前，1.12.2版本继续维护(暂更时间未定)，若要关注Bukkit 1.12.2版本，请前往[1.12.2分支](https://github.com/BukkitAPI-Translation-Group/Chinese_BukkitAPI/tree/1.12.2)。
+**提示：** 该分支(master)用于进行**Bukkit 1.13**及以上版本的翻译工作。
 
-文档地址：[1.12.2版本](https://docs.windit.net/Chinese_BukkitAPI/) | [1.13及以上版本](https://bukkit.windit.net/javadoc/) (链接可用于IDE)
+限于作者精力，1.12.2版本已于2019.9.19正式停更，且不再提供1.12.2版本的在线文档。
+
+您依然可以前往[1.12.2分支](https://github.com/BukkitAPI-Translation-Group/Chinese_BukkitAPI/tree/1.12.2)查看相关代码，但不对历史文档中的错误负责。
+
+文档地址：<https://bukkit.windit.net/javadoc/> (可以应用于IDE，在IDE中实时预览)
 
 离线版：[1.12.2版本](https://dr.windit.net/release.zip) | [1.13及以上版本](https://dr.windit.net/master.zip)
+
+宣传：欢迎加入汉化组开发讨论QQ群：459574218。您可以与业内各界人士畅谈coding经验与想法
 
 **遇到问题请发Issues或PR，以帮助我们解决相关问题。**
 # 项目说明
