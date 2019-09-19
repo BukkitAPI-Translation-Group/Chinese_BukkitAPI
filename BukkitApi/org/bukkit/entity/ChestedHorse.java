@@ -26,7 +26,7 @@ public interface ChestedHorse extends AbstractHorse {
      * Sets whether the horse has a chest equipped. Removing a chest will also
      * clear the chest's inventory.
      *
-     * @param 设置为true则此马将拥有箱子
+     * @param chest 设置为true则此马将拥有箱子
      */
     public void setCarryingChest(boolean chest);
 }
