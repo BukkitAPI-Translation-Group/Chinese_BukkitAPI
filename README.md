@@ -6,7 +6,7 @@
 您依然可以前往[1.12.2分支](https://github.com/BukkitAPI-Translation-Group/Chinese_BukkitAPI/tree/1.12.2)查看相关代码，但不对历史文档中的错误负责。  
 文档地址：<https://bukkit.windit.net/javadoc/> (可以应用于IDE，在IDE中实时预览)  
 离线版：[1.12.2版本](https://dr.windit.net/release.zip) | [1.13及以上版本](https://dr.windit.net/master.zip)  
-宣传：欢迎加入汉化组开发讨论QQ群：459574218。您可以与业内各界人士畅谈coding经验与想法  
+宣传：欢迎加入汉化组开发讨论QQ群：459574218。您可以与业内各界人士畅谈coding经验与想法. (加群注明来源:`来自github代码仓库`)  
 **遇到问题请发Issues或PR，以帮助我们解决相关问题。**
 # 项目说明
 本项目的目标是翻译BukkitAPI的Javadoc，推进中国原创MC插件的发展，项目由andylizi发起。
