@@ -33,12 +33,14 @@ public interface Creeper extends Monster {
      * is the amount of time in which a creeper is allowed to be in the 
      * primed state before exploding.
      *
-     * @param 新的点燃状态的最大tick值
+     * @param ticks 新的点燃状态的最大tick值
      */
     public void setMaxFuseTicks(int ticks);
 
     /**
      * 获得此爬行者的点燃状态tick值, 此tick值为爬行者爆炸前点燃状态的维持时间.
+     * <p>
+     * 原文:
      * Get the maximum fuse ticks for this Creeper, where the maximum ticks 
      * is the amount of time in which a creeper is allowed to be in the 
      * primed state before exploding.
@@ -53,7 +55,7 @@ public interface Creeper extends Monster {
      * 原文:
      * Set the explosion radius in which this Creeper's explosion will affect.
      *
-     * @param 新的爆炸半径
+     * @param radius 新的爆炸半径
      */
     public void setExplosionRadius(int radius);
 
