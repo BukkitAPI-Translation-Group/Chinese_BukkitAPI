@@ -61,7 +61,7 @@ public interface AbstractArrow extends Projectile {
     public void setDamage(double damage);
 
     /**
-     * 获得此弓箭能够穿透实体的次数.
+     * 获得此箭能够穿透实体的次数.
      * <p>
      * 原文:
      * Gets the number of times this arrow can pierce through an entity.
@@ -71,7 +71,7 @@ public interface AbstractArrow extends Projectile {
     public int getPierceLevel();
 
     /**
-     * 设置此弓箭能够穿透实体的次数.
+     * 设置此箭能够穿透实体的次数.
      *
      * 必须在 0 至 127 次之间.
      * <p>
@@ -85,7 +85,7 @@ public interface AbstractArrow extends Projectile {
     public void setPierceLevel(int pierceLevel);
 
     /**
-     * 获得此弓箭是否能造成暴击.
+     * 获得此箭是否能造成暴击.
      * <p>
      * 暴击箭将会增加伤害并产生粒子效果.
      * <p>
@@ -99,7 +99,7 @@ public interface AbstractArrow extends Projectile {
      * Critical arrows generally occur when a player fully draws a bow before
      * firing.
      *
-     * @return 如果暴击, 返回true
+     * @return 暴击返回true
      */
     public boolean isCritical();
 
@@ -128,41 +128,63 @@ public interface AbstractArrow extends Projectile {
     public boolean isInBlock();
 
     /**
+     * 获得这支箭连接的方块.
+     * 译注:箭插在方块上, 这个方块就是箭连接的方块.
+     * <p>
+     * 原文:
      * Gets the block to which this arrow is attached.
      *
-     * @return the attached block or null if not attached
+     * @return 返回所连接的方块, 否则返回null
      */
     @Nullable
     public Block getAttachedBlock();
 
     /**
+     * 获得此箭的拾起状态.
+     * <p>
+     * 原文:
      * Gets the current pickup status of this arrow.
      *
-     * @return the pickup status of this arrow.
+     * @return 这只箭的拾起状态.
      */
     @NotNull
     public PickupStatus getPickupStatus();
 
     /**
+     * 设置此箭的拾起状态.
+     * <p>
+     * 原文:
      * Sets the current pickup status of this arrow.
      *
-     * @param status new pickup status of this arrow.
+     * @param status 新的拾起状态.
      */
     public void setPickupStatus(@NotNull PickupStatus status);
 
     /**
+     * 代表拾起状态.
+     * <p>
+     * 原文:
      * Represents the pickup status of this arrow.
      */
     public enum PickupStatus {
         /**
+         * 不允许被拾起.
+         * <p>
+         * 原文:
          * The arrow cannot be picked up.
          */
         DISALLOWED,
         /**
+         * 允许被拾起.
+         * <p>
+         * 原文:
          * The arrow can be picked up.
          */
         ALLOWED,
         /**
+         * 只能被创造模式的玩家拾起.
+         * <p>
+         * 原文:
          * The arrow can only be picked up by players in creative mode.
          */
         CREATIVE_ONLY
