@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a polar bear.
+ * 代表北极熊.
  */
 public interface PolarBear extends Animals {}
