@@ -1,37 +1,37 @@
 package org.bukkit.entity;
 
 /**
- * Represents an entity body pose.
+ * 代表生物的动作与姿态.
  */
 public enum Pose {
 
     /**
-     * Entity is standing normally.
+     * 生物普通站立姿态.
      *
      */
     STANDING,
     /**
-     * Entity is gliding.
+     * 生物正在滑翔.
      */
     FALL_FLYING,
     /**
-     * Entity is sleeping.
+     * 生物处于睡梦中...
      */
     SLEEPING,
     /**
-     * Entity is swimming.
+     * 生物在游泳.
      */
     SWIMMING,
     /**
-     * Entity is riptiding with a trident.
+     * 生物使用三叉戟在水/雨/雪中激流(快速移动).
      */
     SPIN_ATTACK,
     /**
-     * Entity is sneaking.
+     * 生物正在潜行.
      */
     SNEAKING,
     /**
-     * Entity is dead.
+     * 生物死亡倒地.
      */
     DYING;
 }
