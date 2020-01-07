@@ -36,10 +36,10 @@ function showAnnouncement() {
 			return;
 		}
 		swal({
-			title: "公告",
+			title: response.title,
 			html: true,
 			text: response.message,
-			confirmButtonText: "知道了(本公告将不再提示)"
+			confirmButtonText: "Get√(本公告将不再提示)"
 		}, function () {
 			Cookies.set("ignored_announcement", response.lastUpdated, { expires: 30 });
 		});
