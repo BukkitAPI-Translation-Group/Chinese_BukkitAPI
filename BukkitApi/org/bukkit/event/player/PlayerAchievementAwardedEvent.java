@@ -21,7 +21,7 @@ public class PlayerAchievementAwardedEvent extends PlayerEvent implements Cancel
     }
 
     /**
-     * 获得次玩家被授予的成就.
+     * 获得授予给此玩家的成就.
      * <p>
      * 原文:Gets the Achievement being awarded.
      *
