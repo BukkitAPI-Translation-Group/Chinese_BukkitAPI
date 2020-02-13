@@ -1,6 +1,8 @@
 package org.bukkit.command;
 
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表可以为命令提供补全建议的类.
@@ -18,5 +20,6 @@ public interface TabCompleter {
      * @param args 传递给这个命令的参数，包括用来补全的部分最终参数和命令别名
      * @return 可能的最终补全参数列表(就是list里都是已经补全了的)，或为null则传递给命令执行器
      */
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args);
+    @Nullable
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args);
 }

@@ -1,5 +1,6 @@
 package org.bukkit.command.defaults;
 
+import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -7,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
-
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.Validate;
@@ -21,8 +21,8 @@ import org.bukkit.help.HelpTopic;
 import org.bukkit.help.HelpTopicComparator;
 import org.bukkit.help.IndexHelpTopic;
 import org.bukkit.util.ChatPaginator;
-
-import com.google.common.collect.ImmutableList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class HelpCommand extends BukkitCommand {
     public HelpCommand() {
@@ -34,7 +34,7 @@ public class HelpCommand extends BukkitCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String currentAlias, String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String currentAlias, @NotNull String[] args) {
         if (!testPermission(sender)) return true;
 
         String command;
@@ -111,8 +111,9 @@ public class HelpCommand extends BukkitCommand {
         return true;
     }
 
+    @NotNull
     @Override
-    public List<String> tabComplete(CommandSender sender, String alias, String[] args) {
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(args, "Arguments cannot be null");
         Validate.notNull(alias, "Alias cannot be null");
@@ -132,7 +133,8 @@ public class HelpCommand extends BukkitCommand {
         return ImmutableList.of();
     }
 
-    protected HelpTopic findPossibleMatches(String searchString) {
+    @Nullable
+    protected HelpTopic findPossibleMatches(@NotNull String searchString) {
         int maxDistance = (searchString.length() / 5) + 3;
         Set<HelpTopic> possibleMatches = new TreeSet<HelpTopic>(HelpTopicComparator.helpTopicComparatorInstance());
 
@@ -172,7 +174,7 @@ public class HelpCommand extends BukkitCommand {
      * @return The number of substitutions, deletions, insertions, and
      * transpositions required to get from s1 to s2.
      */
-    protected static int damerauLevenshteinDistance(String s1, String s2) {
+    protected static int damerauLevenshteinDistance(@Nullable String s1, @Nullable String s2) {
         if (s1 == null && s2 == null) {
             return 0;
         }

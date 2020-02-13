@@ -1,5 +1,7 @@
 package org.bukkit.command;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface ProxiedCommandSender extends CommandSender {
 
     /**
@@ -9,6 +11,7 @@ public interface ProxiedCommandSender extends CommandSender {
      *
      * @return 命令调用者
      */
+    @NotNull
     CommandSender getCaller();
 
     /**
@@ -18,6 +21,7 @@ public interface ProxiedCommandSender extends CommandSender {
      *
      * @return 调用者正在运行的命令
      */
+    @NotNull
     CommandSender getCallee();
 
 }

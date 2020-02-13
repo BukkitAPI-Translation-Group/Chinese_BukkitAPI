@@ -2,6 +2,7 @@ package org.bukkit.command;
 
 import org.bukkit.Server;
 import org.bukkit.permissions.Permissible;
+import org.jetbrains.annotations.NotNull;
 
 public interface CommandSender extends Permissible {
 
@@ -13,7 +14,7 @@ public interface CommandSender extends Permissible {
      *
      * @param message 要显示的消息
      */
-    public void sendMessage(String message);
+    public void sendMessage(@NotNull String message);
 
     /**
      * 给命令发送者发送多条消息.
@@ -23,7 +24,7 @@ public interface CommandSender extends Permissible {
      *
      * @param messages 要显示的消息(必须为数组)
      */
-    public void sendMessage(String[] messages);
+    public void sendMessage(@NotNull String[] messages);
 
     /**
      * 返回服务器运行此命令的对象.
@@ -33,6 +34,7 @@ public interface CommandSender extends Permissible {
      *
      * @return 服务器对象
      */
+    @NotNull
     public Server getServer();
 
     /**
@@ -43,5 +45,6 @@ public interface CommandSender extends Permissible {
      *
      * @return 发送者的名字
      */
+    @NotNull
     public String getName();
 }

@@ -1,9 +1,10 @@
 package org.bukkit.command;
 
 import java.util.List;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表属于某个插件的{@link Command 命令}.
@@ -13,7 +14,7 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
     private CommandExecutor executor;
     private TabCompleter completer;
 
-    protected PluginCommand(String name, Plugin owner) {
+    protected PluginCommand(@NotNull String name, @NotNull Plugin owner) {
         super(name);
         this.executor = owner;
         this.owningPlugin = owner;
@@ -31,7 +32,7 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      * @return 如果命令执行成功则为true，false反之
      */
     @Override
-    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
         boolean success = false;
 
         if (!owningPlugin.isEnabled()) {
@@ -64,7 +65,7 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      *
      * @param executor 要运行的新Executor
      */
-    public void setExecutor(CommandExecutor executor) {
+    public void setExecutor(@Nullable CommandExecutor executor) {
         this.executor = executor == null ? owningPlugin : executor;
     }
 
@@ -75,6 +76,7 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      *
      * @return 这个命令关联的{@link CommandExecutor}
      */
+    @NotNull
     public CommandExecutor getExecutor() {
         return executor;
     }
@@ -91,7 +93,7 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      *
      * @param completer 新的TabComplete
      */
-    public void setTabCompleter(TabCompleter completer) {
+    public void setTabCompleter(@Nullable TabCompleter completer) {
         this.completer = completer;
     }
 
@@ -102,6 +104,7 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      *
      * @return 与这个命令关联的{@link TabCompleter}
      */
+    @Nullable
     public TabCompleter getTabCompleter() {
         return completer;
     }
@@ -113,6 +116,8 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      *
      * @return 拥有这个命令的插件
      */
+    @Override
+    @NotNull
     public Plugin getPlugin() {
         return owningPlugin;
     }
@@ -139,8 +144,9 @@ public final class PluginCommand extends Command implements PluginIdentifiableCo
      * @throws CommandException 如果补全器或执行器在补全过程中抛出了异常
      * @throws IllegalArgumentException 如果参数sender, alias, 或 args 是null
      */
+    @NotNull
     @Override
-    public java.util.List<String> tabComplete(CommandSender sender, String alias, String[] args) throws CommandException, IllegalArgumentException {
+    public java.util.List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws CommandException, IllegalArgumentException {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(args, "Arguments cannot be null");
         Validate.notNull(alias, "Alias cannot be null");
