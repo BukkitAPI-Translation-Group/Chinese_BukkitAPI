@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 表示玩家通过装备上的经验修补修复装备耐久时触发该事件
+ * 当玩家通过装备上的经验修补附魔修复装备耐久时触发该事件.
  * <br>
  * 此事件在{@link PlayerExpChangeEvent}之前直接触发，此事件的结果将直接影响{@link PlayerExpChangeEvent}.
  * <p>
@@ -34,7 +34,7 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 将要被修复的{@link ItemStack}
+     * 将要被修复的{@link ItemStack}.
      * <br>
      * 注意: 这不一定是玩家手持的ItemStack.
      * <p>
@@ -61,7 +61,7 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获取物品的修理耐久的数量
+     * 获取物品的修理耐久的数量.
      * <br>
      * 默认值是消耗经验球的经验的两倍或物品上剩余的耐久, 则以较小者为准。
      * <p>
@@ -78,7 +78,7 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 设置物品的修理耐久的数量
+     * 设置物品的修理耐久的数量.
      * <br>
      * 该值的一半将从发起此事件的经验球中减去.
      * <p>
