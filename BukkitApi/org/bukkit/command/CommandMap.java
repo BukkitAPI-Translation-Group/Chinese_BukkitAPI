@@ -2,6 +2,8 @@ package org.bukkit.command;
 
 import java.util.List;
 import org.bukkit.Location;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface CommandMap {
 
@@ -26,7 +28,7 @@ public interface CommandMap {
      * @param fallbackPrefix 预置在命令之前的前缀（即fallbackPrefix:命令，用英文冒号分开，前面的部分就是fallbackPrefix），以使命令独一无二
      * @param commands 要注册的命令的列表
      */
-    public void registerAll(String fallbackPrefix, List<Command> commands);
+    public void registerAll(@NotNull String fallbackPrefix, @NotNull List<Command> commands);
 
     /**
      * 注册一个命令.如果成功返回true，如果名称已被占据、fallback已被使用则返回false.
@@ -53,7 +55,7 @@ public interface CommandMap {
      * @param command 要注册的命令
      * @return 如果用传递的label注册了命令则为true，如果指定的fallbackPrefix已被使用一次或多次则为false
      */
-    public boolean register(String label, String fallbackPrefix, Command command);
+    public boolean register(@NotNull String label, @NotNull String fallbackPrefix, @NotNull Command command);
 
     /**
      * 注册一个命令.如果成功返回true，如果名称已被占据、fallback已被使用则返回false.
@@ -79,7 +81,7 @@ public interface CommandMap {
      * @param command 要注册的命令，从此命令的别名确定
      * @return 如果用传递的label注册了命令则为true，如果指定的fallbackPrefix已被使用一次或多次则为false
      */
-    public boolean register(String fallbackPrefix, Command command);
+    public boolean register(@NotNull String fallbackPrefix, @NotNull Command command);
 
     /**
      * 查找请求的命令并执行，如果找到了。
@@ -91,7 +93,7 @@ public interface CommandMap {
      * @return 如果没有目标找到返回false，true反之
      * @throws CommandException 当给定命令的执行器执行命令时有异常未处理原文则抛出
      */
-    public boolean dispatch(CommandSender sender, String cmdLine) throws CommandException;
+    public boolean dispatch(@NotNull CommandSender sender, @NotNull String cmdLine) throws CommandException;
 
     /**
      * 清除所有已注册命令.
@@ -108,7 +110,8 @@ public interface CommandMap {
      * @param name 要检索的命令名称
      * @return 指定名称的Cimmand，如果不存在指定名称/别名的命令则返回false
      */
-    public Command getCommand(String name);
+    @Nullable
+    public Command getCommand(@NotNull String name);
 
     /**
      * 查找请求的命令并执行适当的tab补全器，如果找到了.
@@ -123,7 +126,8 @@ public interface CommandMap {
      * @throws CommandException 当给定命令的tab补全器处理时有异常未处理则抛出
      * @throws IllegalArgumentException 如果sender或cmdLine其一为null
      */
-    public List<String> tabComplete(CommandSender sender, String cmdLine) throws IllegalArgumentException;
+    @Nullable
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String cmdLine) throws IllegalArgumentException;
 
     /**
      * Looks for the requested command and executes an appropriate
@@ -140,5 +144,6 @@ public interface CommandMap {
      *     command fails with an unhandled exception
      * @throws IllegalArgumentException if either sender or cmdLine are null
      */
-    public List<String> tabComplete(CommandSender sender, String cmdLine, Location location) throws IllegalArgumentException;
+    @Nullable
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String cmdLine, @Nullable Location location) throws IllegalArgumentException;
 }

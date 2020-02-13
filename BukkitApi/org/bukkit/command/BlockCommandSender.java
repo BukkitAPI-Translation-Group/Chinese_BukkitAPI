@@ -1,6 +1,7 @@
 package org.bukkit.command;
 
 import org.bukkit.block.Block;
+import org.jetbrains.annotations.NotNull;
 
 public interface BlockCommandSender extends CommandSender {
 
@@ -12,5 +13,6 @@ public interface BlockCommandSender extends CommandSender {
      *
      * @return 命令发送者的方块
      */
+    @NotNull
     public Block getBlock();
 }

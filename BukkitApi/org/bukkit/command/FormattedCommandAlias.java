@@ -1,24 +1,19 @@
 package org.bukkit.command;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.server.RemoteServerCommandEvent;
-import org.bukkit.event.server.ServerCommandEvent;
+import org.jetbrains.annotations.NotNull;
 
 public class FormattedCommandAlias extends Command {
     private final String[] formatStrings;
 
-    public FormattedCommandAlias(String alias, String[] formatStrings) {
+    public FormattedCommandAlias(@NotNull String alias, @NotNull String[] formatStrings) {
         super(alias);
         this.formatStrings = formatStrings;
     }
 
     @Override
-    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
+    public boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args) {
         boolean result = false;
         ArrayList<String> commands = new ArrayList<String>();
         for (String formatString : formatStrings) {
@@ -41,14 +36,14 @@ public class FormattedCommandAlias extends Command {
         return result;
     }
 
-    private String buildCommand(String formatString, String[] args) {
-        int index = formatString.indexOf("$");
+    private String buildCommand(@NotNull String formatString, @NotNull String[] args) {
+        int index = formatString.indexOf('$');
         while (index != -1) {
             int start = index;
 
             if (index > 0 && formatString.charAt(start - 1) == '\\') {
                 formatString = formatString.substring(0, start - 1) + formatString.substring(start);
-                index = formatString.indexOf("$", index);
+                index = formatString.indexOf('$', index);
                 continue;
             }
 
@@ -72,7 +67,7 @@ public class FormattedCommandAlias extends Command {
                 throw new IllegalArgumentException("Invalid replacement token");
             }
 
-            int position = Integer.valueOf(formatString.substring(argStart, index));
+            int position = Integer.parseInt(formatString.substring(argStart, index));
 
             // Arguments are not 0 indexed
             if (position == 0) {
@@ -112,7 +107,7 @@ public class FormattedCommandAlias extends Command {
             index = start + replacement.length();
 
             // Move to the next replacement token
-            index = formatString.indexOf("$", index);
+            index = formatString.indexOf('$', index);
         }
 
         return formatString;

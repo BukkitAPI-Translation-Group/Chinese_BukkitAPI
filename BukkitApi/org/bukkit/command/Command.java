@@ -1,10 +1,10 @@
 package org.bukkit.command;
 
+import com.google.common.collect.ImmutableList;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,8 +16,8 @@ import org.bukkit.entity.minecart.CommandMinecart;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.util.StringUtil;
-
-import com.google.common.collect.ImmutableList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个命令，在用户输入时执行各种任务.
@@ -28,22 +28,22 @@ public abstract class Command {
     private String label;
     private List<String> aliases;
     private List<String> activeAliases;
-    private CommandMap commandMap = null;
-    protected String description = "";
+    private CommandMap commandMap;
+    protected String description;
     protected String usageMessage;
     private String permission;
     private String permissionMessage;
 
-    protected Command(String name) {
+    protected Command(@NotNull String name) {
         this(name, "", "/" + name, new ArrayList<String>());
     }
 
-    protected Command(String name, String description, String usageMessage, List<String> aliases) {
+    protected Command(@NotNull String name, @NotNull String description, @NotNull String usageMessage, @NotNull List<String> aliases) {
         this.name = name;
         this.nextLabel = name;
         this.label = name;
-        this.description = description;
-        this.usageMessage = usageMessage;
+        this.description = (description == null) ? "" : description;
+        this.usageMessage = (usageMessage == null) ? "/" + name : usageMessage;
         this.aliases = aliases;
         this.activeAliases = new ArrayList<String>(aliases);
     }
@@ -58,7 +58,7 @@ public abstract class Command {
      * @param args 传递给此命令的所有参数，用' '分割
      * @return 如果命令执行成功则位true，false反之
      */
-    public abstract boolean execute(CommandSender sender, String commandLabel, String[] args);
+    public abstract boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args);
 
     /**
      * 执行此命令的tab补全时返回选项列表.
@@ -72,7 +72,8 @@ public abstract class Command {
      * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的.
      * @throws IllegalArgumentException 如果sender, alias, args任意一参数为null
      */
-    public List<String> tabComplete(CommandSender sender, String alias, String[] args) throws IllegalArgumentException {
+    @NotNull
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args) throws IllegalArgumentException {
         return tabComplete0(sender, alias, args, null);
     }
 
@@ -89,11 +90,13 @@ public abstract class Command {
      * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的
      * @throws IllegalArgumentException 如果参数sender, alias或args为null
      */
-    public List<String> tabComplete(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
+    @NotNull
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args, @Nullable Location location) throws IllegalArgumentException {
         return tabComplete(sender, alias, args);
     }
 
-    private List<String> tabComplete0(CommandSender sender, String alias, String[] args, Location location) throws IllegalArgumentException {
+    @NotNull
+    private List<String> tabComplete0(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args, @Nullable Location location) throws IllegalArgumentException {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(args, "Arguments cannot be null");
         Validate.notNull(alias, "Alias cannot be null");
@@ -125,6 +128,7 @@ public abstract class Command {
      *
      * @return 这个命令的名称
      */
+    @NotNull
     public String getName() {
         return name;
     }
@@ -145,9 +149,9 @@ public abstract class Command {
      * @param name 新的命令名称
      * @return 如果新的名称被更改返回true，命令已被注册返回false
      */
-    public boolean setName(String name) {
+    public boolean setName(@NotNull String name) {
         if (!isRegistered()) {
-            this.name = name;
+            this.name = (name == null) ? "" : name;
             return true;
         }
         return false;
@@ -161,6 +165,7 @@ public abstract class Command {
      *
      * @return 权限名，没有为null
      */
+    @Nullable
     public String getPermission() {
         return permission;
     }
@@ -173,7 +178,7 @@ public abstract class Command {
      *
      * @param permission 权限名，或者为null
      */
-    public void setPermission(String permission) {
+    public void setPermission(@Nullable String permission) {
         this.permission = permission;
     }
 
@@ -191,13 +196,13 @@ public abstract class Command {
      * @param target 要测试的用户
      * @return 如果他们有权限则为true，false反之
      */
-    public boolean testPermission(CommandSender target) {
+    public boolean testPermission(@NotNull CommandSender target) {
         if (testPermissionSilent(target)) {
             return true;
         }
 
         if (permissionMessage == null) {
-            target.sendMessage(ChatColor.RED + "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is in error.");
+            target.sendMessage(ChatColor.RED + "I'm sorry, but you do not have permission to perform this command. Please contact the server administrators if you believe that this is a mistake.");
         } else if (permissionMessage.length() != 0) {
             for (String line : permissionMessage.replace("<permission>", permission).split("\n")) {
                 target.sendMessage(line);
@@ -220,7 +225,7 @@ public abstract class Command {
      * @param target 要测试的用户
      * @return 他们能不能使用命令
      */
-    public boolean testPermissionSilent(CommandSender target) {
+    public boolean testPermissionSilent(@NotNull CommandSender target) {
         if ((permission == null) || (permission.length() == 0)) {
             return true;
         }
@@ -241,6 +246,7 @@ public abstract class Command {
      *
      * @return 这个命令的别名
      */
+    @NotNull
     public String getLabel() {
         return label;
     }
@@ -261,7 +267,10 @@ public abstract class Command {
      * @param name 新的命令别名
      * @return 如果新的别名被更改返回true，命令已被注册返回false
      */
-    public boolean setLabel(String name) {
+    public boolean setLabel(@NotNull String name) {
+        if (name == null) {
+            name = "";
+        }
         this.nextLabel = name;
         if (!isRegistered()) {
             this.label = name;
@@ -281,7 +290,7 @@ public abstract class Command {
      * @param commandMap 注册此命令给这个CommandMap
      * @return 如果注册成功则为true(当前注册的CommandMap是传递的CommandMap或null)，false反之
      */
-    public boolean register(CommandMap commandMap) {
+    public boolean register(@NotNull CommandMap commandMap) {
         if (allowChangesFrom(commandMap)) {
             this.commandMap = commandMap;
             return true;
@@ -299,7 +308,7 @@ public abstract class Command {
      * @param commandMap 要注销的CommandMap
      * @return 如果成功注销则为true(当前注册的CommandMap是传递的CommandMap或null)，false反之
      */
-    public boolean unregister(CommandMap commandMap) {
+    public boolean unregister(@NotNull CommandMap commandMap) {
         if (allowChangesFrom(commandMap)) {
             this.commandMap = null;
             this.activeAliases = new ArrayList<String>(this.aliases);
@@ -310,7 +319,7 @@ public abstract class Command {
         return false;
     }
 
-    private boolean allowChangesFrom(CommandMap commandMap) {
+    private boolean allowChangesFrom(@NotNull CommandMap commandMap) {
         return (null == this.commandMap || this.commandMap == commandMap);
     }
 
@@ -332,6 +341,7 @@ public abstract class Command {
      *
      * @return 别名列表
      */
+    @NotNull
     public List<String> getAliases() {
         return activeAliases;
     }
@@ -344,6 +354,7 @@ public abstract class Command {
      *
      * @return 无权提示消息
      */
+    @Nullable
     public String getPermissionMessage() {
         return permissionMessage;
     }
@@ -355,6 +366,7 @@ public abstract class Command {
      *
      * @return 命令简介
      */
+    @NotNull
     public String getDescription() {
         return description;
     }
@@ -366,6 +378,7 @@ public abstract class Command {
      *
      * @return 一个或多个用法示例
      */
+    @NotNull
     public String getUsage() {
         return usageMessage;
     }
@@ -384,7 +397,8 @@ public abstract class Command {
      * @param aliases 要为这个命令注册的别名
      * @return 这个命令对象，可用于链式
      */
-    public Command setAliases(List<String> aliases) {
+    @NotNull
+    public Command setAliases(@NotNull List<String> aliases) {
         this.aliases = aliases;
         if (!isRegistered()) {
             this.activeAliases = new ArrayList<String>(aliases);
@@ -402,8 +416,9 @@ public abstract class Command {
      * @param description 新的命令介绍
      * @return 这个命令对象，可用于链式
      */
-    public Command setDescription(String description) {
-        this.description = description;
+    @NotNull
+    public Command setDescription(@NotNull String description) {
+        this.description = (description == null) ? "" : description;
         return this;
     }
 
@@ -415,7 +430,8 @@ public abstract class Command {
      * @param permissionMessage 新的无权提示消息，null表示默认消息，空字符串表示没有提示消息
      * @return 这个命令对象，可用于链式
      */
-    public Command setPermissionMessage(String permissionMessage) {
+    @NotNull
+    public Command setPermissionMessage(@Nullable String permissionMessage) {
         this.permissionMessage = permissionMessage;
         return this;
     }
@@ -428,16 +444,17 @@ public abstract class Command {
      * @param usage 新的用法示例
      * @return 命令对象
      */
-    public Command setUsage(String usage) {
-        this.usageMessage = usage;
+    @NotNull
+    public Command setUsage(@NotNull String usage) {
+        this.usageMessage = (usage == null) ? "" : usage;
         return this;
     }
 
-    public static void broadcastCommandMessage(CommandSender source, String message) {
+    public static void broadcastCommandMessage(@NotNull CommandSender source, @NotNull String message) {
         broadcastCommandMessage(source, message, true);
     }
 
-    public static void broadcastCommandMessage(CommandSender source, String message, boolean sendToSource) {
+    public static void broadcastCommandMessage(@NotNull CommandSender source, @NotNull String message, boolean sendToSource) {
         String result = source.getName() + ": " + message;
 
         if (source instanceof BlockCommandSender) {

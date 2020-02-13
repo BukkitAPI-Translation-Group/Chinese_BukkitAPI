@@ -1,5 +1,7 @@
 package org.bukkit.command;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 包含了一个执行命令的方法的类.
  */
@@ -22,5 +24,5 @@ public interface CommandExecutor {
      * @param args 传递的命令参数
      * @return 如果是合法的命令则为true，否则为false
      */
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args);
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args);
 }

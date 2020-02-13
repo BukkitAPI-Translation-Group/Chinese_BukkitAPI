@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 public class PluginCommandYamlParser {
 
-    public static List<Command> parse(Plugin plugin) {
+    @NotNull
+    public static List<Command> parse(@NotNull Plugin plugin) {
         List<Command> pluginCmds = new ArrayList<Command>();
 
         Map<String, Map<String, Object>> map = plugin.getDescription().getCommands();

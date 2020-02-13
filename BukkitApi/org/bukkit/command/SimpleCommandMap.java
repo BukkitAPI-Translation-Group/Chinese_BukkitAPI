@@ -8,19 +8,25 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.Server;
-import org.bukkit.command.defaults.*;
+import org.bukkit.command.defaults.BukkitCommand;
+import org.bukkit.command.defaults.HelpCommand;
+import org.bukkit.command.defaults.PluginsCommand;
+import org.bukkit.command.defaults.ReloadCommand;
+import org.bukkit.command.defaults.TimingsCommand;
+import org.bukkit.command.defaults.VersionCommand;
 import org.bukkit.entity.Player;
 import org.bukkit.util.StringUtil;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class SimpleCommandMap implements CommandMap {
     protected final Map<String, Command> knownCommands = new HashMap<String, Command>();
     private final Server server;
 
-    public SimpleCommandMap(final Server server) {
+    public SimpleCommandMap(@NotNull final Server server) {
         this.server = server;
         setDefaultCommands();
     }
@@ -39,7 +45,8 @@ public class SimpleCommandMap implements CommandMap {
     /**
      * {@inheritDoc}
      */
-    public void registerAll(String fallbackPrefix, List<Command> commands) {
+    @Override
+    public void registerAll(@NotNull String fallbackPrefix, @NotNull List<Command> commands) {
         if (commands != null) {
             for (Command c : commands) {
                 register(fallbackPrefix, c);
@@ -50,14 +57,16 @@ public class SimpleCommandMap implements CommandMap {
     /**
      * {@inheritDoc}
      */
-    public boolean register(String fallbackPrefix, Command command) {
+    @Override
+    public boolean register(@NotNull String fallbackPrefix, @NotNull Command command) {
         return register(command.getName(), fallbackPrefix, command);
     }
 
     /**
      * {@inheritDoc}
      */
-    public boolean register(String label, String fallbackPrefix, Command command) {
+    @Override
+    public boolean register(@NotNull String label, @NotNull String fallbackPrefix, @NotNull Command command) {
         label = label.toLowerCase(java.util.Locale.ENGLISH).trim();
         fallbackPrefix = fallbackPrefix.toLowerCase(java.util.Locale.ENGLISH).trim();
         boolean registered = register(label, command, false, fallbackPrefix);
@@ -92,7 +101,7 @@ public class SimpleCommandMap implements CommandMap {
      * @param fallbackPrefix 添加到命令的前缀作为唯一地址
      * @return 如果命令注册成功则为true，false反之
      */
-    private synchronized boolean register(String label, Command command, boolean isAlias, String fallbackPrefix) {
+    private synchronized boolean register(@NotNull String label, @NotNull Command command, boolean isAlias, @NotNull String fallbackPrefix) {
         knownCommands.put(fallbackPrefix + ":" + label, command);
         if ((command instanceof VanillaCommand || isAlias) && knownCommands.containsKey(label)) {
             // Request is for an alias/fallback command and it conflicts with
@@ -120,7 +129,8 @@ public class SimpleCommandMap implements CommandMap {
     /**
      * {@inheritDoc}
      */
-    public boolean dispatch(CommandSender sender, String commandLine) throws CommandException {
+    @Override
+    public boolean dispatch(@NotNull CommandSender sender, @NotNull String commandLine) throws CommandException {
         String[] args = commandLine.split(" ");
 
         if (args.length == 0) {
@@ -147,6 +157,7 @@ public class SimpleCommandMap implements CommandMap {
         return true;
     }
 
+    @Override
     public synchronized void clearCommands() {
         for (Map.Entry<String, Command> entry : knownCommands.entrySet()) {
             entry.getValue().unregister(this);
@@ -155,16 +166,22 @@ public class SimpleCommandMap implements CommandMap {
         setDefaultCommands();
     }
 
-    public Command getCommand(String name) {
+    @Override
+    @Nullable
+    public Command getCommand(@NotNull String name) {
         Command target = knownCommands.get(name.toLowerCase(java.util.Locale.ENGLISH));
         return target;
     }
 
-    public List<String> tabComplete(CommandSender sender, String cmdLine) {
+    @Override
+    @Nullable
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String cmdLine) {
         return tabComplete(sender, cmdLine, null);
     }
 
-    public List<String> tabComplete(CommandSender sender, String cmdLine, Location location) {
+    @Override
+    @Nullable
+    public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String cmdLine, @Nullable Location location) {
         Validate.notNull(sender, "Sender cannot be null");
         Validate.notNull(cmdLine, "Command line cannot null");
 
@@ -216,6 +233,7 @@ public class SimpleCommandMap implements CommandMap {
         }
     }
 
+    @NotNull
     public Collection<Command> getCommands() {
         return Collections.unmodifiableCollection(knownCommands.values());
     }
