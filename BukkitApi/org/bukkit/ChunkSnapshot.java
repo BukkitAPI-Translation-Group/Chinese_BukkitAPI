@@ -2,6 +2,7 @@ package org.bukkit;
 
 import org.bukkit.block.Biome;
 import org.bukkit.block.data.BlockData;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 表示一个静态的，线程安全的方块的区块的快照.
@@ -35,6 +36,7 @@ public interface ChunkSnapshot {
      *
      * @return 所在世界的名称
      */
+    @NotNull
     String getWorldName();
 
     /**
@@ -47,6 +49,7 @@ public interface ChunkSnapshot {
      * @param z 0-15
      * @return 方块物品类型
      */
+    @NotNull
     Material getBlockType(int x, int y, int z);
 
     /**
@@ -57,6 +60,7 @@ public interface ChunkSnapshot {
      * @param z 0-15
      * @return block material type
      */
+    @NotNull
     BlockData getBlockData(int x, int y, int z);
 
     /**
@@ -118,6 +122,7 @@ public interface ChunkSnapshot {
      * @param z Z坐标 (0-15)
      * @return 指定坐标的生物群系
      */
+    @NotNull
     Biome getBiome(int x, int z);
 
     /**

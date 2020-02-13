@@ -1,11 +1,12 @@
 package org.bukkit;
 
+import com.google.common.collect.Maps;
 import java.util.Map;
 import java.util.regex.Pattern;
-
 import org.apache.commons.lang.Validate;
-
-import com.google.common.collect.Maps;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 聊天框支持的所有颜色
@@ -110,8 +111,8 @@ public enum ChatColor {
     private final char code;
     private final boolean isFormat;
     private final String toString;
-    private final static Map<Integer, ChatColor> BY_ID = Maps.newHashMap();
-    private final static Map<Character, ChatColor> BY_CHAR = Maps.newHashMap();
+    private static final Map<Integer, ChatColor> BY_ID = Maps.newHashMap();
+    private static final Map<Character, ChatColor> BY_CHAR = Maps.newHashMap();
 
     private ChatColor(char code, int intCode) {
         this(code, intCode, false);
@@ -135,6 +136,7 @@ public enum ChatColor {
         return code;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return toString;
@@ -170,6 +172,7 @@ public enum ChatColor {
      * @param code 要检测的代码
      * @return 与给定代码相关联的{@link org.bukkit.ChatColor}，如果不存在则为null
      */
+    @Nullable
     public static ChatColor getByChar(char code) {
         return BY_CHAR.get(code);
     }
@@ -182,7 +185,8 @@ public enum ChatColor {
      * @param code 要检测的代码
      * @return 与给定代码相关联的{@link org.bukkit.ChatColor}，如果不存在则为null
      */
-    public static ChatColor getByChar(String code) {
+    @Nullable
+    public static ChatColor getByChar(@NotNull String code) {
         Validate.notNull(code, "Code cannot be null");
         Validate.isTrue(code.length() > 0, "Code must have at least one char");
 
@@ -197,7 +201,9 @@ public enum ChatColor {
      * @param input 要去除颜色的字符串
      * @return 没有颜色代码的字符串副本
      */
-    public static String stripColor(final String input) {
+    @Contract("!null -> !null; null -> null")
+    @Nullable
+    public static String stripColor(@Nullable final String input) {
         if (input == null) {
             return null;
         }
@@ -221,7 +227,10 @@ public enum ChatColor {
      * @param textToTranslate 包含了其他颜色代码的字符
      * @return 包含了ChatColor.COLOR_CHAR颜色代码字符的文本
      */
-    public static String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
+    @NotNull
+    public static String translateAlternateColorCodes(char altColorChar, @NotNull String textToTranslate) {
+        Validate.notNull(textToTranslate, "Cannot translate null text");
+
         char[] b = textToTranslate.toCharArray();
         for (int i = 0; i < b.length - 1; i++) {
             if (b[i] == altColorChar && "0123456789AaBbCcDdEeFfKkLlMmNnOoRr".indexOf(b[i+1]) > -1) {
@@ -240,7 +249,10 @@ public enum ChatColor {
      * @param input 要检索颜色的字符串
      * @return 传递到下一行的任何剩余的聊天颜色(不懂...总之是给定字符串最后出现的颜色代码)
      */
-    public static String getLastColors(String input) {
+    @NotNull
+    public static String getLastColors(@NotNull String input) {
+        Validate.notNull(input, "Cannot get last colors from null text");
+
         String result = "";
         int length = input.length();
 

@@ -2,6 +2,7 @@ package org.bukkit.block;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents how a block or entity will react when interacting with a piston
@@ -60,6 +61,7 @@ public enum PistonMoveReaction {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static PistonMoveReaction getById(int id) {
         return byId.get(id);
     }

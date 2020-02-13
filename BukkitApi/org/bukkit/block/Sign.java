@@ -1,9 +1,12 @@
 package org.bukkit.block;
 
+import org.bukkit.material.Colorable;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 代表一个告示牌或者墙上告示牌(快照).
  */
-public interface Sign extends BlockState {
+public interface Sign extends TileState, Colorable {
 
     /**
      * 获取这个告示牌上当前的文本.
@@ -13,6 +16,7 @@ public interface Sign extends BlockState {
      *
      * @return 每行文本字符串数组
      */
+    @NotNull
     public String[] getLines();
 
     /**
@@ -29,6 +33,7 @@ public interface Sign extends BlockState {
      * @throws IndexOutOfBoundsException 在此行没有文本的时候抛出这个错误
      * @return 这个行的文本
      */
+    @NotNull
     public String getLine(int index) throws IndexOutOfBoundsException;
 
     /**
@@ -48,7 +53,7 @@ public interface Sign extends BlockState {
      * @param line 新的指定的文本索引
      * @throws IndexOutOfBoundsException 如果索引超出了0-3的范围
      */
-    public void setLine(int index, String line) throws IndexOutOfBoundsException;
+    public void setLine(int index, @NotNull String line) throws IndexOutOfBoundsException;
 
     /**
      * Marks whether this sign can be edited by players.

@@ -1,8 +1,8 @@
 package org.bukkit;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表两种煤.
@@ -12,7 +12,7 @@ public enum CoalType {
     CHARCOAL(0x1);
 
     private final byte data;
-    private final static Map<Byte, CoalType> BY_DATA = Maps.newHashMap();
+    private static final Map<Byte, CoalType> BY_DATA = Maps.newHashMap();
 
     private CoalType(final int data) {
         this.data = (byte) data;
@@ -43,6 +43,7 @@ public enum CoalType {
      * @deprecated 魔法值
      */
     @Deprecated
+    @Nullable
     public static CoalType getByData(final byte data) {
         return BY_DATA.get(data);
     }

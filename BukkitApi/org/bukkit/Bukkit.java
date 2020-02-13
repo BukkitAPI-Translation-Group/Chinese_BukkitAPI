@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import com.google.common.collect.ImmutableList;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
@@ -12,8 +13,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
-
 import org.bukkit.Warning.WarningState;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
@@ -28,12 +29,15 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
@@ -43,13 +47,9 @@ import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
-
-import com.google.common.collect.ImmutableList;
-import org.bukkit.advancement.Advancement;
-import org.bukkit.generator.ChunkGenerator;
-
-import org.bukkit.inventory.ItemFactory;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个 Bukkit 核心, 用来转发 {@link Server} 单例的调用.  
@@ -70,6 +70,7 @@ public final class Bukkit {
      *
      * @return 正在运行的服务器的实例
      */
+    @NotNull
     public static Server getServer() {
         return server;
     }
@@ -84,7 +85,7 @@ public final class Bukkit {
      *
      * @param server 服务器实例
      */
-    public static void setServer(Server server) {
+    public static void setServer(@NotNull Server server) {
         if (Bukkit.server != null) {
             throw new UnsupportedOperationException("Cannot redefine singleton Server");
         }
@@ -101,6 +102,7 @@ public final class Bukkit {
      *
      * @return 这个服务器实例的名字
      */
+    @NotNull
     public static String getName() {
         return server.getName();
     }
@@ -113,6 +115,7 @@ public final class Bukkit {
      *
      * @return 这个服务器实例的版本
      */
+    @NotNull
     public static String getVersion() {
         return server.getVersion();
     }
@@ -125,6 +128,7 @@ public final class Bukkit {
      *
      * @return Bukkit版本
      */
+    @NotNull
     public static String getBukkitVersion() {
         return server.getBukkitVersion();
     }
@@ -180,6 +184,7 @@ public final class Bukkit {
      *
      * @return 所有在线玩家的视图
      */
+    @NotNull
     public static Collection<? extends Player> getOnlinePlayers() {
         return server.getOnlinePlayers();
     }
@@ -226,37 +231,11 @@ public final class Bukkit {
      * Get the IP that this server is bound to, or empty string if not
      * specified.
      *
-     * @return 服务器绑定的IP，如果没有就返回空
-     *     字符串
+     * @return 服务器绑定的IP，如果没有就返回空字符串
      */
+    @NotNull
     public static String getIp() {
         return server.getIp();
-    }
-
-    /**
-     * 获取服务器的名称. 
-     * <p>
-     * 原文:
-     * Get the name of this server.
-     *
-     * @return 服务器名
-     */
-    public static String getServerName() {
-        return server.getServerName();
-    }
-
-    /**
-     * 获取服务器的ID. 这是一个简单的字母标识, 
-     * 可以用来唯一地识别此服务器.
-     * <p>
-     * 原文:
-     * Get an ID of this server. The ID is a simple generally alphanumeric ID
-     * that can be used for uniquely identifying this server.
-     *
-     * @return 服务器的唯一标识
-     */
-    public static String getServerId() {
-        return server.getServerId();
     }
 
     /**
@@ -267,6 +246,7 @@ public final class Bukkit {
      *
      * @return 默认世界的世界类型 (例： DEFAULT, FLAT, DEFAULT_1_1)
      */
+    @NotNull
     public static String getWorldType() {
         return server.getWorldType();
     }
@@ -339,6 +319,7 @@ public final class Bukkit {
      *
      * @return 用Set存储的所有被添加到白名单的玩家
      */
+    @NotNull
     public static Set<OfflinePlayer> getWhitelistedPlayers() {
         return server.getWhitelistedPlayers();
     }
@@ -368,7 +349,7 @@ public final class Bukkit {
      * @param message 要广播的消息
      * @return 成功接收此消息的玩家数
      */
-    public static int broadcastMessage(String message) {
+    public static int broadcastMessage(@NotNull String message) {
         return server.broadcastMessage(message);
     }
 
@@ -388,6 +369,7 @@ public final class Bukkit {
      *
      * @return 更新文件夹的名字
      */
+    @NotNull
     public static String getUpdateFolder() {
         return server.getUpdateFolder();
     }
@@ -403,6 +385,7 @@ public final class Bukkit {
      *
      * @return 表示更新文件夹的 File 实例
      */
+    @NotNull
     public static File getUpdateFolderFile() {
         return server.getUpdateFolderFile();
     }
@@ -511,7 +494,8 @@ public final class Bukkit {
      * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Deprecated
-    public static Player getPlayer(String name) {
+    @Nullable
+    public static Player getPlayer(@NotNull String name) {
         return server.getPlayer(name);
     }
 
@@ -525,7 +509,8 @@ public final class Bukkit {
      * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Deprecated
-    public static Player getPlayerExact(String name) {
+    @Nullable
+    public static Player getPlayerExact(@NotNull String name) {
         return server.getPlayerExact(name);
     }
 
@@ -551,7 +536,8 @@ public final class Bukkit {
      * @return 包含所有可能的匹配结果的列表
      */
     @Deprecated
-    public static List<Player> matchPlayer(String name) {
+    @NotNull
+    public static List<Player> matchPlayer(@NotNull String name) {
         return server.matchPlayer(name);
     }
 
@@ -563,7 +549,8 @@ public final class Bukkit {
      * @param id 要获取的玩家的{@link UUID}
      * @return 如果找到了则返回玩家对象, 否则返回null
      */
-    public static Player getPlayer(UUID id) {
+    @Nullable
+    public static Player getPlayer(@NotNull UUID id) {
         return server.getPlayer(id);
     }
 
@@ -574,6 +561,7 @@ public final class Bukkit {
      *
      * @return 此服务器的插件管理器
      */
+    @NotNull
     public static PluginManager getPluginManager() {
         return server.getPluginManager();
     }
@@ -585,6 +573,7 @@ public final class Bukkit {
      *
      * @return 此服务器的调度器服务
      */
+    @NotNull
     public static BukkitScheduler getScheduler() {
         return server.getScheduler();
     }
@@ -596,6 +585,7 @@ public final class Bukkit {
      *
      * @return 服务管理器. 
      */
+    @NotNull
     public static ServicesManager getServicesManager() {
         return server.getServicesManager();
     }
@@ -607,6 +597,7 @@ public final class Bukkit {
      *
      * @return 所有已经被服务器加载的世界列表
      */
+    @NotNull
     public static List<World> getWorlds() {
         return server.getWorlds();
     }
@@ -626,7 +617,8 @@ public final class Bukkit {
      * @param creator 加载或者创建这个世界的时候要用的世界生成器
      * @return 生成的或者加载的世界对象
      */
-    public static World createWorld(WorldCreator creator) {
+    @Nullable
+    public static World createWorld(@NotNull WorldCreator creator) {
         return server.createWorld(creator);
     }
 
@@ -639,7 +631,7 @@ public final class Bukkit {
      * @param save 卸载时是否要保存数据
      * @return 如果成功返回true, 否则返回false
      */
-    public static boolean unloadWorld(String name, boolean save) {
+    public static boolean unloadWorld(@NotNull String name, boolean save) {
         return server.unloadWorld(name, save);
     }
 
@@ -652,7 +644,7 @@ public final class Bukkit {
      * @param save 卸载时是否要保存数据
      * @return 如果成功返回true, 否则返回false
      */
-    public static boolean unloadWorld(World world, boolean save) {
+    public static boolean unloadWorld(@NotNull World world, boolean save) {
         return server.unloadWorld(world, save);
     }
 
@@ -664,7 +656,8 @@ public final class Bukkit {
      * @param name 世界名称
      * @return 没找到则返回null
      */
-    public static World getWorld(String name) {
+    @Nullable
+    public static World getWorld(@NotNull String name) {
         return server.getWorld(name);
     }
 
@@ -676,7 +669,8 @@ public final class Bukkit {
      * @param uid 要查找的世界的唯一ID
      * @return 没找到则返回null
      */
-    public static World getWorld(UUID uid) {
+    @Nullable
+    public static World getWorld(@NotNull UUID uid) {
         return server.getWorld(uid);
     }
 
@@ -690,6 +684,7 @@ public final class Bukkit {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static MapView getMap(short id) {
         return server.getMap(id);
     }
@@ -702,7 +697,8 @@ public final class Bukkit {
      * @param world 地图所属的世界
      * @return 新创建的 {@link MapView}
      */
-    public static MapView createMap(World world) {
+    @NotNull
+    public static MapView createMap(@NotNull World world) {
         return server.createMap(world);
     }
 
@@ -721,7 +717,8 @@ public final class Bukkit {
      * @see World#locateNearestStructure(org.bukkit.Location,
      *      org.bukkit.StructureType, int, boolean)
      */
-    public static ItemStack createExplorerMap(World world, Location location, StructureType structureType) {
+    @NotNull
+    public static ItemStack createExplorerMap(@NotNull World world, @NotNull Location location, @NotNull StructureType structureType) {
         return server.createExplorerMap(world, location, structureType);
     }
 
@@ -743,7 +740,8 @@ public final class Bukkit {
      * @see World#locateNearestStructure(org.bukkit.Location,
      *      org.bukkit.StructureType, int, boolean)
      */
-    public static ItemStack createExplorerMap(World world, Location location, StructureType structureType, int radius, boolean findUnexplored) {
+    @NotNull
+    public static ItemStack createExplorerMap(@NotNull World world, @NotNull Location location, @NotNull StructureType structureType, int radius, boolean findUnexplored) {
         return server.createExplorerMap(world, location, structureType, radius, findUnexplored);
     }
 
@@ -773,6 +771,7 @@ public final class Bukkit {
      *
      * @return 与此服务器绑定的 {@link Logger}
      */
+    @NotNull
     public static Logger getLogger() {
         return server.getLogger();
     }
@@ -785,7 +784,8 @@ public final class Bukkit {
      * @param name 命令名或命令别名
      * @return 找不到则返回null
      */
-    public static PluginCommand getPluginCommand(String name) {
+    @Nullable
+    public static PluginCommand getPluginCommand(@NotNull String name) {
         return server.getPluginCommand(name);
     }
 
@@ -808,7 +808,7 @@ public final class Bukkit {
      * @throws CommandException thrown when the executor for the given command
      *     fails with an unhandled exception
      */
-    public static boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException {
+    public static boolean dispatchCommand(@NotNull CommandSender sender, @NotNull String commandLine) throws CommandException {
         return server.dispatchCommand(sender, commandLine);
     }
 
@@ -820,7 +820,8 @@ public final class Bukkit {
      * @param recipe 要添加的合成配方
      * @return 是否成功的地添加了合成配方
      */
-    public static boolean addRecipe(Recipe recipe) {
+    @Contract("null -> false")
+    public static boolean addRecipe(@Nullable Recipe recipe) {
         return server.addRecipe(recipe);
     }
 
@@ -831,7 +832,8 @@ public final class Bukkit {
      * @param result the item to match against recipe results
      * @return a list of recipes with the given result
      */
-    public static List<Recipe> getRecipesFor(ItemStack result) {
+    @NotNull
+    public static List<Recipe> getRecipesFor(@NotNull ItemStack result) {
         return server.getRecipesFor(result);
     }
 
@@ -842,6 +844,7 @@ public final class Bukkit {
      *
      * @return 迭代器
      */
+    @NotNull
     public static Iterator<Recipe> recipeIterator() {
         return server.recipeIterator();
     }
@@ -871,6 +874,7 @@ public final class Bukkit {
      *
      * @return 命令别名map
      */
+    @NotNull
     public static Map<String, String[]> getCommandAliases() {
         return server.getCommandAliases();
     }
@@ -950,7 +954,7 @@ public final class Bukkit {
      *     权限许可}
      * @return 成功接收此消息的玩家数
      */
-    public static int broadcast(String message, String permission) {
+    public static int broadcast(@NotNull String message, @NotNull String permission) {
         return server.broadcast(message, permission);
     }
 
@@ -971,7 +975,8 @@ public final class Bukkit {
      * @see #getOfflinePlayer(java.util.UUID)
      */
     @Deprecated
-    public static OfflinePlayer getOfflinePlayer(String name) {
+    @NotNull
+    public static OfflinePlayer getOfflinePlayer(@NotNull String name) {
         return server.getOfflinePlayer(name);
     }
 
@@ -989,7 +994,8 @@ public final class Bukkit {
      * @param id 要检索的玩家UUID
      * @return 表示此玩家的OfflinePlayer对象
      */
-    public static OfflinePlayer getOfflinePlayer(UUID id) {
+    @NotNull
+    public static OfflinePlayer getOfflinePlayer(@NotNull UUID id) {
         return server.getOfflinePlayer(id);
     }
 
@@ -1000,6 +1006,7 @@ public final class Bukkit {
      *
      * @return 被封禁IP集合
      */
+    @NotNull
     public static Set<String> getIPBans() {
         return server.getIPBans();
     }
@@ -1011,7 +1018,7 @@ public final class Bukkit {
      *
      * @param address 要封禁的IP地址
      */
-    public static void banIP(String address) {
+    public static void banIP(@NotNull String address) {
         server.banIP(address);
     }
 
@@ -1022,7 +1029,7 @@ public final class Bukkit {
      *
      * @param address 要解禁的IP地址
      */
-    public static void unbanIP(String address) {
+    public static void unbanIP(@NotNull String address) {
         server.unbanIP(address);
     }
 
@@ -1033,6 +1040,7 @@ public final class Bukkit {
      *
      * @return 已被封禁的玩家
      */
+    @NotNull
     public static Set<OfflinePlayer> getBannedPlayers() {
         return server.getBannedPlayers();
     }
@@ -1050,7 +1058,8 @@ public final class Bukkit {
      * @param type 要获取的封禁列表的类型，不能为null
      * @return 指定类型的封禁列表
      */
-    public static BanList getBanList(BanList.Type type) {
+    @NotNull
+    public static BanList getBanList(@NotNull BanList.Type type) {
         return server.getBanList(type);
     }
 
@@ -1061,6 +1070,7 @@ public final class Bukkit {
      *
      * @return 服务器OP
      */
+    @NotNull
     public static Set<OfflinePlayer> getOperators() {
         return server.getOperators();
     }
@@ -1072,6 +1082,7 @@ public final class Bukkit {
      *
      * @return 默认游戏模式
      */
+    @NotNull
     public static GameMode getDefaultGameMode() {
         return server.getDefaultGameMode();
     }
@@ -1083,7 +1094,7 @@ public final class Bukkit {
      *
      * @param mode 新的默认游戏模式
      */
-    public static void setDefaultGameMode(GameMode mode) {
+    public static void setDefaultGameMode(@NotNull GameMode mode) {
         server.setDefaultGameMode(mode);
     }
 
@@ -1093,6 +1104,7 @@ public final class Bukkit {
      *
      * @return a console command sender
      */
+    @NotNull
     public static ConsoleCommandSender getConsoleSender() {
         return server.getConsoleSender();
     }
@@ -1102,6 +1114,7 @@ public final class Bukkit {
      *
      * @return folder that contains all worlds
      */
+    @NotNull
     public static File getWorldContainer() {
         return server.getWorldContainer();
     }
@@ -1113,6 +1126,7 @@ public final class Bukkit {
      *
      * @return 曾在此服务器游戏的玩家
      */
+    @NotNull
     public static OfflinePlayer[] getOfflinePlayers() {
         return server.getOfflinePlayers();
     }
@@ -1122,6 +1136,7 @@ public final class Bukkit {
      *
      * @return messenger responsible for this server
      */
+    @NotNull
     public static Messenger getMessenger() {
         return server.getMessenger();
     }
@@ -1131,16 +1146,15 @@ public final class Bukkit {
      *
      * @return a help map for this server
      */
+    @NotNull
     public static HelpMap getHelpMap() {
         return server.getHelpMap();
     }
 
     /**
-     * Creates an empty inventory with the specified type and title. If the type
+     * Creates an empty inventory with the specified type. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
-     * otherwise the new inventory has the normal size for its type.<br>
-     * It should be noted that some inventory types do not support titles and
-     * may not render with said titles on the Minecraft client.
+     * otherwise the new inventory has the normal size for its type.
      * <br>
      * {@link InventoryType#WORKBENCH} will not process crafting recipes if
      * created with this method. Use
@@ -1158,7 +1172,8 @@ public final class Bukkit {
      *
      * @see InventoryType#isCreatable()
      */
-    public static Inventory createInventory(InventoryHolder owner, InventoryType type) {
+    @NotNull
+    public static Inventory createInventory(@Nullable InventoryHolder owner, @NotNull InventoryType type) {
         return server.createInventory(owner, type);
     }
 
@@ -1186,7 +1201,8 @@ public final class Bukkit {
      *
      * @see InventoryType#isCreatable()
      */
-    public static Inventory createInventory(InventoryHolder owner, InventoryType type, String title) {
+    @NotNull
+    public static Inventory createInventory(@Nullable InventoryHolder owner, @NotNull InventoryType type, @NotNull String title) {
         return server.createInventory(owner, type, title);
     }
 
@@ -1199,7 +1215,8 @@ public final class Bukkit {
      * @return a new inventory
      * @throws IllegalArgumentException if the size is not a multiple of 9
      */
-    public static Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException {
+    @NotNull
+    public static Inventory createInventory(@Nullable InventoryHolder owner, int size) throws IllegalArgumentException {
         return server.createInventory(owner, size);
     }
 
@@ -1214,7 +1231,8 @@ public final class Bukkit {
      * @return a new inventory
      * @throws IllegalArgumentException if the size is not a multiple of 9
      */
-    public static Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException {
+    @NotNull
+    public static Inventory createInventory(@Nullable InventoryHolder owner, int size, @NotNull String title) throws IllegalArgumentException {
         return server.createInventory(owner, size, title);
     }
 
@@ -1225,7 +1243,8 @@ public final class Bukkit {
      * when the merchant inventory is viewed
      * @return a new merchant
      */
-    public static Merchant createMerchant(String title) {
+    @NotNull
+    public static Merchant createMerchant(@Nullable String title) {
         return server.createMerchant(title);
     }
 
@@ -1295,6 +1314,7 @@ public final class Bukkit {
      *
      * @return 服务器motd
      */
+    @NotNull
     public static String getMotd() {
         return server.getMotd();
     }
@@ -1306,6 +1326,7 @@ public final class Bukkit {
      *
      * @return 服务器关闭提示消息内容
      */
+    @Nullable
     public static String getShutdownMessage() {
         return server.getShutdownMessage();
     }
@@ -1315,6 +1336,7 @@ public final class Bukkit {
      *
      * @return the configured warning state
      */
+    @NotNull
     public static WarningState getWarningState() {
         return server.getWarningState();
     }
@@ -1325,6 +1347,7 @@ public final class Bukkit {
      * @return the item factory
      * @see ItemFactory
      */
+    @NotNull
     public static ItemFactory getItemFactory() {
         return server.getItemFactory();
     }
@@ -1336,6 +1359,7 @@ public final class Bukkit {
      *
      * @return the scoreboard manager or null if no worlds are loaded.
      */
+    @Nullable
     public static ScoreboardManager getScoreboardManager() {
         return server.getScoreboardManager();
     }
@@ -1347,6 +1371,7 @@ public final class Bukkit {
      *     implementation to indicate no defined icon, but this behavior is
      *     not guaranteed
      */
+    @Nullable
     public static CachedServerIcon getServerIcon() {
         return server.getServerIcon();
     }
@@ -1365,7 +1390,8 @@ public final class Bukkit {
      * @return a cached server-icon that can be used for a {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
-    public static CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception {
+    @NotNull
+    public static CachedServerIcon loadServerIcon(@NotNull File file) throws IllegalArgumentException, Exception {
         return server.loadServerIcon(file);
     }
 
@@ -1382,7 +1408,8 @@ public final class Bukkit {
      * @return a cached server-icon that can be used for a {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
-    public static CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception {
+    @NotNull
+    public static CachedServerIcon loadServerIcon(@NotNull BufferedImage image) throws IllegalArgumentException, Exception {
         return server.loadServerIcon(image);
     }
 
@@ -1417,14 +1444,15 @@ public final class Bukkit {
      * <p>
      * 原文:
      * Create a ChunkData for use in a generator.
-     * 
+     *
      * See {@link ChunkGenerator#generateChunkData(org.bukkit.World, java.util.Random, int, int, org.bukkit.generator.ChunkGenerator.BiomeGrid)}
-     * 
+     *
      * @param world ChunkData对应的世界
      * @return 这个世界的新ChunkData实例
      * 
      */
-    public static ChunkGenerator.ChunkData createChunkData(World world) {
+    @NotNull
+    public static ChunkGenerator.ChunkData createChunkData(@NotNull World world) {
         return server.createChunkData(world);
     }
 
@@ -1441,7 +1469,8 @@ public final class Bukkit {
      * @param flags 血量条的附加属性列表（可选）
      * @return 创建的Boss血量条实例
      */
-    public static BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags) {
+    @NotNull
+    public static BossBar createBossBar(@Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
         return server.createBossBar(title, color, style, flags);
     }
 
@@ -1459,7 +1488,8 @@ public final class Bukkit {
      * @param flags an optional list of flags to set on the boss bar
      * @return the created boss bar
      */
-    public static KeyedBossBar createBossBar(NamespacedKey key, String title, BarColor color, BarStyle style, BarFlag... flags) {
+    @NotNull
+    public static KeyedBossBar createBossBar(@NotNull NamespacedKey key, @Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
         return server.createBossBar(key, title, color, style, flags);
     }
 
@@ -1477,6 +1507,7 @@ public final class Bukkit {
      *
      * @return a bossbar iterator
      */
+    @NotNull
     public static Iterator<KeyedBossBar> getBossBars() {
         return server.getBossBars();
     }
@@ -1496,7 +1527,8 @@ public final class Bukkit {
      * @param key unique bossbar key
      * @return bossbar or null if not exists
      */
-    public static KeyedBossBar getBossBar(NamespacedKey key) {
+    @Nullable
+    public static KeyedBossBar getBossBar(@NotNull NamespacedKey key) {
         return server.getBossBar(key);
     }
 
@@ -1515,7 +1547,7 @@ public final class Bukkit {
      * @param key unique bossbar key
      * @return true if removal succeeded or false
      */
-    public static boolean removeBossBar(NamespacedKey key) {
+    public static boolean removeBossBar(@NotNull NamespacedKey key) {
         return server.removeBossBar(key);
     }
 
@@ -1527,7 +1559,8 @@ public final class Bukkit {
      * @param uuid 实体的UUID
      * @return 该UUID代表的实体，如果不存在为null
      */
-    public static Entity getEntity(UUID uuid) {
+    @Nullable
+    public static Entity getEntity(@NotNull UUID uuid) {
         return server.getEntity(uuid);
     }
 
@@ -1539,7 +1572,8 @@ public final class Bukkit {
      * @param 寻找进度对象所需的key
      * @return 一个进度对象. 如果它不存在，将返回null.
      */
-    public static Advancement getAdvancement(NamespacedKey key) {
+    @Nullable
+    public static Advancement getAdvancement(@NotNull NamespacedKey key) {
         return server.getAdvancement(key);
     }
 
@@ -1552,6 +1586,7 @@ public final class Bukkit {
      *
      * @return 一个进度迭代器对象
      */
+    @NotNull
     public static Iterator<Advancement> advancementIterator() {
         return server.advancementIterator();
     }
@@ -1563,7 +1598,8 @@ public final class Bukkit {
      * @param material the material
      * @return new data instance
      */
-    public static BlockData createBlockData(Material material) {
+    @NotNull
+    public static BlockData createBlockData(@NotNull Material material) {
         return server.createBlockData(material);
     }
 
@@ -1575,7 +1611,8 @@ public final class Bukkit {
      * @param consumer consumer to run on new instance before returning
      * @return new data instance
      */
-    public static BlockData createBlockData(Material material, Consumer<BlockData> consumer) {
+    @NotNull
+    public static BlockData createBlockData(@NotNull Material material, @Nullable Consumer<BlockData> consumer) {
         return server.createBlockData(material, consumer);
     }
 
@@ -1587,7 +1624,8 @@ public final class Bukkit {
      * @return new data instance
      * @throws IllegalArgumentException if the specified data is not valid
      */
-    public static BlockData createBlockData(String data) throws IllegalArgumentException {
+    @NotNull
+    public static BlockData createBlockData(@NotNull String data) throws IllegalArgumentException {
         return server.createBlockData(data);
     }
 
@@ -1601,7 +1639,9 @@ public final class Bukkit {
      * @return new data instance
      * @throws IllegalArgumentException if the specified data is not valid
      */
-    public static BlockData createBlockData(Material material, String data) throws IllegalArgumentException {
+    @NotNull
+    @Contract("null, null -> fail")
+    public static BlockData createBlockData(@Nullable Material material, @Nullable String data) throws IllegalArgumentException {
         return server.createBlockData(material, data);
     }
 
@@ -1623,8 +1663,27 @@ public final class Bukkit {
      * @param clazz the class of the tag entries
      * @return the tag or null
      */
-    public static <T extends Keyed> Tag<T> getTag(String registry, NamespacedKey tag, Class<T> clazz) {
+    @Nullable
+    public static <T extends Keyed> Tag<T> getTag(@NotNull String registry, @NotNull NamespacedKey tag, @NotNull Class<T> clazz) {
         return server.getTag(registry, tag, clazz);
+    }
+
+    /**
+     * Gets a all tags which have been defined within the server.
+     * <br>
+     * Server implementations are allowed to handle only the registries
+     * indicated in {@link Tag}.
+     * <br>
+     * No guarantees are made about the mutability of the returned iterator.
+     *
+     * @param <T> type of the tag
+     * @param registry the tag registry to look at
+     * @param clazz the class of the tag entries
+     * @return all defined tags
+     */
+    @NotNull
+    public static <T extends Keyed> Iterable<Tag<T>> getTags(@NotNull String registry, @NotNull Class<T> clazz) {
+        return server.getTags(registry, clazz);
     }
 
     /**
@@ -1633,8 +1692,34 @@ public final class Bukkit {
      * @param key the name of the LootTable
      * @return the LootTable, or null if no LootTable is found with that name
      */
-    public static LootTable getLootTable(NamespacedKey key) {
+    @Nullable
+    public static LootTable getLootTable(@NotNull NamespacedKey key) {
         return server.getLootTable(key);
+    }
+
+    /**
+     * Selects entities using the given Vanilla selector.
+     * <br>
+     * No guarantees are made about the selector format, other than they match
+     * the Vanilla format for the active Minecraft version.
+     * <br>
+     * Usually a selector will start with '@', unless selecting a Player in
+     * which case it may simply be the Player's name or UUID.
+     * <br>
+     * Note that in Vanilla, elevated permissions are usually required to use
+     * '@' selectors, but this method should not check such permissions from the
+     * sender.
+     *
+     * @param sender the sender to execute as, must be provided
+     * @param selector the selection string
+     * @return a list of the selected entities. The list will not be null, but
+     * no further guarantees are made.
+     * @throws IllegalArgumentException if the selector is malformed in any way
+     * or a parameter is null
+     */
+    @NotNull
+    public static List<Entity> selectEntities(@NotNull CommandSender sender, @NotNull String selector) throws IllegalArgumentException {
+        return server.selectEntities(sender, selector);
     }
 
     /**
@@ -1642,6 +1727,7 @@ public final class Bukkit {
      * @return UnsafeValues实例
      */
     @Deprecated
+    @NotNull
     public static UnsafeValues getUnsafe() {
         return server.getUnsafe();
     }
