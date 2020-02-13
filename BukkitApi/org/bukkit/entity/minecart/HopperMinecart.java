@@ -12,7 +12,7 @@ public interface HopperMinecart extends Minecart, InventoryHolder, Lootable {
     /**
      * 检测这个矿车是否会将物品捡进背包.
      * <p>
-     * 原文：Checks whether or not this Minecart will pick up
+     * 原文:Checks whether or not this Minecart will pick up
      * items into its inventory.
      *
      * @return 这个矿车是否会将物品捡进背包.
@@ -22,7 +22,7 @@ public interface HopperMinecart extends Minecart, InventoryHolder, Lootable {
     /**
      * 设置这个矿车是否会将物品捡进背包.
      * <p>
-     * 原文：Sets whether this Minecart will pick up items.
+     * 原文:Sets whether this Minecart will pick up items.
      *
      * @param enabled 新的启用状态
      */

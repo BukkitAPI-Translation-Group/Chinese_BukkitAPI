@@ -1,12 +1,11 @@
 package org.bukkit.block;
 
-import org.bukkit.Nameable;
 import org.bukkit.loot.Lootable;
 
 /**
  * 代表一个投掷器(快照).
  */
-public interface Dropper extends Container, Nameable, Lootable {
+public interface Dropper extends Container, Lootable {
     /**
      * 一个投掷器的正常行为是尝试从投掷器的物品栏随机进行投掷物品.
      * <p>
@@ -27,7 +26,7 @@ public interface Dropper extends Container, Nameable, Lootable {
      * Normal behavior of a dropper is as follows:
      * <p>
      * If the block that the dropper is facing is an InventoryHolder,
-     * the randomly selected ItemStack is placed within that 
+     * the randomly selected ItemStack is placed within that
      * Inventory in the first slot that's available, starting with 0 and
      * counting up.  If the inventory is full, nothing happens.
      * <p>
@@ -37,7 +36,7 @@ public interface Dropper extends Container, Nameable, Lootable {
      * <p>
      * If the block represented by this state is no longer a dropper, this will
      * do nothing.
-     * 
+     *
      * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种表示而未应用到实际的方块上)
      */
      public void drop();
