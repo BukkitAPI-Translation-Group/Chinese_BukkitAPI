@@ -364,7 +364,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * {@link #getPassengers()}
      */
     @Deprecated
-    public boolean setPassenger(NotNull Entity passenger);
+    public boolean setPassenger(@NotNull Entity passenger);
 
     /**
      * 获取载具的乘客列表. 
@@ -379,7 +379,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      *
      * @return 与当前乘客相对应的实体列表. 
      */
-    NotNull
+    @NotNull
     public List<Entity> getPassengers();
 
     /** 
