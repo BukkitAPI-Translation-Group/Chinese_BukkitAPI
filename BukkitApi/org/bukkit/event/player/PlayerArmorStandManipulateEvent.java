@@ -1,10 +1,11 @@
 package org.bukkit.event.player;
 
-import org.bukkit.inventory.EquipmentSlot;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.ArmorStand;
+import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家与装甲架交互并且进行交换, 取回或放置物品时触发本事件.
@@ -19,7 +20,7 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
     private final ItemStack armorStandItem;
     private final EquipmentSlot slot;
 
-    public PlayerArmorStandManipulateEvent(final Player who, final ArmorStand clickedEntity, final ItemStack playerItem, final ItemStack armorStandItem, final EquipmentSlot slot) {
+    public PlayerArmorStandManipulateEvent(@NotNull final Player who, @NotNull final ArmorStand clickedEntity, @NotNull final ItemStack playerItem, @NotNull final ItemStack armorStandItem, @NotNull final EquipmentSlot slot) {
         super(who, clickedEntity);
         this.playerItem = playerItem;
         this.armorStandItem = armorStandItem;
@@ -45,6 +46,7 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
      *
      * @return 玩家手持的物品 {@link ItemStack}
      */
+    @NotNull
     public ItemStack getPlayerItem() {
         return this.playerItem;
     }
@@ -68,6 +70,7 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
      *
      * @return 盔甲架的的物品 {@link ItemStack}
      */
+    @NotNull
     public ItemStack getArmorStandItem() {
         return this.armorStandItem;
     }
@@ -79,20 +82,24 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
      *
      * @return 获得或放置盔甲架的物品的下标. {@link EquipmentSlot}
      */
+    @NotNull
     public EquipmentSlot getSlot() {
         return this.slot;
     }
 
+    @NotNull
     @Override
     public ArmorStand getRightClicked() {
         return (ArmorStand) this.clickedEntity;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

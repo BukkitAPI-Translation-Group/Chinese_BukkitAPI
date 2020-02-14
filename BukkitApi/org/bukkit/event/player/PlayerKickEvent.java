@@ -3,6 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 玩家被服务器踢出事件.
@@ -13,7 +14,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
     private String kickReason;
     private Boolean cancel;
 
-    public PlayerKickEvent(final Player playerKicked, final String kickReason, final String leaveMessage) {
+    public PlayerKickEvent(@NotNull final Player playerKicked, @NotNull final String kickReason, @NotNull final String leaveMessage) {
         super(playerKicked);
         this.kickReason = kickReason;
         this.leaveMessage = leaveMessage;
@@ -27,6 +28,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
      *
      * @return 踢出玩家的理由
      */
+    @NotNull
     public String getReason() {
         return kickReason;
     }
@@ -38,14 +40,17 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
      *
      * @return 离开消息
      */
+    @NotNull
     public String getLeaveMessage() {
         return leaveMessage;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -68,15 +73,17 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
      *
      * @param leaveMessage 离开消息
      */
-    public void setLeaveMessage(String leaveMessage) {
+    public void setLeaveMessage(@NotNull String leaveMessage) {
         this.leaveMessage = leaveMessage;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

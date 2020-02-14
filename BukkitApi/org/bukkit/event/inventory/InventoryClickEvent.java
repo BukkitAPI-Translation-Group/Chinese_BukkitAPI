@@ -1,15 +1,17 @@
 package org.bukkit.event.inventory;
 
-import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.InventoryView;
+import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.Location;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当玩家点击物品栏中的格子时触发事件事件.<br>
@@ -53,7 +55,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     private ItemStack                current   = null;
     private int                      hotbarKey = -1;
 
-    public InventoryClickEvent(InventoryView view, SlotType type, int slot, ClickType click, InventoryAction action) {
+    public InventoryClickEvent(@NotNull InventoryView view, @NotNull SlotType type, int slot, @NotNull ClickType click, @NotNull InventoryAction action) {
         super(view);
         this.slot_type = type;
         this.rawSlot = slot;
@@ -62,7 +64,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
         this.action = action;
     }
 
-    public InventoryClickEvent(InventoryView view, SlotType type, int slot, ClickType click, InventoryAction action, int key) {
+    public InventoryClickEvent(@NotNull InventoryView view, @NotNull SlotType type, int slot, @NotNull ClickType click, @NotNull InventoryAction action, int key) {
         this(view, type, slot, click, action);
         this.hotbarKey = key;
     }
@@ -74,6 +76,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *
      * @return 格子类型
      */
+    @NotNull
     public SlotType getSlotType() {
         return slot_type;
     }
@@ -85,6 +88,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *
      * @return 光标上的物品
      */
+    @Nullable
     public ItemStack getCursor() {
         return getView().getCursor();
     }
@@ -96,6 +100,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *
      * @return 被点击的物品
      */
+    @Nullable
     public ItemStack getCurrentItem() {
         if (slot_type == SlotType.OUTSIDE) {
             return current;
@@ -154,7 +159,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *             clicked Inventory.
      */
     @Deprecated
-    public void setCursor(ItemStack stack) {
+    public void setCursor(@Nullable ItemStack stack) {
         getView().setCursor(stack);
     }
 
@@ -164,12 +169,23 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      * @param stack
      *            the item to be placed in the current slot
      */
-    public void setCurrentItem(ItemStack stack) {
+    public void setCurrentItem(@Nullable ItemStack stack) {
         if (slot_type == SlotType.OUTSIDE) {
             current = stack;
         } else {
             getView().setItem(rawSlot, stack);
         }
+    }
+
+    /**
+     * Gets the inventory corresponding to the clicked slot.
+     *
+     * @see InventoryView#getInventory(int)
+     * @return inventory, or null if clicked outside
+     */
+    @Nullable
+    public Inventory getClickedInventory() {
+        return getView().getInventory(rawSlot);
     }
 
     /**
@@ -219,6 +235,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *
      * @return the InventoryAction that triggered this event.
      */
+    @NotNull
     public InventoryAction getAction() {
         return action;
     }
@@ -226,7 +243,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     /**
      * 获取本事件的ClickType.
      * <p>
-     * ???????????????
+     * 获取到的结果与其它插件对其的改动相隔离.
      * <p>
      * 原文:Gets the ClickType for this event.
      * <p>
@@ -234,15 +251,18 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *
      * @return 背包点击类型
      */
+    @NotNull
     public ClickType getClick() {
         return click;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

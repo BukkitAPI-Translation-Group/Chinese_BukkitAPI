@@ -1,12 +1,12 @@
 package org.bukkit.event.inventory;
 
 import java.util.List;
-
-import org.bukkit.event.HandlerList;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Event;
+import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryView;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表与玩家相关的物品栏事件
@@ -15,7 +15,7 @@ public class InventoryEvent extends Event {
     private static final HandlerList handlers = new HandlerList();
     protected InventoryView transaction;
 
-    public InventoryEvent(InventoryView transaction) {
+    public InventoryEvent(@NotNull InventoryView transaction) {
         this.transaction = transaction;
     }
 
@@ -26,6 +26,7 @@ public class InventoryEvent extends Event {
      *
      * @return 顶部背包
      */
+    @NotNull
     public Inventory getInventory() {
         return transaction.getTopInventory();
     }
@@ -38,6 +39,7 @@ public class InventoryEvent extends Event {
      *
      * @return 正在查看此物品栏的玩家
      */
+    @NotNull
     public List<HumanEntity> getViewers() {
         return transaction.getTopInventory().getViewers();
     }
@@ -49,15 +51,18 @@ public class InventoryEvent extends Event {
      *
      * @return InventoryView
      */
+    @NotNull
     public InventoryView getView() {
         return transaction;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

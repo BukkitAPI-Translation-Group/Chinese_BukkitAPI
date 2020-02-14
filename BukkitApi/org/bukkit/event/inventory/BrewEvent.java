@@ -5,6 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.block.BlockEvent;
 import org.bukkit.inventory.BrewerInventory;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当酿造完成时触发这个事件. 
@@ -15,7 +16,7 @@ public class BrewEvent extends BlockEvent implements Cancellable {
 	private int fuelLevel;
     private boolean cancelled;
 
-    public BrewEvent(Block brewer, BrewerInventory contents, int fuelLevel) {
+    public BrewEvent(@NotNull Block brewer, @NotNull BrewerInventory contents, int fuelLevel) {
         super(brewer);
         this.contents = contents;
         this.fuelLevel = fuelLevel;
@@ -28,6 +29,7 @@ public class BrewEvent extends BlockEvent implements Cancellable {
      *
      * @return 酿造台的物品栏
      */
+    @NotNull
     public BrewerInventory getContents() {
         return contents;
     }
@@ -41,19 +43,23 @@ public class BrewEvent extends BlockEvent implements Cancellable {
         return fuelLevel;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

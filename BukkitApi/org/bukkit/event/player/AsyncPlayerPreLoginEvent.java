@@ -2,9 +2,9 @@ package org.bukkit.event.player;
 
 import java.net.InetAddress;
 import java.util.UUID;
-
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 存储尝试登录的玩家的详细信息，玩家尝试登录服务器的事件.
@@ -20,11 +20,11 @@ public class AsyncPlayerPreLoginEvent extends Event {
     private final UUID uniqueId;
 
     @Deprecated
-    public AsyncPlayerPreLoginEvent(final String name, final InetAddress ipAddress) {
+    public AsyncPlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress) {
         this(name, ipAddress, null);
     }
 
-    public AsyncPlayerPreLoginEvent(final String name, final InetAddress ipAddress, final UUID uniqueId) {
+    public AsyncPlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress, @NotNull final UUID uniqueId) {
         super(true);
         this.result = Result.ALLOWED;
         this.message = "";
@@ -40,6 +40,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @return 登录的状态
      */
+    @NotNull
     public Result getLoginResult() {
         return result;
     }
@@ -54,6 +55,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @see #getLoginResult()
      */
     @Deprecated
+    @NotNull
     public PlayerPreLoginEvent.Result getResult() {
         return result == null ? null : result.old();
     }
@@ -65,7 +67,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @param result 状态
      */
-    public void setLoginResult(final Result result) {
+    public void setLoginResult(@NotNull final Result result) {
         this.result = result;
     }
 
@@ -79,7 +81,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @see #setLoginResult(Result)
      */
     @Deprecated
-    public void setResult(final PlayerPreLoginEvent.Result result) {
+    public void setResult(@NotNull final PlayerPreLoginEvent.Result result) {
         this.result = result == null ? null : Result.valueOf(result.name());
     }
 
@@ -91,6 +93,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @return 踢出消息
      */
+    @NotNull
     public String getKickMessage() {
         return message;
     }
@@ -102,7 +105,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @param message 踢出消息
      */
-    public void setKickMessage(final String message) {
+    public void setKickMessage(@NotNull final String message) {
         this.message = message;
     }
 
@@ -124,7 +127,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @param result 不允许玩家登录的理由
      * @param message 给用户显示的踢出消息
      */
-    public void disallow(final Result result, final String message) {
+    public void disallow(@NotNull final Result result, @NotNull final String message) {
         this.result = result;
         this.message = message;
     }
@@ -140,7 +143,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @see #disallow(Result, String)
      */
     @Deprecated
-    public void disallow(final PlayerPreLoginEvent.Result result, final String message) {
+    public void disallow(@NotNull final PlayerPreLoginEvent.Result result, @NotNull final String message) {
         this.result = result == null ? null : Result.valueOf(result.name());
         this.message = message;
     }
@@ -152,6 +155,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @return 玩家名
      */
+    @NotNull
     public String getName() {
         return name;
     }
@@ -163,6 +167,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @return IP地址
      */
+    @NotNull
     public InetAddress getAddress() {
         return ipAddress;
     }
@@ -174,15 +179,18 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @return UUID
      */
+    @NotNull
     public UUID getUniqueId() {
         return uniqueId;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
@@ -214,6 +222,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
         KICK_OTHER;
 
         @Deprecated
+        @NotNull
         private PlayerPreLoginEvent.Result old() {
             return PlayerPreLoginEvent.Result.valueOf(name());
         }

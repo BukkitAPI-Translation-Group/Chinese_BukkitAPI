@@ -1,5 +1,8 @@
 package org.bukkit.event.inventory;
 
+import org.bukkit.inventory.InventoryHolder;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Represents the different kinds of inventories available in Bukkit.
  * <br>
@@ -8,7 +11,8 @@ package org.bukkit.event.inventory;
  * The current list of inventories that cannot be created via
  * {@link org.bukkit.Bukkit#createInventory} are:<br>
  * <blockquote>
- *     {@link InventoryType#CREATIVE} and {@link InventoryType#CRAFTING}
+ *     {@link InventoryType#CREATIVE}, {@link InventoryType#CRAFTING} and
+ *     {@link InventoryType#MERCHANT}
  * </blockquote>
  *
  * See {@link org.bukkit.Bukkit#createInventory} for more information.
@@ -18,82 +22,121 @@ package org.bukkit.event.inventory;
 public enum InventoryType {
 
     /**
-     * 有0、9、18、27、36、45、54个槽的箱子背包容器
+     * A chest inventory, with 0, 9, 18, 27, 36, 45, or 54 slots of type
+     * CONTAINER.
      */
     CHEST(27,"Chest"),
     /**
-     * 有9个槽的发射器背包容器
+     * A dispenser inventory, with 9 slots of type CONTAINER.
      */
     DISPENSER(9,"Dispenser"),
     /**
-     * 有9个槽的投掷器背包容器
+     * A dropper inventory, with 9 slots of type CONTAINER.
      */
     DROPPER(9, "Dropper"),
     /**
-     * 有烧炼产物格子、一个被烧连物品格子和一个放燃料的格子的熔炉背包容器
+     * A furnace inventory, with a RESULT slot, a CRAFTING slot, and a FUEL
+     * slot.
      */
     FURNACE(3,"Furnace"),
     /**
-     * 有9个合成物品槽和合成产物格子的工作台背包容器
+     * A workbench inventory, with 9 CRAFTING slots and a RESULT slot.
      */
     WORKBENCH(10,"Crafting"),
     /**
-     * 有4个合成物品槽和一个合成产物格子的玩家合成背包。
-     * 同样可以访问四个盔甲格子
+     * A player's crafting inventory, with 4 CRAFTING slots and a RESULT slot.
+     * Also implies that the 4 ARMOR slots are accessible.
      */
     CRAFTING(5,"Crafting", false),
     /**
-     * 有两个合成槽和三个附魔选项按钮的附魔台背包
+     * An enchantment table inventory, with two CRAFTING slots and three
+     * enchanting buttons.
      */
     ENCHANTING(2,"Enchanting"),
     /**
-     * 酿造台背包，有一个燃料槽、一个配方槽和三个药水槽
+     * A brewing stand inventory, with one FUEL slot and four CRAFTING slots.
      */
     BREWING(5,"Brewing"),
     /**
-     * 一个玩家的背包, 有9个快速切换槽, 27个背包槽, 4个盔甲槽和1个副手槽. 不过, 玩家可能看不到护甲和副手槽
+     * A player's inventory, with 9 QUICKBAR slots, 27 CONTAINER slots, 4 ARMOR
+     * slots and 1 offhand slot. The ARMOR and offhand slots may not be visible
+     * to the player, though.
      */
     PLAYER(41,"Player"),
     /**
-     * 表示一个创造模式的背包, 只有9个快速切换槽 (实际来说这几个槽是客户端控制的)
+     * The creative mode inventory, with only 9 QUICKBAR slots and nothing
+     * else. (The actual creative interface with the items is client-side and
+     * cannot be altered by the server.)
      */
     CREATIVE(9,"Creative", false),
     /**
-     * 有两个交易物槽和一个结果槽的交易背包
+     * The merchant inventory, with 2 CRAFTING slots, and 1 RESULT slot.
      */
     MERCHANT(3,"Villager", false),
     /**
-     * 有27个槽的末影箱背包
+     * The ender chest inventory, with 27 slots.
      */
     ENDER_CHEST(27,"Ender Chest"),
     /**
-     * 有两个合成槽和一个结果槽的铁砧背包
+     * An anvil inventory, with 2 CRAFTING slots and 1 RESULT slot
      */
     ANVIL(3, "Repairing"),
     /**
-     * 有一个合成槽的信标背包
+     * A beacon inventory, with 1 CRAFTING slot
      */
     BEACON(1, "container.beacon"),
     /**
-     * 有五个槽的漏斗背包容器
+     * A hopper inventory, with 5 slots of type CONTAINER.
      */
     HOPPER(5, "Item Hopper"),
     /**
-     * 表示一个潜影盒，有27个背包槽
      * A shulker box inventory, with 27 slots of type CONTAINER.
      */
     SHULKER_BOX(27, "Shulker Box"),
+    /**
+     * A barrel box inventory, with 27 slots of type CONTAINER.
+     */
+    BARREL(27, "Barrel"),
+    /**
+     * A blast furnace inventory, with a RESULT slot, a CRAFTING slot, and a
+     * FUEL slot.
+     */
+    BLAST_FURNACE(3, "Blast Furnace"),
+    /**
+     * A lectern inventory, with 1 BOOK slot.
+     */
+    LECTERN(1, "Lectern"),
+    /**
+     * A smoker inventory, with a RESULT slot, a CRAFTING slot, and a FUEL slot.
+     */
+    SMOKER(3, "Smoker"),
+    /**
+     * Loom inventory, with 3 CRAFTING slots, and 1 RESULT slot.
+     */
+    LOOM(4, "Loom"),
+    /**
+     * Cartography inventory with 2 CRAFTING slots, and 1 RESULT slot.
+     */
+    CARTOGRAPHY(3, "Cartography Table"),
+    /**
+     * Grindstone inventory with 2 CRAFTING slots, and 1 RESULT slot.
+     */
+    GRINDSTONE(3, "Repair & Disenchant"),
+    /**
+     * Stonecutter inventory with 1 CRAFTING slot, and 1 RESULT slot.
+     */
+    STONECUTTER(2, "Stonecutter")
     ;
 
     private final int size;
     private final String title;
     private final boolean isCreatable;
 
-    private InventoryType(int defaultSize, String defaultTitle) {
+    private InventoryType(int defaultSize, /*@NotNull*/ String defaultTitle) {
         this(defaultSize, defaultTitle, true);
     }
 
-    private InventoryType(int defaultSize, String defaultTitle, boolean isCreatable) {
+    private InventoryType(int defaultSize, /*@NotNull*/ String defaultTitle, boolean isCreatable) {
         size = defaultSize;
         title = defaultTitle;
         this.isCreatable = isCreatable;
@@ -103,17 +146,16 @@ public enum InventoryType {
         return size;
     }
 
+    @NotNull
     public String getDefaultTitle() {
         return title;
     }
 
     /**
-     * 表示此种物品栏能否通过{@link org.bukkit.Bukkit#createInventory}方法创建.
-     * <p>
-     * 原文:Denotes that this InventoryType can be created via the normal
+     * Denotes that this InventoryType can be created via the normal
      * {@link org.bukkit.Bukkit#createInventory} methods.
      *
-     * @return 若这种物品栏可被创建并展示给玩家
+     * @return if this InventoryType can be created and shown to a player
      */
     public boolean isCreatable() {
         return isCreatable;
@@ -121,17 +163,15 @@ public enum InventoryType {
 
     public enum SlotType {
         /**
-         * 在熔炉或合成背包里的结果槽
+         * A result slot in a furnace or crafting inventory.
          */
         RESULT,
         /**
-         * A slot in the crafting matrix, or the input slot in a furnace
-         * inventory, the potion slot in the brewing stand, or the enchanting
-         * slot.
+         * A slot in the crafting matrix, or an 'input' slot.
          */
         CRAFTING,
         /**
-         * 在玩家背包里的盔甲槽
+         * An armour slot in the player's inventory.
          */
         ARMOR,
         /**

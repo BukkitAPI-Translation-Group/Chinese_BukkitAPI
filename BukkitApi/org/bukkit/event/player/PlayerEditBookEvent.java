@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.meta.BookMeta;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家编辑或签名书与笔时触发。如果事件中断取消，书与笔的元数据不会改变。
@@ -19,7 +20,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
     private boolean isSigning;
     private boolean cancel;
 
-    public PlayerEditBookEvent(Player who, int slot, BookMeta previousBookMeta, BookMeta newBookMeta, boolean isSigning) {
+    public PlayerEditBookEvent(@NotNull Player who, int slot, @NotNull BookMeta previousBookMeta, @NotNull BookMeta newBookMeta, boolean isSigning) {
         super(who);
 
         Validate.isTrue(slot >= -1 && slot <= 8, "Slot must be in range (-1)-8 inclusive");
@@ -47,6 +48,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
      *
      * @return 当前书本的元数据
      */
+    @NotNull
     public BookMeta getPreviousBookMeta() {
         return previousBookMeta.clone();
     }
@@ -63,6 +65,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
      *
      * @return 玩家试图新增的书本元数据
      */
+    @NotNull
     public BookMeta getNewBookMeta() {
         return newBookMeta.clone();
     }
@@ -94,7 +97,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
      * @param newBookMeta 构造书本元数据
      * @throws IllegalArgumentException 当构造的书本元数据不为空值时抛出异常
      */
-    public void setNewBookMeta(BookMeta newBookMeta) throws IllegalArgumentException {
+    public void setNewBookMeta(@NotNull BookMeta newBookMeta) throws IllegalArgumentException {
         Validate.notNull(newBookMeta, "New book meta must not be null");
         Bukkit.getItemFactory().equals(newBookMeta, null);
         this.newBookMeta = newBookMeta.clone();
@@ -124,19 +127,23 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
         isSigning = signing;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }

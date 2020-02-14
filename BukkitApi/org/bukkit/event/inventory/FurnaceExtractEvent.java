@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockExpEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家从熔炉取出产物时触发这个事件. 
@@ -13,13 +14,12 @@ public class FurnaceExtractEvent extends BlockExpEvent {
     private final Material itemType;
     private final int itemAmount;
 
-    public FurnaceExtractEvent(Player player, Block block, Material itemType, int itemAmount, int exp) {
+    public FurnaceExtractEvent(@NotNull Player player, @NotNull Block block, @NotNull Material itemType, int itemAmount, int exp) {
         super(block, exp);
         this.player = player;
         this.itemType = itemType;
         this.itemAmount = itemAmount;
     }
-
     /**
      * 获取触发这个事件的玩家. 
      * <p>
@@ -27,6 +27,7 @@ public class FurnaceExtractEvent extends BlockExpEvent {
      *
      * @return 触发这个事件的玩家(译注:即拿取熔炼产物的玩家)
      */
+    @NotNull
     public Player getPlayer() {
         return player;
     }
@@ -38,6 +39,7 @@ public class FurnaceExtractEvent extends BlockExpEvent {
      *
      * @return 物品类型
      */
+    @NotNull
     public Material getItemType() {
         return itemType;
     }

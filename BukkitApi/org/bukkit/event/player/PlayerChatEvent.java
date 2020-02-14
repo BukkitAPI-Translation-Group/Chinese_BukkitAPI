@@ -2,12 +2,12 @@ package org.bukkit.event.player;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Warning;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 存储玩家聊天和命令的信息。玩家聊天/使用命令会触发本事件。
@@ -25,24 +25,26 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
     private String format;
     private final Set<Player> recipients;
 
-    public PlayerChatEvent(final Player player, final String message) {
+    public PlayerChatEvent(@NotNull final Player player, @NotNull final String message) {
         super(player);
         this.message = message;
         this.format = "<%1$s> %2$s";
         this.recipients = new HashSet<Player>(player.getServer().getOnlinePlayers());
     }
 
-    public PlayerChatEvent(final Player player, final String message, final String format, final Set<Player> recipients) {
+    public PlayerChatEvent(@NotNull final Player player, @NotNull final String message, @NotNull final String format, @NotNull final Set<Player> recipients) {
         super(player);
         this.message = message;
         this.format = format;
         this.recipients = recipients;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -54,6 +56,7 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @return 玩家尝试发送的消息
      */
+    @NotNull
     public String getMessage() {
         return message;
     }
@@ -65,7 +68,7 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @param message 玩家将发送的新消息
      */
-    public void setMessage(String message) {
+    public void setMessage(@NotNull String message) {
         this.message = message;
     }
 
@@ -77,7 +80,7 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @param player 作为这个新玩家执行这个事件
      */
-    public void setPlayer(final Player player) {
+    public void setPlayer(@NotNull final Player player) {
         Validate.notNull(player, "Player cannot be null");
         this.player = player;
     }
@@ -89,6 +92,7 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @return 字符串格式:String.Format
      */
+    @NotNull
     public String getFormat() {
         return format;
     }
@@ -100,7 +104,7 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @param format 字符串格式:String.Format
      */
-    public void setFormat(final String format) {
+    public void setFormat(@NotNull final String format) {
         // Oh for a better way to do this!
         try {
             String.format(format, player, message);
@@ -119,15 +123,18 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      *
      * @return 将会看到本消息的所有玩家
      */
+    @NotNull
     public Set<Player> getRecipients() {
         return recipients;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

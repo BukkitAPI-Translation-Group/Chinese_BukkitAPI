@@ -5,6 +5,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当玩家消耗完物品时, 此事件将触发 例如:(食物, 药水, 牛奶桶).
@@ -32,7 +34,7 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
      * @param player 正在消耗物品的玩家
      * @param item   将要被消耗掉的物品
      */
-    public PlayerItemConsumeEvent(final Player player, final ItemStack item) {
+    public PlayerItemConsumeEvent(@NotNull final Player player, @NotNull final ItemStack item) {
         super(player);
 
         this.item = item;
@@ -49,6 +51,7 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
      *
      * @return 正在被消耗掉的 {@link ItemStack} .
      */
+    @NotNull
     public ItemStack getItem() {
         return item.clone();
     }
@@ -61,7 +64,7 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
      *
      * @param item 正在被消耗掉的ItemStack
      */
-    public void setItem(ItemStack item) {
+    public void setItem(@Nullable ItemStack item) {
         if (item == null) {
             this.item = new ItemStack(Material.AIR);
         } else {
@@ -69,19 +72,23 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
         }
     }
 
+    @Override
     public boolean isCancelled() {
         return this.isCancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.isCancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

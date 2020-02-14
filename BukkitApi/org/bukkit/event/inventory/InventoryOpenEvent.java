@@ -1,9 +1,10 @@
 package org.bukkit.event.inventory;
 
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.InventoryView;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家打开物品栏时触发本事件
@@ -12,7 +13,7 @@ public class InventoryOpenEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean cancelled;
 
-    public InventoryOpenEvent(InventoryView transaction) {
+    public InventoryOpenEvent(@NotNull InventoryView transaction) {
         super(transaction);
         this.cancelled = false;
     }
@@ -24,6 +25,7 @@ public class InventoryOpenEvent extends InventoryEvent implements Cancellable {
      *
      * @return 涉及此事件的玩家
      */
+    @NotNull
     public final HumanEntity getPlayer() {
         return transaction.getPlayer();
     }
@@ -41,6 +43,7 @@ public class InventoryOpenEvent extends InventoryEvent implements Cancellable {
      *
      * @return 事件取消状态
      */
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
@@ -58,16 +61,19 @@ public class InventoryOpenEvent extends InventoryEvent implements Cancellable {
      *
      * @param cancel 事件取消状态
      */
+    @Override
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
-    } 
+    }
 }

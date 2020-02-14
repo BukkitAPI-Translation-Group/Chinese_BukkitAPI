@@ -10,6 +10,8 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当玩家对一个对象或空气进行交互时触发本事件.
@@ -44,11 +46,11 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     private Result useItemInHand;
     private EquipmentSlot hand;
 
-    public PlayerInteractEvent(final Player who, final Action action, final ItemStack item, final Block clickedBlock, final BlockFace clickedFace) {
+    public PlayerInteractEvent(@NotNull final Player who, @NotNull final Action action, @Nullable final ItemStack item, @Nullable final Block clickedBlock, @NotNull final BlockFace clickedFace) {
         this(who, action, item, clickedBlock, clickedFace, EquipmentSlot.HAND);
     }
 
-    public PlayerInteractEvent(final Player who, final Action action, final ItemStack item, final Block clickedBlock, final BlockFace clickedFace, final EquipmentSlot hand) {
+    public PlayerInteractEvent(@NotNull final Player who, @NotNull final Action action, @Nullable final ItemStack item, @Nullable final Block clickedBlock, @NotNull final BlockFace clickedFace, @Nullable final EquipmentSlot hand) {
         super(who);
         this.action = action;
         this.item = item;
@@ -67,6 +69,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return Action 返回交互的动作类型
      */
+    @NotNull
     public Action getAction() {
         return action;
     }
@@ -79,7 +82,14 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      * prevent buckets from placing water and so forth
      *
      * @return boolean 取消状态
+     * @deprecated This event has two possible cancellation states, one for
+     * {@link #useInteractedBlock()} and one for {@link #useItemInHand()}. It is
+     * possible a call might have the former false, but the latter true, eg in
+     * the case of using a firework whilst gliding. Callers should check the
+     * relevant methods individually.
      */
+    @Deprecated
+    @Override
     public boolean isCancelled() {
         return useInteractedBlock() == Result.DENY;
     }
@@ -99,6 +109,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @param cancel 设置为 true 时将会阻止本事件触发
      */
+    @Override
     public void setCancelled(boolean cancel) {
         setUseInteractedBlock(cancel ? Result.DENY : useInteractedBlock() == Result.DENY ? Result.DEFAULT : useInteractedBlock());
         setUseItemInHand(cancel ? Result.DENY : useItemInHand() == Result.DENY ? Result.DEFAULT : useItemInHand());
@@ -111,6 +122,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return ItemStack 使用的物品
      */
+    @Nullable
     public ItemStack getItem() {
         return this.item;
     }
@@ -123,6 +135,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return Material 所用物品的材质
      */
+    @NotNull
     public Material getMaterial() {
         if (!hasItem()) {
             return Material.AIR;
@@ -178,6 +191,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return Block 被点击的方块
      */
+    @Nullable
     public Block getClickedBlock() {
         return blockClicked;
     }
@@ -189,6 +203,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return BlockFace 被点击的方块的朝向
      */
+    @NotNull
     public BlockFace getBlockFace() {
         return blockFace;
     }
@@ -203,6 +218,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return 对被交互的方块采取的动作
      */
+    @NotNull
     public Result useInteractedBlock() {
         return useClickedBlock;
     }
@@ -210,7 +226,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     /**
      * @param useInteractedBlock 对被交互的方块采取的动作
      */
-    public void setUseInteractedBlock(Result useInteractedBlock) {
+    public void setUseInteractedBlock(@NotNull Result useInteractedBlock) {
         this.useClickedBlock = useInteractedBlock;
     }
 
@@ -226,6 +242,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return 对玩家手持的物品采取的动作(the action to take with the item in hand)
      */
+    @NotNull
     public Result useItemInHand() {
         return useItemInHand;
     }
@@ -233,7 +250,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     /**
      * @param useItemInHand 对玩家手持的物品采取的动作(the action to take with the item in hand)
      */
-    public void setUseItemInHand(Result useItemInHand) {
+    public void setUseItemInHand(@NotNull Result useItemInHand) {
         this.useItemInHand = useItemInHand;
     }
 
@@ -245,15 +262,18 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      *
      * @return 用来交互的手, 可能为null
      */
+    @Nullable
     public EquipmentSlot getHand() {
         return hand;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

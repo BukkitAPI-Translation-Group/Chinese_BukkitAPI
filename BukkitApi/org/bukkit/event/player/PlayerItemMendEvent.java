@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家通过装备上的经验修补附魔修复装备耐久时触发该事件.
@@ -26,7 +27,7 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
     private int repairAmount;
     private boolean cancelled;
 
-    public PlayerItemMendEvent(Player who, ItemStack item, ExperienceOrb experienceOrb, int repairAmount) {
+    public PlayerItemMendEvent(@NotNull Player who, @NotNull ItemStack item, @NotNull ExperienceOrb experienceOrb, int repairAmount) {
         super(who);
         this.item = item;
         this.experienceOrb = experienceOrb;
@@ -45,6 +46,7 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
      *
      * @return 要被修复的 {@link ItemStack}
      */
+    @NotNull
     public ItemStack getItem() {
         return item;
     }
@@ -56,6 +58,7 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
      *
      * @return {@link ExperienceOrb}
      */
+    @NotNull
     public ExperienceOrb getExperienceOrb() {
         return experienceOrb;
     }
@@ -103,11 +106,13 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
         this.cancelled = cancelled;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

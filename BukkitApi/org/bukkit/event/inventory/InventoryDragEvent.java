@@ -1,9 +1,9 @@
 package org.bukkit.event.inventory;
 
+import com.google.common.collect.ImmutableSet;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Location;
 import org.bukkit.entity.HumanEntity;
@@ -14,13 +14,13 @@ import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
-
-import com.google.common.collect.ImmutableSet;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * This event is called when the player drags an item in their cursor across
  * the inventory. The ItemStack is distributed across the slots the
- * HumanEntity dragged over. The method of distribution is described by the 
+ * HumanEntity dragged over. The method of distribution is described by the
  * DragType returned by {@link #getType()}.
  * <p>
  * Canceling this event will result in none of the changes described in
@@ -39,7 +39,7 @@ import com.google.common.collect.ImmutableSet;
  * <li>{@link HumanEntity#openEnchanting(Location, boolean)}
  * <li>{@link InventoryView#close()}
  * </ul>
- * To invoke one of these methods, schedule a task using 
+ * To invoke one of these methods, schedule a task using
  * {@link BukkitScheduler#runTask(Plugin, Runnable)}, which will run the task
  * on the next tick.  Also be aware that this is not an exhaustive list, and
  * other methods could potentially create issues as well.
@@ -62,7 +62,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
     private final ItemStack oldCursor;
     private ItemStack newCursor;
 
-    public InventoryDragEvent(InventoryView what, ItemStack newCursor, ItemStack oldCursor, boolean right, Map<Integer, ItemStack> slots) {
+    public InventoryDragEvent(@NotNull InventoryView what, @Nullable ItemStack newCursor, @NotNull ItemStack oldCursor, boolean right, @NotNull Map<Integer, ItemStack> slots) {
         super(what);
 
         Validate.notNull(oldCursor);
@@ -84,6 +84,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      *
      * @return map from raw slot id to new ItemStack
      */
+    @NotNull
     public Map<Integer, ItemStack> getNewItems() {
         return Collections.unmodifiableMap(addedItems);
     }
@@ -93,6 +94,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      *
      * @return list of raw slot ids, suitable for getView().getItem(int)
      */
+    @NotNull
     public Set<Integer> getRawSlots() {
         return addedItems.keySet();
     }
@@ -103,6 +105,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      * @return list of converted slot ids, suitable for {@link
      *     org.bukkit.inventory.Inventory#getItem(int)}.
      */
+    @NotNull
     public Set<Integer> getInventorySlots() {
         return containerSlots;
     }
@@ -113,6 +116,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      *
      * @return the result cursor
      */
+    @Nullable
     public ItemStack getCursor() {
         return newCursor;
     }
@@ -126,7 +130,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      *
      * @param newCursor the new cursor ItemStack
      */
-    public void setCursor(ItemStack newCursor) {
+    public void setCursor(@Nullable ItemStack newCursor) {
         this.newCursor = newCursor;
     }
 
@@ -136,6 +140,7 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      *
      * @return the original cursor
      */
+    @NotNull
     public ItemStack getOldCursor() {
         return oldCursor.clone();
     }
@@ -149,15 +154,18 @@ public class InventoryDragEvent extends InventoryInteractEvent {
      *
      * @return the DragType of this InventoryDragEvent
      */
+    @NotNull
     public DragType getType() {
         return type;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

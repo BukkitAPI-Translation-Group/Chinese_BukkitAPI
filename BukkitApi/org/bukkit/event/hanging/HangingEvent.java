@@ -2,6 +2,7 @@ package org.bukkit.event.hanging;
 
 import org.bukkit.entity.Hanging;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表与悬挂实体有关的事件.
@@ -9,7 +10,7 @@ import org.bukkit.event.Event;
 public abstract class HangingEvent extends Event {
     protected Hanging hanging;
 
-    protected HangingEvent(final Hanging painting) {
+    protected HangingEvent(@NotNull final Hanging painting) {
         this.hanging = painting;
     }
 
@@ -20,6 +21,7 @@ public abstract class HangingEvent extends Event {
      *
      * @return 悬挂实体
      */
+    @NotNull
     public Hanging getEntity() {
         return hanging;
     }

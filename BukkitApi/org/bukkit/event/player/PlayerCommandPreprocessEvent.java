@@ -2,11 +2,11 @@ package org.bukkit.event.player;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 这个事件是,当一个玩家执行一个命令的时候将会被触发(也就是在聊天框里面输入信息以/开头的时候，算作命令，就会触发此事件)。
@@ -82,22 +82,24 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     private String message;
     private final Set<Player> recipients;
 
-    public PlayerCommandPreprocessEvent(final Player player, final String message) {
+    public PlayerCommandPreprocessEvent(@NotNull final Player player, @NotNull final String message) {
         super(player);
         this.recipients = new HashSet<Player>(player.getServer().getOnlinePlayers());
         this.message = message;
     }
 
-    public PlayerCommandPreprocessEvent(final Player player, final String message, final Set<Player> recipients) {
+    public PlayerCommandPreprocessEvent(@NotNull final Player player, @NotNull final String message, @NotNull final Set<Player> recipients) {
         super(player);
         this.recipients = recipients;
         this.message = message;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -115,6 +117,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      *
      * @return 返回玩家所输入的命令所有字符串,包括/
      */
+    @NotNull
     public String getMessage() {
         return message;
     }
@@ -132,7 +135,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * @param command 设置即将要发送的命令
      * @throws IllegalArgumentException 如果这个命令为Null或者为空
      */
-    public void setMessage(String command) throws IllegalArgumentException {
+    public void setMessage(@NotNull String command) throws IllegalArgumentException {
         Validate.notNull(command, "Command cannot be null");
         Validate.notEmpty(command, "Command cannot be empty");
         this.message = command;
@@ -146,7 +149,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * @param player 新的命令执行者
      * @throws IllegalArgumentException 如果这个玩家为null
      */
-    public void setPlayer(final Player player) throws IllegalArgumentException {
+    public void setPlayer(@NotNull final Player player) throws IllegalArgumentException {
         Validate.notNull(player, "Player cannot be null");
         this.player = player;
     }
@@ -172,16 +175,19 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * @deprecated 该方法无法保证在每个版本上的效果
      * @return 所有看见该消息的玩家
      */
+    @NotNull
     @Deprecated
     public Set<Player> getRecipients() {
         return recipients;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

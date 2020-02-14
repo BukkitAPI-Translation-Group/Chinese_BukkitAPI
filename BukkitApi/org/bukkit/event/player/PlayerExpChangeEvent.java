@@ -2,6 +2,7 @@ package org.bukkit.event.player;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家经验值发生变化时调用此事件.
@@ -10,7 +11,7 @@ public class PlayerExpChangeEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private int exp;
 
-    public PlayerExpChangeEvent(final Player player, final int expAmount) {
+    public PlayerExpChangeEvent(@NotNull final Player player, final int expAmount) {
          super(player);
          exp = expAmount;
     }
@@ -37,11 +38,13 @@ public class PlayerExpChangeEvent extends PlayerEvent {
         exp = amount;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

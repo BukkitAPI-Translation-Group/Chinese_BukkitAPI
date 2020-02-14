@@ -1,10 +1,12 @@
 package org.bukkit.event.player;
 
-import org.bukkit.entity.Player;
-import org.bukkit.event.Cancellable;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FishHook;
+import org.bukkit.entity.Player;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当玩家钓鱼时触发本事件.
@@ -17,7 +19,7 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     private final State state;
     private final FishHook hookEntity;
 
-    public PlayerFishEvent(final Player player, final Entity entity, final FishHook hookEntity, final State state) {
+    public PlayerFishEvent(@NotNull final Player player, @Nullable final Entity entity, @NotNull final FishHook hookEntity, @NotNull final State state) {
         super(player);
         this.entity = entity;
         this.hookEntity = hookEntity;
@@ -33,6 +35,7 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
      * @return Entity caught by the player, Entity if fishing, and null if
      *     bobber has gotten stuck in the ground or nothing has been caught
      */
+    @Nullable
     public Entity getCaught() {
         return entity;
     }
@@ -42,14 +45,17 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
      *
      * @return Fish the entity representing the fishing hook/bobber.
      */
+    @NotNull
     public FishHook getHook() {
         return hookEntity;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -83,15 +89,18 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
      *
      * @return A State detailing the state of the fishing
      */
+    @NotNull
     public State getState() {
         return state;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
@@ -122,10 +131,14 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
          */
         IN_GROUND,
         /**
-         * When a player fails to catch anything while fishing usually due to
-         * poor aiming or timing.
+         * When a player fails to catch a bite while fishing usually due to
+         * poor timing.
          */
         FAILED_ATTEMPT,
+        /**
+         * When a player reels in their hook without receiving any bites.
+         */
+        REEL_IN,
         /**
          * Called when there is a bite on the hook and it is ready to be reeled
          * in.

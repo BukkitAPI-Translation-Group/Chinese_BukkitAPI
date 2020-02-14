@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 玩家离开床时触发此事件.
@@ -13,7 +14,7 @@ public class PlayerBedLeaveEvent extends PlayerEvent {
     private final Block bed;
     private boolean setBedSpawn;
 
-    public PlayerBedLeaveEvent(final Player who, final Block bed, boolean setBedSpawn) {
+    public PlayerBedLeaveEvent(@NotNull final Player who, @NotNull final Block bed, boolean setBedSpawn) {
         super(who);
         this.bed = bed;
         this.setBedSpawn = setBedSpawn;
@@ -22,10 +23,11 @@ public class PlayerBedLeaveEvent extends PlayerEvent {
     /**
      * 返回此事件涉及的床.
      * <p>
-     * Returns the bed block involved in this event.
+     * 原文:Returns the bed block involved in this event.
      *
      * @return 床
      */
+    @NotNull
     public Block getBed() {
         return bed;
     }
@@ -62,11 +64,13 @@ public class PlayerBedLeaveEvent extends PlayerEvent {
         this.setBedSpawn = setBedSpawn;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

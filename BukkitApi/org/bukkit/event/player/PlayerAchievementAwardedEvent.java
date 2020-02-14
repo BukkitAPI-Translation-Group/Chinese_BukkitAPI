@@ -4,6 +4,7 @@ import org.bukkit.Achievement;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家获得某个成就时触发此事件.
@@ -31,14 +32,17 @@ public class PlayerAchievementAwardedEvent extends PlayerEvent implements Cancel
         return achievement;
     }
 
+    @Override
     public boolean isCancelled() {
         return isCancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.isCancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;

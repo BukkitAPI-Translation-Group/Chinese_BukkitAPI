@@ -4,6 +4,7 @@ import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 玩家抛出鸡蛋时触发本事件，鸡蛋可能孵化.
@@ -15,7 +16,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
     private EntityType hatchType;
     private byte numHatches;
 
-    public PlayerEggThrowEvent(final Player player, final Egg egg, final boolean hatching, final byte numHatches, final EntityType hatchingType) {
+    public PlayerEggThrowEvent(@NotNull final Player player, @NotNull final Egg egg, final boolean hatching, final byte numHatches, @NotNull final EntityType hatchingType) {
         super(player);
         this.egg = egg;
         this.hatching = hatching;
@@ -30,6 +31,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      *
      * @return 事件中的鸡蛋
      */
+    @NotNull
     public Egg getEgg() {
         return egg;
     }
@@ -64,6 +66,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      *
      * @return 将被孵化的生物类型
      */
+    @NotNull
     public EntityType getHatchingType() {
         return hatchType;
     }
@@ -75,7 +78,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      *
      * @param hatchType 将被孵化生物的类型
      */
-    public void setHatchingType(EntityType hatchType) {
+    public void setHatchingType(@NotNull EntityType hatchType) {
         if(!hatchType.isSpawnable()) throw new IllegalArgumentException("Can't spawn that entity type from an egg!");
         this.hatchType = hatchType;
     }
@@ -119,11 +122,13 @@ public class PlayerEggThrowEvent extends PlayerEvent {
         this.numHatches = numHatches;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

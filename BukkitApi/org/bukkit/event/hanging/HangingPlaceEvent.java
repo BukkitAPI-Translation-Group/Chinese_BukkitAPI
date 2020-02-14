@@ -6,6 +6,8 @@ import org.bukkit.entity.Hanging;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当一个悬挂实体被放置时触发本事件。
@@ -17,7 +19,7 @@ public class HangingPlaceEvent extends HangingEvent implements Cancellable {
     private final Block block;
     private final BlockFace blockFace;
 
-    public HangingPlaceEvent(final Hanging hanging, final Player player, final Block block, final BlockFace blockFace) {
+    public HangingPlaceEvent(@NotNull final Hanging hanging, @Nullable final Player player, @NotNull final Block block, @NotNull final BlockFace blockFace) {
         super(hanging);
         this.player = player;
         this.block = block;
@@ -31,6 +33,7 @@ public class HangingPlaceEvent extends HangingEvent implements Cancellable {
      *
      * @return 放置这个悬挂实体的玩家
      */
+    @Nullable
     public Player getPlayer() {
         return player;
     }
@@ -42,6 +45,7 @@ public class HangingPlaceEvent extends HangingEvent implements Cancellable {
      *
      * @return 这个悬挂实体被放置在哪个方块上
      */
+    @NotNull
     public Block getBlock() {
         return block;
     }
@@ -53,23 +57,28 @@ public class HangingPlaceEvent extends HangingEvent implements Cancellable {
      *
      * @return 这个方块的朝向
      */
+    @NotNull
     public BlockFace getBlockFace() {
         return blockFace;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

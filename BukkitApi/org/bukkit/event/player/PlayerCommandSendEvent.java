@@ -3,6 +3,7 @@ package org.bukkit.event.player;
 import java.util.Collection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当服务器可用命令列表发送给玩家时触发本事件.
@@ -28,7 +29,7 @@ public class PlayerCommandSendEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Collection<String> commands;
 
-    public PlayerCommandSendEvent(final Player player, final Collection<String> commands) {
+    public PlayerCommandSendEvent(@NotNull final Player player, @NotNull final Collection<String> commands) {
         super(player);
         this.commands = commands;
     }
@@ -46,15 +47,18 @@ public class PlayerCommandSendEvent extends PlayerEvent {
      *
      * @return 所有命令的集合
      */
+    @NotNull
     public Collection<String> getCommands() {
         return commands;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
