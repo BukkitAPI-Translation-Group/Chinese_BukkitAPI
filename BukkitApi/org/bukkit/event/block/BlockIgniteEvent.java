@@ -5,6 +5,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当一个方块被点燃时触发.
@@ -20,15 +22,15 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
     private final Block ignitingBlock;
     private boolean cancel;
 
-    public BlockIgniteEvent(final Block theBlock, final IgniteCause cause, final Entity ignitingEntity) {
+    public BlockIgniteEvent(@NotNull final Block theBlock, @NotNull final IgniteCause cause, @NotNull final Entity ignitingEntity) {
         this(theBlock, cause, ignitingEntity, null);
     }
 
-    public BlockIgniteEvent(final Block theBlock, final IgniteCause cause, final Block ignitingBlock) {
+    public BlockIgniteEvent(@NotNull final Block theBlock, @NotNull final IgniteCause cause, @NotNull final Block ignitingBlock) {
         this(theBlock, cause, null, ignitingBlock);
     }
 
-    public BlockIgniteEvent(final Block theBlock, final IgniteCause cause, final Entity ignitingEntity, final Block ignitingBlock) {
+    public BlockIgniteEvent(@NotNull final Block theBlock, @NotNull final IgniteCause cause, @Nullable final Entity ignitingEntity, @Nullable final Block ignitingBlock) {
         super(theBlock);
         this.cause = cause;
         this.ignitingEntity = ignitingEntity;
@@ -36,10 +38,12 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
         this.cancel = false;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -51,6 +55,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
      *
      * @return 点燃方块的原因
      */
+    @NotNull
     public IgniteCause getCause() {
         return cause;
     }
@@ -62,6 +67,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
      *
      * @return 点燃方块/放置火方块的玩家，如果不是玩家点燃的返回null
      */
+    @Nullable
     public Player getPlayer() {
         if (ignitingEntity instanceof Player) {
             return (Player) ignitingEntity;
@@ -77,6 +83,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
      *
      * @return 点燃方块的实体，如果不是实体点燃的返回null
      */
+    @Nullable
     public Entity getIgnitingEntity() {
         return ignitingEntity;
     }
@@ -88,6 +95,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
      *
      * @return 点燃方块的方块,如果不是方块点燃的返回null
      */
+    @Nullable
     public Block getIgnitingBlock() {
         return ignitingBlock;
     }
@@ -127,11 +135,13 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
         EXPLOSION,
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

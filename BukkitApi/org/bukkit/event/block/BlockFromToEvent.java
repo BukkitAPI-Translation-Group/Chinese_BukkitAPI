@@ -4,6 +4,7 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 液体流动/龙蛋自己传送的事件(源方块到目标方块).
@@ -16,13 +17,13 @@ public class BlockFromToEvent extends BlockEvent implements Cancellable {
     protected BlockFace face;
     protected boolean cancel;
 
-    public BlockFromToEvent(final Block block, final BlockFace face) {
+    public BlockFromToEvent(@NotNull final Block block, @NotNull final BlockFace face) {
         super(block);
         this.face = face;
         this.cancel = false;
     }
 
-    public BlockFromToEvent(final Block block, final Block toBlock) {
+    public BlockFromToEvent(@NotNull final Block block, @NotNull final Block toBlock) {
         super(block);
         this.to = toBlock;
         this.face = BlockFace.SELF;
@@ -36,6 +37,7 @@ public class BlockFromToEvent extends BlockEvent implements Cancellable {
      *
      * @return 方块想要移动到的{@link BlockFace 朝向}
      */
+    @NotNull
     public BlockFace getFace() {
         return face;
     }
@@ -47,6 +49,7 @@ public class BlockFromToEvent extends BlockEvent implements Cancellable {
      *
      * @return 目标方块
      */
+    @NotNull
     public Block getToBlock() {
         if (to == null) {
             to = block.getRelative(face);
@@ -54,19 +57,23 @@ public class BlockFromToEvent extends BlockEvent implements Cancellable {
         return to;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

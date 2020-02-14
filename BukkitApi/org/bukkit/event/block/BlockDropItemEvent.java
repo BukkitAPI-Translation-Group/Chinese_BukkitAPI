@@ -1,5 +1,6 @@
 package org.bukkit.event.block;
 
+import java.util.List;
 import org.bukkit.Warning;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
@@ -7,6 +8,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Called if a block broken by a player drops an item.
@@ -20,11 +22,8 @@ import org.bukkit.event.HandlerList;
  * for example a torch on top of a stone. Both items will have an event call.
  *
  * The Block is already broken as this event is called, so #getBlock() will be
- * AIR in most cases. Use #getBlockData() for more Information about the broken
+ * AIR in most cases. Use #getBlockState() for more Information about the broken
  * block.
- *
- * <b>Note this event may not currently fire for some drops associated with tile
- * entities</b>
  *
  * @deprecated draft API
  */
@@ -36,13 +35,13 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
     private final Player player;
     private boolean cancel;
     private final BlockState blockState;
-    private final Item item;
+    private final List<Item> items;
 
-    public BlockDropItemEvent(Block block, BlockState blockState, Player player, Item item) {
+    public BlockDropItemEvent(@NotNull Block block, @NotNull BlockState blockState, @NotNull Player player, @NotNull List<Item> items) {
         super(block);
         this.blockState = blockState;
         this.player = player;
-        this.item = item;
+        this.items = items;
     }
 
     /**
@@ -50,6 +49,7 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
      *
      * @return The Player that is breaking the block involved in this event
      */
+    @NotNull
     public Player getPlayer() {
         return player;
     }
@@ -60,17 +60,22 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
      *
      * @return The BlockState of the block involved in this event
      */
+    @NotNull
     public BlockState getBlockState() {
         return blockState;
     }
 
     /**
-     * Gets the Item drop caused by the block break.
+     * Gets list of the Item drops caused by the block break.
+     *
+     * This list is mutable - removing an item from it will cause it to not
+     * drop. It is not legal however to add new items to the list.
      *
      * @return The Item the block caused to drop
      */
-    public Item getItem() {
-        return item;
+    @NotNull
+    public List<Item> getItems() {
+        return items;
     }
 
     @Override
@@ -83,11 +88,13 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
         this.cancel = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

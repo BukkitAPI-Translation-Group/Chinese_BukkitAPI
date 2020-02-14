@@ -3,6 +3,7 @@ package org.bukkit.event.block;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 方块搭建成实体时调用本事件.
@@ -16,7 +17,7 @@ import org.bukkit.entity.Entity;
 public class EntityBlockFormEvent extends BlockFormEvent {
     private final Entity entity;
 
-    public EntityBlockFormEvent(final Entity entity, final Block block, final BlockState blockstate) {
+    public EntityBlockFormEvent(@NotNull final Entity entity, @NotNull final Block block, @NotNull final BlockState blockstate) {
         super(block, blockstate);
 
         this.entity = entity;
@@ -29,6 +30,7 @@ public class EntityBlockFormEvent extends BlockFormEvent {
      *
      * @return 这个事件的实体
      */
+    @NotNull
     public Entity getEntity() {
         return entity;
     }

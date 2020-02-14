@@ -2,6 +2,8 @@ package org.bukkit.event.entity;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当方块造成实体燃烧时触发该事件.
@@ -11,7 +13,7 @@ import org.bukkit.entity.Entity;
 public class EntityCombustByBlockEvent extends EntityCombustEvent {
     private final Block combuster;
 
-    public EntityCombustByBlockEvent(final Block combuster, final Entity combustee, final int duration) {
+    public EntityCombustByBlockEvent(@Nullable final Block combuster, @NotNull final Entity combustee, final int duration) {
         super(combustee, duration);
         this.combuster = combuster;
     }
@@ -29,6 +31,7 @@ public class EntityCombustByBlockEvent extends EntityCombustEvent {
      *
      * @return the Block that set the combustee alight.
      */
+    @Nullable
     public Block getCombuster() {
         return combuster;
     }

@@ -1,9 +1,10 @@
 package org.bukkit.event.entity;
 
 import java.util.List;
-
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当一个{@link Player 玩家}死亡时触发本事件
@@ -16,15 +17,15 @@ public class PlayerDeathEvent extends EntityDeathEvent {
     private boolean keepLevel = false;
     private boolean keepInventory = false;
 
-    public PlayerDeathEvent(final Player player, final List<ItemStack> drops, final int droppedExp, final String deathMessage) {
+    public PlayerDeathEvent(@NotNull final Player player, @NotNull final List<ItemStack> drops, final int droppedExp, @Nullable final String deathMessage) {
         this(player, drops, droppedExp, 0, deathMessage);
     }
 
-    public PlayerDeathEvent(final Player player, final List<ItemStack> drops, final int droppedExp, final int newExp, final String deathMessage) {
+    public PlayerDeathEvent(@NotNull final Player player, @NotNull final List<ItemStack> drops, final int droppedExp, final int newExp, @Nullable final String deathMessage) {
         this(player, drops, droppedExp, newExp, 0, 0, deathMessage);
     }
 
-    public PlayerDeathEvent(final Player player, final List<ItemStack> drops, final int droppedExp, final int newExp, final int newTotalExp, final int newLevel, final String deathMessage) {
+    public PlayerDeathEvent(@NotNull final Player player, @NotNull final List<ItemStack> drops, final int droppedExp, final int newExp, final int newTotalExp, final int newLevel, @Nullable final String deathMessage) {
         super(player, drops, droppedExp);
         this.newExp = newExp;
         this.newTotalExp = newTotalExp;
@@ -32,6 +33,7 @@ public class PlayerDeathEvent extends EntityDeathEvent {
         this.deathMessage = deathMessage;
     }
 
+    @NotNull
     @Override
     public Player getEntity() {
         return (Player) entity;
@@ -45,7 +47,7 @@ public class PlayerDeathEvent extends EntityDeathEvent {
      *
      * @param deathMessage 死亡提示
      */
-    public void setDeathMessage(String deathMessage) {
+    public void setDeathMessage(@Nullable String deathMessage) {
         this.deathMessage = deathMessage;
     }
 
@@ -56,6 +58,7 @@ public class PlayerDeathEvent extends EntityDeathEvent {
      *
      * @return 死亡提示
      */
+    @Nullable
     public String getDeathMessage() {
         return deathMessage;
     }
@@ -140,9 +143,9 @@ public class PlayerDeathEvent extends EntityDeathEvent {
      * <p>
      * This overrides all other EXP settings
      * <p>
-     * This doesn't prevent prevent the EXP from dropping.
+     * <b>This doesn't prevent prevent the EXP from dropping.
      * {@link #setDroppedExp(int)} should be used stop the
-     * EXP from dropping.
+     * EXP from dropping.</b>
      *
      * @param keepLevel True to keep all current value levels
      */
@@ -152,6 +155,10 @@ public class PlayerDeathEvent extends EntityDeathEvent {
 
     /**
      * Sets if the Player keeps inventory on death.
+     * <p>
+     * <b>This doesn't prevent prevent the items from dropping.
+     * {@code getDrops().clear()} should be used stop the
+     * items from dropping.</b>
      *
      * @param keepInventory True to keep the inventory
      */

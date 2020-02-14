@@ -1,48 +1,27 @@
 package org.bukkit.event.entity;
 
-import org.bukkit.Location;
+import org.bukkit.Chunk;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.event.Cancellable;
-import org.bukkit.event.HandlerList;
+import org.bukkit.event.world.ChunkLoadEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当一个生物体在世界中出生时触发该事件.
  * <p>
  * 如果该事件被取消了,那么这个生物将不会出生.
  */
-public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
-    private static final HandlerList handlers = new HandlerList();
-    private boolean canceled;
+public class CreatureSpawnEvent extends EntitySpawnEvent {
     private final SpawnReason spawnReason;
 
-    public CreatureSpawnEvent(final LivingEntity spawnee, final SpawnReason spawnReason) {
+    public CreatureSpawnEvent(@NotNull final LivingEntity spawnee, @NotNull final SpawnReason spawnReason) {
         super(spawnee);
         this.spawnReason = spawnReason;
     }
 
-    public boolean isCancelled() {
-        return canceled;
-    }
-
-    public void setCancelled(boolean cancel) {
-        canceled = cancel;
-    }
-
+    @NotNull
     @Override
     public LivingEntity getEntity() {
         return (LivingEntity) entity;
-    }
-
-    /**
-     * 返回生物出生的位置
-     * <p>
-     * 原文:
-     * Gets the location at which the creature is spawning.
-     *
-     * @return The location at which the creature is spawning生物出生的位置
-     */
-    public Location getLocation() {
-        return getEntity().getLocation();
     }
 
     /**
@@ -53,6 +32,7 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
      *
      * @return 出生原因
      */
+    @NotNull
     public SpawnReason getSpawnReason() {
         return spawnReason;
     }
@@ -81,7 +61,12 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
         JOCKEY,
         /**
          * 当区块产生而生成生物时
+         *
+         * @deprecated 不再调用, 区块与已经存在的实体一同生成.
+         * 请考虑使用{@link ChunkLoadEvent#isNewChunk()} 和 {@link Chunk#getEntities()}
+         * 以达到类似效果
          */
+        @Deprecated
         CHUNK_GEN,
         /**
          * 当生物由于刷怪箱生成时
@@ -180,6 +165,10 @@ public class CreatureSpawnEvent extends EntityEvent implements Cancellable {
          * When an cow is spawned by shearing a mushroom cow
          */
         SHEARED,
+        /**
+         * 由于苦力怕等发生爆炸产生效果云时/When eg an effect cloud is spawned as a result of a creeper exploding
+         */
+        EXPLOSION,
         /**
          * 当生物被插件生成时
          */

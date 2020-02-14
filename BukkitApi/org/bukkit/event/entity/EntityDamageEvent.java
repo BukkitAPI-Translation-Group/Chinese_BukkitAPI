@@ -1,18 +1,17 @@
 package org.bukkit.event.entity;
 
+import com.google.common.base.Function;
+import com.google.common.base.Functions;
+import com.google.common.collect.ImmutableMap;
 import java.util.EnumMap;
 import java.util.Map;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-
-import com.google.common.base.Function;
-import com.google.common.base.Functions;
-import com.google.common.collect.ImmutableMap;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 储存伤害事件的数据
@@ -27,11 +26,11 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     private boolean cancelled;
     private final DamageCause cause;
 
-    public EntityDamageEvent(final Entity damagee, final DamageCause cause, final double damage) {
+    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, final double damage) {
         this(damagee, cause, new EnumMap<DamageModifier, Double>(ImmutableMap.of(DamageModifier.BASE, damage)), new EnumMap<DamageModifier, Function<? super Double, Double>>(ImmutableMap.of(DamageModifier.BASE, ZERO)));
     }
 
-    public EntityDamageEvent(final Entity damagee, final DamageCause cause, final Map<DamageModifier, Double> modifiers, final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
+    public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
         super(damagee);
         Validate.isTrue(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
         Validate.isTrue(!modifiers.containsKey(null), "Cannot have null DamageModifier");
@@ -44,29 +43,27 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
         this.modifierFunctions = modifierFunctions;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
     /**
-     * 获取指定伤害类型的原始伤害,作为本次事件的结构定义 ?
+     * 获取指定伤害类型的原始伤害,作为本次事件的结构定义 .
+     * <p>
+     * 原文:Gets the original damage for the specified modifier, as defined at this
+     * event's construction.
+     *
      * @param type (DamageModifier) 伤害类型
      * @return 原始伤害
      * @throws IllegalArgumentException 如果参数(DamageModifier)是null时
-     * 
-     * 原文:
-     * Gets the original damage for the specified modifier, as defined at this
-     * event's construction.
-     *
-     * @param type the modifier
-     * @return the original damage
-     * @throws IllegalArgumentException if type is null
      */
-    public double getOriginalDamage(DamageModifier type) throws IllegalArgumentException {
+    public double getOriginalDamage(@NotNull DamageModifier type) throws IllegalArgumentException {
         final Double damage = originals.get(type);
         if (damage != null) {
             return damage;
@@ -78,26 +75,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * 设置指定伤害类型的伤害
+     * 设置指定伤害类型的伤害.
+     * <p>
+     * 原文:Sets the damage for the specified modifier.
+     *
      * @param type 伤害类型
      * @param damage 伤害值
      * @see #getFinalDamage()
      * @throws IllegalArgumentException 如果类型是null时
      * @throws UnsupportedOperationException 如果触发该事件的实体不支持该伤害类型,
      *     或者受到修改,当 {@link  #isApplicable(DamageModifier)} 返回false
-     * 
-     * 原文:
-     * Sets the damage for the specified modifier.
-     *
-     * @param type the damage modifier
-     * @param damage the scalar value of the damage's modifier
-     * @see #getFinalDamage()
-     * @throws IllegalArgumentException if type is null
-     * @throws UnsupportedOperationException if the caller does not support
-     *     the particular DamageModifier, or to rephrase, when {@link
-     *     #isApplicable(DamageModifier)} returns false
      */
-    public void setDamage(DamageModifier type, double damage) throws IllegalArgumentException, UnsupportedOperationException {
+    public void setDamage(@NotNull DamageModifier type, double damage) throws IllegalArgumentException, UnsupportedOperationException {
         if (!modifiers.containsKey(type)) {
             throw type == null ? new IllegalArgumentException("Cannot have null DamageModifier") : new UnsupportedOperationException(type + " is not applicable to " + getEntity());
         }
@@ -105,20 +94,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * 返回伤害值
+     * 通过特定修饰符返回伤害值.
+     * <p>
+     * 原文:Gets the damage change for some modifier
+     *
      * @param type 伤害类型
      * @return 引起该事件的原始伤害
      * @throws IllegalArgumentException 如果类型是null
      * @see DamageModifier#BASE
-     * 原文:
-     * Gets the damage change for some modifier
-     *
-     * @param type the damage modifier
-     * @return The raw amount of damage caused by the event
-     * @throws IllegalArgumentException if type is null
-     * @see DamageModifier#BASE
      */
-    public double getDamage(DamageModifier type) throws IllegalArgumentException {
+     public double getDamage(@NotNull DamageModifier type) throws IllegalArgumentException {
         Validate.notNull(type, "Cannot have null DamageModifier");
         final Double damage = modifiers.get(type);
         return damage == null ? 0 : damage;
@@ -130,35 +115,28 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * 将不会抛出 {@link UnsupportedOperationException} 异常
      * <p>
      * {@link DamageModifier#BASE} 总是适用的.
-     * 
-     * @param type 伤害原因
-     * @return 当伤害原因与事件触发的原因相同时返回true 反之返回false
-     * @throws IllegalArgumentException 如何传入的参数是null时
-     * 原文:
-     * This checks to see if a particular modifier is valid for this event's
+     * <p>
+     * 原文:This checks to see if a particular modifier is valid for this event's
      * caller, such that, {@link #setDamage(DamageModifier, double)} will not
      * throw an {@link UnsupportedOperationException}.
      * <p>
      * {@link DamageModifier#BASE} is always applicable.
-     *
-     * @param type the modifier
-     * @return true if the modifier is supported by the caller, false otherwise
-     * @throws IllegalArgumentException if type is null
+     * 
+     * @param type 伤害原因
+     * @return 当伤害原因与事件触发的原因相同时返回true 反之返回false
+     * @throws IllegalArgumentException 如何传入的参数是null时
      */
-    public boolean isApplicable(DamageModifier type) throws IllegalArgumentException {
+    public boolean isApplicable(@NotNull DamageModifier type) throws IllegalArgumentException {
         Validate.notNull(type, "Cannot have null DamageModifier");
         return modifiers.containsKey(type);
     }
 
     /**
-     * 返回本次事件收到伤害的值
-     * 
-     * @return 一个没有进过别的处理的 伤害值
-     * @see DamageModifier#BASE
-     * 原文:
-     * Gets the raw amount of damage caused by the event
+     * 返回本次事件收到伤害的值.
+     * <p>
+     * 原文:Gets the raw amount of damage caused by the event
      *
-     * @return The raw amount of damage caused by the event
+     * @return 一个没有进过别的处理的 伤害值
      * @see DamageModifier#BASE
      */
     public double getDamage() {
@@ -166,13 +144,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * 返回此次事件最终的伤害值 (经过护甲等的修改)
-     * 
-     * @return 此次事件最终的伤害值
-     * Gets the amount of damage caused by the event after all damage
+     * 返回此次事件最终的伤害值 (经过护甲等的修改).
+     * <p>
+     * 原文:Gets the amount of damage caused by the event after all damage
      * reduction is applied.
      *
-     * @return the amount of damage caused by the event
+     * @return 此次事件最终的伤害值
      */
     public final double getFinalDamage() {
         double damage = 0;
@@ -224,15 +201,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      *
      * @return A DamageCause value detailing the cause of the damage.
      */
+    @NotNull
     public DamageCause getCause() {
         return cause;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

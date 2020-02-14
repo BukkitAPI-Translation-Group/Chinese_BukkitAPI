@@ -1,9 +1,12 @@
 package org.bukkit.event.entity;
 
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Called when a projectile hits an object
@@ -12,25 +15,32 @@ public class ProjectileHitEvent extends EntityEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Entity hitEntity;
     private final Block hitBlock;
+    private final BlockFace hitFace;
 
-    public ProjectileHitEvent(final Projectile projectile) {
+    public ProjectileHitEvent(@NotNull final Projectile projectile) {
         this(projectile, null, null);
     }
 
-    public ProjectileHitEvent(final Projectile projectile, Entity hitEntity) {
+    public ProjectileHitEvent(@NotNull final Projectile projectile, @Nullable Entity hitEntity) {
         this(projectile, hitEntity, null);
     }
 
-    public ProjectileHitEvent(final Projectile projectile, Block hitBlock) {
+    public ProjectileHitEvent(@NotNull final Projectile projectile, @Nullable Block hitBlock) {
         this(projectile, null, hitBlock);
     }
 
-    public ProjectileHitEvent(final Projectile projectile, Entity hitEntity, Block hitBlock) {
+    public ProjectileHitEvent(@NotNull final Projectile projectile, @Nullable Entity hitEntity, @Nullable Block hitBlock) {
+        this(projectile, hitEntity, hitBlock, null);
+    }
+
+    public ProjectileHitEvent(@NotNull final Projectile projectile, @Nullable Entity hitEntity, @Nullable Block hitBlock, @Nullable BlockFace hitFace) {
         super(projectile);
         this.hitEntity = hitEntity;
         this.hitBlock = hitBlock;
+        this.hitFace = hitFace;
     }
 
+    @NotNull
     @Override
     public Projectile getEntity() {
         return (Projectile) entity;
@@ -41,8 +51,20 @@ public class ProjectileHitEvent extends EntityEvent {
      *
      * @return hit block or else null
      */
+    @Nullable
     public Block getHitBlock() {
         return hitBlock;
+    }
+
+    /**
+     * Gets the block face that was hit, if it was a block that was hit and the
+     * face was provided in the vent.
+     *
+     * @return hit face or else null
+     */
+    @Nullable
+    public BlockFace getHitBlockFace() {
+        return hitFace;
     }
 
     /**
@@ -50,15 +72,18 @@ public class ProjectileHitEvent extends EntityEvent {
      *
      * @return hit entity or else null
      */
+    @Nullable
     public Entity getHitEntity() {
         return hitEntity;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

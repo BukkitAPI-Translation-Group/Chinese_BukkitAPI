@@ -3,6 +3,8 @@ package org.bukkit.event.entity;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Called when a creature targets or untargets another entity
@@ -13,16 +15,18 @@ public class EntityTargetEvent extends EntityEvent implements Cancellable {
     private Entity target;
     private final TargetReason reason;
 
-    public EntityTargetEvent(final Entity entity, final Entity target, final TargetReason reason) {
+    public EntityTargetEvent(@NotNull final Entity entity, @Nullable final Entity target, @NotNull final TargetReason reason) {
         super(entity);
         this.target = target;
         this.reason = reason;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -32,6 +36,7 @@ public class EntityTargetEvent extends EntityEvent implements Cancellable {
      *
      * @return The reason
      */
+    @NotNull
     public TargetReason getReason() {
         return reason;
     }
@@ -44,6 +49,7 @@ public class EntityTargetEvent extends EntityEvent implements Cancellable {
      *
      * @return The entity
      */
+    @Nullable
     public Entity getTarget() {
         return target;
     }
@@ -60,15 +66,17 @@ public class EntityTargetEvent extends EntityEvent implements Cancellable {
      *
      * @param target The entity to target
      */
-    public void setTarget(Entity target) {
+    public void setTarget(@Nullable Entity target) {
         this.target = target;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
@@ -145,6 +153,10 @@ public class EntityTargetEvent extends EntityEvent implements Cancellable {
          * entity
          */
         CLOSEST_ENTITY,
+        /**
+         * When a raiding entity selects the same target as one of its compatriots.
+         */
+        FOLLOW_LEADER,
         /**
          * When another entity tempts this entity by having a desired item such
          * as wheat in it's hand.

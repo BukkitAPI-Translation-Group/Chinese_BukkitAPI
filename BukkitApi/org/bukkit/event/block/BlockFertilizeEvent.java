@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.world.StructureGrowEvent;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Called with the block changes resulting from a player fertilizing a given
@@ -21,7 +23,7 @@ public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
     private final Player player;
     private final List<BlockState> blocks;
 
-    public BlockFertilizeEvent(Block theBlock, Player player, List<BlockState> blocks) {
+    public BlockFertilizeEvent(@NotNull Block theBlock, @Nullable Player player, @NotNull List<BlockState> blocks) {
         super(theBlock);
         this.player = player;
         this.blocks = blocks;
@@ -32,6 +34,7 @@ public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
      *
      * @return triggering player, or null if not applicable
      */
+    @Nullable
     public Player getPlayer() {
         return player;
     }
@@ -41,6 +44,7 @@ public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
      *
      * @return list of all changed blocks
      */
+    @NotNull
     public List<BlockState> getBlocks() {
         return blocks;
     }
@@ -55,11 +59,13 @@ public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
         this.cancelled = cancelled;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

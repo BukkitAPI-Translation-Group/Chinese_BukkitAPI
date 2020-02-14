@@ -3,10 +3,10 @@ package org.bukkit.event.block;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 活塞臂推出事件.
@@ -17,13 +17,13 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
     private List<Block> blocks;
 
     @Deprecated
-    public BlockPistonExtendEvent(final Block block, final int length, final BlockFace direction) {
+    public BlockPistonExtendEvent(@NotNull final Block block, final int length, @NotNull final BlockFace direction) {
         super(block, direction);
 
         this.length = length;
     }
 
-    public BlockPistonExtendEvent(final Block block, final List<Block> blocks, final BlockFace direction) {
+    public BlockPistonExtendEvent(@NotNull final Block block, @NotNull final List<Block> blocks, @NotNull final BlockFace direction) {
         super(block, direction);
 
         this.length = blocks.size();
@@ -53,6 +53,7 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
      *
      * @return 被活塞移动的方块列表.
      */
+    @NotNull
     public List<Block> getBlocks() {
         if (blocks == null) {
             ArrayList<Block> tmp = new ArrayList<Block>();
@@ -64,11 +65,13 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
         return blocks;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

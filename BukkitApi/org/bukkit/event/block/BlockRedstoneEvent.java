@@ -2,6 +2,7 @@ package org.bukkit.event.block;
 
 import org.bukkit.block.Block;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当方块接受到的红石信号变化时触发此事件
@@ -11,7 +12,7 @@ public class BlockRedstoneEvent extends BlockEvent {
     private final int oldCurrent;
     private int newCurrent;
 
-    public BlockRedstoneEvent(final Block block, final int oldCurrent, final int newCurrent) {
+    public BlockRedstoneEvent(@NotNull final Block block, final int oldCurrent, final int newCurrent) {
         super(block);
         this.oldCurrent = oldCurrent;
         this.newCurrent = newCurrent;
@@ -50,11 +51,13 @@ public class BlockRedstoneEvent extends BlockEvent {
         this.newCurrent = newCurrent;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

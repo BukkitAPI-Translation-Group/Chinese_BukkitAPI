@@ -1,8 +1,9 @@
 package org.bukkit.event.entity;
 
+import org.bukkit.entity.AbstractHorse;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-import org.bukkit.entity.AbstractHorse;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当马跳起时调用此事件.
@@ -12,23 +13,26 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
     private boolean cancelled;
     private float power;
 
-    public HorseJumpEvent(final AbstractHorse horse, final float power) {
+    public HorseJumpEvent(@NotNull final AbstractHorse horse, final float power) {
         super(horse);
         this.power = power;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
     /**
-     * @deprecated horse jumping was moved client side.
+     * @deprecated 马的跳跃行为被移动到了客户端
      */
+    @Override
     @Deprecated
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public AbstractHorse getEntity() {
         return (AbstractHorse) entity;
@@ -73,11 +77,13 @@ public class HorseJumpEvent extends EntityEvent implements Cancellable {
         this.power = power;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

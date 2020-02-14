@@ -1,10 +1,14 @@
 package org.bukkit.event;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.EnumMap;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Map.Entry;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.RegisteredListener;
-
-import java.util.*;
-import java.util.Map.Entry;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 一个处理事件的类, 存储每个事件。基于 lahwran's fevents.
@@ -72,7 +76,7 @@ public class HandlerList {
      *
      * @param plugin 要注销监听器的插件
      */
-    public static void unregisterAll(Plugin plugin) {
+    public static void unregisterAll(@NotNull Plugin plugin) {
         synchronized (allLists) {
             for (HandlerList h : allLists) {
                 h.unregister(plugin);
@@ -87,7 +91,7 @@ public class HandlerList {
      *
      * @param listener 要注销的监听器
      */
-    public static void unregisterAll(Listener listener) {
+    public static void unregisterAll(@NotNull Listener listener) {
         synchronized (allLists) {
             for (HandlerList h : allLists) {
                 h.unregister(listener);
@@ -121,7 +125,7 @@ public class HandlerList {
      *
      * @param listener 要注册的监听器
      */
-    public synchronized void register(RegisteredListener listener) {
+    public synchronized void register(@NotNull RegisteredListener listener) {
         if (handlerslots.get(listener.getPriority()).contains(listener))
             throw new IllegalStateException("This listener is already registered to priority " + listener.getPriority().toString());
         handlers = null;
@@ -135,7 +139,7 @@ public class HandlerList {
      *
      * @param listeners 要注册的监听器
      */
-    public void registerAll(Collection<RegisteredListener> listeners) {
+    public void registerAll(@NotNull Collection<RegisteredListener> listeners) {
         for (RegisteredListener listener : listeners) {
             register(listener);
         }
@@ -150,7 +154,7 @@ public class HandlerList {
      *
      * @param listener 要移除的监听器
      */
-    public synchronized void unregister(RegisteredListener listener) {
+    public synchronized void unregister(@NotNull RegisteredListener listener) {
         if (handlerslots.get(listener.getPriority()).remove(listener)) {
             handlers = null;
         }
@@ -163,7 +167,7 @@ public class HandlerList {
      *
      * @param plugin 要移除监听器的插件
      */
-    public synchronized void unregister(Plugin plugin) {
+    public synchronized void unregister(@NotNull Plugin plugin) {
         boolean changed = false;
         for (List<RegisteredListener> list : handlerslots.values()) {
             for (ListIterator<RegisteredListener> i = list.listIterator(); i.hasNext();) {
@@ -183,7 +187,7 @@ public class HandlerList {
      *
      * @param listener 要移除的监听器
      */
-    public synchronized void unregister(Listener listener) {
+    public synchronized void unregister(@NotNull Listener listener) {
         boolean changed = false;
         for (List<RegisteredListener> list : handlerslots.values()) {
             for (ListIterator<RegisteredListener> i = list.listIterator(); i.hasNext();) {
@@ -217,6 +221,7 @@ public class HandlerList {
      *
      * @return 注册过的监听器的数组
      */
+    @NotNull
     public RegisteredListener[] getRegisteredListeners() {
         RegisteredListener[] handlers;
         while ((handlers = this.handlers) == null) bake(); // This prevents fringe cases of returning null
@@ -232,7 +237,8 @@ public class HandlerList {
      * @param plugin 要获取监听器的插件
      * @return 注册的监听器列表
      */
-    public static ArrayList<RegisteredListener> getRegisteredListeners(Plugin plugin) {
+    @NotNull
+    public static ArrayList<RegisteredListener> getRegisteredListeners(@NotNull Plugin plugin) {
         ArrayList<RegisteredListener> listeners = new ArrayList<RegisteredListener>();
         synchronized (allLists) {
             for (HandlerList h : allLists) {
@@ -258,6 +264,7 @@ public class HandlerList {
      * @return 所有处理器的列表
      */
     @SuppressWarnings("unchecked")
+    @NotNull
     public static ArrayList<HandlerList> getHandlerLists() {
         synchronized (allLists) {
             return (ArrayList<HandlerList>) allLists.clone();

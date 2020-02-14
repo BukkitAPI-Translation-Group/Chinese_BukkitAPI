@@ -1,6 +1,8 @@
 package org.bukkit.event;
 
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表事件.
@@ -58,6 +60,7 @@ public abstract class Event {
      *
      * @return 这个事件的名称
      */
+    @NotNull
     public String getEventName() {
         if (name == null) {
             name = getClass().getSimpleName();
@@ -65,6 +68,7 @@ public abstract class Event {
         return name;
     }
 
+    @NotNull
     public abstract HandlerList getHandlers();
 
     /**

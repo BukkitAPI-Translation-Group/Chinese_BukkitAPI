@@ -7,6 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当一个方块被玩家放置的时候触发此事件.
@@ -24,11 +25,11 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     protected EquipmentSlot hand;
 
     @Deprecated
-    public BlockPlaceEvent(final Block placedBlock, final BlockState replacedBlockState, final Block placedAgainst, final ItemStack itemInHand, final Player thePlayer, final boolean canBuild) {
+    public BlockPlaceEvent(@NotNull final Block placedBlock, @NotNull final BlockState replacedBlockState, @NotNull final Block placedAgainst, @NotNull final ItemStack itemInHand, @NotNull final Player thePlayer, final boolean canBuild) {
         this(placedBlock, replacedBlockState, placedAgainst, itemInHand, thePlayer, canBuild, EquipmentSlot.HAND);
     }
 
-    public BlockPlaceEvent(final Block placedBlock, final BlockState replacedBlockState, final Block placedAgainst, final ItemStack itemInHand, final Player thePlayer, final boolean canBuild, final EquipmentSlot hand) {
+    public BlockPlaceEvent(@NotNull final Block placedBlock, @NotNull final BlockState replacedBlockState, @NotNull final Block placedAgainst, @NotNull final ItemStack itemInHand, @NotNull final Player thePlayer, final boolean canBuild, @NotNull final EquipmentSlot hand) {
         super(placedBlock);
         this.placedAgainst = placedAgainst;
         this.itemInHand = itemInHand;
@@ -39,10 +40,12 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
         cancel = false;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -54,6 +57,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
      *
      * @return 谁放置的这个方块(Player对象)
      */
+    @NotNull
     public Player getPlayer() {
         return player;
     }
@@ -66,6 +70,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
      *
      * @return 被放置后的方块
      */
+    @NotNull
     public Block getBlockPlaced() {
         return getBlock();
     }
@@ -80,6 +85,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
      *
      * @return 被放置后的方块的方块状态对象
      */
+    @NotNull
     public BlockState getBlockReplacedState() {
         return this.replacedBlockState;
     }
@@ -91,6 +97,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
      * 
      * @return Block 放置时依附的方块
      */
+    @NotNull
     public Block getBlockAgainst() {
         return placedAgainst;
     }
@@ -102,6 +109,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
      * 
      * @return 这个方块的ItemStack对象
      */
+    @NotNull
     public ItemStack getItemInHand() {
         return itemInHand;
     }
@@ -112,6 +120,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
      * 原文：Gets the hand which placed the block
      * @return 主手或副手，取决于放置方块所用的手
      */
+    @NotNull
     public EquipmentSlot getHand() {
         return this.hand;
     }
@@ -145,11 +154,13 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
         this.canBuild = canBuild;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

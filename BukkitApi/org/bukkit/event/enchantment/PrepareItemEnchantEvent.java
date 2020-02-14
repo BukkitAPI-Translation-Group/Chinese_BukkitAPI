@@ -8,6 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.inventory.InventoryEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 物品塞入附魔台的事件 - 可以同时调用。
@@ -21,7 +22,7 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
     private boolean cancelled;
     private final Player enchanter;
 
-    public PrepareItemEnchantEvent(final Player enchanter, InventoryView view, final Block table, final ItemStack item, final EnchantmentOffer[] offers, final int bonus) {
+    public PrepareItemEnchantEvent(@NotNull final Player enchanter, @NotNull InventoryView view, @NotNull final Block table, @NotNull final ItemStack item, @NotNull final EnchantmentOffer[] offers, final int bonus) {
         super(view);
         this.enchanter = enchanter;
         this.table = table;
@@ -38,6 +39,7 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
      *
      * @return 正在为物品附魔的玩家
      */
+    @NotNull
     public Player getEnchanter() {
         return enchanter;
     }
@@ -50,6 +52,7 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
      *
      * @return 附魔台方块
      */
+    @NotNull
     public Block getEnchantBlock() {
         return table;
     }
@@ -62,6 +65,7 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
      *
      * @return 附魔的物品ItemStack对象
      */
+    @NotNull
     public ItemStack getItem() {
         return item;
     }
@@ -74,6 +78,7 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
      * @return 附魔所需要的等级的列表
      * @deprecated 请换用 {@link #getOffers()} 方法
      */
+    @NotNull
     public int[] getExpLevelCostsOffered() {
         int[] levelOffers = new int[offers.length];
         for (int i = 0; i < offers.length; i++) {
@@ -90,6 +95,7 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
      *
      * @return list of available enchantment offers
      */
+    @NotNull
     public EnchantmentOffer[] getOffers() {
         return offers;
     }
@@ -113,11 +119,13 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
         this.cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

@@ -3,6 +3,7 @@ package org.bukkit.event.entity;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当实体燃烧时触发该事件
@@ -14,16 +15,18 @@ public class EntityCombustEvent extends EntityEvent implements Cancellable {
     private int duration;
     private boolean cancel;
 
-    public EntityCombustEvent(final Entity combustee, final int duration) {
+    public EntityCombustEvent(@NotNull final Entity combustee, final int duration) {
         super(combustee);
         this.duration = duration;
         this.cancel = false;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -51,11 +54,13 @@ public class EntityCombustEvent extends EntityEvent implements Cancellable {
         this.duration = duration;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

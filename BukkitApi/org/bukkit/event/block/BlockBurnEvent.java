@@ -3,6 +3,8 @@ package org.bukkit.event.block;
 import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当一个方块被火烧掉的时候触发此事件.
@@ -15,11 +17,11 @@ public class BlockBurnEvent extends BlockEvent implements Cancellable {
     private final Block ignitingBlock;
 
     @Deprecated
-    public BlockBurnEvent(final Block block) {
+    public BlockBurnEvent(@NotNull final Block block) {
         this(block, null);
     }
 
-    public BlockBurnEvent(final Block block, final Block ignitingBlock) {
+    public BlockBurnEvent(@NotNull final Block block, @Nullable final Block ignitingBlock) {
         super(block);
         this.ignitingBlock = ignitingBlock;
     }
@@ -31,23 +33,28 @@ public class BlockBurnEvent extends BlockEvent implements Cancellable {
      *
      * @return 点燃这个方块的方块，或如果源方块不存在时为null
      */
+    @Nullable
     public Block getIgnitingBlock() {
         return ignitingBlock;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

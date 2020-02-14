@@ -2,10 +2,11 @@ package org.bukkit.event.entity;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Called when a LivingEntity shoots a bow firing an arrow
@@ -17,13 +18,14 @@ public class EntityShootBowEvent extends EntityEvent implements Cancellable {
     private final float force;
     private boolean cancelled;
 
-    public EntityShootBowEvent(final LivingEntity shooter, final ItemStack bow, final Projectile projectile, final float force) {
+    public EntityShootBowEvent(@NotNull final LivingEntity shooter, @Nullable final ItemStack bow, @NotNull final Entity projectile, final float force) {
         super(shooter);
         this.bow = bow;
         this.projectile = projectile;
         this.force = force;
     }
 
+    @NotNull
     @Override
     public LivingEntity getEntity() {
         return (LivingEntity) entity;
@@ -34,6 +36,7 @@ public class EntityShootBowEvent extends EntityEvent implements Cancellable {
      *
      * @return the bow involved in this event
      */
+    @Nullable
     public ItemStack getBow() {
         return bow;
     }
@@ -43,6 +46,7 @@ public class EntityShootBowEvent extends EntityEvent implements Cancellable {
      *
      * @return the launched projectile
      */
+    @NotNull
     public Entity getProjectile() {
         return projectile;
     }
@@ -52,7 +56,7 @@ public class EntityShootBowEvent extends EntityEvent implements Cancellable {
      *
      * @param projectile the new projectile
      */
-    public void setProjectile(Entity projectile) {
+    public void setProjectile(@NotNull Entity projectile) {
         this.projectile = projectile;
     }
 
@@ -65,19 +69,23 @@ public class EntityShootBowEvent extends EntityEvent implements Cancellable {
         return force;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

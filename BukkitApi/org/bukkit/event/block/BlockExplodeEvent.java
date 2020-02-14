@@ -1,10 +1,10 @@
 package org.bukkit.event.block;
 
+import java.util.List;
 import org.bukkit.block.Block;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 方块爆炸事件.
@@ -17,17 +17,19 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     private final List<Block> blocks;
     private float yield;
 
-    public BlockExplodeEvent(final Block what, final List<Block> blocks, final float yield) {
+    public BlockExplodeEvent(@NotNull final Block what, @NotNull final List<Block> blocks, final float yield) {
         super(what);
         this.blocks = blocks;
         this.yield = yield;
         this.cancel = false;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -40,6 +42,7 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
      *
      * @return 炸毁的方块的列表
      */
+    @NotNull
     public List<Block> blockList() {
         return blocks;
     }
@@ -66,11 +69,13 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
         this.yield = yield;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

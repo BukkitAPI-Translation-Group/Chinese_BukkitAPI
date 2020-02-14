@@ -3,6 +3,7 @@ package org.bukkit.event.block;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当一个方块被玩家破坏的时候，调用本事件.
@@ -27,7 +28,7 @@ public class BlockBreakEvent extends BlockExpEvent implements Cancellable {
     private boolean dropItems;
     private boolean cancel;
 
-    public BlockBreakEvent(final Block theBlock, final Player player) {
+    public BlockBreakEvent(@NotNull final Block theBlock, @NotNull final Player player) {
         super(theBlock, 0);
 
         this.player = player;
@@ -41,6 +42,7 @@ public class BlockBreakEvent extends BlockExpEvent implements Cancellable {
      *
      * @return 破坏这个方块的玩家
      */
+    @NotNull
     public Player getPlayer() {
         return player;
     }
@@ -67,10 +69,12 @@ public class BlockBreakEvent extends BlockExpEvent implements Cancellable {
         return this.dropItems;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }

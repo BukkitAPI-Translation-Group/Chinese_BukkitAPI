@@ -5,6 +5,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 物品被方块(比如发射器,投掷器等)射出的事件.
@@ -17,7 +18,7 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
     private ItemStack item;
     private Vector velocity;
 
-    public BlockDispenseEvent(final Block block, final ItemStack dispensed, final Vector velocity) {
+    public BlockDispenseEvent(@NotNull final Block block, @NotNull final ItemStack dispensed, @NotNull final Vector velocity) {
         super(block);
         this.item = dispensed;
         this.velocity = velocity;
@@ -34,6 +35,7 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
      *
      * @return 被射出的物品
      */
+    @NotNull
     public ItemStack getItem() {
         return item.clone();
     }
@@ -45,7 +47,7 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
      *
      * @param item 被射出的物品
      */
-    public void setItem(ItemStack item) {
+    public void setItem(@NotNull ItemStack item) {
         this.item = item;
     }
 
@@ -62,6 +64,7 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
      *
      * @return 射出物品的速度的Vector(向量)
      */
+    @NotNull
     public Vector getVelocity() {
         return velocity.clone();
     }
@@ -73,23 +76,27 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
      *
      * @param vel 射出的物品的速度、角度.
      */
-    public void setVelocity(Vector vel) {
+    public void setVelocity(@NotNull Vector vel) {
         velocity = vel;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

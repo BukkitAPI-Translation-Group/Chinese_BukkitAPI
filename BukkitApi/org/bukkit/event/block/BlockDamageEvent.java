@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 方块被玩家损坏的事件.
@@ -18,7 +19,7 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
     private boolean cancel;
     private final ItemStack itemstack;
 
-    public BlockDamageEvent(final Player player, final Block block, final ItemStack itemInHand, final boolean instaBreak) {
+    public BlockDamageEvent(@NotNull final Player player, @NotNull final Block block, @NotNull final ItemStack itemInHand, final boolean instaBreak) {
         super(block);
         this.instaBreak = instaBreak;
         this.player = player;
@@ -33,6 +34,7 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
      *
      * @return 损坏这个方块的玩家
      */
+    @NotNull
     public Player getPlayer() {
         return player;
     }
@@ -67,23 +69,28 @@ public class BlockDamageEvent extends BlockEvent implements Cancellable {
      *
      * @return 当前玩家手上的物品
      */
+    @NotNull
     public ItemStack getItemInHand() {
         return itemstack;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

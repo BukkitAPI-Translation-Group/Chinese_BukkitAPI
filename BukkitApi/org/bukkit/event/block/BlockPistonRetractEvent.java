@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 活塞臂缩回事件
@@ -12,10 +13,10 @@ import org.bukkit.event.HandlerList;
 public class BlockPistonRetractEvent extends BlockPistonEvent {
     private static final HandlerList handlers = new HandlerList();
     private List<Block> blocks;
-    
-    public BlockPistonRetractEvent(final Block block, final List<Block> blocks, final BlockFace direction) {
+
+    public BlockPistonRetractEvent(@NotNull final Block block, @NotNull final List<Block> blocks, @NotNull final BlockFace direction) {
         super(block, direction);
-        
+
         this.blocks = blocks;
     }
 
@@ -28,6 +29,7 @@ public class BlockPistonRetractEvent extends BlockPistonEvent {
      * @return 这个活塞粘住的方块的位置
      */
     @Deprecated
+    @NotNull
     public Location getRetractLocation() {
         return getBlock().getRelative(getDirection(), 2).getLocation();
     }
@@ -40,15 +42,18 @@ public class BlockPistonRetractEvent extends BlockPistonEvent {
      *
      * @return 被活塞移动的方块列表.
      */
+    @NotNull
     public List<Block> getBlocks() {
         return blocks;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

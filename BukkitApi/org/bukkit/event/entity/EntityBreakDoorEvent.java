@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当{@link Entity 实体}破坏门时触发本事件.
@@ -11,10 +12,11 @@ import org.bukkit.entity.LivingEntity;
  * 取消该事件将导致该事件被延迟.
  */
 public class EntityBreakDoorEvent extends EntityChangeBlockEvent {
-    public EntityBreakDoorEvent(final LivingEntity entity, final Block targetBlock) {
+    public EntityBreakDoorEvent(@NotNull final LivingEntity entity, @NotNull final Block targetBlock) {
         super(entity, targetBlock, Material.AIR.createBlockData());
     }
 
+    @NotNull
     @Override
     public LivingEntity getEntity() {
         return (LivingEntity) entity;
