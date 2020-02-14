@@ -1,8 +1,9 @@
 package org.bukkit;
 
-import java.util.Map;
-
 import com.google.common.collect.ImmutableMap;
+import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 染料和布料所有支持的颜色值.
@@ -78,12 +79,12 @@ public enum DyeColor {
     private final byte dyeData;
     private final Color color;
     private final Color firework;
-    private final static DyeColor[] BY_WOOL_DATA;
-    private final static DyeColor[] BY_DYE_DATA;
-    private final static Map<Color, DyeColor> BY_COLOR;
-    private final static Map<Color, DyeColor> BY_FIREWORK;
+    private static final DyeColor[] BY_WOOL_DATA;
+    private static final DyeColor[] BY_DYE_DATA;
+    private static final Map<Color, DyeColor> BY_COLOR;
+    private static final Map<Color, DyeColor> BY_FIREWORK;
 
-    private DyeColor(final int woolData, final int dyeData, Color color, Color firework) {
+    private DyeColor(final int woolData, final int dyeData, /*@NotNull*/ Color color, /*@NotNull*/ Color firework) {
         this.woolData = (byte) woolData;
         this.dyeData = (byte) dyeData;
         this.color = color;
@@ -128,6 +129,7 @@ public enum DyeColor {
      *
      * @return 染料代表的颜色({@link Color})
      */
+    @NotNull
     public Color getColor() {
         return color;
     }
@@ -140,6 +142,7 @@ public enum DyeColor {
      *
      * @return 染料代表的颜色({@link Color})
      */
+    @NotNull
     public Color getFireworkColor() {
         return firework;
     }
@@ -156,6 +159,7 @@ public enum DyeColor {
      * @deprecated 魔法值
      */
     @Deprecated
+    @Nullable
     public static DyeColor getByWoolData(final byte data) {
         int i = 0xff & data;
         if (i >= BY_WOOL_DATA.length) {
@@ -176,6 +180,7 @@ public enum DyeColor {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static DyeColor getByDyeData(final byte data) {
         int i = 0xff & data;
         if (i >= BY_DYE_DATA.length) {
@@ -193,7 +198,8 @@ public enum DyeColor {
      * @param color 要获取的染料的颜色值
      * @return 给定值代表的染料颜色({@link DyeColor})，如果不存在则为null
      */
-    public static DyeColor getByColor(final Color color) {
+    @Nullable
+    public static DyeColor getByColor(@NotNull final Color color) {
         return BY_COLOR.get(color);
     }
 
@@ -206,7 +212,8 @@ public enum DyeColor {
      * @param color 要获取的染料的颜色值
      * @return 给定值代表的染料颜色({@link DyeColor})，如果不存在则为null
      */
-    public static DyeColor getByFireworkColor(final Color color) {
+    @Nullable
+    public static DyeColor getByFireworkColor(@NotNull final Color color) {
         return BY_FIREWORK.get(color);
     }
 
@@ -218,7 +225,8 @@ public enum DyeColor {
      * @deprecated legacy use only
      */
     @Deprecated
-    public static DyeColor legacyValueOf(String name) {
+    @NotNull
+    public static DyeColor legacyValueOf(@Nullable String name) {
         return "SILVER".equals(name) ? DyeColor.LIGHT_GRAY : DyeColor.valueOf(name);
     }
 

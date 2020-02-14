@@ -1,8 +1,9 @@
 package org.bukkit.conversations;
 
-import org.bukkit.plugin.Plugin;
-
 import java.util.Map;
+import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * A ConversationContext provides continuity between nodes in the prompt graph
@@ -11,9 +12,9 @@ import java.util.Map;
  * invocations.
  */
 public class ConversationContext {
-    private Conversable forWhom;
-    private Map<Object, Object> sessionData;
-    private Plugin plugin;
+    private final Conversable forWhom;
+    private final Map<Object, Object> sessionData;
+    private final Plugin plugin;
 
     /**
      * @param plugin The owning plugin.
@@ -21,7 +22,7 @@ public class ConversationContext {
      * @param initialSessionData Any initial values to put in the sessionData
      *     map.
      */
-    public ConversationContext(Plugin plugin, Conversable forWhom, Map<Object, Object> initialSessionData) {
+    public ConversationContext(@Nullable Plugin plugin, @NotNull Conversable forWhom, @NotNull Map<Object, Object> initialSessionData) {
         this.plugin = plugin;
         this.forWhom = forWhom;
         this.sessionData = initialSessionData;
@@ -32,6 +33,7 @@ public class ConversationContext {
      *
      * @return The owning plugin.
      */
+    @Nullable
     public Plugin getPlugin() {
         return plugin;
     }
@@ -41,8 +43,21 @@ public class ConversationContext {
      *
      * @return The subject of the conversation.
      */
+    @NotNull
     public Conversable getForWhom() {
         return forWhom;
+    }
+
+    /**
+     * Gets the underlying sessionData map.
+     *
+     * May be directly modified to manipulate session data.
+     *
+     * @return The full sessionData map.
+     */
+    @NotNull
+    public Map<Object, Object> getAllSessionData() {
+        return sessionData;
     }
 
     /**
@@ -53,7 +68,8 @@ public class ConversationContext {
      * @param key The session data key.
      * @return The requested session data.
      */
-    public Object getSessionData(Object key) {
+    @Nullable
+    public Object getSessionData(@NotNull Object key) {
         return sessionData.get(key);
     }
 
@@ -65,7 +81,7 @@ public class ConversationContext {
      * @param key The session data key.
      * @param value The session data value.
      */
-    public void setSessionData(Object key, Object value) {
+    public void setSessionData(@NotNull Object key, @Nullable Object value) {
         sessionData.put(key, value);
     }
 }

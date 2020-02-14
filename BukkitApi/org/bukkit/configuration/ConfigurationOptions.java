@@ -1,4 +1,6 @@
 package org.bukkit.configuration;
+
+import org.jetbrains.annotations.NotNull;
 //汉化进度; 99% 魔法值@11110153
 //格式校对完毕.
 /**
@@ -11,7 +13,7 @@ public class ConfigurationOptions {
     private boolean copyDefaults = false;
     private final Configuration configuration;
 
-    protected ConfigurationOptions(Configuration configuration) {
+    protected ConfigurationOptions(@NotNull Configuration configuration) {
         this.configuration = configuration;
     }
 
@@ -21,7 +23,8 @@ public class ConfigurationOptions {
      * Returns the {@link Configuration} that this object is responsible for.
      *
      * @return Parent configuration
-     */ 
+     */
+    @NotNull
     public Configuration configuration() {
         return configuration;
     }
@@ -57,6 +60,7 @@ public class ConfigurationOptions {
      * @param value Path 路径分割符.
      * @return 返回 this .
      */
+    @NotNull
     public ConfigurationOptions pathSeparator(char value) {
         this.pathSeparator = value;
         return this;
@@ -102,6 +106,7 @@ public class ConfigurationOptions {
      * @param value Whether or not defaults are directly copied
      * @return 返回 this
      *///魔法值@11110153
+    @NotNull
     public ConfigurationOptions copyDefaults(boolean value) {
         this.copyDefaults = value;
         return this;

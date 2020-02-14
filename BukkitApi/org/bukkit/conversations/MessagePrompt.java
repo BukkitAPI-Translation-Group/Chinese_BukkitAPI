@@ -1,5 +1,8 @@
 package org.bukkit.conversations;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * MessagePrompt is the base class for any prompt that only displays a message
  * to the user and requires no input.
@@ -16,7 +19,8 @@ public abstract class MessagePrompt implements Prompt {
      * @param context Context information about the conversation.
      * @return Always false.
      */
-    public boolean blocksForInput(ConversationContext context) {
+    @Override
+    public boolean blocksForInput(@NotNull ConversationContext context) {
         return false;
     }
 
@@ -28,7 +32,9 @@ public abstract class MessagePrompt implements Prompt {
      * @param input Ignored.
      * @return The next prompt in the prompt graph.
      */
-    public Prompt acceptInput(ConversationContext context, String input) {
+    @Override
+    @Nullable
+    public Prompt acceptInput(@NotNull ConversationContext context, @Nullable String input) {
         return getNextPrompt(context);
     }
 
@@ -38,5 +44,6 @@ public abstract class MessagePrompt implements Prompt {
      * @param context Context information about the conversation.
      * @return The next prompt in the prompt graph.
      */
-    protected abstract Prompt getNextPrompt(ConversationContext context);
+    @Nullable
+    protected abstract Prompt getNextPrompt(@NotNull ConversationContext context);
 }

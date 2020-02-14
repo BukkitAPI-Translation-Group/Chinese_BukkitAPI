@@ -2,6 +2,7 @@ package org.bukkit.enchantments;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 方便选择{@link Enchantment}s的一个简单的封装类。
@@ -9,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
  * 大多数方法于{@link Enchantment}。
  */
 public class EnchantmentWrapper extends Enchantment {
-    public EnchantmentWrapper(String name) {
+    public EnchantmentWrapper(@NotNull String name) {
         super(NamespacedKey.minecraft(name));
     }
 
@@ -20,6 +21,7 @@ public class EnchantmentWrapper extends Enchantment {
      *
      * @return 附魔
      */
+    @NotNull
     public Enchantment getEnchantment() {
         return Enchantment.getByKey(getKey());
     }
@@ -35,16 +37,18 @@ public class EnchantmentWrapper extends Enchantment {
     }
 
     @Override
+    @NotNull
     public EnchantmentTarget getItemTarget() {
         return getEnchantment().getItemTarget();
     }
 
     @Override
-    public boolean canEnchantItem(ItemStack item) {
+    public boolean canEnchantItem(@NotNull ItemStack item) {
         return getEnchantment().canEnchantItem(item);
     }
 
     @Override
+    @NotNull
     public String getName() {
         return getEnchantment().getName();
     }
@@ -59,7 +63,7 @@ public class EnchantmentWrapper extends Enchantment {
     }
 
     @Override
-    public boolean conflictsWith(Enchantment other) {
+    public boolean conflictsWith(@NotNull Enchantment other) {
         return getEnchantment().conflictsWith(other);
     }
 }

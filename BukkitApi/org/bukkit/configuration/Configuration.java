@@ -1,6 +1,7 @@
 package org.bukkit.configuration;
 
-import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 //汉化修改进度: 完成
 //格式校对进度: 完成
 /**
@@ -27,7 +28,8 @@ public interface Configuration extends ConfigurationSection {
      * @param value 缺省值.
      * @throws IllegalArgumentException 如果路径为 null .
      */
-    public void addDefault(String path, Object value);
+    @Override
+    public void addDefault(@NotNull String path, @Nullable Object value);
 
     /**
      * 把map里面的键值都加入到缺省值列表.
@@ -43,7 +45,7 @@ public interface Configuration extends ConfigurationSection {
      * @param defaults Map 的键是路径, 值是对应路径的值.
      * @throws IllegalArgumentException 如果defaults为null.
      */
-    public void addDefaults(Map<String, Object> defaults);
+    public void addDefaults(@NotNull Map<String, Object> defaults);
 
     /**
      * 把 {@link Configuration} 全部加入到缺省值列表.
@@ -61,7 +63,7 @@ public interface Configuration extends ConfigurationSection {
      * @param defaults A configuration holding a list of defaults to copy.
      * @throws IllegalArgumentException Thrown if defaults is null or this.
      */
-    public void addDefaults(Configuration defaults);
+    public void addDefaults(@NotNull Configuration defaults);
 
     /**
      * 设置新的缺省值列表.
@@ -75,7 +77,7 @@ public interface Configuration extends ConfigurationSection {
      * @param defaults 新的 {@link Configuration} .
      * @throws IllegalArgumentException 当参数为 null 或 defaults == getDefaults() 时, 抛出此异常.
      */
-    public void setDefaults(Configuration defaults);
+    public void setDefaults(@NotNull Configuration defaults);
 
     /**
      * 获取这个 {@link Configuration} 的缺省值 {@link Configuration}.
@@ -91,6 +93,7 @@ public interface Configuration extends ConfigurationSection {
      *
      * @return 返回缺省值列表, 如果没有则返回 null.
      */
+    @Nullable
     public Configuration getDefaults();
 
     /**
@@ -104,5 +107,6 @@ public interface Configuration extends ConfigurationSection {
      *
      * @return 这个配置文件的一些配置(格式之类的).
      */
+    @NotNull
     public ConfigurationOptions options();
 }

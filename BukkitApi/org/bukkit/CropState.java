@@ -1,8 +1,8 @@
 package org.bukkit;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 表示农作物的不同生长阶段.
@@ -43,7 +43,7 @@ public enum CropState {
     RIPE(0x7);
 
     private final byte data;
-    private final static Map<Byte, CropState> BY_DATA = Maps.newHashMap();
+    private static final Map<Byte, CropState> BY_DATA = Maps.newHashMap();
 
     private CropState(final int data) {
         this.data = (byte) data;
@@ -74,6 +74,7 @@ public enum CropState {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static CropState getByData(final byte data) {
         return BY_DATA.get(data);
     }

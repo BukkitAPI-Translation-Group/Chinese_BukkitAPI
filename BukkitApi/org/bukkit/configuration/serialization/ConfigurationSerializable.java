@@ -1,6 +1,7 @@
 package org.bukkit.configuration.serialization;
 
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents an object that may be serialized.
@@ -31,5 +32,6 @@ public interface ConfigurationSerializable {
      *
      * @return Map containing the current state of this class
      */
+    @NotNull
     public Map<String, Object> serialize();
 }

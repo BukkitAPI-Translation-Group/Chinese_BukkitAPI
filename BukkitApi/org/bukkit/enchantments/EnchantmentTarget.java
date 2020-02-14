@@ -2,6 +2,7 @@ package org.bukkit.enchantments;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表了{@link Enchantment}的适用目标
@@ -15,7 +16,7 @@ public enum EnchantmentTarget {
      */
     ALL {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return true;
         }
     },
@@ -28,7 +29,7 @@ public enum EnchantmentTarget {
      */
     ARMOR {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return ARMOR_FEET.includes(item)
                 || ARMOR_LEGS.includes(item)
                 || ARMOR_HEAD.includes(item)
@@ -44,7 +45,7 @@ public enum EnchantmentTarget {
      */
     ARMOR_FEET {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.LEATHER_BOOTS)
                 || item.equals(Material.CHAINMAIL_BOOTS)
                 || item.equals(Material.IRON_BOOTS)
@@ -61,7 +62,7 @@ public enum EnchantmentTarget {
      */
     ARMOR_LEGS {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.LEATHER_LEGGINGS)
                 || item.equals(Material.CHAINMAIL_LEGGINGS)
                 || item.equals(Material.IRON_LEGGINGS)
@@ -78,7 +79,7 @@ public enum EnchantmentTarget {
      */
     ARMOR_TORSO {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.LEATHER_CHESTPLATE)
                 || item.equals(Material.CHAINMAIL_CHESTPLATE)
                 || item.equals(Material.IRON_CHESTPLATE)
@@ -95,7 +96,7 @@ public enum EnchantmentTarget {
      */
     ARMOR_HEAD {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.LEATHER_HELMET)
                 || item.equals(Material.CHAINMAIL_HELMET)
                 || item.equals(Material.DIAMOND_HELMET)
@@ -112,7 +113,7 @@ public enum EnchantmentTarget {
      */
     WEAPON {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.WOODEN_SWORD)
                 || item.equals(Material.STONE_SWORD)
                 || item.equals(Material.IRON_SWORD)
@@ -130,7 +131,7 @@ public enum EnchantmentTarget {
      */
     TOOL {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.WOODEN_SHOVEL)
                 || item.equals(Material.STONE_SHOVEL)
                 || item.equals(Material.IRON_SHOVEL)
@@ -164,7 +165,7 @@ public enum EnchantmentTarget {
      */
     BOW {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.BOW);
         }
     },
@@ -177,7 +178,7 @@ public enum EnchantmentTarget {
      */
     FISHING_ROD {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.FISHING_ROD);
         }
     },
@@ -189,7 +190,7 @@ public enum EnchantmentTarget {
      */
     BREAKABLE {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.getMaxDurability() > 0 && item.getMaxStackSize() == 1;
         }
     },
@@ -201,7 +202,7 @@ public enum EnchantmentTarget {
      */
     WEARABLE {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return ARMOR.includes(item)
                     || item.equals(Material.ELYTRA)
                     || item.equals(Material.PUMPKIN)
@@ -221,8 +222,18 @@ public enum EnchantmentTarget {
      */
     TRIDENT {
         @Override
-        public boolean includes(Material item) {
+        public boolean includes(@NotNull Material item) {
             return item.equals(Material.TRIDENT);
+        }
+    },
+
+    /**
+     * Allow the Enchantment to be placed on crossbows.
+     */
+    CROSSBOW {
+        @Override
+        public boolean includes(@NotNull Material item) {
+            return item.equals(Material.CROSSBOW);
         }
     };
 
@@ -235,7 +246,7 @@ public enum EnchantmentTarget {
      * @param item 物品
      * @return 如果包含则返回true
      */
-    public abstract boolean includes(Material item);
+    public abstract boolean includes(@NotNull Material item);
 
     /**
      * 检查是否包含该物品.
@@ -245,7 +256,7 @@ public enum EnchantmentTarget {
      * @param item 物品
      * @return 如果包含则返回true
      */
-    public boolean includes(ItemStack item) {
+    public boolean includes(@NotNull ItemStack item) {
         return includes(item.getType());
     }
 }

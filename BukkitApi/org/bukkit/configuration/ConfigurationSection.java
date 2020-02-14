@@ -1,14 +1,15 @@
 package org.bukkit.configuration;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.List;
-
 import org.bukkit.Color;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
-import org.bukkit.util.Vector;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 //未完成翻译: 魔法值@12020113
 //汉化未完成: 魔法值@11110154
@@ -47,6 +48,7 @@ public interface ConfigurationSection {
      * @param deep 获取全部键, 或者仅仅获取表层键. 
      * @return 将返回一个 set, 装载着符合要求的键. 
      */
+    @NotNull
     public Set<String> getKeys(boolean deep);
 
     /**
@@ -67,6 +69,7 @@ public interface ConfigurationSection {
      * @param deep 获取全部键值集合(true), 或者仅仅获取表层键值集合(false). 
      * @return 返回一个 Map. 
      */
+    @NotNull
     public Map<String, Object> getValues(boolean deep);
 
     /**
@@ -82,7 +85,7 @@ public interface ConfigurationSection {
      * @return 如果此部分包含请求的路径，可以通过默认的或者被设置. 
      * @throws IllegalArgumentException 如果路径是 null 时抛出此异常. 
      */
-    public boolean contains(String path);
+    public boolean contains(@NotNull String path);
 
     /**
      * Checks if this {@link ConfigurationSection} contains the given path.
@@ -101,7 +104,7 @@ public interface ConfigurationSection {
      * value exist and the boolean parameter for this method is true.
      * @throws IllegalArgumentException Thrown when path is null.
      */
-    public boolean contains(String path, boolean ignoreDefault);
+    public boolean contains(@NotNull String path, boolean ignoreDefault);
 
     /**
      * 检查指定路径是否是 Set. 
@@ -120,7 +123,7 @@ public interface ConfigurationSection {
      * @return True if this section contains the requested path, regardless of having a default. 
      * @throws IllegalArgumentException 如果路径为 null 则会抛出此异常. 
      *///魔法值@12020113
-    public boolean isSet(String path);
+    public boolean isSet(@NotNull String path);
 
     /**
      * 从根 {@link Configuration} 中获取这个 {@link ConfigurationSection} 的路径. 
@@ -141,6 +144,7 @@ public interface ConfigurationSection {
      *
      * @return 这个片段相对于其根的路径.
      */
+    @Nullable
     public String getCurrentPath();
 
     /**
@@ -150,6 +154,7 @@ public interface ConfigurationSection {
      *
      * @return Name of this section
      *///魔法值@11110154
+    @NotNull
     public String getName();
 
     /**
@@ -161,6 +166,7 @@ public interface ConfigurationSection {
      *
      * @return Root configuration containing this section. 
      */
+    @Nullable
     public Configuration getRoot();
 
     /**
@@ -172,6 +178,7 @@ public interface ConfigurationSection {
      *
      * @return Parent section containing this section. 
      */
+    @Nullable
     public ConfigurationSection getParent();
 
     /**
@@ -189,7 +196,8 @@ public interface ConfigurationSection {
      * @param path 获取 Object 的路径. 
      * @return 返回一个 Object. 
      */
-    public Object get(String path);
+    @Nullable
+    public Object get(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 Object , 如果无法获取, 则直接返回默认值. 
@@ -204,7 +212,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 返回这个值. 
      * @return 返回一个Object. 
      */
-    public Object get(String path, Object def);
+    @Nullable
+    public Object get(@NotNull String path, @Nullable Object def);
 
     /**
      * Sets the specified path to the given value. 
@@ -219,7 +228,7 @@ public interface ConfigurationSection {
      * @param path Path of the object to set. 
      * @param value New value to set the path to. 
      */
-    public void set(String path, Object value);
+    public void set(@NotNull String path, @Nullable Object value);
 
     /**
      * Creates an empty {@link ConfigurationSection} at the specified path. 
@@ -230,7 +239,8 @@ public interface ConfigurationSection {
      * @param path Path to create the section at. 
      * @return Newly created section
      */
-    public ConfigurationSection createSection(String path);
+    @NotNull
+    public ConfigurationSection createSection(@NotNull String path);
 
     /**
      * Creates a {@link ConfigurationSection} at the specified path, with specified values. 
@@ -242,7 +252,8 @@ public interface ConfigurationSection {
      * @param map The values to used. 
      * @return Newly created section
      */
-    public ConfigurationSection createSection(String path, Map<?, ?> map);
+    @NotNull
+    public ConfigurationSection createSection(@NotNull String path, @NotNull Map<?, ?> map);
 
     // Primitives
     /**
@@ -260,7 +271,8 @@ public interface ConfigurationSection {
      * @param path 获取 String 的路径. 
      * @return 返回一个 String. 
      *///魔法值@11110152
-    public String getString(String path);
+    @Nullable
+    public String getString(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 String , 如果无法获取, 则直接返回默认值. 
@@ -275,7 +287,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 String 类型时, 返回这个值. 
      * @return 返回一个 String. 
      */
-    public String getString(String path, String def);
+    @Nullable
+    public String getString(@NotNull String path, @Nullable String def);
 
     /**
      * 检查指定路径是否是 String. 
@@ -295,7 +308,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 String. 
      * @return 指定路径是否是 String. 
      */
-    public boolean isString(String path);
+    public boolean isString(@NotNull String path);
 
     /**
      * 在指定路径获取一个 int 类型的值. 
@@ -312,7 +325,7 @@ public interface ConfigurationSection {
      * @param path 获取 int 的路径. 
      * @return 返回一个 int. 
      */
-    public int getInt(String path);
+    public int getInt(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 int, 如果无法获取, 则直接返回默认值. 
@@ -327,7 +340,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 int 类型时, 返回这个值. 
      * @return 返回一个 int. 
      */
-    public int getInt(String path, int def);
+    public int getInt(@NotNull String path, int def);
 
     /**
      * 检查指定路径是否是 int. 
@@ -347,7 +360,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 int. 
      * @return 指定路径是否是 int. 
      */
-    public boolean isInt(String path);
+    public boolean isInt(@NotNull String path);
 
     /**
      * 在指定路径获取一个 boolean 类型的值. 
@@ -364,7 +377,7 @@ public interface ConfigurationSection {
      * @param path 获取 boolean 的路径. 
      * @return 返回一个 boolean. 
      */
-    public boolean getBoolean(String path);
+    public boolean getBoolean(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 boolean, 如果无法获取, 则直接返回默认值. 
@@ -379,7 +392,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 boolean 类型时, 返回这个值. 
      * @return 返回一个 boolean. 
      */
-    public boolean getBoolean(String path, boolean def);
+    public boolean getBoolean(@NotNull String path, boolean def);
 
     /**
      * 检查指定路径是否是 boolean. 
@@ -399,7 +412,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 boolean. 
      * @return 指定路径是否是 boolean. 
      */
-    public boolean isBoolean(String path);
+    public boolean isBoolean(@NotNull String path);
 
     /**
      * 在指定路径获取一个 double 类型的值. 
@@ -416,7 +429,7 @@ public interface ConfigurationSection {
      * @param path 获取double的路径. 
      * @return 返回一个double. 
      */
-    public double getDouble(String path);
+    public double getDouble(@NotNull String path);
 
     /**
      * 在指定路径上获取一个double, 如果无法获取, 则直接返回默认值. 
@@ -431,7 +444,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 double 类型时, 返回这个值. 
      * @return 返回一个 double. 
      */
-    public double getDouble(String path, double def);
+    public double getDouble(@NotNull String path, double def);
 
     /**
      * 检查指定路径是否是 double. 
@@ -451,7 +464,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 double. 
      * @return 指定路径是否是 double. 
      */
-    public boolean isDouble(String path);
+    public boolean isDouble(@NotNull String path);
 
     /**
      * 在指定路径获取一个 long 类型的值. 
@@ -468,7 +481,7 @@ public interface ConfigurationSection {
      * @param path 获取long的路径. 
      * @return 返回一个long. 
      */
-    public long getLong(String path);
+    public long getLong(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 long, 如果无法获取, 则直接返回默认值. 
@@ -483,7 +496,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 long 类型时, 返回这个值. 
      * @return 返回一个 long. 
      */
-    public long getLong(String path, long def);
+    public long getLong(@NotNull String path, long def);
 
     /**
      * 检查指定路径是否是 long. 
@@ -503,7 +516,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 long. 
      * @return 指定路径是否是 long. 
      */
-    public boolean isLong(String path);
+    public boolean isLong(@NotNull String path);
 
     // Java
     /**
@@ -521,7 +534,8 @@ public interface ConfigurationSection {
      * @param path 获取 List 的路径. 
      * @return 返回一个 List. 
      */
-    public List<?> getList(String path);
+    @Nullable
+    public List<?> getList(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 List, 如果无法获取, 则直接返回默认值. 
@@ -536,7 +550,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 List 类型时, 返回这个值. 
      * @return 返回一个 List. 
      */
-    public List<?> getList(String path, List<?> def);
+    @Nullable
+    public List<?> getList(@NotNull String path, @Nullable List<?> def);
 
     /**
      * 检查指定路径是否是 List. 
@@ -556,7 +571,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 List. 
      * @return 指定路径是否是 List. 
      */
-    public boolean isList(String path);
+    public boolean isList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;String&gt;. 
@@ -577,7 +592,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;String&gt; 的路径. 
      * @return 返回一个 List&lt;String&gt;. 
      */
-    public List<String> getStringList(String path);
+    @NotNull
+    public List<String> getStringList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Integer&gt;. 
@@ -598,7 +614,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Integer&gt; 的路径. 
      * @return 返回一个 List&lt;Integer&gt;. 
      */
-    public List<Integer> getIntegerList(String path);
+    @NotNull
+    public List<Integer> getIntegerList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Boolean&gt;. 
@@ -619,7 +636,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Boolean&gt; 的路径. 
      * @return 返回一个 List&lt;Boolean&gt;. 
      */
-    public List<Boolean> getBooleanList(String path);
+    @NotNull
+    public List<Boolean> getBooleanList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Double&gt;. 
@@ -640,7 +658,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Double&gt;的路径. 
      * @return 要获取 List&lt;Double&gt;. 
      */
-    public List<Double> getDoubleList(String path);
+    @NotNull
+    public List<Double> getDoubleList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Float&gt;. 
@@ -661,7 +680,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Float&gt;的路径. 
      * @return 返回一个 List&lt;Float&gt;. 
      */
-    public List<Float> getFloatList(String path);
+    @NotNull
+    public List<Float> getFloatList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Long&gt;. 
@@ -682,7 +702,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Long&gt;的路径. 
      * @return 返回一个 List&lt;Long&gt;. 
      */
-    public List<Long> getLongList(String path);
+    @NotNull
+    public List<Long> getLongList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Byte&gt;. 
@@ -703,7 +724,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Byte&gt;的路径. 
      * @return 返回一个 List&lt;Byte&gt;. 
      */
-    public List<Byte> getByteList(String path);
+    @NotNull
+    public List<Byte> getByteList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Character&gt;. 
@@ -724,7 +746,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Character&gt;的路径. 
      * @return 返回一个 List&lt;Character&gt;. 
      */
-    public List<Character> getCharacterList(String path);
+    @NotNull
+    public List<Character> getCharacterList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Short&gt;. 
@@ -745,7 +768,8 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Short&gt;的路径. 
      * @return 返回一个 List&lt;Short&gt;. 
      */
-    public List<Short> getShortList(String path);
+    @NotNull
+    public List<Short> getShortList(@NotNull String path);
 
     /**
      * 在指定路径获取一个 List&lt;Maps&gt;. 
@@ -766,9 +790,57 @@ public interface ConfigurationSection {
      * @param path 要获取 List&lt;Maps&gt;的路径. 
      * @return 返回一个 List&lt;Maps&gt;. 
      */
-    public List<Map<?, ?>> getMapList(String path);
+    @NotNull
+    public List<Map<?, ?>> getMapList(@NotNull String path);
 
     // Bukkit
+    /**
+     * Gets the requested object at the given path.
+     *
+     * If the Object does not exist but a default value has been specified, this
+     * will return the default value. If the Object does not exist and no
+     * default value was specified, this will return null.
+     *
+     * <b>Note:</b> For example #getObject(path, String.class) is <b>not</b>
+     * equivalent to {@link #getString(String) #getString(path)} because
+     * {@link #getString(String) #getString(path)} converts internally all
+     * Objects to Strings. However, #getObject(path, Boolean.class) is
+     * equivalent to {@link #getBoolean(String) #getBoolean(path)} for example.
+     *
+     * @param <T> the type of the requested object
+     * @param path the path to the object.
+     * @param clazz the type of the requested object
+     * @return Requested object
+     */
+    @Nullable
+    public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz);
+
+    /**
+     * Gets the requested object at the given path, returning a default value if
+     * not found
+     *
+     * If the Object does not exist then the specified default value will
+     * returned regardless of if a default has been identified in the root
+     * {@link Configuration}.
+     *
+     * <b>Note:</b> For example #getObject(path, String.class, def) is
+     * <b>not</b> equivalent to
+     * {@link #getString(String, String) #getString(path, def)} because
+     * {@link #getString(String, String) #getString(path, def)} converts
+     * internally all Objects to Strings. However, #getObject(path,
+     * Boolean.class, def) is equivalent to {@link #getBoolean(String, boolean) #getBoolean(path,
+     * def)} for example.
+     *
+     * @param <T> the type of the requested object
+     * @param path the path to the object.
+     * @param clazz the type of the requested object
+     * @param def the default object to return if the object is not present at
+     * the path
+     * @return Requested object
+     */
+    @Nullable
+    public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
+
     /**
      * Gets the requested {@link ConfigurationSerializable} object at the given
      * path.
@@ -782,7 +854,8 @@ public interface ConfigurationSection {
      * @param clazz the type of {@link ConfigurationSerializable}
      * @return Requested {@link ConfigurationSerializable} object
      */
-    public <T extends ConfigurationSerializable> T getSerializable(String path, Class<T> clazz);
+    @Nullable
+    public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz);
 
     /**
      * Gets the requested {@link ConfigurationSerializable} object at the given
@@ -799,7 +872,8 @@ public interface ConfigurationSection {
      * the path
      * @return Requested {@link ConfigurationSerializable} object
      */
-    public <T extends ConfigurationSerializable> T getSerializable(String path, Class<T> clazz, T def);
+    @Nullable
+    public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
 
     /**
      * 在指定路径获取一个Vector类型的值. 
@@ -815,7 +889,8 @@ public interface ConfigurationSection {
      * @param path 获取Vector的路径. 
      * @return 返回一个Vector. 
      */
-    public Vector getVector(String path);
+    @Nullable
+    public Vector getVector(@NotNull String path);
 
     /**
      * 在指定路径上获取一个{@link Vector}, 如果无法获取, 则直接返回默认值. 
@@ -830,7 +905,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 {@link Vector} 类型时, 返回这个值. 
      * @return 返回一个 {@link Vector}r. 
      */
-    public Vector getVector(String path, Vector def);
+    @Nullable
+    public Vector getVector(@NotNull String path, @Nullable Vector def);
 
     /**
      * 检查指定路径是否是 {@link Vector} . 
@@ -850,7 +926,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 {@link Vector} . 
      * @return 指定路径是否是 {@link Vector} . 
      */
-    public boolean isVector(String path);
+    public boolean isVector(@NotNull String path);
 
     /**
      * 在指定路径获取一个 {@link OfflinePlayer} 类型的值. 
@@ -867,7 +943,8 @@ public interface ConfigurationSection {
      * @param path 获取 {@link OfflinePlayer} 的路径. 
      * @return 返回一个 {@link OfflinePlayer}. 
      */
-    public OfflinePlayer getOfflinePlayer(String path);
+    @Nullable
+    public OfflinePlayer getOfflinePlayer(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 {@link OfflinePlayer}, 如果无法获取, 则直接返回默认值. 
@@ -882,7 +959,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 {@link OfflinePlayer} 类型时, 返回这个值. 
      * @return 返回一个 {@link OfflinePlayer}. 
      */
-    public OfflinePlayer getOfflinePlayer(String path, OfflinePlayer def);
+    @Nullable
+    public OfflinePlayer getOfflinePlayer(@NotNull String path, @Nullable OfflinePlayer def);
 
     /**
      * 检查指定路径是否是 {@link OfflinePlayer}. 
@@ -902,7 +980,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 {@link OfflinePlayer}. 
      * @return 指定路径是否是 {@link OfflinePlayer}. 
      */
-    public boolean isOfflinePlayer(String path);
+    public boolean isOfflinePlayer(@NotNull String path);
 
     /**
      * 在指定路径获取一个 {@link ItemStack} 类型的值. 
@@ -919,7 +997,8 @@ public interface ConfigurationSection {
      * @param path 获取 {@link ItemStack} 的路径. 
      * @return 返回一个 {@link ItemStack}. 
      */
-    public ItemStack getItemStack(String path);
+    @Nullable
+    public ItemStack getItemStack(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 {@link ItemStack}, 如果无法获取, 则直接返回默认值. 
@@ -934,7 +1013,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是ItemStack类型时, 返回这个值. 
      * @return 返回一个ItemStack. 
      */
-    public ItemStack getItemStack(String path, ItemStack def);
+    @Nullable
+    public ItemStack getItemStack(@NotNull String path, @Nullable ItemStack def);
 
     /**
      * 检查指定路径是否是 {@link ItemStack}. 
@@ -954,7 +1034,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 {@link ItemStack}. 
      * @return 指定路径是否是 {@link ItemStack}. 
      */
-    public boolean isItemStack(String path);
+    public boolean isItemStack(@NotNull String path);
 
     /**
      * 在指定路径获取一个Color类型的值. 
@@ -971,7 +1051,8 @@ public interface ConfigurationSection {
      * @param path 获取Color的路径. 
      * @return 返回一个Color. 
      */
-    public Color getColor(String path);
+    @Nullable
+    public Color getColor(@NotNull String path);
 
     /**
      * 在指定路径上获取一个 {@link Color}, 如果无法获取, 则直接返回指定默认值. 
@@ -986,7 +1067,8 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 {@link Color} 类型时, 返回这个值. 
      * @return 返回一个 {@link Color}. 
      */
-    public Color getColor(String path, Color def);
+    @Nullable
+    public Color getColor(@NotNull String path, @Nullable Color def);
 
     /**
      * 检查指定路径是否是 {@link Color}. 
@@ -1006,7 +1088,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 {@link Color}. 
      * @return 指定路径是否是 {@link Color}. 
      */
-    public boolean isColor(String path);
+    public boolean isColor(@NotNull String path);
 
     /**
      * 获取一个 {@link ConfigurationSection} ,它是一个以指定路径作为基点的新的配置项,修改会同步. 
@@ -1042,7 +1124,8 @@ public interface ConfigurationSection {
      * @param path 获取 {@link ConfigurationSection} 的路径. 
      * @return 返回一个 {@link ConfigurationSection}. 
      */
-    public ConfigurationSection getConfigurationSection(String path);
+    @Nullable
+    public ConfigurationSection getConfigurationSection(@NotNull String path);
 
     /**
      * 检查指定路径是否是 {@link ConfigurationSection}. 
@@ -1062,7 +1145,7 @@ public interface ConfigurationSection {
      * @param path 检查指定路径是否是 {@link ConfigurationSection}. 
      * @return 指定路径是否是 {@link ConfigurationSection}. 
      */
-    public boolean isConfigurationSection(String path);
+    public boolean isConfigurationSection(@NotNull String path);
 
     /**
      * Gets the equivalent {@link ConfigurationSection} from the default {@link Configuration} defined in {@link #getRoot()}. 
@@ -1071,6 +1154,7 @@ public interface ConfigurationSection {
      *
      * @return Equivalent section in root configuration
      */
+    @Nullable
     public ConfigurationSection getDefaultSection();
 
     /**
@@ -1094,5 +1178,5 @@ public interface ConfigurationSection {
      * @param value 要设置的值. 
      * @throws IllegalArgumentException 当路径为 null 时抛出此异常. 
      */
-    public void addDefault(String path, Object value);
+    public void addDefault(@NotNull String path, @Nullable Object value);
 }

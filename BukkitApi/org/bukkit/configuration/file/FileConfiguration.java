@@ -2,10 +2,6 @@ package org.bukkit.configuration.file;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
-
-import org.apache.commons.lang.Validate;
-import org.bukkit.configuration.InvalidConfigurationException;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,9 +12,12 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
-
+import org.apache.commons.lang.Validate;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.MemoryConfiguration;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 这是一个实现了 {@link Configuration} 的配置文件的基类
@@ -38,7 +37,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *
      * @param defaults 为其创建提供缺省值的Configuration.
      */
-    public FileConfiguration(Configuration defaults) {
+    public FileConfiguration(@Nullable Configuration defaults) {
         super(defaults);
     }
 
@@ -54,7 +53,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      * @throws IOException 然后会给出无法创建或者保存的原因.
      * @throws IllegalArgumentException 如果文件为空，泡出该异常
      */
-    public void save(File file) throws IOException {
+    public void save(@NotNull File file) throws IOException {
         Validate.notNull(file, "File cannot be null");
 
         Files.createParentDirs(file);
@@ -82,7 +81,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      * @throws IOException 然后会给出无法创建或者保存的原因.
      * @throws IllegalArgumentException 如果文件为空，泡出该异常
      */
-    public void save(String file) throws IOException {
+    public void save(@NotNull String file) throws IOException {
         Validate.notNull(file, "File cannot be null");
 
         save(new File(file));
@@ -93,6 +92,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *
      * @return 这个FileConfiguration包含的所有String
      */
+    @NotNull
     public abstract String saveToString();
 
     /**
@@ -113,7 +113,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *     a valid Configuration.
      * @throws IllegalArgumentException Thrown when file is null.
      */
-    public void load(File file) throws FileNotFoundException, IOException, InvalidConfigurationException {
+    public void load(@NotNull File file) throws FileNotFoundException, IOException, InvalidConfigurationException {
         Validate.notNull(file, "File cannot be null");
 
         final FileInputStream stream = new FileInputStream(file);
@@ -134,7 +134,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *      represent a valid Configuration
      * @throws IllegalArgumentException thrown when reader is null
      */
-    public void load(Reader reader) throws IOException, InvalidConfigurationException {
+    public void load(@NotNull Reader reader) throws IOException, InvalidConfigurationException {
         BufferedReader input = reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
 
         StringBuilder builder = new StringBuilder();
@@ -171,7 +171,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *     a valid Configuration.
      * @throws IllegalArgumentException Thrown when file is null.
      */
-    public void load(String file) throws FileNotFoundException, IOException, InvalidConfigurationException {
+    public void load(@NotNull String file) throws FileNotFoundException, IOException, InvalidConfigurationException {
         Validate.notNull(file, "File cannot be null");
 
         load(new File(file));
@@ -192,7 +192,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *     invalid.
      * @throws IllegalArgumentException Thrown if contents is null.
      */
-    public abstract void loadFromString(String contents) throws InvalidConfigurationException;
+    public abstract void loadFromString(@NotNull String contents) throws InvalidConfigurationException;
 
     /**
      * Compiles the header for this {@link FileConfiguration} and returns the
@@ -204,8 +204,10 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *
      * @return Compiled header
      */
+    @NotNull
     protected abstract String buildHeader();
 
+    @NotNull
     @Override
     public FileConfigurationOptions options() {
         if (options == null) {

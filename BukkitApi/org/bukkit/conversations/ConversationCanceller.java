@@ -1,5 +1,7 @@
 package org.bukkit.conversations;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * ConversationCanceller可以用来终止一个活跃的{@link
  * Conversation}. 一个Conversation可以有多个ConversationCanceller.
@@ -13,7 +15,7 @@ public interface ConversationCanceller extends Cloneable {
      *
      * @param conversation 一个会话
      */
-    public void setConversation(Conversation conversation);
+    public void setConversation(@NotNull Conversation conversation);
 
     /**
      * 根据用户的输入反馈取消一个会话.
@@ -24,7 +26,7 @@ public interface ConversationCanceller extends Cloneable {
      * @param input 用户的输入值
      * @return true取消该会话，false反之
      */
-    public boolean cancelBasedOnInput(ConversationContext context, String input);
+    public boolean cancelBasedOnInput(@NotNull ConversationContext context, @NotNull String input);
 
     /**
      * 允许某一{@link ConversationFactory}在创建一个新{@link Conversation}时
@@ -39,5 +41,6 @@ public interface ConversationCanceller extends Cloneable {
      *
      * @return 一个副本
      */
+    @NotNull
     public ConversationCanceller clone();
 }

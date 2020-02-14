@@ -1,6 +1,8 @@
 package org.bukkit.conversations;
 
 import java.util.EventObject;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * ConversationAbandonedEvent包含一个被终止的会话的细节信息.
@@ -10,11 +12,11 @@ public class ConversationAbandonedEvent extends EventObject {
     private ConversationContext context;
     private ConversationCanceller canceller;
 
-    public ConversationAbandonedEvent(Conversation conversation) {
+    public ConversationAbandonedEvent(@NotNull Conversation conversation) {
         this(conversation, null);
     }
 
-    public ConversationAbandonedEvent(Conversation conversation, ConversationCanceller canceller) {
+    public ConversationAbandonedEvent(@NotNull Conversation conversation, @Nullable ConversationCanceller canceller) {
         super(conversation);
         this.context = conversation.getContext();
         this.canceller = canceller;
@@ -27,6 +29,7 @@ public class ConversationAbandonedEvent extends EventObject {
      *
      * @return 终止该会话的{@link ConversationCanceller}
      */
+    @Nullable
     public ConversationCanceller getCanceller() {
         return canceller;
     }
@@ -38,6 +41,7 @@ public class ConversationAbandonedEvent extends EventObject {
      *
      * @return 被终止的对话的上下文
      */
+    @NotNull
     public ConversationContext getContext() {
         return context;
     }

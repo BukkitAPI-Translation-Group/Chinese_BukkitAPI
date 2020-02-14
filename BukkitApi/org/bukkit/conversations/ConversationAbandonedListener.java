@@ -1,6 +1,7 @@
 package org.bukkit.conversations;
 
 import java.util.EventListener;
+import org.jetbrains.annotations.NotNull;
 
 /**
  */
@@ -12,5 +13,5 @@ public interface ConversationAbandonedListener extends EventListener {
      *
      * @param abandonedEvent 包含关于会话被终止的细节的事件对象
      */
-    public void conversationAbandoned(ConversationAbandonedEvent abandonedEvent);
+    public void conversationAbandoned(@NotNull ConversationAbandonedEvent abandonedEvent);
 }

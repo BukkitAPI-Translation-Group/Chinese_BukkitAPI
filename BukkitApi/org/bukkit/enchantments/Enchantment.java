@@ -2,10 +2,12 @@ package org.bukkit.enchantments;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 附魔类.
@@ -251,6 +253,21 @@ public abstract class Enchantment implements Keyed {
     public static final Enchantment CHANNELING = new EnchantmentWrapper("channeling");
 
     /**
+     * Shoot multiple arrows from crossbows
+     */
+    public static final Enchantment MULTISHOT = new EnchantmentWrapper("multishot");
+
+    /**
+     * Charges crossbows quickly
+     */
+    public static final Enchantment QUICK_CHARGE = new EnchantmentWrapper("quick_charge");
+
+    /**
+     * Crossbow projectiles pierce entities
+     */
+    public static final Enchantment PIERCING = new EnchantmentWrapper("piercing");
+
+    /**
      * 附魔：经验修补
      * <p>
      * 原文:Allows mending the item using experience orbs
@@ -267,10 +284,11 @@ public abstract class Enchantment implements Keyed {
     private static boolean acceptingNew = true;
     private final NamespacedKey key;
 
-    public Enchantment(NamespacedKey key) {
+    public Enchantment(@NotNull NamespacedKey key) {
         this.key = key;
     }
 
+    @NotNull
     @Override
     public NamespacedKey getKey() {
         return key;
@@ -285,6 +303,7 @@ public abstract class Enchantment implements Keyed {
      * @return 独一无二的名称
      * @deprecated 这些附魔的命名简直糟透了，建议使用 {@link #getKey()}.
      */
+    @NotNull
     @Deprecated
     public abstract String getName();
 
@@ -316,6 +335,7 @@ public abstract class Enchantment implements Keyed {
      *
      * @return 这个附魔的目标物品.
      */
+    @NotNull
     public abstract EnchantmentTarget getItemTarget();
 
     /**
@@ -350,7 +370,7 @@ public abstract class Enchantment implements Keyed {
      * @param other 另外一个附魔
      * @return 如果这两个附魔是冲突的则返回true
      */
-    public abstract boolean conflictsWith(Enchantment other);
+    public abstract boolean conflictsWith(@NotNull Enchantment other);
 
     /**
      * 检查该附魔支不支持某物品. 
@@ -366,7 +386,7 @@ public abstract class Enchantment implements Keyed {
      * @param item 物品
      * @return True 如果该附魔适用该物品,则返回true。
      */
-    public abstract boolean canEnchantItem(ItemStack item);
+    public abstract boolean canEnchantItem(@NotNull ItemStack item);
 
     @Override
     public boolean equals(Object obj) {
@@ -405,7 +425,7 @@ public abstract class Enchantment implements Keyed {
      *
      * @param enchantment 用于注册的附魔
      */
-    public static void registerEnchantment(Enchantment enchantment) {
+    public static void registerEnchantment(@NotNull Enchantment enchantment) {
         if (byKey.containsKey(enchantment.key) || byName.containsKey(enchantment.getName())) {
             throw new IllegalArgumentException("Cannot set already-set enchantment");
         } else if (!isAcceptingRegistrations()) {
@@ -447,7 +467,9 @@ public abstract class Enchantment implements Keyed {
      * @param key 附魔键值key
      * @return 返回该key所对应的附魔,要是没有所对应的的附魔则返回null.
      */
-    public static Enchantment getByKey(NamespacedKey key) {
+    @Contract("null -> null")
+    @Nullable
+    public static Enchantment getByKey(@Nullable NamespacedKey key) {
         return byKey.get(key);
     }
 
@@ -462,7 +484,9 @@ public abstract class Enchantment implements Keyed {
      * @deprecated 这些附魔的命名简直糟透了，建议使用 {@link #getByKey(org.bukkit.NamespacedKey)}.
      */
     @Deprecated
-    public static Enchantment getByName(String name) {
+    @Contract("null -> null")
+    @Nullable
+    public static Enchantment getByName(@Nullable String name) {
         return byName.get(name);
     }
 
@@ -474,6 +498,7 @@ public abstract class Enchantment implements Keyed {
      *
      * @return 一个数组
      */
+    @NotNull
     public static Enchantment[] values() {
         return byName.values().toArray(new Enchantment[byName.size()]);
     }
