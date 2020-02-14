@@ -2,6 +2,7 @@ package org.bukkit.entity;
 
 import org.bukkit.block.BlockFace;
 import org.bukkit.material.Attachable;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表悬挂实体.
@@ -19,5 +20,5 @@ public interface Hanging extends Entity, Attachable {
      * @param force 是否强制
      * @return 如果强制执行失败或者那里没有方块附着给定的方向则为false
      */
-    public boolean setFacingDirection(BlockFace face, boolean force);
+    public boolean setFacingDirection(@NotNull BlockFace face, boolean force);
 }

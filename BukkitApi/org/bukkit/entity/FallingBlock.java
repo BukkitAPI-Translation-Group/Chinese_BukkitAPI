@@ -2,6 +2,7 @@ package org.bukkit.entity;
 
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个下落方块. 
@@ -20,6 +21,8 @@ public interface FallingBlock extends Entity {
      * @return Material of the block
      * @deprecated 请使用 {@link #getBlockData()}
      */
+    @Deprecated
+    @NotNull
     Material getMaterial();
 
     /**
@@ -27,6 +30,7 @@ public interface FallingBlock extends Entity {
      *
      * @return data of the block
      */
+    @NotNull
     BlockData getBlockData();
 
     /**

@@ -1,16 +1,19 @@
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface Rabbit extends Animals {
 
     /**
      * @return 兔子的种类.
      */
+    @NotNull
     public Type getRabbitType();
 
     /**
      * @param type 设置兔子的种类.
      */
-    public void setRabbitType(Type type);
+    public void setRabbitType(@NotNull Type type);
 
     /**
      * 代表不同种类的兔子.

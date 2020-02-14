@@ -2,6 +2,8 @@ package org.bukkit.entity;
 
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface ArmorStand extends LivingEntity {
 
@@ -14,6 +16,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 盔甲架当前握持的物品
      */
+    @NotNull
     ItemStack getItemInHand();
 
     /**
@@ -25,7 +28,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 盔甲架当前握持的物品
      */
-    void setItemInHand(ItemStack item);
+    void setItemInHand(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前穿在脚上的物品.
@@ -36,6 +39,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      */
+    @NotNull
     ItemStack getBoots();
 
     /**
@@ -47,7 +51,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      */
-    void setBoots(ItemStack item);
+    void setBoots(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前穿在腿上的物品.
@@ -58,6 +62,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      */
+    @NotNull
     ItemStack getLeggings();
 
     /**
@@ -69,7 +74,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      */
-    void setLeggings(ItemStack item);
+    void setLeggings(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前穿在胸上的物品.
@@ -80,6 +85,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      */
+    @NotNull
     ItemStack getChestplate();
 
     /**
@@ -91,7 +97,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      */
-    void setChestplate(ItemStack item);
+    void setChestplate(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前戴在头上的物品.
@@ -102,6 +108,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      */
+    @NotNull
     ItemStack getHelmet();
 
     /**
@@ -113,7 +120,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      */
-    void setHelmet(ItemStack item);
+    void setHelmet(@Nullable ItemStack item);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架身体的姿势.
@@ -124,6 +131,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 当前姿势
      */
+    @NotNull
     EulerAngle getBodyPose();
 
     /**
@@ -135,7 +143,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param pose 当前姿势
      */
-    void setBodyPose(EulerAngle pose);
+    void setBodyPose(@NotNull EulerAngle pose);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左臂的姿势.
@@ -146,6 +154,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 当前姿势
      */
+    @NotNull
     EulerAngle getLeftArmPose();
 
     /**
@@ -157,7 +166,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param pose 当前姿势
      */
-    void setLeftArmPose(EulerAngle pose);
+    void setLeftArmPose(@NotNull EulerAngle pose);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右臂的姿势.
@@ -168,6 +177,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 当前姿势
      */
+    @NotNull
     EulerAngle getRightArmPose();
 
     /**
@@ -179,7 +189,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param pose 当前姿势
      */
-    void setRightArmPose(EulerAngle pose);
+    void setRightArmPose(@NotNull EulerAngle pose);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左腿的姿势.
@@ -190,6 +200,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 当前姿势
      */
+    @NotNull
     EulerAngle getLeftLegPose();
 
     /**
@@ -201,7 +212,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param pose 当前姿势
      */
-    void setLeftLegPose(EulerAngle pose);
+    void setLeftLegPose(@NotNull EulerAngle pose);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右腿的姿势.
@@ -212,6 +223,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 当前姿势
      */
+    @NotNull
     EulerAngle getRightLegPose();
 
     /**
@@ -223,7 +235,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param pose 当前姿势
      */
-    void setRightLegPose(EulerAngle pose);
+    void setRightLegPose(@NotNull EulerAngle pose);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架头的姿势.
@@ -234,6 +246,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 当前姿势
      */
+    @NotNull
     EulerAngle getHeadPose();
 
     /**
@@ -245,7 +258,7 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param pose 当前姿势
      */
-    void setHeadPose(EulerAngle pose);
+    void setHeadPose(@NotNull EulerAngle pose);
 
     /**
      * 返回盔甲架是否有底盘.

@@ -7,6 +7,8 @@ import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一片即将对处于其中的生物施加药水效果的区域效果云 (即喷溅药水使用后形成的雾). 
@@ -171,6 +173,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return 粒子类型
      */
+    @NotNull
     Particle getParticle();
 
     /**
@@ -181,16 +184,17 @@ public interface AreaEffectCloud extends Entity {
      *
      * @param particle 新的粒子类型
      */
-    void setParticle(Particle particle);
+    void setParticle(@NotNull Particle particle);
 
     /**
      * Sets the particle which this cloud will be composed of
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the new particle type
      * @param data the data to use for the particle or null,
      *             the type of this depends on {@link Particle#getDataType()}
      */
-    <T> void setParticle(Particle particle, T data);
+    <T> void setParticle(@NotNull Particle particle, @Nullable T data);
 
     /**
      * 设置基本药水数据.  
@@ -200,7 +204,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @param data 用于设置基本药水状态的 {@link PotionData}
      */
-    void setBasePotionData(PotionData data);
+    void setBasePotionData(@NotNull PotionData data);
 
     /**
      * 返回基本药水的药水数据. 
@@ -210,6 +214,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return 一个 PotionData 对象.
      */
+    @NotNull
     PotionData getBasePotionData();
 
     /**
@@ -234,6 +239,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return 自定义药水效果的不可变集合
      */
+    @NotNull
     List<PotionEffect> getCustomEffects();
 
     /**
@@ -246,7 +252,7 @@ public interface AreaEffectCloud extends Entity {
      * @param overwrite 是否覆盖当前存在的相同类型效果
      * @return 如果这次调用成功添加效果则返回true
      */
-    boolean addCustomEffect(PotionEffect effect, boolean overwrite);
+    boolean addCustomEffect(@NotNull PotionEffect effect, boolean overwrite);
 
     /**
      * 从这片云移除一个自定义药水效果. 
@@ -257,7 +263,7 @@ public interface AreaEffectCloud extends Entity {
      * @param type 移除的药水效果类型
      * @return 如果这次调用成功移除效果则返回true
      */
-    boolean removeCustomEffect(PotionEffectType type);
+    boolean removeCustomEffect(@NotNull PotionEffectType type);
 
     /**
      * 检查这片云中是否存在一种特定的自定义药水效果类型. 
@@ -268,7 +274,7 @@ public interface AreaEffectCloud extends Entity {
      * @param type 检查的药水效果类型
      * @return 存在这种效果则返回true
      */
-    boolean hasCustomEffect(PotionEffectType type);
+    boolean hasCustomEffect(@NotNull PotionEffectType type);
 
     /**
      * 从这片云移除所有自定义药水效果。
@@ -286,6 +292,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @return 云的颜色
      */
+    @NotNull
     Color getColor();
 
     /**
@@ -296,7 +303,7 @@ public interface AreaEffectCloud extends Entity {
      *
      * @param color 云的颜色
      */
-    void setColor(Color color);
+    void setColor(@NotNull Color color);
 
     /**
      * 检索这片云的初始来源. 
@@ -306,6 +313,7 @@ public interface AreaEffectCloud extends Entity {
      * 
      * @return 投掷药水的 {@link ProjectileSource}
      */
+    @Nullable
     public ProjectileSource getSource();
 
     /**
@@ -316,5 +324,5 @@ public interface AreaEffectCloud extends Entity {
      *
      * @param source 投掷药水的{@link ProjectileSource}
      */
-    public void setSource(ProjectileSource source);
+    public void setSource(@Nullable ProjectileSource source);
 }

@@ -5,13 +5,15 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.MainHand;
-import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.MainHand;
+import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.PlayerInventory;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表人类实体, 比如一个NPC或一名玩家
@@ -25,6 +27,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return 玩家名
      */
+    @NotNull
+    @Override
     public String getName();
 
     /**
@@ -34,6 +38,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return 玩家物品栏, 包含盔甲槽
      */
+    @NotNull
+    @Override
     public PlayerInventory getInventory();
 
     /**
@@ -43,6 +49,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return 玩家的末影箱
      */
+    @NotNull
     public Inventory getEnderChest();
 
     /**
@@ -52,6 +59,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return 玩家主手
      */
+    @NotNull
     public MainHand getMainHand();
 
     /**
@@ -64,7 +72,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param value 要设置的属性值
      * @return 若属性成功设置返回true
      */
-    public boolean setWindowProperty(InventoryView.Property prop, int value);
+    public boolean setWindowProperty(@NotNull InventoryView.Property prop, int value);
 
     /**
      * 获取玩家正在查看的物品栏. 如果他们没有打开任何物品栏窗口, 将返回他们的内部合成视图(玩家背包的那四个格子?).
@@ -74,6 +82,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return 物品栏视图
      */
+    @NotNull
     public InventoryView getOpenInventory();
 
     /**
@@ -85,7 +94,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param inventory 要打开的物品栏
      * @return 新打开的物品栏的视图
      */
-    public InventoryView openInventory(Inventory inventory);
+    @Nullable
+    public InventoryView openInventory(@NotNull Inventory inventory);
 
     /**
      * 打开一个空白工作台物品栏界面, 玩家物品栏(背包)在底部.
@@ -98,7 +108,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 玩家展示工作台界面)
      * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
-    public InventoryView openWorkbench(Location location, boolean force);
+    @Nullable
+    public InventoryView openWorkbench(@Nullable Location location, boolean force);
 
     /**
      * 打开一个空白附魔台物品栏界面, 玩家物品栏(背包)在底部.
@@ -111,7 +122,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 玩家展示附魔台界面)
      * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
-    public InventoryView openEnchanting(Location location, boolean force);
+    @Nullable
+    public InventoryView openEnchanting(@Nullable Location location, boolean force);
 
     /**
      * 打开指定的物品栏.
@@ -120,7 +132,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @param inventory 要打开的物品栏视图
      */
-    public void openInventory(InventoryView inventory);
+    public void openInventory(@NotNull InventoryView inventory);
 
     /**
      * 与某村民开始交易.
@@ -136,7 +148,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param force 是否强制开始交易, 即使另一名玩家正在与此村民交易
      * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
-    public InventoryView openMerchant(Villager trader, boolean force);
+    @Nullable
+    public InventoryView openMerchant(@NotNull Villager trader, boolean force);
 
     /**
      * 与某商人开始交易.
@@ -152,7 +165,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param force 是否强制开始交易, 即使另一名玩家正在与此商人交易
      * @return 新打开的物品栏的视图, 如果不能打开返回null
      */
-    public InventoryView openMerchant(Merchant merchant, boolean force);
+    @Nullable
+    public InventoryView openMerchant(@NotNull Merchant merchant, boolean force);
 
     /**
      * 强制关闭玩家当前打开的物品栏视图.
@@ -170,6 +184,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @deprecated 人类现能双持, 请使用 {@link PlayerInventory} 中更明确的方法
      */
     @Deprecated
+    @NotNull
     public ItemStack getItemInHand();
 
     /**
@@ -182,8 +197,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @deprecated 人类现能双持, 请使用 {@link PlayerInventory} 中更明确的方法
      */
     @Deprecated
-    public void setItemInHand(ItemStack item);
+    public void setItemInHand(@Nullable ItemStack item);
 
+    // 待求证
     /**
      * 返回你的鼠标正在拖动的物品, 可能为空. 如果玩家没有打开任何窗口, 将永远为空(AIR).
      * <p>
@@ -194,6 +210,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return 你正在拖动的物品的ItemStack对象
      */
+    @NotNull
     public ItemStack getItemOnCursor();
 
     /**
@@ -205,7 +222,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @param item 要设置的物品堆
      */
-    public void setItemOnCursor(ItemStack item);
+    public void setItemOnCursor(@Nullable ItemStack item);
 
     /**
      * 检查指定物品是否处于冷却状态.
@@ -215,7 +232,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param material 要检查的物品种类
      * @return 该物品是否进入了冷却
      */
-    public boolean hasCooldown(Material material);
+    public boolean hasCooldown(@NotNull Material material);
 
     /**
      * 获取指定物品的冷却时长 (以tick为单位).
@@ -225,7 +242,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param material 要检查的物品种类
      * @return 剩余冷却时长 (以tick为单位)
      */
-    public int getCooldown(Material material);
+    public int getCooldown(@NotNull Material material);
 
     /**
      * 设置指定物品的冷却时长. 设为0 tick将导致移除此物品的冷却.
@@ -246,16 +263,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param material 为哪个物品设置冷却
      * @param ticks 冷却时长(以tick为单位)或设为0来移除它
      */
-    public void setCooldown(Material material, int ticks);
-
-    /**
-     * 返回玩家是否处于睡眠状态.
-     * <p>
-     * 原文:Returns whether this player is slumbering.
-     *
-     * @return 睡眠状态
-     */
-    public boolean isSleeping();
+    public void setCooldown(@NotNull Material material, int ticks);
 
     /**
      * 获取玩家的睡眠时间 (以tick为单位), 该值可能有上限.
@@ -267,12 +275,70 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
     public int getSleepTicks();
 
     /**
+     * Gets the Location where the player will spawn at their bed, null if
+     * they have not slept in one or their current bed spawn is invalid.
+     *
+     * @return Bed Spawn Location if bed exists, otherwise null.
+     */
+    @Nullable
+    public Location getBedSpawnLocation();
+
+    /**
+     * Sets the Location where the player will spawn at their bed.
+     *
+     * @param location where to set the respawn location
+     */
+    public void setBedSpawnLocation(@Nullable Location location);
+
+    /**
+     * Sets the Location where the player will spawn at their bed.
+     *
+     * @param location where to set the respawn location
+     * @param force whether to forcefully set the respawn location even if a
+     *     valid bed is not present
+     */
+    public void setBedSpawnLocation(@Nullable Location location, boolean force);
+
+    /**
+     * Attempts to make the entity sleep at the given location.
+     * <br>
+     * The location must be in the current world and have a bed placed at the
+     * location. The game may also enforce other requirements such as proximity
+     * to bed, monsters, and dimension type if force is not set.
+     *
+     * @param location the location of the bed
+     * @param force whether to try and sleep at the location even if not
+     * normally possible
+     * @return whether the sleep was successful
+     */
+    public boolean sleep(@NotNull Location location, boolean force);
+
+    /**
+     * Causes the player to wakeup if they are currently sleeping.
+     *
+     * @param setSpawnLocation whether to set their spawn location to the bed
+     * they are currently sleeping in
+     * @throws IllegalStateException if not sleeping
+     */
+    public void wakeup(boolean setSpawnLocation);
+
+    /**
+     * Gets the location of the bed the player is currently sleeping in
+     *
+     * @return location
+     * @throws IllegalStateException if not sleeping
+     */
+    @NotNull
+    public Location getBedLocation();
+
+    /**
      * 获取此人类当前的{@link GameMode 游戏模式}.
      * <p>
      * 原文:Gets this human's current {@link GameMode}
      *
      * @return 游戏模式
      */
+    @NotNull
     public GameMode getGameMode();
 
     /**
@@ -282,7 +348,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @param mode 新游戏模式
      */
-    public void setGameMode(GameMode mode);
+    public void setGameMode(@NotNull GameMode mode);
 
     /**
      * 检查玩家是否正在格挡 (换言之, 就是他们使用盾牌, 进入了格挡状态).
@@ -322,7 +388,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @return whether or not the recipe was newly discovered
      */
-    public boolean discoverRecipe(NamespacedKey recipe);
+    public boolean discoverRecipe(@NotNull NamespacedKey recipe);
 
     /**
      * Discover a collection of recipes for this player such that they have not
@@ -336,7 +402,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * none were newly discovered and a number equal to {@code recipes.size()}
      * indicates that all were new
      */
-    public int discoverRecipes(Collection<NamespacedKey> recipes);
+    public int discoverRecipes(@NotNull Collection<NamespacedKey> recipes);
 
     /**
      * Undiscover a recipe for this player such that it has already been
@@ -348,7 +414,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @return whether or not the recipe was successfully undiscovered (i.e. it
      * was previously discovered)
      */
-    public boolean undiscoverRecipe(NamespacedKey recipe);
+    public boolean undiscoverRecipe(@NotNull NamespacedKey recipe);
 
     /**
      * Undiscover a collection of recipes for this player such that they have
@@ -362,7 +428,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * were undiscovered and a number equal to {@code recipes.size()} indicates
      * that all were undiscovered
      */
-    public int undiscoverRecipes(Collection<NamespacedKey> recipes);
+    public int undiscoverRecipes(@NotNull Collection<NamespacedKey> recipes);
 
     /**
      * 获取栖息在玩家左肩上的实体 (通常情况下这是鹦鹉的行为, 目前客户端没有为其他实体定义这一行为), 若没有则返回null.
@@ -379,6 +445,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
+    @Nullable
     public Entity getShoulderEntityLeft();
 
     /**
@@ -401,7 +468,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
-    public void setShoulderEntityLeft(Entity entity);
+    public void setShoulderEntityLeft(@Nullable Entity entity);
 
     /**
      * 获取栖息在玩家右肩上的实体, 若没有则返回null.
@@ -418,6 +485,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
+    @Nullable
     public Entity getShoulderEntityRight();
 
     /**
@@ -440,5 +508,5 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
     @Deprecated
-    public void setShoulderEntityRight(Entity entity);
+    public void setShoulderEntityRight(@Nullable Entity entity);
 }

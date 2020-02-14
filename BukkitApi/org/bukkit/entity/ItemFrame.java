@@ -2,6 +2,8 @@ package org.bukkit.entity;
 
 import org.bukkit.Rotation;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表物品展示框.
@@ -15,6 +17,7 @@ public interface ItemFrame extends Hanging {
      *
      * @return 展示框内的物品
      */
+    @NotNull
     public ItemStack getItem();
 
     /**
@@ -24,7 +27,7 @@ public interface ItemFrame extends Hanging {
      *
      * @param item 新的物品
      */
-    public void setItem(ItemStack item);
+    public void setItem(@Nullable ItemStack item);
 
     /**
      * Set the item in this frame
@@ -32,7 +35,7 @@ public interface ItemFrame extends Hanging {
      * @param item the new item
      * @param playSound whether or not to play the item placement sound
      */
-    public void setItem(ItemStack item, boolean playSound);
+    public void setItem(@Nullable ItemStack item, boolean playSound);
 
     /**
      * 获取展示框内物品的旋转角度.
@@ -41,6 +44,7 @@ public interface ItemFrame extends Hanging {
      *
      * @return 旋转角度
      */
+    @NotNull
     public Rotation getRotation();
 
     /**
@@ -51,5 +55,5 @@ public interface ItemFrame extends Hanging {
      * @param rotation 新的旋转角度
      * @throws IllegalArgumentException 如果旋转角度为null
      */
-    public void setRotation(Rotation rotation) throws IllegalArgumentException;
+    public void setRotation(@NotNull Rotation rotation) throws IllegalArgumentException;
 }

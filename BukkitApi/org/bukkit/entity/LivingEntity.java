@@ -3,19 +3,21 @@ package org.bukkit.entity;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.attribute.Attributable;
 import org.bukkit.block.Block;
+import org.bukkit.entity.memory.MemoryKey;
 import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个生物实体，比如一只怪物或一名玩家.
@@ -51,6 +53,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *
      * @return 生物实体眼睛的详细方位的Location对象
      */
+    @NotNull
     public Location getEyeLocation();
 
     /**
@@ -69,7 +72,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
      * @return 包含沿生物实体视线上的所有方块的列表
      */
-    public List<Block> getLineOfSight(Set<Material> transparent, int maxDistance);
+    @NotNull
+    public List<Block> getLineOfSight(@Nullable Set<Material> transparent, int maxDistance);
 
     /**
      * 获取生物实体的目标方块.
@@ -89,7 +93,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
      * @return block 生物实体的目标方块
      */
-    public Block getTargetBlock(Set<Material> transparent, int maxDistance);
+    @NotNull
+    public Block getTargetBlock(@Nullable Set<Material> transparent, int maxDistance);
 
     /**
      * 获取沿生物实体视线上最后两个方块.
@@ -106,7 +111,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
      * @return 包含沿生物实体视线上最后两个方块的列表
      */
-    public List<Block> getLastTwoTargetBlocks(Set<Material> transparent, int maxDistance);
+    @NotNull
+    public List<Block> getLastTwoTargetBlocks(@Nullable Set<Material> transparent, int maxDistance);
 
     /**
      * Gets the block that the living entity has targeted.
@@ -121,6 +127,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @return block that the living entity has targeted
      * @see #getTargetBlockExact(int, org.bukkit.FluidCollisionMode)
      */
+    @Nullable
     public Block getTargetBlockExact(int maxDistance);
 
     /**
@@ -136,7 +143,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @return block that the living entity has targeted
      * @see #rayTraceBlocks(double, FluidCollisionMode)
      */
-    public Block getTargetBlockExact(int maxDistance, FluidCollisionMode fluidCollisionMode);
+    @Nullable
+    public Block getTargetBlockExact(int maxDistance, @NotNull FluidCollisionMode fluidCollisionMode);
 
     /**
      * Performs a ray trace that provides information on the targeted block.
@@ -152,6 +160,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *     is no targeted block in range
      * @see #rayTraceBlocks(double, FluidCollisionMode)
      */
+    @Nullable
     public RayTraceResult rayTraceBlocks(double maxDistance);
 
     /**
@@ -168,7 +177,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *     is no targeted block in range
      * @see World#rayTraceBlocks(Location, Vector, double, FluidCollisionMode)
      */
-    public RayTraceResult rayTraceBlocks(double maxDistance, FluidCollisionMode fluidCollisionMode);
+    @Nullable
+    public RayTraceResult rayTraceBlocks(double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode);
 
     /**
      * 返回生物实体剩余的氧气值，单位为tick.
@@ -293,6 +303,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *
      * @return 击杀指定生物实体的玩家，如果找不到则返回null
      */
+    @Nullable
     public Player getKiller();
 
     /**
@@ -309,7 +320,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param effect 添加的药水效果
      * @return 效果是否添加
      */
-    public boolean addPotionEffect(PotionEffect effect);
+    public boolean addPotionEffect(@NotNull PotionEffect effect);
 
     /**
      * 向生物实体添加指定的{@link PotionEffect}（药水效果）.
@@ -326,7 +337,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param force 是否移除冲突的效果
      * @return 效果是否添加
      */
-    public boolean addPotionEffect(PotionEffect effect, boolean force);
+    public boolean addPotionEffect(@NotNull PotionEffect effect, boolean force);
 
     /**
      * 尝试向生物实体添加所有指定的{@link PotionEffect}（药水效果）.
@@ -338,7 +349,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param effects 添加的效果
      * @return 所有效果是否添加
      */
-    public boolean addPotionEffects(Collection<PotionEffect> effects);
+    public boolean addPotionEffects(@NotNull Collection<PotionEffect> effects);
 
     /**
      * 返回生物实体是否已经存在一个指定的{@link PotionEffectType}效果.
@@ -350,7 +361,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param type 检查的药水类型
      * @return 是否有指定的药水效果作用于生物实体
      */
-    public boolean hasPotionEffect(PotionEffectType type);
+    public boolean hasPotionEffect(@NotNull PotionEffectType type);
 
     /**
      * 返回指定类型的有效{@link PotionEffect}.
@@ -365,7 +376,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param type 检查的药水类型
      * @return 作用于实体的效果，如果没有则返回null。
      */
-    public PotionEffect getPotionEffect(PotionEffectType type);
+    @Nullable
+    public PotionEffect getPotionEffect(@NotNull PotionEffectType type);
 
     /**
      * 移除当前所有指定的{@link PotionEffectType}效果.
@@ -375,7 +387,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *
      * @param type 移除的药水类型
      */
-    public void removePotionEffect(PotionEffectType type);
+    public void removePotionEffect(@NotNull PotionEffectType type);
 
     /**
      * 返回当前作用于生物实体的所有{@link PotionEffect}.
@@ -386,6 +398,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *
      * @return 一个{@link PotionEffect}的集合
      */
+    @NotNull
     public Collection<PotionEffect> getActivePotionEffects();
 
     /**
@@ -402,7 +415,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param other 确定视线的实体
      * @return 如果存在视线则返回true，否则返回false
      */
-    public boolean hasLineOfSight(Entity other);
+    public boolean hasLineOfSight(@NotNull Entity other);
 
     /**
      * 返回生物实体是否会在远离玩家时消失.
@@ -437,6 +450,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      *
      * @return 生物实体的背包栏
      */
+    @Nullable
     public EntityEquipment getEquipment();
 
     /**
@@ -478,6 +492,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @return 握持拴绳的实体
      * @throws IllegalStateException 如果当前实体没被拴住则抛出错误
      */
+    @NotNull
     public Entity getLeashHolder() throws IllegalStateException;
 
     /**
@@ -495,10 +510,19 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param holder 握持拴绳的实体
      * @return 操作是否成功
      */
-    public boolean setLeashHolder(Entity holder);
+    public boolean setLeashHolder(@Nullable Entity holder);
 
     /**
-     * 检查实体是否正在滑翔，如正在使用滑翔翼.
+     * 返回实体是否正在睡觉.
+     * <p>
+     * 原文:Returns whether this entity is slumbering.
+     *
+     * @return 实体睡眠状态
+     */
+    public boolean isSleeping();
+
+    /**
+     * 检查实体是否正在滑翔，如正在使用鞘翅.
      * <p>
      * 原文：
      * Checks to see if an entity is gliding, such as using an Elytra.
@@ -578,4 +602,29 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @return collision status
      */
     boolean isCollidable();
+
+    /**
+     * Returns the value of the memory specified.
+     * <p>
+     * Note that the value is null when the specific entity does not have that
+     * value by default.
+     *
+     * @param memoryKey memory to access
+     * @param <T> the type of the return value
+     * @return a instance of the memory section value or null if not present
+     */
+    @Nullable
+    <T> T getMemory(@NotNull MemoryKey<T> memoryKey);
+
+    /**
+     * Sets the value of the memory specified.
+     * <p>
+     * Note that the value will not be persisted when the specific entity does
+     * not have that value by default.
+     *
+     * @param memoryKey the memory to access
+     * @param memoryValue a typed memory value
+     * @param <T> the type of the passed value
+     */
+    <T> void setMemory(@NotNull MemoryKey<T> memoryKey, @Nullable T memoryValue);
 }

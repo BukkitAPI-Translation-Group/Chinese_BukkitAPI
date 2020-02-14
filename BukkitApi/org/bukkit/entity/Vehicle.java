@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a vehicle entity.
@@ -12,6 +13,8 @@ public interface Vehicle extends Entity {
      *
      * @return velocity vector
      */
+    @Override
+    @NotNull
     public Vector getVelocity();
 
     /**
@@ -19,5 +22,6 @@ public interface Vehicle extends Entity {
      *
      * @param vel velocity vector
      */
-    public void setVelocity(Vector vel);
+    @Override
+    public void setVelocity(@NotNull Vector vel);
 }

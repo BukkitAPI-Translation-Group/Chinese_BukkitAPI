@@ -1,5 +1,8 @@
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 代表僵尸.
  */
@@ -38,17 +41,19 @@ public interface Zombie extends Monster {
     public boolean isVillager();
 
     /**
-     * @param flag
+     * @param flag flag
      * @deprecated must spawn {@link ZombieVillager}.
      */
     @Deprecated
+    @Contract("_ -> fail")
     public void setVillager(boolean flag);
 
     /**
-     * @param profession
+     * @param profession profession
      * @see ZombieVillager#getVillagerProfession()
      */
     @Deprecated
+    @Contract("_ -> fail")
     public void setVillagerProfession(Villager.Profession profession);
 
     /**
@@ -56,6 +61,8 @@ public interface Zombie extends Monster {
      * @see ZombieVillager#getVillagerProfession()
      */
     @Deprecated
+    @Nullable
+    @Contract("-> null")
     public Villager.Profession getVillagerProfession();
 
     /**

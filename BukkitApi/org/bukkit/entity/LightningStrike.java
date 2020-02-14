@@ -3,7 +3,7 @@ package org.bukkit.entity;
 /**
  * 代表雷击的实例，可能会或者不会造成伤害。
  */
-public interface LightningStrike extends Weather {
+public interface LightningStrike extends Entity {
 
     /**
      * 返回雷击是否是没有伤害的效果。

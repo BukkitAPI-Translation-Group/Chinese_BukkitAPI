@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.attribute.Attribute;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 表示一个有生命值和可以被伤害的实体({@link Entity})。
@@ -24,7 +25,7 @@ public interface Damageable extends Entity {
      * @param amount 伤害的数量
      * @param source 伤害来源
      */
-    void damage(double amount, Entity source);
+    void damage(double amount, @Nullable Entity source);
 
     /**
      * 获取当前实体的血量，从0到 {@link #getMaxHealth()}，当血量为 0 时为死亡状态.。

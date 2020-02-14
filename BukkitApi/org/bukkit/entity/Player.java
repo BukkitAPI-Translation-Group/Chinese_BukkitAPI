@@ -1,9 +1,8 @@
 package org.bukkit.entity;
 
 import java.net.InetSocketAddress;
-
 import org.bukkit.Achievement;
-import org.bukkit.ChatColor;
+import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Instrument;
@@ -21,10 +20,13 @@ import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.scoreboard.Scoreboard;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 玩家对象
@@ -44,6 +46,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return 显示的名称.
      */
+    @NotNull
     public String getDisplayName();
 
     /**
@@ -59,7 +62,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param name 显示的名称.
      */
-    public void setDisplayName(String name);
+    public void setDisplayName(@Nullable String name);
 
     /**
      * 得到玩家显示在tab列表中的名称.
@@ -68,6 +71,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * 
      * @return 玩家名(显示于tab列表)
      */
+    @NotNull
     public String getPlayerListName();
 
     /**
@@ -83,13 +87,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当有名称相同时抛出
      * @throws IllegalArgumentException 当名称超过16个字符时抛出
      */
-    public void setPlayerListName(String name);
+    public void setPlayerListName(@Nullable String name);
 
     /**
      * Gets the currently displayed player list header for this player.
      *
      * @return player list header or null
      */
+    @Nullable
     public String getPlayerListHeader();
 
     /**
@@ -97,6 +102,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return player list header or null
      */
+    @Nullable
     public String getPlayerListFooter();
 
     /**
@@ -104,14 +110,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param header player list header, null for empty
      */
-    public void setPlayerListHeader(String header);
+    public void setPlayerListHeader(@Nullable String header);
 
     /**
      * Sets the currently displayed player list footer for this player.
      *
      * @param footer player list footer, null for empty
      */
-    public void setPlayerListFooter(String footer);
+    public void setPlayerListFooter(@Nullable String footer);
 
     /**
      * Sets the currently displayed player list header and footer for this
@@ -120,7 +126,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param header player list header, null for empty
      * @param footer player list footer, null for empty
      */
-    public void setPlayerListHeaderFooter(String header, String footer);
+    public void setPlayerListHeaderFooter(@Nullable String header, @Nullable String footer);
 
     /**
      * 设置玩家指南针的指向的位置({@link Location}).
@@ -129,7 +135,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param loc 指向
      */
-    public void setCompassTarget(Location loc);
+    public void setCompassTarget(@NotNull Location loc);
 
     /**
      * 得到玩家指南针的指向的位置({@link Location}).
@@ -140,6 +146,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return 指向
      */
+    @NotNull
     public Location getCompassTarget();
 
     /**
@@ -149,6 +156,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return 玩家的Address对象
      */
+    @Nullable
     public InetSocketAddress getAddress();
 
     /**
@@ -160,7 +168,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param message 要发送的消息
      */
-    public void sendRawMessage(String message);
+    @Override
+    public void sendRawMessage(@NotNull String message);
 
     /**
      * 踢出玩家,并且发送一条自定义的踢出消息.
@@ -169,7 +178,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param message 踢出消息
      */
-    public void kickPlayer(String message);
+    public void kickPlayer(@Nullable String message);
 
     /**
      * 强制玩家发送一个聊天消息,或强制使用命令(需要在内容前加 "/").
@@ -178,7 +187,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param msg 要发送的聊天消息
      */
-    public void chat(String msg);
+    public void chat(@NotNull String msg);
 
     /**
      * 强制玩家执行某个命令.
@@ -188,7 +197,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param command 要执行的命令(不带'/')
      * @return JavaPlugin内的onCommand()方法的返回值
      */
-    public boolean performCommand(String command);
+    public boolean performCommand(@NotNull String command);
 
     /**
      * 判断玩家是否在潜行中.
@@ -283,7 +292,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public void playNote(Location loc, byte instrument, byte note);
+    public void playNote(@NotNull Location loc, byte instrument, byte note);
 
     /**
      * Play a note for a player at a location. This requires a note block
@@ -295,7 +304,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param instrument 乐器ID
      * @param note 音符
      */
-    public void playNote(Location loc, Instrument instrument, Note note);
+    public void playNote(@NotNull Location loc, @NotNull Instrument instrument, @NotNull Note note);
 
 
     /**
@@ -310,7 +319,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param volume 音量 默认 1F
      * @param pitch 音高 默认 0F
      */
-    public void playSound(Location location, Sound sound, float volume, float pitch);
+    public void playSound(@NotNull Location location, @NotNull Sound sound, float volume, float pitch);
 
     /**
      * 向玩家在某个位置播放一个声音. <p>
@@ -326,7 +335,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param volume 音量 默认 1F
      * @param pitch 音高 默认 0F
      */
-    public void playSound(Location location, String sound, float volume, float pitch);
+    public void playSound(@NotNull Location location, @NotNull String sound, float volume, float pitch);
 
     /**
      * 向玩家在指定位置播放声音.
@@ -343,7 +352,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param volume 音量
      * @param pitch 音调
      */
-    public void playSound(Location location, Sound sound, SoundCategory category, float volume, float pitch);
+    public void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * 向玩家在指定位置播放声音.
@@ -362,7 +371,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param volume 音量
      * @param pitch 音调
      */
-    public void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
+    public void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * 停止播放指定的声音.
@@ -371,7 +380,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param sound 指定声音
      */
-    public void stopSound(Sound sound);
+    public void stopSound(@NotNull Sound sound);
 
     /**
      * 停止播放指定的声音.
@@ -380,18 +389,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param sound 指定声音
      */
-    public void stopSound(String sound);
-
-
-    /**
-     * 停止播放指定的声音.
-     * <p>
-     * 原文:Stop the specified sound from playing.
-     *
-     * @param sound 指定声音
-     * @param category 声音类别
-     */
-    public void stopSound(Sound sound, SoundCategory category);
+    public void stopSound(@NotNull String sound);
 
     /**
      * 停止播放指定的声音.
@@ -401,7 +399,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param sound 指定声音
      * @param category 声音类别
      */
-    public void stopSound(String sound, SoundCategory category);
+    public void stopSound(@NotNull Sound sound, @Nullable SoundCategory category);
+
+    /**
+     * 停止播放指定的声音.
+     * <p>
+     * 原文:Stop the specified sound from playing.
+     *
+     * @param sound 指定声音
+     * @param category 声音类别
+     */
+    public void stopSound(@NotNull String sound, @Nullable SoundCategory category);
 
     /**
      * 在某个位置({@link Location})向玩家播放一个粒子效果({@link Effect}). <p>
@@ -413,7 +421,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public void playEffect(Location loc, Effect effect, int data);
+    public void playEffect(@NotNull Location loc, @NotNull Effect effect, int data);
 
     /**
      * 在某个位置({@link Location})向玩家播放一个粒子效果({@link Effect}). <p>
@@ -430,7 +438,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param effect 要播放的粒子效果
      * @param data Effect.StepSound所需的附加值,一般为{@link Material}
      */
-    public <T> void playEffect(Location loc, Effect effect, T data);
+    public <T> void playEffect(@NotNull Location loc, @NotNull Effect effect, @Nullable T data);
 
     /**
      * 向该玩家发送一个伪造的指定位置的方块({@link Block})更改数据包.这不会改变世界中的方块. <p>
@@ -448,7 +456,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public void sendBlockChange(Location loc, Material material, byte data);
+    public void sendBlockChange(@NotNull Location loc, @NotNull Material material, byte data);
 
     /**
      * 向该玩家发送一个伪造的指定位置的方块({@link Block})更改数据包.这不会改变世界中的方块.
@@ -459,7 +467,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param loc 要改变的方块的位置
      * @param block 新方块
      */
-    public void sendBlockChange(Location loc, BlockData block);
+    public void sendBlockChange(@NotNull Location loc, @NotNull BlockData block);
 
     /**
      * 向该玩家发送一个伪造的指定位置的长方体的更改数据包.这不会改变世界中的方块.<p>
@@ -487,7 +495,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public boolean sendChunkChange(Location loc, int sx, int sy, int sz, byte[] data);
+    public boolean sendChunkChange(@NotNull Location loc, int sx, int sy, int sz, @NotNull byte[] data);
 
     /**
      * 向该玩家发送一个伪造的牌子({@link Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
@@ -510,7 +518,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果该位置没有牌子
      * @throws IllegalArgumentException 如果lines的长度大于4或小于1
      */
-    public void sendSignChange(Location loc, String[] lines) throws IllegalArgumentException;
+    public void sendSignChange(@NotNull Location loc, @Nullable String[] lines) throws IllegalArgumentException;
+
+    /**
+     * 向该玩家发送一个伪造的牌子({@link Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
+     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
+     * 方法在那个位置伪造一个牌子然后更改它.<p>
+     * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.
+     * <p>
+     * 原文:Send a sign change. This fakes a sign change packet for a user at
+     * a certain location. This will not actually change the world in any way.
+     * This method will use a sign at the location's block or a faked sign
+     * sent via
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
+     * <p>
+     * If the client does not have a sign at the given location it will
+     * display an error message to the user.
+     *
+     * @param loc 要让玩家看起来改变了的牌子的位置
+     * @param lines null或大小等于4的String数组;数组中每个元素都代表一行
+     * @param dyeColor 告示牌的颜色(文字的颜色?)
+     * @throws IllegalArgumentException 如果该位置没有牌子
+     * @throws IllegalArgumentException 如果dyeColor参数为null
+     * @throws IllegalArgumentException 如果lines的长度大于4或小于1
+     */
+    public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor) throws IllegalArgumentException;
 
     /**
      * Render a map and send it to the player in its entirety. This may be
@@ -519,7 +551,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param map 要发送的地图
      */
-    public void sendMap(MapView map);
+    public void sendMap(@NotNull MapView map);
 
     /**
      * 刷新玩家的背包.确保玩家的背包和服务器内存中玩家的背包一致. <p>
@@ -543,7 +575,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
      */
     @Deprecated
-    public void awardAchievement(Achievement achievement);
+    public void awardAchievement(@NotNull Achievement achievement);
 
     /**
      * 删除玩家的一个成就及其子成就. <p>
@@ -556,7 +588,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 未来的Minecraft将不会有成就(取而代之的是进度).
      */
     @Deprecated
-    public void removeAchievement(Achievement achievement);
+    public void removeAchievement(@NotNull Achievement achievement);
 
     /**
      * 判断玩家是否有该成就. <p>
@@ -565,8 +597,10 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param achievement 被判断的成就
      * @return 玩家是否有该成就
      * @throws IllegalArgumentException 当成就为null时抛出.
+     * @deprecated 未来的Minecraft将不会有成就(取而代之的是进度).
      */
-    public boolean hasAchievement(Achievement achievement);
+    @Deprecated
+    public boolean hasAchievement(@NotNull Achievement achievement);
 
     /**
      * 把该玩家的统计信息里的某项+1. <p>
@@ -581,7 +615,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果statistic为null
      * @throws IllegalArgumentException 如果这个statictic需要一个额外的参数??
      */
-    public void incrementStatistic(Statistic statistic) throws IllegalArgumentException;
+    public void incrementStatistic(@NotNull Statistic statistic) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息里的某项-1. <p>
@@ -596,7 +630,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果statistic为null
      * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
      */
-    public void decrementStatistic(Statistic statistic) throws IllegalArgumentException;
+    public void decrementStatistic(@NotNull Statistic statistic) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息里的某项加上指定的值. <p>
@@ -608,7 +642,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当amount无效
      * @throws IllegalArgumentException 如果这个统计需要一个额外的参数?
      */
-    public void incrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException;
+    public void incrementStatistic(@NotNull Statistic statistic, int amount) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息里的某项减少指定的值. <p>
@@ -620,7 +654,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当amount无效
      * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
      */
-    public void decrementStatistic(Statistic statistic, int amount) throws IllegalArgumentException;
+    public void decrementStatistic(@NotNull Statistic statistic, int amount) throws IllegalArgumentException;
 
     /**
      * 设置该玩家的统计信息里的某项的值. <p>
@@ -632,7 +666,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当amount无效
      * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
      */
-    public void setStatistic(Statistic statistic, int newValue) throws IllegalArgumentException;
+    public void setStatistic(@NotNull Statistic statistic, int newValue) throws IllegalArgumentException;
 
     /**
      * 得到该玩家的统计信息中某项的值. <p>
@@ -644,7 +678,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当amount无效
      * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
      */
-    public int getStatistic(Statistic statistic) throws IllegalArgumentException;
+    public int getStatistic(@NotNull Statistic statistic) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中跟方块/物品有关的统计项加上一个{@link Material}. <p>
@@ -662,7 +696,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果material为null
      * @throws IllegalArgumentException 如果这个成就项使用的不是Material
      */
-    public void incrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException;
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull Material material) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中跟方块/物品有关的统计项减少一个{@link Material}. <p>
@@ -678,7 +712,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果material为null
      * @throws IllegalArgumentException 如果这个成就项使用的不是Material
      */
-    public void decrementStatistic(Statistic statistic, Material material) throws IllegalArgumentException;
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull Material material) throws IllegalArgumentException;
 
     /**
      * 获取该玩家的统计信息中跟方块/物品有关的统计项的某{@link Material}有多少. <p>
@@ -692,7 +726,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果material为null
      * @throws IllegalArgumentException 如果这个成就项使用的不是Material
      */
-    public int getStatistic(Statistic statistic, Material material) throws IllegalArgumentException;
+    public int getStatistic(@NotNull Statistic statistic, @NotNull Material material) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中跟方块/物品有关的统计项中的某{@link Material}加上指定的值. <p>
@@ -707,7 +741,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果amount无效
      * @throws IllegalArgumentException 如果statistic跟方块/物品无关
      */
-    public void incrementStatistic(Statistic statistic, Material material, int amount) throws IllegalArgumentException;
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull Material material, int amount) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中跟方块/物品有关的统计项中的某{@link Material}减少指定的值. <p>
@@ -722,7 +756,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果amount无效
      * @throws IllegalArgumentException 如果这个statistic的值不是Material
      */
-    public void decrementStatistic(Statistic statistic, Material material, int amount) throws IllegalArgumentException;
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull Material material, int amount) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中的某个跟方块/物品有关的统计项中的某{@link Material}的数量设定为某值. <p>
@@ -737,7 +771,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果newVaule无效
      * @throws IllegalArgumentException 如果statistic跟方块/物品无关
      */
-    public void setStatistic(Statistic statistic, Material material, int newValue) throws IllegalArgumentException;
+    public void setStatistic(@NotNull Statistic statistic, @NotNull Material material, int newValue) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中跟实体有关的统计项中的某种实体({@link EntityType})的数量+1. <p>
@@ -755,7 +789,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果entityType为null
      * @throws IllegalArgumentException 如果statistic与实体无关
      */
-    public void incrementStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException;
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType) throws IllegalArgumentException;
 
     /**
      * 把该玩家的统计信息中跟实体有关的统计项中的某种实体({@link EntityType})的数量-1. <p>
@@ -773,7 +807,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果entityType为null
      * @throws IllegalArgumentException 如果statistic与实体无关
      */
-    public void decrementStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException;
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType) throws IllegalArgumentException;
 
     /**
      * 获得该玩家的统计信息中跟实体有关的统计项中的某实体({@link EntityType})数量. <p>
@@ -787,7 +821,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果entitytype为null
      * @throws IllegalArgumentException 如果statistic与实体无关
      */
-    public int getStatistic(Statistic statistic, EntityType entityType) throws IllegalArgumentException;
+    public int getStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType) throws IllegalArgumentException;
 
     /**
      * 将该玩家的统计信息中的某个跟实体有关的统计项的某实体类型({@link EntityType})加上指定的数值. <p>
@@ -802,7 +836,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果amount无效
      * @throws IllegalArgumentException 如果statistic与实体无关
      */
-    public void incrementStatistic(Statistic statistic, EntityType entityType, int amount) throws IllegalArgumentException;
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int amount) throws IllegalArgumentException;
 
     /**
      * 将该玩家的统计信息中某个跟实体有关的统计项中的某实体类型({@link EntityType})减少指定的值. <p>
@@ -817,7 +851,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果amount无效
      * @throws IllegalArgumentException 如果statistic与实体无关
      */
-    public void decrementStatistic(Statistic statistic, EntityType entityType, int amount);
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int amount);
 
     /**
      * 设置该玩家的统计信息中某个跟实体有关的统计项的某实体类型({@link EntityType})为某个数值. <p>
@@ -831,7 +865,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果newValue无效
      * @throws IllegalArgumentException 如果statistic与实体无关
      */
-    public void setStatistic(Statistic statistic, EntityType entityType, int newValue);
+    public void setStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int newValue);
 
     /**
      * 设置该玩家客户端的时间,单位为tick. <p>
@@ -898,7 +932,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param type 要让玩家看到的天气
      */
-    public void setPlayerWeather(WeatherType type);
+    public void setPlayerWeather(@NotNull WeatherType type);
 
     /**
      * 得到玩家所看到的天气.如果返回null,玩家的天气跟世界的天气一致. <p>
@@ -906,6 +940,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return 玩家所看到的天气或null
      */
+    @Nullable
     public WeatherType getPlayerWeather();
 
     /**
@@ -1064,33 +1099,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void setFoodLevel(int value);
 
     /**
-     * 得到玩家上一次睡觉的床的位置({@link Location}). <p>
-     * 如果玩家没有睡过觉或床已被拆除则返回null. <p>
-     * 原文:Gets the Location where the player will spawn at their bed, null if
-     * they have not slept in one or their current bed spawn is invalid.
-     *
-     * @return 玩家上一次睡觉的床的位置,或null
-     */
-    public Location getBedSpawnLocation();
-
-    /**
-     * 设置玩家上一次睡觉的床的位置({@link Location}). <p>
-     * 原文:Sets the Location where the player will spawn at their bed.
-     *
-     * @param location 要设置成的位置
-     */
-    public void setBedSpawnLocation(Location location);
-
-    /**
-     * 设置玩家上一次睡觉的床的位置. <p>
-     * 原文:Sets the Location where the player will spawn at their bed.
-     *
-     * @param location 要设置成的位置
-     * @param force true为强制设置,不管那个位置有没有床.
-     */
-    public void setBedSpawnLocation(Location location, boolean force);
-
-    /**
      * 判断玩家是否能飞起来<p>
      * 译注:如果玩家确实在创造模式,那么一般返回true,除非被setAllowFlight(false);
      * 原文:Determines if the Player is allowed to fly via jump key double-tap like
@@ -1118,7 +1126,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 另请参阅 {@link #hidePlayer(Plugin, Player)}
      */
     @Deprecated
-    public void hidePlayer(Player player);
+    public void hidePlayer(@NotNull Player player);
 
     /**
      * 让该玩家看不见某玩家.
@@ -1128,7 +1136,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param plugin Plugin 要隐藏该玩家的插件
      * @param player Player 要让该玩家看不见的玩家.
      */
-    public void hidePlayer(Plugin plugin, Player player);
+    public void hidePlayer(@NotNull Plugin plugin, @NotNull Player player);
 
     /**
      * 让该玩家能看到某玩家. <p>
@@ -1138,7 +1146,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated 另请参阅 {@link #showPlayer(Plugin, Player)}
      */
     @Deprecated
-    public void showPlayer(Player player);
+    public void showPlayer(@NotNull Player player);
 
     /**
      * 让该玩家能看到之前被隐藏的玩家. 如果另一个插件也隐藏了这个玩家,
@@ -1151,7 +1159,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param plugin Plugin 要使某玩家现身的插件
      * @param player Player 使某玩家现身
      */
-    public void showPlayer(Plugin plugin, Player player);
+    public void showPlayer(@NotNull Plugin plugin, @NotNull Player player);
 
     /**
      * 检查该玩家是否能看到某玩家. <p>
@@ -1160,7 +1168,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param player 要检查该玩家是否能看到的玩家
      * @return true表示能看到,false反之.
      */
-    public boolean canSee(Player player);
+    public boolean canSee(@NotNull Player player);
 
     /**
      * 检查玩家是否在飞. <p>
@@ -1255,7 +1263,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated Minecraft已经不使用材质包了,应该用{@link #setResourcePack(String)}设置资源包(额这不是一个意思么..).
      */
     @Deprecated
-    public void setTexturePack(String url);
+    public void setTexturePack(@NotNull String url);
 
     /**
      * 请求玩家的客户端下载并且使用指定资源包. <p>
@@ -1300,7 +1308,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当URL为null时抛出
      * @throws IllegalArgumentException 当URL太长或者不符合规范时抛出
      */
-    public void setResourcePack(String url);
+    public void setResourcePack(@NotNull String url);
 
     /**
      * 请求玩家的客户端下载并且使用指定资源包. <p>
@@ -1343,9 +1351,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当URL太长或者不符合规范时抛出
      * @throws IllegalArgumentException 当hash为null时抛出Thrown if the hash is null.
      * @throws IllegalArgumentException 当hash不是20字节长时抛出
-     *     long.
      */
-    public void setResourcePack(String url, byte[] hash);
+    public void setResourcePack(@NotNull String url, @NotNull byte[] hash);
 
     /**
      * 获取玩家的计分板. <p>
@@ -1353,6 +1360,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return The current scoreboard seen by this player
      */
+    @NotNull
     public Scoreboard getScoreboard();
 
     /**
@@ -1366,7 +1374,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * 则抛出.
      * @throws IllegalStateException 如果没有该玩家的数据,即该玩家没有进入过服务器则抛出.
      */
-    public void setScoreboard(Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException;
+    public void setScoreboard(@NotNull Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * 获取客户端显示的玩家血量是否被"压缩"了. <p>
@@ -1434,6 +1442,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return 正在跟随的实体, 如果未跟随实体或不处于旁观者模式返回null
      */
+    @Nullable
     public Entity getSpectatorTarget();
 
     /**
@@ -1446,9 +1455,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalStateException 若玩家不处于
      * {@link GameMode#SPECTATOR 旁观者模式}
      */
-    public void setSpectatorTarget(Entity entity);
+    public void setSpectatorTarget(@Nullable Entity entity);
 
-   /**
+    /**
      * 向玩家发送屏幕标题.如果标题和副标题内容都为null, 那么标题将不会被发送出去, 玩家的屏幕也不会有变化.
      * 如果这些参数是空字符串(注意空字符串与null有区别), 那么玩家的屏幕将会被更新(本质上讲, 虽然看起来没啥变化)
      * 如果字符串包含多行文本, 那么只有第一行文本才会被发送出去.
@@ -1465,9 +1474,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated API行为有所改变
      */
     @Deprecated
-    public void sendTitle(String title, String subtitle);
+    public void sendTitle(@Nullable String title, @Nullable String subtitle);
 
-   /**
+    /**
      * 向玩家发送屏幕标题.如果标题和副标题内容都为null, 那么标题将不会被发送出去, 玩家的屏幕也不会有变化.
      * 如果这些参数是空字符串(注意空字符串与null有区别), 那么玩家的屏幕将会被更新(本质上讲, 虽然看起来没啥变化)
      * 如果字符串包含多行文本, 那么只有第一行文本才会被发送出去.
@@ -1487,7 +1496,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param stay 标题停留/展示时长,以tick为单位.默认值取70.
      * @param fadeOut 标题淡出时间,以tick为单位.默认值取20.
      */
-    public void sendTitle(String title, String subtitle, int fadeIn, int stay, int fadeOut);
+    public void sendTitle(@Nullable String title, @Nullable String subtitle, int fadeIn, int stay, int fadeOut);
 
    /**
      * 重置想转玩家显示的屏幕标题.
@@ -1508,7 +1517,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param location 粒子效果产生位置
      * @param count the number of particles
      */
-    public void spawnParticle(Particle particle, Location location, int count);
+    public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count);
 
     /**
      * 在指定位置产生粒子效果 (the number of times specified by count).
@@ -1522,7 +1531,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param z 粒子效果产生位置z轴
      * @param count the number of particles
      */
-    public void spawnParticle(Particle particle, double x, double y, double z, int count);
+    public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count);
 
     /**
      * 在指定位置产生粒子效果 (the number of times specified by count).
@@ -1530,28 +1539,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * 原文:Sawns the particle (the number of times specified by count)
      * at the target location.
      *
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()}
      * @param particle 要产生的粒子效果
      * @param location 粒子效果产生位置
-     * @param count the number of particles
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param count 粒子数目
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(Particle particle, Location location, int count, T data);
-
 
     /**
      * Spawns the particle (the number of times specified by count)
      * at the target location.
      *
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param x the position on the x axis to spawn at
      * @param y the position on the y axis to spawn at
      * @param z the position on the z axis to spawn at
      * @param count the number of particles
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, T data);
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1566,7 +1574,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param offsetY the maximum random offset on the Y axis
      * @param offsetZ the maximum random offset on the Z axis
      */
-    public void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ);
+    public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1583,7 +1591,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param offsetY the maximum random offset on the Y axis
      * @param offsetZ the maximum random offset on the Z axis
      */
-    public void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
+    public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1591,16 +1599,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param location the location to spawn at
      * @param count the number of particles
      * @param offsetX the maximum random offset on the X axis
      * @param offsetY the maximum random offset on the Y axis
      * @param offsetZ the maximum random offset on the Z axis
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, T data);
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1608,6 +1616,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param x the position on the x axis to spawn at
      * @param y the position on the y axis to spawn at
@@ -1616,46 +1625,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param offsetX the maximum random offset on the X axis
      * @param offsetY the maximum random offset on the Y axis
      * @param offsetZ the maximum random offset on the Z axis
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, T data);
-
-    /**
-     * Spawns the particle (the number of times specified by count)
-     * at the target location. The position of each particle will be
-     * randomized positively and negatively by the offset parameters
-     * on each axis.
-     *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     */
-    public void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
-
-    /**
-     * Spawns the particle (the number of times specified by count)
-     * at the target location. The position of each particle will be
-     * randomized positively and negatively by the offset parameters
-     * on each axis.
-     *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     */
-    public void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1671,10 +1643,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param offsetZ the maximum random offset on the Z axis
      * @param extra the extra data for this particle, depends on the
      *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+    public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1692,10 +1662,48 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param offsetZ the maximum random offset on the Z axis
      * @param extra the extra data for this particle, depends on the
      *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+    public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()}
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()}
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
 
     /**
      * 返回玩家指定进度的完成进度.
@@ -1704,7 +1712,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param advancement 进度
      * @return 有关玩家进度的详细信息
      */
-    public AdvancementProgress getAdvancementProgress(Advancement advancement);
+    @NotNull
+    public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
 
     /**
      * Get the player's current client side view distance.
@@ -1732,6 +1741,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @return 玩家语言环境
      */
+    @NotNull
     public String getLocale();
 
     /**
@@ -1741,4 +1751,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * after permission changes are done.
      */
     public void updateCommands();
+
+    /**
+     * 为玩家打开一本{@link Material#WRITTEN_BOOK 成书}.
+     * <p>
+     * 原文:Open a {@link Material#WRITTEN_BOOK} for a Player
+     *
+     * @param book 要为玩家打开的书
+     */
+    public void openBook(@NotNull ItemStack book);
 }

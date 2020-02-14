@@ -1,107 +1,100 @@
 package org.bukkit.entity;
 
+import java.util.List;
+import org.bukkit.Color;
+import org.bukkit.potion.PotionData;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 表示一只箭矢.
  */
-public interface Arrow extends Projectile {
+public interface Arrow extends AbstractArrow {
 
     /**
-     * 获取箭头的击退强度,这表示附魔{@link org.bukkit.enchantments.Enchantment#KNOCKBACK 力量}等级. 
-     * <p>
-     * 原文:Gets the knockback strength for an arrow, which is the
-     * {@link org.bukkit.enchantments.Enchantment#KNOCKBACK KnockBack} level
-     * of the bow that shot it.mine
+     * Sets the underlying potion data
      *
-     * @return 附魔击退等级
+     * @param data PotionData to set the base potion state to
      */
-    public int getKnockbackStrength();
+    void setBasePotionData(@NotNull PotionData data);
 
     /**
-     * 设置箭矢的附魔击退等级. 
-     * <p>
-     * 原文: Sets the knockback strength for an arrow.
+     * Returns the potion data about the base potion
      *
-     * @param knockbackStrength 附魔击退等级
+     * @return a PotionData object
      */
-    public void setKnockbackStrength(int knockbackStrength);
+    @NotNull
+    PotionData getBasePotionData();
 
     /**
-     * 获取此箭矢是否产生暴击. </br>
-     * 产生暴击的箭矢会产生更多的伤害并伴随粒子效果. </br>
-     * 暴击箭矢通常发生在玩家满弓射箭时.
-     * <p>
-     * 原文: Gets whether this arrow is critical.</br>
-     * Critical arrows have increased damage and cause particle effects.</br>
-     * Critical arrows generally occur when a player fully draws a bow before firing.
+     * Gets the color of this arrow.
      *
-     * @return 如果是暴击箭矢则返回true
+     * @return arrow color
      */
-    public boolean isCritical();
+    @NotNull
+    Color getColor();
 
     /**
-     * 设置这个箭矢是否是否产生了暴击. 
-     * <p>
-     * 原文:Sets whether or not this arrow should be critical.
+     * Sets the color of this arrow. Will be applied as a tint to its particles.
      *
-     * @param critical 它是否是否产生了暴击
+     * @param color arrow color
      */
-    public void setCritical(boolean critical);
+    void setColor(@NotNull Color color);
 
     /**
-     * 获取此箭矢是否嵌入于一个方块中.
-     * <p>
-     * 嵌入于方块中的箭矢是静止的，并且可能被玩家拾取.
-     * <p>
-     * 原文:Gets whether this arrow is in a block or not.
-     * <p>
-     * Arrows in a block are motionless and may be picked up by players.
+     * Checks for the presence of custom potion effects.
      *
-     * @return 此箭矢是否嵌入于方块中
+     * @return true if custom potion effects are applied
      */
-    public boolean isInBlock();
+    boolean hasCustomEffects();
 
     /**
-     * 获取该箭矢附着在哪个方块上.
+     * Gets an immutable list containing all custom potion effects applied to
+     * this arrow.
      * <p>
-     * 原文:Gets the block to which this arrow is attached.
+     * Plugins should check that hasCustomEffects() returns true before calling
+     * this method.
      *
-     * @return 箭矢附着(嵌入)的方块，若箭矢没有嵌入于方块中返回null
+     * @return the immutable list of custom potion effects
      */
-    public Block getAttachedBlock();
+    @NotNull
+    List<PotionEffect> getCustomEffects();
 
     /**
-     * 获取此箭矢的当前拾取状态. 
-     * <p>
-     * 原文:Gets the current pickup status of this arrow.
+     * Adds a custom potion effect to this arrow.
      *
-     * @return 此箭矢的拾取状态
+     * @param effect the potion effect to add
+     * @param overwrite true if any existing effect of the same type should be
+     * overwritten
+     * @return true if the effect was added as a result of this call
      */
-    public PickupStatus getPickupStatus();
+    boolean addCustomEffect(@NotNull PotionEffect effect, boolean overwrite);
 
     /**
-     * 设置此箭矢的当前拾取状态. 
-     * <p>
-     * 原文:Sets the current pickup status of this arrow.
+     * Removes a custom potion effect from this arrow.
      *
-     * @param status 此箭矢新的拾取状态
+     * @param type the potion effect type to remove
+     * @return true if the an effect was removed as a result of this call
+     * @throws IllegalArgumentException if this operation would leave the Arrow
+     * in a state with no Custom Effects and PotionType.UNCRAFTABLE
      */
-    public void setPickupStatus(PickupStatus status);
+    boolean removeCustomEffect(@NotNull PotionEffectType type);
 
     /**
-     * 表示此箭矢的拾取状态. 
+     * Checks for a specific custom potion effect type on this arrow.
+     *
+     * @param type the potion effect type to check for
+     * @return true if the potion has this effect
      */
-    public enum PickupStatus {
-        /**
-         * 此箭矢不能被拾取. 
-         */
-        DISALLOWED,
-        /**
-         * 此箭矢能被拾取. 
-         */
-        ALLOWED,
-        /**
-         * 此箭矢只能被处于创造模式的玩家拾取. 
-         */
-        CREATIVE_ONLY
-    }
+    boolean hasCustomEffect(@Nullable PotionEffectType type);
+
+    /**
+     * Removes all custom potion effects from this arrow.
+     *
+     * @throws IllegalArgumentException if this operation would leave the Arrow
+     * in a state with no Custom Effects and PotionType.UNCRAFTABLE
+     */
+    void clearCustomEffects();
 }

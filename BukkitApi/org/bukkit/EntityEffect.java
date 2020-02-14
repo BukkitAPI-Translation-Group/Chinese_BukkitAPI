@@ -1,8 +1,7 @@
 package org.bukkit;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
 import org.bukkit.entity.Ageable;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -18,6 +17,8 @@ import org.bukkit.entity.Villager;
 import org.bukkit.entity.Witch;
 import org.bukkit.entity.Wolf;
 import org.bukkit.entity.ZombieVillager;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 实体能发生的效果列表。
@@ -189,9 +190,9 @@ public enum EntityEffect {
 
     private final byte data;
     private final Class<? extends Entity> applicable;
-    private final static Map<Byte, EntityEffect> BY_DATA = Maps.newHashMap();
+    private static final Map<Byte, EntityEffect> BY_DATA = Maps.newHashMap();
 
-    EntityEffect(final int data, Class<? extends Entity> clazz) {
+    EntityEffect(final int data, /*@NotNull*/ Class<? extends Entity> clazz) {
         this.data = (byte) data;
         this.applicable = clazz;
     }
@@ -217,6 +218,7 @@ public enum EntityEffect {
      *
      * @return applicable class
      */
+    @NotNull
     public Class<? extends Entity> getApplicable() {
         return applicable;
     }
@@ -232,6 +234,7 @@ public enum EntityEffect {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static EntityEffect getByData(final byte data) {
         return BY_DATA.get(data);
     }

@@ -1,9 +1,9 @@
 package org.bukkit.entity;
 
 import java.util.Collection;
-
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个被抛出的药水瓶.
@@ -18,6 +18,7 @@ public interface ThrownPotion extends Projectile {
      *
      * @return 药水效果
      */
+    @NotNull
     public Collection<PotionEffect> getEffects();
 
     /**
@@ -36,6 +37,7 @@ public interface ThrownPotion extends Projectile {
      *
      * @return 此药水瓶的副本
      */
+    @NotNull
     public ItemStack getItem();
 
     /**
@@ -50,5 +52,5 @@ public interface ThrownPotion extends Projectile {
      *
      * @param item 要设置的药水物品.
      */
-    public void setItem(ItemStack item);
+    public void setItem(@NotNull ItemStack item);
 }

@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.boss.BossBar;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个Boss实体.
@@ -18,5 +19,6 @@ public interface Boss extends Entity {
      *
      * @return 此实体的 {@link BossBar}. 
      */
+    @Nullable
     BossBar getBossBar();
 }

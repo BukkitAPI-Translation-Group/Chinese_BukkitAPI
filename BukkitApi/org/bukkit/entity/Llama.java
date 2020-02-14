@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.inventory.LlamaInventory;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 表示一只羊驼.
@@ -37,6 +38,7 @@ public interface Llama extends ChestedHorse {
      *
      * @return 返回羊驼的{@linkplain Color 颜色}
      */
+    @NotNull
     Color getColor();
 
     /**
@@ -46,7 +48,7 @@ public interface Llama extends ChestedHorse {
      *
      * @param color 给定的羊驼的{@linkplain Color 颜色}
      */
-    void setColor(Color color);
+    void setColor(@NotNull Color color);
 
     /**
 	 * 获取羊驼的强度, 强度大的羊驼的背包将有更大的容量, 并对其他实体更具威胁性. 
@@ -75,6 +77,7 @@ public interface Llama extends ChestedHorse {
      */
     void setStrength(int strength);
 
+    @NotNull
     @Override
     LlamaInventory getInventory();
 }

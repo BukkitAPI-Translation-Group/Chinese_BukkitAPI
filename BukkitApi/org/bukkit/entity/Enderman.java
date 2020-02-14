@@ -2,6 +2,8 @@ package org.bukkit.entity;
 
 import org.bukkit.block.data.BlockData;
 import org.bukkit.material.MaterialData;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表末影人.
@@ -15,6 +17,7 @@ public interface Enderman extends Monster {
      *
      * @return 包含方块的id和数据的MaterialData
      */
+    @NotNull
     public MaterialData getCarriedMaterial();
 
     /**
@@ -24,7 +27,7 @@ public interface Enderman extends Monster {
      *
      * @param material 要设置的手持方块的数据
      */
-    public void setCarriedMaterial(MaterialData material);
+    public void setCarriedMaterial(@NotNull MaterialData material);
 
     /**
      * 获取末影人手持的方块的方块数据对象.
@@ -33,6 +36,7 @@ public interface Enderman extends Monster {
      *
      * @return 包含该方块数据的BlockData对象, 如果没有手持方块返回null
      */
+    @Nullable
     public BlockData getCarriedBlock();
 
     /**
@@ -42,5 +46,5 @@ public interface Enderman extends Monster {
      *
      * @param blockData 为该方块设置的BlockData对象, 设为null移除末影人手持的方块
      */
-    public void setCarriedBlock(BlockData blockData);
+    public void setCarriedBlock(@Nullable BlockData blockData);
 }

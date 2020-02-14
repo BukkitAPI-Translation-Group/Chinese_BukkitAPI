@@ -1,10 +1,9 @@
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 代表鹦鹉.
- * <p>
- * 原文:
- * Represents a Parrot.
  */
 public interface Parrot extends Animals, Tameable, Sittable {
 
@@ -16,6 +15,7 @@ public interface Parrot extends Animals, Tameable, Sittable {
      *
      * @return 鹦鹉变体
      */
+    @NotNull
     public Variant getVariant();
 
     /**
@@ -26,7 +26,7 @@ public interface Parrot extends Animals, Tameable, Sittable {
      *
      * @param variant 鹦鹉变体
      */
-    public void setVariant(Variant variant);
+    public void setVariant(@NotNull Variant variant);
 
     /**
      * 代表鹦鹉变体(颜色).

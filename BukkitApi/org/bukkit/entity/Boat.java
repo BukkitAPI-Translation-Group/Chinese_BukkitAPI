@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.TreeSpecies;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表船实体
@@ -12,9 +13,10 @@ public interface Boat extends Vehicle {
      * <p>
      * 原文:
      * Gets the wood type of the boat.
-     * 
+     *
      * @return 船的木质种类
      */
+    @NotNull
     TreeSpecies getWoodType();
 
     /**
@@ -22,10 +24,10 @@ public interface Boat extends Vehicle {
      * <p>
      * 原文:
      * Sets the wood type of the boat.
-     * 
+     *
      * @param species 新的木质种类
      */
-    void setWoodType(TreeSpecies species);
+    void setWoodType(@NotNull TreeSpecies species);
 
     /**
      * 获取船的最高速度,该速度与船的方向速度无关.

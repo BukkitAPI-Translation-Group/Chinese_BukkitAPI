@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.inventory.HorseInventory;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一匹马.
@@ -113,6 +114,7 @@ public interface Horse extends AbstractHorse {
      *
      * @return {@link Color} 马的颜色.
      */
+    @NotNull
     public Color getColor();
 
     /**
@@ -126,7 +128,7 @@ public interface Horse extends AbstractHorse {
      *
      * @param color 马的{@link Color 颜色}
      */
-    public void setColor(Color color);
+    public void setColor(@NotNull Color color);
 
     /**
      * 得到马的外貌特征.
@@ -140,6 +142,7 @@ public interface Horse extends AbstractHorse {
      *
      * @return 马的{@link Style 花纹与图案}
      */
+    @NotNull
     public Style getStyle();
 
     /**
@@ -153,7 +156,7 @@ public interface Horse extends AbstractHorse {
      *
      * @param style 马的{@link Style 花纹与图案}
      */
-    public void setStyle(Style style);
+    public void setStyle(@NotNull Style style);
 
     /**
      * @return 是否携带箱子
@@ -169,6 +172,7 @@ public interface Horse extends AbstractHorse {
     @Deprecated
     public void setCarryingChest(boolean chest);
 
+    @NotNull
     @Override
     public HorseInventory getInventory();
 }

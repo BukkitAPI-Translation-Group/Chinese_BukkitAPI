@@ -1,6 +1,8 @@
 package org.bukkit.entity;
 
 import java.util.UUID;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface AnimalTamer {
 
@@ -12,6 +14,7 @@ public interface AnimalTamer {
      *
      * @return 如果名称不能被引用，改名称可以引用被驯养的动物或为
      */
+    @Nullable
     public String getName();
 
     /**
@@ -22,5 +25,6 @@ public interface AnimalTamer {
      *
      * @return AnimalTamer引用的UUID
      */
+    @NotNull
     public UUID getUniqueId();
 }

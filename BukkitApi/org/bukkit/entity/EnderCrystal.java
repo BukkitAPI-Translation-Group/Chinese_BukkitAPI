@@ -1,9 +1,10 @@
 package org.bukkit.entity;
 
 import org.bukkit.Location;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * 一个水晶，能治疗附近的末影龙
+ * 一个末影水晶，能治疗附近的末影龙
  */
 public interface EnderCrystal extends Entity {
 
@@ -28,6 +29,7 @@ public interface EnderCrystal extends Entity {
      *
      * @return the location that the beam is pointed to, or null if the beam is not shown
      */
+    @Nullable
     Location getBeamTarget();
 
     /**
@@ -37,5 +39,5 @@ public interface EnderCrystal extends Entity {
      * @param location the location to point the beam to
      * @throws IllegalArgumentException for differing worlds
      */
-    void setBeamTarget(Location location);
+    void setBeamTarget(@Nullable Location location);
 }

@@ -1,23 +1,26 @@
 package org.bukkit.entity;
 
-import org.bukkit.Location;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 import org.bukkit.EntityEffect;
+import org.bukkit.Location;
 import org.bukkit.Nameable;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.block.BlockFace;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.material.Directional;
-import org.bukkit.metadata.Metadatable;
-import org.bukkit.util.BoundingBox;
-import org.bukkit.util.Vector;
-
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
 import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.command.CommandSender;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.material.Directional;
+import org.bukkit.metadata.Metadatable;
+import org.bukkit.persistence.PersistentDataHolder;
+import org.bukkit.util.BoundingBox;
+import org.bukkit.util.Vector;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 表示世界中的基本实体
@@ -25,7 +28,7 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
  * 原文:
  * Represents a base entity in the world
  */
-public interface Entity extends Metadatable, CommandSender, Nameable {
+public interface Entity extends Metadatable, CommandSender, Nameable, PersistentDataHolder {
 
     /**
      * 获取实体当前位置
@@ -35,6 +38,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 一个新的 Location, 包含此实体的位置
      */
+    @NotNull
     public Location getLocation();
 
     /**
@@ -51,7 +55,9 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param loc 要复制到的Location实例
      * @return 提供的Location或null
      */
-    public Location getLocation(Location loc);
+    @Contract("null -> null; !null -> !null")
+    @Nullable
+    public Location getLocation(@Nullable Location loc);
 
     /**
      * 设置此实体的速度(向量)
@@ -61,7 +67,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @param velocity 新的行进速度(向量)
      */
-    public void setVelocity(Vector velocity);
+    public void setVelocity(@NotNull Vector velocity);
 
     /**
      * 获取此实体的速度(向量)
@@ -71,6 +77,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 实体当前行进速度(向量)
      */
+    @NotNull
     public Vector getVelocity();
 
     /**
@@ -101,6 +108,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return the entity's current bounding box
      */
+    @NotNull
     public BoundingBox getBoundingBox();
 
     /**
@@ -125,7 +133,21 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 世界
      */
+    @NotNull
     public World getWorld();
+
+    /**
+     * Sets the entity's rotation.
+     * <p>
+     * Note that if the entity is affected by AI, it may override this rotation.
+     *
+     * @param yaw the yaw
+     * @param pitch the pitch
+     * @throws UnsupportedOperationException if used for players
+     * @deprecated draft API
+     */
+    @Deprecated
+    public void setRotation(float yaw, float pitch);
 
     /**
      * 将此实体传送到给定位置. 
@@ -139,7 +161,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param location 此实体要传送到的新位置
      * @return 是否传送成功
      */
-    public boolean teleport(Location location);
+    public boolean teleport(@NotNull Location location);
 
     /**
      * 将此实体传送到给定位置. 
@@ -154,7 +176,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param cause 传送原因
      * @return 是否传送成功
      */
-    public boolean teleport(Location location, TeleportCause cause);
+    public boolean teleport(@NotNull Location location, @NotNull TeleportCause cause);
 
     /**
      * 将此实体传送到目标实体. 
@@ -168,7 +190,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param destination 目标实体
      * @return 是否传送成功
      */
-    public boolean teleport(Entity destination);
+    public boolean teleport(@NotNull Entity destination);
 
     /**
      * 将此实体传送到目标实体. 
@@ -183,7 +205,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param cause 传送原因
      * @return 是否传送成功
      */
-    public boolean teleport(Entity destination, TeleportCause cause);
+    public boolean teleport(@NotNull Entity destination, @NotNull TeleportCause cause);
 
     /**
      * 返回以此实体为中心的边界框内的所有实体. 
@@ -197,7 +219,8 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param z 边界框Z轴半径
      * @return {@code List<Entity>} 附近的实体列表
      */
-    public List<org. bukkit. entity. Entity> getNearbyEntities(double x, double y, double z);
+    @NotNull
+    public List<org.bukkit.entity.Entity> getNearbyEntities(double x, double y, double z);
 
     /**
      * 返回此实体的唯一ID
@@ -278,6 +301,8 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 运行此实体的服务器
      */
+    @Override
+    @NotNull
     public Server getServer();
 
     /**
@@ -324,6 +349,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * {@link #getPassengers()}
      */
     @Deprecated
+    @Nullable
     public Entity getPassenger();
 
     /**
@@ -338,7 +364,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * {@link #getPassengers()}
      */
     @Deprecated
-    public boolean setPassenger(Entity passenger);
+    public boolean setPassenger(NotNull Entity passenger);
 
     /**
      * 获取载具的乘客列表. 
@@ -353,6 +379,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 与当前乘客相对应的实体列表. 
      */
+    NotNull
     public List<Entity> getPassengers();
 
     /** 
@@ -364,7 +391,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param passenger 要添加的乘客
      * @return 如果因为某种原因不能添加, 则返回false
      */
-    public boolean addPassenger(Entity passenger);
+    public boolean addPassenger(@NotNull Entity passenger);
 
     /**
      * 移除一名乘客. 
@@ -375,7 +402,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param passenger 要移除的乘客
      * @return 如果因为某种原因不能删除, 则返回false
      */
-    public boolean removePassenger(Entity passenger);
+    public boolean removePassenger(@NotNull Entity passenger);
 
     /**
      * 检查是否有乘客. 
@@ -425,7 +452,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @param event 一个 {@link EntityDamageEvent}
      */
-    public void setLastDamageCause(EntityDamageEvent event);
+    public void setLastDamageCause(@Nullable EntityDamageEvent event);
 
     /**
      * 获取此实体上的最后一个{@link EntityDamageEvent}. 
@@ -436,6 +463,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 最后一个已知的{@link EntityDamageEvent}, 如果迄今为止没有受到伤害, 则为null
      */
+    @Nullable
     public EntityDamageEvent getLastDamageCause();
 
     /**
@@ -446,6 +474,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return UUID
      */
+    @NotNull
     public UUID getUniqueId();
 
     /**
@@ -493,7 +522,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @param type 播放效果. 
      */
-    public void playEffect(EntityEffect type);
+    public void playEffect(@NotNull EntityEffect type);
 
     /**
      * 获取实体类型
@@ -503,6 +532,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 实体类型. 
      */
+    @NotNull
     public EntityType getType();
 
     /**
@@ -536,6 +566,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 当前载具
      */
+    @Nullable
     public Entity getVehicle();
 
     /**
@@ -687,6 +718,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 此实体的标签集合
      */
+    @NotNull
     Set<String> getScoreboardTags();
 
     /**
@@ -702,7 +734,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param tag 要添加的标签
      * @return 是否成功添加
      */
-    boolean addScoreboardTag(String tag);
+    boolean addScoreboardTag(@NotNull String tag);
 
     /**
      * 删除此实体的一个标签. 
@@ -715,7 +747,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @param tag 要删除的标签
      * @return 是否成功删除
      */
-    boolean removeScoreboardTag(String tag);
+    boolean removeScoreboardTag(@NotNull String tag);
 
     /**
      * 返回实体被活塞移动时的反应. 
@@ -725,6 +757,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      *
      * @return 反应
      */
+    @NotNull
     PistonMoveReaction getPistonMoveReaction();
 
     /**
@@ -741,5 +774,18 @@ public interface Entity extends Metadatable, CommandSender, Nameable {
      * @see Hanging
      * @see Directional#getFacing()
      */
+    @NotNull
     BlockFace getFacing();
+
+    /**
+     * Gets the entity's current pose.
+     *
+     * <b>Note that the pose is only updated at the end of a tick, so may be
+     * inconsistent with other methods. eg {@link Player#isSneaking()} being
+     * true does not imply the current pose will be {@link Pose#SNEAKING}</b>
+     *
+     * @return current pose
+     */
+    @NotNull
+    Pose getPose();
 }

@@ -1,5 +1,8 @@
 package org.bukkit.entity;
 
+import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * Represents a {@link Zombie} which was once a {@link Villager}.
  */
@@ -9,7 +12,7 @@ public interface ZombieVillager extends Zombie {
      * Sets the villager profession of this zombie.
      */
     @Override
-    void setVillagerProfession(Villager.Profession profession);
+    void setVillagerProfession(@Nullable Villager.Profession profession);
 
     /**
      * Returns the villager profession of this zombie.
@@ -17,6 +20,7 @@ public interface ZombieVillager extends Zombie {
      * @return the profession or null
      */
     @Override
+    @Nullable
     Villager.Profession getVillagerProfession();
 
     /**
@@ -52,4 +56,22 @@ public interface ZombieVillager extends Zombie {
      */
     @Override
     void setConversionTime(int time);
+
+    /**
+     * Gets the player who initiated the conversion.
+     *
+     * @return the player, or <code>null</code> if the player is unknown or the
+     * entity isn't converting currently
+     */
+    @Nullable
+    OfflinePlayer getConversionPlayer();
+
+    /**
+     * Sets the player who initiated the conversion.
+     * <p>
+     * This has no effect if this entity isn't converting currently.
+     *
+     * @param conversionPlayer the player
+     */
+    void setConversionPlayer(@Nullable OfflinePlayer conversionPlayer);
 }

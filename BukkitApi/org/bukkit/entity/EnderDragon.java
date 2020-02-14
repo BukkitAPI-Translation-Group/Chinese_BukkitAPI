@@ -1,7 +1,9 @@
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
- * Represents an Ender Dragon
+ * 代表末影龙.
  */
 public interface EnderDragon extends ComplexLivingEntity, Boss {
 
@@ -39,8 +41,8 @@ public interface EnderDragon extends ComplexLivingEntity, Boss {
         BREATH_ATTACK,
         /**
          * The dragon will search for a player to attack with dragon breath.
-         * If no player is close enough to the dragon for 5 seconds, the 
-         * dragon will charge at a player within 150 blocks or will take off 
+         * If no player is close enough to the dragon for 5 seconds, the
+         * dragon will charge at a player within 150 blocks or will take off
          * and begin circling if no player is found.
          */
         SEARCH_FOR_BREATH_ATTACK_TARGET,
@@ -67,6 +69,7 @@ public interface EnderDragon extends ComplexLivingEntity, Boss {
      *
      * @return the current phase
      */
+    @NotNull
     Phase getPhase();
 
     /**
@@ -74,5 +77,5 @@ public interface EnderDragon extends ComplexLivingEntity, Boss {
      *
      * @param phase the next phase
      */
-    void setPhase(Phase phase);
+    void setPhase(@NotNull Phase phase);
 }

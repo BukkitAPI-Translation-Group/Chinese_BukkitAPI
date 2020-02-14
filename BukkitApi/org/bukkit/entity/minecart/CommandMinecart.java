@@ -1,6 +1,8 @@
 package org.bukkit.entity.minecart;
 
 import org.bukkit.entity.Minecart;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表命令方块矿车.
@@ -16,6 +18,7 @@ public interface CommandMinecart extends Minecart {
      *
      * @return 当激活时这个命令方块矿车将要运行的命令
      */
+    @NotNull
     public String getCommand();
 
     /**
@@ -27,7 +30,7 @@ public interface CommandMinecart extends Minecart {
      *
      * @param command 当激活时这个命令方块将要运行的命令
      */
-    public void setCommand(String command);
+    public void setCommand(@Nullable String command);
 
     /**
      * 设置这个命令方块矿车的名字。这个名字用于命令方块执行命令。设置名字为null与设置为“@”是一样的。
@@ -38,6 +41,6 @@ public interface CommandMinecart extends Minecart {
      *
      * @param name 这个命令方块的新名字
      */
-    public void setName(String name);
+    public void setName(@Nullable String name);
 
 }

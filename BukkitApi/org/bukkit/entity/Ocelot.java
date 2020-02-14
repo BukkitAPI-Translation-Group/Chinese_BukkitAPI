@@ -1,10 +1,13 @@
 
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 代表豹猫.
  */
-public interface Ocelot extends Animals, Tameable, Sittable {
+public interface Ocelot extends Animals {
 
     /**
      * 获取这只猫当前的种类.
@@ -13,6 +16,7 @@ public interface Ocelot extends Animals, Tameable, Sittable {
      *
      * @return 这只猫的种类
      */
+    @NotNull
     public Type getCatType();
 
     /**
@@ -22,13 +26,15 @@ public interface Ocelot extends Animals, Tameable, Sittable {
      *
      * @param type 这只猫的新种类
      */
-    public void setCatType(Type type);
+    public void setCatType(@NotNull Type type);
 
     /**
      * 代表不同的猫的种类.
      * <p>
      * 译注：具体有哪些种类及特征可以查阅MineCraft Wiki.
+     * @deprecated 不同猫种现在属于不同的生物/Cats are now a separate entity.
      */
+    @Deprecated
     public enum Type {
         WILD_OCELOT(0),
         BLACK_CAT(1),
@@ -71,6 +77,7 @@ public interface Ocelot extends Animals, Tameable, Sittable {
          * @deprecated 不安全的参数
          */
         @Deprecated
+        @Nullable
         public static Type getType(int id) {
             return (id >= types.length) ? null : types[id];
         }

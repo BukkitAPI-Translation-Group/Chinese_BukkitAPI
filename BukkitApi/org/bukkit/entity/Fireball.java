@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个火球.
@@ -18,7 +19,7 @@ public interface Fireball extends Projectile, Explosive {
      *
      * @param direction 火球的飞行方向
      */
-    public void setDirection(Vector direction);
+    public void setDirection(@NotNull Vector direction);
 
     /**
      * 获得火球的前进方向.
@@ -28,6 +29,7 @@ public interface Fireball extends Projectile, Explosive {
      *
      * @return 方向(向量)
      */
+    @NotNull
     public Vector getDirection();
 
 }

@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a complex living entity - one that is made up of various smaller
@@ -12,5 +13,6 @@ public interface ComplexLivingEntity extends LivingEntity {
      *
      * @return List of parts
      */
+    @NotNull
     public Set<ComplexEntityPart> getParts();
 }

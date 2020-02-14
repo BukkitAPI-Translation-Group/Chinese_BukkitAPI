@@ -1,5 +1,7 @@
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 代表 {@link ComplexLivingEntity} 的一部分.
  * <p>
@@ -16,5 +18,6 @@ public interface ComplexEntityPart extends Entity {
      *
      * @return Parent 复杂实体
      */
+    @NotNull
     public ComplexLivingEntity getParent();
 }
