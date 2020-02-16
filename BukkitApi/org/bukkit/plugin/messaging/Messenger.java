@@ -4,6 +4,7 @@ import java.util.Set;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 负责管理注册插件通道和监听器的类.
@@ -38,7 +39,7 @@ public interface Messenger {
      * @return 如果这个通道是保留的则为true，反之为false
      * @throws IllegalArgumentException 如果参数channel为null
      */
-    public boolean isReservedChannel(String channel);
+    public boolean isReservedChannel(@NotNull String channel);
 
     /**
      * 注册指定插件所请求的发送插件通道，允许它通过这个通道向任何客户端发送消息.
@@ -50,7 +51,7 @@ public interface Messenger {
      * @param channel 要注册的通道
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
-    public void registerOutgoingPluginChannel(Plugin plugin, String channel);
+    public void registerOutgoingPluginChannel(@NotNull Plugin plugin, @NotNull String channel);
 
     /**
      * 注销指定插件请求的插件发送通道，不再允许它通过这个通道发送消息到任何客户端.
@@ -63,7 +64,7 @@ public interface Messenger {
      * @param channel 要注销的通道
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
-    public void unregisterOutgoingPluginChannel(Plugin plugin, String channel);
+    public void unregisterOutgoingPluginChannel(@NotNull Plugin plugin, @NotNull String channel);
 
     /**
      * 注销指定插件的所有向外发送插件通道，不再允许它发送任何插件消息.
@@ -74,7 +75,7 @@ public interface Messenger {
      * @param plugin 不再希望发送插件消息的插件
      * @throws IllegalArgumentException 如果参数plugin为null
      */
-    public void unregisterOutgoingPluginChannel(Plugin plugin);
+    public void unregisterOutgoingPluginChannel(@NotNull Plugin plugin);
 
     /**
      * 注册指定的监听指定的接收的插件通道的插件，允许它在任何插件消息上做动作.
@@ -88,7 +89,8 @@ public interface Messenger {
      * @return 注册后的结果(一个对象)
      * @throws IllegalArgumentException 如果参数plugin,channel或listener为null或这个监听器已注册这个通道
      */
-    public PluginMessageListenerRegistration registerIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
+    @NotNull
+    public PluginMessageListenerRegistration registerIncomingPluginChannel(@NotNull Plugin plugin, @NotNull String channel, @NotNull PluginMessageListener listener);
 
     /**
      * 注销指定插件请求的监听接收的插件通道的监听器，不再允许它在任何插件消息上做任何动作.
@@ -102,7 +104,7 @@ public interface Messenger {
      * @param listener 要停止接收消息的监听器
      * @throws IllegalArgumentException 如果参数plugin,channel或listener为null
      */
-    public void unregisterIncomingPluginChannel(Plugin plugin, String channel, PluginMessageListener listener);
+    public void unregisterIncomingPluginChannel(@NotNull Plugin plugin, @NotNull String channel, @NotNull PluginMessageListener listener);
 
     /**
      * 注销指定插件请求的监听的接收的插件通道，不再允许它在任何插件消息上做动作.
@@ -115,7 +117,7 @@ public interface Messenger {
      * @param channel 要注销的通道
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
-    public void unregisterIncomingPluginChannel(Plugin plugin, String channel);
+    public void unregisterIncomingPluginChannel(@NotNull Plugin plugin, @NotNull String channel);
 
     /**
      * 注销指定插件在所有监听器上监听的插件通道.
@@ -126,7 +128,7 @@ public interface Messenger {
      * @param plugin 希望注销这些通道的插件
      * @throws IllegalArgumentException 如果参数plugin为null
      */
-    public void unregisterIncomingPluginChannel(Plugin plugin);
+    public void unregisterIncomingPluginChannel(@NotNull Plugin plugin);
 
     /**
      * 获取包含了所有向外发送的插件通道的set集合.
@@ -135,6 +137,7 @@ public interface Messenger {
      *
      * @return 已注册的所有发送插件通道的列表
      */
+    @NotNull
     public Set<String> getOutgoingChannels();
 
     /**
@@ -147,7 +150,8 @@ public interface Messenger {
      * @return 所有这个插件注册的正在发送的插件通道的列表
      * @throws IllegalArgumentException 如果参数plugin为null
      */
-    public Set<String> getOutgoingChannels(Plugin plugin);
+    @NotNull
+    public Set<String> getOutgoingChannels(@NotNull Plugin plugin);
 
     /**
      * 获取包含了所有接收的插件通道的set集合.
@@ -156,6 +160,7 @@ public interface Messenger {
      *
      * @return 已注册的所有正在接收的插件通道的列表
      */
+    @NotNull
     public Set<String> getIncomingChannels();
 
     /**
@@ -168,7 +173,8 @@ public interface Messenger {
      * @return 所有这个插件注册的正在接收的插件通道的列表
      * @throws IllegalArgumentException 如果参数plugin为null
      */
-    public Set<String> getIncomingChannels(Plugin plugin);
+    @NotNull
+    public Set<String> getIncomingChannels(@NotNull Plugin plugin);
 
     /**
      * 获取一个包含了指定插件拥有的所有接收的插件通道的注册的set集合.
@@ -180,7 +186,8 @@ public interface Messenger {
      * @return 这个插件注册的所有注册的列表
      * @throws IllegalArgumentException 如果参数plugin为null
      */
-    public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(Plugin plugin);
+    @NotNull
+    public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(@NotNull Plugin plugin);
 
     /**
      * 获取一个包含了所有在请求通道上的接收的插件通道的注册的set集合.
@@ -192,7 +199,8 @@ public interface Messenger {
      * @return 在这个通道上注册的所有注册的列表
      * @throws IllegalArgumentException 如果参数channel为null
      */
-    public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(String channel);
+    @NotNull
+    public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(@NotNull String channel);
 
     /**
      * 获取一个包含了指定插件在请求的通道上的所有接收的插件通道的注册的set集合.
@@ -205,7 +213,8 @@ public interface Messenger {
      * @return 这个插件拥有的所有注册的列表
      * @throws IllegalArgumentException 如果参数plugin或channel为null
      */
-    public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(Plugin plugin, String channel);
+    @NotNull
+    public Set<PluginMessageListenerRegistration> getIncomingChannelRegistrations(@NotNull Plugin plugin, @NotNull String channel);
 
     /**
      * 检测指定插件消息监听器的注册是否有效.
@@ -220,7 +229,7 @@ public interface Messenger {
      * @param registration 要检测的注册
      * @return 如果注册是有效的则为true,false反之
      */
-    public boolean isRegistrationValid(PluginMessageListenerRegistration registration);
+    public boolean isRegistrationValid(@NotNull PluginMessageListenerRegistration registration);
 
     /**
      * 检测指定插件注册的传入的消息是否通过了请求的通道.
@@ -234,7 +243,7 @@ public interface Messenger {
      * @param channel 要检测的通道
      * @return 如果通道已注册则为true，false反之
      */
-    public boolean isIncomingChannelRegistered(Plugin plugin, String channel);
+    public boolean isIncomingChannelRegistered(@NotNull Plugin plugin, @NotNull String channel);
 
     /**
      * 检测指定插件注册的发送的消息是否通过了请求的通道.
@@ -248,7 +257,7 @@ public interface Messenger {
      * @param channel 要检测的通道
      * @return 如果通道已注册则为true，false反之
      */
-    public boolean isOutgoingChannelRegistered(Plugin plugin, String channel);
+    public boolean isOutgoingChannelRegistered(@NotNull Plugin plugin, @NotNull String channel);
 
     /**
      * 调度指定接收消息的任何注册过的监听器.
@@ -259,5 +268,5 @@ public interface Messenger {
      * @param channel 通过什么通道发送的消息
      * @param message 消息的原始有效载荷
      */
-    public void dispatchIncomingMessage(Player source, String channel, byte[] message);
+    public void dispatchIncomingMessage(@NotNull Player source, @NotNull String channel, @NotNull byte[] message);
 }

@@ -2,12 +2,14 @@ package org.bukkit.plugin;
 
 import java.io.File;
 import java.util.Set;
-
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.permissions.Permission;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Handles all plugin management from the Server
@@ -21,7 +23,7 @@ public interface PluginManager {
      * @throws IllegalArgumentException Thrown when the given Class is not a
      *     valid PluginLoader
      */
-    public void registerInterface(Class<? extends PluginLoader> loader) throws IllegalArgumentException;
+    public void registerInterface(@NotNull Class<? extends PluginLoader> loader) throws IllegalArgumentException;
 
     /**
      * Checks if the given plugin is loaded and returns it when applicable
@@ -31,7 +33,8 @@ public interface PluginManager {
      * @param name Name of the plugin to check
      * @return Plugin if it exists, otherwise null
      */
-    public Plugin getPlugin(String name);
+    @Nullable
+    public Plugin getPlugin(@NotNull String name);
 
     /**
      * 获取所有已载入的插件对象.
@@ -40,6 +43,7 @@ public interface PluginManager {
      * Gets a list of all currently loaded plugins.
      * @return 返回类型为Plugin的数组
      */
+    @NotNull
     public Plugin[] getPlugins();
 
     /**
@@ -50,7 +54,7 @@ public interface PluginManager {
      * @param name Name of the plugin to check
      * @return true if the plugin is enabled, otherwise false
      */
-    public boolean isPluginEnabled(String name);
+    public boolean isPluginEnabled(@NotNull String name);
 
     /**
      * 检查指定插件是否启用.
@@ -61,7 +65,8 @@ public interface PluginManager {
      * @param plugin Plugin to check
      * @return true if the plugin is enabled, otherwise false
      */
-    public boolean isPluginEnabled(Plugin plugin);
+    @Contract("null -> false")
+    public boolean isPluginEnabled(@Nullable Plugin plugin);
 
     /**
      * Loads the plugin in the specified file
@@ -77,7 +82,8 @@ public interface PluginManager {
      * @throws UnknownDependencyException If a required dependency could not
      *     be resolved
      */
-    public Plugin loadPlugin(File file) throws InvalidPluginException, InvalidDescriptionException, UnknownDependencyException;
+    @Nullable
+    public Plugin loadPlugin(@NotNull File file) throws InvalidPluginException, InvalidDescriptionException, UnknownDependencyException;
 
     /**
      * 载入指定目录内的插件.
@@ -88,7 +94,8 @@ public interface PluginManager {
      * @param 指定目录的File对象
      * @return 返回带有已成功载入的插件Plugin对象的数组
      */
-    public Plugin[] loadPlugins(File directory);
+    @NotNull
+    public Plugin[] loadPlugins(@NotNull File directory);
 
     /**
      * 停用所有已载入的插件.
@@ -116,7 +123,7 @@ public interface PluginManager {
      *     <i>Note: This is best-effort basis, and should not be used to test
      *     synchronized state. This is an indicator for flawed flow logic.</i>
      */
-    public void callEvent(Event event) throws IllegalStateException;
+    public void callEvent(@NotNull Event event) throws IllegalStateException;
 
     /**
      * Registers all the events in the given listener class
@@ -124,7 +131,7 @@ public interface PluginManager {
      * @param listener Listener to register
      * @param plugin Plugin to register
      */
-    public void registerEvents(Listener listener, Plugin plugin);
+    public void registerEvents(@NotNull Listener listener, @NotNull Plugin plugin);
 
     /**
      * Registers the specified executor to the given event class
@@ -135,7 +142,7 @@ public interface PluginManager {
      * @param executor EventExecutor to register
      * @param plugin Plugin to register
      */
-    public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin);
+    public void registerEvent(@NotNull Class<? extends Event> event, @NotNull Listener listener, @NotNull EventPriority priority, @NotNull EventExecutor executor, @NotNull Plugin plugin);
 
     /**
      * Registers the specified executor to the given event class
@@ -147,7 +154,7 @@ public interface PluginManager {
      * @param plugin Plugin to register
      * @param ignoreCancelled Whether to pass cancelled events or not
      */
-    public void registerEvent(Class<? extends Event> event, Listener listener, EventPriority priority, EventExecutor executor, Plugin plugin, boolean ignoreCancelled);
+    public void registerEvent(@NotNull Class<? extends Event> event, @NotNull Listener listener, @NotNull EventPriority priority, @NotNull EventExecutor executor, @NotNull Plugin plugin, boolean ignoreCancelled);
 
     /**
      * Enables the specified plugin
@@ -157,7 +164,7 @@ public interface PluginManager {
      *
      * @param plugin Plugin to enable
      */
-    public void enablePlugin(Plugin plugin);
+    public void enablePlugin(@NotNull Plugin plugin);
 
     /**
      * Disables the specified plugin
@@ -166,7 +173,7 @@ public interface PluginManager {
      *
      * @param plugin Plugin to disable
      */
-    public void disablePlugin(Plugin plugin);
+    public void disablePlugin(@NotNull Plugin plugin);
 
     /**
      * Gets a {@link Permission} from its fully qualified name
@@ -174,7 +181,8 @@ public interface PluginManager {
      * @param name Name of the permission
      * @return Permission, or null if none
      */
-    public Permission getPermission(String name);
+    @Nullable
+    public Permission getPermission(@NotNull String name);
 
     /**
      * Adds a {@link Permission} to this plugin manager.
@@ -186,7 +194,7 @@ public interface PluginManager {
      * @throws IllegalArgumentException Thrown when a permission with the same
      *     name already exists
      */
-    public void addPermission(Permission perm);
+    public void addPermission(@NotNull Permission perm);
 
     /**
      * Removes a {@link Permission} registration from this plugin manager.
@@ -199,7 +207,7 @@ public interface PluginManager {
      *
      * @param perm Permission to remove
      */
-    public void removePermission(Permission perm);
+    public void removePermission(@NotNull Permission perm);
 
     /**
      * Removes a {@link Permission} registration from this plugin manager.
@@ -212,7 +220,7 @@ public interface PluginManager {
      *
      * @param name Permission to remove
      */
-    public void removePermission(String name);
+    public void removePermission(@NotNull String name);
 
     /**
      * 获取普通玩家默认拥有的权限或op默认拥有的权限.
@@ -223,6 +231,7 @@ public interface PluginManager {
      * @param 是否获取op状态下默认拥有的权限
      * @return 返回 普通玩家/OP 默认拥有的权限
      */
+    @NotNull
     public Set<Permission> getDefaultPermissions(boolean op);
 
     /**
@@ -233,7 +242,7 @@ public interface PluginManager {
      *
      * @param perm Permission to recalculate
      */
-    public void recalculatePermissionDefaults(Permission perm);
+    public void recalculatePermissionDefaults(@NotNull Permission perm);
 
     /**
      * Subscribes the given Permissible for information about the requested
@@ -245,7 +254,7 @@ public interface PluginManager {
      * @param permission Permission to subscribe to
      * @param permissible Permissible subscribing
      */
-    public void subscribeToPermission(String permission, Permissible permissible);
+    public void subscribeToPermission(@NotNull String permission, @NotNull Permissible permissible);
 
     /**
      * Unsubscribes the given Permissible for information about the requested
@@ -254,7 +263,7 @@ public interface PluginManager {
      * @param permission Permission to unsubscribe from
      * @param permissible Permissible subscribing
      */
-    public void unsubscribeFromPermission(String permission, Permissible permissible);
+    public void unsubscribeFromPermission(@NotNull String permission, @NotNull Permissible permissible);
 
     /**
      * Gets a set containing all subscribed {@link Permissible}s to the given
@@ -263,7 +272,8 @@ public interface PluginManager {
      * @param permission Permission to query for
      * @return Set containing all subscribed permissions
      */
-    public Set<Permissible> getPermissionSubscriptions(String permission);
+    @NotNull
+    public Set<Permissible> getPermissionSubscriptions(@NotNull String permission);
 
     /**
      * Subscribes to the given Default permissions by operator status
@@ -274,7 +284,7 @@ public interface PluginManager {
      * @param op Default list to subscribe to
      * @param permissible Permissible subscribing
      */
-    public void subscribeToDefaultPerms(boolean op, Permissible permissible);
+    public void subscribeToDefaultPerms(boolean op, @NotNull Permissible permissible);
 
     /**
      * Unsubscribes from the given Default permissions by operator status
@@ -282,7 +292,7 @@ public interface PluginManager {
      * @param op Default list to unsubscribe from
      * @param permissible Permissible subscribing
      */
-    public void unsubscribeFromDefaultPerms(boolean op, Permissible permissible);
+    public void unsubscribeFromDefaultPerms(boolean op, @NotNull Permissible permissible);
 
     /**
      * Gets a set containing all subscribed {@link Permissible}s to the given
@@ -291,6 +301,7 @@ public interface PluginManager {
      * @param op Default list to query for
      * @return Set containing all subscribed permissions
      */
+    @NotNull
     public Set<Permissible> getDefaultPermSubscriptions(boolean op);
 
     /**
@@ -300,6 +311,7 @@ public interface PluginManager {
      *
      * @return Set containing all current registered permissions
      */
+    @NotNull
     public Set<Permission> getPermissions();
 
     /**

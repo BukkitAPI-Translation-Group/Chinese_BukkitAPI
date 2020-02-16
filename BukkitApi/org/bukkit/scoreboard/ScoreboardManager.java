@@ -1,6 +1,7 @@
 package org.bukkit.scoreboard;
 
 import java.lang.ref.WeakReference;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 计分板管理
@@ -15,6 +16,7 @@ public interface ScoreboardManager {
      * <p>
      * @return 初始服务器计分板
      */
+    @NotNull
     Scoreboard getMainScoreboard();
 
     /**
@@ -24,5 +26,6 @@ public interface ScoreboardManager {
      * @return 返回注册的计分板
      * @see WeakReference
      */
+    @NotNull
     Scoreboard getNewScoreboard();
 }

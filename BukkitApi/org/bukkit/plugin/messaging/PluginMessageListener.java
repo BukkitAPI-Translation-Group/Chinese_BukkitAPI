@@ -1,6 +1,7 @@
 package org.bukkit.plugin.messaging;
 
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 一个指定通道的一个监听器，将接收从客户端发送的消息的通知.
@@ -17,5 +18,5 @@ public interface PluginMessageListener {
      * @param player 消息来源
      * @param message 发送的原始消息
      */
-    public void onPluginMessageReceived(String channel, Player player, byte[] message);
+    public void onPluginMessageReceived(@NotNull String channel, @NotNull Player player, @NotNull byte[] message);
 }

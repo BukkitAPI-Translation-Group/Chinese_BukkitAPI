@@ -1,5 +1,7 @@
 package org.bukkit;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 指定旋转方向的枚举。
  */
@@ -48,6 +50,7 @@ public enum Rotation {
      *
      * @return 旋转
      */
+    @NotNull
     public Rotation rotateClockwise() {
         return rotations[(this.ordinal() + 1) & 0x7];
     }
@@ -59,6 +62,7 @@ public enum Rotation {
      *
      * @return 旋转
      */
+    @NotNull
     public Rotation rotateCounterClockwise() {
         return rotations[(this.ordinal() - 1) & 0x7];
     }

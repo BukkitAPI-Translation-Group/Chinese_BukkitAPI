@@ -1,10 +1,11 @@
 package org.bukkit.scheduler;
 
-import org.bukkit.plugin.Plugin;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
-import java.util.List;
 import java.util.function.Consumer;
+import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Bukkit的任务调度器.
@@ -28,7 +29,7 @@ public interface BukkitScheduler {
      * @param delay 服务器执行任务之前的延迟/tick
      * @return 任务id（如果为-1则表示执行失败）
      */
-    public int scheduleSyncDelayedTask(Plugin plugin, Runnable task, long delay);
+    public int scheduleSyncDelayedTask(@NotNull Plugin plugin, @NotNull Runnable task, long delay);
 
     /**
      * @deprecated 推荐使用{@link BukkitRunnable#runTaskLater(Plugin, long)}
@@ -38,7 +39,7 @@ public interface BukkitScheduler {
      * @return 任务id（如果为-1则表示执行失败）
      */
     @Deprecated
-    public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task, long delay);
+    public int scheduleSyncDelayedTask(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay);
 
     /**
      * 在下一tick执行一次任务.
@@ -53,7 +54,7 @@ public interface BukkitScheduler {
      * @param task 要执行的任务
      * @return 任务id（如果为-1则表示执行失败）
      */
-    public int scheduleSyncDelayedTask(Plugin plugin, Runnable task);
+    public int scheduleSyncDelayedTask(@NotNull Plugin plugin, @NotNull Runnable task);
 
     /**
      * 在下一tick执行一次任务.
@@ -70,7 +71,7 @@ public interface BukkitScheduler {
      * @return 任务id（如果为-1则表示执行失败）
      */
     @Deprecated
-    public int scheduleSyncDelayedTask(Plugin plugin, BukkitRunnable task);
+    public int scheduleSyncDelayedTask(@NotNull Plugin plugin, @NotNull BukkitRunnable task);
 
     /**
      * 在指定延迟后开始以指定间隔重复执行任务.
@@ -87,7 +88,7 @@ public interface BukkitScheduler {
      * @param period 任务执行的时间
      * @return 任务id（如果为-1则表示执行失败）
      */
-    public int scheduleSyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
+    public int scheduleSyncRepeatingTask(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period);
 
     /**
      * @deprecated 推荐使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
@@ -98,7 +99,7 @@ public interface BukkitScheduler {
      * @return 任务id（如果为-1则表示执行失败）
      */
     @Deprecated
-    public int scheduleSyncRepeatingTask(Plugin plugin, BukkitRunnable task, long delay, long period);
+    public int scheduleSyncRepeatingTask(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay, long period);
 
     /**
      * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
@@ -118,7 +119,7 @@ public interface BukkitScheduler {
      * @deprecated 这个名称具有误导性.因为它没有执行“同步”任务.而是“异步”任务
      */
     @Deprecated
-    public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task, long delay);
+    public int scheduleAsyncDelayedTask(@NotNull Plugin plugin, @NotNull Runnable task, long delay);
 
     /**
      * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
@@ -137,7 +138,7 @@ public interface BukkitScheduler {
      * @deprecated 这个名称具有误导性.因为它没有执行“同步”任务.而是“异步”任务
      */
     @Deprecated
-    public int scheduleAsyncDelayedTask(Plugin plugin, Runnable task);
+    public int scheduleAsyncDelayedTask(@NotNull Plugin plugin, @NotNull Runnable task);
 
     /**
      * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
@@ -158,7 +159,7 @@ public interface BukkitScheduler {
      * @deprecated 这个名称具有误导性.因为它没有执行“同步”任务.而是“异步”任务
      */
     @Deprecated
-    public int scheduleAsyncRepeatingTask(Plugin plugin, Runnable task, long delay, long period);
+    public int scheduleAsyncRepeatingTask(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period);
 
     /**
      * 调用主线程的一个方法并返回Future对象.这个任务将被服务器主线程执行.
@@ -180,7 +181,8 @@ public interface BukkitScheduler {
      * @param task 要执行的任务
      * @return 与任务相关的Future对象
      */
-    public <T> Future<T> callSyncMethod(Plugin plugin, Callable<T> task);
+    @NotNull
+    public <T> Future<T> callSyncMethod(@NotNull Plugin plugin, @NotNull Callable<T> task);
 
     /**
      * 从执行器中取消执行一个任务.
@@ -199,7 +201,7 @@ public interface BukkitScheduler {
      *
      * @param plugin 要取消所有任务的插件
      */
-    public void cancelTasks(Plugin plugin);
+    public void cancelTasks(@NotNull Plugin plugin);
 
     /**
      * 检测任务是否正在运行.
@@ -252,6 +254,7 @@ public interface BukkitScheduler {
      *
      * @return 激活的worker
      */
+    @NotNull
     public List<BukkitWorker> getActiveWorkers();
 
     /**
@@ -262,6 +265,7 @@ public interface BukkitScheduler {
      *
      * @return 待执行/挂起的任务
      */
+    @NotNull
     public List<BukkitTask> getPendingTasks();
 
     /**
@@ -275,7 +279,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public BukkitTask runTask(Plugin plugin, Runnable task) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTask(@NotNull Plugin plugin, @NotNull Runnable task) throws IllegalArgumentException;
 
     /**
      * Returns a task that will run on the next server tick.
@@ -285,7 +290,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException if plugin is null
      * @throws IllegalArgumentException if task is null
      */
-    public void runTask(Plugin plugin, Consumer<BukkitTask> task) throws IllegalArgumentException;
+    public void runTask(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task) throws IllegalArgumentException;
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTask(Plugin)}
@@ -297,7 +302,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
-    public BukkitTask runTask(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTask(@NotNull Plugin plugin, @NotNull BukkitRunnable task) throws IllegalArgumentException;
 
     /**
      * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
@@ -315,7 +321,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public BukkitTask runTaskAsynchronously(Plugin plugin, Runnable task) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task) throws IllegalArgumentException;
 
     /**
      * <b>Asynchronous tasks should never access any API in Bukkit. Great care
@@ -328,7 +335,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException if plugin is null
      * @throws IllegalArgumentException if task is null
      */
-    public void runTaskAsynchronously(Plugin plugin, Consumer<BukkitTask> task) throws IllegalArgumentException;
+    public void runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task) throws IllegalArgumentException;
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTaskAsynchronously(Plugin)}
@@ -339,7 +346,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
-    public BukkitTask runTaskAsynchronously(Plugin plugin, BukkitRunnable task) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskAsynchronously(@NotNull Plugin plugin, @NotNull BukkitRunnable task) throws IllegalArgumentException;
 
     /**
      * 返回指定tick过后运行的任务(即延迟执行).
@@ -354,7 +362,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public BukkitTask runTaskLater(Plugin plugin, Runnable task, long delay) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskLater(@NotNull Plugin plugin, @NotNull Runnable task, long delay) throws IllegalArgumentException;
 
     /**
      * Returns a task that will run after the specified number of server
@@ -366,7 +375,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException if plugin is null
      * @throws IllegalArgumentException if task is null
      */
-    public void runTaskLater(Plugin plugin, Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
+    public void runTaskLater(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTaskLater(Plugin, long)}
@@ -378,7 +387,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
-    public BukkitTask runTaskLater(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskLater(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay) throws IllegalArgumentException;
 
     /**
      * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
@@ -398,7 +408,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, Runnable task, long delay) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task, long delay) throws IllegalArgumentException;
 
     /**
      * <b>Asynchronous tasks should never access any API in Bukkit. Great care
@@ -413,8 +424,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException if plugin is null
      * @throws IllegalArgumentException if task is null
      */
-    public void runTaskLaterAsynchronously(Plugin plugin, Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
-
+    public void runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTaskLaterAsynchronously(Plugin, long)}
@@ -426,7 +436,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
-    public BukkitTask runTaskLaterAsynchronously(Plugin plugin, BukkitRunnable task, long delay) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay) throws IllegalArgumentException;
 
     /**
      * 返回一个任务.此任务将在指定tick数值后运行.任务将重复运行直至取消.
@@ -442,7 +453,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public BukkitTask runTaskTimer(Plugin plugin, Runnable task, long delay, long period) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskTimer(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * Returns a task that will repeatedly run until cancelled, starting after
@@ -455,7 +467,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException if plugin is null
      * @throws IllegalArgumentException if task is null
      */
-    public void runTaskTimer(Plugin plugin, Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
+    public void runTaskTimer(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * @deprecated 建议使用{@link BukkitRunnable#runTaskTimer(Plugin, long, long)}
@@ -468,7 +480,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
-    public BukkitTask runTaskTimer(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskTimer(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
@@ -489,7 +502,8 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, Runnable task, long delay, long period) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * <b>Asynchronous tasks should never access any API in Bukkit. Great care
@@ -506,7 +520,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException if plugin is null
      * @throws IllegalArgumentException if task is null
      */
-    public void runTaskTimerAsynchronously(Plugin plugin, Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
+    public void runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * @deprecated 建议使用 {@link BukkitRunnable#runTaskTimerAsynchronously(Plugin, long, long)}
@@ -519,5 +533,6 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果任务为null
      */
     @Deprecated
-    public BukkitTask runTaskTimerAsynchronously(Plugin plugin, BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
+    @NotNull
+    public BukkitTask runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
 }

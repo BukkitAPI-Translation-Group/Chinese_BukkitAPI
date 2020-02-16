@@ -9,23 +9,24 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.CodeSigner;
 import java.security.CodeSource;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 一个插件类加载器，允许跨插件共享一个加载器.
  */
 final class PluginClassLoader extends URLClassLoader {
     private final JavaPluginLoader loader;
-    private final Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
+    private final Map<String, Class<?>> classes = new ConcurrentHashMap<String, Class<?>>();
     private final PluginDescriptionFile description;
     private final File dataFolder;
     private final File file;
@@ -36,7 +37,11 @@ final class PluginClassLoader extends URLClassLoader {
     private JavaPlugin pluginInit;
     private IllegalStateException pluginState;
 
-    PluginClassLoader(final JavaPluginLoader loader, final ClassLoader parent, final PluginDescriptionFile description, final File dataFolder, final File file) throws IOException, InvalidPluginException, MalformedURLException {
+    static {
+        ClassLoader.registerAsParallelCapable();
+    }
+
+    PluginClassLoader(@NotNull final JavaPluginLoader loader, @Nullable final ClassLoader parent, @NotNull final PluginDescriptionFile description, @NotNull final File dataFolder, @NotNull final File file) throws IOException, InvalidPluginException, MalformedURLException {
         super(new URL[] {file.toURI().toURL()}, parent);
         Validate.notNull(loader, "Loader cannot be null");
 
@@ -76,7 +81,7 @@ final class PluginClassLoader extends URLClassLoader {
         return findClass(name, true);
     }
 
-    Class<?> findClass(String name, boolean checkGlobal) throws ClassNotFoundException {
+    Class<?> findClass(@NotNull String name, boolean checkGlobal) throws ClassNotFoundException {
         if (name.startsWith("org.bukkit.") || name.startsWith("net.minecraft.")) {
             throw new ClassNotFoundException(name);
         }
@@ -150,11 +155,12 @@ final class PluginClassLoader extends URLClassLoader {
         }
     }
 
+    @NotNull
     Set<String> getClasses() {
         return classes.keySet();
     }
 
-    synchronized void initialize(JavaPlugin javaPlugin) {
+    synchronized void initialize(@NotNull JavaPlugin javaPlugin) {
         Validate.notNull(javaPlugin, "Initializing plugin cannot be null");
         Validate.isTrue(javaPlugin.getClass().getClassLoader() == this, "Cannot initialize plugin outside of this class loader");
         if (this.plugin != null || this.pluginInit != null) {

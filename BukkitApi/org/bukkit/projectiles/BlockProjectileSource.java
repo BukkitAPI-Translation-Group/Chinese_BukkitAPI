@@ -1,6 +1,7 @@
 package org.bukkit.projectiles;
 
 import org.bukkit.block.Block;
+import org.jetbrains.annotations.NotNull;
 
 public interface BlockProjectileSource extends ProjectileSource {
 
@@ -11,5 +12,6 @@ public interface BlockProjectileSource extends ProjectileSource {
      *
      * @return 抛射物所属方块
      */
+    @NotNull
     public Block getBlock();
 }

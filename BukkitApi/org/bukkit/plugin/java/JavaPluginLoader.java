@@ -12,12 +12,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.Warning;
@@ -40,6 +40,8 @@ import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.RegisteredListener;
 import org.bukkit.plugin.TimedRegisteredListener;
 import org.bukkit.plugin.UnknownDependencyException;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.yaml.snakeyaml.error.YAMLException;
 
 /**
@@ -48,21 +50,23 @@ import org.yaml.snakeyaml.error.YAMLException;
 public final class JavaPluginLoader implements PluginLoader {
     final Server server;
     private final Pattern[] fileFilters = new Pattern[] { Pattern.compile("\\.jar$"), };
-    private final Map<String, Class<?>> classes = new HashMap<String, Class<?>>();
+    private final Map<String, Class<?>> classes = new ConcurrentHashMap<String, Class<?>>();
     private final List<PluginClassLoader> loaders = new CopyOnWriteArrayList<PluginClassLoader>();
 
     /**
      * This class was not meant to be constructed explicitly
-     * 
+     *
      * @param instance the server instance
      */
     @Deprecated
-    public JavaPluginLoader(Server instance) {
+    public JavaPluginLoader(@NotNull Server instance) {
         Validate.notNull(instance, "Server cannot be null");
         server = instance;
     }
 
-    public Plugin loadPlugin(final File file) throws InvalidPluginException {
+    @Override
+    @NotNull
+    public Plugin loadPlugin(@NotNull final File file) throws InvalidPluginException {
         Validate.notNull(file, "File cannot be null");
 
         if (!file.exists()) {
@@ -138,7 +142,9 @@ public final class JavaPluginLoader implements PluginLoader {
         return loader.plugin;
     }
 
-    public PluginDescriptionFile getPluginDescription(File file) throws InvalidDescriptionException {
+    @Override
+    @NotNull
+    public PluginDescriptionFile getPluginDescription(@NotNull File file) throws InvalidDescriptionException {
         Validate.notNull(file, "File cannot be null");
 
         JarFile jar = null;
@@ -176,10 +182,13 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
+    @Override
+    @NotNull
     public Pattern[] getPluginFileFilters() {
         return fileFilters.clone();
     }
 
+    @Nullable
     Class<?> getClassByName(final String name) {
         Class<?> cachedClass = classes.get(name);
 
@@ -198,7 +207,7 @@ public final class JavaPluginLoader implements PluginLoader {
         return null;
     }
 
-    void setClass(final String name, final Class<?> clazz) {
+    void setClass(@NotNull final String name, @NotNull final Class<?> clazz) {
         if (!classes.containsKey(name)) {
             classes.put(name, clazz);
 
@@ -209,7 +218,7 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
-    private void removeClass(String name) {
+    private void removeClass(@NotNull String name) {
         Class<?> clazz = classes.remove(name);
 
         try {
@@ -223,7 +232,9 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
-    public Map<Class<? extends Event>, Set<RegisteredListener>> createRegisteredListeners(Listener listener, final Plugin plugin) {
+    @Override
+    @NotNull
+    public Map<Class<? extends Event>, Set<RegisteredListener>> createRegisteredListeners(@NotNull Listener listener, @NotNull final Plugin plugin) {
         Validate.notNull(plugin, "Plugin can not be null");
         Validate.notNull(listener, "Listener can not be null");
 
@@ -290,7 +301,8 @@ public final class JavaPluginLoader implements PluginLoader {
             }
 
             EventExecutor executor = new EventExecutor() {
-                public void execute(Listener listener, Event event) throws EventException {
+                @Override
+                public void execute(@NotNull Listener listener, @NotNull Event event) throws EventException {
                     try {
                         if (!eventClass.isAssignableFrom(event.getClass())) {
                             return;
@@ -312,7 +324,8 @@ public final class JavaPluginLoader implements PluginLoader {
         return ret;
     }
 
-    public void enablePlugin(final Plugin plugin) {
+    @Override
+    public void enablePlugin(@NotNull final Plugin plugin) {
         Validate.isTrue(plugin instanceof JavaPlugin, "Plugin is not associated with this PluginLoader");
 
         if (!plugin.isEnabled()) {
@@ -339,7 +352,8 @@ public final class JavaPluginLoader implements PluginLoader {
         }
     }
 
-    public void disablePlugin(Plugin plugin) {
+    @Override
+    public void disablePlugin(@NotNull Plugin plugin) {
         Validate.isTrue(plugin instanceof JavaPlugin, "Plugin is not associated with this PluginLoader");
 
         if (plugin.isEnabled()) {

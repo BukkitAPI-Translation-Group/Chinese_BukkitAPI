@@ -1,5 +1,6 @@
 package org.bukkit.plugin.java;
 
+import com.google.common.base.Charsets;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -12,7 +13,6 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.command.Command;
@@ -25,8 +25,8 @@ import org.bukkit.plugin.PluginBase;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.PluginLogger;
-
-import com.google.common.base.Charsets;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 一个Java插件的基类
@@ -53,7 +53,7 @@ public abstract class JavaPlugin extends PluginBase {
         ((PluginClassLoader) classLoader).initialize(this);
     }
 
-    protected JavaPlugin(final JavaPluginLoader loader, final PluginDescriptionFile description, final File dataFolder, final File file) {
+    protected JavaPlugin(@NotNull final JavaPluginLoader loader, @NotNull final PluginDescriptionFile description, @NotNull final File dataFolder, @NotNull final File file) {
         final ClassLoader classLoader = this.getClass().getClassLoader();
         if (classLoader instanceof PluginClassLoader) {
             throw new IllegalStateException("Cannot use initialization constructor at runtime");
@@ -71,6 +71,7 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @return 文件夹
      */
+    @NotNull
     @Override
     public final File getDataFolder() {
         return dataFolder;
@@ -84,6 +85,7 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @return PluginLoader控制的插件.
      */
+    @NotNull
     @Override
     public final PluginLoader getPluginLoader() {
         return loader;
@@ -97,6 +99,7 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @return 服务器正在运行的插件
      */
+    @NotNull
     @Override
     public final Server getServer() {
         return server;
@@ -124,6 +127,7 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @return 插件的核心文件
      */
+    @NotNull
     protected File getFile() {
         return file;
     }
@@ -136,11 +140,13 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @return plugin.yml的内容描述信息
      */
+    @NotNull
     @Override
     public final PluginDescriptionFile getDescription() {
         return description;
     }
 
+    @NotNull
     @Override
     public FileConfiguration getConfig() {
         if (newConfig == null) {
@@ -166,7 +172,8 @@ public abstract class JavaPlugin extends PluginBase {
      * @throws IllegalArgumentException 如果文件为空, 抛出无效的参数(IllegalArgumentException)错误
      * @see ClassLoader#getResourceAsStream(String)
      */
-    protected final Reader getTextResource(String file) {
+    @Nullable
+    protected final Reader getTextResource(@NotNull String file) {
         final InputStream in = getResource(file);
 
         return in == null ? null : new InputStreamReader(in, Charsets.UTF_8);
@@ -201,7 +208,7 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     @Override
-    public void saveResource(String resourcePath, boolean replace) {
+    public void saveResource(@NotNull String resourcePath, boolean replace) {
         if (resourcePath == null || resourcePath.equals("")) {
             throw new IllegalArgumentException("ResourcePath cannot be null or empty");
         }
@@ -238,8 +245,9 @@ public abstract class JavaPlugin extends PluginBase {
         }
     }
 
+    @Nullable
     @Override
-    public InputStream getResource(String filename) {
+    public InputStream getResource(@NotNull String filename) {
         if (filename == null) {
             throw new IllegalArgumentException("Filename cannot be null");
         }
@@ -267,6 +275,7 @@ public abstract class JavaPlugin extends PluginBase {
      *
      * @return ClassLoader控制的这个插件
      */
+    @NotNull
     protected final ClassLoader getClassLoader() {
         return classLoader;
     }
@@ -291,7 +300,7 @@ public abstract class JavaPlugin extends PluginBase {
         }
     }
 
-    final void init(PluginLoader loader, Server server, PluginDescriptionFile description, File dataFolder, File file, ClassLoader classLoader) {
+    final void init(@NotNull PluginLoader loader, @NotNull Server server, @NotNull PluginDescriptionFile description, @NotNull File dataFolder, @NotNull File file, @NotNull ClassLoader classLoader) {
         this.loader = loader;
         this.server = server;
         this.file = file;
@@ -312,7 +321,7 @@ public abstract class JavaPlugin extends PluginBase {
      * {@inheritDoc}
      */
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
         return false;
     }
 
@@ -320,7 +329,8 @@ public abstract class JavaPlugin extends PluginBase {
      * {@inheritDoc}
      */
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
+    @Nullable
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
         return null;
     }
 
@@ -337,7 +347,8 @@ public abstract class JavaPlugin extends PluginBase {
      * @param name 一个属于这个插件注册了的命令
      * @return 如果有返回值表示命令存在, 否则返回null
      */
-    public PluginCommand getCommand(String name) {
+    @Nullable
+    public PluginCommand getCommand(@NotNull String name) {
         String alias = name.toLowerCase(java.util.Locale.ENGLISH);
         PluginCommand command = getServer().getPluginCommand(alias);
 
@@ -361,8 +372,9 @@ public abstract class JavaPlugin extends PluginBase {
     @Override
     public void onEnable() {}
 
+    @Nullable
     @Override
-    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
+    public ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, @Nullable String id) {
         return null;
     }
 
@@ -376,11 +388,13 @@ public abstract class JavaPlugin extends PluginBase {
         this.naggable = canNag;
     }
 
+    @NotNull
     @Override
     public Logger getLogger() {
         return logger;
     }
 
+    @NotNull
     @Override
     public String toString() {
         return description.getFullName();
@@ -415,7 +429,8 @@ public abstract class JavaPlugin extends PluginBase {
      *     given JavaPlugin
      * @throws ClassCastException 如果插件提供的类没有继承类, 抛出(ClassCastException)错误
      */
-    public static <T extends JavaPlugin> T getPlugin(Class<T> clazz) {
+    @NotNull
+    public static <T extends JavaPlugin> T getPlugin(@NotNull Class<T> clazz) {
         Validate.notNull(clazz, "Null class cannot have a plugin");
         if (!JavaPlugin.class.isAssignableFrom(clazz)) {
             throw new IllegalArgumentException(clazz + " does not extend " + JavaPlugin.class);
@@ -445,7 +460,8 @@ public abstract class JavaPlugin extends PluginBase {
      * @throws IllegalArgumentException 如果这个类为null, 抛出无效的参数(IllegalArgumentException)错误
      * @throws IllegalStateException 如果从给定的JavaPlugin静态初始化,抛出无效的状态(IllegalStateException)错误
      */
-    public static JavaPlugin getProvidingPlugin(Class<?> clazz) {
+    @NotNull
+    public static JavaPlugin getProvidingPlugin(@NotNull Class<?> clazz) {
         Validate.notNull(clazz, "Null class cannot have a plugin");
         final ClassLoader cl = clazz.getClassLoader();
         if (!(cl instanceof PluginClassLoader)) {

@@ -1,12 +1,12 @@
 package org.bukkit.potion;
 
 import java.util.Collection;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Potion Adapter for pre-1.9 data values
@@ -26,9 +26,8 @@ public class Potion {
      * water bottle.
      *
      * @param type The potion type
-     * @see #Potion(int)
      */
-    public Potion(PotionType type) {
+    public Potion(@NotNull PotionType type) {
         Validate.notNull(type, "Null PotionType");
         this.type = type;
     }
@@ -39,7 +38,7 @@ public class Potion {
      * @param type The type of potion.
      * @param level The potion's level.
      */
-    public Potion(PotionType type, int level) {
+    public Potion(@NotNull PotionType type, int level) {
         this(type);
         Validate.notNull(type, "Type cannot be null");
         Validate.isTrue(level > 0 && level < 3, "Level must be 1 or 2");
@@ -56,7 +55,7 @@ public class Potion {
      *     #splash()}.
      */
     @Deprecated
-    public Potion(PotionType type, int level, boolean splash) {
+    public Potion(@NotNull PotionType type, int level, boolean splash) {
         this(type, level);
         this.splash = splash;
     }
@@ -72,17 +71,9 @@ public class Potion {
      *     #extend()} and possibly {@link #splash()}.
      */
     @Deprecated
-    public Potion(PotionType type, int level, boolean splash, boolean extended) {
+    public Potion(@NotNull PotionType type, int level, boolean splash, boolean extended) {
         this(type, level, splash);
         this.extended = extended;
-    }
-
-    /**
-     * @deprecated
-     */
-    @Deprecated
-    public Potion(int name) {
-        this(PotionType.WATER);
     }
 
     /**
@@ -90,6 +81,7 @@ public class Potion {
      *
      * @return The potion.
      */
+    @NotNull
     public Potion splash() {
         setSplash(true);
         return this;
@@ -100,6 +92,7 @@ public class Potion {
      *
      * @return The potion.
      */
+    @NotNull
     public Potion extend() {
         setHasExtendedDuration(true);
         return this;
@@ -111,7 +104,7 @@ public class Potion {
      *
      * @param to The itemstack to apply to
      */
-    public void apply(ItemStack to) {
+    public void apply(@NotNull ItemStack to) {
         Validate.notNull(to, "itemstack cannot be null");
         Validate.isTrue(to.hasItemMeta(), "given itemstack is not a potion");
         Validate.isTrue(to.getItemMeta() instanceof PotionMeta, "given itemstack is not a potion");
@@ -127,7 +120,7 @@ public class Potion {
      * @see LivingEntity#addPotionEffects(Collection)
      * @param to The entity to apply the effects to
      */
-    public void apply(LivingEntity to) {
+    public void apply(@NotNull LivingEntity to) {
         Validate.notNull(to, "entity cannot be null");
         to.addPotionEffects(getEffects());
     }
@@ -152,6 +145,7 @@ public class Potion {
      * @see Potion#toDamageValue()
      * @return The effects that this potion applies
      */
+    @NotNull
     public Collection<PotionEffect> getEffects() {
         return getBrewer().getEffects(type, level == 2, extended);
     }
@@ -170,6 +164,7 @@ public class Potion {
      *
      * @return The type of this potion
      */
+    @NotNull
     public PotionType getType() {
         return type;
     }
@@ -228,7 +223,7 @@ public class Potion {
      *
      * @param type The new type of this potion
      */
-    public void setType(PotionType type) {
+    public void setType(@NotNull PotionType type) {
         this.type = type;
     }
 
@@ -262,6 +257,7 @@ public class Potion {
      * @param amount The amount of the ItemStack
      * @return The created ItemStack
      */
+    @NotNull
     public ItemStack toItemStack(int amount) {
         Material material;
         if (isSplash()) {
@@ -289,6 +285,7 @@ public class Potion {
      * @param damage the damage value
      * @return the produced potion
      */
+    @NotNull
     public static Potion fromDamage(int damage) {
         PotionType type;
         switch (damage & POTION_BIT) {
@@ -354,7 +351,8 @@ public class Potion {
         return potion;
     }
 
-    public static Potion fromItemStack(ItemStack item) {
+    @NotNull
+    public static Potion fromItemStack(@NotNull ItemStack item) {
         Validate.notNull(item, "item cannot be null");
         if (item.getType() != Material.POTION)
             throw new IllegalArgumentException("item is not a potion");
@@ -366,6 +364,7 @@ public class Potion {
      *
      * @return An instance of PotionBrewer
      */
+    @NotNull
     public static PotionBrewer getBrewer() {
         return brewer;
     }
@@ -376,7 +375,7 @@ public class Potion {
      *
      * @param other The new PotionBrewer
      */
-    public static void setPotionBrewer(PotionBrewer other) {
+    public static void setPotionBrewer(@NotNull PotionBrewer other) {
         if (brewer != null)
             throw new IllegalArgumentException("brewer can only be set internally");
         brewer = other;

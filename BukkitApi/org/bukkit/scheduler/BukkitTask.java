@@ -1,6 +1,7 @@
 package org.bukkit.scheduler;
 
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表由调度器执行的任务.
@@ -23,6 +24,7 @@ public interface BukkitTask {
      *
      * @return 拥有这个任务的插件
      */
+    @NotNull
     public Plugin getOwner();
 
     /**

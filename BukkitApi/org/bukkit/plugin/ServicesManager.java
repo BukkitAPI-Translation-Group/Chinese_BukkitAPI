@@ -2,6 +2,8 @@ package org.bukkit.plugin;
 
 import java.util.Collection;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Manages services and service providers. Services are an interface
@@ -22,14 +24,14 @@ public interface ServicesManager {
      * @param plugin plugin with the provider
      * @param priority priority of the provider
      */
-    public <T> void register(Class<T> service, T provider, Plugin plugin, ServicePriority priority);
+    public <T> void register(@NotNull Class<T> service, @NotNull T provider, @NotNull Plugin plugin, @NotNull ServicePriority priority);
 
     /**
      * Unregister all the providers registered by a particular plugin.
      *
      * @param plugin The plugin
      */
-    public void unregisterAll(Plugin plugin);
+    public void unregisterAll(@NotNull Plugin plugin);
 
     /**
      * Unregister a particular provider for a particular service.
@@ -37,14 +39,14 @@ public interface ServicesManager {
      * @param service The service interface
      * @param provider The service provider implementation
      */
-    public void unregister(Class<?> service, Object provider);
+    public void unregister(@NotNull Class<?> service, @NotNull Object provider);
 
     /**
      * Unregister a particular provider.
      *
      * @param provider The service provider implementation
      */
-    public void unregister(Object provider);
+    public void unregister(@NotNull Object provider);
 
     /**
      * Queries for a provider. This may return if no provider has been
@@ -54,7 +56,8 @@ public interface ServicesManager {
      * @param service The service interface
      * @return provider or null
      */
-    public <T> T load(Class<T> service);
+    @Nullable
+    public <T> T load(@NotNull Class<T> service);
 
     /**
      * Queries for a provider registration. This may return if no provider
@@ -64,15 +67,17 @@ public interface ServicesManager {
      * @param service The service interface
      * @return provider registration or null
      */
-    public <T> RegisteredServiceProvider<T> getRegistration(Class<T> service);
+    @Nullable
+    public <T> RegisteredServiceProvider<T> getRegistration(@NotNull Class<T> service);
 
     /**
      * Get registrations of providers for a plugin.
      *
      * @param plugin The plugin
-     * @return provider registration or null
+     * @return provider registrations
      */
-    public List<RegisteredServiceProvider<?>> getRegistrations(Plugin plugin);
+    @NotNull
+    public List<RegisteredServiceProvider<?>> getRegistrations(@NotNull Plugin plugin);
 
     /**
      * Get registrations of providers for a service. The returned list is
@@ -82,7 +87,8 @@ public interface ServicesManager {
      * @param service The service interface
      * @return list of registrations
      */
-    public <T> Collection<RegisteredServiceProvider<T>> getRegistrations(Class<T> service);
+    @NotNull
+    public <T> Collection<RegisteredServiceProvider<T>> getRegistrations(@NotNull Class<T> service);
 
     /**
      * Get a list of known services. A service is known if it has registered
@@ -90,6 +96,7 @@ public interface ServicesManager {
      *
      * @return list of known services
      */
+    @NotNull
     public Collection<Class<?>> getKnownServices();
 
     /**
@@ -101,6 +108,6 @@ public interface ServicesManager {
      * @param service service to check
      * @return whether there has been a registered provider
      */
-    public <T> boolean isProvidedFor(Class<T> service);
+    public <T> boolean isProvidedFor(@NotNull Class<T> service);
 
 }

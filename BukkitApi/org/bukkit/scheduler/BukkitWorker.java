@@ -1,6 +1,7 @@
 package org.bukkit.scheduler;
 
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表调度器的worker线程。这给了任务线程对象的信息、任务的所有者和任务id。
@@ -25,6 +26,7 @@ public interface BukkitWorker {
      *
      * @return 拥有这个任务的插件
      */
+    @NotNull
     public Plugin getOwner();
 
     /**
@@ -34,6 +36,7 @@ public interface BukkitWorker {
      *
      * @return worker线程对象
      */
+    @NotNull
     public Thread getThread();
 
 }

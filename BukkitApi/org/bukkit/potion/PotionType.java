@@ -1,5 +1,7 @@
 package org.bukkit.potion;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * This enum reflects and matches each potion state that can be obtained from
  * the Creative mode inventory
@@ -32,12 +34,13 @@ public enum PotionType {
     private final boolean upgradeable;
     private final boolean extendable;
 
-    PotionType(PotionEffectType effect, boolean upgradeable, boolean extendable) {
+    PotionType(/*@Nullable*/ PotionEffectType effect, boolean upgradeable, boolean extendable) {
         this.effect = effect;
         this.upgradeable = upgradeable;
         this.extendable = extendable;
     }
 
+    @Nullable
     public PotionEffectType getEffectType() {
         return effect;
     }
@@ -50,7 +53,7 @@ public enum PotionType {
      * Checks if the potion type has an upgraded state.
      * This refers to whether or not the potion type can be Tier 2,
      * such as Potion of Fire Resistance II.
-     * 
+     *
      * @return true if the potion type can be upgraded;
      */
     public boolean isUpgradeable() {
@@ -60,19 +63,11 @@ public enum PotionType {
     /**
      * Checks if the potion type has an extended state.
      * This refers to the extended duration potions
-     * 
+     *
      * @return true if the potion type can be extended
      */
     public boolean isExtendable() {
         return extendable;
-    }
-
-    /**
-     * @deprecated Non-functional
-     */
-    @Deprecated
-    public int getDamageValue() {
-        return this.ordinal();
     }
 
     public int getMaxLevel() {
@@ -80,18 +75,13 @@ public enum PotionType {
     }
 
     /**
-     * @deprecated Non-functional
-     */
-    @Deprecated
-    public static PotionType getByDamageValue(int damage) {
-        return null;
-    }
-
-    /**
+     * @param effectType the effect to get by
+     * @return the matching potion type
      * @deprecated Misleading
      */
     @Deprecated
-    public static PotionType getByEffect(PotionEffectType effectType) {
+    @Nullable
+    public static PotionType getByEffect(@Nullable PotionEffectType effectType) {
         if (effectType == null)
             return WATER;
         for (PotionType type : PotionType.values()) {

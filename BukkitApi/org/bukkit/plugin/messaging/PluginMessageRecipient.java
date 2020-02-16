@@ -2,6 +2,7 @@ package org.bukkit.plugin.messaging;
 
 import java.util.Set;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表插件消息(Plugin Message)可能的接收者.
@@ -27,7 +28,7 @@ public interface PluginMessageRecipient {
      * @throws MessageTooLargeException 如果消息过大则抛出
      * @throws ChannelNotRegisteredException 如果这个通道不是为这个插件注册的则抛出
      */
-    public void sendPluginMessage(Plugin source, String channel, byte[] message);
+    public void sendPluginMessage(@NotNull Plugin source, @NotNull String channel, @NotNull byte[] message);
 
     /**
      * 获取包含了客户端正在监听的插件通道(Plugin Channel)的set集合.
@@ -37,5 +38,6 @@ public interface PluginMessageRecipient {
      *
      * @return 包含了客户端可以接受的通道的set集合
      */
+    @NotNull
     public Set<String> getListeningPluginChannels();
 }

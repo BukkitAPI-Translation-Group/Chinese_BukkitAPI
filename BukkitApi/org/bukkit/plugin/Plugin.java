@@ -3,11 +3,12 @@ package org.bukkit.plugin;
 import java.io.File;
 import java.io.InputStream;
 import java.util.logging.Logger;
-
 import org.bukkit.Server;
 import org.bukkit.command.TabExecutor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.generator.ChunkGenerator;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 表示一个插件.
@@ -27,6 +28,7 @@ public interface Plugin extends TabExecutor {
      *
      * @return 此文件夹
      */
+    @NotNull
     public File getDataFolder();
 
     /**
@@ -36,6 +38,7 @@ public interface Plugin extends TabExecutor {
      *
      * @return plugin.yaml文件内容
      */
+    @NotNull
     public PluginDescriptionFile getDescription();
 
     /**
@@ -49,6 +52,7 @@ public interface Plugin extends TabExecutor {
      *
      * @return 此插件的配置
      */
+    @NotNull
     public FileConfiguration getConfig();
 
     /**
@@ -59,7 +63,8 @@ public interface Plugin extends TabExecutor {
      * @param filename 资源文件名
      * @return 如果文件找到则返回相应的InputStream,否则为null
      */
-    public InputStream getResource(String filename);
+    @Nullable
+    public InputStream getResource(@NotNull String filename);
 
     /**
      * 保存插件的 {@link FileConfiguration}, 这可以使用{@link #getConfig()}获取.
@@ -91,7 +96,7 @@ public interface Plugin extends TabExecutor {
     * @param replace 如果为true，则内置的资源将覆盖现有文件的内容
     * @throws IllegalArgumentException 如果资源路径为null/空,或指向不存在的资源则抛出
     */
-    public void saveResource(String resourcePath, boolean replace);
+    public void saveResource(@NotNull String resourcePath, boolean replace);
 
     /**
      * 丢弃 {@link #getConfig()}中所有数据并且从磁盘重载.
@@ -107,6 +112,7 @@ public interface Plugin extends TabExecutor {
      *
      * @return 控制插件的PluginLoader
      */
+    @NotNull
     public PluginLoader getPluginLoader();
 
     /**
@@ -116,6 +122,7 @@ public interface Plugin extends TabExecutor {
      *
      * @return 运行此插件的服务器
      */
+    @NotNull
     public Server getServer();
 
     /**
@@ -180,7 +187,8 @@ public interface Plugin extends TabExecutor {
      * @param id 唯一 ID,如果有的话,被指定来指示哪个生成器被调用
      * @return 用于默认世界生成的 ChunkGenerator
      */
-    public ChunkGenerator getDefaultWorldGenerator(String worldName, String id);
+    @Nullable
+    public ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, @Nullable String id);
 
     /**
      * 返回与此服务器日志记录器关联的插件日志记录器.返回的日志记录器自动地用插件的名称标记所有日志消息.
@@ -191,6 +199,7 @@ public interface Plugin extends TabExecutor {
      *
      * @return 与此插件相关联的记录器
      */
+    @NotNull
     public Logger getLogger();
 
     /**
@@ -203,5 +212,6 @@ public interface Plugin extends TabExecutor {
      *
      * @return 插件名称
      */
+    @NotNull
     public String getName();
 }

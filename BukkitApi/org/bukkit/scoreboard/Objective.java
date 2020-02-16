@@ -1,6 +1,8 @@
 package org.bukkit.scoreboard;
 
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 
@@ -17,30 +19,38 @@ public interface Objective {
 
     /**
      * 获取对象名称.
-     *<p>
+     * <p>
+     * 原文:Gets the name of this Objective
+     *
      * @return 对象名称
      * @throws IllegalStateException 对象已被注销
      */
+    @NotNull
     String getName() throws IllegalStateException;
 
     /**
      * 获取对象内用于显示的名称.
-     *<p>
+     * <p>
+     * 原文:Gets the name displayed to players for this objective
+     *
      * @return 用于显示的名称
      * @throws IllegalStateException 对象已被注销
      */
+    @NotNull
     String getDisplayName() throws IllegalStateException;
 
     /**
      * 设置对象内用于显示的名称.
-     *<p>
+     * <p>
+     * 原文:Sets the name displayed to players for this objective.
+     *
      * @param displayName 用于显示的名称
      * @throws IllegalStateException 对象已被注销
      * @throws IllegalArgumentException 参数displayName（显示名称）为空
      * @throws IllegalArgumentException 参数displayName（显示名称）大于128个字符
      *     characters.
      */
-    void setDisplayName(String displayName) throws IllegalStateException, IllegalArgumentException;
+    void setDisplayName(@NotNull String displayName) throws IllegalStateException, IllegalArgumentException;
 
     /**
      * 获取对象规则.
@@ -50,6 +60,7 @@ public interface Objective {
      * @return 对象规则
      * @throws IllegalStateException 对象已被注销
      */
+    @NotNull
     String getCriteria() throws IllegalStateException;
 
     /**
@@ -67,6 +78,7 @@ public interface Objective {
      * @return 所属计分板 或者 null 对象已被注销 {@link #unregister()
      *     unregistered}
      */
+    @Nullable
     Scoreboard getScoreboard();
 
     /**
@@ -85,7 +97,7 @@ public interface Objective {
      * @param slot 显示的位置区域(null不显示)
      * @throws IllegalStateException 对象已被注销
      */
-    void setDisplaySlot(DisplaySlot slot) throws IllegalStateException;
+    void setDisplaySlot(@Nullable DisplaySlot slot) throws IllegalStateException;
 
     /**
      * 获取对象显示的计分板位置区域.
@@ -95,6 +107,7 @@ public interface Objective {
      * @return 对象显示位置区域(null为不显示)
      * @throws IllegalStateException 对象已被注销
      */
+    @Nullable
     DisplaySlot getDisplaySlot() throws IllegalStateException;
 
     /**
@@ -103,7 +116,7 @@ public interface Objective {
      * @param renderType new render type
      * @throws IllegalStateException if this objective has been unregistered
      */
-    void setRenderType(RenderType renderType) throws IllegalStateException;
+    void setRenderType(@NotNull RenderType renderType) throws IllegalStateException;
 
     /**
      * Sets manner in which this objective will be rendered.
@@ -111,6 +124,7 @@ public interface Objective {
      * @return the render type
      * @throws IllegalStateException if this objective has been unregistered
      */
+    @NotNull
     RenderType getRenderType() throws IllegalStateException;
 
     /**
@@ -126,7 +140,8 @@ public interface Objective {
      * @see #getScore(String)
      */
     @Deprecated
-    Score getScore(OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
+    @NotNull
+    Score getScore(@NotNull OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
 
     /**
      * 获取一个对象的计分项目的积分.
@@ -137,6 +152,8 @@ public interface Objective {
      * @return 对象内指定项目的积分
      * @throws IllegalArgumentException 参数entry（项目）为空
      * @throws IllegalStateException 对象已被注销
+     * @throws IllegalArgumentException 若项目名长度超过40字符
      */
-    Score getScore(String entry) throws IllegalArgumentException, IllegalStateException;
+    @NotNull
+    Score getScore(@NotNull String entry) throws IllegalArgumentException, IllegalStateException;
 }

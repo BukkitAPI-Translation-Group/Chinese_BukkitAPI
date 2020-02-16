@@ -2,6 +2,8 @@ package org.bukkit.projectiles;
 
 import org.bukkit.entity.Projectile;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个有效的抛射物发射源。
@@ -16,7 +18,8 @@ public interface ProjectileSource {
      * @param projectile 要让ProjectileSource发射的抛射物类型
      * @return 发射的抛射物实例对象
      */
-    public <T extends Projectile> T launchProjectile(Class<? extends T> projectile);
+    @NotNull
+    public <T extends Projectile> T launchProjectile(@NotNull Class<? extends T> projectile);
 
     /**
      * 让ProjectileSource以一个初始速度向量发射{@link Projectile}。
@@ -28,5 +31,6 @@ public interface ProjectileSource {
      * @param velocity 抛射物的速度向量
      * @return 发射的抛射物实例对象
      */
-    public <T extends Projectile> T launchProjectile(Class<? extends T> projectile, Vector velocity);
+    @NotNull
+    public <T extends Projectile> T launchProjectile(@NotNull Class<? extends T> projectile, @Nullable Vector velocity);
 }
