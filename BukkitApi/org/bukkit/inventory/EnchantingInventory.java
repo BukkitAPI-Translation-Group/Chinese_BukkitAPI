@@ -1,5 +1,7 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 附魔界面接口
  */
@@ -12,7 +14,7 @@ public interface EnchantingInventory extends Inventory {
      *
      * @param item 将被附魔的物品
      */
-    void setItem(ItemStack item);
+    void setItem(@Nullable ItemStack item);
 
     /**
      * 获取将被附魔的物品.
@@ -21,6 +23,7 @@ public interface EnchantingInventory extends Inventory {
      *
      * @return 将被附魔的物品.
      */
+    @Nullable
     ItemStack getItem();
 
     /**
@@ -30,7 +33,7 @@ public interface EnchantingInventory extends Inventory {
      *
      * @param item 将被用于附魔的第二物品
      */
-    void setSecondary(ItemStack item);
+    void setSecondary(@Nullable ItemStack item);
 
     /**
      * 获取将被用于附魔的第二物品(如青金石).
@@ -39,5 +42,6 @@ public interface EnchantingInventory extends Inventory {
      *
      * @return 将被用于附魔的第二物品
      */
+    @Nullable
     ItemStack getSecondary();
 }

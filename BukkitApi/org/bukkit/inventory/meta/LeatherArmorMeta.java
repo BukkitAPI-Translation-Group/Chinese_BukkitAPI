@@ -3,6 +3,8 @@ package org.bukkit.inventory.meta;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFactory;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表{@link Material#LEATHER_BOOTS 皮革靴子}，{@link Material#LEATHER_CHESTPLATE 皮革外套}，{@link Material#LEATHER_HELMET 皮革帽子}，{@link Material#LEATHER_LEGGINGS 皮革裤子}，可以被染色.
@@ -19,6 +21,7 @@ public interface LeatherArmorMeta extends ItemMeta {
      *
      * @return 这个盔甲的颜色，注意这永远都不会是null
      */
+    @NotNull
     Color getColor();
 
     /**
@@ -28,7 +31,9 @@ public interface LeatherArmorMeta extends ItemMeta {
      *
      * @param color 要设置的颜色.设置此为null等于设置成{@link ItemFactory#getDefaultLeatherColor()}.
      */
-    void setColor(Color color);
+    void setColor(@Nullable Color color);
 
+    @Override
+    @NotNull
     LeatherArmorMeta clone();
 }

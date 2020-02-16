@@ -1,5 +1,8 @@
 package org.bukkit.inventory.meta.tags;
 
+import org.bukkit.persistence.PersistentDataType;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * This class represents an enum with a generic content type. It defines the
  * types a custom item tag can have.
@@ -8,7 +11,7 @@ package org.bukkit.inventory.meta.tags;
  * different complex types. This may be useful for the likes of a
  * UUIDItemTagType:
  * <pre>
- * <code>{@code
+ * {@code
  * public class UUIDItemTagType implements ItemTagType<byte[], UUID> {
  *
  *         {@literal @Override}
@@ -36,11 +39,14 @@ package org.bukkit.inventory.meta.tags;
  *             long secondLong = bb.getLong();
  *             return new UUID(firstLong, secondLong);
  *         }
- *     }}</code></pre>
+ *     }}</pre>
  *
  * @param <T> the primary object type that is stored in the given tag
  * @param <Z> the retrieved object type when applying this item tag type
+ *
+ * @deprecated please use {@link PersistentDataType} as this part of the api is being replaced
  */
+@Deprecated
 public interface ItemTagType<T, Z> {
 
     /*
@@ -75,6 +81,7 @@ public interface ItemTagType<T, Z> {
      *
      * @return the class
      */
+    @NotNull
     Class<T> getPrimitiveType();
 
     /**
@@ -82,6 +89,7 @@ public interface ItemTagType<T, Z> {
      *
      * @return the class type
      */
+    @NotNull
     Class<Z> getComplexType();
 
     /**
@@ -92,7 +100,8 @@ public interface ItemTagType<T, Z> {
      * @param context the context this operation is running in
      * @return the primitive value
      */
-    T toPrimitive(Z complex, ItemTagAdapterContext context);
+    @NotNull
+    T toPrimitive(@NotNull Z complex, @NotNull ItemTagAdapterContext context);
 
     /**
      * Creates a complex object based of the passed primitive value
@@ -101,7 +110,8 @@ public interface ItemTagType<T, Z> {
      * @param context the context this operation is running in
      * @return the complex object instance
      */
-    Z fromPrimitive(T primitive, ItemTagAdapterContext context);
+    @NotNull
+    Z fromPrimitive(@NotNull T primitive, @NotNull ItemTagAdapterContext context);
 
     /**
      * A default implementation that simply exists to pass on the retrieved or
@@ -116,27 +126,31 @@ public interface ItemTagType<T, Z> {
 
         private final Class<T> primitiveType;
 
-        PrimitiveTagType(Class<T> primitiveType) {
+        PrimitiveTagType(@NotNull Class<T> primitiveType) {
             this.primitiveType = primitiveType;
         }
 
+        @NotNull
         @Override
         public Class<T> getPrimitiveType() {
             return primitiveType;
         }
 
+        @NotNull
         @Override
         public Class<T> getComplexType() {
             return primitiveType;
         }
 
+        @NotNull
         @Override
-        public T toPrimitive(T complex, ItemTagAdapterContext context) {
+        public T toPrimitive(@NotNull T complex, @NotNull ItemTagAdapterContext context) {
             return complex;
         }
 
+        @NotNull
         @Override
-        public T fromPrimitive(T primitive, ItemTagAdapterContext context) {
+        public T fromPrimitive(@NotNull T primitive, @NotNull ItemTagAdapterContext context) {
             return primitive;
         }
     }

@@ -1,6 +1,7 @@
 package org.bukkit.inventory;
 
 import org.bukkit.block.Furnace;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 熔炉用户界面接口
@@ -14,6 +15,7 @@ public interface FurnaceInventory extends Inventory {
      *
      * @return ItemStack
      */
+    @Nullable
     ItemStack getResult();
 
     /**
@@ -21,6 +23,7 @@ public interface FurnaceInventory extends Inventory {
      *
      * @return ItemStack
      */
+    @Nullable
     ItemStack getFuel();
 
     /**
@@ -30,6 +33,7 @@ public interface FurnaceInventory extends Inventory {
      *
      * @return 物品
      */
+    @Nullable
     ItemStack getSmelting();
 
     /**
@@ -39,7 +43,7 @@ public interface FurnaceInventory extends Inventory {
      *
      * @param stack 燃料物品
      */
-    void setFuel(ItemStack stack);
+    void setFuel(@Nullable ItemStack stack);
 
     /**
      * 设置当前熔炉的生成物.
@@ -48,7 +52,7 @@ public interface FurnaceInventory extends Inventory {
      *
      * @param stack 生成物
      */
-    void setResult(ItemStack stack);
+    void setResult(@Nullable ItemStack stack);
 
     /**
      * 设置当前熔炉的被冶炼物物品.
@@ -57,7 +61,9 @@ public interface FurnaceInventory extends Inventory {
      *
      * @param stack 物品
      */
-    void setSmelting(ItemStack stack);
+    void setSmelting(@Nullable ItemStack stack);
 
+    @Override
+    @Nullable
     Furnace getHolder();
 }

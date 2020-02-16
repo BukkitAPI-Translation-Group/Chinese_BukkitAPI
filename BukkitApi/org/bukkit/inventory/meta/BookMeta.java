@@ -1,8 +1,9 @@
 package org.bukkit.inventory.meta;
 
 import java.util.List;
-
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表书({@link Material#WRITABLE_BOOK}或者{@link Material#WRITTEN_BOOK 成书})，可以有标题，作者，页面.
@@ -52,6 +53,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @return 这本书的标题
      */
+    @Nullable
     String getTitle();
 
     /**
@@ -66,7 +68,7 @@ public interface BookMeta extends ItemMeta {
      * @param title 要设置的标题
      * @return 如果成功设置标题则为true
      */
-    boolean setTitle(String title);
+    boolean setTitle(@Nullable String title);
 
     /**
      * 检测这本书是否存在作者.
@@ -89,6 +91,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @return 这本书的作者
      */
+    @Nullable
     String getAuthor();
 
     /**
@@ -98,7 +101,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @param author 这本书的作者
      */
-    void setAuthor(String author);
+    void setAuthor(@Nullable String author);
 
     /**
      * Checks for the existence of generation level in the book.
@@ -115,6 +118,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @return the generation of the book
      */
+    @Nullable
     Generation getGeneration();
 
     /**
@@ -122,7 +126,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @param generation the generation to set
      */
-    void setGeneration(Generation generation);
+    void setGeneration(@Nullable Generation generation);
 
     /**
      * 检测这本书是否存在页面.
@@ -136,11 +140,16 @@ public interface BookMeta extends ItemMeta {
     /**
      * 获取这本书指定页面的内容.给定的页面必须存在.
      * <p>
+     * 页码在1-书本总页数范围内.
+     * <p>
      * 原文：Gets the specified page in the book. The given page must exist.
+     * <p>
+     * Pages are 1-indexed.
      *
      * @param page 指定页码
      * @return 这个页码的内容
      */
+    @NotNull
     String getPage(int page);
 
     /**
@@ -148,16 +157,20 @@ public interface BookMeta extends ItemMeta {
      * <p>
      * 数据的长度最大为256个字符，超出部分将被截断.
      * <p>
+     * 页码在1-书本总页数范围内.
+     * <p>
      * 原文：Sets the specified page in the book. Pages of the book must be
      * contiguous.
      * <p>
      * The data can be up to 256 characters in length, additional characters
      * are truncated.
+     * <p>
+     * Pages are 1-indexed.
      *
-     * @param page 要设置的页码
+     * @param page 要设置的页码,在[1, getPageCount()]区间内
      * @param data 那个书页的内容
      */
-    void setPage(int page, String data);
+    void setPage(int page, @NotNull String data);
 
     /**
      * 获取这本书的全部页面.
@@ -166,6 +179,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @return 这本书的全部页面的内容
      */
+    @NotNull
     List<String> getPages();
 
     /**
@@ -176,7 +190,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @param pages 要设置的书页的内容的列表
      */
-    void setPages(List<String> pages);
+    void setPages(@NotNull List<String> pages);
 
     /**
      * 清除存在的书页，并设置书提供的书页.最多50页，每页最多256个字符.
@@ -186,7 +200,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @param pages 每页的内容的列表
      */
-    void setPages(String... pages);
+    void setPages(@NotNull String... pages);
 
     /**
      * 在这本书的最后添加页面.最多50页，每页最多256个字符.
@@ -196,7 +210,7 @@ public interface BookMeta extends ItemMeta {
      *
      * @param pages 每页的内容的列表
      */
-    void addPage(String... pages);
+    void addPage(@NotNull String... pages);
 
     /**
      * 获取这本书有多少页.
@@ -207,5 +221,7 @@ public interface BookMeta extends ItemMeta {
      */
     int getPageCount();
 
+    @Override
+    @NotNull
     BookMeta clone();
 }

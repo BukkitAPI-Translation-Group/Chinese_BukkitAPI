@@ -3,12 +3,13 @@ package org.bukkit.inventory;
 import com.google.common.base.Preconditions;
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a merchant's trade.
  *
  * Trades can take one or two ingredients, and provide one result. The
- * ingredients' Itemstack amounts are respected in the trade.
+ * ingredients' ItemStack amounts are respected in the trade.
  * <br>
  * A trade has a limited number of uses, after which the trade can no longer be
  * used, unless the player uses a different trade, which will cause its maximum
@@ -25,25 +26,34 @@ public class MerchantRecipe implements Recipe {
     private int uses;
     private int maxUses;
     private boolean experienceReward;
+    private int villagerExperience;
+    private float priceMultiplier;
 
-    public MerchantRecipe(ItemStack result, int maxUses) {
+    public MerchantRecipe(@NotNull ItemStack result, int maxUses) {
         this(result, 0, maxUses, false);
     }
 
-    public MerchantRecipe(ItemStack result, int uses, int maxUses, boolean experienceReward) {
+    public MerchantRecipe(@NotNull ItemStack result, int uses, int maxUses, boolean experienceReward) {
+        this(result, uses, maxUses, experienceReward, 0, 0.0F);
+    }
+
+    public MerchantRecipe(@NotNull ItemStack result, int uses, int maxUses, boolean experienceReward, int villagerExperience, float priceMultiplier) {
         this.result = result;
         this.uses = uses;
         this.maxUses = maxUses;
         this.experienceReward = experienceReward;
+        this.villagerExperience = villagerExperience;
+        this.priceMultiplier = priceMultiplier;
     }
 
+    @NotNull
     @Override
     public ItemStack getResult() {
         return result;
     }
 
-    public void addIngredient(ItemStack item) {
-        Preconditions.checkState(ingredients.size() < 2, "MerchantRecipe can only have 2 ingredients");
+    public void addIngredient(@NotNull ItemStack item) {
+        Preconditions.checkState(ingredients.size() < 2, "MerchantRecipe can only have maximum 2 ingredients");
         ingredients.add(item.clone());
     }
 
@@ -51,13 +61,15 @@ public class MerchantRecipe implements Recipe {
         ingredients.remove(index);
     }
 
-    public void setIngredients(List<ItemStack> ingredients) {
+    public void setIngredients(@NotNull List<ItemStack> ingredients) {
+        Preconditions.checkState(ingredients.size() <= 2, "MerchantRecipe can only have maximum 2 ingredients");
         this.ingredients = new ArrayList<ItemStack>();
         for (ItemStack item : ingredients) {
             this.ingredients.add(item.clone());
         }
     }
 
+    @NotNull
     public List<ItemStack> getIngredients() {
         List<ItemStack> copy = new ArrayList<ItemStack>();
         for (ItemStack item : ingredients) {
@@ -106,20 +118,58 @@ public class MerchantRecipe implements Recipe {
     }
 
     /**
-     * Whether to reward experience for the trade.
+     * Whether to reward experience to the player for the trade.
      *
-     * @return whether to reward experience for completing this trade
+     * @return whether to reward experience to the player for completing this
+     * trade
      */
     public boolean hasExperienceReward() {
         return experienceReward;
     }
 
     /**
-     * Set whether to reward experience for the trade.
+     * Set whether to reward experience to the player for the trade.
      *
-     * @param flag whether to reward experience for completing this trade
+     * @param flag whether to reward experience to the player for completing
+     * this trade
      */
     public void setExperienceReward(boolean flag) {
         this.experienceReward = flag;
+    }
+
+    /**
+     * Gets the amount of experience the villager earns from this trade.
+     *
+     * @return villager experience
+     */
+    public int getVillagerExperience() {
+        return villagerExperience;
+    }
+
+    /**
+     * Sets the amount of experience the villager earns from this trade.
+     *
+     * @param villagerExperience new experience amount
+     */
+    public void setVillagerExperience(int villagerExperience) {
+        this.villagerExperience = villagerExperience;
+    }
+
+    /**
+     * Gets the additive price multiplier for the cost of this trade.
+     *
+     * @return price multiplier
+     */
+    public float getPriceMultiplier() {
+        return priceMultiplier;
+    }
+
+    /**
+     * Sets the additive price multiplier for the cost of this trade.
+     *
+     * @param priceMultiplier new price multiplier
+     */
+    public void setPriceMultiplier(float priceMultiplier) {
+        this.priceMultiplier = priceMultiplier;
     }
 }

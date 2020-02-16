@@ -7,6 +7,7 @@ import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.player.PlayerCommandSendEvent;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当一个 {@link CommandSender} 尝试补全命令时触发本事件.
@@ -24,7 +25,7 @@ public class TabCompleteEvent extends Event implements Cancellable {
     private List<String> completions;
     private boolean cancelled;
 
-    public TabCompleteEvent(CommandSender sender, String buffer, List<String> completions) {
+    public TabCompleteEvent(@NotNull CommandSender sender, @NotNull String buffer, @NotNull List<String> completions) {
         Validate.notNull(sender, "sender");
         Validate.notNull(buffer, "buffer");
         Validate.notNull(completions, "completions");
@@ -41,6 +42,7 @@ public class TabCompleteEvent extends Event implements Cancellable {
      *
      * @return {@link CommandSender} 实例
      */
+    @NotNull
     public CommandSender getSender() {
         return sender;
     }
@@ -48,12 +50,13 @@ public class TabCompleteEvent extends Event implements Cancellable {
     /**
      * 返回构成这个补全项的命令缓冲区.
      * <p>
-     * 译注：命令缓冲区是什么？比如您对命令”/tp no”进行补全，”/tp no”即为这个buffer
+     * 译注: 命令缓冲区是什么? 比如您对命令"/tp no"进行补全，"/tp no"即为这个buffer.
      * <p>
      * 原文:Return the entire buffer which formed the basis of this completion.
      *
-     * @return 命令缓冲区，即为你输入的
+     * @return 命令缓冲区，即为你输入的内容
      */
+    @NotNull
     public String getBuffer() {
         return buffer;
     }
@@ -67,18 +70,19 @@ public class TabCompleteEvent extends Event implements Cancellable {
      *
      * @return 提供的补全项的列表
      */
+    @NotNull
     public List<String> getCompletions() {
         return completions;
     }
 
     /**
-     * 设置提供的补全项，会覆盖已设置的补全项.
+     * 设置提供的补全项, 会覆盖已设置的补全项.
      * <p>
-     * 原文：Set the completions offered, overriding any already set.
+     * 原文:Set the completions offered, overriding any already set.
      *
      * @param completions 新的补全项
      */
-    public void setCompletions(List<String> completions) {
+    public void setCompletions(@NotNull List<String> completions) {
         Validate.notNull(completions);
         this.completions = completions;
     }
@@ -93,11 +97,13 @@ public class TabCompleteEvent extends Event implements Cancellable {
         this.cancelled = cancelled;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

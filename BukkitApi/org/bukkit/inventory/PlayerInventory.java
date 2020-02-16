@@ -1,6 +1,8 @@
 package org.bukkit.inventory;
 
 import org.bukkit.entity.HumanEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 玩家背包. 包括装备栏,背包和其他额外的格子. 
@@ -12,8 +14,9 @@ public interface PlayerInventory extends Inventory {
      * <p>原文: 
      * Get all ItemStacks from the armor slots
      *
-     * @return 装备槽的全部物品
+     * @return 装备槽的全部物品. 个别条目可能为null
      */
+    @NotNull
     public ItemStack[] getArmorContents();
 
     /**
@@ -25,8 +28,9 @@ public interface PlayerInventory extends Inventory {
      * <br>
      * NB: What defines an extra slot is up to the implementation, however it will not be contained within {@link #getStorageContents()} or {@link #getArmorContents()}
      *
-     * @return 所有的附加物品
+     * @return 所有的附加物品. 个别条目可能为null
      */
+    @NotNull
     public ItemStack[] getExtraContents();
 
     /**
@@ -36,6 +40,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return 头盔槽内的物品
      */
+    @Nullable
     public ItemStack getHelmet();
 
     /**
@@ -45,6 +50,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return 胸甲槽内的物品
      */
+    @Nullable
     public ItemStack getChestplate();
 
     /**
@@ -54,6 +60,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return 护腿槽内的物品
      */
+    @Nullable
     public ItemStack getLeggings();
 
     /**
@@ -63,6 +70,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return 靴子槽内的物品
      */
+    @Nullable
     public ItemStack getBoots();
 
     /**
@@ -106,7 +114,7 @@ public interface PlayerInventory extends Inventory {
      * @see #setItemInOffHand(ItemStack)
      */
     @Override
-    public void setItem(int index, ItemStack item);
+    public void setItem(int index, @Nullable ItemStack item);
 
     /**
      * 设置装备槽的全部物品. 
@@ -115,7 +123,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param items 用作装备的物品(任意)
      */
-    public void setArmorContents(ItemStack[] items);
+    public void setArmorContents(@Nullable ItemStack[] items);
 
     /**
      * 将给定的物品放在额外物品槽内.
@@ -128,7 +136,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param items 额外物品
      */
-    public void setExtraContents(ItemStack[] items);
+    public void setExtraContents(@Nullable ItemStack[] items);
 
     /**
      * 设置头盔物品栏内的物品. 不检查它是不是一个头盔.
@@ -138,7 +146,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param helmet 作为头盔的物品
      */
-    public void setHelmet(ItemStack helmet);
+    public void setHelmet(@Nullable ItemStack helmet);
 
     /**
      * 设置胸甲物品栏内的物品. 不检查它是不是一个胸甲.
@@ -148,7 +156,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param chestplate 作为胸甲的物品
      */
-    public void setChestplate(ItemStack chestplate);
+    public void setChestplate(@Nullable ItemStack chestplate);
 
     /**
      * 设置护腿物品栏内的物品. 不检查它是不是一个护腿.
@@ -158,7 +166,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param leggings 作为护腿的物品
      */
-    public void setLeggings(ItemStack leggings);
+    public void setLeggings(@Nullable ItemStack leggings);
 
     /**
      * 设置靴子物品栏内的物品. 不检查它是不是一个靴子.
@@ -168,7 +176,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param boots 作为靴子的物品
      */
-    public void setBoots(ItemStack boots);
+    public void setBoots(@Nullable ItemStack boots);
 
     /**
      * 获得玩家握在主手的物品(的副本).
@@ -177,6 +185,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return 握着的物品
      */
+    @NotNull
     ItemStack getItemInMainHand();
 
     /**
@@ -186,7 +195,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param item 要放在玩家手上的物品
      */
-    void setItemInMainHand(ItemStack item);
+    void setItemInMainHand(@Nullable ItemStack item);
 
     /**
      * 获取玩家握在副手的物品(的副本).
@@ -196,6 +205,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @return 握着的物品
      */
+    @NotNull
     ItemStack getItemInOffHand();
 
     /**
@@ -205,7 +215,7 @@ public interface PlayerInventory extends Inventory {
      *
      * @param item 要放在玩家副手上的物品
      */
-    void setItemInOffHand(ItemStack item);
+    void setItemInOffHand(@Nullable ItemStack item);
 
     /**
      * 玩家可以双持了，不再详细介绍.Gets a copy of the item the player is currently holding
@@ -217,6 +227,7 @@ public interface PlayerInventory extends Inventory {
      * @return the currently held item
      */
     @Deprecated
+    @NotNull
     public ItemStack getItemInHand();
 
     /**
@@ -229,7 +240,7 @@ public interface PlayerInventory extends Inventory {
      * @param stack The item to put into the player's hand
      */
     @Deprecated
-    public void setItemInHand(ItemStack stack);
+    public void setItemInHand(@Nullable ItemStack stack);
 
     /**
      * 获取玩家握着的物品所在的物品槽位.
@@ -254,5 +265,7 @@ public interface PlayerInventory extends Inventory {
      */
     public void setHeldItemSlot(int slot);
 
+    @Override
+    @Nullable
     public HumanEntity getHolder();
 }

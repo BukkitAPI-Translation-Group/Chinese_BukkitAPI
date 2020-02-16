@@ -3,12 +3,14 @@ package org.bukkit;
 import com.google.common.base.Preconditions;
 import java.util.HashMap;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 游戏规则控制着Minecraft自身的某些行为.
  * <br>
  * 欲了解更多信息请访问
- * <a href="https://minecraft-zh.gamepedia.com/%E5%91%BD%E4%BB%A4#gamerule" target="_blank">Minecraft
+ * <a href="https://minecraft-zh.gamepedia.com/%E5%91%BD%E4%BB%A4/gamerule" target="_blank">Minecraft
  * Wiki</a>
  * <p>
  * 版权说明:以下常量翻译大部分引自 Minecraft Wiki.
@@ -118,6 +120,11 @@ public final class GameRule<T> {
      */
     public static final GameRule<Boolean> SPECTATORS_GENERATE_CHUNKS = new GameRule<>("spectatorsGenerateChunks", Boolean.class);
 
+    /**
+     * 是否禁用<a href="https://minecraft-zh.gamepedia.com/%E8%A2%AD%E5%87%BB" target="_blank">袭击</a>.
+     */
+    public static final GameRule<Boolean> DISABLE_RAIDS = new GameRule<>("disableRaids", Boolean.class);
+
     // Numerical rules
     /**
      * 每游戏刻每区块中随机的方块刻发生的频率 (例如植物生长，树叶腐烂等).
@@ -148,7 +155,7 @@ public final class GameRule<T> {
     private final String name;
     private final Class<T> type;
 
-    private GameRule(String name, Class<T> clazz) {
+    private GameRule(@NotNull String name, @NotNull Class<T> clazz) {
         Preconditions.checkNotNull(name, "GameRule name cannot be null");
         Preconditions.checkNotNull(clazz, "GameRule type cannot be null");
         Preconditions.checkArgument(clazz == Boolean.class || clazz == Integer.class, "Must be of type Boolean or Integer. Found %s ", clazz.getName());
@@ -164,6 +171,7 @@ public final class GameRule<T> {
      *
      * @return 游戏规则名
      */
+    @NotNull
     public String getName() {
         return name;
     }
@@ -175,6 +183,7 @@ public final class GameRule<T> {
      *
      * @return 游戏规则的数据类型;Integer 或 Boolean
      */
+    @NotNull
     public Class<T> getType() {
         return type;
     }
@@ -204,7 +213,8 @@ public final class GameRule<T> {
      * @param rule 游戏规则名
      * @return {@link GameRule 游戏规则}, 若没有与给定名称相匹配的GameRule返回null
      */
-    public static GameRule<?> getByName(String rule) {
+    @Nullable
+    public static GameRule<?> getByName(@NotNull String rule) {
         Preconditions.checkNotNull(rule, "Rule cannot be null");
         return gameRules.get(rule);
     }
@@ -216,6 +226,7 @@ public final class GameRule<T> {
      *
      * @return 包含所有已注册游戏规则的不可变集合
      */
+    @NotNull
     public static GameRule<?>[] values() {
         return gameRules.values().toArray(new GameRule<?>[gameRules.size()]);
     }

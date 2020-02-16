@@ -1,6 +1,8 @@
 package org.bukkit.inventory;
 
 import org.bukkit.block.DoubleChest;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 大箱子的用户界面接口.
@@ -12,6 +14,7 @@ public interface DoubleChestInventory extends Inventory {
      *
      * @return 左半部分界面
      */
+    @NotNull
     Inventory getLeftSide();
 
     /**
@@ -19,7 +22,10 @@ public interface DoubleChestInventory extends Inventory {
      *
      * @return 左半部分界面
      */
+    @NotNull
     Inventory getRightSide();
 
+    @Override
+    @Nullable
     DoubleChest getHolder();
 }

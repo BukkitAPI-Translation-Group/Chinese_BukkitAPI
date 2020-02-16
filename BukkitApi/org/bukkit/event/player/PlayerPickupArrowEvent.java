@@ -1,17 +1,18 @@
 package org.bukkit.event.player;
 
-import org.bukkit.entity.Arrow;
+import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家从地上捡起箭时触发本事件.
  */
 public class PlayerPickupArrowEvent extends PlayerPickupItemEvent {
 
-    private final Arrow arrow;
+    private final AbstractArrow arrow;
 
-    public PlayerPickupArrowEvent(final Player player, final Item item, final Arrow arrow) {
+    public PlayerPickupArrowEvent(@NotNull final Player player, @NotNull final Item item, @NotNull final AbstractArrow arrow) {
         super(player, item, 0);
         this.arrow = arrow;
     }
@@ -23,7 +24,8 @@ public class PlayerPickupArrowEvent extends PlayerPickupItemEvent {
      *
      * @return 被捡起的箭
      */
-    public Arrow getArrow() {
+    @NotNull
+    public AbstractArrow getArrow() {
         return arrow;
     }
 }

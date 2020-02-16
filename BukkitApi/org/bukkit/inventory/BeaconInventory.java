@@ -1,5 +1,7 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 信标的背包界面接口
  */
@@ -12,7 +14,7 @@ public interface BeaconInventory extends Inventory {
      *
      * @param item 新的物品.
      */
-    void setItem(ItemStack item);
+    void setItem(@Nullable ItemStack item);
 
     /**
      * 返回信标内的物品. 
@@ -21,5 +23,6 @@ public interface BeaconInventory extends Inventory {
      *
      * @return 物品
      */
+    @Nullable
     ItemStack getItem();
 }

@@ -3,6 +3,8 @@ package org.bukkit.inventory.meta;
 import java.util.List;
 import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface BannerMeta extends ItemMeta {
 
@@ -15,6 +17,7 @@ public interface BannerMeta extends ItemMeta {
      * @deprecated 旗帜底色现以数据值的形式存储，而不是元数据.
      */
     @Deprecated
+    @Nullable
     DyeColor getBaseColor();
 
     /**
@@ -26,7 +29,7 @@ public interface BannerMeta extends ItemMeta {
      * @deprecated 旗帜底色现以数据值的形式存储，而不是元数据.
      */
     @Deprecated
-    void setBaseColor(DyeColor color);
+    void setBaseColor(@Nullable DyeColor color);
 
     /**
      * 返回这个旗帜的图案的列表.
@@ -35,6 +38,7 @@ public interface BannerMeta extends ItemMeta {
      *
      * @return 图案列表
      */
+    @NotNull
     List<Pattern> getPatterns();
 
     /**
@@ -44,7 +48,7 @@ public interface BannerMeta extends ItemMeta {
      *
      * @param patterns 新的图案的列表
      */
-    void setPatterns(List<Pattern> patterns);
+    void setPatterns(@NotNull List<Pattern> patterns);
 
     /**
      * 在现有的图案顶上新增图案.
@@ -54,7 +58,7 @@ public interface BannerMeta extends ItemMeta {
      *
      * @param pattern 要新增的图案
      */
-    void addPattern(Pattern pattern);
+    void addPattern(@NotNull Pattern pattern);
 
     /**
      * 返回在指定索引处的图案.
@@ -63,7 +67,9 @@ public interface BannerMeta extends ItemMeta {
      *
      * @param i 索引
      * @return 图案
+     * @throws IndexOutOfBoundsException 当索引值不在<code>"[0, numberOfPatterns())"</code>区间内
      */
+    @NotNull
     Pattern getPattern(int i);
 
     /**
@@ -73,7 +79,9 @@ public interface BannerMeta extends ItemMeta {
      *
      * @param i 索引
      * @return 移除的图案
+     * @throws IndexOutOfBoundsException 当索引值不在<code>"[0, numberOfPatterns())"</code>区间内
      */
+    @NotNull
     Pattern removePattern(int i);
 
     /**
@@ -83,8 +91,9 @@ public interface BannerMeta extends ItemMeta {
      *
      * @param i 索引
      * @param pattern 新的图案
+     * @throws IndexOutOfBoundsException 当索引值不在<code>"[0, numberOfPatterns())"</code>区间内
      */
-    void setPattern(int i, Pattern pattern);
+    void setPattern(int i, @NotNull Pattern pattern);
 
     /**
      * 返回在这个旗帜的图案数量.

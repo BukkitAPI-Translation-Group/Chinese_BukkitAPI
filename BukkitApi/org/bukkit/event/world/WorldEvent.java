@@ -2,6 +2,7 @@ package org.bukkit.event.world;
 
 import org.bukkit.World;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表世界范围内的事件.
@@ -9,7 +10,7 @@ import org.bukkit.event.Event;
 public abstract class WorldEvent extends Event {
     private final World world;
 
-    public WorldEvent(final World world) {
+    public WorldEvent(@NotNull final World world) {
         this.world = world;
     }
 
@@ -21,6 +22,7 @@ public abstract class WorldEvent extends Event {
      *
      * @return 引发这个事件的世界
      */
+    @NotNull
     public World getWorld() {
         return world;
     }

@@ -2,10 +2,10 @@ package org.bukkit.event.player;
 
 import java.net.InetAddress;
 import java.util.UUID;
-
 import org.bukkit.Warning;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 玩家尝试登录服务器事件.
@@ -24,11 +24,11 @@ public class PlayerPreLoginEvent extends Event {
     private final UUID uniqueId;
 
     @Deprecated
-    public PlayerPreLoginEvent(final String name, final InetAddress ipAddress) {
+    public PlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress) {
         this(name, ipAddress, null);
     }
 
-    public PlayerPreLoginEvent(final String name, final InetAddress ipAddress, final UUID uniqueId) {
+    public PlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress, @NotNull final UUID uniqueId) {
         this.result = Result.ALLOWED;
         this.message = "";
         this.name = name;
@@ -42,6 +42,7 @@ public class PlayerPreLoginEvent extends Event {
      * 原文:Gets the current result of the login, as an enum
      * @return 当前事件的状态
      */
+    @NotNull
     public Result getResult() {
         return result;
     }
@@ -53,30 +54,31 @@ public class PlayerPreLoginEvent extends Event {
      *
      * @param result 当前事件的状态
      */
-    public void setResult(final Result result) {
+    public void setResult(@NotNull final Result result) {
         this.result = result;
     }
 
     /**
-     * 如果getResult() !=Result.ALLOWED，那么获取踢出的信息.
+     * 如果getResult() !=Result.ALLOWED (拒绝玩家进入), 那么获取踢出的信息.
      * <p>
      * 原文:Gets the current kick message that will be used if getResult() !=
      * Result.ALLOWED
      *
      * @return result 踢出的信息
      */
+    @NotNull
     public String getKickMessage() {
         return message;
     }
 
     /**
-     * 设置如果getResult() !=Result.ALLOWED，那么将要踢出的消息.
+     * 设置如果getResult() !=Result.ALLOWED (拒绝玩家进入), 那么将要踢出的消息.
      * <p>
      * 原文:Sets the kick message to display if getResult() != Result.ALLOWED
      *
      * @param message 设置踢出的消息
      */
-    public void setKickMessage(final String message) {
+    public void setKickMessage(@NotNull final String message) {
         this.message = message;
     }
 
@@ -98,7 +100,7 @@ public class PlayerPreLoginEvent extends Event {
      * @param result 结果
      * @param message 理由
      */
-    public void disallow(final Result result, final String message) {
+    public void disallow(@NotNull final Result result, @NotNull final String message) {
         this.result = result;
         this.message = message;
     }
@@ -110,6 +112,7 @@ public class PlayerPreLoginEvent extends Event {
      *
      * @return 玩家名字
      */
+    @NotNull
     public String getName() {
         return name;
     }
@@ -121,10 +124,12 @@ public class PlayerPreLoginEvent extends Event {
      *
      * @return 玩家IP地址
      */
+    @NotNull
     public InetAddress getAddress() {
         return ipAddress;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
@@ -137,10 +142,12 @@ public class PlayerPreLoginEvent extends Event {
      *
      * @return 唯一标识
      */
+    @NotNull
     public UUID getUniqueId() {
         return uniqueId;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

@@ -1,5 +1,7 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 铁毡的背包界面接口
  */
@@ -13,6 +15,7 @@ public interface AnvilInventory extends Inventory {
      *
      * @return 重命名的字符串
      */
+    @Nullable
     String getRenameText();
 
     /**

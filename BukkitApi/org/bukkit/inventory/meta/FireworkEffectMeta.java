@@ -2,6 +2,8 @@ package org.bukkit.inventory.meta;
 
 import org.bukkit.FireworkEffect;
 import org.bukkit.Material;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表可以存储单个FireworkEffect的meta.例如包含{@link Material#FIREWORK_STAR}.
@@ -15,7 +17,7 @@ public interface FireworkEffectMeta extends ItemMeta {
      *
      * @param effect 要设置的效果，或者设置成来清空效果
      */
-    void setEffect(FireworkEffect effect);
+    void setEffect(@Nullable FireworkEffect effect);
 
     /**
      * 检测这个meta是否拥有烟花效果.
@@ -33,7 +35,10 @@ public interface FireworkEffectMeta extends ItemMeta {
      *
      * @return 当前的效果,如果没有则为null
      */
+    @Nullable
     FireworkEffect getEffect();
 
+    @Override
+    @NotNull
     FireworkEffectMeta clone();
 }

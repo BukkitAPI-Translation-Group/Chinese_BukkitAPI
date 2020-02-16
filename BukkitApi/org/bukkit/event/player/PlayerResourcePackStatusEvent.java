@@ -2,6 +2,7 @@ package org.bukkit.event.player;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家对通过 {@link Player#setResourcePack(java.lang.String)} 发起的资源包请求采取动作时触发本事件.
@@ -11,7 +12,7 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final Status status;
 
-    public PlayerResourcePackStatusEvent(final Player who, Status resourcePackStatus) {
+    public PlayerResourcePackStatusEvent(@NotNull final Player who, @NotNull Status resourcePackStatus) {
         super(who);
         this.status = resourcePackStatus;
     }
@@ -23,15 +24,18 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
      *
      * @return 当前的状态
      */
+    @NotNull
     public Status getStatus() {
         return status;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
@@ -42,7 +46,7 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
     public enum Status {
 
         /**
-         * 资源包成功地下载和应用到了客户端.
+         * 资源包成功地下载并应用到了客户端.
          */
         SUCCESSFULLY_LOADED,
         /**
@@ -50,11 +54,11 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
          */
         DECLINED,
         /**
-         * 客户端接受了资源包，但下载失败
+         * 客户端接受了资源包, 但下载失败
          */
         FAILED_DOWNLOAD,
         /**
-         * 客户端接受了资源包，并开始下载
+         * 客户端接受了资源包, 并开始下载
          */
         ACCEPTED;
     }

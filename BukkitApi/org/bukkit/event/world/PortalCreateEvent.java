@@ -1,12 +1,13 @@
 package org.bukkit.event.world;
 
-import org.bukkit.block.Block;
+import java.util.List;
 import org.bukkit.World;
+import org.bukkit.block.BlockState;
+import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
-
-import java.util.ArrayList;
-import java.util.Collection;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当传送门被创建时调用.
@@ -14,13 +15,20 @@ import java.util.Collection;
 public class PortalCreateEvent extends WorldEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
     private boolean cancel = false;
-    private final ArrayList<Block> blocks = new ArrayList<Block>();
-    private CreateReason reason = CreateReason.FIRE;
+    private final List<BlockState> blocks;
+    private final Entity entity;
+    private final CreateReason reason;
 
-    public PortalCreateEvent(final Collection<Block> blocks, final World world, CreateReason reason) {
+    @Deprecated
+    public PortalCreateEvent(@NotNull final List<BlockState> blocks, @NotNull final World world, @NotNull CreateReason reason) {
+        this(blocks, world, null, reason);
+    }
+
+    public PortalCreateEvent(@NotNull final List<BlockState> blocks, @NotNull final World world, @Nullable Entity entity, @NotNull CreateReason reason) {
         super(world);
 
-        this.blocks.addAll(blocks);
+        this.blocks = blocks;
+        this.entity = entity;
         this.reason = reason;
     }
 
@@ -32,14 +40,27 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
      *
      * @return 与创建的门户所相关联的所有方块的数组列表
      */
-    public ArrayList<Block> getBlocks() {
+    @NotNull
+    public List<BlockState> getBlocks() {
         return this.blocks;
     }
 
+    /**
+     * Returns the Entity that triggered this portal creation (if available)
+     *
+     * @return Entity involved in this event
+     */
+    @Nullable
+    public Entity getEntity() {
+        return entity;
+    }
+
+    @Override
     public boolean isCancelled() {
         return cancel;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
     }
@@ -52,15 +73,18 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
      *
      * @return 传送门创建的CreateReason对象
      */
+    @NotNull
     public CreateReason getReason() {
         return reason;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }
@@ -70,12 +94,17 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
      */
     public enum CreateReason {
         /**
-         * 当用'传统'的门框创建的传送门被火点燃时.
+         * 传送门被火点燃时.
          */
         FIRE,
         /**
-         * 当传送门使用自定义PortalTravelAgent时创建为现有传送门的目的地时.
+         * 在地狱创建通往主世界的地狱出口传送门时.
          */
-        OBC_DESTINATION
+        NETHER_PAIR,
+        /**
+         * When the target end platform is created as a result of a player
+         * entering an end portal.
+         */
+        END_PLATFORM
     }
 }

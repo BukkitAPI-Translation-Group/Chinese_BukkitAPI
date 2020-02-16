@@ -1,11 +1,12 @@
 package org.bukkit.inventory.meta;
 
+import java.util.List;
 import org.bukkit.Color;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.potion.PotionData;
-
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表药水和有自定义药水效果的物品.
@@ -19,7 +20,7 @@ public interface PotionMeta extends ItemMeta {
      *
      * @param data PotionData设置基础药水状态的PotionData
      */
-    void setBasePotionData(PotionData data);
+    void setBasePotionData(@NotNull PotionData data);
 
     /**
      * 返回关于这个基础药水的药水数据.
@@ -28,6 +29,7 @@ public interface PotionMeta extends ItemMeta {
      *
      * @return PotionData对象
      */
+    @NotNull
     PotionData getBasePotionData();
 
     /**
@@ -52,6 +54,7 @@ public interface PotionMeta extends ItemMeta {
      *
      * @return 所有药水效果的不可变列表
      */
+    @NotNull
     List<PotionEffect> getCustomEffects();
 
     /**
@@ -63,7 +66,7 @@ public interface PotionMeta extends ItemMeta {
      * @param overwrite 如果有相同类型的效果存在想要覆盖就设为true
      * @return 如果药水的属性改变了则为true
      */
-    boolean addCustomEffect(PotionEffect effect, boolean overwrite);
+    boolean addCustomEffect(@NotNull PotionEffect effect, boolean overwrite);
 
     /**
      * 移除这个药水的一个自定义效果.
@@ -73,7 +76,7 @@ public interface PotionMeta extends ItemMeta {
      * @param type 要移除的药水效果类型
      * @return 如果药水的属性改变了则为true
      */
-    boolean removeCustomEffect(PotionEffectType type);
+    boolean removeCustomEffect(@NotNull PotionEffectType type);
 
     /**
      * Checks for a specific custom potion effect type on this potion.
@@ -81,7 +84,7 @@ public interface PotionMeta extends ItemMeta {
      * @param type the potion effect type to check for
      * @return true if the potion has this effect
      */
-    boolean hasCustomEffect(PotionEffectType type);
+    boolean hasCustomEffect(@NotNull PotionEffectType type);
 
     /**
      * 移动一个药水效果至这个药水效果列表的顶端.
@@ -100,7 +103,7 @@ public interface PotionMeta extends ItemMeta {
      * @deprecated 请使用 {@link org.bukkit.potion.PotionType#PotionType}
      */
     @Deprecated
-    boolean setMainEffect(PotionEffectType type);
+    boolean setMainEffect(@NotNull PotionEffectType type);
 
     /**
      * 移除这个药水的全部自定义药水效果.
@@ -128,6 +131,7 @@ public interface PotionMeta extends ItemMeta {
      *
      * @return the potion color that is set
      */
+    @Nullable
     Color getColor();
 
     /**
@@ -136,7 +140,7 @@ public interface PotionMeta extends ItemMeta {
      *
      * @param color the color to set
      */
-    void setColor(Color color);
+    void setColor(@Nullable Color color);
 
     @Override
     PotionMeta clone();

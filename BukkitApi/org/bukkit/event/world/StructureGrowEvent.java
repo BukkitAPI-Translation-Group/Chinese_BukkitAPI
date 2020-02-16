@@ -7,6 +7,8 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 当一个有机结构试图生长的时调用此事件(树苗 {@literal ->} 树, 蘑菇 {@literal ->} 巨型蘑菇, 自然生长的或使用骨粉生长的).
@@ -20,7 +22,7 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
     private final Player player;
     private final List<BlockState> blocks;
 
-    public StructureGrowEvent(final Location location, final TreeType species, final boolean bonemeal, final Player player, final List<BlockState> blocks) {
+    public StructureGrowEvent(@NotNull final Location location, @NotNull final TreeType species, final boolean bonemeal, @Nullable final Player player, @NotNull final List<BlockState> blocks) {
         super(location.getWorld());
         this.location = location;
         this.species = species;
@@ -37,6 +39,7 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
      *
      * @return 结构的位置
      */
+    @NotNull
     public Location getLocation() {
         return location;
     }
@@ -50,6 +53,7 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
      *
      * @return 结构类型
      */
+    @NotNull
     public TreeType getSpecies() {
         return species;
     }
@@ -74,6 +78,7 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
      *
      * @return “种”下这个结构的玩家，如果为null则这个不是手工创建的
      */
+    @Nullable
     public Player getPlayer() {
         return player;
     }
@@ -86,23 +91,28 @@ public class StructureGrowEvent extends WorldEvent implements Cancellable {
      *
      * @return 与结构有关的所有方块的列表
      */
+    @NotNull
     public List<BlockState> getBlocks() {
         return blocks;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

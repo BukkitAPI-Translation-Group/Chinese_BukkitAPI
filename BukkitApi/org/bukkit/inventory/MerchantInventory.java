@@ -1,5 +1,8 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 代表玩家和商人之间的用户界面接口.
  * <br>
@@ -14,6 +17,7 @@ public interface MerchantInventory extends Inventory {
 
     /**
      * 获取当前的交易配方的索引.
+     * <p>
      * 原文: Get the index of the currently selected recipe.
      *
      * @return 当前所选的交易配方的索引
@@ -21,10 +25,31 @@ public interface MerchantInventory extends Inventory {
     int getSelectedRecipeIndex();
 
     /**
-     * 获取当前选择的交易配方.
-     * 原文: Get the currently selected recipe.
+     * 获取当前活跃的交易配方.
+     * <p>
+     * This will be <code>null</code> if the items provided by the player do
+     * not match the ingredients of the selected recipe. This does not
+     * necessarily match the recipe selected by the player: If the player has
+     * selected the first recipe, the merchant will search all of its offers
+     * for a matching recipe to activate.
+     * <p>
+     * 原文:Get the currently active recipe.
+     * <p>
+     * This will be <code>null</code> if the items provided by the player do
+     * not match the ingredients of the selected recipe. This does not
+     * necessarily match the recipe selected by the player: If the player has
+     * selected the first recipe, the merchant will search all of its offers
+     * for a matching recipe to activate.
      *
-     * @return 当前选择的交易配方
+     * @return 当前活跃的交易配方
      */
     MerchantRecipe getSelectedRecipe();
+
+    /**
+     * Gets the Merchant associated with this inventory.
+     *
+     * @return merchant
+     */
+    @NotNull
+    Merchant getMerchant();
 }

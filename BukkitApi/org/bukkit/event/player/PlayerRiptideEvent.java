@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 当玩家在使用三叉戟上的激流附魔推动它们在空中飞行(需要在下雨才能在空中飞行)时触发本事件
+ * 当玩家在使用三叉戟上的激流附魔推动它们在空中飞行(需要在雨天才能在空中飞行)时触发本事件
  * <br>
  * 什么是激流:
  * <ul>
@@ -16,7 +16,7 @@ import org.bukkit.inventory.ItemStack;
  * <li>如果玩家未处在水中或所处地未下雨, 则玩家将无法投掷激流附魔的三叉戟</li>
  * </ul>
  * <br>
- * 注意: 激流动作在客户端执行, 因此在此事件中操纵玩家可能会产生所不希望的影响.
+ * 注意: 激流动作在客户端执行, 因此在此事件中操纵玩家可能会产生所不期望的影响.
  * <p>
  * 原文:
  * This event is fired when the player activates the riptide enchantment, using
@@ -30,28 +30,31 @@ public class PlayerRiptideEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final ItemStack item;
 
-    public PlayerRiptideEvent(final Player who, final ItemStack item) {
+    public PlayerRiptideEvent(@NotNull final Player who, @NotNull final ItemStack item) {
         super(who);
         this.item = item;
     }
 
     /**
-     * 获取包含激流附魔的物品.
+     * 获取玩家使用的带激流附魔的三叉戟.
      * <p>
      * 原文:
      * Gets the item containing the used enchantment.
      *
-     * @return 包含激流附魔的 {@link ItemStack}.
+     * @return 包含激流附魔的 {@link ItemStack 三叉戟物品堆}.
      */
+    @NotNull
     public ItemStack getItem() {
         return item;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

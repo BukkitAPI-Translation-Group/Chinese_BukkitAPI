@@ -1,6 +1,7 @@
 package org.bukkit.event.world;
 
 import org.bukkit.Chunk;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表与区块有关系的事件.
@@ -8,7 +9,7 @@ import org.bukkit.Chunk;
 public abstract class ChunkEvent extends WorldEvent {
     protected Chunk chunk;
 
-    protected ChunkEvent(final Chunk chunk) {
+    protected ChunkEvent(@NotNull final Chunk chunk) {
         super(chunk.getWorld());
         this.chunk = chunk;
     }
@@ -21,6 +22,7 @@ public abstract class ChunkEvent extends WorldEvent {
      *
      * @return 引发此事件的区块
      */
+    @NotNull
     public Chunk getChunk() {
         return chunk;
     }

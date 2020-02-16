@@ -1,6 +1,7 @@
 package org.bukkit.event.server;
 
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 用于插件的启用和禁用事件.
@@ -8,7 +9,7 @@ import org.bukkit.plugin.Plugin;
 public abstract class PluginEvent extends ServerEvent {
     private final Plugin plugin;
 
-    public PluginEvent(final Plugin plugin) {
+    public PluginEvent(@NotNull final Plugin plugin) {
         this.plugin = plugin;
     }
 
@@ -19,6 +20,7 @@ public abstract class PluginEvent extends ServerEvent {
      *
      * @return 激活这个事件的插件
      */
+    @NotNull
     public Plugin getPlugin() {
         return plugin;
     }

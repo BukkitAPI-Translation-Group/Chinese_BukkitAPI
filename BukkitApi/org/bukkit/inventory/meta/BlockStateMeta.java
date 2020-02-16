@@ -2,6 +2,7 @@
 package org.bukkit.inventory.meta;
 
 import org.bukkit.block.BlockState;
+import org.jetbrains.annotations.NotNull;
 
 public interface BlockStateMeta extends ItemMeta {
 
@@ -28,6 +29,7 @@ public interface BlockStateMeta extends ItemMeta {
      *
      * @return 附加的状态或一个新的状态
      */
+    @NotNull
     BlockState getBlockState();
 
     /**
@@ -38,5 +40,5 @@ public interface BlockStateMeta extends ItemMeta {
      * @param blockState 要附加给这个方块的BlockState
      * @throws IllegalArgumentException 如果blockState参数为null或对于这个物品是无效的
      */
-    void setBlockState(BlockState blockState);
+    void setBlockState(@NotNull BlockState blockState);
 }

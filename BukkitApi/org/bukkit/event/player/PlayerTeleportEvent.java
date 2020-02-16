@@ -3,6 +3,8 @@ package org.bukkit.event.player;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 玩家传送事件.
@@ -11,11 +13,11 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
     private static final HandlerList handlers = new HandlerList();
     private TeleportCause cause = TeleportCause.UNKNOWN;
 
-    public PlayerTeleportEvent(final Player player, final Location from, final Location to) {
+    public PlayerTeleportEvent(@NotNull final Player player, @NotNull final Location from, @Nullable final Location to) {
         super(player, from, to);
     }
 
-    public PlayerTeleportEvent(final Player player, final Location from, final Location to, final TeleportCause cause) {
+    public PlayerTeleportEvent(@NotNull final Player player, @NotNull final Location from, @Nullable final Location to, @NotNull final TeleportCause cause) {
         this(player, from, to);
 
         this.cause = cause;
@@ -28,6 +30,7 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
      *
      * @return 传送理由
      */
+    @NotNull
     public TeleportCause getCause() {
         return cause;
     }
@@ -71,11 +74,13 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
         UNKNOWN;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

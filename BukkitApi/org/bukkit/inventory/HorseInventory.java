@@ -1,7 +1,9 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.Nullable;
+
 /**
- * 马的界面接口.
+ * 马(抽象)的界面接口.
  */
 public interface HorseInventory extends AbstractHorseInventory {
 
@@ -12,6 +14,7 @@ public interface HorseInventory extends AbstractHorseInventory {
      *
      * @return 盔甲
      */
+    @Nullable
     ItemStack getArmor();
 
     /**
@@ -21,5 +24,5 @@ public interface HorseInventory extends AbstractHorseInventory {
      *
      * @param stack 盔甲
      */
-    void setArmor(ItemStack stack);
+    void setArmor(@Nullable ItemStack stack);
 }

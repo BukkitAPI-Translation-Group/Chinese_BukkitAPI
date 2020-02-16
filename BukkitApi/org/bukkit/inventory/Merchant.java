@@ -1,8 +1,9 @@
 package org.bukkit.inventory;
 
 import java.util.List;
-
 import org.bukkit.entity.HumanEntity;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个商人.商人是一种特殊类型的库存，是一种以物换物的自定义交易.
@@ -19,6 +20,7 @@ public interface Merchant {
      *
      * @return 一个不可变的交易列表
      */
+    @NotNull
     List<MerchantRecipe> getRecipes();
 
     /**
@@ -33,7 +35,7 @@ public interface Merchant {
      *
      * @param recipes 一个关于{@link MerchantRecipe}的List
      */
-    void setRecipes(List<MerchantRecipe> recipes);
+    void setRecipes(@NotNull List<MerchantRecipe> recipes);
 
     /**
      * 获取该商人的交易列表的某个索引处的{@link MerchantRecipe}.
@@ -42,8 +44,9 @@ public interface Merchant {
      *
      * @param i 索引
      * @return {@link MerchantRecipe}
-     * @throws IndexOutOfBoundsException 当下标越界时抛出此异常
+     * @throws IndexOutOfBoundsException 当索引越界时抛出此异常
      */
+    @NotNull
     MerchantRecipe getRecipe(int i) throws IndexOutOfBoundsException;
 
     /**
@@ -53,9 +56,9 @@ public interface Merchant {
      *
      * @param i      索引
      * @param recipe 给定的交易配方
-     * @throws IndexOutOfBoundsException 当下标越界时抛出此异常
+     * @throws IndexOutOfBoundsException 当索引越界时抛出此异常
      */
-    void setRecipe(int i, MerchantRecipe recipe) throws IndexOutOfBoundsException;
+    void setRecipe(int i, @NotNull MerchantRecipe recipe) throws IndexOutOfBoundsException;
 
     /**
      * 获取此商人当前可用的交易数量.
@@ -83,5 +86,6 @@ public interface Merchant {
      *
      * @return 与商人正在交易的玩家, 当没有交易的时候返回null
      */
+    @Nullable
     HumanEntity getTrader();
 }

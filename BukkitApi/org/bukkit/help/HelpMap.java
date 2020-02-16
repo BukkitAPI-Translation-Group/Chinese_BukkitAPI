@@ -2,6 +2,8 @@ package org.bukkit.help;
 
 import java.util.Collection;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * HelpMap跟踪所有注册在Bukkit服务器的帮助主题。
@@ -36,7 +38,8 @@ public interface HelpMap {
      * @param topicName 按名称查找帮助主题。
      * @return 如果有则为返回{@link HelpTopic}对象，如果没有则返回null。
      */
-    public HelpTopic getHelpTopic(String topicName);
+    @Nullable
+    public HelpTopic getHelpTopic(@NotNull String topicName);
 
     /**
      * 获得所有注册过的帮助主题集合。
@@ -45,8 +48,9 @@ public interface HelpMap {
      *
      * @return 所有注册过的帮助主题。
      */
+    @NotNull
     public Collection<HelpTopic> getHelpTopics();
-    
+
     /**
      * 把主题添加到服务器的帮助索引。
      * <p>
@@ -54,7 +58,7 @@ public interface HelpMap {
      *
      * @param topic 要添加的帮助主题.
      */
-    public void addTopic(HelpTopic topic);
+    public void addTopic(@NotNull HelpTopic topic);
 
     /**
      * 清除帮助索引的内容。通常在服务器重新加载时调用。
@@ -93,7 +97,7 @@ public interface HelpMap {
      * 原文：Thrown if {@code commandClass} does
      *     not derive from a legal base class.
      */
-    public void registerHelpTopicFactory(Class<?> commandClass, HelpTopicFactory<?> factory);
+    public void registerHelpTopicFactory(@NotNull Class<?> commandClass, @NotNull HelpTopicFactory<?> factory);
 
     /**
      * 获取服务器管理者选择从帮助索引中排除的插件列表。
@@ -109,5 +113,6 @@ public interface HelpMap {
      *
      * @return 一个应该被排除在帮助索引之外的插件列表。
      */
+    @NotNull
     public List<String> getIgnoredPlugins();
 }

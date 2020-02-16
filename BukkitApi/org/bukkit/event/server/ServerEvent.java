@@ -3,9 +3,15 @@ package org.bukkit.event.server;
 import org.bukkit.event.Event;
 
 /**
- * 其它服务器事件(杂项).
- * <p>
- * 原文:Miscellaneous server events
+ * 各种服务器事件.
  */
 public abstract class ServerEvent extends Event {
+
+    public ServerEvent() {
+        super();
+    }
+
+    public ServerEvent(boolean isAsync) {
+        super(isAsync);
+    }
 }

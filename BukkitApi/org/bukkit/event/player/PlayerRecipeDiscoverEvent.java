@@ -4,9 +4,10 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a player discovers a new recipe in the recipe book.
+ * 当玩家在配方书中解锁新配方(合成公式)时触发本事件.
  */
 public class PlayerRecipeDiscoverEvent extends PlayerEvent implements Cancellable {
 
@@ -15,16 +16,19 @@ public class PlayerRecipeDiscoverEvent extends PlayerEvent implements Cancellabl
     private boolean cancel = false;
     private final NamespacedKey recipe;
 
-    public PlayerRecipeDiscoverEvent(Player who, NamespacedKey recipe) {
+    public PlayerRecipeDiscoverEvent(@NotNull Player who, @NotNull NamespacedKey recipe) {
         super(who);
         this.recipe = recipe;
     }
 
     /**
-     * Get the namespaced key of the discovered recipe.
+     * 获取本次解锁的配方的 NamespacedKey.
+     * <p>
+     * 原文:Get the namespaced key of the discovered recipe.
      *
-     * @return the discovered recipe
+     * @return 解锁的配方名
      */
+    @NotNull
     public NamespacedKey getRecipe() {
         return recipe;
     }
@@ -39,11 +43,13 @@ public class PlayerRecipeDiscoverEvent extends PlayerEvent implements Cancellabl
         this.cancel = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

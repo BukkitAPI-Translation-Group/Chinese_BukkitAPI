@@ -1,5 +1,8 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 合成台的用户界面接口.
  */
@@ -12,6 +15,7 @@ public interface CraftingInventory extends Inventory {
      *
      * @return 合成品.
      */
+    @Nullable
     ItemStack getResult();
 
     /**
@@ -19,8 +23,9 @@ public interface CraftingInventory extends Inventory {
      * <p>
      * 原文:Get the contents of the crafting matrix.
      *
-     * @return 合成公式.
+     * @return 合成公式. 个别条目可能为null.
      */
+    @NotNull
     ItemStack[] getMatrix();
 
     /**
@@ -30,16 +35,16 @@ public interface CraftingInventory extends Inventory {
      *
      * @param newResult 新合成品.
      */
-    void setResult(ItemStack newResult);
+    void setResult(@Nullable ItemStack newResult);
 
     /**
      * Replace the contents of the crafting matrix
      *
-     * @param contents The new contents.
+     * @param contents The new contents. Individual entries may be null.
      * @throws IllegalArgumentException if the length of contents is greater
      *     than the size of the crafting matrix.
      */
-    void setMatrix(ItemStack[] contents);
+    void setMatrix(@NotNull ItemStack[] contents);
 
     /**
      * Get the current recipe formed on the crafting inventory, if any.
@@ -47,5 +52,6 @@ public interface CraftingInventory extends Inventory {
      * @return The recipe, or null if the current contents don't match any
      *     recipe.
      */
+    @Nullable
     Recipe getRecipe();
 }

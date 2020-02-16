@@ -2,6 +2,7 @@ package org.bukkit.event.player;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家改变他们的语言设置时触发本事件.
@@ -12,7 +13,7 @@ public class PlayerLocaleChangeEvent extends PlayerEvent {
     //
     private final String locale;
 
-    public PlayerLocaleChangeEvent(Player who, String locale) {
+    public PlayerLocaleChangeEvent(@NotNull Player who, @NotNull String locale) {
         super(who);
         this.locale = locale;
     }
@@ -22,15 +23,18 @@ public class PlayerLocaleChangeEvent extends PlayerEvent {
      *
      * @return 玩家选择的语言
      */
+    @NotNull
     public String getLocale() {
         return locale;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

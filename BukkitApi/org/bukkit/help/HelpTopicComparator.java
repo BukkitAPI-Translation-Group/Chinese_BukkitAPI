@@ -1,6 +1,7 @@
 package org.bukkit.help;
 
 import java.util.Comparator;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Used to impose a custom total ordering on help topics.
@@ -8,29 +9,33 @@ import java.util.Comparator;
  * All topics are listed in alphabetic order, but topics that start with a
  * slash come after topics that don't.
  */
-public class HelpTopicComparator implements Comparator<HelpTopic> {
+public final class HelpTopicComparator implements Comparator<HelpTopic> {
 
     // Singleton implementations
     private static final TopicNameComparator tnc = new TopicNameComparator();
+    @NotNull
     public static TopicNameComparator topicNameComparatorInstance() {
         return tnc;
     }
 
     private static final HelpTopicComparator htc = new HelpTopicComparator();
+    @NotNull
     public static HelpTopicComparator helpTopicComparatorInstance() {
         return htc;
     }
 
     private HelpTopicComparator() {}
 
-    public int compare(HelpTopic lhs, HelpTopic rhs) {
+    @Override
+    public int compare(@NotNull HelpTopic lhs, @NotNull HelpTopic rhs) {
         return tnc.compare(lhs.getName(), rhs.getName());
     }
 
-    public static class TopicNameComparator implements Comparator<String> {
+    public static final class TopicNameComparator implements Comparator<String> {
         private TopicNameComparator(){}
 
-        public int compare(String lhs, String rhs) {
+        @Override
+        public int compare(@NotNull String lhs, @NotNull String rhs) {
             boolean lhsStartSlash = lhs.startsWith("/");
             boolean rhsStartSlash = rhs.startsWith("/");
 

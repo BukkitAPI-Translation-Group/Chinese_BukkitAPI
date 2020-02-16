@@ -1,9 +1,9 @@
 package org.bukkit.event.player;
 
 import java.net.InetAddress;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 玩家尝试登录的事件.
@@ -20,7 +20,7 @@ public class PlayerLoginEvent extends PlayerEvent {
     private String message = "";
 
     /**
-     * 这个构造器默认踢出消息为空、登录状态为ALLOWED
+     * 这个构造器默认踢出消息为空、登录状态为ALLOWED.
      * <p>
      * 原文:
      * This constructor defaults message to an empty string, and result to
@@ -30,7 +30,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      * @param hostname 用于连接服务器的主机名
      * @param address 玩家的IP地址
      */
-    public PlayerLoginEvent(final Player player, final String hostname, final InetAddress address) {
+    public PlayerLoginEvent(@NotNull final Player player, @NotNull final String hostname, @NotNull final InetAddress address) {
         super(player);
         this.hostname = hostname;
         this.address = address;
@@ -47,7 +47,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      * @param result 事件的登录状态结果
      * @param message 拒绝登录时显示的消息
      */
-    public PlayerLoginEvent(final Player player, String hostname, final InetAddress address, final Result result, final String message) {
+    public PlayerLoginEvent(@NotNull final Player player, @NotNull String hostname, @NotNull final InetAddress address, @NotNull final Result result, @NotNull final String message) {
         this(player, hostname, address);
         this.result = result;
         this.message = message;
@@ -60,6 +60,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      *
      * @return 登录状态
      */
+    @NotNull
     public Result getResult() {
         return result;
     }
@@ -71,7 +72,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      *
      * @param result 登录状态
      */
-    public void setResult(final Result result) {
+    public void setResult(@NotNull final Result result) {
         this.result = result;
     }
 
@@ -83,6 +84,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      *
      * @return 踢出消息
      */
+    @NotNull
     public String getKickMessage() {
         return message;
     }
@@ -94,7 +96,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      *
      * @param message 踢出消息
      */
-    public void setKickMessage(final String message) {
+    public void setKickMessage(@NotNull final String message) {
         this.message = message;
     }
 
@@ -106,6 +108,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      *
      * @return 主机名
      */
+    @NotNull
     public String getHostname() {
         return hostname;
     }
@@ -128,7 +131,7 @@ public class PlayerLoginEvent extends PlayerEvent {
      * @param result 不允许玩家登录的理由
      * @param message 给用户显示的踢出消息
      */
-    public void disallow(final Result result, final String message) {
+    public void disallow(@NotNull final Result result, @NotNull final String message) {
         this.result = result;
         this.message = message;
     }
@@ -143,15 +146,18 @@ public class PlayerLoginEvent extends PlayerEvent {
      *
      * @return 玩家的IP地址。为兼容旧版，这可能是null
      */
+    @NotNull
     public InetAddress getAddress() {
         return address;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

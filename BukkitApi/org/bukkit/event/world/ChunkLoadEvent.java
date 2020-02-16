@@ -2,6 +2,7 @@ package org.bukkit.event.world;
 
 import org.bukkit.Chunk;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当一个区块被加载时调用.
@@ -10,7 +11,7 @@ public class ChunkLoadEvent extends ChunkEvent {
     private static final HandlerList handlers = new HandlerList();
     private final boolean newChunk;
 
-    public ChunkLoadEvent(final Chunk chunk, final boolean newChunk) {
+    public ChunkLoadEvent(@NotNull final Chunk chunk, final boolean newChunk) {
         super(chunk);
         this.newChunk = newChunk;
     }
@@ -31,11 +32,13 @@ public class ChunkLoadEvent extends ChunkEvent {
         return newChunk;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

@@ -2,6 +2,7 @@ package org.bukkit.event.server;
 
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当一个服务注册时调用. 
@@ -11,15 +12,17 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 public class ServiceRegisterEvent extends ServiceEvent {
     private static final HandlerList handlers = new HandlerList();
 
-    public ServiceRegisterEvent(RegisteredServiceProvider<?> registeredProvider) {
+    public ServiceRegisterEvent(@NotNull RegisteredServiceProvider<?> registeredProvider) {
         super(registeredProvider);
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

@@ -1,6 +1,7 @@
 package org.bukkit.inventory;
 
 import org.bukkit.entity.Llama;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * {@linkplain Llama 羊驼}的用户界面接口
@@ -14,6 +15,7 @@ public interface LlamaInventory extends AbstractHorseInventory {
      *
      * @return 身上的装饰的ItemStack对象
      */
+    @Nullable
     ItemStack getDecor();
 
     /**
@@ -23,5 +25,5 @@ public interface LlamaInventory extends AbstractHorseInventory {
      *
      * @param stack 给定的物品
      */
-    void setDecor(ItemStack stack);
+    void setDecor(@Nullable ItemStack stack);
 }

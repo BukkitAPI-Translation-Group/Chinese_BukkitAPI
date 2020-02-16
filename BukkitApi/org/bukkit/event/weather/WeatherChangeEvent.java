@@ -3,6 +3,7 @@ package org.bukkit.event.weather;
 import org.bukkit.World;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 天气改变事件
@@ -12,15 +13,17 @@ public class WeatherChangeEvent extends WeatherEvent implements Cancellable {
     private boolean canceled;
     private final boolean to;
 
-    public WeatherChangeEvent(final World world, final boolean to) {
+    public WeatherChangeEvent(@NotNull final World world, final boolean to) {
         super(world);
         this.to = to;
     }
 
+    @Override
     public boolean isCancelled() {
         return canceled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         canceled = cancel;
     }
@@ -37,11 +40,13 @@ public class WeatherChangeEvent extends WeatherEvent implements Cancellable {
         return to;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

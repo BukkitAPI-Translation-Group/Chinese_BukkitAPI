@@ -1,17 +1,20 @@
 package org.bukkit.event.server;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.jetbrains.annotations.NotNull;
 
 /**
- * 事件关联的注册服务器.这就相当于一个{@link org.bukkit.plugin.ServicesManager}.
+ * 与已注册服务有关的事件.
+ * {@link org.bukkit.plugin.ServicesManager}会调用本事件.
  */
 public abstract class ServiceEvent extends ServerEvent {
     private final RegisteredServiceProvider<?> provider;
 
-    public ServiceEvent(final RegisteredServiceProvider<?> provider) {
+    public ServiceEvent(@NotNull final RegisteredServiceProvider<?> provider) {
         this.provider = provider;
     }
 
+    @NotNull
     public RegisteredServiceProvider<?> getProvider() {
         return provider;
     }

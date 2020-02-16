@@ -3,6 +3,7 @@ package org.bukkit.generator;
 import java.util.Random;
 import org.bukkit.Chunk;
 import org.bukkit.World;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 用于生成一定小区域的方块的方块填充器。
@@ -32,5 +33,5 @@ public abstract class BlockPopulator {
      * @param random 使用的随机生成器
      * @param source 用于生成的区块
      */
-    public abstract void populate(World world, Random random, Chunk source);
+    public abstract void populate(@NotNull World world, @NotNull Random random, @NotNull Chunk source);
 }

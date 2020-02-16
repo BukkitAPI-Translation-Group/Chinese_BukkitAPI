@@ -1,6 +1,7 @@
 package org.bukkit.inventory;
 
 import org.bukkit.entity.AbstractHorse;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 马(抽象概念的)({@link AbstractHorse})的物品栏界面接口.
@@ -14,6 +15,7 @@ public interface AbstractHorseInventory extends Inventory {
      *
      * @return 马鞍
      */
+    @Nullable
     ItemStack getSaddle();
 
     /**
@@ -23,5 +25,5 @@ public interface AbstractHorseInventory extends Inventory {
      *
      * @param stack 马鞍
      */
-    void setSaddle(ItemStack stack);
+    void setSaddle(@Nullable ItemStack stack);
 }

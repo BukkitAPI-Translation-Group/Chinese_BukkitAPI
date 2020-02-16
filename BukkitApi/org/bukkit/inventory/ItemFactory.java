@@ -6,6 +6,8 @@ import org.bukkit.Server;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * ItemFactory的一个实例可以通过{@link Server#getItemFactory()}来获得.
@@ -30,7 +32,8 @@ public interface ItemFactory {
      * @param material 给定的材质
      * @return 利用给定的{@link Material}返回这个{@link Material}所对应的ItemMeta, 并且只能用于Type为给定的{@link Material}的ItemStack上
      */
-    ItemMeta getItemMeta(final Material material);
+    @Nullable
+    ItemMeta getItemMeta(@NotNull final Material material);
 
     /**
      * 该方法用于检查元数据是否能够适用于指定的ItemStack上(如果适用则物品不会丢失之前的数据).
@@ -47,7 +50,7 @@ public interface ItemFactory {
      * @return 如果ItemStack可以应用元数据并且不丢失数据, 则返回true, 否则返回false
      * @throws IllegalArgumentException 如果元数据不是由ItemFactory创建出来的则抛出此异常
      */
-    boolean isApplicable(final ItemMeta meta, final ItemStack stack) throws IllegalArgumentException;
+    boolean isApplicable(@Nullable final ItemMeta meta, @Nullable final ItemStack stack) throws IllegalArgumentException;
 
     /**
      * 该方法用于检查元数据是否能够适用于指定的{@link Material}上(如果适用则不会丢失数据).
@@ -65,7 +68,7 @@ public interface ItemFactory {
      * @return 如果可以应用元数据并且不丢失数据，则返回true，否则返回false
      * @throws IllegalArgumentException 如果元数据不是由ItemFactory创建出来的则抛出此异常
      */
-    boolean isApplicable(final ItemMeta meta, final Material material) throws IllegalArgumentException;
+    boolean isApplicable(@Nullable final ItemMeta meta, @Nullable final Material material) throws IllegalArgumentException;
 
     /**
      * 该方法用于比较两个ItemStack的元数据对象.
@@ -77,7 +80,7 @@ public interface ItemFactory {
      * @return 如果其中一个元数据有数据而另一个没有, 则返回false, 否则返回true
      * @throws IllegalArgumentException 如果两个元数据都不是由ItemFactory创建出来的则抛出此异常
      */
-    boolean equals(final ItemMeta meta1, final ItemMeta meta2) throws IllegalArgumentException;
+    boolean equals(@Nullable final ItemMeta meta1, @Nullable final ItemMeta meta2) throws IllegalArgumentException;
 
     /**
      * 返回一个适用于给定的ItemStack的ItemMeta
@@ -109,7 +112,8 @@ public interface ItemFactory {
      * 当ItemStack为AIR时, 此方法将会返回null
      * @throws IllegalArgumentException 如果元数据不是由ItemFactory创建出来的则抛出此异常
      */
-    ItemMeta asMetaFor(final ItemMeta meta, final ItemStack stack) throws IllegalArgumentException;
+    @Nullable
+    ItemMeta asMetaFor(@NotNull final ItemMeta meta, @NotNull final ItemStack stack) throws IllegalArgumentException;
 
     /**
      * 返回一个适用于给定的Material的ItemMeta
@@ -141,7 +145,8 @@ public interface ItemFactory {
      * 当ItemStack为AIR时, 此方法将会返回null
      * @throws IllegalArgumentException 如果元数据不是由ItemFactory创建出来的则抛出此异常
      */
-    ItemMeta asMetaFor(final ItemMeta meta, final Material material) throws IllegalArgumentException;
+    @Nullable
+    ItemMeta asMetaFor(@NotNull final ItemMeta meta, @NotNull final Material material) throws IllegalArgumentException;
 
     /**
      * 返回所有皮甲的默认颜色.
@@ -150,18 +155,20 @@ public interface ItemFactory {
      *
      * @return 所有皮甲的默认颜色.
      */
+    @NotNull
     Color getDefaultLeatherColor();
 
     /**
      * Apply a material change for an item meta. Do not use under any
      * circumstances.
      *
-     * @param meta
-     * @param material
+     * @param meta meta
+     * @param material material
      * @return updated material
-     * @throws IllegalArgumentException
+     * @throws IllegalArgumentException if bad material or data
      * @deprecated for internal use only
      */
     @Deprecated
-    Material updateMaterial(final ItemMeta meta, final Material material) throws IllegalArgumentException;
+    @NotNull
+    Material updateMaterial(@NotNull final ItemMeta meta, @NotNull final Material material) throws IllegalArgumentException;
 }

@@ -1,5 +1,7 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface InventoryHolder {
 
     /**
@@ -9,5 +11,6 @@ public interface InventoryHolder {
      *
      * @return The inventory.
      */
+    @NotNull
     public Inventory getInventory();
 }

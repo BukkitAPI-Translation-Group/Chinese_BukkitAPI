@@ -1,10 +1,9 @@
 package org.bukkit;
 
-import java.util.Map;
-
-import org.bukkit.entity.HumanEntity;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
+import org.bukkit.entity.HumanEntity;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表{@link HumanEntity}能有的不同种类的游戏模式.
@@ -31,7 +30,7 @@ public enum GameMode {
     SPECTATOR(3);
 
     private final int value;
-    private final static Map<Integer, GameMode> BY_ID = Maps.newHashMap();
+    private static final Map<Integer, GameMode> BY_ID = Maps.newHashMap();
 
     private GameMode(final int value) {
         this.value = value;
@@ -62,6 +61,7 @@ public enum GameMode {
      * @deprecated 魔法值
      */
     @Deprecated
+    @Nullable
     public static GameMode getByValue(final int value) {
         return BY_ID.get(value);
     }

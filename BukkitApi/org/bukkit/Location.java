@@ -1,12 +1,16 @@
 package org.bukkit;
 
+import com.google.common.base.Preconditions;
+import java.lang.ref.Reference;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
-
 import org.bukkit.block.Block;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.util.NumberConversions;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 世界中的三维位置,包含x,y,z.
@@ -20,7 +24,7 @@ import org.bukkit.util.Vector;
  * 建议您具备高中数学必修4相关知识.
  */
 public class Location implements Cloneable, ConfigurationSerializable {
-    private World world;
+    private Reference<World> world;
     private double x;
     private double y;
     private double z;
@@ -37,7 +41,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param y 位置y轴坐标
      * @param z 位置z轴坐标
      */
-    public Location(final World world, final double x, final double y, final double z) {
+    public Location(@Nullable final World world, final double x, final double y, final double z) {
         this(world, x, y, z, 0, 0);
     }
 
@@ -53,8 +57,11 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param yaw x轴平面上的绝对的旋转角度, 以度为单位
      * @param pitch y轴平面上的绝对的旋转角度, 以度为单位
      */
-    public Location(final World world, final double x, final double y, final double z, final float yaw, final float pitch) {
-        this.world = world;
+    public Location(@Nullable final World world, final double x, final double y, final double z, final float yaw, final float pitch) {
+        if (world != null) {
+            this.world = new WeakReference<>(world);
+        }
+
         this.x = x;
         this.y = y;
         this.z = z;
@@ -69,8 +76,24 @@ public class Location implements Cloneable, ConfigurationSerializable {
      *
      * @param world 位置所在的新世界
      */
-    public void setWorld(World world) {
-        this.world = world;
+    public void setWorld(@Nullable World world) {
+        this.world = (world == null) ? null : new WeakReference<>(world);
+    }
+
+    /**
+     * 检查该位置所处世界是否存在并已加载.
+     * <p>
+     * 原文:Checks if world in this location is present and loaded.
+     *
+     * @return true表示已加载
+     */
+    public boolean isWorldLoaded() {
+        if (this.world == null) {
+            return false;
+        }
+
+        World world = this.world.get();
+        return world != null && Bukkit.getWorld(world.getUID()) != null;
     }
 
     /**
@@ -78,9 +101,18 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Gets the world that this location resides in
      *
-     * @return 世界
+     * @return 世界, 若未设置返回null
+     * @throws IllegalArgumentException 当世界未加载时
+     * @see #isWorldLoaded()
      */
+    @Nullable
     public World getWorld() {
+        if (this.world == null) {
+            return null;
+        }
+
+        World world = this.world.get();
+        Preconditions.checkArgument(world != null, "World unloaded");
         return world;
     }
 
@@ -91,8 +123,9 @@ public class Location implements Cloneable, ConfigurationSerializable {
      *
      * @return 本位置所在区块
      */
+    @NotNull
     public Chunk getChunk() {
-        return world.getChunkAt(this);
+        return getWorld().getChunkAt(this);
     }
 
     /**
@@ -102,8 +135,9 @@ public class Location implements Cloneable, ConfigurationSerializable {
      *
      * @return 所在位置对应的方块
      */
+    @NotNull
     public Block getBlock() {
-        return world.getBlockAt(this);
+        return getWorld().getBlockAt(this);
     }
 
     /**
@@ -321,6 +355,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @return 指向此位置的{@link
      *     #getPitch() 偏航角}和{@link #getYaw() 俯仰角}的向量
      */
+    @NotNull
     public Vector getDirection() {
         Vector vector = new Vector();
 
@@ -346,7 +381,8 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param vector 方向向量
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      */
-    public Location setDirection(Vector vector) {
+    @NotNull
+    public Location setDirection(@NotNull Vector vector) {
         /*
          * Sin = Opp / Hyp
          * Cos = Adj / Hyp
@@ -385,7 +421,8 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      * @throws IllegalArgumentException 若两个位置所处世界各不相同
      */
-    public Location add(Location vec) {
+    @NotNull
+    public Location add(@NotNull Location vec) {
         if (vec == null || vec.getWorld() != getWorld()) {
             throw new IllegalArgumentException("Cannot add Locations of differing worlds");
         }
@@ -405,7 +442,8 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param vec 向量
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      */
-    public Location add(Vector vec) {
+    @NotNull
+    public Location add(@NotNull Vector vec) {
         this.x += vec.getX();
         this.y += vec.getY();
         this.z += vec.getZ();
@@ -423,6 +461,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param z Z坐标
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      */
+    @NotNull
     public Location add(double x, double y, double z) {
         this.x += x;
         this.y += y;
@@ -440,7 +479,8 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      * @throws IllegalArgumentException 若两个位置所处世界各不相同
      */
-    public Location subtract(Location vec) {
+    @NotNull
+    public Location subtract(@NotNull Location vec) {
         if (vec == null || vec.getWorld() != getWorld()) {
             throw new IllegalArgumentException("Cannot add Locations of differing worlds");
         }
@@ -460,7 +500,8 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param vec 向量
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      */
-    public Location subtract(Vector vec) {
+    @NotNull
+    public Location subtract(@NotNull Vector vec) {
         this.x -= vec.getX();
         this.y -= vec.getY();
         this.z -= vec.getZ();
@@ -480,6 +521,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @param z Z coordinate
      * @return the same location
      */
+    @NotNull
     public Location subtract(double x, double y, double z) {
         this.x -= x;
         this.y -= y;
@@ -539,7 +581,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @return the distance
      * @throws IllegalArgumentException for differing worlds
      */
-    public double distance(Location o) {
+    public double distance(@NotNull Location o) {
         return Math.sqrt(distanceSquared(o));
     }
 
@@ -553,7 +595,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @return 距离的平方
      * @throws IllegalArgumentException 若两个位置所处世界各不相同
      */
-    public double distanceSquared(Location o) {
+    public double distanceSquared(@NotNull Location o) {
         if (o == null) {
             throw new IllegalArgumentException("Cannot measure distance to a null location");
         } else if (o.getWorld() == null || getWorld() == null) {
@@ -575,6 +617,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @see Vector
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      */
+    @NotNull
     public Location multiply(double m) {
         x *= m;
         y *= m;
@@ -590,6 +633,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @see Vector
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      */
+    @NotNull
     public Location zero() {
         x = 0;
         y = 0;
@@ -607,7 +651,9 @@ public class Location implements Cloneable, ConfigurationSerializable {
         }
         final Location other = (Location) obj;
 
-        if (this.world != other.world && (this.world == null || !this.world.equals(other.world))) {
+        World world = (this.world == null) ? null : this.world.get();
+        World otherWorld = (other.world == null) ? null : other.world.get();
+        if (world != otherWorld && (world == null || !world.equals(otherWorld))) {
             return false;
         }
         if (Double.doubleToLongBits(this.x) != Double.doubleToLongBits(other.x)) {
@@ -632,7 +678,8 @@ public class Location implements Cloneable, ConfigurationSerializable {
     public int hashCode() {
         int hash = 3;
 
-        hash = 19 * hash + (this.world != null ? this.world.hashCode() : 0);
+        World world = (this.world == null) ? null : this.world.get();
+        hash = 19 * hash + (world != null ? world.hashCode() : 0);
         hash = 19 * hash + (int) (Double.doubleToLongBits(this.x) ^ (Double.doubleToLongBits(this.x) >>> 32));
         hash = 19 * hash + (int) (Double.doubleToLongBits(this.y) ^ (Double.doubleToLongBits(this.y) >>> 32));
         hash = 19 * hash + (int) (Double.doubleToLongBits(this.z) ^ (Double.doubleToLongBits(this.z) >>> 32));
@@ -643,6 +690,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
 
     @Override
     public String toString() {
+        World world = (this.world == null) ? null : this.world.get();
         return "Location{" + "world=" + world + ",x=" + x + ",y=" + y + ",z=" + z + ",pitch=" + pitch + ",yaw=" + yaw + '}';
     }
 
@@ -653,11 +701,13 @@ public class Location implements Cloneable, ConfigurationSerializable {
      *
      * @return 包含该位置坐标的向量表示
      */
+    @NotNull
     public Vector toVector() {
         return new Vector(x, y, z);
     }
 
     @Override
+    @NotNull
     public Location clone() {
         try {
             return (Location) super.clone();
@@ -695,10 +745,15 @@ public class Location implements Cloneable, ConfigurationSerializable {
         return NumberConversions.floor(loc);
     }
 
+    @Override
     @Utility
+    @NotNull
     public Map<String, Object> serialize() {
         Map<String, Object> data = new HashMap<String, Object>();
-        data.put("world", this.world.getName());
+
+        if (this.world != null) {
+            data.put("world", getWorld().getName());
+        }
 
         data.put("x", this.x);
         data.put("y", this.y);
@@ -720,12 +775,59 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * @throws IllegalArgumentException 如果位置所处世界不存在
      * @see ConfigurationSerializable
      */
-    public static Location deserialize(Map<String, Object> args) {
-        World world = Bukkit.getWorld((String) args.get("world"));
-        if (world == null) {
-            throw new IllegalArgumentException("unknown world");
+    @NotNull
+    public static Location deserialize(@NotNull Map<String, Object> args) {
+        World world = null;
+        if (args.containsKey("world")) {
+            world = Bukkit.getWorld((String) args.get("world"));
+            if (world == null) {
+                throw new IllegalArgumentException("unknown world");
+            }
         }
 
         return new Location(world, NumberConversions.toDouble(args.get("x")), NumberConversions.toDouble(args.get("y")), NumberConversions.toDouble(args.get("z")), NumberConversions.toFloat(args.get("yaw")), NumberConversions.toFloat(args.get("pitch")));
+    }
+
+    /**
+     * 标准化给定的偏航角至<code>+/-180</code>范围内.
+     * <p>
+     * 译注:比如角度值的绝对值大于180, 用此方法可使角度的绝对值在0-180以内.
+     * <p>
+     * 原文:Normalizes the given yaw angle to a value between <code>+/-180</code>
+     * degrees.
+     *
+     * @param yaw 偏航角, 使用角度制
+     * @return 标准化的偏航角, 使用角度制
+     * @see Location#getYaw()
+     */
+    public static float normalizeYaw(float yaw) {
+        yaw %= 360.0f;
+        if (yaw >= 180.0f) {
+            yaw -= 360.0f;
+        } else if (yaw < -180.0f) {
+            yaw += 360.0f;
+        }
+        return yaw;
+    }
+
+    /**
+     * 标准化给定的俯仰角至<code>+/-180</code>范围内.
+     * <p>
+     * 译注:比如角度值的绝对值大于180, 用此方法可使角度的绝对值在0-180以内.
+     * <p>
+     * 原文:Normalizes the given pitch angle to a value between <code>+/-90</code>
+     * degrees.
+     *
+     * @param pitch 俯仰角, 使用角度制
+     * @return 标准化的俯仰角, 使用角度制
+     * @see Location#getPitch()
+     */
+    public static float normalizePitch(float pitch) {
+        if (pitch > 90.0f) {
+            pitch = 90.0f;
+        } else if (pitch < -90.0f) {
+            pitch = -90.0f;
+        }
+        return pitch;
     }
 }

@@ -1,5 +1,7 @@
 package org.bukkit.inventory;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 代表某种类型的制作配方.
  * <br>
@@ -14,5 +16,6 @@ public interface Recipe {
      *
      * @return {@link ItemStack}
      */
+    @NotNull
     ItemStack getResult();
 }

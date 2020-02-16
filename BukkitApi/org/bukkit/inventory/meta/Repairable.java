@@ -1,5 +1,7 @@
 package org.bukkit.inventory.meta;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 代表可以在铁砧上被修复的物品.
  */
@@ -33,5 +35,6 @@ public interface Repairable {
     void setRepairCost(int cost);
 
     @SuppressWarnings("javadoc")
+    @NotNull
     Repairable clone();
 }

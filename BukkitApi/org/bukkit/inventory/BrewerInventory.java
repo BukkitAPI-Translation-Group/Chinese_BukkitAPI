@@ -2,6 +2,7 @@ package org.bukkit.inventory;
 
 import org.bukkit.Material;
 import org.bukkit.block.BrewingStand;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 酿造台的用户界面接口.
@@ -15,6 +16,7 @@ public interface BrewerInventory extends Inventory {
      *
      * @return 原料成分.
      */
+    @Nullable
     ItemStack getIngredient();
 
     /**
@@ -24,7 +26,7 @@ public interface BrewerInventory extends Inventory {
      *
      * @param ingredient 原料成分
      */
-    void setIngredient(ItemStack ingredient);
+    void setIngredient(@Nullable ItemStack ingredient);
 
     /**
      * 获取当前用来酿造的燃料.
@@ -33,6 +35,7 @@ public interface BrewerInventory extends Inventory {
      *
      * @return 燃料
      */
+    @Nullable
     ItemStack getFuel();
 
     /**
@@ -43,7 +46,9 @@ public interface BrewerInventory extends Inventory {
      *
      * @param fuel 燃料
      */
-    void setFuel(ItemStack fuel);
+    void setFuel(@Nullable ItemStack fuel);
 
+    @Override
+    @Nullable
     BrewingStand getHolder();
 }

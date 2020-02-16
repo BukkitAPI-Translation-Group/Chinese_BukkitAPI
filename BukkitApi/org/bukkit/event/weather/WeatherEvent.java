@@ -2,6 +2,7 @@ package org.bukkit.event.weather;
 
 import org.bukkit.World;
 import org.bukkit.event.Event;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 和天气有关的事件
@@ -9,7 +10,7 @@ import org.bukkit.event.Event;
 public abstract class WeatherEvent extends Event {
     protected World world;
 
-    public WeatherEvent(final World where) {
+    public WeatherEvent(@NotNull final World where) {
         world = where;
     }
 
@@ -21,6 +22,7 @@ public abstract class WeatherEvent extends Event {
      *
      * @return 天气事件所发生的世界
      */
+    @NotNull
     public final World getWorld() {
         return world;
     }

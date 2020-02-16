@@ -4,9 +4,11 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Vehicle;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
- * 载具被伤害的事件
+ * 载具受到伤害的事件
  */
 public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -14,7 +16,7 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
     private double damage;
     private boolean cancelled;
 
-    public VehicleDamageEvent(final Vehicle vehicle, final Entity attacker, final double damage) {
+    public VehicleDamageEvent(@NotNull final Vehicle vehicle, @Nullable final Entity attacker, final double damage) {
         super(vehicle);
         this.attacker = attacker;
         this.damage = damage;
@@ -27,6 +29,7 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
      *
      * @return 攻击这个载具的实体
      */
+    @Nullable
     public Entity getAttacker() {
         return attacker;
     }
@@ -53,19 +56,23 @@ public class VehicleDamageEvent extends VehicleEvent implements Cancellable {
         this.damage = damage;
     }
 
+    @Override
     public boolean isCancelled() {
         return cancelled;
     }
 
+    @Override
     public void setCancelled(boolean cancel) {
         this.cancelled = cancel;
     }
 
+    @NotNull
     @Override
     public HandlerList getHandlers() {
         return handlers;
     }
 
+    @NotNull
     public static HandlerList getHandlerList() {
         return handlers;
     }

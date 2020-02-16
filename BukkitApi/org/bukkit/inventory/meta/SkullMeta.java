@@ -1,6 +1,8 @@
 package org.bukkit.inventory.meta;
 
 import org.bukkit.OfflinePlayer;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表头颅.
@@ -16,6 +18,7 @@ public interface SkullMeta extends ItemMeta {
      * @deprecated 另请参阅 {@link #setOwningPlayer(org.bukkit.OfflinePlayer)}.
      */
     @Deprecated
+    @Nullable
     String getOwner();
 
     /**
@@ -30,19 +33,14 @@ public interface SkullMeta extends ItemMeta {
     /**
      * 设置这个头颅的主人.
      * <p>
-     * 插件应该在调用这个方法之前检测hasOwner()是否返回true.
-     * <p>
      * 原文：Sets the owner of the skull.
-     * <p>
-     * Plugins should check that hasOwner() returns true before calling this
-     * plugin.
      *
      * @param owner 头颅的新主人
      * @return 如果头颅主人成功被设置则为true
      * @deprecated 另请参阅 {@link #setOwningPlayer(org.bukkit.OfflinePlayer)}.
      */
     @Deprecated
-    boolean setOwner(String owner);
+    boolean setOwner(@Nullable String owner);
 
     /**
      * 获取这个头颅的主人.
@@ -51,6 +49,7 @@ public interface SkullMeta extends ItemMeta {
      *
      * @return 头颅的主人
      */
+    @Nullable
     OfflinePlayer getOwningPlayer();
 
     /**
@@ -66,7 +65,9 @@ public interface SkullMeta extends ItemMeta {
      * @param owner 头颅的新主人
      * @return 如果头颅主人成功被设置则为true
      */
-    boolean setOwningPlayer(OfflinePlayer owner);
+    boolean setOwningPlayer(@Nullable OfflinePlayer owner);
 
+    @Override
+    @NotNull
     SkullMeta clone();
 }
