@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
+import org.jetbrains.annotations.NotNull;
 
 public enum Particle {
     EXPLOSION_NORMAL,
@@ -59,6 +60,14 @@ public enum Particle {
     BUBBLE_COLUMN_UP,
     NAUTILUS,
     DOLPHIN,
+    SNEEZE,
+    CAMPFIRE_COSY_SMOKE,
+    CAMPFIRE_SIGNAL_SMOKE,
+    COMPOSTER,
+    FLASH,
+    FALLING_LAVA,
+    LANDING_LAVA,
+    FALLING_WATER,
     // ----- Legacy Separator -----
     LEGACY_BLOCK_CRACK(MaterialData.class),
     LEGACY_BLOCK_DUST(MaterialData.class),
@@ -70,7 +79,7 @@ public enum Particle {
         dataType = Void.class;
     }
 
-    Particle(Class<?> data) {
+    Particle(/*@NotNull*/ Class<?> data) {
         dataType = data;
     }
 
@@ -78,6 +87,7 @@ public enum Particle {
      * Returns the required data type for the particle
      * @return the required data type
      */
+    @NotNull
     public Class<?> getDataType() {
         return dataType;
     }
@@ -91,7 +101,7 @@ public enum Particle {
         private final Color color;
         private final float size;
 
-        public DustOptions(Color color, float size) {
+        public DustOptions(@NotNull Color color, float size) {
             Preconditions.checkArgument(color != null, "color");
             this.color = color;
             this.size = size;
@@ -102,6 +112,7 @@ public enum Particle {
          *
          * @return particle color
          */
+        @NotNull
         public Color getColor() {
             return color;
         }

@@ -1,10 +1,10 @@
 package org.bukkit;
 
-import java.util.Map;
-
-import org.apache.commons.lang.Validate;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
+import org.apache.commons.lang.Validate;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 用于储存一个指定的音符。
@@ -114,6 +114,7 @@ public class Note {
          * @deprecated 不安全的参数
          */
         @Deprecated
+        @Nullable
         public static Tone getById(byte id) {
             return BY_DATA.get(id);
         }
@@ -157,7 +158,7 @@ public class Note {
      * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#
      * @param sharped 设置音调是否升高 (例如F#)
      */
-    public Note(int octave, Tone tone, boolean sharped) {
+    public Note(int octave, @NotNull Tone tone, boolean sharped) {
         if (sharped && !tone.isSharpable()) {
             tone = Tone.values()[tone.ordinal() + 1];
             sharped = false;
@@ -179,7 +180,8 @@ public class Note {
      * @param tone 在这个八度音阶中的音调
      * @return 新的note类对象
      */
-    public static Note flat(int octave, Tone tone) {
+    @NotNull
+    public static Note flat(int octave, @NotNull Tone tone) {
         Validate.isTrue(octave != 2, "Octave cannot be 2 for flats");
         tone = tone == Tone.G ? Tone.F : Tone.values()[tone.ordinal() - 1];
         return new Note(octave, tone, tone.isSharpable());
@@ -195,7 +197,8 @@ public class Note {
      * @param tone 在这个八度音阶中的音调。如果八度音阶为2则音调必须为F#
      * @return 新的note类对象
      */
-    public static Note sharp(int octave, Tone tone) {
+    @NotNull
+    public static Note sharp(int octave, @NotNull Tone tone) {
         return new Note(octave, tone, true);
     }
 
@@ -209,7 +212,8 @@ public class Note {
      * @param tone 在这个八度音阶中的音调
      * @return 新的note类对象
      */
-    public static Note natural(int octave, Tone tone) {
+    @NotNull
+    public static Note natural(int octave, @NotNull Tone tone) {
         Validate.isTrue(octave != 2, "Octave cannot be 2 for naturals");
         return new Note(octave, tone, false);
     }
@@ -217,6 +221,7 @@ public class Note {
     /**
      * @return 在这个音符之上的半音
      */
+    @NotNull
     public Note sharped() {
         Validate.isTrue(note < 24, "This note cannot be sharped because it is the highest known note!");
         return new Note(note + 1);
@@ -225,6 +230,7 @@ public class Note {
     /**
      * @return 在这个音符之下的半音
      */
+    @NotNull
     public Note flattened() {
         Validate.isTrue(note > 0, "This note cannot be flattened because it is the lowest known note!");
         return new Note(note - 1);
@@ -268,6 +274,7 @@ public class Note {
      *
      * @return 这个音符的音调
      */
+    @NotNull
     public Tone getTone() {
         return Tone.getById(getToneByte());
     }

@@ -7,7 +7,11 @@ import org.bukkit.Material;
 
 /**
  * 代表不同的台阶.
+ *
+ * @deprecated all usage of MaterialData is deprecated and subject to removal.
+ * Use {@link org.bukkit.block.data.BlockData}.
  */
+@Deprecated
 public class Step extends TexturedMaterial {
     private static final List<Material> textures = new ArrayList<Material>();
     static {

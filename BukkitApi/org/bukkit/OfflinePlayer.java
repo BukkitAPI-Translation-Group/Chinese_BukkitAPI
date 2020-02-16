@@ -1,11 +1,12 @@
 package org.bukkit;
 
 import java.util.UUID;
-
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.ServerOperator;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface OfflinePlayer extends ServerOperator, AnimalTamer, ConfigurationSerializable {
 
@@ -29,6 +30,8 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      *
      * @return 返回玩家游戏名,如果玩家不存在返回null
      */
+    @Override
+    @Nullable
     public String getName();
 
     /**
@@ -36,6 +39,8 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      *
      * @return 玩家游戏UUID
      */
+    @Override
+    @NotNull
     public UUID getUniqueId();
 
     /**
@@ -68,6 +73,7 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      *
      * @return 玩家Player对象
      */
+    @Nullable
     public Player getPlayer();
 
     /**
@@ -119,6 +125,7 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      *
      * @return 获取玩家的床重生点Location对象信息.如果不存在返回null
      */
+    @Nullable
     public Location getBedSpawnLocation();
 
 }

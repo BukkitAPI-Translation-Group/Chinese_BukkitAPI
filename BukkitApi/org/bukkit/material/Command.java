@@ -4,7 +4,11 @@ import org.bukkit.Material;
 
 /**
  * 代表命令方块.
+ *
+ * @deprecated all usage of MaterialData is deprecated and subject to removal.
+ * Use {@link org.bukkit.block.data.BlockData}.
  */
+@Deprecated
 public class Command extends MaterialData implements Redstone {
     public Command() {
         super(Material.LEGACY_COMMAND);
@@ -32,6 +36,7 @@ public class Command extends MaterialData implements Redstone {
      *
      * @return 这个方块是否充能
      */
+    @Override
     public boolean isPowered() {
         return (getData() & 1) != 0;
     }

@@ -5,7 +5,10 @@ import org.bukkit.Material;
 
 /**
  * 代表羊毛/地毯方块.
+ * @deprecated all usage of MaterialData is deprecated and subject to removal.
+ * Use {@link org.bukkit.block.data.BlockData}.
  */
+@Deprecated
 public class Wool extends MaterialData implements Colorable {
     public Wool() {
         super(Material.LEGACY_WOOL);
@@ -37,6 +40,7 @@ public class Wool extends MaterialData implements Colorable {
      *
      * @return DyeColor枚举颜色表示
      */
+    @Override
     public DyeColor getColor() {
         return DyeColor.getByWoolData(getData());
     }
@@ -48,6 +52,7 @@ public class Wool extends MaterialData implements Colorable {
      *
      * @param color 颜色
      */
+    @Override
     public void setColor(DyeColor color) {
         setData(color.getWoolData());
     }

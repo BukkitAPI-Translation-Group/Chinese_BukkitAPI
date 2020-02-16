@@ -2,6 +2,8 @@ package org.bukkit.permissions;
 
 import java.util.HashMap;
 import java.util.Map;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 表示权限的默认值.
@@ -13,9 +15,9 @@ public enum PermissionDefault {
     NOT_OP("!op", "notop", "!operator", "notoperator", "!admin", "notadmin");
 
     private final String[] names;
-    private final static Map<String, PermissionDefault> lookup = new HashMap<String, PermissionDefault>();
+    private static final Map<String, PermissionDefault> lookup = new HashMap<String, PermissionDefault>();
 
-    private PermissionDefault(String... names) {
+    private PermissionDefault(/*@NotNull*/ String... names) {
         this.names = names;
     }
 
@@ -53,7 +55,8 @@ public enum PermissionDefault {
      * @param name 默认名称
      * @return 指定的值，如果为null即未找到
      */
-    public static PermissionDefault getByName(String name) {
+    @Nullable
+    public static PermissionDefault getByName(@NotNull String name) {
         return lookup.get(name.toLowerCase(java.util.Locale.ENGLISH).replaceAll("[^a-z!]", ""));
     }
 

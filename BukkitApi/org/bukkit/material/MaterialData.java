@@ -1,14 +1,13 @@
 package org.bukkit.material;
 
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
-import org.bukkit.block.data.BlockData;
+import org.bukkit.inventory.ItemStack;
 
 /**
  * 为某些物品或方块处理特定的元数据.
  *
  * @deprecated 所有关于MaterialData的用法已过时，并且将来会被移除.
- * 请使用 {@link BlockData}.
+ * 请使用 {@link org.bukkit.block.data.BlockData}.
  */
 @Deprecated
 public class MaterialData implements Cloneable {

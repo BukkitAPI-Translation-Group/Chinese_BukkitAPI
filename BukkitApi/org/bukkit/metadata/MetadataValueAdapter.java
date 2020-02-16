@@ -1,10 +1,11 @@
 package org.bukkit.metadata;
 
 import java.lang.ref.WeakReference;
-
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.util.NumberConversions;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Optional base class for facilitating MetadataValue implementations.
@@ -16,39 +17,48 @@ import org.bukkit.util.NumberConversions;
 public abstract class MetadataValueAdapter implements MetadataValue {
     protected final WeakReference<Plugin> owningPlugin;
 
-    protected MetadataValueAdapter(Plugin owningPlugin) {
+    protected MetadataValueAdapter(@NotNull Plugin owningPlugin) {
         Validate.notNull(owningPlugin, "owningPlugin cannot be null");
         this.owningPlugin = new WeakReference<Plugin>(owningPlugin);
     }
 
+    @Override
+    @Nullable
     public Plugin getOwningPlugin() {
         return owningPlugin.get();
     }
 
+    @Override
     public int asInt() {
         return NumberConversions.toInt(value());
     }
 
+    @Override
     public float asFloat() {
         return NumberConversions.toFloat(value());
     }
 
+    @Override
     public double asDouble() {
         return NumberConversions.toDouble(value());
     }
 
+    @Override
     public long asLong() {
         return NumberConversions.toLong(value());
     }
 
+    @Override
     public short asShort() {
         return NumberConversions.toShort(value());
     }
 
+    @Override
     public byte asByte() {
         return NumberConversions.toByte(value());
     }
 
+    @Override
     public boolean asBoolean() {
         Object value = value();
         if (value instanceof Boolean) {
@@ -66,6 +76,8 @@ public abstract class MetadataValueAdapter implements MetadataValue {
         return value != null;
     }
 
+    @Override
+    @NotNull
     public String asString() {
         Object value = value();
 

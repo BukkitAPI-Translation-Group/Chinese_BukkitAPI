@@ -7,7 +7,7 @@ import org.bukkit.block.BlockFace;
 /**
  * 代表门.
  * <p>
- * 这个类曾被弃用，但已被重构以适用于现今的门.
+ * 这个类曾被弃用，但已被重构以适用于现今的门. (然后又愉快的弃用了...)
  * 由于Minecraft的门的内部表示，依赖于isTopHalf()的一些方法未被定义.
  * <p>
  * 关于朝向：这个朝向一般是玩家放置门时他面对的方向.
@@ -20,7 +20,11 @@ import org.bukkit.block.BlockFace;
  * @see Material#LEGACY_JUNGLE_DOOR
  * @see Material#LEGACY_ACACIA_DOOR
  * @see Material#LEGACY_DARK_OAK_DOOR
+ *
+ * @deprecated all usage of MaterialData is deprecated and subject to removal.
+ * Use {@link org.bukkit.block.data.BlockData}.
  */
+@Deprecated
 public class Door extends MaterialData implements Directional, Openable {
 
     // This class breaks API contracts on Directional and Openable because
@@ -218,6 +222,7 @@ public class Door extends MaterialData implements Directional, Openable {
      * <p>
      * 原文:Result is undefined if <code>isTopHalf()</code> is true.
      */
+    @Override
     public boolean isOpen() {
         return ((getData() & 0x4) == 0x4);
     }
@@ -227,6 +232,7 @@ public class Door extends MaterialData implements Directional, Openable {
      * <p>
      * 原文:Set whether the door is open. Undefined if <code>isTopHalf()</code> is true.
      */
+    @Override
     public void setOpen(boolean isOpen) {
         setData((byte) (isOpen ? (getData() | 0x4) : (getData() & ~0x4)));
     }
@@ -273,6 +279,7 @@ public class Door extends MaterialData implements Directional, Openable {
      *
      * @param face 朝向
      */
+    @Override
     public void setFacingDirection(BlockFace face) {
         byte data = (byte) (getData() & 0xC);
         switch (face) {
@@ -302,6 +309,7 @@ public class Door extends MaterialData implements Directional, Openable {
      *
      * @return 朝向
      */
+    @Override
     public BlockFace getFacing() {
         byte data = (byte) (getData() & 0x3);
         switch (data) {

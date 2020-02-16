@@ -5,7 +5,10 @@ import org.bukkit.block.BlockFace;
 
 /**
  * 代表箱子.
+ * @deprecated all usage of MaterialData is deprecated and subject to removal.
+ * Use {@link org.bukkit.block.data.BlockData}.
  */
+@Deprecated
 public class Chest extends DirectionalContainer {
 
     public Chest() {

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents the palette that map items use.
@@ -15,11 +17,12 @@ public final class MapPalette {
     // Internal mechanisms
     private MapPalette() {}
 
+    @NotNull
     private static Color c(int r, int g, int b) {
         return new Color(r, g, b);
     }
 
-    private static double getDistance(Color c1, Color c2) {
+    private static double getDistance(@NotNull Color c1, @NotNull Color c2) {
         double rmean = (c1.getRed() + c2.getRed()) / 2.0;
         double r = c1.getRed() - c2.getRed();
         double g = c1.getGreen() - c2.getGreen();
@@ -30,6 +33,7 @@ public final class MapPalette {
         return weightR * r * r + weightG * g * g + weightB * b * b;
     }
 
+    @NotNull
     static final Color[] colors = {
         c(0, 0, 0), c(0, 0, 0), c(0, 0, 0), c(0, 0, 0),
         c(89, 125, 39), c(109, 153, 48), c(127, 178, 56), c(67, 94, 29),
@@ -163,7 +167,8 @@ public final class MapPalette {
      * @param image The image to resize.
      * @return The resized image.
      */
-    public static BufferedImage resizeImage(Image image) {
+    @NotNull
+    public static BufferedImage resizeImage(@Nullable Image image) {
         BufferedImage result = new BufferedImage(128, 128, BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = result.createGraphics();
         graphics.drawImage(image, 0, 0, 128, 128, null);
@@ -179,7 +184,8 @@ public final class MapPalette {
      * @deprecated Magic value
      */
     @Deprecated
-    public static byte[] imageToBytes(Image image) {
+    @NotNull
+    public static byte[] imageToBytes(@NotNull Image image) {
         BufferedImage temp = new BufferedImage(image.getWidth(null), image.getHeight(null), BufferedImage.TYPE_INT_ARGB);
         Graphics2D graphics = temp.createGraphics();
         graphics.drawImage(image, 0, 0, null);
@@ -219,7 +225,7 @@ public final class MapPalette {
      * @deprecated Magic value
      */
     @Deprecated
-    public static byte matchColor(Color color) {
+    public static byte matchColor(@NotNull Color color) {
         if (color.getAlpha() < 128) return 0;
 
         int index = 0;
@@ -245,6 +251,7 @@ public final class MapPalette {
      * @deprecated Magic value
      */
     @Deprecated
+    @NotNull
     public static Color getColor(byte index) {
         if ((index > -49 && index < 0) || index > 127) {
             throw new IndexOutOfBoundsException();

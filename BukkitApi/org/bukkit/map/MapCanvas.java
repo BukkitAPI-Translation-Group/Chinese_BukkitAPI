@@ -1,6 +1,7 @@
 package org.bukkit.map;
 
 import java.awt.Image;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个画地图的画布，每个画布都关联着一个特定的
@@ -15,6 +16,7 @@ public interface MapCanvas {
      *
      * @return 画布依附的地图控件
      */
+    @NotNull
     public MapView getMapView();
 
     /**
@@ -24,6 +26,7 @@ public interface MapCanvas {
      *
      * @return 与该画布相关联的游标集合
      */
+    @NotNull
     public MapCursorCollection getCursors();
 
     /**
@@ -35,7 +38,8 @@ public interface MapCanvas {
      *
      * @param cursors 与画布相关联的游标集合
      */
-    public void setCursors(MapCursorCollection cursors);
+    @NotNull
+    public void setCursors(@NotNull MapCursorCollection cursors);
 
     /**
      * 画一个像素到画布上.
@@ -79,7 +83,7 @@ public interface MapCanvas {
      * @param y 图片的x坐标
      * @param image 要画的图片
      */
-    public void drawImage(int x, int y, Image image);
+    public void drawImage(int x, int y, @NotNull Image image);
 
     /**
      * 使用你想要的格式渲染文字到地图上.换行符(\n)会移动到下一行并返回原来的列,
@@ -96,6 +100,6 @@ public interface MapCanvas {
      * @param font 使用的字体
      * @param text 要渲染的格式化文字
      */
-    public void drawText(int x, int y, MapFont font, String text);
+    public void drawText(int x, int y, @NotNull MapFont font, @NotNull String text);
 
 }

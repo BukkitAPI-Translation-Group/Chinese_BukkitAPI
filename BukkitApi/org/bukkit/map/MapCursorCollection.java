@@ -2,6 +2,8 @@ package org.bukkit.map;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents all the map cursors on a {@link MapCanvas}. Like MapCanvas, a
@@ -25,6 +27,7 @@ public final class MapCursorCollection {
      * @param index The index of the cursor.
      * @return The MapCursor.
      */
+    @NotNull
     public MapCursor getCursor(int index) {
         return cursors.get(index);
     }
@@ -35,7 +38,7 @@ public final class MapCursorCollection {
      * @param cursor The MapCursor to remove.
      * @return Whether the cursor was removed successfully.
      */
-    public boolean removeCursor(MapCursor cursor) {
+    public boolean removeCursor(@NotNull MapCursor cursor) {
         return cursors.remove(cursor);
     }
 
@@ -45,7 +48,8 @@ public final class MapCursorCollection {
      * @param cursor The MapCursor to add.
      * @return The MapCursor that was passed.
      */
-    public MapCursor addCursor(MapCursor cursor) {
+    @NotNull
+    public MapCursor addCursor(@NotNull MapCursor cursor) {
         cursors.add(cursor);
         return cursor;
     }
@@ -58,6 +62,7 @@ public final class MapCursorCollection {
      * @param direction The facing of the cursor, from 0 to 15.
      * @return The newly added MapCursor.
      */
+    @NotNull
     public MapCursor addCursor(int x, int y, byte direction) {
         return addCursor(x, y, direction, (byte) 0, true);
     }
@@ -73,6 +78,7 @@ public final class MapCursorCollection {
      * @deprecated Magic value
      */
     @Deprecated
+    @NotNull
     public MapCursor addCursor(int x, int y, byte direction, byte type) {
         return addCursor(x, y, direction, type, true);
     }
@@ -89,6 +95,7 @@ public final class MapCursorCollection {
      * @deprecated Magic value
      */
     @Deprecated
+    @NotNull
     public MapCursor addCursor(int x, int y, byte direction, byte type, boolean visible) {
         return addCursor(new MapCursor((byte) x, (byte) y, direction, type, visible));
     }
@@ -106,7 +113,8 @@ public final class MapCursorCollection {
      * @deprecated Magic value
      */
     @Deprecated
-    public MapCursor addCursor(int x, int y, byte direction, byte type, boolean visible, String caption) {
+    @NotNull
+    public MapCursor addCursor(int x, int y, byte direction, byte type, boolean visible, @Nullable String caption) {
         return addCursor(new MapCursor((byte) x, (byte) y, direction, type, visible, caption));
     }
 }

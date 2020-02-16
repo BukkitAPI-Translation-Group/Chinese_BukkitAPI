@@ -1,5 +1,7 @@
 package org.bukkit;
 
+import org.jetbrains.annotations.Nullable;
+
 public interface Nameable {
 
     /**
@@ -17,6 +19,7 @@ public interface Nameable {
      *
      * @return 生物或方块的自定义名称（若无则返回null）
      */
+    @Nullable
     public String getCustomName();
 
     /**
@@ -38,5 +41,5 @@ public interface Nameable {
      *
      * @param name 自定义名称
      */
-    public void setCustomName(String name);
+    public void setCustomName(@Nullable String name);
 }

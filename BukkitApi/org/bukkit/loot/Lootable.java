@@ -1,6 +1,6 @@
 package org.bukkit.loot;
 
-import org.bukkit.Bukkit;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * Represents a {@link org.bukkit.block.Container} or a
@@ -22,7 +22,7 @@ public interface Lootable {
      * @param table the Loot Table this {@link org.bukkit.block.Container} or
      * {@link org.bukkit.entity.Mob} will have.
      */
-    void setLootTable(LootTable table);
+    void setLootTable(@Nullable LootTable table);
 
     /**
      * Gets the Loot Table attached to this block or entity.
@@ -33,6 +33,7 @@ public interface Lootable {
      *
      * @return the Loot Table attached to this block or entity.
      */
+    @Nullable
     LootTable getLootTable();
 
     /**
@@ -50,14 +51,4 @@ public interface Lootable {
      * @return the seed
      */
     long getSeed();
-
-    /**
-     * Get the {@link LootTable} corresponding to this constant. This is
-     * equivalent to calling {@code Bukkit.getLootTable(this.getKey());}.
-     *
-     * @return the associated LootTable
-     */
-    public LootTable getLootTable() {
-        return Bukkit.getLootTable(getKey());
-    }
 }

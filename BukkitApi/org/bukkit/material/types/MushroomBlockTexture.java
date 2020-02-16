@@ -1,10 +1,9 @@
 package org.bukkit.material.types;
 
-import java.util.Map;
-
-import org.bukkit.block.BlockFace;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
+import org.bukkit.block.BlockFace;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表蘑菇方块的不同材质.
@@ -63,13 +62,13 @@ public enum MushroomBlockTexture {
      * 6个面都是蘑菇茎材质
      */
     ALL_STEM(15, null);
-    private final static Map<Byte, MushroomBlockTexture> BY_DATA = Maps.newHashMap();
-    private final static Map<BlockFace, MushroomBlockTexture> BY_BLOCKFACE = Maps.newHashMap();
+    private static final Map<Byte, MushroomBlockTexture> BY_DATA = Maps.newHashMap();
+    private static final Map<BlockFace, MushroomBlockTexture> BY_BLOCKFACE = Maps.newHashMap();
 
     private final Byte data;
     private final BlockFace capFace;
 
-    private MushroomBlockTexture(final int data, final BlockFace capFace) {
+    private MushroomBlockTexture(final int data, /*@Nullable*/ final BlockFace capFace) {
         this.data = (byte) data;
         this.capFace = capFace;
     }
@@ -94,6 +93,7 @@ public enum MushroomBlockTexture {
      *
      * @return 材质的朝向
      */
+    @Nullable
     public BlockFace getCapFace() {
         return capFace;
     }
@@ -108,6 +108,7 @@ public enum MushroomBlockTexture {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static MushroomBlockTexture getByData(final byte data) {
         return BY_DATA.get(data);
     }
@@ -122,7 +123,8 @@ public enum MushroomBlockTexture {
      *
      * @see BlockFace
      */
-    public static MushroomBlockTexture getCapByFace(final BlockFace face) {
+    @Nullable
+    public static MushroomBlockTexture getCapByFace(@Nullable final BlockFace face) {
         return BY_BLOCKFACE.get(face);
     }
 
