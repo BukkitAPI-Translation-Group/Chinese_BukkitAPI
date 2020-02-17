@@ -25,7 +25,7 @@ import org.jetbrains.annotations.Nullable;
  *     <td>封禁的创建者，可以是玩家、控制台、插件等</td>
  * </tr><tr>
  *     <td>到期时间</td>
- *     <td>封禁的到期事件</td>
+ *     <td>封禁的到期时间</td>
  * </tr><tr>
  *     <td>理由</td>
  *     <td>封禁的理由</td>
