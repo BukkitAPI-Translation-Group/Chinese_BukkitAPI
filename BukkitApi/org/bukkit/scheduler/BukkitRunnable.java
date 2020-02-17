@@ -68,7 +68,7 @@ public abstract class BukkitRunnable implements Runnable {
      * @see BukkitScheduler#runTaskAsynchronously(Plugin, Runnable)
      */
     @NotNull
-    public synchronized BukkitTask runTaskAsynchronously(@NotNull Plugin plugin) throws IllegalArgumentException, IllegalStateException  {
+    public synchronized BukkitTask runTaskAsynchronously(@NotNull Plugin plugin) throws IllegalArgumentException, IllegalStateException {
         checkNotYetScheduled();
         return setupTask(Bukkit.getScheduler().runTaskAsynchronously(plugin, (Runnable) this));
     }
@@ -86,7 +86,7 @@ public abstract class BukkitRunnable implements Runnable {
      * @see BukkitScheduler#runTaskLater(Plugin, Runnable, long)
      */
     @NotNull
-    public synchronized BukkitTask runTaskLater(@NotNull Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException  {
+    public synchronized BukkitTask runTaskLater(@NotNull Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException {
         checkNotYetScheduled();
         return setupTask(Bukkit.getScheduler().runTaskLater(plugin, (Runnable) this, delay));
     }
@@ -110,7 +110,7 @@ public abstract class BukkitRunnable implements Runnable {
      * @see BukkitScheduler#runTaskLaterAsynchronously(Plugin, Runnable, long)
      */
     @NotNull
-    public synchronized BukkitTask runTaskLaterAsynchronously(@NotNull Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException  {
+    public synchronized BukkitTask runTaskLaterAsynchronously(@NotNull Plugin plugin, long delay) throws IllegalArgumentException, IllegalStateException {
         checkNotYetScheduled();
         return setupTask(Bukkit.getScheduler().runTaskLaterAsynchronously(plugin, (Runnable) this, delay));
     }
@@ -130,7 +130,7 @@ public abstract class BukkitRunnable implements Runnable {
      * @see BukkitScheduler#runTaskTimer(Plugin, Runnable, long, long)
      */
     @NotNull
-    public synchronized BukkitTask runTaskTimer(@NotNull Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException  {
+    public synchronized BukkitTask runTaskTimer(@NotNull Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException {
         checkNotYetScheduled();
         return setupTask(Bukkit.getScheduler().runTaskTimer(plugin, (Runnable) this, delay, period));
     }
@@ -156,7 +156,7 @@ public abstract class BukkitRunnable implements Runnable {
      *     long)
      */
     @NotNull
-    public synchronized BukkitTask runTaskTimerAsynchronously(@NotNull Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException  {
+    public synchronized BukkitTask runTaskTimerAsynchronously(@NotNull Plugin plugin, long delay, long period) throws IllegalArgumentException, IllegalStateException {
         checkNotYetScheduled();
         return setupTask(Bukkit.getScheduler().runTaskTimerAsynchronously(plugin, (Runnable) this, delay, period));
     }

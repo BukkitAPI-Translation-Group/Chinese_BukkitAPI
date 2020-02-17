@@ -3,6 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 玩家离开服务器事件.
@@ -11,7 +12,7 @@ public class PlayerQuitEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private String quitMessage;
 
-    public PlayerQuitEvent(@NotNull final Player who, @NotNull final String quitMessage) {
+    public PlayerQuitEvent(@NotNull final Player who, @Nullable final String quitMessage) {
         super(who);
         this.quitMessage = quitMessage;
     }
@@ -23,7 +24,7 @@ public class PlayerQuitEvent extends PlayerEvent {
      *
      * @return string 玩家离开消息
      */
-    @NotNull
+    @Nullable
     public String getQuitMessage() {
         return quitMessage;
     }
@@ -35,7 +36,7 @@ public class PlayerQuitEvent extends PlayerEvent {
      *
      * @param quitMessage 玩家离开消息
      */
-    public void setQuitMessage(@NotNull String quitMessage) {
+    public void setQuitMessage(@Nullable String quitMessage) {
         this.quitMessage = quitMessage;
     }
 

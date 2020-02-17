@@ -1,6 +1,10 @@
 package org.bukkit.plugin;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.graph.GraphBuilder;
+import com.google.common.graph.Graphs;
+import com.google.common.graph.MutableGraph;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
@@ -44,6 +48,7 @@ public final class SimplePluginManager implements PluginManager {
     private final Map<Pattern, PluginLoader> fileAssociations = new HashMap<Pattern, PluginLoader>();
     private final List<Plugin> plugins = new ArrayList<Plugin>();
     private final Map<String, Plugin> lookupNames = new HashMap<String, Plugin>();
+    private MutableGraph<String> dependencyGraph = GraphBuilder.directed().build();
     private File updateDirectory;
     private final SimpleCommandMap commandMap;
     private final Map<String, Permission> permissions = new HashMap<String, Permission>();
@@ -168,11 +173,19 @@ public final class SimplePluginManager implements PluginManager {
                 } else {
                     softDependencies.put(description.getName(), new LinkedList<String>(softDependencySet));
                 }
+
+                for (String depend : softDependencySet) {
+                    dependencyGraph.putEdge(description.getName(), depend);
+                }
             }
 
             Collection<String> dependencySet = description.getDepend();
             if (dependencySet != null && !dependencySet.isEmpty()) {
                 dependencies.put(description.getName(), new LinkedList<String>(dependencySet));
+
+                for (String depend : dependencySet) {
+                    dependencyGraph.putEdge(description.getName(), depend);
+                }
             }
 
             Collection<String> loadBeforeSet = description.getLoadBefore();
@@ -186,6 +199,8 @@ public final class SimplePluginManager implements PluginManager {
                         shortSoftDependency.add(description.getName());
                         softDependencies.put(loadBeforeTarget, shortSoftDependency);
                     }
+
+                    dependencyGraph.putEdge(loadBeforeTarget, description.getName());
                 }
             }
         }
@@ -480,6 +495,7 @@ public final class SimplePluginManager implements PluginManager {
             disablePlugins();
             plugins.clear();
             lookupNames.clear();
+            dependencyGraph = GraphBuilder.directed().build();
             HandlerList.unregisterAll();
             fileAssociations.clear();
             permissions.clear();
@@ -490,8 +506,6 @@ public final class SimplePluginManager implements PluginManager {
 
     /**
      * Calls an event with the given details.
-     * <p>
-     * This method only synchronizes when the event is not asynchronous.
      *
      * @param event Event details
      */
@@ -504,15 +518,13 @@ public final class SimplePluginManager implements PluginManager {
             if (server.isPrimaryThread()) {
                 throw new IllegalStateException(event.getEventName() + " cannot be triggered asynchronously from primary server thread.");
             }
-            fireEvent(event);
         } else {
             if (!server.isPrimaryThread()) {
                 throw new IllegalStateException(event.getEventName() + " cannot be triggered asynchronously from another thread.");
             }
-            synchronized (this) {
-                fireEvent(event);
-            }
         }
+
+        fireEvent(event);
     }
 
     private void fireEvent(@NotNull Event event) {
@@ -778,6 +790,13 @@ public final class SimplePluginManager implements PluginManager {
     @NotNull
     public Set<Permission> getPermissions() {
         return new HashSet<Permission>(permissions.values());
+    }
+
+    public boolean isTransitiveDepend(@NotNull PluginDescriptionFile plugin, @NotNull PluginDescriptionFile depend) {
+        Preconditions.checkArgument(plugin != null, "plugin");
+        Preconditions.checkArgument(depend != null, "depend");
+
+        return dependencyGraph.nodes().contains(plugin.getName()) && Graphs.reachableNodes(dependencyGraph, plugin.getName()).contains(depend.getName());
     }
 
     @Override

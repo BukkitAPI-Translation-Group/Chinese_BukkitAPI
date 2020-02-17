@@ -30,8 +30,6 @@ public class BlockCanBuildEvent extends BlockEvent {
     }
 
     /**
-     *
-     * @deprecated 不安全的参数
      * @param block 这个事件涉及的方块
      * @param player 正放置此方块的玩家
      * @param type 这个要放置的方块的类型

@@ -133,6 +133,10 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
          * 方块被爆炸点燃
          */
         EXPLOSION,
+        /**
+         * 方块被燃烧的箭点燃
+         */
+        ARROW,
     }
 
     @NotNull

@@ -1,5 +1,6 @@
 package org.bukkit.entity;
 
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.EulerAngle;
 import org.jetbrains.annotations.NotNull;
@@ -11,58 +12,68 @@ public interface ArmorStand extends LivingEntity {
      * 返回盔甲架当前握持的物品.
      * <p>
      * 原文:
-     * Returns the item the armor stand is
-     * currently holding
+     * Returns the item the armor stand is currently holding
      *
      * @return 盔甲架当前握持的物品
+     * @deprecated 建议使用 {@link EntityEquipment#getItemInHand()}
+     * @see #getEquipment()
      */
     @NotNull
+    @Deprecated
     ItemStack getItemInHand();
 
     /**
      * 设置盔甲架当前握持的物品.
      * <p>
      * 原文:
-     * Sets the item the armor stand is currently
-     * holding
+     * Sets the item the armor stand is currently holding
      *
      * @param item 盔甲架当前握持的物品
+     * @deprecated 建议使用 {@link EntityEquipment#setItemInHand(org.bukkit.inventory.ItemStack)}
+     * @see #getEquipment()
      */
+    @Deprecated
     void setItemInHand(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前穿在脚上的物品.
      * <p>
      * 原文:
-     * Returns the item currently being worn
-     * by the armor stand on its feet
+     * Returns the item currently being worn by the armor stand on its feet
      *
      * @return 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#getBoots()}
+     * @see #getEquipment()
      */
     @NotNull
+    @Deprecated
     ItemStack getBoots();
 
     /**
      * 设置盔甲架当前穿在脚上的物品.
      * <p>
      * 原文:
-     * Sets the item currently being worn
-     * by the armor stand on its feet
+     * Sets the item currently being worn by the armor stand on its feet
      *
      * @param item 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#setBoots(org.bukkit.inventory.ItemStack)}
+     * @see #getEquipment()
      */
+    @Deprecated
     void setBoots(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前穿在腿上的物品.
      * <p>
      * 原文:
-     * Returns the item currently being worn
-     * by the armor stand on its legs
+     * Returns the item currently being worn by the armor stand on its legs
      *
      * @return 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#getLeggings()}
+     * @see #getEquipment()
      */
     @NotNull
+    @Deprecated
     ItemStack getLeggings();
 
     /**
@@ -73,61 +84,72 @@ public interface ArmorStand extends LivingEntity {
      * by the armor stand on its legs
      *
      * @param item 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#setLeggings(org.bukkit.inventory.ItemStack)}
+     * @see #getEquipment()
      */
+    @Deprecated
     void setLeggings(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前穿在胸上的物品.
      * <p>
      * 原文:
-     * Returns the item currently being worn
-     * by the armor stand on its chest
+     * Returns the item currently being worn by the armor stand on its chest
      *
      * @return 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#getChestplate()}
+     * @see #getEquipment()
      */
     @NotNull
+    @Deprecated
     ItemStack getChestplate();
 
     /**
      * 设置盔甲架当前穿在胸上的物品.
      * <p>
      * 原文:
-     * Sets the item currently being worn
-     * by the armor stand on its chest
+     * Sets the item currently being worn by the armor stand on its chest
      *
      * @param item 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#setChestplate(org.bukkit.inventory.ItemStack)}
+     * @see #getEquipment()
      */
+    @Deprecated
     void setChestplate(@Nullable ItemStack item);
 
     /**
      * 返回盔甲架当前戴在头上的物品.
      * <p>
      * 原文:
-     * Returns the item currently being worn
-     * by the armor stand on its head
+     * Returns the item currently being worn by the armor stand on its head
      *
      * @return 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#getHelmet()}
+     * @see #getEquipment()
      */
     @NotNull
+    @Deprecated
     ItemStack getHelmet();
 
     /**
      * 设置盔甲架当前戴在头上的物品.
      * <p>
      * 原文:
-     * Sets the item currently being worn
-     * by the armor stand on its head
+     * Sets the item currently being worn by the armor stand on its head
      *
      * @param item 穿戴的物品
+     * @deprecated 建议使用 {@link EntityEquipment#setHelmet(org.bukkit.inventory.ItemStack)}
+     * @see #getEquipment()
      */
+    @Deprecated
     void setHelmet(@Nullable ItemStack item);
 
     /**
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架身体的姿势.
      * <p>
      * 原文:
-     * Returns the armor stand's body's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Returns the armor stand's body's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @return 当前姿势
      */
@@ -138,8 +160,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架身体的姿势.
      * <p>
      * 原文:
-     * Sets the armor stand's body's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Sets the armor stand's body's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @param pose 当前姿势
      */
@@ -149,8 +171,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左臂的姿势.
      * <p>
      * 原文:
-     * Returns the armor stand's left arm's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Returns the armor stand's left arm's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @return 当前姿势
      */
@@ -161,8 +183,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架左臂的姿势.
      * <p>
      * 原文:
-     * Sets the armor stand's left arm's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Sets the armor stand's left arm's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @param pose 当前姿势
      */
@@ -172,8 +194,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右臂的姿势.
      * <p>
      * 原文:
-     * Returns the armor stand's right arm's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Returns the armor stand's right arm's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @return 当前姿势
      */
@@ -184,8 +206,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架右臂的姿势.
      * <p>
      * 原文:
-     * Sets the armor stand's right arm's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Sets the armor stand's right arm's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @param pose 当前姿势
      */
@@ -195,8 +217,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架左腿的姿势.
      * <p>
      * 原文:
-     * Returns the armor stand's left leg's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Returns the armor stand's left leg's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @return 当前姿势
      */
@@ -207,8 +229,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架身左腿的姿势.
      * <p>
      * 原文:
-     * Sets the armor stand's left leg's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Sets the armor stand's left leg's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @param pose 当前姿势
      */
@@ -218,8 +240,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架右腿的姿势.
      * <p>
      * 原文:
-     * Returns the armor stand's right leg's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Returns the armor stand's right leg's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @return 当前姿势
      */
@@ -230,8 +252,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架右腿的姿势.
      * <p>
      * 原文:
-     * Sets the armor stand's right leg's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Sets the armor stand's right leg's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @param pose 当前姿势
      */
@@ -241,8 +263,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式返回盔甲架头的姿势.
      * <p>
      * 原文:
-     * Returns the armor stand's head's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Returns the armor stand's head's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @return 当前姿势
      */
@@ -253,8 +275,8 @@ public interface ArmorStand extends LivingEntity {
      * 以{@link org.bukkit.util.EulerAngle}的形式设置盔甲架头的姿势.
      * <p>
      * 原文:
-     * Sets the armor stand's head's
-     * current pose as a {@link org.bukkit.util.EulerAngle}
+     * Sets the armor stand's head's current pose as a
+     * {@link org.bukkit.util.EulerAngle}.
      *
      * @param pose 当前姿势
      */
@@ -264,8 +286,7 @@ public interface ArmorStand extends LivingEntity {
      * 返回盔甲架是否有底盘.
      * <p>
      * 原文:
-     * Returns whether the armor stand has
-     * a base plate
+     * Returns whether the armor stand has a base plate
      *
      * @return 是否有底盘
      */
@@ -275,8 +296,7 @@ public interface ArmorStand extends LivingEntity {
      * 设置盔甲架是否有底盘.
      * <p>
      * 原文:
-     * Sets whether the armor stand has a
-     * base plate
+     * Sets whether the armor stand has a base plate
      *
      * @param basePlate 是否有底盘
      */
@@ -286,8 +306,7 @@ public interface ArmorStand extends LivingEntity {
      * 返回盔甲架是否可视.
      * <p>
      * 原文:
-     * Returns whether the armor stand should be
-     * visible or not
+     * Returns whether the armor stand should be visible or not
      *
      * @return 盔甲架是否可视
      */
@@ -297,8 +316,7 @@ public interface ArmorStand extends LivingEntity {
      * 设置盔甲架是否可视.
      * <p>
      * 原文:
-     * Sets whether the armor stand should be
-     * visible or not
+     * Sets whether the armor stand should be visible or not
      *
      * @param visible 盔甲架是否可视
      */
@@ -308,7 +326,7 @@ public interface ArmorStand extends LivingEntity {
      * 返回盔甲架是否有双臂.
      * <p>
      * 原文:
-     * Returns whether this armor stand has arms
+     * Returns whether this armor stand has arms.
      *
      * @return 是否有双臂
      */
@@ -318,7 +336,7 @@ public interface ArmorStand extends LivingEntity {
      * 设置盔甲架是否有双臂.
      * <p>
      * 原文:
-     * Sets whether this armor stand has arms
+     * Sets whether this armor stand has arms.
      *
      * @param arms 是否有双臂
      */
@@ -328,8 +346,7 @@ public interface ArmorStand extends LivingEntity {
      * 返回盔甲架是否被缩小了.
      * <p>
      * 原文:
-     * Returns whether this armor stand is scaled
-     * down
+     * Returns whether this armor stand is scaled down.
      *
      * @return 是否被缩小
      */
@@ -339,8 +356,7 @@ public interface ArmorStand extends LivingEntity {
      * 设置盔甲架是否被缩小.
      * <p>
      * 原文:
-     * Sets whether this armor stand is scaled
-     * down
+     * Sets whether this armor stand is scaled down.
      *
      * @param small 是否被缩小
      */
@@ -350,8 +366,8 @@ public interface ArmorStand extends LivingEntity {
      * 返回盔甲架的marker属性，即是否具有非常小的碰撞箱.
      * <p>
      * 原文:
-     * Returns whether this armor stand is a marker,
-     * meaning it has a very small collision box
+     * Returns whether this armor stand is a marker, meaning it has a very small
+     * collision box.
      *
      * @return 盔甲架的marker属性
      */
@@ -361,8 +377,8 @@ public interface ArmorStand extends LivingEntity {
      * 设置盔甲架的marker属性，即是否具有非常小的碰撞箱.
      * <p>
      * 原文:
-     * Sets whether this armor stand is a marker,
-     * meaning it has a very small collision box
+     * Sets whether this armor stand is a marker, meaning it has a very small
+     * collision box.
      *
      * @param marker 盔甲架的marker属性
      */

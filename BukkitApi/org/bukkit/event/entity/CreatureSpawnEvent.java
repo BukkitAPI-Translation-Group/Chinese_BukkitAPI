@@ -170,6 +170,18 @@ public class CreatureSpawnEvent extends EntitySpawnEvent {
          */
         EXPLOSION,
         /**
+         * When an entity is spawned as part of a raid
+         */
+        RAID,
+        /**
+         * When an entity is spawned as part of a patrol
+         */
+        PATROL,
+        /**
+         * When a bee is released from a beehive/bee nest
+         */
+        BEEHIVE,
+        /**
          * 当生物被插件生成时
          */
         CUSTOM,

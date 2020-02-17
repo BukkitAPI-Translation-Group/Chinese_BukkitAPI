@@ -121,9 +121,22 @@ public interface ChunkSnapshot {
      * @param x X坐标 (0-15)
      * @param z Z坐标 (0-15)
      * @return 指定坐标的生物群系
+     * @deprecated biomes are now 3-dimensional
      */
     @NotNull
+    @Deprecated
     Biome getBiome(int x, int z);
+
+    /**
+     * Get biome at given coordinates
+     *
+     * @param x X-coordinate (0-15)
+     * @param y Y-coordinate (0-255)
+     * @param z Z-coordinate (0-15)
+     * @return Biome at given coordinate
+     */
+    @NotNull
+    Biome getBiome(int x, int y, int z);
 
     /**
      * 获取指定坐标原始生物群系的温度（范围为0.0到1.0）.
@@ -133,8 +146,20 @@ public interface ChunkSnapshot {
      * @param x X坐标 (0-15)
      * @param z Z坐标 (0-15)
      * @return 指定坐标的温度
+     * @deprecated biomes are now 3-dimensional
      */
+    @Deprecated
     double getRawBiomeTemperature(int x, int z);
+
+    /**
+     * Get raw biome temperature at given coordinates
+     *
+     * @param x X-coordinate (0-15)
+     * @param y Y-coordinate (0-15)
+     * @param z Z-coordinate (0-15)
+     * @return temperature at given coordinate
+     */
+    double getRawBiomeTemperature(int x, int y, int z);
 
     /**
      * 抓取区块快照时获取世界的完整时间.
@@ -154,4 +179,12 @@ public interface ChunkSnapshot {
      * @return 如果为空则返回true，否则返回false
      */
     boolean isSectionEmpty(int sy);
+
+    /**
+     * Tests if this snapshot contains the specified block.
+     *
+     * @param block block to test
+     * @return if the block is contained within
+     */
+    boolean contains(@NotNull BlockData block);
 }

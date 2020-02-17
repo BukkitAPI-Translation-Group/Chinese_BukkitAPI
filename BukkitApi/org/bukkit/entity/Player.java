@@ -1,7 +1,6 @@
 package org.bukkit.entity;
 
 import java.net.InetSocketAddress;
-import org.bukkit.Achievement;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -565,44 +564,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void updateInventory();
 
     /**
-     * 给予玩家一个成就{@link Achievement}和这个成就所需的父成就. <p>
-     * 原文:Awards the given achievement and any parent achievements that the
-     * player does not have. <p>
-     * 译注:比如,给玩家"这是?工作台!"成就,这个方法就会先给玩家它的父成就"获得木头!"
-     *
-     * @param achievement 要给玩家的成就(不包括父成就)
-     * @throws IllegalArgumentException 当成就为null时抛出.
-     * @deprecated 未来版本的Minecraft将不会有成就(取而代之的是进度).
-     */
-    @Deprecated
-    public void awardAchievement(@NotNull Achievement achievement);
-
-    /**
-     * 删除玩家的一个成就及其子成就. <p>
-     * 原文:Removes the given achievement and any children achievements that the
-     * player has. <p>
-     * 译注:假如移除玩家的"获得木头!"成就,同时也会移除"这是?工作台"和后面的所有成就.因为没有"获得木头!"成就,就没后面的成就.
-     *
-     * @param achievement 要移除的成就
-     * @throws IllegalArgumentException 当成就为null时抛出.
-     * @deprecated 未来的Minecraft将不会有成就(取而代之的是进度).
-     */
-    @Deprecated
-    public void removeAchievement(@NotNull Achievement achievement);
-
-    /**
-     * 判断玩家是否有该成就. <p>
-     * 原文:Gets whether this player has the given achievement.
-     *
-     * @param achievement 被判断的成就
-     * @return 玩家是否有该成就
-     * @throws IllegalArgumentException 当成就为null时抛出.
-     * @deprecated 未来的Minecraft将不会有成就(取而代之的是进度).
-     */
-    @Deprecated
-    public boolean hasAchievement(@NotNull Achievement achievement);
-
-    /**
      * 把该玩家的统计信息里的某项+1. <p>
      * 这相当于下面的代码: <p>
      * <code>incrementStatistic(Statistic, 1)</code> <p>
@@ -1009,12 +970,12 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     /**
      * 得到玩家总共获得了多少经验(等级和经验).
      * <br>
-     * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
+     * 这个数值指玩家随着时间的推移收集的全部经验, 并且此值目前不会在客户端上显示.
      * <p>
-     * 原文:Gets the players total experience points
+     * 原文:Gets the players total experience points.
      * <br>
      * This refers to the total amount of experience the player has collected
-     * over time and is only displayed as the player's "score" upon dying.
+     * over time and is not currently displayed to the client.
      *
      * @return 玩家总共有多少经验
      */
@@ -1023,17 +984,42 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     /**
      * 设置玩家的总经验值(等级和经验).
      * <br>
-     * 这个数值指玩家随着时间的推移收集的全部经验，并只在玩家死亡时显示为玩家的"得分".
+     * 这个数值指玩家随着时间的推移收集的全部经验, 并且此值目前不会在客户端上显示.
      * <p>
      * 原文:
      * Sets the players current experience points.
      * <br>
      * This refers to the total amount of experience the player has collected
-     * over time and is only displayed as the player's "score" upon dying.
+     * over time and is not currently displayed to the client.
      *
      * @param exp 总经验值
      */
     public void setTotalExperience(int exp);
+
+    /**
+     * Send an experience change.
+     *
+     * This fakes an experience change packet for a user. This will not actually
+     * change the experience points in any way.
+     *
+     * @param progress Experience progress percentage (between 0.0 and 1.0)
+     * @see #setExp(float)
+     */
+    public void sendExperienceChange(float progress);
+
+    /**
+     * Send an experience change.
+     *
+     * This fakes an experience change packet for a user. This will not actually
+     * change the experience points in any way.
+     *
+     * @param progress New experience progress percentage (between 0.0 and 1.0)
+     * @param level New experience level
+     *
+     * @see #setExp(float)
+     * @see #setLevel(int)
+     */
+    public void sendExperienceChange(float progress, int level);
 
     /**
      * 得到玩家的疲劳度. <p>

@@ -21,8 +21,13 @@ import org.jetbrains.annotations.Nullable;
  * at a time, although this may not necessarily be the main server thread.
  *
  * If your generator is capable of fully asynchronous generation, then
- * {@link #isParallelCapable()} should be overriden accordingly to allow
+ * {@link #isParallelCapable()} should be overridden accordingly to allow
  * multiple concurrent callers.
+ *
+ * Some aspects of world generation can be delegated to the Vanilla generator.
+ * The methods {@link ChunkGenerator#shouldGenerateCaves()}, {@link ChunkGenerator#shouldGenerateDecorations()},
+ * {@link ChunkGenerator#shouldGenerateMobs()} and {@link ChunkGenerator#shouldGenerateStructures()} can be
+ * overridden to enable this.
  */
 public abstract class ChunkGenerator {
 
@@ -49,9 +54,22 @@ public abstract class ChunkGenerator {
          * @param x - 0-15
          * @param z - 0-15
          * @return Biome 数值
+         * @deprecated biomes are now 3-dimensional
          */
         @NotNull
+        @Deprecated
         Biome getBiome(int x, int z);
+
+        /**
+         * Get biome at x, z within chunk being generated
+         *
+         * @param x - 0-15
+         * @param y - 0-255
+         * @param z - 0-15
+         * @return Biome value
+         */
+        @NotNull
+        Biome getBiome(int x, int y, int z);
 
         /**
          * 根据被生成区块的X，Z坐标设置生物群系。
@@ -62,8 +80,20 @@ public abstract class ChunkGenerator {
          * @param x - 0-15
          * @param z - 0-15
          * @param bio - 生物群系数值
+         * @deprecated biomes are now 3-dimensional
          */
+        @Deprecated
         void setBiome(int x, int z, @NotNull Biome bio);
+
+        /**
+         * Set biome at x, z within chunk being generated
+         *
+         * @param x - 0-15
+         * @param y - 0-255
+         * @param z - 0-15
+         * @param bio - Biome value
+         */
+        void setBiome(int x, int y, int z, @NotNull Biome bio);
     }
 
     /**
@@ -173,6 +203,46 @@ public abstract class ChunkGenerator {
      * @return parallel capable status
      */
     public boolean isParallelCapable() {
+        return false;
+    }
+
+    /**
+     * Gets if the server should generate Vanilla caves after this
+     * ChunkGenerator.
+     *
+     * @return true if the server should generate Vanilla caves
+     */
+    public boolean shouldGenerateCaves() {
+        return false;
+    }
+
+    /**
+     * Gets if the server should generate Vanilla decorations after this
+     * ChunkGenerator.
+     *
+     * @return true if the server should generate Vanilla decorations
+     */
+    public boolean shouldGenerateDecorations() {
+        return false;
+    }
+
+    /**
+     * Gets if the server should generate Vanilla mobs after this
+     * ChunkGenerator.
+     *
+     * @return true if the server should generate Vanilla mobs
+     */
+    public boolean shouldGenerateMobs() {
+        return false;
+    }
+
+    /**
+     * Gets if the server should generate Vanilla structures after this
+     * ChunkGenerator.
+     *
+     * @return true if the server should generate Vanilla structures
+     */
+    public boolean shouldGenerateStructures() {
         return false;
     }
 

@@ -79,7 +79,7 @@ public class PlayerEggThrowEvent extends PlayerEvent {
      * @param hatchType 将被孵化生物的类型
      */
     public void setHatchingType(@NotNull EntityType hatchType) {
-        if(!hatchType.isSpawnable()) throw new IllegalArgumentException("Can't spawn that entity type from an egg!");
+        if (!hatchType.isSpawnable()) throw new IllegalArgumentException("Can't spawn that entity type from an egg!");
         this.hatchType = hatchType;
     }
 

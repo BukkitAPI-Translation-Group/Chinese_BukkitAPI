@@ -262,5 +262,5 @@ public enum Effect {
     /**
      * 代表效果的类型
      */
-    public enum Type {SOUND, VISUAL}
+    public enum Type { SOUND, VISUAL }
 }

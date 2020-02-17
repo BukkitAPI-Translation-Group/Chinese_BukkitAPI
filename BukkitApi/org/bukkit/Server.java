@@ -354,11 +354,9 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * 这个方法不会返回不在线玩家的实例(意思就是说获取的玩家必须在线,否则返回null)
      *
-     * @deprecated 请使用 {@link #getPlayer(UUID)} 用玩家名查找无法保证唯一性
      * @param name 被查找玩家的名字
      * @return 一个在线玩家实例或者null
      */
-    @Deprecated
     @Nullable
     public Player getPlayer(@NotNull String name);
 
@@ -367,11 +365,9 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * 原文:Gets the player with the exact given name, case insensitive.
      *
-     * @deprecated 请使用 {@link #getPlayer(UUID)} 用玩家名查找无法保证唯一性
      * @param name 被查找玩家的准确名字
      * @return 一个在线玩家的实例或者null
      */
-    @Deprecated
     @Nullable
     public Player getPlayerExact(@NotNull String name);
 
@@ -386,11 +382,9 @@ public interface Server extends PluginMessageRecipient {
      * 原文:This list is not sorted in any particular order. If an exact match is
      * found, the returned list will only contain a single result.
      *
-     * @deprecated 请使用 {@link #getPlayer(UUID)} 用玩家名查找无法保证唯一性
      * @param name 匹配玩家名
      * @return 所有匹配玩家的List(译注:遍历该List时记得检测玩家是否在线)
      */
-    @Deprecated
     @NotNull
     public List<Player> matchPlayer(@NotNull String name);
 
@@ -671,6 +665,18 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Resets the list of crafting recipes to the default.
      */
     public void resetRecipes();
+
+    /**
+     * Remove a recipe from the server.
+     *
+     * <b>Note that removing a recipe may cause permanent loss of data
+     * associated with that recipe (eg whether it has been discovered by
+     * players).</b>
+     *
+     * @param key NamespacedKey of recipe to remove.
+     * @return True if recipe was removed
+     */
+    public boolean removeRecipe(@NotNull NamespacedKey key);
 
     /**
      * 获取一个定义于服务器配置文件中的命令别名列表

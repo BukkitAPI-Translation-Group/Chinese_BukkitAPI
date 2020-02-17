@@ -121,7 +121,9 @@ public abstract class InventoryView {
         }
 
         /**
-         *
+         * 获取此窗口视图的id.
+         * <p>
+         * 原文:Gets the id of this view.
          * @return 此窗口视图的id
          * @deprecated 不安全的参数
          */
@@ -317,7 +319,7 @@ public abstract class InventoryView {
         // Player crafting slots are indexed differently. The matrix is caught by the first return.
         // Creative mode is the same, except that you can't see the crafting slots (but the IDs are still used)
         if (getType() == InventoryType.CRAFTING || getType() == InventoryType.CREATIVE) {
-            /**
+            /*
              * Raw Slots:
              *
              * 5             1  2     0
@@ -330,7 +332,7 @@ public abstract class InventoryView {
              * 36 37 38 39 40 41 42 43 44
              */
 
-            /**
+            /*
              * Converted Slots:
              *
              * 39             1  2     0
@@ -381,13 +383,13 @@ public abstract class InventoryView {
     public final InventoryType.SlotType getSlotType(int slot) {
         InventoryType.SlotType type = InventoryType.SlotType.CONTAINER;
         if (slot >= 0 && slot < this.getTopInventory().getSize()) {
-            switch(this.getType()) {
+            switch (this.getType()) {
             case BLAST_FURNACE:
             case FURNACE:
             case SMOKER:
                 if (slot == 2) {
                     type = InventoryType.SlotType.RESULT;
-                } else if(slot == 1) {
+                } else if (slot == 1) {
                     type = InventoryType.SlotType.FUEL;
                 } else {
                     type = InventoryType.SlotType.CRAFTING;

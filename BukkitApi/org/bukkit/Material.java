@@ -22,6 +22,7 @@ import org.bukkit.block.data.Snowable;
 import org.bukkit.block.data.Waterlogged;
 import org.bukkit.block.data.type.Bamboo;
 import org.bukkit.block.data.type.Bed;
+import org.bukkit.block.data.type.Beehive;
 import org.bukkit.block.data.type.Bell;
 import org.bukkit.block.data.type.BrewingStand;
 import org.bukkit.block.data.type.BubbleColumn;
@@ -190,6 +191,10 @@ public enum Material implements Keyed {
     BEACON(6608),
     BEDROCK(23130),
     BEEF(4803),
+    /**
+     * BlockData: {@link Beehive}
+     */
+    BEEHIVE(11830, Beehive.class),
     BEETROOT(23305),
     /**
      * BlockData: {@link Ageable}
@@ -197,6 +202,11 @@ public enum Material implements Keyed {
     BEETROOTS(22075, Ageable.class),
     BEETROOT_SEEDS(21282),
     BEETROOT_SOUP(16036, 1),
+    /**
+     * BlockData: {@link Beehive}
+     */
+    BEE_NEST(8825, Beehive.class),
+    BEE_SPAWN_EGG(22924),
     /**
      * BlockData: {@link Bell}
      */
@@ -1010,6 +1020,10 @@ public enum Material implements Keyed {
      * BlockData: {@link AnaloguePowerable}
      */
     HEAVY_WEIGHTED_PRESSURE_PLATE(16970, AnaloguePowerable.class),
+    HONEYCOMB(9482),
+    HONEYCOMB_BLOCK(28780),
+    HONEY_BLOCK(30615),
+    HONEY_BOTTLE(22927, 16),
     /**
      * BlockData: {@link Hopper}
      */
@@ -3481,7 +3495,9 @@ public enum Material implements Keyed {
             case BARRIER:
             case BEACON:
             case BEDROCK:
+            case BEEHIVE:
             case BEETROOTS:
+            case BEE_NEST:
             case BELL:
             case BIRCH_BUTTON:
             case BIRCH_DOOR:
@@ -3727,6 +3743,8 @@ public enum Material implements Keyed {
             case GRINDSTONE:
             case HAY_BLOCK:
             case HEAVY_WEIGHTED_PRESSURE_PLATE:
+            case HONEYCOMB_BLOCK:
+            case HONEY_BLOCK:
             case HOPPER:
             case HORN_CORAL:
             case HORN_CORAL_BLOCK:
@@ -4164,6 +4182,7 @@ public enum Material implements Keyed {
             case ENCHANTED_GOLDEN_APPLE:
             case GOLDEN_APPLE:
             case GOLDEN_CARROT:
+            case HONEY_BOTTLE:
             case MELON_SLICE:
             case MUSHROOM_STEW:
             case MUTTON:
@@ -4239,12 +4258,19 @@ public enum Material implements Keyed {
     /**
      * 尝试用给定名称获取Material对象.
      * <p>
-     * 这是一个标准的枚举查找,名称必须是枚举中给出的准确名称.
+     * 这是一个标准的枚举查找,名称必须是枚举中给出的准确名称 (不过也可以包括'LEGACY_'前缀,若 legacyName 参数为true).
+     * <p>
+     * 如果参数 legacyName 为 true, 将会从旧版的物品列表中查询, 但依然返回新版的 Material 表示(即本方法对升级旧版保存的数据很有帮助).
      * <p>
      * 原文:Attempts to get the Material with the given name.
      * <p>
-     * This is a normal lookup, names must be the precise name they are given
-     * in the enum.
+     * This is a normal lookup, names must be the precise name they are given in
+     * the enum (but optionally including the LEGACY_PREFIX if legacyName is
+     * true).
+     * <p>
+     * If legacyName is true, then the lookup will be against legacy materials,
+     * but the returned Material will be a modern material (ie this method is
+     * useful for updating stored data).
      *
      * @param name 用来获取Material对象的名称
      * @param legacyName 传入的名称是否为旧版表示方式
@@ -4287,7 +4313,8 @@ public enum Material implements Keyed {
      * an attempt to format it like the enum.
      *
      * @param name 用来获取Material对象的名称
-     * @param legacyName 传入的名称是否为旧版表示方式
+     * @param legacyName 传入的名称是否为旧版表示方式 (参考
+     * {@link #getMaterial(java.lang.String, boolean)}
      * @return 如果找不到返回null,否则返回Material对象
      */
     @Nullable
@@ -4373,6 +4400,8 @@ public enum Material implements Keyed {
             case BARRIER:
             case BEACON:
             case BEDROCK:
+            case BEEHIVE:
+            case BEE_NEST:
             case BELL:
             case BIRCH_DOOR:
             case BIRCH_FENCE:
@@ -4574,6 +4603,8 @@ public enum Material implements Keyed {
             case GRINDSTONE:
             case HAY_BLOCK:
             case HEAVY_WEIGHTED_PRESSURE_PLATE:
+            case HONEYCOMB_BLOCK:
+            case HONEY_BLOCK:
             case HOPPER:
             case HORN_CORAL_BLOCK:
             case ICE:
@@ -5076,6 +5107,28 @@ public enum Material implements Keyed {
     }
 
     /**
+     * 检测物品是否为空气方块.
+     * <p>
+     * 原文:Check if the material is an air block.
+     *
+     * @return 物品是否为空气方块
+     */
+    public boolean isAir() {
+        switch (this) {
+            //<editor-fold defaultstate="collapsed" desc="isAir">
+            case AIR:
+            case CAVE_AIR:
+            case VOID_AIR:
+            // ----- Legacy Separator -----
+            case LEGACY_AIR:
+                //</editor-fold>
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    /**
      * 检测这个物品是否为透明的方块.
      * <p>
      * 原文:Check if the material is a block and does not block any light
@@ -5303,6 +5356,8 @@ public enum Material implements Keyed {
             case BAMBOO:
             case BAMBOO_SAPLING:
             case BARREL:
+            case BEEHIVE:
+            case BEE_NEST:
             case BIRCH_DOOR:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
@@ -5575,6 +5630,8 @@ public enum Material implements Keyed {
             case ALLIUM:
             case AZURE_BLUET:
             case BAMBOO:
+            case BEEHIVE:
+            case BEE_NEST:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
             case BIRCH_LEAVES:
@@ -6013,6 +6070,8 @@ public enum Material implements Keyed {
             case BARREL:
             case BARRIER:
             case BEDROCK:
+            case BEEHIVE:
+            case BEE_NEST:
             case BIRCH_LOG:
             case BIRCH_PLANKS:
             case BIRCH_WOOD:
@@ -6106,6 +6165,7 @@ public enum Material implements Keyed {
             case GREEN_TERRACOTTA:
             case GREEN_WOOL:
             case HAY_BLOCK:
+            case HONEYCOMB_BLOCK:
             case HORN_CORAL_BLOCK:
             case INFESTED_CHISELED_STONE_BRICKS:
             case INFESTED_COBBLESTONE:
@@ -6598,6 +6658,8 @@ public enum Material implements Keyed {
             case ANVIL:
             case BARREL:
             case BEACON:
+            case BEEHIVE:
+            case BEE_NEST:
             case BELL:
             case BIRCH_BUTTON:
             case BIRCH_DOOR:
@@ -6849,6 +6911,7 @@ public enum Material implements Keyed {
             case WHITE_BED:
             case YELLOW_BED:
                 return 0.2F;
+            case BEE_NEST:
             case BLACK_STAINED_GLASS:
             case BLACK_STAINED_GLASS_PANE:
             case BLUE_STAINED_GLASS:
@@ -6945,11 +7008,13 @@ public enum Material implements Keyed {
             case WHITE_CONCRETE_POWDER:
             case YELLOW_CONCRETE_POWDER:
                 return 0.5F;
+            case BEEHIVE:
             case CLAY:
             case COMPOSTER:
             case FARMLAND:
             case GRASS_BLOCK:
             case GRAVEL:
+            case HONEYCOMB_BLOCK:
             case MYCELIUM:
             case SPONGE:
             case WET_SPONGE:
@@ -6970,10 +7035,6 @@ public enum Material implements Keyed {
             case CUT_RED_SANDSTONE:
             case CUT_SANDSTONE:
             case CYAN_WOOL:
-            case END_STONE_BRICKS:
-            case END_STONE_BRICK_SLAB:
-            case END_STONE_BRICK_STAIRS:
-            case END_STONE_BRICK_WALL:
             case GRAY_WOOL:
             case GREEN_WOOL:
             case LIGHT_BLUE_WOOL:
@@ -7313,6 +7374,10 @@ public enum Material implements Keyed {
             case DRAGON_EGG:
             case EMERALD_ORE:
             case END_STONE:
+            case END_STONE_BRICKS:
+            case END_STONE_BRICK_SLAB:
+            case END_STONE_BRICK_STAIRS:
+            case END_STONE_BRICK_WALL:
             case GOLD_BLOCK:
             case GOLD_ORE:
             case HOPPER:
@@ -7428,6 +7493,7 @@ public enum Material implements Keyed {
             case WHITE_BED:
             case YELLOW_BED:
                 return 0.2F;
+            case BEE_NEST:
             case BLACK_STAINED_GLASS:
             case BLACK_STAINED_GLASS_PANE:
             case BLUE_STAINED_GLASS:
@@ -7523,11 +7589,13 @@ public enum Material implements Keyed {
             case WHITE_CONCRETE_POWDER:
             case YELLOW_CONCRETE_POWDER:
                 return 0.5F;
+            case BEEHIVE:
             case CLAY:
             case COMPOSTER:
             case FARMLAND:
             case GRASS_BLOCK:
             case GRAVEL:
+            case HONEYCOMB_BLOCK:
             case MYCELIUM:
             case SPONGE:
             case WET_SPONGE:
@@ -7555,10 +7623,6 @@ public enum Material implements Keyed {
             case CUT_RED_SANDSTONE:
             case CUT_SANDSTONE:
             case CYAN_WOOL:
-            case END_STONE_BRICKS:
-            case END_STONE_BRICK_SLAB:
-            case END_STONE_BRICK_STAIRS:
-            case END_STONE_BRICK_WALL:
             case GRAY_WOOL:
             case GREEN_WOOL:
             case LIGHT_BLUE_WOOL:
@@ -7939,6 +8003,10 @@ public enum Material implements Keyed {
                 return 6.0F;
             case DRAGON_EGG:
             case END_STONE:
+            case END_STONE_BRICKS:
+            case END_STONE_BRICK_SLAB:
+            case END_STONE_BRICK_STAIRS:
+            case END_STONE_BRICK_WALL:
                 return 9.0F;
             case LAVA:
             case WATER:

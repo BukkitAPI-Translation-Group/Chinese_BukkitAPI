@@ -14,6 +14,7 @@ import org.jetbrains.annotations.Nullable;
  * Wiki</a>
  * <p>
  * 版权说明:以下常量翻译大部分引自 Minecraft Wiki.
+ * @param <T> 游戏规则数值类型 (布尔值或整数)
  */
 public final class GameRule<T> {
 
@@ -124,6 +125,41 @@ public final class GameRule<T> {
      * 是否禁用<a href="https://minecraft-zh.gamepedia.com/%E8%A2%AD%E5%87%BB" target="_blank">袭击</a>.
      */
     public static final GameRule<Boolean> DISABLE_RAIDS = new GameRule<>("disableRaids", Boolean.class);
+
+    /**
+     * <a href="https://minecraft-zh.gamepedia.com/%E5%B9%BB%E7%BF%BC" target="_blank">幻翼</a>是否在夜晚生成.
+     */
+    public static final GameRule<Boolean> DO_INSOMNIA = new GameRule<>("doInsomnia", Boolean.class);
+
+    /**
+     * 玩家死亡时是否不显示死亡界面直接重生.
+     */
+    public static final GameRule<Boolean> DO_IMMEDIATE_RESPAWN = new GameRule<>("doImmediateRespawn", Boolean.class);
+
+    /**
+     * 玩家是否承受窒息伤害.
+     */
+    public static final GameRule<Boolean> DROWNING_DAMAGE = new GameRule<>("drowningDamage", Boolean.class);
+
+    /**
+     * 玩家是否承受跌落伤害.
+     */
+    public static final GameRule<Boolean> FALL_DAMAGE = new GameRule<>("fallDamage", Boolean.class);
+
+    /**
+     * 玩家是否承受火焰伤害.
+     */
+    public static final GameRule<Boolean> FIRE_DAMAGE = new GameRule<>("fireDamage", Boolean.class);
+
+    /**
+     * <a href="https://minecraft-zh.gamepedia.com/%E7%81%BE%E5%8E%84%E5%B7%A1%E9%80%BB%E9%98%9F" target="_blank">灾厄巡逻队</a>是否自然生成.
+     */
+    public static final GameRule<Boolean> DO_PATROL_SPAWNING = new GameRule<>("doPatrolSpawning", Boolean.class);
+
+    /**
+     * <a href="https://minecraft-zh.gamepedia.com/%E6%B5%81%E6%B5%AA%E5%95%86%E4%BA%BA" target="_blank">流浪商人</a>是否自然生成.
+     */
+    public static final GameRule<Boolean> DO_TRADER_SPAWNING = new GameRule<>("doTraderSpawning", Boolean.class);
 
     // Numerical rules
     /**

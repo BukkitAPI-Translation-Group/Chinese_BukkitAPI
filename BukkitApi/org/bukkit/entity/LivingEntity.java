@@ -68,7 +68,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * This list contains all blocks from the living entity's eye position to
      * target inclusive. This method considers all blocks as 1x1x1 in size.
      *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param transparent 将包含的所有透明方块的ID的Set（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
      * @return 包含沿生物实体视线上的所有方块的列表
      */
@@ -89,7 +89,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * collision shapes into account, see {@link #getTargetBlockExact(int,
      * FluidCollisionMode)}.
      *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param transparent 将包含的所有透明方块的ID的Set（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离（可能被服务器限制，但至少为100个方块）
      * @return block 生物实体的目标方块
      */
@@ -107,7 +107,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * The target block will be the last block in the list. This method
      * considers all blocks as 1x1x1 in size.
      *
-     * @param transparent 将包含的所有透明方块的ID的哈希表（设置为null则只包含空气）
+     * @param transparent 将包含的所有透明方块的ID的Set（设置为null则只包含空气）
      * @param maxDistance 扫描的最大距离。可能被服务器限制，但不会低于100个方块
      * @return 包含沿生物实体视线上最后两个方块的列表
      */

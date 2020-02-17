@@ -50,6 +50,22 @@ public interface Damageable extends Entity {
     void setHealth(double health);
 
     /**
+     * Gets the entity's absorption amount.
+     *
+     * @return absorption amount from 0
+     */
+    double getAbsorptionAmount();
+
+    /**
+     * Sets the entity's absorption amount.
+     *
+     * @param amount new absorption amount from 0
+     * @throws IllegalArgumentException thrown if health is {@literal < 0} or
+     * non-finite.
+     */
+    void setAbsorptionAmount(double amount);
+
+    /**
      * 获取这个实体所能拥有的最大血量。
      * <p>
      * 原文: Gets the maximum health this entity has.

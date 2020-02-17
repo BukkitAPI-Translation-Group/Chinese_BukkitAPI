@@ -26,8 +26,8 @@ public class BukkitObjectOutputStream extends ObjectOutputStream {
      * <p>
      * 原文:Constructor provided to mirror super functionality.
      *
-     * @throws IOException 如果向输入流写入头数据时发生错误
-     * @see ObjectOutputStream#ObjectOutputStream()
+     * @throws IOException 创建输出流时发生 I/O 错误
+     * @throws SecurityException 如果安全管理器存在并且拒绝启用subclassing
      */
     protected BukkitObjectOutputStream() throws IOException, SecurityException {
         super();

@@ -296,7 +296,9 @@ public final class MapCursor {
         }
 
         /**
-         *
+         * 获取光标的内部数值.
+         * <p>
+         * 原文:Gets the internal value of the cursor.
          * @return 数值
          * @deprecated 不安全的参数
          */
@@ -306,7 +308,9 @@ public final class MapCursor {
         }
 
         /**
-         *
+         * 通过内部数值获取对应光标类型.
+         * <p>
+         * Get a cursor by its internal value.
          * @param value 数值
          * @return 匹配类型
          * @deprecated 不安全的参数

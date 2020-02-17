@@ -260,6 +260,7 @@ public enum EntityType implements Keyed {
     TRADER_LLAMA("trader_llama", TraderLlama.class, -1),
     WANDERING_TRADER("wandering_trader", WanderingTrader.class, -1),
     FOX("fox", Fox.class, -1),
+    BEE("bee", Bee.class, -1),
     /**
      * A fishing line and bobber.
      */
@@ -324,9 +325,12 @@ public enum EntityType implements Keyed {
     }
 
     /**
+     * 获取实体种类名.
+     * <p>
+     * 原文:Gets the entity type name.
      *
      * @return the entity type's name
-     * @deprecated Magic value
+     * @deprecated 不安全的参数
      */
     @Deprecated
     @Nullable
@@ -348,9 +352,12 @@ public enum EntityType implements Keyed {
     }
 
     /**
+     * 获取实体种类id.
+     * <p>
+     * 原文:Gets the entity type id.
      *
-     * @return the raw type id
-     * @deprecated Magic value
+     * @return 种类id
+     * @deprecated 不安全的参数
      */
     @Deprecated
     public short getTypeId() {
@@ -358,10 +365,13 @@ public enum EntityType implements Keyed {
     }
 
     /**
+     * 以给定名称获取对应实体种类.
+     * <p>
+     * 原文:Gets an entity type from its name.
      *
-     * @param name the entity type's name
-     * @return the matching entity type or null
-     * @deprecated Magic value
+     * @param name 实体种类名
+     * @return 匹配的实体种类, 找不到为null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     @Contract("null -> null")
@@ -374,10 +384,13 @@ public enum EntityType implements Keyed {
     }
 
     /**
+     * 以给定id获取实体种类.
+     * <p>
+     * 原文:Gets an entity from its id.
      *
-     * @param id the raw type id
-     * @return the matching entity type or null
-     * @deprecated Magic value
+     * @param id 实体种类id
+     * @return 匹配的实体种类或null
+     * @deprecated 不安全的参数
      */
     @Deprecated
     @Nullable

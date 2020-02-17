@@ -241,6 +241,7 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
+     * Gets the color as an BGR integer.
      *
      * @return An integer representation of this color, as 0xBBGGRR
      */

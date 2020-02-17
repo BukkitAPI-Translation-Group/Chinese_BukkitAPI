@@ -26,7 +26,8 @@ public class BukkitObjectInputStream extends ObjectInputStream {
      * <p>
      * 原文:Constructor provided to mirror super functionality.
      *
-     * @throws IOException 如果从输入流读取头数据时发生错误
+     * @throws IOException 创建输入流时发生 I/O 错误
+     * @throws SecurityException 如果安全管理器存在并且拒绝启用subclassing
      * @see ObjectInputStream#ObjectInputStream()
      */
     protected BukkitObjectInputStream() throws IOException, SecurityException {

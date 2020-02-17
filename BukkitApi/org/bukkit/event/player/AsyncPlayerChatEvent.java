@@ -26,7 +26,6 @@ public class AsyncPlayerChatEvent extends PlayerEvent implements Cancellable {
     private final Set<Player> recipients;
 
     /**
-     *
      * @param async 设置该事件为同步事件
      * @param who 触发者
      * @param message 发送的信息

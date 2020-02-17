@@ -489,11 +489,9 @@ public final class Bukkit {
      * Gets a player object by the given username.
      * This method may not return objects for offline players.
      *
-     * @deprecated 被 {@link #getPlayer(UUID)} 取代, 因为玩家名不再一定是唯一的. 
      * @param name 用来查找的玩家名
      * @return 如果找到了则返回玩家对象, 否则返回null
      */
-    @Deprecated
     @Nullable
     public static Player getPlayer(@NotNull String name) {
         return server.getPlayer(name);
@@ -504,11 +502,9 @@ public final class Bukkit {
      * <p>
      * 原文: Gets the player with the exact given name, case insensitive. 
      *
-     * @deprecated 被 {@link #getPlayer(UUID)} 取代, 因为玩家名不再一定是唯一的. 
      * @param name 用于检索的精确玩家名称, 不区分大小写 
      * @return 如果找到了则返回玩家对象, 否则返回null
      */
-    @Deprecated
     @Nullable
     public static Player getPlayerExact(@NotNull String name) {
         return server.getPlayerExact(name);
@@ -531,11 +527,9 @@ public final class Bukkit {
      * This list is not sorted in any particular order. If an exact match is
      * found, the returned list will only contain a single result.
      *
-     * @deprecated 被 {@link #getPlayer(UUID)} 取代, 因为玩家名不再一定是唯一的. 
      * @param name 需要匹配的(部分)名称
      * @return 包含所有可能的匹配结果的列表
      */
-    @Deprecated
     @NotNull
     public static List<Player> matchPlayer(@NotNull String name) {
         return server.matchPlayer(name);
@@ -865,6 +859,20 @@ public final class Bukkit {
      */
     public static void resetRecipes() {
         server.resetRecipes();
+    }
+
+    /**
+     * Remove a recipe from the server.
+     *
+     * <b>Note that removing a recipe may cause permanent loss of data
+     * associated with that recipe (eg whether it has been discovered by
+     * players).</b>
+     *
+     * @param key NamespacedKey of recipe to remove.
+     * @return True if recipe was removed
+     */
+    public static boolean removeRecipe(@NotNull NamespacedKey key) {
+        return server.removeRecipe(key);
     }
 
     /**

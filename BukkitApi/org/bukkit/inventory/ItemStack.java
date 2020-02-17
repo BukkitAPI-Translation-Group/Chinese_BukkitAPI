@@ -16,7 +16,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表物品堆
+ * 代表物品堆.
+ * <p>
+ * <b>重要: <i>物品</i>堆只被设计用于容纳物品.
+ * 请不要使用本类来简要描述某种不可获得的物品 
+ * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).
  */
 public class ItemStack implements Cloneable, ConfigurationSerializable {
     private Material type = Material.AIR;
@@ -30,7 +34,15 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     /**
      * 构造一个堆叠数为1, 无附加数据的物品堆.
      * <p>
-     * 原文:Defaults stack size to 1, with no extra data
+     * <b>重要: <i>物品</i>堆只被设计用于容纳物品.
+     * 请不要使用本类来简要描述某种不可获得的物品 
+     * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).
+     *
+     * 原文:Defaults stack size to 1, with no extra data.
+     * <p>
+     * <b>IMPORTANT: An <i>Item</i>Stack is only designed to contain
+     * <i>items</i>. Do not use this class to encapsulate Materials for which
+     * {@link Material#isItem()} returns false.</b>
      *
      * @param type 物品种类
      */
@@ -41,7 +53,15 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
     /**
      * 构造指定堆叠数, 无附加数据的物品堆.
      * <p>
-     * 原文:An item stack with no extra data
+     * <b>重要: <i>物品</i>堆只被设计用于容纳物品.
+     * 请不要使用本类来简要描述某种不可获得的物品 
+     * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).
+     * <p>
+     * 原文:An item stack with no extra data.
+     * <p>
+     * <b>IMPORTANT: An <i>Item</i>Stack is only designed to contain
+     * <i>items</i>. Do not use this class to encapsulate Materials for which
+     * {@link Material#isItem()} returns false.</b>
      *
      * @param type 物品种类
      * @param amount 堆叠数
@@ -97,7 +117,9 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
         Validate.notNull(stack, "Cannot copy null stack");
         this.type = stack.getType();
         this.amount = stack.getAmount();
-        this.data = stack.getData();
+        if (this.type.isLegacy()) {
+            this.data = stack.getData();
+        }
         if (stack.hasItemMeta()) {
             setItemMeta0(stack.getItemMeta(), type);
         }
@@ -121,9 +143,17 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * <p>
      * 注:在做这件事的同时你将清除该物品堆上的MaterialData数据.
      * <p>
+     * <b>重要: <i>物品</i>堆只被设计用于容纳物品.
+     * 请不要使用本类来简要描述某种不可获得的物品 
+     * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).
+     * <p>
      * 原文:Sets the type of this item
      * <p>
-     * Note that in doing so you will reset the MaterialData for this stack
+     * Note that in doing so you will reset the MaterialData for this stack.
+     * <p>
+     * <b>IMPORTANT: An <i>Item</i>Stack is only designed to contain
+     * <i>items</i>. Do not use this class to encapsulate Materials for which
+     * {@link Material#isItem()} returns false.</b>
      *
      * @param type 该物品的种类
      */
@@ -186,11 +216,11 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
      * @param data 物品堆的MaterialData数据
      */
     public void setData(@Nullable MaterialData data) {
-        Material mat = Bukkit.getUnsafe().toLegacy(getType());
-
-        if (data == null || mat == null || mat.getData() == null) {
+        if (data == null) {
             this.data = data;
         } else {
+            Material mat = Bukkit.getUnsafe().toLegacy(getType());
+
             if ((data.getClass() == mat.getData()) || (data.getClass() == MaterialData.class)) {
                 this.data = data;
             } else {

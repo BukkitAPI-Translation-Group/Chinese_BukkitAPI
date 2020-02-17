@@ -789,7 +789,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 标准化给定的偏航角至<code>+/-180</code>范围内.
+     * 将给定的偏航角归一化至<code>+/-180</code>范围内.
      * <p>
      * 译注:比如角度值的绝对值大于180, 用此方法可使角度的绝对值在0-180以内.
      * <p>
@@ -811,7 +811,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 标准化给定的俯仰角至<code>+/-180</code>范围内.
+     * 将给定的俯仰角归一化至<code>+/-180</code>范围内.
      * <p>
      * 译注:比如角度值的绝对值大于180, 用此方法可使角度的绝对值在0-180以内.
      * <p>

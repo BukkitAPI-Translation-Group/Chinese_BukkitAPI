@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
@@ -791,6 +792,23 @@ public class MemorySection implements ConfigurationSection {
 
     @Override
     @Nullable
+    public Location getLocation(@NotNull String path) {
+        return getSerializable(path, Location.class);
+    }
+
+    @Override
+    @Nullable
+    public Location getLocation(@NotNull String path, @Nullable Location def) {
+        return getSerializable(path, Location.class, def);
+    }
+
+    @Override
+    public boolean isLocation(@NotNull String path) {
+        return getSerializable(path, Location.class) != null;
+    }
+
+    @Override
+    @Nullable
     public ConfigurationSection getConfigurationSection(@NotNull String path) {
         Object val = get(path, null);
         if (val != null) {
@@ -808,10 +826,10 @@ public class MemorySection implements ConfigurationSection {
     }
 
     protected boolean isPrimitiveWrapper(@Nullable Object input) {
-        return input instanceof Integer || input instanceof Boolean ||
-                input instanceof Character || input instanceof Byte ||
-                input instanceof Short || input instanceof Double ||
-                input instanceof Long || input instanceof Float;
+        return input instanceof Integer || input instanceof Boolean
+                || input instanceof Character || input instanceof Byte
+                || input instanceof Short || input instanceof Double
+                || input instanceof Long || input instanceof Float;
     }
 
     @Nullable

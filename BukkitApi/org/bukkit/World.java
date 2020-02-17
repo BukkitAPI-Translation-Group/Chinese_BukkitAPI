@@ -81,40 +81,101 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getBlockTypeIdAt(int x, int y, int z);
 
     /**
-     * Gets the y coordinate of the lowest block at the given {@link Location}
-     * such that the block and all blocks above it are transparent for lighting
-     * purposes.
+     * 获取指定坐标最高处不是空气且不可逾越的方块的y坐标.
+     * <p>
+     * 原文:Gets the highest non-empty (impassable) coordinate at the given
+     * coordinates.
      *
-     * @param location Location of the blocks
-     * @return Y-coordinate of the highest non-air block
+     * @param x 方块x坐标
+     * @param z 方块y坐标
+     * @return 指定坐标最高处不是空气且不可逾越的方块的y坐标
+     */
+    public int getHighestBlockYAt(int x, int z);
+
+    /**
+     * 获取指定{@link Location 位置}最高处不是空气且不可逾越的方块的y坐标.
+     * <p>
+     * 原文:Gets the highest non-empty (impassable) coordinate at the given
+     * {@link Location}.
+     *
+     * @param location 方块坐标
+     * @return 指定位置最高处不是空气且不可逾越的方块的y坐标
      */
     public int getHighestBlockYAt(@NotNull Location location);
 
     /**
-     * 获取指定坐标的最顶上的方块(不是空气).
+     * 获取指定坐标最高处不是空气且不可逾越的方块.
      * <p>
-     * 译注：就是说,获取某个坐标最上面的方块.Essentials插件的top就是这个原理.
-     * <p>
-     * 原文：Gets the highest non-empty block at the given coordinates
+     * 原文:Gets the highest non-empty (impassable) block at the given coordinates.
      *
-     * @param x X坐标
-     * @param z Z坐标
-     * @return x,z坐标内,最上面的一个不是空气的方块
+     * @param x 方块X坐标
+     * @param z 方块Z坐标
+     * @return 最高处不是空气的方块.
      */
     @NotNull
     public Block getHighestBlockAt(int x, int z);
 
     /**
-     * 获取指定{@link Location 位置}的最顶上的方块(不是空气).
+     * 获取指定{@link Location 位置}最高处不是空气且不可逾越的方块.
      * <p>
-     * 译注：相当于getHightestBlockYAt(location),只不过那是获得方块Y坐标,而这个是获取方块对象.
-     * 原文：Gets the highest non-empty block at the given coordinates
+     * 原文:Gets the highest non-empty (impassable) block at the given coordinates.
      *
      * @param location 需要获取最高的方块的位置
      * @return 最高的不是空气的方块
      */
     @NotNull
     public Block getHighestBlockAt(@NotNull Location location);
+
+    /**
+     * Gets the highest coordinate corresponding to the {@link HeightMap} at the
+     * given coordinates.
+     *
+     * @param x X-coordinate of the blocks
+     * @param z Z-coordinate of the blocks
+     * @param heightMap the heightMap that is used to determine the highest
+     * point
+     *
+     * @return Y-coordinate of the highest block corresponding to the
+     * {@link HeightMap}
+     */
+    public int getHighestBlockYAt(int x, int z, @NotNull HeightMap heightMap);
+
+    /**
+     * Gets the highest coordinate corresponding to the {@link HeightMap} at the
+     * given {@link Location}.
+     *
+     * @param location Location of the blocks
+     * @param heightMap the heightMap that is used to determine the highest
+     * point
+     * @return Y-coordinate of the highest block corresponding to the
+     * {@link HeightMap}
+     */
+    public int getHighestBlockYAt(@NotNull Location location, @NotNull HeightMap heightMap);
+
+    /**
+     * Gets the highest block corresponding to the {@link HeightMap} at the
+     * given coordinates.
+     *
+     * @param x X-coordinate of the block
+     * @param z Z-coordinate of the block
+     * @param heightMap the heightMap that is used to determine the highest
+     * point
+     * @return Highest block corresponding to the {@link HeightMap}
+     */
+    @NotNull
+    public Block getHighestBlockAt(int x, int z, @NotNull HeightMap heightMap);
+
+    /**
+     * Gets the highest block corresponding to the {@link HeightMap} at the
+     * given coordinates.
+     *
+     * @param location Coordinates to get the highest block
+     * @param heightMap the heightMap that is used to determine the highest
+     * point
+     * @return Highest block corresponding to the {@link HeightMap}
+     */
+    @NotNull
+    public Block getHighestBlockAt(@NotNull Location location, @NotNull HeightMap heightMap);
 
     /**
      * 获取给定坐标所在的{@link Chunk 区块}.
@@ -1181,6 +1242,21 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks);
 
     /**
+     * Creates explosion at given coordinates with given power and optionally
+     * setting blocks on fire or breaking blocks.
+     *
+     * @param x X coordinate
+     * @param y Y coordinate
+     * @param z Z coordinate
+     * @param power The power of explosion, where 4F is TNT
+     * @param setFire Whether or not to set blocks on fire
+     * @param breakBlocks Whether or not to have blocks be destroyed
+     * @param source the source entity, used for tracking damage
+     * @return false if explosion was canceled, otherwise true
+     */
+    public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
+
+    /**
      * 在指定坐标生成指定威力的爆炸.
      * <p>
      * 原文：
@@ -1205,6 +1281,31 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 如果爆炸被取消则返回false，否则返回true
      */
     public boolean createExplosion(@NotNull Location loc, float power, boolean setFire);
+
+    /**
+     * Creates explosion at given coordinates with given power and optionally
+     * setting blocks on fire or breaking blocks.
+     *
+     * @param loc Location to blow up
+     * @param power The power of explosion, where 4F is TNT
+     * @param setFire Whether or not to set blocks on fire
+     * @param breakBlocks Whether or not to have blocks be destroyed
+     * @return false if explosion was canceled, otherwise true
+     */
+    public boolean createExplosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks);
+
+    /**
+     * Creates explosion at given coordinates with given power and optionally
+     * setting blocks on fire or breaking blocks.
+     *
+     * @param loc Location to blow up
+     * @param power The power of explosion, where 4F is TNT
+     * @param setFire Whether or not to set blocks on fire
+     * @param breakBlocks Whether or not to have blocks be destroyed
+     * @param source the source entity, used for tracking damage
+     * @return false if explosion was canceled, otherwise true
+     */
+    public boolean createExplosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
 
     /**
      * 获取世界的{@link Environment 环境}类型.
@@ -1485,9 +1586,22 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @return 所查方块的生物群系
+     * @deprecated biomes are now 3-dimensional
      */
     @NotNull
+    @Deprecated
     Biome getBiome(int x, int z);
+
+    /**
+     * Gets the biome for the given block coordinates.
+     *
+     * @param x X coordinate of the block
+     * @param y Y coordinate of the block
+     * @param z Z coordinate of the block
+     * @return Biome of the requested block
+     */
+    @NotNull
+    Biome getBiome(int x, int y, int z);
 
     /**
      * 设置指定方块坐标的生物群系
@@ -1498,8 +1612,20 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @param bio 这个方块的新生物群系类型
+     * @deprecated biomes are now 3-dimensional
      */
+    @Deprecated
     void setBiome(int x, int z, @NotNull Biome bio);
+
+    /**
+     * Sets the biome for the given block coordinates
+     *
+     * @param x X coordinate of the block
+     * @param y Y coordinate of the block
+     * @param z Z coordinate of the block
+     * @param bio new Biome type for this block
+     */
+    void setBiome(int x, int y, int z, @NotNull Biome bio);
 
     /**
      * 获取指定方块坐标的温度。
@@ -1520,8 +1646,26 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @return 查询方块的温度
+     * @deprecated biomes are now 3-dimensional
      */
+    @Deprecated
     public double getTemperature(int x, int z);
+
+    /**
+     * Gets the temperature for the given block coordinates.
+     * <p>
+     * It is safe to run this method when the block does not exist, it will
+     * not create the block.
+     * <p>
+     * This method will return the raw temperature without adjusting for block
+     * height effects.
+     *
+     * @param x X coordinate of the block
+     * @param y Y coordinate of the block
+     * @param z Z coordinate of the block
+     * @return Temperature of the requested block
+     */
+    public double getTemperature(int x, int y, int z);
 
     /**
      * 获取指定方块坐标的湿度。
@@ -1537,8 +1681,23 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @return 查询方块的湿度
+     * @deprecated biomes are now 3-dimensional
      */
+    @Deprecated
     public double getHumidity(int x, int z);
+
+    /**
+     * Gets the humidity for the given block coordinates.
+     * <p>
+     * It is safe to run this method when the block does not exist, it will
+     * not create the block.
+     *
+     * @param x X coordinate of the block
+     * @param y Y coordinate of the block
+     * @param z Z coordinate of the block
+     * @return Humidity of the requested block
+     */
+    public double getHumidity(int x, int y, int z);
 
     /**
      * 获取这个世界的最大高度。
@@ -1662,6 +1821,24 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 如果建筑物会被生成则返回true
      */
     public boolean canGenerateStructures();
+
+    /**
+     * Gets whether the world is hardcore or not.
+     *
+     * In a hardcore world the difficulty is locked to hard.
+     *
+     * @return hardcore status
+     */
+    public boolean isHardcore();
+
+    /**
+     * Sets whether the world is hardcore or not.
+     *
+     * In a hardcore world the difficulty is locked to hard.
+     *
+     * @param hardcore Whether the world is hardcore
+     */
+    public void setHardcore(boolean hardcore);
 
     /**
      * 获取世界生成动物的时间间隔（单位为tick）。
@@ -2386,6 +2563,24 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @Nullable
     public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
+
+    /**
+     * Finds the nearest raid close to the given location.
+     *
+     * @param location the origin location
+     * @param radius the radius
+     * @return the closest {@link Raid}, or null if no raids were found
+     */
+    @Nullable
+    public Raid locateNearestRaid(@NotNull Location location, int radius);
+
+    /**
+     * Gets all raids that are going on over this world.
+     *
+     * @return the list of all active raids
+     */
+    @NotNull
+    public List<Raid> getRaids();
 
     /**
      * 表示世界可能的各种地图环境类型.

@@ -59,11 +59,11 @@ public interface BookMeta extends ItemMeta {
     /**
      * 设置这本书的标题.
      * <p>
-     * 仅限16个字符.如果设置为null将移除标题.
+     * 仅限32个字符.如果设置为null将移除标题.
      * <p>
      * 原文：Sets the title of the book.
      * <p>
-     * Limited to 16 characters. Removes title when given null.
+     * Limited to 32 characters. Removes title when given null.
      *
      * @param title 要设置的标题
      * @return 如果成功设置标题则为true
@@ -183,10 +183,10 @@ public interface BookMeta extends ItemMeta {
     List<String> getPages();
 
     /**
-     * 清除存在的书页，并设置书提供的书页.最多50页，每页最多256个字符.
+     * 清除存在的书页，并设置书提供的书页.最多100页，每页最多256个字符.
      * <p>
      * 原文：Clears the existing book pages, and sets the book to use the provided
-     * pages. Maximum 50 pages with 256 characters per page.
+     * pages. Maximum 100 pages with 256 characters per page.
      *
      * @param pages 要设置的书页的内容的列表
      */

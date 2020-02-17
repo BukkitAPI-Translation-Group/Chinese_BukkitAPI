@@ -9,15 +9,19 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.security.CodeSigner;
 import java.security.CodeSource;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
+import java.util.logging.Level;
 import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.SimplePluginManager;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -36,6 +40,7 @@ final class PluginClassLoader extends URLClassLoader {
     final JavaPlugin plugin;
     private JavaPlugin pluginInit;
     private IllegalStateException pluginState;
+    private final Set<String> seenIllegalAccess = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     static {
         ClassLoader.registerAsParallelCapable();
@@ -77,6 +82,16 @@ final class PluginClassLoader extends URLClassLoader {
     }
 
     @Override
+    public URL getResource(String name) {
+        return findResource(name);
+    }
+
+    @Override
+    public Enumeration<URL> getResources(String name) throws IOException {
+        return findResources(name);
+    }
+
+    @Override
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         return findClass(name, true);
     }
@@ -90,6 +105,23 @@ final class PluginClassLoader extends URLClassLoader {
         if (result == null) {
             if (checkGlobal) {
                 result = loader.getClassByName(name);
+
+                if (result != null) {
+                    PluginDescriptionFile provider = ((PluginClassLoader) result.getClassLoader()).description;
+
+                    if (provider != description
+                            && !seenIllegalAccess.contains(provider.getName())
+                            && !((SimplePluginManager) loader.server.getPluginManager()).isTransitiveDepend(description, provider)) {
+
+                        seenIllegalAccess.add(provider.getName());
+                        if (plugin != null) {
+                            plugin.getLogger().log(Level.WARNING, "Loaded class {0} from {1} which is not a depend, softdepend or loadbefore of this plugin.", new Object[]{name, provider.getFullName()});
+                        } else {
+                            // In case the bad access occurs on construction
+                            loader.server.getLogger().log(Level.WARNING, "[{0}] Loaded class {1} from {2} which is not a depend, softdepend or loadbefore of this plugin.", new Object[]{description.getName(), name, provider.getFullName()});
+                        }
+                    }
+                }
             }
 
             if (result == null) {
@@ -138,9 +170,9 @@ final class PluginClassLoader extends URLClassLoader {
                 if (result != null) {
                     loader.setClass(name, result);
                 }
-            }
 
-            classes.put(name, result);
+                classes.put(name, result);
+            }
         }
 
         return result;

@@ -144,9 +144,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * @param yaw the yaw
      * @param pitch the pitch
      * @throws UnsupportedOperationException if used for players
-     * @deprecated draft API
      */
-    @Deprecated
     public void setRotation(float yaw, float pitch);
 
     /**
@@ -602,9 +600,13 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
 
     /**
      * 设置实体是否有团队颜色(默认白色)的发光. 
+     * <b>注意:本方法用到了实体的'Glowing'属性, 不是给实体应用发光药水效果.</b>
      * <p>
      * 原文:
-     * Sets whether the entity has a team colored (default: white) glow. 
+     * Sets whether the entity has a team colored (default: white) glow.
+     *
+     * <b>nb: this refers to the 'Glowing' entity property, not whether a
+     * glowing potion effect is applied</b>
      *
      * @param flag 是否发光
      */
@@ -612,9 +614,11 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
 
     /**
      * 获取实体是否发光. 
+     * <b>注意:本方法用到了实体的'Glowing'属性, 不是给实体应用发光药水效果.</b>
      * <p>
      * 原文:
-     * Gets whether the entity is glowing or not. 
+     * <b>nb: this refers to the 'Glowing' entity property, not whether a
+     * glowing potion effect is applied</b>
      *
      * @return 是否发光
      */

@@ -3,6 +3,7 @@ package org.bukkit;
 import java.util.Collection;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Entity;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
@@ -216,4 +217,28 @@ public interface Chunk {
      */
     @NotNull
     Collection<Plugin> getPluginChunkTickets();
+
+    /**
+     * Gets the amount of time in ticks that this chunk has been inhabited.
+     *
+     * Note that the time is incremented once per tick per player in the chunk.
+     *
+     * @return inhabited time
+     */
+    long getInhabitedTime();
+
+    /**
+     * Sets the amount of time in ticks that this chunk has been inhabited.
+     *
+     * @param ticks new inhabited time
+     */
+    void setInhabitedTime(long ticks);
+
+    /**
+     * Tests if this chunk contains the specified block.
+     *
+     * @param block block to test
+     * @return if the block is contained within
+     */
+    boolean contains(@NotNull BlockData block);
 }
