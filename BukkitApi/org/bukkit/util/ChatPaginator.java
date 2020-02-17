@@ -1,10 +1,11 @@
 package org.bukkit.util;
 
-import org.bukkit.ChatColor;
-
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import org.bukkit.ChatColor;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * ChatPaginator是聊天分页器,它会读取一长串任意长度的字符串并分割成字符串数组,
@@ -31,7 +32,8 @@ public class ChatPaginator {
      * @param pageNumber 承载的页数
      * @return 一个单独的聊天页
      */
-    public static ChatPage paginate(String unpaginatedString, int pageNumber) {
+    @NotNull
+    public static ChatPage paginate(@Nullable String unpaginatedString, int pageNumber) {
         return paginate(unpaginatedString, pageNumber, GUARANTEED_NO_WRAP_CHAT_PAGE_WIDTH, CLOSED_CHAT_PAGE_HEIGHT);
     }
 
@@ -46,7 +48,8 @@ public class ChatPaginator {
      * @param pageHeight 一页中聊天行期望的高度
      * @return 一个单独的聊天页
      */
-    public static ChatPage paginate(String unpaginatedString, int pageNumber, int lineLength, int pageHeight) {
+    @NotNull
+    public static ChatPage paginate(@Nullable String unpaginatedString, int pageNumber, int lineLength, int pageHeight) {
         String[] lines = wordWrap(unpaginatedString, lineLength);
 
         int totalPages = lines.length / pageHeight + (lines.length % pageHeight == 0 ? 0 : 1);
@@ -69,7 +72,8 @@ public class ChatPaginator {
      * @param lineLength 文本行的长度
      * @return 包装后的文本数组
      */
-    public static String[] wordWrap(String rawString, int lineLength) {
+    @NotNull
+    public static String[] wordWrap(@Nullable String rawString, int lineLength) {
         // A null string is a single line
         if (rawString == null) {
             return new String[] {""};
@@ -160,7 +164,7 @@ public class ChatPaginator {
         private int pageNumber;
         private int totalPages;
 
-        public ChatPage(String[] lines, int pageNumber, int totalPages) {
+        public ChatPage(@NotNull String[] lines, int pageNumber, int totalPages) {
             this.lines = lines;
             this.pageNumber = pageNumber;
             this.totalPages = totalPages;
@@ -174,8 +178,8 @@ public class ChatPaginator {
             return totalPages;
         }
 
+        @NotNull
         public String[] getLines() {
-
             return lines;
         }
     }

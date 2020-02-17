@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import com.google.common.collect.ImmutableList;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
@@ -12,8 +13,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
-
 import org.bukkit.Warning.WarningState;
+import org.bukkit.advancement.Advancement;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarFlag;
@@ -28,12 +29,15 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.server.ServerListPingEvent;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
 import org.bukkit.permissions.Permissible;
@@ -44,13 +48,9 @@ import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.util.CachedServerIcon;
-
-import com.google.common.collect.ImmutableList;
-import org.bukkit.advancement.Advancement;
-import org.bukkit.generator.ChunkGenerator;
-
-import org.bukkit.inventory.ItemFactory;
-import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表执行插件的服务器.
@@ -84,6 +84,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 服务器名字
      */
+    @NotNull
     public String getName();
 
     /**
@@ -93,6 +94,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 服务器版本字符串
      */
+    @NotNull
     public String getVersion();
 
     /**
@@ -102,6 +104,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return Bukkit版本
      */
+    @NotNull
     public String getBukkitVersion();
 
     /**
@@ -133,6 +136,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 当前所有已登录玩家的集合.
      */
+    @NotNull
     public Collection<? extends Player> getOnlinePlayers();
 
     /**
@@ -170,26 +174,8 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 获得当前服务器绑定的IP,未绑定则为空
      */
+    @NotNull
     public String getIp();
-
-    /**
-     * 获得服务器名字.
-     * <p>
-     * 原文:Get the name of this server.
-     *
-     * @return 服务器名字
-     */
-    public String getServerName();
-
-    /**
-     * 获得服务器的ID,该ID通常由数字和字母组成,这个ID可以用于识别服务器
-     * <p>
-     * 原文:Get an ID of this server. The ID is a simple generally alphanumeric ID
-     * that can be used for uniquely identifying this server.
-     *
-     * @return 服务器的ID
-     */
-    public String getServerId();
 
     /**
      * 获得主世界的世界类型(检测主世界的世界类型).
@@ -198,6 +184,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 世界类型(比如:DEFAULT, FLAT, DEFAULT_1_1)
      */
+    @NotNull
     public String getWorldType();
 
     /**
@@ -251,6 +238,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 白名单中的玩家
      */
+    @NotNull
     public Set<OfflinePlayer> getWhitelistedPlayers();
 
     /**
@@ -274,7 +262,7 @@ public interface Server extends PluginMessageRecipient {
      * @param message 要广播的消息
      * @return 成功接收此消息的玩家数
      */
-    public int broadcastMessage(String message);
+    public int broadcastMessage(@NotNull String message);
 
     /**
      * 获取更新文件夹的名字. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
@@ -297,6 +285,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 更新文件夹的名字
      */
+    @NotNull
     public String getUpdateFolder();
 
     /**
@@ -308,6 +297,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 表示更新文件夹的 File 实例
      */
+    @NotNull
     public File getUpdateFolderFile();
 
     /**
@@ -369,7 +359,8 @@ public interface Server extends PluginMessageRecipient {
      * @return 一个在线玩家实例或者null
      */
     @Deprecated
-    public Player getPlayer(String name);
+    @Nullable
+    public Player getPlayer(@NotNull String name);
 
     /**
      * 通过玩家名准确的查找来获得一个玩家实例,避免大小写问题(译注:该方法使用频率极低)
@@ -381,7 +372,8 @@ public interface Server extends PluginMessageRecipient {
      * @return 一个在线玩家的实例或者null
      */
     @Deprecated
-    public Player getPlayerExact(String name);
+    @Nullable
+    public Player getPlayerExact(@NotNull String name);
 
     /**
      * 尝试用name匹配所有玩家并且返回一个所有匹配玩家的List
@@ -399,7 +391,8 @@ public interface Server extends PluginMessageRecipient {
      * @return 所有匹配玩家的List(译注:遍历该List时记得检测玩家是否在线)
      */
     @Deprecated
-    public List<Player> matchPlayer(String name);
+    @NotNull
+    public List<Player> matchPlayer(@NotNull String name);
 
     /**
      * 通过UUID获取玩家的实例
@@ -409,7 +402,8 @@ public interface Server extends PluginMessageRecipient {
      * @param id 用于检索玩家的UUID
      * @return 一个在线玩家的实例或者null
      */
-    public Player getPlayer(UUID id);
+    @Nullable
+    public Player getPlayer(@NotNull UUID id);
 
     /**
      * 获取PluginManager接口的实例
@@ -418,24 +412,27 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 返回PluginManager接口的实例
      */
+    @NotNull
     public PluginManager getPluginManager();
 
     /**
-     * 获取BukkitScheduler接口的实例用来安排任务
+     * 获取BukkitScheduler接口的实例用来安排任务.
      * <p>
      * 原文:Gets the scheduler for managing scheduled events.
      *
      * @return BukkitScheduler接口的实例
      */
+    @NotNull
     public BukkitScheduler getScheduler();
 
     /**
-     * 获取ServicesManager
+     * 获取ServicesManager。
      * <p>
      * 原文:Gets a services manager.
      *
      * @return 返回ServicesManager
      */
+    @NotNull
     public ServicesManager getServicesManager();
 
     /**
@@ -445,6 +442,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 一个包含服务器所有World的List
      */
+    @NotNull
     public List<World> getWorlds();
 
     /**
@@ -461,7 +459,8 @@ public interface Server extends PluginMessageRecipient {
      * @param creator 世界生成器
      * @return 返回新建的World或者已被服务器加载的World实例
      */
-    public World createWorld(WorldCreator creator);
+    @Nullable
+    public World createWorld(@NotNull WorldCreator creator);
 
     /**
      * 通过给定的名字从服务器卸载一个World
@@ -472,7 +471,7 @@ public interface Server extends PluginMessageRecipient {
      * @param save 是否在卸载World前保存区块数据
      * @return 成功则返回true否则返回fasle
      */
-    public boolean unloadWorld(String name, boolean save);
+    public boolean unloadWorld(@NotNull String name, boolean save);
 
     /**
      * 通过给定的Wrold实例从服务器卸载一个World
@@ -483,7 +482,7 @@ public interface Server extends PluginMessageRecipient {
      * @param save 是否在卸载World前保存区块数据
      * @return  成功则返回true否则返回fasle
      */
-    public boolean unloadWorld(World world, boolean save);
+    public boolean unloadWorld(@NotNull World world, boolean save);
 
     /**
      * 通过给定的name获取一个World实例
@@ -493,7 +492,8 @@ public interface Server extends PluginMessageRecipient {
      * @param name 被获取世界的name
      * @return World实例,当世界不存在时将返回null
      */
-    public World getWorld(String name);
+    @Nullable
+    public World getWorld(@NotNull String name);
 
     /**
      * 通过UUID获取World实例
@@ -503,7 +503,8 @@ public interface Server extends PluginMessageRecipient {
      * @param uid 被获取的World的UUID
      * @return  World实例,当世界不存在时将返回null
      */
-    public World getWorld(UUID uid);
+    @Nullable
+    public World getWorld(@NotNull UUID uid);
 
     /**
      * 通过给定的item ID获取MapView实例
@@ -515,7 +516,8 @@ public interface Server extends PluginMessageRecipient {
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public MapView getMap(short id);
+    @Nullable
+    public MapView getMap(int id);
 
     /**
      * 创建一个新的MapView实例并且自动分配ID
@@ -525,7 +527,8 @@ public interface Server extends PluginMessageRecipient {
      * @param world 该Map所属的World
      * @return 一个新的MapView实例
      */
-    public MapView createMap(World world);
+    @NotNull
+    public MapView createMap(@NotNull World world);
 
     /**
      * Create a new explorer map targeting the closest nearby structure of a
@@ -542,7 +545,8 @@ public interface Server extends PluginMessageRecipient {
      * @see World#locateNearestStructure(org.bukkit.Location,
      *      org.bukkit.StructureType, int, boolean)
      */
-    public ItemStack createExplorerMap(World world, Location location, StructureType structureType);
+    @NotNull
+    public ItemStack createExplorerMap(@NotNull World world, @NotNull Location location, @NotNull StructureType structureType);
 
     /**
      * Create a new explorer map targeting the closest nearby structure of a
@@ -562,7 +566,8 @@ public interface Server extends PluginMessageRecipient {
      * @see World#locateNearestStructure(org.bukkit.Location,
      *      org.bukkit.StructureType, int, boolean)
      */
-    public ItemStack createExplorerMap(World world, Location location, StructureType structureType, int radius, boolean findUnexplored);
+    @NotNull
+    public ItemStack createExplorerMap(@NotNull World world, @NotNull Location location, @NotNull StructureType structureType, int radius, boolean findUnexplored);
 
     /**
      * 重新加载服务器并刷新设置和插件信息.
@@ -586,6 +591,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 服务器日志
      */
+    @NotNull
     public Logger getLogger();
 
     /**
@@ -596,7 +602,8 @@ public interface Server extends PluginMessageRecipient {
      * @param name 命令名
      * @return 如果找到该名字的Command则返回PluginCommand实例,否则返回null
      */
-    public PluginCommand getPluginCommand(String name);
+    @Nullable
+    public PluginCommand getPluginCommand(@NotNull String name);
 
     /**
      * 将以记载的玩家储存到硬盘
@@ -616,7 +623,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 如果无法找到目标则返回false,否则返回true
      * @throws CommandException 抛出执行期间出现的未捕获的异常
      */
-    public boolean dispatchCommand(CommandSender sender, String commandLine) throws CommandException;
+    public boolean dispatchCommand(@NotNull CommandSender sender, @NotNull String commandLine) throws CommandException;
 
     /**
      * 向服务器添加一个配方
@@ -626,7 +633,8 @@ public interface Server extends PluginMessageRecipient {
      * @param recipe 被添加的配方
      * @return 当配方成功添加时返回true,否则返回false
      */
-    public boolean addRecipe(Recipe recipe);
+    @Contract("null -> false")
+    public boolean addRecipe(@Nullable Recipe recipe);
 
     /**
      * 获取一个合成ItemStack的所有配方,如果副ID为-1将匹配所有的数据值
@@ -637,7 +645,8 @@ public interface Server extends PluginMessageRecipient {
      * @param result 被获取配方的ItemStack
      * @return 配方的List实例
      */
-    public List<Recipe> getRecipesFor(ItemStack result);
+    @NotNull
+    public List<Recipe> getRecipesFor(@NotNull ItemStack result);
 
     /**
      * 获取配方迭代器
@@ -646,6 +655,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 配方的迭代器
      */
+    @NotNull
     public Iterator<Recipe> recipeIterator();
 
     /**
@@ -669,6 +679,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 储存有命令及其别名List的Map实例
      */
+    @NotNull
     public Map<String, String[]> getCommandAliases();
 
     /**
@@ -734,7 +745,7 @@ public interface Server extends PluginMessageRecipient {
      *     权限许可}
      * @return 成功接收此消息的玩家数
      */
-    public int broadcast(String message, String permission);
+    public int broadcast(@NotNull String message, @NotNull String permission);
 
     /**
      * 通过给定的name获取OfflinePlayer实例
@@ -758,7 +769,8 @@ public interface Server extends PluginMessageRecipient {
      * @see #getOfflinePlayer(java.util.UUID)
      */
     @Deprecated
-    public OfflinePlayer getOfflinePlayer(String name);
+    @NotNull
+    public OfflinePlayer getOfflinePlayer(@NotNull String name);
 
     /**
      * 通过UUID获取OfflinePlayer实例
@@ -774,7 +786,8 @@ public interface Server extends PluginMessageRecipient {
      * @param id 玩家的UUID
      * @return OfflinePlayer实例
      */
-    public OfflinePlayer getOfflinePlayer(UUID id);
+    @NotNull
+    public OfflinePlayer getOfflinePlayer(@NotNull UUID id);
 
     /**
      * 获取一个被ban的IP的Set实例
@@ -783,6 +796,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 一个包含被ban的IP的set实例
      */
+    @NotNull
     public Set<String> getIPBans();
 
     /**
@@ -792,7 +806,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @param address 禁止登陆的IP地址
      */
-    public void banIP(String address);
+    public void banIP(@NotNull String address);
 
     /**
      * 解除禁止此ip地址登陆到服务器.
@@ -801,7 +815,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @param address 解除禁止登陆的IP地址
      */
-    public void unbanIP(String address);
+    public void unbanIP(@NotNull String address);
 
     /**
      * 获得一组所有被服务器封禁的玩家.
@@ -810,6 +824,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 一组玩家
      */
+    @NotNull
     public Set<OfflinePlayer> getBannedPlayers();
 
     /**
@@ -825,7 +840,8 @@ public interface Server extends PluginMessageRecipient {
      * @param type 需要获取的BanList的类型
      * @return BanList实例
      */
-    public BanList getBanList(BanList.Type type);
+    @NotNull
+    public BanList getBanList(@NotNull BanList.Type type);
 
     /**
      * 获取一个包含所有OP的Set实例
@@ -834,6 +850,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 一个包含所有OP的Set实例
      */
+    @NotNull
     public Set<OfflinePlayer> getOperators();
 
     /**
@@ -843,6 +860,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 默认游戏模式
      */
+    @NotNull
     public GameMode getDefaultGameMode();
 
     /**
@@ -852,13 +870,14 @@ public interface Server extends PluginMessageRecipient {
      *
      * @param mode 新的游戏模式
      */
-    public void setDefaultGameMode(GameMode mode);
+    public void setDefaultGameMode(@NotNull GameMode mode);
 
     /**
      * 获取一个{@link ConsoleCommandSender} 将被作为服务器的标准输入(译注:该方法用于获取控制台)
      *
      * @return 控制台对象
      */
+    @NotNull
     public ConsoleCommandSender getConsoleSender();
 
     /**
@@ -866,6 +885,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 包含所有World的文件夹的File实例
      */
+    @NotNull
     public File getWorldContainer();
 
     /**
@@ -874,6 +894,7 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Gets every player that has ever played on this server.     
      * @return 包含所有登录过的玩家的数组
      */
+    @NotNull
     public OfflinePlayer[] getOfflinePlayers();
 
     /**
@@ -883,6 +904,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 负责该服务器的Messenger
      */
+    @NotNull
     public Messenger getMessenger();
 
     /**
@@ -892,14 +914,13 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return HelpMap实例
      */
+    @NotNull
     public HelpMap getHelpMap();
 
     /**
-     * Creates an empty inventory with the specified type and title. If the type
+     * Creates an empty inventory with the specified type. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
-     * otherwise the new inventory has the normal size for its type.<br>
-     * It should be noted that some inventory types do not support titles and
-     * may not render with said titles on the Minecraft client.
+     * otherwise the new inventory has the normal size for its type.
      * <br>
      * {@link InventoryType#WORKBENCH} will not process crafting recipes if
      * created with this method. Use
@@ -917,7 +938,8 @@ public interface Server extends PluginMessageRecipient {
      *
      * @see InventoryType#isCreatable()
      */
-    Inventory createInventory(InventoryHolder owner, InventoryType type);
+    @NotNull
+    Inventory createInventory(@Nullable InventoryHolder owner, @NotNull InventoryType type);
 
     /**
      * Creates an empty inventory with the specified type and title. If the type
@@ -943,7 +965,8 @@ public interface Server extends PluginMessageRecipient {
      *
      * @see InventoryType#isCreatable()
      */
-    Inventory createInventory(InventoryHolder owner, InventoryType type, String title);
+    @NotNull
+    Inventory createInventory(@Nullable InventoryHolder owner, @NotNull InventoryType type, @NotNull String title);
 
     /**
      * 使用{@link InventoryType#CHEST}创建一个给定大小的Inventory
@@ -956,7 +979,8 @@ public interface Server extends PluginMessageRecipient {
      * @return Inventory实例
      * @throws IllegalArgumentException 如果size不为9的倍数
      */
-    Inventory createInventory(InventoryHolder owner, int size) throws IllegalArgumentException;
+    @NotNull
+    Inventory createInventory(@Nullable InventoryHolder owner, int size) throws IllegalArgumentException;
 
     /**
      * 通过一个特定的大小和标题使用{@link InventoryType#CHEST}来创建一个空的物品栏
@@ -970,7 +994,8 @@ public interface Server extends PluginMessageRecipient {
      * @return Inventory实例
      * @throws IllegalArgumentException 如果size不为9的倍数
      */
-    Inventory createInventory(InventoryHolder owner, int size, String title) throws IllegalArgumentException;
+    @NotNull
+    Inventory createInventory(@Nullable InventoryHolder owner, int size, @NotNull String title) throws IllegalArgumentException;
 
     /**
      * Creates an empty merchant.
@@ -979,7 +1004,8 @@ public interface Server extends PluginMessageRecipient {
      * when the merchant inventory is viewed
      * @return a new merchant
      */
-    Merchant createMerchant(String title);
+    @NotNull
+    Merchant createMerchant(@Nullable String title);
 
     /**
      * 获取一个区块最大可生成怪物数
@@ -1039,6 +1065,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 服务器MOTD
      */
+    @NotNull
     String getMotd();
 
     /**
@@ -1048,6 +1075,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 关服消息
      */
+    @Nullable
     String getShutdownMessage();
 
     /**
@@ -1057,6 +1085,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 被配置的警告状态
      */
+    @NotNull
     public WarningState getWarningState();
 
     /**
@@ -1067,6 +1096,7 @@ public interface Server extends PluginMessageRecipient {
      * @return ItenFactory实例
      * @see ItemFactory
      */
+    @NotNull
     ItemFactory getItemFactory();
 
     /**
@@ -1080,6 +1110,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 有任何世界被加载则返回ScoreboardManager实例,否则返回null.
      */
+    @Nullable
     ScoreboardManager getScoreboardManager();
 
     /**
@@ -1089,6 +1120,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return 服务器默认图标,当未定义服务器图标时将返回null(该行为无法担保)
      */
+    @Nullable
     CachedServerIcon getServerIcon();
 
     /**
@@ -1108,7 +1140,8 @@ public interface Server extends PluginMessageRecipient {
      * @return 一个已缓存的CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
-    CachedServerIcon loadServerIcon(File file) throws IllegalArgumentException, Exception;
+    @NotNull
+    CachedServerIcon loadServerIcon(@NotNull File file) throws IllegalArgumentException, Exception;
 
     /**
      * 从image中缓存为CachedServerIcon
@@ -1126,7 +1159,8 @@ public interface Server extends PluginMessageRecipient {
      * @return 一个已缓存的CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
-    CachedServerIcon loadServerIcon(BufferedImage image) throws IllegalArgumentException, Exception;
+    @NotNull
+    CachedServerIcon loadServerIcon(@NotNull BufferedImage image) throws IllegalArgumentException, Exception;
 
     /**
      * 设置自动踢出闲置玩家的时间.
@@ -1154,14 +1188,15 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * 原文:
      * Create a ChunkData for use in a generator.
-     * 
+     *
      * See {@link ChunkGenerator#generateChunkData(org.bukkit.World, java.util.Random, int, int, org.bukkit.generator.ChunkGenerator.BiomeGrid)}
-     * 
+     *
      * @param world ChunkData对应的世界
      * @return 这个世界的新ChunkData实例
-     * 
+     *
      */
-    public ChunkGenerator.ChunkData createChunkData(World world);
+    @NotNull
+    public ChunkGenerator.ChunkData createChunkData(@NotNull World world);
 
     /**
      * 创建一个Boos血量条实例。血量条的进度默认为1.0。
@@ -1176,7 +1211,8 @@ public interface Server extends PluginMessageRecipient {
      * @param flags 创建的Boss血量条实例
      * @return 创建的Boss血量条实例
      */
-    BossBar createBossBar(String title, BarColor color, BarStyle style, BarFlag... flags);
+    @NotNull
+    BossBar createBossBar(@Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags);
 
     /**
      * Creates a boss bar instance to display to players. The progress defaults
@@ -1192,7 +1228,8 @@ public interface Server extends PluginMessageRecipient {
      * @param flags an optional list of flags to set on the boss bar
      * @return the created boss bar
      */
-    KeyedBossBar createBossBar(NamespacedKey key, String title, BarColor color, BarStyle style, BarFlag... flags);
+    @NotNull
+    KeyedBossBar createBossBar(@NotNull NamespacedKey key, @Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags);
 
     /**
      * Gets an unmodifiable iterator through all persistent bossbars.
@@ -1208,6 +1245,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return a bossbar iterator
      */
+    @NotNull
     Iterator<KeyedBossBar> getBossBars();
 
     /**
@@ -1225,7 +1263,8 @@ public interface Server extends PluginMessageRecipient {
      * @param key unique bossbar key
      * @return bossbar or null if not exists
      */
-    KeyedBossBar getBossBar(NamespacedKey key);
+    @Nullable
+    KeyedBossBar getBossBar(@NotNull NamespacedKey key);
 
     /**
      * Removes a {@link KeyedBossBar} specified by this key.
@@ -1242,7 +1281,7 @@ public interface Server extends PluginMessageRecipient {
      * @param key unique bossbar key
      * @return true if removal succeeded or false
      */
-    boolean removeBossBar(NamespacedKey key);
+    boolean removeBossBar(@NotNull NamespacedKey key);
 
     /**
 	 * 用UUID获取实体.
@@ -1252,7 +1291,8 @@ public interface Server extends PluginMessageRecipient {
      * @param uuid 实体的UUID
      * @return 该UUID代表的实体，如果找不到为null
      */
-    Entity getEntity(UUID uuid);
+    @Nullable
+    Entity getEntity(@NotNull UUID uuid);
 
     /**
      * Get the advancement specified by this key.
@@ -1260,7 +1300,8 @@ public interface Server extends PluginMessageRecipient {
      * @param key unique advancement key
      * @return advancement or null if not exists
      */
-    Advancement getAdvancement(NamespacedKey key);
+    @Nullable
+    Advancement getAdvancement(@NotNull NamespacedKey key);
 
     /**
      * Get an iterator through all advancements. Advancements cannot be removed
@@ -1268,6 +1309,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @return an advancement iterator
      */
+    @NotNull
     Iterator<Advancement> advancementIterator();
 
     /**
@@ -1277,7 +1319,8 @@ public interface Server extends PluginMessageRecipient {
      * @param material the material
      * @return new data instance
      */
-    BlockData createBlockData(Material material);
+    @NotNull
+    BlockData createBlockData(@NotNull Material material);
 
     /**
      * Creates a new {@link BlockData} instance for the specified Material, with
@@ -1287,7 +1330,8 @@ public interface Server extends PluginMessageRecipient {
      * @param consumer consumer to run on new instance before returning
      * @return new data instance
      */
-    public BlockData createBlockData(Material material, Consumer<BlockData> consumer);
+    @NotNull
+    public BlockData createBlockData(@NotNull Material material, @Nullable Consumer<BlockData> consumer);
 
     /**
      * Creates a new {@link BlockData} instance with material and properties
@@ -1297,7 +1341,8 @@ public interface Server extends PluginMessageRecipient {
      * @return new data instance
      * @throws IllegalArgumentException if the specified data is not valid
      */
-    BlockData createBlockData(String data) throws IllegalArgumentException;
+    @NotNull
+    BlockData createBlockData(@NotNull String data) throws IllegalArgumentException;
 
     /**
      * Creates a new {@link BlockData} instance for the specified Material, with
@@ -1312,7 +1357,9 @@ public interface Server extends PluginMessageRecipient {
      * @return new data instance
      * @throws IllegalArgumentException if the specified data is not valid
      */
-    BlockData createBlockData(Material material, String data) throws IllegalArgumentException;
+    @NotNull
+    @Contract("null, null -> fail")
+    BlockData createBlockData(@Nullable Material material, @Nullable String data) throws IllegalArgumentException;
 
     /**
      * Gets a tag which has already been defined within the server. Plugins are
@@ -1332,7 +1379,24 @@ public interface Server extends PluginMessageRecipient {
      * @param clazz the class of the tag entries
      * @return the tag or null
      */
-    <T extends Keyed> Tag<T> getTag(String registry, NamespacedKey tag, Class<T> clazz);
+    @Nullable
+    <T extends Keyed> Tag<T> getTag(@NotNull String registry, @NotNull NamespacedKey tag, @NotNull Class<T> clazz);
+
+    /**
+     * Gets a all tags which have been defined within the server.
+     * <br>
+     * Server implementations are allowed to handle only the registries
+     * indicated in {@link Tag}.
+     * <br>
+     * No guarantees are made about the mutability of the returned iterator.
+     *
+     * @param <T> type of the tag
+     * @param registry the tag registry to look at
+     * @param clazz the class of the tag entries
+     * @return all defined tags
+     */
+    @NotNull
+    <T extends Keyed> Iterable<Tag<T>> getTags(@NotNull String registry, @NotNull Class<T> clazz);
 
     /**
      * Gets the specified {@link LootTable}.
@@ -1340,12 +1404,37 @@ public interface Server extends PluginMessageRecipient {
      * @param key the name of the LootTable
      * @return the LootTable, or null if no LootTable is found with that name
      */
-    LootTable getLootTable(NamespacedKey key);
+    @Nullable
+    LootTable getLootTable(@NotNull NamespacedKey key);
+
+    /**
+     * Selects entities using the given Vanilla selector.
+     * <br>
+     * No guarantees are made about the selector format, other than they match
+     * the Vanilla format for the active Minecraft version.
+     * <br>
+     * Usually a selector will start with '@', unless selecting a Player in
+     * which case it may simply be the Player's name or UUID.
+     * <br>
+     * Note that in Vanilla, elevated permissions are usually required to use
+     * '@' selectors, but this method should not check such permissions from the
+     * sender.
+     *
+     * @param sender the sender to execute as, must be provided
+     * @param selector the selection string
+     * @return a list of the selected entities. The list will not be null, but
+     * no further guarantees are made.
+     * @throws IllegalArgumentException if the selector is malformed in any way
+     * or a parameter is null
+     */
+    @NotNull
+    List<Entity> selectEntities(@NotNull CommandSender sender, @NotNull String selector) throws IllegalArgumentException;
 
     /**
      * @see UnsafeValues
      * @return UnsafeValues实例
      */
     @Deprecated
+    @NotNull
     UnsafeValues getUnsafe();
 }

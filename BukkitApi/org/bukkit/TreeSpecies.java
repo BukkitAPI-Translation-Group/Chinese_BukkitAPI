@@ -1,8 +1,8 @@
 package org.bukkit;
 
-import java.util.Map;
-
 import com.google.common.collect.Maps;
+import java.util.Map;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表不同的树木种类。
@@ -36,7 +36,7 @@ public enum TreeSpecies {
     ;
 
     private final byte data;
-    private final static Map<Byte, TreeSpecies> BY_DATA = Maps.newHashMap();
+    private static final Map<Byte, TreeSpecies> BY_DATA = Maps.newHashMap();
 
     private TreeSpecies(final int data) {
         this.data = (byte) data;
@@ -65,6 +65,7 @@ public enum TreeSpecies {
      * @deprecated 不安全的参数
      */
     @Deprecated
+    @Nullable
     public static TreeSpecies getByData(final byte data) {
         return BY_DATA.get(data);
     }

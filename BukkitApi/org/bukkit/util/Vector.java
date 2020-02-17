@@ -1,5 +1,7 @@
 package org.bukkit.util;
 
+import com.google.common.base.Preconditions;
+import com.google.common.primitives.Doubles;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Random;
@@ -7,6 +9,7 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Vector代表一个可变向量.
@@ -99,7 +102,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param vec 另一个向量
      * @return 返回自身作为结果向量
      */
-    public Vector add(Vector vec) {
+    @NotNull
+    public Vector add(@NotNull Vector vec) {
         x += vec.x;
         y += vec.y;
         z += vec.z;
@@ -114,7 +118,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param vec 另一个向量
      * @return 返回自身作为结果向量
      */
-    public Vector subtract(Vector vec) {
+    @NotNull
+    public Vector subtract(@NotNull Vector vec) {
         x -= vec.x;
         y -= vec.y;
         z -= vec.z;
@@ -131,7 +136,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param vec 另一个向量
      * @return 返回自身作为结果向量
      */
-    public Vector multiply(Vector vec) {
+    @NotNull
+    public Vector multiply(@NotNull Vector vec) {
         x *= vec.x;
         y *= vec.y;
         z *= vec.z;
@@ -146,7 +152,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param vec 另一个向量
      * @return 返回自身作为结果向量
      */
-    public Vector divide(Vector vec) {
+    @NotNull
+    public Vector divide(@NotNull Vector vec) {
         x /= vec.x;
         y /= vec.y;
         z /= vec.z;
@@ -161,7 +168,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param vec 另一个向量
      * @return 返回自身作为结果向量
      */
-    public Vector copy(Vector vec) {
+    @NotNull
+    public Vector copy(@NotNull Vector vec) {
         x = vec.x;
         y = vec.y;
         z = vec.z;
@@ -212,7 +220,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param o 给定向量
      * @return 距离
      */
-    public double distance(Vector o) {
+    public double distance(@NotNull Vector o) {
         return Math.sqrt(NumberConversions.square(x - o.x) + NumberConversions.square(y - o.y) + NumberConversions.square(z - o.z));
     }
 
@@ -224,7 +232,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param o 给定向量
      * @return 距离的平方
      */
-    public double distanceSquared(Vector o) {
+    public double distanceSquared(@NotNull Vector o) {
         return NumberConversions.square(x - o.x) + NumberConversions.square(y - o.y) + NumberConversions.square(z - o.z);
     }
 
@@ -236,8 +244,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param other 给定向量
      * @return 弧度表示的夹角
      */
-    public float angle(Vector other) {
-        double dot = dot(other) / (length() * other.length());
+    public float angle(@NotNull Vector other) {
+        double dot = Doubles.constrainToRange(dot(other) / (length() * other.length()), -1.0, 1.0);
 
         return (float) Math.acos(dot);
     }
@@ -250,7 +258,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param other 给定向量
      * @return 返回自身作为结果向量(此时已经是中点向量)
      */
-    public Vector midpoint(Vector other) {
+    @NotNull
+    public Vector midpoint(@NotNull Vector other) {
         x = (x + other.x) / 2;
         y = (y + other.y) / 2;
         z = (z + other.z) / 2;
@@ -265,7 +274,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param other 给定向量
      * @return 一个新的中点向量
      */
-    public Vector getMidpoint(Vector other) {
+    @NotNull
+    public Vector getMidpoint(@NotNull Vector other) {
         double x = (this.x + other.x) / 2;
         double y = (this.y + other.y) / 2;
         double z = (this.z + other.z) / 2;
@@ -281,6 +291,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param m 因数,即数乘的倍数,整数
      * @return 返回自身作为结果向量
      */
+    @NotNull
     public Vector multiply(int m) {
         x *= m;
         y *= m;
@@ -297,6 +308,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param m 因数,即数乘的倍数,双精度浮点数
      * @return 返回自身作为结果向量
      */
+    @NotNull
     public Vector multiply(double m) {
         x *= m;
         y *= m;
@@ -313,6 +325,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param m 因数,即数乘的倍数,单精度浮点数
      * @return 返回自身作为结果向量
      */
+    @NotNull
     public Vector multiply(float m) {
         x *= m;
         y *= m;
@@ -329,7 +342,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param other 给定向量
      * @return 点积
      */
-    public double dot(Vector other) {
+    public double dot(@NotNull Vector other) {
         return x * other.x + y * other.y + z * other.z;
     }
 
@@ -351,7 +364,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param o 给定向量
      * @return 返回自身作为结果向量
      */
-    public Vector crossProduct(Vector o) {
+    @NotNull
+    public Vector crossProduct(@NotNull Vector o) {
         double newX = y * o.z - o.y * z;
         double newY = z * o.x - o.z * x;
         double newZ = x * o.y - o.x * y;
@@ -384,7 +398,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param o 给定向量
      * @return 新向量表示叉积的结果
      */
-    public Vector getCrossProduct(Vector o) {
+    @NotNull
+    public Vector getCrossProduct(@NotNull Vector o) {
         double x = this.y * o.z - o.y * this.z;
         double y = this.z * o.x - o.z * this.x;
         double z = this.x * o.y - o.x * this.y;
@@ -398,6 +413,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      *
      * @return 返回自身作为结果向量
      */
+    @NotNull
     public Vector normalize() {
         double length = length();
 
@@ -415,6 +431,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      *
      * @return 返回自身作为结果向量
      */
+    @NotNull
     public Vector zero() {
         x = 0;
         y = 0;
@@ -436,7 +453,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param max 最大向量
      * @return 这个向量是否在这个AABB包围盒中
      */
-    public boolean isInAABB(Vector min, Vector max) {
+    public boolean isInAABB(@NotNull Vector min, @NotNull Vector max) {
         return x >= min.x && x <= max.x && y >= min.y && y <= max.y && z >= min.z && z <= max.z;
     }
 
@@ -449,8 +466,155 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param radius 半径
      * @return 此向量是否在球形空间中
      */
-    public boolean isInSphere(Vector origin, double radius) {
+    public boolean isInSphere(@NotNull Vector origin, double radius) {
         return (NumberConversions.square(origin.x - x) + NumberConversions.square(origin.y - y) + NumberConversions.square(origin.z - z)) <= NumberConversions.square(radius);
+    }
+
+    /**
+     * Returns if a vector is normalized
+     *
+     * @return whether the vector is normalised
+     */
+    public boolean isNormalized() {
+        return Math.abs(this.lengthSquared() - 1) < getEpsilon();
+    }
+
+    /**
+     * Rotates the vector around the x axis.
+     * <p>
+     * This piece of math is based on the standard rotation matrix for vectors
+     * in three dimensional space. This matrix can be found here:
+     * <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations">Rotation
+     * Matrix</a>.
+     *
+     * @param angle the angle to rotate the vector about. This angle is passed
+     * in radians
+     * @return the same vector
+     */
+    @NotNull
+    public Vector rotateAroundX(double angle) {
+        double angleCos = Math.cos(angle);
+        double angleSin = Math.sin(angle);
+
+        double y = angleCos * getY() - angleSin * getZ();
+        double z = angleSin * getY() + angleCos * getZ();
+        return setY(y).setZ(z);
+    }
+
+    /**
+     * Rotates the vector around the y axis.
+     * <p>
+     * This piece of math is based on the standard rotation matrix for vectors
+     * in three dimensional space. This matrix can be found here:
+     * <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations">Rotation
+     * Matrix</a>.
+     *
+     * @param angle the angle to rotate the vector about. This angle is passed
+     * in radians
+     * @return the same vector
+     */
+    @NotNull
+    public Vector rotateAroundY(double angle) {
+        double angleCos = Math.cos(angle);
+        double angleSin = Math.sin(angle);
+
+        double x = angleCos * getX() + angleSin * getZ();
+        double z = -angleSin * getX() + angleCos * getZ();
+        return setX(x).setZ(z);
+    }
+
+    /**
+     * Rotates the vector around the z axis
+     * <p>
+     * This piece of math is based on the standard rotation matrix for vectors
+     * in three dimensional space. This matrix can be found here:
+     * <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations">Rotation
+     * Matrix</a>.
+     *
+     * @param angle the angle to rotate the vector about. This angle is passed
+     * in radians
+     * @return the same vector
+     */
+    @NotNull
+    public Vector rotateAroundZ(double angle) {
+        double angleCos = Math.cos(angle);
+        double angleSin = Math.sin(angle);
+
+        double x = angleCos * getX() - angleSin * getY();
+        double y = angleSin * getX() + angleCos * getY();
+        return setX(x).setY(y);
+    }
+
+    /**
+     * Rotates the vector around a given arbitrary axis in 3 dimensional space.
+     *
+     * <p>
+     * Rotation will follow the general Right-Hand-Rule, which means rotation
+     * will be counterclockwise when the axis is pointing towards the observer.
+     * <p>
+     * This method will always make sure the provided axis is a unit vector, to
+     * not modify the length of the vector when rotating. If you are experienced
+     * with the scaling of a non-unit axis vector, you can use
+     * {@link Vector#rotateAroundNonUnitAxis(Vector, double)}.
+     *
+     * @param axis the axis to rotate the vector around. If the passed vector is
+     * not of length 1, it gets copied and normalized before using it for the
+     * rotation. Please use {@link Vector#normalize()} on the instance before
+     * passing it to this method
+     * @param angle the angle to rotate the vector around the axis
+     * @return the same vector
+     * @throws IllegalArgumentException if the provided axis vector instance is
+     * null
+     */
+    @NotNull
+    public Vector rotateAroundAxis(@NotNull Vector axis, double angle) throws IllegalArgumentException {
+        Preconditions.checkArgument(axis != null, "The provided axis vector was null");
+
+        return rotateAroundNonUnitAxis(axis.isNormalized() ? axis : axis.clone().normalize(), angle);
+    }
+
+    /**
+     * Rotates the vector around a given arbitrary axis in 3 dimensional space.
+     *
+     * <p>
+     * Rotation will follow the general Right-Hand-Rule, which means rotation
+     * will be counterclockwise when the axis is pointing towards the observer.
+     * <p>
+     * Note that the vector length will change accordingly to the axis vector
+     * length. If the provided axis is not a unit vector, the rotated vector
+     * will not have its previous length. The scaled length of the resulting
+     * vector will be related to the axis vector. If you are not perfectly sure
+     * about the scaling of the vector, use
+     * {@link Vector#rotateAroundAxis(Vector, double)}
+     *
+     * @param axis the axis to rotate the vector around.
+     * @param angle the angle to rotate the vector around the axis
+     * @return the same vector
+     * @throws IllegalArgumentException if the provided axis vector instance is
+     * null
+     */
+    @NotNull
+    public Vector rotateAroundNonUnitAxis(@NotNull Vector axis, double angle) throws IllegalArgumentException {
+        Preconditions.checkArgument(axis != null, "The provided axis vector was null");
+
+        double x = getX(), y = getY(), z = getZ();
+        double x2 = axis.getX(), y2 = axis.getY(), z2 = axis.getZ();
+
+        double cosTheta = Math.cos(angle);
+        double sinTheta = Math.sin(angle);
+        double dotProduct = this.dot(axis);
+
+        double xPrime = x2 * dotProduct * (1d - cosTheta)
+                + x * cosTheta
+                + (-z2 * y + y2 * z) * sinTheta;
+        double yPrime = y2 * dotProduct * (1d - cosTheta)
+                + y * cosTheta
+                + (z2 * x - x2 * z) * sinTheta;
+        double zPrime = z2 * dotProduct * (1d - cosTheta)
+                + z * cosTheta
+                + (-y2 * x + x2 * y) * sinTheta;
+
+        return setX(xPrime).setY(yPrime).setZ(zPrime);
     }
 
     /**
@@ -530,6 +694,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param x 新的X坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setX(int x) {
         this.x = x;
         return this;
@@ -543,6 +708,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param x 新的X坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setX(double x) {
         this.x = x;
         return this;
@@ -556,6 +722,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param x 新的X坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setX(float x) {
         this.x = x;
         return this;
@@ -569,6 +736,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param y 新的Y坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setY(int y) {
         this.y = y;
         return this;
@@ -582,6 +750,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param y 新的Y坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setY(double y) {
         this.y = y;
         return this;
@@ -595,6 +764,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param y 新的Y坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setY(float y) {
         this.y = y;
         return this;
@@ -608,6 +778,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param z 新的Z坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setZ(int z) {
         this.z = z;
         return this;
@@ -621,6 +792,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param z 新的Z坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setZ(double z) {
         this.z = z;
         return this;
@@ -634,6 +806,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param z 新的Z坐标
      * @return 自身向量
      */
+    @NotNull
     public Vector setZ(float z) {
         this.z = z;
         return this;
@@ -686,6 +859,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      *
      * @return 新向量
      */
+    @NotNull
     @Override
     public Vector clone() {
         try {
@@ -714,7 +888,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param world 连接这个Location的World.
      * @return 这个Location实例
      */
-    public Location toLocation(World world) {
+    @NotNull
+    public Location toLocation(@NotNull World world) {
         return new Location(world, x, y, z);
     }
 
@@ -728,7 +903,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param pitch 期望的旋进角(也叫进动角、俯仰角,Pitch).
      * @return 这个Location实例
      */
-    public Location toLocation(World world, float yaw, float pitch) {
+    @NotNull
+    public Location toLocation(@NotNull World world, float yaw, float pitch) {
         return new Location(world, x, y, z, yaw, pitch);
     }
 
@@ -739,6 +915,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      *
      * @return 一个方块向量.
      */
+    @NotNull
     public BlockVector toBlockVector() {
         return new BlockVector(x, y, z);
     }
@@ -778,7 +955,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param v2 第二个向量
      * @return 最小向量
      */
-    public static Vector getMinimum(Vector v1, Vector v2) {
+    @NotNull
+    public static Vector getMinimum(@NotNull Vector v1, @NotNull Vector v2) {
         return new Vector(Math.min(v1.x, v2.x), Math.min(v1.y, v2.y), Math.min(v1.z, v2.z));
     }
 
@@ -793,7 +971,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      * @param v2 第二个向量
      * @return 最大向量
      */
-    public static Vector getMaximum(Vector v1, Vector v2) {
+    @NotNull
+    public static Vector getMaximum(@NotNull Vector v1, @NotNull Vector v2) {
         return new Vector(Math.max(v1.x, v2.x), Math.max(v1.y, v2.y), Math.max(v1.z, v2.z));
     }
 
@@ -802,10 +981,13 @@ public class Vector implements Cloneable, ConfigurationSerializable {
      *
      * @return A random vector.
      */
+    @NotNull
     public static Vector getRandom() {
         return new Vector(random.nextDouble(), random.nextDouble(), random.nextDouble());
     }
 
+    @Override
+    @NotNull
     public Map<String, Object> serialize() {
         Map<String, Object> result = new LinkedHashMap<String, Object>();
 
@@ -816,7 +998,8 @@ public class Vector implements Cloneable, ConfigurationSerializable {
         return result;
     }
 
-    public static Vector deserialize(Map<String, Object> args) {
+    @NotNull
+    public static Vector deserialize(@NotNull Map<String, Object> args) {
         double x = 0;
         double y = 0;
         double z = 0;

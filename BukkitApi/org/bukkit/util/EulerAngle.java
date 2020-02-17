@@ -1,5 +1,7 @@
 package org.bukkit.util;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * EulerAngle即欧拉角,是指用给定的三个角,
  * 每一个表示一个轴(x,y,z)的偏转角.这些角用弧度表示.
@@ -78,6 +80,7 @@ public class EulerAngle {
      * @param x x轴弧度角
      * @return 一个新的EulerAngle
      */
+    @NotNull
     public EulerAngle setX(double x) {
         return new EulerAngle(x, y, z);
     }
@@ -91,6 +94,7 @@ public class EulerAngle {
      * @param y y轴弧度角
      * @return 一个新的EulerAngle
      */
+    @NotNull
     public EulerAngle setY(double y) {
         return new EulerAngle(x, y, z);
     }
@@ -104,6 +108,7 @@ public class EulerAngle {
      * @param z z轴弧度角
      * @return 一个新的EulerAngle
      */
+    @NotNull
     public EulerAngle setZ(double z) {
         return new EulerAngle(x, y, z);
     }
@@ -119,6 +124,7 @@ public class EulerAngle {
      * @param z z轴的弧度偏移量
      * @return 一个新的EulerAngle
      */
+    @NotNull
     public EulerAngle add(double x, double y, double z) {
         return new EulerAngle(
                 this.x + x,
@@ -138,6 +144,7 @@ public class EulerAngle {
      * @param z z轴的弧度偏移量
      * @return 一个新的EulerAngle
      */
+    @NotNull
     public EulerAngle subtract(double x, double y, double z) {
         return add(-x, -y, -z);
     }

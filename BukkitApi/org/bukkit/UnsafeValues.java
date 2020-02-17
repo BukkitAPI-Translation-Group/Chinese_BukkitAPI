@@ -1,7 +1,5 @@
 package org.bukkit;
 
-import java.util.List;
-
 import org.bukkit.advancement.Advancement;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +24,8 @@ public interface UnsafeValues {
     Material fromLegacy(MaterialData material, boolean itemPriority);
 
     BlockData fromLegacy(Material material, byte data);
+
+    Material getMaterial(String material, int version);
 
     int getDataVersion();
 

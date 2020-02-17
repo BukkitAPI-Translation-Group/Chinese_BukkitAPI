@@ -1,5 +1,7 @@
 package org.bukkit;
 
+import org.jetbrains.annotations.NotNull;
+
 public interface WorldBorder {
 
     /**
@@ -44,6 +46,7 @@ public interface WorldBorder {
      *
      * @return 当前边界的中心.
      */
+    @NotNull
     public Location getCenter();
 
     /**
@@ -63,7 +66,7 @@ public interface WorldBorder {
      *
      * @param location 边界新中心的位置. (该位置只包含x z)
      */
-    public void setCenter(Location location);
+    public void setCenter(@NotNull Location location);
 
     /**
      * 得到当前边界的破坏缓冲.
@@ -145,5 +148,5 @@ public interface WorldBorder {
      * @param location 要检查的位置
      * @return 指定的位置是否在这个边界里面
      */
-    public boolean isInside(Location location);
+    public boolean isInside(@NotNull Location location);
 }

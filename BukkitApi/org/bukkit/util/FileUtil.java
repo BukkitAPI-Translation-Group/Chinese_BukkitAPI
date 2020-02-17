@@ -1,10 +1,11 @@
 package org.bukkit.util;
 
-import java.nio.channels.FileChannel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.channels.FileChannel;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 文件工具类。
@@ -20,7 +21,7 @@ public class FileUtil {
      * @param outFile 目标文件名
      * @return true表成功
      */
-    public static boolean copy(File inFile, File outFile) {
+    public static boolean copy(@NotNull File inFile, @NotNull File outFile) {
         if (!inFile.exists()) {
             return false;
         }

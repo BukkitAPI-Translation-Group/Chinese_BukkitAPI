@@ -4,6 +4,8 @@ import java.util.Random;
 import org.bukkit.command.CommandSender;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 表示可能用于创建一个世界的各种类型的设置。
@@ -25,7 +27,7 @@ public class WorldCreator {
      *
      * @param name 将被创建的世界的名称
      */
-    public WorldCreator(String name) {
+    public WorldCreator(@NotNull String name) {
         if (name == null) {
             throw new IllegalArgumentException("World name cannot be null");
         }
@@ -43,7 +45,8 @@ public class WorldCreator {
      * @param world 用于复制设置的世界来源
      * @return 用于连接的对象
      */
-    public WorldCreator copy(World world) {
+    @NotNull
+    public WorldCreator copy(@NotNull World world) {
         if (world == null) {
             throw new IllegalArgumentException("World cannot be null");
         }
@@ -51,6 +54,8 @@ public class WorldCreator {
         seed = world.getSeed();
         environment = world.getEnvironment();
         generator = world.getGenerator();
+        type = world.getWorldType();
+        generateStructures = world.canGenerateStructures();
 
         return this;
     }
@@ -64,7 +69,8 @@ public class WorldCreator {
      * @param creator 用于复制设置的世界来源
      * @return 用于连接的对象
      */
-    public WorldCreator copy(WorldCreator creator) {
+    @NotNull
+    public WorldCreator copy(@NotNull WorldCreator creator) {
         if (creator == null) {
             throw new IllegalArgumentException("Creator cannot be null");
         }
@@ -72,6 +78,9 @@ public class WorldCreator {
         seed = creator.seed();
         environment = creator.environment();
         generator = creator.generator();
+        type = creator.type();
+        generateStructures = creator.generateStructures();
+        generatorSettings = creator.generatorSettings();
 
         return this;
     }
@@ -84,6 +93,7 @@ public class WorldCreator {
      *
      * @return 世界名称
      */
+    @NotNull
     public String name() {
         return name;
     }
@@ -109,6 +119,7 @@ public class WorldCreator {
      * @param seed 世界种子
      * @return 用于连接的对象
      */
+    @NotNull
     public WorldCreator seed(long seed) {
         this.seed = seed;
 
@@ -123,6 +134,7 @@ public class WorldCreator {
      *
      * @return 世界的环境
      */
+    @NotNull
     public World.Environment environment() {
         return environment;
     }
@@ -136,7 +148,8 @@ public class WorldCreator {
      * @param env 世界的环境
      * @return 用于连接的对象
      */
-    public WorldCreator environment(World.Environment env) {
+    @NotNull
+    public WorldCreator environment(@NotNull World.Environment env) {
         this.environment = env;
 
         return this;
@@ -150,6 +163,7 @@ public class WorldCreator {
      *
      * @return 世界的类型
      */
+    @NotNull
     public WorldType type() {
         return type;
     }
@@ -163,7 +177,8 @@ public class WorldCreator {
      * @param type 世界的类型
      * @return 用于连接的对象
      */
-    public WorldCreator type(WorldType type) {
+    @NotNull
+    public WorldCreator type(@NotNull WorldType type) {
         this.type = type;
 
         return this;
@@ -182,6 +197,7 @@ public class WorldCreator {
      *
      * @return 区块生成器
      */
+    @Nullable
     public ChunkGenerator generator() {
         return generator;
     }
@@ -200,7 +216,8 @@ public class WorldCreator {
      * @param generator 区块生成器
      * @return 用于连接的对象
      */
-    public WorldCreator generator(ChunkGenerator generator) {
+    @NotNull
+    public WorldCreator generator(@Nullable ChunkGenerator generator) {
         this.generator = generator;
 
         return this;
@@ -226,7 +243,8 @@ public class WorldCreator {
      * @param generator 使用的生成器的名字，形式为"plugin:id" 
      * @return 用于连接的对象
      */
-    public WorldCreator generator(String generator) {
+    @NotNull
+    public WorldCreator generator(@Nullable String generator) {
         this.generator = getGeneratorForName(name, generator, Bukkit.getConsoleSender());
 
         return this;
@@ -253,7 +271,8 @@ public class WorldCreator {
      * @param output 将用于接受任何错误信息的{@link CommandSender}
      * @return 用于连接的对象
      */
-    public WorldCreator generator(String generator, CommandSender output) {
+    @NotNull
+    public WorldCreator generator(@Nullable String generator, @Nullable CommandSender output) {
         this.generator = getGeneratorForName(name, generator, output);
 
         return this;
@@ -268,7 +287,8 @@ public class WorldCreator {
      * @param generatorSettings 将被使用的生成器的配置
      * @return 用于连接的对象
      */
-    public WorldCreator generatorSettings(String generatorSettings) {
+    @NotNull
+    public WorldCreator generatorSettings(@NotNull String generatorSettings) {
         this.generatorSettings = generatorSettings;
 
         return this;
@@ -282,6 +302,7 @@ public class WorldCreator {
      *
      * @return 将被使用的生成器的配置
      */
+    @NotNull
     public String generatorSettings() {
         return generatorSettings;
     }
@@ -296,6 +317,7 @@ public class WorldCreator {
      * @param generate 是否生成建筑
      * @return 用于连接的对象
      */
+    @NotNull
     public WorldCreator generateStructures(boolean generate) {
         this.generateStructures = generate;
 
@@ -327,6 +349,7 @@ public class WorldCreator {
      *
      * @return 最近创建或加载的世界
      */
+    @Nullable
     public World createWorld() {
         return Bukkit.createWorld(this);
     }
@@ -340,7 +363,8 @@ public class WorldCreator {
      * @param name 加载或创建的世界名
      * @return 创建的世界生成器
      */
-    public static WorldCreator name(String name) {
+    @NotNull
+    public static WorldCreator name(@NotNull String name) {
         return new WorldCreator(name);
     }
 
@@ -367,7 +391,8 @@ public class WorldCreator {
      * @param output 错误发生时的输出处
      * @return 若存在则返回获取的生成器，否则返回null
      */
-    public static ChunkGenerator getGeneratorForName(String world, String name, CommandSender output) {
+    @Nullable
+    public static ChunkGenerator getGeneratorForName(@NotNull String world, @Nullable String name, @Nullable CommandSender output) {
         ChunkGenerator result = null;
 
         if (world == null) {

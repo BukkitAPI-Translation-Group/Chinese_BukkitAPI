@@ -1,12 +1,15 @@
 package org.bukkit.util;
+
 import static org.bukkit.util.NumberConversions.*;
-import org.bukkit.World;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.LivingEntity;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 这个类执行射线追踪并迭代一条直线上的所有单个方块. 
  * <p>
@@ -45,7 +48,7 @@ public class BlockIterator implements Iterator<Block> {
      * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题,值0表示无限制
      *
      */
-    public BlockIterator(World world, Vector start, Vector direction, double yOffset, int maxDistance) {
+    public BlockIterator(@NotNull World world, @NotNull Vector start, @NotNull Vector direction, double yOffset, int maxDistance) {
         this.world = world;
         this.maxDistance = maxDistance;
         Vector startClone = start.clone();
@@ -138,37 +141,47 @@ public class BlockIterator implements Iterator<Block> {
         // Calculate the number of planes passed to give max distance
         maxDistanceInt = round(maxDistance / (Math.sqrt(mainDirection * mainDirection + secondDirection * secondDirection + thirdDirection * thirdDirection) / mainDirection));
     }
-    private boolean blockEquals(Block a, Block b) {
+    private boolean blockEquals(@NotNull Block a, @NotNull Block b) {
         return a.getX() == b.getX() && a.getY() == b.getY() && a.getZ() == b.getZ();
     }
-    private BlockFace getXFace(Vector direction) {
+
+    private BlockFace getXFace(@NotNull Vector direction) {
         return ((direction.getX() > 0) ? BlockFace.EAST : BlockFace.WEST);
     }
-    private BlockFace getYFace(Vector direction) {
+
+    private BlockFace getYFace(@NotNull Vector direction) {
         return ((direction.getY() > 0) ? BlockFace.UP : BlockFace.DOWN);
     }
-    private BlockFace getZFace(Vector direction) {
+
+    private BlockFace getZFace(@NotNull Vector direction) {
         return ((direction.getZ() > 0) ? BlockFace.SOUTH : BlockFace.NORTH);
     }
-    private double getXLength(Vector direction) {
+
+    private double getXLength(@NotNull Vector direction) {
         return Math.abs(direction.getX());
     }
-    private double getYLength(Vector direction) {
+
+    private double getYLength(@NotNull Vector direction) {
         return Math.abs(direction.getY());
     }
-    private double getZLength(Vector direction) {
+
+    private double getZLength(@NotNull Vector direction) {
         return Math.abs(direction.getZ());
     }
+
     private double getPosition(double direction, double position, int blockPosition) {
         return direction > 0 ? (position - blockPosition) : (blockPosition + 1 - position);
     }
-    private double getXPosition(Vector direction, Vector position, Block block) {
+
+    private double getXPosition(@NotNull Vector direction, @NotNull Vector position, @NotNull Block block) {
         return getPosition(direction.getX(), position.getX(), block.getX());
     }
-    private double getYPosition(Vector direction, Vector position, Block block) {
+
+    private double getYPosition(@NotNull Vector direction, @NotNull Vector position, @NotNull Block block) {
         return getPosition(direction.getY(), position.getY(), block.getY());
     }
-    private double getZPosition(Vector direction, Vector position, Block block) {
+
+    private double getZPosition(@NotNull Vector direction, @NotNull Vector position, @NotNull Block block) {
         return getPosition(direction.getZ(), position.getZ(), block.getZ());
     }
     /**
@@ -185,7 +198,7 @@ public class BlockIterator implements Iterator<Block> {
      * @param maxDistance 这是在方块中追踪的最大距离,
      * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题,值0表示无限制
      */
-    public BlockIterator(Location loc, double yOffset, int maxDistance) {
+    public BlockIterator(@NotNull Location loc, double yOffset, int maxDistance) {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, maxDistance);
     }
     /**
@@ -200,7 +213,7 @@ public class BlockIterator implements Iterator<Block> {
      * @param loc 射线追踪的开始位置
      * @param yOffset 垂直偏移量,追踪从初向量开始垂直偏移这个值的范围
      */
-    public BlockIterator(Location loc, double yOffset) {
+    public BlockIterator(@NotNull Location loc, double yOffset) {
         this(loc.getWorld(), loc.toVector(), loc.getDirection(), yOffset, 0);
     }
     /**
@@ -214,7 +227,7 @@ public class BlockIterator implements Iterator<Block> {
      *
      * @param loc 射线追踪的开始位置
      */
-    public BlockIterator(Location loc) {
+    public BlockIterator(@NotNull Location loc) {
         this(loc, 0D);
     }
     /**
@@ -230,7 +243,7 @@ public class BlockIterator implements Iterator<Block> {
      * @param maxDistance 这是在方块中追踪的最大距离,
      * 设置此值在140以上可能导致未加载区块(unloaded chunks)的问题,值0表示无限制
      */
-    public BlockIterator(LivingEntity entity, int maxDistance) {
+    public BlockIterator(@NotNull LivingEntity entity, int maxDistance) {
         this(entity.getLocation(), entity.getEyeHeight(), maxDistance);
     }
     /**
@@ -240,7 +253,7 @@ public class BlockIterator implements Iterator<Block> {
      *
      * @param entity 被用来设置追踪的实体信息
      */
-    public BlockIterator(LivingEntity entity) {
+    public BlockIterator(@NotNull LivingEntity entity) {
         this(entity, 0);
     }
     /**
@@ -248,6 +261,7 @@ public class BlockIterator implements Iterator<Block> {
      * <p>
      * 原文:Returns true if the iteration has more elements
      */
+    @Override
     public boolean hasNext() {
         scan();
         return currentBlock != -1;
@@ -259,7 +273,9 @@ public class BlockIterator implements Iterator<Block> {
      *
      * @return 追踪的下一个方块
      */
-    public Block next() {
+    @Override
+    @NotNull
+    public Block next() throws NoSuchElementException {
         scan();
         if (currentBlock <= -1) {
             throw new NoSuchElementException();
@@ -267,6 +283,7 @@ public class BlockIterator implements Iterator<Block> {
             return blockQueue[currentBlock--];
         }
     }
+    @Override
     public void remove() {
         throw new UnsupportedOperationException("[BlockIterator] doesn't support block removal");
     }

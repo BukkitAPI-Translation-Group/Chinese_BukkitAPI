@@ -1,6 +1,7 @@
 package org.bukkit;
 
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents a tag that may be defined by the server or a resource pack to
@@ -11,7 +12,7 @@ import java.util.Set;
  *
  * @param <T> the type of things grouped by this tag
  */
-public interface Tag<T extends Keyed> {
+public interface Tag<T extends Keyed> extends Keyed {
 
     /**
      * Key for the built in block registry.
@@ -55,6 +56,10 @@ public interface Tag<T extends Keyed> {
      * Vanilla block tag representing all wooden slabs.
      */
     Tag<Material> WOODEN_SLABS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("wooden_slabs"), Material.class);
+    /**
+     * Vanilla block tag representing all wooden fences.
+     */
+    Tag<Material> WOODEN_FENCES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("wooden_fences"), Material.class);
     /**
      * Vanilla block tag representing all wooden pressure plates.
      */
@@ -117,6 +122,10 @@ public interface Tag<T extends Keyed> {
      */
     Tag<Material> SLABS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("slabs"), Material.class);
     /**
+     * Vanilla block tag representing all walls.
+     */
+    Tag<Material> WALLS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("walls"), Material.class);
+    /**
      * Vanilla block tag representing all damaged and undamaged anvils.
      */
     Tag<Material> ANVIL = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("anvil"), Material.class);
@@ -124,18 +133,6 @@ public interface Tag<T extends Keyed> {
      * Vanilla block tag representing all Minecart rails.
      */
     Tag<Material> RAILS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("rails"), Material.class);
-    /**
-     * Vanilla block tag representing all coral blocks.
-     */
-    Tag<Material> CORAL_BLOCKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("coral_blocks"), Material.class);
-    /**
-     * Vanilla block tag representing all coral.
-     */
-    Tag<Material> CORALS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("corals"), Material.class);
-    /**
-     * Vanilla block tag representing all wall corals.
-     */
-    Tag<Material> WALL_CORALS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("wall_corals"), Material.class);
     /**
      * Vanilla block tag representing all leaves fans.
      */
@@ -149,6 +146,18 @@ public interface Tag<T extends Keyed> {
      * Vanilla block tag representing all empty and filled flower pots.
      */
     Tag<Material> FLOWER_POTS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("flower_pots"), Material.class);
+    /**
+     * Vanilla block tag representing all small flowers.
+     */
+    Tag<Material> SMALL_FLOWERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("small_flowers"), Material.class);
+    /**
+     * Vanilla block tag representing all beds.
+     */
+    Tag<Material> BEDS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("beds"), Material.class);
+    /**
+     * Vanilla block tag representing all fences.
+     */
+    Tag<Material> FENCES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("fences"), Material.class);
     /**
      * Vanilla block tag denoting blocks that enderman may pick up and hold.
      */
@@ -166,6 +175,46 @@ public interface Tag<T extends Keyed> {
      */
     Tag<Material> IMPERMEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("impermeable"), Material.class);
     /**
+     * Vanilla block tag denoting all underwater blocks which may be bonemealed.
+     */
+    Tag<Material> UNDERWATER_BONEMEALS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("underwater_bonemeals"), Material.class);
+    /**
+     * Vanilla block tag representing all coral blocks.
+     */
+    Tag<Material> CORAL_BLOCKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("coral_blocks"), Material.class);
+    /**
+     * Vanilla block tag representing all wall corals.
+     */
+    Tag<Material> WALL_CORALS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("wall_corals"), Material.class);
+    /**
+     * Vanilla block tag representing all coral plants.
+     */
+    Tag<Material> CORAL_PLANTS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("coral_plants"), Material.class);
+    /**
+     * Vanilla block tag representing all coral.
+     */
+    Tag<Material> CORALS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("corals"), Material.class);
+    /**
+     * Vanilla block tag denoting all blocks bamboo may be planted on.
+     */
+    Tag<Material> BAMBOO_PLANTABLE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("bamboo_plantable_on"), Material.class);
+    /**
+     * Vanilla block tag denoting dirt like blocks.
+     */
+    Tag<Material> DIRT_LIKE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("dirt_like"), Material.class);
+    /**
+     * Vanilla block tag representing all standing signs.
+     */
+    Tag<Material> STANDING_SIGNS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("standing_signs"), Material.class);
+    /**
+     * Vanilla block tag representing all wall signs.
+     */
+    Tag<Material> WALL_SIGNS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("wall_signs"), Material.class);
+    /**
+     * Vanilla block tag representing all signs.
+     */
+    Tag<Material> SIGNS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("signs"), Material.class);
+    /**
      * Key for the built in item registry.
      */
     String REGISTRY_ITEMS = "items";
@@ -181,6 +230,18 @@ public interface Tag<T extends Keyed> {
      * Vanilla item tag representing all fish items.
      */
     Tag<Material> ITEMS_FISHES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("fishes"), Material.class);
+    /**
+     * Vanilla item tag representing all music disc items.
+     */
+    Tag<Material> ITEMS_MUSIC_DISCS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("music_discs"), Material.class);
+    /**
+     * Vanilla item tag representing all coal items.
+     */
+    Tag<Material> ITEMS_COALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("coals"), Material.class);
+    /**
+     * Vanilla item tag representing all arrow items.
+     */
+    Tag<Material> ITEMS_ARROWS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("arrows"), Material.class);
 
     /**
      * Returns whether or not this tag has an entry for the specified item.
@@ -188,13 +249,14 @@ public interface Tag<T extends Keyed> {
      * @param item to check
      * @return if it is tagged
      */
-    boolean isTagged(T item);
+    boolean isTagged(@NotNull T item);
 
     /**
      * Gets an immutable set of all tagged items.
      *
      * @return set of tagged items
      */
+    @NotNull
     Set<T> getValues();
 
 }

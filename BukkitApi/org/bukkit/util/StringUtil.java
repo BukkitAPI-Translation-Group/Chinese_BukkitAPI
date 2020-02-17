@@ -2,6 +2,7 @@ package org.bukkit.util;
 
 import java.util.Collection;
 import org.apache.commons.lang.Validate;
+import org.jetbrains.annotations.NotNull;
 
 public class StringUtil {
 
@@ -22,7 +23,8 @@ public class StringUtil {
      * @throws IllegalArgumentException 当任何一个源具有null元素时抛出.
      *     <b>注意:这个集合可能会在这个异常抛出之前被修改</b>
      */
-    public static <T extends Collection<? super String>> T copyPartialMatches(final String token, final Iterable<String> originals, final T collection) throws UnsupportedOperationException, IllegalArgumentException {
+    @NotNull
+    public static <T extends Collection<? super String>> T copyPartialMatches(@NotNull final String token, @NotNull final Iterable<String> originals, @NotNull final T collection) throws UnsupportedOperationException, IllegalArgumentException {
         Validate.notNull(token, "Search token cannot be null");
         Validate.notNull(collection, "Collection cannot be null");
         Validate.notNull(originals, "Originals cannot be null");
@@ -52,7 +54,7 @@ public class StringUtil {
      * @throws NullPointerException 若前缀为null则抛出
      * @throws IllegalArgumentException 若提供的字符串为null则抛出
      */
-    public static boolean startsWithIgnoreCase(final String string, final String prefix) throws IllegalArgumentException, NullPointerException {
+    public static boolean startsWithIgnoreCase(@NotNull final String string, @NotNull final String prefix) throws IllegalArgumentException, NullPointerException {
         Validate.notNull(string, "Cannot check a null string for a match");
         if (string.length() < prefix.length()) {
             return false;

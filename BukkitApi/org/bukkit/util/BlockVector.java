@@ -2,6 +2,7 @@ package org.bukkit.util;
 
 import java.util.Map;
 import org.bukkit.configuration.serialization.SerializableAs;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 这是一个带有可以向下取整XYZ坐标函数的向量类,就像WorldEdit中的BlockVector.
@@ -34,7 +35,7 @@ public class BlockVector extends Vector {
      *
      * @param vec 另一个向量。
      */
-    public BlockVector(Vector vec) {
+    public BlockVector(@NotNull Vector vec) {
         this.x = vec.getX();
         this.y = vec.getY();
         this.z = vec.getZ();
@@ -128,7 +129,8 @@ public class BlockVector extends Vector {
         return (BlockVector) super.clone();
     }
 
-    public static BlockVector deserialize(Map<String, Object> args) {
+    @NotNull
+    public static BlockVector deserialize(@NotNull Map<String, Object> args) {
         double x = 0;
         double y = 0;
         double z = 0;

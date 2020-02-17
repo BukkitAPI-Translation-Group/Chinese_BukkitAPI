@@ -1,27 +1,38 @@
 package org.bukkit;
 
 import java.io.File;
-import org.bukkit.generator.ChunkGenerator;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.function.Predicate;
-
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
-import org.bukkit.entity.*;
+import org.bukkit.entity.AbstractArrow;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.LightningStrike;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.generator.BlockPopulator;
+import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Consumer;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表一个世界,包含了{@link Entity 实体},{@link Chunk 区块},{@link Block 方块}
@@ -39,6 +50,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 在指定坐标的方块
      * @see #getBlockTypeIdAt(int, int, int) 返回这个坐标所在方块的ID
      */
+    @NotNull
     public Block getBlockAt(int x, int y, int z);
 
     /**
@@ -50,7 +62,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 在指定位置的方块
      * @see #getBlockTypeIdAt(org.bukkit.Location) 返回这个位置({@link Location})所在方块的ID
      */
-    public Block getBlockAt(Location location);
+    @NotNull
+    public Block getBlockAt(@NotNull Location location);
 
     /**
      * 获取指定坐标的方块ID.
@@ -75,7 +88,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location Location of the blocks
      * @return Y-coordinate of the highest non-air block
      */
-    public int getHighestBlockYAt(Location location);
+    public int getHighestBlockYAt(@NotNull Location location);
 
     /**
      * 获取指定坐标的最顶上的方块(不是空气).
@@ -88,6 +101,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z Z坐标
      * @return x,z坐标内,最上面的一个不是空气的方块
      */
+    @NotNull
     public Block getHighestBlockAt(int x, int z);
 
     /**
@@ -99,7 +113,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location 需要获取最高的方块的位置
      * @return 最高的不是空气的方块
      */
-    public Block getHighestBlockAt(Location location);
+    @NotNull
+    public Block getHighestBlockAt(@NotNull Location location);
 
     /**
      * 获取给定坐标所在的{@link Chunk 区块}.
@@ -110,6 +125,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z Z坐标
      * @return 给定坐标所在的区块
      */
+    @NotNull
     public Chunk getChunkAt(int x, int z);
 
     /**
@@ -121,7 +137,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location 方块的位置
      * @return 给定位置的区块
      */
-    public Chunk getChunkAt(Location location);
+    @NotNull
+    public Chunk getChunkAt(@NotNull Location location);
 
     /**
      * 获取这个{@link Block 方块}所处的{@link Chunk 区块}.
@@ -132,7 +149,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param block 需要检测的方块
      * @return 方块所处的区块
      */
-    public Chunk getChunkAt(Block block);
+    @NotNull
+    public Chunk getChunkAt(@NotNull Block block);
 
     /**
      * 检查指定{@link Chunk 区块}是否已经被加载.
@@ -143,7 +161,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param chunk 需要检查的区块
      * @return 如果区块已经被加载则返回true，否则返回false
      */
-    public boolean isChunkLoaded(Chunk chunk);
+    public boolean isChunkLoaded(@NotNull Chunk chunk);
 
     /**
      * Checks if the {@link Chunk} at the specified coordinates is generated
@@ -162,17 +180,25 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 包含所有被加载区块的数组Chunk[]
      */
+    @NotNull
     public Chunk[] getLoadedChunks();
 
     /**
      * 加载指定的{@link Chunk 区块}.
      * <p>
+     * <b>本方法将使指定的区块保持加载状态直到卸载方法被手动调用.
+     * 建议开发者使用 getChunkAt 方法, 其方法只会临时加载请求的区块, 而不是本方法.</b>
+     * <p>
      * 原文：
-     * Loads the specified {@link Chunk}
+     * Loads the specified {@link Chunk}.
+     * <p>
+     * <b>This method will keep the specified chunk loaded until one of the
+     * unload methods is manually called. Callers are advised to instead use
+     * getChunkAt which will only temporarily load the requested chunk.</b>
      *
      * @param chunk 待加载的区块
      */
-    public void loadChunk(Chunk chunk);
+    public void loadChunk(@NotNull Chunk chunk);
 
     /**
      * 检查在指定坐标的{@link Chunk 区块}是否被加载.
@@ -196,18 +222,29 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 区块的x坐标
      * @param z 区块的z坐标
      * @return 如果区块被加载且被一个或更多的玩家使用则返回true，否则返回false
+     * @deprecated 本方法曾被添加用于促进区块的垃圾回收.
+     * 由于当前 Minecraft 的区块被严格管理, 并且除非那些区块正被使用, 否则不会加载超过1tick时长
+     * (意思是mc现在对区块管理更好了, 不用的区块会被及时卸载并回收)
      */
+    @Deprecated
     public boolean isChunkInUse(int x, int z);
 
     /**
      * 加载指定坐标的{@link Chunk 区块}.
+     * <p>
+     * <b>本方法将使指定的区块保持加载状态直到卸载方法被手动调用.
+     * 建议开发者使用 getChunkAt 方法, 其方法只会临时加载请求的区块, 而不是本方法.</b>
      * <p>
      * 如果区块不存在则会被生成。
      * <p>
      * 这个方法类似于当generate值为true时的{@link #loadChunk(int, int, boolean)}.
      * <p>
      * 原文：
-     * Loads the {@link Chunk} at the specified coordinates
+     * Loads the {@link Chunk} at the specified coordinates.
+     * <p>
+     * <b>This method will keep the specified chunk loaded until one of the
+     * unload methods is manually called. Callers are advised to instead use
+     * getChunkAt which will only temporarily load the requested chunk.</b>
      * <p>
      * If the chunk does not exist, it will be generated.
      * <p>
@@ -222,8 +259,15 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 加载指定坐标的{@link Chunk 区块}.
      * <p>
+     * <b>本方法将使指定的区块保持加载状态直到卸载方法被手动调用.
+     * 建议开发者使用 getChunkAt 方法, 其方法只会临时加载请求的区块, 而不是本方法.</b>
+     * <p>
      * 原文：
-     * Loads the {@link Chunk} at the specified coordinates
+     * Loads the {@link Chunk} at the specified coordinates.
+     * <p>
+     * <b>This method will keep the specified chunk loaded until one of the
+     * unload methods is manually called. Callers are advised to instead use
+     * getChunkAt which will only temporarily load the requested chunk.</b>
      *
      * @param x 区块的x坐标
      * @param z 区块的z坐标
@@ -235,29 +279,29 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 安全的卸载并保存指定坐标的{@link Chunk 区块}.
      * <p>
-     * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
+     * 这个方法类似于当safe值为true时的{@link #unloadChunk(int, int, boolean)}.
      * <p>
      * 原文：
      * Safely unloads and saves the {@link Chunk} at the specified coordinates
      * <p>
-     * This method is analogous to {@link #unloadChunk(int, int, boolean,
-     * boolean)} where safe and saveis true
+     * This method is analogous to {@link #unloadChunk(int, int, boolean)}
+     * where save is true.
      *
      * @param chunk 卸载的区块
      * @return 如果区块被成功卸载则返回true，否则返回false
      */
-    public boolean unloadChunk(Chunk chunk);
+    public boolean unloadChunk(@NotNull Chunk chunk);
 
     /**
      * 安全的卸载并保存指定坐标的{@link Chunk 区块}.
      * <p>
-     * 这个方法类似于当safe值和saveis值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
+     * 这个方法类似于当safe值为true时的{@link #unloadChunk(int, int, boolean)}.
      * <p>
      * 原文：
      * Safely unloads and saves the {@link Chunk} at the specified coordinates
      * <p>
-     * This method is analogous to {@link #unloadChunk(int, int, boolean,
-     * boolean)} where safe and saveis true
+     * This method is analogous to {@link #unloadChunk(int, int, boolean)}
+     * where save is true.
      *
      * @param x 区块的x坐标
      * @param z 区块的z坐标
@@ -268,14 +312,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 安全的卸载并选择是否保存指定坐标的{@link Chunk 区块}.
      * <p>
-     * 这个方法类似于当safe值为true时的{@link #unloadChunk(int, int, boolean,boolean)}
-     * <p>
      * 原文：
      * Safely unloads and optionally saves the {@link Chunk} at the specified
      * coordinates
-     * <p>
-     * This method is analogous to {@link #unloadChunk(int, int, boolean,
-     * boolean)} where save is true
      *
      * @param x 区块的x坐标
      * @param z 区块的z坐标
@@ -285,26 +324,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(int x, int z, boolean save);
 
     /**
-     * 卸载并选择是否保存指定坐标的{@link Chunk 区块}.
-     * <p>
-     * 原文：
-     * Unloads and optionally saves the {@link Chunk} at the specified
-     * coordinates
-     *
-     * @param x 区块的x坐标
-     * @param z 区块的z坐标
-     * @param save 控制是否保存区块
-     * @param safe 控制当附近有玩家时是否卸载区块
-     * @return 如果区块被成功卸载则返回true，否则返回false
-     * @deprecated 移除一个正在使用的区块从不安全
-     */
-    @Deprecated
-    public boolean unloadChunk(int x, int z, boolean save, boolean safe);
-
-    /**
      * 安全地将卸载指定坐标的{@link Chunk 区块}列入队列.
-     * <p>
-     * 这个方法类似于当safe值为true时的{@link #unloadChunkRequest(int, int,boolean)}
      * <p>
      * 原文：
      * Safely queues the {@link Chunk} at the specified coordinates for
@@ -320,19 +340,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunkRequest(int x, int z);
 
     /**
-     * 将卸载指定坐标的{@link Chunk 区块}列入队列.
-     * <p>
-     * 原文：
-     * Queues the {@link Chunk} at the specified coordinates for unloading
-     *
-     * @param x 区块的x坐标
-     * @param z 区块的z坐标
-     * @param safe 控制当附近有玩家时是否卸载区块
-     * @return 区块是否真的被列入队列
-     */
-    public boolean unloadChunkRequest(int x, int z, boolean safe);
-
-    /**
      * 重新生成指定坐标的{@link Chunk 区块}.
      * <p>
      * 原文：
@@ -342,7 +349,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z 区块的z坐标
      * @return 区块是否真的被重新生成
      * 
-     * @deprecated 无法保证重新生成单个区块会产生与之前相同的区块, 因为地形装饰可分布在区块上
+     * @deprecated 无法保证重新生成单个区块会产生与之前相同的区块, 因为地形装饰可分布在区块上.
+     * 应避免使用本方法, 由于已知本方法易产生bug
      */
     @Deprecated
     public boolean regenerateChunk(int x, int z);
@@ -363,6 +371,128 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean refreshChunk(int x, int z);
 
     /**
+     * Gets whether the chunk at the specified chunk coordinates is force
+     * loaded.
+     * <p>
+     * A force loaded chunk will not be unloaded due to lack of player activity.
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @return force load status
+     */
+    public boolean isChunkForceLoaded(int x, int z);
+
+    /**
+     * Sets whether the chunk at the specified chunk coordinates is force
+     * loaded.
+     * <p>
+     * A force loaded chunk will not be unloaded due to lack of player activity.
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param forced force load status
+     */
+    public void setChunkForceLoaded(int x, int z, boolean forced);
+
+    /**
+     * Returns all force loaded chunks in this world.
+     * <p>
+     * A force loaded chunk will not be unloaded due to lack of player activity.
+     *
+     * @return unmodifiable collection of force loaded chunks
+     */
+    @NotNull
+    public Collection<Chunk> getForceLoadedChunks();
+
+    /**
+     * Adds a plugin ticket for the specified chunk, loading the chunk if it is
+     * not already loaded.
+     * <p>
+     * A plugin ticket will prevent a chunk from unloading until it is
+     * explicitly removed. A plugin instance may only have one ticket per chunk,
+     * but each chunk can have multiple plugin tickets.
+     * </p>
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param plugin Plugin which owns the ticket
+     * @return {@code true} if a plugin ticket was added, {@code false} if the
+     * ticket already exists for the plugin
+     * @throws IllegalStateException If the specified plugin is not enabled
+     * @see #removePluginChunkTicket(int, int, Plugin)
+     */
+    public boolean addPluginChunkTicket(int x, int z, @NotNull Plugin plugin);
+
+    /**
+     * Removes the specified plugin's ticket for the specified chunk
+     * <p>
+     * A plugin ticket will prevent a chunk from unloading until it is
+     * explicitly removed. A plugin instance may only have one ticket per chunk,
+     * but each chunk can have multiple plugin tickets.
+     * </p>
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param plugin Plugin which owns the ticket
+     * @return {@code true} if the plugin ticket was removed, {@code false} if
+     * there is no plugin ticket for the chunk
+     * @see #addPluginChunkTicket(int, int, Plugin)
+     */
+    public boolean removePluginChunkTicket(int x, int z, @NotNull Plugin plugin);
+
+    /**
+     * Removes all plugin tickets for the specified plugin
+     * <p>
+     * A plugin ticket will prevent a chunk from unloading until it is
+     * explicitly removed. A plugin instance may only have one ticket per chunk,
+     * but each chunk can have multiple plugin tickets.
+     * </p>
+     *
+     * @param plugin Specified plugin
+     * @see #addPluginChunkTicket(int, int, Plugin)
+     * @see #removePluginChunkTicket(int, int, Plugin)
+     */
+    public void removePluginChunkTickets(@NotNull Plugin plugin);
+
+    /**
+     * Retrieves a collection specifying which plugins have tickets for the
+     * specified chunk. This collection is not updated when plugin tickets are
+     * added or removed to the chunk.
+     * <p>
+     * A plugin ticket will prevent a chunk from unloading until it is
+     * explicitly removed. A plugin instance may only have one ticket per chunk,
+     * but each chunk can have multiple plugin tickets.
+     * </p>
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @return unmodifiable collection containing which plugins have tickets for
+     * the chunk
+     * @see #addPluginChunkTicket(int, int, Plugin)
+     * @see #removePluginChunkTicket(int, int, Plugin)
+     */
+    @NotNull
+    public Collection<Plugin> getPluginChunkTickets(int x, int z);
+
+    /**
+     * Returns a map of which plugins have tickets for what chunks. The returned
+     * map is not updated when plugin tickets are added or removed to chunks. If
+     * a plugin has no tickets, it will be absent from the map.
+     * <p>
+     * A plugin ticket will prevent a chunk from unloading until it is
+     * explicitly removed. A plugin instance may only have one ticket per chunk,
+     * but each chunk can have multiple plugin tickets.
+     * </p>
+     *
+     * @return unmodifiable map containing which plugins have tickets for what
+     * chunks
+     * @see #addPluginChunkTicket(int, int, Plugin)
+     * @see #removePluginChunkTicket(int, int, Plugin)
+     */
+    @NotNull
+    public Map<Plugin, Collection<Chunk>> getPluginChunkTickets();
+
+    /**
      * 在指定的{@link Location 位置}丢出一个物品.
      * <p>
      * 原文：
@@ -372,7 +502,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param item 丢出的物品堆
      * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
-    public Item dropItem(Location location, ItemStack item);
+    @NotNull
+    public Item dropItem(@NotNull Location location, @NotNull ItemStack item);
 
     /**
      * 在指定的{@link Location 位置}丢出一个随机偏移的物品.
@@ -384,7 +515,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param item 丢出的物品堆
      * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
-    public Item dropItemNaturally(Location location, ItemStack item);
+    @NotNull
+    public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item);
 
     /**
      * 在指定的{@link Location 位置}创建一个{@link Arrow 箭}的实体.
@@ -398,7 +530,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param spread 箭存在的时间(箭在多久后会消失)
      * @return 这个方法会生成一个Arrow（箭）实体作为结果
      */
-    public Arrow spawnArrow(Location location, Vector direction, float speed, float spread);
+    @NotNull
+    public Arrow spawnArrow(@NotNull Location location, @NotNull Vector direction, float speed, float spread);
 
     /**
      * Creates an arrow entity of the given class at the given {@link Location}
@@ -412,7 +545,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * {@link org.bukkit.entity.SpectralArrow},{@link org.bukkit.entity.Arrow},{@link org.bukkit.entity.TippedArrow}
      * @return Arrow entity spawned as a result of this method
      */
-    public <T extends Arrow> T spawnArrow(Location location, Vector direction, float speed, float spread, Class<T> clazz);
+    @NotNull
+    public <T extends AbstractArrow> T spawnArrow(@NotNull Location location, @NotNull Vector direction, float speed, float spread, @NotNull Class<T> clazz);
 
     /**
      * 在指定的{@link Location 位置}创建一颗树.
@@ -424,7 +558,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param type 创建的树的类型
      * @return 如果树被成功生成则返回true，否则返回false
      */
-    public boolean generateTree(Location location, TreeType type);
+    public boolean generateTree(@NotNull Location location, @NotNull TreeType type);
 
     /**
      * 在指定的{@link Location 位置}创建一颗树.
@@ -437,7 +571,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
      */
-    public boolean generateTree(Location loc, TreeType type, BlockChangeDelegate delegate);
+    public boolean generateTree(@NotNull Location loc, @NotNull TreeType type, @NotNull BlockChangeDelegate delegate);
 
     /**
      * 在指定的{@link Location 位置}创建一个实体.
@@ -449,7 +583,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param type 生成的实体
      * @return 生成成功则返回此方法创建的实体，否则返回null
      */
-    public Entity spawnEntity(Location loc, EntityType type);
+    @NotNull
+    public Entity spawnEntity(@NotNull Location loc, @NotNull EntityType type);
 
     /**
      * 在指定的{@link Location 位置}劈下闪电.
@@ -460,7 +595,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param loc 劈下闪电的位置
      * @return lightning（闪电）实体
      */
-    public LightningStrike strikeLightning(Location loc);
+    @NotNull
+    public LightningStrike strikeLightning(@NotNull Location loc);
 
     /**
      * 在指定的{@link Location 位置}劈下不会造成伤害的闪电.
@@ -471,7 +607,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param loc 劈下闪电的位置
      * @return lightning（闪电）实体
      */
-    public LightningStrike strikeLightningEffect(Location loc);
+    @NotNull
+    public LightningStrike strikeLightningEffect(@NotNull Location loc);
 
     /**
      * 获取一个这个世界所有实体的列表.
@@ -481,6 +618,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 一个当前处在这个世界的所有实体的列表
      */
+    @NotNull
     public List<Entity> getEntities();
 
     /**
@@ -491,6 +629,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 一个当前处在这个世界的所有生物实体的列表
      */
+    @NotNull
     public List<LivingEntity> getLivingEntities();
 
     /**
@@ -505,7 +644,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 一个当前处在这个世界的所有与指定的类/接口相匹配的实体的列表
      */
     @Deprecated
-    public <T extends Entity> Collection<T> getEntitiesByClass(Class<T>... classes);
+    @NotNull
+    public <T extends Entity> Collection<T> getEntitiesByClass(@NotNull Class<T>... classes);
 
     /**
      * 获取一个在这个世界的所有与指定的类/接口相匹配的实体的集合.
@@ -513,12 +653,13 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * 原文：
      * Get a collection of all entities in this World matching the given
      * class/interface
-     * 
+     *
      * @param <T> 一个实体子类
      * @param cls 用于匹配的表示实体类型的类
      * @return  一个当前处在这个世界的所有与指定的类/接口相匹配的实体的列表
      */
-    public <T extends Entity> Collection<T> getEntitiesByClass(Class<T> cls);
+    @NotNull
+    public <T extends Entity> Collection<T> getEntitiesByClass(@NotNull Class<T> cls);
 
     /**
      * 获取一个在这个世界的所有与任一指定的类/接口相匹配的实体的集合.
@@ -530,7 +671,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param classes 用于匹配的表示实体类型的类
      * @return 一个当前处在这个世界的所有与一个或更多指定的类/接口相匹配的实体的列表
      */
-    public Collection<Entity> getEntitiesByClasses(Class<?>... classes);
+    @NotNull
+    public Collection<Entity> getEntitiesByClasses(@NotNull Class<?>... classes);
 
     /**
      * 获取一个这个世界的所有玩家的列表.
@@ -540,6 +682,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 一个当前处在这个世界的所有玩家的列表
      */
+    @NotNull
     public List<Player> getPlayers();
 
     /**
@@ -561,7 +704,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z 搜索范围的z半轴长度
      * @return 在位置附近的实体的集合,一般不为空
      */
-    public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z);
+    @NotNull
+    public Collection<Entity> getNearbyEntities(@NotNull Location location, double x, double y, double z);
 
     /**
      * Returns a list of entities within a bounding box centered around a
@@ -580,7 +724,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the collection of entities near location. This will always be a
      *     non-null collection.
      */
-    public Collection<Entity> getNearbyEntities(Location location, double x, double y, double z, Predicate<Entity> filter);
+    @NotNull
+    public Collection<Entity> getNearbyEntities(@NotNull Location location, double x, double y, double z, @Nullable Predicate<Entity> filter);
 
     /**
      * Returns a list of entities within the given bounding box.
@@ -593,7 +738,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the collection of entities within the bounding box, will always
      *     be a non-null collection
      */
-    public Collection<Entity> getNearbyEntities(BoundingBox boundingBox);
+    @NotNull
+    public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox);
 
     /**
      * Returns a list of entities within the given bounding box.
@@ -608,7 +754,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the collection of entities within the bounding box, will always
      *     be a non-null collection
      */
-    public Collection<Entity> getNearbyEntities(BoundingBox boundingBox, Predicate<Entity> filter);
+    @NotNull
+    public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox, @Nullable Predicate<Entity> filter);
 
     /**
      * Performs a ray trace that checks for entity collisions.
@@ -624,7 +771,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     is no hit
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
-    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance);
+    @Nullable
+    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance);
 
     /**
      * Performs a ray trace that checks for entity collisions.
@@ -642,7 +790,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     is no hit
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
-    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, double raySize);
+    @Nullable
+    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, double raySize);
 
     /**
      * Performs a ray trace that checks for entity collisions.
@@ -660,7 +809,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     is no hit
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
-    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, Predicate<Entity> filter);
+    @Nullable
+    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, @Nullable Predicate<Entity> filter);
 
     /**
      * Performs a ray trace that checks for entity collisions.
@@ -679,7 +829,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the closest ray trace hit result, or <code>null</code> if there
      *     is no hit
      */
-    public RayTraceResult rayTraceEntities(Location start, Vector direction, double maxDistance, double raySize, Predicate<Entity> filter);
+    @Nullable
+    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, double raySize, @Nullable Predicate<Entity> filter);
 
     /**
      * Performs a ray trace that checks for block collisions using the blocks'
@@ -697,7 +848,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the ray trace hit result, or <code>null</code> if there is no hit
      * @see #rayTraceBlocks(Location, Vector, double, FluidCollisionMode, boolean)
      */
-    public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance);
+    @Nullable
+    public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance);
 
     /**
      * Performs a ray trace that checks for block collisions using the blocks'
@@ -715,7 +867,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the ray trace hit result, or <code>null</code> if there is no hit
      * @see #rayTraceBlocks(Location, Vector, double, FluidCollisionMode, boolean)
      */
-    public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode);
+    @Nullable
+    public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode);
 
     /**
      * Performs a ray trace that checks for block collisions using the blocks'
@@ -739,7 +892,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *     blocks (ex. tall grass, signs, fluids, ..)
      * @return the ray trace hit result, or <code>null</code> if there is no hit
      */
-    public RayTraceResult rayTraceBlocks(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks);
+    @Nullable
+    public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks);
 
     /**
      * Performs a ray trace that checks for both block and entity collisions.
@@ -771,7 +925,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the closest ray trace hit result with either a block or an
      *     entity, or <code>null</code> if there is no hit
      */
-    public RayTraceResult rayTrace(Location start, Vector direction, double maxDistance, FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, Predicate<Entity> filter);
+    @Nullable
+    public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter);
 
     /**
      * 获取世界的唯一名称.
@@ -781,6 +936,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 世界的名称
      */
+    @NotNull
     public String getName();
 
     /**
@@ -791,6 +947,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 世界的唯一UUID
      */
+    @NotNull
     public UUID getUID();
 
     /**
@@ -801,6 +958,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界的出生点位置
      */
+    @NotNull
     public Location getSpawnLocation();
 
     /**
@@ -815,7 +973,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location 要设置的出生点位置
      * @return 若成功设置返回true
      */
-    public boolean setSpawnLocation(Location location);
+    @NotNull
+    public boolean setSpawnLocation(@NotNull Location location);
 
     /**
      * 设置这个世界的出生点位置.
@@ -1031,7 +1190,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param power 爆炸的威力，一个TNT当量为4F
      * @return 如果爆炸被取消则返回false，否则返回true
      */
-    public boolean createExplosion(Location loc, float power);
+    public boolean createExplosion(@NotNull Location loc, float power);
 
     /**
      * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火.
@@ -1045,7 +1204,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param setFire 方块是否会着火
      * @return 如果爆炸被取消则返回false，否则返回true
      */
-    public boolean createExplosion(Location loc, float power, boolean setFire);
+    public boolean createExplosion(@NotNull Location loc, float power, boolean setFire);
 
     /**
      * 获取世界的{@link Environment 环境}类型.
@@ -1055,6 +1214,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界的环境类型
      */
+    @NotNull
     public Environment getEnvironment();
 
     /**
@@ -1095,6 +1255,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界相关的{@link ChunkGenerator 区块生成器}
      */
+    @NotNull
     public ChunkGenerator getGenerator();
 
     /**
@@ -1112,6 +1273,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界使用的所有方块填充器的列表
      */
+    @NotNull
     public List<BlockPopulator> getPopulators();
 
     /**
@@ -1126,7 +1288,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 一个生成的{@link Entity 实体}实例
      * @throws IllegalArgumentException 如果参数为空或被要求生成的{@link Entity 实体}不能被生成则抛出错误
      */
-    public <T extends Entity> T spawn(Location location, Class<T> clazz) throws IllegalArgumentException;
+    @NotNull
+    public <T extends Entity> T spawn(@NotNull Location location, @NotNull Class<T> clazz) throws IllegalArgumentException;
 
     /**
      * Spawn an entity of a specific class at the given {@link Location}, with
@@ -1144,7 +1307,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @throws IllegalArgumentException if either parameter is null or the
      *     {@link Entity} requested cannot be spawned
      */
-    public <T extends Entity> T spawn(Location location, Class<T> clazz, Consumer<T> function) throws IllegalArgumentException;
+    @NotNull
+    public <T extends Entity> T spawn(@NotNull Location location, @NotNull Class<T> clazz, @Nullable Consumer<T> function) throws IllegalArgumentException;
 
     /**
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
@@ -1160,7 +1324,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @throws IllegalArgumentException if {@link Location} or {@link
      *     MaterialData} are null or {@link Material} of the {@link MaterialData} is not a block
      */
-    public FallingBlock spawnFallingBlock(Location location, MaterialData data) throws IllegalArgumentException;
+    @NotNull
+    public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull MaterialData data) throws IllegalArgumentException;
 
     /**
      * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
@@ -1180,7 +1345,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 生成的{@link FallingBlock 正在下落的方块}实例
      * @throws IllegalArgumentException 如果 {@link Location} 或 {@link BlockData} 为null
      */
-    public FallingBlock spawnFallingBlock(Location location, BlockData data) throws IllegalArgumentException;
+    @NotNull
+    public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull BlockData data) throws IllegalArgumentException;
 
     /**
      * 在指定的{@link Location 位置}根据指定的方块{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体.
@@ -1205,7 +1371,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @deprecated 不安全的参数
      */
     @Deprecated
-    public FallingBlock spawnFallingBlock(Location location, Material material, byte data) throws IllegalArgumentException;
+    @NotNull
+    public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull Material material, byte data) throws IllegalArgumentException;
 
     /**
      * 向以指定位置为圆心的默认半径内的所有玩家施加(给予)一个效果.
@@ -1218,7 +1385,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param effect {@link Effect 效果}
      * @param data 一些效果需要的数据
      */
-    public void playEffect(Location location, Effect effect, int data);
+    public void playEffect(@NotNull Location location, @NotNull Effect effect, int data);
 
     /**
      * 向在以指定位置为圆心的指定半径内的所有玩家施加(给予)一个效果。
@@ -1231,7 +1398,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param data 一些效果需要的数据
      * @param radius 半径
      */
-    public void playEffect(Location location, Effect effect, int data, int radius);
+    public void playEffect(@NotNull Location location, @NotNull Effect effect, int data, int radius);
 
     /**
      * 向在以指定位置为圆心的默认半径内的所有玩家施加(给予)一个效果。
@@ -1245,7 +1412,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param effect {@link Effect 效果}
      * @param data 一些效果需要的数据
      */
-    public <T> void playEffect(Location location, Effect effect, T data);
+    public <T> void playEffect(@NotNull Location location, @NotNull Effect effect, @Nullable T data);
 
     /**
      * 向在以指定位置为圆心的指定半径内的所有玩家施加(给予)一个效果。
@@ -1259,7 +1426,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param data 一些效果需要的数据
      * @param radius 半径
      */
-    public <T> void playEffect(Location location, Effect effect, T data, int radius);
+    public <T> void playEffect(@NotNull Location location, @NotNull Effect effect, @Nullable T data, int radius);
 
     /**
      * 获取空区块的快照（相当于所有空气方块），可设置包含有效生物群系数据。用于表示一个未生成的区块，或者只用于获取生物群系数据而不加载区块。
@@ -1275,6 +1442,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param includeBiomeTemp 如果为true，则快照会包含每个坐标的原始生物群系温度
      * @return 空快照
      */
+    @NotNull
     public ChunkSnapshot getEmptyChunkSnapshot(int x, int z, boolean includeBiome, boolean includeBiomeTemp);
 
     /**
@@ -1318,6 +1486,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z 方块的z坐标
      * @return 所查方块的生物群系
      */
+    @NotNull
     Biome getBiome(int x, int z);
 
     /**
@@ -1330,7 +1499,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z 方块的z坐标
      * @param bio 这个方块的新生物群系类型
      */
-    void setBiome(int x, int z, Biome bio);
+    void setBiome(int x, int z, @NotNull Biome bio);
 
     /**
      * 获取指定方块坐标的温度。
@@ -1449,7 +1618,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param difficulty 设置的世界的新难度
      */
-    public void setDifficulty(Difficulty difficulty);
+    public void setDifficulty(@NotNull Difficulty difficulty);
 
     /**
      * 获取世界的游戏难度。
@@ -1459,6 +1628,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 世界的难度
      */
+    @NotNull
     public Difficulty getDifficulty();
 
     /**
@@ -1469,6 +1639,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界所在的文件夹
      */
+    @NotNull
     public File getWorldFolder();
 
     /**
@@ -1479,6 +1650,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 世界类型
      */
+    @Nullable
     public WorldType getWorldType();
 
     /**
@@ -1786,7 +1958,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param volume 声音音量
      * @param pitch 声音音调
      */
-    void playSound(Location location, Sound sound, float volume, float pitch);
+    void playSound(@NotNull Location location, @NotNull Sound sound, float volume, float pitch);
 
     /**
      * Play a Sound at the provided Location in the World.
@@ -1800,7 +1972,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param volume the volume of the sound
      * @param pitch the pitch of the sound
      */
-    void playSound(Location location, String sound, float volume, float pitch);
+    void playSound(@NotNull Location location, @NotNull String sound, float volume, float pitch);
 
 	/**
      * Play a Sound at the provided Location in the World.
@@ -1813,7 +1985,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param volume The volume of the sound
      * @param pitch The pitch of the sound
      */
-    void playSound(Location location, Sound sound, SoundCategory category, float volume, float pitch);
+    void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * Play a Sound at the provided Location in the World.
@@ -1828,7 +2000,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param volume the volume of the sound
      * @param pitch the pitch of the sound
      */
-    void playSound(Location location, String sound, SoundCategory category, float volume, float pitch);
+    void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * 获取包含所有{@link GameRule 游戏规则}的数组.
@@ -1837,6 +2009,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return {@link GameRule 游戏规则}名列表.
      */
+    @NotNull
     public String[] getGameRules();
 
     /**
@@ -1854,7 +2027,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @deprecated 请使用 {@link #getGameRuleValue(GameRule)}
      */
     @Deprecated
-    public String getGameRuleValue(String rule);
+    @Contract("null -> null; !null -> !null")
+    @Nullable
+    public String getGameRuleValue(@Nullable String rule);
 
     /**
      * 将指定的游戏规则设置为指定数值.
@@ -1877,7 +2052,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @deprecated 请使用 {@link #setGameRule(GameRule, Object)}
      */
     @Deprecated
-    public boolean setGameRuleValue(String rule, String value);
+    public boolean setGameRuleValue(@NotNull String rule, @NotNull String value);
 
     /**
      * 检查字符串是否是一个有效的游戏规则.
@@ -1888,7 +2063,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param rule 要检测的规则
      * @return 如果规则存在则返回true
      */
-    public boolean isGameRule(String rule);
+    public boolean isGameRule(@NotNull String rule);
 
     /**
      * 获取给定的{@link GameRule 游戏规则}的数据值.
@@ -1899,7 +2074,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param <T> 游戏规则数据类型
      * @return 游戏规则值
      */
-    public <T> T getGameRuleValue(GameRule<T> rule);
+    @Nullable
+    public <T> T getGameRuleValue(@NotNull GameRule<T> rule);
 
     /**
      * 获取给定{@link GameRule 游戏规则}的默认值. 不保证该值与当前值匹配.
@@ -1911,7 +2087,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param <T> 游戏规则数据类型
      * @return 游戏规则默认值
      */
-    public <T> T getGameRuleDefault(GameRule<T> rule);
+    @Nullable
+    public <T> T getGameRuleDefault(@NotNull GameRule<T> rule);
 
     /**
      * 设置给定{@link GameRule 游戏规则}的数据值.
@@ -1923,7 +2100,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param <T> 对应游戏规则的数据类型
      * @return 若设置成功返回true
      */
-    public <T> boolean setGameRule(GameRule<T> rule, T newValue);
+    public <T> boolean setGameRule(@NotNull GameRule<T> rule, @NotNull T newValue);
 
     /**
      * 获取这个世界的世界边界对象。
@@ -1933,6 +2110,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界的世界边界对象
      */
+    @NotNull
     public WorldBorder getWorldBorder();
 
     /**
@@ -1943,7 +2121,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location the location to spawn at
      * @param count the number of particles
      */
-    public void spawnParticle(Particle particle, Location location, int count);
+    public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1955,25 +2133,27 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param z the position on the z axis to spawn at
      * @param count the number of particles
      */
-    public void spawnParticle(Particle particle, double x, double y, double z, int count);
+    public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count);
 
     /**
      * Spawns the particle (the number of times specified by count)
      * at the target location.
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param location the location to spawn at
      * @param count the number of particles
      * @param data the data to use for the particle or null,
      *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, T data);
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, @Nullable T data);
 
 
     /**
      * Spawns the particle (the number of times specified by count)
      * at the target location.
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param x the position on the x axis to spawn at
      * @param y the position on the y axis to spawn at
@@ -1982,7 +2162,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param data the data to use for the particle or null,
      *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, T data);
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -1997,7 +2177,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param offsetY the maximum random offset on the Y axis
      * @param offsetZ the maximum random offset on the Z axis
      */
-    public void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ);
+    public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2014,7 +2194,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param offsetY the maximum random offset on the Y axis
      * @param offsetZ the maximum random offset on the Z axis
      */
-    public void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
+    public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2022,6 +2202,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param location the location to spawn at
      * @param count the number of particles
@@ -2031,7 +2212,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param data the data to use for the particle or null,
      *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, T data);
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2039,6 +2220,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param x the position on the x axis to spawn at
      * @param y the position on the y axis to spawn at
@@ -2050,43 +2232,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param data the data to use for the particle or null,
      *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, T data);
-
-    /**
-     * Spawns the particle (the number of times specified by count)
-     * at the target location. The position of each particle will be
-     * randomized positively and negatively by the offset parameters
-     * on each axis.
-     *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     */
-    public void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
-
-    /**
-     * Spawns the particle (the number of times specified by count)
-     * at the target location. The position of each particle will be
-     * randomized positively and negatively by the offset parameters
-     * on each axis.
-     *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     */
-    public void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2102,10 +2248,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param offsetZ the maximum random offset on the Z axis
      * @param extra the extra data for this particle, depends on the
      *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+    public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2123,10 +2267,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param offsetZ the maximum random offset on the Z axis
      * @param extra the extra data for this particle, depends on the
      *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data);
+    public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2134,6 +2276,49 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     */
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param location the location to spawn at
      * @param count the number of particles
@@ -2148,7 +2333,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *              range and encourage their client to render it regardless of
      *              settings
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force);
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
     /**
      * Spawns the particle (the number of times specified by count)
@@ -2156,6 +2341,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
      * @param particle the particle to spawn
      * @param x the position on the x axis to spawn at
      * @param y the position on the y axis to spawn at
@@ -2172,7 +2358,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *              range and encourage their client to render it regardless of
      *              settings
      */
-    public <T> void spawnParticle(Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, T data, boolean force);
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
     /**
      * Find the closest nearby structure of a given {@link StructureType}.
@@ -2198,7 +2384,8 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the closest {@link Location}, or null if no structure of the
      * specified type exists.
      */
-    public Location locateNearestStructure(Location origin, StructureType structureType, int radius, boolean findUnexplored);
+    @Nullable
+    public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
 
     /**
      * 表示世界可能的各种地图环境类型.
@@ -2250,6 +2437,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
          * @deprecated 不安全的参数
          */
         @Deprecated
+        @Nullable
         public static Environment getEnvironment(int id) {
             return lookup.get(id);
         }

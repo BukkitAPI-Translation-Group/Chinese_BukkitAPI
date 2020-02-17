@@ -1,6 +1,7 @@
 package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
+import org.jetbrains.annotations.NotNull;
 /**
  * 使用无偏倍频创建一个柏林噪声.
  * <p>
@@ -15,7 +16,7 @@ public class PerlinOctaveGenerator extends OctaveGenerator {
      * @param world 创建这个Generator的World实例
      * @param octaves 倍频值
      */
-    public PerlinOctaveGenerator(World world, int octaves) {
+    public PerlinOctaveGenerator(@NotNull World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
     /**
@@ -39,14 +40,18 @@ public class PerlinOctaveGenerator extends OctaveGenerator {
      * @param rand 创建这个Generator的Random
      * @param octaves 倍频值
      */
-    public PerlinOctaveGenerator(Random rand, int octaves) {
+    public PerlinOctaveGenerator(@NotNull Random rand, int octaves) {
         super(createOctaves(rand, octaves));
     }
-    private static NoiseGenerator[] createOctaves(Random rand, int octaves) {
+
+    @NotNull
+    private static NoiseGenerator[] createOctaves(@NotNull Random rand, int octaves) {
         NoiseGenerator[] result = new NoiseGenerator[octaves];
+
         for (int i = 0; i < octaves; i++) {
             result[i] = new PerlinNoiseGenerator(rand);
         }
+
         return result;
     }
 }

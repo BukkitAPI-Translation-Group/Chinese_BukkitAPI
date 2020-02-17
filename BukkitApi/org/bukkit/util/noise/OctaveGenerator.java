@@ -1,15 +1,20 @@
 package org.bukkit.util.noise;
+
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 使用无偏倍频创建一个噪音.
  * <p>
  * 原文:Creates noise using unbiased octaves
  */
 public abstract class OctaveGenerator {
+    @NotNull
     protected final NoiseGenerator[] octaves;
     protected double xScale = 1;
     protected double yScale = 1;
     protected double zScale = 1;
-    protected OctaveGenerator(NoiseGenerator[] octaves) {
+
+    protected OctaveGenerator(@NotNull NoiseGenerator[] octaves) {
         this.octaves = octaves;
     }
     /**
@@ -96,6 +101,7 @@ public abstract class OctaveGenerator {
      *
      * @return 复制产生的倍频
      */
+    @NotNull
     public NoiseGenerator[] getOctaves() {
         return octaves.clone();
     }

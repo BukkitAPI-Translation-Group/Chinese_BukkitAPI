@@ -1,12 +1,13 @@
 package org.bukkit;
 
+import com.google.common.collect.ImmutableMap;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Map;
-
-import com.google.common.collect.ImmutableMap;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 为指定项目指定一个警告声明。
@@ -84,7 +85,7 @@ public @interface Warning {
          *     <li>若为DEFAULT则当且仅当注释非空并且{@link Warning#value()}指定为false时返回false，其他情况均返回true
          *     </ul>
          */
-        public boolean printFor(Warning warning) {
+        public boolean printFor(@Nullable Warning warning) {
             if (this == DEFAULT) {
                 return warning == null || warning.value();
             }
@@ -101,7 +102,8 @@ public @interface Warning {
          * @param value 检查的字符串数值
          * @return 找不到则返回{@link #DEFAULT}，否则返回各自的警告状态
          */
-        public static WarningState value(final String value) {
+        @NotNull
+        public static WarningState value(@Nullable final String value) {
             if (value == null) {
                 return DEFAULT;
             }

@@ -1,6 +1,7 @@
 package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
+import org.jetbrains.annotations.NotNull;
 /**
  * 使用倍频创建单纯形噪声.
  * <p>
@@ -16,7 +17,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * @param world 创建这个Generator的World实例
      * @param octaves 创建的倍频值
      */
-    public SimplexOctaveGenerator(World world, int octaves) {
+    public SimplexOctaveGenerator(@NotNull World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
     /**
@@ -29,8 +30,8 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * @param seed 创建这个Generator的long型种子
      * @param octaves 创建的倍频值
      */
-    public SimplexOctaveGenerator(long seed, int octaves) {
-        this(new Random(seed), octaves);
+    public SimplexOctaveGenerator(@NotNull Random rand, int octaves) {
+        super(createOctaves(rand, octaves));
     }
     /**
      * 使用给定的{@link Random}创建一个SimplexOctaveGenerator.
@@ -124,11 +125,14 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         }
         return result;
     }
-    private static NoiseGenerator[] createOctaves(Random rand, int octaves) {
+    @NotNull
+    private static NoiseGenerator[] createOctaves(@NotNull Random rand, int octaves) {
         NoiseGenerator[] result = new NoiseGenerator[octaves];
+
         for (int i = 0; i < octaves; i++) {
             result[i] = new SimplexNoiseGenerator(rand);
         }
+
         return result;
     }
 }
