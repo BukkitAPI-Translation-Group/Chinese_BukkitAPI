@@ -2565,19 +2565,23 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
 
     /**
-     * Finds the nearest raid close to the given location.
+     * 寻找与给定位置相距最近的袭击.
+     * <p>
+     * 原文:Finds the nearest raid close to the given location.
      *
-     * @param location the origin location
-     * @param radius the radius
-     * @return the closest {@link Raid}, or null if no raids were found
+     * @param location 源位置
+     * @param radius 搜索半径
+     * @return 最近的{@link Raid 袭击}, 如果没有找到袭击事件返回null.
      */
     @Nullable
     public Raid locateNearestRaid(@NotNull Location location, int radius);
 
     /**
-     * Gets all raids that are going on over this world.
+     * 获取本世界正在进行的所有袭击.
+     * <p>
+     * 原文:Gets all raids that are going on over this world.
      *
-     * @return the list of all active raids
+     * @return 本世界所有活跃的袭击
      */
     @NotNull
     public List<Raid> getRaids();
