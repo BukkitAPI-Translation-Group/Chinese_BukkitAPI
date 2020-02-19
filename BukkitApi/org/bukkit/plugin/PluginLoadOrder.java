@@ -1,17 +1,16 @@
 package org.bukkit.plugin;
 
 /**
- * Represents the order in which a plugin should be initialized and enabled
+ * 代表插件应被初始化并启用的时机.
  */
 public enum PluginLoadOrder {
 
     /**
-     * Indicates that the plugin will be loaded at startup
+     * 表示插件会在服务器启动时加载
      */
     STARTUP,
     /**
-     * Indicates that the plugin will be loaded after the first/default world
-     * was created
+     * 表示插件会在第一个/默认世界被创建/加载后加载
      */
     POSTWORLD
 }
