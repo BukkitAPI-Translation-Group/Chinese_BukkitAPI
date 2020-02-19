@@ -12,26 +12,31 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Handles all plugin management from the Server
+ * 服务器的插件管理器.
  */
 public interface PluginManager {
 
     /**
-     * Registers the specified plugin loader
+     * 注册指定的插件加载器.
+     * <p>
+     * 原文:Registers the specified plugin loader
      *
-     * @param loader Class name of the PluginLoader to register
-     * @throws IllegalArgumentException Thrown when the given Class is not a
-     *     valid PluginLoader
+     * @param loader 要注册的 PluginLoader 类
+     * @throws IllegalArgumentException 当给定的类不是一个有效的 PluginLoader 时抛出
      */
     public void registerInterface(@NotNull Class<? extends PluginLoader> loader) throws IllegalArgumentException;
 
     /**
-     * Checks if the given plugin is loaded and returns it when applicable
+     * 检测指定插件是否已加载并在合适时返回其对象.
+     * <p>
+     * 请注意插件名区分大小写.
+     * <p>
+     * 原文:Checks if the given plugin is loaded and returns it when applicable
      * <p>
      * Please note that the name of the plugin is case-sensitive
      *
-     * @param name Name of the plugin to check
-     * @return Plugin if it exists, otherwise null
+     * @param name 要检测的插件的名称
+     * @return 如果此插件存在, 返回对应插件对象, 否则返回null
      */
     @Nullable
     public Plugin getPlugin(@NotNull String name);
@@ -47,40 +52,45 @@ public interface PluginManager {
     public Plugin[] getPlugins();
 
     /**
-     * Checks if the given plugin is enabled or not
+     * 检测指定插件是否已启用.
+     * <p>
+     * 请注意插件名区分大小写.
+     * <p>
+     * 原文:Checks if the given plugin is enabled or not
      * <p>
      * Please note that the name of the plugin is case-sensitive.
      *
-     * @param name Name of the plugin to check
-     * @return true if the plugin is enabled, otherwise false
+     * @param name 要检测的插件的名称
+     * @return 如果此插件已启用, 返回true
      */
     public boolean isPluginEnabled(@NotNull String name);
 
     /**
      * 检查指定插件是否启用.
-     * <p/>
+     * <p>
      * 原文:
      * Checks if the given plugin is enabled or not.
      *
-     * @param plugin Plugin to check
-     * @return true if the plugin is enabled, otherwise false
+     * @param plugin 要检测的插件的对象
+     * @return 如果此插件已启用, 返回true
      */
     @Contract("null -> false")
     public boolean isPluginEnabled(@Nullable Plugin plugin);
 
     /**
-     * Loads the plugin in the specified file
+     * 加载某个文件为插件.
+     * <p>
+     * 文件必须对当前的插件加载器有效才会被加载.
+     * <p>
+     * 原文:Loads the plugin in the specified file
      * <p>
      * File must be valid according to the current enabled Plugin interfaces
      *
-     * @param file File containing the plugin to load
-     * @return The Plugin loaded, or null if it was invalid
-     * @throws InvalidPluginException Thrown when the specified file is not a
-     *     valid plugin
-     * @throws InvalidDescriptionException Thrown when the specified file
-     *     contains an invalid description
-     * @throws UnknownDependencyException If a required dependency could not
-     *     be resolved
+     * @param file 要加载的插件文件
+     * @return 加载成功后的插件对象, 若插件文件无效返回null
+     * @throws InvalidPluginException 若指定文件不是一个有效的插件
+     * @throws InvalidDescriptionException 若插件包含一个无效的插件描述文件(plugin.yml)
+     * @throws UnknownDependencyException 若插件要求的依赖找不到
      */
     @Nullable
     public Plugin loadPlugin(@NotNull File file) throws InvalidPluginException, InvalidDescriptionException, UnknownDependencyException;
@@ -99,7 +109,7 @@ public interface PluginManager {
 
     /**
      * 停用所有已载入的插件.
-     * <p/>
+     * <p>
      * 原文:
      * Disables all the loaded plugins.
      */
@@ -107,97 +117,120 @@ public interface PluginManager {
 
     /**
      * 停用并清除所有已启用插件的Plugin对象.
-     * <p/>
+     * <p>
      * 原文:
      * Disables and removes all plugins.
      */
     public void clearPlugins();
 
     /**
-     * Calls an event with the given details
+     * 以给定的具体细节调用一个事件.
+     * <p>
+     * 原文:Calls an event with the given details
      *
-     * @param event Event details
-     * @throws IllegalStateException Thrown when an asynchronous event is
-     *     fired from synchronous code.
+     * @param event 事件
+     * @throws IllegalStateException 当从同步代码中触发异步事件时抛出
      *     <p>
-     *     <i>Note: This is best-effort basis, and should not be used to test
-     *     synchronized state. This is an indicator for flawed flow logic.</i>
+     *     <i>注意:这是插件开发者应尽的义务, 不应用其来测试同步状态. 这是逻辑流有缺陷的迹象</i>
      */
     public void callEvent(@NotNull Event event) throws IllegalStateException;
 
     /**
-     * Registers all the events in the given listener class
+     * 注册在指定监听器类中的所有事件.
+     * <p>
+     * 原文:Registers all the events in the given listener class
      *
-     * @param listener Listener to register
-     * @param plugin Plugin to register
+     * @param listener 要注册的监听器
+     * @param plugin 注册事件的插件
      */
     public void registerEvents(@NotNull Listener listener, @NotNull Plugin plugin);
 
     /**
-     * Registers the specified executor to the given event class
+     * 将指定的执行器注册至指定的事件类.
+     * <p>
+     * 原文:Registers the specified executor to the given event class
      *
-     * @param event Event type to register
-     * @param listener Listener to register
-     * @param priority Priority to register this event at
-     * @param executor EventExecutor to register
-     * @param plugin Plugin to register
+     * @param event 要注册的事件类型
+     * @param listener 要注册的监听器
+     * @param priority 要注册的事件的优先级
+     * @param executor 要注册的EventExecutor
+     * @param plugin 注册事件的插件
      */
     public void registerEvent(@NotNull Class<? extends Event> event, @NotNull Listener listener, @NotNull EventPriority priority, @NotNull EventExecutor executor, @NotNull Plugin plugin);
 
     /**
-     * Registers the specified executor to the given event class
+     * 将指定的执行器注册至指定的事件类.
+     * <p>
+     * 原文:Registers the specified executor to the given event class
      *
-     * @param event Event type to register
-     * @param listener Listener to register
-     * @param priority Priority to register this event at
-     * @param executor EventExecutor to register
-     * @param plugin Plugin to register
-     * @param ignoreCancelled Whether to pass cancelled events or not
+     * @param event 要注册的事件类型
+     * @param listener 要注册的监听器
+     * @param priority 要注册的事件的优先级
+     * @param executor 要注册的EventExecutor
+     * @param plugin 注册事件的插件
+     * @param ignoreCancelled 是否忽略已取消的事件
      */
     public void registerEvent(@NotNull Class<? extends Event> event, @NotNull Listener listener, @NotNull EventPriority priority, @NotNull EventExecutor executor, @NotNull Plugin plugin, boolean ignoreCancelled);
 
     /**
-     * Enables the specified plugin
+     * 启用指定插件.
+     * <p>
+     * 尝试启用一个已启用的插件, 什么都不会发生.
+     * <p>
+     * 原文:Enables the specified plugin
      * <p>
      * Attempting to enable a plugin that is already enabled will have no
      * effect
      *
-     * @param plugin Plugin to enable
+     * @param plugin 要启用的插件
      */
     public void enablePlugin(@NotNull Plugin plugin);
 
     /**
-     * Disables the specified plugin
+     * 停用指定的插件.
+     * <p>
+     * 尝试停用一个已停用的插件, 什么都不会发生.
+     * <p>
+     * 原文:Disables the specified plugin
      * <p>
      * Attempting to disable a plugin that is not enabled will have no effect
      *
-     * @param plugin Plugin to disable
+     * @param plugin 要停用的插件
      */
     public void disablePlugin(@NotNull Plugin plugin);
 
     /**
-     * Gets a {@link Permission} from its fully qualified name
+     * 以指定的完整权限节点获取对应{@link Permission}对象.
+     * <p>
+     * 原文:Gets a {@link Permission} from its fully qualified name
      *
      * @param name Name of the permission
-     * @return Permission, or null if none
+     * @return 对应{@link Permission}对象, 若权限节点不存在返回null
      */
     @Nullable
     public Permission getPermission(@NotNull String name);
 
     /**
-     * Adds a {@link Permission} to this plugin manager.
+     * 添加一个{@link Permission}至本插件管理器.
+     * <p>
+     * 如果已有同名权限, 会抛出一个异常.
+     * <p>
+     * 原文:Adds a {@link Permission} to this plugin manager.
      * <p>
      * If a permission is already defined with the given name of the new
      * permission, an exception will be thrown.
      *
-     * @param perm Permission to add
-     * @throws IllegalArgumentException Thrown when a permission with the same
-     *     name already exists
+     * @param perm 要添加的权限
+     * @throws IllegalArgumentException 如果同名权限已存在
      */
     public void addPermission(@NotNull Permission perm);
 
     /**
-     * Removes a {@link Permission} registration from this plugin manager.
+     * 从本插件管理器中移除已注册的{@link Permission 权限}.
+     * <p>
+     * 如果指定的权限未在本插件管理器中注册, 什么都不会发生.
+     * <p>
+     * 原文:Removes a {@link Permission} registration from this plugin manager.
      * <p>
      * If the specified permission does not exist in this plugin manager,
      * nothing will happen.
@@ -205,12 +238,16 @@ public interface PluginManager {
      * Removing a permission registration will <b>not</b> remove the
      * permission from any {@link Permissible}s that have it.
      *
-     * @param perm Permission to remove
+     * @param perm 要移除的权限
      */
     public void removePermission(@NotNull Permission perm);
 
     /**
-     * Removes a {@link Permission} registration from this plugin manager.
+     * 从本插件管理器中移除已注册的{@link Permission 权限}.
+     * <p>
+     * 如果指定的权限未在本插件管理器中注册, 什么都不会发生.
+     * <p>
+     * 原文:Removes a {@link Permission} registration from this plugin manager.
      * <p>
      * If the specified permission does not exist in this plugin manager,
      * nothing will happen.
@@ -218,106 +255,136 @@ public interface PluginManager {
      * Removing a permission registration will <b>not</b> remove the
      * permission from any {@link Permissible}s that have it.
      *
-     * @param name Permission to remove
+     * @param name 要移除的权限
      */
     public void removePermission(@NotNull String name);
 
     /**
      * 获取普通玩家默认拥有的权限或op默认拥有的权限.
-     * <p/>
+     * <p>
      * 原文:
      * Gets the default permissions for the given op status
      *
-     * @param 是否获取op状态下默认拥有的权限
+     * @param op 是否获取op状态下默认拥有的权限
      * @return 返回 普通玩家/OP 默认拥有的权限
      */
     @NotNull
     public Set<Permission> getDefaultPermissions(boolean op);
 
     /**
-     * Recalculates the defaults for the given {@link Permission}.
+     * 重新计算指定{@link Permission 权限}的默认值.
+     * <p>
+     * 若指定的权限未在本插件管理器注册, 将没有效果.
+     * <p>
+     * 原文:Recalculates the defaults for the given {@link Permission}.
      * <p>
      * This will have no effect if the specified permission is not registered
      * here.
      *
-     * @param perm Permission to recalculate
+     * @param perm 要重算的权限
      */
     public void recalculatePermissionDefaults(@NotNull Permission perm);
 
     /**
-     * Subscribes the given Permissible for information about the requested
+     * 以指定的权限名订阅与其有关的 Permissible.
+     * <p>
+     * 若指定的权限以任何形式改变, 要求重新计算传入的Permissible.
+     * <p>
+     * 原文:Subscribes the given Permissible for information about the requested
      * Permission, by name.
      * <p>
      * If the specified Permission changes in any form, the Permissible will
      * be asked to recalculate.
      *
-     * @param permission Permission to subscribe to
-     * @param permissible Permissible subscribing
+     * @param permission 要订阅的权限
+     * @param permissible 要订阅的Permissible
      */
     public void subscribeToPermission(@NotNull String permission, @NotNull Permissible permissible);
 
     /**
-     * Unsubscribes the given Permissible for information about the requested
+     * 以指定的权限名退订与其有关的 Permissible.
+     * <p>
+     * 原文:Unsubscribes the given Permissible for information about the requested
      * Permission, by name.
      *
-     * @param permission Permission to unsubscribe from
-     * @param permissible Permissible subscribing
+     * @param permission 要退订的权限
+     * @param permissible 已订阅的Permissible
      */
     public void unsubscribeFromPermission(@NotNull String permission, @NotNull Permissible permissible);
 
     /**
-     * Gets a set containing all subscribed {@link Permissible}s to the given
+     * 根据权限名获取此权限已订阅的{@link Permissible}的集合.
+     * <p>
+     * 原文:Gets a set containing all subscribed {@link Permissible}s to the given
      * permission, by name
      *
-     * @param permission Permission to query for
-     * @return Set containing all subscribed permissions
+     * @param permission 要检索的权限
+     * @return 包含此权限已订阅的所有{@link Permissible}的集合
      */
     @NotNull
     public Set<Permissible> getPermissionSubscriptions(@NotNull String permission);
 
     /**
-     * Subscribes to the given Default permissions by operator status
+     * 为普通玩家/op默认权限订阅指定{@link Permissible}.
+     * <p>
+     * 若指定的默认权限列表以任何形式改动, 要求重新计算传入的Permissible.
+     * <p>
+     * 原文:Subscribes to the given Default permissions by operator status
      * <p>
      * If the specified defaults change in any form, the Permissible will be
      * asked to recalculate.
      *
-     * @param op Default list to subscribe to
-     * @param permissible Permissible subscribing
+     * @param op 是否根据op的默认权限列表订阅
+     * @param permissible 要订阅的Permissible
      */
     public void subscribeToDefaultPerms(boolean op, @NotNull Permissible permissible);
 
     /**
-     * Unsubscribes from the given Default permissions by operator status
+     * 退订普通玩家/op默认权限已订阅的{@link Permissible}.
+     * <p>
+     * 原文:Unsubscribes from the given Default permissions by operator status
      *
-     * @param op Default list to unsubscribe from
-     * @param permissible Permissible subscribing
+     * @param op 是否根据op的默认权限列表退订
+     * @param permissible 权限已订阅的Permissible
      */
     public void unsubscribeFromDefaultPerms(boolean op, @NotNull Permissible permissible);
 
     /**
-     * Gets a set containing all subscribed {@link Permissible}s to the given
+     * 获取普通玩家/op默认权限列表已订阅的{@link Permissible}.
+     * <p>
+     * 原文:Gets a set containing all subscribed {@link Permissible}s to the given
      * default list, by op status
      *
-     * @param op Default list to query for
-     * @return Set containing all subscribed permissions
+     * @param op 是否根据op的默认权限列表检索
+     * @return 包含所有权限订阅者的集合
      */
     @NotNull
     public Set<Permissible> getDefaultPermSubscriptions(boolean op);
 
     /**
-     * Gets a set of all registered permissions.
+     * 获取已注册的权限的集合.
+     * <p>
+     * 此集合是一个副本, 对其编辑不会作用于内部的权限列表.
+     * <p>
+     * 原文:Gets a set of all registered permissions.
      * <p>
      * This set is a copy and will not be modified live.
      *
-     * @return Set containing all current registered permissions
+     * @return 包含所有已注册权限的集合
      */
     @NotNull
     public Set<Permission> getPermissions();
 
     /**
-     * Returns whether or not timing code should be used for event calls
+     * 返回是否在事件调用中使用插件计时器.
+     * <p>
+     * 译注:Timings是一个性能分析工具, 通过Timing可以了解
+     * 服务器的性能损耗情况, 通过它可以定位插件中性能较差的方法, 并针对性地进行优化.
+     * 可以通过"/timings on"开始记录, "/timings paste"上传记录, "/timings off"关闭记录 (仅针对Spigot及其衍生服务端).
+     * <p>
+     * 原文:Returns whether or not timing code should be used for event calls
      *
-     * @return True if event timings are to be used
+     * @return 若已启用Timings
      */
     public boolean useTimings();
 }
