@@ -6,7 +6,7 @@ import org.bukkit.event.world.WorldEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents events related to raids.
+ * 与袭击有关的事件.
  */
 public abstract class RaidEvent extends WorldEvent {
 
@@ -18,9 +18,11 @@ public abstract class RaidEvent extends WorldEvent {
     }
 
     /**
-     * Returns the raid involved with this event.
+     * 返回本事件所涉及的袭击.
+     * <p>
+     * 原文:Returns the raid involved with this event.
      *
-     * @return Raid
+     * @return 袭击
      */
     @NotNull
     public Raid getRaid() {

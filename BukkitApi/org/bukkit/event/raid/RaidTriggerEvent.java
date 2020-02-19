@@ -8,8 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a {@link Raid} is triggered (e.g: a player with Bad Omen effect
- * enters a village).
+ * 当袭击被触发时触发本事件 (例如:带有不祥之兆效果的玩家进入村庄).
  */
 public class RaidTriggerEvent extends RaidEvent implements Cancellable {
 
@@ -24,9 +23,11 @@ public class RaidTriggerEvent extends RaidEvent implements Cancellable {
     }
 
     /**
-     * Returns the player who triggered the raid.
+     * 返回触发此袭击的玩家.
+     * <p>
+     * 原文:Returns the player who triggered the raid.
      *
-     * @return triggering player
+     * @return 触发此袭击的玩家
      */
     @NotNull
     public Player getPlayer() {

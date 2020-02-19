@@ -4,63 +4,65 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents an Evoker "Illager".
+ * 代表唤魔者.
  */
 public interface Evoker extends Spellcaster {
 
     /**
-     * Represents the current spell the Evoker is using.
+     * 代表唤魔者当前使用的咒语.
+     * <p>
+     * 原文:Represents the current spell the Evoker is using.
      *
-     * @deprecated future versions of Minecraft have additional spell casting
-     * entities.
+     * @deprecated 将来 Minecraft 会有更多的可施法的生物
      */
     @Deprecated
     public enum Spell {
 
         /**
-         * No spell is being evoked.
+         * 未施法状态.
          */
         NONE,
         /**
-         * The spell that summons Vexes.
+         * 召唤恼鬼.
          */
         SUMMON,
         /**
-         * The spell that summons Fangs.
+         * 召唤尖牙进行攻击.
          */
         FANGS,
         /**
-         * The "wololo" spell.
+         * 发出"呜噜噜"的叫声.
          */
         WOLOLO,
         /**
-         * The spell that makes the casting entity invisible.
+         * 使实体隐身的咒语.
          */
         DISAPPEAR,
         /**
-         * The spell that makes the target blind.
+         * 使目标生物失明的咒语.
          */
         BLINDNESS;
     }
 
     /**
-     * Gets the {@link Spell} the Evoker is currently using.
+     * 获取唤魔者当前使用的{@link Spell 咒语}.
+     * <p>
+     * 原文:Gets the {@link Spell} the Evoker is currently using.
      *
-     * @return the current spell
-     * @deprecated future versions of Minecraft have additional spell casting
-     * entities.
-     *
+     * @return 唤魔者当前使用的咒语
+     * @deprecated 将来 Minecraft 会有更多的可施法的生物
      */
     @Deprecated
     @NotNull
     Spell getCurrentSpell();
 
     /**
-     * Sets the {@link Spell} the Evoker is currently using.
+     * 设置唤魔者将要使用的{@link Spell 咒语}.
+     * <p>
+     * 原文:Sets the {@link Spell} the Evoker is currently using.
      *
-     * @param spell the spell the evoker should be using
-     * @deprecated future versions of Minecraft have additional spell casting
-     * entities.
+     * @param spell 唤魔者应使用的咒语
+     * @deprecated 将来 Minecraft 会有更多的可施法的生物
      */
     @Deprecated
     void setCurrentSpell(@Nullable Spell spell);

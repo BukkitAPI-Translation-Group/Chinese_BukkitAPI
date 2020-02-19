@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Vindicator.
+ * 代表卫道士.
  */
 public interface Vindicator extends Illager { }

@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a {@link Raid} is stopped.
+ * 当{@link Raid 袭击}终止时触发本事件.
  */
 public class RaidStopEvent extends RaidEvent {
 
@@ -20,9 +20,11 @@ public class RaidStopEvent extends RaidEvent {
     }
 
     /**
-     * Returns the stop reason.
+     * 返回袭击终止原因.
+     * <p>
+     * 原文:Returns the stop reason.
      *
-     * @return Reason
+     * @return 原因
      */
     @NotNull
     public Reason getReason() {
@@ -43,23 +45,23 @@ public class RaidStopEvent extends RaidEvent {
     public enum Reason {
 
         /**
-         * Because the difficulty has been changed to peaceful.
+         * 由于游戏难度被调为和平.
          */
         PEACE,
         /**
-         * The raid took a long time without a final result.
+         * 此袭击耗时太长, 没有最终结果.
          */
         TIMEOUT,
         /**
-         * Finished the raid.
+         * 袭击正常结束.
          */
         FINISHED,
         /**
-         * Couldn't find a suitable place to spawn raiders.
+         * 找不到合适的地点生成袭击者.
          */
         UNSPAWNABLE,
         /**
-         * The place where the raid occurs no longer be a village.
+         * 发生袭击的位置不再是一个村庄.
          */
         NOT_IN_VILLAGE
     }

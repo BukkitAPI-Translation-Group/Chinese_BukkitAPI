@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents an Illusioner "Illager".
+ * 代表幻术师实体.
  */
 public interface Illusioner extends Spellcaster { }

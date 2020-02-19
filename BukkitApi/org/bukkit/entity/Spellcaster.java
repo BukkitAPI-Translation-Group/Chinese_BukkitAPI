@@ -3,53 +3,57 @@ package org.bukkit.entity;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a spell casting "Illager".
+ * 代表会施法的灾厄村民 (目前只有唤魔者和幻术师).
  */
 public interface Spellcaster extends Illager {
 
     /**
-     * Represents the current spell the entity is using.
+     * 代表实体当前使用的咒语.
      */
     public enum Spell {
 
         /**
-         * No spell is being used..
+         * 未施法状态.
          */
         NONE,
         /**
-         * The spell that summons Vexes.
+         * 召唤恼鬼.
          */
         SUMMON_VEX,
         /**
-         * The spell that summons Fangs.
+         * 召唤尖牙进行攻击.
          */
         FANGS,
         /**
-         * The "wololo" spell.
+         * 发出"呜噜噜"的叫声.
          */
         WOLOLO,
         /**
-         * The spell that makes the casting entity invisible.
+         * 使实体隐身的咒语.
          */
         DISAPPEAR,
         /**
-         * The spell that makes the target blind.
+         * 使目标生物失明的咒语.
          */
         BLINDNESS;
     }
 
     /**
-     * Gets the {@link Spell} the entity is currently using.
+     * 获取实体当前使用的{@link Spell 咒语}.
+     * <p>
+     * 原文:Gets the {@link Spell} the entity is currently using.
      *
-     * @return the current spell
+     * @return 实体当前使用的{@link Spell 咒语}
      */
     @NotNull
     Spell getSpell();
 
     /**
-     * Sets the {@link Spell} the entity is currently using.
+     * 设置实体将要使用的{@link Spell 咒语}.
+     * <p>
+     * 原文:Sets the {@link Spell} the entity is currently using.
      *
-     * @param spell the spell the entity should be using
+     * @param spell 实体将要使用的{@link Spell 咒语}
      */
     void setSpell(@NotNull Spell spell);
 }

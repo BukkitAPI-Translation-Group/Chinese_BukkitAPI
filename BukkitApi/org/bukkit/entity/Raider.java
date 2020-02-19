@@ -6,45 +6,60 @@ import org.jetbrains.annotations.Nullable;
 public interface Raider extends Monster {
 
     /**
-     * Gets the block the raider is targeting to patrol.
+     * 获取袭击者的目标位置所处方块.
+     * <p>
+     * 译注:其实生物NBT数据中只有关于巡逻队正在前往的位置的具体坐标的记录,
+     * 而不是什么方块, 此处不明白为何 Bukkit 的开发者要把位置转化为对应方块.
+     * <p>
+     * 原文:Gets the block the raider is targeting to patrol.
      *
-     * @return target block or null
+     * @return 目标位置所处方块或null
      */
     @Nullable
     Block getPatrolTarget();
 
     /**
-     * Sets the block the raider is targeting to patrol.
+     * 设置袭击者的目标位置所处方块.
+     * <p>
+     * 原文:Sets the block the raider is targeting to patrol.
      *
-     * @param block target block or null. Must be in same world as the entity
+     * @param block 目标位置所处方块或null, 此方块所处位置必须与此生物位于同一世界
      */
     void setPatrolTarget(@Nullable Block block);
 
     /**
-     * Gets whether this entity is a patrol leader.
+     * 判断此实体是否为灾厄巡逻队队长(袭击队长).
+     * <p>
+     * 原文:Gets whether this entity is a patrol leader.
      *
-     * @return patrol leader status
+     * @return 此实体是否为袭击队长
      */
     boolean isPatrolLeader();
 
     /**
-     * Sets whether this entity is a patrol leader.
+     * 设置此实体是否为袭击队长.
+     * <p>
+     * 原文:Sets whether this entity is a patrol leader.
      *
-     * @param leader patrol leader status
+     * @param leader 是否为袭击队长
      */
     void setPatrolLeader(boolean leader);
 
     /**
-     * Gets whether this mob can join an active raid.
+     * 获取此生物能否参与一个活跃的袭击.
+     * <p>
+     * 原文:Gets whether this mob can join an active raid.
      *
-     * @return CanJoinRaid status
+     * @return 能否参与一个活跃的袭击
      */
     boolean isCanJoinRaid();
 
     /**
-     * Sets whether this mob can join an active raid.
+     * 设置此生物能否参与一个活跃的袭击.
+     * <p>
+     * 原文:Sets whether this mob can join an active raid.
      *
-     * @param join CanJoinRaid status
+     * @param join 能否参与一个活跃的袭击
      */
     void setCanJoinRaid(boolean join);
 }

@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Illager beast.
+ * 劫掠兽实体.
  */
 public interface Ravager extends Raider { }
