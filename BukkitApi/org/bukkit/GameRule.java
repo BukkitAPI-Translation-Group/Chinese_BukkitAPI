@@ -87,10 +87,9 @@ public final class GameRule<T> {
     public static final GameRule<Boolean> LOG_ADMIN_COMMANDS = new GameRule<>("logAdminCommands", Boolean.class);
 
     /**
-     * 怪物能否捡起物品或修改方块.
+     * 生物能否捡起物品, 修改以及破坏方块.
      * <p>
-     * 译注:其实这里的“怪物”(英文原文为mob)的范围非常广, 不仅指怪物, 还有村民动物等.
-     * Mob包括的实体详见{@link org.bukkit.entity.Mob Mob接口文档}.
+     * 译注:Mob包括的实体详见{@link org.bukkit.entity.Mob Mob接口文档}.
      */
     public static final GameRule<Boolean> MOB_GRIEFING = new GameRule<>("mobGriefing", Boolean.class);
 

@@ -2,6 +2,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a cod fish.
+ * 代表鳕鱼.
  */
 public interface Cod extends Fish { }

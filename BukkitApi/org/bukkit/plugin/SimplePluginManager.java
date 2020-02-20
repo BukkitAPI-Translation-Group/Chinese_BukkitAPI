@@ -41,7 +41,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Handles all plugin management from the Server
+ * PluginManager的一种实现, 通常服务器使用的PluginManager实现就是本类.
  */
 public final class SimplePluginManager implements PluginManager {
     private final Server server;
@@ -66,11 +66,12 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Registers the specified plugin loader
+     * 注册指定的插件加载器.
+     * <p>
+     * 原文:Registers the specified plugin loader
      *
-     * @param loader Class name of the PluginLoader to register
-     * @throws IllegalArgumentException Thrown when the given Class is not a
-     *     valid PluginLoader
+     * @param loader 要注册的 PluginLoader 类
+     * @throws IllegalArgumentException 当给定的类不是一个有效的 PluginLoader 时抛出
      */
     @Override
     public void registerInterface(@NotNull Class<? extends PluginLoader> loader) throws IllegalArgumentException {
@@ -103,10 +104,13 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Loads the plugins contained within the specified directory
+     * 载入指定目录内的插件.
+     * <p>
+     * 原文:
+     * Loads the plugins contained within the specified directory.
      *
-     * @param directory Directory to check for plugins
-     * @return A list of all plugins loaded
+     * @param directory 指定目录的File对象
+     * @return 返回带有已成功载入的插件Plugin对象的数组
      */
     @Override
     @NotNull
@@ -317,16 +321,19 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Loads the plugin in the specified file
+     * 加载某个文件为插件.
+     * <p>
+     * 文件必须对当前的插件加载器有效才会被加载.
+     * <p>
+     * 原文:Loads the plugin in the specified file
      * <p>
      * File must be valid according to the current enabled Plugin interfaces
      *
-     * @param file File containing the plugin to load
-     * @return The Plugin loaded, or null if it was invalid
-     * @throws InvalidPluginException Thrown when the specified file is not a
-     *     valid plugin
-     * @throws UnknownDependencyException If a required dependency could not
-     *     be found
+     * @param file 要加载的插件文件
+     * @return 加载成功后的插件对象, 若插件文件无效返回null
+     * @throws InvalidPluginException 若指定文件不是一个有效的插件
+     * @throws InvalidDescriptionException 若插件包含一个无效的插件描述文件(plugin.yml)
+     * @throws UnknownDependencyException 若插件要求的依赖找不到
      */
     @Override
     @Nullable
@@ -369,12 +376,16 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Checks if the given plugin is loaded and returns it when applicable
+     * 检测指定插件是否已加载并在合适时返回其对象.
+     * <p>
+     * 请注意插件名区分大小写.
+     * <p>
+     * 原文:Checks if the given plugin is loaded and returns it when applicable
      * <p>
      * Please note that the name of the plugin is case-sensitive
      *
-     * @param name Name of the plugin to check
-     * @return Plugin if it exists, otherwise null
+     * @param name 要检测的插件的名称
+     * @return 如果此插件存在, 返回对应插件对象, 否则返回null
      */
     @Override
     @Nullable
@@ -389,12 +400,16 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Checks if the given plugin is enabled or not
+     * 检测指定插件是否已启用.
+     * <p>
+     * 请注意插件名区分大小写.
+     * <p>
+     * 原文:Checks if the given plugin is enabled or not
      * <p>
      * Please note that the name of the plugin is case-sensitive.
      *
-     * @param name Name of the plugin to check
-     * @return true if the plugin is enabled, otherwise false
+     * @param name 要检测的插件的名称
+     * @return 如果此插件已启用, 返回true
      */
     @Override
     public boolean isPluginEnabled(@NotNull String name) {
@@ -404,10 +419,13 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Checks if the given plugin is enabled or not
+     * 检查指定插件是否启用.
+     * <p>
+     * 原文:
+     * Checks if the given plugin is enabled or not.
      *
-     * @param plugin Plugin to check
-     * @return true if the plugin is enabled, otherwise false
+     * @param plugin 要检测的插件的对象
+     * @return 如果此插件已启用, 返回true
      */
     @Override
     public boolean isPluginEnabled(@Nullable Plugin plugin) {
@@ -505,9 +523,17 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Calls an event with the given details.
+     * 调用一个具有详细信息的事件.
+     * <p>
+     * 译注:本方法是线程安全的, 但不可以同步代码块/同步线程中触发异步事件,
+     * 也不可以从异步线程中触发同步事件.
+     * <p>
+     * 原文:Calls an event with the given details
      *
-     * @param event Event details
+     * @param event 事件
+     * @throws IllegalStateException 当从同步代码中触发异步事件时抛出
+     *     <p>
+     *     <i>注意:这是插件开发者应尽的义务, 不应用其来测试同步状态. 这是逻辑流有缺陷的迹象</i>
      */
     @Override
     public void callEvent(@NotNull Event event) {
@@ -575,16 +601,16 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Registers the given event to the specified listener using a directly
-     * passed EventExecutor
+     * 将指定的执行器注册至指定的事件类.
+     * <p>
+     * 原文:Registers the specified executor to the given event class
      *
-     * @param event Event class to register
-     * @param listener PlayerListener to register
-     * @param priority Priority of this event
-     * @param executor EventExecutor to register
-     * @param plugin Plugin to register
-     * @param ignoreCancelled Do not call executor if event was already
-     *     cancelled
+     * @param event 要注册的事件类型
+     * @param listener 要注册的监听器
+     * @param priority 要注册的事件的优先级
+     * @param executor 要注册的EventExecutor
+     * @param plugin 注册事件的插件
+     * @param ignoreCancelled 是否忽略已取消的事件
      */
     @Override
     public void registerEvent(@NotNull Class<? extends Event> event, @NotNull Listener listener, @NotNull EventPriority priority, @NotNull EventExecutor executor, @NotNull Plugin plugin, boolean ignoreCancelled) {
@@ -805,9 +831,11 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Sets whether or not per event timing code should be used
+     * 设置服务器是否使用 Timings 监测每一个事件代码块的性能状况.
+     * <p>
+     * 原文:Sets whether or not per event timing code should be used
      *
-     * @param use True if per event timing code should be used
+     * @param use 是否使用 Timings
      */
     public void useTimings(boolean use) {
         useTimings = use;

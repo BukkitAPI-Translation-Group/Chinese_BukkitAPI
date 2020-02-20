@@ -4,14 +4,15 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a complex living entity - one that is made up of various smaller
- * parts
+ * 代表复杂生物 --- 由多种较小实体部分组成 (目前只有末影龙属于此行列).
  */
 public interface ComplexLivingEntity extends LivingEntity {
     /**
-     * Gets a list of parts that belong to this complex entity
+     * 获取组成此复杂生物的实体部件.
+     * <p>
+     * 原文:Gets a list of parts that belong to this complex entity
      *
-     * @return List of parts
+     * @return 组成此复杂生物的实体部件
      */
     @NotNull
     public Set<ComplexEntityPart> getParts();

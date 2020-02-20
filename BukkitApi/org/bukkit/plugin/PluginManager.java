@@ -97,11 +97,11 @@ public interface PluginManager {
 
     /**
      * 载入指定目录内的插件.
-     * <p/>
+     * <p>
      * 原文:
      * Loads the plugins contained within the specified directory.
      *
-     * @param 指定目录的File对象
+     * @param directory 指定目录的File对象
      * @return 返回带有已成功载入的插件Plugin对象的数组
      */
     @NotNull
@@ -124,7 +124,10 @@ public interface PluginManager {
     public void clearPlugins();
 
     /**
-     * 以给定的具体细节调用一个事件.
+     * 调用一个具有详细信息的事件.
+     * <p>
+     * 译注:(针对 Bukkkit 中对本接口的唯一实现{@link SimplePluginManager}来说)本方法是线程安全的, 但不可以同步代码块/同步线程中触发异步事件,
+     * 也不可以从异步线程中触发同步事件.
      * <p>
      * 原文:Calls an event with the given details
      *
@@ -378,8 +381,8 @@ public interface PluginManager {
     /**
      * 返回是否在事件调用中使用插件计时器.
      * <p>
-     * 译注:Timings是一个性能分析工具, 通过Timing可以了解
-     * 服务器的性能损耗情况, 通过它可以定位插件中性能较差的方法, 并针对性地进行优化.
+     * 译注:Timings是一个性能分析工具, 通过Timings可以了解
+     * 服务器的性能损耗情况, 通过它可以定位插件/服务器代码中性能较差的方法, 并针对性地进行优化.
      * 可以通过"/timings on"开始记录, "/timings paste"上传记录, "/timings off"关闭记录 (仅针对Spigot及其衍生服务端).
      * <p>
      * 原文:Returns whether or not timing code should be used for event calls

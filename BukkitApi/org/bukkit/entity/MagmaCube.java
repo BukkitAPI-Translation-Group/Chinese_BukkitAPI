@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a MagmaCube.
+ * 代表岩浆怪.
  */
 public interface MagmaCube extends Slime {
 }

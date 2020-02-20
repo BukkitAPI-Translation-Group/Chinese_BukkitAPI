@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents an ElderGuardian - variant of {@link Guardian}.
+ * 代表远古守卫者 - 一种{@link Guardian 守卫者}.
  */
 public interface ElderGuardian extends Guardian { }

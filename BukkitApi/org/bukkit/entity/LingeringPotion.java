@@ -1,8 +1,8 @@
 package org.bukkit.entity;
 
 /**
- * Represents a thrown lingering potion bottle
+ * 代表抛出的滞留药水.
  *
- * @deprecated lingering status depends on only on the potion item.
+ * @deprecated 滞留状态仅取决于药水物品/lingering status depends on only on the potion item.
  */
 public interface LingeringPotion extends ThrownPotion { }

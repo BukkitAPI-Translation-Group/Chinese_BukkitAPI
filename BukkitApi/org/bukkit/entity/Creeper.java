@@ -16,7 +16,7 @@ public interface Creeper extends Monster {
     public boolean isPowered();
 
     /**
-     * 设置这个苦力怕为高压状态.
+     * 设置这个苦力怕的高压状态.
      * <p>
      * 原文:
      * Sets the Powered status of this Creeper
@@ -70,7 +70,11 @@ public interface Creeper extends Monster {
     public int getExplosionRadius();
 
     /**
-     * Makes this Creeper explode instantly.
+     * 使该苦力怕立刻爆炸.
+     * 使用本方法引起的爆炸可被{@link org.bukkit.event.entity.ExplosionPrimeEvent}取消,
+     * 并且遵循其所处世界的{@link org.bukkit.GameRule#MOB_GRIEFING mobGriefing游戏规则}.
+     * <p>
+     * 原文:Makes this Creeper explode instantly.
      *
      * The resulting explosion can be cancelled by an
      * {@link org.bukkit.event.entity.ExplosionPrimeEvent} and obeys the mob
@@ -79,7 +83,12 @@ public interface Creeper extends Monster {
     public void explode();
 
     /**
-     * Ignites this Creeper, beginning its fuse.
+     * 点燃此苦力怕, 开始其爆炸计时.
+     * 苦力怕从点燃到爆炸所需时间取决于{@link #setMaxFuseTicks}的设置,默认值为30.
+     * 使用本方法引起的爆炸可被{@link org.bukkit.event.entity.ExplosionPrimeEvent}取消,
+     * 并且遵循其所处世界的{@link org.bukkit.GameRule#MOB_GRIEFING mobGriefing游戏规则}.
+     * <p>
+     * 原文:Ignites this Creeper, beginning its fuse.
      *
      * The amount of time the Creeper takes to explode will depend on what
      * {@link #setMaxFuseTicks} is set as.

@@ -7,53 +7,65 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a minecart entity.
+ * 代表矿车实体.
  */
 public interface Minecart extends Vehicle {
 
     /**
-     * Sets a minecart's damage.
+     * 设置对矿车的伤害.
+     * <p>
+     * 原文:Sets a minecart's damage.
      *
-     * @param damage over 40 to "kill" a minecart
+     * @param damage 超过40的伤害将"杀死"矿车
      */
     public void setDamage(double damage);
 
     /**
-     * Gets a minecart's damage.
+     * 获取对矿车的伤害.
+     * <p>
+     * 原文:Gets a minecart's damage.
      *
-     * @return The damage
+     * @return 伤害值
      */
     public double getDamage();
 
     /**
-     * Gets the maximum speed of a minecart. The speed is unrelated to the
+     * 获取矿车的最大速率. 这是速率不是速度.
+     * <p>
+     * 原文:Gets the maximum speed of a minecart. The speed is unrelated to the
      * velocity.
      *
-     * @return The max speed
+     * @return 最大速率
      */
     public double getMaxSpeed();
 
     /**
-     * Sets the maximum speed of a minecart. Must be nonnegative. Default is
+     * 设置矿车的最大速率. 此值不能是负数(速率是标量). 默认值为0.4D.
+     * <p>
+     * 原文:Sets the maximum speed of a minecart. Must be nonnegative. Default is
      * 0.4D.
      *
-     * @param speed The max speed
+     * @param speed 最大速率
      */
     public void setMaxSpeed(double speed);
 
     /**
-     * Returns whether this minecart will slow down faster without a passenger
+     * 返回此矿车在无乘客乘坐时是否会加快减速 (可理解为有更大的负的加速度).
+     * <p>
+     * 原文:Returns whether this minecart will slow down faster without a passenger
      * occupying it
      *
-     * @return Whether it decelerates faster
+     * @return 是否加快减速
      */
     public boolean isSlowWhenEmpty();
 
     /**
-     * Sets whether this minecart will slow down faster without a passenger
+     * 设置此矿车在无乘客乘坐时是否会加快减速 (可理解为有更大的负的加速度).
+     * <p>
+     * 原文:Sets whether this minecart will slow down faster without a passenger
      * occupying it
      *
-     * @param slow Whether it will decelerate faster
+     * @param slow 是否加快减速
      */
     public void setSlowWhenEmpty(boolean slow);
 
@@ -97,50 +109,66 @@ public interface Minecart extends Vehicle {
     public void setDerailedVelocityMod(@NotNull Vector derailed);
 
     /**
-     * Sets the display block for this minecart.
+     * 设置示在矿车中的方块.
+     * 传递null值清除矿车中展示的方块.
+     * <p>
+     * 原文:Sets the display block for this minecart.
      * Passing a null value will set the minecart to have no display block.
      *
-     * @param material the material to set as display block.
+     * @param material 设置为展示方块的物品
      */
     public void setDisplayBlock(@Nullable MaterialData material);
 
     /**
-     * Gets the display block for this minecart.
+     * 获取展示在矿车中的方块.
+     * 如果矿车内无方块, 会返回AIR类型.
+     * <p>
+     * 原文:Gets the display block for this minecart.
      * This function will return the type AIR if none is set.
      *
-     * @return the block displayed by this minecart.
+     * @return 展示在矿车中的方块
      */
     @NotNull
     public MaterialData getDisplayBlock();
 
     /**
-     * Sets the display block for this minecart.
+     * 设置展示在矿车中的方块.
+     * 传递null值清除矿车中展示的方块.
+     * <p>
+     * 原文:Sets the display block for this minecart.
      * Passing a null value will set the minecart to have no display block.
      *
-     * @param blockData the material to set as display block.
+     * @param blockData 设置为展示方块的物品
      */
     public void setDisplayBlockData(@Nullable BlockData blockData);
 
     /**
-     * Gets the display block for this minecart.
+     * 获取展示在矿车中的方块的方块数据.
+     * 如果矿车内无方块, 会返回AIR类型.
+     * <p>
+     * 原文:Gets the display block for this minecart.
      * This function will return the type AIR if none is set.
      *
-     * @return the block displayed by this minecart.
+     * @return 展示在矿车中的方块
      */
     @NotNull
     public BlockData getDisplayBlockData();
 
     /**
-     * Sets the offset of the display block.
+     * 设置展示在矿车中的方块的偏移像素值.
+     * <p>
+     * 原文:Sets the offset of the display block.
      *
-     * @param offset the block offset to set for this minecart.
+     * @param offset 展示在矿车中的方块的偏移像素值
      */
     public void setDisplayBlockOffset(int offset);
 
     /**
-     * Gets the offset of the display block.
+     * 获取展示在矿车中的方块的偏移像素值.
+     * <p>
+     * 原文:Gets the offset of the display block.
      *
-     * @return the current block offset for this minecart.
+     * @return 展示在矿车中的方块的偏移像素值
      */
     public int getDisplayBlockOffset();
 }
