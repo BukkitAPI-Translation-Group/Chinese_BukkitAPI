@@ -1,7 +1,7 @@
 package org.bukkit;
 
 /**
- * An Enum of categories for sounds.
+ * 声音类别枚举.
  */
 public enum SoundCategory {
 
