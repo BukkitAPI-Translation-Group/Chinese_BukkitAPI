@@ -15,91 +15,223 @@ public enum ChatColor {
     /**
      * <span style="color:#000000">黑色: <span style="background:#000000"> 黑色 </span></span>
      */
-    BLACK('0', 0x00),
+    BLACK('0', 0x00) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.BLACK;
+        }
+    },
     /**
      * <span style="color:#0000be">深蓝: <span style="background:#0000be"> 深蓝 </span></span>
      */
-    DARK_BLUE('1', 0x1),
+    DARK_BLUE('1', 0x1) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.DARK_BLUE;
+        }
+    },
     /**
      * <span style="color:#00bf00">深绿: <span style="background:#00bf00"> 深绿 </span></span>
      */
-    DARK_GREEN('2', 0x2),
+    DARK_GREEN('2', 0x2) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.DARK_GREEN;
+        }
+    },
     /**
      * <span style="color:#00bebe">深蓝: <span style="background:#00bebe"> 深蓝 </span></span>
      */
-    DARK_AQUA('3', 0x3),
+    DARK_AQUA('3', 0x3) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.DARK_AQUA;
+        }
+    },
     /**
      * <span style="color:#be0000">深红: <span style="background:#be0000"> 深红 </span></span>
      */
-    DARK_RED('4', 0x4),
+    DARK_RED('4', 0x4) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.DARK_RED;
+        }
+    },
     /**
      * <span style="color:#be00be">深紫: <span style="background:#be00be"> 深紫 </span></span>
      */
-    DARK_PURPLE('5', 0x5),
+    DARK_PURPLE('5', 0x5) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.DARK_PURPLE;
+        }
+    },
     /**
      * <span style="color:#d8a333">橙色: <span style="background:#d8a333"> 橙色 </span></span>
      */
-    GOLD('6', 0x6),
+    GOLD('6', 0x6) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.GOLD;
+        }
+    },
     /**
      * <span style="color:#bebebe">灰色: <span style="background:#bebebe"> 灰色 </span></span>
      */
-    GRAY('7', 0x7),
+    GRAY('7', 0x7) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.GRAY;
+        }
+    },
     /**
      * <span style="color:#3f3f3f">深灰: <span style="background:#3f3f3f"> 深灰 </span></span>
      */
-    DARK_GRAY('8', 0x8),
+    DARK_GRAY('8', 0x8) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.DARK_GRAY;
+        }
+    },
     /**
      * <span style="color:#3f40fd">蓝色: <span style="background:#3f40fd"> 蓝色 </span></span>
      */
-    BLUE('9', 0x9),
+    BLUE('9', 0x9) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.BLUE;
+        }
+    },
     /**
      * <span style="color:#3ffe3f">绿色: <span style="background:#3ffe3f"> 绿色 </span></span>
      */
-    GREEN('a', 0xA),
+    GREEN('a', 0xA) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.GREEN;
+        }
+    },
     /**
      * <span style="color:#3dffff">淡蓝: <span style="background:#3dffff"> 淡蓝 </span></span>
      */
-    AQUA('b', 0xB),
+    AQUA('b', 0xB) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.AQUA;
+        }
+    },
     /**
      * <span style="color:#fd3f3f">红色: <span style="background:#fd3f3f"> 红色 </span></span>
      */
-    RED('c', 0xC),
+    RED('c', 0xC) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.RED;
+        }
+    },
     /**
      * <span style="color:#fe3ffe">紫色: <span style="background:#fe3ffe"> 紫色 </span></span>
      */
-    LIGHT_PURPLE('d', 0xD),
+    LIGHT_PURPLE('d', 0xD) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.LIGHT_PURPLE;
+        }
+    },
     /**
      * <span style="color:#fefe3e">黄色: <span style="background:#fefe3e"> 黄色 </span></span>
      */
-    YELLOW('e', 0xE),
+    YELLOW('e', 0xE) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.YELLOW;
+        }
+    },
     /**
      * <span style="color:#000000">白色: <span style="background:#ffffff;color:#ffffff"> 白色 </span></span>
      */
-    WHITE('f', 0xF),
+    WHITE('f', 0xF) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.WHITE;
+        }
+    },
     /**
      * 随机字符(聊天不可用)
      */
-    MAGIC('k', 0x10, true),
+    MAGIC('k', 0x10, true) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.MAGIC;
+        }
+    },
     /**
      * 粗体: <b> 粗体 </b>
      */
-    BOLD('l', 0x11, true),
+    BOLD('l', 0x11, true) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.BOLD;
+        }
+    },
     /**
      * 删除线: <span style="text-decoration:line-through"> 删除线 </span>
      */
-    STRIKETHROUGH('m', 0x12, true),
+    STRIKETHROUGH('m', 0x12, true) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.STRIKETHROUGH;
+        }
+    },
     /**
      * 下划线: <u> 下划线 </u>
      */
-    UNDERLINE('n', 0x13, true),
+    UNDERLINE('n', 0x13, true) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.UNDERLINE;
+        }
+    },
     /**
      * 斜体: <i> 斜体 </i>
      */
-    ITALIC('o', 0x14, true),
+    ITALIC('o', 0x14, true) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.ITALIC;
+        }
+    },
     /**
      * 重置字体颜色以及效果
      */
-    RESET('r', 0x15);
+    RESET('r', 0x15) {
+        @NotNull
+        @Override
+        public net.md_5.bungee.api.ChatColor asBungee() {
+            return net.md_5.bungee.api.ChatColor.RESET;
+        }
+    };
 
     /**
      * 所有聊天颜色代码的特殊字符前辍.如果你需要动态转换您自定义格式的颜色代码，请使用这个.
@@ -124,6 +256,11 @@ public enum ChatColor {
         this.isFormat = isFormat;
         this.toString = new String(new char[] {COLOR_CHAR, code});
     }
+
+    @NotNull
+    public net.md_5.bungee.api.ChatColor asBungee() {
+        return net.md_5.bungee.api.ChatColor.RESET;
+    };
 
     /**
      * 获取与此颜色或格式关联的单个字符. 
