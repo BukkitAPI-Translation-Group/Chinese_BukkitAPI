@@ -525,7 +525,7 @@ public final class SimplePluginManager implements PluginManager {
     /**
      * 调用一个具有详细信息的事件.
      * <p>
-     * 译注:本方法是线程安全的, 但不可以同步代码块/同步线程中触发异步事件,
+     * 译注:本方法是线程安全的, 但不可以在同步代码块/同步线程中触发异步事件,
      * 也不可以从异步线程中触发同步事件.
      * <p>
      * 原文:Calls an event with the given details
