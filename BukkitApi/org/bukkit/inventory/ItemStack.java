@@ -20,7 +20,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>
  * <b>重要: <i>物品</i>堆只被设计用于容纳物品.
  * 请不要使用本类来简要描述某种不可获得的物品 
- * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).
+ * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).</b>
  */
 public class ItemStack implements Cloneable, ConfigurationSerializable {
     private Material type = Material.AIR;
