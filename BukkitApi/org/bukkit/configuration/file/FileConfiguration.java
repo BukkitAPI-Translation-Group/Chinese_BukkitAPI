@@ -51,7 +51,7 @@ public abstract class FileConfiguration extends MemoryConfiguration {
      *
      * @param file 要储存的文件
      * @throws IOException 然后会给出无法创建或者保存的原因.
-     * @throws IllegalArgumentException 如果文件为空，泡出该异常
+     * @throws IllegalArgumentException 如果文件为空，抛出该异常
      */
     public void save(@NotNull File file) throws IOException {
         Validate.notNull(file, "File cannot be null");
