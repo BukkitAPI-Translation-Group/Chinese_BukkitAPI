@@ -82,11 +82,11 @@ public class InventoryClickEvent extends InventoryInteractEvent {
     }
 
     /**
-     * 获取当前光标所指的物品
+     * 获取被光标所拿起来的物品
      * <p>
      * 原文:Gets the current ItemStack on the cursor.
      *
-     * @return 光标上的物品
+     * @return 被光标所拿起来的物品
      */
     @Nullable
     public ItemStack getCursor() {
