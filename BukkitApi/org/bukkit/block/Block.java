@@ -18,6 +18,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
+ * 代表一个方块.
+ * <p>
+ * 这是一种动态的对象，在同一个世界的同一个位置只可以存在一个方块.
+ * <p>
+ * 方块的一个实例可能会根据你对这个方块的一些操作而改变，可以使用block.getState()来获取一个静态的，不会被修改的Block对象.
+ * <p>
+ * 需要注意的是，在世界生成的过程中调用这个类可能是不安全的，比如BlockPhysicsEvent事件!!!!
+ * <p>
+ * 原文:
  * Represents a block. This is a live object, and only one Block may exist for
  * any given location in a world. The state of the block may change
  * concurrently to your own handling of it; use block.getState() to get a
@@ -31,6 +40,9 @@ import org.jetbrains.annotations.Nullable;
 public interface Block extends Metadatable {
 
     /**
+     * 获取这个方块的Metadata.
+     * <p>
+     * 原文:
      * Gets the metadata for this block
      *
      * @return block specific metadata
@@ -40,6 +52,9 @@ public interface Block extends Metadatable {
     byte getData();
 
     /**
+     * 获取这个方块的BlockData.
+     * <p>
+     * 原文:
      * Gets the complete block data for this block
      *
      * @return block specific data
@@ -48,6 +63,9 @@ public interface Block extends Metadatable {
     BlockData getBlockData();
 
     /**
+     * 以此方块为基点，在指定的偏移量上获取方块.
+     * <p>
+     * 原文:
      * Gets the block at the given offsets
      *
      * @param modX X-coordinate offset
@@ -59,6 +77,11 @@ public interface Block extends Metadatable {
     Block getRelative(int modX, int modY, int modZ);
 
     /**
+     * 获取这个方块某一面上紧邻的方块.
+     * <p>
+     * 此方法等同于getRelative(face, 1)
+     * <p>
+     * 原文:
      * Gets the block at the given face
      * <p>
      * This method is equal to getRelative(face, 1)
@@ -71,6 +94,15 @@ public interface Block extends Metadatable {
     Block getRelative(@NotNull BlockFace face);
 
     /**
+     * 获取这个方块某一面上指定距离的方块.
+     * <p>
+     * 一个例子，如果我要在一个方块的上面3格放置一个水方块.
+     * <pre>
+     * Block block = world.getBlockAt(100, 100, 100); //获取到方块
+     * Block shower = block.getRelative(BlockFace.UP, 2); //获取这个方块UP(上)面的2格的方块
+     * shower.setType(Material.WATER); //设置这个方块为水
+     * </pre>
+     * 原文:
      * Gets the block at the given distance of the given face
      * <p>
      * For example, the following method places water at 100,102,100; two
@@ -90,6 +122,9 @@ public interface Block extends Metadatable {
     Block getRelative(@NotNull BlockFace face, int distance);
 
     /**
+     * 获取这个方块的Material.
+     * <p>
+     * 原文:
      * Gets the type of this block
      *
      * @return block type
@@ -98,6 +133,11 @@ public interface Block extends Metadatable {
     Material getType();
 
     /**
+     * 获取这个方块的发光的亮度等级 (0-15).
+     * <p>
+     * (译者注: 如果这个方块不发光则返回0)
+     * <p>
+     * 原文:
      * Gets the light level between 0-15
      *
      * @return light level
@@ -105,6 +145,11 @@ public interface Block extends Metadatable {
     byte getLightLevel();
 
     /**
+     * 获取从天空中照到此方块上的光照亮度等级.
+     * <p>
+     * 会忽略掉来自方块(火把、萤石等)的光源.
+     * <p>
+     * 原文:
      * Get the amount of light at this block from the sky.
      * <p>
      * Any light given from other sources (such as blocks like torches) will
@@ -115,6 +160,11 @@ public interface Block extends Metadatable {
     byte getLightFromSky();
 
     /**
+     * 获取从方块照到这个方块上的光源亮度等级.
+     * <p>
+     * 会忽略掉来自非方块(太阳光等)的光源.
+     * <p>
+     * 原文:
      * Get the amount of light at this block from nearby blocks.
      * <p>
      * Any light given from other sources (such as the sun) will be ignored.
@@ -124,6 +174,9 @@ public interface Block extends Metadatable {
     byte getLightFromBlocks();
 
     /**
+     * 获取这个方块所在的世界.
+     * <p>
+     * 原文:
      * Gets the world which contains this Block
      *
      * @return World containing this block
@@ -132,6 +185,9 @@ public interface Block extends Metadatable {
     World getWorld();
 
     /**
+     * 获取这个方块的X轴坐标.
+     * <p>
+     * 原文:
      * Gets the x-coordinate of this block
      *
      * @return x-coordinate
@@ -139,6 +195,9 @@ public interface Block extends Metadatable {
     int getX();
 
     /**
+     * 获取这个方块的Y轴坐标.
+     * <p>
+     * 原文:
      * Gets the y-coordinate of this block
      *
      * @return y-coordinate
@@ -146,6 +205,9 @@ public interface Block extends Metadatable {
     int getY();
 
     /**
+     * 获取这个方块的Z轴坐标.
+     * <p>
+     * 原文:
      * Gets the z-coordinate of this block
      *
      * @return z-coordinate
@@ -153,6 +215,9 @@ public interface Block extends Metadatable {
     int getZ();
 
     /**
+     * 获取这个方块的Location(位置).
+     * <p>
+     * 原文:
      * Gets the Location of the block
      *
      * @return Location of block
@@ -161,6 +226,18 @@ public interface Block extends Metadatable {
     Location getLocation();
 
     /**
+     * 将此方块的位置储存在所传入的Location对象中.
+     * <p>
+     * 如果传入的Location对象为null，则本方法不做任何操作并返回null.
+     * <p>
+     * (译者注: 下面是译者的一个例子)
+     * <pre>
+     * Location loc = new Location(World, 15, 255, 14);
+     * Block block = World2.getBlockAt(28, 25, -18);
+     * loc = block.getLocation(loc)
+     * // 此时，loc的值为(World2, 28, 25, -18) 基本等效于 loc = block.getLocation()
+     * </pre>
+     * 原文:
      * Stores the location of the block in the provided Location object.
      * <p>
      * If the provided Location is null this method does nothing and returns
@@ -174,6 +251,9 @@ public interface Block extends Metadatable {
     Location getLocation(@Nullable Location loc);
 
     /**
+     * 获取此方块所在的区块.
+     * <p>
+     * 原文:
      * Gets the chunk which contains this block
      *
      * @return Containing Chunk
@@ -182,6 +262,9 @@ public interface Block extends Metadatable {
     Chunk getChunk();
 
     /**
+     * 设置此方块的BlockData.
+     * <p>
+     * 原文:
      * Sets the complete data for this block
      *
      * @param data new block specific data
@@ -189,6 +272,15 @@ public interface Block extends Metadatable {
     void setBlockData(@NotNull BlockData data);
 
     /**
+     * 设置一个方块的BlockData，并决定是否应用重力.(译者注: 更新方块的意思，如沙不掉落)
+     * <br>
+     * 请注意，applyPhysics = false 有时并不安全。只有你需要避免周围方块的更新才应该使用这个参数。
+     * 例如在创建一个 {@link Bisected} 方块时或者在使用自定义的 BlockPopulator 防止触发无限连锁更新的时候。
+     * <p>
+     * 不要使用这个方法来在一些 “不可能放置方块的地方” 放置方块。即使可以成功放置，这些方块也会在之后被移除。
+     * 如果把大量这种方块放置在很接近的地方可能会使服务器物理引擎过载奔溃。
+     * <p>
+     * 原文:
      * Sets the complete data for this block
      *
      * <br>
@@ -210,6 +302,9 @@ public interface Block extends Metadatable {
     void setBlockData(@NotNull BlockData data, boolean applyPhysics);
 
     /**
+     * 设置这个方块的Material.
+     * <p>
+     * 原文:
      * Sets the type of this block
      *
      * @param type Material to change this block to
@@ -217,6 +312,15 @@ public interface Block extends Metadatable {
     void setType(@NotNull Material type);
 
     /**
+     * 设置一个方块的Material，并决定是否应用重力.(译者注: 更新方块的意思，如沙不掉落)
+     * <br>
+     * 请注意，applyPhysics = false 有时并不安全。只有你需要避免周围方块的更新才应该使用这个参数。
+     * 例如在创建一个 {@link Bisected} 方块时或者在使用自定义的 BlockPopulator 防止触发无限连锁更新的时候。
+     * <p>
+     * 不要使用这个方法来在一些 “不可能放置方块的地方” 放置方块。即使可以成功放置，这些方块也会在之后被移除。
+     * 如果把大量这种方块放置在很接近的地方可能会使服务器物理引擎过载奔溃。
+     * <p>
+     * 原文:
      * Sets the type of this block
      *
      * <br>
