@@ -135,7 +135,7 @@ public interface Block extends Metadatable {
     /**
      * 获取这个方块的发光的亮度等级 (0-15).
      * <p>
-     * (译者注: 如果这个方块不发光则返回0)
+     * 译注: 如果这个方块不发光则返回0
      * <p>
      * 原文:
      * Gets the light level between 0-15
@@ -230,7 +230,7 @@ public interface Block extends Metadatable {
      * <p>
      * 如果传入的Location对象为null，则本方法不做任何操作并返回null.
      * <p>
-     * (译者注: 下面是译者的一个例子)
+     * 译注: 下面是译者的一个例子
      * <pre>
      * Location loc = new Location(World, 15, 255, 14);
      * Block block = World2.getBlockAt(28, 25, -18);
