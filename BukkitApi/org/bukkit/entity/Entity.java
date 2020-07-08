@@ -650,26 +650,26 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public boolean isInvulnerable();
 
     /**
-     * 获取实体是否静音.  
+     * 获取实体是否保持安静.  
      * <p>
      * 原文:
      * Gets whether the entity is silent or not. 
      *
-     * @return 实体是否静音
+     * @return 实体是否保持安静
      */
     public boolean isSilent();
 
     /**
-     * 获取实体是否静音. 
+     * 获取实体是否保持安静.
      * <br>
-     * 当尸体被静音时, 它不会发出任何声音. 
+     * 当实体静默时, 它不会发出任何声音. 
      * <p>
      * 原文:
      * Sets whether the entity is silent or not. 
      * <p>
      * When an entity is silent it will not produce any sound. 
      *
-     * @param flag 实体是否静音
+     * @param flag 实体是否保持安静
      */
     public void setSilent(boolean flag);
 
