@@ -24,13 +24,11 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
     }
 
     /**
-     * 返回试玩家受到伤害的Block类
-     * 
-     * @return Block 使玩家收到伤害的方块
-     * 原文:
-     * Returns the block that damaged the player.
+     * 返回使玩家受到伤害的方块.
+     * <p>
+     * 原文:Returns the block that damaged the player.
      *
-     * @return Block that damaged the player
+     * @return 使玩家受到伤害的方块
      */
     @Nullable
     public Block getDamager() {
