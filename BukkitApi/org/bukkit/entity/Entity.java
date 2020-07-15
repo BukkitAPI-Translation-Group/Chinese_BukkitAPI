@@ -122,6 +122,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * moves. 
      *
      * @return 实体是否站在地上
+     * @see Player#isOnGround()
      */
     public boolean isOnGround();
 

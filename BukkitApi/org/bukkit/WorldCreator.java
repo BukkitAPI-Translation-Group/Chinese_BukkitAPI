@@ -285,10 +285,15 @@ public class WorldCreator {
      * Sets the generator settings of the world that will be created or loaded.
      * <p>
      * Currently only {@link WorldType#FLAT} uses these settings, and expects
-     * them to be in JSON format with a valid biome defined. An example valid
-     * configuration is as follows:
-     * <code>{"layers": [{"block": "stone", "height": 1}, {"block": "grass", "height": 1}], "biome":"plains"}</code>
+     * them to be in JSON format with a valid biome AND structures (1.16 and
+     * above) defined. Note the occurrence of "structures" twice (nested
+     * compound may be empty, both must exist.). An example valid configuration
+     * is as follows:
+     * <code>{"structures": {"structures": {"village": {"salt": 8015723, "spacing": 32, "separation": 8}}}, "layers": [{"block": "stone", "height": 1}, {"block": "grass", "height": 1}], "biome":"plains"}</code>
      *
+     * @see <a href="https://minecraft.gamepedia.com/Custom_dimension">Custom
+     * dimension</a> (scroll to "When the generator ID type is
+     * <code>minecraft:flat</code>)"
      * @param generatorSettings 将被使用的生成器的配置
      * @return 用于连接的对象
      */
