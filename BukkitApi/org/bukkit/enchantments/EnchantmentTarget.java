@@ -13,7 +13,10 @@ public enum EnchantmentTarget {
      * <p>
      * 原文：
      * Allows the Enchantment to be placed on all items
+     *
+     * @deprecated this target no longer exists in Vanilla
      */
+    @Deprecated
     ALL {
         @Override
         public boolean includes(@NotNull Material item) {
@@ -56,7 +59,8 @@ public enum EnchantmentTarget {
                 || item.equals(Material.CHAINMAIL_BOOTS)
                 || item.equals(Material.IRON_BOOTS)
                 || item.equals(Material.DIAMOND_BOOTS)
-                || item.equals(Material.GOLDEN_BOOTS);
+                || item.equals(Material.GOLDEN_BOOTS)
+                || item.equals(Material.NETHERITE_BOOTS);
         }
     },
 
@@ -73,7 +77,8 @@ public enum EnchantmentTarget {
                 || item.equals(Material.CHAINMAIL_LEGGINGS)
                 || item.equals(Material.IRON_LEGGINGS)
                 || item.equals(Material.DIAMOND_LEGGINGS)
-                || item.equals(Material.GOLDEN_LEGGINGS);
+                || item.equals(Material.GOLDEN_LEGGINGS)
+                || item.equals(Material.NETHERITE_LEGGINGS);
         }
     },
 
@@ -90,7 +95,8 @@ public enum EnchantmentTarget {
                 || item.equals(Material.CHAINMAIL_CHESTPLATE)
                 || item.equals(Material.IRON_CHESTPLATE)
                 || item.equals(Material.DIAMOND_CHESTPLATE)
-                || item.equals(Material.GOLDEN_CHESTPLATE);
+                || item.equals(Material.GOLDEN_CHESTPLATE)
+                || item.equals(Material.NETHERITE_CHESTPLATE);
         }
     },
 
@@ -108,7 +114,8 @@ public enum EnchantmentTarget {
                 || item.equals(Material.DIAMOND_HELMET)
                 || item.equals(Material.IRON_HELMET)
                 || item.equals(Material.GOLDEN_HELMET)
-                || item.equals(Material.TURTLE_HELMET);
+                || item.equals(Material.TURTLE_HELMET)
+                || item.equals(Material.NETHERITE_HELMET);
         }
     },
 
@@ -125,7 +132,8 @@ public enum EnchantmentTarget {
                 || item.equals(Material.STONE_SWORD)
                 || item.equals(Material.IRON_SWORD)
                 || item.equals(Material.DIAMOND_SWORD)
-                || item.equals(Material.GOLDEN_SWORD);
+                || item.equals(Material.GOLDEN_SWORD)
+                || item.equals(Material.NETHERITE_SWORD);
         }
     },
 
@@ -143,16 +151,25 @@ public enum EnchantmentTarget {
                 || item.equals(Material.IRON_SHOVEL)
                 || item.equals(Material.DIAMOND_SHOVEL)
                 || item.equals(Material.GOLDEN_SHOVEL)
+                || item.equals(Material.NETHERITE_SHOVEL)
                 || item.equals(Material.WOODEN_PICKAXE)
                 || item.equals(Material.STONE_PICKAXE)
                 || item.equals(Material.IRON_PICKAXE)
                 || item.equals(Material.DIAMOND_PICKAXE)
                 || item.equals(Material.GOLDEN_PICKAXE)
+                || item.equals(Material.NETHERITE_PICKAXE)
                 || item.equals(Material.WOODEN_AXE)
                 || item.equals(Material.STONE_AXE)
                 || item.equals(Material.IRON_AXE)
                 || item.equals(Material.DIAMOND_AXE)
-                || item.equals(Material.GOLDEN_AXE);
+                || item.equals(Material.GOLDEN_AXE)
+                || item.equals(Material.NETHERITE_AXE)
+                || item.equals(Material.WOODEN_HOE)
+                || item.equals(Material.STONE_HOE)
+                || item.equals(Material.IRON_HOE)
+                || item.equals(Material.DIAMOND_HOE)
+                || item.equals(Material.GOLDEN_HOE)
+                || item.equals(Material.NETHERITE_HOE);
         }
     },
 
@@ -232,6 +249,16 @@ public enum EnchantmentTarget {
         @Override
         public boolean includes(@NotNull Material item) {
             return item.equals(Material.CROSSBOW);
+        }
+    },
+
+    /**
+     * Allow the Enchantment to be placed on vanishing items.
+     */
+    VANISHABLE {
+        @Override
+        public boolean includes(@NotNull Material item) {
+            return BREAKABLE.includes(item) || (WEARABLE.includes(item) && !item.equals(Material.ELYTRA)) || item.equals(Material.COMPASS);
         }
     };
 

@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表狼.
  */
-public interface Wolf extends Animals, Tameable, Sittable {
+public interface Wolf extends Tameable, Sittable {
 
     /**
      * 检测狼是否愤怒.

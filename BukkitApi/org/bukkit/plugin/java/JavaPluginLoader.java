@@ -124,7 +124,7 @@ public final class JavaPluginLoader implements PluginLoader {
             Plugin current = server.getPluginManager().getPlugin(pluginName);
 
             if (current == null) {
-                throw new UnknownDependencyException(pluginName);
+                throw new UnknownDependencyException("Unknown dependency " + pluginName + ". Please download and install " + pluginName + " to run this plugin.");
             }
         }
 

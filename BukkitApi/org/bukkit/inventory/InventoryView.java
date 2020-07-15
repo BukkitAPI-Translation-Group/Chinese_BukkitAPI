@@ -30,6 +30,13 @@ public abstract class InventoryView {
          */
         BREW_TIME(0, InventoryType.BREWING),
         /**
+         * The progress of the fuel slot in a brewing inventory.
+         *
+         * This is a value between 0 and 20, with 0 making the bar empty, and 20
+         * making the bar full.
+         */
+        FUEL_TIME(1, InventoryType.BREWING),
+        /**
          * 熔炉燃料已燃烧多久 (仅计算单个燃料).
          */
         BURN_TIME(0, InventoryType.FURNACE),

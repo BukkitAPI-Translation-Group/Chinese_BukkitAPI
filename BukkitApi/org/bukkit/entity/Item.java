@@ -2,7 +2,6 @@ package org.bukkit.entity;
 
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表掉落物实体.
@@ -26,7 +25,7 @@ public interface Item extends Entity {
      *
      * @param stack 物品堆
      */
-    public void setItemStack(@Nullable ItemStack stack);
+    public void setItemStack(@NotNull ItemStack stack);
 
     /**
      * 获取此掉落物剩余的不可被捡起的时间.

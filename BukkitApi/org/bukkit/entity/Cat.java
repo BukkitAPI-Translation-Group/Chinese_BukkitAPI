@@ -4,12 +4,9 @@ import org.bukkit.DyeColor;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表猫.
- * <p>
- * 原文：
- * Meow.
+ * 喵.
  */
-public interface Cat extends Animals, Tameable, Sittable {
+public interface Cat extends Tameable, Sittable {
 
     /**
      * 获取这只猫的品种.

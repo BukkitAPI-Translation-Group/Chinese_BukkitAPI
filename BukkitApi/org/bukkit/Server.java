@@ -348,6 +348,66 @@ public interface Server extends PluginMessageRecipient {
     public int getTicksPerMonsterSpawns();
 
     /**
+     * Gets the default ticks per water mob spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn water mobs
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn water mobs
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, water mobs spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @return the default ticks per water mobs spawn value
+     */
+    public int getTicksPerWaterSpawns();
+
+    /**
+     * Gets the default ticks per water ambient mob spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn water ambient mobs
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn water ambient mobs
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, ambient mobs spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @return the default ticks per water ambient mobs spawn value
+     */
+    public int getTicksPerWaterAmbientSpawns();
+
+    /**
+     * Gets the default ticks per ambient mob spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn ambient mobs
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn ambient mobs
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, ambient mobs spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @return the default ticks per ambient mobs spawn value
+     */
+    public int getTicksPerAmbientSpawns();
+
+    /**
      * 根据玩家的名字来获取一个玩家的实例
      * <p>
      * 原文:Gets a player object by the given username.
@@ -1042,6 +1102,14 @@ public interface Server extends PluginMessageRecipient {
      * @return 生成限制数
      */
     int getWaterAnimalSpawnLimit();
+
+    /**
+     * Gets user-specified limit for number of water ambient mobs that can spawn
+     * in a chunk.
+     *
+     * @return the water ambient spawn limit
+     */
+    int getWaterAmbientSpawnLimit();
 
     /**
      * 获取一个区块最大生成环境怪物数(疑惑)

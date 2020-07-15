@@ -59,6 +59,13 @@ public interface Jukebox extends TileState {
     public boolean isPlaying();
 
     /**
+     * 使唱片机停止播放, 但不弹出唱片.
+     * <p>
+     * 原文:Stops the jukebox playing without ejecting the record.
+     */
+    public void stopPlaying();
+
+    /**
      * 停止唱片机的播放,并弹出唱片.
      * <p>
      * 如果这个方块不再是一个唱片机,

@@ -23,7 +23,7 @@ public interface Messenger {
     /**
      * 代表单个插件通道的最大大小.
      */
-    public static final int MAX_CHANNEL_SIZE = 32;
+    public static final int MAX_CHANNEL_SIZE = 64;
 
     /**
      * 检测指定的通道名称是否为保留名称.

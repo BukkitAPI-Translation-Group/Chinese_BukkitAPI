@@ -73,4 +73,12 @@ public enum TreeType {
      * 紫颂植物
      */
     CHORUS_PLANT,
+    /**
+     * Large crimson fungus native to the nether
+     */
+    CRIMSON_FUNGUS,
+    /**
+     * Large warped fungus native to the nether
+     */
+    WARPED_FUNGUS
 }

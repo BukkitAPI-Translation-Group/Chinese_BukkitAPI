@@ -58,6 +58,10 @@ public enum ClickType {
      */
     CREATIVE,
     /**
+     * The "swap item with offhand" key (defaults to F).
+     */
+    SWAP_OFFHAND,
+    /**
      * 无法被Bukkit解析的物品栏点击类型. 
      * <p>
      * 这个按键类型仅出现在Minecraft的版本过渡期, 且不应该被依赖. <br>

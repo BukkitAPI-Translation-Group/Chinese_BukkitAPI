@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 烟花火箭实体.
  */
-public interface Firework extends Entity {
+public interface Firework extends Projectile {
 
     /**
      * 获取烟花火箭元数据的副本.

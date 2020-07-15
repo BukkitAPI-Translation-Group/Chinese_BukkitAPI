@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表鹦鹉.
  */
-public interface Parrot extends Animals, Tameable, Sittable {
+public interface Parrot extends Tameable, Sittable {
 
     /**
      * 获得鹦鹉变体.

@@ -3,6 +3,7 @@ package org.bukkit;
 import java.util.UUID;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.AnimalTamer;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.permissions.ServerOperator;
 import org.jetbrains.annotations.NotNull;
@@ -128,4 +129,268 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
     @Nullable
     public Location getBedSpawnLocation();
 
+    /**
+     * 把该玩家的统计信息里的某项+1. <p>
+     * 这相当于下面的代码: <p>
+     * <code>incrementStatistic(Statistic, 1)</code> <p>
+     * 原文:Increments the given statistic for this player.
+     * <p>
+     * This is equivalent to the following code: <p>
+     * <code>incrementStatistic(Statistic, 1)</code> <p>
+     *
+     * @param statistic 要+1的统计项
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果这个statictic需要一个额外的参数??
+     */
+    public void incrementStatistic(@NotNull Statistic statistic) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息里的某项-1. <p>
+     * 这相当于下面的代码: <p>
+     * <code>decrementStatistic(Statistic, 1)</code>
+     * 原文:Decrements the given statistic for this player.
+     * <p>
+     * This is equivalent to the following code:
+     * <code>decrementStatistic(Statistic, 1)</code> <p>
+     *
+     * @param statistic 要减少的统计项目
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
+     */
+    public void decrementStatistic(@NotNull Statistic statistic) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息里的某项加上指定的值. <p>
+     * 原文:Increments the given statistic for this player. <p>
+     *
+     * @param statistic 要增加的统计项
+     * @param amount 要增加多少
+     * @throws IllegalArgumentException 当statistic为null
+     * @throws IllegalArgumentException 当amount无效
+     * @throws IllegalArgumentException 如果这个统计需要一个额外的参数?
+     */
+    public void incrementStatistic(@NotNull Statistic statistic, int amount) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息里的某项减少指定的值. <p>
+     * 原文:Decrements the given statistic for this player. <p>
+     *
+     * @param statistic 要减少的统计项
+     * @param amount 要减少多少
+     * @throws IllegalArgumentException 当statistic为null
+     * @throws IllegalArgumentException 当amount无效
+     * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
+     */
+    public void decrementStatistic(@NotNull Statistic statistic, int amount) throws IllegalArgumentException;
+
+    /**
+     * 设置该玩家的统计信息里的某项的值. <p>
+     * 原文:Sets the given statistic for this player. <p>
+     *
+     * @param statistic 要设置的统计项
+     * @param newValue 要把statistic设置成的值
+     * @throws IllegalArgumentException 当statistic为null
+     * @throws IllegalArgumentException 当amount无效
+     * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
+     */
+    public void setStatistic(@NotNull Statistic statistic, int newValue) throws IllegalArgumentException;
+
+    /**
+     * 得到该玩家的统计信息中某项的值. <p>
+     * 原文:Gets the value of the given statistic for this player. <p>
+     *
+     * @param statistic 要获取值的统计项
+     * @return statistic的值
+     * @throws IllegalArgumentException 当statistic为null
+     * @throws IllegalArgumentException 当amount无效
+     * @throws IllegalArgumentException 如果这个统计需要一个额外的参数??
+     */
+    public int getStatistic(@NotNull Statistic statistic) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中跟方块/物品有关的统计项加上一个{@link Material}. <p>
+     * 这相当于下面的代码:
+     * <code>incrementStatistic(Statistic, Material, 1)</code>
+     * 原文:Increments the given statistic for this player for the given material.
+     * <p>
+     * This is equivalent to the following code:
+     * <code>incrementStatistic(Statistic, Material, 1)</code>
+     * 译注:比如,要想给玩家的"已破坏过的方块数量"统计里增加一个石头,就用incrementStatistic(统计, Material.STONE)
+     *
+     * @param statistic 要操纵的统计
+     * @param material 要给statistic增加的Material
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果material为null
+     * @throws IllegalArgumentException 如果这个成就项使用的不是Material
+     */
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull Material material) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中跟方块/物品有关的统计项减少一个{@link Material}. <p>
+     * 原文:Decrements the given statistic for this player for the given material.
+     * <p>
+     * This is equivalent to the following code:
+     * <code>decrementStatistic(Statistic, Material, 1)</code>
+     * 译注:比如,要想给玩家的"已破坏过的方块数量"统计里减少一个石头,就用decrementStatistic(统计, Material.STONE);
+     *
+     * @param statistic 要操纵的统计
+     * @param material 要给statistic减少的Material
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果material为null
+     * @throws IllegalArgumentException 如果这个成就项使用的不是Material
+     */
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull Material material) throws IllegalArgumentException;
+
+    /**
+     * 获取该玩家的统计信息中跟方块/物品有关的统计项的某{@link Material}有多少. <p>
+     * 原文:Gets the value of the given statistic for this player. <p>
+     * 译注:译注:比如,要想获得玩家的"已破坏过的方块数量"统计里有多少石头,就用getStatistic(统计,Material.STONE);
+     *
+     * @param statistic 要获取的统计项
+     * @param material statistic中,要获取值的Material
+     * @return statistic中,material的数量
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果material为null
+     * @throws IllegalArgumentException 如果这个成就项使用的不是Material
+     */
+    public int getStatistic(@NotNull Statistic statistic, @NotNull Material material) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中跟方块/物品有关的统计项中的某{@link Material}加上指定的值. <p>
+     * 原文:Increments the given statistic for this player for the given material. <p>
+     * 译注:比如,要想给玩家的"已破坏过的方块数量"统计里增加指定数量的石头,就用incrementStatistic(统计, Material.STONE, 数量);
+     *
+     * @param statistic 要操作的统计项
+     * @param material statistic里要操作的某个Material
+     * @param amount 要把statistic中的material增加多少
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果material为null
+     * @throws IllegalArgumentException 如果amount无效
+     * @throws IllegalArgumentException 如果statistic跟方块/物品无关
+     */
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull Material material, int amount) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中跟方块/物品有关的统计项中的某{@link Material}减少指定的值. <p>
+     * 原文:Decrements the given statistic for this player for the given material. <p>
+     * 译注:该方法与{@link #incrementStatistic(org.bukkit.Statistic, org.bukkit.Material, int) }相反.
+     *
+     * @param statistic 要减少的统计项
+     * @param material statistic中要操作的某个Material
+     * @param amount 要把statistic中的material减少多少
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果material为null
+     * @throws IllegalArgumentException 如果amount无效
+     * @throws IllegalArgumentException 如果这个statistic的值不是Material
+     */
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull Material material, int amount) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中的某个跟方块/物品有关的统计项中的某{@link Material}的数量设定为某值. <p>
+     * 原文:Sets the given statistic for this player for the given material. <p>
+     * 译注:比如,要想给玩家的"已破坏过的方块数量"统计里的石头破坏数设定为指定数量,就用setStatistic(统计, Material.STONE, 数量);
+     *
+     * @param statistic 要设置的统计项
+     * @param material statistic中的某个Material
+     * @param newValue 要把statistic中的material设置的值
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果material为null
+     * @throws IllegalArgumentException 如果newVaule无效
+     * @throws IllegalArgumentException 如果statistic跟方块/物品无关
+     */
+    public void setStatistic(@NotNull Statistic statistic, @NotNull Material material, int newValue) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中跟实体有关的统计项中的某种实体({@link EntityType})的数量+1. <p>
+     * 这相当于下面的代码: <p>
+     * <code>incrementStatistic(Statistic, EntityType, 1)</code> <p>
+     * 原文:Increments the given statistic for this player for the given entity.
+     * <p>
+     * This is equivalent to the following code:
+     * <code>incrementStatistic(Statistic, EntityType, 1)</code> <p>
+     * 译注:比如,要项给玩家的"已杀过的生物数量"统计里的僵尸数量加上1,就用incrementStatistic(Statistic,EntityType.Zombie);
+     *
+     * @param statistic 要更改的统计项
+     * @param entityType statistic中的某种实体
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果entityType为null
+     * @throws IllegalArgumentException 如果statistic与实体无关
+     */
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType) throws IllegalArgumentException;
+
+    /**
+     * 把该玩家的统计信息中跟实体有关的统计项中的某种实体({@link EntityType})的数量-1. <p>
+     * 这相当于下面的代码: <p>
+     * <code>decrementStatistic(Statistic, EntityType, 1)</code> <p>
+     * 原文:Decrements the given statistic for this player for the given entity.
+     * <p>
+     * This is equivalent to the following code:
+     * <code>decrementStatistic(Statistic, EntityType, 1)</code> <p>
+     * 译注:该方法与{@link #incrementStatistic(org.bukkit.Statistic, org.bukkit.entity.EntityType) }相反,可以参见该方法.
+     *
+     * @param statistic 要更改的统计项
+     * @param entityType statistic中的某种实体
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果entityType为null
+     * @throws IllegalArgumentException 如果statistic与实体无关
+     */
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType) throws IllegalArgumentException;
+
+    /**
+     * 获得该玩家的统计信息中跟实体有关的统计项中的某实体({@link EntityType})数量. <p>
+     * 原文:Gets the value of the given statistic for this player. <p>
+     * 译注:比如,要获得玩家杀过多少僵尸,就用getStatistic(记录玩家杀实体的统计项,EntityType.Zombie);
+     *
+     * @param statistic 要获得某实体数的统计项
+     * @param entityType 要获取数量的statistic的某实体
+     * @return statistic中entitytype中的值
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果entitytype为null
+     * @throws IllegalArgumentException 如果statistic与实体无关
+     */
+    public int getStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType) throws IllegalArgumentException;
+
+    /**
+     * 将该玩家的统计信息中的某个跟实体有关的统计项的某实体类型({@link EntityType})加上指定的数值. <p>
+     * 原文:Increments the given statistic for this player for the given entity. <p>
+     * 译注:跟{@link #incrementStatistic(org.bukkit.Statistic, org.bukkit.entity.EntityType) }类似.只不过这个方法可以指定每次加多少.
+     *
+     * @param statistic 要操作的统计项
+     * @param entityType 要增加的statistic中的某实体
+     * @param amount 要增加的数量
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果entitytype为null
+     * @throws IllegalArgumentException 如果amount无效
+     * @throws IllegalArgumentException 如果statistic与实体无关
+     */
+    public void incrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int amount) throws IllegalArgumentException;
+
+    /**
+     * 将该玩家的统计信息中某个跟实体有关的统计项中的某实体类型({@link EntityType})减少指定的值. <p>
+     * 原文:Decrements the given statistic for this player for the given entity. <p>
+     * 译注:与{@link #incrementStatistic(org.bukkit.Statistic, org.bukkit.entity.EntityType, int) }相反.
+     *
+     * @param statistic 要操作的统计项
+     * @param entityType 要减少的statistic中的某实体
+     * @param amount 要减少的数量
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果entitytype为null
+     * @throws IllegalArgumentException 如果amount无效
+     * @throws IllegalArgumentException 如果statistic与实体无关
+     */
+    public void decrementStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int amount);
+
+    /**
+     * 设置该玩家的统计信息中某个跟实体有关的统计项的某实体类型({@link EntityType})为某个数值. <p>
+     * 原文:Sets the given statistic for this player for the given entity. <p>
+     *
+     * @param statistic 要设置的统计项
+     * @param entityType 要设置的statistic中的某实体类型
+     * @param newValue 要把statistic中entitytype的数量设置成的值
+     * @throws IllegalArgumentException 如果statistic为null
+     * @throws IllegalArgumentException 如果entitytype为null
+     * @throws IllegalArgumentException 如果newValue无效
+     * @throws IllegalArgumentException 如果statistic与实体无关
+     */
+    public void setStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int newValue);
 }

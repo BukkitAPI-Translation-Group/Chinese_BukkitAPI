@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import java.util.Collection;
+import java.util.Set;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -275,31 +276,6 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
     public int getSleepTicks();
 
     /**
-     * Gets the Location where the player will spawn at their bed, null if
-     * they have not slept in one or their current bed spawn is invalid.
-     *
-     * @return Bed Spawn Location if bed exists, otherwise null.
-     */
-    @Nullable
-    public Location getBedSpawnLocation();
-
-    /**
-     * Sets the Location where the player will spawn at their bed.
-     *
-     * @param location where to set the respawn location
-     */
-    public void setBedSpawnLocation(@Nullable Location location);
-
-    /**
-     * Sets the Location where the player will spawn at their bed.
-     *
-     * @param location where to set the respawn location
-     * @param force whether to forcefully set the respawn location even if a
-     *     valid bed is not present
-     */
-    public void setBedSpawnLocation(@Nullable Location location, boolean force);
-
-    /**
      * Attempts to make the entity sleep at the given location.
      * <br>
      * The location must be in the current world and have a bed placed at the
@@ -380,6 +356,16 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
     public int getExpToLevel();
 
     /**
+     * Gets the current cooldown for a player's attack.
+     *
+     * This is used to calculate damage, with 1.0 representing a fully charged
+     * attack and 0.0 representing a non-charged attack
+     *
+     * @return A float between 0.0-1.0 representing the progress of the charge
+     */
+    public float getAttackCooldown();
+
+    /**
      * Discover a recipe for this player such that it has not already been
      * discovered. This method will add the key's associated recipe to the
      * player's recipe book.
@@ -429,6 +415,23 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * that all were undiscovered
      */
     public int undiscoverRecipes(@NotNull Collection<NamespacedKey> recipes);
+
+    /**
+     * Check whether or not this entity has discovered the specified recipe.
+     *
+     * @param recipe the key of the recipe to check
+     *
+     * @return true if discovered, false otherwise
+     */
+    public boolean hasDiscoveredRecipe(@NotNull NamespacedKey recipe);
+
+    /**
+     * Get an immutable set of recipes this entity has discovered.
+     *
+     * @return all discovered recipes
+     */
+    @NotNull
+    public Set<NamespacedKey> getDiscoveredRecipes();
 
     /**
      * 获取栖息在玩家左肩上的实体 (通常情况下这是鹦鹉的行为, 目前客户端没有为其他实体定义这一行为), 若没有则返回null.

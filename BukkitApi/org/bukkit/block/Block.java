@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.Entity;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.util.BoundingBox;
@@ -479,7 +480,8 @@ public interface Block extends Metadatable {
     PistonMoveReaction getPistonMoveReaction();
 
     /**
-     * Breaks the block and spawns items as if a player had digged it
+     * Breaks the block and spawns items as if a player had digged it regardless
+     * of the tool.
      *
      * @return true if the block was destroyed
      */
@@ -492,7 +494,7 @@ public interface Block extends Metadatable {
      * @param tool The tool or item in hand used for digging
      * @return true if the block was destroyed
      */
-    boolean breakNaturally(@NotNull ItemStack tool);
+    boolean breakNaturally(@Nullable ItemStack tool);
 
     /**
      * Returns a list of items which would drop by destroying this block
@@ -510,7 +512,18 @@ public interface Block extends Metadatable {
      * @return a list of dropped items for this type of block
      */
     @NotNull
-    Collection<ItemStack> getDrops(@NotNull ItemStack tool);
+    Collection<ItemStack> getDrops(@Nullable ItemStack tool);
+
+    /**
+     * Returns a list of items which would drop by the entity destroying this
+     * block with a specific tool
+     *
+     * @param tool The tool or item in hand used for digging
+     * @param entity the entity destroying the block
+     * @return a list of dropped items for this type of block
+     */
+    @NotNull
+    Collection<ItemStack> getDrops(@NotNull ItemStack tool, @Nullable Entity entity);
 
     /**
      * Checks if this block is passable.
