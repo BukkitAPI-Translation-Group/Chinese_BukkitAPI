@@ -562,20 +562,24 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public boolean isRiptiding();
 
     /**
-     * 设置实体是否具有AI.
+     * 设置实体是否具有AI. 实体若无AI将完全无法自主移动.
      * <p>
      * 原文：
      * Sets whether an entity will have AI.
+     *
+     * The entity will be completely unable to move if it has no AI.
      *
      * @param ai 怪物是否具有AI
      */
     void setAI(boolean ai);
 
     /**
-     * 检查实体是否具有AI.
+     * 检查实体是否具有AI. 实体若无AI将完全无法自主移动.
      * <p>
      * 原文：
      * Checks whether an entity has AI.
+     *
+     * The entity will be completely unable to move if it has no AI.
      *
      * @return 如果实体具有AI则返回true
      */
