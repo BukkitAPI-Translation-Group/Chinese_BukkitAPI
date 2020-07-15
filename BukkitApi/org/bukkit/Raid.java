@@ -21,7 +21,7 @@ public interface Raid {
     boolean isStarted();
 
     /**
-     * 获取袭击持续了多久.
+     * 获取袭击的已持续时长.
      * <p>
      * 原文:Gets the amount of ticks this raid has existed.
      *

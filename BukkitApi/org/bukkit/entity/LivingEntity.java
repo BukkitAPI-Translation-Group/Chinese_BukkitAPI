@@ -389,6 +389,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     /**
      * 返回当前作用于生物实体的所有{@link PotionEffect}.
      * <p>
+     * 译注:不要向获得的列表中添加条目, 没有任何效果.
+     * <p>
      * 原文：
      * Returns all currently active {@link PotionEffect}s on the living
      * entity.

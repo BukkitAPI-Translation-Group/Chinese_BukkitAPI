@@ -82,8 +82,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * If the value is null, the name will be identical to {@link #getName()}.
      *
      * @param name 新的显示在玩家列表中的名字
-     * @throws IllegalArgumentException 当有名称相同时抛出
-     * @throws IllegalArgumentException 当名称超过16个字符时抛出
      */
     public void setPlayerListName(@Nullable String name);
 

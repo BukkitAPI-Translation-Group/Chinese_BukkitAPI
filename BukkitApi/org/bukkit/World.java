@@ -1587,7 +1587,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @return 所查方块的生物群系
-     * @deprecated biomes are now 3-dimensional
+     * @deprecated 1.15更新后生物群系已三维化
      */
     @NotNull
     @Deprecated
@@ -1613,7 +1613,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @param bio 这个方块的新生物群系类型
-     * @deprecated biomes are now 3-dimensional
+     * @deprecated 1.15更新后生物群系已三维化
      */
     @Deprecated
     void setBiome(int x, int z, @NotNull Biome bio);
@@ -1647,7 +1647,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @return 查询方块的温度
-     * @deprecated biomes are now 3-dimensional
+     * @deprecated 1.15更新后生物群系已三维化
      */
     @Deprecated
     public double getTemperature(int x, int z);
@@ -1682,7 +1682,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param x 方块的x坐标
      * @param z 方块的z坐标
      * @return 查询方块的湿度
-     * @deprecated biomes are now 3-dimensional
+     * @deprecated 1.15更新后生物群系已三维化
      */
     @Deprecated
     public double getHumidity(int x, int z);
