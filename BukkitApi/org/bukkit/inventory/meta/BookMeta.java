@@ -230,10 +230,12 @@ public interface BookMeta extends ItemMeta {
     public class Spigot {
 
         /**
-         * Gets the specified page in the book. The given page must exist.
+         * 获取书本指定书页的内容. 指定页码必须存在.
+         * <p>
+         * 原文:Gets the specified page in the book. The given page must exist.
          *
-         * @param page the page number to get
-         * @return the page from the book
+         * @param page 页码
+         * @return 指定书页的内容
          */
         @NotNull
         public BaseComponent[] getPage(int page) {
@@ -241,23 +243,29 @@ public interface BookMeta extends ItemMeta {
         }
 
         /**
-         * Sets the specified page in the book. Pages of the book must be
+         * 设置书本指定书页的内容. 页码必须是相邻的.
+         * <p>
+         * 数据最长可达256个字符, 修饰性的字符不会被统计在内.
+         * <p>
+         * 原文:Sets the specified page in the book. Pages of the book must be
          * contiguous.
          * <p>
          * The data can be up to 256 characters in length, additional characters
          * are truncated.
          *
-         * @param page the page number to set
-         * @param data the data to set for that page
+         * @param page 页码
+         * @param data 为此页码设置的内容数据
          */
         public void setPage(int page, @Nullable BaseComponent... data) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Gets all the pages in the book.
+         * 获取书本全部书页的内容.
+         * <p>
+         * 原文:Gets all the pages in the book.
          *
-         * @return list of all the pages in the book
+         * @return 书本全部书页的内容
          */
         @NotNull
         public List<BaseComponent[]> getPages() {
@@ -265,30 +273,39 @@ public interface BookMeta extends ItemMeta {
         }
 
         /**
-         * Clears the existing book pages, and sets the book to use the provided
+         * 清除书本所有书页, 并设置书本使用提供的书页内容.
+         * 最多50页, 每页最长256个字符.
+         * <p>
+         * 原文:Clears the existing book pages, and sets the book to use the provided
          * pages. Maximum 50 pages with 256 characters per page.
          *
-         * @param pages A list of pages to set the book to use
+         * @param pages 书页列表
          */
         public void setPages(@NotNull List<BaseComponent[]> pages) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Clears the existing book pages, and sets the book to use the provided
+         * 清除书本所有书页, 并设置书本使用提供的书页内容.
+         * 最多50页, 每页最长256个字符.
+         * <p>
+         * 原文:Clears the existing book pages, and sets the book to use the provided
          * pages. Maximum 50 pages with 256 characters per page.
          *
-         * @param pages A list of component arrays, each being a page
+         * @param pages 聊天消息组件数组, 数组中的每一个元素将作为单独的书页
          */
         public void setPages(@NotNull BaseComponent[]... pages) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Adds new pages to the end of the book. Up to a maximum of 50 pages
+         * 在书本末尾追加新的书页.
+         * 书本最多容纳50页, 每页最长256个字符.
+         * <p>
+         * 原文:Adds new pages to the end of the book. Up to a maximum of 50 pages
          * with 256 characters per page.
          *
-         * @param pages A list of component arrays, each being a page
+         * @param pages 聊天消息组件数组, 数组中的每一个元素将作为单独的书页
          */
         public void addPage(@NotNull BaseComponent[]... pages) {
             throw new UnsupportedOperationException("Not supported yet.");

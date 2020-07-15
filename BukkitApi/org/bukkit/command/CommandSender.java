@@ -52,18 +52,22 @@ public interface CommandSender extends Permissible {
     public class Spigot {
 
         /**
-         * Sends this sender a chat component.
+         * 向命令发送者发送一个聊天消息组件.
+         * <p>
+         * 原文:Sends this sender a chat component.
          *
-         * @param component the components to send
+         * @param component 要发送的聊天消息组件
          */
         public void sendMessage(@NotNull net.md_5.bungee.api.chat.BaseComponent component) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Sends an array of components as a single message to the sender.
+         * 将多个聊天消息组件作为单条消息发送给命令发送者.
+         * <p>
+         * 原文:Sends an array of components as a single message to the sender.
          *
-         * @param components the components to send
+         * @param components 要发送的聊天消息组件
          */
         public void sendMessage(@NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
             throw new UnsupportedOperationException("Not supported yet.");

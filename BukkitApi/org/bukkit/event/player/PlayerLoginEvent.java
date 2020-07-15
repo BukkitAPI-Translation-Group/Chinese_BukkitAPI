@@ -8,9 +8,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 玩家尝试登录的事件.
  * <br>
- * Note that this event is called <i>early</i> in the player initialization
- * process. It is recommended that most options involving the Player
- * <i>entity</i> be postponed to the {@link PlayerJoinEvent} instead.
+ * 请注意本事件在玩家初始化的早期阶段被触发. 建议与玩家实体有关的大部分选项在{@link PlayerJoinEvent}后应用.
  */
 public class PlayerLoginEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -65,9 +63,11 @@ public class PlayerLoginEvent extends PlayerEvent {
 
     // Spigot start
     /**
-     * Gets the connection address of this player, regardless of whether it has been spoofed or not.
+     * 获取玩家的连接地址, 无论地址的真实与否.
+     * <p>
+     * 原文:Gets the connection address of this player, regardless of whether it has been spoofed or not.
      *
-     * @return the player's connection address
+     * @return 玩家的连接地址
      */
     @NotNull
     public InetAddress getRealAddress() {

@@ -7,7 +7,7 @@ import org.bukkit.event.entity.EntityEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity attempts to ride another entity.
+ * 当一个实体尝试骑乘另一个实体时触发本事件.
  */
 public class EntityMountEvent extends EntityEvent implements Cancellable {
 

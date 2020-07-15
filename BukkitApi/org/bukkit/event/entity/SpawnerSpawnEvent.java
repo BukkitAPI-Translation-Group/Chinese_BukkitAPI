@@ -5,9 +5,9 @@ import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity is spawned into a world by a spawner.
+ * 当刷怪笼刷出实体时触发本事件.
  * <p>
- * If a Spawner Spawn event is cancelled, the entity will not spawn.
+ * 如果本事件被取消, 那么实体将不会被刷出.
  */
 public class SpawnerSpawnEvent extends EntitySpawnEvent {
     private final CreatureSpawner spawner;

@@ -20,9 +20,11 @@ public interface LightningStrike extends Entity {
     public class Spigot extends Entity.Spigot {
 
         /*
-         * Returns whether the strike is silent.
+         * 返回此雷击是否为静默的(是否发声).
+         * <p>
+         * 原文:Returns whether the strike is silent.
          *
-         * @return whether the strike is silent.
+         * @return 此雷击是否为静默的(true代表静默, 不会发声, false代表会产生雷响).
          */
         public boolean isSilent() {
             throw new UnsupportedOperationException("Not supported yet.");

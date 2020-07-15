@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Provides custom timing sections for /timings merged.
+ * 为命令"/timings merged"提供自定义的计时项目.
+ * <p>原文:Provides custom timing sections for /timings merged.
  */
 public class CustomTimingsHandler {
 
@@ -36,9 +37,11 @@ public class CustomTimingsHandler {
     }
 
     /**
-     * Prints the timings and extra data to the given stream.
+     * 打印timings计时项目名及其附加数据至指定的输出流.
+     * <p>
+     * 原文:Prints the timings and extra data to the given stream.
      *
-     * @param printStream output stream
+     * @param printStream 输出流
      */
     public static void printTimings(@NotNull PrintStream printStream) {
         printStream.println("Minecraft");
@@ -64,7 +67,9 @@ public class CustomTimingsHandler {
     }
 
     /**
-     * Resets all timings.
+     * 重置所有的timings计时项目.
+     * <p>
+     * 原文:Resets all timings.
      */
     public static void reload() {
         if (Bukkit.getPluginManager().useTimings()) {
@@ -76,7 +81,9 @@ public class CustomTimingsHandler {
     }
 
     /**
-     * Ticked every tick by CraftBukkit to count the number of times a timer
+     * CraftBukkit将在服务器的每一个tick调用此方法, 以统计定时器(timer)导致的TPS丢失的次数.
+     * <p>
+     * 原文:Ticked every tick by CraftBukkit to count the number of times a timer
      * caused TPS loss.
      */
     public static void tick() {
@@ -92,7 +99,9 @@ public class CustomTimingsHandler {
     }
 
     /**
-     * Starts timing to track a section of code.
+     * 开始对某段代码的计时并持续跟踪.
+     * <p>
+     * 原文:Starts timing to track a section of code.
      */
     public void startTiming() {
         // If second condtion fails we are already timing
@@ -105,7 +114,9 @@ public class CustomTimingsHandler {
     }
 
     /**
-     * Stops timing a section of code.
+     * 停止对某段代码的计时.
+     * <p>
+     * 原文:Stops timing a section of code.
      */
     public void stopTiming() {
         if (Bukkit.getPluginManager().useTimings()) {
@@ -124,7 +135,9 @@ public class CustomTimingsHandler {
     }
 
     /**
-     * Reset this timer, setting all values to zero.
+     * 重置计时器, 设置所有的值为0.
+     * <p>
+     * 原文:Reset this timer, setting all values to zero.
      */
     public void reset() {
         count = 0;

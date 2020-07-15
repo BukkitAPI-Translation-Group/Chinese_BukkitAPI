@@ -1523,10 +1523,12 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public class Spigot extends Entity.Spigot {
 
         /**
-         * Gets the connection address of this player, regardless of whether it
+         * 返回该玩家的连接地址, 无论地址的真实与否.
+         * <p>
+         * 原文:Gets the connection address of this player, regardless of whether it
          * has been spoofed or not.
          *
-         * @return the player's connection address
+         * @return 该玩家的连接地址
          */
         @NotNull
         public InetSocketAddress getRawAddress() {
@@ -1534,10 +1536,12 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
         }
 
         /**
-         * Gets whether the player collides with entities
+         * 获取玩家是否与其它实体产生碰撞.
+         * <p>
+         * 原文:Gets whether the player collides with entities
          *
-         * @return the player's collision toggle state
-         * @deprecated see {@link LivingEntity#isCollidable()}
+         * @return 玩家的碰撞状态
+         * @deprecated 另请参见 {@link LivingEntity#isCollidable()}
          */
         @Deprecated
         public boolean getCollidesWithEntities() {
@@ -1545,10 +1549,11 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
         }
 
         /**
-         * Sets whether the player collides with entities
+         * 设置玩家是否与其它实体产生碰撞.
+         * <p>
+         * 原文:Sets whether the player collides with entities
          *
-         * @param collides whether the player should collide with entities or
-         * not.
+         * @param collides 玩家是否与其它实体产生碰撞
          * @deprecated {@link LivingEntity#setCollidable(boolean)}
          */
         @Deprecated
@@ -1557,16 +1562,20 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
         }
 
         /**
-         * Respawns the player if dead.
+         * 若玩家死亡, 令其重生.
+         * <p>
+         * 原文:Respawns the player if dead.
          */
         public void respawn() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Gets all players hidden with {@link #hidePlayer(org.bukkit.entity.Player)}.
+         * 获取所有用 {@link #hidePlayer(org.bukkit.entity.Player)} 隐藏的玩家.
+         * <p>
+         * 原文:Gets all players hidden with {@link #hidePlayer(org.bukkit.entity.Player)}.
          *
-         * @return a Set with all hidden players
+         * @return 所有隐藏玩家的集合
          */
         @NotNull
         public java.util.Set<Player> getHiddenPlayers() {
@@ -1584,20 +1593,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
         }
 
         /**
-         * Sends the component to the specified screen position of this player
+         * 向玩家发送在指定位置展示的聊天消息组件.
+         * <p>
+         * 原文:Sends the component to the specified screen position of this player
          *
-         * @param position the screen position
-         * @param component the components to send
+         * @param position 在屏幕上的位置
+         * @param component 要发送的聊天消息组件
          */
         public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @NotNull net.md_5.bungee.api.chat.BaseComponent component) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Sends an array of components as a single message to the specified screen position of this player
+         * 将多个聊天消息组件作为单条消息发送给玩家, 并指定消息的展示位置.
+         * <p>
+         * 原文:Sends an array of components as a single message to the specified screen position of this player
          *
-         * @param position the screen position
-         * @param components the components to send
+         * @param position 在屏幕上的位置
+         * @param components 要发送的聊天消息组件
          */
         public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
             throw new UnsupportedOperationException("Not supported yet.");

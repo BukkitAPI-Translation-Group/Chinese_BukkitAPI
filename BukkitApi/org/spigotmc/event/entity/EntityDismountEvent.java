@@ -7,7 +7,7 @@ import org.bukkit.event.entity.EntityEvent;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity stops riding another entity.
+ * 当一个实体停止骑乘另一个实体时触发本事件.
  */
 public class EntityDismountEvent extends EntityEvent implements Cancellable {
 

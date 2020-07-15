@@ -1521,25 +1521,31 @@ public interface Server extends PluginMessageRecipient {
         }
 
         /**
-         * Sends the component to the player
+         * 向全体玩家广播一条消息.
+         * <p>
+         * 原文:Sends the component to the player
          *
-         * @param component the components to send
+         * @param component 要发送的聊天消息组件
          */
         public void broadcast(@NotNull net.md_5.bungee.api.chat.BaseComponent component) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Sends an array of components as a single message to the player
+         * 将多个聊天消息组件作为单条消息广播给所有在线玩家.
+         * <p>
+         * 原文:Sends an array of components as a single message to the player
          *
-         * @param components the components to send
+         * @param components 要发送的聊天消息组件
          */
         public void broadcast(@NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
         /**
-         * Restart the server. If the server administrator has not configured restarting, the server will stop.
+         * 重启服务器. 如果服务器管理员没有配置/未正确配置"spigot.yml"中的重启配置, 服务器将停止运行.
+         * <p>
+         * 原文:Restart the server. If the server administrator has not configured restarting, the server will stop.
          */
         public void restart() {
             throw new UnsupportedOperationException("Not supported yet.");
