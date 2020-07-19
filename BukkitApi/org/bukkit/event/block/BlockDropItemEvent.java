@@ -10,19 +10,16 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called if a block broken by a player drops an item.
+ * 当一个方块被玩家破坏且掉落物品时触发本事件.
  *
- * If the block break is cancelled, this event won't be called.
+ * 如果方块破坏事件(BlockBreakEvent)被取消, 那么将不会触发本事件.
  *
- * If isDropItems in BlockBreakEvent is set to false, this event won't be
- * called.
+ * 如果将 BlockBreakEvent 中的 isDropItems 设置为 false (通过 BlockBreakEvent 中的 setDropItems 方法设置), 也不会触发本事件.
  *
- * This event will also be called if the player breaks a multi block structure,
- * for example a torch on top of a stone. Both items will have an event call.
+ * 如果玩家破坏了一个多方块结构, 例如在石头顶部的火把, 本事件也会被调用. 所有结构的掉落物计入同一个事件内.
  *
- * The Block is already broken as this event is called, so #getBlock() will be
- * AIR in most cases. Use #getBlockState() for more Information about the broken
- * block.
+ * 当调用本事件时, 意味着此方块已经被破坏, 因此 #getBlock() 大部分情况是 AIR.
+ * 请使用 #getBlockState() 获取有关此被破坏的方块的更多信息.
  */
 public class BlockDropItemEvent extends BlockEvent implements Cancellable {
 
@@ -40,9 +37,11 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the Player that is breaking the block involved in this event.
+     * 获取破坏这个方块的玩家.
+     * <p>
+     * 原文:Gets the Player that is breaking the block involved in this event.
      *
-     * @return The Player that is breaking the block involved in this event
+     * @return 破坏这个方块的玩家
      */
     @NotNull
     public Player getPlayer() {
@@ -50,10 +49,12 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the BlockState of the block involved in this event before it was
+     * 获取被破坏的方块的BlockState.
+     * <p>
+     * 原文:Gets the BlockState of the block involved in this event before it was
      * broken.
      *
-     * @return The BlockState of the block involved in this event
+     * @return 被破坏的方块的BlockState
      */
     @NotNull
     public BlockState getBlockState() {
@@ -61,12 +62,17 @@ public class BlockDropItemEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets list of the Item drops caused by the block break.
+     * 获取由于破坏方块而产生的掉落物实体的列表.
+     *
+     * 这个列表是可变的 - 移除在列表中的物品将导致其不会掉落.
+     * 然而向这个列表添加新的物品是不合法的.
+     * <p>
+     * 原文:Gets list of the Item drops caused by the block break.
      *
      * This list is mutable - removing an item from it will cause it to not
      * drop. It is not legal however to add new items to the list.
      *
-     * @return The Item the block caused to drop
+     * @return 方块被破坏后产生的掉落物的列表
      */
     @NotNull
     public List<Item> getItems() {

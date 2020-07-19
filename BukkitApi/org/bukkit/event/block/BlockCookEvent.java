@@ -7,7 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an ItemStack is successfully cooked in a block.
+ * 当物品堆在方块内成功烹饪时触发本事件 (原版中这个方块一般是营火).
+ * <p>
+ * 译注:在熔炉内的烧炼不属于烹饪范畴, 因此不会触发本事件. 如果您想监听熔炉相关事件, 可以参考 inventory 事件包中的相关事件.
  */
 public class BlockCookEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -23,9 +25,11 @@ public class BlockCookEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the smelted ItemStack for this event
+     * 获取被烹饪的物品堆 (比如生的食物).
+     * <p>
+     * 原文:Gets the smelted ItemStack for this event
      *
-     * @return smelting source ItemStack
+     * @return 被烹饪的原物品堆
      */
     @NotNull
     public ItemStack getSource() {
@@ -33,9 +37,11 @@ public class BlockCookEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the resultant ItemStack for this event
+     * 获取烹饪后得到的物品堆 (比如熟食).
+     * <p>
+     * 原文:Gets the resultant ItemStack for this event
      *
-     * @return smelting result ItemStack
+     * @return 烹饪后得到的物品堆
      */
     @NotNull
     public ItemStack getResult() {
@@ -43,9 +49,11 @@ public class BlockCookEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Sets the resultant ItemStack for this event
+     * 设置烹饪后得到的物品堆.
+     * <p>
+     * 原文:Sets the resultant ItemStack for this event
      *
-     * @param result new result ItemStack
+     * @param result 烹饪后得到的物品堆
      */
     public void setResult(@NotNull ItemStack result) {
         this.result = result;

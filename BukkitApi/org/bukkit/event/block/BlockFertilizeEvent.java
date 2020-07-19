@@ -11,9 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called with the block changes resulting from a player fertilizing a given
- * block with bonemeal. Will be called after the applicable
- * {@link StructureGrowEvent}.
+ * 当玩家使用骨粉向某方块施肥后导致方块发生变化时触发本事件.
+ * 将在合适之时调用 {@link StructureGrowEvent}.
  */
 public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
 
@@ -30,9 +29,11 @@ public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the player that triggered the fertilization.
+     * 获取进行施肥的玩家.
+     * <p>
+     * 原文:Gets the player that triggered the fertilization.
      *
-     * @return triggering player, or null if not applicable
+     * @return 进行施肥的玩家, 若不适用则为null
      */
     @Nullable
     public Player getPlayer() {
@@ -40,9 +41,11 @@ public class BlockFertilizeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets a list of all blocks changed by the fertilization.
+     * 返回由于施肥而产生变化的所有方块的列表.
+     * <p>
+     * 原文:Gets a list of all blocks changed by the fertilization.
      *
-     * @return list of all changed blocks
+     * @return 产生变化的方块的列表
      */
     @NotNull
     public List<BlockState> getBlocks() {

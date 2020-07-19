@@ -9,11 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 当我们尝试建造一个方块的时候，可以看到我们是否可以在此建造它。
+ * 当我们尝试建造一个方块的时候，可以检测我们是否可以在此建造它。
  * <p>
  * 注意:
  * <ul>
- * <li>方法 getBlock() 返回的是我们正试图放置在其上面的方块,不是我们试图放置的方块。
+ * <li>getBlock()返回的方块是我们正试图放置在其上面的方块,不是我们试图放置的方块。
  * <li>如果你想知道玩家放置的是什么方块, 用 {@link #getMaterial()}  来代替.
  * </ul>
  */
@@ -32,7 +32,7 @@ public class BlockCanBuildEvent extends BlockEvent {
     /**
      * @param block 这个事件涉及的方块
      * @param player 正放置此方块的玩家
-     * @param type 这个要放置的方块的类型
+     * @param type 要放置的方块的类型
      * @param canBuild 是否可以建造
      */
     public BlockCanBuildEvent(@NotNull final Block block, @Nullable final Player player, @NotNull final BlockData type, final boolean canBuild) {
@@ -45,7 +45,7 @@ public class BlockCanBuildEvent extends BlockEvent {
     /**
      * 获取是否可以在此建造此方块.
      * <p>
-     * 默认情况下, 是否可以在此建造返回的是 Minecraft的值.
+     * 默认情况下, 是否可以在此建造返回的是 Minecraft 的值.
      * <p>
      * 原文：Gets whether or not the block can be built here.
      * <p>
@@ -59,21 +59,22 @@ public class BlockCanBuildEvent extends BlockEvent {
     }
 
     /**
-     * 设置此方块是否可以在此建造。
+     * 设置此方块是否可以在此建造.
      * <p>
-     * 原文：Sets whether the block can be built here or not.
+     * 原文:Sets whether the block can be built here or not.
      *
-     * @param cancel 允许建造请输入true,反之为false。
+     * @param cancel 允许建造则为true, 无论 Minecraft 的默认行为是什么
      */
     public void setBuildable(boolean cancel) {
         this.buildable = cancel;
     }
 
     /**
-     * 获取我们试图放置的方块的 Material.
-     * 原文：Gets the Material that we are trying to place.
+     * 获取我们试图放置的方块的种类.
+     * <p>
+     * 原文:Gets the Material that we are trying to place.
      *
-     * @return 我们试图放置的方块的 Material
+     * @return 我们试图放置的方块的种类
      */
     @NotNull
     public Material getMaterial() {
@@ -93,11 +94,15 @@ public class BlockCanBuildEvent extends BlockEvent {
     }
 
     /**
-     * Gets the player who placed the block involved in this event.
+     * 获得放置这个方块的玩家.
+     * <br>
+     * 旧版本中这可能为null.
+     * <p>
+     * 原文:Gets the player who placed the block involved in this event.
      * <br>
      * May be null for legacy calls of the event.
      *
-     * @return The Player who placed the block involved in this event
+     * @return 放置这个方块的玩家
      */
     @Nullable
     public Player getPlayer() {

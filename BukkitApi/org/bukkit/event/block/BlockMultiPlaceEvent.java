@@ -9,10 +9,10 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 当玩家放一个方块，而连锁放置了第二个方块时(例如玩家放置一个床)触发本事件.
+ * 当玩家放一个方块, 而连锁放置了第二个方块时(例如玩家放置一个床)触发本事件.
  * <p>
- * 通过 {@link #getBlockPlaced()} 和它的相关方法 返回的方块是:若该位置不仅影响一个方块，
- * 其中放置的方块会存在.
+ * 通过 {@link #getBlockPlaced()} 和它的相关方法 返回的方块是:若该位置仅影响一个方块,
+ * 则放置的方块将存在的方块.
  */
 public class BlockMultiPlaceEvent extends BlockPlaceEvent {
     private final List<BlockState> states;
@@ -23,7 +23,7 @@ public class BlockMultiPlaceEvent extends BlockPlaceEvent {
     }
 
     /**
-     * 获取所有新放置的方块的方块状态.
+     * 获取所有被替换的旧方块的方块状态列表.
      * <p>
      * 这些方块中的大多数方块状态都是空气.
      * <p>

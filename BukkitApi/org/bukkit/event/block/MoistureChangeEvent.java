@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when the moisture level of a soil block changes.
+ * 当耕地的湿润等级发生变化时触发本事件.
  */
 public class MoistureChangeEvent extends BlockEvent implements Cancellable {
 
@@ -22,9 +22,11 @@ public class MoistureChangeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the new state of the affected block.
+     * 获取受到影响的方块的新状态.
+     * <p>
+     * 原文:Gets the new state of the affected block.
      *
-     * @return new block state
+     * @return 新方块状态
      */
     @NotNull
     public BlockState getNewState() {

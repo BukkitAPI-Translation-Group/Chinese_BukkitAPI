@@ -9,13 +9,11 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a sponge absorbs water from the world.
+ * 当海绵吸水时触发本事件.
  * <br>
- * The world will be in its previous state, and {@link #getBlocks()} will
- * represent the changes to be made to the world, if the event is not cancelled.
+ * 如果本事件没有被取消, 世界将会处于吸水之前的状态, {@link #getBlocks()} 将代表对世界做出的改变.
  * <br>
- * As this is a physics based event it may be called multiple times for "the
- * same" changes.
+ * 由于这是一个基于物理变化的事件, 它可能因为“相同”的变化而被多次调用.
  */
 public class SpongeAbsorbEvent extends BlockEvent implements Cancellable {
 
@@ -29,12 +27,16 @@ public class SpongeAbsorbEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Get a list of all blocks to be removed by the sponge.
+     * 获取因海绵吸水而被移除的方块的列表.
+     * <br>
+     * 该列表是可变的, 包含处于被移除状态的方块, 即空气({@link Material#AIR})方块.
+     * <p>
+     * 原文:Get a list of all blocks to be removed by the sponge.
      * <br>
      * This list is mutable and contains the blocks in their removed state, i.e.
      * having a type of {@link Material#AIR}.
      *
-     * @return list of the to be removed blocks.
+     * @return 被移除的方块的列表
      */
     @NotNull
     public List<BlockState> getBlocks() {

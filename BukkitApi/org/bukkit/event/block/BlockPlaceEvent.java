@@ -51,11 +51,11 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获得是哪个玩家放置的这个方块.
+     * 获得放置这个方块的玩家.
      * <p>
-     * 原文：Gets the player who placed the block involved in this event.
+     * 原文:Gets the player who placed the block involved in this event.
      *
-     * @return 谁放置的这个方块(Player对象)
+     * @return 放置这个方块的玩家
      */
     @NotNull
     public Player getPlayer() {
@@ -65,7 +65,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     /**
      * 获得被放置的方块(还未真正被放置).
      * <p>
-     * 原文：Clarity method for getting the placed block. Not really needed except
+     * 原文:Clarity method for getting the placed block. Not really needed except
      * for reasons of clarity.
      *
      * @return 被放置后的方块
@@ -76,14 +76,12 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取方块被放置后的方块状态({@link BlockState}). 通常是空气.
+     * 获取被替换的方块的 BlockState. 通常被替换的方块是空气.
      * <p>
-     * 例：牌子拿在手里，放在墙上后，这个牌子的方块状态就是墙上的牌子.
-     * <p>
-     * 原文：Gets the BlockState for the block which was replaced. Material type air
+     * 原文:Gets the BlockState for the block which was replaced. Material type air
      * mostly.
      *
-     * @return 被放置后的方块的方块状态对象
+     * @return 被替换的方块的 BlockState.
      */
     @NotNull
     public BlockState getBlockReplacedState() {
@@ -93,9 +91,9 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     /**
      * 获取这个方块是依附在哪个方块上放置的.
      * <p>
-     * 原文：Gets the block that this block was placed against
+     * 原文:Gets the block that this block was placed against
      * 
-     * @return Block 放置时依附的方块
+     * @return 放置时依附的方块
      */
     @NotNull
     public Block getBlockAgainst() {
@@ -105,7 +103,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     /**
      * 获取玩家放置的方块的物品形式(在玩家手上).
      * <p>
-     * 原文：Gets the item in the player's hand when they placed the block.
+     * 原文:Gets the item in the player's hand when they placed the block.
      * 
      * @return 这个方块的ItemStack对象
      */
@@ -117,7 +115,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     /**
      * 获取放置这个方块的手.
      * <p>
-     * 原文：Gets the hand which placed the block
+     * 原文:Gets the hand which placed the block
      * @return 主手或副手，取决于放置方块所用的手
      */
     @NotNull
@@ -128,7 +126,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     /**
      * 获取这个方块是否可以建造.
      * <p>
-     * 默认情况下，如果玩家还在重生/生成服务器将阻止它们.注意，这跟BLOCK_CANBUILD是完全不同的检测.这是指玩家而不是像仙人掌一样的物理现象.
+     * 默认情况下，如果玩家还在重生/生成时服务器将阻止它们. 注意，这跟BLOCK_CANBUILD是完全不同的检测.这是指玩家而不是像仙人掌一样的物理现象.
      * <p>
      * 原文：Gets the value whether the player would be allowed to build here.
      * Defaults to spawn if the server was going to stop them (such as, the
@@ -145,7 +143,7 @@ public class BlockPlaceEvent extends BlockEvent implements Cancellable {
     /**
      * 设置这个方块是否可以被放置.
      * <p>
-     * 原文：Sets the canBuild state of this event. Set to true if you want the
+     * 原文:Sets the canBuild state of this event. Set to true if you want the
      * player to be able to build
      *
      * @param canBuild 是否允许玩家放置这个方块

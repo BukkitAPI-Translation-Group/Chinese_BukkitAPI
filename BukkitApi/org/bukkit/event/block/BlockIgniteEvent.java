@@ -114,7 +114,7 @@ public class BlockIgniteEvent extends BlockEvent implements Cancellable {
          */
         FLINT_AND_STEEL,
         /**
-         * 方块被蔓延的点燃
+         * 方块由于火的蔓延而被点燃
          */
         SPREAD,
         /**

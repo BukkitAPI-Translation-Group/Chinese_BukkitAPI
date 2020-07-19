@@ -18,9 +18,9 @@ public class BlockExpEvent extends BlockEvent {
     }
 
     /**
-     * 在事件被执行之后获取方块掉落的经验.
+     * 获取方块在事件被执行之后掉落的经验.
      * <p>
-     * 原文：Get the experience dropped by the block after the event has processed
+     * 原文:Get the experience dropped by the block after the event has processed
      *
      * @return 方块掉落的经验
      */
@@ -34,7 +34,7 @@ public class BlockExpEvent extends BlockEvent {
      * 原文：Set the amount of experience dropped by the block after the event has
      * processed
      *
-     * @param exp 应该比1多,否则啥也不会掉落
+     * @param exp 应该大于或等于1,否则啥也不会掉落
      */
     public void setExpToDrop(int exp) {
         this.exp = exp;

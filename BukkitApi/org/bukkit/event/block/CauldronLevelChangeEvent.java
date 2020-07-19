@@ -8,6 +8,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * 炼药锅水位发生变化时触发本事件.
+ */
 public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable {
 
     private static final HandlerList handlers = new HandlerList();
@@ -27,7 +30,7 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
     }
 
     /**
-     * 获取哪个实体触发该事件,值有可能为Null.
+     * 获取触发本事件的实体,值有可能为null.
      * <p>
      * 原文:Get entity which did this. May be null.
      *
@@ -79,35 +82,35 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
 
     public enum ChangeReason {
         /**
-         * 玩家将坩埚内的水装入水桶.
+         * 玩家将炼药锅内的水装入水桶.
          */
         BUCKET_FILL,
         /**
-         * 玩家用水桶装满坩埚.
+         * 玩家用水桶装满炼药锅.
          */
         BUCKET_EMPTY,
         /**
-         * 玩家用水瓶将坩埚内的水用完.
+         * 玩家用水瓶将炼药锅内的水用完.
          */
         BOTTLE_FILL,
         /**
-         * 玩家将瓶子内的水装入坩埚.
+         * 玩家将瓶子内的水装入炼药锅.
          */
         BOTTLE_EMPTY,
         /**
-         * 玩家用坩埚内的水清洗旗帜.
+         * 玩家用炼药锅内的水清洗旗帜.
          */
         BANNER_WASH,
         /**
-         * 玩家用坩埚内的水清洗护甲装备.
+         * 玩家用炼药锅内的水清洗护甲装备.
          */
         ARMOR_WASH,
         /**
-         * 玩家跳进坩埚灭火.
+         * 玩家跳进炼药锅灭火.
          */
         EXTINGUISH,
         /**
-         * 天气过于炎热导致坩埚内的水自然蒸发.
+         * 天气过于炎热导致炼药锅内的水自然蒸发.
          */
         EVAPORATE,
         /**

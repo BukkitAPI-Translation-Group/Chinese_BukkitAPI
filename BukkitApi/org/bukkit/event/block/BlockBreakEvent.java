@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
  * 为0以上。 默认情况下, 如果满足以下条件，经验会被设置：
  * <ol>
  * <li>玩家不能是创造/冒险模式
- * <li>The player can loot the block (ie: does not destroy it completely, by
- *     using the correct tool)
+ * <li>玩家能掠夺这个方块 - 即使用了正确的工具破坏方块, 不是完全破坏它(译注:完全破坏可理解为破坏方块不产生任何掉落物.
+ * 这条情况的常见情景有开采矿石等)
  * <li>玩家没有精准采集
  * <li>方块在原版Minecraft中掉落经验
  * </ol>
@@ -38,7 +38,7 @@ public class BlockBreakEvent extends BlockExpEvent implements Cancellable {
     /**
      * 获取破坏这个方块的玩家.
      * <p>
-     * 原文：Gets the Player that is breaking the block involved in this event.
+     * 原文:Gets the Player that is breaking the block involved in this event.
      *
      * @return 破坏这个方块的玩家
      */
