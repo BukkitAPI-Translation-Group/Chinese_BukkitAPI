@@ -4,7 +4,7 @@ import org.apache.commons.lang.Validate;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A class for the available enchantment offers in the enchantment table.
+ * 本类描述了附魔台中可用的附魔选项.
  */
 public class EnchantmentOffer {
 
@@ -19,9 +19,11 @@ public class EnchantmentOffer {
     }
 
     /**
-     * Get the type of the enchantment.
+     * 获取魔咒/附魔种类.
+     * <p>
+     * 原文:Get the type of the enchantment.
      *
-     * @return type of enchantment
+     * @return 魔咒种类
      */
     @NotNull
     public Enchantment getEnchantment() {
@@ -29,9 +31,11 @@ public class EnchantmentOffer {
     }
 
     /**
-     * Sets the type of the enchantment.
+     * 设置魔咒/附魔种类.
+     * <p>
+     * 设置:Sets the type of the enchantment.
      *
-     * @param enchantment type of the enchantment
+     * @param enchantment 魔咒种类
      */
     public void setEnchantment(@NotNull Enchantment enchantment) {
         Validate.notNull(enchantment, "The enchantment may not be null!");
@@ -40,18 +44,22 @@ public class EnchantmentOffer {
     }
 
     /**
-     * Gets the level of the enchantment.
+     * 获取魔咒/附魔的等级.
+     * <p>
+     * 原文:Gets the level of the enchantment.
      *
-     * @return level of the enchantment
+     * @return 魔咒等级
      */
     public int getEnchantmentLevel() {
         return enchantmentLevel;
     }
 
     /**
-     * Sets the level of the enchantment.
+     * 设置魔咒/附魔的等级.
+     * <p>
+     * 原文:Sets the level of the enchantment.
      *
-     * @param enchantmentLevel level of the enchantment
+     * @param enchantmentLevel 魔咒等级
      */
     public void setEnchantmentLevel(int enchantmentLevel) {
         Validate.isTrue(enchantmentLevel > 0, "The enchantment level must be greater than 0!");
@@ -60,20 +68,24 @@ public class EnchantmentOffer {
     }
 
     /**
-     * Gets the cost (minimum level) which is displayed as a number on the right
+     * 获取花费的经验等级(最低), 这个等级以数字形式显示在附魔台界面中附魔选项的右侧.
+     * <p>
+     * 原文:Gets the cost (minimum level) which is displayed as a number on the right
      * hand side of the enchantment offer.
      *
-     * @return cost for this enchantment
+     * @return 附魔花费的经验等级
      */
     public int getCost() {
         return cost;
     }
 
     /**
-     * Sets the cost (minimum level) which is displayed as a number on the right
+     * 设置花费的经验等级(最低), 这个等级以数字形式显示在附魔台界面中附魔选项的右侧.
+     * <p>
+     * 原文:Sets the cost (minimum level) which is displayed as a number on the right
      * hand side of the enchantment offer.
      *
-     * @param cost cost for this enchantment
+     * @param cost 附魔花费的经验等级
      */
     public void setCost(int cost) {
         Validate.isTrue(cost > 0, "The cost must be greater than 0!");

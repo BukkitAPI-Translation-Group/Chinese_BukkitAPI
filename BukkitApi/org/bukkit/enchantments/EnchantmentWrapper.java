@@ -5,9 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 方便选择{@link Enchantment}s的一个简单的封装类。
- * <p>
- * 大多数方法于{@link Enchantment}。
+ * 方便选择{@link Enchantment}的一个简单的封装类.
  */
 public class EnchantmentWrapper extends Enchantment {
     public EnchantmentWrapper(@NotNull String name) {
@@ -15,9 +13,9 @@ public class EnchantmentWrapper extends Enchantment {
     }
 
     /**
-     * 得到这个包装类所对应的的附魔.
+     * 获取这个包装类所对应的的附魔.
      * <p>
-     * 原文：Gets the enchantment bound to this wrapper
+     * 原文:Gets the enchantment bound to this wrapper
      *
      * @return 附魔
      */

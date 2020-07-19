@@ -1,4 +1,3 @@
-// TODO:重新翻译getExpLevelCost(), setExpLevelCost()
 package org.bukkit.event.enchantment;
 
 import java.util.HashMap;
@@ -65,7 +64,7 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取被附魔的物品(可自定义)。
+     * 获取被附魔的物品(可改动).
      * <p>
      * 原文:
      * Gets the item to be enchanted (can be modified)
@@ -78,26 +77,26 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * 获取花费的附魔等级。
+     * 获取花费的经验等级(最低), 这个等级以数字形式显示在附魔台界面中附魔选项的右侧.
      * <p>
      * 原文:
      * Gets the cost (minimum level) which is displayed as a number on the right
      * hand side of the enchantment offer.
      *
-     * @return 花费的附魔等级
+     * @return 花费的经验等级
      */
     public int getExpLevelCost() {
         return level;
     }
 
     /**
-     * 设置花费的附魔等级。
+     * 设置花费的经验等级(最低), 这个等级以数字形式显示在附魔台界面中附魔选项的右侧.
      * <p>
      * 原文:
      * Sets the cost (minimum level) which is displayed as a number on the right
      * hand side of the enchantment offer.
      *
-     * @param level - 花费的附魔等级
+     * @param level - 花费的经验等级
      */
     public void setExpLevelCost(int level) {
         Validate.isTrue(level > 0, "The cost must be greater than 0!");

@@ -14,7 +14,7 @@ public enum EnchantmentTarget {
      * 原文：
      * Allows the Enchantment to be placed on all items
      *
-     * @deprecated this target no longer exists in Vanilla
+     * @deprecated 原版中该适用目标不复存在
      */
     @Deprecated
     ALL {
@@ -200,7 +200,7 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * 允许将该附魔用于物品的耐久度上.
+     * 允许将该附魔用于带耐久度的物品上.
      * <p>
      * 原文:Allows the enchantment to be placed on items with durability.
      */
@@ -243,7 +243,7 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * Allow the Enchantment to be placed on crossbows.
+     * 允许将这类附魔附加于弩上.
      */
     CROSSBOW {
         @Override
@@ -253,7 +253,7 @@ public enum EnchantmentTarget {
     },
 
     /**
-     * Allow the Enchantment to be placed on vanishing items.
+     * 允许将这类附魔附加于vanishing items.
      */
     VANISHABLE {
         @Override
@@ -263,7 +263,7 @@ public enum EnchantmentTarget {
     };
 
     /**
-     * 检查是否包含该物品类型.
+     * 检查本适用目标是否包含该物品类型.
      * <p>
      * 原文：
      * Check whether this target includes the specified item.
@@ -274,7 +274,7 @@ public enum EnchantmentTarget {
     public abstract boolean includes(@NotNull Material item);
 
     /**
-     * 检查是否包含该物品.
+     * 检查本适用目标是否包含该物品.
      * <p>
      * 原文：Check whether this target includes the specified item.
      *

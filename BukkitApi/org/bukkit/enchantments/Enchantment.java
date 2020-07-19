@@ -15,272 +15,191 @@ import org.jetbrains.annotations.Nullable;
 public abstract class Enchantment implements Keyed {
     /**
      * 附魔：保护
-     * <p>
-     * 原文：
-     * Provides protection against environmental damage
      */
     public static final Enchantment PROTECTION_ENVIRONMENTAL = new EnchantmentWrapper("protection");
 
     /**
      * 附魔：火焰保护
-     * <p>
-     * 原文：
-     * Provides protection against fire damage
      */
     public static final Enchantment PROTECTION_FIRE = new EnchantmentWrapper("fire_protection");
 
     /**
      * 附魔：摔落保护
-     * <p>
-     * 原文：
-     * Provides protection against fall damage
      */
     public static final Enchantment PROTECTION_FALL = new EnchantmentWrapper("feather_falling");
 
     /**
      * 附魔：爆炸保护
-     * <p>
-     * 原文：
-     * Provides protection against explosive damage
      */
     public static final Enchantment PROTECTION_EXPLOSIONS = new EnchantmentWrapper("blast_protection");
 
     /**
-     * 附魔：抛射物保护
-     * <p>
-     * 原文：
-     * Provides protection against projectile damage
+     * 附魔：弹射物保护
      */
     public static final Enchantment PROTECTION_PROJECTILE = new EnchantmentWrapper("projectile_protection");
 
     /**
-     * 附魔：水肺
-     * <p>
-     * 原文：
-     * Decreases the rate of air loss whilst underwater
+     * 附魔：水下呼吸
      */
     public static final Enchantment OXYGEN = new EnchantmentWrapper("respiration");
 
     /**
      * 附魔：水下速掘
-     * <p>
-     * 原文：
-     * Increases the speed at which a player may mine underwater
      */
     public static final Enchantment WATER_WORKER = new EnchantmentWrapper("aqua_affinity");
 
     /**
      * 附魔：荆棘
-     * <p>
-     * 原文：
-     * Damages the attacker
      */
     public static final Enchantment THORNS = new EnchantmentWrapper("thorns");
 
     /**
-     * 附魔：海底漫步
-     * <p>
-     * 原文：
-     * Increases walking speed while in water
+     * 附魔：深海探索者
      */
     public static final Enchantment DEPTH_STRIDER = new EnchantmentWrapper("depth_strider");
 
     /**
      * 附魔：冰霜行者
-     * <p>
-     * 原文:Freezes any still water adjacent to ice / frost which player is walking on
      */
     public static final Enchantment FROST_WALKER = new EnchantmentWrapper("frost_walker");
 
     /**
-     * Item cannot be removed
+     * 附魔：绑定诅咒
      */
     public static final Enchantment BINDING_CURSE = new EnchantmentWrapper("binding_curse");
 
     /**
      * 附魔：锋利
-     * <p>
-     * 原文：
-     * Increases damage against all targets
      */
     public static final Enchantment DAMAGE_ALL = new EnchantmentWrapper("sharpness");
 
     /**
      * 附魔：亡灵杀手
-     * <p>
-     * 原文：
-     * Increases damage against undead targets
      */
     public static final Enchantment DAMAGE_UNDEAD = new EnchantmentWrapper("smite");
 
     /**
      * 附魔：节肢杀手
-     * <p>
-     * 原文:
-     * Increases damage against arthropod targets
      */
     public static final Enchantment DAMAGE_ARTHROPODS = new EnchantmentWrapper("bane_of_arthropods");
 
     /**
      * 附魔：击退
-     * <p>
-     * 原文：
-     * All damage to other targets will knock them back when hit
      */
     public static final Enchantment KNOCKBACK = new EnchantmentWrapper("knockback");
 
     /**
      * 附魔：火焰附加
-     * <p>
-     * 原文：
-     * When attacking a target, has a chance to set them on fire
      */
     public static final Enchantment FIRE_ASPECT = new EnchantmentWrapper("fire_aspect");
 
     /**
      * 附魔：抢夺
-     * <p>
-     * 原文：
-     * Provides a chance of gaining extra loot when killing monsters
      */
     public static final Enchantment LOOT_BONUS_MOBS = new EnchantmentWrapper("looting");
 
     /**
-     * Increases damage against targets when using a sweep attack
+     * 附魔：横扫之刃
      */
     public static final Enchantment SWEEPING_EDGE = new EnchantmentWrapper("sweeping");
 
     /**
      * 附魔：效率
-     * <p>
-     * 原文：
-     * Increases the rate at which you mine/dig
      */
     public static final Enchantment DIG_SPEED = new EnchantmentWrapper("efficiency");
 
     /**
      * 附魔：精准采集
-     * <p>
-     * 原文：
-     * Allows blocks to drop themselves instead of fragments (for example,
-     * stone instead of cobblestone)
      */
     public static final Enchantment SILK_TOUCH = new EnchantmentWrapper("silk_touch");
 
     /**
      * 附魔：耐久
-     * <p>
-     * 原文：
-     * Decreases the rate at which a tool looses durability
      */
     public static final Enchantment DURABILITY = new EnchantmentWrapper("unbreaking");
 
     /**
      * 附魔：时运
-     * <p>
-     * 原文：
-     * Provides a chance of gaining extra loot when destroying blocks
      */
     public static final Enchantment LOOT_BONUS_BLOCKS = new EnchantmentWrapper("fortune");
 
     /**
      * 附魔：力量 (弓)
-     * <p>
-     * 原文：
-     * Provides extra damage when shooting arrows from bows
      */
     public static final Enchantment ARROW_DAMAGE = new EnchantmentWrapper("power");
 
     /**
-     * 附魔：击退 (弓)
-     * <p>
-     * 原文:
-     * Provides a knockback when an entity is hit by an arrow from a bow
+     * 附魔：冲击 (弓)
      */
     public static final Enchantment ARROW_KNOCKBACK = new EnchantmentWrapper("punch");
 
     /**
-     * 附魔：火焰附加 (弓)
-     * <p>
-     * 原文:
-     * Sets entities on fire when hit by arrows shot from a bow
+     * 附魔：火矢 (弓)
      */
     public static final Enchantment ARROW_FIRE = new EnchantmentWrapper("flame");
 
     /**
      * 附魔：无限 (弓)
-     * <p>
-     * 原文:
-     * Provides infinite arrows when shooting a bow
      */
     public static final Enchantment ARROW_INFINITE = new EnchantmentWrapper("infinity");
 
     /**
      * 附魔：海之眷顾 (钓鱼杆)
-     * <p>
-     * 原文:
-     * Decreases odds of catching worthless junk
      */
     public static final Enchantment LUCK = new EnchantmentWrapper("luck_of_the_sea");
 
     /**
-     * 附魔：诱饵  (钓鱼杆)
-     * <p>
-     * 原文:
-     * Increases rate of fish biting your hook
+     * 附魔：饵钓 (钓鱼杆)
      */
     public static final Enchantment LURE = new EnchantmentWrapper("lure");
 
     /**
-     * Causes a thrown trident to return to the player who threw it
+     * 附魔：忠诚 (三叉戟)
      */
     public static final Enchantment LOYALTY = new EnchantmentWrapper("loyalty");
 
     /**
-     * Deals more damage to mobs that live in the ocean
+     * 附魔：穿刺 (三叉戟)
      */
     public static final Enchantment IMPALING = new EnchantmentWrapper("impaling");
 
     /**
-     * When it is rainy, launches the player in the direction their trident is thrown
+     * 附魔：激流 (三叉戟)
      */
     public static final Enchantment RIPTIDE = new EnchantmentWrapper("riptide");
 
     /**
-     * Strikes lightning when a mob is hit with a trident if conditions are
-     * stormy
+     * 附魔：引雷 (三叉戟)
      */
     public static final Enchantment CHANNELING = new EnchantmentWrapper("channeling");
 
     /**
-     * Shoot multiple arrows from crossbows
+     * 附魔：多重射击 (弩)
      */
     public static final Enchantment MULTISHOT = new EnchantmentWrapper("multishot");
 
     /**
-     * Charges crossbows quickly
+     * 附魔：快速装填 (弩)
      */
     public static final Enchantment QUICK_CHARGE = new EnchantmentWrapper("quick_charge");
 
     /**
-     * Crossbow projectiles pierce entities
+     * 附魔：穿透 (弩)
      */
     public static final Enchantment PIERCING = new EnchantmentWrapper("piercing");
 
     /**
      * 附魔：经验修补
-     * <p>
-     * 原文:Allows mending the item using experience orbs
      */
     public static final Enchantment MENDING = new EnchantmentWrapper("mending");
 
     /**
-     * Item disappears instead of dropping
+     * 附魔：消失诅咒
      */
     public static final Enchantment VANISHING_CURSE = new EnchantmentWrapper("vanishing_curse");
 
     /**
-     * Walk quicker on soul blocks
+     * 附魔：灵魂疾行
      */
     public static final Enchantment SOUL_SPEED = new EnchantmentWrapper("soul_speed");
 
@@ -306,7 +225,7 @@ public abstract class Enchantment implements Keyed {
      * Gets the unique name of this enchantment
      *
      * @return 独一无二的名称
-     * @deprecated 这些附魔的命名简直糟透了，建议使用 {@link #getKey()}.
+     * @deprecated 这些附魔的命名简直糟透了, 建议使用 {@link #getKey()}.
      */
     @NotNull
     @Deprecated
@@ -344,24 +263,31 @@ public abstract class Enchantment implements Keyed {
     public abstract EnchantmentTarget getItemTarget();
 
     /**
-     * Checks if this enchantment is a treasure enchantment.
+     * 检查该附魔是否为宝藏附魔.
+     * <br>
+     * 宝藏附魔只能通过掠夺、交易或垂钓获得.
+     * <p>
+     * 原文:Checks if this enchantment is a treasure enchantment.
      * <br>
      * Treasure enchantments can only be received via looting, trading, or
      * fishing.
      *
-     * @return true if the enchantment is a treasure enchantment
+     * @return 是否为宝藏附魔
      */
     public abstract boolean isTreasure();
 
     /**
-     * Checks if this enchantment is a cursed enchantment
+     * 检查该附魔是否为诅咒附魔.
+     * <br>
+     * 诅咒附魔的获取途径与宝藏附魔一致.
+     * <p>
+     * 原文:Checks if this enchantment is a cursed enchantment
      * <br>
      * Cursed enchantments are found the same way treasure enchantments are
      *
-     * @return true if the enchantment is cursed
-     * @deprecated cursed enchantments are no longer special. Will return true
-     * only for {@link Enchantment#BINDING_CURSE} and
-     * {@link Enchantment#VANISHING_CURSE}.
+     * @return 是否为诅咒附魔
+     * @deprecated 诅咒附魔不再是特殊的.
+     * 当且仅当附魔为{@link Enchantment#BINDING_CURSE} 或 {@link Enchantment#VANISHING_CURSE} 时才会返回true
      */
     @Deprecated
     public abstract boolean isCursed();
@@ -389,7 +315,7 @@ public abstract class Enchantment implements Keyed {
      * applied to the item.
      *
      * @param item 物品
-     * @return True 如果该附魔适用该物品,则返回true。
+     * @return 如果该附魔适用该物品,则返回true。
      */
     public abstract boolean canEnchantItem(@NotNull ItemStack item);
 
@@ -442,7 +368,7 @@ public abstract class Enchantment implements Keyed {
     }
 
     /**
-     * 检查是否接受附魔注册 .
+     * 检查是否接受附魔注册.
      * <p>
      * 原文：
      * Checks if this is accepting Enchantment registrations.
@@ -454,7 +380,7 @@ public abstract class Enchantment implements Keyed {
     }
 
     /**
-     * 停止接受任何附魔注册. 
+     * 停止接受任何附魔注册.
      * <p>
      * 原文：
      * Stops accepting any enchantment registrations
@@ -479,7 +405,7 @@ public abstract class Enchantment implements Keyed {
     }
 
     /**
-     * 获取附魔的指定名称.
+     * 以指定名称获取附魔.
      * <p>
      * 原文：
      * Gets the Enchantment at the specified name
@@ -496,12 +422,12 @@ public abstract class Enchantment implements Keyed {
     }
 
     /**
-     * 得到所有已经注册了的附魔( {@link Enchantment}s).
+     * 得到所有已经注册了的附魔({@link Enchantment}).
      * <p>
      * 原文：
      * Gets an array of all the registered {@link Enchantment}s
      *
-     * @return 一个数组
+     * @return 一个包含所有已注册附魔的数组
      */
     @NotNull
     public static Enchantment[] values() {

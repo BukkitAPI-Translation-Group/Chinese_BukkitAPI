@@ -11,7 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 物品塞入附魔台的事件 - 可以同时调用。
+ * 物品塞入附魔台的事件 - 可被多次调用。
  */
 public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -88,12 +88,16 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
     }
 
     /**
-     * Get a list of available {@link EnchantmentOffer} for the player. You can
+     * 获取对玩家可用的的附魔选项列表. 你可以修改这些值以干预对玩家可用的附魔.
+     * 如果附魔台中某个特定的格子没有附魔选项, 则这个附魔选项可能为null.
+     * 附魔台中有3个附魔选项格可供编辑.
+     * <p>
+     * 原文:Get a list of available {@link EnchantmentOffer} for the player. You can
      * modify the values to change the available offers for the player. An offer
      * may be null, if there isn't a enchantment offer at a specific slot. There
      * are 3 slots in the enchantment table available to modify.
      *
-     * @return list of available enchantment offers
+     * @return 可用的的附魔选项列表
      */
     @NotNull
     public EnchantmentOffer[] getOffers() {
@@ -101,9 +105,11 @@ public class PrepareItemEnchantEvent extends InventoryEvent implements Cancellab
     }
 
     /**
-     * Get enchantment bonus in effect - corresponds to number of bookshelves
+     * 获取生效的附魔等级加成 - 对应书架的数量.
+     * <p>
+     * 原文:Get enchantment bonus in effect - corresponds to number of bookshelves
      *
-     * @return enchantment bonus
+     * @return 附魔等级加成
      */
     public int getEnchantmentBonus() {
         return bonus;
