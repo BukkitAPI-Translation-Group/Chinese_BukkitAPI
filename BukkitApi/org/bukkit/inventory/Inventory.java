@@ -96,18 +96,18 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setItem(int index, @Nullable ItemStack item);
 
     /**
-     * 在物品栏存放所给的物品堆.本方法将尽可能完美地尝试填充已有的但还未达到堆叠上限的物品堆
+     * 向物品栏添加所给的物品堆.本方法将尽可能完美地尝试填充已有的但还未达到堆叠上限的物品堆
      * 和空格子.
      * <p>
-     * 返回的HashMap包含不能存放的物品堆，键是你所给的参数的索引值，
-     * 值是你所给的参数指定索引处的物品堆.如果所有物品都被存放，将返回一个空HashMap.
+     * 返回一个包含无法添加的物品堆的HashMap，键是传入的参数中那一物品堆所在的索引，
+     * 值是传入的可变参数中指定索引处的物品堆.如果所有物品都被添加，将返回一个空的HashMap.
      * <p>
-     * (以下翻译不保证准确性，自己试试呗)如果你传递的物品堆超过了物品的最大堆叠量,首先它们将被按
-     * 最大堆叠量[Material.getMaxStackSize()]添加一部分.如果当没有部分的物品堆剩余时，
-     * 物品堆将被以Inventory.getMaxStackSize()的数量分割，允许你超过那个物品的最大堆叠量.
+     * 如果传入的物品堆超过了这一物品材质的最大堆叠数量,首先它们将被按照
+     * 物品材质的最大堆叠量，添加一部分至堆叠数量未满的物品堆.如果没有堆叠数量未满的物品堆剩余，
+     * 物品堆将被以物品栏所允许的物品堆最大堆叠数量分割，允许超出物品材质的最大堆叠数量.
      * <p>
-     * 已知在一些实现里本方法也将会设置输入的argument amount to the number of that item not placed in
-     * slots.
+     * 在对此方法的一些已知实现中，会将传入的物品堆参数的数量设置为超出而无法添加的物品堆数量
+     * 译注：可能指部分实现中，此方法会直接操作传入参数对象，而不是将传入参数对象进行复制后再操作其数量
      * <p>
      * 原文:Stores the given ItemStacks in the inventory. This will try to fill
      * existing stacks and empty slots as well as it can.
@@ -130,7 +130,7 @@ public interface Inventory extends Iterable<ItemStack> {
      *
      * @param items 要存放的物品
      * @return 包含不能被存放的物品的HashMap
-     * @throws IllegalArgumentException 如果items或在内的任何元素为null
+     * @throws IllegalArgumentException 如果传入的可变参数中的任一元素为null
      */
     @NotNull
     public HashMap<Integer, ItemStack> addItem(@NotNull ItemStack... items) throws IllegalArgumentException;
