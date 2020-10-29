@@ -16,11 +16,9 @@ import org.jetbrains.annotations.Nullable;
  * Material#AIR}的行为时是未指定的.
  *
  * <br>
- * <b>Note that whilst {@link #iterator()} deals with the entire inventory, add
- * / contains / remove methods deal only with the storage contents.</b>
+ * <b>请注意虽然 {@link #iterator()} 能处理整个物品栏, 但add/contains/remove方法只能用于物品栏的存储内容.</b>
  * <br>
- * <b>Consider using {@link #getContents()} and {@link #getStorageContents()} for
- * specific iteration.</b>
+ * <b>针对特定的物品迭代, 可考虑使用 {@link #getContents()} 和 {@link #getStorageContents()}</b>
  *
  * @see #getContents()
  * @see #getStorageContents()
@@ -99,15 +97,16 @@ public interface Inventory extends Iterable<ItemStack> {
      * 向物品栏添加所给的物品堆.本方法将尽可能完美地尝试填充已有的但还未达到堆叠上限的物品堆
      * 和空格子.
      * <p>
-     * 返回一个包含无法添加的物品堆的HashMap，键是传入的参数中那一物品堆所在的索引，
-     * 值是传入的可变参数中指定索引处的物品堆.如果所有物品都被添加，将返回一个空的HashMap.
+     * 返回一个包含无法添加的物品堆的HashMap，键是传入的参数中那一物品堆所在的索引,
+     * 值是传入的可变参数中指定索引处的物品堆.如果所有物品都被添加, 将返回一个空的HashMap.
      * <p>
      * 如果传入的物品堆超过了这一物品材质的最大堆叠数量,首先它们将被按照
-     * 物品材质的最大堆叠量，添加一部分至堆叠数量未满的物品堆.如果没有堆叠数量未满的物品堆剩余，
-     * 物品堆将被以物品栏所允许的物品堆最大堆叠数量分割，允许超出物品材质的最大堆叠数量.
+     * 物品材质的最大堆叠量，添加一部分至堆叠数量未满的物品堆.如果没有堆叠数量未满的物品堆剩余,
+     * 物品堆将被以物品栏所允许的物品堆最大堆叠数量分割, 允许超出物品材质的最大堆叠数量.
      * <p>
-     * 在对此方法的一些已知实现中，会将传入的物品堆参数的数量设置为超出而无法添加的物品堆数量
-     * 译注：可能指部分实现中，此方法会直接操作传入参数对象，而不是将传入参数对象进行复制后再操作其数量
+     * 在对此方法的一些已知实现中，会将传入的物品堆参数的数量设置为超出而无法添加的物品堆数量.
+     * <p>
+     * 译注:可能指部分实现中，此方法会直接操作传入参数对象，而不是将传入参数对象进行复制后再操作其数量
      * <p>
      * 原文:Stores the given ItemStacks in the inventory. This will try to fill
      * existing stacks and empty slots as well as it can.
@@ -186,8 +185,8 @@ public interface Inventory extends Iterable<ItemStack> {
     public void setContents(@NotNull ItemStack[] items) throws IllegalArgumentException;
 
     /**
-     * 返回.大部分情况下本方法返回的内容代表整个物品栏，
-     * 但某些情况下返回的内容可能不包括盔甲或格子.
+     * 返回物品栏中可以合理存放物品的区域的内容. 大部分情况下本方法返回的内容代表整个物品栏,
+     * 但某些情况下返回的内容可能不包括盔甲或产物格子.
      * <br>
      * 这些内容会被用于add/contains/remove方法查找指定的物品堆.
      * <p>
@@ -244,14 +243,14 @@ public interface Inventory extends Iterable<ItemStack> {
     public boolean contains(@Nullable ItemStack item);
 
     /**
-     * 检查物品栏内是否包含指定的物品，并检查物品堆的数量是否足够(译者自述).
+     * 检查物品栏内是否包含指定的物品，且其数量至少满足预期值 (amount的值).
      * <p>
      * 原文:Checks if the inventory contains any ItemStacks with the given
      * material, adding to at least the minimum amount specified.
      *
      * @param material 要检测的物品
-     * @param amount 物品堆数量最小值
-     * @return 如果参数amount小于1返回true;如果物品堆的数量小于等于参数amount返回true(自述)
+     * @param amount 物品数量最小值
+     * @return 如果参数amount小于1返回true; 如果物品数量小于等于 amount 返回true
      * @throws IllegalArgumentException 如果material为null
      */
     public boolean contains(@NotNull Material material, int amount) throws IllegalArgumentException;
