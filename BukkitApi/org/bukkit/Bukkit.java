@@ -52,7 +52,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表一个 Bukkit 核心, 用来转发 {@link Server} 单例的调用.  
+ * 代表一个 Bukkit 核心, 用来转发 {@link Server} 单例的调用.
  */
 public final class Bukkit {
     private static Server server;
@@ -65,8 +65,7 @@ public final class Bukkit {
     /**
      * 获取当前持有的 {@link Server} 实例. 
      * <p>
-     * 原文:
-     * Gets the current {@link Server} singleton
+     * 原文:Gets the current {@link Server} singleton
      *
      * @return 正在运行的服务器的实例
      */
@@ -95,10 +94,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个 {@link Server} 实例的名字. 
+     * 获取这个 {@link Server} 实例的名字.
      * <p>
-     * 原文:
-     * Gets the name of this server implementation.
+     * 原文:Gets the name of this server implementation.
      *
      * @return 这个服务器实例的名字
      */
@@ -108,10 +106,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取这个 {@link Server} 实例的版本. 
+     * 获取这个 {@link Server} 实例的版本.
      * <p>
-     * 原文:
-     * Gets the version string of this server implementation.
+     * 原文:Gets the version string of this server implementation.
      *
      * @return 这个服务器实例的版本
      */
@@ -121,10 +118,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取正在运行的服务器的Bukkit版本. 
+     * 获得服务器运行的Bukkit版本.
      * <p>
-     * 原文:
-     * Gets the Bukkit version that this server is running.
+     * 原文:Gets the Bukkit version that this server is running.
      *
      * @return Bukkit版本
      */
@@ -190,10 +186,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器允许进入的最大玩家数. 
+     * 获取服务器允许进入的最大玩家数.
      * <p>
-     * 原文:
-     * Get the maximum amount of players which can login to this server.
+     * 原文:Get the maximum amount of players which can login to this server.
      *
      * @return 服务器的最大玩家数
      */
@@ -202,36 +197,34 @@ public final class Bukkit {
     }
 
     /**
-     * 获取运行的服务器所在的端口号. 
+     * 获取服务器监听的端口号.
      * <p>
      * 原文:Get the game port that the server runs on.
      *
-     * @return 服务器的端口
+     * @return 服务器端口
      */
     public static int getPort() {
         return server.getPort();
     }
 
     /**
-     * 获取服务器的视距. 
+     * 获取服务器的视距.
      * <p>
-     * 原文:
-     * Get the view distance from this server.
+     * 原文:Get the view distance from this server.
      *
-     * @return 服务器的视距
+     * @return 服务器当前设置的视距
      */
     public static int getViewDistance() {
         return server.getViewDistance();
     }
 
     /**
-     * 获取服务器绑定的IP, 如果没有就返回空字符串. 
+     * 获取服务器绑定的IP, 如果未指定就返回空字符串.
      * <p>
-     * 原文:
-     * Get the IP that this server is bound to, or empty string if not
+     * 原文:Get the IP that this server is bound to, or empty string if not
      * specified.
      *
-     * @return 服务器绑定的IP，如果没有就返回空字符串
+     * @return 服务器绑定的IP, 如果未指定就返回空字符串
      */
     @NotNull
     public static String getIp() {
@@ -239,10 +232,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取默认世界的世界类型 (level-type 设置). 
+     * 获取默认世界的世界类型 (level-type 设置).
      * <p>
-     * 原文:
-     * Get world type (level-type setting) for default world.
+     * 原文:Get world type (level-type setting) for default world.
      *
      * @return 默认世界的世界类型 (例： DEFAULT, FLAT, DEFAULT_1_1)
      */
@@ -252,22 +244,20 @@ public final class Bukkit {
     }
 
     /**
-     * 获取此服务器是否自然生成结构. 
+     * 获取此服务器是否自然生成结构.
      * <p>
-     * 原文:
-     * Get generate-structures setting.
+     * 原文:Get generate-structures setting.
      *
-     * @return 是否生成结构
+     * @return true表示服务器可自然生成结构, false反之
      */
     public static boolean getGenerateStructures() {
         return server.getGenerateStructures();
     }
 
     /**
-     * 获取此服务器是否开启了末路之地. 
+     * 获取此服务器是否开启了末路之地.
      * <p>
-     * 原文:
-     * Gets whether this server allows the End or not.
+     * 原文:Gets whether this server allows the End or not.
      *
      * @return 是否可以进入末路之地
      */
@@ -276,10 +266,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取此服务器是否开启了下界. 
+     * 获取此服务器是否开启了下界.
      * <p>
-     * 原文：
-     * Gets whether this server allows the Nether or not.
+     * 原文:Gets whether this server allows the Nether or not.
      *
      * @return 是否可以进入下界
      */
@@ -288,22 +277,20 @@ public final class Bukkit {
     }
 
     /**
-     * 获取此服务器是否开启了白名单. 
+     * 获取此服务器是否开启了白名单.
      * <p>
-     * 原文:
-     * Gets whether this server has a whitelist or not.
+     * 原文:Gets whether this server has a whitelist or not.
      *
-     * @return 是否开启白名单
+     * @return 是否开启了白名单
      */
     public static boolean hasWhitelist() {
         return server.hasWhitelist();
     }
 
     /**
-     * 设置此服务器是否开启白名单. 
+     * 设置此服务器是否开启白名单.
      * <p>
-     * 原文:
-     * Sets if the server is whitelisted.
+     * 原文:Sets if the server is whitelisted.
      *
      * @param value true为开, false为关
      */
@@ -312,10 +299,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取所有已被添加到白名单的玩家. 
+     * 获取所有已被添加到白名单的玩家.
      * <p>
-     * 原文:
-     * Gets a list of whitelisted players.
+     * 原文:Gets a list of whitelisted players.
      *
      * @return 用Set存储的所有被添加到白名单的玩家
      */
@@ -325,7 +311,7 @@ public final class Bukkit {
     }
 
     /**
-     * 从硬盘重载白名单列表. 
+     * 从硬盘重载白名单列表.
      * <p>
      * 原文:Reloads the whitelist from disk.
      */
@@ -334,14 +320,13 @@ public final class Bukkit {
     }
 
     /**
-     * 广播一条消息到所有在线玩家. 
+     * 广播一条消息到所有在线玩家.
      * <p>
      * 这与调用 {@link #broadcast(java.lang.String,
      * java.lang.String)} 并将第二个参数设为 {@link 
-     * Server#BROADCAST_CHANNEL_USERS} 等效. 
-     *
-     * 原文: 
-     * Broadcast a message to all players.
+     * Server#BROADCAST_CHANNEL_USERS} 等效.
+     * <p>
+     * 原文:Broadcast a message to all players.
      * <p>
      * This is the same as calling {@link #broadcast(java.lang.String,
      * java.lang.String)} to {@link Server#BROADCAST_CHANNEL_USERS}
@@ -354,13 +339,18 @@ public final class Bukkit {
     }
 
     /**
-     * 获取更新文件夹的名字. 
+     * 获取更新文件夹的名字. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
      * <p>
-     * 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     * 更新文件夹的位置相对于插件文件夹(译注:一般指服务端plugins文件夹下的update文件夹).
      * <p>
-     * 更新文件夹的位置相对于插件文件夹.
+     * Tips：如何使用更新文件夹来实现更新您的插件呢? (服主和开发者都可以了解下)：
+     * <ol>
+     * <li>创建更新文件夹，已有则跳过此步.
+     * <li>下载您要更新的插件到此目录(plugins/update) (注意：jar文件名必须和在插件目录下的jar文件名一样，否则不起作用).
+     * <li>重载/重启服务器.
+     * <li>OK，看效果吧.
+     * </ol>
      * <p>
-     * 
      * 原文:
      * Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
@@ -375,12 +365,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取更新文件夹的 {@link File} 实例. 
+     * 获取更新文件夹的 File 实例. 
      * <p>
      * 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
      * <p>
-     * 原文:
-     * Gets the update folder. The update folder is used to safely update
+     * 原文:Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
      * @return 表示更新文件夹的 File 实例
@@ -391,12 +380,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的最小连接间隔设定. 
+     * 获取服务器的最小连接间隔设定.
      * <p>
-     * 译注: 单位为毫秒. 
+     * 译注:单位为毫秒.
      * <p>
-     * 
-     * 原文: Gets the value of the connection throttle setting.
+     * 原文:Gets the value of the connection throttle setting.
      * @return 服务器的最小连接间隔数设定
      */
     public static long getConnectionThrottle() {
@@ -404,14 +392,14 @@ public final class Bukkit {
     }
 
     /**
-     * 获取每隔多少tick应该生成一次动物. 
+     * 获取每隔多少tick应该生成一次动物.
      * <b>例如:</b>
      * <ul>
-     * <li>此值为 1 表示服务器会在每个tick尝试生成动物. 
-     * <li>此值为 400 表示服务器会每隔400tick尝试生成动物. 
-     * <li>此值小于 0 表示会使用Minecraft的默认设置. 
+     * <li>此值为 1 表示服务器会在每个tick尝试生成动物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成动物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
      * </ul>
-     * <b>注意:</b> 如果设为 0, 动物生成会被禁用. 
+     * <b>注意:</b> 如果设为 0, 动物生成会被禁用.
      * 我们推荐使用 spawn-animals 选项来代替将其设为0.
      * <p>
      * Minecraft使用的默认值: 400.
@@ -433,21 +421,21 @@ public final class Bukkit {
      * <p>
      * Minecraft default: 400.
      *
-     * @return 每个动物生成的默认刻
+     * @return 每隔多少tick应该生成一次动物
      */
     public static int getTicksPerAnimalSpawns() {
         return server.getTicksPerAnimalSpawns();
     }
 
     /**
-     * 获取每隔多少tick应该生成一次怪物. 
+     * 获取每隔多少tick应该生成一次怪物.
      * <b>例如:</b>
      * <ul>
-     * <li>此值为 1 表示服务器会在每个tick尝试生成怪物. 
-     * <li>此值为 400 表示服务器会每隔400tick尝试生成怪物. 
-     * <li>此值小于 0 表示会使用Minecraft的默认设置. 
+     * <li>此值为 1 表示服务器会在每个tick尝试生成怪物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成怪物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
      * </ul>
-     * <b>注意:</b> 如果设为 0, 怪物生成会被禁用. 
+     * <b>注意:</b> 如果设为 0, 怪物生成会被禁用.
      * 我们推荐使用 spawn-monsters 选项来代替将其设为0.
      * <p>
      * Minecraft使用的默认值: 1.
@@ -469,14 +457,27 @@ public final class Bukkit {
      * <p>
      * Minecraft default: 1.
      *
-     * @return 每个动物生成的默认刻
+     * @return 每隔多少tick应该生成一次怪物
      */
     public static int getTicksPerMonsterSpawns() {
         return server.getTicksPerMonsterSpawns();
     }
 
     /**
-     * Gets the default ticks per water mob spawns value.
+     * 获取每隔多少tick应该生成一次水生动物.
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成水生动物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成水生动物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 水生动物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per water mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -491,14 +492,27 @@ public final class Bukkit {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water mobs spawn value
+     * @return 每隔多少tick应该生成一次怪物
      */
     public static int getTicksPerWaterSpawns() {
         return server.getTicksPerWaterSpawns();
     }
 
     /**
-     * Gets the default ticks per ambient mob spawns value.
+     * 获取每隔多少tick应该生成一次环境生物(即蝙蝠).
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成环境生物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成环境生物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 环境生物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per ambient mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -513,14 +527,27 @@ public final class Bukkit {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per ambient mobs spawn value
+     * @return 每隔多少tick应该生成一次环境生物
      */
     public static int getTicksPerAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
     }
 
     /**
-     * Gets the default ticks per water ambient mob spawns value.
+     * 获取每隔多少tick应该生成一次水生环境生物(通常指鱼类).
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成水生环境生物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成水生环境生物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 水生环境生物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per water ambient mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -535,21 +562,21 @@ public final class Bukkit {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water ambient mobs spawn value
+     * @return 每隔多少tick应该生成一次水生环境生物
      */
     public static int getTicksPerWaterAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
     }
 
     /**
-     * 使用给定玩家名模糊搜索玩家. 
-     * 这个方法不可能返回离线玩家的对象. 
+     * 使用给定玩家名模糊搜索玩家.
+     * 这个方法不可能返回离线玩家的对象.
      * <p>
-     * 译注: 注意此方法用于模糊搜索——当服务器内有玩家 aaa, aab, abc 时, 
+     * 译注: 注意此方法用于模糊搜索——当服务器内有玩家 aaa, aab, abc 时,
      * 使用 <code>getPlayer("ab")</code> 会返回玩家 abc 的实例, 而如果 ab 在线则会返回 ab 的实例
      * 因此<b>可能存在严重的安全问题</b>, 需要精确搜索(例如给予OP时)请用
-     * {@link #getPlayerExact(java.lang.String) } 或 {@link 
-     * #getPlayer(java.util.UUID) } 代替. 
+     * {@link #getPlayerExact(java.lang.String) } 或 {@link
+     * #getPlayer(java.util.UUID) } 代替.
      * <p>
      * 原文: 
      * Gets a player object by the given username.
@@ -564,9 +591,9 @@ public final class Bukkit {
     }
 
     /**
-     * 使用给定玩家名精确查找玩家, 不区分大小写. 
+     * 使用给定玩家名精确查找玩家, 不区分大小写.
      * <p>
-     * 原文: Gets the player with the exact given name, case insensitive. 
+     * 原文:Gets the player with the exact given name, case insensitive. 
      *
      * @param name 用于检索的精确玩家名称, 不区分大小写 
      * @return 如果找到了则返回玩家对象, 否则返回null
@@ -577,14 +604,14 @@ public final class Bukkit {
     }
 
     /**
-     * 尝试获取所有匹配给定名称的玩家, 并返回包含了一切可能匹配的列表. 
+     * 尝试获取所有匹配给定名称的玩家, 并返回包含了一切可能匹配的列表.
      * <p>
      * 这个列表没有经过任何特殊排序. 如果能在在线玩家内精确匹配到给定名称,
-     * 则返回一个只包含单个结果的列表. 
+     * 则返回一个只包含单个结果的列表.
      * <p>
      * 译注: 设有在线玩家 abcd, efg, dbca 那么 <code>matchPlayer("bc")</code> 会
      * 返回一个包含 [abcd, dbca] 的列表. 但如果此时玩家 bc 上线了, 再执行相同的查找
-     * 就只会返回包含一个结果的列表 [bc]. 
+     * 就只会返回包含一个结果的列表 [bc].
      * <p>
      * 原文: 
      * Attempts to match any players with the given name, and returns a list
@@ -602,9 +629,9 @@ public final class Bukkit {
     }
 
     /**
-     * 使用给定{@link UUID}获取玩家. 
+     * 使用给定{@link UUID}获取玩家.
      * <p>
-     * 原文: Gets the player with the given UUID.
+     * 原文:Gets the player with the given UUID.
      *
      * @param id 要获取的玩家的{@link UUID}
      * @return 如果找到了则返回玩家对象, 否则返回null
@@ -615,9 +642,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取插件管理器以与其他插件进行交互. 
+     * 获取插件管理器以与其他插件进行交互.
      * <p>
-     * 原文: Gets the plugin manager for interfacing with plugins.
+     * 原文:Gets the plugin manager for interfacing with plugins.
      *
      * @return 此服务器的插件管理器
      */
@@ -627,7 +654,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取用于管理调度任务的调度器. 
+     * 获取用于管理调度任务的调度器.
      * <p>
      * 原文: Gets the scheduler for managing scheduled events.
      *
@@ -639,11 +666,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务管理器. 
+     * 获取服务管理器.
      * <p>
-     * 原文: Gets a services manager.
+     * 原文:Gets a services manager.
      *
-     * @return 服务管理器. 
+     * @return 服务管理器
      */
     @NotNull
     public static ServicesManager getServicesManager() {
@@ -651,9 +678,9 @@ public final class Bukkit {
     }
 
     /**
-     * 获取当前服务器加载的所有世界的列表. 
+     * 获取当前服务器加载的所有世界的列表.
      * <p>
-     * 原文: Gets a list of all worlds on this server.
+     * 原文:Gets a list of all worlds on this server.
      *
      * @return 所有已经被服务器加载的世界列表
      */
@@ -663,10 +690,10 @@ public final class Bukkit {
     }
 
     /**
-     * 用给定的世界生成器来创建或者加载一个世界. 
+     * 用给定的世界生成器来创建或者加载一个世界.
      * <p>
      * 如果这个世界已经被加载了, 那么就会返回等同于调用 
-     * <code>getWorld(creator.name())</code> 的结果. 
+     * <code>getWorld(creator.name())</code> 的结果.
      * <p>
      * 原文: Creates or loads a world with the given name using the specified
      * options.
@@ -683,12 +710,12 @@ public final class Bukkit {
     }
 
     /**
-     * 卸载给定名称对应的世界. 
+     * 卸载给定名称对应的世界.
      * <p>
      * 原文: Unloads a world with the given name.
      *
      * @param name 要卸载的世界的名字
-     * @param save 卸载时是否要保存数据
+     * @param save 是否在卸载世界前保存区块数据
      * @return 如果成功返回true, 否则返回false
      */
     public static boolean unloadWorld(@NotNull String name, boolean save) {
@@ -696,12 +723,12 @@ public final class Bukkit {
     }
 
     /**
-     * 卸载指定的世界. 
+     * 卸载指定的世界.
      * <p>
      * 原文: Unloads a world with the given name.
      *
      * @param world 要卸载的世界
-     * @param save 卸载时是否要保存数据
+     * @param save 是否在卸载世界前保存区块数据
      * @return 如果成功返回true, 否则返回false
      */
     public static boolean unloadWorld(@NotNull World world, boolean save) {
@@ -709,12 +736,12 @@ public final class Bukkit {
     }
 
     /**
-     * 使用给定名称查找世界. 
+     * 使用给定的名称查找世界.
      * <p>
      * 原文: Gets the world with the given name.
      *
      * @param name 世界名称
-     * @return 没找到则返回null
+     * @return 给定名称对应世界的实例, 没找到则返回null
      */
     @Nullable
     public static World getWorld(@NotNull String name) {
@@ -724,7 +751,7 @@ public final class Bukkit {
     /**
      * 使用给定{@linkplain UUID 唯一ID}查找世界. 
      * <p>
-     * 原文: Gets the world from the given Unique ID.
+     * 原文:Gets the world from the given Unique ID.
      *
      * @param uid 要查找的世界的唯一ID
      * @return 没找到则返回null
@@ -735,7 +762,7 @@ public final class Bukkit {
     }
 
     /**
-     * 使用给定物品ID获取地图. 
+     * 使用给定物品ID获取地图.
      * <p>
      * 原文: Gets the map from the given item ID. 
      *
@@ -750,9 +777,9 @@ public final class Bukkit {
     }
 
     /**
-     * 创建一个新地图并自动分配一个ID. 
+     * 创建一个新地图并自动分配一个ID.
      * <p>
-     * 原文: Create a new map with an automatically assigned ID.
+     * 原文:Create a new map with an automatically assigned ID.
      *
      * @param world 地图所属的世界
      * @return 新创建的 {@link MapView}
@@ -806,9 +833,9 @@ public final class Bukkit {
     }
 
     /**
-     * 重载服务器, 刷新设置与插件信息.
+     * 重新加载服务器并刷新设置和插件信息.
      * <p>
-     * 原文: Reloads the server, refreshing settings and plugin information.
+     * 原文:Reloads the server, refreshing settings and plugin information.
      */
     public static void reload() {
         server.reload();
@@ -826,9 +853,9 @@ public final class Bukkit {
     }
 
     /**
-     * 返回与此服务器实例绑定的主{@link Logger}. 
+     * 返回与此服务器实例绑定的主{@link Logger}.
      * <p>
-     * 原文: Returns the primary logger associated with this server instance.
+     * 原文:Returns the primary logger associated with this server instance.
      *
      * @return 与此服务器绑定的 {@link Logger}
      */
@@ -838,12 +865,12 @@ public final class Bukkit {
     }
 
     /**
-     * 用给定命令名或别名获取 {@link PluginCommand}. 
+     * 用给定命令名或别名获取 {@link PluginCommand}.
      * <p>
-     * 原文: Gets a {@link PluginCommand} with the given name or alias.
+     * 原文:Gets a {@link PluginCommand} with the given name or alias.
      *
      * @param name 命令名或命令别名
-     * @return 找不到则返回null
+     * @return 若找到则返回对应的命令实例, 找不到则返回null
      */
     @Nullable
     public static PluginCommand getPluginCommand(@NotNull String name) {
@@ -860,14 +887,14 @@ public final class Bukkit {
     }
 
     /**
-     * Dispatches a command on this server, and executes it if found.
+     * 在服务器执行一个命令 (如果命令存在).
+     * <p>
+     * 原文:Dispatches a command on this server, and executes it if found.
      *
-     * @param sender the apparent sender of the command
-     * @param commandLine the command + arguments. Example: <code>test abc
-     *     123</code>
-     * @return returns false if no target is found
-     * @throws CommandException thrown when the executor for the given command
-     *     fails with an unhandled exception
+     * @param sender 执行该命令的发送者
+     * @param commandLine 命令 + 参数. 例如: <code>test abc 123</code>
+     * @return 若命令未找到返回false
+     * @throws CommandException 当执行命令期间出现未捕获的异常时抛出
      */
     public static boolean dispatchCommand(@NotNull CommandSender sender, @NotNull String commandLine) throws CommandException {
         return server.dispatchCommand(sender, commandLine);
@@ -887,11 +914,15 @@ public final class Bukkit {
     }
 
     /**
-     * Get a list of all recipes for a given item. The stack size is ignored
+     * 获取对指定物品适用的所有合成配方的列表.
+     * 在比对过程中物品堆叠数量会被忽略.
+     * 如果给定物品堆的耐久度为 -1, 将匹配任意的数据值.
+     * <p>
+     * 原文:Get a list of all recipes for a given item. The stack size is ignored
      * in comparisons. If the durability is -1, it will match any data value.
      *
-     * @param result the item to match against recipe results
-     * @return a list of recipes with the given result
+     * @param result 要匹配的物品
+     * @return 对指定物品适用的所有合成配方的列表
      */
     @NotNull
     public static List<Recipe> getRecipesFor(@NotNull ItemStack result) {
@@ -899,7 +930,7 @@ public final class Bukkit {
     }
 
     /**
-     * 通过自定义合成配方列表获取迭代器.
+     * 获取合成配方列表迭代器.
      * <p>
      * 原文:Get an iterator through the list of crafting recipes.
      *
@@ -920,7 +951,7 @@ public final class Bukkit {
     }
 
     /**
-     * 重置自定义合成配方列表值至默认.
+     * 重置自定义合成配方列表至默认状态.
      * <p>
      * 原文:Resets the list of crafting recipes to the default.
      */
@@ -929,14 +960,19 @@ public final class Bukkit {
     }
 
     /**
-     * Remove a recipe from the server.
+     * 从服务器移除指定的合成配方.
+     *
+     * <b>注意:移除一个合成配方可能导致与此配方有关的数据的永久丢失
+     * (例如配方是否已被玩家发现).</b>
+     * <p>
+     * 原文:Remove a recipe from the server.
      *
      * <b>Note that removing a recipe may cause permanent loss of data
      * associated with that recipe (eg whether it has been discovered by
      * players).</b>
      *
-     * @param key NamespacedKey of recipe to remove.
-     * @return True if recipe was removed
+     * @param key 要移除的配方的NamespacedKey
+     * @return 若配方成功移除返回true
      */
     public static boolean removeRecipe(@NotNull NamespacedKey key) {
         return server.removeRecipe(key);
@@ -977,11 +1013,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的正版准入设定.
+     * 获取服务器是否开启了正版模式.
      * <p>
      * 原文:Gets whether the Server is in online mode or not.
      *
-     * @return 服务器是否处于正版模式
+     * @return true则开启/false反之
      */
     public static boolean getOnlineMode() {
         return server.getOnlineMode();
@@ -999,18 +1035,18 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器是否处于极限模式.
+     * 获取服务器是否处于极限生存模式.
      * <p>
      * 原文:Gets whether the server is in hardcore mode or not.
      *
-     * @return 服务器是否处于极限模式
+     * @return 服务器是否处于极限生存模式
      */
     public static boolean isHardcore() {
         return server.isHardcore();
     }
 
     /**
-     * 关闭服务器，停止一切在运行的东西.
+     * 关闭服务器, 停止一切在运行的东西.
      * <p>
      * 原文:Shutdowns the server, stopping everything.
      */
@@ -1034,7 +1070,13 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the player by the given name, regardless if they are offline or
+     * 以给定名字获取玩家对象, 无论玩家是否在线.
+     * <p>
+     * 这个方法可能因通过web请求获取玩家名对应UUID而阻塞.
+     * <p>
+     * 即使此玩家不存在也会返回一个对象. 对于此方法, 任何玩家都是存在的.
+     * <p>
+     * 原文:Gets the player by the given name, regardless if they are offline or
      * online.
      * <p>
      * This method may involve a blocking web request to get the UUID for the
@@ -1043,10 +1085,12 @@ public final class Bukkit {
      * This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
-     * @deprecated Persistent storage of users should be by UUID as names are no longer
-     *             unique past a single session.
-     * @param name the name the player to retrieve
-     * @return an offline player
+     * @deprecated 由于玩家名在某个会话后(某次游戏后)不再唯一,
+     应使用uuid作为唯一标识来持久化存储用户.
+     (译注:正版玩家更改它们的玩家名后,其uuid不会改变,其他正版玩家可以使用这些玩家的曾用名,
+     可能会出现同一玩家名对应两个或多个不同玩家的情况)
+     * @param name 此玩家的玩家名
+     * @return 表示此玩家的OfflinePlayer对象
      * @see #getOfflinePlayer(java.util.UUID)
      */
     @Deprecated
@@ -1056,9 +1100,9 @@ public final class Bukkit {
     }
 
     /**
-     * 以指定的UUID获取玩家，无论他们使用正版模式还是离线模式.
+     * 以给定名字获取玩家对象, 无论玩家是否在线.
      * <p>
-     * 本方法都将返回一个对象，甚至此玩家并不存在.对于此方法来说，任何玩家都存在.
+     * 即使此玩家不存在也会返回一个对象. 对于此方法, 任何玩家都是存在的.
      * <p>
      * 原文:Gets the player by the given UUID, regardless if they are offline or
      * online.
@@ -1075,7 +1119,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取已被封禁的IP地址.
+     * 获取所有已被封禁的IP地址.
      * <p>
      * 原文:Gets a set containing all current IPs that are banned.
      *
@@ -1109,7 +1153,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取已被封禁的玩家.
+     * 获取所有已被封禁的玩家.
      * <p>
      * 原文:Gets a set containing all banned players.
      *
@@ -1123,14 +1167,14 @@ public final class Bukkit {
     /**
      * 获取指定类型的封禁列表.
      * <p>
-     * 以玩家名封禁已不再支持，尝试请求获取将返回null（Is it true? 经测试并没有返回null）.替代方法是封禁UUID.
+     * ban玩家名将不受支持(截至1.16.4还是支持的), 建议封禁玩家的uuid.
      * <p>
      * 原文:Gets a ban list for the supplied type.
      * <p>
      * Bans by name are no longer supported and this method will return
      * null when trying to request them. The replacement is bans by UUID.
      *
-     * @param type 要获取的封禁列表的类型，不能为null
+     * @param type 要获取的封禁列表的类型, 不能为null
      * @return 指定类型的封禁列表
      */
     @NotNull
@@ -1151,7 +1195,7 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器的的默认{@link GameMode 游戏模式}.
+     * 获取新玩家的默认{@link GameMode 游戏模式}.
      * <p>
      * 原文:Gets the default {@link GameMode} for new players.
      *
@@ -1163,21 +1207,26 @@ public final class Bukkit {
     }
 
     /**
-     * 设置服务器的默认游戏模式.
+     * 设置新玩家的默认 {@link GameMode}.
      * <p>
      * 原文:Sets the default {@link GameMode} for new players.
      *
-     * @param mode 新的默认游戏模式
+     * @param mode 新的游戏模式
      */
     public static void setDefaultGameMode(@NotNull GameMode mode) {
         server.setDefaultGameMode(mode);
     }
 
     /**
-     * Gets a {@link ConsoleCommandSender} that may be used as an input source
+     * 获取服务器的{@link ConsoleCommandSender},
+     * 将被作为服务器的标准输入.
+     * <p>
+     * 译注:该方法用于获取控制台.
+     * <p>
+     * 原文:Gets a {@link ConsoleCommandSender} that may be used as an input source
      * for this server.
      *
-     * @return a console command sender
+     * @return 控制台命令发送者对象
      */
     @NotNull
     public static ConsoleCommandSender getConsoleSender() {
@@ -1185,9 +1234,13 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the folder that contains all of the various {@link World}s.
+     * 获取包含所有{@link World 世界}数据的文件夹.
+     * <p>
+     * 译注:通常此文件夹就是服务端根目录.
+     * <p>
+     * 原文:Gets the folder that contains all of the various {@link World}s.
      *
-     * @return folder that contains all worlds
+     * @return 包含所有世界数据的文件夹
      */
     @NotNull
     public static File getWorldContainer() {
@@ -1195,11 +1248,10 @@ public final class Bukkit {
     }
 
     /**
-     * 获取曾在此服务器游戏的玩家.
+     * 获取所有登陆过服务器的玩家.
      * <p>
-     * 原文:Gets every player that has ever played on this server.
-     *
-     * @return 曾在此服务器游戏的玩家
+     * 原文:Gets every player that has ever played on this server.     
+     * @return 包含所有登录过的玩家的数组
      */
     @NotNull
     public static OfflinePlayer[] getOfflinePlayers() {
@@ -1207,9 +1259,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the {@link Messenger} responsible for this server.
+     * 获取服务器上管理plugin channel(插件通道)通信的{@link Messenger}实例.
+     * <p>
+     * 原文:Gets the {@link Messenger} responsible for this server.
      *
-     * @return messenger responsible for this server
+     * @return Messenger实例
      */
     @NotNull
     public static Messenger getMessenger() {
@@ -1217,9 +1271,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the {@link HelpMap} providing help topics for this server.
+     * 获取服务器上提供所有帮助主题的{@link HelpMap}实例.
+     * <p>
+     * 原文:Gets the {@link HelpMap} providing help topics for this server.
      *
-     * @return a help map for this server
+     * @return HelpMap实例
      */
     @NotNull
     public static HelpMap getHelpMap() {
@@ -1227,7 +1283,16 @@ public final class Bukkit {
     }
 
     /**
-     * Creates an empty inventory with the specified type. If the type
+     * 以指定类型创建一个空物品栏. 如果type是{@link InventoryType#CHEST}(箱子类型),
+     * 新的物品栏的大小则是27, 否则是与物品栏类型对应的正常大小.
+     * <br>
+     * 如果type是{@link InventoryType#WORKBENCH}, 则这个物品栏不会处理合成配方.
+     * 请使用{@link Player#openWorkbench(Location, boolean)}.
+     * <br>
+     * 同理, 以{@link InventoryType#ENCHANTING}创建的附魔台物品栏也不起作用.
+     * 请使用{@link Player#openEnchanting(Location, boolean)}.
+     * <p>
+     * 原文:Creates an empty inventory with the specified type. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.
      * <br>
@@ -1239,11 +1304,10 @@ public final class Bukkit {
      * for possible enchanting results. Use
      * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param type the type of inventory to create
-     * @return a new inventory
-     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
-     * viewed.
+     * @param owner 物品栏的持有者, 不指定持有者为null
+     * @param type 要创建的物品栏的种类
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果这种 {@link InventoryType} 物品栏不能显示给玩家
      *
      * @see InventoryType#isCreatable()
      */
@@ -1253,7 +1317,16 @@ public final class Bukkit {
     }
 
     /**
-     * Creates an empty inventory with the specified type and title. If the type
+     * 以指定类型和标题创建一个空物品栏. 如果type是{@link InventoryType#CHEST}(箱子类型),
+     * 新的物品栏的大小则是27, 否则是与物品栏类型对应的正常大小.
+     * <br>
+     * 如果type是{@link InventoryType#WORKBENCH}, 则这个物品栏不会处理合成配方.
+     * 请使用{@link Player#openWorkbench(Location, boolean)}.
+     * <br>
+     * 同理, 以{@link InventoryType#ENCHANTING}创建的附魔台物品栏也不起作用.
+     * 请使用{@link Player#openEnchanting(Location, boolean)}.
+     * <p>
+     * 原文:Creates an empty inventory with the specified type and title. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.<br>
      * It should be noted that some inventory types do not support titles and
@@ -1267,12 +1340,11 @@ public final class Bukkit {
      * for possible enchanting results. Use
      * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner The holder of the inventory; can be null if there's no holder.
-     * @param type The type of inventory to create.
-     * @param title The title of the inventory, to be displayed when it is viewed.
-     * @return The new inventory.
-     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
-     * viewed.
+     * @param owner 物品栏的持有者, 如果没有持有者可为null
+     * @param type 要创建的物品栏的种类
+     * @param title 物品栏的标题, 会显示给玩家
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果这种 {@link InventoryType} 物品栏不能显示给玩家
      *
      * @see InventoryType#isCreatable()
      */
@@ -1282,13 +1354,15 @@ public final class Bukkit {
     }
 
     /**
-     * Creates an empty inventory of type {@link InventoryType#CHEST} with the
+     * 创建一个类型为{@link InventoryType#CHEST}, 有指定大小的空物品栏.
+     * <p>
+     * 原文:Creates an empty inventory of type {@link InventoryType#CHEST} with the
      * specified size.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param size a multiple of 9 as the size of inventory to create
-     * @return a new inventory
-     * @throws IllegalArgumentException if the size is not a multiple of 9
+     * @param owner 物品栏的持有者, 不指定持有者为null
+     * @param size 物品栏的大小, 必须为9的倍数
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果大小不是9的倍数
      */
     @NotNull
     public static Inventory createInventory(@Nullable InventoryHolder owner, int size) throws IllegalArgumentException {
@@ -1296,15 +1370,16 @@ public final class Bukkit {
     }
 
     /**
-     * Creates an empty inventory of type {@link InventoryType#CHEST} with the
+     * 创建一个类型为{@link InventoryType#CHEST}, 有指定大小和标题的空物品栏.
+     * <p>
+     * 原文:Creates an empty inventory of type {@link InventoryType#CHEST} with the
      * specified size and title.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param size a multiple of 9 as the size of inventory to create
-     * @param title the title of the inventory, displayed when inventory is
-     *     viewed
-     * @return a new inventory
-     * @throws IllegalArgumentException if the size is not a multiple of 9
+     * @param owner 物品栏的持有者, 不指定持有者为null
+     * @param size 物品栏的大小, 必须为9的倍数
+     * @param title 物品栏的标题, 会显示给玩家
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果大小不是9的倍数
      */
     @NotNull
     public static Inventory createInventory(@Nullable InventoryHolder owner, int size, @NotNull String title) throws IllegalArgumentException {
@@ -1312,11 +1387,12 @@ public final class Bukkit {
     }
 
     /**
-     * Creates an empty merchant.
+     * 创建一个空的商人.
+     * <p>
+     * 原文:Creates an empty merchant.
      *
-     * @param title the title of the corresponding merchant inventory, displayed
-     * when the merchant inventory is viewed
-     * @return a new merchant
+     * @param title 查看商人物品栏时显示的标题
+     * @return 新的商人
      */
     @NotNull
     public static Merchant createMerchant(@Nullable String title) {
@@ -1324,60 +1400,72 @@ public final class Bukkit {
     }
 
     /**
-     * Gets user-specified limit for number of monsters that can spawn in a
+     * 获取一个区块最大可生成的怪物数量.
+     * <p>
+     * 原文:Gets user-specified limit for number of monsters that can spawn in a
      * chunk.
      *
-     * @return the monster spawn limit
+     * @return 生成限制数
      */
     public static int getMonsterSpawnLimit() {
         return server.getMonsterSpawnLimit();
     }
 
     /**
-     * 获取用户指定的可以在一个区块内生成的动物的数量的限制.
+     * 获取一个区块最大可生成的动物数量.
      * <p>
      * 原文:
      * Gets user-specified limit for number of animals that can spawn in a
      * chunk.
      *
-     * @return 同一区块内的动物数量限制
+     * @return 生成限制数
      */
     public static int getAnimalSpawnLimit() {
         return server.getAnimalSpawnLimit();
     }
 
     /**
-     * Gets user-specified limit for number of water animals that can spawn in
+     * 获取一个区块最大可生成的水生动物数量.
+     * <p>
+     * 原文:Gets user-specified limit for number of water animals that can spawn in
      * a chunk.
      *
-     * @return the water animal spawn limit
+     * @return 生成限制数
      */
     public static int getWaterAnimalSpawnLimit() {
         return server.getWaterAnimalSpawnLimit();
     }
 
     /**
-     * Gets user-specified limit for number of water ambient mobs that can spawn
+     * 获取一个区块最大可生成的水生环境数量.
+     * <p>
+     * 原文:Gets user-specified limit for number of water ambient mobs that can spawn
      * in a chunk.
      *
-     * @return the water ambient spawn limit
+     * @return 生成限制数
      */
     public static int getWaterAmbientSpawnLimit() {
         return server.getAmbientSpawnLimit();
     }
 
     /**
-     * Gets user-specified limit for number of ambient mobs that can spawn in
+     * 获取一个区块最大可生成的环境生物(一般指蝙蝠)数量.
+     * <p>
+     * 原文:Gets user-specified limit for number of ambient mobs that can spawn in
      * a chunk.
      *
-     * @return the ambient spawn limit
+     * @return 生成限制数
      */
     public static int getAmbientSpawnLimit() {
         return server.getAmbientSpawnLimit();
     }
 
     /**
-     * Checks the current thread against the expected primary thread for the
+     * 检查当前方法是否在主线程执行。
+     * <p>
+     * <b>注意:</b> 该方法不应该用于检查当前同步状态,当前线程为主线程表明它确实为同步,但是不能排除其他原因.
+     * <p>
+     * 原文:Checks the current thread against the expected primary thread for the
      * server.
      * <p>
      * <b>Note:</b> this method should not be used to indicate the current
@@ -1385,15 +1473,14 @@ public final class Bukkit {
      * thread indicates that it is synchronized, but a mismatch <b>does not
      * preclude</b> the same assumption.
      *
-     * @return true if the current thread matches the expected primary thread,
-     *     false otherwise
+     * @return 为主线程返回true否则返回false
      */
     public static boolean isPrimaryThread() {
         return server.isPrimaryThread();
     }
 
     /**
-     * 获取在客户端服务器列表里显示的消息(服务器的欢迎消息，又称message of the day).
+     * 获取在客户端服务器列表里显示的消息(服务器的欢迎消息，又称message of the day, 展示在mc客户端的服务器列表).
      * <p>
      * 原文:Gets the message that is displayed on the server list.
      *
@@ -1405,11 +1492,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器关闭时显示的提示消息.
+     * 获取服务器关闭时广播给玩家的默认提示消息.
      * <p>
      * 原文:Gets the default message that is displayed when the server is stopped.
      *
-     * @return 服务器关闭提示消息内容
+     * @return 关服消息
      */
     @Nullable
     public static String getShutdownMessage() {
@@ -1417,9 +1504,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the current warning state for the server.
+     * 获取服务器的警告状态.
+     * <p>
+     * 原文:Gets the current warning state for the server.
      *
-     * @return the configured warning state
+     * @return 预先配置的警告状态
      */
     @NotNull
     public static WarningState getWarningState() {
@@ -1427,9 +1516,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the instance of the item factory (for {@link ItemMeta}).
+     * 获取ItemFactory实例 (用于{@link ItemMeta}).
+     * <p>
+     * 原文:Gets the instance of the item factory (for {@link ItemMeta}).
      *
-     * @return the item factory
+     * @return ItemFactory实例
      * @see ItemFactory
      */
     @NotNull
@@ -1438,11 +1529,15 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the instance of the scoreboard manager.
+     * 获取计分板管理器实例.
+     * <p>
+     * 只在第一个世界加载后存在.
+     * <p>
+     * 原文:Gets the instance of the scoreboard manager.
      * <p>
      * This will only exist after the first world has loaded.
      *
-     * @return the scoreboard manager or null if no worlds are loaded.
+     * @return 计分板管理器实例, 如果未加载任何世界则为null
      */
     @Nullable
     public static ScoreboardManager getScoreboardManager() {
@@ -1450,11 +1545,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets an instance of the server's default server-icon.
+     * 获取服务器默认图标.
+     * <p>
+     * 原文:Gets an instance of the server's default server-icon.
      *
-     * @return the default server-icon; null values may be used by the
-     *     implementation to indicate no defined icon, but this behavior is
-     *     not guaranteed
+     * @return 服务器默认图标,当未定义服务器图标时将返回null(该行为无法担保)
      */
     @Nullable
     public static CachedServerIcon getServerIcon() {
@@ -1462,17 +1557,20 @@ public final class Bukkit {
     }
 
     /**
-     * Loads an image from a file, and returns a cached image for the specific
+     * 为指定文件创建一个缓存的服务器图标.
+     * <p>
+     * 大小和类型必须在允许范围内(由底层实现定义),否则将会抛出{@link Exception}.
+     * <p>
+     * 原文:Loads an image from a file, and returns a cached image for the specific
      * server-icon.
      * <p>
      * Size and type are implementation defined. An incompatible file is
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
-     * @param file the file to load the from
-     * @throws IllegalArgumentException if image is null
-     * @throws Exception if the image does not meet current server server-icon
-     *     specifications
-     * @return a cached server-icon that can be used for a {@link
+     * @param file 需要被加载的文件
+     * @throws IllegalArgumentException 如果图片为null
+     * @throws Exception 如果图片规格不适合作为服务器图标
+     * @return 一个CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
     @NotNull
@@ -1481,16 +1579,19 @@ public final class Bukkit {
     }
 
     /**
-     * Creates a cached server-icon for the specific image.
+     * 为指定图片创建一个缓存的服务器图标.
+     * <p>
+     * 大小和类型必须在允许范围内(由底层实现定义),否则将会抛出{@link Exception}.
+     * <p>
+     * 原文:Creates a cached server-icon for the specific image.
      * <p>
      * Size and type are implementation defined. An incompatible file is
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
-     * @param image the image to use
-     * @throws IllegalArgumentException if image is null
-     * @throws Exception if the image does not meet current server
-     *     server-icon specifications
-     * @return a cached server-icon that can be used for a {@link
+     * @param image 用于缓存的图片
+     * @throws IllegalArgumentException 若image为null
+     * @throws Exception 如果图片规格不适合作为服务器图标
+     * @return 一个CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
     @NotNull
@@ -1514,11 +1615,11 @@ public final class Bukkit {
     }
 
     /**
-     * 获取服务器空闲超时阈值(IDLE_KICK).
+     * 获取自动踢出闲置玩家的时间.
      * <p>
-     * 原文: Gets the idle kick timeout.
+     * 原文:Gets the idle kick timeout.
      *
-     * @return 以分钟为单位的空闲超时阈值
+     * @return the 闲置超时的分钟数
      */
     public static int getIdleTimeout() {
         return server.getIdleTimeout();
@@ -1534,7 +1635,6 @@ public final class Bukkit {
      *
      * @param world ChunkData对应的世界
      * @return 这个世界的新ChunkData实例
-     * 
      */
     @NotNull
     public static ChunkGenerator.ChunkData createChunkData(@NotNull World world) {
@@ -1542,7 +1642,7 @@ public final class Bukkit {
     }
 
     /**
-     * 创建一个Boos血量条实例。血量条的进度默认为1.0。
+     * 创建一个Boos血量条实例. 血量条的进度默认为1.0.
      * <p>
      * 原文:
      * Creates a boss bar instance to display to players. The progress
@@ -1560,18 +1660,22 @@ public final class Bukkit {
     }
 
     /**
-     * Creates a boss bar instance to display to players. The progress defaults
+     * 创建一个Boos血量条实例. 血量条的进度默认为1.0.
+     * <br>
+     * 该方法创建的实例会被添加到服务器的持久化存储空间中, 命令将可以编辑它们, 服务器重启后会被恢复.
+     * <p>
+     * 原文:Creates a boss bar instance to display to players. The progress defaults
      * to 1.0.
      * <br>
      * This instance is added to the persistent storage of the server and will
      * be editable by commands and restored after restart.
      *
-     * @param key the key of the boss bar that is used to access the boss bar
-     * @param title the title of the boss bar
-     * @param color the color of the boss bar
-     * @param style the style of the boss bar
-     * @param flags an optional list of flags to set on the boss bar
-     * @return the created boss bar
+     * @param key boss血量条的key, 将用于获取血量条
+     * @param title 血量条的标题
+     * @param color 血量条的颜色
+     * @param style 血量条的样式
+     * @param flags 血量条的附加属性列表（可选）
+     * @return 创建的Boss血量条实例
      */
     @NotNull
     public static KeyedBossBar createBossBar(@NotNull NamespacedKey key, @Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags) {
@@ -1579,7 +1683,15 @@ public final class Bukkit {
     }
 
     /**
-     * Gets an unmodifiable iterator through all persistent bossbars.
+     * 获取一个不可编辑的用于迭代所有持久存储的boss血量条的迭代器.
+     * <ul>
+     *   <li>这个血量条<b>不</b>绑定到某一具体的{@link org.bukkit.entity.Boss}</li>
+     *   <li>这个血量条<b>不是</b>由{@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}创建的
+     *   </li>
+     * </ul>
+     * 例如:使用bossbar命令创建的boss血量条 (它是持久存储的, 可由此迭代器访问).
+     * <p>
+     * 原文:Gets an unmodifiable iterator through all persistent bossbars.
      * <ul>
      *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
      *   <li>
@@ -1590,7 +1702,7 @@ public final class Bukkit {
      *
      * e.g. bossbars created using the bossbar command
      *
-     * @return a bossbar iterator
+     * @return bossbar迭代器
      */
     @NotNull
     public static Iterator<KeyedBossBar> getBossBars() {
@@ -1664,7 +1776,7 @@ public final class Bukkit {
 
     /**
      * 获取一个用以遍历所有进度的迭代器对象。
-     * 进度不能够从该迭代器上被删除。
+     * 进度不能够从该迭代器上删除。
      * <p>
      * 原文: Get an iterator through all advancements. Advancements cannot be removed
      * from this iterator,
@@ -1754,14 +1866,20 @@ public final class Bukkit {
     }
 
     /**
-     * Gets a all tags which have been defined within the server.
+     * 获取服务器定义的所有标签.
+     * <br>
+     * Server implementations are allowed to handle only the registries
+     * indicated in {@link Tag}.
+     * <br>
+     * 对返回的迭代器的可变性不作保证.
+     * 原文:Gets a all tags which have been defined within the server.
      * <br>
      * Server implementations are allowed to handle only the registries
      * indicated in {@link Tag}.
      * <br>
      * No guarantees are made about the mutability of the returned iterator.
      *
-     * @param <T> type of the tag
+     * @param <T> tag的类型
      * @param registry the tag registry to look at
      * @param clazz the class of the tag entries
      * @return all defined tags
@@ -1772,10 +1890,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the specified {@link LootTable}.
+     * 获取指定的 {@link LootTable 战利品表}.
+     * <p>
+     * 原文:Gets the specified {@link LootTable}.
      *
-     * @param key the name of the LootTable
-     * @return the LootTable, or null if no LootTable is found with that name
+     * @param key LootTable的名称
+     * @return LootTable实例, 若找不到返回null
      */
     @Nullable
     public static LootTable getLootTable(@NotNull NamespacedKey key) {
@@ -1783,7 +1903,11 @@ public final class Bukkit {
     }
 
     /**
-     * Selects entities using the given Vanilla selector.
+     * 以给定的原版选择器选择筛选实体.
+     * <br>
+     * 既不保证选择器的格式, 也不保证.
+     *
+     * 原文:Selects entities using the given Vanilla selector.
      * <br>
      * No guarantees are made about the selector format, other than they match
      * the Vanilla format for the active Minecraft version.

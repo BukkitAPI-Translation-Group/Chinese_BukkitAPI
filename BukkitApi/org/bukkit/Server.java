@@ -78,21 +78,21 @@ public interface Server extends PluginMessageRecipient {
     public static final String BROADCAST_CHANNEL_USERS = "bukkit.broadcast.user";
 
     /**
-     * 获得服务器名字.
+     * 获取这个 {@link Server} 实例的名字.
      * <p>
      * 原文:Gets the name of this server implementation.
      *
-     * @return 服务器名字
+     * @return 这个服务器实例的名字
      */
     @NotNull
     public String getName();
 
     /**
-     * 获得服务器版本字符串.
+     * 获取这个 {@link Server} 实例的版本.
      * <p>
      * 原文:Gets the version string of this server implementation.
      *
-     * @return 服务器版本字符串
+     * @return 这个服务器实例的版本
      */
     @NotNull
     public String getVersion();
@@ -108,9 +108,31 @@ public interface Server extends PluginMessageRecipient {
     public String getBukkitVersion();
 
     /**
-     * 获得一个当前所有已登录玩家的集合.
+     * 获取所有在线玩家的集合的视图. 
      * <p>
-     * 原文:Gets a view of all currently logged in players. This {@linkplain
+     * 此 {@linkplain Collections#unmodifiableCollection(Collection) 视图} is a reused
+     * object, making some operations like {@link Collection#size()}
+     * zero-allocation.
+     * (以下翻译仅供参考)
+     * <p>
+     * 此集合是由内部表示支持的视图, 因此, 一切修改服务器内部状态的操作将会
+     * 立即反映到此集合上. 并不严格保证未来或所有实现都会遵守
+     * 返回一个可再利用集合 (一致性)的约定. 不赞成对这个集合执行强制转换或
+     * 依赖于接口实现 (例如 {@link Serializable} or {@link List}). 
+     * <p>
+     * 迭代操作 is undefined outside of self-contained main-thread
+     * uses. 正常且立即的迭代器会影响集合是否被完全支持. 
+     * {@link Entity#teleport(Location) 传送}, 
+     * {@link Player#setHealth(double) 死亡}, 
+     * {@link Player#kickPlayer(String) 踢出} 等操作的结果是未知的 (没有罗列完全). 
+     * 任何对这个集合的异步操作都是不安全的. 
+     * <p>
+     * For safe consequential iteration or mimicking the old array behavior,
+     * using {@link Collection#toArray(Object[])} is recommended. For making
+     * snapshots, {@link ImmutableList#copyOf(Collection)} is recommended.
+     * <p>
+     * 原文:
+     * This {@linkplain
      * Collections#unmodifiableCollection(Collection) view} is a reused
      * object, making some operations like {@link Collection#size()}
      * zero-allocation.
@@ -134,22 +156,22 @@ public interface Server extends PluginMessageRecipient {
      * using {@link Collection#toArray(Object[])} is recommended. For making
      * snapshots, {@link ImmutableList#copyOf(Collection)} is recommended.
      *
-     * @return 当前所有已登录玩家的集合.
+     * @return 所有在线玩家的视图
      */
     @NotNull
     public Collection<? extends Player> getOnlinePlayers();
 
     /**
-     * 获得服务器可同时在线玩家最高人数.
+     * 获取服务器允许进入的最大玩家数.
      * <p>
      * 原文:Get the maximum amount of players which can login to this server.
      *
-     * @return 同时在线玩家最高人数
+     * @return 服务器的最大玩家数
      */
     public int getMaxPlayers();
 
     /**
-     * 获得服务器端口.
+     * 获取服务器监听的端口号.
      * <p>
      * 原文:Get the game port that the server runs on.
      *
@@ -158,101 +180,104 @@ public interface Server extends PluginMessageRecipient {
     public int getPort();
 
     /**
-     * 获得当前设置的视距
+     * 获取服务器的视距.
      * <p>
      * 原文:Get the view distance from this server.
      *
-     * @return 服务器当前设置的视距.
+     * @return 服务器当前设置的视距
      */
     public int getViewDistance();
 
     /**
-     * 获得当前服务器绑定的IP,当未设置时返回为空
+     * 获取服务器绑定的IP, 如果未指定就返回空字符串.
      * <p>
      * 原文:Get the IP that this server is bound to, or empty string if not
      * specified.
      *
-     * @return 获得当前服务器绑定的IP,未绑定则为空
+     * @return 服务器绑定的IP, 如果未指定就返回空字符串
      */
     @NotNull
     public String getIp();
 
     /**
-     * 获得主世界的世界类型(检测主世界的世界类型).
+     * 获取默认世界的世界类型 (level-type 设置).
      * <p>
      * 原文:Get world type (level-type setting) for default world.
      *
-     * @return 世界类型(比如:DEFAULT, FLAT, DEFAULT_1_1)
+     * @return 默认世界的世界类型 (例： DEFAULT, FLAT, DEFAULT_1_1)
      */
     @NotNull
     public String getWorldType();
 
     /**
-     * 获得是否允许生成器构造(对应server.properties文件中的generate-structures)
+     * 获取此服务器是否自然生成结构.
      * <p>
      * 原文:Get generate-structures setting.
      *
-     * @return 当启用时返回true否则返回false
+     * @return true表示服务器可自然生成结构, false反之
      */
     public boolean getGenerateStructures();
 
     /**
-     * 获取该服务器是否允许末地
+     * 获取此服务器是否开启了末路之地.
      * <p>
      * 原文:Gets whether this server allows the End or not.
      *
-     * @return 允许则返回true,否则返回false
+     * @return 是否可以进入末路之地
      */
     public boolean getAllowEnd();
 
     /**
-     * 
-     * Gets whether this server allows the Nether or not.
+     * 获取此服务器是否开启了下界.
+     * <p>
+     * 原文:Gets whether this server allows the Nether or not.
      *
-     * @return whether this server allows the Nether or not
+     * @return 是否可以进入下界
      */
     public boolean getAllowNether();
 
     /**
-     * 获取该服务器是否有白名单
+     * 获取此服务器是否开启了白名单. 
      * <p>
-     * 原文:Gets whether this server has a whitelist or not.
+     * 原文:
+     * Gets whether this server has a whitelist or not.
      *
-     * @return 有则返回true,否则返回false
+     * @return 是否开启了白名单
      */
     public boolean hasWhitelist();
 
     /**
-     * 设置该服务器是是否开启白名单
+     * 设置此服务器是否开启白名单.
      * <p>
      * 原文:Sets if the server is whitelisted.
      *
-     * @param value 为true时则开启白名单,false则关闭白名单
+     * @param value true为开, false为关
      */
     public void setWhitelist(boolean value);
 
     /**
-     * 获得所有在白名单中的玩家.
+     * 获取所有已被添加到白名单的玩家.
      * <p>
      * 原文:Gets a list of whitelisted players.
      *
-     * @return 白名单中的玩家
+     * @return 用Set存储的所有被添加到白名单的玩家
      */
     @NotNull
     public Set<OfflinePlayer> getWhitelistedPlayers();
 
     /**
-     * 重新加载服务器白名单配置.
+     * 从硬盘重载白名单列表.
      * <p>
      * 原文:Reloads the whitelist from disk.
      */
     public void reloadWhitelist();
 
     /**
-     * 广播一条消息到所有玩家.
+     * 广播一条消息到所有在线玩家.
      * <p>
-     * 这与调用{@link #broadcast(java.lang.String,
-     * java.lang.String)}(第二个参数为{@link #BROADCAST_CHANNEL_USERS})相当。
+     * 这与调用 {@link #broadcast(java.lang.String,
+     * java.lang.String)} 并将第二个参数设为 {@link 
+     * Server#BROADCAST_CHANNEL_USERS} 等效.
      * <p>
      * 原文:Broadcast a message to all players.
      * <p>
@@ -267,16 +292,16 @@ public interface Server extends PluginMessageRecipient {
     /**
      * 获取更新文件夹的名字. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
      * <p>
-     * 更新文件夹相对于插件文件夹.
+     * 更新文件夹的位置相对于插件文件夹(译注:一般指服务端plugins文件夹下的update文件夹).
      * <p>
-     * Tips：如何使用更新文件夹来实现更新您的插件呢？（服主和开发者都可以了解下)：
+     * Tips：如何使用更新文件夹来实现更新您的插件呢? (服主和开发者都可以了解下)：
      * <ol>
      * <li>创建更新文件夹，已有则跳过此步.
-     * <li>下载您要更新的插件到此目录 (注意：jar文件名必须和在插件目录下的jar文件名一样，否则不起作用。).
+     * <li>下载您要更新的插件到此目录(plugins/update) (注意：jar文件名必须和在插件目录下的jar文件名一样，否则不起作用).
      * <li>重载/重启服务器.
      * <li>OK，看效果吧.
      * </ol>
-     *
+     * <p>
      * 原文:
      * Gets the name of the update folder. The update folder is used to safely
      * update plugins at the right moment on a plugin load.
@@ -289,10 +314,11 @@ public interface Server extends PluginMessageRecipient {
     public String getUpdateFolder();
 
     /**
-     * 获取表示更新文件夹的 File 实例. 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     * 获取更新文件夹的 File 实例. 
      * <p>
-     * 原文:
-     * Gets the update folder. The update folder is used to safely update
+     * 系统将会在插件加载时选择适当的时机利用此文件夹来安全地更新插件.
+     * <p>
+     * 原文:Gets the update folder. The update folder is used to safely update
      * plugins at the right moment on a plugin load.
      *
      * @return 表示更新文件夹的 File 实例
@@ -301,54 +327,98 @@ public interface Server extends PluginMessageRecipient {
     public File getUpdateFolderFile();
 
     /**
-     * 获取玩家重连服务器的间隔(-1则为无限制)
+     * 获取服务器的最小连接间隔设定.
+     * <p>
+     * 译注:单位为毫秒.
      * <p>
      * 原文:Gets the value of the connection throttle setting.
-     *
-     * @return 返回玩家重连服务器的间隔
+     * @return 服务器的最小连接间隔数设定
      */
     public long getConnectionThrottle();
 
     /**
-     * 获得每隔多少ticks生成动物
-     * <p>
-     * 原文:Gets default ticks per animal spawns value.
-     * <p>
-     * <b>示例:</b>
+     * 获取每隔多少tick应该生成一次动物.
+     * <b>例如:</b>
      * <ul>
-     * <li>值为1时服务器将尝试每tick都生成动物
-     * <li>值为400服务器将每400tick尝试生成一次动物
-     * <li>一个低于0的值将会被重置设为默认值(默认为400)
+     * <li>此值为 1 表示服务器会在每个tick尝试生成动物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成动物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <b>注意:</b> 如果设为 0, 动物生成会被禁用.
+     * 我们推荐使用 spawn-animals 选项来代替将其设为0.
+     * <p>
+     * Minecraft使用的默认值: 400.
+     * <p>
+     * 原文: <hr>
+     * Gets default ticks per animal spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn monsters
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn monsters
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
      * </ul>
      * <p>
-     * <b>注意:</b>如果设置为0,动物生成将会被禁止,我们推荐使用spawn-animals代替用于控制动物生成
+     * <b>Note:</b> If set to 0, animal spawning will be disabled. 
+     * We recommend using spawn-animals to control this instead.
      * <p>
+     * Minecraft default: 400.
      *
-     * @return 返回生成动物间隔的tick
+     * @return 每隔多少tick应该生成一次动物
      */
     public int getTicksPerAnimalSpawns();
 
     /**
-     * 获得每隔多少ticks生成怪物
-     * <p>
-     * 原文:Gets the default ticks per monster spawns value.
-     * <p>
-     * <b>示例:</b>
+     * 获取每隔多少tick应该生成一次怪物.
+     * <b>例如:</b>
      * <ul>
-     * <li>值为1时服务器将尝试每tick都生成怪物
-     * <li>值为400服务器将每400tick尝试生成一次怪物
-     * <li>一个低于0的值将会被重重设为默认值(默认为1)
+     * <li>此值为 1 表示服务器会在每个tick尝试生成怪物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成怪物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <b>注意:</b> 如果设为 0, 怪物生成会被禁用.
+     * 我们推荐使用 spawn-monsters 选项来代替将其设为0.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文: 
+     * Gets default ticks per monster spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn monsters
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn monsters
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
      * </ul>
      * <p>
-     * <b>注意:</b>如果设置为0,动物生成将会被禁止,我们推荐使用spawn-monsters代替用于控制动物生成
+     * <b>Note:</b> If set to 0, monster spawning will be disabled. 
+     * We recommend using spawn-monsters to control this instead.
      * <p>
+     * Minecraft default: 1.
      *
-     * @return 返回生成怪物间隔的tick
+     * @return 每隔多少tick应该生成一次怪物
      */
     public int getTicksPerMonsterSpawns();
 
     /**
-     * Gets the default ticks per water mob spawns value.
+     * 获取每隔多少tick应该生成一次水生动物.
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成水生动物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成水生动物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 水生动物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per water mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -363,12 +433,25 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water mobs spawn value
+     * @return 每隔多少tick应该生成一次怪物
      */
     public int getTicksPerWaterSpawns();
 
     /**
-     * Gets the default ticks per water ambient mob spawns value.
+     * 获取每隔多少tick应该生成一次水生环境生物(通常指鱼类).
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成水生环境生物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成水生环境生物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 水生环境生物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per water ambient mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -383,12 +466,25 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water ambient mobs spawn value
+     * @return 每隔多少tick应该生成一次水生环境生物
      */
     public int getTicksPerWaterAmbientSpawns();
 
     /**
-     * Gets the default ticks per ambient mob spawns value.
+     * 获取每隔多少tick应该生成一次环境生物(即蝙蝠).
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成环境生物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成环境生物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 环境生物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per ambient mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -403,170 +499,184 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per ambient mobs spawn value
+     * @return 每隔多少tick应该生成一次环境生物
      */
     public int getTicksPerAmbientSpawns();
 
     /**
-     * 根据玩家的名字来获取一个玩家的实例
+     * 使用给定玩家名模糊搜索玩家.
+     * 这个方法不可能返回离线玩家的对象.
      * <p>
-     * 原文:Gets a player object by the given username.
+     * 译注: 注意此方法用于模糊搜索——当服务器内有玩家 aaa, aab, abc 时,
+     * 使用 <code>getPlayer("ab")</code> 会返回玩家 abc 的实例, 而如果 ab 在线则会返回 ab 的实例
+     * 因此<b>可能存在严重的安全问题</b>, 需要精确搜索(例如给予OP时)请用
+     * {@link #getPlayerExact(java.lang.String) } 或 {@link
+     * #getPlayer(java.util.UUID) } 代替.
      * <p>
-     * 这个方法不会返回不在线玩家的实例(意思就是说获取的玩家必须在线,否则返回null)
+     * 原文: 
+     * Gets a player object by the given username.
+     * This method may not return objects for offline players.
      *
-     * @param name 被查找玩家的名字
-     * @return 一个在线玩家实例或者null
+     * @param name 用来查找的玩家名
+     * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Nullable
     public Player getPlayer(@NotNull String name);
 
     /**
-     * 通过玩家名准确的查找来获得一个玩家实例,避免大小写问题(译注:该方法使用频率极低)
+     * 使用给定玩家名精确查找玩家, 不区分大小写.
      * <p>
-     * 原文:Gets the player with the exact given name, case insensitive.
+     * 原文:Gets the player with the exact given name, case insensitive. 
      *
-     * @param name 被查找玩家的准确名字
-     * @return 一个在线玩家的实例或者null
+     * @param name 用于检索的精确玩家名称, 不区分大小写 
+     * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Nullable
     public Player getPlayerExact(@NotNull String name);
 
     /**
-     * 尝试用name匹配所有玩家并且返回一个所有匹配玩家的List
+     * 尝试获取所有匹配给定名称的玩家, 并返回包含了一切可能匹配的列表.
      * <p>
-     * 原文:Attempts to match any players with the given name, and returns a list
+     * 这个列表没有经过任何特殊排序. 如果能在在线玩家内精确匹配到给定名称,
+     * 则返回一个只包含单个结果的列表.
+     * <p>
+     * 译注: 设有在线玩家 abcd, efg, dbca 那么 <code>matchPlayer("bc")</code> 会
+     * 返回一个包含 [abcd, dbca] 的列表. 但如果此时玩家 bc 上线了, 再执行相同的查找
+     * 就只会返回包含一个结果的列表 [bc].
+     * <p>
+     * 原文: 
+     * Attempts to match any players with the given name, and returns a list
      * of all possibly matches.
      * <p>
-     * 该list未排序,如果准确匹配到某个玩家则该List仅包含该玩家
-     * <p>
-     * 原文:This list is not sorted in any particular order. If an exact match is
+     * This list is not sorted in any particular order. If an exact match is
      * found, the returned list will only contain a single result.
      *
-     * @param name 匹配玩家名
-     * @return 所有匹配玩家的List(译注:遍历该List时记得检测玩家是否在线)
+     * @param name 需要匹配的(部分)名称
+     * @return 包含所有可能的匹配结果的列表
      */
     @NotNull
     public List<Player> matchPlayer(@NotNull String name);
 
     /**
-     * 通过UUID获取玩家的实例
+     * 使用给定{@link UUID}获取玩家.
      * <p>
      * 原文:Gets the player with the given UUID.
      *
-     * @param id 用于检索玩家的UUID
-     * @return 一个在线玩家的实例或者null
+     * @param id 要获取的玩家的{@link UUID}
+     * @return 如果找到了则返回玩家对象, 否则返回null
      */
     @Nullable
     public Player getPlayer(@NotNull UUID id);
 
     /**
-     * 获取PluginManager接口的实例
+     * 获取插件管理器以与其他插件进行交互.
      * <p>
      * 原文:Gets the plugin manager for interfacing with plugins.
      *
-     * @return 返回PluginManager接口的实例
+     * @return 此服务器的插件管理器
      */
     @NotNull
     public PluginManager getPluginManager();
 
     /**
-     * 获取BukkitScheduler接口的实例用来安排任务.
+     * 获取用于管理调度任务的调度器.
      * <p>
-     * 原文:Gets the scheduler for managing scheduled events.
+     * 原文: Gets the scheduler for managing scheduled events.
      *
-     * @return BukkitScheduler接口的实例
+     * @return 此服务器的调度器服务
      */
     @NotNull
     public BukkitScheduler getScheduler();
 
     /**
-     * 获取ServicesManager。
+     * 获取服务管理器.
      * <p>
      * 原文:Gets a services manager.
      *
-     * @return 返回ServicesManager
+     * @return 服务管理器
      */
     @NotNull
     public ServicesManager getServicesManager();
 
     /**
-     * 获取服务器以List封装的所有World
+     * 获取当前服务器加载的所有世界的列表.
      * <p>
      * 原文:Gets a list of all worlds on this server.
      *
-     * @return 一个包含服务器所有World的List
+     * @return 所有已经被服务器加载的世界列表
      */
     @NotNull
     public List<World> getWorlds();
 
     /**
-     * 使用给定的名字和配置来创建或者加载一个World
+     * 用给定的世界生成器来创建或者加载一个世界.
      * <p>
-     * 原文:Creates or loads a world with the given name using the specified
+     * 如果这个世界已经被加载了, 那么就会返回等同于调用 
+     * <code>getWorld(creator.name())</code> 的结果.
+     * <p>
+     * 原文: Creates or loads a world with the given name using the specified
      * options.
      * <p>
-     * 如果该World已经被加载,它相当于返回getWorld(creator.name())
-     * <p>
-     * 原文:If the world is already loaded, it will just return the equivalent of
+     * If the world is already loaded, it will just return the equivalent of
      * getWorld(creator.name()).
      *
-     * @param creator 世界生成器
-     * @return 返回新建的World或者已被服务器加载的World实例
+     * @param creator 加载或者创建这个世界的时候要用的世界生成器
+     * @return 生成的或者加载的世界对象
      */
     @Nullable
     public World createWorld(@NotNull WorldCreator creator);
 
     /**
-     * 通过给定的名字从服务器卸载一个World
+     * 卸载给定名称对应的世界.
      * <p>
-     * 原文:Unloads a world with the given name.
+     * 原文: Unloads a world with the given name.
      *
-     * @param name 需要被卸载的世界的名字
-     * @param save 是否在卸载World前保存区块数据
-     * @return 成功则返回true否则返回fasle
+     * @param name 要卸载的世界的名字
+     * @param save 是否在卸载世界前保存区块数据
+     * @return 如果成功返回true, 否则返回false
      */
     public boolean unloadWorld(@NotNull String name, boolean save);
 
     /**
-     * 通过给定的Wrold实例从服务器卸载一个World
+     * 卸载指定的世界.
      * <p>
-     * 原文:Unloads the given world.
+     * 原文: Unloads a world with the given name.
      *
-     * @param world 被卸载的World实例
-     * @param save 是否在卸载World前保存区块数据
-     * @return  成功则返回true否则返回fasle
+     * @param world 要卸载的世界
+     * @param save 是否在卸载世界前保存区块数据
+     * @return 如果成功返回true, 否则返回false
      */
     public boolean unloadWorld(@NotNull World world, boolean save);
 
     /**
-     * 通过给定的name获取一个World实例
+     * 使用给定的名称查找世界.
      * <p>
-     * 原文:Gets the world with the given name.
+     * 原文: Gets the world with the given name.
      *
-     * @param name 被获取世界的name
-     * @return World实例,当世界不存在时将返回null
+     * @param name 世界名称
+     * @return 给定名称对应世界的实例, 没找到则返回null
      */
     @Nullable
     public World getWorld(@NotNull String name);
 
     /**
-     * 通过UUID获取World实例
+     * 使用给定{@linkplain UUID 唯一ID}查找世界. 
      * <p>
      * 原文:Gets the world from the given Unique ID.
      *
-     * @param uid 被获取的World的UUID
-     * @return  World实例,当世界不存在时将返回null
+     * @param uid 要查找的世界的唯一ID
+     * @return 没找到则返回null
      */
     @Nullable
     public World getWorld(@NotNull UUID uid);
 
     /**
-     * 通过给定的item ID获取MapView实例
+     * 使用给定物品ID获取地图.
      * <p>
-     * 原文:Gets the map from the given item ID.
+     * 原文: Gets the map from the given item ID. 
      *
-     * @param id 需要被获取的Map的id
-     * @return MapView实例,当Map不存在时将返回null
+     * @param id 要获取的地图的ID
+     * @return 如果找到则返回对应的 {@link MapView}, 否则返回null
      * @deprecated 不安全的参数
      */
     @Deprecated
@@ -574,12 +684,12 @@ public interface Server extends PluginMessageRecipient {
     public MapView getMap(int id);
 
     /**
-     * 创建一个新的MapView实例并且自动分配ID
+     * 创建一个新地图并自动分配一个ID.
      * <p>
-     * Create a new map with an automatically assigned ID.
+     * 原文:Create a new map with an automatically assigned ID.
      *
-     * @param world 该Map所属的World
-     * @return 一个新的MapView实例
+     * @param world 地图所属的世界
+     * @return 新创建的 {@link MapView}
      */
     @NotNull
     public MapView createMap(@NotNull World world);
@@ -639,135 +749,141 @@ public interface Server extends PluginMessageRecipient {
     public void reloadData();  
 
     /**
-     * 返回此服务器的日志记录.
+     * 返回与此服务器实例绑定的主{@link Logger}.
      * <p>
      * 原文:Returns the primary logger associated with this server instance.
      *
-     * @return 服务器日志
+     * @return 与此服务器绑定的 {@link Logger}
      */
     @NotNull
     public Logger getLogger();
 
     /**
-     * 获取一个{@link PluginCommand}通过给定的name或者别称
+     * 用给定命令名或别名获取 {@link PluginCommand}.
      * <p>
      * 原文:Gets a {@link PluginCommand} with the given name or alias.
      *
-     * @param name 命令名
-     * @return 如果找到该名字的Command则返回PluginCommand实例,否则返回null
+     * @param name 命令名或命令别名
+     * @return 若找到则返回对应的命令实例, 找不到则返回null
      */
     @Nullable
     public PluginCommand getPluginCommand(@NotNull String name);
 
     /**
-     * 将以记载的玩家储存到硬盘
+     * 保存已加载的玩家信息.
      * <p>
      * 原文:Writes loaded players to disk.
      */
     public void savePlayers();
 
     /**
-     * 在服务器执行一个命令
+     * 在服务器执行一个命令 (如果命令存在).
      * <p>
      * 原文:Dispatches a command on this server, and executes it if found.
      *
-     * @param sender 执行该命令的对象
-     * @param commandLine sender执行的命令,由命令和参数组成. 示例: <code>test abc
-     *     123</code>
-     * @return 如果无法找到目标则返回false,否则返回true
-     * @throws CommandException 抛出执行期间出现的未捕获的异常
+     * @param sender 执行该命令的发送者
+     * @param commandLine 命令 + 参数. 例如: <code>test abc 123</code>
+     * @return 若命令未找到返回false
+     * @throws CommandException 当执行命令期间出现未捕获的异常时抛出
      */
     public boolean dispatchCommand(@NotNull CommandSender sender, @NotNull String commandLine) throws CommandException;
 
     /**
-     * 向服务器添加一个配方
+     * 向合成管理器添加一个合成配方.
      * <p>
      * 原文:Adds a recipe to the crafting manager.
      *
-     * @param recipe 被添加的配方
-     * @return 当配方成功添加时返回true,否则返回false
+     * @param recipe 要添加的合成配方
+     * @return 是否成功的地添加了合成配方
      */
     @Contract("null -> false")
     public boolean addRecipe(@Nullable Recipe recipe);
 
     /**
-     * 获取一个合成ItemStack的所有配方,如果副ID为-1将匹配所有的数据值
+     * 获取对指定物品适用的所有合成配方的列表.
+     * 在比对过程中物品堆叠数量会被忽略.
+     * 如果给定物品堆的耐久度为 -1, 将匹配任意的数据值.
      * <p>
      * 原文:Get a list of all recipes for a given item. The stack size is ignored
      * in comparisons. If the durability is -1, it will match any data value.
      *
-     * @param result 被获取配方的ItemStack
-     * @return 配方的List实例
+     * @param result 要匹配的物品
+     * @return 对指定物品适用的所有合成配方的列表
      */
     @NotNull
     public List<Recipe> getRecipesFor(@NotNull ItemStack result);
 
     /**
-     * 获取配方迭代器
+     * 获取合成配方列表迭代器.
      * <p>
      * 原文:Get an iterator through the list of crafting recipes.
      *
-     * @return 配方的迭代器
+     * @return 迭代器
      */
     @NotNull
     public Iterator<Recipe> recipeIterator();
 
     /**
-     * 清空配方
+     * 清理所有已添加的合成配方.
      * <p>
      * 原文:Clears the list of crafting recipes.
      */
     public void clearRecipes();
 
     /**
-     * 重置配方
+     * 重置自定义合成配方列表至默认状态.
      * <p>
      * 原文:Resets the list of crafting recipes to the default.
      */
     public void resetRecipes();
 
     /**
-     * Remove a recipe from the server.
+     * 从服务器移除指定的合成配方.
+     *
+     * <b>注意:移除一个合成配方可能导致与此配方有关的数据的永久丢失
+     * (例如配方是否已被玩家发现).</b>
+     * <p>
+     * 原文:Remove a recipe from the server.
      *
      * <b>Note that removing a recipe may cause permanent loss of data
      * associated with that recipe (eg whether it has been discovered by
      * players).</b>
      *
-     * @param key NamespacedKey of recipe to remove.
-     * @return True if recipe was removed
+     * @param key 要移除的配方的NamespacedKey
+     * @return 若配方成功移除返回true
      */
     public boolean removeRecipe(@NotNull NamespacedKey key);
 
     /**
-     * 获取一个定义于服务器配置文件中的命令别名列表
+     * 获取服务器配置定义的命令别名列表.
      * <p>
      * 原文:Gets a list of command aliases defined in the server properties.
      *
-     * @return 储存有命令及其别名List的Map实例
+     * @return 命令别名map
      */
     @NotNull
     public Map<String, String[]> getCommandAliases();
 
     /**
-     * 获得此世界的出生点保护半径.
+     * 获取出生地保护的半径范围（以方块为单位）.
      * <p>
      * 原文:Gets the radius, in blocks, around each worlds spawn point to protect.
      *
-     * @return 半径(如果没有则返回0)
+     * @return 出生地保护范围，0为没有保护
      */
     public int getSpawnRadius();
 
     /**
-     * 设置这个世界的出生点保护半径.
+     * 设置出生地保护的半径范围.
      * <p>
      * 原文:Sets the radius, in blocks, around each worlds spawn point to protect.
      *
-     * @param value 新的半径(若没有则设置0)
+     * @param value 新的出生地保护的范围，0设为没有保护
      */
     public void setSpawnRadius(int value);
 
     /**
-     * 获得服务器是否开启了正版模式.
+     * 获取服务器是否开启了正版模式.
      * <p>
      * 原文:Gets whether the Server is in online mode or not.
      *
@@ -776,25 +892,25 @@ public interface Server extends PluginMessageRecipient {
     public boolean getOnlineMode();
 
     /**
-     * 获得服务器是否开启了飞行模式.
+     * 获取服务器是否允许飞行.
      * <p>
      * 原文:Gets whether this server allows flying or not.
      *
-     * @return true则开启/false反之
+     * @return 服务器是否允许飞行
      */
     public boolean getAllowFlight();
 
     /**
-     * 获得服务器是否开启了极限生存模式.
+     * 获取服务器是否处于极限生存模式.
      * <p>
      * 原文:Gets whether the server is in hardcore mode or not.
      *
-     * @return true则开启/false反之
+     * @return 服务器是否处于极限生存模式
      */
     public boolean isHardcore();
 
     /**
-     * 彻底关闭服务器.
+     * 关闭服务器, 停止一切在运行的东西.
      * <p>
      * 原文:Shutdowns the server, stopping everything.
      */
@@ -806,7 +922,7 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Broadcasts the specified message to every user with the given
      * permission name.
      *
-     * @param message 需要广播的消息
+     * @param message 要广播的消息
      * @param permission 接受这条公告需要拥有的{@link Permissible
      *     权限许可}
      * @return 成功接收此消息的玩家数
@@ -814,24 +930,27 @@ public interface Server extends PluginMessageRecipient {
     public int broadcast(@NotNull String message, @NotNull String permission);
 
     /**
-     * 通过给定的name获取OfflinePlayer实例
+     * 以给定名字获取玩家对象, 无论玩家是否在线.
+     * <p>
+     * 这个方法可能因通过web请求获取玩家名对应UUID而阻塞.
+     * <p>
+     * 即使此玩家不存在也会返回一个对象. 对于此方法, 任何玩家都是存在的.
      * <p>
      * 原文:Gets the player by the given name, regardless if they are offline or
      * online.
      * <p>
-     * 该方法将会阻塞式调用一个网络请求用于获取给定name的UUID
-     * <p>
-     * 原文:This method may involve a blocking web request to get the UUID for the
+     * This method may involve a blocking web request to get the UUID for the
      * given name.
      * <p>
-     * 对于该方法而言所有玩家都是存在的,即使玩家从未登录过服务器也会返回一个OfflinePlayer实例
-     * <p>
-     * 原文:This will return an object even if the player does not exist. To this
+     * This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
-     * @deprecated UUID将会在不久后代替name
-     * @param name 玩家的name
-     * @return OfflinePlayer实例
+     * @deprecated 由于玩家名在某个会话后(某次游戏后)不再唯一,
+     应使用uuid作为唯一标识来持久化存储用户.
+     (译注:正版玩家更改它们的玩家名后,其uuid不会改变,其他正版玩家可以使用这些玩家的曾用名,
+     可能会出现同一玩家名对应两个或多个不同玩家的情况)
+     * @param name 此玩家的玩家名
+     * @return 表示此玩家的OfflinePlayer对象
      * @see #getOfflinePlayer(java.util.UUID)
      */
     @Deprecated
@@ -839,88 +958,88 @@ public interface Server extends PluginMessageRecipient {
     public OfflinePlayer getOfflinePlayer(@NotNull String name);
 
     /**
-     * 通过UUID获取OfflinePlayer实例
+     * 以给定名字获取玩家对象, 无论玩家是否在线.
+     * <p>
+     * 即使此玩家不存在也会返回一个对象. 对于此方法, 任何玩家都是存在的.
      * <p>
      * 原文:Gets the player by the given UUID, regardless if they are offline or
      * online.
      * <p>
-     * 对于该方法而言所有玩家都是存在的,即使玩家从未登录过服务器也会返回一个OfflinePlayer实例
-     * <p>
-     * 原文:This will return an object even if the player does not exist. To this
+     * This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
-     * @param id 玩家的UUID
-     * @return OfflinePlayer实例
+     * @param id 要检索的玩家UUID
+     * @return 表示此玩家的OfflinePlayer对象
      */
     @NotNull
     public OfflinePlayer getOfflinePlayer(@NotNull UUID id);
 
     /**
-     * 获取一个被ban的IP的Set实例
+     * 获取所有已被封禁的IP地址.
      * <p>
      * 原文:Gets a set containing all current IPs that are banned.
      *
-     * @return 一个包含被ban的IP的set实例
+     * @return 被封禁IP集合
      */
     @NotNull
     public Set<String> getIPBans();
 
     /**
-     * 设置禁止此ip地址登陆到服务器.
+     * 封禁指定的IP地址.
      * <p>
      * 原文:Bans the specified address from the server.
      *
-     * @param address 禁止登陆的IP地址
+     * @param address 要封禁的IP地址
      */
     public void banIP(@NotNull String address);
 
     /**
-     * 解除禁止此ip地址登陆到服务器.
+     * 解禁指定的IP地址.
      * <p>
      * 原文:Unbans the specified address from the server.
      *
-     * @param address 解除禁止登陆的IP地址
+     * @param address 要解禁的IP地址
      */
     public void unbanIP(@NotNull String address);
 
     /**
-     * 获得一组所有被服务器封禁的玩家.
+     * 获取所有已被封禁的玩家.
      * <p>
      * 原文:Gets a set containing all banned players.
      *
-     * @return 一组玩家
+     * @return 已被封禁的玩家
      */
     @NotNull
     public Set<OfflinePlayer> getBannedPlayers();
 
     /**
-     * 通过提供的BanList.Type来获取一个BanList
+     * 获取指定类型的封禁列表.
+     * <p>
+     * ban玩家名将不受支持(截至1.16.4还是支持的), 建议封禁玩家的uuid.
      * <p>
      * 原文:Gets a ban list for the supplied type.
      * <p>
-     * ban玩家name将不会受到支持,ban UUID更好
-     * <p>
-     * 原文:Bans by name are no longer supported and this method will return
+     * Bans by name are no longer supported and this method will return
      * null when trying to request them. The replacement is bans by UUID.
      *
-     * @param type 需要获取的BanList的类型
-     * @return BanList实例
+     * @param type 要获取的封禁列表的类型, 不能为null
+     * @return 指定类型的封禁列表
      */
     @NotNull
     public BanList getBanList(@NotNull BanList.Type type);
 
     /**
-     * 获取一个包含所有OP的Set实例
+     * 获取服务器的所有OP(管理员).
      * <p>
      * 原文:Gets a set containing all player operators.
      *
-     * @return 一个包含所有OP的Set实例
+     * @return 服务器OP
      */
     @NotNull
     public Set<OfflinePlayer> getOperators();
 
     /**
-     * 获得新玩家的默认 {@link GameMode}.
+     * 获取新玩家的默认{@link GameMode 游戏模式}.
      * <p>
      * 原文:Gets the default {@link GameMode} for new players.
      *
@@ -939,23 +1058,33 @@ public interface Server extends PluginMessageRecipient {
     public void setDefaultGameMode(@NotNull GameMode mode);
 
     /**
-     * 获取一个{@link ConsoleCommandSender} 将被作为服务器的标准输入(译注:该方法用于获取控制台)
+     * 获取服务器的{@link ConsoleCommandSender},
+     * 将被作为服务器的标准输入.
+     * <p>
+     * 译注:该方法用于获取控制台.
+     * <p>
+     * 原文:Gets a {@link ConsoleCommandSender} that may be used as an input source
+     * for this server.
      *
-     * @return 控制台对象
+     * @return 控制台命令发送者对象
      */
     @NotNull
     public ConsoleCommandSender getConsoleSender();
 
     /**
-     * 获取 {@link World}的文件夹的File实例.
+     * 获取包含所有{@link World 世界}数据的文件夹.
+     * <p>
+     * 译注:通常此文件夹就是服务端根目录.
+     * <p>
+     * 原文:Gets the folder that contains all of the various {@link World}s.
      *
-     * @return 包含所有World的文件夹的File实例
+     * @return 包含所有世界数据的文件夹
      */
     @NotNull
     public File getWorldContainer();
 
     /**
-     * 获取所有登陆过服务器的玩家
+     * 获取所有登陆过服务器的玩家.
      * <p>
      * 原文:Gets every player that has ever played on this server.     
      * @return 包含所有登录过的玩家的数组
@@ -964,17 +1093,17 @@ public interface Server extends PluginMessageRecipient {
     public OfflinePlayer[] getOfflinePlayers();
 
     /**
-     * 获取{@link Messenger}实例
+     * 获取服务器上管理plugin channel(插件通道)通信的{@link Messenger}实例.
      * <p>
      * 原文:Gets the {@link Messenger} responsible for this server.
      *
-     * @return 负责该服务器的Messenger
+     * @return Messenger实例
      */
     @NotNull
     public Messenger getMessenger();
 
     /**
-     * 获取该服务器用于提供帮助的{@link HelpMap}
+     * 获取服务器上提供所有帮助主题的{@link HelpMap}实例.
      * <p>
      * 原文:Gets the {@link HelpMap} providing help topics for this server.
      *
@@ -984,7 +1113,16 @@ public interface Server extends PluginMessageRecipient {
     public HelpMap getHelpMap();
 
     /**
-     * Creates an empty inventory with the specified type. If the type
+     * 以指定类型创建一个空物品栏. 如果type是{@link InventoryType#CHEST}(箱子类型),
+     * 新的物品栏的大小则是27, 否则是与物品栏类型对应的正常大小.
+     * <br>
+     * 如果type是{@link InventoryType#WORKBENCH}, 则这个物品栏不会处理合成配方.
+     * 请使用{@link Player#openWorkbench(Location, boolean)}.
+     * <br>
+     * 同理, 以{@link InventoryType#ENCHANTING}创建的附魔台物品栏也不起作用.
+     * 请使用{@link Player#openEnchanting(Location, boolean)}.
+     * <p>
+     * 原文:Creates an empty inventory with the specified type. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.
      * <br>
@@ -996,11 +1134,10 @@ public interface Server extends PluginMessageRecipient {
      * for possible enchanting results. Use
      * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner the holder of the inventory, or null to indicate no holder
-     * @param type the type of inventory to create
-     * @return a new inventory
-     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
-     * viewed.
+     * @param owner 物品栏的持有者, 不指定持有者为null
+     * @param type 要创建的物品栏的种类
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果这种 {@link InventoryType} 物品栏不能显示给玩家
      *
      * @see InventoryType#isCreatable()
      */
@@ -1008,7 +1145,16 @@ public interface Server extends PluginMessageRecipient {
     Inventory createInventory(@Nullable InventoryHolder owner, @NotNull InventoryType type);
 
     /**
-     * Creates an empty inventory with the specified type and title. If the type
+     * 以指定类型和标题创建一个空物品栏. 如果type是{@link InventoryType#CHEST}(箱子类型),
+     * 新的物品栏的大小则是27, 否则是与物品栏类型对应的正常大小.
+     * <br>
+     * 如果type是{@link InventoryType#WORKBENCH}, 则这个物品栏不会处理合成配方.
+     * 请使用{@link Player#openWorkbench(Location, boolean)}.
+     * <br>
+     * 同理, 以{@link InventoryType#ENCHANTING}创建的附魔台物品栏也不起作用.
+     * 请使用{@link Player#openEnchanting(Location, boolean)}.
+     * <p>
+     * 原文:Creates an empty inventory with the specified type and title. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
      * otherwise the new inventory has the normal size for its type.<br>
      * It should be noted that some inventory types do not support titles and
@@ -1022,12 +1168,11 @@ public interface Server extends PluginMessageRecipient {
      * for possible enchanting results. Use
      * {@link Player#openEnchanting(Location, boolean)} instead.
      *
-     * @param owner The holder of the inventory; can be null if there's no holder.
-     * @param type The type of inventory to create.
-     * @param title The title of the inventory, to be displayed when it is viewed.
-     * @return The new inventory.
-     * @throws IllegalArgumentException if the {@link InventoryType} cannot be
-     * viewed.
+     * @param owner 物品栏的持有者, 如果没有持有者可为null
+     * @param type 要创建的物品栏的种类
+     * @param title 物品栏的标题, 会显示给玩家
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果这种 {@link InventoryType} 物品栏不能显示给玩家
      *
      * @see InventoryType#isCreatable()
      */
@@ -1035,46 +1180,47 @@ public interface Server extends PluginMessageRecipient {
     Inventory createInventory(@Nullable InventoryHolder owner, @NotNull InventoryType type, @NotNull String title);
 
     /**
-     * 使用{@link InventoryType#CHEST}创建一个给定大小的Inventory
+     * 创建一个类型为{@link InventoryType#CHEST}, 有指定大小的空物品栏.
      * <p>
      * 原文:Creates an empty inventory of type {@link InventoryType#CHEST} with the
      * specified size.
      *
-     * @param owner 该物品栏的拥有者,为null则表明无拥有者
-     * @param size 被创建的Inventory的大小,该值应为9的倍数
-     * @return Inventory实例
-     * @throws IllegalArgumentException 如果size不为9的倍数
+     * @param owner 物品栏的持有者, 不指定持有者为null
+     * @param size 物品栏的大小, 必须为9的倍数
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果大小不是9的倍数
      */
     @NotNull
     Inventory createInventory(@Nullable InventoryHolder owner, int size) throws IllegalArgumentException;
 
     /**
-     * 通过一个特定的大小和标题使用{@link InventoryType#CHEST}来创建一个空的物品栏
+     * 创建一个类型为{@link InventoryType#CHEST}, 有指定大小和标题的空物品栏.
      * <p>
      * 原文:Creates an empty inventory of type {@link InventoryType#CHEST} with the
      * specified size and title.
      *
-     * @param owner 该物品栏的拥有者,为null则表明无拥有者
-     * @param size 被创建的Inventory的大小,该值应为9的倍数
-     * @param title 被创建的Inventory的标题
-     * @return Inventory实例
-     * @throws IllegalArgumentException 如果size不为9的倍数
+     * @param owner 物品栏的持有者, 不指定持有者为null
+     * @param size 物品栏的大小, 必须为9的倍数
+     * @param title 物品栏的标题, 会显示给玩家
+     * @return 新的物品栏
+     * @throws IllegalArgumentException 如果大小不是9的倍数
      */
     @NotNull
     Inventory createInventory(@Nullable InventoryHolder owner, int size, @NotNull String title) throws IllegalArgumentException;
 
     /**
-     * Creates an empty merchant.
+     * 创建一个空的商人.
+     * <p>
+     * 原文:Creates an empty merchant.
      *
-     * @param title the title of the corresponding merchant inventory, displayed
-     * when the merchant inventory is viewed
-     * @return a new merchant
+     * @param title 查看商人物品栏时显示的标题
+     * @return 新的商人
      */
     @NotNull
     Merchant createMerchant(@Nullable String title);
 
     /**
-     * 获取一个区块最大可生成怪物数
+     * 获取一个区块最大可生成怪物数量.
      * <p>
      * 原文:Gets user-specified limit for number of monsters that can spawn in a
      * chunk.
@@ -1084,9 +1230,10 @@ public interface Server extends PluginMessageRecipient {
     int getMonsterSpawnLimit();
 
     /**
-     * 获取一个区块最大可生成动物数
+     * 获取一个区块最大可生成的动物数量.
      * <p>
-     * 原文:Gets user-specified limit for number of animals that can spawn in a
+     * 原文:
+     * Gets user-specified limit for number of animals that can spawn in a
      * chunk.
      *
      * @return 生成限制数
@@ -1094,7 +1241,7 @@ public interface Server extends PluginMessageRecipient {
     int getAnimalSpawnLimit();
 
     /**
-     * 获取一个区块最大可生成水生生物数
+     * 获取一个区块最大可生成的水生动物数量.
      * <p>
      * 原文:Gets user-specified limit for number of water animals that can spawn in
      * a chunk.
@@ -1104,16 +1251,19 @@ public interface Server extends PluginMessageRecipient {
     int getWaterAnimalSpawnLimit();
 
     /**
-     * Gets user-specified limit for number of water ambient mobs that can spawn
+     * 获取一个区块最大可生成的水生环境数量.
+     * <p>
+     * 原文:Gets user-specified limit for number of water ambient mobs that can spawn
      * in a chunk.
      *
-     * @return the water ambient spawn limit
+     * @return 生成限制数
      */
     int getWaterAmbientSpawnLimit();
 
     /**
-     * 获取一个区块最大生成环境怪物数(疑惑)
-     * Gets user-specified limit for number of ambient mobs that can spawn in
+     * 获取一个区块最大可生成的环境生物(一般指蝙蝠)数量.
+     * <p>
+     * 原文:Gets user-specified limit for number of ambient mobs that can spawn in
      * a chunk.
      *
      * @return 生成限制数
@@ -1121,29 +1271,34 @@ public interface Server extends PluginMessageRecipient {
     int getAmbientSpawnLimit();
 
     /**
-     * 检查当前方法是否在主线程执行
+     * 检查当前方法是否在主线程执行。
+     * <p>
+     * <b>注意:</b> 该方法不应该用于检查当前同步状态,当前线程为主线程表明它确实为同步,但是不能排除其他原因.
      * <p>
      * 原文:Checks the current thread against the expected primary thread for the
      * server.
      * <p>
-     * <b>注意:</b> 该方法不应该用于检查当前同步状态,当前线程为主线程表明它确实为同步,但是不能排除其他原因.
+     * <b>Note:</b> this method should not be used to indicate the current
+     * synchronized state of the runtime. A current thread matching the main
+     * thread indicates that it is synchronized, but a mismatch <b>does not
+     * preclude</b> the same assumption.
      *
      * @return 为主线程返回true否则返回false
      */
     boolean isPrimaryThread();
 
     /**
-     * 获得服务器列表中服务器所显示的消息(服务器MOTD).
+     * 获取在客户端服务器列表里显示的消息(服务器的欢迎消息，又称message of the day, 展示在mc客户端的服务器列表).
      * <p>
      * 原文:Gets the message that is displayed on the server list.
      *
-     * @return 服务器MOTD
+     * @return 服务器motd
      */
     @NotNull
     String getMotd();
 
     /**
-     * 获取服务器关闭时给玩家发送的默认消息
+     * 获取服务器关闭时广播给玩家的默认提示消息.
      * <p>
      * 原文:Gets the default message that is displayed when the server is stopped.
      *
@@ -1153,42 +1308,42 @@ public interface Server extends PluginMessageRecipient {
     String getShutdownMessage();
 
     /**
-     * 获取当前警告状态
+     * 获取服务器的警告状态.
      * <p>
      * 原文:Gets the current warning state for the server.
      *
-     * @return 被配置的警告状态
+     * @return 预先配置的警告状态
      */
     @NotNull
     public WarningState getWarningState();
 
     /**
-     * 获取ItemFactory的实例(用于 {@link ItemMeta})
+     * 获取ItemFactory实例 (用于{@link ItemMeta}).
      * <p>
      * 原文:Gets the instance of the item factory (for {@link ItemMeta}).
      *
-     * @return ItenFactory实例
+     * @return ItemFactory实例
      * @see ItemFactory
      */
     @NotNull
     ItemFactory getItemFactory();
 
     /**
-     * 获取ScoreboardManager实例
+     * 获取计分板管理器实例.
+     * <p>
+     * 只在第一个世界加载后存在.
      * <p>
      * 原文:Gets the instance of the scoreboard manager.
      * <p>
-     * 该实例在至少有一个世界被加载后才会创建
-     * <p>
-     * 原文:This will only exist after the first world has loaded.
+     * This will only exist after the first world has loaded.
      *
-     * @return 有任何世界被加载则返回ScoreboardManager实例,否则返回null.
+     * @return 计分板管理器实例, 如果未加载任何世界则为null
      */
     @Nullable
     ScoreboardManager getScoreboardManager();
 
     /**
-     * 获取服务器默认图标
+     * 获取服务器默认图标.
      * <p>
      * 原文:Gets an instance of the server's default server-icon.
      *
@@ -1198,53 +1353,54 @@ public interface Server extends PluginMessageRecipient {
     CachedServerIcon getServerIcon();
 
     /**
-     * 从文件中缓存图片为CachedServerIcon
+     * 为指定文件创建一个缓存的服务器图标.
+     * <p>
+     * 大小和类型必须在允许范围内(由底层实现定义),否则将会抛出{@link Exception}.
      * <p>
      * 原文:Loads an image from a file, and returns a cached image for the specific
      * server-icon.
      * <p>
-     * 大小和类型必须在允许范围内,否则将会抛出{@link Exception}.
-     * <p>
-     * 原文:Size and type are implementation defined. An incompatible file is
+     * Size and type are implementation defined. An incompatible file is
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
      * @param file 需要被加载的文件
      * @throws IllegalArgumentException 如果图片为null
-     * @throws Exception 如果图片规格不适用作为服务器图标
-     * @return 一个已缓存的CachedServerIcon实例,可用于 {@link
+     * @throws Exception 如果图片规格不适合作为服务器图标
+     * @return 一个CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
     @NotNull
     CachedServerIcon loadServerIcon(@NotNull File file) throws IllegalArgumentException, Exception;
 
     /**
-     * 从image中缓存为CachedServerIcon
+     * 为指定图片创建一个缓存的服务器图标.
+     * <p>
+     * 大小和类型必须在允许范围内(由底层实现定义),否则将会抛出{@link Exception}.
      * <p>
      * 原文:Creates a cached server-icon for the specific image.
      * <p>
-     * 大小和类型必须在允许范围内,否则将会抛出{@link Exception}.
-     * <p>
-     * 原文:Size and type are implementation defined. An incompatible file is
+     * Size and type are implementation defined. An incompatible file is
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
      * @param image 用于缓存的图片
-     * @throws IllegalArgumentException 如果图片为null
-     * @throws Exception 如果图片规格不适用作为服务器图标
-     * @return 一个已缓存的CachedServerIcon实例,可用于 {@link
+     * @throws IllegalArgumentException 若image为null
+     * @throws Exception 如果图片规格不适合作为服务器图标
+     * @return 一个CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
      */
     @NotNull
     CachedServerIcon loadServerIcon(@NotNull BufferedImage image) throws IllegalArgumentException, Exception;
 
     /**
-     * 设置自动踢出闲置玩家的时间.
+     * 设置一个空闲超时阈值(IDLE_KICK). 玩家空闲达到这个特定的时间后会被自动踢出服务器.
+     * 如果设置为0，该功能将被关闭.
      * <p>
-     * 原文:Set the idle kick timeout. Any players idle for the specified amount of
+     * 原文: Set the idle kick timeout. Any players idle for the specified amount of
      * time will be automatically kicked.
      * <p>
-     * 值为0时将不会踢出玩家
+     * A value of 0 will disable the idle kick timeout.
      *
-     * @param threshold 闲置超时的分钟数
+     * @param threshold 玩家空闲时间阈值，以分钟为单位
      */
     public void setIdleTimeout(int threshold);
 
@@ -1267,13 +1423,12 @@ public interface Server extends PluginMessageRecipient {
      *
      * @param world ChunkData对应的世界
      * @return 这个世界的新ChunkData实例
-     *
      */
     @NotNull
     public ChunkGenerator.ChunkData createChunkData(@NotNull World world);
 
     /**
-     * 创建一个Boos血量条实例。血量条的进度默认为1.0。
+     * 创建一个Boos血量条实例. 血量条的进度默认为1.0.
      * <p>
      * 原文:
      * Creates a boss bar instance to display to players. The progress
@@ -1282,31 +1437,43 @@ public interface Server extends PluginMessageRecipient {
      * @param title 血量条的标题
      * @param color 血量条的颜色
      * @param style 血量条的样式
-     * @param flags 创建的Boss血量条实例
+     * @param flags 血量条的附加属性列表（可选）
      * @return 创建的Boss血量条实例
      */
     @NotNull
     BossBar createBossBar(@Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags);
 
     /**
-     * Creates a boss bar instance to display to players. The progress defaults
+     * 创建一个Boos血量条实例. 血量条的进度默认为1.0.
+     * <br>
+     * 该方法创建的实例会被添加到服务器的持久化存储空间中, 命令将可以编辑它们, 服务器重启后会被恢复.
+     * <p>
+     * 原文:Creates a boss bar instance to display to players. The progress defaults
      * to 1.0.
      * <br>
      * This instance is added to the persistent storage of the server and will
      * be editable by commands and restored after restart.
      *
-     * @param key the key of the boss bar that is used to access the boss bar
-     * @param title the title of the boss bar
-     * @param color the color of the boss bar
-     * @param style the style of the boss bar
-     * @param flags an optional list of flags to set on the boss bar
-     * @return the created boss bar
+     * @param key boss血量条的key, 将用于获取血量条
+     * @param title 血量条的标题
+     * @param color 血量条的颜色
+     * @param style 血量条的样式
+     * @param flags 血量条的附加属性列表（可选）
+     * @return 创建的Boss血量条实例
      */
     @NotNull
     KeyedBossBar createBossBar(@NotNull NamespacedKey key, @Nullable String title, @NotNull BarColor color, @NotNull BarStyle style, @NotNull BarFlag... flags);
 
     /**
-     * Gets an unmodifiable iterator through all persistent bossbars.
+     * 获取一个不可编辑的用于迭代所有持久存储的boss血量条的迭代器.
+     * <ul>
+     *   <li>这个血量条<b>不</b>绑定到某一具体的{@link org.bukkit.entity.Boss}</li>
+     *   <li>这个血量条<b>不是</b>由{@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}创建的
+     *   </li>
+     * </ul>
+     * 例如:使用bossbar命令创建的boss血量条 (它是持久存储的, 可由此迭代器访问).
+     * <p>
+     * 原文:Gets an unmodifiable iterator through all persistent bossbars.
      * <ul>
      *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
      *   <li>
@@ -1317,7 +1484,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * e.g. bossbars created using the bossbar command
      *
-     * @return a bossbar iterator
+     * @return bossbar迭代器
      */
     @NotNull
     Iterator<KeyedBossBar> getBossBars();
@@ -1358,30 +1525,35 @@ public interface Server extends PluginMessageRecipient {
     boolean removeBossBar(@NotNull NamespacedKey key);
 
     /**
-	 * 用UUID获取实体.
-	 * <p>
+     * 用UUID获取实体.
+     * <p>
      * 原文:Gets an entity on the server by its UUID
      *
      * @param uuid 实体的UUID
-     * @return 该UUID代表的实体，如果找不到为null
+     * @return 该UUID代表的实体，如果不存在为null
      */
     @Nullable
     Entity getEntity(@NotNull UUID uuid);
 
     /**
-     * Get the advancement specified by this key.
+     * 通过Key获得特定的进度对象.
+     * <p>
+     * 原文: Get the advancement specified by this key.
      *
-     * @param key unique advancement key
-     * @return advancement or null if not exists
+     * @param 寻找进度对象所需的key
+     * @return 一个进度对象. 如果它不存在，将返回null.
      */
     @Nullable
     Advancement getAdvancement(@NotNull NamespacedKey key);
 
     /**
-     * Get an iterator through all advancements. Advancements cannot be removed
+     * 获取一个用以遍历所有进度的迭代器对象。
+     * 进度不能够从该迭代器上删除。
+     * <p>
+     * 原文: Get an iterator through all advancements. Advancements cannot be removed
      * from this iterator,
      *
-     * @return an advancement iterator
+     * @return 一个进度迭代器对象
      */
     @NotNull
     Iterator<Advancement> advancementIterator();
@@ -1457,14 +1629,20 @@ public interface Server extends PluginMessageRecipient {
     <T extends Keyed> Tag<T> getTag(@NotNull String registry, @NotNull NamespacedKey tag, @NotNull Class<T> clazz);
 
     /**
-     * Gets a all tags which have been defined within the server.
+     * 获取服务器定义的所有标签.
+     * <br>
+     * Server implementations are allowed to handle only the registries
+     * indicated in {@link Tag}.
+     * <br>
+     * 对返回的迭代器的可变性不作保证.
+     * 原文:Gets a all tags which have been defined within the server.
      * <br>
      * Server implementations are allowed to handle only the registries
      * indicated in {@link Tag}.
      * <br>
      * No guarantees are made about the mutability of the returned iterator.
      *
-     * @param <T> type of the tag
+     * @param <T> tag的类型
      * @param registry the tag registry to look at
      * @param clazz the class of the tag entries
      * @return all defined tags
@@ -1473,10 +1651,12 @@ public interface Server extends PluginMessageRecipient {
     <T extends Keyed> Iterable<Tag<T>> getTags(@NotNull String registry, @NotNull Class<T> clazz);
 
     /**
-     * Gets the specified {@link LootTable}.
+     * 获取指定的 {@link LootTable 战利品表}.
+     * <p>
+     * 原文:Gets the specified {@link LootTable}.
      *
-     * @param key the name of the LootTable
-     * @return the LootTable, or null if no LootTable is found with that name
+     * @param key LootTable的名称
+     * @return LootTable实例, 若找不到返回null
      */
     @Nullable
     LootTable getLootTable(@NotNull NamespacedKey key);
