@@ -1204,7 +1204,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     /**
      * 设置模式下镜头跟随的实体.
      * <p>
-     * 原文:ets the entity which is followed by the camera when in
+     * 原文:Sets the entity which is followed by the camera when in
      * {@link GameMode#SPECTATOR}.
      *
      * @param entity 要跟随的实体, 设为null重置
