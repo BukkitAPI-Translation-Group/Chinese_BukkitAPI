@@ -89,7 +89,7 @@ public abstract class Command {
      * @param sender 执行此命令的对象
      * @param alias 使用的别名
      * @param args 传递给此命令的所有参数，用' '分割
-     * @param location The position looked at by the sender, or null if none (不懂，且依源码看，该参数无任何作用，可以传null)
+     * @param location 执行此命令对象所在的坐标，当无法获取命令执行者的坐标时该参数为null
      * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的
      * @throws IllegalArgumentException 如果参数sender, alias或args为null
      */
