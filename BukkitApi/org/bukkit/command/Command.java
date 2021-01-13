@@ -59,20 +59,20 @@ public abstract class Command {
      * @param sender 执行此命令的对象
      * @param commandLabel 执行命令所用的别名
      * @param args 传递给此命令的所有参数，用' '分割
-     * @return 如果命令执行成功则位true，false反之
+     * @return 如果命令执行成功则为true，false反之
      */
     public abstract boolean execute(@NotNull CommandSender sender, @NotNull String commandLabel, @NotNull String[] args);
 
     /**
-     * 执行此命令的tab补全时返回选项列表.
+     * 对此命令进行tab补全并返回补全项列表.
      * <p>
      * 原文：Executed on tab completion for this command, returning a list of
      * options the player can tab through.
      *
      * @param sender 执行此命令的对象
-     * @param alias 被使用的别名
+     * @param alias 执行命令所用的别名
      * @param args 传递给此命令的所有参数，用' '分割
-     * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的.
+     * @return 指定参数的tab补全项列表.列表永远不会为null. 列表可能是不可变的.
      * @throws IllegalArgumentException 如果sender, alias, args任意一参数为null
      */
     @NotNull
@@ -81,16 +81,16 @@ public abstract class Command {
     }
 
     /**
-     * 执行此命令的tab补全时返回选项列表.
+     * 对此命令进行tab补全并返回补全项列表.
      * <p>
      * 原文：Executed on tab completion for this command, returning a list of
      * options the player can tab through.
      *
      * @param sender 执行此命令的对象
-     * @param alias 使用的别名
+     * @param alias 执行命令所用的别名
      * @param args 传递给此命令的所有参数，用' '分割
      * @param location 执行此命令对象所在的坐标，当无法获取命令执行者的坐标时该参数为null
-     * @return 指定参数的tab补全项列表.这将永远不会为null. 列表可能是不可变的
+     * @return 指定参数的tab补全项列表.列表永远不会为null. 列表可能是不可变的.
      * @throws IllegalArgumentException 如果参数sender, alias或args为null
      */
     @NotNull
@@ -139,11 +139,11 @@ public abstract class Command {
     /**
      * 设置这个命令的名称.
      * <p>
-     * 可能只能在注册之前使用本方法.
+     * 只能在注册之前使用本方法.
      * <p>
-     * 如果新的名称被设置将返回true，命令已被注册返回false.
+     * 如果成功设置新的名称将返回true，命令已被注册返回false.
      * <p>
-     * 原文：Sets the name of this command.
+     * 原文:Sets the name of this command.
      * <p>
      * May only be used before registering the command.
      * Will return true if the new name is set, and false
@@ -162,12 +162,12 @@ public abstract class Command {
     }
 
     /**
-     * 获取用户执行此命令所需的权限。
+     * 获取用户执行此命令所需的权限.
      * <p>
-     * 原文：Gets the permission required by users to be able to perform this
+     * 原文:Gets the permission required by users to be able to perform this
      * command
      *
-     * @return 权限名，没有为null
+     * @return 权限名，未指定权限则为null
      */
     @Nullable
     public String getPermission() {
@@ -177,10 +177,10 @@ public abstract class Command {
     /**
      * 设置用户执行此命令所需的权限.
      * <p>
-     * 原文：Sets the permission required by users to be able to perform this
+     * 原文:Sets the permission required by users to be able to perform this
      * command
      *
-     * @param permission 权限名，或者为null
+     * @param permission 权限名，无需任何权限则为null
      */
     public void setPermission(@Nullable String permission) {
         this.permission = permission;
@@ -189,7 +189,7 @@ public abstract class Command {
     /**
      * 测试给定的{@link CommandSender}能否执行此命令.
      * <p>
-     * 如果他们没有权限，他们会被告知他们不能这样做.
+     * 如果他们没有权限，将提示他们无权执行此命令.
      * <p>
      * 原文：Tests the given {@link CommandSender} to see if they can perform this
      * command.
@@ -219,7 +219,7 @@ public abstract class Command {
     /**
      * 测试给定的{@link CommandSender}能否执行这个命令.
      * <p>
-     * 不会给sender发送错误消息.
+     * 此方法不会给sender发送错误消息.
      * <p>
      * 原文:Tests the given {@link CommandSender} to see if they can perform this
      * command.
@@ -258,9 +258,9 @@ public abstract class Command {
     /**
      * 设置这个命令的别名.
      * <p>
-     * 可能只能在注册之前使用本方法.
+     * 只能在注册之前使用本方法.
      * <p>
-     * 如果新的名称被设置将返回true，命令已被注册返回false.
+     * 如果成功设置新的别名将返回true，命令已被注册则返回false.
      * <p>
      * 原文：Sets the label of this command.
      * <p>
@@ -269,7 +269,7 @@ public abstract class Command {
      * if the command has already been registered.
      *
      * @param name 新的命令别名
-     * @return 如果新的别名被更改返回true，命令已被注册返回false
+     * @return 如果新的别名被更改返回true，命令已被注册则返回false
      */
     public boolean setLabel(@NotNull String name) {
         if (name == null) {
@@ -286,7 +286,8 @@ public abstract class Command {
     /**
      * 把这个命令注册给一个CommandMap.
      * <p>
-     * 只允许改变注册的CommandMap.
+     * 若此命令已经注册给某个 CommandMap, 则无法再注册给别的 CommandMap,
+     * 只能修改注册过的 CommandMap.
      * <p>
      * 原文：Registers this command to a CommandMap.
      * Once called it only allows changes the registered CommandMap
@@ -304,12 +305,12 @@ public abstract class Command {
     }
 
     /**
-     * 从传递给此方法的CommandMap参数里注销这个命令，应用所有未完成的更改.
+     * 从给定的 CommandMap 中注销此命令, 并应用所有未完成的更改.
      * <p>
      * 原文：Unregisters this command from the passed CommandMap applying any
      * outstanding changes
      *
-     * @param commandMap 要注销的CommandMap
+     * @param commandMap 指定的CommandMap
      * @return 如果成功注销则为true(当前注册的CommandMap是传递的CommandMap或null)，false反之
      */
     public boolean unregister(@NotNull CommandMap commandMap) {
@@ -339,7 +340,7 @@ public abstract class Command {
     }
 
     /**
-     * 返回这个命令激活的别名的列表.
+     * 返回这个命令激活的别名列表.
      * <p>
      * 原文:Returns a list of active aliases of this command
      *
@@ -387,11 +388,10 @@ public abstract class Command {
         return usageMessage;
     }
 
+    // TODO:待测试
     /**
      * 设置这个命令的别名.
      * 若没在{@link PluginDescriptionFile#getCommands()}的 <code>aliases</code> 节点定义(就是没在plugin.yml定义)将没有效果，与此等效.
-     * <p>
-     * 译注：不懂原文第二段在说什么，根据源代码，aliases一定会赋值给这个类的aliases成员变量，如果这个命令还没有注册，aliases同样会赋值给这个类的activeAliases成员变量.第二段的意思整理为如果没在plugin.yml定义命令别名这个方法不会有效果.
      * <p>
      * 原文：Sets the list of aliases to request on registration for this command.
      * This is not effective outside of defining aliases in the {@link
@@ -399,7 +399,7 @@ public abstract class Command {
      * `<code>aliases</code>' node) is equivalent to this method.
      *
      * @param aliases 要为这个命令注册的别名
-     * @return 这个命令对象，可用于链式
+     * @return 这个命令对象，可用于链式调用
      */
     @NotNull
     public Command setAliases(@NotNull List<String> aliases) {
@@ -418,7 +418,7 @@ public abstract class Command {
      * `<code>description</code>' node) is equivalent to this method.
      *
      * @param description 新的命令介绍
-     * @return 这个命令对象，可用于链式
+     * @return 这个命令对象，可用于链式调用
      */
     @NotNull
     public Command setDescription(@NotNull String description) {
@@ -432,7 +432,7 @@ public abstract class Command {
      * 原文：Sets the message sent when a permission check fails
      *
      * @param permissionMessage 新的无权提示消息，null表示默认消息，空字符串表示没有提示消息
-     * @return 这个命令对象，可用于链式
+     * @return 这个命令对象，可用于链式调用
      */
     @NotNull
     public Command setPermissionMessage(@Nullable String permissionMessage) {
