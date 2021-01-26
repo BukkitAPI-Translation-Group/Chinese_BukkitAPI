@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Concrete implementation of an attribute modifier.
+ * 一个属性修饰符的具体实现.
  */
 public class AttributeModifier implements ConfigurationSerializable {
 
@@ -42,9 +42,12 @@ public class AttributeModifier implements ConfigurationSerializable {
     }
 
     /**
+     * 获取该修饰符的 UUID.
+     * <p>
+     * 原文:
      * Get the unique ID for this modifier.
      *
-     * @return unique id
+     * @return UUID
      */
     @NotNull
     public UUID getUniqueId() {
@@ -52,9 +55,12 @@ public class AttributeModifier implements ConfigurationSerializable {
     }
 
     /**
+     * 获取该修饰符的名称.
+     * <p>
+     * 原文:
      * Get the name of this modifier.
      *
-     * @return name
+     * @return 名称
      */
     @NotNull
     public String getName() {
@@ -62,18 +68,24 @@ public class AttributeModifier implements ConfigurationSerializable {
     }
 
     /**
+     * 获取该修饰符在根据其 {@link Operation} 运算模式进行计算时的修饰值.
+     * <p>
+     * 原文:
      * Get the amount by which this modifier will apply its {@link Operation}.
      *
-     * @return modification amount
+     * @return 修饰值
      */
     public double getAmount() {
         return amount;
     }
 
     /**
+     * 获取该修饰符的运算模式.
+     * <p>
+     * 原文:
      * Get the operation this modifier will apply.
      *
-     * @return operation
+     * @return 运算模式
      */
     @NotNull
     public Operation getOperation() {
@@ -81,10 +93,15 @@ public class AttributeModifier implements ConfigurationSerializable {
     }
 
     /**
+     * 获取该修饰符生效的 {@link EquipmentSlot},
+     * <p>
+     * 若该修饰符可以在任意槽位生效, 返回 null.
+     * <p>
+     * 原文:
      * Get the {@link EquipmentSlot} this AttributeModifier is active on,
      * or null if this modifier is applicable for any slot.
      *
-     * @return the slot
+     * @return 目标槽位
      */
     @Nullable
     public EquipmentSlot getSlot() {
@@ -146,20 +163,26 @@ public class AttributeModifier implements ConfigurationSerializable {
     }
 
     /**
-     * Enumerable operation to be applied.
+     * 可用的运算模式枚举.
      */
     public enum Operation {
 
         /**
-         * Adds (or subtracts) the specified amount to the base value.
+         * 在基值上直接相加 (或相减) 该值
          */
         ADD_NUMBER,
         /**
-         * Adds this scalar of amount to the base value.
+         * 在基值上增加该值的标量
+         * <p>
+         * 原文: Adds this scalar of amount to the base value
+         * <p>
+         * 译注: 即 <a href="https://minecraft-zh.gamepedia.com/%E5%B1%9E%E6%80%A7#%E8%BF%90%E7%AE%97%E6%A8%A1%E5%BC%8F" target="_blank">Minecraft Wiki - 属性#运算模式</a> 中的 "倍率增量".
+         * 该运算模式与下一个运算模式 "最终倍乘" 的区别在于, 若拥有多个该运算模式的修饰符, 会将修饰值都加起来进行一次运算, 而拥有多少个 "最终倍乘" 修饰符就会进行多少次相乘运算 (导致属性值变得很大).
          */
         ADD_SCALAR,
         /**
-         * Multiply amount by this value, after adding 1 to it.
+         * 将该值 +1 后乘以基值
+         * Multiply amount by this value, after adding 1 to it
          */
         MULTIPLY_SCALAR_1;
     }

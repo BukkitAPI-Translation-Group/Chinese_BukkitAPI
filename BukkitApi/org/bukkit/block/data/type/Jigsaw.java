@@ -4,27 +4,33 @@ import org.bukkit.block.data.BlockData;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'orientation' is the direction the block is facing.
+ * 'orientation' 指方块的朝向.
  */
 public interface Jigsaw extends BlockData {
 
     /**
+     * 获取 'orientation' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'orientation' property.
      *
-     * @return the 'orientation' value
+     * @return 属性 'orientation' 的值
      */
     @NotNull
     Orientation getOrientation();
 
     /**
+     * 设置 'orientation' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'orientation' property.
      *
-     * @param orientation the new 'orientation' value
+     * @param orientation 新的 'orientation' 属性值
      */
     void setOrientation(@NotNull Orientation orientation);
 
     /**
-     * The directions the Jigsaw can be oriented.
+     * 拼图方块可朝向的方向.
      */
     public enum Orientation {
 
