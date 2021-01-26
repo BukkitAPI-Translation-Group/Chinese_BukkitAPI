@@ -6,50 +6,58 @@ import org.bukkit.block.data.AnaloguePowerable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'north', 'east', 'south', 'west' represent the types of connections this
- * redstone wire has to adjacent blocks.
+ * 'north', 'east', 'south', 'west' 代表该红石线与临近方块连接的方式.
  */
 public interface RedstoneWire extends AnaloguePowerable {
 
     /**
+     * 查看指定方块朝向上的连接类型.
+     * <p>
+     * 原文:
      * Checks the type of connection on the specified face.
      *
-     * @param face to check
-     * @return connection type
+     * @param face 目标方块朝向
+     * @return 连接类型
      */
     @NotNull
     Connection getFace(@NotNull BlockFace face);
 
     /**
+     * 设置指定方块朝向上的连接类型.
+     * <p>
+     * 原文:
      * Sets the type of connection on the specified face.
      *
-     * @param face to set
-     * @param connection the connection type
+     * @param face 目标方块朝向
+     * @param connection 目标连接类型
      */
     void setFace(@NotNull BlockFace face, @NotNull Connection connection);
 
     /**
+     * 获取该方块所有可以连接的方块朝向.
+     * <p>
+     * 原文:
      * Gets all of this faces which may be set on this block.
      *
-     * @return all allowed faces
+     * @return 所有允许的方块朝向
      */
     @NotNull
     Set<BlockFace> getAllowedFaces();
 
     /**
-     * The way in which a redstone wire can connect to an adjacent block face.
+     * 红石线可连接到临近方块面的类型.
      */
     public enum Connection {
         /**
-         * The wire travels up the side of the block adjacent to this face.
+         * 红石线沿着与该面相邻的方块向上移动
          */
         UP,
         /**
-         * The wire travels flat from this face and into the adjacent block.
+         * 红石线沿着平面移动并进入 (强充能) 方块.
          */
         SIDE,
         /**
-         * The wire does not connect in this direction.
+         * 红石线还没有与任何方块连接.
          */
         NONE;
     }

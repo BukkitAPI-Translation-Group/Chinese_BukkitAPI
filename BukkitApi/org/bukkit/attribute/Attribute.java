@@ -18,27 +18,27 @@ public enum Attribute implements Keyed {
      */
     GENERIC_FOLLOW_RANGE("generic.follow_range"),
     /**
-     * 当生物被攻击的时候的击退抗性.
+     * 当生物被攻击的时候的击退抗性
      */
     GENERIC_KNOCKBACK_RESISTANCE("generic.knockback_resistance"),
     /**
-     * 生物的移动速度.
+     * 生物的移动速度
      */
     GENERIC_MOVEMENT_SPEED("generic.movement_speed"),
     /**
-     * 实体的飞行速度.
+     * 实体的飞行速度
      */
     GENERIC_FLYING_SPEED("generic.flying_speed"),
     /**
-     * 当生物攻击其他生物/实体时所造成的伤害.
+     * 当生物攻击其他生物/实体时所造成的伤害
      */
     GENERIC_ATTACK_DAMAGE("generic.attack_damage"),
     /**
-     * Attack knockback of an Entity.
+     * 生物的攻击击退力度
      */
     GENERIC_ATTACK_KNOCKBACK("generic.attack_knockback"),
     /**
-     * 生物的攻击速率.
+     * 生物的攻击速率
      */
     GENERIC_ATTACK_SPEED("generic.attack_speed"),
     /**
@@ -46,7 +46,7 @@ public enum Attribute implements Keyed {
      */
     GENERIC_ARMOR("generic.armor"),
     /**
-     * Armor durability bonus of an Entity.
+     * 护甲的韧性
      */
     GENERIC_ARMOR_TOUGHNESS("generic.armor_toughness"),
     /**
@@ -54,11 +54,11 @@ public enum Attribute implements Keyed {
      */
     GENERIC_LUCK("generic.luck"),
     /**
-     * 马跳起来的蓄力条.
+     * 马跳起来的蓄力条
      */
     HORSE_JUMP_STRENGTH("horse.jump_strength"),
     /**
-     * 僵尸增援的几率.
+     * 僵尸增援的几率
      */
     ZOMBIE_SPAWN_REINFORCEMENTS("zombie.spawn_reinforcements");
 

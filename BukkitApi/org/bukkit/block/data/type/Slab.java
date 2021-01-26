@@ -4,40 +4,45 @@ import org.bukkit.block.data.Waterlogged;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'type' represents what state the slab is in - either top, bottom, or a double
- * slab occupying the full block.
+ * 'type' 值代表台阶 (/半砖) 的状态 - 上台阶, 下台阶, 或充满了整个方块的双层台阶.
  */
 public interface Slab extends Waterlogged {
 
     /**
+     * 获取 'type' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'type' property.
      *
-     * @return the 'type' value
+     * @return 属性 'type' 的值
      */
     @NotNull
     Type getType();
 
     /**
+     * 设置 'type' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'type' property.
      *
-     * @param type the new 'type' value
+     * @param type 新的 'type' 属性值
      */
     void setType(@NotNull Type type);
 
     /**
-     * The type of the slab.
+     * 台阶的类型.
      */
     public enum Type {
         /**
-         * The slab occupies the upper y half of the block.
+         * 台阶占据方块的上半部分
          */
         TOP,
         /**
-         * The slab occupies the lower y half of the block.
+         * 台阶占据方块的下半部分
          */
         BOTTOM,
         /**
-         * The slab occupies the entire block.
+         * (双层) 台阶充满了整个方块
          */
         DOUBLE;
     }

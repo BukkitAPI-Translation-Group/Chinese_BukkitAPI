@@ -38,7 +38,7 @@ public class Pattern implements ConfigurationSerializable {
      * 原文:
      * Constructor for deserialization.
      *
-     * @param map 从地图反序列化
+     * @param map 从 Map 中反序列化
      */
     public Pattern(@NotNull Map<String, Object> map) {
         color = DyeColor.legacyValueOf(getString(map, COLOR));
@@ -68,7 +68,7 @@ public class Pattern implements ConfigurationSerializable {
      * 原文:
      * Returns the color of the pattern
      *
-     * @return 图案的颜色.
+     * @return 图案的颜色
      */
     @NotNull
     public DyeColor getColor() {

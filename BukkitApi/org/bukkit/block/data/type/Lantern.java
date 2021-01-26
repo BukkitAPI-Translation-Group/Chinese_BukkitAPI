@@ -3,21 +3,27 @@ package org.bukkit.block.data.type;
 import org.bukkit.block.data.BlockData;
 
 /**
- * 'hanging' denotes whether the lantern is hanging from a block.
+ * 'hanging' 值表示灯笼是否悬挂在一个方块下.
  */
 public interface Lantern extends BlockData {
 
     /**
+     * 获取 'hanging' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'hanging' property.
      *
-     * @return the 'hanging' value
+     * @return 属性 'hanging' 的值
      */
     boolean isHanging();
 
     /**
+     * 设置 'hanging' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'hanging' property.
      *
-     * @param hanging the new 'hanging' value
+     * @param hanging 新的 'hanging' 属性值
      */
     void setHanging(boolean hanging);
 }

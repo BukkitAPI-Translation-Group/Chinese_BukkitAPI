@@ -4,40 +4,46 @@ import org.bukkit.block.data.Ageable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'leaves' represents the size of the leaves on this bamboo block.
+ * 'leaves' 值代表该竹子方块上叶子的大小.
  */
 public interface Bamboo extends Ageable, Sapling {
 
     /**
+     * 获取 'leaves' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'leaves' property.
      *
-     * @return the 'leaves' value
+     * @return 属性 'leaves' 的值
      */
     @NotNull
     Leaves getLeaves();
 
     /**
+     * 设置 'leaves' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'leaves' property.
      *
-     * @param leaves the new 'leaves' value
+     * @param leaves 新的 'leaves' 属性值
      */
     void setLeaves(@NotNull Leaves leaves);
 
     /**
-     * Bamboo leaf size.
+     * 竹叶的大小.
      */
     public enum Leaves {
 
         /**
-         * No leaves.
+         * 没有竹叶
          */
         NONE,
         /**
-         * Small leaves.
+         * 小竹叶
          */
         SMALL,
         /**
-         * Large leaves.
+         * 大竹叶
          */
         LARGE;
     }

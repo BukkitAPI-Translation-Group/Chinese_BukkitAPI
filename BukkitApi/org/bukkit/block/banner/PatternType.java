@@ -77,14 +77,14 @@ public enum PatternType {
     }
 
     /**
-     * 返回匹配的标识符,如果找不到匹配的图案类型,将返回null.
+     * 返回匹配的标识符, 如果找不到匹配的图案类型, 将返回 null.
      * <p>
      * 原文:
      * Returns the pattern type which matches the passed
      * identifier or null if no matches are found
      *
      * @param identifier 标识符
-     * @return 匹配的图案类型或为null
+     * @return 匹配的图案类型或 null
      */
     @Contract("null -> null")
     @Nullable

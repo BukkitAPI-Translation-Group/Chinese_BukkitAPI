@@ -3,32 +3,40 @@ package org.bukkit.block.data.type;
 import org.bukkit.block.data.BlockData;
 
 /**
- * The 'moisture' level of farmland indicates how close it is to a water source
- * (if any).
+ * 'moisture' 值的的大小表示耕地距离水源 (如果有的话) .
  * <br>
- * A higher moisture level leads, to faster growth of crops on this block, but
- * cannot be higher than {@link #getMaximumMoisture()}.
+ * 'moisture' 的值越高会使该方块上种植作物的生长速度更快,
+ * 但是无法比 {@link #getMaximumMoisture()} 的值更高.
  */
 public interface Farmland extends BlockData {
 
     /**
+     * 获取 'moisture' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'moisture' property.
      *
-     * @return the 'moisture' value
+     * @return 属性 'moisture' 的值
      */
     int getMoisture();
 
     /**
+     * 设置 'moisture' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'moisture' property.
      *
-     * @param moisture the new 'moisture' value
+     * @param moisture 新的 'moisture' 属性值
      */
     void setMoisture(int moisture);
 
     /**
+     * 获取 'moisture' 属性所允许的最大值.
+     * <p>
+     * 原文:
      * Gets the maximum allowed value of the 'moisture' property.
      *
-     * @return the maximum 'moisture' value
+     * @return 最大 'moisture' 属性值
      */
     int getMaximumMoisture();
 }
