@@ -1,8 +1,7 @@
 package org.bukkit.block.data;
 
 /**
- * 'level' represents the amount of fluid contained within this block, either by
- * itself or inside a cauldron.
+ * 'level' 值代表该方块中包含的液体数量, 无论 (液体) 单独存在或在炼药锅内.
  * <br>
  * In the case of water and lava blocks the levels have special meanings: a
  * level of 0 corresponds to a source block, 1-7 regular fluid heights, and 8-15

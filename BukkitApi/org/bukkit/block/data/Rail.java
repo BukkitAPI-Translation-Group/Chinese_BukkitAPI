@@ -4,17 +4,18 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'shape'数据值表示此铁轨的形态(铁轨连接方向).
+ * 'shape' 数据值表示此铁轨的形态 (铁轨连接方向).
  * <br>
- * 某些铁轨可能不能够摆放成所有的形态，使用
- * {@link #getShapes()}来获悉此铁轨可以怎样摆放.
+ * 某些铁轨可能不能够摆放成所有的形态, 使用
+ * {@link #getShapes()} 来获悉此铁轨可以怎样摆放.
  */
 public interface Rail extends BlockData {
 
     /**
-     * 获取'shape'的数据值.
+     * 获取 'shape' 的数据值.
      * <p>
-     * 原文:Gets the value of the 'shape' property.
+     * 原文:
+     * Gets the value of the 'shape' property.
      *
      * @return 铁轨的形态
      */
@@ -22,9 +23,10 @@ public interface Rail extends BlockData {
     Shape getShape();
 
     /**
-     * 设置'shape'的数据值.
+     * 设置 'shape' 的数据值.
      * <p>
-     * 原文:Sets the value of the 'shape' property.
+     * 原文:
+     * Sets the value of the 'shape' property.
      *
      * @param shape 铁轨的形态
      */
@@ -33,7 +35,8 @@ public interface Rail extends BlockData {
     /**
      * 获取适用于此铁轨的形态.
      * <p>
-     * 原文:Gets the shapes which are applicable to this block.
+     * 原文:
+     * Gets the shapes which are applicable to this block.
      *
      * @return 适用于此铁轨的形态
      */

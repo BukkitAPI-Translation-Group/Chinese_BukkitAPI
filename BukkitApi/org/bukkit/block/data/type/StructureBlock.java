@@ -4,45 +4,49 @@ import org.bukkit.block.data.BlockData;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'mode' represents the different modes in which this structure block may
- * operate.
+ * 'mode' 值代表结构方块可执行的不同行为模式.
  */
 public interface StructureBlock extends BlockData {
 
     /**
+     * 获取 'mode' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'mode' property.
      *
-     * @return the 'mode' value
+     * @return 属性 'mode' 的值
      */
     @NotNull
     Mode getMode();
 
     /**
+     * 设置 'mode' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'mode' property.
      *
-     * @param mode the new 'mode' value
+     * @param mode 新的 'mode' 属性值
      */
     void setMode(@NotNull Mode mode);
 
     /**
-     * Operating mode of a structure block.
+     * 结构方块的执行模式.
      */
     public enum Mode {
         /**
-         * Allows selection and saving of a structure.
+         * 将选区保存为一个结构
          */
         SAVE,
         /**
-         * Allows loading of a structure.
+         * 加载一个结构
          */
         LOAD,
         /**
-         * Used for detection of two opposite corners of a structure.
+         * 用于检测结构中两个相对的顶点
          */
         CORNER,
         /**
-         * Dummy block used to run a custom function during world generation
-         * before being removed.
+         * 在世界生成中, 自身被移除之前运行一个 (指定相关结构的) 自定义函数.
          */
         DATA;
     }

@@ -3,42 +3,47 @@ package org.bukkit.block.data;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'face' represents the face to which a lever or button is stuck.
+ * 'face' 值代表一个拉杆或按钮固定在哪一个面上.
  * <br>
- * This is used in conjunction with {@link Directional} to compute the
- * orientation of these blocks.
+ * 该值用于与 {@link Directional} 相结合来计算这些方块的方向.
  */
 public interface FaceAttachable extends BlockData {
 
     /**
+     * 获取 'face' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'face' property.
      *
-     * @return the 'face' value
+     * @return 属性 'face' 的值
      */
     @NotNull
     AttachedFace getAttachedFace();
 
     /**
+     * 设置 'face' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'face' property.
      *
-     * @param face the new 'face' value
+     * @param face 新的 'face' 属性值
      */
     void setAttachedFace(@NotNull AttachedFace face);
 
     /**
-     * The face to which a switch type block is stuck.
+     * 一个开关类型的方块可以固定的方块面.
      */
     public enum AttachedFace {
         /**
-         * The switch is mounted to the floor and pointing upwards.
+         * 开关固定在地面上且朝上
          */
         FLOOR,
         /**
-         * The switch is mounted to the wall.
+         * 开关固定在墙面上
          */
         WALL,
         /**
-         * The switch is mounted to the ceiling and pointing dowanrds.
+         * 开关固定在天花板上且朝下
          */
         CEILING;
     }

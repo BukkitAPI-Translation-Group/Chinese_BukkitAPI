@@ -6,7 +6,7 @@ import org.bukkit.block.data.Powerable;
 
 /**
  * 'in_wall" 值表示栅栏门是否固定在墙上,
- * 若为 true, 栅栏门的材质会被稍微降低一点以更好的融入周围 (栅栏?).
+ * 若为 true, 栅栏门的材质会被稍微降低一点以更好的融入周围 (墙, 比如圆石墙).
  */
 public interface Gate extends Directional, Openable, Powerable {
 
