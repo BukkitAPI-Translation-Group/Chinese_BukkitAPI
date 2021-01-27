@@ -8,41 +8,47 @@ import org.jetbrains.annotations.NotNull;
 public interface Switch extends Directional, FaceAttachable, Powerable {
 
     /**
+     * 获取 'face' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'face' property.
      *
-     * @return the 'face' value
-     * @deprecated use {@link #getAttachedFace()}
+     * @return 属性 'face' 的值
+     * @deprecated 请使用 {@link #getAttachedFace()}
      */
     @NotNull
     @Deprecated
     Face getFace();
 
     /**
+     * 设置 'face' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'face' property.
      *
-     * @param face the new 'face' value
-     * @deprecated use {@link #getAttachedFace()}
+     * @param face 新的 'face' 属性值
+     * @deprecated 请使用 {@link #getAttachedFace()}
      */
     @Deprecated
     void setFace(@NotNull Face face);
 
     /**
-     * The face to which a switch type block is stuck.
+     * 固定拉杆的的方块面.
      *
-     * @deprecated use {@link AttachedFace}
+     * @deprecated 请使用 {@link AttachedFace}
      */
     @Deprecated
     public enum Face {
         /**
-         * The switch is mounted to the floor and pointing upwards.
+         * 拉杆安装在地板上且朝上
          */
         FLOOR,
         /**
-         * The switch is mounted to the wall.
+         * 拉杆安装在墙上
          */
         WALL,
         /**
-         * The switch is mounted to the ceiling and pointing dowanrds.
+         * 拉杆安装在天花板上且朝下
          */
         CEILING;
     }

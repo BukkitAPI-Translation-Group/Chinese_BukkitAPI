@@ -4,37 +4,41 @@ import org.bukkit.block.data.Directional;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'type' represents the type of piston which this (technical) block corresponds
- * to.
+ * 'type' 值代表该 (技术) 活塞方块对应的类型.
  */
 public interface TechnicalPiston extends Directional {
 
     /**
+     * 获取 'type' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'type' property.
      *
-     * @return the 'type' value
+     * @return 属性 'type' 的值
      */
     @NotNull
     Type getType();
 
     /**
+     * 设置 'type' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'type' property.
      *
-     * @param type the new 'type' value
+     * @param type 新的 'type' 属性值
      */
     void setType(@NotNull Type type);
 
     /**
-     * Different piston variants.
+     * 不同的活塞变种.
      */
     public enum Type {
         /**
-         * A normal piston which does not pull connected blocks backwards on
-         * retraction.
+         * 普通的活塞, 不会在回缩时将方块拉回来
          */
         NORMAL,
         /**
-         * A sticky piston which will also retract connected blocks.
+         * 有粘性的活塞, 会在回缩时把方块带回来
          */
         STICKY;
     }

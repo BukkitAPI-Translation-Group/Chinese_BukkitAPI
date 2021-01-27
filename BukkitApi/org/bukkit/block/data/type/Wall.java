@@ -5,58 +5,70 @@ import org.bukkit.block.data.Waterlogged;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This class encompasses the 'north', 'east', 'south', 'west', height flags
- * which are used to set the height of a wall.
+ * 该类包含 'north', 'east', 'south', 'west', 的高度标识,
+ * 用于设置墙在此朝向的高度.
  *
- * 'up' denotes whether the well has a center post.
+ * 'up' 值表示墙是否中心凸起 (有一个柱垛).
  */
 public interface Wall extends Waterlogged {
 
     /**
+     * 获取 'up' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'up' property.
      *
-     * @return the 'up' value
+     * @return 属性 'up' 的值
      */
     boolean isUp();
 
     /**
+     * 设置 'up' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'up' property.
      *
-     * @param up the new 'up' value
+     * @param up 新的 'up' 属性值
      */
     void setUp(boolean up);
 
     /**
+     * 获取墙在指定朝向上的高度.
+     * <p>
+     * 原文:
      * Gets the height of the specified face.
      *
-     * @param face to check
-     * @return if face is enabled
+     * @param face 指定朝向
+     * @return 墙在该朝向上的高度
      */
     @NotNull
     Height getHeight(@NotNull BlockFace face);
 
     /**
+     * 设置墙在指定朝向上的高度.
+     * <p>
+     * 原文:
      * Set the height of the specified face.
      *
-     * @param face to set
-     * @param height the height
+     * @param face 指定朝向
+     * @param height 要设置的高度
      */
     void setHeight(@NotNull BlockFace face, @NotNull Height height);
 
     /**
-     * The different heights a face of a wall may have.
+     * 墙在一个朝向上可能存在的不同高度.
      */
     public enum Height {
         /**
-         * No wall present.
+         * 没有墙连接
          */
         NONE,
         /**
-         * Low wall present.
+         * 矮墙连接
          */
         LOW,
         /**
-         * Tall wall present.
+         * 高墙连接
          */
         TALL;
     }

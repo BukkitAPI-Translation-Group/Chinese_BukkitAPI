@@ -5,22 +5,27 @@ import org.bukkit.block.data.MultipleFacing;
 import org.bukkit.block.data.Powerable;
 
 /**
- * 'disarmed' denotes that the tripwire was broken with shears and will not
- * subsequently produce a current when destroyed.
+ * 'disarmed' 值表示该绊线被剪刀破坏， 所以不会在破坏时触发绊线钩.
  */
 public interface Tripwire extends Attachable, MultipleFacing, Powerable {
 
     /**
+     * 获取 'disarmed' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'disarmed' property.
      *
-     * @return the 'disarmed' value
+     * @return 属性 'disarmed' 的值
      */
     boolean isDisarmed();
 
     /**
+     * 设置 'disarmed' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'disarmed' property.
      *
-     * @param disarmed the new 'disarmed' value
+     * @param disarmed 新的 'disarmed' 属性值
      */
     void setDisarmed(boolean disarmed);
 }

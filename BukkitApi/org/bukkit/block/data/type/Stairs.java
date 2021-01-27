@@ -6,47 +6,53 @@ import org.bukkit.block.data.Waterlogged;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'shape' represents the texture and bounding box shape of these stairs.
+ * 'shape' 值代表阶梯方块的材质和碰撞箱的类型.
  */
 public interface Stairs extends Bisected, Directional, Waterlogged {
 
     /**
+     * 获取 'shape' 属性的值.
+     * <p>
+     * 原文:
      * Gets the value of the 'shape' property.
      *
-     * @return the 'shape' value
+     * @return 属性 'shape' 的值
      */
     @NotNull
     Shape getShape();
 
     /**
+     * 设置 'shape' 属性的值.
+     * <p>
+     * 原文:
      * Sets the value of the 'shape' property.
      *
-     * @param shape the new 'shape' value
+     * @param shape 新的 'shape' 属性值
      */
     void setShape(@NotNull Shape shape);
 
     /**
-     * The shape of a stair block - used for constructing corners.
+     * 一个阶梯方块可能的的形状 - 用于创建转角的阶梯.
      */
     public enum Shape {
         /**
-         * Regular stair block.
+         * 普通的阶梯方块
          */
         STRAIGHT,
         /**
-         * Inner corner stair block with higher left side.
+         * 左侧凸出的内角阶梯
          */
         INNER_LEFT,
         /**
-         * Inner corner stair block with higher right side.
+         * 右侧凸出的内角阶梯
          */
         INNER_RIGHT,
         /**
-         * Outer corner stair block with higher left side.
+         * 左侧突出的外角阶梯
          */
         OUTER_LEFT,
         /**
-         * Outer corner stair block with higher right side.
+         * 右侧凸出的外角阶梯
          */
         OUTER_RIGHT;
     }
