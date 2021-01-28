@@ -48,7 +48,7 @@ public interface Stairs extends Bisected, Directional, Waterlogged {
          */
         INNER_RIGHT,
         /**
-         * 左侧突出的外角阶梯
+         * 左侧凸出的外角阶梯
          */
         OUTER_LEFT,
         /**

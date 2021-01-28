@@ -4,7 +4,7 @@ import org.bukkit.block.data.BlockData;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'orientation' 指方块的朝向.
+ * 'orientation' 指拼图方块的朝向.
  */
 public interface Jigsaw extends BlockData {
 

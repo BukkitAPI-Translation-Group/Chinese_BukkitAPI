@@ -5,7 +5,7 @@ import org.bukkit.block.data.MultipleFacing;
 import org.bukkit.block.data.Powerable;
 
 /**
- * 'disarmed' 值表示该绊线被剪刀破坏， 所以不会在破坏时触发绊线钩.
+ * 'disarmed' 值表示该绊线被剪刀破坏, 所以不会在破坏时触发绊线钩.
  */
 public interface Tripwire extends Attachable, MultipleFacing, Powerable {
 

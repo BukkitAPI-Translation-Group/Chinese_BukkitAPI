@@ -4,7 +4,7 @@ import org.bukkit.block.data.Waterlogged;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'type' 值代表台阶 (/半砖) 的状态 - 上台阶, 下台阶, 或充满了整个方块的双层台阶.
+ * 'type' 值代表台阶 (/半砖) 的状态 - 上台阶, 下台阶, 或占据了整个方块的双层台阶.
  */
 public interface Slab extends Waterlogged {
 
@@ -42,7 +42,7 @@ public interface Slab extends Waterlogged {
          */
         BOTTOM,
         /**
-         * (双层) 台阶充满了整个方块
+         * (双层) 台阶占据了整个方块
          */
         DOUBLE;
     }

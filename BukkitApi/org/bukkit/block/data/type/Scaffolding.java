@@ -5,7 +5,7 @@ import org.bukkit.block.data.Waterlogged;
 /**
  * 'bottom' 值表示脚手架是否浮空.
  * <br>
- * 'distance' 值表示一个脚手架方块与 'bottom' 脚手架方块的距离.
+ * 'distance' 值表示一个脚手架方块与 'bottom' (中心) 脚手架方块的距离.
  * <br>
  * 当 'distance' 值达到 {@link #getMaximumDistance()} 时, 方块就会坠落.
  */
