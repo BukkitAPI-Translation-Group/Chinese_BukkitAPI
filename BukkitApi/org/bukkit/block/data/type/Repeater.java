@@ -8,9 +8,9 @@ import org.bukkit.block.data.Powerable;
  * <br>
  * 延迟不可低于 {@link #getMinimumDelay()} 也不可高于 {@link #getMaximumDelay()}.
  * <br>
- * 'locked' 值表示中继器是否进入锁存状态.
+ * 'locked' 值表示中继器是否处于锁存状态.
  * <br>
- * 进入锁存状态的中继器在状态解除之前不会变更它的输出信号. 在游戏中, 从侧面对中继器充能以锁存它.
+ * 处于锁存状态的中继器在状态解除之前不会变更它的输出信号. 在游戏中, 从侧面对中继器充能以锁存它.
  */
 public interface Repeater extends Directional, Powerable {
 

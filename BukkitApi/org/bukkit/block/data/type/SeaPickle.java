@@ -3,7 +3,7 @@ package org.bukkit.block.data.type;
 import org.bukkit.block.data.Waterlogged;
 
 /**
- * 'pickles' 值表示该方块哪有多少个海泡菜.
+ * 'pickles' 值表示该方块有多少个海泡菜.
  */
 public interface SeaPickle extends Waterlogged {
 

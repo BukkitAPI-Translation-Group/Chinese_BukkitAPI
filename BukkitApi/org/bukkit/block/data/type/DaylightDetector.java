@@ -4,7 +4,7 @@ import org.bukkit.block.data.AnaloguePowerable;
 
 /**
  * 'inverted' 值表示阳光探测器是否被调整了反转模式,
- * 即在光照不足时再激活."
+ * 即在光照不足时再激活.
  */
 public interface DaylightDetector extends AnaloguePowerable {
 

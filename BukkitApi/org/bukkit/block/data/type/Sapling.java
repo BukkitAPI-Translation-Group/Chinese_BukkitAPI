@@ -3,7 +3,7 @@ package org.bukkit.block.data.type;
 import org.bukkit.block.data.BlockData;
 
 /**
- * 'stage' 值代表树苗的成长阶段
+ * 'stage' 值代表树苗的成长阶段.
  * <br>
  * 当树苗的成长阶段达到 {@link #getMaximumStage()} 时,
  * 它会尝试在下一个成长阶段长成一棵树.
