@@ -219,6 +219,15 @@ public interface Server extends PluginMessageRecipient {
     public boolean getGenerateStructures();
 
     /**
+     * 获取最大世界大小.
+     * <p>
+     * 原文:Get max world size.
+     *
+     * @return 为服务器指定的最大世界大小
+     */
+    public int getMaxWorldSize();
+
+    /**
      * 获取此服务器是否开启了末路之地.
      * <p>
      * 原文:Gets whether this server allows the End or not.
@@ -812,6 +821,17 @@ public interface Server extends PluginMessageRecipient {
      */
     @NotNull
     public List<Recipe> getRecipesFor(@NotNull ItemStack result);
+
+    /**
+     * 根据指定的 key 获取{@link Recipe 配方}.
+     * <p>
+     * 原文:Get the {@link Recipe} for the given key.
+     *
+     * @param recipeKey 配方的 key
+     * @return 给定 key 对应的配方, 若未找到返回 null
+     */
+    @Nullable
+    public Recipe getRecipe(@NotNull NamespacedKey recipeKey);
 
     /**
      * 获取合成配方列表迭代器.

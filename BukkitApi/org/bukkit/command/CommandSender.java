@@ -1,8 +1,10 @@
 package org.bukkit.command;
 
+import java.util.UUID;
 import org.bukkit.Server;
 import org.bukkit.permissions.Permissible;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface CommandSender extends Permissible {
 
@@ -25,6 +27,28 @@ public interface CommandSender extends Permissible {
      * @param messages 要发送的消息(必须为数组)
      */
     public void sendMessage(@NotNull String[] messages);
+
+    /**
+     * 向命令发送者发送消息.
+     * <p>
+     * 原文:
+     * Sends this sender a message
+     *
+     * @param message 要发送的消息
+     * @param sender 消息的发送者
+     */
+    public void sendMessage(@Nullable UUID sender, @NotNull String message);
+
+    /**
+     * 向命令发送者发送多条消息.
+     * <p>
+     * 原文:
+     * Sends this sender multiple messages
+     *
+     * @param messages 要发送的消息(必须为数组)
+     * @param sender 消息的发送者
+     */
+    public void sendMessage(@Nullable UUID sender, @NotNull String[] messages);
 
     /**
      * 返回运行此命令的服务器实例.
@@ -70,6 +94,30 @@ public interface CommandSender extends Permissible {
          * @param components 要发送的聊天消息组件
          */
         public void sendMessage(@NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * 向命令发送者发送一个聊天消息组件.
+         * <p>
+         * 原文:Sends this sender a chat component.
+         *
+         * @param component 要发送的聊天消息组件
+         * @param sender 消息的发送者
+         */
+        public void sendMessage(@Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent component) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * 将多个聊天消息组件作为单条消息发送给命令发送者.
+         * <p>
+         * 原文:Sends an array of components as a single message to the sender.
+         *
+         * @param components 要发送的聊天消息组件
+         * @param sender 消息的发送者
+         */
+        public void sendMessage(@Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
     }

@@ -1,14 +1,14 @@
 package org.bukkit.entity;
 
 /**
- * 代表一个有年龄和繁殖能力的实体.
+ * 代表一个有年龄的实体.
  */
 public interface Ageable extends Creature {
     /**
      * 获取这只动物的年龄.
      * <p>
      * 原文:
-     * Gets the age of this animal.
+     * Gets the age of this mob.
      *
      * @return 年龄
      */
@@ -18,21 +18,23 @@ public interface Ageable extends Creature {
      * 设置这只动物的年龄.
      * <p>
      * 原文:
-     * Sets the age of this animal.
+     * Sets the age of this mob.
      *
      * @param age 新的年龄
      */
     public void setAge(int age);
 
     /**
-     * 锁定这只动物的年龄,设置这个将防止动物从长成以准备进行交配.
+     * 锁定这只动物的年龄, 设置这个将防止动物从长成以准备进行交配.
      * <p>
      * 原文:
      * Lock the age of the animal, setting this will prevent the animal from
      * maturing or getting ready for mating.
      *
      * @param lock 是否锁定
+     * @deprecated 另请参阅 {@link Breedable#setAgeLock(boolean)}
      */
+    @Deprecated
     public void setAgeLock(boolean lock);
 
     /**
@@ -42,14 +44,16 @@ public interface Ageable extends Creature {
      * Gets the current agelock.
      *
      * @return 这个动物的年龄是否被锁定
+     * @deprecated 另请参阅 {@link Breedable#getAgeLock()}
      */
+    @Deprecated
     public boolean getAgeLock();
 
     /**
      * 设置这只动物为年幼状态.
      * <p>
      * 原文:
-     * Sets the age of the animal to a baby
+     * Sets the age of the mob to a baby
      */
     public void setBaby();
 
@@ -57,7 +61,7 @@ public interface Ageable extends Creature {
      * 设置这只动物为成年状态.
      * <p>
      * 原文:
-     * Sets the age of the animal to an adult
+     * Sets the age of the mob to an adult
      */
     public void setAdult();
 
@@ -65,7 +69,7 @@ public interface Ageable extends Creature {
      * 获取这个动物是否成年.
      * <p>
      * 原文:
-     * Returns true if the animal is an adult.
+     * Returns true if the mob is an adult.
      *
      * @return 如果动物成年，则返回true
      */
@@ -78,7 +82,9 @@ public interface Ageable extends Creature {
      * Return the ability to breed of the animal.
      *
      * @return 动物是否具有繁殖能力
+     * @deprecated 另请参阅 {@link Breedable#canBreed()}
      */
+    @Deprecated
     public boolean canBreed();
 
     /**
@@ -89,6 +95,8 @@ public interface Ageable extends Creature {
      * breed it will instantly grow up.
      *
      * @param breed 动物是否具有繁殖能力
+     * @deprecated 另请参阅 {@link Breedable#canBreed()}
      */
+    @Deprecated
     public void setBreed(boolean breed);
 }

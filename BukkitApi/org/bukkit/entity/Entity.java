@@ -127,6 +127,16 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public boolean isOnGround();
 
     /**
+     * 返回实体是否在水中.
+     * <p>
+     * 原文:
+     * Returns true if the entity is in water.
+     *
+     * @return 实体是否在水中
+     */
+    public boolean isInWater();
+
+    /**
      * 获取实体当前所在的世界
      * <p>
      * 原文:
@@ -320,9 +330,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * despawning of living entities. </b>
      *
      * @return true if this entity is persistent
-     * @deprecated draft API
      */
-    @Deprecated
     public boolean isPersistent();
 
     /**
@@ -330,9 +338,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      *
      * @param persistent the persistence status
      * @see #isPersistent()
-     * @deprecated draft API
      */
-    @Deprecated
     public void setPersistent(boolean persistent);
 
     /**
@@ -360,7 +366,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * @param passenger 新乘客
      * @return 如果因为某种原因不能设置, 则返回false
      * @deprecated 实体可能有多名乘客. 请使用
-     * {@link #getPassengers()}
+     * {@link #addPassenger(org.bukkit.entity.Entity)}
      */
     @Deprecated
     public boolean setPassenger(@NotNull Entity passenger);

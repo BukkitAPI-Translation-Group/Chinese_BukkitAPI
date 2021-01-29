@@ -1041,6 +1041,19 @@ public interface World extends PluginMessageRecipient, Metadatable {
     /**
      * 设置这个世界的出生点位置.
      * <p>
+     * 原文:Sets the spawn location of the world
+     *
+     * @param x X 坐标
+     * @param y Y 坐标
+     * @param z Z 坐标
+     * @param angle 角度
+     * @return 若成功设置返回true
+     */
+    public boolean setSpawnLocation(int x, int y, int z, float angle);
+
+    /**
+     * 设置这个世界的出生点位置.
+     * <p>
      * 原文：
      * Sets the spawn location of the world
      *
@@ -1125,11 +1138,16 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean hasStorm();
 
     /**
-     * 设置是否有风暴。会为当前新的天气设置一段持续时间.
+     * 设置是否有风暴. 会为新的天气设置一段持续时间.
+     *
+     * 本方法会隐式调用 {@link #setClearWeatherDuration(int)}, 指定 0 tick 来重置世界的晴朗天气.
      * <p>
      * 原文：
      * Set whether there is a storm. A duration will be set for the new
      * current conditions.
+     *
+     * This will implicitly call {@link #setClearWeatherDuration(int)} with 0
+     * ticks to reset the world's clear weather.
      *
      * @param hasStorm 是否下雨或下雪
      */
@@ -1167,9 +1185,14 @@ public interface World extends PluginMessageRecipient, Metadatable {
 
     /**
      * 设置这个世界是否在打雷.
+     *
+     * 本方法会隐式调用 {@link #setClearWeatherDuration(int)}, 指定 0 tick 来重置世界的晴朗天气.
      * <p>
      * 原文：
      * Set whether it is thundering.
+     *
+     * This will implicitly call {@link #setClearWeatherDuration(int)} with 0
+     * ticks to reset the world's clear weather.
      *
      * @param thundering 是否打雷
      */
@@ -1184,6 +1207,50 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 持续时间，单位为tick
      */
     public int getThunderDuration();
+
+    /**
+     * 返回世界是否为晴天.
+     *
+     * {@link #isThundering() 雷}{@link #hasStorm() 雨}退散, 便是晴天.
+     * <p>
+     * 原文:Returns whether the world has clear weather.
+     *
+     * This will be true such that {@link #isThundering()} and
+     * {@link #hasStorm()} are both false.
+     *
+     * @return 是否为晴天
+     */
+    public boolean isClearWeather();
+
+    /**
+     * 设置晴朗天气的持续时间 (单位为 tick).
+     *
+     * 晴朗天气的持续时间决定着是否允许世界下雨或打雷.
+     * 如果持续时间为 &gt; 0, 那么在持续时间过后, 世界也不会自然地下雨/雪.
+     *
+     * 本方法等效于 {@code /weather clear 持续时间}.
+     * <p>
+     * 原文:Set the clear weather duration.
+     *
+     * The clear weather ticks determine whether or not the world will be
+     * allowed to rain or storm. If clear weather ticks are &gt; 0, the world will
+     * not naturally do either until the duration has elapsed.
+     *
+     * This method is equivalent to calling {@code /weather clear} with a set
+     * amount of ticks.
+     *
+     * @param duration 持续时间, 单位为 tick
+     */
+    public void setClearWeatherDuration(int duration);
+
+    /**
+     * 获取晴朗天气的持续时间.
+     * <p>
+     * 原文:Get the clear weather duration.
+     *
+     * @return 持续时间, 单位为 tick
+     */
+    public int getClearWeatherDuration();
 
     /**
      * 设置这个世界打雷持续时间。

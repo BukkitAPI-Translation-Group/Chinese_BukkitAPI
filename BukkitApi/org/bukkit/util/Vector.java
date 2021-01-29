@@ -440,6 +440,21 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 将此向量的值为 <code>-0.0</code> 的每个部分转化为 <code>0.0</code>.
+     * <p>
+     * 原文:Converts each component of value <code>-0.0</code> to <code>0.0</code>.
+     *
+     * @return 返回自身作为结果向量
+     */
+    @NotNull
+    Vector normalizeZeros() {
+        if (x == -0.0D) x = 0.0D;
+        if (y == -0.0D) y = 0.0D;
+        if (z == -0.0D) z = 0.0D;
+        return this;
+    }
+
+    /**
      * 判断本向量是否在一个AABB包围盒中.
      * <p>
      * 参数 min 和 max 必须真的是最小坐标和最大坐标,也就是说必须是能构成长方体的对角点.

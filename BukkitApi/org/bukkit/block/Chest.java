@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表一个箱子(快照).
  */
-public interface Chest extends Container, Lootable {
+public interface Chest extends Container, Lootable, Lidded {
 
     /**
      * 返回箱子类型的物品栏.

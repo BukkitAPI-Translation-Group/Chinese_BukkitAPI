@@ -1,11 +1,11 @@
 package org.bukkit.block.data.type;
 
-import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Waterlogged;
 
 /**
  * 'hanging' 值表示灯笼是否悬挂在一个方块下.
  */
-public interface Lantern extends BlockData {
+public interface Lantern extends Waterlogged {
 
     /**
      * 获取 'hanging' 属性的值.

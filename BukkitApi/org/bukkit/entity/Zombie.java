@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表僵尸.
  */
-public interface Zombie extends Monster {
+public interface Zombie extends Monster, Ageable {
 
     /**
      * 获取这个僵尸是否为小僵尸.
@@ -15,7 +15,9 @@ public interface Zombie extends Monster {
      * Gets whether the zombie is a baby
      *
      * @return 这个僵尸是否为小僵尸
+     * @deprecated 另请参阅 {@link Ageable#isAdult()}
      */
+    @Deprecated
     public boolean isBaby();
 
     /**
@@ -25,7 +27,9 @@ public interface Zombie extends Monster {
      * Sets whether the zombie is a baby
      *
      * @param flag 这个僵尸是否为小僵尸
+     * @deprecated 另请参阅 {@link Ageable#setBaby()} 和 {@link Ageable#setAdult()}
      */
+    @Deprecated
     public void setBaby(boolean flag);
 
     /**

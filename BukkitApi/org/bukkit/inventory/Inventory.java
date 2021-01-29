@@ -362,6 +362,16 @@ public interface Inventory extends Iterable<ItemStack> {
      */
     public int firstEmpty();
 
+     /**
+     * 检测物品栏是否为空. 当物品栏里任何格子内都没有物品堆时认为此物品栏为空.
+     * <p>
+     * 原文:Check whether or not this inventory is empty. An inventory is considered
+     * to be empty if there are no ItemStacks in any slot of this inventory.
+     *
+     * @return 物品栏是否为空
+     */
+    public boolean isEmpty();
+
     /**
      * 移除在物品栏内与给定物品匹配的所有物品堆.
      * <p>

@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
  * 原文:
  * Represents a villager NPC
  */
-public interface AbstractVillager extends Ageable, NPC, InventoryHolder, Merchant {
+public interface AbstractVillager extends Breedable, NPC, InventoryHolder, Merchant {
 
     /**
      * 获得这个村民的物品栏.

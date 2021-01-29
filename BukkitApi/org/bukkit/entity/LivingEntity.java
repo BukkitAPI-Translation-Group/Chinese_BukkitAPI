@@ -222,6 +222,34 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void setMaximumAir(int ticks);
 
     /**
+     * Gets the time in ticks until the next arrow leaves the entity's body.
+     *
+     * @return ticks until arrow leaves
+     */
+    public int getArrowCooldown();
+
+    /**
+     * Sets the time in ticks until the next arrow leaves the entity's body.
+     *
+     * @param ticks time until arrow leaves
+     */
+    public void setArrowCooldown(int ticks);
+
+    /**
+     * Gets the amount of arrows in an entity's body.
+     *
+     * @return amount of arrows in body
+     */
+    public int getArrowsInBody();
+
+    /**
+     * Set the amount of arrows in the entity's body.
+     *
+     * @param count amount of arrows in entity's body
+     */
+    public void setArrowsInBody(int count);
+
+    /**
      * 返回生物实体当前最大无伤害时间，单位为tick.
      * <p>
      * 即生物实体不会受到伤害的最大持续时间.
@@ -677,4 +705,29 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param <T> the type of the passed value
      */
     <T> void setMemory(@NotNull MemoryKey<T> memoryKey, @Nullable T memoryValue);
+
+    /**
+     * Get the category to which this entity belongs.
+     *
+     * Categories may subject this entity to additional effects, benefits or
+     * debuffs.
+     *
+     * @return the entity category
+     */
+    @NotNull
+    public EntityCategory getCategory();
+
+    /**
+     * Sets whether the entity is invisible or not.
+     *
+     * @param invisible If the entity is invisible
+     */
+    public void setInvisible(boolean invisible);
+
+    /**
+     * Gets whether the entity is invisible or not.
+     *
+     * @return Whether the entity is invisible
+     */
+    public boolean isInvisible();
 }

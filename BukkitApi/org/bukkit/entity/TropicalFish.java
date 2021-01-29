@@ -4,7 +4,7 @@ import org.bukkit.DyeColor;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Tropical fish.
+ * 代表热带鱼.
  */
 public interface TropicalFish extends Fish {
 

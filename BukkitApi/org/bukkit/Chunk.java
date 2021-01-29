@@ -5,13 +5,14 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Entity;
+import org.bukkit.persistence.PersistentDataHolder;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个16*256*16的空间
  */
-public interface Chunk {
+public interface Chunk extends PersistentDataHolder {
 
     /**
      * 获取该区块的X轴坐标.

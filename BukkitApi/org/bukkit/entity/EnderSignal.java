@@ -1,7 +1,9 @@
 package org.bukkit.entity;
 
 import org.bukkit.Location;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表抛出的末影之眼.
@@ -53,6 +55,23 @@ public interface EnderSignal extends Entity {
      * @param drop 末影之眼最终是否会掉落为物品
      */
     public void setDropItem(boolean drop);
+
+    /**
+     * Get the {@link ItemStack} to be displayed while in the air and to be
+     * dropped on death.
+     *
+     * @return the item stack
+     */
+    @NotNull
+    public ItemStack getItem();
+
+    /**
+     * Set the {@link ItemStack} to be displayed while in the air and to be
+     * dropped on death.
+     *
+     * @param item the item to set. If null, resets to the default eye of ender
+     */
+    public void setItem(@Nullable ItemStack item);
 
     /**
      * 获取末影之眼已在空气漂浮的时间 (单位为tick).

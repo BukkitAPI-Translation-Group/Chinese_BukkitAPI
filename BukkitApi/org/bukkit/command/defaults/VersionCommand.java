@@ -91,23 +91,26 @@ public class VersionCommand extends BukkitCommand {
 
         if (!desc.getAuthors().isEmpty()) {
             if (desc.getAuthors().size() == 1) {
-                sender.sendMessage("Author: " + getAuthors(desc));
+                sender.sendMessage("Author: " + getNameList(desc.getAuthors()));
             } else {
-                sender.sendMessage("Authors: " + getAuthors(desc));
+                sender.sendMessage("Authors: " + getNameList(desc.getAuthors()));
             }
+        }
+
+        if (!desc.getContributors().isEmpty()) {
+            sender.sendMessage("Contributors: " + getNameList(desc.getContributors()));
         }
     }
 
     @NotNull
-    private String getAuthors(@NotNull final PluginDescriptionFile desc) {
+    private String getNameList(@NotNull final List<String> names) {
         StringBuilder result = new StringBuilder();
-        List<String> authors = desc.getAuthors();
 
-        for (int i = 0; i < authors.size(); i++) {
+        for (int i = 0; i < names.size(); i++) {
             if (result.length() > 0) {
                 result.append(ChatColor.WHITE);
 
-                if (i < authors.size() - 1) {
+                if (i < names.size() - 1) {
                     result.append(", ");
                 } else {
                     result.append(" and ");
@@ -115,7 +118,7 @@ public class VersionCommand extends BukkitCommand {
             }
 
             result.append(ChatColor.GREEN);
-            result.append(authors.get(i));
+            result.append(names.get(i));
         }
 
         return result.toString();
@@ -184,10 +187,10 @@ public class VersionCommand extends BukkitCommand {
     private void obtainVersion() {
         String version = Bukkit.getVersion();
         if (version == null) version = "Custom";
-        if (version.startsWith("git-Spigot-")) {
-            String[] parts = version.substring("git-Spigot-".length()).split("-");
-            int cbVersions = getDistance("craftbukkit", parts[1].substring(0, parts[1].indexOf(' ')));
-            int spigotVersions = getDistance("spigot", parts[0]);
+        String[] parts = version.substring(0, version.indexOf(' ')).split("-");
+        if (parts.length == 4) {
+            int cbVersions = getDistance("craftbukkit", parts[3]);
+            int spigotVersions = getDistance("spigot", parts[2]);
             if (cbVersions == -1 || spigotVersions == -1) {
                 setVersionMessage("Error obtaining version information");
             } else {
@@ -198,9 +201,8 @@ public class VersionCommand extends BukkitCommand {
                 }
             }
 
-        } else if (version.startsWith("git-Bukkit-")) {
-            version = version.substring("git-Bukkit-".length());
-            int cbVersions = getDistance("craftbukkit", version.substring(0, version.indexOf(' ')));
+        } else if (parts.length == 3) {
+            int cbVersions = getDistance("craftbukkit", parts[2]);
             if (cbVersions == -1) {
                 setVersionMessage("Error obtaining version information");
             } else {

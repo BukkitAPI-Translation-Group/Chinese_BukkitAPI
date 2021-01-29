@@ -18,6 +18,15 @@ public interface EntityEquipment {
     public void setItem(@NotNull EquipmentSlot slot, @Nullable ItemStack item);
 
     /**
+     * Stores the ItemStack at the given equipment slot in the inventory.
+     *
+     * @param slot the slot to put the ItemStack
+     * @param item the ItemStack to set
+     * @param silent whether or not the equip sound should be silenced
+     */
+    public void setItem(@NotNull EquipmentSlot slot, @Nullable ItemStack item, boolean silent);
+
+    /**
      * Gets the ItemStack at the given equipment slot in the inventory.
      *
      * @param slot the slot to get the ItemStack
@@ -47,6 +56,16 @@ public interface EntityEquipment {
     void setItemInMainHand(@Nullable ItemStack item);
 
     /**
+     * 设置实体在主手中手持的物品.
+     * <p>
+     * 原文:Sets the item the entity is holding in their main hand.
+     *
+     * @param item 需要设置的物品
+     * @param silent 是否播放装备动作的声音
+     */
+    void setItemInMainHand(@Nullable ItemStack item, boolean silent);
+
+    /**
      * 获取实体当前副手中手持的物品的拷贝.
      * <p>
      * 原文: Gets a copy of the item the entity is currently holding
@@ -65,6 +84,16 @@ public interface EntityEquipment {
      * @param item 需要设置的物品
      */
     void setItemInOffHand(@Nullable ItemStack item);
+
+    /**
+     * 设置实体在副手中手持的物品.
+     * <p>
+     * 原文: Sets the item the entity is holding in their off hand.
+     *
+     * @param item 需要设置的物品
+     * @param silent 是否播放装备动作的声音
+     */
+    void setItemInOffHand(@Nullable ItemStack item, boolean silent);
 
     /**
      * 获取实体当前所持物品的拷贝.
@@ -117,6 +146,16 @@ public interface EntityEquipment {
     void setHelmet(@Nullable ItemStack helmet);
 
     /**
+     * 设置该实体当前正在佩戴的头盔.
+     * <p>
+     * 原文: Sets the helmet worn by the entity
+     *
+     * @param helmet 给定的头盔
+     * @param silent 是否播放装备动作的声音
+     */
+    void setHelmet(@Nullable ItemStack helmet, boolean silent);
+
+    /**
      * 获取该实体当前正在穿戴的胸甲的拷贝.
      * <p>
      * 原文: Gets a copy of the chest plate currently being worn by the entity
@@ -134,6 +173,16 @@ public interface EntityEquipment {
      * @param chestplate 给定的胸甲
      */
     void setChestplate(@Nullable ItemStack chestplate);
+
+    /**
+     * 设置该实体当前正在穿戴的胸甲.
+     * <p>
+     * 原文: Sets the chest plate worn by the entity
+     *
+     * @param chestplate 给定的胸甲
+     * @param silent 是否播放装备动作的声音
+     */
+    void setChestplate(@Nullable ItemStack chestplate, boolean silent);
 
     /**
      * 获取该实体当前正在穿戴的护腿的拷贝.
@@ -155,6 +204,16 @@ public interface EntityEquipment {
     void setLeggings(@Nullable ItemStack leggings);
 
     /**
+     * 设置该实体当前正在穿戴的护腿.
+     * <p>
+     * 原文: Sets the leggings worn by the entity
+     *
+     * @param leggings 给定的护腿
+     * @param silent 是否播放装备动作的声音
+     */
+    void setLeggings(@Nullable ItemStack leggings, boolean silent);
+
+    /**
      * 获取该实体当前正在穿戴的鞋子的拷贝.
      * <p>
      * 原文: Gets a copy of the boots currently being worn by the entity
@@ -172,6 +231,16 @@ public interface EntityEquipment {
      * @param boots 给定的鞋子
      */
     void setBoots(@Nullable ItemStack boots);
+
+    /**
+     * 设置该实体当前正在穿戴的鞋子.
+     * <p>
+     * 原文: Sets the boots worn by the entity
+     *
+     * @param boots 给定的鞋子
+     * @param silent 是否播放装备动作的声音
+     */
+    void setBoots(@Nullable ItemStack boots, boolean silent);
 
     /**
      * 获得实体当前所有穿着盔甲的拷贝.

@@ -1,6 +1,7 @@
 package org.bukkit.entity;
 
 import java.net.InetSocketAddress;
+import java.util.UUID;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -1611,6 +1612,32 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          * @param components 要发送的聊天消息组件
          */
         public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * 向玩家发送在指定位置展示的聊天消息组件.
+         * <p>
+         * 原文:Sends the component to the specified screen position of this player
+         *
+         * @param position 在屏幕上的位置
+         * @param sender 消息的发送者
+         * @param component 要发送的聊天消息组件
+         */
+        public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent component) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * 将多个聊天消息组件作为单条消息发送给玩家, 并指定消息的展示位置.
+         * <p>
+         * 原文:Sends an array of components as a single message to the specified screen position of this player
+         *
+         * @param position 在屏幕上的位置
+         * @param sender 消息的发送者
+         * @param components 要发送的聊天消息组件
+         */
+        public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
     }

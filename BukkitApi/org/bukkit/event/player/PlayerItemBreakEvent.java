@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 某玩家工具耐久消耗完毕时触发(比如铲子，打火石，铁制工具).
  * <p>
- * 当物品耐久值为0时，将触发此事件.事件结束后，物品耐久值将复位至0.
+ * 当物品耐久值为0时，将触发此事件.事件结束后，物品数量将设为 {@code item amount - 1}, 耐久值将复位至0.
  */
 public class PlayerItemBreakEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();

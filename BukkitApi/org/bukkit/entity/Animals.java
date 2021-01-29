@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表动物.
  */
-public interface Animals extends Ageable {
+public interface Animals extends Breedable {
     
     /**
      * Get the UUID of the entity that caused this entity to enter the

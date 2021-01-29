@@ -40,5 +40,11 @@ public enum ItemFlag {
      * <p>
      * 原文:Setting to show/hide potion effects on this ItemStack
      */
-    HIDE_POTION_EFFECTS;
+    HIDE_POTION_EFFECTS,
+    /**
+     * 设置显示/隐藏彩色皮革盔甲的染料.
+     * <p>
+     * 原文:Setting to show/hide dyes from coloured leather armour
+     */
+    HIDE_DYE;
 }

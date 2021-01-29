@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表潜影盒方块状态.
  */
-public interface ShulkerBox extends Container, Lootable {
+public interface ShulkerBox extends Container, Lootable, Lidded {
 
     /**
      * 获取该潜影盒对应的{@link DyeColor 颜色}.
