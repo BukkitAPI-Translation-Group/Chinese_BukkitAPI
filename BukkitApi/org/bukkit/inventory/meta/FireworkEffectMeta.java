@@ -15,7 +15,7 @@ public interface FireworkEffectMeta extends ItemMeta {
      * <p>
      * 原文:Sets the firework effect for this meta.
      *
-     * @param effect 要设置的效果，或者设置成来清空效果
+     * @param effect 要设置的效果，或者设置null来清空效果
      */
     void setEffect(@Nullable FireworkEffect effect);
 

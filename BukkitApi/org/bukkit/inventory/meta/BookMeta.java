@@ -12,23 +12,23 @@ import org.jetbrains.annotations.Nullable;
 public interface BookMeta extends ItemMeta {
 
     /**
-     * Represents the generation (or level of copying) of a written book
+     * 代表成书的代次 (或副本级别).
      */
     enum Generation {
         /**
-         * Book written into a book-and-quill. Can be copied. (Default value)
+         * 写进书与笔的书(原著). 可被复制. (默认值)
          */
         ORIGINAL,
         /**
-         * Book that was copied from an original. Can be copied.
+         * 原著的副本. 可被复制.
          */
         COPY_OF_ORIGINAL,
         /**
-         * Book that was copied from a copy of an original. Can't be copied.
+         * 副本的副本. 不可复制.
          */
         COPY_OF_COPY,
         /**
-         * Unused; unobtainable by players. Can't be copied.
+         * 未被使用; 无法被玩家取得. 不可复制.
          */
         TATTERED;
     }
@@ -105,27 +105,37 @@ public interface BookMeta extends ItemMeta {
     void setAuthor(@Nullable String author);
 
     /**
+     * 检测本书是否存在代次级别.
+     * <p>
+     * 原文:
      * Checks for the existence of generation level in the book.
      *
-     * @return true if the book has a generation level
+     * @return 本书是否存在代次级别
      */
     boolean hasGeneration();
 
     /**
+     * 获取本书的代次.
+     * 插件应该在调用这个方法之前检测 hasGeneration() 是否返回 <code>true</code>.
+     * <p>
+     * 原文:
      * Gets the generation of the book.
      * <p>
      * Plugins should check that hasGeneration() returns true before calling
      * this method.
      *
-     * @return the generation of the book
+     * @return 本书的代次
      */
     @Nullable
     Generation getGeneration();
 
     /**
+     * 设置本书的代次. 当参数为 null 时移除代次.
+     * <p>
+     * 原文:
      * Sets the generation of the book. Removes generation when given null.
      *
-     * @param generation the generation to set
+     * @param generation 要设置的代次
      */
     void setGeneration(@Nullable Generation generation);
 

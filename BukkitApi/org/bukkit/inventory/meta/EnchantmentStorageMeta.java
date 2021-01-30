@@ -6,9 +6,8 @@ import org.bukkit.enchantments.Enchantment;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * EnchantmentMeta is specific to items that can <i>store</i> enchantments, as
- * opposed to being enchanted. {@link Material#ENCHANTED_BOOK} is an example
- * of an item with enchantment storage.
+ * EnchantmentMeta 特定于专门<i>存储</i>附魔的物品, 而非被附魔的物品.
+ * {@link Material#ENCHANTED_BOOK 附魔书} 就是一个可存储附魔的物品的例子.
  */
 public interface EnchantmentStorageMeta extends ItemMeta {
 
@@ -22,19 +21,22 @@ public interface EnchantmentStorageMeta extends ItemMeta {
     boolean hasStoredEnchants();
 
     /**
-     * Checks for storage of the specified enchantment.
+     * 检测是否存储特定的附魔.
+     * <p>
+     * 原文:Checks for storage of the specified enchantment.
      *
-     * @param ench enchantment to check
-     * @return true if this enchantment is stored in this meta
+     * @param ench 要检测的附魔
+     * @return 若此附魔存放于本 meta 中返回 true
      */
     boolean hasStoredEnchant(@NotNull Enchantment ench);
 
     /**
-     * Checks for the level of the stored enchantment.
+     * 检测指定附魔的等级.
+     * <p>
+     * 原文:Checks for the level of the stored enchantment.
      *
-     * @param ench enchantment to check
-     * @return The level that the specified stored enchantment has, or 0 if
-     *     none
+     * @param ench 要检测的附魔
+     * @return 附魔等级, 0 代表不存在此附魔
      */
     int getStoredEnchantLevel(@NotNull Enchantment ench);
 
@@ -49,36 +51,37 @@ public interface EnchantmentStorageMeta extends ItemMeta {
     Map<Enchantment, Integer> getStoredEnchants();
 
     /**
-     * Stores the specified enchantment in this item meta.
+     * 向本物品存放一个指定的附魔.
+     * <p>
+     * 原文:Stores the specified enchantment in this item meta.
      *
-     * @param ench Enchantment to store
-     * @param level Level for the enchantment
-     * @param ignoreLevelRestriction this indicates the enchantment should be
-     *     applied, ignoring the level limit
-     * @return true if the item meta changed as a result of this call, false
-     *     otherwise
-     * @throws IllegalArgumentException if enchantment is null
+     * @param ench 要存储的附魔
+     * @param level 附魔等级
+     * @param ignoreLevelRestriction 是否忽略附魔的等级限制
+     * @return 添加附魔成功返回 true, false反之
+     * @throws IllegalArgumentException 若指定附魔为 null
      */
     boolean addStoredEnchant(@NotNull Enchantment ench, int level, boolean ignoreLevelRestriction);
 
     /**
-     * Remove the specified stored enchantment from this item meta.
+     * 移除物品上指定的附魔.
+     * <p>
+     * 原文:Remove the specified stored enchantment from this item meta.
      *
-     * @param ench Enchantment to remove
-     * @return true if the item meta changed as a result of this call, false
-     *     otherwise
-     * @throws IllegalArgumentException if enchantment is null
+     * @param ench 要移除的附魔
+     * @return 移除附魔成功返回 true, false反之
+     * @throws IllegalArgumentException 若指定附魔为 null
      */
     boolean removeStoredEnchant(@NotNull Enchantment ench) throws IllegalArgumentException;
 
     /**
-     * 检测指定的附魔是否与任何ItemMeta里的附魔冲突.
+     * 检测指定的附魔是否与任何 ItemMeta 里的附魔冲突.
      * <p>
      * 原文:Checks if the specified enchantment conflicts with any enchantments in
      * this ItemMeta.
      *
      * @param ench 要检测的附魔
-     * @return 附魔是否与任何ItemMeta里的附魔冲突
+     * @return 有冲突的附魔返回 true, false 反之
      */
     boolean hasConflictingStoredEnchant(@NotNull Enchantment ench);
 

@@ -3,28 +3,37 @@ package org.bukkit.inventory.meta;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents an item that has durability and can take damage.
+ * 代表有耐久度、可损耗的物品.
  */
 public interface Damageable {
 
     /**
+     * 检测此物品是否有耐久度.
+     * <p>
+     * 原文:
      * Checks to see if this item has damage
      *
-     * @return true if this has damage
+     * @return 此物品是否有耐久度
      */
     boolean hasDamage();
 
     /**
+     * 获取物品的耐久度.
+     * <p>
+     * 原文:
      * Gets the damage
      *
-     * @return the damage
+     * @return 耐久度
      */
     int getDamage();
 
     /**
+     * 设置物品的耐久度.
+     * <p>
+     * 原文:
      * Sets the damage
      *
-     * @param damage item damage
+     * @param damage 物品耐久度
      */
     void setDamage(int damage);
 
