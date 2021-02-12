@@ -28,7 +28,7 @@ import org.jetbrains.annotations.NotNull;
 public enum EntityEffect {
 
     /**
-     * Colored particles from a tipped arrow.
+     * 箭矢上的彩色粒子.
      */
     ARROW_PARTICLES(0, TippedArrow.class),
     /**
@@ -140,7 +140,7 @@ public enum EntityEffect {
      */
     FIREWORK_EXPLODE(17, Firework.class),
     /**
-     * Hearts from a breeding entity.
+     * 繁殖实体时的爱心.
      */
     LOVE_HEARTS(18, Ageable.class),
     /**
@@ -148,7 +148,7 @@ public enum EntityEffect {
      */
     SQUID_ROTATE(19, Squid.class),
     /**
-     * Silverfish entering block, spawner spawning.
+     * 蠹虫进入石头, 刷怪笼刷怪.
      */
     ENTITY_POOF(20, LivingEntity.class),
     /**
@@ -157,16 +157,16 @@ public enum EntityEffect {
     GUARDIAN_TARGET(21, Guardian.class),
     // 22-28 player internal flags
     /**
-     * Shield blocks attack.
+     * 盾牌阻挡攻击.
      */
     SHIELD_BLOCK(29, LivingEntity.class),
     /**
-     * Shield breaks.
+     * 护盾损坏.
      */
     SHIELD_BREAK(30, LivingEntity.class),
     // 31 - unused
     /**
-     * Armor stand is hit.
+     * 盔甲架被击中.
      */
     ARMOR_STAND_HIT(32, ArmorStand.class),
     /**

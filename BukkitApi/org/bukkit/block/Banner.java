@@ -6,7 +6,10 @@ import org.bukkit.block.banner.Pattern;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表旗帜(快照)/Represents a captured state of a banner.
+ * 代表旗帜(快照)
+ * <p>
+ * 原文：
+ * Represents a captured state of a banner.
  */
 public interface Banner extends TileState {
 

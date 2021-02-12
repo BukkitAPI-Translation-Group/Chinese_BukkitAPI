@@ -5,6 +5,9 @@ import org.bukkit.entity.Bee;
 import org.jetbrains.annotations.Nullable;
 
 /**
+ * 代表蜂巢(快照)
+ * <p>
+ * 原文：
  * Represents a captured state of a bee hive.
  */
 public interface Beehive extends EntityBlockStorage<Bee> {
