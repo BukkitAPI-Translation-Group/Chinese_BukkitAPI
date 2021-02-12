@@ -9,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
+ * 代表信标(快照)
+ * <p>
+ * 原文：
  * Represents a captured state of a beacon.
  */
 public interface Beacon extends TileState, Lockable, Nameable {
