@@ -52,7 +52,7 @@ public interface BlockState extends Metadatable {
     @NotNull
     MaterialData getData();
 
-    /*
+    /**
      * 获取此方块状态的数据.
      * 原文:
      * <p>
