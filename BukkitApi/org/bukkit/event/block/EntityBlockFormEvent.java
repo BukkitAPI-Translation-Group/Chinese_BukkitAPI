@@ -6,12 +6,12 @@ import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 方块搭建成实体时调用本事件.
+ * 实体形成方块时触发此事件
  * <p>
  * 举个例子:
  * <ul>
- * <li>用雪块、南瓜搭建成一个雪傀儡时.
- * <li>用铁块、南瓜搭建成一个铁傀儡时.
+ * <li>雪傀儡移动时形成的雪
+ * <li>穿戴冰霜行者附魔的鞋子形成的冰霜
  * </ul>
  */
 public class EntityBlockFormEvent extends BlockFormEvent {
