@@ -378,7 +378,6 @@ public final class SimplePluginManager implements PluginManager {
      * @param file 要加载的插件文件
      * @return 加载成功后的插件对象, 若插件文件无效返回null
      * @throws InvalidPluginException 若指定文件不是一个有效的插件
-     * @throws InvalidDescriptionException 若插件包含一个无效的插件描述文件(plugin.yml)
      * @throws UnknownDependencyException 若插件要求的依赖找不到
      */
     @Override

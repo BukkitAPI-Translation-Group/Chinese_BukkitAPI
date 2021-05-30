@@ -468,7 +468,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * 例:playEffect(loc, {@link Effect}.StepSound, Material.REDSTONE_BLOCK)将
      * 在loc的位置播放一个红石块(REDSTONE_BLOCK)被打破的粒子效果.<p>
      * 译注2:{@link Material}只能表示主ID,不能表示副ID,所以播放绿色羊毛的打破效果貌似是不可能的,
-     * 但是由于data是泛型,我们猜测会不会data也可以是能表示任何{@link Block 方块}类型?由于时间关系不能测试,请谅解.
+     * 但是由于data是泛型,我们猜测会不会data也可以是能表示任何{@link org.bukkit.block.Block 方块}类型?由于时间关系不能测试,请谅解.
      * 
      * @param <T> {@link Material}
      * @param loc 要播放粒子效果的位置
@@ -478,7 +478,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void playEffect(@NotNull Location loc, @NotNull Effect effect, @Nullable T data);
 
     /**
-     * 向该玩家发送一个伪造的指定位置的方块({@link Block})更改数据包.这不会改变世界中的方块. <p>
+     * 向该玩家发送一个伪造的指定位置的方块({@link org.bukkit.block.Block})更改数据包.这不会改变世界中的方块. <p>
      * 原文:Send a block change. This fakes a block change packet for a user at a
      * certain location. This will not actually change the world in any way.<p>
      * 译注:意思就是,向玩家发送一个伪造的,更新方块的数据包,那个位置本来是石头的,这个玩家看起来那里就变成了钻石矿.<p>
@@ -496,7 +496,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendBlockChange(@NotNull Location loc, @NotNull Material material, byte data);
 
     /**
-     * 向该玩家发送一个伪造的指定位置的方块({@link Block})更改数据包.这不会改变世界中的方块.
+     * 向该玩家发送一个伪造的指定位置的方块({@link org.bukkit.block.Block})更改数据包.这不会改变世界中的方块.
      * <p>
      * 原文:Send a block change. This fakes a block change packet for a user at a
      * certain location. This will not actually change the world in any way.
@@ -535,14 +535,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public boolean sendChunkChange(@NotNull Location loc, int sx, int sy, int sz, @NotNull byte[] data);
 
     /**
-     * 向该玩家发送一个伪造的牌子({@link Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
+     * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
      * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
      * 方法在那个位置伪造一个牌子然后更改它.<p>
      * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.<p>
      * 原文:Send a sign change. This fakes a sign change packet for a user at
      * a certain location. This will not actually change the world in any way.
      * This method will use a sign at the location's block or a faked sign
-     * sent via {@link #sendBlockChange(org.bukkit.Location, int, byte)} or
+     * sent via
      * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
      * <p>
      * If the client does not have a sign at the given location it will
@@ -558,7 +558,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendSignChange(@NotNull Location loc, @Nullable String[] lines) throws IllegalArgumentException;
 
     /**
-     * 向该玩家发送一个伪造的牌子({@link Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
+     * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
      * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
      * 方法在那个位置伪造一个牌子然后更改它.<p>
      * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.
@@ -1010,7 +1010,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     have to send an empty pack.
      * <li>The request is send with "null" as the hash. This might result
      *     in newer versions not loading the pack correctly.
-     * <ul>
+     * </ul>
      *
      * @param url The URL from which the client will download the texture
      *     pack. The string must contain only US-ASCII characters and should

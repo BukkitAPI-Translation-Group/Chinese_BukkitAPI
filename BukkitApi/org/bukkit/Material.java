@@ -3658,28 +3658,15 @@ public enum Material implements Keyed {
     }
 
     /**
-     * Creates a new {@link BlockData} instance with material and properties
-     * parsed from provided data.
-     *
-     * @param data data string
-     * @return new data instance
-     * @throws IllegalArgumentException if the specified data is not valid
-     */
-    @NotNull
-    public Class<? extends MaterialData> getData() {
-        Validate.isTrue(legacy, "Cannot get data class of Modern Material");
-        return ctor.getDeclaringClass();
-    }
-
-
-    /**
      * 获取这个物品相关的MaterialData类.
      * <p>
      * 原文:Gets the MaterialData class associated with this Material
      *
      * @return 物品相关的MaterialData类
      */
+    @NotNull
     public Class<? extends MaterialData> getData() {
+        Validate.isTrue(legacy, "Cannot get data class of Modern Material");
         return ctor.getDeclaringClass();
     }
 

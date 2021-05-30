@@ -157,19 +157,17 @@ public abstract class JavaPlugin extends PluginBase {
 
     /**
      * 提供jar中文本文件的读取器.
-     * 此方法依赖 {@link PluginAwareness.Flags#UTF8} 提供编码, 在没有
-     * 定义的情况下, 如果指定了 {@link FileConfiguration#UTF8_OVERRIDE} 将使用UTF8编码
-     * 否则使用系统默认的编码.
+     * <p>
+     * 返回的 reader 将以 UTF-8 编码读取文本.
      * <p>
      * 原文:
-     * Provides a reader for a text file located inside the jar. The behavior
-     * of this method adheres to {@link PluginAwareness.Flags#UTF8}, or if not
-     * defined, uses UTF8 if {@link FileConfiguration#UTF8_OVERRIDE} is
-     * specified, or system default otherwise.
+     * Provides a reader for a text file located inside the jar.
+     * <p>
+     * The returned reader will read text with the UTF-8 charset.
      *
      * @param file 需要加载的文本资源文件名
      * @return null 如果 {@link #getResource(String)} 返回 null
-     * @throws IllegalArgumentException 如果文件为空, 抛出无效的参数(IllegalArgumentException)错误
+     * @throws IllegalArgumentException 如果文件为 null
      * @see ClassLoader#getResourceAsStream(String)
      */
     @Nullable
@@ -401,11 +399,15 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-     * 这个方法可以通过{@link
-     * #getProvidingPlugin(Class) provided} 的类来快速访问插件对象 .
-     * 这通常是创建插件对象.
+     * 本方法可快速访问某个插件主类(或其子类)对应的插件实例.
      * <p>
-     * 例外:如果插件jar中的类不能继承类, 将可能是不同的jar/类加载器.
+     * 例外:如果插件jar中的插件类不继承JavaPlugin类, 将可能是不同的jar/类加载器.
+     * <p>
+     * 译注:这个怎么用呢? 比如我们知道某个插件主类叫 BukkitPluginMain,
+     * 如果要获取其实例, 就可以这样做:
+     * <pre>
+     * BukkitPluginMain plugin = JavaPlugin.getPlugin(BukkitPluginMain.class);
+     * </pre>
      * <p>
      * 原文:
      * This method provides fast access to the plugin that has {@link
@@ -417,16 +419,15 @@ public abstract class JavaPlugin extends PluginBase {
      * resided in a different jar / classloader.
      *
      * @param <T> 任何一个继承了JavaPlugin的类
-     * @param clazz 类所需的类
-     * @return 该插件提供的类
-     * @throws 如果这个类为null, 抛出无效的参数(IllegalArgumentException)错误
-     * @throws 如果插件没有继承此类 {@link
-     *     JavaPlugin} , 抛出无效的参数(IllegalArgumentException)错误
-     * @throws IllegalStateException 如果这个类不是插件提供的,抛出无效的状态(IllegalStateException)错误
-     *     for example, if called with
+     * @param clazz 所需的类
+     * @return 提供并实现了给定类的插件的实例
+     * @throws IllegalArgumentException 如果参数 clazz 为 nul
+     * @throws IllegalArgumentException 如果插件类没有继承{@link
+     *     JavaPlugin}类
+     * @throws IllegalStateException 如果这个类不是插件提供的,抛出无效的状态(IllegalStateException)错误.
+     *     比如, 如果调用
      *     <code>JavaPlugin.getPlugin(JavaPlugin.class)</code>
-     * @throws IllegalStateException if called from the static initializer for
-     *     given JavaPlugin
+     * @throws IllegalStateException 如果从静态初始化代码块调用
      * @throws ClassCastException 如果插件提供的类没有继承类, 抛出(ClassCastException)错误
      */
     @NotNull
@@ -447,18 +448,17 @@ public abstract class JavaPlugin extends PluginBase {
     }
 
     /**
-     * 此方法给给定的类提供了快速访问.
+     * 获取提供给定类的插件.
      * <p>
      * 原文:
      * This method provides fast access to the plugin that has provided the
      * given class.
      *
-     * @param clazz 这个类归属的插件
-     * @return 这个插件提供的类
-     * @throws IllegalArgumentException 如果这个类不是JavaPlugin提供的,
-     * 抛出无效的参数(IllegalArgumentException)错误
-     * @throws IllegalArgumentException 如果这个类为null, 抛出无效的参数(IllegalArgumentException)错误
-     * @throws IllegalStateException 如果从给定的JavaPlugin静态初始化,抛出无效的状态(IllegalStateException)错误
+     * @param clazz 属于某个插件的类
+     * @return 提供此类的插件
+     * @throws IllegalArgumentException 如果这个类不属于某个JavaPlugin
+     * @throws IllegalArgumentException 如果参数为null
+     * @throws IllegalStateException 如果从静态初始化代码块调用
      */
     @NotNull
     public static JavaPlugin getProvidingPlugin(@NotNull Class<?> clazz) {

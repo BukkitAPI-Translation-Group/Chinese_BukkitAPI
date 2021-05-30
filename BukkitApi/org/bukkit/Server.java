@@ -1560,7 +1560,7 @@ public interface Server extends PluginMessageRecipient {
      * <p>
      * 原文: Get the advancement specified by this key.
      *
-     * @param 寻找进度对象所需的key
+     * @param key 寻找进度对象所需的key
      * @return 一个进度对象. 如果它不存在，将返回null.
      */
     @Nullable

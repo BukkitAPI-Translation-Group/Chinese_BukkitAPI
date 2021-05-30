@@ -43,7 +43,7 @@ public interface PluginManager {
 
     /**
      * 获取所有已载入的插件对象.
-     * <p/>
+     * <p>
      * 原文:
      * Gets a list of all currently loaded plugins.
      * @return 返回类型为Plugin的数组

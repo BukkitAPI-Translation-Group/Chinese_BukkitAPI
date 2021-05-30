@@ -105,10 +105,12 @@ public interface Horse extends AbstractHorse {
     }
 
     /**
-     * 获取马的颜色. </br>
+     * 获取马的颜色.
+     * <p>
      * 该颜色只适用于马,而不适用于驴,骡子,骷髅马或僵尸马.
      * <p>
-     * 原文:Gets the horse's color.</br>
+     * 原文:Gets the horse's color.
+     * <p>
      * Colors only apply to horses, not to donkeys, mules, skeleton horses
      * or undead horses.
      *
@@ -118,11 +120,12 @@ public interface Horse extends AbstractHorse {
     public Color getColor();
 
     /**
-     * 设置马的颜色. </br>
+     * 设置马的颜色.
+     * <p>
      * 试图为任何驴,骡子,骷髅马或僵尸马设定颜色不会有任何变化. 
      * <p>
-     * 原文:
-     * Sets the horse's color.</br>
+     * 原文:Sets the horse's color.
+     * <p>
      * Attempting to set a color for any donkey, mule, skeleton horse or
      * undead horse will not result in a change.
      *
@@ -132,11 +135,13 @@ public interface Horse extends AbstractHorse {
 
     /**
      * 得到马的外貌特征.
-     * 这些特征决定马有什么样的图案.</br>
+     * 这些特征决定马有什么样的图案.
+     * <p>
      * 这些特征只适用于马,而不适用于驴,骡子,骷髅马或僵尸马.
      * <p> 
      * 原文:Gets the horse's style.
-     * Styles determine what kind of markings or patterns a horse has.</br>
+     * Styles determine what kind of markings or patterns a horse has.
+     * <p>
      * Styles only apply to horses, not to donkeys, mules, skeleton horses
      * or undead horses.
      *
@@ -146,11 +151,13 @@ public interface Horse extends AbstractHorse {
     public Style getStyle();
 
     /**
-     * 设置马的外貌特征. 风格决定马有什么样的标记或图案.</br>
+     * 设置马的外貌特征. 风格决定马有什么样的标记或图案.
+     * <p>
      * 试图为任何驴,骡子,骷髅马或僵尸马设定这些特征不会有任何变化. 
      * <p>
      * 原文:Sets the style of this horse.
-     * Styles determine what kind of markings or patterns a horse has.</br>
+     * Styles determine what kind of markings or patterns a horse has.
+     * <p>
      * Attempting to set a style for any donkey, mule, skeleton horse or
      * undead horse will not result in a change.
      *

@@ -22,15 +22,15 @@ public enum ClickType {
      */
     SHIFT_RIGHT,
     /**
-     * 在物品栏界面的<b>“灰色区域”</b>单击鼠标左键. 
+     * 在物品栏界面的“灰色区域”单击鼠标左键. 
      * <p>
-     * 译注:“灰色区域”指Minecraft窗口范围内<b>超出物品栏范围</b>的部分
+     * 译注:“灰色区域”指Minecraft窗口范围内<em>超出物品栏范围</em>的部分
      */
     WINDOW_BORDER_LEFT,
     /**
-     * 在物品栏界面的<s>灰色区域</s>单击鼠标右键. 
+     * 在物品栏界面的“灰色区域”单击鼠标右键. 
      * <p>
-     * 译注:<s>灰色区域</s>指Minecraft窗口范围内<s>超出物品栏范围</s>的部分
+     * 译注:“灰色区域”指Minecraft窗口范围内<em>超出物品栏范围</em>的部分
      */
     WINDOW_BORDER_RIGHT,
     /**

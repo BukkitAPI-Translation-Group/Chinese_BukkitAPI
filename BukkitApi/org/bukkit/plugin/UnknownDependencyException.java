@@ -24,7 +24,7 @@ public class UnknownDependencyException extends RuntimeException {
      * <p>
      * 原文:Constructs a new UnknownDependencyException with the given message
      *
-     * @param message异常原因的简要说明
+     * @param message 异常原因的简要说明
      */
     public UnknownDependencyException(final String message) {
         super(message);

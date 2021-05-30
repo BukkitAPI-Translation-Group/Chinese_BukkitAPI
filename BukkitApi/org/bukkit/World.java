@@ -49,7 +49,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param y 方块的Y坐标
      * @param z 方块的Z坐标
      * @return 在指定坐标的方块
-     * @see #getBlockTypeIdAt(int, int, int) 返回这个坐标所在方块的ID
      */
     @NotNull
     public Block getBlockAt(int x, int y, int z);
@@ -61,25 +60,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param location 要获取的方块的位置
      * @return 在指定位置的方块
-     * @see #getBlockTypeIdAt(org.bukkit.Location) 返回这个位置({@link Location})所在方块的ID
      */
     @NotNull
     public Block getBlockAt(@NotNull Location location);
-
-    /**
-     * 获取指定坐标的方块ID.
-     * <p>
-     * 原文：Gets the block type ID at the given coordinates
-     *
-     * @param x 方块的X坐标
-     * @param y 方块的Y坐标
-     * @param z 方块的Z坐标
-     * @return 指定坐标所在的方块的ID
-     * @see #getBlockAt(int, int, int) 返回这个坐标所在的方块
-     * @deprecated 不安全的参数
-     */
-    @Deprecated
-    public int getBlockTypeIdAt(int x, int y, int z);
 
     /**
      * 获取指定坐标最高处不是空气且不可逾越的方块的y坐标.
@@ -386,14 +369,11 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean unloadChunk(int x, int z, boolean save);
 
     /**
-     * 安全地将卸载指定坐标的{@link Chunk 区块}列入队列.
+     * 安全地将卸载指定坐标的{@link Chunk 区块}请求列入队列.
      * <p>
      * 原文：
      * Safely queues the {@link Chunk} at the specified coordinates for
      * unloading
-     * <p>
-     * This method is analogous to {@link #unloadChunkRequest(int, int,
-     * boolean)} where safe is true
      *
      * @param x 区块的x坐标
      * @param z 区块的z坐标
@@ -1532,7 +1512,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * material.isBlock()}. The Material may not be air.
      *
      * @param location 生成下落方块的{@link Location 位置}
-     * @param @param material 方块 {@link Material} 类型
+     * @param material 方块 {@link Material} 类型
      * @param data 方块数据
      * @return 生成的{@link FallingBlock 正在下落的方块}实例
      * @throws IllegalArgumentException 如果 {@link Location} 或 {@link

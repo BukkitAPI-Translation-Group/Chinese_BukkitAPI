@@ -43,10 +43,12 @@ public interface Plugin extends TabExecutor {
 
     /**
      * 获取这个插件的{@link FileConfiguration}实例, 它将读取config.yml中的内容.
+     * <p>
      * 如果这个插件中含有config.yml文件, 那么这个config.yml将作为默认的配置文件.
      * <p>
      * 原文:Gets a {@link FileConfiguration} for this plugin, read through
-     * "config.yml"</br>
+     * "config.yml"
+     * <p>
      * If there is a default config.yml embedded in this plugin, it will be
      * provided as a default for this Configuration.
      *
