@@ -5,32 +5,35 @@ import org.bukkit.entity.Bee;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表蜂巢(快照)
- * <p>
- * 原文：
- * Represents a captured state of a bee hive.
+ * 代表蜂巢.
  */
 public interface Beehive extends EntityBlockStorage<Bee> {
 
     /**
-     * Get the hive's flower location.
+     * 获取花的位置.
+     * <p>
+     * 原文:Get the hive's flower location.
      *
-     * @return flower location or null
+     * @return 花的位置或null
      */
     @Nullable
     Location getFlower();
 
     /**
-     * Set the hive's flower location.
+     * 设置花的位置.
+     * <p>
+     * 原文:Set the hive's flower location.
      *
-     * @param location or null
+     * @param location 花的位置或null
      */
     void setFlower(@Nullable Location location);
 
     /**
-     * Check if the hive is sedated due to smoke from a nearby campfire.
+     * 检测蜂巢底下是否有点燃的营火, 使得玩家采蜜时蜜蜂不会攻击玩家.
+     * <p>
+     * 原文:Check if the hive is sedated due to smoke from a nearby campfire.
      *
-     * @return True if hive is sedated
+     * @return 蜂巢是否安然待之
      */
     boolean isSedated();
 }

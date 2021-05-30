@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表一个唱片机(快照).
+ * 代表唱片机.
  */
 public interface Jukebox extends TileState {
     /**
@@ -78,7 +78,7 @@ public interface Jukebox extends TileState {
      * do nothing and return false.
      *
      * @return true表示已弹出唱片;false表示唱片机没有播放唱片
-     * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种状态而未应用到方块上)
+     * @throws IllegalStateException 如果方块状态未应用(译注:仅仅是一种表示而未应用到实际的方块上, 一种虚拟状态)
      */
     public boolean eject();
 }

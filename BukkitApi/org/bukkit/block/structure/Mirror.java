@@ -1,27 +1,26 @@
 package org.bukkit.block.structure;
 
 /**
- * Represents how a {@link org.bukkit.block.Structure} can be mirrored upon
- * being loaded.
+ * 代表{@link org.bukkit.block.Structure 结构方块}加载时如何产生镜像.
  */
 public enum Mirror {
 
     /**
-     * No mirroring.
+     * 无镜像.
      * <br>
-     * Positive X to Positive Z
+     * X轴正半轴到Z轴正半轴.
      */
     NONE,
     /**
-     * Structure is mirrored left to right.
+     * 结构左右镜像翻转.
      * <br>
-     * Similar to looking in a mirror. Positive X to Negative Z
+     * 与在镜子中看东西类似. X轴正半轴到Z轴负半轴.
      */
     LEFT_RIGHT,
     /**
-     * Structure is mirrored front to back.
+     * 结构前后镜像翻转.
      * <br>
-     * Positive Z to Negative X
+     * Z轴正半轴到X轴负半轴.
      */
     FRONT_BACK;
 }

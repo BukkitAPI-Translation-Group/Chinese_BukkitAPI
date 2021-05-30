@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表一个头颅(快照).
+ * 代表头颅.
  */
 public interface Skull extends TileState {
 
@@ -29,7 +29,7 @@ public interface Skull extends TileState {
      * 原文:
      * Gets the owner of the skull, if one exists
      *
-     * @return 头颅主人的名字，如果此透露没有主人将返回null
+     * @return 头颅主人的名字，如果此头颅没有主人将返回null
      * @deprecated 请查阅 {@link #getOwningPlayer()}.
      */
     @Deprecated
@@ -39,7 +39,7 @@ public interface Skull extends TileState {
     /**
      * 设置头颅的主人.
      * <p>
-     * 提供的名称的配置文件数据涉及一个存在阻塞的Web请求.
+     * 根据提供的名称获取配置文件数据时涉及一个可能的阻塞式Web请求.
      * <p>
      * 原文:
      * Sets the owner of the skull

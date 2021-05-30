@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表命令方块(快照)/Represents a captured state of a command block.
+ * 代表命令方块.
  */
 public interface CommandBlock extends TileState {
 

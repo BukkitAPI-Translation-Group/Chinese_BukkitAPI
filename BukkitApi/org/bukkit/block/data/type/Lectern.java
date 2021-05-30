@@ -4,15 +4,16 @@ import org.bukkit.block.data.Directional;
 import org.bukkit.block.data.Powerable;
 
 /**
- * 'has_book' is a quick flag to check whether this lectern has a book inside
- * it.
+ * 'has_book' 可用于快速检测讲台内是否有书.
  */
 public interface Lectern extends Directional, Powerable {
 
     /**
-     * Gets the value of the 'has_book' property.
+     * 获取 'has_book' 属性的值.
+     * <p>
+     * 原文:Gets the value of the 'has_book' property.
      *
-     * @return the 'has_book' value
+     * @return 属性 'has_book' 的值
      */
     boolean hasBook();
 }

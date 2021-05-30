@@ -1,6 +1,6 @@
 package org.bukkit.block;
 
 /**
- * Represents a captured state of a (possibly inverted) daylight detector.
+ * 代表(反向)阳光探测器.
  */
 public interface DaylightDetector extends TileState { }

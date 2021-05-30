@@ -21,11 +21,11 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表一个方块.
  * <p>
- * 这是一种动态的对象，在同一个世界的同一个位置只可以存在一个方块.
+ * 这是一种动态的对象, 在同一个世界的同一个位置只可以存在一个方块.
  * <p>
- * 方块的一个实例可能会根据你对这个方块的一些操作而改变，可以使用block.getState()来获取一个静态的，不会被修改的Block对象.
+ * 方块的一个实例可能会根据你对这个方块的一些操作而改变, 可以使用block.getState()来获取一个静态的, 不会被修改的Block对象.
  * <p>
- * 需要注意的是，在世界生成的过程中调用这个类可能是不安全的，比如BlockPhysicsEvent事件!!!!
+ * 需要注意的是, 在世界生成的过程中调用这个类可能是不安全的, 比如BlockPhysicsEvent事件!!!!
  * <p>
  * 原文:
  * Represents a block. This is a live object, and only one Block may exist for
@@ -41,30 +41,30 @@ import org.jetbrains.annotations.Nullable;
 public interface Block extends Metadatable {
 
     /**
-     * 获取这个方块的Metadata.
+     * 获取这个方块的元数据.
      * <p>
      * 原文:
      * Gets the metadata for this block
      *
-     * @return block specific metadata
-     * @deprecated Magic value
+     * @return 方块元数据
+     * @deprecated 不安全的参数
      */
     @Deprecated
     byte getData();
 
     /**
-     * 获取这个方块的BlockData.
+     * 获取这个方块的完整方块数据.
      * <p>
      * 原文:
      * Gets the complete block data for this block
      *
-     * @return block specific data
+     * @return 方块数据
      */
     @NotNull
     BlockData getBlockData();
 
     /**
-     * 以此方块为基点，在指定的偏移量上获取方块.
+     * 以此方块为基点, 在指定的偏移量上获取方块.
      * <p>
      * 原文:
      * Gets the block at the given offsets
@@ -72,7 +72,7 @@ public interface Block extends Metadatable {
      * @param modX X-coordinate offset
      * @param modY Y-coordinate offset
      * @param modZ Z-coordinate offset
-     * @return Block at the given offsets
+     * @return 指定偏移量位置上的方块
      */
     @NotNull
     Block getRelative(int modX, int modY, int modZ);
@@ -80,15 +80,15 @@ public interface Block extends Metadatable {
     /**
      * 获取这个方块某一面上紧邻的方块.
      * <p>
-     * 此方法等同于getRelative(face, 1)
+     * 此方法等同于getRelative(face, 1).
      * <p>
      * 原文:
      * Gets the block at the given face
      * <p>
      * This method is equal to getRelative(face, 1)
      *
-     * @param face Face of this block to return
-     * @return Block at the given face
+     * @param face 方块的哪一面
+     * @return 此面上紧邻的方块
      * @see #getRelative(BlockFace, int)
      */
     @NotNull
@@ -97,7 +97,7 @@ public interface Block extends Metadatable {
     /**
      * 获取这个方块某一面上指定距离的方块.
      * <p>
-     * 一个例子，如果我要在一个方块的上面3格放置一个水方块.
+     * 一个例子, 如果我要在一个方块的上面3格放置一个水方块.
      * <pre>
      * Block block = world.getBlockAt(100, 100, 100); //获取到方块
      * Block shower = block.getRelative(BlockFace.UP, 2); //获取这个方块UP(上)面的2格的方块
@@ -115,20 +115,20 @@ public interface Block extends Metadatable {
      * shower.setType(Material.WATER);
      * </pre>
      *
-     * @param face Face of this block to return
-     * @param distance Distance to get the block at
-     * @return Block at the given face
+     * @param face 方块的哪一面
+     * @param distance 距离
+     * @return 位于指定朝向指定距离的方块
      */
     @NotNull
     Block getRelative(@NotNull BlockFace face, int distance);
 
     /**
-     * 获取这个方块的Material.
+     * 获取这个方块的材质种类.
      * <p>
      * 原文:
      * Gets the type of this block
      *
-     * @return block type
+     * @return 方块类型
      */
     @NotNull
     Material getType();
@@ -136,12 +136,12 @@ public interface Block extends Metadatable {
     /**
      * 获取这个方块的发光的亮度等级 (0-15).
      * <p>
-     * 译注: 如果这个方块不发光则返回0
+     * 译注: 如果这个方块不发光则返回0.
      * <p>
      * 原文:
      * Gets the light level between 0-15
      *
-     * @return light level
+     * @return 亮度等级
      */
     byte getLightLevel();
 
@@ -156,7 +156,7 @@ public interface Block extends Metadatable {
      * Any light given from other sources (such as blocks like torches) will
      * be ignored.
      *
-     * @return Sky light level
+     * @return 光照亮度等级
      */
     byte getLightFromSky();
 
@@ -170,7 +170,7 @@ public interface Block extends Metadatable {
      * <p>
      * Any light given from other sources (such as the sun) will be ignored.
      *
-     * @return Block light level
+     * @return 光源亮度等级
      */
     byte getLightFromBlocks();
 
@@ -216,22 +216,22 @@ public interface Block extends Metadatable {
     int getZ();
 
     /**
-     * 获取这个方块的Location(位置).
+     * 获取这个方块的位置.
      * <p>
      * 原文:
      * Gets the Location of the block
      *
-     * @return Location of block
+     * @return 方块的位置
      */
     @NotNull
     Location getLocation();
 
     /**
-     * 将此方块的位置储存在所传入的Location对象中.
+     * 存储此方块的位置到到给定的位置实例中.
      * <p>
-     * 如果传入的Location对象为null，则本方法不做任何操作并返回null.
+     * 如果给定的位置实例为null, 则将不进行任何操作并返回null.
      * <p>
-     * 译注: 下面是译者的一个例子
+     * 译注:下面是译者的一个例子
      * <pre>
      * Location loc = new Location(World, 15, 255, 14);
      * Block block = World2.getBlockAt(28, 25, -18);
@@ -244,8 +244,8 @@ public interface Block extends Metadatable {
      * If the provided Location is null this method does nothing and returns
      * null.
      *
-     * @param loc the location to copy into
-     * @return The Location object provided or null
+     * @param loc 要复制入的位置实例
+     * @return 给定的位置实例/null
      */
     @Contract("null -> null; !null -> !null")
     @Nullable
@@ -257,7 +257,7 @@ public interface Block extends Metadatable {
      * 原文:
      * Gets the chunk which contains this block
      *
-     * @return Containing Chunk
+     * @return 方块所在的区块
      */
     @NotNull
     Chunk getChunk();
@@ -268,18 +268,18 @@ public interface Block extends Metadatable {
      * 原文:
      * Sets the complete data for this block
      *
-     * @param data new block specific data
+     * @param data 新方块数据
      */
     void setBlockData(@NotNull BlockData data);
 
     /**
-     * 设置一个方块的BlockData，并决定是否应用重力.(译者注: 更新方块的意思，如沙不掉落)
+     * 设置一个方块的BlockData, 并决定是否应用重力 (译者注: 更新方块的意思，如沙不掉落).
      * <br>
-     * 请注意，applyPhysics = false 有时并不安全。只有你需要避免周围方块的更新才应该使用这个参数。
-     * 例如在创建一个 {@link Bisected} 方块时或者在使用自定义的 BlockPopulator 防止触发无限连锁更新的时候。
+     * 请注意, applyPhysics = false 有时并不安全. 只有你需要避免周围方块的更新才应该使用这个参数.
+     * 例如在创建一个 {@link Bisected} 方块时或者在使用自定义的 BlockPopulator 防止触发无限连锁更新的时候.
      * <p>
-     * 不要使用这个方法来在一些 “不可能放置方块的地方” 放置方块。即使可以成功放置，这些方块也会在之后被移除。
-     * 如果把大量这种方块放置在很接近的地方可能会使服务器物理引擎过载奔溃。
+     * 不要使用这个方法来在一些 “不可能放置方块的地方” 放置方块. 即使可以成功放置, 这些方块也会在之后被移除.
+     * 如果把大量这种方块放置在很接近的地方可能会使服务器物理引擎过载奔溃.
      * <p>
      * 原文:
      * Sets the complete data for this block
@@ -297,29 +297,29 @@ public interface Block extends Metadatable {
      * triggered at a later point. If this occurs, the resulting behavior is
      * undefined.
      *
-     * @param data new block specific data
-     * @param applyPhysics false to cancel physics from the changed block
+     * @param data 新方块数据
+     * @param applyPhysics false 以取消方块的物理规则
      */
     void setBlockData(@NotNull BlockData data, boolean applyPhysics);
 
     /**
-     * 设置这个方块的Material.
+     * 设置这个方块的材质种类.
      * <p>
      * 原文:
      * Sets the type of this block
      *
-     * @param type Material to change this block to
+     * @param type 材质种类
      */
     void setType(@NotNull Material type);
 
     /**
-     * 设置一个方块的Material，并决定是否应用重力.(译者注: 更新方块的意思，如沙不掉落)
+     * 设置一个方块的材质种类, 并决定是否应用重力 (译者注: 更新方块的意思, 如沙不掉落).
      * <br>
-     * 请注意，applyPhysics = false 有时并不安全。只有你需要避免周围方块的更新才应该使用这个参数。
-     * 例如在创建一个 {@link Bisected} 方块时或者在使用自定义的 BlockPopulator 防止触发无限连锁更新的时候。
+     * 请注意, applyPhysics = false 有时并不安全. 只有你需要避免周围方块的更新才应该使用这个参数.
+     * 例如在创建一个 {@link Bisected} 方块时或者在使用自定义的 BlockPopulator 防止触发无限连锁更新的时候.
      * <p>
-     * 不要使用这个方法来在一些 “不可能放置方块的地方” 放置方块。即使可以成功放置，这些方块也会在之后被移除。
-     * 如果把大量这种方块放置在很接近的地方可能会使服务器物理引擎过载奔溃。
+     * 不要使用这个方法来在一些 “不可能放置方块的地方” 放置方块. 即使可以成功放置, 这些方块也会在之后被移除.
+     * 如果把大量这种方块放置在很接近的地方可能会使服务器物理引擎过载奔溃.
      * <p>
      * 原文:
      * Sets the type of this block
@@ -337,13 +337,25 @@ public interface Block extends Metadatable {
      * triggered at a later point. If this occurs, the resulting behavior is
      * undefined.
      *
-     * @param type Material to change this block to
-     * @param applyPhysics False to cancel physics on the changed block.
+     * @param type 材质种类
+     * @param applyPhysics false 以取消方块的物理规则
      */
     void setType(@NotNull Material type, boolean applyPhysics);
 
     /**
-     * Gets the face relation of this block compared to the given block.
+     * 获取本方块的哪一面朝向给定的方块.
+     * <p>
+     * 例如:
+     * <pre>{@code
+     * Block current = world.getBlockAt(100, 100, 100); // 本方块
+     * Block target = world.getBlockAt(100, 101, 100); // 目标方块
+     *
+     * current.getFace(target) == BlockFace.Up; // 朝上
+     * }</pre>
+     * <br>
+     * 如果给定方块不与本方块相连接, 将可能返回 null.
+     * <p>
+     * 原文:Gets the face relation of this block compared to the given block.
      * <p>
      * For example:
      * <pre>{@code
@@ -355,187 +367,242 @@ public interface Block extends Metadatable {
      * <br>
      * If the given block is not connected to this block, null may be returned
      *
-     * @param block Block to compare against this block
-     * @return BlockFace of this block which has the requested block, or null
+     * @param block 要比较的方块
+     * @return 本方块相对于给定方块的朝向, 或为 null
      */
     @Nullable
     BlockFace getFace(@NotNull Block block);
 
     /**
-     * Captures the current state of this block. You may then cast that state
+     * 捕获本方块当前的状态. 你可以将此状态转换为任意可接受的类型的状态,
+     * 例如, 转为 {@link Furnace} 或 {@link Sign}.
+     * <p>
+     * 返回的对象将永不更新 (注:可以理解为方块在某一时刻的状态的快照),
+     * 并且你不能保证(举个例子)在你捕获此告示牌状态后此告示牌依然是告示牌.
+     * <p>
+     * 原文:Captures the current state of this block. You may then cast that state
      * into any accepted type, such as Furnace or Sign.
      * <p>
      * The returned object will never be updated, and you are not guaranteed
      * that (for example) a sign is still a sign after you capture its state.
      *
-     * @return BlockState with the current state of this block.
+     * @return 本方块当前的状态的 BlockState 对象
      */
     @NotNull
     BlockState getState();
 
     /**
-     * Returns the biome that this block resides in
+     * 返回方块所在位置的生物群系.
+     * <p>
+     * 原文:Returns the biome that this block resides in
      *
-     * @return Biome type containing this block
+     * @return 生物群系
      */
     @NotNull
     Biome getBiome();
 
     /**
-     * Sets the biome that this block resides in
+     * 设置方块所在位置的生物群系.
+     * <p>
+     * 原文:Sets the biome that this block resides in
      *
-     * @param bio new Biome type for this block
+     * @param bio 新的生物群系
      */
     void setBiome(@NotNull Biome bio);
 
     /**
-     * Returns true if the block is being powered by Redstone.
+     * 返回方块是否被红石充能.
+     * <p>
+     * 原文:Returns true if the block is being powered by Redstone.
      *
-     * @return True if the block is powered.
+     * @return 是否被充能
      */
     boolean isBlockPowered();
 
     /**
-     * Returns true if the block is being indirectly powered by Redstone.
+     * 返回方块是否被红石间接充能.
+     * <p>
+     * 原文:Returns true if the block is being indirectly powered by Redstone.
      *
-     * @return True if the block is indirectly powered.
+     * @return 是否被间接充能
      */
     boolean isBlockIndirectlyPowered();
 
     /**
-     * Returns true if the block face is being powered by Redstone.
+     * 返回方块的其中一面是否被红石充能.
+     * <p>
+     * 原文:Returns true if the block face is being powered by Redstone.
      *
-     * @param face The block face
-     * @return True if the block face is powered.
+     * @param face 方块的面
+     * @return 此面是否被充能
      */
     boolean isBlockFacePowered(@NotNull BlockFace face);
 
     /**
-     * Returns true if the block face is being indirectly powered by Redstone.
+     * 返回方块的其中一面是否被红石间接充能.
+     * <p>
+     * 原文:Returns true if the block face is being indirectly powered by Redstone.
      *
-     * @param face The block face
-     * @return True if the block face is indirectly powered.
+     * @param face 方块的面
+     * @return 此面是否被间接充能
      */
     boolean isBlockFaceIndirectlyPowered(@NotNull BlockFace face);
 
     /**
-     * Returns the redstone power being provided to this block face
+     * 返回提供给方块某一面的红石充能等级.
+     * <p>
+     * 原文:Returns the redstone power being provided to this block face
      *
-     * @param face the face of the block to query or BlockFace.SELF for the
-     *     block itself
-     * @return The power level.
+     * @param face 要查询的方块的面或 BlockFace.SELF 查询方块本身
+     * @return 红石充能等级
      */
     int getBlockPower(@NotNull BlockFace face);
 
     /**
-     * Returns the redstone power being provided to this block
+     * 返回提供给此方块的红石充能等级.
+     * <p>
+     * 原文:Returns the redstone power being provided to this block
      *
-     * @return The power level.
+     * @return 红石充能等级
      */
     int getBlockPower();
 
     /**
-     * Checks if this block is empty.
+     * 检测此方块是否为空.
+     * <p>
+     * 当 {@link #getType()} 返回 {@link Material#AIR} 时认为此方块为空.
+     * <p>
+     * 原文:Checks if this block is empty.
      * <p>
      * A block is considered empty when {@link #getType()} returns {@link
      * Material#AIR}.
      *
-     * @return true if this block is empty
+     * @return 此方块是否为空
      */
     boolean isEmpty();
 
     /**
-     * Checks if this block is liquid.
+     * 检测方块是否为流体.
+     * 当 {@link #getType()} 返回 {@link Material#WATER} 或 {@link Material#LAVA} 时认为此方块为流体.
+     * <p>
+     * 原文:Checks if this block is liquid.
      * <p>
      * A block is considered liquid when {@link #getType()} returns {@link
      * Material#WATER} or {@link Material#LAVA}.
      *
-     * @return true if this block is liquid
+     * @return 方块是否为流体
      */
     boolean isLiquid();
 
     /**
-     * Gets the temperature of this block.
+     * 获取方块所在生物群系的环境温度.
+     * <p>
+     * 如果你要避免方块高度对温度的影响, 请使用{@link World#getTemperature(int, int)}.
+     * <p>
+     * 原文:Gets the temperature of this block.
      * <p>
      * If the raw biome temperature without adjusting for height effects is
      * required then please use {@link World#getTemperature(int, int)}.
      *
-     * @return Temperature of this block
+     * @return 方块温度
      */
     double getTemperature();
 
     /**
-     * Gets the humidity of the biome of this block
+     * 获取方块所在生物群系的环境湿度.
+     * <p>
+     * 原文:Gets the humidity of the biome of this block
      *
-     * @return Humidity of this block
+     * @return 方块所在生物群系的环境湿度
      */
     double getHumidity();
 
     /**
-     * Returns the reaction of the block when moved by a piston
+     * 返回当此方块被活塞推动时的反应.
+     * <p>
+     * 原文:Returns the reaction of the block when moved by a piston
      *
-     * @return reaction
+     * @return 方块对活塞的反应
      */
     @NotNull
     PistonMoveReaction getPistonMoveReaction();
 
     /**
-     * Breaks the block and spawns items as if a player had digged it regardless
+     * 破坏此方块并生成掉落物, 就像是玩家不使用工具时挖掘方块一样.
+     * <p>
+     * 原文:Breaks the block and spawns items as if a player had digged it regardless
      * of the tool.
      *
-     * @return true if the block was destroyed
+     * @return 若方块成功被破坏则返回true
      */
     boolean breakNaturally();
 
     /**
-     * Breaks the block and spawns items as if a player had digged it with a
+     * 破坏此方块并生成掉落物, 就像是玩家手持工具挖掘方块一样.
+     * <p>
+     * 原文:Breaks the block and spawns items as if a player had digged it with a
      * specific tool
      *
-     * @param tool The tool or item in hand used for digging
-     * @return true if the block was destroyed
+     * @param tool 使用何种工具挖掘方块
+     * @return true 若方块成功被破坏则返回true
      */
     boolean breakNaturally(@Nullable ItemStack tool);
 
     /**
-     * Simulate bone meal application to this block (if possible).
+     * 模拟使用骨粉向本方块施肥 (若可能).
+     * <p>
+     * 原文:Simulate bone meal application to this block (if possible).
      *
-     * @param face the face on which bonemeal should be applied
+     * @param face 将骨粉施予方块的哪一面
      *
-     * @return true if the block was bonemealed, false otherwise
+     * @return 成功施肥则返回true
      */
     boolean applyBoneMeal(@NotNull BlockFace face);
 
     /**
-     * Returns a list of items which would drop by destroying this block
+     * 返回当破坏此方块时掉落的物品.
+     * <p>
+     * 原文:Returns a list of items which would drop by destroying this block
      *
-     * @return a list of dropped items for this type of block
+     * @return 方块掉落物列表
      */
     @NotNull
     Collection<ItemStack> getDrops();
 
     /**
-     * Returns a list of items which would drop by destroying this block with
+     * 返回当使用特定工具破坏此方块时掉落的物品.
+     * <p>
+     * 原文:Returns a list of items which would drop by destroying this block with
      * a specific tool
      *
-     * @param tool The tool or item in hand used for digging
-     * @return a list of dropped items for this type of block
+     * @param tool 使用何种工具挖掘方块
+     * @return 方块掉落物列表
      */
     @NotNull
     Collection<ItemStack> getDrops(@Nullable ItemStack tool);
 
     /**
-     * Returns a list of items which would drop by the entity destroying this
+     * 返回当某实体使用某工具破坏此方块时掉落的物品.
+     * <p>
+     * 原文:Returns a list of items which would drop by the entity destroying this
      * block with a specific tool
      *
-     * @param tool The tool or item in hand used for digging
-     * @param entity the entity destroying the block
-     * @return a list of dropped items for this type of block
+     * @param tool 实体使用的工具
+     * @param entity 破坏此方块的实体
+     * @return 方块掉落物列表
      */
     @NotNull
     Collection<ItemStack> getDrops(@NotNull ItemStack tool, @Nullable Entity entity);
 
     /**
-     * Checks if this block is passable.
+     * 检测能否自由通过此方块.
+     * <p>
+     * 如果方块没有可阻碍玩家穿过的可碰撞部分, 就可自由通过此方块.
+     * <p>
+     * 例如: 高草丛、各种花、告示牌等都是可通过的,
+     * 但开着的门、栅栏门、活板门等不可, 因为它们依然有可碰撞部分.
+     * <p>
+     * 原文:Checks if this block is passable.
      * <p>
      * A block is passable if it has no colliding parts that would prevent
      * players from moving through it.
@@ -544,7 +611,7 @@ public interface Block extends Metadatable {
      * fence gates, trap doors, etc. are not because they still have parts that
      * can be collided with.
      *
-     * @return <code>true</code> if passable
+     * @return 能否自由通过此方块
      */
     boolean isPassable();
 

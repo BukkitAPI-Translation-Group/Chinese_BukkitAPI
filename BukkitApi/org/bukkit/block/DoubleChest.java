@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表一个大型箱子.
+ * 代表大型箱子.
  */
 public class DoubleChest implements InventoryHolder {
     private DoubleChestInventory inventory;

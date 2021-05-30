@@ -44,45 +44,46 @@ public enum BlockFace {
     }
 
     /**
-     * 获取X坐标的数值来修改，以获得表示的方块.
+     * 获取此朝向的X轴坐标偏移量, 用以获取其表示的方块.
      * <p>
-     * 原文:
-     * Get the amount of X-coordinates to modify to get the represented block
+     * 原文:Get the amount of X-coordinates to modify to get the represented block
      *
-     * @return 要修改的X坐标
+     * @return X轴坐标偏移量
      */
     public int getModX() {
         return modX;
     }
 
     /**
-     * 获取Y坐标的数值来修改，以获得表示的方块.
+     * 获取此朝向的Y轴坐标偏移量, 用以获取其表示的方块.
      * <p>
      * 原文:
      * Get the amount of Y-coordinates to modify to get the represented block
      *
-     * @return 要修改的Y坐标
+     * @return Y轴坐标偏移量
      */
     public int getModY() {
         return modY;
     }
 
     /*
-     * 获取Z坐标的数值来修改，以获得表示的方块.
+     * 获取此朝向的Z轴坐标偏移量, 用以获取其表示的方块.
      * <p>
      * 原文:
      * Get the amount of Z-coordinates to modify to get the represented block
      *
-     * @return 要修改的Z坐标
+     * @return Z轴坐标偏移量
      */
     public int getModZ() {
         return modZ;
     }
 
     /**
-     * Gets the normal vector corresponding to this block face.
+     * 获取与此朝向相对应的单位向量.
+     * <p>
+     * 原文:Gets the normal vector corresponding to this block face.
      *
-     * @return the normal vector
+     * @return 对应的单位向量
      */
     @NotNull
     public Vector getDirection() {

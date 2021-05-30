@@ -77,7 +77,7 @@ public enum PatternType {
     }
 
     /**
-     * 返回匹配的标识符, 如果找不到匹配的图案类型, 将返回 null.
+     * 返回与标识符匹配的图案, 如果找不到匹配的图案类型, 将返回 null.
      * <p>
      * 原文:
      * Returns the pattern type which matches the passed

@@ -1,6 +1,6 @@
 package org.bukkit.block;
 
 /**
- * Represents a captured state of a jigsaw.
+ * 代表拼图方块.
  */
 public interface Jigsaw extends TileState { }

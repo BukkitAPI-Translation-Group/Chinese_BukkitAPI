@@ -1,26 +1,26 @@
 package org.bukkit.block.structure;
 
 /**
- * Represents how a {@link org.bukkit.block.Structure} can be rotated.
+ * 代表{@link org.bukkit.block.Structure 结构方块}如何旋转.
  */
 public enum StructureRotation {
 
     /**
-     * No rotation.
+     * 无旋转.
      */
     NONE,
     /**
-     * Rotated clockwise 90 degrees.
+     * 顺时针旋转90度.
      */
     CLOCKWISE_90,
     /**
-     * Rotated clockwise 180 degrees.
+     * 顺时针旋转180度.
      */
     CLOCKWISE_180,
     /**
-     * Rotated counter clockwise 90 degrees.
+     * 逆时针旋转90度.
      * <br>
-     * Equivalent to rotating clockwise 270 degrees.
+     * 相当于顺时针旋转270度.
      */
     COUNTERCLOCKWISE_90;
 }

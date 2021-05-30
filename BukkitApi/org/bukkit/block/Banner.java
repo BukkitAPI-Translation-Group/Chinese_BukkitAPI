@@ -6,10 +6,7 @@ import org.bukkit.block.banner.Pattern;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表旗帜(快照)
- * <p>
- * 原文：
- * Represents a captured state of a banner.
+ * 代表旗帜.
  */
 public interface Banner extends TileState {
 
@@ -38,12 +35,12 @@ public interface Banner extends TileState {
     void setBaseColor(@NotNull DyeColor color);
 
     /**
-     * 返回这个旗帜的图案.
+     * 返回这个旗帜的所有图案.
      * <p>
      * 原文：
      * Returns a list of patterns on this banner
      *
-     * @return 图案
+     * @return 图案列表
      */
     @NotNull
     List<Pattern> getPatterns();
@@ -70,7 +67,7 @@ public interface Banner extends TileState {
     void addPattern(@NotNull Pattern pattern);
 
     /**
-     * 返回这个图案指定的索引处.
+     * 返回指定索引处的图案.
      * <p>
      * 原文:
      * Returns the pattern at the specified index
@@ -82,19 +79,19 @@ public interface Banner extends TileState {
     Pattern getPattern(int i);
 
     /**
-     * 以指定的索引处移除图案.
+     * 移除指定索引处的图案.
      * <p>
      * 原文:
      * Removes the pattern at the specified index
      *
      * @param i 索引
-     * @return 移除的图案
+     * @return 被移除的图案
      */
     @NotNull
     Pattern removePattern(int i);
 
     /**
-     * 以指定的索引处设置图案.
+     * 设置指定索引处的图案.
      * <p>
      * 原文:
      * Sets the pattern at the specified index
@@ -105,13 +102,13 @@ public interface Banner extends TileState {
     void setPattern(int i, @NotNull Pattern pattern);
 
     /**
-     * 返回在这个旗帜上的图案的编号.
+     * 返回在这个旗帜上的图案的数量.
      * <p>
      * 原文:
      * Returns the number of patterns on this
      * banner
      *
-     * @return 图案的编号
+     * @return 图案数量
      */
     int numberOfPatterns();
 }

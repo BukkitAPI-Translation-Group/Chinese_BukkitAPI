@@ -1,6 +1,6 @@
 package org.bukkit.block;
 
 /**
- * Represents a captured state of a smoker.
+ * 代表烟熏炉.
  */
 public interface Smoker extends Furnace { }

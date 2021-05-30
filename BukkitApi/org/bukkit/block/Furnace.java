@@ -4,7 +4,7 @@ import org.bukkit.inventory.FurnaceInventory;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表一个熔炉(快照).
+ * 代表熔炉.
  * <p>
  * 译注:本页出现的时间均以tick为单位, tick(刻)是服务器内部表示时间的方式, 理想状态下1 tick为50ms.
  */

@@ -5,8 +5,7 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents how a block or entity will react when interacting with a piston
- * when it is extending or retracting.
+ * 当方块或实体与正在推拉的活塞交互时, 它们作何反应.
  */
 public enum PistonMoveReaction {
 
@@ -15,7 +14,7 @@ public enum PistonMoveReaction {
      */
     MOVE(0),
     /**
-     * 如果此方块被退而破坏,则表明方块是脆弱的.
+     * 当被活塞推动时, 方块变得脆弱并被破坏.
      */
     BREAK(1),
     /**
@@ -23,14 +22,13 @@ public enum PistonMoveReaction {
      */
     BLOCK(2),
     /**
-     * Indicates that the entity will ignore any interaction(s) with
-     * pistons.
+     * 表明实体将忽略任何与活塞的交互.
      * <br>
-     * Blocks should use {@link PistonMoveReaction#BLOCK}.
+     * 方块一类应使用 {@link PistonMoveReaction#BLOCK}.
      */
     IGNORE(3),
     /**
-     * Indicates that the block can only be pushed by pistons, not pulled.
+     * 表明方块只可被活塞推动, 不能被拉动.
      */
     PUSH_ONLY(4);
 

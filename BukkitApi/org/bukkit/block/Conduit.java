@@ -1,6 +1,6 @@
 package org.bukkit.block;
 
 /**
- * Represents a captured state of a conduit.
+ * 代表潮涌核心.
  */
 public interface Conduit extends TileState { }

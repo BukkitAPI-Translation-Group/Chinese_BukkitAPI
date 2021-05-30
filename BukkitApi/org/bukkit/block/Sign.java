@@ -4,12 +4,12 @@ import org.bukkit.material.Colorable;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表一个告示牌或者墙上告示牌(快照).
+ * 代表告示牌或者墙上告示牌.
  */
 public interface Sign extends TileState, Colorable {
 
     /**
-     * 获取这个告示牌上当前的文本.
+     * 获取这个告示牌上的文本.
      * <p>
      * 原文:
      * Gets all the lines of text currently on this sign.
@@ -23,7 +23,7 @@ public interface Sign extends TileState, Colorable {
      * 获取指定行的文本.
      * <p>
      * 例如, getLine(0)将返回告示牌第一行的文本.
-     *  <p>
+     * <p>
      * 原文:
      * Gets the line of text at the specified index.
      * <p>
@@ -56,24 +56,36 @@ public interface Sign extends TileState, Colorable {
     public void setLine(int index, @NotNull String line) throws IndexOutOfBoundsException;
 
     /**
-     * Marks whether this sign can be edited by players.
+     * 检测此告示是否可被玩家编辑.
+     * <br>
+     * 这是一个特殊的, 不持久存储的值.
+     * 该值应仅在 BlockPlaceEvent 事件持续期间被放置的告示牌被操作时设置.
+     * 在此事件外的行为是未定义的.
+     * <p>
+     * 原文:Marks whether this sign can be edited by players.
      * <br>
      * This is a special value, which is not persisted. It should only be set if
      * a placed sign is manipulated during the BlockPlaceEvent. Behaviour
      * outside of this event is undefined.
      *
-     * @return if this sign is currently editable
+     * @return 告示牌目前是否可被编辑
      */
     public boolean isEditable();
 
     /**
-     * Marks whether this sign can be edited by players.
+     * 设置此告示是否可被玩家编辑.
+     * <br>
+     * 这是一个特殊的, 不持久存储的值.
+     * 该值应仅在 BlockPlaceEvent 事件持续期间被放置的告示牌被操作时设置.
+     * 在此事件外的行为是未定义的.
+     * <p>
+     * 原文:Marks whether this sign can be edited by players.
      * <br>
      * This is a special value, which is not persisted. It should only be set if
      * a placed sign is manipulated during the BlockPlaceEvent. Behaviour
      * outside of this event is undefined.
      *
-     * @param editable if this sign is currently editable
+     * @param editable 告示牌目前是否可被编辑
      */
     public void setEditable(boolean editable);
 }
