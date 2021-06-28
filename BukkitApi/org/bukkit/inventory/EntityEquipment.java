@@ -1,6 +1,7 @@
 package org.bukkit.inventory;
 
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -304,7 +305,7 @@ public interface EntityEquipment {
      * <li>当掉落几率为1.0F时, 则总是会掉落
      * </ul>
      *
-     * @return 当前生物在死亡时掉落主手物品的几率(在原版里, 对于玩家来说是1.0F)
+     * @return 当前生物在死亡时掉落主手物品的几率(在原版里, 对于非{@link Mob}类实体来说是1.0F)
      */
     float getItemInMainHandDropChance();
 
@@ -320,7 +321,7 @@ public interface EntityEquipment {
      * </ul>
      *
      * @param chance 主手掉落物品的几率
-     * @throws UnsupportedOperationException 当这一操作作用在玩家时抛出此异常
+     * @throws UnsupportedOperationException 当这一操作作用在非{@link Mob}类实体时抛出此异常
      */
     void setItemInMainHandDropChance(float chance);
 
@@ -335,7 +336,7 @@ public interface EntityEquipment {
      * <li>当掉落几率为1.0F时, 则总是会掉落
      * </ul>
      *
-     * @return 当前生物在死亡时掉落副手物品的几率(在原版里, 对于玩家来说是1.0F)
+     * @return 当前生物在死亡时掉落副手物品的几率(在原版里, 对于非{@link Mob}类实体来说是1.0F)
      */
     float getItemInOffHandDropChance();
 
@@ -351,7 +352,7 @@ public interface EntityEquipment {
      * </ul>
      *
      * @param chance 副手掉落物品的几率
-     * @throws UnsupportedOperationException 当这一操作作用在玩家时抛出此异常
+     * @throws UnsupportedOperationException 当这一操作作用在非{@link Mob}类实体时抛出此异常
      */
     void setItemInOffHandDropChance(float chance);
 
@@ -365,7 +366,7 @@ public interface EntityEquipment {
      * <li>当掉落几率为1.0F时, 则总是会掉落
      * </ul>
      *
-     * @return 当前生物在死亡时掉落头盔的几率(在原版里, 对于玩家来说是1.0F)
+     * @return 当前生物在死亡时掉落头盔的几率(在原版里, 对于非{@link Mob}类实体来说是1.0F)
      */
     float getHelmetDropChance();
 
@@ -380,7 +381,7 @@ public interface EntityEquipment {
      * </ul>
      *
      * @param chance 掉落头盔的几率
-     * @throws UnsupportedOperationException 当这一操作作用在玩家时抛出此异常
+     * @throws UnsupportedOperationException 当这一操作作用在非{@link Mob}类实体时抛出此异常
      */
     void setHelmetDropChance(float chance);
 
@@ -395,7 +396,7 @@ public interface EntityEquipment {
      * <li>当掉落几率为1.0F时, 则总是会掉落
      * </ul>
      *
-     * @return 当前生物在死亡时掉落胸甲的几率(在原版里, 对于玩家来说是1.0F)
+     * @return 当前生物在死亡时掉落胸甲的几率(在原版里, 对于非{@link Mob}类实体来说是1.0F)
      */
     float getChestplateDropChance();
 
@@ -411,7 +412,7 @@ public interface EntityEquipment {
      * </ul>
      *
      * @param chance 掉落胸甲的几率
-     * @throws UnsupportedOperationException 当这一操作作用在玩家时抛出此异常
+     * @throws UnsupportedOperationException 当这一操作作用在非{@link Mob}类实体时抛出此异常
      */
     void setChestplateDropChance(float chance);
 
@@ -426,7 +427,7 @@ public interface EntityEquipment {
      * <li>当掉落几率为1.0F时, 则总是会掉落
      * </ul>
      *
-     * @return 当前生物在死亡时掉落护腿的几率(在原版里, 对于玩家来说是1.0F)
+     * @return 当前生物在死亡时掉落护腿的几率(在原版里, 对于非{@link Mob}类实体来说是1.0F)
      */
     float getLeggingsDropChance();
 
@@ -442,7 +443,7 @@ public interface EntityEquipment {
      * </ul>
      *
      * @param chance 掉落护腿的几率
-     * @throws UnsupportedOperationException 当这一操作作用在玩家时抛出此异常
+     * @throws UnsupportedOperationException 当这一操作作用在非{@link Mob}类实体时抛出此异常
      */
     void setLeggingsDropChance(float chance);
 
@@ -456,7 +457,7 @@ public interface EntityEquipment {
      * <li>当掉落几率为1.0F时, 则总是会掉落
      * </ul>
      *
-     * @return 当前生物在死亡时掉落鞋子的几率(在原版里, 对于玩家来说是1.0F)
+     * @return 当前生物在死亡时掉落鞋子的几率(在原版里, 对于非{@link Mob}类实体来说是1.0F)
      */
     float getBootsDropChance();
 
@@ -471,7 +472,7 @@ public interface EntityEquipment {
      * </ul>
      *
      * @param chance 掉落鞋子的几率
-     * @throws UnsupportedOperationException 当这一操作作用在玩家时抛出此异常
+     * @throws UnsupportedOperationException 当这一操作作用在非{@link Mob}类实体时抛出此异常
      */
     void setBootsDropChance(float chance);
 

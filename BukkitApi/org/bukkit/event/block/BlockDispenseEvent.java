@@ -52,10 +52,10 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 获取物品射出的速度、角度.
+     * 获取物品射出的速度、角度 (单位: 米每tick).
      * <p>
      * 注意: 修改返回的对象并不会修改速度, 必须
-     * 用{@link #setVelocity(org.bukkit.util.Vector)} 代替.
+     * 用{@link #setVelocity(org.bukkit.util.Vector)}.
      * <p>
      * 原文：Gets the velocity.
      * <p>
@@ -70,9 +70,9 @@ public class BlockDispenseEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 设置物品射出的速度、角度.
+     * 设置物品射出的速度速度、角度 (单位: 米每tick).
      * <p>
-     * 原文：Sets the velocity of the item being dispensed.
+     * 原文:Sets the velocity of the item being dispensed in meters per tick.
      *
      * @param vel 射出的物品的速度、角度.
      */

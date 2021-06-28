@@ -2,7 +2,7 @@ package org.bukkit.block;
 
 import org.bukkit.DyeColor;
 import org.bukkit.loot.Lootable;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表潜影盒方块状态.
@@ -14,8 +14,8 @@ public interface ShulkerBox extends Container, Lootable, Lidded {
      * <p>
      * 原文:Get the {@link DyeColor} corresponding to this ShulkerBox
      *
-     * @return 潜影盒的{@link DyeColor 颜色}
+     * @return 潜影盒的{@link DyeColor 颜色}, 如为默认则返回 null
      */
-    @NotNull
+    @Nullable
     public DyeColor getColor();
 }

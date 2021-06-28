@@ -1,4 +1,3 @@
-/* 该文件会随着版本的更新而大幅度修改，因此建议你不要修改本类. */
 package org.bukkit.entity;
 
 import java.util.Locale;
@@ -96,6 +95,11 @@ public interface Villager extends AbstractVillager {
      * @throws IllegalStateException if not sleeping
      */
     public void wakeup();
+
+    /**
+     * Causes this villager to shake his head.
+     */
+    public void shakeHead();
 
     /**
      * Represents Villager type, usually corresponding to what biome they spawn

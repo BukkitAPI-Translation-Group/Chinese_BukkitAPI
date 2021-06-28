@@ -42,9 +42,9 @@ public class PlayerVelocityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 设置玩家移动速度.
+     * 设置玩家移动速度 (单位: 米每tick).
      * <p>
-     * 原文:Sets the velocity vector that will be sent to the player
+     * 原文:Sets the velocity vector in meters per tick that will be sent to the player
      *
      * @param velocity 玩家速度
      */

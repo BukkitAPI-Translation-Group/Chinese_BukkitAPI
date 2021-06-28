@@ -31,6 +31,10 @@ public enum Pose {
      */
     SNEAKING,
     /**
+     * 生物在跳远/长跳.
+     */
+    LONG_JUMPING,
+    /**
      * 生物死亡倒地.
      */
     DYING;

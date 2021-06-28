@@ -251,10 +251,19 @@ public abstract class ChunkGenerator {
      */
     public static interface ChunkData {
         /**
+         * Get the minimum height for the chunk.
+         *
+         * Setting blocks below this height will do nothing.
+         *
+         * @return the minimum height
+         */
+        public int getMinHeight();
+
+        /**
          * Get the maximum height for the chunk.
-         * 
+         *
          * Setting blocks at or above this height will do nothing.
-         * 
+         *
          * @return the maximum height
          */
         public int getMaxHeight();
@@ -265,7 +274,7 @@ public abstract class ChunkGenerator {
          * Note: setting blocks outside the chunk's bounds does nothing.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @param material the type to set the block to
          */
@@ -277,7 +286,7 @@ public abstract class ChunkGenerator {
          * Setting blocks outside the chunk's bounds does nothing.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @param material the type to set the block to
          */
@@ -289,7 +298,7 @@ public abstract class ChunkGenerator {
          * Setting blocks outside the chunk's bounds does nothing.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @param blockData the type to set the block to
          */
@@ -349,7 +358,7 @@ public abstract class ChunkGenerator {
          * Getting blocks outside the chunk's bounds returns air.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @return the type of the block or Material.AIR if x, y or z are outside the chunk's bounds
          */
@@ -362,7 +371,7 @@ public abstract class ChunkGenerator {
          * Getting blocks outside the chunk's bounds returns air.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @return the type and data of the block or the MaterialData for air if x, y or z are outside the chunk's bounds
          */
@@ -375,7 +384,7 @@ public abstract class ChunkGenerator {
          * Getting blocks outside the chunk's bounds returns air.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @return the data of the block or the BlockData for air if x, y or z are outside the chunk's bounds
          */
@@ -388,7 +397,7 @@ public abstract class ChunkGenerator {
          * Getting blocks outside the chunk's bounds returns 0.
          *
          * @param x the x location in the chunk from 0-15 inclusive
-         * @param y the y location in the chunk from 0 (inclusive) - maxHeight (exclusive)
+         * @param y the y location in the chunk from minHeight (inclusive) - maxHeight (exclusive)
          * @param z the z location in the chunk from 0-15 inclusive
          * @return the block data value or air if x, y or z are outside the chunk's bounds
          * @deprecated Uses magic values

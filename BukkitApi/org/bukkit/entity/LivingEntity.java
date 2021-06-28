@@ -549,6 +549,13 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public boolean isSleeping();
 
     /**
+     * Gets if the entity is climbing.
+     *
+     * @return if the entity is climbing
+     */
+    public boolean isClimbing();
+
+    /**
      * 检查实体是否正在滑翔，如正在使用鞘翅.
      * <p>
      * 原文：

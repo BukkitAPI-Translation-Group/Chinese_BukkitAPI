@@ -9,6 +9,7 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -213,6 +214,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 返回这个值. 
      * @return 返回一个Object. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public Object get(@NotNull String path, @Nullable Object def);
 
@@ -288,6 +290,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 String 类型时, 返回这个值. 
      * @return 返回一个 String. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public String getString(@NotNull String path, @Nullable String def);
 
@@ -551,6 +554,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 List 类型时, 返回这个值. 
      * @return 返回一个 List. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public List<?> getList(@NotNull String path, @Nullable List<?> def);
 
@@ -839,6 +843,7 @@ public interface ConfigurationSection {
      * the path
      * @return Requested object
      */
+    @Contract("_, _, !null -> !null")
     @Nullable
     public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
 
@@ -873,6 +878,7 @@ public interface ConfigurationSection {
      * the path
      * @return Requested {@link ConfigurationSerializable} object
      */
+    @Contract("_, _, !null -> !null")
     @Nullable
     public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
 
@@ -906,6 +912,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 {@link Vector} 类型时, 返回这个值. 
      * @return 返回一个 {@link Vector}r. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public Vector getVector(@NotNull String path, @Nullable Vector def);
 
@@ -960,6 +967,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 {@link OfflinePlayer} 类型时, 返回这个值. 
      * @return 返回一个 {@link OfflinePlayer}. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public OfflinePlayer getOfflinePlayer(@NotNull String path, @Nullable OfflinePlayer def);
 
@@ -1014,6 +1022,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是ItemStack类型时, 返回这个值. 
      * @return 返回一个ItemStack. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public ItemStack getItemStack(@NotNull String path, @Nullable ItemStack def);
 
@@ -1068,6 +1077,7 @@ public interface ConfigurationSection {
      * @param def 当指定路径上没有值, 或者不是 {@link Color} 类型时, 返回这个值. 
      * @return 返回一个 {@link Color}. 
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public Color getColor(@NotNull String path, @Nullable Color def);
 
@@ -1117,6 +1127,7 @@ public interface ConfigurationSection {
      * a Location.
      * @return Requested Location.
      */
+    @Contract("_, !null -> !null")
     @Nullable
     public Location getLocation(@NotNull String path, @Nullable Location def);
 

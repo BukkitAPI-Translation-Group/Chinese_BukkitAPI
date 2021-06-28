@@ -50,6 +50,22 @@ public interface Creeper extends Monster {
     public int getMaxFuseTicks();
 
     /**
+     * Set the fuse ticks for this Creeper, where the ticks is the amount of
+     * time in which a creeper has been in the primed state.
+     *
+     * @param ticks the new fuse ticks
+     */
+    public void setFuseTicks(int ticks);
+
+    /**
+     * Get the maximum fuse ticks for this Creeper, where the ticks is the
+     * amount of time in which a creeper has been in the primed state.
+     *
+     * @return the fuse ticks
+     */
+    public int getFuseTicks();
+
+    /**
      * 设置苦力怕的爆炸半径.
      * <p>
      * 原文:

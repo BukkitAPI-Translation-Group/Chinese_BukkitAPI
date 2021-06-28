@@ -310,6 +310,30 @@ public final class Bukkit {
     }
 
     /**
+     * Gets whether the server whitelist is enforced.
+     *
+     * If the whitelist is enforced, non-whitelisted players will be
+     * disconnected when the server whitelist is reloaded.
+     *
+     * @return whether the server whitelist is enforced
+     */
+    public static boolean isWhitelistEnforced() {
+        return server.isWhitelistEnforced();
+    }
+
+    /**
+     * Sets if the server whitelist is enforced.
+     *
+     * If the whitelist is enforced, non-whitelisted players will be
+     * disconnected when the server whitelist is reloaded.
+     *
+     * @param value true for enforced, false for not
+     */
+    public static void setWhitelistEnforced(boolean value) {
+        server.setWhitelistEnforced(value);
+    }
+
+    /**
      * 获取所有已被添加到白名单的玩家.
      * <p>
      * 原文:Gets a list of whitelisted players.
@@ -783,7 +807,7 @@ public final class Bukkit {
      */
     @Deprecated
     @Nullable
-    public static MapView getMap(short id) {
+    public static MapView getMap(int id) {
         return server.getMap(id);
     }
 

@@ -17,6 +17,7 @@ public interface Jukebox extends TileState {
      *
      * @return 这个唱片物品,如果返回AIR就表示唱片机内无唱片插入
      */
+    @NotNull
     public Material getPlaying();
 
     /**

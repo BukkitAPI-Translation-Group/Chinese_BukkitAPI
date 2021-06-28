@@ -548,10 +548,21 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public Item dropItem(@NotNull Location location, @NotNull ItemStack item);
 
     /**
+     * Drops an item at the specified {@link Location}
+     * Note that functions will run before the entity is spawned
+     *
+     * @param location Location to drop the item
+     * @param item ItemStack to drop
+     * @param function the function to be run before the entity is spawned.
+     * @return ItemDrop entity created as a result of this method
+     */
+    @NotNull
+    public Item dropItem(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<Item> function);
+
+    /**
      * 在指定的{@link Location 位置}丢出一个随机偏移的物品.
      * <p>
-     * 原文：
-     * Drops an item at the specified {@link Location} with a random offset
+     * 原文:Drops an item at the specified {@link Location} with a random offset
      *
      * @param location 丢出物品的位置
      * @param item 丢出的物品堆
@@ -559,6 +570,18 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @NotNull
     public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item);
+
+    /**
+     * Drops an item at the specified {@link Location} with a random offset
+     * Note that functions will run before the entity is spawned
+     *
+     * @param location Location to drop the item
+     * @param item ItemStack to drop
+     * @param function the function to be run before the entity is spawned.
+     * @return ItemDrop entity created as a result of this method
+     */
+    @NotNull
+    public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<Item> function);
 
     /**
      * 在指定的{@link Location 位置}创建一个{@link Arrow 箭}的实体.
@@ -623,7 +646,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @param loc 生成实体的位置
      * @param type 生成的实体
-     * @return 生成成功则返回此方法创建的实体，否则返回null
+     * @return 生成成功则返回此方法创建的实体
      */
     @NotNull
     public Entity spawnEntity(@NotNull Location loc, @NotNull EntityType type);
@@ -1106,6 +1129,15 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @see #setTime(long) 设置世界的相对时间
      */
     public void setFullTime(long time);
+
+    /**
+     * Gets the full in-game time on this world since the world generation
+     *
+     * @return The current absolute time since the world generation
+     * @see #getTime() Returns a relative time of this world
+     * @see #getFullTime() Returns an absolute time of this world
+     */
+    public long getGameTime();
 
     /**
      * 返回世界现在是否有雷暴.
@@ -1733,6 +1765,15 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @Deprecated
     public double getHumidity(int x, int z);
+
+    /**
+     * Gets the minimum height of this world.
+     * <p>
+     * If the min height is 0, there are only blocks from y=0.
+     *
+     * @return Minimum height of the world
+     */
+    public int getMinHeight();
 
     /**
      * Gets the humidity for the given block coordinates.
@@ -2862,17 +2903,21 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public enum Environment {
 
         /**
-         * 表示"normal"/"surface world"地图。
+         * 表示"normal"/"surface world"地图.
          */
         NORMAL(0),
         /**
-         * 表示一个基于"hell"地图的地狱。
+         * 表示一个基于"hell"地图的地狱.
          */
         NETHER(-1),
         /**
-         * 表示"end"地图。
+         * 表示"end"地图.
          */
-        THE_END(1);
+        THE_END(1),
+        /**
+         * 代表自定义维度.
+         */
+        CUSTOM(-999);
 
         private final int id;
         private static final Map<Integer, Environment> lookup = new HashMap<Integer, Environment>();

@@ -14,7 +14,9 @@ public interface Endermite extends Monster {
      * An Endermite spawned by a player will be attacked by nearby Enderman.
      *
      * @return 该末影螨是否因玩家而生成
+     * @deprecated 本功能不再存在(自1.17版本起)
      */
+    @Deprecated
     boolean isPlayerSpawned();
 
     /**
@@ -26,6 +28,8 @@ public interface Endermite extends Monster {
      * An Endermite spawned by a player will be attacked by nearby Enderman.
      *
      * @param playerSpawned 该末影螨是否因玩家而生成
+     * @deprecated 本功能不再存在(自1.17版本起)
      */
+    @Deprecated
     void setPlayerSpawned(boolean playerSpawned);
 }

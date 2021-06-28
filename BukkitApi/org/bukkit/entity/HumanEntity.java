@@ -347,6 +347,16 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
     public boolean isHandRaised();
 
     /**
+     * Gets the item that the player is using (eating food, drawing back a bow,
+     * blocking, etc.)
+     *
+     * @return the item being used by the player, or null if they are not using
+     * an item
+     */
+    @Nullable
+    public ItemStack getItemInUse();
+
+    /**
      * 获取玩家升级所需经验总额.
      * <p>
      * 原文:Get the total amount of experience required for the player to level
@@ -523,4 +533,130 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @return True if item was dropped successfully
      */
     public boolean dropItem(boolean dropAll);
+
+    /**
+     * 获取玩家的疲劳度.
+     * <p>
+     * 疲劳度控制者玩家的饥饿消耗. 当玩家达到一定的疲劳度时, 你的饱食度就会下降, 并且疲劳度归零.
+     * <p>
+     * 译注:如果饱食度为0, 那么就扣饥饿度.
+     * <p>
+     * 译注2:运动会产生疲劳度.
+     * <p>
+     * 原文:Gets the players current exhaustion level.
+     * <p>
+     * Exhaustion controls how fast the food level drops. While you have a
+     * certain amount of exhaustion, your saturation will drop to zero, and
+     * then your food will drop to zero.
+     *
+     * @return 疲劳度
+     */
+    public float getExhaustion();
+
+    /**
+     * 设置玩家的疲劳度.
+     * <p>
+     * 原文:Sets the players current exhaustion level
+     *
+     * @param value 疲劳度
+     */
+    public void setExhaustion(float value);
+
+    /**
+     * 获取玩家的饱食度(不是饥饿度).
+     * <p>
+     * 饱食度是一个饥饿度的缓存. 当你的饱食度 {@literal  >} 0的时候,饥饿度是不会下降的.
+     * <p>
+     * 译注:就是说, 吃东西的时候, 你的饥饿度被填满了, 而多出来的部分就是隐藏的饱食度. 当你的疲劳值(见{@link #getExhaustion() })
+     * 达到一定程度时, 如果饱食度不为0, 那么先扣饱食度. 只有当没饱食度时, 才会扣饥饿度. 其实饱食度就是饥饿度, 只不过是隐藏的.
+     * <p>
+     * 原文:Gets the players current saturation level.
+     * <p>
+     * Saturation is a buffer for food level. Your food level will not drop if
+     * you are saturated {@literal >} 0.
+     *
+     * @return 饱食度
+     */
+    public float getSaturation();
+
+    /**
+     * 设置玩家的饱食度(不是饥饿度).
+     * <p>
+     * 原文:Sets the players current saturation level
+     *
+     * @param value 饱食度
+     */
+    public void setSaturation(float value);
+
+    /**
+     * 获取玩家的饥饿度(不是饱食度).
+     * <p>
+     * 原文:Gets the players current food level
+     *
+     * @return 饥饿度
+     */
+    public int getFoodLevel();
+
+     /**
+     * 设置玩家的饥饿度(不是饱食度).
+     * <p>
+     * 原文:Sets the players current food level
+     *
+     * @param value 饥饿度
+     */
+    public void setFoodLevel(int value);
+
+    /**
+     * Get the regeneration rate (1 health per x ticks) of
+     * the HumanEntity when they have saturation and
+     * their food level is {@literal >=} 20. Default is 10.
+     *
+     * @return the regeneration rate
+     */
+    public int getSaturatedRegenRate();
+
+    /**
+     * Set the regeneration rate (1 health per x ticks) of
+     * the HumanEntity when they have saturation and
+     * their food level is {@literal >=} 20. Default is 10.
+     * Not affected if the world's difficulty is peaceful.
+     *
+     * @param ticks the amount of ticks to gain 1 health.
+     */
+    public void setSaturatedRegenRate(int ticks);
+
+    /**
+     * Get the regeneration rate (1 health per x ticks) of
+     * the HumanEntity when they have no saturation and
+     * their food level is {@literal >=} 18. Default is 80.
+     *
+     * @return the regeneration rate
+     */
+    public int getUnsaturatedRegenRate();
+
+    /**
+     * Get the regeneration rate (1 health per x ticks) of
+     * the HumanEntity when they have no saturation and
+     * their food level is {@literal >=} 18. Default is 80.
+     * Not affected if the world's difficulty is peaceful.
+     *
+     * @param ticks the amount of ticks to gain 1 health.
+     */
+    public void setUnsaturatedRegenRate(int ticks);
+
+    /**
+     * Get the starvation rate (1 health per x ticks) of
+     * the HumanEntity. Default is 80.
+     *
+     * @return the starvation rate
+     */
+    public int getStarvationRate();
+
+    /**
+     * Get the starvation rate (1 health per x ticks) of
+     * the HumanEntity. Default is 80.
+     *
+     * @param ticks the amount of ticks to lose 1 health
+     */
+    public void setStarvationRate(int ticks);
 }

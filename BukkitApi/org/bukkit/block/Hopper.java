@@ -1,6 +1,5 @@
 package org.bukkit.block;
 
-import org.bukkit.Nameable;
 import org.bukkit.loot.Lootable;
 
 /**

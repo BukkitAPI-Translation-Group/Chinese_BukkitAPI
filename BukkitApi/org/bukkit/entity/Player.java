@@ -16,8 +16,11 @@ import org.bukkit.SoundCategory;
 import org.bukkit.WeatherType;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
+import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.conversations.Conversable;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
@@ -478,6 +481,30 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void playEffect(@NotNull Location loc, @NotNull Effect effect, @Nullable T data);
 
     /**
+     * Force this player to break a Block using the item in their main hand.
+     *
+     * This method will respect enchantments, handle item durability (if
+     * applicable) and drop experience and the correct items according to the
+     * tool/item in the player's hand.
+     * <p>
+     * Note that this method will call a {@link BlockBreakEvent}, meaning that
+     * this method may not be successful in breaking the block if the event was
+     * cancelled by a third party plugin. Care should be taken if running this
+     * method in a BlockBreakEvent listener as recursion may be possible if it
+     * is invoked on the same {@link Block} being broken in the event.
+     * <p>
+     * Additionally, a {@link BlockDropItemEvent} is called for the items
+     * dropped by this method (if successful).
+     * <p>
+     * The block must be in the same world as the player.
+     *
+     * @param block the block to break
+     *
+     * @return true if the block was broken, false if the break failed
+     */
+    public boolean breakBlock(@NotNull Block block);
+
+    /**
      * 向该玩家发送一个伪造的指定位置的方块({@link org.bukkit.block.Block})更改数据包.这不会改变世界中的方块. <p>
      * 原文:Send a block change. This fakes a block change packet for a user at a
      * certain location. This will not actually change the world in any way.<p>
@@ -505,6 +532,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param block 新方块
      */
     public void sendBlockChange(@NotNull Location loc, @NotNull BlockData block);
+
+    /**
+     * Send block damage. This fakes block break progress for a user at a
+     * certain location. This will not actually change the block's break
+     * progress in any way.
+     *
+     * @param loc the location of the damaged block
+     * @param progress the progress from 0.0 - 1.0 where 0 is no damage and
+     * 1.0 is the most damaged
+     */
+    public void sendBlockDamage(@NotNull Location loc, float progress);
 
     /**
      * 向该玩家发送一个伪造的指定位置的长方体的更改数据包.这不会改变世界中的方块.<p>
@@ -793,71 +831,10 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendExperienceChange(float progress, int level);
 
     /**
-     * 得到玩家的疲劳度. <p>
-     * 疲劳度控制者玩家的饥饿消耗.当玩家达到一定的疲劳度时,你的饱食度就会下降,并且疲劳度归零. <p>
-     * 译注:如果饱食度为0,那么就扣饥饿度. <p>
-     * 注释2:运动会产生疲劳度. <p>
-     * 原文:Gets the players current exhaustion level.
+     * 判断玩家是否能飞起来.
      * <p>
-     * Exhaustion controls how fast the food level drops. While you have a
-     * certain amount of exhaustion, your saturation will drop to zero, and
-     * then your food will drop to zero.
-     *
-     * @return 疲劳度
-     */
-    public float getExhaustion();
-
-    /**
-     * 设置玩家的疲劳度. <p>
-     * 关于疲劳度,请参见{@link #getExhaustion() }. <p>
-     * 原文:Sets the players current exhaustion level
-     *
-     * @param value 新的疲劳度
-     */
-    public void setExhaustion(float value);
-
-    /**
-     * 得到玩家的饱食度(不是饥饿度). <p>
-     * 饱食度是一个饥饿度的缓存.当你的饱食度 {@literal  >}0的时候,饥饿度是不会下降的. <p>
-     * 译注:就是说,吃东西的时候,你的饥饿度被填满了,而多出来的部分就是隐藏的饱食度.当你的疲劳值(见{@link #getExhaustion() })
-     * 达到一定程度时,如果饱食度不为0,那么先扣饱食度.只有当没饱食度时,才会扣饥饿度.其实饱食度就是饥饿度,只不过是隐藏的. <p>
-     * 原文:Gets the players current saturation level.
+     * 译注:如果玩家确实在创造模式,那么一般返回true,除非被setAllowFlight(false).
      * <p>
-     * Saturation is a buffer for food level. Your food level will not drop if
-     * you are saturated {@literal >} 0.
-     *
-     * @return 饱食度
-     */
-    public float getSaturation();
-
-    /**
-     * 设置玩家的饱食度(不是饥饿度). <p>
-     * 关于饱食度,请参见{@link #getSaturation() }. <p>
-     * 原文:Sets the players current saturation level
-     *
-     * @param value 要设置成的饱食度
-     */
-    public void setSaturation(float value);
-
-    /**
-     * 得到玩家的饥饿度(不是饱食度). <p>
-     * 原文:Gets the players current food level
-     *
-     * @return 饥饿度
-     */
-    public int getFoodLevel();
-
-    /**
-     * 设置玩家的饥饿度(不是饱食度). <p>
-     * 原文:Sets the players current food level
-     *
-     * @param value 新的饥饿度
-     */
-    public void setFoodLevel(int value);
-
-    /**
-     * 判断玩家是否能飞起来<p>
-     * 译注:如果玩家确实在创造模式,那么一般返回true,除非被setAllowFlight(false);
      * 原文:Determines if the Player is allowed to fly via jump key double-tap like
      * in creative mode.
      *
@@ -866,8 +843,10 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public boolean getAllowFlight();
 
     /**
-     * 设置玩家是否能够飞起来(就像创造模式). <p>
+     * 设置玩家是否能够飞起来(就像创造模式).
+     * <p>
      * 译注:如果被设置为false,即便是创造模式也不能飞.
+     * <p>
      * 原文:Sets if the Player is allowed to fly via jump key double-tap like in
      * creative mode.
      *
@@ -1481,6 +1460,21 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @return client view distance as above
      */
     public int getClientViewDistance();
+
+    /**
+     * Gets the player's estimated ping in milliseconds.
+     *
+     * In Vanilla this value represents the average of the response time to the
+     * last four application layer ping packets sent. This value does not
+     * represent the network round trip time and as such may have less
+     * granularity and be impacted by other sources. For these reasons it
+     * <b>should not</b> be used for anti-cheat purposes. Its recommended use is
+     * only as a <b>qualitative</b> indicator of connection quality (Vanilla
+     * uses it for this purpose in the tab list).
+     *
+     * @return player ping
+     */
+    public int getPing();
 
     /**
      * 返回玩家本地语言环境.

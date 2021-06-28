@@ -87,7 +87,13 @@ public enum Biome implements Keyed {
     SOUL_SAND_VALLEY,
     CRIMSON_FOREST,
     WARPED_FOREST,
-    BASALT_DELTAS;
+    BASALT_DELTAS,
+    DRIPSTONE_CAVES,
+    LUSH_CAVES,
+    /**
+     * 自定义生物群系
+     */
+    CUSTOM;
 
     private final NamespacedKey key;
 

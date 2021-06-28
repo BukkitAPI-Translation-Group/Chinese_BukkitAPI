@@ -9,11 +9,13 @@ import org.bukkit.World;
 import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.Metadatable;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
+import org.bukkit.util.VoxelShape;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -595,6 +597,33 @@ public interface Block extends Metadatable {
     Collection<ItemStack> getDrops(@NotNull ItemStack tool, @Nullable Entity entity);
 
     /**
+     * Returns if the given item is a preferred choice to break this Block.
+     *
+     * In some cases this determines if a block will drop anything or extra
+     * loot.
+     *
+     * @param tool The tool or item used for breaking this block
+     * @return true if the tool is preferred for breaking this block.
+     */
+    boolean isPreferredTool(@NotNull ItemStack tool);
+
+    /**
+     * Gets the speed at which the given player would break this block, taking
+     * into account tools, potion effects, whether or not the player is in
+     * water, enchantments, etc.
+     *
+     * The returned value is the amount of progress made in breaking the block.
+     * When the total breaking progress reaches {@code 1.0f}, the block is
+     * broken. Note that the break speed can change in the course of breaking a
+     * block, e.g. if a potion effect is applied or expires, or the player
+     * jumps/enters water.
+     *
+     * @param player player breaking the block
+     * @return the speed at which the player breaks this block
+     */
+    float getBreakSpeed(@NotNull Player player);
+
+    /**
      * 检测能否自由通过此方块.
      * <p>
      * 如果方块没有可阻碍玩家穿过的可碰撞部分, 就可自由通过此方块.
@@ -644,4 +673,13 @@ public interface Block extends Metadatable {
      */
     @NotNull
     BoundingBox getBoundingBox();
+
+    /**
+     * Gets the collision shape of this block.
+     *
+     * @return a {@link VoxelShape} representing the collision shape of this
+     * block.
+     */
+    @NotNull
+    VoxelShape getCollisionShape();
 }

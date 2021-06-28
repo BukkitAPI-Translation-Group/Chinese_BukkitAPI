@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * 某些铁轨可能不能够摆放成所有的形态, 使用
  * {@link #getShapes()} 来获悉此铁轨可以怎样摆放.
  */
-public interface Rail extends BlockData {
+public interface Rail extends Waterlogged {
 
     /**
      * 获取 'shape' 的数据值.

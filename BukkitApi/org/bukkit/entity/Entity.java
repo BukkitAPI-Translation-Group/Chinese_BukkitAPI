@@ -60,7 +60,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public Location getLocation(@Nullable Location loc);
 
     /**
-     * 设置此实体的速度(向量)
+     * 设置此实体的速度 (单位: 米每tick).
      * <p>
      * 原文:
      * Sets this entity's velocity
@@ -70,7 +70,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public void setVelocity(@NotNull Vector velocity);
 
     /**
-     * 获取此实体的速度(向量)
+     * 获取此实体的速度.
      * <p>
      * 原文:
      * Gets this entity's current velocity
@@ -272,6 +272,52 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * @param ticks 剩余的刻数
      */
     public void setFireTicks(int ticks);
+
+    /**
+     * Sets if the entity has visual fire (it will always appear to be on fire).
+     *
+     * @param fire whether visual fire is enabled
+     */
+    void setVisualFire(boolean fire);
+
+    /**
+     * Gets if the entity has visual fire (it will always appear to be on fire).
+     *
+     * @return whether visual fire is enabled
+     */
+    boolean isVisualFire();
+
+    /**
+     * Returns the entity's current freeze ticks (amount of ticks the entity has
+     * been in powdered snow).
+     *
+     * @return int freeze ticks
+     */
+    int getFreezeTicks();
+
+    /**
+     * Returns the entity's maximum freeze ticks (amount of ticks before it will
+     * be fully frozen)
+     *
+     * @return int max freeze ticks
+     */
+    int getMaxFreezeTicks();
+
+    /**
+     * Sets the entity's current freeze ticks (amount of ticks the entity has
+     * been in powdered snow).
+     *
+     * @param ticks Current ticks
+     */
+    void setFreezeTicks(int ticks);
+
+    /**
+     * Gets if the entity is fully frozen (it has been in powdered snow for max
+     * freeze ticks).
+     *
+     * @return freeze status
+     */
+    boolean isFrozen();
 
     /**
      * 将实体标记为删除. 
