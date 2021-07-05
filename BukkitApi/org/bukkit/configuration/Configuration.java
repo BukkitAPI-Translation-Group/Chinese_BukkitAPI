@@ -1,9 +1,9 @@
 package org.bukkit.configuration;
 
+import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-//汉化修改进度: 完成
-//格式校对进度: 完成
+
 /**
  * 配置文件的基类.
  * <p>原文: 
@@ -32,13 +32,13 @@ public interface Configuration extends ConfigurationSection {
     public void addDefault(@NotNull String path, @Nullable Object value);
 
     /**
-     * 把map里面的键值都加入到缺省值列表.
+     * 把指定map里面的键值都加入到缺省值列表.
      * <p>
      * 如果没有缺省值 {@link Configuration}, 那么将会建立一个新的缺省值 {@link MemoryConfiguration} 用于保存.
      * <p>
      * 如果值为 null , 将会删除该路径上的缺省值.
      * <p>原文: 
-     *  Sets the default values of the given paths as provided.
+     * Sets the default values of the given paths as provided.
      * <p>
      * If no source {@link Configuration} was provided as a default collection, then a new {@link MemoryConfiguration} will be created to hold the new default values.
      *
@@ -48,7 +48,7 @@ public interface Configuration extends ConfigurationSection {
     public void addDefaults(@NotNull Map<String, Object> defaults);
 
     /**
-     * 把 {@link Configuration} 全部加入到缺省值列表.
+     * 把指定 {@link Configuration} 全部加入到缺省值列表.
      * <p>
      * 如果没有缺省值 {@link Configuration}, 那么将会建立一个新的 {@link MemoryConfiguration} 用于保存.
      * <p>

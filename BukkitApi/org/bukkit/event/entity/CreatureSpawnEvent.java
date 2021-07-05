@@ -37,15 +37,6 @@ public class CreatureSpawnEvent extends EntitySpawnEvent {
         return spawnReason;
     }
 
-    @Override
-    public HandlerList getHandlers() {
-        return handlers;
-    }
-
-    public static HandlerList getHandlerList() {
-        return handlers;
-    }
-
     /**
      * 生成原因的枚举类.
      */

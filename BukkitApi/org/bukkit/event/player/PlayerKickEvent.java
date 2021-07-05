@@ -62,7 +62,7 @@ public class PlayerKickEvent extends PlayerEvent implements Cancellable {
      *
      * @param kickReason kick reason
      */
-    public void setReason(String kickReason) {
+    public void setReason(@NotNull String kickReason) {
         this.kickReason = kickReason;
     }
 

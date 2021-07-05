@@ -3,6 +3,7 @@ package org.bukkit.event.player;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 当玩家在使用三叉戟上的激流附魔推动它们在空中飞行(需要在雨天才能在空中飞行)时触发本事件

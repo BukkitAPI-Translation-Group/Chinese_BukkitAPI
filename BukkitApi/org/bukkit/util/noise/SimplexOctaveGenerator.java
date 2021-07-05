@@ -2,6 +2,7 @@ package org.bukkit.util.noise;
 import java.util.Random;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
+
 /**
  * 使用倍频创建单纯形噪声.
  * <p>
@@ -9,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class SimplexOctaveGenerator extends OctaveGenerator {
     private double wScale = 1;
+
     /**
      * 使用给定的World创建一个SimplexOctaveGenerator.
      * <p>
@@ -20,6 +22,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
     public SimplexOctaveGenerator(@NotNull World world, int octaves) {
         this(new Random(world.getSeed()), octaves);
     }
+
     /**
      * 使用给定的种子创建一个SimplexOctaveGenerator.
      * <p>
@@ -27,12 +30,13 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * <p>
      * 译注:根据参数的翻译 这里given world疑似打错应该是given seed.
      *
-     * @param rand 创建这个Generator的long型种子
+     * @param seed 创建这个Generator的long型种子
      * @param octaves 创建的倍频值
      */
-    public SimplexOctaveGenerator(@NotNull Random rand, int octaves) {
-        super(createOctaves(rand, octaves));
+    public SimplexOctaveGenerator(long seed, int octaves) {
+        this(new Random(seed), octaves);
     }
+
     /**
      * 使用给定的{@link Random}创建一个SimplexOctaveGenerator.
      * <p>
@@ -41,14 +45,16 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
      * @param rand 创建这个Generator的Random
      * @param octaves 创建的倍频值
      */
-    public SimplexOctaveGenerator(Random rand, int octaves) {
+    public SimplexOctaveGenerator(@NotNull Random rand, int octaves) {
         super(createOctaves(rand, octaves));
     }
+
     @Override
     public void setScale(double scale) {
         super.setScale(scale);
         setWScale(scale);
     }
+
     /**
      * 获取每个W坐标通过的区间大小.
      * <p>
@@ -59,6 +65,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
     public double getWScale() {
         return wScale;
     }
+
     /**
      * 设置每个W坐标通过的区间大小.
      * <p>
@@ -69,6 +76,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
     public void setWScale(double scale) {
         wScale = scale;
     }
+
     /**
      * 使用特殊的数个音阶和参数产生一个三维坐标的噪音.
      * <p>
@@ -88,6 +96,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
     public double noise(double x, double y, double z, double w, double frequency, double amplitude) {
         return noise(x, y, z, w, frequency, amplitude, false);
     }
+
     /**
      * 使用特殊的数个音阶和参数产生一个三维坐标的噪音.
      * <p>
@@ -125,6 +134,7 @@ public class SimplexOctaveGenerator extends OctaveGenerator {
         }
         return result;
     }
+
     @NotNull
     private static NoiseGenerator[] createOctaves(@NotNull Random rand, int octaves) {
         NoiseGenerator[] result = new NoiseGenerator[octaves];

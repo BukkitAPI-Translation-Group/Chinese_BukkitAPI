@@ -1,8 +1,5 @@
 package org.bukkit.entity;
 
-import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
-
 /**
  * 代表骷髅.
  * <p>

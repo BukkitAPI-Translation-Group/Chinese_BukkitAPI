@@ -424,6 +424,7 @@ public abstract class InventoryView {
                 type = InventoryType.SlotType.CRAFTING;
                 break;
             case ANVIL:
+            case SMITHING:
             case CARTOGRAPHY:
             case GRINDSTONE:
             case MERCHANT:

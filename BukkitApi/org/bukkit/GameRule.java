@@ -166,12 +166,12 @@ public final class GameRule<T> {
     public static final GameRule<Boolean> DO_TRADER_SPAWNING = new GameRule<>("doTraderSpawning", Boolean.class);
 
     /**
-     * Whether mobs should cease being angry at a player once they die.
+     * 当被激怒的中立生物的目标玩家死亡时, 此生物是否恢复中立状态.
      */
     public static final GameRule<Boolean> FORGIVE_DEAD_PLAYERS = new GameRule<>("forgiveDeadPlayers", Boolean.class);
 
     /**
-     * Whether mobs will target all player entities once angered.
+     * 当中立生物被激怒时, 是否攻击附近所有玩家 (而不仅仅是激怒此生物的玩家).
      */
     public static final GameRule<Boolean> UNIVERSAL_ANGER = new GameRule<>("universalAnger", Boolean.class);
 

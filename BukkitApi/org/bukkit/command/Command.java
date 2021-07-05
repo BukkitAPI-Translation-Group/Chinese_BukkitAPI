@@ -19,7 +19,6 @@ import org.bukkit.util.StringUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-
 /**
  * 代表一个命令，在用户输入时执行各种任务.
  */
@@ -154,7 +153,6 @@ public abstract class Command {
      */
     public boolean setName(@NotNull String name) {
         if (!isRegistered()) {
-            this.timings = new org.spigotmc.CustomTimingsHandler("** Command: " + name); // Spigot
             this.name = (name == null) ? "" : name;
             return true;
         }
@@ -277,6 +275,7 @@ public abstract class Command {
         }
         this.nextLabel = name;
         if (!isRegistered()) {
+            this.timings = new org.spigotmc.CustomTimingsHandler("** Command: " + name); // Spigot
             this.label = name;
             return true;
         }

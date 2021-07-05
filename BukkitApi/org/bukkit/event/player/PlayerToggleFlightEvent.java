@@ -25,6 +25,10 @@ public class PlayerToggleFlightEvent extends PlayerEvent implements Cancellable 
      *
      * @return 飞行状态
      */
+    public boolean isFlying() {
+        return isFlying;
+    }
+
     @Override
     public boolean isCancelled() {
         return cancel;

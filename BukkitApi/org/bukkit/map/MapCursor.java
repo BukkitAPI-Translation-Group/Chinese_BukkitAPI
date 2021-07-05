@@ -20,11 +20,28 @@ public final class MapCursor {
      * <p>
      * 原文:Initialize the map cursor.
      *
-     * @param x The x coordinate, from -128 to 127.
-     * @param y The y coordinate, from -128 to 127.
-     * @param direction The facing of the cursor, from 0 to 15.
-     * @param type The type (color/style) of the map cursor.
-     * @param visible Whether the cursor is visible by default.
+     * @param x x坐标，范围为-128到127
+     * @param y y坐标，范围为-128到127
+     * @param direction 光标的朝向，范围为0到15
+     * @param type 地图光标的类型（颜色、风格）
+     * @param visible 光标在默认情况下是否可见
+     * @deprecated 不安全的参数
+     */
+    @Deprecated
+    public MapCursor(byte x, byte y, byte direction, byte type, boolean visible) {
+        this(x, y, direction, type, visible, null);
+    }
+
+    /**
+     * 初始化地图光标.
+     * <p>
+     * 原文:Initialize the map cursor.
+     *
+     * @param x x坐标，范围为-128到127
+     * @param y y坐标，范围为-128到127
+     * @param direction 光标的朝向，范围为0到15
+     * @param type 地图光标的类型（颜色、风格）
+     * @param visible 光标在默认情况下是否可见
      */
     public MapCursor(byte x, byte y, byte direction, @NotNull Type type, boolean visible) {
         this(x, y, direction, type, visible, null);
@@ -33,8 +50,7 @@ public final class MapCursor {
     /**
      * 初始化地图光标.
      * <p>
-     * 原文：
-     * Initialize the map cursor.
+     * 原文:Initialize the map cursor.
      *
      * @param x x坐标，范围为-128到127
      * @param y y坐标，范围为-128到127
@@ -57,15 +73,14 @@ public final class MapCursor {
     /**
      * 初始化地图光标.
      * <p>
-     * 原文：
-     * Initialize the map cursor.
+     * 原文:Initialize the map cursor.
      *
-     * @param x The x coordinate, from -128 to 127.
-     * @param y The y coordinate, from -128 to 127.
-     * @param direction The facing of the cursor, from 0 to 15.
-     * @param type The type (color/style) of the map cursor.
-     * @param visible Whether the cursor is visible by default.
-     * @param caption cursor caption
+     * @param x x坐标，范围为-128到127
+     * @param y y坐标，范围为-128到127
+     * @param direction 光标的朝向，范围为0到15
+     * @param type 地图光标的类型（颜色、风格）
+     * @param visible 光标在默认情况下是否可见
+     * @param caption 光标标题
      */
     public MapCursor(byte x, byte y, byte direction, @NotNull Type type, boolean visible, @Nullable String caption) {
         this.x = x;

@@ -1281,7 +1281,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param count 粒子数目
      * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
      */
-    public <T> void spawnParticle(Particle particle, Location location, int count, T data);
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, @Nullable T data);
 
     /**
      * Spawns the particle (the number of times specified by count)

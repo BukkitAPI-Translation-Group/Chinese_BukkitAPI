@@ -209,15 +209,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean isChunkLoaded(@NotNull Chunk chunk);
 
     /**
-     * Checks if the {@link Chunk} at the specified coordinates is generated
-     *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return true if the chunk is generated, otherwise false
-     */
-    public boolean isChunkGenerated(int x, int z);
-
-    /**
      * 获取一个所有被加载的{@link Chunk 区块}的数组.
      * <p>
      * 原文：
@@ -256,6 +247,17 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 如果区块已经被加载则返回true，否则返回false
      */
     public boolean isChunkLoaded(int x, int z);
+
+    /**
+     * 检查指定坐标处的{@link Chunk 区块}是否已生成.
+     * <p>
+     * 原文:Checks if the {@link Chunk} at the specified coordinates is generated
+     *
+     * @param x 区块x坐标
+     * @param z 区块z坐标
+     * @return 区块已生成则返回true, 反之为false
+     */
+    public boolean isChunkGenerated(int x, int z);
 
     /**
      * 检查指定坐标的{@link Chunk 区块}是否被加载且被一个或更多的玩家使用.
@@ -1038,7 +1040,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param location 要设置的出生点位置
      * @return 若成功设置返回true
      */
-    @NotNull
     public boolean setSpawnLocation(@NotNull Location location);
 
     /**
@@ -1221,6 +1222,16 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public int getThunderDuration();
 
     /**
+     * 设置这个世界打雷持续时间。
+     * <p>
+     * 原文：
+     * Set the thundering duration.
+     *
+     * @param duration 持续时间，单位为tick
+     */
+    public void setThunderDuration(int duration);
+
+    /**
      * 返回世界是否为晴天.
      *
      * {@link #isThundering() 雷}{@link #hasStorm() 雨}退散, 便是晴天.
@@ -1263,16 +1274,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return 持续时间, 单位为 tick
      */
     public int getClearWeatherDuration();
-
-    /**
-     * 设置这个世界打雷持续时间。
-     * <p>
-     * 原文：
-     * Set the thundering duration.
-     *
-     * @param duration 持续时间，单位为tick
-     */
-    public void setThunderDuration(int duration);
 
     /**
      * 在指定坐标生成指定威力的爆炸.
@@ -1436,7 +1437,7 @@ public interface World extends PluginMessageRecipient, Metadatable {
      *
      * @return 这个世界相关的{@link ChunkGenerator 区块生成器}
      */
-    @NotNull
+    @Nullable
     public ChunkGenerator getGenerator();
 
     /**
@@ -1767,15 +1768,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public double getHumidity(int x, int z);
 
     /**
-     * Gets the minimum height of this world.
-     * <p>
-     * If the min height is 0, there are only blocks from y=0.
-     *
-     * @return Minimum height of the world
-     */
-    public int getMinHeight();
-
-    /**
      * Gets the humidity for the given block coordinates.
      * <p>
      * It is safe to run this method when the block does not exist, it will
@@ -1789,16 +1781,28 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public double getHumidity(int x, int y, int z);
 
     /**
-     * 获取这个世界的最大高度。
+     * 获取这个世界的最低高度.
      * <p>
-     * 如果最大高度为100，则只有y=0到y=99才有方块。
+     * 如果最低高度为0, 则只有y=0处才有方块.
      * <p>
-     * 原文：
-     * Gets the maximum height of this world.
+     * 原文:Gets the minimum height of this world.
+     * <p>
+     * If the min height is 0, there are only blocks from y=0.
+     *
+     * @return 世界的最低高度
+     */
+    public int getMinHeight();
+
+    /**
+     * 获取这个世界的最高高度.
+     * <p>
+     * 如果最大高度为100, 则只有y=0到y=99才有方块.
+     * <p>
+     * 原文:Gets the maximum height of this world.
      * <p>
      * If the max height is 100, there are only blocks from y=0 to y=99.
      *
-     * @return 世界的最大高度
+     * @return 世界的最高高度
      */
     public int getMaxHeight();
 

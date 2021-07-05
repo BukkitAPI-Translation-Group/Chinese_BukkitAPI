@@ -43,6 +43,7 @@ public interface MerchantInventory extends Inventory {
      *
      * @return 当前活跃的交易配方
      */
+    @Nullable
     MerchantRecipe getSelectedRecipe();
 
     /**

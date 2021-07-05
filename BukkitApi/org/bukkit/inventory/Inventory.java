@@ -171,6 +171,7 @@ public interface Inventory extends Iterable<ItemStack> {
      *
      * @return 存储了此物品栏所有物品的数组. 个别条目可能为null
      */
+    @NotNull
     public ItemStack[] getContents();
 
     /**

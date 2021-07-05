@@ -6,9 +6,19 @@ import java.util.HashMap;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.bukkit.event.world.GenericGameEvent;
 
 /**
- * Represents a generic Mojang game event.
+ * 代表 Mojang 通用游戏事件.
+ * <p>
+ * 译注:这些事件非 Bukkit 框架内提供的事件, 而是 Mojang 在原游戏引入的事件,
+ * 目前已知原版游戏用于<a href="https://minecraft-zh.gamepedia.com/Sculk_Sensor">Sculk_Sensor</a>中.
+ * <p>
+ * 不过 Bukkit 框架提供了一个新的事件: {@link GenericGameEvent}, 使得监听 Mojang 游戏事件成为可能.
+ * <p>
+ * 原文:Represents a generic Mojang game event.
+ *
+ * @since 1.17
  */
 public final class GameEvent implements Keyed {
 
@@ -75,10 +85,12 @@ public final class GameEvent implements Keyed {
     }
 
     /**
-     * Returns a {@link GameEvent} by a {@link NamespacedKey}.
+     * 根据指定的{@link NamespacedKey}获取{@link GameEvent 游戏事件}.
+     * <p>
+     * 原文:Returns a {@link GameEvent} by a {@link NamespacedKey}.
      *
      * @param namespacedKey the key
-     * @return the event or null
+     * @return 游戏事件, 如果 key 不存在则返回 null
      */
     @Nullable
     public static GameEvent getByKey(@NotNull NamespacedKey namespacedKey) {
@@ -86,9 +98,11 @@ public final class GameEvent implements Keyed {
     }
 
     /**
-     * Returns the set of all GameEvents.
+     * 返回所有游戏事件的集合.
+     * <p>
+     * 原文:Returns the set of all GameEvents.
      *
-     * @return the memoryKeys
+     * @return 游戏事件键的集合
      */
     @NotNull
     public static Collection<GameEvent> values() {

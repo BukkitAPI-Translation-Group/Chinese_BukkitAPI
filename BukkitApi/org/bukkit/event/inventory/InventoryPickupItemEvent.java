@@ -4,6 +4,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
 /**

@@ -38,7 +38,6 @@ public interface MapCanvas {
      *
      * @param cursors 与画布相关联的游标集合
      */
-    @NotNull
     public void setCursors(@NotNull MapCursorCollection cursors);
 
     /**

@@ -142,7 +142,7 @@ public interface AbstractHorse extends Vehicle, InventoryHolder, Tameable {
      */
     public void setJumpStrength(double strength);
 
-    @Override
     @NotNull
+    @Override
     public AbstractHorseInventory getInventory();
 }

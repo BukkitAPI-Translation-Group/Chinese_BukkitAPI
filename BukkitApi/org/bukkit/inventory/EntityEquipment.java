@@ -252,6 +252,7 @@ public interface EntityEquipment {
      *
      * @return 一个关于实体当前所有穿着的盔甲的数组. 个别条目可能为null
      */
+    @NotNull
     ItemStack[] getArmorContents();
 
     /**

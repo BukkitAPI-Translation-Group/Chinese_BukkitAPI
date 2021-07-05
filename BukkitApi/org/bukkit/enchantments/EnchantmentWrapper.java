@@ -34,8 +34,8 @@ public class EnchantmentWrapper extends Enchantment {
         return getEnchantment().getStartLevel();
     }
 
-    @Override
     @NotNull
+    @Override
     public EnchantmentTarget getItemTarget() {
         return getEnchantment().getItemTarget();
     }
@@ -45,8 +45,8 @@ public class EnchantmentWrapper extends Enchantment {
         return getEnchantment().canEnchantItem(item);
     }
 
-    @Override
     @NotNull
+    @Override
     public String getName() {
         return getEnchantment().getName();
     }

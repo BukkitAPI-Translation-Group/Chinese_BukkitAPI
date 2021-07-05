@@ -1,11 +1,12 @@
 package org.bukkit.event.inventory;
 
+import org.bukkit.block.Block;
 import org.bukkit.event.block.BlockCookEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 当一个物品被熔炼完毕时触发这个事件. 
+ * 当一个物品烧炼完毕时触发本事件. 
  */
 public class FurnaceSmeltEvent extends BlockCookEvent {
 

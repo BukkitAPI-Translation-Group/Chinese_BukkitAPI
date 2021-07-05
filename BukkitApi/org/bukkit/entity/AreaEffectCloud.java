@@ -274,7 +274,7 @@ public interface AreaEffectCloud extends Entity {
      * @param type 检查的药水效果类型
      * @return 存在这种效果则返回true
      */
-    boolean hasCustomEffect(@NotNull PotionEffectType type);
+    boolean hasCustomEffect(@Nullable PotionEffectType type);
 
     /**
      * 从这片云移除所有自定义药水效果。
