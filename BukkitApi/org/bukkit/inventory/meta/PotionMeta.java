@@ -45,7 +45,7 @@ public interface PotionMeta extends ItemMeta {
     boolean hasCustomEffects();
 
     /**
-     * 获取药水存在的所有药水效果的不可变的列表.
+     * 获取这个药水的全部自定义效果.
      * <p>
      * 插件应该在调用这个方法之前检查 hasCustomEffects() 是否返回 true.
      * <p>
@@ -56,19 +56,19 @@ public interface PotionMeta extends ItemMeta {
      * Plugins should check that hasCustomEffects() returns true before
      * calling this method.
      *
-     * @return 所有药水效果的不可变列表
+     * @return 自定义效果列表 (不可变)
      */
     @NotNull
     List<PotionEffect> getCustomEffects();
 
     /**
-     * 添加一个自定义药水效果到这个药水上.
+     * 向此药水添加一个自定义药水效果.
      * <p>
      * 原文:
      * Adds a custom potion effect to this potion.
      *
      * @param effect 要添加的药水效果
-     * @param overwrite 如果有相同类型的效果存在想要覆盖就设为 true
+     * @param overwrite 如要覆盖已有的同类药水效果就设为 true
      * @return 如果药水的属性改变了则为 true
      */
     boolean addCustomEffect(@NotNull PotionEffect effect, boolean overwrite);

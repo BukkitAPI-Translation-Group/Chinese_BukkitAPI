@@ -6,7 +6,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表可以有自定义药水效果的迷之炖菜.
+ * 代表能够设置自定义药水效果的迷之炖菜.
  */
 public interface SuspiciousStewMeta extends ItemMeta {
 
@@ -21,7 +21,7 @@ public interface SuspiciousStewMeta extends ItemMeta {
     boolean hasCustomEffects();
 
     /**
-     * 获取迷之炖菜存在的所有药水效果的不可变的列表.
+     * 获取这个迷之炖菜的全部自定义效果.
      * <p>
      * 插件应该在调用这个方法之前检查 hasCustomEffects() 是否返回 true.
      * <p>
@@ -32,7 +32,7 @@ public interface SuspiciousStewMeta extends ItemMeta {
      * Plugins should check that hasCustomEffects() returns true before calling
      * this method.
      *
-     * @return 所有药水效果的不可变列表
+     * @return 自定义效果列表 (不可变)
      */
     @NotNull
     List<PotionEffect> getCustomEffects();
