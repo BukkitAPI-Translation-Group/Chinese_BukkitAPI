@@ -390,7 +390,6 @@ public abstract class Command {
     /**
      * 设置这个命令的别名.
      * 如果别名未在 plugin.yml 中 commands 节点下的 aliases 节点定义, 则操作无效.
-     * 若没在{@link PluginDescriptionFile#getCommands()}的 <code>aliases</code> 节点定义(就是没在plugin.yml定义)将没有效果，与此等效.
      * <p>
      * 原文:Sets the list of aliases to request on registration for this command.
      * This is not effective outside of defining aliases in the {@link
