@@ -9,168 +9,166 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a type of potion and its effect on an entity.
+ * 代表应用于实体上的药水和效果类型.
  */
 public abstract class PotionEffectType {
     /**
-     * Increases movement speed.
+     * 速度.
      */
     public static final PotionEffectType SPEED = new PotionEffectTypeWrapper(1);
 
     /**
-     * Decreases movement speed.
+     * 缓慢.
      */
     public static final PotionEffectType SLOW = new PotionEffectTypeWrapper(2);
 
     /**
-     * Increases dig speed.
+     * 急迫.
      */
     public static final PotionEffectType FAST_DIGGING = new PotionEffectTypeWrapper(3);
 
     /**
-     * Decreases dig speed.
+     * 挖掘疲劳.
      */
     public static final PotionEffectType SLOW_DIGGING = new PotionEffectTypeWrapper(4);
 
     /**
-     * Increases damage dealt.
+     * 力量.
      */
     public static final PotionEffectType INCREASE_DAMAGE = new PotionEffectTypeWrapper(5);
 
     /**
-     * Heals an entity.
+     * 瞬间治疗.
      */
     public static final PotionEffectType HEAL = new PotionEffectTypeWrapper(6);
 
     /**
-     * Hurts an entity.
+     * 瞬间伤害.
      */
     public static final PotionEffectType HARM = new PotionEffectTypeWrapper(7);
 
     /**
-     * Increases jump height.
+     * 跳跃提升.
      */
     public static final PotionEffectType JUMP = new PotionEffectTypeWrapper(8);
 
     /**
-     * Warps vision on the client.
+     * 反胃.
      */
     public static final PotionEffectType CONFUSION = new PotionEffectTypeWrapper(9);
 
     /**
-     * Regenerates health.
+     * 生命恢复.
      */
     public static final PotionEffectType REGENERATION = new PotionEffectTypeWrapper(10);
 
     /**
-     * Decreases damage dealt to an entity.
+     * 抗性提升.
      */
     public static final PotionEffectType DAMAGE_RESISTANCE = new PotionEffectTypeWrapper(11);
 
     /**
-     * Stops fire damage.
+     * 防火.
      */
     public static final PotionEffectType FIRE_RESISTANCE = new PotionEffectTypeWrapper(12);
 
     /**
-     * Allows breathing underwater.
+     * 水下呼吸.
      */
     public static final PotionEffectType WATER_BREATHING = new PotionEffectTypeWrapper(13);
 
     /**
-     * Grants invisibility.
+     * 隐身.
      */
     public static final PotionEffectType INVISIBILITY = new PotionEffectTypeWrapper(14);
 
     /**
-     * Blinds an entity.
+     * 失明.
      */
     public static final PotionEffectType BLINDNESS = new PotionEffectTypeWrapper(15);
 
     /**
-     * Allows an entity to see in the dark.
+     * 夜视.
      */
     public static final PotionEffectType NIGHT_VISION = new PotionEffectTypeWrapper(16);
 
     /**
-     * Increases hunger.
+     * 饥饿.
      */
     public static final PotionEffectType HUNGER = new PotionEffectTypeWrapper(17);
 
     /**
-     * Decreases damage dealt by an entity.
+     * 虚弱.
      */
     public static final PotionEffectType WEAKNESS = new PotionEffectTypeWrapper(18);
 
     /**
-     * Deals damage to an entity over time.
+     * 中毒.
      */
     public static final PotionEffectType POISON = new PotionEffectTypeWrapper(19);
 
     /**
-     * Deals damage to an entity over time and gives the health to the
-     * shooter.
+     * 凋零.
      */
     public static final PotionEffectType WITHER = new PotionEffectTypeWrapper(20);
 
     /**
-     * Increases the maximum health of an entity.
+     * 生命提升.
      */
     public static final PotionEffectType HEALTH_BOOST = new PotionEffectTypeWrapper(21);
 
     /**
-     * Increases the maximum health of an entity with health that cannot be
-     * regenerated, but is refilled every 30 seconds.
+     * 伤害吸收.
      */
     public static final PotionEffectType ABSORPTION = new PotionEffectTypeWrapper(22);
 
     /**
-     * Increases the food level of an entity each tick.
+     * 饱和.
      */
     public static final PotionEffectType SATURATION = new PotionEffectTypeWrapper(23);
 
     /**
-     * Outlines the entity so that it can be seen from afar.
+     * 发光.
      */
     public static final PotionEffectType GLOWING = new PotionEffectTypeWrapper(24);
 
     /**
-     * Causes the entity to float into the air.
+     * 漂浮.
      */
     public static final PotionEffectType LEVITATION = new PotionEffectTypeWrapper(25);
 
     /**
-     * Loot table luck.
+     * 幸运.
      */
     public static final PotionEffectType LUCK = new PotionEffectTypeWrapper(26);
 
     /**
-     * Loot table unluck.
+     * 霉运.
      */
     public static final PotionEffectType UNLUCK = new PotionEffectTypeWrapper(27);
 
     /**
-     * Slows entity fall rate.
+     * 缓降.
      */
     public static final PotionEffectType SLOW_FALLING = new PotionEffectTypeWrapper(28);
 
     /**
-     * Effects granted by a nearby conduit. Includes enhanced underwater abilities.
+     * 潮涌能量.
      */
     public static final PotionEffectType CONDUIT_POWER = new PotionEffectTypeWrapper(29);
 
     /**
-     * Squee'ek uh'k kk'kkkk squeek eee'eek.
+     * 海豚的恩惠.
      */
     public static final PotionEffectType DOLPHINS_GRACE = new PotionEffectTypeWrapper(30);
 
     /**
-     * oof.
+     * 不祥之兆.
      */
     public static final PotionEffectType BAD_OMEN = new PotionEffectTypeWrapper(31);
 
     /**
-     * \o/.
+     * 村庄英雄.
      */
     public static final PotionEffectType HERO_OF_THE_VILLAGE = new PotionEffectTypeWrapper(32);
 
@@ -181,13 +179,15 @@ public abstract class PotionEffectType {
     }
 
     /**
-     * Creates a PotionEffect from this PotionEffectType, applying duration
+     * 以本效果类型创建一个药水效果, 并应用持续时间与倍率.
+     * <p>
+     * 原文:Creates a PotionEffect from this PotionEffectType, applying duration
      * modifiers and checks.
      *
      * @see PotionBrewer#createEffect(PotionEffectType, int, int)
-     * @param duration time in ticks
-     * @param amplifier the effect's amplifier
-     * @return a resulting potion effect
+     * @param duration 效果持续时间, 以 tick 为单位
+     * @param amplifier 效果的倍率
+     * @return 创建的药水效果
      */
     @NotNull
     public PotionEffect createEffect(int duration, int amplifier) {
@@ -195,19 +195,23 @@ public abstract class PotionEffectType {
     }
 
     /**
-     * Returns the duration modifier applied to effects of this type.
+     * 返回应用于此效果类型的持续时间.
+     * <p>
+     * 原文:Returns the duration modifier applied to effects of this type.
      *
-     * @return duration modifier
-     * @deprecated unused, always 1.0
+     * @return 持续时间
+     * @deprecated 未被使用, 总是 1.0
      */
     @Deprecated
     public abstract double getDurationModifier();
 
     /**
-     * Returns the unique ID of this type.
+     * 返回本状态效果类型的唯一 ID.
+     * <p>
+     * 原文:Returns the unique ID of this type.
      *
-     * @return Unique ID
-     * @deprecated Magic value
+     * @return 唯一 ID
+     * @deprecated 魔法值
      */
     @Deprecated
     public int getId() {
@@ -215,24 +219,30 @@ public abstract class PotionEffectType {
     }
 
     /**
-     * Returns the name of this effect type.
+     * 返回本状态效果类型的名称.
+     * <p>
+     * 原文:Returns the name of this effect type.
      *
-     * @return The name of this effect type
+     * @return 状态效果名
      */
     @NotNull
     public abstract String getName();
 
     /**
-     * Returns whether the effect of this type happens once, immediately.
+     * 返回本效果是否为瞬时型效果.
+     * <p>
+     * 原文:Returns whether the effect of this type happens once, immediately.
      *
-     * @return whether this type is normally instant
+     * @return 是否为瞬时型效果
      */
     public abstract boolean isInstant();
 
     /**
-     * Returns the color of this effect type.
+     * 返回本效果的颜色.
+     * <p>
+     * 原文:Returns the color of this effect type.
      *
-     * @return the color
+     * @return 颜色
      */
     @NotNull
     public abstract Color getColor();
@@ -268,11 +278,13 @@ public abstract class PotionEffectType {
     private static boolean acceptingNew = true;
 
     /**
-     * Gets the effect type specified by the unique id.
+     * 根据唯一 ID 获取效果.
+     * <p>
+     * 原文:Gets the effect type specified by the unique id.
      *
-     * @param id Unique ID to fetch
-     * @return Resulting type, or null if not found.
-     * @deprecated Magic value
+     * @param id 唯一 ID
+     * @return 对应的效果类型, 如果找不到返回 null
+     * @deprecated 魔法值
      */
     @Deprecated
     @Nullable
@@ -283,10 +295,12 @@ public abstract class PotionEffectType {
     }
 
     /**
-     * Gets the effect type specified by the given name.
+     * 根据指定名称获取效果.
+     * <p>
+     * 原文:Gets the effect type specified by the given name.
      *
-     * @param name Name of PotionEffectType to fetch
-     * @return Resulting PotionEffectType, or null if not found.
+     * @param name 状态效果名
+     * @return 对应的效果类型, 如果找不到返回 null
      */
     @Nullable
     public static PotionEffectType getByName(@NotNull String name) {
@@ -295,11 +309,15 @@ public abstract class PotionEffectType {
     }
 
     /**
-     * Registers an effect type with the given object.
+     * 注册给定的状态效果类型对象.
+     * <p>
+     * 通常不由插件使用.
+     * <p>
+     * 原文:Registers an effect type with the given object.
      * <p>
      * Generally not to be used from within a plugin.
      *
-     * @param type PotionType to register
+     * @param type 要注册的类型
      */
     public static void registerPotionEffectType(@NotNull PotionEffectType type) {
         if (byId[type.id] != null || byName.containsKey(type.getName().toLowerCase(java.util.Locale.ENGLISH))) {
@@ -314,17 +332,21 @@ public abstract class PotionEffectType {
     }
 
     /**
-     * Stops accepting any effect type registrations.
+     * 停止接受任何新效果的注册.
+     * <p>
+     * 原文:Stops accepting any effect type registrations.
      */
     public static void stopAcceptingRegistrations() {
         acceptingNew = false;
     }
 
     /**
-     * Returns an array of all the registered {@link PotionEffectType}s.
+     * 返回一个所有已注册效果类型的数组. 此数组不一定按特定顺序编排.
+     * <p>
+     * 原文:Returns an array of all the registered {@link PotionEffectType}s.
      * This array is not necessarily in any particular order.
      *
-     * @return Array of types.
+     * @return 所有已注册效果类型的数组
      */
     @NotNull
     public static PotionEffectType[] values() {

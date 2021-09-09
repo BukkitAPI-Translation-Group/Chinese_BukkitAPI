@@ -3,14 +3,16 @@ package org.bukkit;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents an object which has a {@link NamespacedKey} attached to it.
+ * 代表附加了 {@link NamespacedKey} 的对象.
  */
 public interface Keyed {
 
     /**
-     * Return the namespaced identifier for this object.
+     * 返回用于此对象的命名空间标识符.
+     * <p>
+     * 原文:Return the namespaced identifier for this object.
      *
-     * @return this object's key
+     * @return 标识此对象的 key
      */
     @NotNull
     NamespacedKey getKey();

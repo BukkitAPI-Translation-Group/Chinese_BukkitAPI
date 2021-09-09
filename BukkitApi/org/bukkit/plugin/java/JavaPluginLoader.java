@@ -47,7 +47,7 @@ import org.spigotmc.CustomTimingsHandler; // Spigot
 import org.yaml.snakeyaml.error.YAMLException;
 
 /**
- * Represents a Java plugin loader, allowing plugins in the form of .jar
+ * 代表 Java 插件加载器, 允许插件以 .jar 的形式存在.
  */
 public final class JavaPluginLoader implements PluginLoader {
     final Server server;
@@ -57,9 +57,11 @@ public final class JavaPluginLoader implements PluginLoader {
     public static final CustomTimingsHandler pluginParentTimer = new CustomTimingsHandler("** Plugins"); // Spigot
 
     /**
-     * This class was not meant to be constructed explicitly
+     * 本类不用于显式构造.
+     * <p>
+     * 原文:This class was not meant to be constructed explicitly
      *
-     * @param instance the server instance
+     * @param instance 服务器实例
      */
     @Deprecated
     public JavaPluginLoader(@NotNull Server instance) {

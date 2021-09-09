@@ -1,36 +1,34 @@
 package org.bukkit;
 
 /**
- * Further information regarding heightmaps.
+ * 与高度图有关的信息.
  *
- * @see <a href="https://minecraft.gamepedia.com/Chunk_format">Gamepedia Chunk
- * Format</a>
+ * @see <a href="https://minecraft-zh.gamepedia.com/区块格式">Minecraft Wiki - 区块格式</a>
  */
 public enum HeightMap {
 
     /**
-     * The highest block that blocks motion or contains a fluid.
+     * 最高的阻碍移动/含有流体的方块.
      */
     MOTION_BLOCKING,
     /**
-     * The highest block that blocks motion or contains a fluid or is in the
-     * {@link Tag#LEAVES}.
+     * 最高的阻碍移动、含有液体或在 {@link Tag#LEAVES} 标签内的方块.
      */
     MOTION_BLOCKING_NO_LEAVES,
     /**
-     * The highest non-air block, solid block.
+     * 最高的非空气固体方块.
      */
     OCEAN_FLOOR,
     /**
-     * The highest block that is neither air nor contains a fluid, for worldgen.
+     * 最高的既不是空气也不含流体的方块, 用于世界生成.
      */
     OCEAN_FLOOR_WG,
     /**
-     * The highest non-air block.
+     * 最高的非空气方块.
      */
     WORLD_SURFACE,
     /**
-     * The highest non-air block, for worldgen.
+     * 最高的非空气方块, 用于世界生成.
      */
     WORLD_SURFACE_WG,
 }
