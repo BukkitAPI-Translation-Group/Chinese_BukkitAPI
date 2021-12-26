@@ -78,10 +78,20 @@ public interface Chunk extends PersistentDataHolder {
     ChunkSnapshot getChunkSnapshot(boolean includeMaxblocky, boolean includeBiome, boolean includeBiomeTempRain);
 
     /**
-     * 获取该区块内所有实体({@link Entity})列表数组. <p>
-     * Get a list of all entities in the chunk.
+     * Checks if entities in this chunk are loaded.
      *
-     * @return The entities.
+     * @return True if entities are loaded.
+     */
+    boolean isEntitiesLoaded();
+
+    /**
+     * 获取该区块内的所有实体.
+     * 这将强制加载尚未加载的任意实体. 
+     * <p>
+     * 原文:Get a list of all entities in the chunk.
+     * This will force load any entities, which are not loaded.
+     *
+     * @return 所有实体
      */
     @NotNull
     Entity[] getEntities();

@@ -24,9 +24,9 @@ public interface CommandSender extends Permissible {
      * 原文:
      * Sends this sender multiple messages
      *
-     * @param messages 要发送的消息(必须为数组)
+     * @param messages 要发送的消息
      */
-    public void sendMessage(@NotNull String[] messages);
+    public void sendMessage(@NotNull String... messages);
 
     /**
      * 向命令发送者发送消息.
@@ -45,10 +45,10 @@ public interface CommandSender extends Permissible {
      * 原文:
      * Sends this sender multiple messages
      *
-     * @param messages 要发送的消息(必须为数组)
+     * @param messages 要发送的消息
      * @param sender 消息的发送者
      */
-    public void sendMessage(@Nullable UUID sender, @NotNull String[] messages);
+    public void sendMessage(@Nullable UUID sender, @NotNull String... messages);
 
     /**
      * 返回运行此命令的服务器实例.

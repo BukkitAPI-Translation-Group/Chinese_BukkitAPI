@@ -172,8 +172,8 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * UnsupportedOperationException} if the event caller provides an
      * unmodifiable set.
      *
-     * @deprecated 该方法无法保证在每个版本上的效果
      * @return 所有看见该消息的玩家
+     * @deprecated 该方法无法保证在每个版本上的效果
      */
     @NotNull
     @Deprecated

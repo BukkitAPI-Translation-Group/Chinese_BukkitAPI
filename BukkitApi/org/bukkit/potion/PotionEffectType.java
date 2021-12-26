@@ -5,177 +5,182 @@ import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang.Validate;
 import org.bukkit.Color;
+import org.bukkit.Keyed;
+import org.bukkit.NamespacedKey;
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表应用于实体上的药水和效果类型.
  */
-public abstract class PotionEffectType {
+public abstract class PotionEffectType implements Keyed {
     /**
      * 速度.
      */
-    public static final PotionEffectType SPEED = new PotionEffectTypeWrapper(1);
+    public static final PotionEffectType SPEED = new PotionEffectTypeWrapper(1, "speed");
 
     /**
      * 缓慢.
      */
-    public static final PotionEffectType SLOW = new PotionEffectTypeWrapper(2);
+    public static final PotionEffectType SLOW = new PotionEffectTypeWrapper(2, "slowness");
 
     /**
      * 急迫.
      */
-    public static final PotionEffectType FAST_DIGGING = new PotionEffectTypeWrapper(3);
+    public static final PotionEffectType FAST_DIGGING = new PotionEffectTypeWrapper(3, "haste");
 
     /**
      * 挖掘疲劳.
      */
-    public static final PotionEffectType SLOW_DIGGING = new PotionEffectTypeWrapper(4);
+    public static final PotionEffectType SLOW_DIGGING = new PotionEffectTypeWrapper(4, "mining_fatigue");
 
     /**
      * 力量.
      */
-    public static final PotionEffectType INCREASE_DAMAGE = new PotionEffectTypeWrapper(5);
+    public static final PotionEffectType INCREASE_DAMAGE = new PotionEffectTypeWrapper(5, "strength");
 
     /**
      * 瞬间治疗.
      */
-    public static final PotionEffectType HEAL = new PotionEffectTypeWrapper(6);
+    public static final PotionEffectType HEAL = new PotionEffectTypeWrapper(6, "instant_health");
 
     /**
      * 瞬间伤害.
      */
-    public static final PotionEffectType HARM = new PotionEffectTypeWrapper(7);
+    public static final PotionEffectType HARM = new PotionEffectTypeWrapper(7, "instant_damage");
 
     /**
      * 跳跃提升.
      */
-    public static final PotionEffectType JUMP = new PotionEffectTypeWrapper(8);
+    public static final PotionEffectType JUMP = new PotionEffectTypeWrapper(8, "jump_boost");
 
     /**
      * 反胃.
      */
-    public static final PotionEffectType CONFUSION = new PotionEffectTypeWrapper(9);
+    public static final PotionEffectType CONFUSION = new PotionEffectTypeWrapper(9, "nausea");
 
     /**
      * 生命恢复.
      */
-    public static final PotionEffectType REGENERATION = new PotionEffectTypeWrapper(10);
+    public static final PotionEffectType REGENERATION = new PotionEffectTypeWrapper(10, "regeneration");
 
     /**
      * 抗性提升.
      */
-    public static final PotionEffectType DAMAGE_RESISTANCE = new PotionEffectTypeWrapper(11);
+    public static final PotionEffectType DAMAGE_RESISTANCE = new PotionEffectTypeWrapper(11, "resistance");
 
     /**
      * 防火.
      */
-    public static final PotionEffectType FIRE_RESISTANCE = new PotionEffectTypeWrapper(12);
+    public static final PotionEffectType FIRE_RESISTANCE = new PotionEffectTypeWrapper(12, "fire_resistance");
 
     /**
      * 水下呼吸.
      */
-    public static final PotionEffectType WATER_BREATHING = new PotionEffectTypeWrapper(13);
+    public static final PotionEffectType WATER_BREATHING = new PotionEffectTypeWrapper(13, "water_breathing");
 
     /**
      * 隐身.
      */
-    public static final PotionEffectType INVISIBILITY = new PotionEffectTypeWrapper(14);
+    public static final PotionEffectType INVISIBILITY = new PotionEffectTypeWrapper(14, "invisibility");
 
     /**
      * 失明.
      */
-    public static final PotionEffectType BLINDNESS = new PotionEffectTypeWrapper(15);
+    public static final PotionEffectType BLINDNESS = new PotionEffectTypeWrapper(15, "blindness");
 
     /**
      * 夜视.
      */
-    public static final PotionEffectType NIGHT_VISION = new PotionEffectTypeWrapper(16);
+    public static final PotionEffectType NIGHT_VISION = new PotionEffectTypeWrapper(16, "night_vision");
 
     /**
      * 饥饿.
      */
-    public static final PotionEffectType HUNGER = new PotionEffectTypeWrapper(17);
+    public static final PotionEffectType HUNGER = new PotionEffectTypeWrapper(17, "hunger");
 
     /**
      * 虚弱.
      */
-    public static final PotionEffectType WEAKNESS = new PotionEffectTypeWrapper(18);
+    public static final PotionEffectType WEAKNESS = new PotionEffectTypeWrapper(18, "weakness");
 
     /**
      * 中毒.
      */
-    public static final PotionEffectType POISON = new PotionEffectTypeWrapper(19);
+    public static final PotionEffectType POISON = new PotionEffectTypeWrapper(19, "poison");
 
     /**
      * 凋零.
      */
-    public static final PotionEffectType WITHER = new PotionEffectTypeWrapper(20);
+    public static final PotionEffectType WITHER = new PotionEffectTypeWrapper(20, "wither");
 
     /**
      * 生命提升.
      */
-    public static final PotionEffectType HEALTH_BOOST = new PotionEffectTypeWrapper(21);
+    public static final PotionEffectType HEALTH_BOOST = new PotionEffectTypeWrapper(21, "health_boost");
 
     /**
      * 伤害吸收.
      */
-    public static final PotionEffectType ABSORPTION = new PotionEffectTypeWrapper(22);
+    public static final PotionEffectType ABSORPTION = new PotionEffectTypeWrapper(22, "absorption");
 
     /**
      * 饱和.
      */
-    public static final PotionEffectType SATURATION = new PotionEffectTypeWrapper(23);
+    public static final PotionEffectType SATURATION = new PotionEffectTypeWrapper(23, "saturation");
 
     /**
      * 发光.
      */
-    public static final PotionEffectType GLOWING = new PotionEffectTypeWrapper(24);
+    public static final PotionEffectType GLOWING = new PotionEffectTypeWrapper(24, "glowing");
 
     /**
      * 漂浮.
      */
-    public static final PotionEffectType LEVITATION = new PotionEffectTypeWrapper(25);
+    public static final PotionEffectType LEVITATION = new PotionEffectTypeWrapper(25, "levitation");
 
     /**
      * 幸运.
      */
-    public static final PotionEffectType LUCK = new PotionEffectTypeWrapper(26);
+    public static final PotionEffectType LUCK = new PotionEffectTypeWrapper(26, "luck");
 
     /**
      * 霉运.
      */
-    public static final PotionEffectType UNLUCK = new PotionEffectTypeWrapper(27);
+    public static final PotionEffectType UNLUCK = new PotionEffectTypeWrapper(27, "unluck");
 
     /**
      * 缓降.
      */
-    public static final PotionEffectType SLOW_FALLING = new PotionEffectTypeWrapper(28);
+    public static final PotionEffectType SLOW_FALLING = new PotionEffectTypeWrapper(28, "slow_falling");
 
     /**
      * 潮涌能量.
      */
-    public static final PotionEffectType CONDUIT_POWER = new PotionEffectTypeWrapper(29);
+    public static final PotionEffectType CONDUIT_POWER = new PotionEffectTypeWrapper(29, "conduit_power");
 
     /**
      * 海豚的恩惠.
      */
-    public static final PotionEffectType DOLPHINS_GRACE = new PotionEffectTypeWrapper(30);
+    public static final PotionEffectType DOLPHINS_GRACE = new PotionEffectTypeWrapper(30, "dolphins_grace");
 
     /**
      * 不祥之兆.
      */
-    public static final PotionEffectType BAD_OMEN = new PotionEffectTypeWrapper(31);
+    public static final PotionEffectType BAD_OMEN = new PotionEffectTypeWrapper(31, "bad_omen");
 
     /**
      * 村庄英雄.
      */
-    public static final PotionEffectType HERO_OF_THE_VILLAGE = new PotionEffectTypeWrapper(32);
+    public static final PotionEffectType HERO_OF_THE_VILLAGE = new PotionEffectTypeWrapper(32, "hero_of_the_village");
 
     private final int id;
+    private final NamespacedKey key;
 
-    protected PotionEffectType(int id) {
+    protected PotionEffectType(int id, @NotNull NamespacedKey key) {
         this.id = id;
+        this.key = key;
     }
 
     /**
@@ -184,10 +189,10 @@ public abstract class PotionEffectType {
      * 原文:Creates a PotionEffect from this PotionEffectType, applying duration
      * modifiers and checks.
      *
-     * @see PotionBrewer#createEffect(PotionEffectType, int, int)
      * @param duration 效果持续时间, 以 tick 为单位
      * @param amplifier 效果的倍率
      * @return 创建的药水效果
+     * @see PotionBrewer#createEffect(PotionEffectType, int, int)
      */
     @NotNull
     public PotionEffect createEffect(int duration, int amplifier) {
@@ -216,6 +221,12 @@ public abstract class PotionEffectType {
     @Deprecated
     public int getId() {
         return id;
+    }
+
+    @NotNull
+    @Override
+    public NamespacedKey getKey() {
+       return key;
     }
 
     /**
@@ -274,8 +285,23 @@ public abstract class PotionEffectType {
 
     private static final PotionEffectType[] byId = new PotionEffectType[33];
     private static final Map<String, PotionEffectType> byName = new HashMap<String, PotionEffectType>();
+    private static final Map<NamespacedKey, PotionEffectType> byKey = new HashMap<NamespacedKey, PotionEffectType>();
     // will break on updates.
     private static boolean acceptingNew = true;
+
+    /**
+     * 根据指定 key 获取效果.
+     * <p>
+     * 原文:Gets the PotionEffectType at the specified key
+     *
+     * @param key 效果键名
+     * @return 对应的效果类型, 如果找不到返回 null
+     */
+    @Contract("null -> null")
+    @Nullable
+    public static PotionEffectType getByKey(@Nullable NamespacedKey key) {
+        return byKey.get(key);
+    }
 
     /**
      * 根据唯一 ID 获取效果.
@@ -320,7 +346,7 @@ public abstract class PotionEffectType {
      * @param type 要注册的类型
      */
     public static void registerPotionEffectType(@NotNull PotionEffectType type) {
-        if (byId[type.id] != null || byName.containsKey(type.getName().toLowerCase(java.util.Locale.ENGLISH))) {
+        if (byId[type.id] != null || byName.containsKey(type.getName().toLowerCase(java.util.Locale.ENGLISH)) || byKey.containsKey(type.key)) {
             throw new IllegalArgumentException("Cannot set already-set type");
         } else if (!acceptingNew) {
             throw new IllegalStateException(
@@ -329,6 +355,7 @@ public abstract class PotionEffectType {
 
         byId[type.id] = type;
         byName.put(type.getName().toLowerCase(java.util.Locale.ENGLISH), type);
+        byKey.put(type.key, type);
     }
 
     /**

@@ -30,8 +30,8 @@ public interface Sign extends TileState, Colorable {
      * For example, getLine(0) will return the first line of text.
      *
      * @param index 要获取的文本的行数,从0开始
-     * @throws IndexOutOfBoundsException 在此行没有文本的时候抛出这个错误
      * @return 这个行的文本
+     * @throws IndexOutOfBoundsException 当此行不存在(尚未设置)时抛出
      */
     @NotNull
     public String getLine(int index) throws IndexOutOfBoundsException;

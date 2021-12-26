@@ -3,6 +3,7 @@ package org.bukkit.event.server;
 import java.net.InetAddress;
 import java.util.Iterator;
 import org.apache.commons.lang.Validate;
+import org.bukkit.Bukkit;
 import org.bukkit.UndefinedNullability;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -11,6 +12,9 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * 当收到MOTD请求时被调用。显示的玩家会被检查并会在这个事件里被{@link #iterator() iterating}移出。
+ * <br>
+ * <b>注意:</b> 如果 {@link Bukkit#getHideOnlinePlayers()} 为 true,
+ * 则在 {@link #iterator()} 内的玩家不会被展示到 motd 信息上.
  */
 public class ServerListPingEvent extends ServerEvent implements Iterable<Player> {
     private static final int MAGIC_PLAYER_COUNT = Integer.MIN_VALUE;
@@ -159,6 +163,9 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
      * {@inheritDoc}
      * <p>
      * 调用{@link Iterator#remove()}方法将会强制部分玩家不会在玩家列表里显示，减小{@link #getNumPlayers()}返回的大小，并且不会再被任何一个新的迭代器返回.
+     * <br>
+     * <b>注意:</b> 如果 {@link Bukkit#getHideOnlinePlayers()} 为 true,
+     * 则在 {@link #iterator()} 内的玩家不会被展示到 motd 信息上.
      * <p>
      * 原文：
      * {@inheritDoc}
@@ -167,6 +174,9 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
      * player to not be displayed on the player list, decrease the size
      * returned by {@link #getNumPlayers()}, and will not be returned again by
      * any new iterator.
+     * <br>
+     * <b>Note:</b> The players here will not be shown in the server info if
+     * {@link Bukkit#getHideOnlinePlayers()} is true.
      *
      * @throws UnsupportedOperationException 如果这个事件的调用者不支持移除玩家则会抛出错误。
      */

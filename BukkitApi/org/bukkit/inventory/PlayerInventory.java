@@ -240,11 +240,11 @@ public interface PlayerInventory extends Inventory {
     /**
      * 玩家可以双持了，不再详细介绍.Gets a copy of the item the player is currently holding
      *
-     * @deprecated players can duel wield now use the methods for the
-     *      specific hand instead
      * @see #getItemInMainHand()
      * @see #getItemInOffHand()
      * @return the currently held item
+     * @deprecated players can duel wield now use the methods for the
+     *      specific hand instead
      */
     @Deprecated
     @NotNull
@@ -253,11 +253,11 @@ public interface PlayerInventory extends Inventory {
     /**
      * 玩家可以双持了,不再详细介绍.Sets the item the player is holding
      *
-     * @deprecated players can duel wield now use the methods for the
-     *      specific hand instead
      * @see #setItemInMainHand(ItemStack)
      * @see #setItemInOffHand(ItemStack)
      * @param stack The item to put into the player's hand
+     * @deprecated players can duel wield now use the methods for the
+     *      specific hand instead
      */
     @Deprecated
     public void setItemInHand(@Nullable ItemStack stack);

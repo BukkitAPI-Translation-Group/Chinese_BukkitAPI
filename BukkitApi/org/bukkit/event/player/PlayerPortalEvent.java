@@ -6,8 +6,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+// TODO:何为“退出传送门”
 /**
- * 玩家将要被传送门传送的事件.
+ * 玩家将要被传送门传送的事件, 传送过程中会生成一个退出传送门.
  * <p>
  * 其他实体被传送门传送的事件请见{@link org.bukkit.event.entity.EntityPortalEvent}
  */

@@ -417,9 +417,9 @@ public final class FireworkEffect implements ConfigurationSerializable {
     }
 
     /**
-     * @see ConfigurationSerializable
      * @param map 用于反序列化的Map
      * @return 序列化的结果
+     * @see ConfigurationSerializable
      */
     @NotNull
     public static ConfigurationSerializable deserialize(@NotNull Map<String, Object> map) {

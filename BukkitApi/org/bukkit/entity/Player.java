@@ -17,11 +17,13 @@ import org.bukkit.WeatherType;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.block.Block;
+import org.bukkit.block.Sign;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDropItemEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
@@ -452,6 +454,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void stopSound(@NotNull String sound, @Nullable SoundCategory category);
 
     /**
+     * 停止播放所有声音.
+     * <p>
+     * 原文:Stop all sounds from playing.
+     */
+    public void stopAllSounds();
+
+    /**
      * 在某个位置({@link Location})向玩家播放一个粒子效果({@link Effect}). <p>
      * 原文:Plays an effect to just this player.
      *
@@ -545,32 +554,18 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendBlockDamage(@NotNull Location loc, float progress);
 
     /**
-     * 向该玩家发送一个伪造的指定位置的长方体的更改数据包.这不会改变世界中的方块.<p>
-     * 原文:Send a chunk change. This fakes a chunk change packet for a user at a
-     * certain location. The updated cuboid must be entirely within a single
-     * chunk. This will not actually change the world in any way.
+     * 向玩家发送某个实体的盔甲槽变化数据包. 本方法可针对指定玩家伪造某个实体的盔甲,
+     * 且不会实际改变指定实体的盔甲槽内容.
      * <p>
-     * At least one of the dimensions of the cuboid must be even. The size of
-     * the data buffer must be 2.5*sx*sy*sz and formatted in accordance with
-     * the Packet51 format.<p>
-     * 译注:这..很难解释耶,就是说,这个方法可以让玩家的客户端显示这个长方体内全是钻石矿石233~<p>
-     * 具体请看{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }方法.
-     * 它其实就是sendBlockChange方法的简单变体.sendBlockChange是伪装一个方块,而这个方法是伪装一堆方块.<p>
-     * 例: <p>
-     *    byte data = new Byte[27];   //由于我们要发送的是3*3*3的立方体,所以为27<p>
-     *    for(int i=0;i&lt;data.lenth;i++) data[i] = (byte)11 //由于我们想把这个立方体里填满岩浆,所以都为11 <p>
-     *    player.sendBlockChange(player.getLocation(),3,3,3,data); //完成~上帝保佑那个玩家233 <p>
+     * 原文:Send the equipment change of an entity. This fakes the equipment change
+     * of an entity for a user. This will not actually change the inventory of
+     * the specified entity in any way.
      *
-     * @param loc The location of the cuboid
-     * @param sx The x size of the cuboid
-     * @param sy The y size of the cuboid
-     * @param sz The z size of the cuboid
-     * @param data The data to be sent
-     * @return true if the chunk change packet was sent
-     * @deprecated 不安全的参数
+     * @param entity 玩家会看到哪个实体的变化
+     * @param slot 要伪造哪一盔甲槽的变化
+     * @param item 玩家将看到的盔甲物品
      */
-    @Deprecated
-    public boolean sendChunkChange(@NotNull Location loc, int sx, int sy, int sz, @NotNull byte[] data);
+    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull EquipmentSlot slot, @NotNull ItemStack item);
 
     /**
      * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
@@ -590,8 +585,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param loc 要让玩家看起来改变了的牌子的位置
      * @param lines null或大小等于4的String数组;数组中每个元素都代表一行
-     * @throws IllegalArgumentException 如果该位置没有牌子
-     * @throws IllegalArgumentException 如果lines的长度大于4或小于1
+     * @throws IllegalArgumentException 如果location参数为null
+     * @throws IllegalArgumentException 如果lines数组的长度小于4
      */
     public void sendSignChange(@NotNull Location loc, @Nullable String[] lines) throws IllegalArgumentException;
 
@@ -612,19 +607,43 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param loc 要让玩家看起来改变了的牌子的位置
      * @param lines null或大小等于4的String数组;数组中每个元素都代表一行
-     * @param dyeColor 告示牌的颜色(文字的颜色?)
-     * @throws IllegalArgumentException 如果该位置没有牌子
+     * @param dyeColor 告示牌的颜色(文字的颜色)
+     * @throws IllegalArgumentException 如果location参数为null
      * @throws IllegalArgumentException 如果dyeColor参数为null
-     * @throws IllegalArgumentException 如果lines的长度大于4或小于1
+     * @throws IllegalArgumentException 如果lines数组的长度小于4
      */
     public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor) throws IllegalArgumentException;
 
     /**
-     * Render a map and send it to the player in its entirety. This may be
-     * used when streaming the map in the normal manner is not desirable. <p>
-     * 译注:额...没搞懂...不过一般用不上吧?
+     * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
+     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
+     * 方法在那个位置伪造一个牌子然后更改它.<p>
+     * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.
+     * <p>
+     * 原文:Send a sign change. This fakes a sign change packet for a user at
+     * a certain location. This will not actually change the world in any way.
+     * This method will use a sign at the location's block or a faked sign
+     * sent via
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
+     * <p>
+     * If the client does not have a sign at the given location it will
+     * display an error message to the user.
      *
-     * @param map 要发送的地图
+     * @param loc 要让玩家看起来改变了的牌子的位置
+     * @param lines null或大小等于4的String数组;数组中每个元素都代表一行
+     * @param dyeColor 告示牌的颜色(文字的颜色)
+     * @param hasGlowingText 文字是否发光
+     * @throws IllegalArgumentException 如果location参数为null
+     * @throws IllegalArgumentException 如果dyeColor参数为null
+     * @throws IllegalArgumentException 如果lines数组的长度小于4
+     */
+    public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor, boolean hasGlowingText) throws IllegalArgumentException;
+
+    /**
+     * Render a map and send it to the player in its entirety. This may be
+     * used when streaming the map in the normal manner is not desirable.
+     *
+     * @param map The map to be sent
      */
     public void sendMap(@NotNull MapView map);
 
@@ -907,6 +926,41 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public boolean canSee(@NotNull Player player);
 
     /**
+     * 从视觉上隐藏一个实体.
+     * <p>
+     * 原文:Visually hides an entity from this player.
+     *
+     * @param plugin 要隐藏此实体的插件实例
+     * @param entity 要隐藏的实体
+     * @deprecated draft API
+     */
+    @Deprecated
+    public void hideEntity(@NotNull Plugin plugin, @NotNull Entity entity);
+
+    /**
+     * Allows this player to see an entity that was previously hidden. If
+     * another another plugin had hidden the entity too, then the entity will
+     * remain hidden until the other plugin calls this method too.
+     *
+     * @param plugin Plugin that wants to show the entity
+     * @param entity Entity to show
+     * @deprecated draft API
+     */
+    @Deprecated
+    public void showEntity(@NotNull Plugin plugin, @NotNull Entity entity);
+
+    /**
+     * Checks to see if an entity has been visually hidden from this player.
+     *
+     * @param entity Entity to check
+     * @return True if the provided entity is not being hidden from this
+     *     player
+     * @deprecated draft API
+     */
+    @Deprecated
+    public boolean canSee(@NotNull Entity entity);
+
+    /**
      * 检查玩家是否在飞. <p>
      * 原文:Checks to see if this player is currently flying or not.
      *
@@ -1013,7 +1067,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * <li>如果玩家的客户端没有开启"使用服务器资源包"这个方法将失效. 使用
      * {@link PlayerResourcePackStatusEvent} 方法以推断玩家是否加载了你设置的资源包!
      * <li>在Minecraft中没有将资源包重置为默认的概念,所以玩家必须重新登陆才能这么做,或者你必须发送一个空白的资源包.
-     * <li>请求以"null"作hash发送. 这可能导致较新版本的客户端不能正确加载资源包.
+     * <li>请求以空字符串作hash发送. 这可能导致较新版本的客户端不能正确加载资源包.
      * </ul>
      * <p>
      * 原文:Request that the player's client download and switch texture packs.
@@ -1036,7 +1090,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * <li>There is no concept of resetting texture packs back to default
      *     within Minecraft, so players will have to relog to do so or you
      *     have to send an empty pack.
-     * <li>The request is send with "null" as the hash. This might result
+     * <li>The request is send with empty string as the hash. This might result
      *     in newer versions not loading the pack correctly.
      * </ul>
      *
@@ -1046,6 +1100,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      */
     public void setResourcePack(@NotNull String url);
 
+    // TODO:原文新增一句“If the hash is null...download again”未翻译.
     /**
      * 请求玩家的客户端下载并且使用指定资源包. <p>
      * 玩家的客户端将在后台异步下载新的资源包,并且下载完成后会自动使用那个资源包.如果
@@ -1066,7 +1121,10 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * in the background, and will automatically switch to it once the
      * download is complete. If the client has downloaded and cached a
      * resource pack with the same hash in the past it will not download but
-     * directly apply the cached pack. When this request is sent for the very
+     * directly apply the cached pack. If the hash is null and the client has
+     * downloaded and cached the same resource pack in the past, it will
+     * perform a file size check against the response content to determine if
+     * the resource pack has changed and needs to be downloaded again. When this request is sent for the very
      * first time from a given server, the client will first display a
      * confirmation GUI to the player before proceeding with the download.
      * <p>
@@ -1089,6 +1147,141 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当hash不是20字节长时抛出
      */
     public void setResourcePack(@NotNull String url, @NotNull byte[] hash);
+
+    /**
+     * Request that the player's client download and switch resource packs.
+     * <p>
+     * The player's client will download the new resource pack asynchronously
+     * in the background, and will automatically switch to it once the
+     * download is complete. If the client has downloaded and cached a
+     * resource pack with the same hash in the past it will not download but
+     * directly apply the cached pack. If the hash is null and the client has
+     * downloaded and cached the same resource pack in the past, it will
+     * perform a file size check against the response content to determine if
+     * the resource pack has changed and needs to be downloaded again. When
+     * this request is sent for the very first time from a given server, the
+     * client will first display a confirmation GUI to the player before
+     * proceeding with the download.
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Players can disable server resources on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>There is no concept of resetting resource packs back to default
+     *     within Minecraft, so players will have to relog to do so or you
+     *     have to send an empty pack.
+     * <li>The request is sent with empty string as the hash when the hash is
+     *     not provided. This might result in newer versions not loading the
+     *     pack correctly.
+     * </ul>
+     *
+     * @param url The URL from which the client will download the resource
+     *     pack. The string must contain only US-ASCII characters and should
+     *     be encoded as per RFC 1738.
+     * @param hash The sha1 hash sum of the resource pack file which is used
+     *     to apply a cached version of the pack directly without downloading
+     *     if it is available. Hast to be 20 bytes long!
+     * @param prompt The optional custom prompt message to be shown to client.
+     * @throws IllegalArgumentException Thrown if the URL is null.
+     * @throws IllegalArgumentException Thrown if the URL is too long. The
+     *     length restriction is an implementation specific arbitrary value.
+     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
+     *     long.
+     */
+    public void setResourcePack(@NotNull String url, @Nullable byte[] hash, @Nullable String prompt);
+
+    /**
+     * Request that the player's client download and switch resource packs.
+     * <p>
+     * The player's client will download the new resource pack asynchronously
+     * in the background, and will automatically switch to it once the
+     * download is complete. If the client has downloaded and cached a
+     * resource pack with the same hash in the past it will not download but
+     * directly apply the cached pack. If the hash is null and the client has
+     * downloaded and cached the same resource pack in the past, it will
+     * perform a file size check against the response content to determine if
+     * the resource pack has changed and needs to be downloaded again. When
+     * this request is sent for the very first time from a given server, the
+     * client will first display a confirmation GUI to the player before
+     * proceeding with the download.
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Players can disable server resources on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>There is no concept of resetting resource packs back to default
+     *     within Minecraft, so players will have to relog to do so or you
+     *     have to send an empty pack.
+     * <li>The request is sent with empty string as the hash when the hash is
+     *     not provided. This might result in newer versions not loading the
+     *     pack correctly.
+     * </ul>
+     *
+     * @param url The URL from which the client will download the resource
+     *     pack. The string must contain only US-ASCII characters and should
+     *     be encoded as per RFC 1738.
+     * @param hash The sha1 hash sum of the resource pack file which is used
+     *     to apply a cached version of the pack directly without downloading
+     *     if it is available. Hast to be 20 bytes long!
+     * @param force If true, the client will be disconnected from the server
+     *     when it declines to use the resource pack.
+     * @throws IllegalArgumentException Thrown if the URL is null.
+     * @throws IllegalArgumentException Thrown if the URL is too long. The
+     *     length restriction is an implementation specific arbitrary value.
+     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
+     *     long.
+     */
+    public void setResourcePack(@NotNull String url, @Nullable byte[] hash, boolean force);
+
+    /**
+     * Request that the player's client download and switch resource packs.
+     * <p>
+     * The player's client will download the new resource pack asynchronously
+     * in the background, and will automatically switch to it once the
+     * download is complete. If the client has downloaded and cached a
+     * resource pack with the same hash in the past it will not download but
+     * directly apply the cached pack. If the hash is null and the client has
+     * downloaded and cached the same resource pack in the past, it will
+     * perform a file size check against the response content to determine if
+     * the resource pack has changed and needs to be downloaded again. When
+     * this request is sent for the very first time from a given server, the
+     * client will first display a confirmation GUI to the player before
+     * proceeding with the download.
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Players can disable server resources on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>There is no concept of resetting resource packs back to default
+     *     within Minecraft, so players will have to relog to do so or you
+     *     have to send an empty pack.
+     * <li>The request is sent with empty string as the hash when the hash is
+     *     not provided. This might result in newer versions not loading the
+     *     pack correctly.
+     * </ul>
+     *
+     * @param url The URL from which the client will download the resource
+     *     pack. The string must contain only US-ASCII characters and should
+     *     be encoded as per RFC 1738.
+     * @param hash The sha1 hash sum of the resource pack file which is used
+     *     to apply a cached version of the pack directly without downloading
+     *     if it is available. Hast to be 20 bytes long!
+     * @param prompt The optional custom prompt message to be shown to client.
+     * @param force If true, the client will be disconnected from the server
+     *     when it declines to use the resource pack.
+     * @throws IllegalArgumentException Thrown if the URL is null.
+     * @throws IllegalArgumentException Thrown if the URL is too long. The
+     *     length restriction is an implementation specific arbitrary value.
+     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
+     *     long.
+     */
+    public void setResourcePack(@NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
 
     /**
      * 获取玩家的计分板. <p>
@@ -1464,13 +1657,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     /**
      * Gets the player's estimated ping in milliseconds.
      *
-     * In Vanilla this value represents the average of the response time to the
-     * last four application layer ping packets sent. This value does not
-     * represent the network round trip time and as such may have less
-     * granularity and be impacted by other sources. For these reasons it
-     * <b>should not</b> be used for anti-cheat purposes. Its recommended use is
-     * only as a <b>qualitative</b> indicator of connection quality (Vanilla
-     * uses it for this purpose in the tab list).
+     * In Vanilla this value represents a weighted average of the response time
+     * to application layer ping packets sent. This value does not represent the
+     * network round trip time and as such may have less granularity and be
+     * impacted by other sources. For these reasons it <b>should not</b> be used
+     * for anti-cheat purposes. Its recommended use is only as a
+     * <b>qualitative</b> indicator of connection quality (Vanilla uses it for
+     * this purpose in the tab list).
      *
      * @return player ping
      */
@@ -1511,6 +1704,30 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param book 要为玩家打开的书
      */
     public void openBook(@NotNull ItemStack book);
+
+    /**
+     * Open a Sign for editing by the Player.
+     *
+     * The Sign must be placed in the same world as the player.
+     *
+     * @param sign The sign to edit
+     */
+    public void openSign(@NotNull Sign sign);
+
+    /**
+     * Shows the demo screen to the player, this screen is normally only seen in
+     * the demo version of the game.
+     * <br>
+     * Servers can modify the text on this screen using a resource pack.
+     */
+    public void showDemoScreen();
+
+    /**
+     * Gets whether the player has the "Allow Server Listings" setting enabled.
+     *
+     * @return whether the player allows server listings
+     */
+    public boolean isAllowingServerListings();
 
     // Spigot start
     public class Spigot extends Entity.Spigot {

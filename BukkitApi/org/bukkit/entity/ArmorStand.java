@@ -16,8 +16,8 @@ public interface ArmorStand extends LivingEntity {
      * Returns the item the armor stand is currently holding
      *
      * @return 盔甲架当前握持的物品
-     * @deprecated 建议使用 {@link EntityEquipment#getItemInHand()}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#getItemInHand()}
      */
     @NotNull
     @Deprecated
@@ -30,8 +30,8 @@ public interface ArmorStand extends LivingEntity {
      * Sets the item the armor stand is currently holding
      *
      * @param item 盔甲架当前握持的物品
-     * @deprecated 建议使用 {@link EntityEquipment#setItemInHand(org.bukkit.inventory.ItemStack)}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#setItemInHand(org.bukkit.inventory.ItemStack)}
      */
     @Deprecated
     void setItemInHand(@Nullable ItemStack item);
@@ -43,8 +43,8 @@ public interface ArmorStand extends LivingEntity {
      * Returns the item currently being worn by the armor stand on its feet
      *
      * @return 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#getBoots()}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#getBoots()}
      */
     @NotNull
     @Deprecated
@@ -57,8 +57,8 @@ public interface ArmorStand extends LivingEntity {
      * Sets the item currently being worn by the armor stand on its feet
      *
      * @param item 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#setBoots(org.bukkit.inventory.ItemStack)}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#setBoots(org.bukkit.inventory.ItemStack)}
      */
     @Deprecated
     void setBoots(@Nullable ItemStack item);
@@ -70,8 +70,8 @@ public interface ArmorStand extends LivingEntity {
      * Returns the item currently being worn by the armor stand on its legs
      *
      * @return 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#getLeggings()}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#getLeggings()}
      */
     @NotNull
     @Deprecated
@@ -85,8 +85,8 @@ public interface ArmorStand extends LivingEntity {
      * by the armor stand on its legs
      *
      * @param item 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#setLeggings(org.bukkit.inventory.ItemStack)}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#setLeggings(org.bukkit.inventory.ItemStack)}
      */
     @Deprecated
     void setLeggings(@Nullable ItemStack item);
@@ -98,8 +98,8 @@ public interface ArmorStand extends LivingEntity {
      * Returns the item currently being worn by the armor stand on its chest
      *
      * @return 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#getChestplate()}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#getChestplate()}
      */
     @NotNull
     @Deprecated
@@ -112,8 +112,8 @@ public interface ArmorStand extends LivingEntity {
      * Sets the item currently being worn by the armor stand on its chest
      *
      * @param item 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#setChestplate(org.bukkit.inventory.ItemStack)}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#setChestplate(org.bukkit.inventory.ItemStack)}
      */
     @Deprecated
     void setChestplate(@Nullable ItemStack item);
@@ -125,8 +125,8 @@ public interface ArmorStand extends LivingEntity {
      * Returns the item currently being worn by the armor stand on its head
      *
      * @return 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#getHelmet()}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#getHelmet()}
      */
     @NotNull
     @Deprecated
@@ -139,8 +139,8 @@ public interface ArmorStand extends LivingEntity {
      * Sets the item currently being worn by the armor stand on its head
      *
      * @param item 穿戴的物品
-     * @deprecated 建议使用 {@link EntityEquipment#setHelmet(org.bukkit.inventory.ItemStack)}
      * @see #getEquipment()
+     * @deprecated 建议使用 {@link EntityEquipment#setHelmet(org.bukkit.inventory.ItemStack)}
      */
     @Deprecated
     void setHelmet(@Nullable ItemStack item);

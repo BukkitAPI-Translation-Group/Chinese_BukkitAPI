@@ -51,8 +51,8 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * 原文:Gets the current result of the login, as an enum
      *
      * @return 登录的状态
-     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #getLoginResult()
+     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      */
     @Deprecated
     @NotNull
@@ -77,8 +77,8 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * 原文:Sets the new result of the login, as an enum
      *
      * @param result 状态
-     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #setLoginResult(Result)
+     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      */
     @Deprecated
     public void setResult(@NotNull final PlayerPreLoginEvent.Result result) {
@@ -139,8 +139,8 @@ public class AsyncPlayerPreLoginEvent extends Event {
      *
      * @param result 不允许玩家登录的理由
      * @param message 给用户显示的踢出消息
-     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      * @see #disallow(Result, String)
+     * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      */
     @Deprecated
     public void disallow(@NotNull final PlayerPreLoginEvent.Result result, @NotNull final String message) {

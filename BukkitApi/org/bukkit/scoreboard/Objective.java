@@ -136,8 +136,8 @@ public interface Objective {
      * @return 指定对象和玩家的分数
      * @throws IllegalArgumentException 参数player（玩家ID）为空
      * @throws IllegalStateException if this 对象已被注销
-     * @deprecated 计分板可以包含非玩家项
      * @see #getScore(String)
+     * @deprecated 计分板可以包含非玩家项
      */
     @Deprecated
     @NotNull
@@ -152,7 +152,7 @@ public interface Objective {
      * @return 对象内指定项目的积分
      * @throws IllegalArgumentException 参数entry（项目）为空
      * @throws IllegalStateException 对象已被注销
-     * @throws IllegalArgumentException 若项目名长度超过40字符
+     * @throws IllegalArgumentException 若项目名长度超过 32767 个字符
      */
     @NotNull
     Score getScore(@NotNull String entry) throws IllegalArgumentException, IllegalStateException;

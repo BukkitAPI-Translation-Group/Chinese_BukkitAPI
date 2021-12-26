@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.function.Predicate;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -14,14 +13,15 @@ import org.bukkit.boss.DragonBattle;
 import org.bukkit.entity.AbstractArrow;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
+import org.bukkit.generator.WorldInfo;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
@@ -38,7 +38,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表一个世界,包含了{@link Entity 实体},{@link Chunk 区块},{@link Block 方块}
  */
-public interface World extends PluginMessageRecipient, Metadatable {
+public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient, Metadatable {
 
     /**
      * 获取坐标所指的{@link Block 方块}.
@@ -637,21 +637,10 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param type 创建的树的类型
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
+     * @see #generateTree(org.bukkit.Location, java.util.Random, org.bukkit.TreeType, org.bukkit.util.Consumer)
+     * @deprecated this method does not handle tile entities (bee nests)
      */
     public boolean generateTree(@NotNull Location loc, @NotNull TreeType type, @NotNull BlockChangeDelegate delegate);
-
-    /**
-     * 在指定的{@link Location 位置}创建一个实体.
-     * <p>
-     * 原文：
-     * Creates a entity at the given {@link Location}
-     *
-     * @param loc 生成实体的位置
-     * @param type 生成的实体
-     * @return 生成成功则返回此方法创建的实体
-     */
-    @NotNull
-    public Entity spawnEntity(@NotNull Location loc, @NotNull EntityType type);
 
     /**
      * 在指定的{@link Location 位置}劈下闪电.
@@ -994,28 +983,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @Nullable
     public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter);
-
-    /**
-     * 获取世界的唯一名称.
-     * <p>
-     * 原文：
-     * Gets the unique name of this world
-     *
-     * @return 世界的名称
-     */
-    @NotNull
-    public String getName();
-
-    /**
-     * 获取世界的唯一UUID.
-     * <p>
-     * 原文：
-     * Gets the Unique ID of this world
-     *
-     * @return 世界的唯一UUID
-     */
-    @NotNull
-    public UUID getUID();
 
     /**
      * 获取这个世界的默认出生点{@link Location 位置}.
@@ -1389,27 +1356,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public boolean createExplosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
 
     /**
-     * 获取世界的{@link Environment 环境}类型.
-     * <p>
-     * 原文：
-     * Gets the {@link Environment} type of this world
-     *
-     * @return 这个世界的环境类型
-     */
-    @NotNull
-    public Environment getEnvironment();
-
-    /**
-     * 获取世界的种子.
-     * <p>
-     * 原文：
-     * Gets the Seed for this world.
-     *
-     * @return 这个世界的种子
-     */
-    public long getSeed();
-
-    /**
      * 获取世界当前的PVP设置.
      * <p>
      * 原文：
@@ -1441,6 +1387,14 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public ChunkGenerator getGenerator();
 
     /**
+     * Gets the biome provider for this world
+     *
+     * @return BiomeProvider associated with this world
+     */
+    @Nullable
+    public BiomeProvider getBiomeProvider();
+
+    /**
      * 保存世界到磁盘.
      * <p>
      * 原文：Saves world to disk
@@ -1457,40 +1411,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @NotNull
     public List<BlockPopulator> getPopulators();
-
-    /**
-     * 在指定的{@link Location 位置}根据给定的类生成一个实体.
-     * <p>
-     * 原文：
-     * Spawn an entity of a specific class at the given {@link Location}
-     *
-     * @param location 生成实体的{@link Location 位置}
-     * @param clazz 生成{@link Entity 实体}的类
-     * @param <T> 生成{@link Entity 实体}的类
-     * @return 一个生成的{@link Entity 实体}实例
-     * @throws IllegalArgumentException 如果参数为空或被要求生成的{@link Entity 实体}不能被生成则抛出错误
-     */
-    @NotNull
-    public <T extends Entity> T spawn(@NotNull Location location, @NotNull Class<T> clazz) throws IllegalArgumentException;
-
-    /**
-     * Spawn an entity of a specific class at the given {@link Location}, with
-     * the supplied function run before the entity is added to the world.
-     * <br>
-     * Note that when the function is run, the entity will not be actually in
-     * the world. Any operation involving such as teleporting the entity is undefined
-     * until after this function returns.
-     *
-     * @param location the {@link Location} to spawn the entity at
-     * @param clazz the class of the {@link Entity} to spawn
-     * @param function the function to be run before the entity is spawned.
-     * @param <T> the class of the {@link Entity} to spawn
-     * @return an instance of the spawned {@link Entity}
-     * @throws IllegalArgumentException if either parameter is null or the
-     *     {@link Entity} requested cannot be spawned
-     */
-    @NotNull
-    public <T extends Entity> T spawn(@NotNull Location location, @NotNull Class<T> clazz, @Nullable Consumer<T> function) throws IllegalArgumentException;
 
     /**
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
@@ -1674,21 +1594,9 @@ public interface World extends PluginMessageRecipient, Metadatable {
     Biome getBiome(int x, int z);
 
     /**
-     * Gets the biome for the given block coordinates.
-     *
-     * @param x X coordinate of the block
-     * @param y Y coordinate of the block
-     * @param z Z coordinate of the block
-     * @return Biome of the requested block
-     */
-    @NotNull
-    Biome getBiome(int x, int y, int z);
-
-    /**
-     * 设置指定方块坐标的生物群系
+     * 设置指定方块坐标的生物群系.
      * <p>
-     * 原文：
-     * Sets the biome for the given block coordinates
+     * 原文:Sets the biome for the given block coordinates
      *
      * @param x 方块的x坐标
      * @param z 方块的z坐标
@@ -1697,16 +1605,6 @@ public interface World extends PluginMessageRecipient, Metadatable {
      */
     @Deprecated
     void setBiome(int x, int z, @NotNull Biome bio);
-
-    /**
-     * Sets the biome for the given block coordinates
-     *
-     * @param x X coordinate of the block
-     * @param y Y coordinate of the block
-     * @param z Z coordinate of the block
-     * @param bio new Biome type for this block
-     */
-    void setBiome(int x, int y, int z, @NotNull Biome bio);
 
     /**
      * 获取指定方块坐标的温度。
@@ -1781,30 +1679,86 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public double getHumidity(int x, int y, int z);
 
     /**
-     * 获取这个世界的最低高度.
-     * <p>
-     * 如果最低高度为0, 则只有y=0处才有方块.
-     * <p>
-     * 原文:Gets the minimum height of this world.
-     * <p>
-     * If the min height is 0, there are only blocks from y=0.
+     * Gets the maximum height to which chorus fruits and nether portals can
+     * bring players within this dimension.
      *
-     * @return 世界的最低高度
+     * This excludes portals that were already built above the limit as they
+     * still connect normally. May not be greater than {@link #getMaxHeight()}.
+     *
+     * @return maximum logical height for chorus fruits and nether portals
      */
-    public int getMinHeight();
+    public int getLogicalHeight();
 
     /**
-     * 获取这个世界的最高高度.
-     * <p>
-     * 如果最大高度为100, 则只有y=0到y=99才有方块.
-     * <p>
-     * 原文:Gets the maximum height of this world.
-     * <p>
-     * If the max height is 100, there are only blocks from y=0 to y=99.
+     * Gets if this world is natural.
      *
-     * @return 世界的最高高度
+     * When false, compasses spin randomly, and using a bed to set the respawn
+     * point or sleep, is disabled. When true, nether portals can spawn
+     * zombified piglins.
+     *
+     * @return true if world is natural
      */
-    public int getMaxHeight();
+    public boolean isNatural();
+
+    /**
+     * Gets if beds work in this world.
+     *
+     * A non-working bed will blow up when trying to sleep. {@link #isNatural()}
+     * defines if a bed can be used to set spawn point.
+     *
+     * @return true if beds work in this world
+     */
+    public boolean isBedWorks();
+
+    /**
+     * Gets if this world has skylight access.
+     *
+     * @return true if this world has skylight access
+     */
+    public boolean hasSkyLight();
+
+    /**
+     * Gets if this world has a ceiling.
+     *
+     * @return true if this world has a bedrock ceiling
+     */
+    public boolean hasCeiling();
+
+    /**
+     * Gets if this world allow to piglins to survive without shaking and
+     * transforming to zombified piglins.
+     *
+     * @return true if piglins will not transform to zombified piglins
+     */
+    public boolean isPiglinSafe();
+
+    /**
+     * Gets if this world allows players to charge and use respawn anchors.
+     *
+     * @return true if players can charge and use respawn anchors
+     */
+    public boolean isRespawnAnchorWorks();
+
+    /**
+     * Gets if players with the bad omen effect in this world will trigger a
+     * raid.
+     *
+     * @return true if raids will be triggered
+     */
+    public boolean hasRaids();
+
+    /**
+     * Gets if various water/lava mechanics will be triggered in this world, eg:
+     * <br>
+     * <ul>
+     * <li>Water is evaporated</li>
+     * <li>Sponges dry</li>
+     * <li>Lava spreads faster and further</li>
+     * </ul>
+     *
+     * @return true if this world has the above mechanics
+     */
+    public boolean isUltraWarm();
 
     /**
      * 获取世界的海平面。
@@ -2204,6 +2158,51 @@ public interface World extends PluginMessageRecipient, Metadatable {
     public void setTicksPerWaterAmbientSpawns(int ticksPerAmbientSpawns);
 
     /**
+     * Gets the default ticks per water underground creature spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn water underground creature
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn water underground creature
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, water underground creature spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @return the default ticks per water underground creature spawn value
+     */
+    public long getTicksPerWaterUndergroundCreatureSpawns();
+
+    /**
+     * Sets the world's ticks per water underground creature spawns value
+     * <p>
+     * This value determines how many ticks there are between attempts to
+     * spawn water underground creature.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn water underground creature in
+     *     this world on every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn water underground creature
+     *     in this world every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b>
+     * If set to 0, water underground creature spawning will be disabled for this world.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @param ticksPerWaterUndergroundCreatureSpawns the ticks per water underground creature spawns value you
+     *     want to set the world to
+     */
+    public void setTicksPerWaterUndergroundCreatureSpawns(int ticksPerWaterUndergroundCreatureSpawns);
+
+    /**
      * Gets the world's ticks per ambient mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
@@ -2332,6 +2331,25 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @param limit 新的水生动物限制
      */
     void setWaterAnimalSpawnLimit(int limit);
+
+    /**
+     * Gets the limit for number of water underground creature that can spawn in a chunk in
+     * this world
+     *
+     * @return The water underground creature spawn limit
+     */
+    int getWaterUndergroundCreatureSpawnLimit();
+
+    /**
+     * Sets the limit for number of water underground creature that can spawn in a chunk in
+     * this world
+     * <p>
+     * <b>Note:</b> If set to a negative number the world will use the
+     * server-wide spawn limit instead.
+     *
+     * @param limit the new mob limit
+     */
+    void setWaterUndergroundCreatureSpawnLimit(int limit);
 
     /**
      * Gets user-specified limit for number of water ambient mobs that can spawn
@@ -2830,6 +2848,13 @@ public interface World extends PluginMessageRecipient, Metadatable {
      * @return the view distance used for this world
      */
     int getViewDistance();
+
+    /**
+     * Returns the simulation distance used for this world.
+     *
+     * @return the simulation distance used for this world
+     */
+    int getSimulationDistance();
     // Spigot end
 
     // Spigot start

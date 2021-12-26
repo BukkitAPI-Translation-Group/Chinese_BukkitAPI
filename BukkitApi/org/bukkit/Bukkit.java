@@ -46,6 +46,7 @@ import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.ScoreboardManager;
+import org.bukkit.structure.StructureManager;
 import org.bukkit.util.CachedServerIcon;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -219,6 +220,15 @@ public final class Bukkit {
     }
 
     /**
+     * Get the simulation distance from this server.
+     *
+     * @return the simulation distance from this server.
+     */
+    public static int getSimulationDistance() {
+        return server.getSimulationDistance();
+    }
+
+    /**
      * 获取服务器绑定的IP, 如果未指定就返回空字符串.
      * <p>
      * 原文:Get the IP that this server is bound to, or empty string if not
@@ -285,6 +295,49 @@ public final class Bukkit {
      */
     public static boolean getAllowNether() {
         return server.getAllowNether();
+    }
+
+    /**
+     * Gets the server resource pack uri, or empty string if not specified.
+     *
+     * @return the server resource pack uri, otherwise empty string
+     */
+    @NotNull
+    public static String getResourcePack() {
+        return server.getResourcePack();
+    }
+
+    /**
+     * Gets the SHA-1 digest of the server resource pack, or empty string if
+     * not specified.
+     *
+     * @return the SHA-1 digest of the server resource pack, otherwise empty
+     *     string
+     */
+    @NotNull
+    public static String getResourcePackHash() {
+        return server.getResourcePackHash();
+    }
+
+    /**
+     * Gets the custom prompt message to be shown when the server resource
+     * pack is required, or empty string if not specified.
+     *
+     * @return the custom prompt message to be shown when the server resource,
+     *     otherwise empty string
+     */
+    @NotNull
+    public static String getResourcePackPrompt() {
+        return server.getResourcePackPrompt();
+    }
+
+    /**
+     * Gets whether the server resource pack is enforced.
+     *
+     * @return whether the server resource pack is enforced
+     */
+    public static boolean isResourcePackRequired() {
+        return server.isResourcePackRequired();
     }
 
     /**
@@ -601,6 +654,28 @@ public final class Bukkit {
      */
     public static int getTicksPerWaterAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
+    }
+
+    /**
+     * Gets the default ticks per water underground creature spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn water underground creature
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn water underground creature
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, water underground creature spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @return the default ticks per water underground creature spawn value
+     */
+    public static int getTicksPerWaterUndergroundCreatureSpawns() {
+        return server.getTicksPerWaterUndergroundCreatureSpawns();
     }
 
     /**
@@ -978,6 +1053,61 @@ public final class Bukkit {
     }
 
     /**
+     * Get the {@link Recipe} for the list of ItemStacks provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>NOTE: This method will not modify the provided ItemStack array, for that, use
+     * {@link #craftItem(ItemStack[], World, Player)}.</p>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @return the {@link Recipe} resulting from the given crafting matrix.
+     */
+    @Nullable
+    public static Recipe getCraftingRecipe(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
+        return server.getCraftingRecipe(craftingMatrix, world);
+    }
+
+    /**
+     * Get the crafted item using the list of {@link ItemStack} provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>The {@link World} and {@link Player} arguments are required to fulfill the Bukkit Crafting
+     * events.</p>
+     *
+     * <p>Calls {@link org.bukkit.event.inventory.PrepareItemCraftEvent} to imitate the {@link Player}
+     * initiating the crafting event.</p>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @param player The player to imitate the crafting event on.
+     * @return the {@link ItemStack} resulting from the given crafting matrix, if no recipe is found
+     * an ItemStack of {@link Material#AIR} is returned.
+     */
+    @NotNull
+    public static ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player) {
+        return server.craftItem(craftingMatrix, world, player);
+    }
+
+    /**
      * 获取合成配方列表迭代器.
      * <p>
      * 原文:Get an iterator through the list of crafting recipes.
@@ -1061,6 +1191,15 @@ public final class Bukkit {
     }
 
     /**
+     * Gets whether the Server hide online players in server status.
+     *
+     * @return true if the server hide online players, false otherwise
+     */
+    public static boolean getHideOnlinePlayers() {
+        return server.getHideOnlinePlayers();
+    }
+
+    /**
      * 获取服务器是否开启了正版模式.
      * <p>
      * 原文:Gets whether the Server is in online mode or not.
@@ -1133,13 +1272,13 @@ public final class Bukkit {
      * This will return an object even if the player does not exist. To this
      * method, all players will exist.
      *
+     * @param name 此玩家的玩家名
+     * @return 表示此玩家的OfflinePlayer对象
+     * @see #getOfflinePlayer(java.util.UUID)
      * @deprecated 由于玩家名在某个会话后(某次游戏后)不再唯一,
      应使用uuid作为唯一标识来持久化存储用户.
      (译注:正版玩家更改它们的玩家名后,其uuid不会改变,其他正版玩家可以使用这些玩家的曾用名,
      可能会出现同一玩家名对应两个或多个不同玩家的情况)
-     * @param name 此玩家的玩家名
-     * @return 表示此玩家的OfflinePlayer对象
-     * @see #getOfflinePlayer(java.util.UUID)
      */
     @Deprecated
     @NotNull
@@ -1497,6 +1636,15 @@ public final class Bukkit {
     }
 
     /**
+     * Get user-specified limit for number of water creature underground that can spawn
+     * in a chunk.
+     * @return the water underground creature limit
+     */
+    public static int getWaterUndergroundCreatureSpawnLimit() {
+        return server.getWaterUndergroundCreatureSpawnLimit();
+    }
+
+    /**
      * 获取一个区块最大可生成的环境生物(一般指蝙蝠)数量.
      * <p>
      * 原文:Gets user-specified limit for number of ambient mobs that can spawn in
@@ -1616,10 +1764,10 @@ public final class Bukkit {
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
      * @param file 需要被加载的文件
-     * @throws IllegalArgumentException 如果图片为null
-     * @throws Exception 如果图片规格不适合作为服务器图标
      * @return 一个CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
+     * @throws IllegalArgumentException 如果图片为null
+     * @throws Exception 如果图片规格不适合作为服务器图标
      */
     @NotNull
     public static CachedServerIcon loadServerIcon(@NotNull File file) throws IllegalArgumentException, Exception {
@@ -1637,10 +1785,10 @@ public final class Bukkit {
      * guaranteed to throw an implementation-defined {@link Exception}.
      *
      * @param image 用于缓存的图片
-     * @throws IllegalArgumentException 若image为null
-     * @throws Exception 如果图片规格不适合作为服务器图标
      * @return 一个CachedServerIcon实例,可用于 {@link
      *     ServerListPingEvent#setServerIcon(CachedServerIcon)}
+     * @throws IllegalArgumentException 若image为null
+     * @throws Exception 如果图片规格不适合作为服务器图标
      */
     @NotNull
     public static CachedServerIcon loadServerIcon(@NotNull BufferedImage image) throws IllegalArgumentException, Exception {
@@ -1980,8 +2128,18 @@ public final class Bukkit {
     }
 
     /**
-     * @see UnsafeValues
+     * Gets the structure manager for loading and saving structures.
+     *
+     * @return the structure manager
+     */
+    @NotNull
+    public static StructureManager getStructureManager() {
+        return server.getStructureManager();
+    }
+
+    /**
      * @return UnsafeValues实例
+     * @see UnsafeValues
      */
     @Deprecated
     @NotNull

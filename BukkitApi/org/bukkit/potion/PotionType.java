@@ -50,7 +50,9 @@ public enum PotionType {
     }
 
     /**
-     * Checks if the potion type has an upgraded state.
+     * 检测
+     * <p>
+     * 原文:Checks if the potion type has an upgraded state.
      * This refers to whether or not the potion type can be Tier 2,
      * such as Potion of Fire Resistance II.
      *
@@ -75,8 +77,8 @@ public enum PotionType {
     }
 
     /**
-     * @param effectType the effect to get by
-     * @return the matching potion type
+     * @param effectType 根据何种状态效果获取对应药水类型
+     * @return 匹配的药水类型
      * @deprecated Misleading
      */
     @Deprecated

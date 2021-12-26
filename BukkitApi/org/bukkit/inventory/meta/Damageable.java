@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表有耐久度、可损耗的物品.
  */
-public interface Damageable {
+public interface Damageable extends ItemMeta {
 
     /**
      * 检测此物品是否有耐久度.
@@ -38,5 +38,6 @@ public interface Damageable {
     void setDamage(int damage);
 
     @NotNull
+    @Override
     Damageable clone();
 }

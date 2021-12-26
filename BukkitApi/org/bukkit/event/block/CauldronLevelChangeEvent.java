@@ -62,8 +62,8 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
      * Gets the old level of the cauldron.
      *
      * @return old level
-     * @deprecated not all cauldron contents are Levelled
      * @see #getBlock()
+     * @deprecated not all cauldron contents are Levelled
      */
     @Deprecated
     public int getOldLevel() {
@@ -75,8 +75,8 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
      * Gets the new level of the cauldron.
      *
      * @return new level
-     * @deprecated not all cauldron contents are Levelled
      * @see #getNewState()
+     * @deprecated not all cauldron contents are Levelled
      */
     @Deprecated
     public int getNewLevel() {
@@ -88,8 +88,8 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
      * Sets the new level of the cauldron.
      *
      * @param newLevel new level
-     * @deprecated not all cauldron contents are Levelled
      * @see #getNewState()
+     * @deprecated not all cauldron contents are Levelled
      */
     @Deprecated
     public void setNewLevel(int newLevel) {
@@ -162,7 +162,7 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
          */
         EVAPORATE,
         /**
-         * Filling due to natural fluid sources, eg rain.
+         * Filling due to natural fluid sources, eg rain or dripstone.
          */
         NATURAL_FILL,
         /**

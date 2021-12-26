@@ -101,15 +101,13 @@ final class PluginClassLoader extends URLClassLoader {
 
     Class<?> loadClass0(@NotNull String name, boolean resolve, boolean checkGlobal, boolean checkLibraries) throws ClassNotFoundException {
         try {
-            return super.loadClass(name, resolve);
-        } catch (ClassNotFoundException ex) {
-        }
+            Class<?> result = super.loadClass(name, resolve);
 
-        if (checkLibraries && libraryLoader != null) {
-            try {
-                return libraryLoader.loadClass(name);
-            } catch (ClassNotFoundException ex) {
+            // SPIGOT-6749: Library classes will appear in the above, but we don't want to return them to other plugins
+            if (checkGlobal || result.getClassLoader() == this) {
+                return result;
             }
+        } catch (ClassNotFoundException ex) {
         }
 
         if (checkGlobal) {

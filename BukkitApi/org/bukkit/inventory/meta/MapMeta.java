@@ -18,11 +18,11 @@ public interface MapMeta extends ItemMeta {
      * Checks for existence of a map ID number.
      *
      * @return 地图是否有编号
+     * @see #hasMapView()
      * @deprecated 这些方法是设计糟糕的API:它们依赖调用者, 仅传递一个整数属性值,
      * 并且曾经有着糟糕的实现 - 未判断地图 id 是否合法(是否存在).
      * 现代的实现 - 例如, 服务器会生成一个不同 id 的新地图.
      * 开发者应使用 xxxMapView 家族的方法.
-     * @see #hasMapView()
      */
     @Deprecated
     boolean hasMapId();
@@ -40,11 +40,11 @@ public interface MapMeta extends ItemMeta {
      * calling this method.
      *
      * @return 地图编号
+     * @see #getMapView()
      * @deprecated 这些方法是设计糟糕的API:它们依赖调用者, 仅传递一个整数属性值,
      * 并且曾经有着糟糕的实现 - 未判断地图 id 是否合法(是否存在).
      * 现代的实现 - 例如, 服务器会生成一个不同 id 的新地图.
      * 开发者应使用 xxxMapView 家族的方法.
-     * @see #getMapView()
      */
     @Deprecated
     int getMapId();
@@ -56,11 +56,11 @@ public interface MapMeta extends ItemMeta {
      * Sets the map ID. This is used to determine what map is displayed.
      *
      * @param id 地图编号
+     * @see #setMapView(org.bukkit.map.MapView)
      * @deprecated 这些方法是设计糟糕的API:它们依赖调用者, 仅传递一个整数属性值,
      * 并且曾经有着糟糕的实现 - 未判断地图 id 是否合法(是否存在).
      * 现代的实现 - 例如, 服务器会生成一个不同 id 的新地图.
      * 开发者应使用 xxxMapView 家族的方法.
-     * @see #setMapView(org.bukkit.map.MapView)
      */
     @Deprecated
     void setMapId(int id);

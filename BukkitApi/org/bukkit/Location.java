@@ -20,8 +20,7 @@ import org.jetbrains.annotations.Nullable;
  * <br>
  * 译注:yaw和pitch分别代表自转角(又称偏航角)、旋进角(又称进动角、俯仰角).
  * 两个值一起表示位置的朝向(与向量的概念重合, 本类有很多方法就是与{@link org.bukkit.util.Vector}重合的).
- * 这里的翻译分别取偏航角、俯仰角.另请参见util包下的Vector(向量)、EulerAngle(欧拉角), 阅读本文档及其相关文档
- * 建议您具备高中数学必修4相关知识.
+ * 这里的翻译分别取偏航角、俯仰角. 另请参见util包下的Vector(向量)、EulerAngle(欧拉角).
  */
 public class Location implements Cloneable, ConfigurationSerializable {
     private Reference<World> world;
@@ -416,10 +415,10 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Adds the location by another.
      *
-     * @see Vector
      * @param vec 另一个位置
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      * @throws IllegalArgumentException 若两个位置所处世界各不相同
+     * @see Vector
      */
     @NotNull
     public Location add(@NotNull Location vec) {
@@ -438,9 +437,9 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Adds the location by a vector.
      *
-     * @see Vector
      * @param vec 向量
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
+     * @see Vector
      */
     @NotNull
     public Location add(@NotNull Vector vec) {
@@ -455,11 +454,11 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Adds the location by another. Not world-aware.
      *
-     * @see Vector
      * @param x X坐标
      * @param y Y坐标
      * @param z Z坐标
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
+     * @see Vector
      */
     @NotNull
     public Location add(double x, double y, double z) {
@@ -474,10 +473,10 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Subtracts the location by another.
      *
-     * @see Vector
      * @param vec 另一个位置
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
      * @throws IllegalArgumentException 若两个位置所处世界各不相同
+     * @see Vector
      */
     @NotNull
     public Location subtract(@NotNull Location vec) {
@@ -496,9 +495,9 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * <p>
      * 原文:Subtracts the location by a vector.
      *
-     * @see Vector
      * @param vec 向量
      * @return 相同的位置对象(不是位置相同,但位置对象相同)
+     * @see Vector
      */
     @NotNull
     public Location subtract(@NotNull Vector vec) {
@@ -515,11 +514,11 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * 原文:Subtracts the location by another. Not world-aware and
      * orientation independent.
      *
+     * @param x X坐标
+     * @param y Y坐标
+     * @param z Z坐标
+     * @return 相同的位置对象(不是位置相同,但位置对象相同)
      * @see Vector
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @return the same location
      */
     @NotNull
     public Location subtract(double x, double y, double z) {

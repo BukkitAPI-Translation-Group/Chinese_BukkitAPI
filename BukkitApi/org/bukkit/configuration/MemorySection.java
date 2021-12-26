@@ -251,7 +251,11 @@ public class MemorySection implements ConfigurationSection {
         int i1 = -1, i2;
         ConfigurationSection section = this;
         while ((i1 = path.indexOf(separator, i2 = i1 + 1)) != -1) {
-            section = section.getConfigurationSection(path.substring(i2, i1));
+            final String currentPath = path.substring(i2, i1);
+            if (!section.contains(currentPath, true)) {
+                return def;
+            }
+            section = section.getConfigurationSection(currentPath);
             if (section == null) {
                 return def;
             }

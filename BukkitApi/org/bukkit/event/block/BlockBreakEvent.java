@@ -47,21 +47,30 @@ public class BlockBreakEvent extends BlockExpEvent implements Cancellable {
         return player;
     }
 
+    // TODO:验证这个 "if and only if" 的情况.
     /**
-     * 设置这个方块是否像平常那样掉落物品.
+     * 设置破坏这个方块后是否像平常那样尝试掉落物品.
+     * 当且仅当设为 false 时, {@link BlockDropItemEvent} 事件将不会在本事件后触发.
      * <p>
-     * 原文:Sets whether or not the block will drop items as it normally would.
+     * 原文:Sets whether or not the block will attempt to drop items as it normally
+     * would.
      *
-     * @param dropItems 这个方块是否掉落物品
+     * If and only if this is false then {@link BlockDropItemEvent} will not be
+     * called after this event.
+     *
+     * @param dropItems 这个方块是否尝试掉落物品 (注:设为 true 时只代表可能掉落, 而非 100% 掉落)
      */
     public void setDropItems(boolean dropItems) {
         this.dropItems = dropItems;
     }
 
     /**
-     * 获取方块是否会掉落物品.
+     * 获取方块是否可能掉落物品.
      * <p>
-     * 原文:Gets whether or not the block will drop items.
+     * 原文:Gets whether or not the block will attempt to drop items.
+     *
+     * If and only if this is false then {@link BlockDropItemEvent} will not be
+     * called after this event.
      *
      * @return 这个方块是否掉落物品
      */

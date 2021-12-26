@@ -32,6 +32,39 @@ public abstract class BlockPopulator {
      * @param world 用于生成的世界
      * @param random 使用的随机生成器
      * @param source 用于生成的区块
+     * @deprecated 建议使用 {@link #populate(WorldInfo, Random, int, int, LimitedRegion)}
      */
-    public abstract void populate(@NotNull World world, @NotNull Random random, @NotNull Chunk source);
+    @Deprecated
+    public void populate(@NotNull World world, @NotNull Random random, @NotNull Chunk source) {
+    }
+
+    /**
+     * Populates an area of blocks at or around the given chunk.
+     * <p>
+     * Notes:
+     * <p>
+     * This method should <b>never</b> attempt to get the Chunk at the passed
+     * coordinates, as doing so may cause an infinite loop
+     * <p>
+     * This method should <b>never</b> modify a {@link LimitedRegion} at a later
+     * point of time.
+     * <p>
+     * This method <b>must</b> be completely thread safe and able to handle
+     * multiple concurrent callers.
+     * <p>
+     * No physics are applied, whether or not it is set to true in
+     * {@link org.bukkit.block.BlockState#update(boolean, boolean)}
+     * <p>
+     * <b>Only</b> use the {@link org.bukkit.block.BlockState} returned by
+     * {@link LimitedRegion},
+     * <b>never</b> use methods from a {@link World} to modify the chunk.
+     *
+     * @param worldInfo The world info of the world to generate in
+     * @param random The random generator to use
+     * @param x The X-coordinate of the chunk
+     * @param z The Z-coordinate of the chunk
+     * @param limitedRegion The chunk region to populate
+     */
+    public void populate(@NotNull WorldInfo worldInfo, @NotNull Random random, int x, int z, @NotNull LimitedRegion limitedRegion) {
+    }
 }

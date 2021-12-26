@@ -32,18 +32,16 @@ public interface Lectern extends TileState, BlockInventoryHolder {
     void setPage(int page);
 
     /**
-     * @see Container#getInventory()
-     *
      * @return 物品栏
+     * @see Container#getInventory()
      */
     @NotNull
     @Override
     Inventory getInventory();
 
     /**
-     * @see Container#getSnapshotInventory()
-     *
      * @return 物品栏快照
+     * @see Container#getSnapshotInventory()
      */
     @NotNull
     Inventory getSnapshotInventory();

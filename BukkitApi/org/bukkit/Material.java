@@ -442,7 +442,7 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Leaves}
      */
-    FLOWERING_AZALEA_LEAVES(20893, Leaves.class),
+    FLOWERING_AZALEA_LEAVES(7139, Leaves.class),
     SPONGE(15860),
     WET_SPONGE(9043),
     GLASS(6195),
@@ -753,10 +753,7 @@ public enum Material implements Keyed {
      */
     POLISHED_BASALT(11659, Orientable.class),
     SMOOTH_BASALT(13617),
-    /**
-     * BlockData: {@link Lightable}
-     */
-    SOUL_TORCH(14292, Lightable.class),
+    SOUL_TORCH(14292),
     GLOWSTONE(32713),
     INFESTED_STONE(18440),
     INFESTED_COBBLESTONE(4348),
@@ -2400,12 +2397,13 @@ public enum Material implements Keyed {
     MUSIC_DISC_WARD(24026, 1),
     MUSIC_DISC_11(27426, 1),
     MUSIC_DISC_WAIT(26499, 1),
+    MUSIC_DISC_OTHERSIDE(12974, 1),
     MUSIC_DISC_PIGSTEP(21323, 1),
     TRIDENT(7534, 1, 250),
     PHANTOM_MEMBRANE(18398),
     NAUTILUS_SHELL(19989),
     HEART_OF_THE_SEA(11807),
-    CROSSBOW(4340, 1, 326),
+    CROSSBOW(4340, 1, 465),
     SUSPICIOUS_STEW(8173, 1),
     /**
      * BlockData: {@link Directional}
@@ -2630,10 +2628,7 @@ public enum Material implements Keyed {
      * BlockData: {@link Fire}
      */
     FIRE(16396, Fire.class),
-    /**
-     * BlockData: {@link Fire}
-     */
-    SOUL_FIRE(30163, Fire.class),
+    SOUL_FIRE(30163),
     /**
      * BlockData: {@link RedstoneWire}
      */
@@ -2694,10 +2689,7 @@ public enum Material implements Keyed {
      * BlockData: {@link Levelled}
      */
     WATER_CAULDRON(32008, Levelled.class),
-    /**
-     * BlockData: {@link Levelled}
-     */
-    LAVA_CAULDRON(4514, Levelled.class),
+    LAVA_CAULDRON(4514),
     /**
      * BlockData: {@link Levelled}
      */
@@ -5230,6 +5222,7 @@ public enum Material implements Keyed {
             case MUSIC_DISC_FAR:
             case MUSIC_DISC_MALL:
             case MUSIC_DISC_MELLOHI:
+            case MUSIC_DISC_OTHERSIDE:
             case MUSIC_DISC_PIGSTEP:
             case MUSIC_DISC_STAL:
             case MUSIC_DISC_STRAD:

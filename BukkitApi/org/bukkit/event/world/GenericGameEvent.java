@@ -33,6 +33,7 @@ public class GenericGameEvent extends WorldEvent implements Cancellable {
         this.event = event;
         this.location = location;
         this.entity = entity;
+        this.radius = radius;
     }
 
     /**
