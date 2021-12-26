@@ -283,12 +283,14 @@ public interface BukkitScheduler {
     public BukkitTask runTask(@NotNull Plugin plugin, @NotNull Runnable task) throws IllegalArgumentException;
 
     /**
-     * Returns a task that will run on the next server tick.
+     * 返回下一个tick服务器将运行的任务(即于下一tick执行指定任务).
+     * <p>
+     * 原文:Returns a task that will run on the next server tick.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 执行任务的插件
+     * @param task 要运行的任务
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public void runTask(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task) throws IllegalArgumentException;
 
@@ -324,15 +326,19 @@ public interface BukkitScheduler {
     public BukkitTask runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task) throws IllegalArgumentException;
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <p>
+     * 返回异步执行的任务.
+     * <p>
+     * 原文:<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 执行任务的插件
+     * @param task 要运行的任务
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public void runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task) throws IllegalArgumentException;
 
@@ -365,14 +371,16 @@ public interface BukkitScheduler {
     public BukkitTask runTaskLater(@NotNull Plugin plugin, @NotNull Runnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * Returns a task that will run after the specified number of server
+     * 返回指定tick过后运行的任务(即延迟执行).
+     * <p>
+     * 原文:Returns a task that will run after the specified number of server
      * ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 执行任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟/tick
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public void runTaskLater(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
 
@@ -411,17 +419,21 @@ public interface BukkitScheduler {
     public BukkitTask runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <p>
+     * 返回指定tick过后运行的异步任务(即延迟执行).
+     * <p>
+     * 原文:<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously after the specified number
      * of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 执行任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟/tick
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public void runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
 
@@ -456,15 +468,17 @@ public interface BukkitScheduler {
     public BukkitTask runTaskTimer(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * Returns a task that will repeatedly run until cancelled, starting after
+     * 返回一个任务.此任务将在指定tick数值后运行.任务将重复运行直至取消.
+     * <p>
+     * 原文:Returns a task that will repeatedly run until cancelled, starting after
      * the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task
-     * @param period the ticks to wait between runs
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 执行任务的插件
+     * @param task 要运行的任务
+     * @param delay 服务器执行任务之前的延迟/tick
+     * @param period 重复执行任务之间的时间间隔
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public void runTaskTimer(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
 
@@ -505,19 +519,22 @@ public interface BukkitScheduler {
     public BukkitTask runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * <b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <p>
+     * 返回一个异步任务.此任务将在指定tick数值后运行.任务将重复运行直至取消.
+     * <p>
+     * 原文:<b>Asynchronous tasks should never access any API in Bukkit. Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will repeatedly run asynchronously until cancelled,
      * starting after the specified number of server ticks.
      *
-     * @param plugin the reference to the plugin scheduling task
-     * @param task the task to be run
-     * @param delay the ticks to wait before running the task for the first
-     *     time
-     * @param period the ticks to wait between runs
-     * @throws IllegalArgumentException if plugin is null
-     * @throws IllegalArgumentException if task is null
+     * @param plugin 执行任务的插件
+     * @param task 要运行的任务
+     * @param delay 在任务首次执行前等待的时间
+     * @param period 重复执行任务之间的时间间隔
+     * @throws IllegalArgumentException 如果插件为null
+     * @throws IllegalArgumentException 如果任务为null
      */
     public void runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
 
