@@ -1,7 +1,7 @@
 package org.bukkit.scoreboard;
 
 /**
- * 游戏内标准计分项目（生命、击杀信息、死亡次数等）.
+ * 计分板部分准则名称的常量. 准则可触发计分项数据的修改 (生命、击杀信息、死亡次数等).
  */
 public final class Criterias {
 
