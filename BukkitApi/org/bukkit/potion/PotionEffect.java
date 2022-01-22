@@ -13,10 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a potion effect, that can be added to a {@link LivingEntity}. A
- * potion effect has a duration that it will last for, an amplifier that will
- * enhance its effects, and a {@link PotionEffectType}, that represents its
- * effect on an entity.
+ * 代表一个药水效果, 可应用于 {@link LivingEntity}.
+ * 药水效果有持续时长、倍率、作用于实体上的{@link PotionEffectType 效果类型}属性.
  */
 @SerializableAs("PotionEffect")
 public class PotionEffect implements ConfigurationSerializable {
@@ -34,14 +32,16 @@ public class PotionEffect implements ConfigurationSerializable {
     private final boolean icon;
 
     /**
-     * Creates a potion effect.
-     * @param type effect type
-     * @param duration measured in ticks, see {@link
+     * 创建一个药水效果.
+     * <p>
+     * 原文:Creates a potion effect.
+     * @param type 效果类型
+     * @param duration 持续时长 (单位为tick), 见 {@link
      *     PotionEffect#getDuration()}
-     * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
-     * @param ambient the ambient status, see {@link PotionEffect#isAmbient()}
-     * @param particles the particle status, see {@link PotionEffect#hasParticles()}
-     * @param icon the icon status, see {@link PotionEffect#hasIcon()}
+     * @param amplifier 效果倍率, 见 {@link PotionEffect#getAmplifier()}
+     * @param ambient ambient 状态, 见 {@link PotionEffect#isAmbient()}
+     * @param particles 粒子可见性, 见 {@link PotionEffect#hasParticles()}
+     * @param icon 图标可见性, 见 {@link PotionEffect#hasIcon()}
      */
     public PotionEffect(@NotNull PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles, boolean icon) {
         Validate.notNull(type, "effect type cannot be null");
@@ -54,38 +54,44 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * Creates a potion effect with no defined color.
+     * 创建一个药水效果, 不定义粒子颜色.
+     * <p>
+     * 原文:Creates a potion effect with no defined color.
      *
-     * @param type effect type
-     * @param duration measured in ticks, see {@link
+     * @param type 效果类型
+     * @param duration 持续时长 (单位为tick), 见 {@link
      *     PotionEffect#getDuration()}
-     * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
-     * @param ambient the ambient status, see {@link PotionEffect#isAmbient()}
-     * @param particles the particle status, see {@link PotionEffect#hasParticles()}
+     * @param amplifier 效果倍率, 见 {@link PotionEffect#getAmplifier()}
+     * @param ambient ambient 状态, 见 {@link PotionEffect#isAmbient()}
+     * @param particles 粒子可见性, 见 {@link PotionEffect#hasParticles()}
      */
     public PotionEffect(@NotNull PotionEffectType type, int duration, int amplifier, boolean ambient, boolean particles) {
         this(type, duration, amplifier, ambient, particles, particles);
     }
 
     /**
-     * Creates a potion effect. Assumes that particles are visible
+     * 创建一个药水效果, 使粒子效果可见.
+     * <p>
+     * 原文:Creates a potion effect. Assumes that particles are visible
      *
-     * @param type effect type
-     * @param duration measured in ticks, see {@link
+     * @param type 效果类型
+     * @param duration 持续时长 (单位为tick), 见 {@link
      *     PotionEffect#getDuration()}
-     * @param amplifier the amplifier, see {@link PotionEffect#getAmplifier()}
-     * @param ambient the ambient status, see {@link PotionEffect#isAmbient()}
+     * @param amplifier 效果倍率, 见 {@link PotionEffect#getAmplifier()}
+     * @param ambient ambient 状态, 见 {@link PotionEffect#isAmbient()}
      */
     public PotionEffect(@NotNull PotionEffectType type, int duration, int amplifier, boolean ambient) {
         this(type, duration, amplifier, ambient, true);
     }
 
     /**
-     * Creates a potion effect. Assumes ambient is true.
+     * 创建一个药水效果, 使 ambient 为 true.
+     * <p>
+     * 原文:Creates a potion effect. Assumes ambient is true.
      *
-     * @param type Effect type
-     * @param duration measured in ticks
-     * @param amplifier the amplifier for the effect
+     * @param type 效果类型
+     * @param duration 持续时长 (单位为tick)
+     * @param amplifier 效果倍率
      * @see PotionEffect#PotionEffect(PotionEffectType, int, int, boolean)
      */
     public PotionEffect(@NotNull PotionEffectType type, int duration, int amplifier) {
@@ -93,9 +99,11 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * Constructor for deserialization.
+     * 用于反序列化的构造器.
+     * <p>
+     * 原文:Constructor for deserialization.
      *
-     * @param map the map to deserialize from
+     * @param map 反序列化使用的map
      */
     public PotionEffect(@NotNull Map<String, Object> map) {
         this(getEffectType(map), getInt(map, DURATION), getInt(map, AMPLIFIER), getBool(map, AMBIENT, false), getBool(map, PARTICLES, true), getBool(map, ICON, getBool(map, PARTICLES, true)));
@@ -141,11 +149,13 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * Attempts to add the effect represented by this object to the given
+     * 尝试添加此效果到指定的{@link LivingEntity 生物}上.
+     * <p>
+     * 原文:Attempts to add the effect represented by this object to the given
      * {@link LivingEntity}.
      *
-     * @param entity The entity to add this effect to
-     * @return Whether the effect could be added
+     * @param entity 效果施加实体对象
+     * @return 效果是否可添加/添加成功
      * @see LivingEntity#addPotionEffect(PotionEffect)
      */
     public boolean apply(@NotNull LivingEntity entity) {
@@ -165,30 +175,37 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * Returns the amplifier of this effect. A higher amplifier means the
+     * 返回此效果的倍率. 更高的倍率意味着此药水效果在其作用时间内作用更频繁,
+     * 或者对目标有更多(更强)的效果.
+     * <p>
+     * 原文:Returns the amplifier of this effect. A higher amplifier means the
      * potion effect happens more often over its duration and in some cases
      * has more effect on its target.
      *
-     * @return The effect amplifier
+     * @return 效果倍率
      */
     public int getAmplifier() {
         return amplifier;
     }
 
     /**
-     * Returns the duration (in ticks) that this effect will run for when
+     * 返回此效果的持续时间 (单位为tick).
+     * <p>
+     * 原文:Returns the duration (in ticks) that this effect will run for when
      * applied to a {@link LivingEntity}.
      *
-     * @return The duration of the effect
+     * @return 效果持续时间
      */
     public int getDuration() {
         return duration;
     }
 
     /**
-     * Returns the {@link PotionEffectType} of this effect.
+     * 返回此效果的类型.
+     * <p>
+     * 原文:Returns the {@link PotionEffectType} of this effect.
      *
-     * @return The potion type of this effect
+     * @return 药水效果的类型
      */
     @NotNull
     public PotionEffectType getType() {
@@ -196,24 +213,26 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * Makes potion effect produce more, translucent, particles.
+     * 此状态使药水效果产生更多的、半透明的粒子.
+     * <p>
+     * 原文:Makes potion effect produce more, translucent, particles.
      *
-     * @return if this effect is ambient
+     * @return 此药水效果是否为环境型效果 (译注:比如信标产生的效果)
      */
     public boolean isAmbient() {
         return ambient;
     }
 
     /**
-     * @return whether this effect has particles or not
+     * @return 此效果是否有粒子效果
      */
     public boolean hasParticles() {
         return particles;
     }
 
     /**
-     * @return color of this potion's particles. May be null if the potion has no particles or defined color.
-     * @deprecated color is not part of potion effects
+     * @return 药水效果粒子的颜色. 如果无粒子效果/未定义颜色, 将可能为null
+     * @deprecated 现在粒子效果颜色不属于药水效果的一部分
      */
      @Deprecated
      @Nullable
@@ -223,7 +242,7 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * @return whether this effect has an icon or not
+     * @return 此效果是否有图标
      */
     public boolean hasIcon() {
         return icon;

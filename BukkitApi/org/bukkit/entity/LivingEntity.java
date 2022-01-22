@@ -360,7 +360,9 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param effect 添加的药水效果
      * @param force 是否移除冲突的效果
      * @return 效果是否添加
-     * @deprecated 由于现已支持多个同种类型的药水效果, 没必要强制添加
+     * @deprecated 由于现已支持多个同种类型的药水效果, 没必要强制添加.
+     * <p>译注:在某次版本更新后, Minecraft 自身支持了多个同种药水效果, 效果弱的会被隐藏;
+     * 但为兼容性考虑, 如确有覆盖效果需求的, 还是指定force为true
      */
     @Deprecated
     public boolean addPotionEffect(@NotNull PotionEffect effect, boolean force);

@@ -10,14 +10,14 @@ public final class PotionData {
     private final boolean upgraded;
 
     /**
-     * Instantiates a final PotionData object to contain information about a
+     * 实例化一个不可变的PotionData对象.
+     * <p>
+     * 原文:Instantiates a final PotionData object to contain information about a
      * Potion
      *
-     * @param type the type of the Potion
-     * @param extended whether the potion is extended PotionType#isExtendable()
-     * must be true
-     * @param upgraded whether the potion is upgraded PotionType#isUpgradable()
-     * must be true
+     * @param type 药水种类
+     * @param extended 药水是否为延长版 (PotionType#isExtendable() 必须为 true)
+     * @param upgraded 药水是否为升级版 (PotionType#isUpgradable() 必须为 true)
      */
     public PotionData(@NotNull PotionType type, boolean extended, boolean upgraded) {
         Validate.notNull(type, "Potion Type must not be null");
@@ -34,10 +34,12 @@ public final class PotionData {
     }
 
     /**
-     * Gets the type of the potion, Type matches up with each kind of craftable
+     * 获取此药水的种类, 对应每种可合成药水.
+     * <p>
+     * 原文:Gets the type of the potion, Type matches up with each kind of craftable
      * potion
      *
-     * @return the potion type
+     * @return 药水种类
      */
     @NotNull
     public PotionType getType() {
@@ -45,20 +47,25 @@ public final class PotionData {
     }
 
     /**
-     * Checks if the potion is in an upgraded state. This refers to whether or
+     * 检测此药水是否可升级.
+     * 意思是药水是否有二阶增强版本, 比如再生药水 II.
+     * <p>
+     * 原文:Checks if the potion is in an upgraded state. This refers to whether or
      * not the potion is Tier 2, such as Potion of Fire Resistance II.
      *
-     * @return true if the potion is upgraded;
+     * @return 此类药水是否可升级
      */
     public boolean isUpgraded() {
         return upgraded;
     }
 
     /**
-     * Checks if the potion is in an extended state. This refers to the extended
+     * 检测此药水是否有时长延长状态 (指时长延长版药水).
+     * <p>
+     * 原文:Checks if the potion is in an extended state. This refers to the extended
      * duration potions
      *
-     * @return true if the potion is extended
+     * @return 是否有时长延长版
      */
     public boolean isExtended() {
         return extended;
