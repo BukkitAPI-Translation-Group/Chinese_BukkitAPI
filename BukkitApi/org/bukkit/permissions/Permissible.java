@@ -32,7 +32,7 @@ public interface Permissible extends ServerOperator {
      *
      * 如果这个权限有设置在这个物体上, 就会返回这个权限的拥有状态.
      * <p>
-     * 如果这个权限没有设置在这个物体上, 将会返回这个权限的默认拥有状态.
+     * 如果这个权限没有设置在这个对象上, 将会返回这个权限的默认拥有状态.
      * <p>
      * 原文:
      * Gets the value of the specified permission, if set.
