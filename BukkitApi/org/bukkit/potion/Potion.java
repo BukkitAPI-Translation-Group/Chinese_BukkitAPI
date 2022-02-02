@@ -9,8 +9,8 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Potion Adapter for pre-1.9 data values
- * see @PotionMeta for 1.9+
+ * 用于1.9版本之前的数据值的药水适配器.
+ * 1.9+版本见{@link PotionMeta}.
  */
 @Deprecated
 public class Potion {
@@ -20,7 +20,11 @@ public class Potion {
     private PotionType type;
 
     /**
-     * Construct a new potion of the given type. Unless the type is {@link
+     * 根据指定药水种类创建新药水.
+     * 除非此药水种类为药水瓶, 级别将被设置为 1, 无持续时间的延长.
+     * 除了药水瓶, 不要使用此构造器创建无效果的药水.
+     * <p>
+     * 原文:Construct a new potion of the given type. Unless the type is {@link
      * PotionType#WATER}, it will be level one, without extended duration.
      * Don't use this constructor to create a no-effect potion other than
      * water bottle.
@@ -33,10 +37,12 @@ public class Potion {
     }
 
     /**
-     * Create a new potion of the given type and level.
+     * 根据指定药水种类和级别创建新药水.
+     * <p>
+     * 原文:Create a new potion of the given type and level.
      *
-     * @param type The type of potion.
-     * @param level The potion's level.
+     * @param type 药水种类
+     * @param level 药水级别
      */
     public Potion(@NotNull PotionType type, int level) {
         this(type);
@@ -46,12 +52,14 @@ public class Potion {
     }
 
     /**
-     * Create a new potion of the given type and level.
+     * 根据指定药水种类和级别创建新药水.
+     * <p>
+     * 原文:Create a new potion of the given type and level.
      *
-     * @param type The type of potion.
-     * @param level The potion's level.
-     * @param splash Whether it is a splash potion.
-     * @deprecated In favour of using {@link #Potion(PotionType)} with {@link
+     * @param type 药水种类
+     * @param level 药水级别
+     * @param splash 是否为喷溅型药水
+     * @deprecated 赞成使用 {@link #Potion(PotionType)} 并调用 {@link
      *     #splash()}.
      */
     @Deprecated
@@ -61,14 +69,16 @@ public class Potion {
     }
 
     /**
-     * Create a new potion of the given type and level.
+     * 根据指定药水种类和级别创建新药水.
+     * <p>
+     * 原文:Create a new potion of the given type and level.
      *
-     * @param type The type of potion.
-     * @param level The potion's level.
-     * @param splash Whether it is a splash potion.
-     * @param extended Whether it has an extended duration.
-     * @deprecated In favour of using {@link #Potion(PotionType)} with {@link
-     *     #extend()} and possibly {@link #splash()}.
+     * @param type 药水种类
+     * @param level 药水级别
+     * @param splash 是否为喷溅型药水
+     * @param extended 是否为延长版药水
+     * @deprecated 赞成使用 {@link #Potion(PotionType)} 并调用 {@link
+     *     #extend()} 或 {@link #splash()} (若需要).
      */
     @Deprecated
     public Potion(@NotNull PotionType type, int level, boolean splash, boolean extended) {
@@ -77,9 +87,11 @@ public class Potion {
     }
 
     /**
-     * Chain this to the constructor to make the potion a splash potion.
+     * 将药水改为喷溅型, 并返回自身用于链式调用.
+     * <p>
+     * 原文:Chain this to the constructor to make the potion a splash potion.
      *
-     * @return The potion.
+     * @return 药水对象
      */
     @NotNull
     public Potion splash() {
@@ -88,9 +100,11 @@ public class Potion {
     }
 
     /**
-     * Chain this to the constructor to extend the potion's duration.
+     * 延长药水持续时间, 并返回自身用于链式调用.
+     * <p>
+     * 原文:Chain this to the constructor to extend the potion's duration.
      *
-     * @return The potion.
+     * @return 药水对象
      */
     @NotNull
     public Potion extend() {
@@ -99,10 +113,12 @@ public class Potion {
     }
 
     /**
-     * Applies the effects of this potion to the given {@link ItemStack}. The
+     * 将此药水的状态效果应用于指定物品堆. 此物品堆必须为药水.
+     * <p>
+     * 原文:Applies the effects of this potion to the given {@link ItemStack}. The
      * ItemStack must be a potion.
      *
-     * @param to The itemstack to apply to
+     * @param to 物品堆
      */
     public void apply(@NotNull ItemStack to) {
         Validate.notNull(to, "itemstack cannot be null");
@@ -114,10 +130,12 @@ public class Potion {
     }
 
     /**
-     * Applies the effects that would be applied by this potion to the given
+     * 将此药水的状态效果应用于指定实体.
+     * <p>
+     * 原文:Applies the effects that would be applied by this potion to the given
      * {@link LivingEntity}.
      *
-     * @param to The entity to apply the effects to
+     * @param to 应用于哪个实体
      * @see LivingEntity#addPotionEffects(Collection)
      */
     public void apply(@NotNull LivingEntity to) {
@@ -138,10 +156,12 @@ public class Potion {
     }
 
     /**
-     * Returns a collection of {@link PotionEffect}s that this {@link Potion}
+     * 返回此药水应用于实体后的效果的列表.
+     * <p>
+     * 原文:Returns a collection of {@link PotionEffect}s that this {@link Potion}
      * would confer upon a {@link LivingEntity}.
      *
-     * @return The effects that this potion applies
+     * @return 此药水应用后的效果
      * @see PotionBrewer#getEffectsFromDamage(int)
      * @see Potion#toDamageValue()
      */
@@ -151,18 +171,22 @@ public class Potion {
     }
 
     /**
-     * Returns the level of this potion.
+     * 返回此药水的级别.
+     * <p>
+     * 原文:Returns the level of this potion.
      *
-     * @return The level of this potion
+     * @return 药水级别
      */
     public int getLevel() {
         return level;
     }
 
     /**
-     * Returns the {@link PotionType} of this potion.
+     * 返回此药水的种类.
+     * <p>
+     * 原文:Returns the {@link PotionType} of this potion.
      *
-     * @return The type of this potion
+     * @return 药水的种类
      */
     @NotNull
     public PotionType getType() {
@@ -170,9 +194,11 @@ public class Potion {
     }
 
     /**
-     * Returns whether this potion has an extended duration.
+     * 返回此药水的时长是否可延长.
+     * <p>
+     * 原文:Returns whether this potion has an extended duration.
      *
-     * @return Whether this potion has extended duration
+     * @return 是否有延长版本的药水
      */
     public boolean hasExtendedDuration() {
         return extended;
@@ -189,19 +215,23 @@ public class Potion {
     }
 
     /**
-     * Returns whether this potion is a splash potion.
+     * 返回是否为喷溅型药水.
+     * <p>
+     * 原文:Returns whether this potion is a splash potion.
      *
-     * @return Whether this is a splash potion
+     * @return 是否为喷溅型药水
      */
     public boolean isSplash() {
         return splash;
     }
 
     /**
-     * Set whether this potion has extended duration. This will cause the
+     * 设置此药水是否延长持续时间. 这将导致此药水相比常规版本有约3/8倍的持续时间.
+     * <p>
+     * 原文:Set whether this potion has extended duration. This will cause the
      * potion to have roughly 8/3 more duration than a regular potion.
      *
-     * @param isExtended Whether the potion should have extended duration
+     * @param isExtended 是否延长持续时间
      */
     public void setHasExtendedDuration(boolean isExtended) {
         Validate.isTrue(type == null || !type.isInstant(), "Instant potions cannot be extended");
@@ -209,28 +239,34 @@ public class Potion {
     }
 
     /**
-     * Sets whether this potion is a splash potion. Splash potions can be
+     * 设置此药水是否为喷溅型药水. 喷溅型药水可作用于一定的范围.
+     * <p>
+     * 原文:Sets whether this potion is a splash potion. Splash potions can be
      * thrown for a radius effect.
      *
-     * @param isSplash Whether this is a splash potion
+     * @param isSplash 是否为喷溅型药水
      */
     public void setSplash(boolean isSplash) {
         splash = isSplash;
     }
 
     /**
-     * Sets the {@link PotionType} of this potion.
+     * 设置药水的种类.
+     * <p>
+     * 原文:Sets the {@link PotionType} of this potion.
      *
-     * @param type The new type of this potion
+     * @param type 药水的种类
      */
     public void setType(@NotNull PotionType type) {
         this.type = type;
     }
 
     /**
-     * Sets the level of this potion.
+     * 设置药水的级别.
+     * <p>
+     * 原文:Sets the level of this potion.
      *
-     * @param level The new level of this potion
+     * @param level 药水级别
      */
     public void setLevel(int level) {
         Validate.notNull(this.type, "No-effect potions don't have a level.");
@@ -239,11 +275,13 @@ public class Potion {
     }
 
     /**
-     * Converts this potion to a valid potion damage short, usable for potion
+     * 将此药水转化为合适的 damage 值, 对药水物品堆有用.
+     * <p>
+     * 原文:Converts this potion to a valid potion damage short, usable for potion
      * item stacks.
      *
-     * @return The damage value of this potion
-     * @deprecated Non-functional
+     * @return 药水的 damage 值
+     * @deprecated 无任何作用
      */
     @Deprecated
     public short toDamageValue() {
@@ -251,11 +289,13 @@ public class Potion {
     }
 
     /**
-     * Converts this potion to an {@link ItemStack} with the specified amount
+     * 将此药水转为一个指定堆叠数的物品堆.
+     * <p>
+     * 原文:Converts this potion to an {@link ItemStack} with the specified amount
      * and a correct damage value.
      *
-     * @param amount The amount of the ItemStack
-     * @return The created ItemStack
+     * @param amount 物品堆叠数
+     * @return 物品堆
      */
     @NotNull
     public ItemStack toItemStack(int amount) {
@@ -281,10 +321,12 @@ public class Potion {
     private static final int TIER_SHIFT = 5;
 
     /**
-     * Gets the potion from its damage value.
+     * 根据 damage 值获取药水.
+     * <p>
+     * 原文:Gets the potion from its damage value.
      *
-     * @param damage the damage value
-     * @return the produced potion
+     * @param damage damage 值
+     * @return 创建的药水
      */
     @NotNull
     public static Potion fromDamage(int damage) {
@@ -361,9 +403,11 @@ public class Potion {
     }
 
     /**
-     * Returns an instance of {@link PotionBrewer}.
+     * 返回一个{@link PotionBrewer}实例.
+     * <p>
+     * 原文:Returns an instance of {@link PotionBrewer}.
      *
-     * @return An instance of PotionBrewer
+     * @return 一个{@link PotionBrewer}实例
      */
     @NotNull
     public static PotionBrewer getBrewer() {
@@ -371,10 +415,12 @@ public class Potion {
     }
 
     /**
-     * Sets the current instance of {@link PotionBrewer}. Generally not to be
+     * 设置当前的 {@link PotionBrewer} 实例. 通常不由插件使用.
+     * <p>
+     * 原文:Sets the current instance of {@link PotionBrewer}. Generally not to be
      * used from within a plugin.
      *
-     * @param other The new PotionBrewer
+     * @param other 新 {@link PotionBrewer} 实例
      */
     public static void setPotionBrewer(@NotNull PotionBrewer other) {
         if (brewer != null)
@@ -383,10 +429,12 @@ public class Potion {
     }
 
     /**
-     * Gets the potion from its name id.
+     * 根据 name id 获取药水对象.
+     * <p>
+     * 原文:Gets the potion from its name id.
      *
      * @return the name id
-     * @deprecated Non-functional
+     * @deprecated 无任何作用
      */
     @Deprecated
     public int getNameId() {

@@ -1,7 +1,7 @@
 package org.bukkit.scoreboard;
 
 /**
- * @deprecated replaced by {@link Team.OptionStatus}
+ * @deprecated 被 {@link Team.OptionStatus} 取代
  */
 @Deprecated
 public enum NameTagVisibility {
@@ -21,13 +21,14 @@ public enum NameTagVisibility {
      */
     NEVER,
     /**
-     * 仅显示在玩家所在队伍玩家计分板中.
+     * 玩家名仅显示给同队队友.
      * <p>
+     * 原文:
      * Show the player's nametag only to his own team members.
      */
     HIDE_FOR_OTHER_TEAMS,
     /**
-     * 仅显示在其他队伍计分板中.
+     * 玩家名仅显示给其他队伍的成员.
      * <p>
      * 原文:
      * Show the player's nametag only to members of other teams.

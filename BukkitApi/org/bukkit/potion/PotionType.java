@@ -3,8 +3,7 @@ package org.bukkit.potion;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * This enum reflects and matches each potion state that can be obtained from
- * the Creative mode inventory
+ * 药水种类枚举, 反应并匹配创造模式物品栏中可获取的每种药水的状态.
  */
 public enum PotionType {
     UNCRAFTABLE(null, false, false),
@@ -50,23 +49,26 @@ public enum PotionType {
     }
 
     /**
-     * 检测
+     * 检测此类药水是否可升级.
+     * 意思是药水是否有二阶增强版本, 比如再生药水 II.
      * <p>
      * 原文:Checks if the potion type has an upgraded state.
      * This refers to whether or not the potion type can be Tier 2,
      * such as Potion of Fire Resistance II.
      *
-     * @return true if the potion type can be upgraded;
+     * @return 此类药水是否可升级
      */
     public boolean isUpgradeable() {
         return upgradeable;
     }
 
     /**
-     * Checks if the potion type has an extended state.
+     * 检测此类药水是否有时长延长状态 (指时长延长版药水).
+     * <p>
+     * 原文:Checks if the potion type has an extended state.
      * This refers to the extended duration potions
      *
-     * @return true if the potion type can be extended
+     * @return 是否有时长延长版
      */
     public boolean isExtendable() {
         return extendable;
@@ -79,7 +81,7 @@ public enum PotionType {
     /**
      * @param effectType 根据何种状态效果获取对应药水类型
      * @return 匹配的药水类型
-     * @deprecated Misleading
+     * @deprecated 有误导性
      */
     @Deprecated
     @Nullable

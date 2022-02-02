@@ -1,16 +1,16 @@
 package org.bukkit.scoreboard;
 
 /**
- * Controls the way in which an {@link Objective} is rendered client side.
+ * 控制{@link Objective 计分项}在客户端的渲染方式.
  */
 public enum RenderType {
 
     /**
-     * Display integer value.
+     * 显示为整数值.
      */
     INTEGER,
     /**
-     * Display number of hearts corresponding to value.
+     * 显示为对应数量的红心.
      */
     HEARTS;
 }
