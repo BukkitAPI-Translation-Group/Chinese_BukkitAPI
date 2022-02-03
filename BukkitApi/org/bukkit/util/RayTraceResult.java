@@ -9,6 +9,11 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
+ * 射线追踪的命中结果.
+ * <p>
+ * 只有命中位置保证始终存在. 其他属性的存在性取决于命中的对象和执行射线跟踪的上下文.
+ * <p>
+ * 原文:
  * The hit result of a ray trace.
  * <p>
  * Only the hit position is guaranteed to always be available. The availability
@@ -32,60 +37,78 @@ public class RayTraceResult {
     }
 
     /**
+     * 创建一个射线跟踪器结果.
+     * <p>
+     * 原文:
      * Creates a RayTraceResult.
      *
-     * @param hitPosition the hit position
+     * @param hitPosition 命中位置
      */
     public RayTraceResult(@NotNull Vector hitPosition) {
         this(hitPosition, null, null, null);
     }
 
     /**
+     * 创建一个射线跟踪器结果.
+     * <p>
+     * 原文:
      * Creates a RayTraceResult.
      *
-     * @param hitPosition the hit position
-     * @param hitBlockFace the hit block face
+     * @param hitPosition 命中位置
+     * @param hitBlockFace 命中方块的方向
      */
     public RayTraceResult(@NotNull Vector hitPosition, @Nullable BlockFace hitBlockFace) {
         this(hitPosition, null, hitBlockFace, null);
     }
 
     /**
+     * 创建一个射线跟踪器结果.
+     * <p>
+     * 原文:
      * Creates a RayTraceResult.
      *
-     * @param hitPosition the hit position
-     * @param hitBlock the hit block
-     * @param hitBlockFace the hit block face
+     * @param hitPosition 命中位置
+     * @param hitBlock 命中方块
+     * @param hitBlockFace 命中方块的方向
      */
     public RayTraceResult(@NotNull Vector hitPosition, @Nullable Block hitBlock, @Nullable BlockFace hitBlockFace) {
         this(hitPosition, hitBlock, hitBlockFace, null);
     }
 
     /**
+     * 创建一个射线跟踪器结果.
+     * <p>
+     * 原文:
      * Creates a RayTraceResult.
      *
-     * @param hitPosition the hit position
-     * @param hitEntity the hit entity
+     * @param hitPosition 命中位置
+     * @param hitEntity 命中实体
      */
     public RayTraceResult(@NotNull Vector hitPosition, @Nullable Entity hitEntity) {
         this(hitPosition, null, null, hitEntity);
     }
 
     /**
+     * 创建一个射线跟踪器结果.
+     * <p>
+     * 原文:
      * Creates a RayTraceResult.
      *
-     * @param hitPosition the hit position
-     * @param hitEntity the hit entity
-     * @param hitBlockFace the hit block face
+     * @param hitPosition 命中位置
+     * @param hitEntity 命中实体
+     * @param hitBlockFace 命中方块的方向
      */
     public RayTraceResult(@NotNull Vector hitPosition, @Nullable Entity hitEntity, @Nullable BlockFace hitBlockFace) {
         this(hitPosition, null, hitBlockFace, hitEntity);
     }
 
     /**
+     * 获取命中的精确位置.
+     * <p>
+     * 原文:
      * Gets the exact position of the hit.
      *
-     * @return a copy of the exact hit position
+     * @return 精确命中位置的副本
      */
     @NotNull
     public Vector getHitPosition() {
@@ -93,9 +116,12 @@ public class RayTraceResult {
     }
 
     /**
+     * 获取命中的方块.
+     * <p>
+     * 原文:
      * Gets the hit block.
      *
-     * @return the hit block, or <code>null</code> if not available
+     * @return 命中的方块或<code>null</code>(如果不存在)
      */
     @Nullable
     public Block getHitBlock() {
@@ -103,9 +129,12 @@ public class RayTraceResult {
     }
 
     /**
+     * 获取命中方块的方向.
+     * <p>
+     * 原文:
      * Gets the hit block face.
      *
-     * @return the hit block face, or <code>null</code> if not available
+     * @return 命中方块的方向或<code>null</code>(如果不存在)
      */
     @Nullable
     public BlockFace getHitBlockFace() {
@@ -113,9 +142,12 @@ public class RayTraceResult {
     }
 
     /**
+     * 获取命中的实体.
+     * <p>
+     * 原文:
      * Gets the hit entity.
      *
-     * @return the hit entity, or <code>null</code> if not available
+     * @return 命中的实体或<code>null</code>(如果不存在)
      */
     @Nullable
     public Entity getHitEntity() {
