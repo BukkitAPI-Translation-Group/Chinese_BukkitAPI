@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>
  * 只有命中位置保证始终存在. 其他属性的存在性取决于命中的对象和执行射线跟踪的上下文.
  * <p>
- * 原文: 
+ * 原文:
  * The hit result of a ray trace.
  * <p>
  * Only the hit position is guaranteed to always be available. The availability
@@ -39,7 +39,7 @@ public class RayTraceResult {
     /**
      * 创建一个射线跟踪器结果.
      * <p>
-     * 原文: 
+     * 原文:
      * Creates a RayTraceResult.
      *
      * @param hitPosition 命中位置
@@ -51,7 +51,7 @@ public class RayTraceResult {
     /**
      * 创建一个射线跟踪器结果.
      * <p>
-     * 原文: 
+     * 原文:
      * Creates a RayTraceResult.
      *
      * @param hitPosition 命中位置
@@ -64,7 +64,7 @@ public class RayTraceResult {
     /**
      * 创建一个射线跟踪器结果.
      * <p>
-     * 原文: 
+     * 原文:
      * Creates a RayTraceResult.
      *
      * @param hitPosition 命中位置
@@ -78,7 +78,7 @@ public class RayTraceResult {
     /**
      * 创建一个射线跟踪器结果.
      * <p>
-     * 原文: 
+     * 原文:
      * Creates a RayTraceResult.
      *
      * @param hitPosition 命中位置
@@ -91,7 +91,7 @@ public class RayTraceResult {
     /**
      * 创建一个射线跟踪器结果.
      * <p>
-     * 原文: 
+     * 原文:
      * Creates a RayTraceResult.
      *
      * @param hitPosition 命中位置
@@ -105,7 +105,7 @@ public class RayTraceResult {
     /**
      * 获取命中的精确位置.
      * <p>
-     * 原文: 
+     * 原文:
      * Gets the exact position of the hit.
      *
      * @return 精确命中位置的副本
@@ -116,9 +116,9 @@ public class RayTraceResult {
     }
 
     /**
-     * 获取命中的方块
+     * 获取命中的方块.
      * <p>
-     * 原文: 
+     * 原文:
      * Gets the hit block.
      *
      * @return 命中的方块或<code>null</code>(如果不存在)
@@ -129,9 +129,9 @@ public class RayTraceResult {
     }
 
     /**
-     * 获取命中方块的方向
+     * 获取命中方块的方向.
      * <p>
-     * 原文: 
+     * 原文:
      * Gets the hit block face.
      *
      * @return 命中方块的方向或<code>null</code>(如果不存在)
@@ -142,9 +142,9 @@ public class RayTraceResult {
     }
 
     /**
-     * 获取命中的实体
+     * 获取命中的实体.
      * <p>
-     * 原文: 
+     * 原文:
      * Gets the hit entity.
      *
      * @return 命中的实体或<code>null</code>(如果不存在)

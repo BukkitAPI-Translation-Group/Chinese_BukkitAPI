@@ -814,11 +814,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox, @Nullable Predicate<Entity> filter);
 
     /**
-     * 执行检查实体碰撞的射线跟踪. 
+     * 执行检查实体碰撞的射线跟踪.
      * <p>
      * 这可能不考虑当前已经卸载的区块中的实体. 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for entity collisions.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
@@ -828,18 +828,18 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param start 起始位置
      * @param direction 射线方向
      * @param maxDistance 最大距离
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
     @Nullable
     public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance);
 
     /**
-     * 执行检查实体碰撞的射线跟踪. 
+     * 执行检查实体碰撞的射线跟踪.
      * <p>
      * 这可能不考虑当前已经卸载的区块中的实体. 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for entity collisions.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
@@ -850,18 +850,18 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param direction 射线方向
      * @param maxDistance 最大距离
      * @param raySize 在进行碰撞检查之前, 实体边界框将按此值均匀地放大(或缩小)
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
     @Nullable
     public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, double raySize);
 
     /**
-     * 执行检查实体碰撞的射线跟踪. 
+     * 执行检查实体碰撞的射线跟踪.
      * <p>
      * 这可能不考虑当前已经卸载的区块中的实体. 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for entity collisions.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
@@ -872,18 +872,18 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param direction 射线方向
      * @param maxDistance 最大距离
      * @param filter 只考虑满足此过滤器的实体, 或者 <code>null</code> 考虑所有实体
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
     @Nullable
     public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, @Nullable Predicate<Entity> filter);
 
     /**
-     * 执行检查实体碰撞的射线跟踪. 
+     * 执行检查实体碰撞的射线跟踪.
      * <p>
      * 这可能不考虑当前已经卸载的区块中的实体. 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for entity collisions.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
@@ -895,7 +895,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param maxDistance 最大距离
      * @param raySize 在进行碰撞检查之前, 实体边界框将按此值均匀地放大(或缩小)
      * @param filter 只考虑满足此过滤器的实体, 或者 <code>null</code> 考虑所有实体
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      */
     @Nullable
     public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, double raySize, @Nullable Predicate<Entity> filter);
@@ -907,7 +907,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * 这可能会导致区块加载! 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for block collisions using the blocks'
      * precise collision shapes.
      * <p>
@@ -920,7 +920,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param start 起始位置
      * @param direction 射线方向
      * @param maxDistance 最大距离
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      * @see #rayTraceBlocks(Location, Vector, double, FluidCollisionMode, boolean)
      */
     @Nullable
@@ -933,7 +933,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * 这可能会导致区块加载! 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for block collisions using the blocks'
      * precise collision shapes.
      * <p>
@@ -946,7 +946,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param direction 射线方向
      * @param maxDistance 最大距离
      * @param fluidCollisionMode 流体碰撞模式
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      * @see #rayTraceBlocks(Location, Vector, double, FluidCollisionMode, boolean)
      */
     @Nullable
@@ -957,11 +957,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * 如果忽略与可穿过的方块的碰撞, 则无论流体碰撞模式如何, 也会忽略流体碰撞.
      * <p>
-     * 只有当光线从传送门方块内部开始时, 其才被认为是可穿过的. 除此之外, 即使忽略了与可穿过方块的碰撞, 也将考虑与传送门方块的碰撞.
+     * 只有当射线从传送门方块内部开始时, 其才被认为是可穿过的. 除此之外, 即使忽略了与可穿过方块的碰撞, 也将考虑与传送门方块的碰撞.
      * <p>
      * 这可能会导致区块加载! 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for block collisions using the blocks'
      * precise collision shapes.
      * <p>
@@ -980,23 +980,23 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param maxDistance 最大距离
      * @param fluidCollisionMode 流体碰撞模式
      * @param ignorePassableBlocks 是否忽略可穿过但可碰撞的方块(例如高草丛、告示牌、液体等)
-     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      */
     @Nullable
     public RayTraceResult rayTraceBlocks(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks);
 
     /**
-     * 执行射线跟踪, 检查块和实体碰撞.
+     * 执行射线跟踪, 检查方块碰撞和实体碰撞.
      * <p>
      * 方块碰撞使用方块的精确碰撞形状. <code>raySize</code> 参数仅用于实体的碰撞检查.
      * <p>
      * 如果忽略与可穿过方块的碰撞, 则无论流体碰撞模式如何, 也会忽略流体碰撞.
      * <p>
-     * 只有当光线从传送门方块内部开始时, 其才被认为是可穿过的. 除此之外, 即使忽略了与可穿过方块的碰撞, 也将考虑与传送门方块的碰撞.
+     * 只有当射线从传送门方块内部开始时, 其才被认为是可穿过的. 除此之外, 即使忽略了与可穿过方块的碰撞, 也将考虑与传送门方块的碰撞.
      * <p>
      * 这可能会导致区块加载! 一些实现可能会对最大距离施加人为限制.
      * <p>
-     * 原文: 
+     * 原文:
      * Performs a ray trace that checks for both block and entity collisions.
      * <p>
      * Block collisions use the blocks' precise collision shapes. The
@@ -1020,7 +1020,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param ignorePassableBlocks 是否忽略可穿过但可碰撞的方块(例如高草丛、告示牌、液体等)
      * @param raySize 在进行碰撞检查之前, 实体边界框将按此值均匀地放大(或缩小)
      * @param filter 只考虑满足此过滤器的实体, 或者 <code>null</code> 考虑所有实体
-     * @return 最近的方块或实体的射线跟踪命中结果, 如果没有命中, 则为<code>null</code> 
+     * @return 最近的方块或实体的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      */
     @Nullable
     public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter);
