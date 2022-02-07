@@ -30,14 +30,26 @@ public interface ItemFrame extends Hanging {
     public void setItem(@Nullable ItemStack item);
 
     /**
+     * 设置在此物品展示框中的物品.
+     * <p>
+     * 原文:
      * Set the item in this frame
      *
-     * @param item the new item
-     * @param playSound whether or not to play the item placement sound
+     * @param item 新的物品
+     * @param playSound 是否播放物品放置的声音
      */
     public void setItem(@Nullable ItemStack item, boolean playSound);
 
     /**
+     * 获取在此物品展示框被摧毁时物品掉落的几率.
+     * 
+     * <ul>
+     * <li>0.0F的几率将永远不会掉落
+     * <li>1.0F的几率将总是会掉落
+     * </ul>
+     * 
+     * <p>
+     * 原文:
      * Gets the chance of the item being dropped upon this frame's destruction.
      *
      * <ul>
@@ -45,11 +57,20 @@ public interface ItemFrame extends Hanging {
      * <li>A drop chance of 1.0F will always drop
      * </ul>
      *
-     * @return chance of the off hand item being dropped
+     * @return 物品掉落的几率
      */
     float getItemDropChance();
 
     /**
+     * 设置在此物品展示框被摧毁时物品掉落的几率.
+     * 
+     * <ul>
+     * <li>0.0F的几率将永远不会掉落
+     * <li>1.0F的几率将总是会掉落
+     * </ul>
+     * 
+     * <p>
+     * 原文:
      * Sets the chance of the off hand item being dropped upon this frame's
      * destruction.
      *
@@ -58,7 +79,7 @@ public interface ItemFrame extends Hanging {
      * <li>A drop chance of 1.0F will always drop
      * </ul>
      *
-     * @param chance the chance of off hand item being dropped
+     * @param chance 物品掉落的几率
      */
     void setItemDropChance(float chance);
 
@@ -83,38 +104,56 @@ public interface ItemFrame extends Hanging {
     public void setRotation(@NotNull Rotation rotation) throws IllegalArgumentException;
 
     /**
+     * 返回物品展示框是否可见.
+     * <p>
+     * 原文:
      * Returns whether the item frame is be visible or not.
      *
-     * @return whether the item frame is visible or not
+     * @return 物品展示框是否可见
      */
     boolean isVisible();
 
     /**
+     * 设置物品展示框是否可见.
+     * <p>
+     * 原文:
      * Sets whether the item frame should be visible or not.
      *
-     * @param visible whether the item frame is visible or not
+     * @param visible 物品展示框是否可见
      */
     void setVisible(boolean visible);
 
     /**
+     * 返回物品展示框是否是"固定"的.
+     * 
+     * 如果为true, 则无法破坏/移动物品展示框(例如, 由于破坏、交互、活塞或缺少支撑方块),
+     * 旋转物品或放置/移除物品.
+     * <p>
+     * 原文:
      * Returns whether the item frame is "fixed" or not.
      *
      * When true it's not possible to destroy/move the frame (e.g. by damage,
      * interaction, pistons, or missing supporting blocks), rotate the item or
      * place/remove items.
      *
-     * @return whether the item frame is fixed or not
+     * @return 物品展示框是否固定
      */
     boolean isFixed();
 
     /**
+     * 设置物品展示框是否应固定.
+     * 
+     * 当设置为true时, 不可能破坏/移动物品展示框(例如, 由于破坏、交互、活塞或缺少支撑方块),
+     * 旋转物品或放置/移除物品.
+     * <p>
+     * 原文:
      * Sets whether the item frame should be fixed or not.
      *
      * When set to true it's not possible to destroy/move the frame (e.g. by
      * damage, interaction, pistons, or missing supporting blocks), rotate the
      * item or place/remove items.
      *
-     * @param fixed whether the item frame is fixed or not
+     * @param fixed 物品展示框是否固定
      */
     void setFixed(boolean fixed);
 }
