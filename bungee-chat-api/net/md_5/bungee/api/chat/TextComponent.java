@@ -157,7 +157,7 @@ public final class TextComponent extends BaseComponent
         component.setText( builder.toString() );
         components.add( component );
 
-        return components.toArray( new BaseComponent[ components.size() ] );
+        return components.toArray( new BaseComponent[ 0 ] );
     }
 
     /**
@@ -230,6 +230,6 @@ public final class TextComponent extends BaseComponent
     @Override
     public String toString()
     {
-        return String.format( "TextComponent{text=%s, %s}", text, super.toString() );
+        return "TextComponent{text=" + text + ", " + super.toString() + '}';
     }
 }

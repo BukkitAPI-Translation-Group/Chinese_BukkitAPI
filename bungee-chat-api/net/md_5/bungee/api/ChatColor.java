@@ -71,7 +71,7 @@ public final class ChatColor
     /**
      * <span style="color:#3f40fd">蓝色: <span style="background:#3f40fd"> 蓝色 </span></span>
      */
-    public static final ChatColor BLUE = new ChatColor( '9', "blue", new Color( 0x05555FF ) );
+    public static final ChatColor BLUE = new ChatColor( '9', "blue", new Color( 0x5555FF ) );
     /**
      * <span style="color:#3ffe3f">绿色: <span style="background:#3ffe3f"> 绿色 </span></span>
      */
@@ -257,7 +257,7 @@ public final class ChatColor
 
     public static ChatColor of(Color color)
     {
-        return of( "#" + Integer.toHexString( color.getRGB() ).substring( 2 ) );
+        return of( "#" + String.format( "%08x", color.getRGB() ).substring( 2 ) );
     }
 
     public static ChatColor of(String string)
@@ -321,7 +321,7 @@ public final class ChatColor
     @Deprecated
     public static ChatColor[] values()
     {
-        return BY_CHAR.values().toArray( new ChatColor[ BY_CHAR.values().size() ] );
+        return BY_CHAR.values().toArray( new ChatColor[ 0 ] );
     }
 
     /**
