@@ -59,7 +59,7 @@ public interface Furnace extends Container {
     public void setCookTime(short cookTime);
 
     /**
-     * 设置烧炼总时间.
+     * 获取烧炼总时间.
      * 本时间表示烧炼物品所需的时间.
      * <p>
      * 原文:Get cook time total.
