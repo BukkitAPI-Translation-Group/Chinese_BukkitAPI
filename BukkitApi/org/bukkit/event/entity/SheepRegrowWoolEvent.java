@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a sheep regrows its wool
+ * 当羊身上的羊毛重新长出时触发本事件.
  */
 public class SheepRegrowWoolEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

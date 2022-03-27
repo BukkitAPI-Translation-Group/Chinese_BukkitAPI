@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Stores data for health-regain events
+ * 当实体恢复生命值时触发本事件.
  */
 public class EntityRegainHealthEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -21,18 +21,24 @@ public class EntityRegainHealthEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取实体本次恢复的生命值.
+     * <p>
+     * 原文:
      * Gets the amount of regained health
      *
-     * @return The amount of health regained
+     * @return 恢复的生命值
      */
     public double getAmount() {
         return amount;
     }
 
     /**
+     * 设置实体恢复的生命值.
+     * <p>
+     * 原文:
      * Sets the amount of regained health
      *
-     * @param amount the amount of health the entity will regain
+     * @param amount 实体将恢复的生命值
      */
     public void setAmount(double amount) {
         this.amount = amount;
@@ -49,10 +55,12 @@ public class EntityRegainHealthEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取实体恢复生命值的原因.
+     * <p>
+     * 原文:
      * Gets the reason for why the entity is regaining health
      *
-     * @return A RegainReason detailing the reason for the entity regaining
-     *     health
+     * @return 详细说明生命值恢复原因的 RegainReason 枚举
      */
     @NotNull
     public RegainReason getRegainReason() {
@@ -71,46 +79,44 @@ public class EntityRegainHealthEvent extends EntityEvent implements Cancellable 
     }
 
     /**
-     * An enum to specify the type of health regaining that is occurring
+     * 详细说明实体生命值恢复原因的枚举.
      */
     public enum RegainReason {
 
         /**
-         * When a player regains health from regenerating due to Peaceful mode
-         * (difficulty=0)
+         * 玩家因和平模式 (difficulty=0) 带来的再生效果恢复生命值.
          */
         REGEN,
         /**
-         * When a player regains health from regenerating due to their hunger
-         * being satisfied
+         * 玩家因饥饿度已满, 自然恢复生命值.
          */
         SATIATED,
         /**
-         * When a player regains health from eating consumables
+         * 玩家通过食用食物恢复生命值.
          */
         EATING,
         /**
-         * When an ender dragon regains health from an ender crystal
+         * 末影龙通过末影水晶恢复生命值.
          */
         ENDER_CRYSTAL,
         /**
-         * When a player is healed by a potion or spell
+         * 玩家被药水或魔法治愈.
          */
         MAGIC,
         /**
-         * When a player is healed over time by a potion or spell
+         * 玩家被药水或魔法随时间持续治疗.
          */
         MAGIC_REGEN,
         /**
-         * When a wither is filling its health during spawning
+         * 凋零生成时填补其生命值.
          */
         WITHER_SPAWN,
         /**
-         * When an entity is damaged by the Wither potion effect
+         * 实体因凋零效果受到伤害.
          */
         WITHER,
         /**
-         * Any other reason not covered by the reasons above
+         * 上述原因未能涵盖的任何其它原因.
          */
         CUSTOM
     }

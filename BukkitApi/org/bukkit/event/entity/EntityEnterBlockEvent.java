@@ -7,12 +7,12 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an {@link Entity} enters a block and is stored in that block.
+ * 当{@link Entity 实体}进入方块, 保存到那个方块时触发本事件.
  * <p>
- * This event is called for bees entering a bee hive.
+ * 蜜蜂进入蜂巢时会触发本事件.
  * <br>
- * It is not called when a silverfish "enters" a stone block. For that listen to
- * the {@link EntityChangeBlockEvent}.
+ * 蠹虫“进入”石头方块则不会触发本事件. 对于这种情况,
+ * 请监听 {@link EntityChangeBlockEvent}.
  */
 public class EntityEnterBlockEvent extends EntityEvent implements Cancellable {
 
@@ -27,9 +27,12 @@ public class EntityEnterBlockEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取实体将进入的方块.
+     * <p>
+     * 原文:
      * Get the block the entity will enter.
      *
-     * @return the block
+     * @return 方块
      */
     @NotNull
     public Block getBlock() {

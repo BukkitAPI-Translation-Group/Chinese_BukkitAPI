@@ -10,11 +10,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Triggered when a entity is created in the world by a player "placing" an item
- * on a block.
+ * 当一个实体因玩家在一个方块上"放置"一物品而创建时触发本事件.
  * <br>
- * Note that this event is currently only fired for four specific placements:
- * armor stands, boats, minecarts, and end crystals.
+ * 请注意此事件目前只因这四个指定的放置场景而触发:
+ * 盔甲架, 船只, 矿车和末影水晶.
  */
 public class EntityPlaceEvent extends EntityEvent implements Cancellable {
 
@@ -32,9 +31,12 @@ public class EntityPlaceEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回放置此实体的玩家.
+     * <p>
+     * 原文:
      * Returns the player placing the entity
      *
-     * @return the player placing the entity
+     * @return 放置此实体的玩家
      */
     @Nullable
     public Player getPlayer() {
@@ -42,9 +44,12 @@ public class EntityPlaceEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回实体被放置在的方块.
+     * <p>
+     * 原文:
      * Returns the block that the entity was placed on
      *
-     * @return the block that the entity was placed on
+     * @return 实体被放置在哪个方块上
      */
     @NotNull
     public Block getBlock() {
@@ -52,9 +57,12 @@ public class EntityPlaceEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回实体被放置在的方块的朝向.
+     * <p>
+     * 原文:
      * Returns the face of the block that the entity was placed on
      *
-     * @return the face of the block that the entity was placed on
+     * @return 实体被放置在的方块的朝向
      */
     @NotNull
     public BlockFace getBlockFace() {

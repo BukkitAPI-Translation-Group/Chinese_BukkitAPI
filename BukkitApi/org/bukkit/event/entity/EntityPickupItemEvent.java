@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Thrown when a entity picks an item up from the ground
+ * 当实体捡起地面上的掉落物时触发本事件.
  */
 public class EntityPickupItemEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -28,9 +28,12 @@ public class EntityPickupItemEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取实体捡起的掉落物.
+     * <p>
+     * 原文:
      * Gets the Item picked up by the entity.
      *
-     * @return Item
+     * @return 掉落物
      */
     @NotNull
     public Item getItem() {
@@ -38,9 +41,12 @@ public class EntityPickupItemEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取掉落物剩余未被拾起的堆叠数量, 如果还有的话.
+     * <p>
+     * 原文:
      * Gets the amount remaining on the ground, if any
      *
-     * @return amount remaining on the ground
+     * @return 掉落物剩余未被拾起的堆叠数量
      */
     public int getRemaining() {
         return remaining;

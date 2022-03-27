@@ -7,11 +7,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called when a {@link org.bukkit.entity.Item} is removed from
- * the world because it has existed for 5 minutes.
+ * 当{@link org.bukkit.entity.Item 掉落物}存在时间超过5分钟后被移除时触发本事件
+ * (注:掉落物存在时间因服务器配置和安装的插件而异).
  * <p>
- * Cancelling the event results in the item being allowed to exist for 5 more
- * minutes. This behavior is not guaranteed and may change in future versions.
+ * 取消本事件将使掉落物可继续存留5分钟. 服务器不对这一表现(规律)作担保, 未来的版本或存变数.
  */
 public class ItemDespawnEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -40,9 +39,12 @@ public class ItemDespawnEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取即将消失的掉落物.
+     * <p>
+     * 原文:
      * Gets the location at which the item is despawning.
      *
-     * @return The location at which the item is despawning
+     * @return 将消失的掉落物的位置
      */
     @NotNull
     public Location getLocation() {

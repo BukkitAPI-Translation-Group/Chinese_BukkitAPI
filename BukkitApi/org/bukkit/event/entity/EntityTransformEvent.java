@@ -8,7 +8,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity is about to be replaced by another entity.
+ * 当实体将转化/蜕变为其它实体时触发本事件.
  */
 public class EntityTransformEvent extends EntityEvent implements Cancellable {
 
@@ -26,11 +26,16 @@ public class EntityTransformEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取原实体将转变成的实体.
+     *
+     * 将返回实体转化列表中的第一个实体.
+     * <p>
+     * 原文:
      * Gets the entity that the original entity was transformed to.
      *
      * This returns the first entity in the transformed entity list.
      *
-     * @return The transformed entity.
+     * @return 转变成的实体
      * @see #getTransformedEntities()
      */
     @NotNull
@@ -39,9 +44,12 @@ public class EntityTransformEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取原实体将转变成的实体.
+     * <p>
+     * 原文:
      * Gets the entities that the original entity was transformed to.
      *
-     * @return The transformed entities.
+     * @return 实体转化列表
      */
     @NotNull
     public List<Entity> getTransformedEntities() {
@@ -49,9 +57,12 @@ public class EntityTransformEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取发生此次转化的原因.
+     * <p>
+     * 原文:
      * Gets the reason for the conversion that has occurred.
      *
-     * @return The reason for conversion that has occurred.
+     * @return 发生此次转化的原因
      */
     @NotNull
     public TransformReason getTransformReason() {
@@ -81,39 +92,39 @@ public class EntityTransformEvent extends EntityEvent implements Cancellable {
 
     public enum TransformReason {
         /**
-         * When a zombie gets cured and a villager is spawned.
+         * 僵尸受到疗愈, 变为村民.
          */
         CURED,
         /**
-         * When an entity is shaking in Powder Snow and a new entity spawns.
+         * 实体在细雪中发抖, 转化为新实体.
          */
         FROZEN,
         /**
-         * When a villager gets infected and a zombie villager spawns.
+         * 村民受到感染, 变为僵尸.
          */
         INFECTION,
         /**
-         * When an entity drowns in water and a new entity spawns.
+         * 实体在水中溺亡, 转化为新实体.
          */
         DROWNED,
         /**
-         * When a mooshroom (or MUSHROOM_COW) is sheared and a cow spawns.
+         * 哞菇的毛被修剪, 变成普通牛.
          */
         SHEARED,
         /**
-         * When lightning strikes a entity.
+         * 雷击中了某个实体.
          */
         LIGHTNING,
         /**
-         * When a slime splits into multiple smaller slimes.
+         * 史莱姆分裂成多个小史莱姆.
          */
         SPLIT,
         /**
-         * When a piglin converts to a zombified piglin.
+         * 猪灵转化为僵尸猪灵.
          */
         PIGLIN_ZOMBIFIED,
         /**
-         * When reason is unknown.
+         * 未知原因.
          */
         UNKNOWN
     }

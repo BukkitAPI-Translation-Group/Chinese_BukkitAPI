@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Sent when an entity's swimming status is toggled.
+ * 当实体游泳状态改变时触发本事件.
  */
 public class EntityToggleSwimEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

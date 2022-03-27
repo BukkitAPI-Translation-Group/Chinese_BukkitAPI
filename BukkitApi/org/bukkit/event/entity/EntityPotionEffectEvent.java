@@ -10,9 +10,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when a potion effect is modified on an entity.
+ * 当实体上的药水效果发生改变时触发本事件.
  * <p>
- * If the event is cancelled, no change will be made on the entity.
+ * 如果此事件被取消, 将不会对实体做出改变.
  */
 public class EntityPotionEffectEvent extends EntityEvent implements Cancellable {
 
@@ -35,10 +35,12 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取将被移除的旧药水效果.
+     * <p>
+     * 原文:
      * Gets the old potion effect of the changed type, which will be removed.
      *
-     * @return The old potion effect or null if the entity did not have the
-     * changed effect type.
+     * @return 旧药水效果, 如果效果类型没变则为 null (也就是新增的效果)
      */
     @Nullable
     public PotionEffect getOldEffect() {
@@ -46,10 +48,12 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取将被应用的新药水效果.
+     * <p>
+     * 原文:
      * Gets new potion effect of the changed type to be applied.
      *
-     * @return The new potion effect or null if the effect of the changed type
-     * will be removed.
+     * @return 新药水效果, 如果药水效果将被移除则为 null
      */
     @Nullable
     public PotionEffect getNewEffect() {
@@ -57,9 +61,12 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取药水效果改变的原因.
+     * <p>
+     * 原文:
      * Gets the cause why the effect has changed.
      *
-     * @return A Cause value why the effect has changed.
+     * @return 药水效果改变的原因
      */
     @NotNull
     public Cause getCause() {
@@ -67,9 +74,12 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取对此药水效果采取的动作.
+     * <p>
+     * 原文:
      * Gets the action which will be performed on the potion effect type.
      *
-     * @return An action to be performed on the potion effect type.
+     * @return 对此药水效果采取的动作
      */
     @NotNull
     public Action getAction() {
@@ -77,9 +87,12 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 获取发生调整的药水效果类型.
+     * <p>
+     * 原文:
      * Gets the modified potion effect type.
      *
-     * @return The effect type which will be modified on the entity.
+     * @return 发生调整的药水效果类型
      */
     @NotNull
     public PotionEffectType getModifiedType() {
@@ -87,20 +100,26 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
+     * 返回新效果是否将覆盖旧效果 (仅适用于 CHANGED 动作).
+     * <p>
+     * 原文:
      * Returns if the new potion effect will override the old potion effect
      * (Only applicable for the CHANGED Action).
      *
-     * @return If the new effect will override the old one.
+     * @return 新效果是否将覆盖旧效果
      */
     public boolean isOverride() {
         return override;
     }
 
     /**
+     * 设置新效果是否将覆盖旧效果 (仅适用于 CHANGED 动作).
+     * <p>
+     * 原文:
      * Sets if the new potion effect will override the old potion effect (Only
      * applicable for the CHANGED action).
      *
-     * @param override If the new effect will override the old one.
+     * @param override 新效果是否将覆盖旧效果
      */
     public void setOverride(boolean override) {
         this.override = override;
@@ -128,133 +147,128 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
     }
 
     /**
-     * An enum to specify the action to be performed.
+     * 指定对药水效果采取的动作的枚举.
      */
     public enum Action {
 
         /**
-         * When the potion effect is added because the entity didn't have it's
-         * type.
+         * 因实体尚无对应类型的药水效果时而添加药水效果.
          */
         ADDED,
         /**
-         * When the entity already had the potion effect type, but the effect is
-         * changed.
+         * 实体已有对应类型的药水效果, 但效果属性发生改变.
          */
         CHANGED,
         /**
-         * When the effect is removed due to all effects being removed.
+         * 效果因所有状态效果被清除时而被移除.
          */
         CLEARED,
         /**
-         * When the potion effect type is completely removed.
+         * 对应类型的药水效果被完全移除.
          */
         REMOVED
     }
 
     /**
-     * An enum to specify the cause why an effect was changed.
+     * 指定药水效果改变原因的枚举.
      */
     public enum Cause {
 
         /**
-         * When the entity stands inside an area effect cloud.
+         * 当实体站在区域效果云里面时.
          */
         AREA_EFFECT_CLOUD,
         /**
-         * When the entity is hit by an spectral or tipped arrow.
+         * 当实体被光灵箭或药箭击中时.
          */
         ARROW,
         /**
-         * When the entity is inflicted with a potion effect due to an entity
-         * attack (e.g. a cave spider or a shulker bullet).
+         * 当实体由于其它实体的攻击(例如:洞穴蜘蛛或潜影贝导弹)而遭受药水效果的影响时.
          */
         ATTACK,
         /**
-         * When an entity gets the effect from an axolotl.
+         * 当实体获得美西螈给予的效果时.
          */
         AXOLOTL,
         /**
-         * When beacon effects get applied due to the entity being nearby.
+         * 当信标的增益效果应用到附近的实体时.
          */
         BEACON,
         /**
-         * When a potion effect is changed due to the /effect command.
+         * 当使用 /effect 命令改变药水效果时.
          */
         COMMAND,
         /**
-         * When the entity gets the effect from a conduit.
+         * 当实体获得潮涌核心赋予的效果时.
          */
         CONDUIT,
         /**
-         * When a conversion from a villager zombie to a villager is started or
-         * finished.
+         * 当僵尸村民到村民的转化开始或完成时.
          */
         CONVERSION,
         /**
-         * When all effects are removed due to death (Note: This is called on
-         * respawn, so it's player only!)
+         * 当所有效果因死亡而被移除时 (注:重生时调用此事件, 因此这种情况仅针对于玩家!).
          */
         DEATH,
         /**
-         * When the entity gets the effect from a dolphin.
+         * 当实体受到海豚给予的效果时.
          */
         DOLPHIN,
         /**
-         * When the effect was removed due to expiration.
+         * 当效果因过期而被移除时.
          */
         EXPIRATION,
         /**
-         * When an effect is inflicted due to food (e.g. when a player eats or a
-         * cookie is given to a parrot).
+         * 当实体因食用食物而受到药水效果影响时
+         * (例如:当玩家吃下部分食物或将曲奇喂给鹦鹉时).
          */
         FOOD,
         /**
-         * When an illusion illager makes himself disappear.
+         * 当幻术师使自己隐身时.
          */
         ILLUSION,
         /**
-         * When all effects are removed due to a bucket of milk.
+         * 当所有效果因喝下一桶牛奶而被清除时.
          */
         MILK,
         /**
-         * When a player gets bad omen after killing a patrol captain.
+         * 当玩家击杀灾厄巡逻队队长, 获得不详之兆效果时.
          */
         PATROL_CAPTAIN,
         /**
-         * When a potion effect is modified through the plugin methods.
+         * 当药水效果被插件修改时.
          */
         PLUGIN,
         /**
-         * When the entity drinks a potion.
+         * 当实体喝下药水时.
          */
         POTION_DRINK,
         /**
-         * When the entity is inflicted with an effect due to a splash potion.
+         * 当实体因喷溅药水受到药水效果影响时.
          */
         POTION_SPLASH,
         /**
-         * When a spider gets effects when spawning on hard difficulty.
+         * 当蜘蛛在困难模式下生成时获得效果时.
          */
         SPIDER_SPAWN,
         /**
-         * When the entity gets effects from a totem item saving it's life.
+         * 当实体被不死图腾挽救, 获得增益效果时.
          */
         TOTEM,
         /**
-         * When the entity gets water breathing by wearing a turtle helmet.
+         * 当实体戴上海龟壳下水, 获得水下呼吸效果时.
          */
         TURTLE_HELMET,
         /**
-         * When the Cause is missing.
+         * 当原因缺失时.
          */
         UNKNOWN,
         /**
-         * When a villager gets regeneration after a trade.
+         * 当村民交易后, 恢复生命值时.
          */
         VILLAGER_TRADE,
         /**
-         * When an entity comes in contact with a wither rose.
+         * 当实体触碰凋零玫瑰时.
          */
         WITHER_ROSE
     }

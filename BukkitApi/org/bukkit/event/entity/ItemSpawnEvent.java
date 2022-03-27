@@ -5,7 +5,7 @@ import org.bukkit.entity.Item;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an item is spawned into a world
+ * 当掉落物生成于某个世界时触发本事件.
  */
 public class ItemSpawnEvent extends EntitySpawnEvent {
 

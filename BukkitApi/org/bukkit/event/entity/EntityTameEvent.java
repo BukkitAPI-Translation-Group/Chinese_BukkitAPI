@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Thrown when a LivingEntity is tamed
+ * 当生物实体被驯服时触发本事件.
  */
 public class EntityTameEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -36,9 +36,12 @@ public class EntityTameEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取驯服此实体的玩家.
+     * <p>
+     * 原文:
      * Gets the owning AnimalTamer
      *
-     * @return the owning AnimalTamer
+     * @return 驯服此实体的玩家
      */
     @NotNull
     public AnimalTamer getOwner() {

@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity changes its pose.
+ * 当实体改变它的姿态时触发本事件.
  *
  * @see Entity#getPose()
  */
@@ -22,9 +22,12 @@ public class EntityPoseChangeEvent extends EntityEvent {
     }
 
     /**
+     * 获取实体的新姿态.
+     * <p>
+     * 原文:
      * Gets the entity's new pose.
      *
-     * @return the new pose
+     * @return 新姿态
      */
     @NotNull
     public Pose getPose() {
