@@ -50,9 +50,12 @@ public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
     }
 
     /**
+     * 获取发生此次雷击的原因.
+     * <p>
+     * 原文:
      * Gets the cause of this lightning strike.
      *
-     * @return strike cause
+     * @return 雷击发生原因
      */
     @NotNull
     public Cause getCause() {
@@ -72,31 +75,31 @@ public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
 
     public enum Cause {
         /**
-         * Triggered by the /summon command.
+         * 由"/summon"命令触发.
          */
         COMMAND,
         /**
-         * Triggered by a Plugin.
+         * 由插件触发.
          */
         CUSTOM,
         /**
-         * Triggered by a Spawner.
+         * 由刷怪笼触发.
          */
         SPAWNER,
         /**
-         * Triggered by an enchanted trident.
+         * 由附魔的三叉戟触发.
          */
         TRIDENT,
         /**
-         * Triggered by a skeleton horse trap.
+         * 由骷髅马陷阱触发.
          */
         TRAP,
         /**
-         * Triggered by weather.
+         * 在雷暴天气中产生.
          */
         WEATHER,
         /**
-         * Unknown trigger.
+         * 未知触发原因.
          */
         UNKNOWN;
     }

@@ -4,12 +4,12 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called when either the server startup or reload has completed.
+ * 当服务器启动/重载完成时调用.
  */
 public class ServerLoadEvent extends ServerEvent {
 
     /**
-     * Represents the context in which the enclosing event has been completed.
+     * 代表事件完成时, 服务器成功加载的方式.
      */
     public enum LoadType {
         STARTUP, RELOAD;
@@ -19,18 +19,24 @@ public class ServerLoadEvent extends ServerEvent {
     private final LoadType type;
 
     /**
+     * 以指定加载类型创建一个 {@code ServerLoadEvent}.
+     * <p>
+     * 原文:
      * Creates a {@code ServerLoadEvent} with a given loading type.
      *
-     * @param type the context in which the server was loaded
+     * @param type 服务器加载类型
      */
     public ServerLoadEvent(@NotNull LoadType type) {
         this.type = type;
     }
 
     /**
+     * 获取服务器是以何种形式完成加载的.
+     * <p>
+     * 原文:
      * Gets the context in which the server was loaded.
      *
-     * @return the context in which the server was loaded
+     * @return 服务器加载类型
      */
     @NotNull
     public LoadType getType() {

@@ -7,9 +7,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when entities are loaded.
+ * 当实体将被加载时调用.
  *
- * The provided chunk may or may not be loaded.
+ * 事件提供的区块可能尚未加载.
  */
 public class EntitiesLoadEvent extends ChunkEvent {
 
@@ -22,9 +22,12 @@ public class EntitiesLoadEvent extends ChunkEvent {
     }
 
     /**
+     * 获取被加载的实体.
+     * <p>
+     * 原文:
      * Get the entities which are being loaded.
      *
-     * @return unmodifiable list of loaded entities.
+     * @return 被加载的实体的不可变列表
      */
     @NotNull
     public List<Entity> getEntities() {

@@ -6,9 +6,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when the time skips in a world.
+ * 当世界内的世界发生快进时调用.
  * <p>
- * If the event is cancelled the time will not change.
+ * 如果本事件被取消, 时间将不会改变.
  */
 public class TimeSkipEvent extends WorldEvent implements Cancellable {
 
@@ -25,9 +25,12 @@ public class TimeSkipEvent extends WorldEvent implements Cancellable {
     }
 
     /**
+     * 获取发生时间快进的原因.
+     * <p>
+     * 原文:
      * Gets the reason why the time has skipped.
      *
-     * @return a SkipReason value detailing why the time has skipped
+     * @return 时间快进的原因
      */
     @NotNull
     public SkipReason getSkipReason() {
@@ -35,18 +38,23 @@ public class TimeSkipEvent extends WorldEvent implements Cancellable {
     }
 
     /**
+     * 获取快进了多少时间.
+     * <p>
+     * 原文:
      * Gets the amount of time that was skipped.
      *
-     * @return Amount of time skipped
+     * @return 时间快进了多久
      */
     public long getSkipAmount() {
         return skipAmount;
     }
 
     /**
-     * Sets the amount of time to skip.
+     * 设置快进的时间.
+     * <p>
+     * 原文:Sets the amount of time to skip.
      *
-     * @param skipAmount Amount of time to skip
+     * @param skipAmount 快进的时间
      */
     public void setSkipAmount(long skipAmount) {
         this.skipAmount = skipAmount;
@@ -74,21 +82,20 @@ public class TimeSkipEvent extends WorldEvent implements Cancellable {
     }
 
     /**
-     * An enum specifying the reason the time skipped.
+     * 时间快进原因枚举.
      */
     public enum SkipReason {
 
         /**
-         * When time is changed using the vanilla /time command.
+         * 因使用"/time"命令.
          */
         COMMAND,
         /**
-         * When time is changed by a plugin.
+         * 因插件调整了时间.
          */
         CUSTOM,
         /**
-         * When time is changed by all players sleeping in their beds and the
-         * night skips.
+         * 世界内的所有玩家在床上睡觉, 度过夜晚.
          */
         NIGHT_SKIP
     }

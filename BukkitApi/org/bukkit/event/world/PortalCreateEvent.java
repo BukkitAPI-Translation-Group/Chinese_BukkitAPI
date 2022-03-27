@@ -33,12 +33,12 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
     }
 
     /**
-     * 获取与创建的传送门所相关连的所有区块的数组列表.
+     * 获取与创建的传送门相关联的所有组成方块的数组列表.
      * <p>
      * 原文:
      * Gets an array list of all the blocks associated with the created portal
      *
-     * @return 与创建的门户所相关联的所有方块的数组列表
+     * @return 与创建的门相关联的所有方块的数组列表
      */
     @NotNull
     public List<BlockState> getBlocks() {
@@ -46,9 +46,12 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
     }
 
     /**
+     * 返回导致此传送门创建的实体 (若存在).
+     * <p>
+     * 原文:
      * Returns the Entity that triggered this portal creation (if available)
      *
-     * @return Entity involved in this event
+     * @return 与此事件有关的实体
      */
     @Nullable
     public Entity getEntity() {
@@ -102,8 +105,7 @@ public class PortalCreateEvent extends WorldEvent implements Cancellable {
          */
         NETHER_PAIR,
         /**
-         * When the target end platform is created as a result of a player
-         * entering an end portal.
+         * 玩家进入末地传送门, 生成落脚平台时.
          */
         END_PLATFORM
     }

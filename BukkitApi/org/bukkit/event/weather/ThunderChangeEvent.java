@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 世界打雷事件
+ * 雷暴天气切换事件.
  */
 public class ThunderChangeEvent extends WeatherEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -29,12 +29,12 @@ public class ThunderChangeEvent extends WeatherEvent implements Cancellable {
     }
 
     /**
-     * 获取世界是否正在打雷.
+     * 获取世界是否正切换至雷暴天气.
      * <p>
      * 原文:
      * Gets the state of thunder that the world is being set to
      *
-     * @return true 世界正在打雷, false 反之
+     * @return true 代表世界将切换至雷暴天气, false 反之
      */
     public boolean toThunderState() {
         return to;
