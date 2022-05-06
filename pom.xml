@@ -141,11 +141,20 @@
                     <doctitle>${project.name} ${project.version} API 中文文档</doctitle>
                     <windowtitle>${project.name} ${project.version} API 中文文档</windowtitle>
                     <splitindex>true</splitindex>
-                    <links>
-                        <link>https://guava.dev/releases/31.1-jre/api/docs/</link>
-                        <link>https://javadoc.io/doc/org.yaml/snakeyaml/1.30/</link>
-                        <link>https://javadoc.io/doc/org.jetbrains/annotations-java5/23.0.0/</link>
-                    </links>
+                    <offlineLinks>
+                        <offlineLink>
+                            <url>https://guava.dev/releases/31.1-jre/api/docs/</url>
+                            <location>${project.basedir}/javadoc/guava</location>
+                        </offlineLink>
+                        <offlineLink>
+                            <url>https://javadoc.io/doc/org.yaml/snakeyaml/1.30/</url>
+                            <location>${project.basedir}/javadoc/snakeyaml</location>
+                        </offlineLink>
+                        <offlineLink>
+                            <url>https://javadoc.io/doc/org.jetbrains/annotations/23.0.0/</url>
+                            <location>${project.basedir}/javadoc/annotations</location>
+                        </offlineLink>
+                    </offlineLinks>
                     <quiet>true</quiet>
                 </configuration>
             </plugin>
