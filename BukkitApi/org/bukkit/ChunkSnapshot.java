@@ -45,7 +45,7 @@ public interface ChunkSnapshot {
      * 原文:Get block type for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-255
+     * @param y [世界最低高度, 世界最高高度)
      * @param z 0-15
      * @return 方块物品类型
      */
@@ -56,7 +56,7 @@ public interface ChunkSnapshot {
      * Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-255
+     * @param y [世界最低高度, 世界最高高度)
      * @param z 0-15
      * @return block material type
      */
@@ -69,7 +69,7 @@ public interface ChunkSnapshot {
      * Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-255
+     * @param y [世界最低高度, 世界最高高度)
      * @param z 0-15
      * @return 0-15
      * @deprecated 不安全的参数
@@ -83,7 +83,7 @@ public interface ChunkSnapshot {
      * Get sky light level for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
-     * @param y 0-255
+     * @param y [世界最低高度, 世界最高高度)
      * @param z 0-15
      * @return 0-15
      */
@@ -96,7 +96,7 @@ public interface ChunkSnapshot {
      * chunk
      *
      * @param x 0-15
-     * @param y 0-255
+     * @param y [世界最低高度, 世界最高高度)
      * @param z 0-15
      * @return 0-15
      */
@@ -131,7 +131,7 @@ public interface ChunkSnapshot {
      * Get biome at given coordinates
      *
      * @param x X-coordinate (0-15)
-     * @param y Y-coordinate (0-255)
+     * @param y Y-coordinate [世界最低高度, 世界最高高度)
      * @param z Z-coordinate (0-15)
      * @return Biome at given coordinate
      */
@@ -175,7 +175,7 @@ public interface ChunkSnapshot {
      * 原文：
      * Test if section is empty
      *
-     * @param sy -区块的Y坐标（方块Y坐标整除16, 0-255）
+     * @param sy -区块的Y坐标, 为方块Y坐标整除16, 区间:[世界最低高度, 世界最高高度)
      * @return 如果为空则返回true，否则返回false
      */
     boolean isSectionEmpty(int sy);

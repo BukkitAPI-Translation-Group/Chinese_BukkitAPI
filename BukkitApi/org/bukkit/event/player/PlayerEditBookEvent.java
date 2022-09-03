@@ -1,6 +1,6 @@
 package org.bukkit.event.player;
 
-import org.apache.commons.lang.Validate;
+import com.google.common.base.Preconditions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -23,9 +23,9 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
     public PlayerEditBookEvent(@NotNull Player who, int slot, @NotNull BookMeta previousBookMeta, @NotNull BookMeta newBookMeta, boolean isSigning) {
         super(who);
 
-        Validate.isTrue(slot >= -1 && slot <= 8, "Slot must be in range (-1)-8 inclusive");
-        Validate.notNull(previousBookMeta, "Previous book meta must not be null");
-        Validate.notNull(newBookMeta, "New book meta must not be null");
+        Preconditions.checkArgument(slot >= -1 && slot <= 8, "Slot must be in range (-1)-8 inclusive");
+        Preconditions.checkArgument(previousBookMeta != null, "Previous book meta must not be null");
+        Preconditions.checkArgument(newBookMeta != null, "New book meta must not be null");
 
         Bukkit.getItemFactory().equals(previousBookMeta, newBookMeta);
 
@@ -98,7 +98,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
      * @throws IllegalArgumentException 当构造的书本元数据不为空值时抛出异常
      */
     public void setNewBookMeta(@NotNull BookMeta newBookMeta) throws IllegalArgumentException {
-        Validate.notNull(newBookMeta, "New book meta must not be null");
+        Preconditions.checkArgument(newBookMeta != null, "New book meta must not be null");
         Bukkit.getItemFactory().equals(newBookMeta, null);
         this.newBookMeta = newBookMeta.clone();
     }

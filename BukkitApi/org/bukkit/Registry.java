@@ -12,8 +12,11 @@ import org.bukkit.block.Biome;
 import org.bukkit.boss.KeyedBossBar;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Frog;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.memory.MemoryKey;
+import org.bukkit.generator.structure.Structure;
+import org.bukkit.generator.structure.StructureType;
 import org.bukkit.loot.LootTables;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -128,6 +131,18 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      */
     Registry<Statistic> STATISTIC = new SimpleRegistry<>(Statistic.class);
     /**
+     * Server structures.
+     *
+     * @see Structure
+     */
+    Registry<Structure> STRUCTURE = Bukkit.getRegistry(Structure.class);
+    /**
+     * Server structure types.
+     *
+     * @see StructureType
+     */
+    Registry<StructureType> STRUCTURE_TYPE = Bukkit.getRegistry(StructureType.class);
+    /**
      * Sound keys.
      *
      * @see Sound
@@ -170,6 +185,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      * @see Fluid
      */
     Registry<Fluid> FLUID = new SimpleRegistry<>(Fluid.class);
+    /**
+     * Frog variants.
+     *
+     * @see Frog.Variant
+     */
+    Registry<Frog.Variant> FROG_VARIANT = new SimpleRegistry<>(Frog.Variant.class);
     /**
      * Game events.
      *

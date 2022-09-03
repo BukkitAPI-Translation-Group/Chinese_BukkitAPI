@@ -2,7 +2,12 @@ package org.bukkit.event;
 
 /**
  * 代表一个事件的优先级.
- * @see EventHandler
+ * <p>
+ * Listeners with lower priority are called first
+ * will listeners with higher priority are called last.
+ * <p>
+ * Listeners are called in following order:
+ * {@link #LOWEST} -> {@link #LOW} -> {@link #NORMAL} -> {@link #HIGH} -> {@link #HIGHEST} -> {@link #MONITOR}
  */
 public enum EventPriority {
 

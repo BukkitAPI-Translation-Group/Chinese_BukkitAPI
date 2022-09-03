@@ -29,7 +29,7 @@ public class BrewEvent extends BlockEvent implements Cancellable {
     // TODO:新增一行未翻译
     /**
      * 获取此事件中的酿造台的物品栏.
-     *
+     * <b>注意:在酿造过程完成后, 酿造台物品栏内依然会
      * <p>
      * 原文:Gets the contents of the Brewing Stand.
      *

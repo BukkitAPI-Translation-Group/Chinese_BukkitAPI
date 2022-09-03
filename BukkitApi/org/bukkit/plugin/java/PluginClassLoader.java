@@ -1,5 +1,6 @@
 package org.bukkit.plugin.java;
 
+import com.google.common.base.Preconditions;
 import com.google.common.io.ByteStreams;
 import java.io.File;
 import java.io.IOException;
@@ -19,7 +20,6 @@ import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 import java.util.jar.Manifest;
 import java.util.logging.Level;
-import org.apache.commons.lang.Validate;
 import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.SimplePluginManager;
@@ -50,7 +50,7 @@ final class PluginClassLoader extends URLClassLoader {
 
     PluginClassLoader(@NotNull final JavaPluginLoader loader, @Nullable final ClassLoader parent, @NotNull final PluginDescriptionFile description, @NotNull final File dataFolder, @NotNull final File file, @Nullable ClassLoader libraryLoader) throws IOException, InvalidPluginException, MalformedURLException {
         super(new URL[] {file.toURI().toURL()}, parent);
-        Validate.notNull(loader, "Loader cannot be null");
+        Preconditions.checkArgument(loader != null, "Loader cannot be null");
 
         this.loader = loader;
         this.description = description;
@@ -110,6 +110,13 @@ final class PluginClassLoader extends URLClassLoader {
         } catch (ClassNotFoundException ex) {
         }
 
+        if (checkLibraries && libraryLoader != null) {
+            try {
+                return libraryLoader.loadClass(name);
+            } catch (ClassNotFoundException ex) {
+            }
+        }
+
         if (checkGlobal) {
             // This ignores the libraries of other plugins, unless they are transitive dependencies.
             Class<?> result = loader.getClassByName(name, resolve, description);
@@ -125,10 +132,10 @@ final class PluginClassLoader extends URLClassLoader {
 
                         seenIllegalAccess.add(provider.getName());
                         if (plugin != null) {
-                            plugin.getLogger().log(Level.WARNING, "Loaded class {0} from {1} which is not a depend, softdepend or loadbefore of this plugin.", new Object[]{name, provider.getFullName()});
+                            plugin.getLogger().log(Level.WARNING, "Loaded class {0} from {1} which is not a depend or softdepend of this plugin.", new Object[]{name, provider.getFullName()});
                         } else {
                             // In case the bad access occurs on construction
-                            loader.server.getLogger().log(Level.WARNING, "[{0}] Loaded class {1} from {2} which is not a depend, softdepend or loadbefore of this plugin.", new Object[]{description.getName(), name, provider.getFullName()});
+                            loader.server.getLogger().log(Level.WARNING, "[{0}] Loaded class {1} from {2} which is not a depend or softdepend of this plugin.", new Object[]{description.getName(), name, provider.getFullName()});
                         }
                     }
                 }
@@ -212,8 +219,8 @@ final class PluginClassLoader extends URLClassLoader {
     }
 
     synchronized void initialize(@NotNull JavaPlugin javaPlugin) {
-        Validate.notNull(javaPlugin, "Initializing plugin cannot be null");
-        Validate.isTrue(javaPlugin.getClass().getClassLoader() == this, "Cannot initialize plugin outside of this class loader");
+        Preconditions.checkArgument(javaPlugin != null, "Initializing plugin cannot be null");
+        Preconditions.checkArgument(javaPlugin.getClass().getClassLoader() == this, "Cannot initialize plugin outside of this class loader");
         if (this.plugin != null || this.pluginInit != null) {
             throw new IllegalArgumentException("Plugin already initialized!", pluginState);
         }

@@ -2,6 +2,7 @@ package org.bukkit.event.world;
 
 import org.bukkit.Chunk;
 import org.bukkit.event.HandlerList;
+import org.bukkit.generator.BlockPopulator;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -19,12 +20,13 @@ public class ChunkLoadEvent extends ChunkEvent {
     /**
      * 获取这个区块是否为最近创建的.
      * <p>
-     * 请注意,如果这个区块是新的,它将不会在这个时候填充.
+     * <b>注意:</b>请不要利用本事件在新生成的区块中生成方块, 你应该使用 {@link BlockPopulator}.
      * <p>
      * 原文:
      * Gets if this chunk was newly created or not.
      * <p>
-     * Note that if this chunk is new, it will not be populated at this time.
+     * <b>Note:</b> Do not use this to generated blocks in a newly generated chunk.
+     * Use a {@link BlockPopulator} instead.
      *
      * @return 如果区块是新的，则为true，否则为false
      */

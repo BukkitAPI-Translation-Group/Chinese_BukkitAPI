@@ -51,9 +51,22 @@ public interface Objective {
      *
      * @return 计分项的准则
      * @throws IllegalStateException 若此计分项已被注销
+     * @deprecated 请使用 {@link #getTrackedCriteria()}
      */
+    @Deprecated
     @NotNull
     String getCriteria() throws IllegalStateException;
+
+    /**
+     * 获取此计分项跟踪的准则.
+     * <p>
+     * 原文:Gets the criteria this objective tracks.
+     *
+     * @return 计分项的准则
+     * @throws IllegalStateException 若此计分项已被注销
+     */
+    @NotNull
+    Criteria getTrackedCriteria() throws IllegalStateException;
 
     /**
      * 判断此计分项的分数能否被插件直接修改.

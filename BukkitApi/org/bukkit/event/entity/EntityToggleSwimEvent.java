@@ -29,6 +29,14 @@ public class EntityToggleSwimEvent extends EntityEvent implements Cancellable {
         this.cancel = cancel;
     }
 
+    /**
+     * 实体是否在游泳, false 表示实体停止游泳.
+     * <p>
+     * 原文:Returns true if the entity is now swims or
+     * false if the entity stops swimming.
+     *
+     * @return 游泳状态
+     */
     public boolean isSwimming() {
         return isSwimming;
     }

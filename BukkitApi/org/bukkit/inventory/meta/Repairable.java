@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表可以在铁砧上修复的物品.
  */
-public interface Repairable {
+public interface Repairable extends ItemMeta {
 
     /**
      * 检测修复此物品是否需要消耗额外经验等级.
@@ -39,5 +39,6 @@ public interface Repairable {
 
     @SuppressWarnings("javadoc")
     @NotNull
+    @Override
     Repairable clone();
 }

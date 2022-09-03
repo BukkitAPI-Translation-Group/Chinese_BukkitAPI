@@ -37,5 +37,29 @@ public enum Pose {
     /**
      * 生物死亡倒地.
      */
-    DYING;
+    DYING,
+    /**
+     * Entity is croaking.
+     */
+    CROAKING,
+    /**
+     * Entity is using its tongue.
+     */
+    USING_TONGUE,
+    /**
+     * Entity is roaring.
+     */
+    ROARING,
+    /**
+     * Entity is sniffing.
+     */
+    SNIFFING,
+    /**
+     * Entity is emerging.
+     */
+    EMERGING,
+    /**
+     * Entity is digging.
+     */
+    DIGGING;
 }

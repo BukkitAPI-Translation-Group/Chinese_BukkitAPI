@@ -18,18 +18,23 @@ import org.bukkit.entity.Item;
 import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SpawnCategory;
 import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
+import org.bukkit.generator.structure.Structure;
+import org.bukkit.generator.structure.StructureType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
+import org.bukkit.persistence.PersistentDataHolder;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.Consumer;
 import org.bukkit.util.RayTraceResult;
+import org.bukkit.util.StructureSearchResult;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -38,7 +43,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表一个世界,包含了{@link Entity 实体},{@link Chunk 区块},{@link Block 方块}
  */
-public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient, Metadatable {
+public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient, Metadatable, PersistentDataHolder, Keyed {
 
     /**
      * 获取坐标所指的{@link Block 方块}.
@@ -640,6 +645,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @see #generateTree(org.bukkit.Location, java.util.Random, org.bukkit.TreeType, org.bukkit.util.Consumer)
      * @deprecated this method does not handle tile entities (bee nests)
      */
+    @Deprecated
     public boolean generateTree(@NotNull Location loc, @NotNull TreeType type, @NotNull BlockChangeDelegate delegate);
 
     /**
@@ -1972,7 +1978,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 400.
      *
      * @return 世界生成动物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public long getTicksPerAnimalSpawns();
 
     /**
@@ -2015,7 +2023,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 400.
      *
      * @param ticksPerAnimalSpawns 设置的世界生成动物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
+    @Deprecated
     public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns);
 
     /**
@@ -2058,7 +2068,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 1.
      *
      * @return 世界生成怪物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public long getTicksPerMonsterSpawns();
 
     /**
@@ -2101,7 +2113,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 1.
      *
      * @param ticksPerMonsterSpawns 设置的世界生成怪物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
+    @Deprecated
     public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns);
 
     /**
@@ -2125,7 +2139,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 1.
      *
      * @return The world's ticks per water mob spawns value
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public long getTicksPerWaterSpawns();
 
     /**
@@ -2150,7 +2166,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param ticksPerWaterSpawns the ticks per water mob spawns value you
      *     want to set the world to
+     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
+    @Deprecated
     public void setTicksPerWaterSpawns(int ticksPerWaterSpawns);
 
     /**
@@ -2170,7 +2188,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 1.
      *
      * @return the default ticks per water ambient mobs spawn value
+     * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public long getTicksPerWaterAmbientSpawns();
 
     /**
@@ -2195,7 +2215,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param ticksPerAmbientSpawns the ticks per water ambient mob spawns value you
      *     want to set the world to
+     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
+    @Deprecated
     public void setTicksPerWaterAmbientSpawns(int ticksPerAmbientSpawns);
 
     /**
@@ -2215,7 +2237,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Minecraft default: 1.
      *
      * @return the default ticks per water underground creature spawn value
+     * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public long getTicksPerWaterUndergroundCreatureSpawns();
 
     /**
@@ -2240,7 +2264,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param ticksPerWaterUndergroundCreatureSpawns the ticks per water underground creature spawns value you
      *     want to set the world to
+     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
+    @Deprecated
     public void setTicksPerWaterUndergroundCreatureSpawns(int ticksPerWaterUndergroundCreatureSpawns);
 
     /**
@@ -2263,8 +2289,10 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @return The world's ticks per ambient mob spawns value
+     * @return the default ticks per ambient mobs spawn value
+     * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public long getTicksPerAmbientSpawns();
 
     /**
@@ -2289,8 +2317,61 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param ticksPerAmbientSpawns the ticks per ambient mob spawns value you
      *     want to set the world to
+     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
+    @Deprecated
     public void setTicksPerAmbientSpawns(int ticksPerAmbientSpawns);
+
+    /**
+     * Gets the world's ticks per {@link SpawnCategory} mob spawns value
+     * <p>
+     * This value determines how many ticks there are between attempts to
+     * spawn {@link SpawnCategory} mobs.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn {@link SpawnCategory} mobs in
+     *     this world every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn {@link SpawnCategory} mobs
+     *     in this world every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b>
+     * If set to 0, {@link SpawnCategory} mobs spawning will be disabled for this world.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @param spawnCategory the category spawn
+     * @return The world's ticks per {@link SpawnCategory} mob spawns value
+     */
+    public long getTicksPerSpawns(@NotNull SpawnCategory spawnCategory);
+
+    /**
+     * Sets the world's ticks per {@link SpawnCategory} mob spawns value
+     * <p>
+     * This value determines how many ticks there are between attempts to
+     * spawn {@link SpawnCategory} mobs.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn {@link SpawnCategory} mobs in
+     *     this world on every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn {@link SpawnCategory} mobs
+     *     in this world every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b>
+     * If set to 0, {@link SpawnCategory} mobs spawning will be disabled for this world.
+     * <p>
+     * Minecraft default: 1.
+     *
+     * @param spawnCategory the category spawn
+     * @param ticksPerCategorySpawn the ticks per {@link SpawnCategory} mob spawns value you
+     *     want to set the world to
+     */
+    public void setTicksPerSpawns(@NotNull SpawnCategory spawnCategory, int ticksPerCategorySpawn);
 
     /**
      * 获取这个世界一个区块内的怪物生成数限制。
@@ -2300,7 +2381,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * world
      *
      * @return 怪物生成限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getMonsterSpawnLimit();
 
     /**
@@ -2316,7 +2399,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * server-wide spawn limit instead.
      * 
      * @param limit 新的怪物限制
+     * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
+    @Deprecated
     void setMonsterSpawnLimit(int limit);
 
     /**
@@ -2327,7 +2412,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * world
      *
      * @return 动物生成限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getAnimalSpawnLimit();
 
     /**
@@ -2343,7 +2430,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * server-wide spawn limit instead.
      * 
      * @param limit 新的动物限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     void setAnimalSpawnLimit(int limit);
 
     /**
@@ -2354,7 +2443,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * this world
      *
      * @return 水生动物生成限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getWaterAnimalSpawnLimit();
 
     /**
@@ -2370,7 +2461,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * server-wide spawn limit instead.
      * 
      * @param limit 新的水生动物限制
+     * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
+    @Deprecated
     void setWaterAnimalSpawnLimit(int limit);
 
     /**
@@ -2378,7 +2471,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * this world
      *
      * @return The water underground creature spawn limit
+     * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getWaterUndergroundCreatureSpawnLimit();
 
     /**
@@ -2389,7 +2484,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * server-wide spawn limit instead.
      *
      * @param limit the new mob limit
+     * @deprecated Deprecated in favor of {@link #setSpawnLimit(SpawnCategory, int)}
      */
+    @Deprecated
     void setWaterUndergroundCreatureSpawnLimit(int limit);
 
     /**
@@ -2397,7 +2494,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * in a chunk.
      *
      * @return the water ambient spawn limit
+     * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getWaterAmbientSpawnLimit();
 
     /**
@@ -2408,7 +2507,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * server-wide spawn limit instead.
      *
      * @param limit the new mob limit
+     * @deprecated Deprecated in favor of {@link #setSpawnLimit(SpawnCategory, int)}
      */
+    @Deprecated
     void setWaterAmbientSpawnLimit(int limit);
 
     /**
@@ -2419,7 +2520,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * this world
      *
      * @return 周围的怪物的生成限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getAmbientSpawnLimit();
 
     /**
@@ -2435,8 +2538,31 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * server-wide spawn limit instead.
      * 
      * @param limit 新的周围的怪物的限制
+     * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
+    @Deprecated
     void setAmbientSpawnLimit(int limit);
+
+    /**
+     * Gets the limit for number of {@link SpawnCategory} entities that can spawn in a chunk in
+     * this world
+     *
+     * @param spawnCategory the entity category
+     * @return The ambient spawn limit
+     */
+    int getSpawnLimit(@NotNull SpawnCategory spawnCategory);
+
+    /**
+     * Sets the limit for number of {@link SpawnCategory} entities that can spawn in a chunk in
+     * this world
+     * <p>
+     * <b>Note:</b> If set to a negative number the world will use the
+     * server-wide spawn limit instead.
+     *
+     * @param spawnCategory the entity category
+     * @param limit the new mob limit
+     */
+    void setSpawnLimit(@NotNull SpawnCategory spawnCategory, int limit);
 
     /**
      * 在世界中指定的位置播放一个声音。
@@ -2496,6 +2622,31 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param pitch the pitch of the sound
      */
     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a Sound at the location of the provided entity in the World.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    void playSound(@NotNull Entity entity, @NotNull Sound sound, float volume, float pitch);
+
+    /**
+     * Play a Sound at the location of the provided entity in the World.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category the category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * 获取包含所有{@link GameRule 游戏规则}的数组.
@@ -2878,9 +3029,82 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param findUnexplored true to only find unexplored structures
      * @return the closest {@link Location}, or null if no structure of the
      * specified type exists.
+     * @see #locateNearestStructure(Location, Structure, int, boolean)
+     * @see #locateNearestStructure(Location, StructureType, int, boolean)
+     * @deprecated Use
+     * {@link #locateNearestStructure(Location, Structure, int, boolean)} or
+     * {@link #locateNearestStructure(Location, StructureType, int, boolean)}
+     * instead.
      */
     @Nullable
-    public Location locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
+    @Deprecated
+    public Location locateNearestStructure(@NotNull Location origin, @NotNull org.bukkit.StructureType structureType, int radius, boolean findUnexplored);
+
+    /**
+     * Find the closest nearby structure of a given {@link StructureType}.
+     * Finding unexplored structures can, and will, block if the world is
+     * looking in chunks that gave not generated yet. This can lead to the world
+     * temporarily freezing while locating an unexplored structure.
+     * <p>
+     * The {@code radius} is not a rigid square radius. Each structure may alter
+     * how many chunks to check for each iteration. Do not assume that only a
+     * radius x radius chunk area will be checked. For example,
+     * {@link StructureType#WOODLAND_MANSION} can potentially check up to 20,000
+     * blocks away (or more) regardless of the radius used.
+     * <p>
+     * This will <i>not</i> load or generate chunks. This can also lead to
+     * instances where the server can hang if you are only looking for
+     * unexplored structures. This is because it will keep looking further and
+     * further out in order to find the structure.
+     * <p>
+     * The difference between searching for a {@link StructureType} and a
+     * {@link Structure} is, that a {@link StructureType} can refer to multiple
+     * {@link Structure Structures} while searching for a {@link Structure}
+     * while only search for the given {@link Structure}.
+     *
+     * @param origin where to start looking for a structure
+     * @param structureType the type of structure to find
+     * @param radius the radius, in chunks, around which to search
+     * @param findUnexplored true to only find unexplored structures
+     * @return the closest {@link Location} and {@link Structure}, or null if no
+     * structure of the specified type exists.
+     * @see #locateNearestStructure(Location, Structure, int, boolean)
+     */
+    @Nullable
+    StructureSearchResult locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
+
+    /**
+     * Find the closest nearby structure of a given {@link Structure}. Finding
+     * unexplored structures can, and will, block if the world is looking in
+     * chunks that gave not generated yet. This can lead to the world
+     * temporarily freezing while locating an unexplored structure.
+     * <p>
+     * The {@code radius} is not a rigid square radius. Each structure may alter
+     * how many chunks to check for each iteration. Do not assume that only a
+     * radius x radius chunk area will be checked. For example,
+     * {@link Structure#MANSION} can potentially check up to 20,000 blocks away
+     * (or more) regardless of the radius used.
+     * <p>
+     * This will <i>not</i> load or generate chunks. This can also lead to
+     * instances where the server can hang if you are only looking for
+     * unexplored structures. This is because it will keep looking further and
+     * further out in order to find the structure.
+     * <p>
+     * The difference between searching for a {@link StructureType} and a
+     * {@link Structure} is, that a {@link StructureType} can refer to multiple
+     * {@link Structure Structures} while searching for a {@link Structure}
+     * while only search for the given {@link Structure}.
+     *
+     * @param origin where to start looking for a structure
+     * @param structure the structure to find
+     * @param radius the radius, in chunks, around which to search
+     * @param findUnexplored true to only find unexplored structures
+     * @return the closest {@link Location} and {@link Structure}, or null if no
+     * structure was found.
+     * @see #locateNearestStructure(Location, StructureType, int, boolean)
+     */
+    @Nullable
+    StructureSearchResult locateNearestStructure(@NotNull Location origin, @NotNull Structure structure, int radius, boolean findUnexplored);
 
     // Spigot start
     /**

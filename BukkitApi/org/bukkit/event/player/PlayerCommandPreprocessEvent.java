@@ -1,8 +1,8 @@
 package org.bukkit.event.player;
 
+import com.google.common.base.Preconditions;
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.commons.lang.Validate;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
@@ -136,8 +136,8 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * @throws IllegalArgumentException 如果这个命令为Null或者为空
      */
     public void setMessage(@NotNull String command) throws IllegalArgumentException {
-        Validate.notNull(command, "Command cannot be null");
-        Validate.notEmpty(command, "Command cannot be empty");
+        Preconditions.checkArgument(command != null, "Command cannot be null");
+        Preconditions.checkArgument(!command.isEmpty(), "Command cannot be empty");
         this.message = command;
     }
 
@@ -150,7 +150,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * @throws IllegalArgumentException 如果这个玩家为null
      */
     public void setPlayer(@NotNull final Player player) throws IllegalArgumentException {
-        Validate.notNull(player, "Player cannot be null");
+        Preconditions.checkArgument(player != null, "Player cannot be null");
         this.player = player;
     }
 

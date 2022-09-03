@@ -2,10 +2,11 @@ package org.bukkit.event.entity;
 
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
+import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 import java.util.EnumMap;
 import java.util.Map;
-import org.apache.commons.lang.Validate;
+import java.util.Objects;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -32,11 +33,11 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
 
     public EntityDamageEvent(@NotNull final Entity damagee, @NotNull final DamageCause cause, @NotNull final Map<DamageModifier, Double> modifiers, @NotNull final Map<DamageModifier, ? extends Function<? super Double, Double>> modifierFunctions) {
         super(damagee);
-        Validate.isTrue(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
-        Validate.isTrue(!modifiers.containsKey(null), "Cannot have null DamageModifier");
-        Validate.noNullElements(modifiers.values(), "Cannot have null modifier values");
-        Validate.isTrue(modifiers.keySet().equals(modifierFunctions.keySet()), "Must have a modifier function for each DamageModifier");
-        Validate.noNullElements(modifierFunctions.values(), "Cannot have null modifier function");
+        Preconditions.checkArgument(modifiers.containsKey(DamageModifier.BASE), "BASE DamageModifier missing");
+        Preconditions.checkArgument(!modifiers.containsKey(null), "Cannot have null DamageModifier");
+        Preconditions.checkArgument(modifiers.values().stream().allMatch(Objects::nonNull), "Cannot have null modifier values");
+        Preconditions.checkArgument(modifiers.keySet().equals(modifierFunctions.keySet()), "Must have a modifier function for each DamageModifier");
+        Preconditions.checkArgument(modifierFunctions.values().stream().allMatch(Objects::nonNull), "Cannot have null modifier function");
         this.originals = new EnumMap<DamageModifier, Double>(modifiers);
         this.cause = cause;
         this.modifiers = modifiers;
@@ -104,7 +105,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * @see DamageModifier#BASE
      */
      public double getDamage(@NotNull DamageModifier type) throws IllegalArgumentException {
-        Validate.notNull(type, "Cannot have null DamageModifier");
+        Preconditions.checkArgument(type != null, "Cannot have null DamageModifier");
         final Double damage = modifiers.get(type);
         return damage == null ? 0 : damage;
     }
@@ -127,7 +128,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * @throws IllegalArgumentException 如何传入的参数是null时
      */
     public boolean isApplicable(@NotNull DamageModifier type) throws IllegalArgumentException {
-        Validate.notNull(type, "Cannot have null DamageModifier");
+        Preconditions.checkArgument(type != null, "Cannot have null DamageModifier");
         return modifiers.containsKey(type);
     }
 
@@ -454,6 +455,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * <p>
          * Damage: 1 or 5
          */
-        FREEZE;
+        FREEZE,
+        /**
+         * Damage caused by the Sonic Boom attack from {@link org.bukkit.entity.Warden}
+         * <p>
+         * Damage: 10
+         */
+        SONIC_BOOM;
     }
 }

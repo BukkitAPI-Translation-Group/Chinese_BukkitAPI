@@ -102,11 +102,11 @@ public interface BukkitScheduler {
     public int scheduleSyncRepeatingTask(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay, long period);
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 在指定延迟后执行一次任务.此任务将通过由执行器所管理的线程执行.
      * <p>
-     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a once off task to occur after a delay. This task will be
@@ -122,11 +122,11 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(@NotNull Plugin plugin, @NotNull Runnable task, long delay);
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 执行一次任务.此任务将通过由执行器所管理的线程执行.
      * <p>
-     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a once off task to occur as soon as possible. This task will
@@ -141,11 +141,11 @@ public interface BukkitScheduler {
     public int scheduleAsyncDelayedTask(@NotNull Plugin plugin, @NotNull Runnable task);
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 执行一次重复执行的任务.此任务将通过由执行器所管理的线程执行.
      * <p>
-     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Schedules a repeating task. This task will be executed by a thread
@@ -307,11 +307,11 @@ public interface BukkitScheduler {
     public BukkitTask runTask(@NotNull Plugin plugin, @NotNull BukkitRunnable task) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回异步执行的任务.
      * <p>
-     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously.
@@ -326,11 +326,11 @@ public interface BukkitScheduler {
     public BukkitTask runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回异步执行的任务.
      * <p>
-     * 原文:<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文:<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously.
@@ -398,11 +398,11 @@ public interface BukkitScheduler {
     public BukkitTask runTaskLater(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回指定tick过后运行的异步任务(即延迟执行).
      * <p>
-     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously after the specified number
@@ -419,11 +419,11 @@ public interface BukkitScheduler {
     public BukkitTask runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task, long delay) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回指定tick过后运行的异步任务(即延迟执行).
      * <p>
-     * 原文:<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文:<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will run asynchronously after the specified number
@@ -497,11 +497,11 @@ public interface BukkitScheduler {
     public BukkitTask runTaskTimer(@NotNull Plugin plugin, @NotNull BukkitRunnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回一个异步任务.此任务将在指定tick数值后运行.任务将重复运行直至取消.
      * <p>
-     * 原文：<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文：<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will repeatedly run asynchronously until cancelled,
@@ -519,11 +519,11 @@ public interface BukkitScheduler {
     public BukkitTask runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Runnable task, long delay, long period) throws IllegalArgumentException;
 
     /**
-     * <b>异步任务不应访问Bukkit里的任何API.应着重保证异步任务的线程安全.</b>
+     * <b>异步任务不应访问Bukkit里的任何API.</b> <b>应着重保证异步任务的线程安全.</b>
      * <p>
      * 返回一个异步任务.此任务将在指定tick数值后运行.任务将重复运行直至取消.
      * <p>
-     * 原文:<b>Asynchronous tasks should never access any API in Bukkit. Great care
+     * 原文:<b>Asynchronous tasks should never access any API in Bukkit.</b> <b>Great care
      * should be taken to assure the thread-safety of asynchronous tasks.</b>
      * <p>
      * Returns a task that will repeatedly run asynchronously until cancelled,

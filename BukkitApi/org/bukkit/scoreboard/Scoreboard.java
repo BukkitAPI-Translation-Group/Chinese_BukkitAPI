@@ -45,6 +45,7 @@ public interface Scoreboard {
      * @throws IllegalArgumentException 若参数 displayName 为 null
      * @throws IllegalArgumentException 若 displayName 长度超过 128 个字符
      * @throws IllegalArgumentException 若同名计分项已存在
+     * @deprecated 请使用 {@link #registerNewObjective(String, Criteria, String)}
      */
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName) throws IllegalArgumentException;
@@ -67,9 +68,52 @@ public interface Scoreboard {
      * @throws IllegalArgumentException 若 displayName 长度超过 128 个字符
      * @throws IllegalArgumentException 若参数 renderType 为 null
      * @throws IllegalArgumentException 若同名计分项已存在
+     * @deprecated 请使用 {@link #registerNewObjective(String, Criteria, String, RenderType)}
      */
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName, @NotNull RenderType renderType) throws IllegalArgumentException;
+
+    /**
+     * Registers an Objective on this Scoreboard
+     *
+     * @param name Name of the Objective
+     * @param criteria Criteria for the Objective
+     * @param displayName Name displayed to players for the Objective.
+     * @return The registered Objective
+     * @throws IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if name is longer than 32767
+     *     characters.
+     * @throws IllegalArgumentException if criteria is null
+     * @throws IllegalArgumentException if displayName is null
+     * @throws IllegalArgumentException if displayName is longer than 128
+     *     characters.
+     * @throws IllegalArgumentException if an objective by that name already
+     *     exists
+     */
+    @NotNull
+    Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName) throws IllegalArgumentException;
+
+    /**
+     * Registers an Objective on this Scoreboard
+     *
+     * @param name Name of the Objective
+     * @param criteria Criteria for the Objective
+     * @param displayName Name displayed to players for the Objective.
+     * @param renderType Manner of rendering the Objective
+     * @return The registered Objective
+     * @throws IllegalArgumentException if name is null
+     * @throws IllegalArgumentException if name is longer than 32767
+     *     characters.
+     * @throws IllegalArgumentException if criteria is null
+     * @throws IllegalArgumentException if displayName is null
+     * @throws IllegalArgumentException if displayName is longer than 128
+     *     characters.
+     * @throws IllegalArgumentException if renderType is null
+     * @throws IllegalArgumentException if an objective by that name already
+     *     exists
+     */
+    @NotNull
+    Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName, @NotNull RenderType renderType) throws IllegalArgumentException;
 
     /**
      * 根据名称获取计分项.
@@ -91,9 +135,23 @@ public interface Scoreboard {
      * @param criteria 准则
      * @return 使用指定准测的计分项的不可变集合
      * @throws IllegalArgumentException 若参数 criteria 为 null
+     * @deprecated 请使用 {@link #getObjectivesByCriteria(Criteria)}
      */
+    @Deprecated
     @NotNull
     Set<Objective> getObjectivesByCriteria(@NotNull String criteria) throws IllegalArgumentException;
+
+    /**
+     * 获取使用此准则的所有计分项.
+     * <p>
+     * 原文:Gets all Objectives of a Criteria on the Scoreboard
+     *
+     * @param criteria 准则
+     * @return 使用指定准测的计分项的不可变集合
+     * @throws IllegalArgumentException 若参数 criteria 为 null
+     */
+    @NotNull
+    Set<Objective> getObjectivesByCriteria(@NotNull Criteria criteria) throws IllegalArgumentException;
 
     /**
      * 获取计分板上的所有计分项.

@@ -487,6 +487,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     boolean removeAttributeModifier(@NotNull Attribute attribute, @NotNull AttributeModifier modifier);
 
     /**
+     * Get this ItemMeta as an NBT string.
+     * <p>
+     * This string should not be relied upon as a serializable value. If
+     * serialization is desired, the {@link ConfigurationSerializable} API
+     * should be used instead.
+     *
+     * @return the NBT string
+     */
+    @NotNull
+    String getAsString();
+
+    /**
      * 返回一个公共的自定义标签容器, 其能够在物品上存储标签.
      *
      * 那些标签及其所有内容都会被发送到客户端, 因此客户端能够读取它们.

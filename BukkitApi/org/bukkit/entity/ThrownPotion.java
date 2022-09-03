@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表一个被抛出的药水瓶.
  */
-public interface ThrownPotion extends Projectile {
+public interface ThrownPotion extends ThrowableProjectile {
 
     /**
      * 返回应用于此药水瓶的药水效果.

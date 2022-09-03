@@ -1,8 +1,19 @@
 package org.bukkit;
 
+import java.util.concurrent.TimeUnit;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public interface WorldBorder {
+
+    /**
+     * Get the {@link World} in which the border resides.
+     *
+     * @return the associated world, or null if this world border is not associated
+     * with any specific world, such as those created via {@link Server#createWorldBorder()}
+     */
+    @Nullable
+    public World getWorld();
 
     /**
      * 将世界的边界恢复为默认值.
@@ -26,6 +37,8 @@ public interface WorldBorder {
      * 原文:Sets the border to a square region with the specified side length in blocks.
      * 
      * @param newSize 边界的新长度.
+     *
+     * @throws IllegalArgumentException if newSize is less than 1.0D or greater than {@link #getMaxSize()}
      */
     public void setSize(double newSize);
 
@@ -36,8 +49,21 @@ public interface WorldBorder {
      * 
      * @param newSize 边界的新长度.
      * @param seconds The time in seconds in which the border grows or shrinks from the previous size to that being set.
+     *
+     * @throws IllegalArgumentException if newSize is less than 1.0D or greater than {@link #getMaxSize()}
      */
     public void setSize(double newSize, long seconds);
+
+    /**
+     * Sets the border to a square region with the specified side length in blocks.
+     *
+     * @param newSize The new side length of the border.
+     * @param unit The time unit.
+     * @param time The time in which the border grows or shrinks from the previous size to that being set.
+     *
+     * @throws IllegalArgumentException if unit is <code>null</code> or newSize is less than 1.0D or greater than {@link #getMaxSize()}
+     */
+    public void setSize(double newSize, @NotNull TimeUnit unit, long time);
 
     /**
      * 得到当前边界的中心.
@@ -56,6 +82,8 @@ public interface WorldBorder {
      *
      * @param x 新中心的x坐标.
      * @param z 新中心的z坐标.
+     *
+     * @throws IllegalArgumentException if the absolute value of x or z is higher than {@link #getMaxCenterCoordinate()}
      */
     public void setCenter(double x, double z);
 
@@ -65,6 +93,8 @@ public interface WorldBorder {
      * 原文:Sets the new border center.
      *
      * @param location 边界新中心的位置. (该位置只包含x z)
+     *
+     * @throws IllegalArgumentException if location is <code>null</code> or the absolute value of {@link Location#getX()} or {@link Location#getZ()} is higher than {@link #getMaxCenterCoordinate()}
      */
     public void setCenter(@NotNull Location location);
 
@@ -149,4 +179,19 @@ public interface WorldBorder {
      * @return 指定的位置是否在这个边界里面
      */
     public boolean isInside(@NotNull Location location);
+
+    /**
+     * Gets the maximum possible size of a WorldBorder.
+     *
+     * @return The maximum size the WorldBorder
+     */
+    public double getMaxSize();
+
+    /**
+     * Gets the absolute value of the maximum x/z center coordinate of a
+     * WorldBorder.
+     *
+     * @return The absolute maximum center coordinate of the WorldBorder
+     */
+    public double getMaxCenterCoordinate();
 }

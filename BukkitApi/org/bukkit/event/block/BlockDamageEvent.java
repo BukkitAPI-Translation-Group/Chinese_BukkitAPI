@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 方块被玩家损坏的事件.
  * <p>
- * 若本事件被取消，方块将不会损坏
+ * 若本事件被取消，方块将不会损坏.
+ * @see BlockDamageAbortEvent
  */
 public class BlockDamageEvent extends BlockEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

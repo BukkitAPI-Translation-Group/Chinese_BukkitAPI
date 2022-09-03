@@ -27,6 +27,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SpawnCategory;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.generator.ChunkGenerator;
@@ -45,7 +46,9 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.messaging.Messenger;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
+import org.bukkit.profile.PlayerProfile;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.structure.StructureManager;
 import org.bukkit.util.CachedServerIcon;
@@ -439,7 +442,9 @@ public interface Server extends PluginMessageRecipient {
      * Minecraft default: 400.
      *
      * @return 每隔多少tick应该生成一次动物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public int getTicksPerAnimalSpawns();
 
     /**
@@ -473,7 +478,9 @@ public interface Server extends PluginMessageRecipient {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次怪物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public int getTicksPerMonsterSpawns();
 
     /**
@@ -506,7 +513,9 @@ public interface Server extends PluginMessageRecipient {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次怪物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public int getTicksPerWaterSpawns();
 
     /**
@@ -539,7 +548,9 @@ public interface Server extends PluginMessageRecipient {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次水生环境生物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public int getTicksPerWaterAmbientSpawns();
 
     /**
@@ -559,7 +570,9 @@ public interface Server extends PluginMessageRecipient {
      * Minecraft default: 1.
      *
      * @return the default ticks per water underground creature spawn value
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public int getTicksPerWaterUndergroundCreatureSpawns();
 
     /**
@@ -592,8 +605,33 @@ public interface Server extends PluginMessageRecipient {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次环境生物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public int getTicksPerAmbientSpawns();
+
+    /**
+     * Gets the default ticks per {@link SpawnCategory} spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn {@link SpawnCategory} mobs
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn {@link SpawnCategory} mobs
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, {@link SpawnCategory} mobs spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     * <br>
+     * <b>Note: </b> the {@link SpawnCategory#MISC} are not consider.
+     *
+     * @param spawnCategory the category of spawn
+     * @return the default ticks per {@link SpawnCategory} mobs spawn value
+     */
+    public int getTicksPerSpawns(@NotNull SpawnCategory spawnCategory);
 
     /**
      * 使用给定玩家名模糊搜索玩家.
@@ -761,6 +799,19 @@ public interface Server extends PluginMessageRecipient {
      */
     @Nullable
     public World getWorld(@NotNull UUID uid);
+
+    /**
+     * Create a new virtual {@link WorldBorder}.
+     * <p>
+     * Note that world borders created by the server will not respect any world
+     * scaling effects (i.e. coordinates are not divided by 8 in the nether).
+     *
+     * @return the created world border instance
+     *
+     * @see Player#setWorldBorder(WorldBorder)
+     */
+    @NotNull
+    public WorldBorder createWorldBorder();
 
     /**
      * 使用给定物品ID获取地图.
@@ -1037,6 +1088,22 @@ public interface Server extends PluginMessageRecipient {
     public void setSpawnRadius(int value);
 
     /**
+     * Gets whether the server should send a preview of the player's chat
+     * message to the client when the player types a message
+     *
+     * @return true if the server should send a preview, false otherwise
+     */
+    public boolean shouldSendChatPreviews();
+
+    /**
+     * Gets whether the server only allow players with Mojang-signed public key
+     * to join
+     *
+     * @return true if only Mojang-signed players can join, false otherwise
+     */
+    public boolean isEnforcingSecureProfiles();
+
+    /**
      * Gets whether the Server hide online players in server status.
      *
      * @return true if the server hide online players, false otherwise
@@ -1134,6 +1201,39 @@ public interface Server extends PluginMessageRecipient {
      */
     @NotNull
     public OfflinePlayer getOfflinePlayer(@NotNull UUID id);
+
+    /**
+     * Creates a new {@link PlayerProfile}.
+     *
+     * @param uniqueId the unique id
+     * @param name the name
+     * @return the new PlayerProfile
+     * @throws IllegalArgumentException if both the unique id is
+     * <code>null</code> and the name is <code>null</code> or blank
+     */
+    @NotNull
+    PlayerProfile createPlayerProfile(@Nullable UUID uniqueId, @Nullable String name);
+
+    /**
+     * Creates a new {@link PlayerProfile}.
+     *
+     * @param uniqueId the unique id
+     * @return the new PlayerProfile
+     * @throws IllegalArgumentException if the unique id is <code>null</code>
+     */
+    @NotNull
+    PlayerProfile createPlayerProfile(@NotNull UUID uniqueId);
+
+    /**
+     * Creates a new {@link PlayerProfile}.
+     *
+     * @param name the name
+     * @return the new PlayerProfile
+     * @throws IllegalArgumentException if the name is <code>null</code> or
+     * blank
+     */
+    @NotNull
+    PlayerProfile createPlayerProfile(@NotNull String name);
 
     /**
      * 获取所有已被封禁的IP地址.
@@ -1381,13 +1481,24 @@ public interface Server extends PluginMessageRecipient {
     Merchant createMerchant(@Nullable String title);
 
     /**
+     * Gets the amount of consecutive neighbor updates before skipping
+     * additional ones.
+     *
+     * @return the amount of consecutive neighbor updates, if the value is
+     * negative then the limit it's not used
+     */
+    int getMaxChainedNeighborUpdates();
+
+    /**
      * 获取一个区块最大可生成怪物数量.
      * <p>
      * 原文:Gets user-specified limit for number of monsters that can spawn in a
      * chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getMonsterSpawnLimit();
 
     /**
@@ -1398,7 +1509,9 @@ public interface Server extends PluginMessageRecipient {
      * chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getAnimalSpawnLimit();
 
     /**
@@ -1408,7 +1521,9 @@ public interface Server extends PluginMessageRecipient {
      * a chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getWaterAnimalSpawnLimit();
 
     /**
@@ -1418,14 +1533,18 @@ public interface Server extends PluginMessageRecipient {
      * in a chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getWaterAmbientSpawnLimit();
 
     /**
      * Get user-specified limit for number of water creature underground that can spawn
      * in a chunk.
      * @return the water underground creature limit
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getWaterUndergroundCreatureSpawnLimit();
 
     /**
@@ -1435,8 +1554,21 @@ public interface Server extends PluginMessageRecipient {
      * a chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     int getAmbientSpawnLimit();
+
+    /**
+     * Gets user-specified limit for number of {@link SpawnCategory} mobs that can spawn in
+     * a chunk.
+     *
+     * <b>Note: the {@link SpawnCategory#MISC} are not consider.</b>
+     *
+     * @param spawnCategory the category spawn
+     * @return the {@link SpawnCategory} spawn limit
+     */
+    int getSpawnLimit(@NotNull SpawnCategory spawnCategory);
 
     /**
      * 检查当前方法是否在主线程执行。
@@ -1509,6 +1641,16 @@ public interface Server extends PluginMessageRecipient {
      */
     @Nullable
     ScoreboardManager getScoreboardManager();
+
+    /**
+     * Get (or create) a new {@link Criteria} by its name.
+     *
+     * @param name the criteria name
+     * @return the criteria
+     * @see Criteria Criteria for a list of constants
+     */
+    @NotNull
+    Criteria getScoreboardCriteria(@NotNull String name);
 
     /**
      * 获取服务器默认图标.
@@ -1859,6 +2001,21 @@ public interface Server extends PluginMessageRecipient {
      */
     @NotNull
     StructureManager getStructureManager();
+
+    /**
+     * Returns the registry for the given class.
+     * <br>
+     * If no registry is present for the given class null will be returned.
+     * <br>
+     * Depending on the implementation not every registry present in
+     * {@link Registry} will be returned by this method.
+     *
+     * @param tClass of the registry to get
+     * @param <T> type of the registry
+     * @return the corresponding registry or null if not present
+     */
+    @Nullable
+    <T extends Keyed> Registry<T> getRegistry(@NotNull Class<T> tClass);
 
     /**
      * @return UnsafeValues实例

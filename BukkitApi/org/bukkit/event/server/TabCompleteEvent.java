@@ -1,7 +1,7 @@
 package org.bukkit.event.server;
 
+import com.google.common.base.Preconditions;
 import java.util.List;
-import org.apache.commons.lang.Validate;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -26,9 +26,9 @@ public class TabCompleteEvent extends Event implements Cancellable {
     private boolean cancelled;
 
     public TabCompleteEvent(@NotNull CommandSender sender, @NotNull String buffer, @NotNull List<String> completions) {
-        Validate.notNull(sender, "sender");
-        Validate.notNull(buffer, "buffer");
-        Validate.notNull(completions, "completions");
+        Preconditions.checkArgument(sender != null, "sender");
+        Preconditions.checkArgument(buffer != null, "buffer");
+        Preconditions.checkArgument(completions != null, "completions");
 
         this.sender = sender;
         this.buffer = buffer;
@@ -83,7 +83,7 @@ public class TabCompleteEvent extends Event implements Cancellable {
      * @param completions 新的补全项
      */
     public void setCompletions(@NotNull List<String> completions) {
-        Validate.notNull(completions);
+        Preconditions.checkArgument(completions != null);
         this.completions = completions;
     }
 

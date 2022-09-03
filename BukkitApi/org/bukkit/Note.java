@@ -1,8 +1,8 @@
 package org.bukkit;
 
+import com.google.common.base.Preconditions;
 import com.google.common.collect.Maps;
 import java.util.Map;
-import org.apache.commons.lang.Validate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -143,7 +143,7 @@ public class Note {
      * @param note 内部音符ID。{@link #getId()}会返回这个数值。这个数值必须在区间[0;&nbsp;24]中
      */
     public Note(int note) {
-        Validate.isTrue(note >= 0 && note <= 24, "The note value has to be between 0 and 24.");
+        Preconditions.checkArgument(note >= 0 && note <= 24, "The note value has to be between 0 and 24.");
 
         this.note = (byte) note;
     }
@@ -182,7 +182,7 @@ public class Note {
      */
     @NotNull
     public static Note flat(int octave, @NotNull Tone tone) {
-        Validate.isTrue(octave != 2, "Octave cannot be 2 for flats");
+        Preconditions.checkArgument(octave != 2, "Octave cannot be 2 for flats");
         tone = tone == Tone.G ? Tone.F : Tone.values()[tone.ordinal() - 1];
         return new Note(octave, tone, tone.isSharpable());
     }
@@ -214,7 +214,7 @@ public class Note {
      */
     @NotNull
     public static Note natural(int octave, @NotNull Tone tone) {
-        Validate.isTrue(octave != 2, "Octave cannot be 2 for naturals");
+        Preconditions.checkArgument(octave != 2, "Octave cannot be 2 for naturals");
         return new Note(octave, tone, false);
     }
 
@@ -223,7 +223,7 @@ public class Note {
      */
     @NotNull
     public Note sharped() {
-        Validate.isTrue(note < 24, "This note cannot be sharped because it is the highest known note!");
+        Preconditions.checkArgument(note < 24, "This note cannot be sharped because it is the highest known note!");
         return new Note(note + 1);
     }
 
@@ -232,7 +232,7 @@ public class Note {
      */
     @NotNull
     public Note flattened() {
-        Validate.isTrue(note > 0, "This note cannot be flattened because it is the lowest known note!");
+        Preconditions.checkArgument(note > 0, "This note cannot be flattened because it is the lowest known note!");
         return new Note(note - 1);
     }
 

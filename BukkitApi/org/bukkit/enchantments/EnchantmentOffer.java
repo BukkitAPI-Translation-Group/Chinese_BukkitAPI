@@ -1,6 +1,6 @@
 package org.bukkit.enchantments;
 
-import org.apache.commons.lang.Validate;
+import com.google.common.base.Preconditions;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -38,7 +38,7 @@ public class EnchantmentOffer {
      * @param enchantment 魔咒种类
      */
     public void setEnchantment(@NotNull Enchantment enchantment) {
-        Validate.notNull(enchantment, "The enchantment may not be null!");
+        Preconditions.checkArgument(enchantment != null, "The enchantment may not be null!");
 
         this.enchantment = enchantment;
     }
@@ -62,7 +62,7 @@ public class EnchantmentOffer {
      * @param enchantmentLevel 魔咒等级
      */
     public void setEnchantmentLevel(int enchantmentLevel) {
-        Validate.isTrue(enchantmentLevel > 0, "The enchantment level must be greater than 0!");
+        Preconditions.checkArgument(enchantmentLevel > 0, "The enchantment level must be greater than 0!");
 
         this.enchantmentLevel = enchantmentLevel;
     }
@@ -88,7 +88,7 @@ public class EnchantmentOffer {
      * @param cost 附魔花费的经验等级
      */
     public void setCost(int cost) {
-        Validate.isTrue(cost > 0, "The cost must be greater than 0!");
+        Preconditions.checkArgument(cost > 0, "The cost must be greater than 0!");
 
         this.cost = cost;
     }

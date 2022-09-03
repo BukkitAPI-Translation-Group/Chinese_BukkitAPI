@@ -19,6 +19,7 @@ public class YamlRepresenter extends Representer {
         this.multiRepresenters.remove(Enum.class);
     }
 
+    // SPIGOT-6949: Used by configuration sections that are nested within lists or maps.
     private class RepresentConfigurationSection extends RepresentMap {
 
         @NotNull

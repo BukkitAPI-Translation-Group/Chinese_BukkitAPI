@@ -166,6 +166,11 @@ public final class GameRule<T> {
     public static final GameRule<Boolean> DO_TRADER_SPAWNING = new GameRule<>("doTraderSpawning", Boolean.class);
 
     /**
+     * Whether wardens should naturally spawn.
+     */
+    public static final GameRule<Boolean> DO_WARDEN_SPAWNING = new GameRule<>("doWardenSpawning", Boolean.class);
+
+    /**
      * 当被激怒的中立生物的目标玩家死亡时, 此生物是否恢复中立状态.
      */
     public static final GameRule<Boolean> FORGIVE_DEAD_PLAYERS = new GameRule<>("forgiveDeadPlayers", Boolean.class);

@@ -19,6 +19,20 @@ public interface AnvilInventory extends Inventory {
     String getRenameText();
 
     /**
+     * Get the item cost (in amount) to complete the current repair.
+     *
+     * @return the amount
+     */
+    int getRepairCostAmount();
+
+    /**
+     * Set the item cost (in amount) to complete the current repair.
+     *
+     * @param amount the amount
+     */
+    void setRepairCostAmount(int amount);
+
+    /**
      * 获取完成当前修复所需要的等级
      * <p>
      * 原文: Get the experience cost (in levels) to complete the current repair.

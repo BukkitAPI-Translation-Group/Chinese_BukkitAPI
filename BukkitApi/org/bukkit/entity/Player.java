@@ -11,9 +11,11 @@ import org.bukkit.Material;
 import org.bukkit.Note;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
+import org.bukkit.Server;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.WeatherType;
+import org.bukkit.WorldBorder;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.block.Block;
@@ -36,6 +38,13 @@ import org.jetbrains.annotations.Nullable;
  * 玩家对象
  */
 public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginMessageRecipient {
+
+    /**
+     * {@inheritDoc}
+     */
+    @NotNull
+    @Override
+    public String getName();
 
     /**
      * 获得玩家在聊天信息中的昵称.
@@ -416,6 +425,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
+     * Play a sound for a player at the location of the entity.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    public void playSound(@NotNull Entity entity, @NotNull Sound sound, float volume, float pitch);
+
+    /**
+     * Play a sound for a player at the location of the entity.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    public void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
+
+    /**
      * 停止播放指定的声音.
      * <p>
      * 原文:Stop the specified sound from playing.
@@ -452,6 +486,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param category 声音类别
      */
     public void stopSound(@NotNull String sound, @Nullable SoundCategory category);
+
+    /**
+     * Stop the specified sound category from playing.
+     *
+     * @param category the sound category to stop
+     */
+    public void stopSound(@NotNull SoundCategory category);
 
     /**
      * 停止播放所有声音.
@@ -655,6 +696,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      */
     //@Deprecated // Spigot - undeprecate
     public void updateInventory();
+
+    /**
+     * Gets this player's previous {@link GameMode}
+     *
+     * @return Previous game mode or null
+     */
+    @Nullable
+    public GameMode getPreviousGameMode();
 
     /**
      * 设置该玩家客户端的时间,单位为tick. <p>
@@ -1146,7 +1195,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 当hash为null时抛出Thrown if the hash is null.
      * @throws IllegalArgumentException 当hash不是20字节长时抛出
      */
-    public void setResourcePack(@NotNull String url, @NotNull byte[] hash);
+    public void setResourcePack(@NotNull String url, @Nullable byte[] hash);
 
     /**
      * Request that the player's client download and switch resource packs.
@@ -1304,6 +1353,28 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalStateException 如果没有该玩家的数据,即该玩家没有进入过服务器则抛出.
      */
     public void setScoreboard(@NotNull Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException;
+
+    /**
+     * Gets the {@link WorldBorder} visible to this Player, or null if viewing
+     * the world's world border.
+     *
+     * @return the player's world border
+     */
+    @Nullable
+    public WorldBorder getWorldBorder();
+
+    /**
+     * Sets the {@link WorldBorder} visible to this Player.
+     *
+     * @param border the border to set, or null to set to the world border of
+     * the player's current world
+     *
+     * @throws UnsupportedOperationException if setting the border to that of
+     * a world in which the player is not currently present.
+     *
+     * @see Server#createWorldBorder()
+     */
+    public void setWorldBorder(@Nullable WorldBorder border);
 
     /**
      * 获取客户端显示的玩家血量是否被"压缩"了. <p>

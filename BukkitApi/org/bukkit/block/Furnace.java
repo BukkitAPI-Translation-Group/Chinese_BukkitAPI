@@ -1,5 +1,7 @@
 package org.bukkit.block;
 
+import java.util.Map;
+import org.bukkit.inventory.CookingRecipe;
 import org.bukkit.inventory.FurnaceInventory;
 import org.jetbrains.annotations.NotNull;
 
@@ -81,6 +83,17 @@ public interface Furnace extends Container {
      * @param cookTimeTotal 烧炼总时间
      */
     public void setCookTimeTotal(int cookTimeTotal);
+
+    /**
+     * Get the recipes used in this furnace.
+     *
+     * <b>Note:</b> These recipes used are reset when the result item is
+     * manually taken from the furnace.
+     *
+     * @return An immutable map with the recipes used and the times used
+     */
+    @NotNull
+    public Map<CookingRecipe<?>, Integer> getRecipesUsed();
 
     @NotNull
     @Override

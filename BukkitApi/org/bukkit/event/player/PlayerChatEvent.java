@@ -1,8 +1,8 @@
 package org.bukkit.event.player;
 
+import com.google.common.base.Preconditions;
 import java.util.HashSet;
 import java.util.Set;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Warning;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
@@ -81,7 +81,7 @@ public class PlayerChatEvent extends PlayerEvent implements Cancellable {
      * @param player 作为这个新玩家执行这个事件
      */
     public void setPlayer(@NotNull final Player player) {
-        Validate.notNull(player, "Player cannot be null");
+        Preconditions.checkArgument(player != null, "Player cannot be null");
         this.player = player;
     }
 

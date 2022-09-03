@@ -16,10 +16,10 @@ public interface TabCompleter {
      *
      * @param sender 发起命令的来源. 至于玩家在命令方块内补全命令，这个来源就是玩家，而不是命令方块.
      * @param command 执行的Command
-     * @param alias 使用的别名
-     * @param args 传递给这个命令的参数，包括用来补全的部分最终参数和命令别名
+     * @param label 使用的别名
+     * @param args 传递给这个命令的参数，包括用来补全的部分最终参数
      * @return 可能的最终补全参数列表(就是list里都是已经补全了的)，或为null则传递给命令执行器
      */
     @Nullable
-    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args);
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args);
 }

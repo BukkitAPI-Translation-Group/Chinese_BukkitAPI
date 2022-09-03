@@ -4,6 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.profile.PlayerProfile;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -75,6 +76,29 @@ public interface Skull extends TileState {
      * @param player 头颅所有者
      */
     public void setOwningPlayer(@NotNull OfflinePlayer player);
+
+    /**
+     * Gets the profile of the player who owns the skull. This player profile
+     * may appear as the texture depending on skull type.
+     *
+     * @return the profile of the owning player
+     */
+    @Nullable
+    PlayerProfile getOwnerProfile();
+
+    /**
+     * Sets the profile of the player who owns the skull. This player profile
+     * may appear as the texture depending on skull type.
+     * <p>
+     * The profile must contain both a unique id and a skin texture. If either
+     * of these is missing, the profile must contain a name by which the server
+     * will then attempt to look up the unique id and skin texture.
+     *
+     * @param profile the profile of the owning player
+     * @throws IllegalArgumentException if the profile does not contain the
+     * necessary information
+     */
+    void setOwnerProfile(@Nullable PlayerProfile profile);
 
     /**
      * 获取这个头颅在世界的角度 (或头颅的朝向如果这个头颅被挂在墙上).

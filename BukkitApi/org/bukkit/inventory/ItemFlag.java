@@ -36,9 +36,10 @@ public enum ItemFlag {
      */
     HIDE_PLACED_ON,
     /**
-     * 设置显示/隐藏ItemStack的药水效果.
+     * 设置显示/隐藏ItemStack的药水效果、书本和烟花信息、地图提示、旗帜图案以及附魔书的附魔词条.
      * <p>
-     * 原文:Setting to show/hide potion effects on this ItemStack
+     * 原文:Setting to show/hide potion effects, book and firework information, map
+     * tooltips, patterns of banners, and enchantments of enchanted books.
      */
     HIDE_POTION_EFFECTS,
     /**

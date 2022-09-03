@@ -27,6 +27,7 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SpawnCategory;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.generator.ChunkGenerator;
@@ -44,7 +45,9 @@ import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
 import org.bukkit.plugin.messaging.Messenger;
+import org.bukkit.profile.PlayerProfile;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.structure.StructureManager;
 import org.bukkit.util.CachedServerIcon;
@@ -510,7 +513,9 @@ public final class Bukkit {
      * Minecraft default: 400.
      *
      * @return 每隔多少tick应该生成一次动物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public static int getTicksPerAnimalSpawns() {
         return server.getTicksPerAnimalSpawns();
     }
@@ -546,7 +551,9 @@ public final class Bukkit {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次怪物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public static int getTicksPerMonsterSpawns() {
         return server.getTicksPerMonsterSpawns();
     }
@@ -581,7 +588,9 @@ public final class Bukkit {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次怪物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public static int getTicksPerWaterSpawns() {
         return server.getTicksPerWaterSpawns();
     }
@@ -616,7 +625,9 @@ public final class Bukkit {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次环境生物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public static int getTicksPerAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
     }
@@ -651,7 +662,9 @@ public final class Bukkit {
      * Minecraft default: 1.
      *
      * @return 每隔多少tick应该生成一次水生环境生物
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public static int getTicksPerWaterAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
     }
@@ -673,9 +686,36 @@ public final class Bukkit {
      * Minecraft default: 1.
      *
      * @return the default ticks per water underground creature spawn value
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
+    @Deprecated
     public static int getTicksPerWaterUndergroundCreatureSpawns() {
         return server.getTicksPerWaterUndergroundCreatureSpawns();
+    }
+
+    /**
+     * Gets the default ticks per {@link SpawnCategory} spawns value.
+     * <p>
+     * <b>Example Usage:</b>
+     * <ul>
+     * <li>A value of 1 will mean the server will attempt to spawn {@link SpawnCategory} mobs
+     *     every tick.
+     * <li>A value of 400 will mean the server will attempt to spawn {@link SpawnCategory} mobs
+     *     every 400th tick.
+     * <li>A value below 0 will be reset back to Minecraft's default.
+     * </ul>
+     * <p>
+     * <b>Note:</b> If set to 0, {@link SpawnCategory} mobs spawning will be disabled.
+     * <p>
+     * Minecraft default: 1.
+     * <br>
+     * <b>Note: </b> the {@link SpawnCategory#MISC} are not consider.
+     *
+     * @param spawnCategory the category of spawn
+     * @return the default ticks per {@link SpawnCategory} mobs spawn value
+     */
+    public static int getTicksPerSpawns(@NotNull SpawnCategory spawnCategory) {
+        return server.getTicksPerSpawns(spawnCategory);
     }
 
     /**
@@ -869,6 +909,21 @@ public final class Bukkit {
     @Nullable
     public static World getWorld(@NotNull UUID uid) {
         return server.getWorld(uid);
+    }
+
+    /**
+     * 创建一个虚拟{@link WorldBorder 世界边界}.
+     * <p>
+     * 原文:
+     * Create a new virtual {@link WorldBorder}.
+     *
+     * @return 新创建的虚拟世界边界实例
+     *
+     * @see Player#setWorldBorder(WorldBorder)
+     */
+    @NotNull
+    public static WorldBorder createWorldBorder() {
+        return server.createWorldBorder();
     }
 
     /**
@@ -1191,6 +1246,26 @@ public final class Bukkit {
     }
 
     /**
+     * Gets whether the server should send a preview of the player's chat
+     * message to the client when the player sends a message
+     *
+     * @return true if the server should send a preview, false otherwise
+     */
+    public static boolean shouldSendChatPreviews() {
+        return server.shouldSendChatPreviews();
+    }
+
+    /**
+     * Gets whether the server only allow players with Mojang-signed public key
+     * to join
+     *
+     * @return true if only Mojang-signed players can join, false otherwise
+     */
+    public static boolean isEnforcingSecureProfiles() {
+        return server.isEnforcingSecureProfiles();
+    }
+
+    /**
      * Gets whether the Server hide online players in server status.
      *
      * @return true if the server hide online players, false otherwise
@@ -1303,6 +1378,45 @@ public final class Bukkit {
     @NotNull
     public static OfflinePlayer getOfflinePlayer(@NotNull UUID id) {
         return server.getOfflinePlayer(id);
+    }
+
+    /**
+     * Creates a new {@link PlayerProfile}.
+     *
+     * @param uniqueId the unique id
+     * @param name the name
+     * @return the new PlayerProfile
+     * @throws IllegalArgumentException if both the unique id is
+     * <code>null</code> and the name is <code>null</code> or blank
+     */
+    @NotNull
+    public static PlayerProfile createPlayerProfile(@Nullable UUID uniqueId, @Nullable String name) {
+        return server.createPlayerProfile(uniqueId, name);
+    }
+
+    /**
+     * Creates a new {@link PlayerProfile}.
+     *
+     * @param uniqueId the unique id
+     * @return the new PlayerProfile
+     * @throws IllegalArgumentException if the unique id is <code>null</code>
+     */
+    @NotNull
+    public static PlayerProfile createPlayerProfile(@NotNull UUID uniqueId) {
+        return server.createPlayerProfile(uniqueId);
+    }
+
+    /**
+     * Creates a new {@link PlayerProfile}.
+     *
+     * @param name the name
+     * @return the new PlayerProfile
+     * @throws IllegalArgumentException if the name is <code>null</code> or
+     * blank
+     */
+    @NotNull
+    public static PlayerProfile createPlayerProfile(@NotNull String name) {
+        return server.createPlayerProfile(name);
     }
 
     /**
@@ -1587,13 +1701,26 @@ public final class Bukkit {
     }
 
     /**
+     * Gets the amount of consecutive neighbor updates before skipping
+     * additional ones.
+     *
+     * @return the amount of consecutive neighbor updates, if the value is
+     * negative then the limit it's not used
+     */
+    public static int getMaxChainedNeighborUpdates() {
+        return server.getMaxChainedNeighborUpdates();
+    }
+
+    /**
      * 获取一个区块最大可生成的怪物数量.
      * <p>
      * 原文:Gets user-specified limit for number of monsters that can spawn in a
      * chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     public static int getMonsterSpawnLimit() {
         return server.getMonsterSpawnLimit();
     }
@@ -1606,7 +1733,9 @@ public final class Bukkit {
      * chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     public static int getAnimalSpawnLimit() {
         return server.getAnimalSpawnLimit();
     }
@@ -1618,7 +1747,9 @@ public final class Bukkit {
      * a chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     public static int getWaterAnimalSpawnLimit() {
         return server.getWaterAnimalSpawnLimit();
     }
@@ -1630,7 +1761,9 @@ public final class Bukkit {
      * in a chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     public static int getWaterAmbientSpawnLimit() {
         return server.getAmbientSpawnLimit();
     }
@@ -1638,8 +1771,11 @@ public final class Bukkit {
     /**
      * Get user-specified limit for number of water creature underground that can spawn
      * in a chunk.
+     *
      * @return the water underground creature limit
+     * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     public static int getWaterUndergroundCreatureSpawnLimit() {
         return server.getWaterUndergroundCreatureSpawnLimit();
     }
@@ -1651,9 +1787,24 @@ public final class Bukkit {
      * a chunk.
      *
      * @return 生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
+    @Deprecated
     public static int getAmbientSpawnLimit() {
         return server.getAmbientSpawnLimit();
+    }
+
+    /**
+     * Gets user-specified limit for number of {@link SpawnCategory} mobs that can spawn in
+     * a chunk.
+     *
+     * <b>Note: the {@link SpawnCategory#MISC} are not consider.</b>
+     *
+     * @param spawnCategory the category spawn
+     * @return the {@link SpawnCategory} spawn limit
+     */
+    public static int getSpawnLimit(@NotNull SpawnCategory spawnCategory) {
+        return server.getSpawnLimit(spawnCategory);
     }
 
     /**
@@ -1738,6 +1889,18 @@ public final class Bukkit {
     @Nullable
     public static ScoreboardManager getScoreboardManager() {
         return server.getScoreboardManager();
+    }
+
+    /**
+     * Get (or create) a new {@link Criteria} by its name.
+     *
+     * @param name the criteria name
+     * @return the criteria
+     * @see Criteria Criteria for a list of constants
+     */
+    @NotNull
+    public static Criteria getScoreboardCriteria(@NotNull String name) {
+        return server.getScoreboardCriteria(name);
     }
 
     /**
@@ -2135,6 +2298,23 @@ public final class Bukkit {
     @NotNull
     public static StructureManager getStructureManager() {
         return server.getStructureManager();
+    }
+
+    /**
+     * Returns the registry for the given class.
+     * <br>
+     * If no registry is present for the given class null will be returned.
+     * <br>
+     * Depending on the implementation not every registry present in
+     * {@link Registry} will be returned by this method.
+     *
+     * @param tClass of the registry to get
+     * @param <T> type of the registry
+     * @return the corresponding registry or null if not present
+     */
+    @Nullable
+    public static <T extends Keyed> Registry<T> getRegistry(@NotNull Class<T> tClass) {
+        return server.getRegistry(tClass);
     }
 
     /**

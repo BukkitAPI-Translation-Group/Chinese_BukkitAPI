@@ -8,6 +8,7 @@ import com.google.common.graph.MutableGraph;
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,7 +24,6 @@ import java.util.WeakHashMap;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.apache.commons.lang.Validate;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -115,8 +115,8 @@ public final class SimplePluginManager implements PluginManager {
     @Override
     @NotNull
     public Plugin[] loadPlugins(@NotNull File directory) {
-        Validate.notNull(directory, "Directory cannot be null");
-        Validate.isTrue(directory.isDirectory(), "Directory must be a directory");
+        Preconditions.checkArgument(directory != null, "Directory cannot be null");
+        Preconditions.checkArgument(directory.isDirectory(), "Directory must be a directory");
 
         List<Plugin> result = new ArrayList<Plugin>();
         Set<Pattern> filters = fileAssociations.keySet();
@@ -383,7 +383,7 @@ public final class SimplePluginManager implements PluginManager {
     @Override
     @Nullable
     public synchronized Plugin loadPlugin(@NotNull File file) throws InvalidPluginException, UnknownDependencyException {
-        Validate.notNull(file, "File cannot be null");
+        Preconditions.checkArgument(file != null, "File cannot be null");
 
         checkUpdate(file);
 
@@ -662,10 +662,10 @@ public final class SimplePluginManager implements PluginManager {
      */
     @Override
     public void registerEvent(@NotNull Class<? extends Event> event, @NotNull Listener listener, @NotNull EventPriority priority, @NotNull EventExecutor executor, @NotNull Plugin plugin, boolean ignoreCancelled) {
-        Validate.notNull(listener, "Listener cannot be null");
-        Validate.notNull(priority, "Priority cannot be null");
-        Validate.notNull(executor, "Executor cannot be null");
-        Validate.notNull(plugin, "Plugin cannot be null");
+        Preconditions.checkArgument(listener != null, "Listener cannot be null");
+        Preconditions.checkArgument(priority != null, "Priority cannot be null");
+        Preconditions.checkArgument(executor != null, "Executor cannot be null");
+        Preconditions.checkArgument(plugin != null, "Plugin cannot be null");
 
         if (!plugin.isEnabled()) {
             throw new IllegalPluginAccessException("Plugin attempted to register " + event + " while not enabled");
@@ -679,13 +679,18 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     @NotNull
-    private HandlerList getEventListeners(@NotNull Class<? extends Event> type) {
+     private HandlerList getEventListeners(@NotNull Class<? extends Event> type) {
         try {
             Method method = getRegistrationClass(type).getDeclaredMethod("getHandlerList");
             method.setAccessible(true);
+
+            if (!Modifier.isStatic(method.getModifiers())) {
+                throw new IllegalAccessException("getHandlerList must be static");
+            }
+
             return (HandlerList) method.invoke(null);
         } catch (Exception e) {
-            throw new IllegalPluginAccessException(e.toString());
+            throw new IllegalPluginAccessException("Error while registering listener for event type " + type.toString() + ": " + e.toString());
         }
     }
 

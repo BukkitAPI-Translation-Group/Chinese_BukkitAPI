@@ -6,9 +6,9 @@ import org.bukkit.generator.BlockPopulator;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 当一个新的区块填充完毕时调用.
+ * 当一个新生成的区块填充完毕时调用.
  * <p>
- * 如果您想利用本事件来填充区块，请参见 {@link BlockPopulator}.
+ * <b>注意:</b>请不要利用此事件在新生成的区块中生成方块, 应该使用 {@link BlockPopulator}.
  */
 public class ChunkPopulateEvent extends ChunkEvent {
     private static final HandlerList handlers = new HandlerList();

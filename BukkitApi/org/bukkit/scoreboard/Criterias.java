@@ -2,7 +2,10 @@ package org.bukkit.scoreboard;
 
 /**
  * 计分板部分准则名称的常量. 准则可触发计分项数据的修改 (生命、击杀信息、死亡次数等).
+ *
+ * @deprecated 应使用 {@link Criteria} 内定义的常量
  */
+@Deprecated
 public final class Criterias {
 
     public static final String HEALTH = "health";

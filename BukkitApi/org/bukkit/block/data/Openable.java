@@ -1,7 +1,7 @@
 package org.bukkit.block.data;
 
 /**
- * 'open' 表示门类方块是否开着.
+ * 'open' 表示此方块是否开着.
  */
 public interface Openable extends BlockData {
 

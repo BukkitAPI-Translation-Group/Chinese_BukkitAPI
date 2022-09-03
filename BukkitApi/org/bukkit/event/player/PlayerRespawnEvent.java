@@ -1,6 +1,6 @@
 package org.bukkit.event.player;
 
-import org.apache.commons.lang.Validate;
+import com.google.common.base.Preconditions;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
@@ -47,8 +47,8 @@ public class PlayerRespawnEvent extends PlayerEvent {
      * @param respawnLocation 新的重生位置
      */
     public void setRespawnLocation(@NotNull Location respawnLocation) {
-        Validate.notNull(respawnLocation, "Respawn location can not be null");
-        Validate.notNull(respawnLocation.getWorld(), "Respawn world can not be null");
+        Preconditions.checkArgument(respawnLocation != null, "Respawn location can not be null");
+        Preconditions.checkArgument(respawnLocation.getWorld() != null, "Respawn world can not be null");
 
         this.respawnLocation = respawnLocation;
     }

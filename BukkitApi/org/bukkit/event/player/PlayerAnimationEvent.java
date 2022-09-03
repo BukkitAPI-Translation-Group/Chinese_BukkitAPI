@@ -13,18 +13,22 @@ public class PlayerAnimationEvent extends PlayerEvent implements Cancellable {
     private final PlayerAnimationType animationType;
     private boolean isCancelled = false;
 
+    @Deprecated
+    public PlayerAnimationEvent(@NotNull final Player player) {
+        this(player, PlayerAnimationType.ARM_SWING);
+    }
+
     /**
      * 构造一个新的PlayerAnimation事件.
      * <p>
      * 原文:Construct a new PlayerAnimation event
      *
      * @param player 玩家实例
+     * @param playerAnimationType 动作类型
      */
-    public PlayerAnimationEvent(@NotNull final Player player) {
+    public PlayerAnimationEvent(@NotNull final Player player, @NotNull final PlayerAnimationType playerAnimationType) {
         super(player);
-
-        // Only supported animation type for now:
-        animationType = PlayerAnimationType.ARM_SWING;
+        animationType = playerAnimationType;
     }
 
     /**

@@ -5,8 +5,11 @@ import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表不同的树木种类。
+ * 代表不同的树木种类.
+ *
+ * @deprecated 已弃用, see usage methods for replacement(s)
  */
+@Deprecated
 public enum TreeSpecies {
 
     /**

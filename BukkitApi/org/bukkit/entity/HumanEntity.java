@@ -232,6 +232,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @param material 要检查的物品种类
      * @return 该物品是否进入了冷却
+     * @throws IllegalArgumentException 如果 material 不是物品
      */
     public boolean hasCooldown(@NotNull Material material);
 
@@ -242,6 +243,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @param material 要检查的物品种类
      * @return 剩余冷却时长 (以tick为单位)
+     * @throws IllegalArgumentException 如果 material 不是物品
      */
     public int getCooldown(@NotNull Material material);
 
@@ -263,6 +265,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      *
      * @param material 为哪个物品设置冷却
      * @param ticks 冷却时长(以tick为单位)或设为0来移除它
+     * @throws IllegalArgumentException 如果 material 不是物品
      */
     public void setCooldown(@NotNull Material material, int ticks);
 
@@ -659,4 +662,22 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param ticks the amount of ticks to lose 1 health
      */
     public void setStarvationRate(int ticks);
+
+    /**
+     * Gets the player's last death location.
+     *
+     * @return the last death location if it exists, otherwise null.
+     */
+    @Nullable
+    public Location getLastDeathLocation();
+
+    /**
+     * Sets the player's last death location.
+     * <br>
+     * <b>Note:</b> This data is updated in the player's client only when the
+     * player respawns.
+     *
+     * @param location where to set the last death player location
+     */
+    public void setLastDeathLocation(@Nullable Location location);
 }

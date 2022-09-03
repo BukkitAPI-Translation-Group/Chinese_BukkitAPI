@@ -1,13 +1,13 @@
 package org.bukkit.block.data.type;
 
-import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Waterlogged;
 
 /**
  * 'persistent' 值决定树叶是否会被服务器检查以腐烂 (自动消失).
  * <br>
  * 'distance' 值表示该树叶距离一棵树有多远, 用于与 'persistent' 属性结合判断该树叶是否会腐烂.
  */
-public interface Leaves extends BlockData {
+public interface Leaves extends Waterlogged {
 
     /**
      * 获取 'persistent' 属性的值.

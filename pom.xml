@@ -7,7 +7,7 @@
 
     <groupId>org.spigotmc</groupId>
     <artifactId>spigot-api</artifactId>
-    <version>1.18.1-R0.1-SNAPSHOT</version>
+    <version>1.19.2-R0.1-SNAPSHOT</version>
     <name>Spigot-API</name>
 
     <properties>
@@ -17,11 +17,6 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -68,6 +63,7 @@
     <build>
         <sourceDirectory>BukkitApi</sourceDirectory>
         <plugins>
+            <!-- 新增源码目录 -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -87,6 +83,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- 将bungee-chat-api的源码delombok -->
             <plugin>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok-maven-plugin</artifactId>
@@ -112,6 +109,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <!-- 生成Javadoc -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -141,6 +139,7 @@
                     <doctitle>${project.name} ${project.version} API 中文文档</doctitle>
                     <windowtitle>${project.name} ${project.version} API 中文文档</windowtitle>
                     <splitindex>true</splitindex>
+                    <!-- 指定外部API文档的链接, 使用offlineLink避免不稳定的网络请求, 加快文档生成速度 -->
                     <offlineLinks>
                         <offlineLink>
                             <url>https://guava.dev/releases/31.1-jre/api/docs/</url>

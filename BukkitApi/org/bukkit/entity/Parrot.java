@@ -29,6 +29,13 @@ public interface Parrot extends Tameable, Sittable {
     public void setVariant(@NotNull Variant variant);
 
     /**
+     * Gets whether a parrot is dancing
+     *
+     * @return Whether the parrot is dancing
+     */
+    public boolean isDancing();
+
+    /**
      * 代表鹦鹉变体(颜色).
      * <p>
      * 原文:
