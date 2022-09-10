@@ -123,8 +123,8 @@
                 <configuration>
                     <javadocExecutable>${env.JAVA_HOME}/bin/java</javadocExecutable>
                     <additionalJOptions>
-                        <additionalJOption>-javaagent:${env.JAVADOC_AGENT_PATH}</additionalJOption>
-                        <additionalJOption>--module jdk.javadoc/jdk.javadoc.internal.tool.Main</additionalJOption>
+                        <additionalJOption>-javaagent:${env.JAVADOC_AGENT_PATH} </additionalJOption>
+                        <additionalJOption>--module=jdk.javadoc/jdk.javadoc.internal.tool.Main</additionalJOption>
                     </additionalJOptions>
                     <locale>zh_CN</locale>
                     <charset>utf-8</charset>
@@ -141,6 +141,7 @@
                     <doctitle>${project.name} ${project.version} API 中文文档</doctitle>
                     <windowtitle>${project.name} ${project.version} API 中文文档</windowtitle>
                     <splitindex>true</splitindex>
+                    <notimestamp>true</notimestamp>
                     <offlineLinks>
                         <offlineLink>
                             <url>https://guava.dev/releases/31.1-jre/api/docs/</url>

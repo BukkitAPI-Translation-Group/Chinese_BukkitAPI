@@ -139,6 +139,7 @@
                     <doctitle>${project.name} ${project.version} API 中文文档</doctitle>
                     <windowtitle>${project.name} ${project.version} API 中文文档</windowtitle>
                     <splitindex>true</splitindex>
+                    <notimestamp>true</notimestamp>
                     <!-- 指定外部API文档的链接, 使用offlineLink避免不稳定的网络请求, 加快文档生成速度 -->
                     <offlineLinks>
                         <offlineLink>
