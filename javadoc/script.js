@@ -4,8 +4,8 @@
  * 顺便避免加载页面时可能出现的闪屏问题.
  */
 (function () {
-    let mdQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    let root = document.documentElement;
+    var mdQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    var root = document.documentElement;
     if (mdQuery.matches) {
         root.classList.add("dark");
     }
