@@ -8,10 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Thrown when a non-player entity is teleported from one location to another.
+ * 当非玩家实体从一处传送到另一处时触发本事件.
  * <br>
- * This may be as a result of natural causes (Enderman, Shulker), pathfinding
- * (Wolf), or commands (/teleport).
+ * 本事件可能因实体自然行为(末影人、潜影贝), 寻路动作(狼), 或者命令(/teleport)而触发.
  */
 public class EntityTeleportEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -37,9 +36,11 @@ public class EntityTeleportEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the location that this entity moved from
+     * 获取实体传送起始位置.
+     * <p>
+     * 原文:Gets the location that this entity moved from
      *
-     * @return Location this entity moved from
+     * @return 传送起始位置
      */
     @NotNull
     public Location getFrom() {
@@ -47,18 +48,22 @@ public class EntityTeleportEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Sets the location that this entity moved from
+     * 设置实体传送起始位置.
+     * <p>
+     * 原文:Sets the location that this entity moved from
      *
-     * @param from New location this entity moved from
+     * @param from 传送起始位置
      */
     public void setFrom(@NotNull Location from) {
         this.from = from;
     }
 
     /**
-     * Gets the location that this entity moved to
+     * 获取实体传送目标位置.
+     * <p>
+     * 原文:Gets the location that this entity moved to
      *
-     * @return Location the entity moved to
+     * @return 目标位置
      */
     @Nullable
     public Location getTo() {
@@ -66,9 +71,11 @@ public class EntityTeleportEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Sets the location that this entity moved to
+     * 设置实体传送目标位置.
+     * <p>
+     * 原文:Sets the location that this entity moved to
      *
-     * @param to New Location this entity moved to
+     * @param to 目标位置
      */
     public void setTo(@Nullable Location to) {
         this.to = to;

@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when one Entity breeds with another Entity.
+ * 当一个实体与另一个实体交配繁殖时触发本事件.
  */
 public class EntityBreedEvent extends EntityEvent implements Cancellable {
 
@@ -46,9 +46,11 @@ public class EntityBreedEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the parent creating this entity.
+     * 获取繁殖此实体的母实体.
+     * <p>
+     * 原文:Gets the parent creating this entity.
      *
-     * @return The "birth" parent
+     * @return 母实体
      */
     @NotNull
     public LivingEntity getMother() {
@@ -56,9 +58,11 @@ public class EntityBreedEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the other parent of the newly born entity.
+     * 获取此新生实体的父实体.
+     * <p>
+     * 原文:Gets the other parent of the newly born entity.
      *
-     * @return the other parent
+     * @return 父实体
      */
     @NotNull
     public LivingEntity getFather() {
@@ -66,10 +70,12 @@ public class EntityBreedEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the Entity responsible for breeding. Breeder is null for spontaneous
+     * 获取引起此次繁殖事件的实体. 如果繁殖是因自然或自发受精而起则为 null.
+     * <p>
+     * 原文:Gets the Entity responsible for breeding. Breeder is null for spontaneous
      * conception.
      *
-     * @return The Entity who initiated breeding.
+     * @return 引起此次繁殖的实体
      */
     @Nullable
     public LivingEntity getBreeder() {
@@ -77,9 +83,11 @@ public class EntityBreedEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * The ItemStack that was used to initiate breeding, if present.
+     * 获取用于引起此次繁殖的物品 (若存在).
+     * <p>
+     * 原文:The ItemStack that was used to initiate breeding, if present.
      *
-     * @return ItemStack used to initiate breeding.
+     * @return 用于引起此次繁殖的物品
      */
     @Nullable
     public ItemStack getBredWith() {
@@ -87,18 +95,22 @@ public class EntityBreedEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Get the amount of experience granted by breeding.
+     * 获取此次繁殖授予玩家的经验数量.
+     * <p>
+     * 原文:Get the amount of experience granted by breeding.
      *
-     * @return experience amount
+     * @return 经验
      */
     public int getExperience() {
         return experience;
     }
 
     /**
-     * Set the amount of experience granted by breeding.
+     * 设置此次繁殖授予玩家的经验数量.
+     * <p>
+     * 原文:Set the amount of experience granted by breeding.
      *
-     * @param experience experience amount
+     * @param experience 经验
      */
     public void setExperience(int experience) {
         Preconditions.checkArgument(experience >= 0, "Experience cannot be negative");

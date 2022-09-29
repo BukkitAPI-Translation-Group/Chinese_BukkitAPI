@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when a sheep's wool is dyed
+ * 当羊身上的毛被染色时触发本事件.
  */
 public class SheepDyeWoolEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -46,9 +46,11 @@ public class SheepDyeWoolEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Returns the player dyeing the sheep, if available.
+     * 返回正在给这只羊染色的玩家 (若存在).
+     * <p>
+     * 原文:Returns the player dyeing the sheep, if available.
      *
-     * @return player or null
+     * @return 玩家对象, 不存在则为 null
      */
     @Nullable
     public Player getPlayer() {
@@ -56,9 +58,11 @@ public class SheepDyeWoolEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Gets the DyeColor the sheep is being dyed
+     * 获取这只羊将被染上的颜色.
+     * <p>
+     * 原文:Gets the DyeColor the sheep is being dyed
      *
-     * @return the DyeColor the sheep is being dyed
+     * @return 被染上的颜色
      */
     @NotNull
     public DyeColor getColor() {
@@ -66,9 +70,11 @@ public class SheepDyeWoolEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Sets the DyeColor the sheep is being dyed
+     * 设置这只羊将被染上的颜色.
+     * <p>
+     * 原文:Sets the DyeColor the sheep is being dyed
      *
-     * @param color the DyeColor the sheep will be dyed
+     * @param color 被染上的颜色
      */
     public void setColor(@NotNull DyeColor color) {
         this.color = color;

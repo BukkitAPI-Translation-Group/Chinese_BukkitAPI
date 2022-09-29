@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an arrow enters or exists an entity's body.
+ * 当箭矢射进实体或从实体上拔出(脱落)时触发本事件.
  */
 public class ArrowBodyCountChangeEvent extends EntityEvent implements Cancellable {
 
@@ -26,37 +26,46 @@ public class ArrowBodyCountChangeEvent extends EntityEvent implements Cancellabl
         this.isReset = isReset;
     }
 
+    // TODO:reset代表的含义
     /**
-     * Whether the event was called because the entity was reset.
+     * 返回本事件是否因为实体被重置而触发.
+     * <p>
+     * 原文:Whether the event was called because the entity was reset.
      *
-     * @return was reset
+     * @return 实体是否被重置
      */
     public boolean isReset() {
         return isReset;
     }
 
     /**
-     * Gets the old amount of arrows in the entity's body.
+     * 获取事件发生前实体身上有多少支箭.
+     * <p>
+     * 原文:Gets the old amount of arrows in the entity's body.
      *
-     * @return amount of arrows
+     * @return 实体身上曾有多少支箭
      */
     public int getOldAmount() {
         return oldAmount;
     }
 
     /**
-     * Get the new amount of arrows in the entity's body.
+     * 获取在此事件后实体身上有多少支箭.
+     * <p>
+     * 原文:Get the new amount of arrows in the entity's body.
      *
-     * @return amount of arrows
+     * @return 实体身上将有多少支箭
      */
     public int getNewAmount() {
         return newAmount;
     }
 
     /**
-     * Sets the final amount of arrows in the entity's body.
+     * 设置此事件后实体身上最终的箭矢数量.
+     * <p>
+     * 原文:Sets the final amount of arrows in the entity's body.
      *
-     * @param newAmount amount of arrows
+     * @param newAmount 实体身上将有多少支箭
      */
     public void setNewAmount(int newAmount) {
         Preconditions.checkArgument(newAmount >= 0, "New arrow amount must be >= 0");

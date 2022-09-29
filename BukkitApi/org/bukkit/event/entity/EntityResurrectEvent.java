@@ -6,9 +6,8 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity dies and may have the opportunity to be resurrected.
- * Will be called in a cancelled state if the entity does not have a totem
- * equipped.
+ * 当实体死亡并且有机会复活时触发本事件.
+ * 如果实体尚未装备不死图腾, 本事件将以已取消状态触发.
  */
 public class EntityResurrectEvent extends EntityEvent implements Cancellable {
 
