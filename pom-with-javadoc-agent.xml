@@ -30,7 +30,7 @@
         <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
-            <version>1.30</version>
+            <version>1.33</version>
         </dependency>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -148,7 +148,7 @@
                             <location>${project.basedir}/javadoc/guava</location>
                         </offlineLink>
                         <offlineLink>
-                            <url>https://javadoc.io/doc/org.yaml/snakeyaml/1.30/</url>
+                            <url>https://javadoc.io/doc/org.yaml/snakeyaml/1.33/</url>
                             <location>${project.basedir}/javadoc/snakeyaml</location>
                         </offlineLink>
                         <offlineLink>
