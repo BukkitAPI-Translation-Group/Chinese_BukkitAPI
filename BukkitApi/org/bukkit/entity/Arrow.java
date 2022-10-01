@@ -1,5 +1,7 @@
 package org.bukkit.entity;
 
+import org.bukkit.block.Block;
+
 /**
  * 表示一只箭矢.
  */

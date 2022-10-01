@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <packaging>jar</packaging>
+
+    <groupId>org.bukkit</groupId>
+    <artifactId>bukkit</artifactId>
+    <version>1.12.2-R0.1-SNAPSHOT</version>
+    <name>Bukkit</name>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+            <version>2.6</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.json-simple</groupId>
+            <artifactId>json-simple</artifactId>
+            <version>1.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>31.1-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.33</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <sourceDirectory>BukkitApi</sourceDirectory>
+        <plugins>
+            <!-- 生成Javadoc -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <locale>zh_CN</locale>
+                    <charset>utf-8</charset>
+                    <encoding>utf-8</encoding>
+                    <docencoding>utf-8</docencoding>
+                    <doclint>none</doclint>
+                    <sourcepath>BukkitApi;${project.build.directory}/delombok</sourcepath>
+                    <reportOutputDirectory>${project.build.directory}/apidocs</reportOutputDirectory>
+                    <destDir>apidocs</destDir>
+                    <stylesheetfile>javadoc/stylesheet.css</stylesheetfile>
+                    <overview>javadoc/overview.html</overview>
+                    <docfilessubdirs>true</docfilessubdirs>
+                    <use>true</use>
+                    <doctitle>${project.name} ${project.version} API 中文文档</doctitle>
+                    <windowtitle>${project.name} ${project.version} API 中文文档</windowtitle>
+                    <splitindex>true</splitindex>
+                    <notimestamp>true</notimestamp>
+                    <bottom>此版本文档已过时, 内容不再更新. 于 2022.10.01 使用 Java 17 重置.</bottom>
+                    <!-- 指定外部API文档的链接, 使用offlineLink避免不稳定的网络请求, 加快文档生成速度 -->
+                    <offlineLinks>
+                        <offlineLink>
+                            <url>https://guava.dev/releases/31.1-jre/api/docs/</url>
+                            <location>${project.basedir}/javadoc/guava</location>
+                        </offlineLink>
+                        <offlineLink>
+                            <url>https://javadoc.io/doc/org.yaml/snakeyaml/1.33/</url>
+                            <location>${project.basedir}/javadoc/snakeyaml</location>
+                        </offlineLink>
+                    </offlineLinks>
+                    <quiet>true</quiet>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
