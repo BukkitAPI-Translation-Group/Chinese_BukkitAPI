@@ -1203,34 +1203,38 @@ public interface Server extends PluginMessageRecipient {
     public OfflinePlayer getOfflinePlayer(@NotNull UUID id);
 
     /**
-     * Creates a new {@link PlayerProfile}.
+     * 创建一份新的{@link PlayerProfile 玩家资料}.
+     * <p>
+     * 原文:Creates a new {@link PlayerProfile}.
      *
-     * @param uniqueId the unique id
-     * @param name the name
-     * @return the new PlayerProfile
-     * @throws IllegalArgumentException if both the unique id is
-     * <code>null</code> and the name is <code>null</code> or blank
+     * @param uniqueId 唯一 id
+     * @param name 玩家名
+     * @return 新 PlayerProfile
+     * @throws IllegalArgumentException 如果唯一 id 和玩家名均为 <code>null</code> 或玩家名为空白字符串
      */
     @NotNull
     PlayerProfile createPlayerProfile(@Nullable UUID uniqueId, @Nullable String name);
 
     /**
-     * Creates a new {@link PlayerProfile}.
+     * 创建一份新的{@link PlayerProfile 玩家资料}.
+     * <p>
+     * 原文:Creates a new {@link PlayerProfile}.
      *
-     * @param uniqueId the unique id
-     * @return the new PlayerProfile
-     * @throws IllegalArgumentException if the unique id is <code>null</code>
+     * @param uniqueId 唯一 id
+     * @return 新 PlayerProfile
+     * @throws IllegalArgumentException 如果唯一 id 为 <code>null</code>
      */
     @NotNull
     PlayerProfile createPlayerProfile(@NotNull UUID uniqueId);
 
     /**
-     * Creates a new {@link PlayerProfile}.
+     * 创建一份新的{@link PlayerProfile 玩家资料}.
+     * <p>
+     * 原文:Creates a new {@link PlayerProfile}.
      *
-     * @param name the name
-     * @return the new PlayerProfile
-     * @throws IllegalArgumentException if the name is <code>null</code> or
-     * blank
+     * @param name 玩家名
+     * @return 新 PlayerProfile
+     * @throws IllegalArgumentException 如果玩家名为 <code>null</code> 或空白字符串
      */
     @NotNull
     PlayerProfile createPlayerProfile(@NotNull String name);

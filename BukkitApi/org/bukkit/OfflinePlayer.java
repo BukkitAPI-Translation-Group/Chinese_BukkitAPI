@@ -46,13 +46,19 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
     public UUID getUniqueId();
 
     /**
-     * Gets a copy of the player's profile.
+     * 获取玩家资料的一份副本.
+     * <p>
+     * 如果此玩家在线, 则返回的资料是完整的.
+     * 否则, 只保证唯一 id 存在于资料中. 您可以使用
+     * {@link PlayerProfile#update()} 来补全返回的资料.
+     * <p>
+     * 原文:Gets a copy of the player's profile.
      * <p>
      * If the player is online, the returned profile will be complete.
      * Otherwise, only the unique id is guaranteed to be present. You can use
      * {@link PlayerProfile#update()} to complete the returned profile.
      *
-     * @return the player's profile
+     * @return 玩家资料
      */
     @NotNull
     PlayerProfile getPlayerProfile();

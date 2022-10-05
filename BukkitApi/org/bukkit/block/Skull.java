@@ -78,25 +78,31 @@ public interface Skull extends TileState {
     public void setOwningPlayer(@NotNull OfflinePlayer player);
 
     /**
-     * Gets the profile of the player who owns the skull. This player profile
+     * 获取拥有此头颅的玩家的资料. 此玩家资料所含的纹理取决于头颅类型.
+     * <p>
+     * 原文:Gets the profile of the player who owns the skull. This player profile
      * may appear as the texture depending on skull type.
      *
-     * @return the profile of the owning player
+     * @return 头颅所有者的资料
      */
     @Nullable
     PlayerProfile getOwnerProfile();
 
     /**
-     * Sets the profile of the player who owns the skull. This player profile
+     * 设置拥有此头颅的玩家的资料. 此玩家资料所含的纹理取决于头颅类型.
+     * <p>
+     * 此资料必须包含唯一 id 和皮肤纹理. 如果两者都缺, 则资料必须包含玩家名,
+     * 服务器将利用玩家名来尝试查找其唯一 id 和皮肤纹理.
+     * <p>
+     * 原文:Sets the profile of the player who owns the skull. This player profile
      * may appear as the texture depending on skull type.
      * <p>
      * The profile must contain both a unique id and a skin texture. If either
      * of these is missing, the profile must contain a name by which the server
      * will then attempt to look up the unique id and skin texture.
      *
-     * @param profile the profile of the owning player
-     * @throws IllegalArgumentException if the profile does not contain the
-     * necessary information
+     * @param profile 头颅所有者的资料
+     * @throws IllegalArgumentException 如果资料没有包含必要信息
      */
     void setOwnerProfile(@Nullable PlayerProfile profile);
 
