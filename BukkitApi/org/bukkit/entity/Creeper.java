@@ -38,7 +38,7 @@ public interface Creeper extends Monster {
     public void setMaxFuseTicks(int ticks);
 
     /**
-     * 获得此苦力怕的点燃状态tick值, 此tick值为苦力怕爆炸前点燃状态的维持时间.
+     * 获得此苦力怕的点燃状态最大tick值, 此tick值为苦力怕爆炸前点燃状态的维持时间.
      * <p>
      * 原文:
      * Get the maximum fuse ticks for this Creeper, where the maximum ticks 
@@ -50,18 +50,24 @@ public interface Creeper extends Monster {
     public int getMaxFuseTicks();
 
     /**
+     * 设置苦力怕点燃状态的tick值,此tick值为苦力怕爆炸前点燃状态的维持时间.
+     * <p>
+     * 原文:
      * Set the fuse ticks for this Creeper, where the ticks is the amount of
      * time in which a creeper has been in the primed state.
      *
-     * @param ticks the new fuse ticks
+     * @param ticks 新的点燃状态的tick值
      */
     public void setFuseTicks(int ticks);
 
     /**
+     * 获得苦力怕点燃状态的tick值,此tick值为苦力怕爆炸前点燃状态的维持时间.
+     * <p>
+     * 原文:
      * Get the maximum fuse ticks for this Creeper, where the ticks is the
      * amount of time in which a creeper has been in the primed state.
      *
-     * @return the fuse ticks
+     * @return 点燃状态的tick值
      */
     public int getFuseTicks();
 
