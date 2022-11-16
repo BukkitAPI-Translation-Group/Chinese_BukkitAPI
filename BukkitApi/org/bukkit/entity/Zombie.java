@@ -101,13 +101,21 @@ public interface Zombie extends Monster, Ageable {
     void setConversionTime(int time);
 
     /**
+     * 获得这个僵尸是否能破坏门.
+     * <p>
+     * 原文:
      * Gets whether this zombie can break doors
      *
-     * @return Whether this zombie can break doors
+     * @return 僵尸是否能破坏门
      */
     boolean canBreakDoors();
 
     /**
+     * 设置僵尸是否能破坏门.
+     *
+     * 当实体是溺尸时将被忽略.当实体破坏门时也会停止破坏.
+     * <p>
+     * 原文:
      * Sets whether this zombie can break doors
      *
      * This will be ignored if the entity is a Drowned. Will also stop the action if
