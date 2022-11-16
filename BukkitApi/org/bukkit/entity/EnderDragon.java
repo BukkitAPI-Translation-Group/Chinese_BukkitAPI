@@ -95,7 +95,7 @@ public interface EnderDragon extends ComplexLivingEntity, Boss, Mob {
     DragonBattle getDragonBattle();
 
     /**
-     * 获取这条末影龙的死亡动画开始的到当前时间（以滴答为单位）.
+     * 获取这条末影龙的死亡动画开始的到当前时间（以 tick 为单位）.
      *
      * 如果这条末影龙还活着，则返回 0。这个值永远不会超过 200（动画的长度）.
      * <p>
