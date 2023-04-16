@@ -1250,9 +1250,6 @@ public enum Material implements Keyed {
      * BlockData: {@link CommandBlock}
      */
     CHAIN_COMMAND_BLOCK(26798, CommandBlock.class),
-    /**
-     * 岩浆块
-     */
     MAGMA_BLOCK(25927),
     NETHER_WART_BLOCK(15486),
     WARPED_WART_BLOCK(15463),
