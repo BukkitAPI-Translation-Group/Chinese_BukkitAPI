@@ -271,11 +271,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * An enum to specify the cause of the damage
+     * 造成伤害的原因.
      */
     public enum DamageCause {
 
         /**
+         * 实体接触仙人掌、钟乳石（石笋）或浆果丛等方块时受到的伤害.
+         * <p>
+         * 伤害:动态改变.
+         * <p>
+         * 原文:
          * Damage caused when an entity contacts a block such as a Cactus,
          * Dripstone (Stalagmite) or Berry Bush.
          * <p>
@@ -283,72 +288,132 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         CONTACT,
         /**
+         * 一个实体攻击另一个实体时受到的伤害.
+         * <p>
+         * 伤害:动态改变.
+         * <p>
+         * 原文:
          * Damage caused when an entity attacks another entity.
          * <p>
          * Damage: variable
          */
         ENTITY_ATTACK,
         /**
+         * 一个实体在横扫范围中攻击到另一个实体时受到的伤害.
+         * <p>
+         * 伤害:动态改变.
+         * <p>
+         * 原文:
          * Damage caused when an entity attacks another entity in a sweep attack.
          * <p>
          * Damage: variable
          */
         ENTITY_SWEEP_ATTACK,
         /**
+         * 被抛射物攻击时受到的伤害.
+         * <p>
+         * 伤害:动态改变.
+         * <p>
+         * 原文:
          * Damage caused when attacked by a projectile.
          * <p>
          * Damage: variable
          */
         PROJECTILE,
         /**
+         * 被方块卡住受到的伤害.
+         * <p>
+         * 伤害:1.
+         * <p>
+         * 原文:
          * Damage caused by being put in a block
          * <p>
          * Damage: 1
          */
         SUFFOCATION,
         /**
+         * 实体掉落高度大于 3 格时受到的伤害.
+         * <p>
+         * 伤害: 掉落高度 - 3.0.
+         * <p>
+         * 原文:
          * Damage caused when an entity falls a distance greater than 3 blocks
          * <p>
          * Damage: fall height - 3.0
          */
         FALL,
         /**
+         * 直接暴露在火中受到的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused by direct exposure to fire
          * <p>
          * Damage: 1
          */
         FIRE,
         /**
+         * 由于烧伤造成的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused due to burns caused by fire
          * <p>
          * Damage: 1
          */
         FIRE_TICK,
         /**
+         * 雪人由于融化受到的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused due to a snowman melting
          * <p>
          * Damage: 1
          */
         MELTING,
         /**
+         * 直接暴露在熔浆受到的伤害.
+         * <p>
+         * 伤害: 4.
+         * <p>
+         * 原文:
          * Damage caused by direct exposure to lava
          * <p>
          * Damage: 4
          */
         LAVA,
         /**
+         * 在水中耗尽空气受到的伤害.
+         * <p>
+         * 伤害: 2.
+         * <p>
+         * 原文:
          * Damage caused by running out of air while in water
          * <p>
          * Damage: 2
          */
         DROWNING,
         /**
+         * 在爆炸范围内受到的伤害.
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Damage caused by being in the area when a block explodes.
          * <p>
          * Damage: variable
          */
         BLOCK_EXPLOSION,
         /**
+         * 在实体爆炸范围内受到的伤害,例如苦力怕的爆炸.
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Damage caused by being in the area when an entity, such as a
          * Creeper, explodes.
          * <p>
@@ -356,12 +421,22 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         ENTITY_EXPLOSION,
         /**
+         * 掉入虚空受到的伤害.
+         * <p>
+         * 伤害:  每半秒4点.
+         * <p>
+         * 原文:
          * Damage caused by falling into the void
          * <p>
          * Damage: 4 for players
          */
         VOID,
         /**
+         * 雷击造成的伤害.
+         * <p>
+         * 伤害: 5.
+         * <p>
+         * 原文:
          * Damage caused by being struck by lightning
          * <p>
          * Damage: 5
@@ -377,28 +452,53 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         SUICIDE,
         /**
+         * 当饥饿值为空时受到的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused by starving due to having an empty hunger bar
          * <p>
          * Damage: 1
          */
         STARVATION,
         /**
+         * 由于持续性毒药造成的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused due to an ongoing poison effect
          * <p>
          * Damage: 1
          */
         POISON,
         /**
+         * 伤害药水或魔法造成的伤害.
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Damage caused by being hit by a damage potion or spell
          * <p>
          * Damage: variable
          */
         MAGIC,
         /**
+         * 凋零效果造成的伤害.
+         * <p>
+         * 原文:
          * Damage caused by Wither potion effect
          */
         WITHER,
         /**
+         * 被掉落中的方块砸中造成的伤害
+         * <p>
+         * <b>注意:</b> 不是所有方块都会造成伤害.
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Damage caused by being hit by a falling block which deals damage
          * <p>
          * <b>Note:</b> Not every block deals damage
@@ -407,6 +507,11 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         FALLING_BLOCK,
         /**
+         * 被荆棘反弹的攻击所造成的伤害(反伤).
+         * <p>
+         * 伤害: 1-4(荆棘).
+         * <p>
+         * 原文:
          * Damage caused in retaliation to another attack by the Thorns
          * enchantment.
          * <p>
@@ -414,30 +519,55 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         THORNS,
         /**
+         * 龙息造成的伤害 (恶龙咆哮~).
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Damage caused by a dragon breathing fire.
          * <p>
          * Damage: variable
          */
         DRAGON_BREATH,
         /**
+         * 自定义伤害.
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Custom damage.
          * <p>
          * Damage: variable
          */
         CUSTOM,
         /**
+         * 实体撞墙时造成的伤害.
+         * <p>
+         * 伤害: 动态改变.
+         * <p>
+         * 原文:
          * Damage caused when an entity runs into a wall.
          * <p>
          * Damage: variable
          */
         FLY_INTO_WALL,
         /**
+         * 实体站在{@link Material#MAGMA_BLOCK}上时收到的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused when an entity steps on {@link Material#MAGMA_BLOCK}.
          * <p>
          * Damage: 1
          */
         HOT_FLOOR,
         /**
+         * 由于游戏规则:maxEntityCramming,一个实体和许多其他实体挤压受到的伤害.
+         * <p>
+         * 伤害: 6.
+         * <p>
+         * 原文:
          * Damage caused when an entity is colliding with too many entities due
          * to the maxEntityCramming game rule.
          * <p>
@@ -445,18 +575,33 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         CRAMMING,
         /**
+         * 实体(例如:鱼)不在水中时受到的伤害.
+         * <p>
+         * 伤害: 1.
+         * <p>
+         * 原文:
          * Damage caused when an entity that should be in water is not.
          * <p>
          * Damage: 1
          */
         DRYOUT,
         /**
+         * 冻伤引起的伤害.
+         * <p>
+         * 伤害: 1 或 5.
+         * <p>
+         * 原文:
          * Damage caused from freezing.
          * <p>
          * Damage: 1 or 5
          */
         FREEZE,
         /**
+         * 来自{@link org.bukkit.entity.Warden}音波攻击造成的伤害.
+         * <p>
+         * 伤害: 10.
+         * <p>
+         * 原文:
          * Damage caused by the Sonic Boom attack from {@link org.bukkit.entity.Warden}
          * <p>
          * Damage: 10

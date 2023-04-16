@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A Warden.
+ * 监守者.
  */
 public interface Warden extends Monster {
 
