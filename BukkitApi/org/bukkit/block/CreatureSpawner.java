@@ -1,7 +1,7 @@
 package org.bukkit.block;
 
 import org.bukkit.entity.EntityType;
-import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表刷怪笼.
@@ -14,9 +14,9 @@ public interface CreatureSpawner extends TileState {
      * 原文:
      * Get the spawner's creature type.
      *
-     * @return 生物类型
+     * @return 生物类型, 如未设置返回 null
      */
-    @NotNull
+    @Nullable
     public EntityType getSpawnedType();
 
     /**
@@ -25,9 +25,9 @@ public interface CreatureSpawner extends TileState {
      * 原文:
      * Set the spawner's creature type.
      *
-     * @param creatureType 生物类型
+     * @param creatureType 生物类型, 设为 null 清除类型
      */
-    public void setSpawnedType(@NotNull EntityType creatureType);
+    public void setSpawnedType(@Nullable EntityType creatureType);
 
     /**
      * 设置刷怪笼要生成的生物名.
@@ -35,12 +35,12 @@ public interface CreatureSpawner extends TileState {
      * 原文:
      * Set the spawner mob type.
      *
-     * @param creatureType 要刷出的生物的名称.
+     * @param creatureType 要刷出的生物的名称, 设为 null 清除类型.
      * @deprecated 不安全的参数，请使用
      * {@link #setSpawnedType(org.bukkit.entity.EntityType)}.
      */
     @Deprecated
-    public void setCreatureTypeByName(@NotNull String creatureType);
+    public void setCreatureTypeByName(@Nullable String creatureType);
 
     /**
      * 获取要刷出的生物的名称.
@@ -48,11 +48,11 @@ public interface CreatureSpawner extends TileState {
      * 原文:
      * Get the spawner's creature type.
      *
-     * @return 要刷出的生物的名称.
+     * @return 要刷出的生物的名称(如已设置).
      * @deprecated 不安全的参数，请使用{@link #getSpawnedType()}.
      */
     @Deprecated
-    @NotNull
+    @Nullable
     public String getCreatureTypeName();
 
     /**
@@ -89,7 +89,7 @@ public interface CreatureSpawner extends TileState {
      * <br>
      * 当刷怪延迟被重置时使用该值.
      * 系统会在范围 [{@link #getMinSpawnDelay()}, {@link #getMaxSpawnDelay()}) 内随机选一个值用于下一个{@link #getDelay() 刷怪延迟}.
-     *
+     * <br>
      * 默认值为 200 ticks.
      * <p>
      * 原文:The minimum spawn delay amount (in ticks).
@@ -97,7 +97,7 @@ public interface CreatureSpawner extends TileState {
      * This value is used when the spawner resets its delay (for any reason).
      * It will choose a random number between {@link #getMinSpawnDelay()}
      * and {@link #getMaxSpawnDelay()} for its next {@link #getDelay()}.
-     *
+     * <br>
      * Default value is 200 ticks.
      *
      * @return 最小刷怪延迟
@@ -121,7 +121,7 @@ public interface CreatureSpawner extends TileState {
      * 系统会在范围 [{@link #getMinSpawnDelay()}, {@link #getMaxSpawnDelay()}) 内随机选一个值用于下一个{@link #getDelay() 刷怪延迟}.
      * <br>
      * 该值<b>必须</b>大于0且小于或等于 {@link #getMaxSpawnDelay()}.
-     *
+     * <br>
      * 默认值为 800 ticks.
      * <p>
      * 原文:The maximum spawn delay amount (in ticks).
@@ -132,7 +132,7 @@ public interface CreatureSpawner extends TileState {
      * <br>
      * This value <b>must</b> be greater than 0 and less than or equal to
      * {@link #getMaxSpawnDelay()}.
-     *
+     * <br>
      * Default value is 800 ticks.
      *
      * @return 最大刷怪延迟

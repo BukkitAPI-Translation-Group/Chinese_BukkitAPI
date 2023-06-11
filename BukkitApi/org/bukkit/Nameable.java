@@ -2,6 +2,9 @@ package org.bukkit;
 
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * 表明此方块、实体或其它物体(对象)可接受一个自定义名称.
+ */
 public interface Nameable {
 
     /**

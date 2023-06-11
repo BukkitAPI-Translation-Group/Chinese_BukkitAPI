@@ -6,7 +6,7 @@ package org.bukkit.entity;
  * 原文:
  * Represents a phantom.
  */
-public interface Phantom extends Flying {
+public interface Phantom extends Flying, Enemy {
 
     /**
      * @return 幻翼大小.

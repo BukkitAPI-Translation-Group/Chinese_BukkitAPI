@@ -1,7 +1,8 @@
 package org.bukkit.entity;
 
 import java.net.InetSocketAddress;
-import java.util.UUID;
+import java.util.Collection;
+import java.util.Map;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
@@ -19,11 +20,14 @@ import org.bukkit.WorldBorder;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.sign.Side;
 import org.bukkit.conversations.Conversable;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockDropItemEvent;
+import org.bukkit.event.player.PlayerExpCooldownChangeEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
@@ -31,6 +35,7 @@ import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
 import org.bukkit.scoreboard.Scoreboard;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -443,11 +448,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param entity The entity to play the sound
      * @param sound The sound to play
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    public void playSound(@NotNull Entity entity, @NotNull String sound, float volume, float pitch);
+
+    /**
+     * Play a sound for a player at the location of the entity.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
      * @param category The category of the sound
      * @param volume The volume of the sound
      * @param pitch The pitch of the sound
      */
     public void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a sound for a player at the location of the entity.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    public void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * 停止播放指定的声音.
@@ -572,7 +602,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     @Deprecated
     public void sendBlockChange(@NotNull Location loc, @NotNull Material material, byte data);
 
-    /**
+	/**
      * 向该玩家发送一个伪造的指定位置的方块({@link org.bukkit.block.Block})更改数据包.这不会改变世界中的方块.
      * <p>
      * 原文:Send a block change. This fakes a block change packet for a user at a
@@ -584,8 +614,53 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendBlockChange(@NotNull Location loc, @NotNull BlockData block);
 
     /**
-     * Send block damage. This fakes block break progress for a user at a
-     * certain location. This will not actually change the block's break
+     * Send a multi-block change. This fakes a block change packet for a user
+     * at multiple locations. This will not actually change the world in any
+     * way.
+     * <p>
+     * This method may send multiple packets to the client depending on the
+     * blocks in the collection. A packet must be sent for each chunk section
+     * modified, meaning one packet for each 16x16x16 block area. Even if only
+     * one block is changed in two different chunk sections, two packets will
+     * be sent.
+     * <p>
+     * Additionally, this method cannot guarantee the functionality of changes
+     * being sent to the player in chunks not loaded by the client. It is the
+     * responsibility of the caller to ensure that the client is within range
+     * of the changed blocks or to handle any side effects caused as a result.
+     *
+     * @param blocks the block states to send to the player
+     */
+    public void sendBlockChanges(@NotNull Collection<BlockState> blocks);
+
+    /**
+     * Send a multi-block change. This fakes a block change packet for a user
+     * at multiple locations. This will not actually change the world in any
+     * way.
+     * <p>
+     * This method may send multiple packets to the client depending on the
+     * blocks in the collection. A packet must be sent for each chunk section
+     * modified, meaning one packet for each 16x16x16 block area. Even if only
+     * one block is changed in two different chunk sections, two packets will
+     * be sent.
+     * <p>
+     * Additionally, this method cannot guarantee the functionality of changes
+     * being sent to the player in chunks not loaded by the client. It is the
+     * responsibility of the caller to ensure that the client is within range
+     * of the changed blocks or to handle any side effects caused as a result.
+     *
+     * @param blocks the block states to send to the player
+     * @param suppressLightUpdates whether or not light updates should be
+     * suppressed when updating the blocks on the client
+     * @deprecated suppressLightUpdates is not functional in versions greater
+     * than 1.19.4
+     */
+    @Deprecated
+    public void sendBlockChanges(@NotNull Collection<BlockState> blocks, boolean suppressLightUpdates);
+
+    /**
+     * Send block damage. This fakes block break progress at a certain location
+     * sourced by this player. This will not actually change the block's break
      * progress in any way.
      *
      * @param loc the location of the damaged block
@@ -593,6 +668,39 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * 1.0 is the most damaged
      */
     public void sendBlockDamage(@NotNull Location loc, float progress);
+
+    /**
+     * Send block damage. This fakes block break progress at a certain location
+     * sourced by the provided entity. This will not actually change the block's
+     * break progress in any way.
+     * <p>
+     * At the same location for each unique damage source sent to the player, a
+     * separate damage overlay will be displayed with the given progress. This allows
+     * for block damage at different progress from multiple entities at once.
+     *
+     * @param loc the location of the damaged block
+     * @param progress the progress from 0.0 - 1.0 where 0 is no damage and
+     * 1.0 is the most damaged
+     * @param source the entity to which the damage belongs
+     */
+    public void sendBlockDamage(@NotNull Location loc, float progress, @NotNull Entity source);
+
+    /**
+     * Send block damage. This fakes block break progress at a certain location
+     * sourced by the provided entity id. This will not actually change the block's
+     * break progress in any way.
+     * <p>
+     * At the same location for each unique damage source sent to the player, a
+     * separate damage overlay will be displayed with the given progress. This allows
+     * for block damage at different progress from multiple entities at once.
+     *
+     * @param loc the location of the damaged block
+     * @param progress the progress from 0.0 - 1.0 where 0 is no damage and
+     * 1.0 is the most damaged
+     * @param sourceId the entity id of the entity to which the damage belongs.
+     * Can be an id that does not associate directly with an existing or loaded entity.
+     */
+    public void sendBlockDamage(@NotNull Location loc, float progress, int sourceId);
 
     /**
      * 向玩家发送某个实体的盔甲槽变化数据包. 本方法可针对指定玩家伪造某个实体的盔甲,
@@ -606,7 +714,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param slot 要伪造哪一盔甲槽的变化
      * @param item 玩家将看到的盔甲物品
      */
-    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull EquipmentSlot slot, @NotNull ItemStack item);
+    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull EquipmentSlot slot, @Nullable ItemStack item);
+
+    /**
+     * Send multiple equipment changes for the target entity. This will not
+     * actually change the entity's equipment in any way.
+     *
+     * @param entity the entity whose equipment to change
+     * @param items the slots to change, where the values are the items to which
+     * the slot should be changed. null values will set the slot to air
+     */
+    public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
 
     /**
      * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
@@ -689,12 +807,55 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendMap(@NotNull MapView map);
 
     /**
+     * Send a hurt animation. This fakes incoming damage towards the player from
+     * the given yaw relative to the player's direction.
+     *
+     * @param yaw the yaw in degrees relative to the player's direction where 0
+     * is in front of the player, 90 is to the right, 180 is behind, and 270 is
+     * to the left
+     */
+    public void sendHurtAnimation(float yaw);
+
+    /**
+     * Add custom chat completion suggestions shown to the player while typing a
+     * message.
+     *
+     * @param completions the completions to send
+     */
+    public void addCustomChatCompletions(@NotNull Collection<String> completions);
+
+    /**
+     * Remove custom chat completion suggestions shown to the player while
+     * typing a message.
+     *
+     * Online player names cannot be removed with this method. This will affect
+     * only custom completions added by {@link #addCustomChatCompletions(Collection)}
+     * or {@link #setCustomChatCompletions(Collection)}.
+     *
+     * @param completions the completions to remove
+     */
+    public void removeCustomChatCompletions(@NotNull Collection<String> completions);
+
+    /**
+     * Set the list of chat completion suggestions shown to the player while
+     * typing a message.
+     * <p>
+     * If completions were set previously, this method will remove them all and
+     * replace them with the provided completions.
+     *
+     * @param completions the completions to set
+     */
+    public void setCustomChatCompletions(@NotNull Collection<String> completions);
+
+    /**
      * 刷新玩家的背包.确保玩家的背包和服务器内存中玩家的背包一致. <p>
      * 译注:在以前的版本(好吧我也不知道是什么版本)中假如不调用该方法当更改背包时会出现莫名其妙的事情,比如
      * 背包看起来是空的,点一下空的格突然出现了东西之类的.... <p>
      * 原文:Forces an update of the player's entire inventory.
+     * 
+     * @apiNote 插件不必使用此方法. 如果处于某种原因必须使用, 那可能是一个 bug
      */
-    //@Deprecated // Spigot - undeprecate
+    @ApiStatus.Internal
     public void updateInventory();
 
     /**
@@ -787,6 +948,27 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * by server conditions.
      */
     public void resetPlayerWeather();
+
+    /**
+     * Gets the player's cooldown between picking up experience orbs.
+     *
+     * @return The cooldown in ticks
+     */
+    public int getExpCooldown();
+
+    /**
+     * Sets the player's cooldown between picking up experience orbs..
+     *
+     * <strong>Note:</strong> Setting this to 0 allows the player to pick up
+     * instantly, but setting this to a negative value will cause the player to
+     * be unable to pick up xp-orbs.
+     *
+     * Calling this Method will result in {@link PlayerExpCooldownChangeEvent}
+     * being called.
+     *
+     * @param ticks The cooldown in ticks
+     */
+    public void setExpCooldown(int ticks);
 
     /**
      * 给玩家指定经验. <p>
@@ -981,9 +1163,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param plugin 要隐藏此实体的插件实例
      * @param entity 要隐藏的实体
-     * @deprecated draft API
+     * @apiNote draft API
      */
-    @Deprecated
+    @ApiStatus.Experimental
     public void hideEntity(@NotNull Plugin plugin, @NotNull Entity entity);
 
     /**
@@ -993,9 +1175,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param plugin Plugin that wants to show the entity
      * @param entity Entity to show
-     * @deprecated draft API
+     * @ApiStatus.Experimental
      */
-    @Deprecated
+    @ApiStatus.Experimental
     public void showEntity(@NotNull Plugin plugin, @NotNull Entity entity);
 
     /**
@@ -1004,9 +1186,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param entity Entity to check
      * @return True if the provided entity is not being hidden from this
      *     player
-     * @deprecated draft API
+     * @apiNote draft API
      */
-    @Deprecated
+    @ApiStatus.Experimental
     public boolean canSee(@NotNull Entity entity);
 
     /**
@@ -1786,6 +1968,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void openSign(@NotNull Sign sign);
 
     /**
+     * Open a Sign for editing by the Player.
+     *
+     * The Sign must be placed in the same world as the player.
+     *
+     * @param sign The sign to edit
+     * @param side The side to edit
+     */
+    public void openSign(@NotNull Sign sign, @NotNull Side side);
+
+    /**
      * Shows the demo screen to the player, this screen is normally only seen in
      * the demo version of the game.
      * <br>
@@ -1813,32 +2005,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          */
         @NotNull
         public InetSocketAddress getRawAddress() {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        /**
-         * 获取玩家是否与其它实体产生碰撞.
-         * <p>
-         * 原文:Gets whether the player collides with entities
-         *
-         * @return 玩家的碰撞状态
-         * @deprecated 另请参见 {@link LivingEntity#isCollidable()}
-         */
-        @Deprecated
-        public boolean getCollidesWithEntities() {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        /**
-         * 设置玩家是否与其它实体产生碰撞.
-         * <p>
-         * 原文:Sets whether the player collides with entities
-         *
-         * @param collides 玩家是否与其它实体产生碰撞
-         * @deprecated {@link LivingEntity#setCollidable(boolean)}
-         */
-        @Deprecated
-        public void setCollidesWithEntities(boolean collides) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
@@ -1906,7 +2072,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          * @param sender 消息的发送者
          * @param component 要发送的聊天消息组件
          */
-        public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent component) {
+        public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable java.util.UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent component) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
@@ -1919,7 +2085,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
          * @param sender 消息的发送者
          * @param components 要发送的聊天消息组件
          */
-        public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
+        public void sendMessage(@NotNull net.md_5.bungee.api.ChatMessageType position, @Nullable java.util.UUID sender, @NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
     }

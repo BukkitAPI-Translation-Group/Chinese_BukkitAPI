@@ -9,11 +9,14 @@ import java.util.Map;
 import java.util.function.Consumer;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
+import org.bukkit.block.Block;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.AnaloguePowerable;
 import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
+import org.bukkit.block.data.Brushable;
 import org.bukkit.block.data.Directional;
+import org.bukkit.block.data.Hatchable;
 import org.bukkit.block.data.Levelled;
 import org.bukkit.block.data.Lightable;
 import org.bukkit.block.data.MultipleFacing;
@@ -33,17 +36,20 @@ import org.bukkit.block.data.type.BigDripleaf;
 import org.bukkit.block.data.type.BrewingStand;
 import org.bukkit.block.data.type.BubbleColumn;
 import org.bukkit.block.data.type.Cake;
+import org.bukkit.block.data.type.CalibratedSculkSensor;
 import org.bukkit.block.data.type.Campfire;
 import org.bukkit.block.data.type.Candle;
 import org.bukkit.block.data.type.CaveVines;
 import org.bukkit.block.data.type.CaveVinesPlant;
 import org.bukkit.block.data.type.Chain;
 import org.bukkit.block.data.type.Chest;
+import org.bukkit.block.data.type.ChiseledBookshelf;
 import org.bukkit.block.data.type.Cocoa;
 import org.bukkit.block.data.type.CommandBlock;
 import org.bukkit.block.data.type.Comparator;
 import org.bukkit.block.data.type.CoralWallFan;
 import org.bukkit.block.data.type.DaylightDetector;
+import org.bukkit.block.data.type.DecoratedPot;
 import org.bukkit.block.data.type.Dispenser;
 import org.bukkit.block.data.type.Door;
 import org.bukkit.block.data.type.Dripleaf;
@@ -57,6 +63,7 @@ import org.bukkit.block.data.type.Gate;
 import org.bukkit.block.data.type.GlassPane;
 import org.bukkit.block.data.type.GlowLichen;
 import org.bukkit.block.data.type.Grindstone;
+import org.bukkit.block.data.type.HangingSign;
 import org.bukkit.block.data.type.Hopper;
 import org.bukkit.block.data.type.Jigsaw;
 import org.bukkit.block.data.type.Jukebox;
@@ -69,8 +76,10 @@ import org.bukkit.block.data.type.LightningRod;
 import org.bukkit.block.data.type.MangrovePropagule;
 import org.bukkit.block.data.type.NoteBlock;
 import org.bukkit.block.data.type.Observer;
+import org.bukkit.block.data.type.PinkPetals;
 import org.bukkit.block.data.type.Piston;
 import org.bukkit.block.data.type.PistonHead;
+import org.bukkit.block.data.type.PitcherCrop;
 import org.bukkit.block.data.type.PointedDripstone;
 import org.bukkit.block.data.type.RedstoneRail;
 import org.bukkit.block.data.type.RedstoneWallTorch;
@@ -98,6 +107,7 @@ import org.bukkit.block.data.type.Tripwire;
 import org.bukkit.block.data.type.TripwireHook;
 import org.bukkit.block.data.type.TurtleEgg;
 import org.bukkit.block.data.type.Wall;
+import org.bukkit.block.data.type.WallHangingSign;
 import org.bukkit.block.data.type.WallSign;
 import org.bukkit.inventory.CreativeCategory;
 import org.bukkit.inventory.EquipmentSlot;
@@ -108,7 +118,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 所有物品的枚举.
  */
-public enum Material implements Keyed {
+public enum Material implements Keyed, Translatable {
     //<editor-fold desc="Materials" defaultstate="collapsed">
     AIR(9648, 0),
     STONE(22948),
@@ -147,10 +157,13 @@ public enum Material implements Keyed {
     BIRCH_PLANKS(29322),
     JUNGLE_PLANKS(26445),
     ACACIA_PLANKS(31312),
+    CHERRY_PLANKS(8354),
     DARK_OAK_PLANKS(20869),
     MANGROVE_PLANKS(7078),
+    BAMBOO_PLANKS(8520),
     CRIMSON_PLANKS(18812),
     WARPED_PLANKS(16045),
+    BAMBOO_MOSAIC(10715),
     /**
      * BlockData: {@link Sapling}
      */
@@ -174,6 +187,10 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Sapling}
      */
+    CHERRY_SAPLING(25204, Sapling.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
     DARK_OAK_SAPLING(14933, Sapling.class),
     /**
      * BlockData: {@link MangrovePropagule}
@@ -181,6 +198,14 @@ public enum Material implements Keyed {
     MANGROVE_PROPAGULE(18688, MangrovePropagule.class),
     BEDROCK(23130),
     SAND(11542),
+    /**
+     * BlockData: {@link Brushable}
+     */
+    SUSPICIOUS_SAND(18410, Brushable.class),
+    /**
+     * BlockData: {@link Brushable}
+     */
+    SUSPICIOUS_GRAVEL(7353, Brushable.class),
     RED_SAND(16279),
     GRAVEL(7804),
     COAL_ORE(30965),
@@ -321,6 +346,10 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Orientable}
      */
+    CHERRY_LOG(20847, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     DARK_OAK_LOG(14831, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -345,6 +374,10 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Orientable}
      */
+    BAMBOO_BLOCK(20770, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     STRIPPED_OAK_LOG(20523, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -362,6 +395,10 @@ public enum Material implements Keyed {
      * BlockData: {@link Orientable}
      */
     STRIPPED_ACACIA_LOG(18167, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
+    STRIPPED_CHERRY_LOG(18061, Orientable.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -401,6 +438,10 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Orientable}
      */
+    STRIPPED_CHERRY_WOOD(19647, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     STRIPPED_DARK_OAK_WOOD(16000, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -414,6 +455,10 @@ public enum Material implements Keyed {
      * BlockData: {@link Orientable}
      */
     STRIPPED_WARPED_HYPHAE(7422, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
+    STRIPPED_BAMBOO_BLOCK(14799, Orientable.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -434,6 +479,10 @@ public enum Material implements Keyed {
      * BlockData: {@link Orientable}
      */
     ACACIA_WOOD(9541, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
+    CHERRY_WOOD(9826, Orientable.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -470,6 +519,10 @@ public enum Material implements Keyed {
      * BlockData: {@link Leaves}
      */
     ACACIA_LEAVES(16606, Leaves.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
+    CHERRY_LEAVES(20856, Leaves.class),
     /**
      * BlockData: {@link Leaves}
      */
@@ -534,6 +587,11 @@ public enum Material implements Keyed {
     CORNFLOWER(15405),
     LILY_OF_THE_VALLEY(7185),
     WITHER_ROSE(8619),
+    TORCHFLOWER(4501),
+    /**
+     * BlockData: {@link Bisected}
+     */
+    PITCHER_PLANT(28172, Bisected.class),
     SPORE_BLOSSOM(20627),
     BROWN_MUSHROOM(9665),
     RED_MUSHROOM(19728),
@@ -559,6 +617,10 @@ public enum Material implements Keyed {
      */
     KELP(21916, Ageable.class),
     MOSS_CARPET(8221),
+    /**
+     * BlockData: {@link PinkPetals}
+     */
+    PINK_PETALS(10420, PinkPetals.class),
     MOSS_BLOCK(9175),
     /**
      * BlockData: {@link Waterlogged}
@@ -599,11 +661,23 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Slab}
      */
+    CHERRY_SLAB(16673, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
     DARK_OAK_SLAB(28852, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
     MANGROVE_SLAB(13704, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BAMBOO_SLAB(17798, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BAMBOO_MOSAIC_SLAB(22118, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -686,6 +760,14 @@ public enum Material implements Keyed {
     SMOOTH_STONE(21910),
     BRICKS(14165),
     BOOKSHELF(10069),
+    /**
+     * BlockData: {@link ChiseledBookshelf}
+     */
+    CHISELED_BOOKSHELF(8099, ChiseledBookshelf.class),
+    /**
+     * BlockData: {@link DecoratedPot}
+     */
+    DECORATED_POT(8720, 1, DecoratedPot.class),
     MOSSY_COBBLESTONE(21900),
     OBSIDIAN(32723),
     TORCH(6063),
@@ -770,11 +852,19 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Fence}
      */
+    CHERRY_FENCE(32047, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
     DARK_OAK_FENCE(21767, Fence.class),
     /**
      * BlockData: {@link Fence}
      */
     MANGROVE_FENCE(15021, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    BAMBOO_FENCE(17207, Fence.class),
     /**
      * BlockData: {@link Fence}
      */
@@ -942,11 +1032,23 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Stairs}
      */
+    CHERRY_STAIRS(18380, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
     DARK_OAK_STAIRS(22921, Stairs.class),
     /**
      * BlockData: {@link Stairs}
      */
     MANGROVE_STAIRS(27641, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BAMBOO_STAIRS(25674, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BAMBOO_MOSAIC_STAIRS(20977, Stairs.class),
     /**
      * BlockData: {@link Stairs}
      */
@@ -1427,6 +1529,10 @@ public enum Material implements Keyed {
      * BlockData: {@link TurtleEgg}
      */
     TURTLE_EGG(32101, TurtleEgg.class),
+    /**
+     * BlockData: {@link Hatchable}
+     */
+    SNIFFER_EGG(12980, Hatchable.class),
     DEAD_TUBE_CORAL_BLOCK(28350),
     DEAD_BRAIN_CORAL_BLOCK(12979),
     DEAD_BUBBLE_CORAL_BLOCK(28220),
@@ -1645,7 +1751,7 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Slab}
      */
-    DIORITE_SLAB(10715, Slab.class),
+    DIORITE_SLAB(25526, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -1731,6 +1837,10 @@ public enum Material implements Keyed {
      */
     SCULK_SENSOR(5598, SculkSensor.class),
     /**
+     * BlockData: {@link CalibratedSculkSensor}
+     */
+    CALIBRATED_SCULK_SENSOR(21034, CalibratedSculkSensor.class),
+    /**
      * BlockData: {@link TripwireHook}
      */
     TRIPWIRE_HOOK(8130, TripwireHook.class),
@@ -1781,11 +1891,19 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Switch}
      */
+    CHERRY_BUTTON(9058, Switch.class),
+    /**
+     * BlockData: {@link Switch}
+     */
     DARK_OAK_BUTTON(6214, Switch.class),
     /**
      * BlockData: {@link Switch}
      */
-    MANGROVE_BUTTON(17207, Switch.class),
+    MANGROVE_BUTTON(9838, Switch.class),
+    /**
+     * BlockData: {@link Switch}
+     */
+    BAMBOO_BUTTON(21810, Switch.class),
     /**
      * BlockData: {@link Switch}
      */
@@ -1833,11 +1951,19 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Powerable}
      */
+    CHERRY_PRESSURE_PLATE(8651, Powerable.class),
+    /**
+     * BlockData: {@link Powerable}
+     */
     DARK_OAK_PRESSURE_PLATE(31375, Powerable.class),
     /**
      * BlockData: {@link Powerable}
      */
     MANGROVE_PRESSURE_PLATE(9748, Powerable.class),
+    /**
+     * BlockData: {@link Powerable}
+     */
+    BAMBOO_PRESSURE_PLATE(26740, Powerable.class),
     /**
      * BlockData: {@link Powerable}
      */
@@ -1873,11 +1999,19 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Door}
      */
+    CHERRY_DOOR(12684, Door.class),
+    /**
+     * BlockData: {@link Door}
+     */
     DARK_OAK_DOOR(10669, Door.class),
     /**
      * BlockData: {@link Door}
      */
     MANGROVE_DOOR(18964, Door.class),
+    /**
+     * BlockData: {@link Door}
+     */
+    BAMBOO_DOOR(19971, Door.class),
     /**
      * BlockData: {@link Door}
      */
@@ -1913,11 +2047,19 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link TrapDoor}
      */
+    CHERRY_TRAPDOOR(6293, TrapDoor.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     DARK_OAK_TRAPDOOR(10355, TrapDoor.class),
     /**
      * BlockData: {@link TrapDoor}
      */
     MANGROVE_TRAPDOOR(17066, TrapDoor.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
+    BAMBOO_TRAPDOOR(9174, TrapDoor.class),
     /**
      * BlockData: {@link TrapDoor}
      */
@@ -1949,11 +2091,19 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Gate}
      */
+    CHERRY_FENCE_GATE(28222, Gate.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     DARK_OAK_FENCE_GATE(10679, Gate.class),
     /**
      * BlockData: {@link Gate}
      */
     MANGROVE_FENCE_GATE(28476, Gate.class),
+    /**
+     * BlockData: {@link Gate}
+     */
+    BAMBOO_FENCE_GATE(14290, Gate.class),
     /**
      * BlockData: {@link Gate}
      */
@@ -1997,10 +2147,14 @@ public enum Material implements Keyed {
     JUNGLE_CHEST_BOAT(20133, 1),
     ACACIA_BOAT(27326, 1),
     ACACIA_CHEST_BOAT(28455, 1),
+    CHERRY_BOAT(13628, 1),
+    CHERRY_CHEST_BOAT(7165, 1),
     DARK_OAK_BOAT(28618, 1),
     DARK_OAK_CHEST_BOAT(8733, 1),
     MANGROVE_BOAT(20792, 1),
     MANGROVE_CHEST_BOAT(18572, 1),
+    BAMBOO_RAFT(25901, 1),
+    BAMBOO_CHEST_RAFT(20056, 1),
     /**
      * BlockData: {@link StructureBlock}
      */
@@ -2125,6 +2279,10 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Sign}
      */
+    CHERRY_SIGN(16520, 16, Sign.class),
+    /**
+     * BlockData: {@link Sign}
+     */
     DARK_OAK_SIGN(15127, 16, Sign.class),
     /**
      * BlockData: {@link Sign}
@@ -2133,11 +2291,59 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link Sign}
      */
+    BAMBOO_SIGN(26139, 16, Sign.class),
+    /**
+     * BlockData: {@link Sign}
+     */
     CRIMSON_SIGN(12162, 16, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
     WARPED_SIGN(10407, 16, Sign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    OAK_HANGING_SIGN(20116, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    SPRUCE_HANGING_SIGN(24371, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    BIRCH_HANGING_SIGN(17938, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    JUNGLE_HANGING_SIGN(27671, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    ACACIA_HANGING_SIGN(30257, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    CHERRY_HANGING_SIGN(5088, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    DARK_OAK_HANGING_SIGN(23360, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    MANGROVE_HANGING_SIGN(25106, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    BAMBOO_HANGING_SIGN(4726, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    CRIMSON_HANGING_SIGN(20696, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
+    WARPED_HANGING_SIGN(8195, 16, HangingSign.class),
     BUCKET(15215, 16),
     WATER_BUCKET(8802, 1),
     LAVA_BUCKET(9228, 1),
@@ -2300,6 +2506,7 @@ public enum Material implements Keyed {
     BEE_SPAWN_EGG(22924),
     BLAZE_SPAWN_EGG(4759),
     CAT_SPAWN_EGG(29583),
+    CAMEL_SPAWN_EGG(14760),
     CAVE_SPIDER_SPAWN_EGG(23341),
     CHICKEN_SPAWN_EGG(5462),
     COD_SPAWN_EGG(27248),
@@ -2309,6 +2516,7 @@ public enum Material implements Keyed {
     DONKEY_SPAWN_EGG(14513),
     DROWNED_SPAWN_EGG(19368),
     ELDER_GUARDIAN_SPAWN_EGG(11418),
+    ENDER_DRAGON_SPAWN_EGG(28092),
     ENDERMAN_SPAWN_EGG(29488),
     ENDERMITE_SPAWN_EGG(16617),
     EVOKER_SPAWN_EGG(21271),
@@ -2321,6 +2529,7 @@ public enum Material implements Keyed {
     HOGLIN_SPAWN_EGG(14088),
     HORSE_SPAWN_EGG(25981),
     HUSK_SPAWN_EGG(20178),
+    IRON_GOLEM_SPAWN_EGG(12781),
     LLAMA_SPAWN_EGG(23640),
     MAGMA_CUBE_SPAWN_EGG(26638),
     MOOSHROOM_SPAWN_EGG(22125),
@@ -2344,6 +2553,8 @@ public enum Material implements Keyed {
     SKELETON_SPAWN_EGG(15261),
     SKELETON_HORSE_SPAWN_EGG(21356),
     SLIME_SPAWN_EGG(17196),
+    SNIFFER_SPAWN_EGG(27473),
+    SNOW_GOLEM_SPAWN_EGG(24732),
     SPIDER_SPAWN_EGG(14984),
     SQUID_SPAWN_EGG(10682),
     STRAY_SPAWN_EGG(30153),
@@ -2358,6 +2569,7 @@ public enum Material implements Keyed {
     WANDERING_TRADER_SPAWN_EGG(17904),
     WARDEN_SPAWN_EGG(27553),
     WITCH_SPAWN_EGG(11837),
+    WITHER_SPAWN_EGG(8024),
     WITHER_SKELETON_SPAWN_EGG(10073),
     WOLF_SPAWN_EGG(21692),
     ZOGLIN_SPAWN_EGG(7442),
@@ -2402,6 +2614,10 @@ public enum Material implements Keyed {
      * BlockData: {@link Rotatable}
      */
     DRAGON_HEAD(20084, Rotatable.class),
+    /**
+     * BlockData: {@link Rotatable}
+     */
+    PIGLIN_HEAD(5512, Rotatable.class),
     NETHER_STAR(12469),
     PUMPKIN_PIE(28725),
     FIREWORK_ROCKET(23841),
@@ -2492,6 +2708,8 @@ public enum Material implements Keyed {
     END_CRYSTAL(19090),
     CHORUS_FRUIT(7652),
     POPPED_CHORUS_FRUIT(27844),
+    TORCHFLOWER_SEEDS(18153),
+    PITCHER_POD(7977),
     BEETROOT(23305),
     BEETROOT_SEEDS(21282),
     BEETROOT_SOUP(16036, 1),
@@ -2519,6 +2737,7 @@ public enum Material implements Keyed {
     MUSIC_DISC_11(27426, 1),
     MUSIC_DISC_WAIT(26499, 1),
     MUSIC_DISC_OTHERSIDE(12974, 1),
+    MUSIC_DISC_RELIC(8200, 1),
     MUSIC_DISC_5(9212, 1),
     MUSIC_DISC_PIGSTEP(21323, 1),
     DISC_FRAGMENT_5(29729),
@@ -2738,6 +2957,44 @@ public enum Material implements Keyed {
     PEARLESCENT_FROGLIGHT(21441, Orientable.class),
     FROGSPAWN(8350),
     ECHO_SHARD(12529),
+    BRUSH(30569, 1, 64),
+    NETHERITE_UPGRADE_SMITHING_TEMPLATE(7615),
+    SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE(16124),
+    DUNE_ARMOR_TRIM_SMITHING_TEMPLATE(30925),
+    COAST_ARMOR_TRIM_SMITHING_TEMPLATE(25501),
+    WILD_ARMOR_TRIM_SMITHING_TEMPLATE(5870),
+    WARD_ARMOR_TRIM_SMITHING_TEMPLATE(24534),
+    EYE_ARMOR_TRIM_SMITHING_TEMPLATE(14663),
+    VEX_ARMOR_TRIM_SMITHING_TEMPLATE(25818),
+    TIDE_ARMOR_TRIM_SMITHING_TEMPLATE(20420),
+    SNOUT_ARMOR_TRIM_SMITHING_TEMPLATE(14386),
+    RIB_ARMOR_TRIM_SMITHING_TEMPLATE(6010),
+    SPIRE_ARMOR_TRIM_SMITHING_TEMPLATE(29143),
+    WAYFINDER_ARMOR_TRIM_SMITHING_TEMPLATE(4957),
+    SHAPER_ARMOR_TRIM_SMITHING_TEMPLATE(20537),
+    SILENCE_ARMOR_TRIM_SMITHING_TEMPLATE(7070),
+    RAISER_ARMOR_TRIM_SMITHING_TEMPLATE(29116),
+    HOST_ARMOR_TRIM_SMITHING_TEMPLATE(12165),
+    ANGLER_POTTERY_SHERD(9952),
+    ARCHER_POTTERY_SHERD(21629),
+    ARMS_UP_POTTERY_SHERD(5484),
+    BLADE_POTTERY_SHERD(25079),
+    BREWER_POTTERY_SHERD(23429),
+    BURN_POTTERY_SHERD(21259),
+    DANGER_POTTERY_SHERD(30506),
+    EXPLORER_POTTERY_SHERD(5124),
+    FRIEND_POTTERY_SHERD(18221),
+    HEART_POTTERY_SHERD(17607),
+    HEARTBREAK_POTTERY_SHERD(21108),
+    HOWL_POTTERY_SHERD(24900),
+    MINER_POTTERY_SHERD(30602),
+    MOURNER_POTTERY_SHERD(23993),
+    PLENTY_POTTERY_SHERD(28236),
+    PRIZE_POTTERY_SHERD(4341),
+    SHEAF_POTTERY_SHERD(23652),
+    SHELTER_POTTERY_SHERD(28390),
+    SKULL_POTTERY_SHERD(16980),
+    SNORT_POTTERY_SHERD(15921),
     /**
      * BlockData: {@link Levelled}
      */
@@ -2790,6 +3047,10 @@ public enum Material implements Keyed {
     /**
      * BlockData: {@link WallSign}
      */
+    CHERRY_WALL_SIGN(20188, 16, WallSign.class),
+    /**
+     * BlockData: {@link WallSign}
+     */
     JUNGLE_WALL_SIGN(29629, 16, WallSign.class),
     /**
      * BlockData: {@link WallSign}
@@ -2799,6 +3060,54 @@ public enum Material implements Keyed {
      * BlockData: {@link WallSign}
      */
     MANGROVE_WALL_SIGN(27203, 16, WallSign.class),
+    /**
+     * BlockData: {@link WallSign}
+     */
+    BAMBOO_WALL_SIGN(18857, 16, WallSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    OAK_WALL_HANGING_SIGN(15637, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    SPRUCE_WALL_HANGING_SIGN(18833, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    BIRCH_WALL_HANGING_SIGN(15937, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    ACACIA_WALL_HANGING_SIGN(22477, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    CHERRY_WALL_HANGING_SIGN(10953, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    JUNGLE_WALL_HANGING_SIGN(16691, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    DARK_OAK_WALL_HANGING_SIGN(14296, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    MANGROVE_WALL_HANGING_SIGN(16974, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    CRIMSON_WALL_HANGING_SIGN(28982, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    WARPED_WALL_HANGING_SIGN(20605, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    BAMBOO_WALL_HANGING_SIGN(6669, WallHangingSign.class),
     /**
      * BlockData: {@link RedstoneWallTorch}
      */
@@ -2845,11 +3154,13 @@ public enum Material implements Keyed {
      * BlockData: {@link Tripwire}
      */
     TRIPWIRE(8810, Tripwire.class),
+    POTTED_TORCHFLOWER(21278),
     POTTED_OAK_SAPLING(11905),
     POTTED_SPRUCE_SAPLING(29498),
     POTTED_BIRCH_SAPLING(32484),
     POTTED_JUNGLE_SAPLING(7525),
     POTTED_ACACIA_SAPLING(14096),
+    POTTED_CHERRY_SAPLING(30785),
     POTTED_DARK_OAK_SAPLING(6486),
     POTTED_MANGROVE_PROPAGULE(22003),
     POTTED_FERN(23315),
@@ -2902,6 +3213,10 @@ public enum Material implements Keyed {
      * BlockData: {@link Directional}
      */
     DRAGON_WALL_HEAD(19818, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
+    PIGLIN_WALL_HEAD(4446, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
@@ -2966,6 +3281,14 @@ public enum Material implements Keyed {
      * BlockData: {@link Directional}
      */
     BLACK_WALL_BANNER(4919, Directional.class),
+    /**
+     * BlockData: {@link Ageable}
+     */
+    TORCHFLOWER_CROP(28460, Ageable.class),
+    /**
+     * BlockData: {@link PitcherCrop}
+     */
+    PITCHER_CROP(15420, PitcherCrop.class),
     /**
      * BlockData: {@link Ageable}
      */
@@ -4261,6 +4584,7 @@ public enum Material implements Keyed {
             case ACACIA_DOOR:
             case ACACIA_FENCE:
             case ACACIA_FENCE_GATE:
+            case ACACIA_HANGING_SIGN:
             case ACACIA_LEAVES:
             case ACACIA_LOG:
             case ACACIA_PLANKS:
@@ -4270,6 +4594,7 @@ public enum Material implements Keyed {
             case ACACIA_SLAB:
             case ACACIA_STAIRS:
             case ACACIA_TRAPDOOR:
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case ACACIA_WOOD:
             case ACTIVATOR_RAIL:
@@ -4289,7 +4614,24 @@ public enum Material implements Keyed {
             case AZALEA_LEAVES:
             case AZURE_BLUET:
             case BAMBOO:
+            case BAMBOO_BLOCK:
+            case BAMBOO_BUTTON:
+            case BAMBOO_DOOR:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_HANGING_SIGN:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_PRESSURE_PLATE:
             case BAMBOO_SAPLING:
+            case BAMBOO_SIGN:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
+            case BAMBOO_TRAPDOOR:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
             case BARREL:
             case BARRIER:
             case BASALT:
@@ -4305,6 +4647,7 @@ public enum Material implements Keyed {
             case BIRCH_DOOR:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_LEAVES:
             case BIRCH_LOG:
             case BIRCH_PLANKS:
@@ -4314,6 +4657,7 @@ public enum Material implements Keyed {
             case BIRCH_SLAB:
             case BIRCH_STAIRS:
             case BIRCH_TRAPDOOR:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BIRCH_WOOD:
             case BLACKSTONE:
@@ -4387,6 +4731,7 @@ public enum Material implements Keyed {
             case CACTUS:
             case CAKE:
             case CALCITE:
+            case CALIBRATED_SCULK_SENSOR:
             case CAMPFIRE:
             case CANDLE:
             case CANDLE_CAKE:
@@ -4399,8 +4744,26 @@ public enum Material implements Keyed {
             case CAVE_VINES_PLANT:
             case CHAIN:
             case CHAIN_COMMAND_BLOCK:
+            case CHERRY_BUTTON:
+            case CHERRY_DOOR:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_LEAVES:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_PRESSURE_PLATE:
+            case CHERRY_SAPLING:
+            case CHERRY_SIGN:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_TRAPDOOR:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
+            case CHERRY_WOOD:
             case CHEST:
             case CHIPPED_ANVIL:
+            case CHISELED_BOOKSHELF:
             case CHISELED_DEEPSLATE:
             case CHISELED_NETHER_BRICKS:
             case CHISELED_POLISHED_BLACKSTONE:
@@ -4444,6 +4807,7 @@ public enum Material implements Keyed {
             case CRIMSON_FENCE:
             case CRIMSON_FENCE_GATE:
             case CRIMSON_FUNGUS:
+            case CRIMSON_HANGING_SIGN:
             case CRIMSON_HYPHAE:
             case CRIMSON_NYLIUM:
             case CRIMSON_PLANKS:
@@ -4454,6 +4818,7 @@ public enum Material implements Keyed {
             case CRIMSON_STAIRS:
             case CRIMSON_STEM:
             case CRIMSON_TRAPDOOR:
+            case CRIMSON_WALL_HANGING_SIGN:
             case CRIMSON_WALL_SIGN:
             case CRYING_OBSIDIAN:
             case CUT_COPPER:
@@ -4483,6 +4848,7 @@ public enum Material implements Keyed {
             case DARK_OAK_DOOR:
             case DARK_OAK_FENCE:
             case DARK_OAK_FENCE_GATE:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_LEAVES:
             case DARK_OAK_LOG:
             case DARK_OAK_PLANKS:
@@ -4492,6 +4858,7 @@ public enum Material implements Keyed {
             case DARK_OAK_SLAB:
             case DARK_OAK_STAIRS:
             case DARK_OAK_TRAPDOOR:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DARK_OAK_WOOD:
             case DARK_PRISMARINE:
@@ -4519,6 +4886,7 @@ public enum Material implements Keyed {
             case DEAD_TUBE_CORAL_BLOCK:
             case DEAD_TUBE_CORAL_FAN:
             case DEAD_TUBE_CORAL_WALL_FAN:
+            case DECORATED_POT:
             case DEEPSLATE:
             case DEEPSLATE_BRICKS:
             case DEEPSLATE_BRICK_SLAB:
@@ -4656,6 +5024,7 @@ public enum Material implements Keyed {
             case JUNGLE_DOOR:
             case JUNGLE_FENCE:
             case JUNGLE_FENCE_GATE:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_LEAVES:
             case JUNGLE_LOG:
             case JUNGLE_PLANKS:
@@ -4665,6 +5034,7 @@ public enum Material implements Keyed {
             case JUNGLE_SLAB:
             case JUNGLE_STAIRS:
             case JUNGLE_TRAPDOOR:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case JUNGLE_WOOD:
             case KELP:
@@ -4748,6 +5118,7 @@ public enum Material implements Keyed {
             case MANGROVE_DOOR:
             case MANGROVE_FENCE:
             case MANGROVE_FENCE_GATE:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_LEAVES:
             case MANGROVE_LOG:
             case MANGROVE_PLANKS:
@@ -4758,6 +5129,7 @@ public enum Material implements Keyed {
             case MANGROVE_SLAB:
             case MANGROVE_STAIRS:
             case MANGROVE_TRAPDOOR:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MANGROVE_WOOD:
             case MEDIUM_AMETHYST_BUD:
@@ -4800,6 +5172,7 @@ public enum Material implements Keyed {
             case OAK_DOOR:
             case OAK_FENCE:
             case OAK_FENCE_GATE:
+            case OAK_HANGING_SIGN:
             case OAK_LEAVES:
             case OAK_LOG:
             case OAK_PLANKS:
@@ -4809,6 +5182,7 @@ public enum Material implements Keyed {
             case OAK_SLAB:
             case OAK_STAIRS:
             case OAK_TRAPDOOR:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case OAK_WOOD:
             case OBSERVER:
@@ -4839,6 +5213,8 @@ public enum Material implements Keyed {
             case PEARLESCENT_FROGLIGHT:
             case PEONY:
             case PETRIFIED_OAK_SLAB:
+            case PIGLIN_HEAD:
+            case PIGLIN_WALL_HEAD:
             case PINK_BANNER:
             case PINK_BED:
             case PINK_CANDLE:
@@ -4847,6 +5223,7 @@ public enum Material implements Keyed {
             case PINK_CONCRETE:
             case PINK_CONCRETE_POWDER:
             case PINK_GLAZED_TERRACOTTA:
+            case PINK_PETALS:
             case PINK_SHULKER_BOX:
             case PINK_STAINED_GLASS:
             case PINK_STAINED_GLASS_PANE:
@@ -4856,6 +5233,8 @@ public enum Material implements Keyed {
             case PINK_WOOL:
             case PISTON:
             case PISTON_HEAD:
+            case PITCHER_CROP:
+            case PITCHER_PLANT:
             case PLAYER_HEAD:
             case PLAYER_WALL_HEAD:
             case PODZOL:
@@ -4895,6 +5274,7 @@ public enum Material implements Keyed {
             case POTTED_BLUE_ORCHID:
             case POTTED_BROWN_MUSHROOM:
             case POTTED_CACTUS:
+            case POTTED_CHERRY_SAPLING:
             case POTTED_CORNFLOWER:
             case POTTED_CRIMSON_FUNGUS:
             case POTTED_CRIMSON_ROOTS:
@@ -4914,6 +5294,7 @@ public enum Material implements Keyed {
             case POTTED_RED_MUSHROOM:
             case POTTED_RED_TULIP:
             case POTTED_SPRUCE_SAPLING:
+            case POTTED_TORCHFLOWER:
             case POTTED_WARPED_FUNGUS:
             case POTTED_WARPED_ROOTS:
             case POTTED_WHITE_TULIP:
@@ -5030,6 +5411,7 @@ public enum Material implements Keyed {
             case SMOOTH_SANDSTONE_STAIRS:
             case SMOOTH_STONE:
             case SMOOTH_STONE_SLAB:
+            case SNIFFER_EGG:
             case SNOW:
             case SNOW_BLOCK:
             case SOUL_CAMPFIRE:
@@ -5046,6 +5428,7 @@ public enum Material implements Keyed {
             case SPRUCE_DOOR:
             case SPRUCE_FENCE:
             case SPRUCE_FENCE_GATE:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_LEAVES:
             case SPRUCE_LOG:
             case SPRUCE_PLANKS:
@@ -5055,6 +5438,7 @@ public enum Material implements Keyed {
             case SPRUCE_SLAB:
             case SPRUCE_STAIRS:
             case SPRUCE_TRAPDOOR:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
             case SPRUCE_WOOD:
             case STICKY_PISTON:
@@ -5070,8 +5454,11 @@ public enum Material implements Keyed {
             case STONE_STAIRS:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_CRIMSON_HYPHAE:
             case STRIPPED_CRIMSON_STEM:
             case STRIPPED_DARK_OAK_LOG:
@@ -5090,6 +5477,8 @@ public enum Material implements Keyed {
             case STRUCTURE_VOID:
             case SUGAR_CANE:
             case SUNFLOWER:
+            case SUSPICIOUS_GRAVEL:
+            case SUSPICIOUS_SAND:
             case SWEET_BERRY_BUSH:
             case TALL_GRASS:
             case TALL_SEAGRASS:
@@ -5098,6 +5487,8 @@ public enum Material implements Keyed {
             case TINTED_GLASS:
             case TNT:
             case TORCH:
+            case TORCHFLOWER:
+            case TORCHFLOWER_CROP:
             case TRAPPED_CHEST:
             case TRIPWIRE:
             case TRIPWIRE_HOOK:
@@ -5118,6 +5509,7 @@ public enum Material implements Keyed {
             case WARPED_FENCE:
             case WARPED_FENCE_GATE:
             case WARPED_FUNGUS:
+            case WARPED_HANGING_SIGN:
             case WARPED_HYPHAE:
             case WARPED_NYLIUM:
             case WARPED_PLANKS:
@@ -5128,6 +5520,7 @@ public enum Material implements Keyed {
             case WARPED_STAIRS:
             case WARPED_STEM:
             case WARPED_TRAPDOOR:
+            case WARPED_WALL_HANGING_SIGN:
             case WARPED_WALL_SIGN:
             case WARPED_WART_BLOCK:
             case WATER:
@@ -5403,6 +5796,7 @@ public enum Material implements Keyed {
             case MUSIC_DISC_MELLOHI:
             case MUSIC_DISC_OTHERSIDE:
             case MUSIC_DISC_PIGSTEP:
+            case MUSIC_DISC_RELIC:
             case MUSIC_DISC_STAL:
             case MUSIC_DISC_STRAD:
             case MUSIC_DISC_WAIT:
@@ -5431,6 +5825,7 @@ public enum Material implements Keyed {
             case ACACIA_DOOR:
             case ACACIA_FENCE:
             case ACACIA_FENCE_GATE:
+            case ACACIA_HANGING_SIGN:
             case ACACIA_LEAVES:
             case ACACIA_LOG:
             case ACACIA_PLANKS:
@@ -5439,6 +5834,7 @@ public enum Material implements Keyed {
             case ACACIA_SLAB:
             case ACACIA_STAIRS:
             case ACACIA_TRAPDOOR:
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case ACACIA_WOOD:
             case AMETHYST_BLOCK:
@@ -5451,6 +5847,22 @@ public enum Material implements Keyed {
             case ANVIL:
             case AZALEA_LEAVES:
             case BAMBOO:
+            case BAMBOO_BLOCK:
+            case BAMBOO_DOOR:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_HANGING_SIGN:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_PRESSURE_PLATE:
+            case BAMBOO_SIGN:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
+            case BAMBOO_TRAPDOOR:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
             case BARREL:
             case BARRIER:
             case BASALT:
@@ -5462,6 +5874,7 @@ public enum Material implements Keyed {
             case BIRCH_DOOR:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_LEAVES:
             case BIRCH_LOG:
             case BIRCH_PLANKS:
@@ -5470,6 +5883,7 @@ public enum Material implements Keyed {
             case BIRCH_SLAB:
             case BIRCH_STAIRS:
             case BIRCH_TRAPDOOR:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BIRCH_WOOD:
             case BLACKSTONE:
@@ -5528,6 +5942,7 @@ public enum Material implements Keyed {
             case CACTUS:
             case CAKE:
             case CALCITE:
+            case CALIBRATED_SCULK_SENSOR:
             case CAMPFIRE:
             case CANDLE_CAKE:
             case CARTOGRAPHY_TABLE:
@@ -5535,8 +5950,24 @@ public enum Material implements Keyed {
             case CAULDRON:
             case CHAIN:
             case CHAIN_COMMAND_BLOCK:
+            case CHERRY_DOOR:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_LEAVES:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_PRESSURE_PLATE:
+            case CHERRY_SIGN:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_TRAPDOOR:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
+            case CHERRY_WOOD:
             case CHEST:
             case CHIPPED_ANVIL:
+            case CHISELED_BOOKSHELF:
             case CHISELED_DEEPSLATE:
             case CHISELED_NETHER_BRICKS:
             case CHISELED_POLISHED_BLACKSTONE:
@@ -5570,6 +6001,7 @@ public enum Material implements Keyed {
             case CRIMSON_DOOR:
             case CRIMSON_FENCE:
             case CRIMSON_FENCE_GATE:
+            case CRIMSON_HANGING_SIGN:
             case CRIMSON_HYPHAE:
             case CRIMSON_NYLIUM:
             case CRIMSON_PLANKS:
@@ -5579,6 +6011,7 @@ public enum Material implements Keyed {
             case CRIMSON_STAIRS:
             case CRIMSON_STEM:
             case CRIMSON_TRAPDOOR:
+            case CRIMSON_WALL_HANGING_SIGN:
             case CRIMSON_WALL_SIGN:
             case CRYING_OBSIDIAN:
             case CUT_COPPER:
@@ -5604,6 +6037,7 @@ public enum Material implements Keyed {
             case DARK_OAK_DOOR:
             case DARK_OAK_FENCE:
             case DARK_OAK_FENCE_GATE:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_LEAVES:
             case DARK_OAK_LOG:
             case DARK_OAK_PLANKS:
@@ -5612,6 +6046,7 @@ public enum Material implements Keyed {
             case DARK_OAK_SLAB:
             case DARK_OAK_STAIRS:
             case DARK_OAK_TRAPDOOR:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DARK_OAK_WOOD:
             case DARK_PRISMARINE:
@@ -5638,6 +6073,7 @@ public enum Material implements Keyed {
             case DEAD_TUBE_CORAL_BLOCK:
             case DEAD_TUBE_CORAL_FAN:
             case DEAD_TUBE_CORAL_WALL_FAN:
+            case DECORATED_POT:
             case DEEPSLATE:
             case DEEPSLATE_BRICKS:
             case DEEPSLATE_BRICK_SLAB:
@@ -5750,6 +6186,7 @@ public enum Material implements Keyed {
             case JUNGLE_DOOR:
             case JUNGLE_FENCE:
             case JUNGLE_FENCE_GATE:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_LEAVES:
             case JUNGLE_LOG:
             case JUNGLE_PLANKS:
@@ -5758,6 +6195,7 @@ public enum Material implements Keyed {
             case JUNGLE_SLAB:
             case JUNGLE_STAIRS:
             case JUNGLE_TRAPDOOR:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case JUNGLE_WOOD:
             case LANTERN:
@@ -5822,6 +6260,7 @@ public enum Material implements Keyed {
             case MANGROVE_DOOR:
             case MANGROVE_FENCE:
             case MANGROVE_FENCE_GATE:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_LEAVES:
             case MANGROVE_LOG:
             case MANGROVE_PLANKS:
@@ -5831,6 +6270,7 @@ public enum Material implements Keyed {
             case MANGROVE_SLAB:
             case MANGROVE_STAIRS:
             case MANGROVE_TRAPDOOR:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MANGROVE_WOOD:
             case MEDIUM_AMETHYST_BUD:
@@ -5867,6 +6307,7 @@ public enum Material implements Keyed {
             case OAK_DOOR:
             case OAK_FENCE:
             case OAK_FENCE_GATE:
+            case OAK_HANGING_SIGN:
             case OAK_LEAVES:
             case OAK_LOG:
             case OAK_PLANKS:
@@ -5875,6 +6316,7 @@ public enum Material implements Keyed {
             case OAK_SLAB:
             case OAK_STAIRS:
             case OAK_TRAPDOOR:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case OAK_WOOD:
             case OBSERVER:
@@ -6030,6 +6472,7 @@ public enum Material implements Keyed {
             case SMOOTH_SANDSTONE_STAIRS:
             case SMOOTH_STONE:
             case SMOOTH_STONE_SLAB:
+            case SNIFFER_EGG:
             case SNOW_BLOCK:
             case SOUL_CAMPFIRE:
             case SOUL_LANTERN:
@@ -6040,6 +6483,7 @@ public enum Material implements Keyed {
             case SPRUCE_DOOR:
             case SPRUCE_FENCE:
             case SPRUCE_FENCE_GATE:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_LEAVES:
             case SPRUCE_LOG:
             case SPRUCE_PLANKS:
@@ -6048,6 +6492,7 @@ public enum Material implements Keyed {
             case SPRUCE_SLAB:
             case SPRUCE_STAIRS:
             case SPRUCE_TRAPDOOR:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
             case SPRUCE_WOOD:
             case STICKY_PISTON:
@@ -6062,8 +6507,11 @@ public enum Material implements Keyed {
             case STONE_STAIRS:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_CRIMSON_HYPHAE:
             case STRIPPED_CRIMSON_STEM:
             case STRIPPED_DARK_OAK_LOG:
@@ -6079,6 +6527,8 @@ public enum Material implements Keyed {
             case STRIPPED_WARPED_HYPHAE:
             case STRIPPED_WARPED_STEM:
             case STRUCTURE_BLOCK:
+            case SUSPICIOUS_GRAVEL:
+            case SUSPICIOUS_SAND:
             case TARGET:
             case TERRACOTTA:
             case TINTED_GLASS:
@@ -6091,6 +6541,7 @@ public enum Material implements Keyed {
             case WARPED_DOOR:
             case WARPED_FENCE:
             case WARPED_FENCE_GATE:
+            case WARPED_HANGING_SIGN:
             case WARPED_HYPHAE:
             case WARPED_NYLIUM:
             case WARPED_PLANKS:
@@ -6100,6 +6551,7 @@ public enum Material implements Keyed {
             case WARPED_STAIRS:
             case WARPED_STEM:
             case WARPED_TRAPDOOR:
+            case WARPED_WALL_HANGING_SIGN:
             case WARPED_WALL_SIGN:
             case WARPED_WART_BLOCK:
             case WATER_CAULDRON:
@@ -6594,6 +7046,7 @@ public enum Material implements Keyed {
             case ACACIA_DOOR:
             case ACACIA_FENCE:
             case ACACIA_FENCE_GATE:
+            case ACACIA_HANGING_SIGN:
             case ACACIA_LEAVES:
             case ACACIA_LOG:
             case ACACIA_PLANKS:
@@ -6602,17 +7055,35 @@ public enum Material implements Keyed {
             case ACACIA_SLAB:
             case ACACIA_STAIRS:
             case ACACIA_TRAPDOOR:
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case ACACIA_WOOD:
             case AZALEA_LEAVES:
             case BAMBOO:
+            case BAMBOO_BLOCK:
+            case BAMBOO_DOOR:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_HANGING_SIGN:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_PRESSURE_PLATE:
             case BAMBOO_SAPLING:
+            case BAMBOO_SIGN:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
+            case BAMBOO_TRAPDOOR:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
             case BARREL:
             case BEEHIVE:
             case BEE_NEST:
             case BIRCH_DOOR:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_LEAVES:
             case BIRCH_LOG:
             case BIRCH_PLANKS:
@@ -6621,6 +7092,7 @@ public enum Material implements Keyed {
             case BIRCH_SLAB:
             case BIRCH_STAIRS:
             case BIRCH_TRAPDOOR:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BIRCH_WOOD:
             case BLACK_BANNER:
@@ -6642,7 +7114,23 @@ public enum Material implements Keyed {
             case BROWN_WOOL:
             case CAMPFIRE:
             case CARTOGRAPHY_TABLE:
+            case CHERRY_DOOR:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_LEAVES:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_PRESSURE_PLATE:
+            case CHERRY_SIGN:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_TRAPDOOR:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
+            case CHERRY_WOOD:
             case CHEST:
+            case CHISELED_BOOKSHELF:
             case COMPOSTER:
             case CRAFTING_TABLE:
             case CYAN_BANNER:
@@ -6653,6 +7141,7 @@ public enum Material implements Keyed {
             case DARK_OAK_DOOR:
             case DARK_OAK_FENCE:
             case DARK_OAK_FENCE_GATE:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_LEAVES:
             case DARK_OAK_LOG:
             case DARK_OAK_PLANKS:
@@ -6661,6 +7150,7 @@ public enum Material implements Keyed {
             case DARK_OAK_SLAB:
             case DARK_OAK_STAIRS:
             case DARK_OAK_TRAPDOOR:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DARK_OAK_WOOD:
             case DAYLIGHT_DETECTOR:
@@ -6685,6 +7175,7 @@ public enum Material implements Keyed {
             case JUNGLE_DOOR:
             case JUNGLE_FENCE:
             case JUNGLE_FENCE_GATE:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_LEAVES:
             case JUNGLE_LOG:
             case JUNGLE_PLANKS:
@@ -6693,6 +7184,7 @@ public enum Material implements Keyed {
             case JUNGLE_SLAB:
             case JUNGLE_STAIRS:
             case JUNGLE_TRAPDOOR:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case JUNGLE_WOOD:
             case LARGE_FERN:
@@ -6722,6 +7214,7 @@ public enum Material implements Keyed {
             case MANGROVE_DOOR:
             case MANGROVE_FENCE:
             case MANGROVE_FENCE_GATE:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_LEAVES:
             case MANGROVE_LOG:
             case MANGROVE_PLANKS:
@@ -6731,6 +7224,7 @@ public enum Material implements Keyed {
             case MANGROVE_SLAB:
             case MANGROVE_STAIRS:
             case MANGROVE_TRAPDOOR:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MANGROVE_WOOD:
             case MUSHROOM_STEM:
@@ -6738,6 +7232,7 @@ public enum Material implements Keyed {
             case OAK_DOOR:
             case OAK_FENCE:
             case OAK_FENCE_GATE:
+            case OAK_HANGING_SIGN:
             case OAK_LEAVES:
             case OAK_LOG:
             case OAK_PLANKS:
@@ -6746,6 +7241,7 @@ public enum Material implements Keyed {
             case OAK_SLAB:
             case OAK_STAIRS:
             case OAK_TRAPDOOR:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case OAK_WOOD:
             case ORANGE_BANNER:
@@ -6759,6 +7255,7 @@ public enum Material implements Keyed {
             case PINK_CARPET:
             case PINK_WALL_BANNER:
             case PINK_WOOL:
+            case PITCHER_PLANT:
             case PURPLE_BANNER:
             case PURPLE_BED:
             case PURPLE_CARPET:
@@ -6776,6 +7273,7 @@ public enum Material implements Keyed {
             case SPRUCE_DOOR:
             case SPRUCE_FENCE:
             case SPRUCE_FENCE_GATE:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_LEAVES:
             case SPRUCE_LOG:
             case SPRUCE_PLANKS:
@@ -6784,12 +7282,16 @@ public enum Material implements Keyed {
             case SPRUCE_SLAB:
             case SPRUCE_STAIRS:
             case SPRUCE_TRAPDOOR:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
             case SPRUCE_WOOD:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_DARK_OAK_LOG:
             case STRIPPED_DARK_OAK_WOOD:
             case STRIPPED_JUNGLE_LOG:
@@ -6904,6 +7406,15 @@ public enum Material implements Keyed {
             case AZALEA_LEAVES:
             case AZURE_BLUET:
             case BAMBOO:
+            case BAMBOO_BLOCK:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
             case BEEHIVE:
             case BEE_NEST:
             case BIG_DRIPLEAF:
@@ -6926,6 +7437,14 @@ public enum Material implements Keyed {
             case BROWN_WOOL:
             case CAVE_VINES:
             case CAVE_VINES_PLANT:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_LEAVES:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_WOOD:
             case COAL_BLOCK:
             case COMPOSTER:
             case CORNFLOWER:
@@ -6996,8 +7515,10 @@ public enum Material implements Keyed {
             case OXEYE_DAISY:
             case PEONY:
             case PINK_CARPET:
+            case PINK_PETALS:
             case PINK_TULIP:
             case PINK_WOOL:
+            case PITCHER_PLANT:
             case POPPY:
             case PURPLE_CARPET:
             case PURPLE_WOOL:
@@ -7018,8 +7539,11 @@ public enum Material implements Keyed {
             case SPRUCE_WOOD:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_DARK_OAK_LOG:
             case STRIPPED_DARK_OAK_WOOD:
             case STRIPPED_JUNGLE_LOG:
@@ -7035,6 +7559,7 @@ public enum Material implements Keyed {
             case TALL_GRASS:
             case TARGET:
             case TNT:
+            case TORCHFLOWER:
             case VINE:
             case WHITE_CARPET:
             case WHITE_TULIP:
@@ -7103,6 +7628,7 @@ public enum Material implements Keyed {
             case ACACIA_DOOR:
             case ACACIA_FENCE:
             case ACACIA_FENCE_GATE:
+            case ACACIA_HANGING_SIGN:
             case ACACIA_LOG:
             case ACACIA_PLANKS:
             case ACACIA_PRESSURE_PLATE:
@@ -7114,6 +7640,23 @@ public enum Material implements Keyed {
             case ACACIA_WOOD:
             case AZALEA:
             case BAMBOO:
+            case BAMBOO_BLOCK:
+            case BAMBOO_BUTTON:
+            case BAMBOO_CHEST_RAFT:
+            case BAMBOO_DOOR:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_HANGING_SIGN:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_PRESSURE_PLATE:
+            case BAMBOO_RAFT:
+            case BAMBOO_SIGN:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
+            case BAMBOO_TRAPDOOR:
             case BARREL:
             case BIRCH_BOAT:
             case BIRCH_BUTTON:
@@ -7121,6 +7664,7 @@ public enum Material implements Keyed {
             case BIRCH_DOOR:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_LOG:
             case BIRCH_PLANKS:
             case BIRCH_PRESSURE_PLATE:
@@ -7145,7 +7689,24 @@ public enum Material implements Keyed {
             case BROWN_WOOL:
             case CARTOGRAPHY_TABLE:
             case CHARCOAL:
+            case CHERRY_BOAT:
+            case CHERRY_BUTTON:
+            case CHERRY_CHEST_BOAT:
+            case CHERRY_DOOR:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_PRESSURE_PLATE:
+            case CHERRY_SAPLING:
+            case CHERRY_SIGN:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_TRAPDOOR:
+            case CHERRY_WOOD:
             case CHEST:
+            case CHISELED_BOOKSHELF:
             case COAL:
             case COAL_BLOCK:
             case COMPOSTER:
@@ -7160,6 +7721,7 @@ public enum Material implements Keyed {
             case DARK_OAK_DOOR:
             case DARK_OAK_FENCE:
             case DARK_OAK_FENCE_GATE:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_LOG:
             case DARK_OAK_PLANKS:
             case DARK_OAK_PRESSURE_PLATE:
@@ -7188,6 +7750,7 @@ public enum Material implements Keyed {
             case JUNGLE_DOOR:
             case JUNGLE_FENCE:
             case JUNGLE_FENCE_GATE:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_LOG:
             case JUNGLE_PLANKS:
             case JUNGLE_PRESSURE_PLATE:
@@ -7219,6 +7782,7 @@ public enum Material implements Keyed {
             case MANGROVE_DOOR:
             case MANGROVE_FENCE:
             case MANGROVE_FENCE_GATE:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_LOG:
             case MANGROVE_PLANKS:
             case MANGROVE_PRESSURE_PLATE:
@@ -7236,6 +7800,7 @@ public enum Material implements Keyed {
             case OAK_DOOR:
             case OAK_FENCE:
             case OAK_FENCE_GATE:
+            case OAK_HANGING_SIGN:
             case OAK_LOG:
             case OAK_PLANKS:
             case OAK_PRESSURE_PLATE:
@@ -7265,6 +7830,7 @@ public enum Material implements Keyed {
             case SPRUCE_DOOR:
             case SPRUCE_FENCE:
             case SPRUCE_FENCE_GATE:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_LOG:
             case SPRUCE_PLANKS:
             case SPRUCE_PRESSURE_PLATE:
@@ -7277,8 +7843,11 @@ public enum Material implements Keyed {
             case STICK:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_DARK_OAK_LOG:
             case STRIPPED_DARK_OAK_WOOD:
             case STRIPPED_JUNGLE_LOG:
@@ -7373,11 +7942,22 @@ public enum Material implements Keyed {
     }
 
     /**
-     * 检测这个物品是否为阻挡目光的方块.
+     * Check if the material is a block and occludes light in the lighting engine.
      * <p>
-     * 原文:Check if the material is a block and completely blocks vision
+     * Generally speaking, most full blocks will occlude light. Non-full blocks are
+     * not occluding (e.g. anvils, chests, tall grass, stairs, etc.), nor are specific
+     * full blocks such as barriers or spawners which block light despite their texture.
+     * <p>
+     * An occluding block will have the following effects:
+     * <ul>
+     *   <li>Chests cannot be opened if an occluding block is above it.
+     *   <li>Mobs cannot spawn inside of occluding blocks.
+     *   <li>Only occluding blocks can be "powered" ({@link Block#isBlockPowered()}).
+     * </ul>
+     * This list may be inconclusive. For a full list of the side effects of an occluding
+     * block, see the <a href="https://minecraft.fandom.com/wiki/Opacity">Minecraft Wiki</a>.
      *
-     * @return True if this material is a block and completely blocks vision
+     * @return True if this material is a block and occludes light
      */
     public boolean isOccluding() {
         if (!isBlock()) {
@@ -7391,6 +7971,9 @@ public enum Material implements Keyed {
             case AMETHYST_BLOCK:
             case ANCIENT_DEBRIS:
             case ANDESITE:
+            case BAMBOO_BLOCK:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_PLANKS:
             case BARREL:
             case BARRIER:
             case BASALT:
@@ -7432,6 +8015,10 @@ public enum Material implements Keyed {
             case CARTOGRAPHY_TABLE:
             case CARVED_PUMPKIN:
             case CHAIN_COMMAND_BLOCK:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_WOOD:
+            case CHISELED_BOOKSHELF:
             case CHISELED_DEEPSLATE:
             case CHISELED_NETHER_BRICKS:
             case CHISELED_POLISHED_BLACKSTONE:
@@ -7679,8 +8266,11 @@ public enum Material implements Keyed {
             case STONE_BRICKS:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_CRIMSON_HYPHAE:
             case STRIPPED_CRIMSON_STEM:
             case STRIPPED_DARK_OAK_LOG:
@@ -7696,6 +8286,8 @@ public enum Material implements Keyed {
             case STRIPPED_WARPED_HYPHAE:
             case STRIPPED_WARPED_STEM:
             case STRUCTURE_BLOCK:
+            case SUSPICIOUS_GRAVEL:
+            case SUSPICIOUS_SAND:
             case TARGET:
             case TERRACOTTA:
             case TUBE_CORAL_BLOCK:
@@ -7892,12 +8484,16 @@ public enum Material implements Keyed {
     public boolean isItem() {
         switch (this) {
             //<editor-fold defaultstate="collapsed" desc="isItem">
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case ATTACHED_MELON_STEM:
             case ATTACHED_PUMPKIN_STEM:
             case BAMBOO_SAPLING:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
             case BEETROOTS:
             case BIG_DRIPLEAF_STEM:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BLACK_CANDLE_CAKE:
             case BLACK_WALL_BANNER:
@@ -7913,11 +8509,15 @@ public enum Material implements Keyed {
             case CAVE_AIR:
             case CAVE_VINES:
             case CAVE_VINES_PLANT:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
             case COCOA:
             case CREEPER_WALL_HEAD:
+            case CRIMSON_WALL_HANGING_SIGN:
             case CRIMSON_WALL_SIGN:
             case CYAN_CANDLE_CAKE:
             case CYAN_WALL_BANNER:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DEAD_BRAIN_CORAL_WALL_FAN:
             case DEAD_BUBBLE_CORAL_WALL_FAN:
@@ -7935,6 +8535,7 @@ public enum Material implements Keyed {
             case GREEN_CANDLE_CAKE:
             case GREEN_WALL_BANNER:
             case HORN_CORAL_WALL_FAN:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case KELP_PLANT:
             case LAVA:
@@ -7947,16 +8548,20 @@ public enum Material implements Keyed {
             case LIME_WALL_BANNER:
             case MAGENTA_CANDLE_CAKE:
             case MAGENTA_WALL_BANNER:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MELON_STEM:
             case MOVING_PISTON:
             case NETHER_PORTAL:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case ORANGE_CANDLE_CAKE:
             case ORANGE_WALL_BANNER:
+            case PIGLIN_WALL_HEAD:
             case PINK_CANDLE_CAKE:
             case PINK_WALL_BANNER:
             case PISTON_HEAD:
+            case PITCHER_CROP:
             case PLAYER_WALL_HEAD:
             case POTATOES:
             case POTTED_ACACIA_SAPLING:
@@ -7968,6 +8573,7 @@ public enum Material implements Keyed {
             case POTTED_BLUE_ORCHID:
             case POTTED_BROWN_MUSHROOM:
             case POTTED_CACTUS:
+            case POTTED_CHERRY_SAPLING:
             case POTTED_CORNFLOWER:
             case POTTED_CRIMSON_FUNGUS:
             case POTTED_CRIMSON_ROOTS:
@@ -7987,6 +8593,7 @@ public enum Material implements Keyed {
             case POTTED_RED_MUSHROOM:
             case POTTED_RED_TULIP:
             case POTTED_SPRUCE_SAPLING:
+            case POTTED_TORCHFLOWER:
             case POTTED_WARPED_FUNGUS:
             case POTTED_WARPED_ROOTS:
             case POTTED_WHITE_TULIP:
@@ -8003,14 +8610,17 @@ public enum Material implements Keyed {
             case SKELETON_WALL_SKULL:
             case SOUL_FIRE:
             case SOUL_WALL_TORCH:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
             case SWEET_BERRY_BUSH:
             case TALL_SEAGRASS:
+            case TORCHFLOWER_CROP:
             case TRIPWIRE:
             case TUBE_CORAL_WALL_FAN:
             case TWISTING_VINES_PLANT:
             case VOID_AIR:
             case WALL_TORCH:
+            case WARPED_WALL_HANGING_SIGN:
             case WARPED_WALL_SIGN:
             case WATER:
             case WATER_CAULDRON:
@@ -8104,12 +8714,25 @@ public enum Material implements Keyed {
             case ACACIA_DOOR:
             case ACACIA_FENCE:
             case ACACIA_FENCE_GATE:
+            case ACACIA_HANGING_SIGN:
             case ACACIA_SIGN:
             case ACACIA_STAIRS:
             case ACACIA_TRAPDOOR:
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case ANDESITE_STAIRS:
             case ANVIL:
+            case BAMBOO_BUTTON:
+            case BAMBOO_DOOR:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_HANGING_SIGN:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_SIGN:
+            case BAMBOO_STAIRS:
+            case BAMBOO_TRAPDOOR:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
             case BARREL:
             case BEACON:
             case BEEHIVE:
@@ -8119,9 +8742,11 @@ public enum Material implements Keyed {
             case BIRCH_DOOR:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_SIGN:
             case BIRCH_STAIRS:
             case BIRCH_TRAPDOOR:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BLACKSTONE_STAIRS:
             case BLACK_BED:
@@ -8148,8 +8773,19 @@ public enum Material implements Keyed {
             case CAVE_VINES:
             case CAVE_VINES_PLANT:
             case CHAIN_COMMAND_BLOCK:
+            case CHERRY_BUTTON:
+            case CHERRY_DOOR:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_SIGN:
+            case CHERRY_STAIRS:
+            case CHERRY_TRAPDOOR:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
             case CHEST:
             case CHIPPED_ANVIL:
+            case CHISELED_BOOKSHELF:
             case COBBLED_DEEPSLATE_STAIRS:
             case COBBLESTONE_STAIRS:
             case COMMAND_BLOCK:
@@ -8160,9 +8796,11 @@ public enum Material implements Keyed {
             case CRIMSON_DOOR:
             case CRIMSON_FENCE:
             case CRIMSON_FENCE_GATE:
+            case CRIMSON_HANGING_SIGN:
             case CRIMSON_SIGN:
             case CRIMSON_STAIRS:
             case CRIMSON_TRAPDOOR:
+            case CRIMSON_WALL_HANGING_SIGN:
             case CRIMSON_WALL_SIGN:
             case CUT_COPPER_STAIRS:
             case CYAN_BED:
@@ -8174,9 +8812,11 @@ public enum Material implements Keyed {
             case DARK_OAK_DOOR:
             case DARK_OAK_FENCE:
             case DARK_OAK_FENCE_GATE:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_SIGN:
             case DARK_OAK_STAIRS:
             case DARK_OAK_TRAPDOOR:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DARK_PRISMARINE_STAIRS:
             case DAYLIGHT_DETECTOR:
@@ -8213,9 +8853,11 @@ public enum Material implements Keyed {
             case JUNGLE_DOOR:
             case JUNGLE_FENCE:
             case JUNGLE_FENCE_GATE:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_SIGN:
             case JUNGLE_STAIRS:
             case JUNGLE_TRAPDOOR:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case LAVA_CAULDRON:
             case LECTERN:
@@ -8242,9 +8884,11 @@ public enum Material implements Keyed {
             case MANGROVE_DOOR:
             case MANGROVE_FENCE:
             case MANGROVE_FENCE_GATE:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_SIGN:
             case MANGROVE_STAIRS:
             case MANGROVE_TRAPDOOR:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MOSSY_COBBLESTONE_STAIRS:
             case MOSSY_STONE_BRICK_STAIRS:
@@ -8257,9 +8901,11 @@ public enum Material implements Keyed {
             case OAK_DOOR:
             case OAK_FENCE:
             case OAK_FENCE_GATE:
+            case OAK_HANGING_SIGN:
             case OAK_SIGN:
             case OAK_STAIRS:
             case OAK_TRAPDOOR:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case ORANGE_BED:
             case ORANGE_CANDLE:
@@ -8286,6 +8932,7 @@ public enum Material implements Keyed {
             case POTTED_BLUE_ORCHID:
             case POTTED_BROWN_MUSHROOM:
             case POTTED_CACTUS:
+            case POTTED_CHERRY_SAPLING:
             case POTTED_CORNFLOWER:
             case POTTED_CRIMSON_FUNGUS:
             case POTTED_CRIMSON_ROOTS:
@@ -8305,6 +8952,7 @@ public enum Material implements Keyed {
             case POTTED_RED_MUSHROOM:
             case POTTED_RED_TULIP:
             case POTTED_SPRUCE_SAPLING:
+            case POTTED_TORCHFLOWER:
             case POTTED_WARPED_FUNGUS:
             case POTTED_WARPED_ROOTS:
             case POTTED_WHITE_TULIP:
@@ -8342,9 +8990,11 @@ public enum Material implements Keyed {
             case SPRUCE_DOOR:
             case SPRUCE_FENCE:
             case SPRUCE_FENCE_GATE:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_SIGN:
             case SPRUCE_STAIRS:
             case SPRUCE_TRAPDOOR:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
             case STONECUTTER:
             case STONE_BRICK_STAIRS:
@@ -8358,9 +9008,11 @@ public enum Material implements Keyed {
             case WARPED_DOOR:
             case WARPED_FENCE:
             case WARPED_FENCE_GATE:
+            case WARPED_HANGING_SIGN:
             case WARPED_SIGN:
             case WARPED_STAIRS:
             case WARPED_TRAPDOOR:
+            case WARPED_WALL_HANGING_SIGN:
             case WARPED_WALL_SIGN:
             case WATER_CAULDRON:
             case WAXED_CUT_COPPER_STAIRS:
@@ -8456,6 +9108,7 @@ public enum Material implements Keyed {
             case BLUE_BED:
             case BROWN_BED:
             case BROWN_MUSHROOM_BLOCK:
+            case CHERRY_LEAVES:
             case COCOA:
             case CYAN_BED:
             case DARK_OAK_LEAVES:
@@ -8486,6 +9139,8 @@ public enum Material implements Keyed {
             case YELLOW_BED:
                 return 0.2F;
             case POWDER_SNOW:
+            case SUSPICIOUS_GRAVEL:
+            case SUSPICIOUS_SAND:
                 return 0.25F;
             case BEE_NEST:
             case BLACK_STAINED_GLASS:
@@ -8540,6 +9195,8 @@ public enum Material implements Keyed {
                 return 0.4F;
             case ACACIA_BUTTON:
             case ACACIA_PRESSURE_PLATE:
+            case BAMBOO_BUTTON:
+            case BAMBOO_PRESSURE_PLATE:
             case BIRCH_BUTTON:
             case BIRCH_PRESSURE_PLATE:
             case BLACK_CANDLE_CAKE:
@@ -8551,6 +9208,8 @@ public enum Material implements Keyed {
             case BROWN_CONCRETE_POWDER:
             case CAKE:
             case CANDLE_CAKE:
+            case CHERRY_BUTTON:
+            case CHERRY_PRESSURE_PLATE:
             case COARSE_DIRT:
             case CRIMSON_BUTTON:
             case CRIMSON_PRESSURE_PLATE:
@@ -8601,6 +9260,7 @@ public enum Material implements Keyed {
             case RED_SAND:
             case ROOTED_DIRT:
             case SAND:
+            case SNIFFER_EGG:
             case SOUL_SAND:
             case SOUL_SOIL:
             case SPRUCE_BUTTON:
@@ -8676,11 +9336,19 @@ public enum Material implements Keyed {
             case WHITE_WOOL:
             case YELLOW_WOOL:
                 return 0.8F;
+            case ACACIA_HANGING_SIGN:
             case ACACIA_SIGN:
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case BAMBOO:
+            case BAMBOO_HANGING_SIGN:
             case BAMBOO_SAPLING:
+            case BAMBOO_SIGN:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_SIGN:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BLACK_BANNER:
             case BLACK_WALL_BANNER:
@@ -8689,13 +9357,21 @@ public enum Material implements Keyed {
             case BROWN_BANNER:
             case BROWN_WALL_BANNER:
             case CARVED_PUMPKIN:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_SIGN:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
             case CREEPER_HEAD:
             case CREEPER_WALL_HEAD:
+            case CRIMSON_HANGING_SIGN:
             case CRIMSON_SIGN:
+            case CRIMSON_WALL_HANGING_SIGN:
             case CRIMSON_WALL_SIGN:
             case CYAN_BANNER:
             case CYAN_WALL_BANNER:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_SIGN:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DRAGON_HEAD:
             case DRAGON_WALL_HEAD:
@@ -8705,7 +9381,9 @@ public enum Material implements Keyed {
             case GREEN_WALL_BANNER:
             case INFESTED_COBBLESTONE:
             case JACK_O_LANTERN:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_SIGN:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case LIGHT_BLUE_BANNER:
             case LIGHT_BLUE_WALL_BANNER:
@@ -8715,15 +9393,21 @@ public enum Material implements Keyed {
             case LIME_WALL_BANNER:
             case MAGENTA_BANNER:
             case MAGENTA_WALL_BANNER:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_SIGN:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MELON:
             case NETHER_WART_BLOCK:
+            case OAK_HANGING_SIGN:
             case OAK_SIGN:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case ORANGE_BANNER:
             case ORANGE_WALL_BANNER:
             case PACKED_MUD:
+            case PIGLIN_HEAD:
+            case PIGLIN_WALL_HEAD:
             case PINK_BANNER:
             case PINK_WALL_BANNER:
             case PLAYER_HEAD:
@@ -8736,9 +9420,13 @@ public enum Material implements Keyed {
             case SHROOMLIGHT:
             case SKELETON_SKULL:
             case SKELETON_WALL_SKULL:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_SIGN:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
+            case WARPED_HANGING_SIGN:
             case WARPED_SIGN:
+            case WARPED_WALL_HANGING_SIGN:
             case WARPED_WALL_SIGN:
             case WARPED_WART_BLOCK:
             case WHITE_BANNER:
@@ -8801,6 +9489,8 @@ public enum Material implements Keyed {
             case BRAIN_CORAL_BLOCK:
             case BUBBLE_CORAL_BLOCK:
             case BUDDING_AMETHYST:
+            case CALIBRATED_SCULK_SENSOR:
+            case CHISELED_BOOKSHELF:
             case CHISELED_POLISHED_BLACKSTONE:
             case CHISELED_STONE_BRICKS:
             case CRACKED_POLISHED_BLACKSTONE_BRICKS:
@@ -8896,6 +9586,15 @@ public enum Material implements Keyed {
             case ACACIA_SLAB:
             case ACACIA_STAIRS:
             case ACACIA_WOOD:
+            case BAMBOO_BLOCK:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
             case BIRCH_FENCE:
             case BIRCH_FENCE_GATE:
             case BIRCH_LOG:
@@ -8914,6 +9613,13 @@ public enum Material implements Keyed {
             case BROWN_SHULKER_BOX:
             case CAMPFIRE:
             case CAULDRON:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_LOG:
+            case CHERRY_PLANKS:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_WOOD:
             case CHISELED_NETHER_BRICKS:
             case COBBLESTONE:
             case COBBLESTONE_SLAB:
@@ -9019,8 +9725,11 @@ public enum Material implements Keyed {
             case STONE_SLAB:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_CRIMSON_HYPHAE:
             case STRIPPED_CRIMSON_STEM:
             case STRIPPED_DARK_OAK_LOG:
@@ -9060,9 +9769,13 @@ public enum Material implements Keyed {
                 return 2.8F;
             case ACACIA_DOOR:
             case ACACIA_TRAPDOOR:
+            case BAMBOO_DOOR:
+            case BAMBOO_TRAPDOOR:
             case BEACON:
             case BIRCH_DOOR:
             case BIRCH_TRAPDOOR:
+            case CHERRY_DOOR:
+            case CHERRY_TRAPDOOR:
             case COAL_ORE:
             case CONDUIT:
             case COPPER_BLOCK:
@@ -9274,6 +9987,7 @@ public enum Material implements Keyed {
             case BLUE_BED:
             case BROWN_BED:
             case BROWN_MUSHROOM_BLOCK:
+            case CHERRY_LEAVES:
             case CYAN_BED:
             case DARK_OAK_LEAVES:
             case DAYLIGHT_DETECTOR:
@@ -9303,6 +10017,8 @@ public enum Material implements Keyed {
             case YELLOW_BED:
                 return 0.2F;
             case POWDER_SNOW:
+            case SUSPICIOUS_GRAVEL:
+            case SUSPICIOUS_SAND:
                 return 0.25F;
             case BEE_NEST:
             case BLACK_STAINED_GLASS:
@@ -9357,6 +10073,8 @@ public enum Material implements Keyed {
                 return 0.4F;
             case ACACIA_BUTTON:
             case ACACIA_PRESSURE_PLATE:
+            case BAMBOO_BUTTON:
+            case BAMBOO_PRESSURE_PLATE:
             case BIRCH_BUTTON:
             case BIRCH_PRESSURE_PLATE:
             case BLACK_CANDLE_CAKE:
@@ -9368,6 +10086,8 @@ public enum Material implements Keyed {
             case BROWN_CONCRETE_POWDER:
             case CAKE:
             case CANDLE_CAKE:
+            case CHERRY_BUTTON:
+            case CHERRY_PRESSURE_PLATE:
             case COARSE_DIRT:
             case CRIMSON_BUTTON:
             case CRIMSON_PRESSURE_PLATE:
@@ -9417,6 +10137,7 @@ public enum Material implements Keyed {
             case RED_SAND:
             case ROOTED_DIRT:
             case SAND:
+            case SNIFFER_EGG:
             case SOUL_SAND:
             case SOUL_SOIL:
             case SPRUCE_BUTTON:
@@ -9494,11 +10215,19 @@ public enum Material implements Keyed {
             case WHITE_WOOL:
             case YELLOW_WOOL:
                 return 0.8F;
+            case ACACIA_HANGING_SIGN:
             case ACACIA_SIGN:
+            case ACACIA_WALL_HANGING_SIGN:
             case ACACIA_WALL_SIGN:
             case BAMBOO:
+            case BAMBOO_HANGING_SIGN:
             case BAMBOO_SAPLING:
+            case BAMBOO_SIGN:
+            case BAMBOO_WALL_HANGING_SIGN:
+            case BAMBOO_WALL_SIGN:
+            case BIRCH_HANGING_SIGN:
             case BIRCH_SIGN:
+            case BIRCH_WALL_HANGING_SIGN:
             case BIRCH_WALL_SIGN:
             case BLACK_BANNER:
             case BLACK_WALL_BANNER:
@@ -9507,13 +10236,21 @@ public enum Material implements Keyed {
             case BROWN_BANNER:
             case BROWN_WALL_BANNER:
             case CARVED_PUMPKIN:
+            case CHERRY_HANGING_SIGN:
+            case CHERRY_SIGN:
+            case CHERRY_WALL_HANGING_SIGN:
+            case CHERRY_WALL_SIGN:
             case CREEPER_HEAD:
             case CREEPER_WALL_HEAD:
+            case CRIMSON_HANGING_SIGN:
             case CRIMSON_SIGN:
+            case CRIMSON_WALL_HANGING_SIGN:
             case CRIMSON_WALL_SIGN:
             case CYAN_BANNER:
             case CYAN_WALL_BANNER:
+            case DARK_OAK_HANGING_SIGN:
             case DARK_OAK_SIGN:
+            case DARK_OAK_WALL_HANGING_SIGN:
             case DARK_OAK_WALL_SIGN:
             case DRAGON_HEAD:
             case DRAGON_WALL_HEAD:
@@ -9523,7 +10260,9 @@ public enum Material implements Keyed {
             case GREEN_BANNER:
             case GREEN_WALL_BANNER:
             case JACK_O_LANTERN:
+            case JUNGLE_HANGING_SIGN:
             case JUNGLE_SIGN:
+            case JUNGLE_WALL_HANGING_SIGN:
             case JUNGLE_WALL_SIGN:
             case LIGHT_BLUE_BANNER:
             case LIGHT_BLUE_WALL_BANNER:
@@ -9533,14 +10272,20 @@ public enum Material implements Keyed {
             case LIME_WALL_BANNER:
             case MAGENTA_BANNER:
             case MAGENTA_WALL_BANNER:
+            case MANGROVE_HANGING_SIGN:
             case MANGROVE_SIGN:
+            case MANGROVE_WALL_HANGING_SIGN:
             case MANGROVE_WALL_SIGN:
             case MELON:
             case NETHER_WART_BLOCK:
+            case OAK_HANGING_SIGN:
             case OAK_SIGN:
+            case OAK_WALL_HANGING_SIGN:
             case OAK_WALL_SIGN:
             case ORANGE_BANNER:
             case ORANGE_WALL_BANNER:
+            case PIGLIN_HEAD:
+            case PIGLIN_WALL_HEAD:
             case PINK_BANNER:
             case PINK_WALL_BANNER:
             case PLAYER_HEAD:
@@ -9553,9 +10298,13 @@ public enum Material implements Keyed {
             case SHROOMLIGHT:
             case SKELETON_SKULL:
             case SKELETON_WALL_SKULL:
+            case SPRUCE_HANGING_SIGN:
             case SPRUCE_SIGN:
+            case SPRUCE_WALL_HANGING_SIGN:
             case SPRUCE_WALL_SIGN:
+            case WARPED_HANGING_SIGN:
             case WARPED_SIGN:
+            case WARPED_WALL_HANGING_SIGN:
             case WARPED_WALL_SIGN:
             case WARPED_WART_BLOCK:
             case WHITE_BANNER:
@@ -9588,6 +10337,8 @@ public enum Material implements Keyed {
             case AMETHYST_CLUSTER:
             case BOOKSHELF:
             case BUDDING_AMETHYST:
+            case CALIBRATED_SCULK_SENSOR:
+            case CHISELED_BOOKSHELF:
             case LARGE_AMETHYST_BUD:
             case MEDIUM_AMETHYST_BUD:
             case PISTON:
@@ -9615,6 +10366,7 @@ public enum Material implements Keyed {
                 return 1.8F;
             case ACACIA_LOG:
             case ACACIA_WOOD:
+            case BAMBOO_BLOCK:
             case BIRCH_LOG:
             case BIRCH_WOOD:
             case BLACK_SHULKER_BOX:
@@ -9623,6 +10375,8 @@ public enum Material implements Keyed {
             case BROWN_SHULKER_BOX:
             case CAMPFIRE:
             case CAULDRON:
+            case CHERRY_LOG:
+            case CHERRY_WOOD:
             case CRIMSON_HYPHAE:
             case CRIMSON_STEM:
             case CYAN_SHULKER_BOX:
@@ -9652,8 +10406,11 @@ public enum Material implements Keyed {
             case SPRUCE_WOOD:
             case STRIPPED_ACACIA_LOG:
             case STRIPPED_ACACIA_WOOD:
+            case STRIPPED_BAMBOO_BLOCK:
             case STRIPPED_BIRCH_LOG:
             case STRIPPED_BIRCH_WOOD:
+            case STRIPPED_CHERRY_LOG:
+            case STRIPPED_CHERRY_WOOD:
             case STRIPPED_CRIMSON_HYPHAE:
             case STRIPPED_CRIMSON_STEM:
             case STRIPPED_DARK_OAK_LOG:
@@ -9694,6 +10451,16 @@ public enum Material implements Keyed {
             case ACACIA_SLAB:
             case ACACIA_STAIRS:
             case ACACIA_TRAPDOOR:
+            case BAMBOO_DOOR:
+            case BAMBOO_FENCE:
+            case BAMBOO_FENCE_GATE:
+            case BAMBOO_MOSAIC:
+            case BAMBOO_MOSAIC_SLAB:
+            case BAMBOO_MOSAIC_STAIRS:
+            case BAMBOO_PLANKS:
+            case BAMBOO_SLAB:
+            case BAMBOO_STAIRS:
+            case BAMBOO_TRAPDOOR:
             case BEACON:
             case BIRCH_DOOR:
             case BIRCH_FENCE:
@@ -9702,6 +10469,13 @@ public enum Material implements Keyed {
             case BIRCH_SLAB:
             case BIRCH_STAIRS:
             case BIRCH_TRAPDOOR:
+            case CHERRY_DOOR:
+            case CHERRY_FENCE:
+            case CHERRY_FENCE_GATE:
+            case CHERRY_PLANKS:
+            case CHERRY_SLAB:
+            case CHERRY_STAIRS:
+            case CHERRY_TRAPDOOR:
             case COAL_ORE:
             case COCOA:
             case CONDUIT:
@@ -10123,6 +10897,7 @@ public enum Material implements Keyed {
             case LEATHER_HELMET:
             case NETHERITE_HELMET:
             case PLAYER_HEAD:
+            case PIGLIN_HEAD:
             case SKELETON_SKULL:
             case TURTLE_HELMET:
             case WITHER_SKELETON_SKULL:
@@ -10186,5 +10961,61 @@ public enum Material implements Keyed {
     @Nullable
     public CreativeCategory getCreativeCategory() {
         return Bukkit.getUnsafe().getCreativeCategory(this);
+    }
+
+    /**
+     * Get the translation key of the item or block associated with this
+     * material.
+     *
+     * If this material has both an item and a block form, the item form is
+     * used.
+     *
+     * @return the translation key of the item or block associated with this
+     * material
+     * @see #getBlockTranslationKey()
+     * @see #getItemTranslationKey()
+     */
+    @Override
+    @NotNull
+    public String getTranslationKey() {
+        if (this.isItem()) {
+            return Bukkit.getUnsafe().getItemTranslationKey(this);
+        } else {
+            return Bukkit.getUnsafe().getBlockTranslationKey(this);
+        }
+    }
+
+    /**
+     * Get the translation key of the block associated with this material, or
+     * null if this material does not have an associated block.
+     *
+     * @return the translation key of the block associated with this material,
+     * or null if this material does not have an associated block
+     */
+    @Nullable
+    public String getBlockTranslationKey() {
+        return Bukkit.getUnsafe().getBlockTranslationKey(this);
+    }
+
+    /**
+     * Get the translation key of the item associated with this material, or
+     * null if this material does not have an associated item.
+     *
+     * @return the translation key of the item associated with this material, or
+     * null if this material does not have an associated item.
+     */
+    @Nullable
+    public String getItemTranslationKey() {
+        return Bukkit.getUnsafe().getItemTranslationKey(this);
+    }
+
+    /**
+     * Gets if the Material is enabled by the features in a world.
+     *
+     * @param world the world to check
+     * @return true if this material can be used in this World.
+     */
+    public boolean isEnabledByFeature(@NotNull World world) {
+        return Bukkit.getDataPackManager().isEnabledByFeature(this, world);
     }
 }

@@ -10,6 +10,9 @@ import org.bukkit.profile.PlayerProfile;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * 代表一个对玩家身份及其附属数据的引用, 数据存储于磁盘中, 因此不需要玩家在线即可获取到玩家的引用.
+ */
 public interface OfflinePlayer extends ServerOperator, AnimalTamer, ConfigurationSerializable {
 
     /**

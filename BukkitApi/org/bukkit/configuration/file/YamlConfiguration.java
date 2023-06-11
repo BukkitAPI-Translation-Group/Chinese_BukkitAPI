@@ -56,16 +56,17 @@ public class YamlConfiguration extends FileConfiguration {
     private final Yaml yaml;
 
     public YamlConfiguration() {
-        constructor = new YamlConstructor();
-        representer = new YamlRepresenter();
-        representer.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-
         yamlDumperOptions = new DumperOptions();
         yamlDumperOptions.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
         yamlLoaderOptions = new LoaderOptions();
         yamlLoaderOptions.setMaxAliasesForCollections(Integer.MAX_VALUE); // SPIGOT-5881: Not ideal, but was default pre SnakeYAML 1.26
+        yamlLoaderOptions.setCodePointLimit(Integer.MAX_VALUE); // SPIGOT-7161: Not ideal, but was default pre SnakeYAML 1.32
 
-        yaml = new BukkitYaml(constructor, representer, yamlDumperOptions, yamlLoaderOptions);
+        constructor = new YamlConstructor(yamlLoaderOptions);
+        representer = new YamlRepresenter(yamlDumperOptions);
+        representer.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
+
+        yaml = new Yaml(constructor, representer, yamlDumperOptions, yamlLoaderOptions);
     }
 
     @NotNull
@@ -99,11 +100,14 @@ public class YamlConfiguration extends FileConfiguration {
 
         MappingNode node;
         try (Reader reader = new UnicodeReader(new ByteArrayInputStream(contents.getBytes(StandardCharsets.UTF_8)))) {
-            node = (MappingNode) yaml.compose(reader);
-        } catch (YAMLException | IOException e) {
+            Node rawNode = yaml.compose(reader);
+            try {
+                node = (MappingNode) rawNode;
+            } catch (ClassCastException e) {
+                throw new InvalidConfigurationException("Top level is not a Map.");
+            }
+        } catch (YAMLException | IOException | ClassCastException e) {
             throw new InvalidConfigurationException(e);
-        } catch (ClassCastException e) {
-            throw new InvalidConfigurationException("Top level is not a Map.");
         }
 
         this.map.clear();

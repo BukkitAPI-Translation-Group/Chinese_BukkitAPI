@@ -3,7 +3,7 @@ package org.bukkit.entity;
 /**
  * 代表恶魂.
  */
-public interface Ghast extends Flying {
+public interface Ghast extends Flying, Enemy {
 
     /**
      * Gets whether the Ghast is charging

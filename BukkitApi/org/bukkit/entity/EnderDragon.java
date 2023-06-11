@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表末影龙.
  */
-public interface EnderDragon extends ComplexLivingEntity, Boss, Mob {
+public interface EnderDragon extends ComplexLivingEntity, Boss, Mob, Enemy {
 
     /**
      * 表示末影龙可以执行的阶段或动作.

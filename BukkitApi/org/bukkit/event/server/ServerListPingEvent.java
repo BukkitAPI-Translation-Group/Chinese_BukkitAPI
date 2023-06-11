@@ -19,18 +19,18 @@ import org.jetbrains.annotations.NotNull;
 public class ServerListPingEvent extends ServerEvent implements Iterable<Player> {
     private static final int MAGIC_PLAYER_COUNT = Integer.MIN_VALUE;
     private static final HandlerList handlers = new HandlerList();
+    private final String hostname;
     private final InetAddress address;
-    private final boolean shouldSendChatPreviews;
     private String motd;
     private final int numPlayers;
     private int maxPlayers;
 
-    public ServerListPingEvent(@NotNull final InetAddress address, @NotNull final String motd, final boolean shouldSendChatPreviews, final int numPlayers, final int maxPlayers) {
+    public ServerListPingEvent(@NotNull final String hostname, @NotNull final InetAddress address, @NotNull final String motd, final int numPlayers, final int maxPlayers) {
         super(true);
         Preconditions.checkArgument(numPlayers >= 0, "Cannot have negative number of players online", numPlayers);
+        this.hostname = hostname;
         this.address = address;
         this.motd = motd;
-        this.shouldSendChatPreviews = shouldSendChatPreviews;
         this.numPlayers = numPlayers;
         this.maxPlayers = maxPlayers;
     }
@@ -43,18 +43,29 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
      * {@link #iterator()} method, thus provided the {@link #getNumPlayers()}
      * count.
      * 
+     * @param hostname 连接服务器时使用的主机名
      * @param address 请求者的地址
      * @param motd 每日信息
-     * @param shouldSendChatPreviews if the server should send chat previews
      * @param maxPlayers 最大玩家数量
      */
-    protected ServerListPingEvent(@NotNull final InetAddress address, @NotNull final String motd, boolean shouldSendChatPreviews, final int maxPlayers) {
+    protected ServerListPingEvent(@NotNull final String hostname, @NotNull final InetAddress address, @NotNull final String motd, final int maxPlayers) {
         super(true);
         this.numPlayers = MAGIC_PLAYER_COUNT;
+        this.hostname = hostname;
         this.address = address;
         this.motd = motd;
-        this.shouldSendChatPreviews = shouldSendChatPreviews;
         this.maxPlayers = maxPlayers;
+    }
+
+    /**
+     * Gets the hostname that the player used to connect to the server, or
+     * blank if unknown
+     *
+     * @return The hostname
+     */
+    @NotNull
+    public String getHostname() {
+        return hostname;
     }
 
     /**
@@ -131,9 +142,11 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
      * client.
      *
      * @return true if chat preview is enabled, false otherwise
+     * @deprecated chat previews have been removed
      */
+    @Deprecated
     public boolean shouldSendChatPreviews() {
-        return shouldSendChatPreviews;
+        return false;
     }
 
     /**

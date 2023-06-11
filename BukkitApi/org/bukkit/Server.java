@@ -41,6 +41,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
+import org.bukkit.packs.DataPackManager;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
@@ -175,6 +176,15 @@ public interface Server extends PluginMessageRecipient {
     public int getMaxPlayers();
 
     /**
+     * 设置服务器允许进入的最大玩家数.
+     * <p>
+     * 原文:Set the maximum amount of players allowed to be logged in at once.
+     *
+     * @param maxPlayers 服务器的最大玩家数
+     */
+    void setMaxPlayers(int maxPlayers);
+
+    /**
      * 获取服务器监听的端口号.
      * <p>
      * 原文:Get the game port that the server runs on.
@@ -255,6 +265,30 @@ public interface Server extends PluginMessageRecipient {
      * @return 是否可以进入下界
      */
     public boolean getAllowNether();
+
+    /**
+     * Gets a list of packs to be enabled.
+     *
+     * @return a list of packs names
+     */
+    @NotNull
+    public List<String> getInitialEnabledPacks();
+
+    /**
+     * Gets a list of packs that will not be enabled automatically.
+     *
+     * @return a list of packs names
+     */
+    @NotNull
+    public List<String> getInitialDisabledPacks();
+
+    /**
+     * Get the DataPack Manager.
+     *
+     * @return the manager
+     */
+    @NotNull
+    public DataPackManager getDataPackManager();
 
     /**
      * Gets the server resource pack uri, or empty string if not specified.
@@ -1092,7 +1126,9 @@ public interface Server extends PluginMessageRecipient {
      * message to the client when the player types a message
      *
      * @return true if the server should send a preview, false otherwise
+     * @deprecated chat previews have been removed
      */
+    @Deprecated
     public boolean shouldSendChatPreviews();
 
     /**
@@ -1600,6 +1636,15 @@ public interface Server extends PluginMessageRecipient {
      */
     @NotNull
     String getMotd();
+
+    /**
+     * 设置在客户端服务器列表里显示的消息.
+     * <p>
+     * 原文:Set the message that is displayed on the server list.
+     *
+     * @param motd 服务器motd
+     */
+    void setMotd(@NotNull String motd);
 
     /**
      * 获取服务器关闭时广播给玩家的默认提示消息.

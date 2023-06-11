@@ -10,7 +10,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 当玩家与装甲架交互并且进行交换, 取回或放置物品时触发本事件.
  * <p>
- * 原文: Called when a player interacts with an armor stand and will either swap, retrieve or place an item.
+ * 原文: Called when a player interacts with an armor stand and will either swap, retrieve or
+ * place an item.
  */
 public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
 
@@ -20,29 +21,37 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
     private final ItemStack armorStandItem;
     private final EquipmentSlot slot;
 
-    public PlayerArmorStandManipulateEvent(@NotNull final Player who, @NotNull final ArmorStand clickedEntity, @NotNull final ItemStack playerItem, @NotNull final ItemStack armorStandItem, @NotNull final EquipmentSlot slot) {
-        super(who, clickedEntity);
+    public PlayerArmorStandManipulateEvent(@NotNull final Player who, @NotNull final ArmorStand clickedEntity, @NotNull final ItemStack playerItem, @NotNull final ItemStack armorStandItem, @NotNull final EquipmentSlot slot, @NotNull EquipmentSlot hand) {
+        super(who, clickedEntity, hand);
         this.playerItem = playerItem;
         this.armorStandItem = armorStandItem;
         this.slot = slot;
     }
 
+    @Deprecated
+    public PlayerArmorStandManipulateEvent(@NotNull final Player who, @NotNull final ArmorStand clickedEntity, @NotNull final ItemStack playerItem, @NotNull final ItemStack armorStandItem, @NotNull final EquipmentSlot slot) {
+        this(who, clickedEntity, playerItem, armorStandItem, slot, EquipmentSlot.HAND);
+    }
+
     /**
      * 返回玩家手持的物品.
      * <ul>
-     * <li>如果玩家手持的物品为null时, 并且盔甲架的物品也为null时, 那么则玩家和盔甲架之间将不会有物品交换.</li>
-     * <li>如果玩家手持的物品为null时，但是盔甲架的物品不为null时，那么玩家将获得盔甲架的物品.</li>
-     * <li>如果玩家手持的物品不为null时，但盔甲架的物品为null时，则玩家物品将被放在盔甲架上.</li>
-     * <li>如果玩家手持的物品不为null时，盔甲架的物品也不为null时，则玩家物品将和盔甲架的物品将进行交换.</li>
+     * <li>如果玩家手持的物品为空时, 并且盔甲架的物品也为空时, 那么则玩家和盔甲架之间将不会有物品交换.</li>
+     * <li>如果玩家手持的物品为空时，但是盔甲架的物品不为空时，那么玩家将获得盔甲架的物品.</li>
+     * <li>如果玩家手持的物品不为空时，但盔甲架的物品为空时，则玩家物品将被放在盔甲架上.</li>
+     * <li>如果玩家手持的物品不为空时，盔甲架的物品也不为空时，则玩家物品将和盔甲架的物品将进行交换.</li>
      * <li>如果该事件被取消, 那么交换将不会进行, 即物品不会进行交换.</li>
      * </ul>
      * <p>
-     * 原文: Returns the item held by the player. If this Item is null and the armor stand Item is also null,
-     * there will be no transaction between the player and the armor stand.
-     * If the Player's item is null, but the armor stand item is not then the player will obtain the armor stand item.
-     * In the case that the Player's item is not null, but the armor stand item is null, the players item will be placed on the armor stand.
-     * If both items are not null, the items will be swapped.
-     * In the case that the event is cancelled the original items will remain the same.
+     * 原文: Returns the item held by the player.
+     * <p>
+     * If this item is empty and the armor stand item is also empty, there will be no
+     * transaction between the player and the armor stand. If the player's item is empty
+     * but the armor stand item is not, the player's item will be placed on the armor
+     * stand. If both items are not empty, the items will be swapped.
+     * <p>
+     * In the case that this event is cancelled, the original items will remain the same.
+     * @return the item held by the player.
      *
      * @return 玩家手持的物品 {@link ItemStack}
      */
@@ -52,20 +61,24 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
     }
 
     /**
-     * 返回盔甲架的物品
+     * 返回盔甲架的物品.
      * <ul>
-     * <li>如果玩家手持的物品为null时, 并且盔甲架的物品也为null时, 那么则玩家和盔甲架之间将不会有物品交换.</li>
-     * <li>如果玩家手持的物品为null时，但是盔甲架的物品不为null时，那么玩家将获得盔甲架的物品.</li>
-     * <li>如果玩家手持的物品不为null时，但盔甲架的物品为null时，则玩家物品将被放在盔甲架上.</li>
-     * <li>如果玩家手持的物品不为null时，盔甲架的物品也不为null时，则玩家物品将和盔甲架的物品将进行交换.</li>
+     * <li>如果玩家手持的物品为空时, 并且盔甲架的物品也为空时, 那么则玩家和盔甲架之间将不会有物品交换.</li>
+     * <li>如果玩家手持的物品为空时，但是盔甲架的物品不为空时，那么玩家将获得盔甲架的物品.</li>
+     * <li>如果玩家手持的物品不为空时，但盔甲架的物品为空时，则玩家物品将被放在盔甲架上.</li>
+     * <li>如果玩家手持的物品不为空时，盔甲架的物品也不为空时，则玩家物品将和盔甲架的物品将进行交换.</li>
      * <li>如果该事件被取消, 那么交换将不会进行, 即物品不会进行交换.</li>
      * </ul>
      * <p>
      * 原文: Returns the item held by the armor stand.
-     * If this Item is null and the player's Item is also null, there will be no transaction between the player and the armor stand.
-     * If the Player's item is null, but the armor stand item is not then the player will obtain the armor stand item.
-     * In the case that the Player's item is not null, but the armor stand item is null, the players item will be placed on the armor stand.
-     * If both items are not null, the items will be swapped.
+     * <p>
+     * If this item is empty and the player's item is also empty, there will be no
+     * transaction between the player and the armor stand. If the player's item is empty
+     * but the armor stand item is not, then the player will obtain the armor stand item.
+     * In the case that the player's item is not empty but the armor stand item is empty,
+     * the player's item will be placed on the armor stand. If both items are not empty,
+     * the items will be swapped.
+     * <p>
      * In the case that the event is cancelled the original items will remain the same.
      *
      * @return 盔甲架的的物品 {@link ItemStack}
@@ -85,6 +98,18 @@ public class PlayerArmorStandManipulateEvent extends PlayerInteractEntityEvent {
     @NotNull
     public EquipmentSlot getSlot() {
         return this.slot;
+    }
+
+    /**
+     * {@inheritDoc}
+     * <p>
+     * Note that this is not the hand of the armor stand that was changed, but rather
+     * the hand used by the player to swap items with the armor stand.
+     */
+    @NotNull
+    @Override
+    public EquipmentSlot getHand() {
+        return super.getHand();
     }
 
     @NotNull

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Predicate;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -70,29 +71,6 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Block getBlockAt(@NotNull Location location);
 
     /**
-     * 获取指定坐标最高处不是空气且不可逾越的方块的y坐标.
-     * <p>
-     * 原文:Gets the highest non-empty (impassable) coordinate at the given
-     * coordinates.
-     *
-     * @param x 方块x坐标
-     * @param z 方块y坐标
-     * @return 指定坐标最高处不是空气且不可逾越的方块的y坐标
-     */
-    public int getHighestBlockYAt(int x, int z);
-
-    /**
-     * 获取指定{@link Location 位置}最高处不是空气且不可逾越的方块的y坐标.
-     * <p>
-     * 原文:Gets the highest non-empty (impassable) coordinate at the given
-     * {@link Location}.
-     *
-     * @param location 方块坐标
-     * @return 指定位置最高处不是空气且不可逾越的方块的y坐标
-     */
-    public int getHighestBlockYAt(@NotNull Location location);
-
-    /**
      * 获取指定坐标最高处不是空气且不可逾越的方块.
      * <p>
      * 原文:Gets the highest non-empty (impassable) block at the given coordinates.
@@ -114,32 +92,6 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @NotNull
     public Block getHighestBlockAt(@NotNull Location location);
-
-    /**
-     * Gets the highest coordinate corresponding to the {@link HeightMap} at the
-     * given coordinates.
-     *
-     * @param x X-coordinate of the blocks
-     * @param z Z-coordinate of the blocks
-     * @param heightMap the heightMap that is used to determine the highest
-     * point
-     *
-     * @return Y-coordinate of the highest block corresponding to the
-     * {@link HeightMap}
-     */
-    public int getHighestBlockYAt(int x, int z, @NotNull HeightMap heightMap);
-
-    /**
-     * Gets the highest coordinate corresponding to the {@link HeightMap} at the
-     * given {@link Location}.
-     *
-     * @param location Location of the blocks
-     * @param heightMap the heightMap that is used to determine the highest
-     * point
-     * @return Y-coordinate of the highest block corresponding to the
-     * {@link HeightMap}
-     */
-    public int getHighestBlockYAt(@NotNull Location location, @NotNull HeightMap heightMap);
 
     /**
      * Gets the highest block corresponding to the {@link HeightMap} at the
@@ -177,6 +129,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @NotNull
     public Chunk getChunkAt(int x, int z);
+
+    /**
+     * Gets the {@link Chunk} at the given coordinates
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param generate Whether the chunk should be fully generated or not
+     * @return Chunk at the given coordinates
+     */
+    @NotNull
+    public Chunk getChunkAt(int x, int z, boolean generate);
 
     /**
      * 获取给定{@link Location 位置}所在的{@link Chunk 区块}.
@@ -1461,11 +1424,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
 
     /**
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
-     * the specified {@link Material}. The material dictates what is falling.
+     * the specified {@link MaterialData}. The MaterialData dictates what is falling.
      * When the FallingBlock hits the ground, it will place that block.
      * <p>
      * The Material must be a block type, check with {@link Material#isBlock()
-     * material.isBlock()}. The Material may not be air.
+     * data.getItemType().isBlock()}. The Material may not be air.
      *
      * @param location The {@link Location} to spawn the FallingBlock
      * @param data The block data
@@ -1477,20 +1440,16 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull MaterialData data) throws IllegalArgumentException;
 
     /**
-     * 在指定的{@link Location 位置}根据给定的{@link Material 物品}生成一个{@link FallingBlock 掉落中的方块}实体。物品决定下落的东西。当下落方块碰到地时就会放置这个方块.
-     * <p>
-     * 物品必须是一个经过{@link Material#isBlock()}检验的方块类型,可能不是空气.
+     * 在指定的{@link Location 位置}根据给定的{@link BlockData}生成一个{@link FallingBlock 掉落中的方块}实体。
+     * BlockData决定下落的东西。当下落方块碰到地时就会放置这个方块.
      * <p>
      * 原文：
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
-     * the specified {@link Material}. The material dictates what is falling.
+     * the specified {@link BlockData}. The BlockData dictates what is falling.
      * When the FallingBlock hits the ground, it will place that block.
-     * <p>
-     * The Material must be a block type, check with {@link Material#isBlock()
-     * material.isBlock()}. The Material may not be air.
      *
      * @param location 生成下落方块的{@link Location 位置}
-     * @param data 方块数据
+     * @param data FallingBlock的{@link BlockData 方块数据}
      * @return 生成的{@link FallingBlock 正在下落的方块}实例
      * @throws IllegalArgumentException 如果 {@link Location} 或 {@link BlockData} 为null
      */
@@ -2203,7 +2162,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <ul>
      * <li>A value of 1 will mean the server will attempt to spawn water ambient mobs in
      *     this world on every tick.
-     * <li>A value of 400 will mean the server will attempt to spawn weater ambient mobs
+     * <li>A value of 400 will mean the server will attempt to spawn water ambient mobs
      *     in this world every 400th tick.
      * <li>A value below 0 will be reset back to Minecraft's default.
      * </ul>
@@ -2588,10 +2547,10 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * sound will be heard by the players if their clients do not have the
      * respective sound for the value passed.
      *
-     * @param location the location to play the sound
-     * @param sound the internal sound name to play
-     * @param volume the volume of the sound
-     * @param pitch the pitch of the sound
+     * @param location The location to play the sound
+     * @param sound The internal sound name to play
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
      */
     void playSound(@NotNull Location location, @NotNull String sound, float volume, float pitch);
 
@@ -2615,11 +2574,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * will be heard by the players if their clients do not have the respective
      * sound for the value passed.
      *
-     * @param location the location to play the sound
-     * @param sound the internal sound name to play
-     * @param category the category of the sound
-     * @param volume the volume of the sound
-     * @param pitch the pitch of the sound
+     * @param location The location to play the sound
+     * @param sound The internal sound name to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
      */
     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
@@ -2642,11 +2601,36 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param entity The entity to play the sound
      * @param sound The sound to play
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    void playSound(@NotNull Entity entity, @NotNull String sound, float volume, float pitch);
+
+    /**
+     * Play a Sound at the location of the provided entity in the World.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
      * @param category the category of the sound
      * @param volume The volume of the sound
      * @param pitch The pitch of the sound
      */
     void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a Sound at the location of the provided entity in the World.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     */
+    void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
      * 获取包含所有{@link GameRule 游戏规则}的数组.
@@ -3190,6 +3174,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @Nullable
     public DragonBattle getEnderDragonBattle();
+
+    /**
+     * Get all {@link FeatureFlag} enabled in this world.
+     *
+     * @return all enabled {@link FeatureFlag}
+     */
+    @NotNull
+    public Set<FeatureFlag> getFeatureFlags();
 
     /**
      * 表示世界可能的各种地图环境类型.

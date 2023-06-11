@@ -3,9 +3,11 @@ package org.bukkit.entity;
 import com.google.common.base.Preconditions;
 import java.util.HashMap;
 import java.util.Map;
+import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Translatable;
 import org.bukkit.World;
 import org.bukkit.entity.minecart.CommandMinecart;
 import org.bukkit.entity.minecart.ExplosiveMinecart;
@@ -20,7 +22,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public enum EntityType implements Keyed {
+public enum EntityType implements Keyed, Translatable {
 
     // These strings MUST match the strings in nms.EntityTypes and are case sensitive.
     /**
@@ -276,6 +278,12 @@ public enum EntityType implements Keyed {
     FROG("frog", Frog.class, -1),
     TADPOLE("tadpole", Tadpole.class, -1),
     WARDEN("warden", Warden.class, -1),
+    CAMEL("camel", Camel.class, -1),
+    BLOCK_DISPLAY("block_display", BlockDisplay.class, -1),
+    INTERACTION("interaction", Interaction.class, -1),
+    ITEM_DISPLAY("item_display", ItemDisplay.class, -1),
+    SNIFFER("sniffer", Sniffer.class, -1),
+    TEXT_DISPLAY("text_display", TextDisplay.class, -1),
     /**
      * A fishing line and bobber.
      */
@@ -431,5 +439,21 @@ public enum EntityType implements Keyed {
 
     public boolean isAlive() {
         return living;
+    }
+
+    @Override
+    @NotNull
+    public String getTranslationKey() {
+        return Bukkit.getUnsafe().getTranslationKey(this);
+    }
+
+    /**
+     * Gets if this EntityType is enabled by feature in a world.
+     *
+     * @param world the world to check
+     * @return true if this EntityType can be used to spawn an Entity for this World.
+     */
+    public boolean isEnabledByFeature(@NotNull World world) {
+        return Bukkit.getDataPackManager().isEnabledByFeature(this, world);
     }
 }

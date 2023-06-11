@@ -1,6 +1,7 @@
 package org.bukkit.block;
 
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.SkullType;
 import org.bukkit.block.data.BlockData;
@@ -105,6 +106,28 @@ public interface Skull extends TileState {
      * @throws IllegalArgumentException 如果资料没有包含必要信息
      */
     void setOwnerProfile(@Nullable PlayerProfile profile);
+
+    /**
+     * Gets the sound to play if the skull is placed on a note block.
+     * <br>
+     * <strong>Note:</strong> This only works for player heads. For other heads,
+     * see {@link org.bukkit.Instrument}.
+     *
+     * @return the key of the sound, or null
+     */
+    @Nullable
+    public NamespacedKey getNoteBlockSound();
+
+    /**
+     * Sets the sound to play if the skull is placed on a note block.
+     * <br>
+     * <strong>Note:</strong> This only works for player heads. For other heads,
+     * see {@link org.bukkit.Instrument}.
+     *
+     * @param noteBlockSound the key of the sound to be played, or null
+     *
+     */
+    public void setNoteBlockSound(@Nullable NamespacedKey noteBlockSound);
 
     /**
      * 获取这个头颅在世界的角度 (或头颅的朝向如果这个头颅被挂在墙上).

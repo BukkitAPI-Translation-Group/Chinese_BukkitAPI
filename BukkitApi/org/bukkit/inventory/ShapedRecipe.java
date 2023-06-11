@@ -7,6 +7,7 @@ import java.util.Map;
 import org.bukkit.Keyed;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.recipe.CraftingBookCategory;
 import org.bukkit.material.MaterialData;
 import org.jetbrains.annotations.NotNull;
 
@@ -19,7 +20,22 @@ public class ShapedRecipe implements Recipe, Keyed {
     private String[] rows;
     private Map<Character, RecipeChoice> ingredients = new HashMap<>();
     private String group = "";
+    private CraftingBookCategory category = CraftingBookCategory.MISC;
 
+    /**
+     * Create a shaped recipe to craft the specified ItemStack. The
+     * constructor merely determines the result and type; to set the actual
+     * recipe, you'll need to call the appropriate methods.
+     *
+     * @param result The item you want the recipe to create.
+     * @see ShapedRecipe#shape(String...)
+     * @see ShapedRecipe#setIngredient(char, Material)
+     * @see ShapedRecipe#setIngredient(char, Material, int)
+     * @see ShapedRecipe#setIngredient(char, MaterialData)
+     * @see ShapedRecipe#setIngredient(char, RecipeChoice)
+     * @deprecated Recipes must have keys. Use {@link #ShapedRecipe(NamespacedKey, ItemStack)}
+     * instead.
+     */
     @Deprecated
     public ShapedRecipe(@NotNull ItemStack result) {
         Preconditions.checkArgument(result.getType() != Material.AIR, "Recipe must have non-AIR result.");
@@ -38,6 +54,7 @@ public class ShapedRecipe implements Recipe, Keyed {
      * @see ShapedRecipe#setIngredient(char, Material)
      * @see ShapedRecipe#setIngredient(char, Material, int)
      * @see ShapedRecipe#setIngredient(char, MaterialData)
+     * @see ShapedRecipe#setIngredient(char, RecipeChoice)
      */
     public ShapedRecipe(@NotNull NamespacedKey key, @NotNull ItemStack result) {
         Preconditions.checkArgument(key != null, "key");
@@ -90,10 +107,14 @@ public class ShapedRecipe implements Recipe, Keyed {
 
     /**
      * Sets the material that a character in the recipe shape refers to.
+     * <p>
+     * Note that before an ingredient can be set, the recipe's shape must be defined
+     * with {@link #shape(String...)}.
      *
      * @param key The character that represents the ingredient in the shape.
      * @param ingredient The ingredient.
      * @return The changed recipe, so you can chain calls.
+     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
      */
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull MaterialData ingredient) {
@@ -102,10 +123,14 @@ public class ShapedRecipe implements Recipe, Keyed {
 
     /**
      * Sets the material that a character in the recipe shape refers to.
+     * <p>
+     * Note that before an ingredient can be set, the recipe's shape must be defined
+     * with {@link #shape(String...)}.
      *
      * @param key The character that represents the ingredient in the shape.
      * @param ingredient The ingredient.
      * @return The changed recipe, so you can chain calls.
+     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
      */
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull Material ingredient) {
@@ -114,11 +139,15 @@ public class ShapedRecipe implements Recipe, Keyed {
 
     /**
      * Sets the material that a character in the recipe shape refers to.
+     * <p>
+     * Note that before an ingredient can be set, the recipe's shape must be defined
+     * with {@link #shape(String...)}.
      *
      * @param key The character that represents the ingredient in the shape.
      * @param ingredient The ingredient.
      * @param raw The raw material data as an integer.
      * @return The changed recipe, so you can chain calls.
+     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
      * @deprecated Magic value
      */
     @Deprecated
@@ -135,6 +164,17 @@ public class ShapedRecipe implements Recipe, Keyed {
         return this;
     }
 
+    /**
+     * Sets the {@link RecipeChoice} that a character in the recipe shape refers to.
+     * <p>
+     * Note that before an ingredient can be set, the recipe's shape must be defined
+     * with {@link #shape(String...)}.
+     *
+     * @param key The character that represents the ingredient in the shape.
+     * @param ingredient The ingredient.
+     * @return The changed recipe, so you can chain calls.
+     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
+     */
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull RecipeChoice ingredient) {
         Preconditions.checkArgument(ingredients.containsKey(key), "Symbol does not appear in the shape:", key);
@@ -161,6 +201,11 @@ public class ShapedRecipe implements Recipe, Keyed {
         return result;
     }
 
+    /**
+     * Get a copy of the choice map.
+     *
+     * @return The mapping of character to ingredients.
+     */
     @NotNull
     public Map<Character, RecipeChoice> getChoiceMap() {
         Map<Character, RecipeChoice> result = new HashMap<>();
@@ -221,7 +266,31 @@ public class ShapedRecipe implements Recipe, Keyed {
      * null.
      */
     public void setGroup(@NotNull String group) {
-        Preconditions.checkArgument(group != null, "group");
+        Preconditions.checkArgument(group != null, "group cannot be null");
         this.group = group;
+    }
+
+    /**
+     * Gets the category which this recipe will appear in the recipe book under.
+     *
+     * Defaults to {@link CraftingBookCategory#MISC} if not set.
+     *
+     * @return recipe book category
+     */
+    @NotNull
+    public CraftingBookCategory getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the category which this recipe will appear in the recipe book under.
+     *
+     * Defaults to {@link CraftingBookCategory#MISC} if not set.
+     *
+     * @param category recipe book category
+     */
+    public void setCategory(@NotNull CraftingBookCategory category) {
+        Preconditions.checkArgument(category != null, "category cannot be null");
+        this.category = category;
     }
 }

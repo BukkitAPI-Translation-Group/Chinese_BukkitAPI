@@ -69,6 +69,10 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
          */
         CHORUS_FRUIT,
         /**
+         * Indicates the teleportation was caused by a player exiting a vehicle
+         */
+        DISMOUNT,
+        /**
          * 由除已知枚举外的其他情况进行了传送.
          */
         UNKNOWN;

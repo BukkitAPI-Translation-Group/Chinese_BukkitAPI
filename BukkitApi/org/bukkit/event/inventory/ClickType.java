@@ -128,6 +128,6 @@ public enum ClickType {
      * @return 如果这个按键类型使用了Shift键则返回true，否则返回false.
      */
     public boolean isShiftClick() {
-        return (this == ClickType.SHIFT_LEFT) || (this == ClickType.SHIFT_RIGHT) || (this == ClickType.CONTROL_DROP);
+        return (this == ClickType.SHIFT_LEFT) || (this == ClickType.SHIFT_RIGHT);
     }
 }

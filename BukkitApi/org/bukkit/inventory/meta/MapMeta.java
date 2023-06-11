@@ -137,7 +137,9 @@ public interface MapMeta extends ItemMeta {
      * Checks for existence of a location name.
      *
      * @return 是否有位置名
+     * @deprecated 本方法没有预期效果, 这实际上是 {@link ItemMeta#hasLocalizedName()} 的别名
      */
+    @Deprecated
     boolean hasLocationName();
 
     /**
@@ -152,7 +154,9 @@ public interface MapMeta extends ItemMeta {
      * before calling this method.
      *
      * @return 位置名
+     * @deprecated 本方法没有预期效果, 这实际上是 {@link ItemMeta#getLocalizedName()} 的别名
      */
+    @Deprecated
     @Nullable
     String getLocationName();
 
@@ -164,7 +168,9 @@ public interface MapMeta extends ItemMeta {
      * map in an inventory slot.
      *
      * @param name 位置名
+     * @deprecated 本方法没有预期效果, 这实际上是 {@link ItemMeta#setLocalizedName(String)} 的别名
      */
+    @Deprecated
     void setLocationName(@Nullable String name);
 
     /**

@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.Translatable;
 import org.bukkit.Utility;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
@@ -22,7 +23,7 @@ import org.jetbrains.annotations.Nullable;
  * 请不要使用本类来简要描述某种不可获得的物品 
  * (可以用{@link Material#isItem()}检测, 不要用 ItemStack存储此方法返回false的物品).</b>
  */
-public class ItemStack implements Cloneable, ConfigurationSerializable {
+public class ItemStack implements Cloneable, ConfigurationSerializable, Translatable {
     private Material type = Material.AIR;
     private int amount = 0;
     private MaterialData data = null;
@@ -669,5 +670,11 @@ public class ItemStack implements Cloneable, ConfigurationSerializable {
         }
 
         return true;
+    }
+
+	@Override
+    @NotNull
+    public String getTranslationKey() {
+        return Bukkit.getUnsafe().getTranslationKey(this);
     }
 }

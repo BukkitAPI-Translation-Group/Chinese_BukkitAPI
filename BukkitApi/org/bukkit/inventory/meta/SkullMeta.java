@@ -1,5 +1,6 @@
 package org.bukkit.inventory.meta;
 
+import org.bukkit.NamespacedKey;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.profile.PlayerProfile;
 import org.jetbrains.annotations.NotNull;
@@ -101,6 +102,27 @@ public interface SkullMeta extends ItemMeta {
      * @throws IllegalArgumentException 如果资料没有包含必要信息
      */
     void setOwnerProfile(@Nullable PlayerProfile profile);
+
+    /**
+     * Sets the sound to play if the skull is placed on a note block.
+     * <br>
+     * <strong>Note:</strong> This only works for player heads. For other heads,
+     * see {@link org.bukkit.Instrument}.
+     *
+     * @param noteBlockSound the key of the sound to be played, or null
+     */
+    void setNoteBlockSound(@Nullable NamespacedKey noteBlockSound);
+
+    /**
+     * Gets the sound to play if the skull is placed on a note block.
+     * <br>
+     * <strong>Note:</strong> This only works for player heads. For other heads,
+     * see {@link org.bukkit.Instrument}.
+     *
+     * @return the key of the sound, or null
+     */
+    @Nullable
+    NamespacedKey getNoteBlockSound();
 
     @Override
     @NotNull

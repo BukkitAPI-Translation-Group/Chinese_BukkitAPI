@@ -24,13 +24,15 @@ public interface Ocelot extends Animals {
     public void setTrusting(boolean trust);
 
     /**
-     * 获取这只猫当前的种类.
+     * 获取这只猫的种类.
      * <p>
-     * 原文：Gets the current type of this cat.
+     * 原文:Gets the current type of this cat.
      *
-     * @return 这只猫的种类
+     * @return 猫的种类
+     * @deprecated 猫现在是单独的实体
      */
     @NotNull
+    @Deprecated
     public Type getCatType();
 
     /**
@@ -39,7 +41,9 @@ public interface Ocelot extends Animals {
      * 原文：Sets the current type of this cat.
      *
      * @param type 这只猫的新种类
+     * @deprecated 猫现在是单独的实体
      */
+    @Deprecated
     public void setCatType(@NotNull Type type);
 
     /**

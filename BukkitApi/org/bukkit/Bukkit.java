@@ -41,6 +41,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
+import org.bukkit.packs.DataPackManager;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
@@ -201,6 +202,17 @@ public final class Bukkit {
     }
 
     /**
+     * 设置服务器允许进入的最大玩家数.
+     * <p>
+     * 原文:Set the maximum amount of players allowed to be logged in at once.
+     *
+     * @param maxPlayers 服务器的最大玩家数
+     */
+    public static void setMaxPlayers(int maxPlayers) {
+        server.setMaxPlayers(maxPlayers);
+    }
+
+    /**
      * 获取服务器监听的端口号.
      * <p>
      * 原文:Get the game port that the server runs on.
@@ -298,6 +310,26 @@ public final class Bukkit {
      */
     public static boolean getAllowNether() {
         return server.getAllowNether();
+    }
+
+    @NotNull
+    public static List<String> getInitialEnabledPacks() {
+        return server.getInitialEnabledPacks();
+    }
+
+    @NotNull
+    public static List<String> getInitialDisabledPacks() {
+        return server.getInitialDisabledPacks();
+    }
+
+    /**
+     * Get the DataPack Manager.
+     *
+     * @return the manager
+     */
+    @NotNull
+    public static DataPackManager getDataPackManager() {
+        return server.getDataPackManager();
     }
 
     /**
@@ -1250,7 +1282,9 @@ public final class Bukkit {
      * message to the client when the player sends a message
      *
      * @return true if the server should send a preview, false otherwise
+     * @deprecated chat previews have been removed
      */
+    @Deprecated
     public static boolean shouldSendChatPreviews() {
         return server.shouldSendChatPreviews();
     }
@@ -1840,6 +1874,17 @@ public final class Bukkit {
     @NotNull
     public static String getMotd() {
         return server.getMotd();
+    }
+
+    /**
+     * 设置在客户端服务器列表里显示的消息.
+     * <p>
+     * 原文:Set the message that is displayed on the server list.
+     *
+     * @param motd 服务器motd
+     */
+    public static void setMotd(@NotNull String motd) {
+        server.setMotd(motd);
     }
 
     /**

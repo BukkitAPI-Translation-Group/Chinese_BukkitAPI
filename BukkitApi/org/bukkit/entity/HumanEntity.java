@@ -13,6 +13,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MainHand;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -74,6 +75,26 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @return 若属性成功设置返回true
      */
     public boolean setWindowProperty(@NotNull InventoryView.Property prop, int value);
+
+    /**
+     * Gets the player's current enchantment seed.
+     *
+     * The Seed is used to generate enchantment options in the enchanting table
+     * for the player.
+     *
+     * @return the player's enchantment seed
+     */
+    public int getEnchantmentSeed();
+
+    /**
+     * Sets the player's enchantment seed.
+     *
+     * The Seed is used to generate enchantment options in the enchanting table
+     * for the player.
+     *
+     * @param seed the player's new enchantment seed
+     */
+    public void setEnchantmentSeed(int seed);
 
     /**
      * 获取玩家正在查看的物品栏. 如果他们没有打开任何物品栏窗口, 将返回他们的内部合成视图(玩家背包的那四个格子?).
@@ -680,4 +701,20 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param location where to set the last death player location
      */
     public void setLastDeathLocation(@Nullable Location location);
+
+    /**
+     * Perform a firework boost.
+     * <p>
+     * This method will only work such that {@link #isGliding()} is true and
+     * the entity is actively gliding with an elytra. Additionally, the supplied
+     * {@code fireworkItemStack} must be a firework rocket. The power of the boost
+     * will directly correlate to {@link FireworkMeta#getPower()}.
+     *
+     * @param fireworkItemStack the firework item stack to use to glide
+     * @return the attached {@link Firework}, or null if the entity could not
+     * be boosted
+     * @throws IllegalArgumentException if the fireworkItemStack is not a firework
+     */
+    @Nullable
+    public Firework fireworkBoost(@NotNull ItemStack fireworkItemStack);
 }

@@ -30,7 +30,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 一个Java插件的基类
+ * 代表一个 Java 插件及其主类. 其包含了插件正常加载并工作所需的基础方法和字段.
+ * 这是一个 {@link org.bukkit.plugin.Plugin} 的间接实现.
  */
 public abstract class JavaPlugin extends PluginBase {
     private boolean isEnabled = false;

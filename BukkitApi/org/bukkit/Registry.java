@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import com.google.common.base.Preconditions;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableMap;
 import java.util.Arrays;
@@ -17,7 +18,10 @@ import org.bukkit.entity.Villager;
 import org.bukkit.entity.memory.MemoryKey;
 import org.bukkit.generator.structure.Structure;
 import org.bukkit.generator.structure.StructureType;
+import org.bukkit.inventory.meta.trim.TrimMaterial;
+import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.loot.LootTables;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -149,6 +153,20 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      */
     Registry<Sound> SOUNDS = new SimpleRegistry<>(Sound.class);
     /**
+     * Trim materials.
+     *
+     * @see TrimMaterial
+     */
+    @ApiStatus.Experimental
+    Registry<TrimMaterial> TRIM_MATERIAL = Bukkit.getRegistry(TrimMaterial.class);
+    /**
+     * Trim patterns.
+     *
+     * @see TrimPattern
+     */
+    @ApiStatus.Experimental
+    Registry<TrimPattern> TRIM_PATTERN = Bukkit.getRegistry(TrimPattern.class);
+    /**
      * Villager profession.
      *
      * @see Villager.Profession
@@ -219,6 +237,24 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      */
     @Nullable
     T get(@NotNull NamespacedKey key);
+
+    /**
+     * Attempts to match the registered object with the given key.
+     * <p>
+     * This will attempt to find a reasonable match based on the provided input
+     * and may do so through unspecified means.
+     *
+     * @param input non-null input
+     * @return registered object or null if does not exist
+     */
+    @Nullable
+    default T match(@NotNull String input) {
+        Preconditions.checkArgument(input != null, "input must not be null");
+
+        String filtered = input.toLowerCase().replaceAll("\\s+", "_");
+        NamespacedKey namespacedKey = NamespacedKey.fromString(filtered);
+        return (namespacedKey != null) ? get(namespacedKey) : null;
+    }
 
     static final class SimpleRegistry<T extends Enum<T> & Keyed> implements Registry<T> {
 

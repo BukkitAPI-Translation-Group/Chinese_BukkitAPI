@@ -1,5 +1,8 @@
 package org.bukkit.event;
 
+/**
+ * 一个表明事件可被插件或服务器取消的类型.
+ */
 public interface Cancellable {
 
     /**

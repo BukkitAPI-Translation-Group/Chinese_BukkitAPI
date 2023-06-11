@@ -1,5 +1,6 @@
 package org.bukkit.event.inventory;
 
+import org.bukkit.MinecraftExperimental;
 import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 
@@ -133,7 +134,22 @@ public enum InventoryType {
     /**
      * Pseudo composter inventory with 0 or 1 slots of undefined type.
      */
-    COMPOSTER(1, "Composter")
+    COMPOSTER(1, "Composter", false),
+    /**
+     * Pseudo chiseled bookshelf inventory, with 6 slots of undefined type.
+     */
+    CHISELED_BOOKSHELF(6, "Chiseled Bookshelf", false),
+    /**
+     * Pseudo jukebox inventory with 1 slot of undefined type.
+     */
+    JUKEBOX(1, "Jukebox", false),
+    /**
+     * The new smithing inventory, with 3 CRAFTING slots and 1 RESULT slot.
+     *
+     * @apiNote draft, experimental 1.20 API
+     */
+    @MinecraftExperimental
+    SMITHING_NEW(4, "Upgrade Gear"),
     ;
 
     private final int size;

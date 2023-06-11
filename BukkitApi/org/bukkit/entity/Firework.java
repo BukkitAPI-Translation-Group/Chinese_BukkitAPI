@@ -2,6 +2,7 @@ package org.bukkit.entity;
 
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /**
  * 烟花火箭实体.
@@ -28,12 +29,79 @@ public interface Firework extends Projectile {
     void setFireworkMeta(@NotNull FireworkMeta meta);
 
     /**
+     * Set the {@link LivingEntity} to which this firework is attached.
+     * <p>
+     * When attached to an entity, the firework effect will act as normal but
+     * remain positioned on the entity. If the entity {@code LivingEntity#isGliding()
+     * is gliding}, then the entity will receive a boost in the direction that
+     * they are looking.
+     *
+     * @param entity the entity to which the firework should be attached, or
+     * null to remove the attached entity
+     * @return true if the entity could be attached, false if the firework was
+     * already detonated
+     */
+    boolean setAttachedTo(@Nullable LivingEntity entity);
+
+    /**
+     * Get the {@link LivingEntity} to which this firework is attached.
+     * <p>
+     * When attached to an entity, the firework effect will act as normal but
+     * remain positioned on the entity. If the entity {@code LivingEntity#isGliding()
+     * is gliding}, then the entity will receive a boost in the direction that
+     * they are looking.
+     *
+     * @return the attached entity, or null if none
+     */
+    @Nullable
+    LivingEntity getAttachedTo();
+
+    /**
+     * Set the ticks that this firework has been alive. If this value exceeds
+     * {@link #getMaxLife()}, the firework will detonate.
+     *
+     * @param ticks the ticks to set. Must be greater than or equal to 0
+     * @return true if the life was set, false if this firework has already detonated
+     */
+    boolean setLife(int ticks);
+
+    /**
+     * Get the ticks that this firework has been alive. When this value reaches
+     * {@link #getMaxLife()}, the firework will detonate.
+     *
+     * @return the life ticks
+     */
+    int getLife();
+
+    /**
+     * Set the time in ticks this firework will exist until it is detonated.
+     *
+     * @param ticks the ticks to set. Must be greater than 0
+     * @return true if the time was set, false if this firework has already detonated
+     */
+    boolean setMaxLife(int ticks);
+
+    /**
+     * Get the time in ticks this firework will exist until it is detonated.
+     *
+     * @return the maximum life in ticks
+     */
+    int getMaxLife();
+
+    /**
      * 使烟花尽早爆炸, 像是它的引火线已燃烧殆尽.
      * <p>
      * 原文:Cause this firework to explode at earliest opportunity, as if it has no
      * remaining fuse.
      */
     void detonate();
+
+    /**
+     * Check whether or not this firework has detonated.
+     *
+     * @return true if detonated, false if still in the world
+     */
+    boolean isDetonated();
 
     /**
      * 获取此烟花是否以一定角度发射 (比如使用弩).

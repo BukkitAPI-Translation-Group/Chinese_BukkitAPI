@@ -180,6 +180,36 @@ public final class GameRule<T> {
      */
     public static final GameRule<Boolean> UNIVERSAL_ANGER = new GameRule<>("universalAnger", Boolean.class);
 
+    /**
+     * Whether block explosions will destroy dropped items.
+     */
+    public static final GameRule<Boolean> BLOCK_EXPLOSION_DROP_DECAY = new GameRule<>("blockExplosionDropDecay", Boolean.class);
+    /**
+     * * Whether mob explosions will destroy dropped items.
+     */
+    public static final GameRule<Boolean> MOB_EXPLOSION_DROP_DECAY = new GameRule<>("mobExplosionDropDecay", Boolean.class);
+    /**
+     * Whether tnt explosions will destroy dropped items.
+     */
+    public static final GameRule<Boolean> TNT_EXPLOSION_DROP_DECAY = new GameRule<>("tntExplosionDropDecay", Boolean.class);
+    /**
+     * Whether water blocks can convert into water source blocks.
+     */
+    public static final GameRule<Boolean> WATER_SOURCE_CONVERSION = new GameRule<>("waterSourceConversion", Boolean.class);
+    /**
+     * Whether lava blocks can convert into lava source blocks.
+     */
+    public static final GameRule<Boolean> LAVA_SOURCE_CONVERSION = new GameRule<>("lavaSourceConversion", Boolean.class);
+    /**
+     * Whether global level events such as ender dragon, wither, and completed
+     * end portal effects will propagate across the entire server.
+     */
+    public static final GameRule<Boolean> GLOBAL_SOUND_EVENTS = new GameRule<>("globalSoundEvents", Boolean.class);
+    /**
+     * Whether vines will spread.
+     */
+    public static final GameRule<Boolean> DO_VINES_SPREAD = new GameRule<>("doVinesSpread", Boolean.class);
+
     // Numerical rules
     /**
      * 每游戏刻每区块中随机的方块刻发生的频率 (例如植物生长，树叶腐烂等).
@@ -207,9 +237,15 @@ public final class GameRule<T> {
     public static final GameRule<Integer> MAX_COMMAND_CHAIN_LENGTH = new GameRule<>("maxCommandChainLength", Integer.class);
 
     /**
+     * Determines the maximum number of blocks which a command can modify.
+     */
+    public static final GameRule<Integer> COMMAND_MODIFICATION_BLOCK_LIMIT = new GameRule<>("commandModificationBlockLimit", Integer.class);
+
+    /**
      * 服务器跳过夜晚所需的入睡玩家的占比.
      */
     public static final GameRule<Integer> PLAYERS_SLEEPING_PERCENTAGE = new GameRule<>("playersSleepingPercentage", Integer.class);
+	public static final GameRule<Integer> SNOW_ACCUMULATION_HEIGHT = new GameRule<>("snowAccumulationHeight", Integer.class);
 
     // All GameRules instantiated above this for organizational purposes
     private final String name;
