@@ -81,8 +81,7 @@ public interface BlockData extends Cloneable {
      * }</pre>
      *
      * @param hideUnspecified 为 true 时未指定的数据值将会被省略,
-     * 为 false 时未指定的数据值也会被编入字符串, 与 {@link #getAsString()} 方法的执行结果一样.
-     *
+     *                        为 false 时未指定的数据值也会被编入字符串, 与 {@link #getAsString()} 方法的执行结果一样.
      * @return 关于此方块的序列化数据字符串
      */
     @NotNull
@@ -153,6 +152,10 @@ public interface BlockData extends Cloneable {
     BlockData clone();
 
     /**
+     * 获取方块的{@link SoundGroup}，可以用它来获取其行走声音。
+     * 获取方块的声音、击打声音等其它声音。
+     * <p>
+     * 原文:
      * Gets the block's {@link SoundGroup} which can be used to get its step
      * sound, hit sound, and others.
      *
@@ -162,6 +165,9 @@ public interface BlockData extends Cloneable {
     SoundGroup getSoundGroup();
 
     /**
+     * 获取此状态在世界中发出的光照强度。
+     * <p>
+     * 原文:
      * Get the amount of light emitted by this state when in the world.
      *
      * @return the light emission
@@ -169,6 +175,12 @@ public interface BlockData extends Cloneable {
     int getLightEmission();
 
     /**
+     * 检查此状态是否会遮挡其他方块。
+     * <p>
+     * 方块状态遮挡会影响其他方块的视觉特性（例如，如果其下方有遮挡状态，则树叶和湿海绵将不会产生滴水颗粒），或光是否通过它。
+     *
+     * <p>
+     * 原文:
      * Check whether or not this state will occlude other blocks.
      * <p>
      * Block state occlusion affects visual features of other blocks (e.g. leaves and
@@ -180,6 +192,9 @@ public interface BlockData extends Cloneable {
     boolean isOccluding();
 
     /**
+     * 检查是否需要使用特定物品才能掉落其物品。例如，钻石矿石需要使用铁镐才能采集，否则使用木镐或石镐无法掉落钻石。
+     * <p>
+     * 原文:
      * Check whether or not this state requires a specific item to be used to drop
      * items when broken. For example, diamond ore requires an iron pickaxe and will
      * not drop diamonds when broken with a wooden or stone pickaxe.
@@ -190,8 +205,12 @@ public interface BlockData extends Cloneable {
     boolean requiresCorrectToolForDrops();
 
     /**
+     * 返回给定物品是否是破坏此方块的首选选择。
+     * 在某些情况下，这将决定方块是否掉落任何物品或额外的战利品。
+     * <p>
+     * 原文:
      * Returns if the given item is a preferred choice to break this Block.
-     *
+     * <p>
      * In some cases this determines if a block will drop anything or extra
      * loot.
      *
@@ -201,6 +220,9 @@ public interface BlockData extends Cloneable {
     boolean isPreferredTool(@NotNull ItemStack tool);
 
     /**
+     * 返回方块被活塞推动时的反应。
+     * <p>
+     * 原文:
      * Returns the reaction of the block when moved by a piston
      *
      * @return reaction
@@ -209,6 +231,10 @@ public interface BlockData extends Cloneable {
     PistonMoveReaction getPistonMoveReaction();
 
     /**
+     * 检查如果此状态被放置在给定的 {@link Block} 上，它是否会得到正确支持。
+     * 例如，这可能有用来检查壁式火炬是否能够在其相邻的方块状态上存活。
+     * <p>
+     * 原文:
      * Checks if this state would be properly supported if it were placed at
      * the given {@link Block}.
      * <p>
@@ -216,13 +242,16 @@ public interface BlockData extends Cloneable {
      * capable of surviving on its neighbouring block states.
      *
      * @param block the block position at which the state would be placed
-     *
      * @return true if the block is supported, false if this state would not survive
      * the world conditions
      */
     boolean isSupported(@NotNull Block block);
 
     /**
+     * 检查如果此状态被放置在给定 {@link Location} 的方块上，它是否会得到正确支持。
+     * 例如，这可能有用来检查壁式火炬是否能够在其相邻的方块状态上存活。
+     * <p>
+     * 原文:
      * Checks if this state would be properly supported if it were placed at
      * the block at the given {@link Location}.
      * <p>
@@ -230,13 +259,17 @@ public interface BlockData extends Cloneable {
      * capable of surviving on its neighbouring block states.
      *
      * @param location the location at which the state would be placed
-     *
      * @return true if the block is supported, false if this state would not survive
      * the world conditions
      */
     boolean isSupported(@NotNull Location location);
 
     /**
+     * 检查状态的 {@link BlockFace} 是否能够为相邻的方块状态提供特定级别的 {@link BlockSupport}。
+     * <p>
+     * 任何给定状态都可以根据其状态支持零、一个或多个支持级别。一个常见的例子是墙只能在上表面中心支持火把，而草方块则在所有表面支持所有支持级别。
+     * <p>
+     * 原文:
      * Checks if a state's {@link BlockFace} is capable of providing a given level
      * of {@link BlockSupport} for neighbouring block states.
      * <p>
@@ -245,30 +278,46 @@ public interface BlockData extends Cloneable {
      * torches only on the center of the upper block face, whereas a grass block would
      * support all levels of block support on all block faces.
      *
-     * @param face the face to check
+     * @param face    the face to check
      * @param support the possible support level
-     *
      * @return true if the face is sturdy and can support a block, false otherwise
      */
     boolean isFaceSturdy(@NotNull BlockFace face, @NotNull BlockSupport support);
 
     /**
+     * 获取玩家放置此方块所使用的物品材质。
+     * <p>
+     * 对于大多数方块，这与 {@link #getMaterial()} 相同，但有些方块有不同的材质用于放置它们。
+     * <p>
+     * 例如：
+     * <pre>
+     * {@link Material#REDSTONE_WIRE} -> {@link Material#REDSTONE}
+     * {@link Material#CARROTS} -> {@link Material#CARROT}
+     * </pre>
+     * <p>
+     * 原文:
      * Gets the material that a player would use to place this block.
      * <p>
      * For most blocks this is the same as {@link #getMaterial()} but some blocks
      * have different materials used to place them.
-     *
+     * <p>
      * For example:
      * <pre>
      * {@link Material#REDSTONE_WIRE} -> {@link Material#REDSTONE}
      * {@link Material#CARROTS} -> {@link Material#CARROT}
      * </pre>
+     *
      * @return placement material
      */
     @NotNull
     Material getPlacementMaterial();
 
     /**
+     * 使用指定的 {@link StructureRotation} 旋转此方块数据。
+     * <p>
+     * 这对于没有可旋转状态的方块没有影响。
+     * <p>
+     * 原文:
      * Rotates this blockdata by the specified {@link StructureRotation}.
      * <p>
      * This has no effect on blocks that do not have any rotatable states.
@@ -278,6 +327,11 @@ public interface BlockData extends Cloneable {
     void rotate(@NotNull StructureRotation rotation);
 
     /**
+     * 使用指定的 {@link Mirror} 镜像此方块数据。
+     * <p>
+     * 这对于没有可镜像状态的方块没有影响。
+     * <p>
+     * 原文:
      * Mirrors this blockdata using the specified {@link Mirror}.
      * <p>
      * This has no effect on blocks that do not have any mirrorable states.
