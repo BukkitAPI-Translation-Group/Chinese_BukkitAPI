@@ -1,10 +1,7 @@
 package org.bukkit.block.sign;
 
 /**
- * 表示告示牌的侧面。
- * <p>
- * 原文:
- * Represents the side of sign.
+ * 表示告示牌的面。
  */
 public enum Side {
 

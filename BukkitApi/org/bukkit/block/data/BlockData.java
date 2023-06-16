@@ -152,33 +152,31 @@ public interface BlockData extends Cloneable {
     BlockData clone();
 
     /**
-     * 获取方块的{@link SoundGroup}，可以用它来获取其行走声音。
-     * 获取方块的声音、击打声音等其它声音。
+     * 获取方块的{@link SoundGroup}，可以用它来获取其行走声音、击打声音等其它声音。
      * <p>
      * 原文:
      * Gets the block's {@link SoundGroup} which can be used to get its step
      * sound, hit sound, and others.
      *
-     * @return the sound effect group
+     * @return 音效组
      */
     @NotNull
     SoundGroup getSoundGroup();
 
     /**
-     * 获取此状态在世界中发出的光照强度。
+     * 获取此状态下的方块在世界中发出的光照强度。
      * <p>
      * 原文:
      * Get the amount of light emitted by this state when in the world.
      *
-     * @return the light emission
+     * @return 光照强度
      */
     int getLightEmission();
 
     /**
-     * 检查此状态是否会遮挡其他方块。
+     * 检查此状态下的方块是否会遮挡其他方块。
      * <p>
-     * 方块状态遮挡会影响其他方块的视觉特性（例如，如果其下方有遮挡状态，则树叶和湿海绵将不会产生滴水颗粒），或光是否通过它。
-     *
+     * 方块状态遮挡会影响其他方块的视觉特性（例如，如果其下方有遮挡状态，则树叶和湿海绵将不会产生滴水颗粒），或光能否通过它。
      * <p>
      * 原文:
      * Check whether or not this state will occlude other blocks.
@@ -187,7 +185,7 @@ public interface BlockData extends Cloneable {
      * wet sponges will not spawn dripping water particles if an occluding state is
      * below it), or whether light will pass through it.
      *
-     * @return true if occluding, false otherwise
+     * @return 如果会遮挡其它方块为true, 否则为 false
      */
     boolean isOccluding();
 
@@ -199,13 +197,13 @@ public interface BlockData extends Cloneable {
      * items when broken. For example, diamond ore requires an iron pickaxe and will
      * not drop diamonds when broken with a wooden or stone pickaxe.
      *
-     * @return true if a more specific item is required for drops, false if any item
-     * (or an empty hand) will drop items
+     * @return 如果需要一种或多种特定物品才能掉落物品则为true, 如果任意物品（或空手）即可掉落物品则为 false
      */
     boolean requiresCorrectToolForDrops();
 
     /**
-     * 返回给定物品是否是破坏此方块的首选选择。
+     * 返回给定物品是否为破坏此方块的首选选择。
+     * <p>
      * 在某些情况下，这将决定方块是否掉落任何物品或额外的战利品。
      * <p>
      * 原文:
@@ -214,8 +212,8 @@ public interface BlockData extends Cloneable {
      * In some cases this determines if a block will drop anything or extra
      * loot.
      *
-     * @param tool The tool or item used for breaking this block
-     * @return true if the tool is preferred for breaking this block.
+     * @param tool 用于破坏此方块的工具或物品
+     * @return 如果此工具是破坏此方块的首选选择则为 true.
      */
     boolean isPreferredTool(@NotNull ItemStack tool);
 
@@ -225,13 +223,14 @@ public interface BlockData extends Cloneable {
      * 原文:
      * Returns the reaction of the block when moved by a piston
      *
-     * @return reaction
+     * @return reaction 反应
      */
     @NotNull
     PistonMoveReaction getPistonMoveReaction();
 
     /**
-     * 检查如果此状态被放置在给定的 {@link Block} 上，它是否会得到正确支持。
+     * 检查如果此状态下的方块放置在给定的{@link Block 方块}上，它是否会被正常支撑。
+     * <p>
      * 例如，这可能有用来检查壁式火炬是否能够在其相邻的方块状态上存活。
      * <p>
      * 原文:
@@ -241,14 +240,14 @@ public interface BlockData extends Cloneable {
      * This may be useful, for instance, to check whether or not a wall torch is
      * capable of surviving on its neighbouring block states.
      *
-     * @param block the block position at which the state would be placed
-     * @return true if the block is supported, false if this state would not survive
-     * the world conditions
+     * @param block 此方块要放置在哪个方块上
+     * @return 如果此方块可被支撑则为 true, 如果此状态下的方块无法在此世界的状况下留存则为 false
      */
     boolean isSupported(@NotNull Block block);
 
     /**
-     * 检查如果此状态被放置在给定 {@link Location} 的方块上，它是否会得到正确支持。
+     * 检查如果此状态下的方块放置在给定的 {@link Location} 的方块上，它是否会被正常支撑。
+     * <p>
      * 例如，这可能有用来检查壁式火炬是否能够在其相邻的方块状态上存活。
      * <p>
      * 原文:
@@ -258,16 +257,15 @@ public interface BlockData extends Cloneable {
      * This may be useful, for instance, to check whether or not a wall torch is
      * capable of surviving on its neighbouring block states.
      *
-     * @param location the location at which the state would be placed
-     * @return true if the block is supported, false if this state would not survive
-     * the world conditions
+     * @param location 此方块要放置在哪个位置上
+     * @return 如果此方块可被支撑则为 true, 如果此状态下的方块无法在此世界的状况下留存则为 false
      */
     boolean isSupported(@NotNull Location location);
 
     /**
      * 检查状态的 {@link BlockFace} 是否能够为相邻的方块状态提供特定级别的 {@link BlockSupport}。
      * <p>
-     * 任何给定状态都可以根据其状态支持零、一个或多个支持级别。一个常见的例子是墙只能在上表面中心支持火把，而草方块则在所有表面支持所有支持级别。
+     * 任何给定状态都可以根据其状态支持零、一个或多个支撑级别。一个常见的例子是墙只能在上表面中心支撑火把，而草方块则在所有表面支持所有支撑级别。
      * <p>
      * 原文:
      * Checks if a state's {@link BlockFace} is capable of providing a given level
@@ -278,9 +276,9 @@ public interface BlockData extends Cloneable {
      * torches only on the center of the upper block face, whereas a grass block would
      * support all levels of block support on all block faces.
      *
-     * @param face    the face to check
-     * @param support the possible support level
-     * @return true if the face is sturdy and can support a block, false otherwise
+     * @param face 要检测的面
+     * @param support 可能的支撑级别
+     * @return 如果这一面足够牢固并可支撑此方块则为 true, 否则为 false
      */
     boolean isFaceSturdy(@NotNull BlockFace face, @NotNull BlockSupport support);
 
@@ -307,7 +305,7 @@ public interface BlockData extends Cloneable {
      * {@link Material#CARROTS} -> {@link Material#CARROT}
      * </pre>
      *
-     * @return placement material
+     * @return 放置此方块所使用的物品材质
      */
     @NotNull
     Material getPlacementMaterial();
@@ -322,7 +320,7 @@ public interface BlockData extends Cloneable {
      * <p>
      * This has no effect on blocks that do not have any rotatable states.
      *
-     * @param rotation the rotation
+     * @param rotation 旋转角度
      */
     void rotate(@NotNull StructureRotation rotation);
 
@@ -336,7 +334,7 @@ public interface BlockData extends Cloneable {
      * <p>
      * This has no effect on blocks that do not have any mirrorable states.
      *
-     * @param mirror the mirror
+     * @param mirror 镜像
      */
     void mirror(@NotNull Mirror mirror);
 }
