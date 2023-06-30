@@ -12,33 +12,44 @@ import org.jetbrains.annotations.Nullable;
 public interface Projectile extends Entity {
 
     /**
-     * 检索该抛射物的发射者。
+     * 获取该抛射物的发射者.
+     * <p>
+     * 原文:Retrieve the shooter of this projectile.
      *
-     * @return 发射该抛射物的 {@link ProjectileSource}e
+     * @return 发射该抛射物的 {@link ProjectileSource}
      */
     @Nullable
     public ProjectileSource getShooter();
 
     /**
-     * 设置该抛射物的发射者。
+     * 设置该抛射物的发射者.
+     * <p>
+     * 原文:Set the shooter of this projectile.
      *
      * @param source 发射该抛射物的 {@link ProjectileSource}
      */
     public void setShooter(@Nullable ProjectileSource source);
 
     /**
-     * 确定该抛射物在击中时是否应该弹跳。
+     * 判断该抛射物在击中物体时是否应该弹跳.
      * <p>
-     * 如果一个小型火球不弹跳，则会使目标着火。
+     * 如果一个小型火球不弹跳,则会使目标着火.
+     * <p>
+     * 原文:Determine if this projectile should bounce or not when it hits.
+     * <p>
+     * If a small fireball does not bounce it will set the target on fire.
      *
      * @return 如果应该弹跳，则返回true。
      */
     public boolean doesBounce();
 
     /**
-     * 设置该抛射物在击中时是否应该弹跳。
+     * 设置该抛射物在击中物体时是否应该弹跳.
+     * <p>
+     * 原文:Set whether or not this projectile should bounce or not when it hits
+     * something.
      *
-     * @param doesBounce 是否应该弹跳。
+     * @param doesBounce 是否应该弹跳
      */
     public void setBounce(boolean doesBounce);
 }
