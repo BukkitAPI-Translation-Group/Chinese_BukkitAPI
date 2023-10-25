@@ -51,7 +51,7 @@ public class PlayerShearEntityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 获得正在被玩家剪羊毛的实体对象.
+     * 获取玩家正在剪切的实体.
      * <p>
      * 原文:Gets the entity the player is shearing
      *
@@ -63,9 +63,11 @@ public class PlayerShearEntityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the item used to shear the entity.
+     * 获取用于剪切实体的物品.
+     * <p>
+     * 原文:Gets the item used to shear the entity.
      *
-     * @return the shears
+     * @return 剪刀
      */
     @NotNull
     public ItemStack getItem() {
@@ -73,9 +75,11 @@ public class PlayerShearEntityEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the hand used to shear the entity.
+     * 获取用于剪切实体的手.
+     * <p>
+     * 原文:Gets the hand used to shear the entity.
      *
-     * @return the hand
+     * @return 手
      */
     @NotNull
     public EquipmentSlot getHand() {
