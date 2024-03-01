@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 public interface BossBar {
 
     /**
-     * 用于获取该Boos血量条的标题.
+     * 用于获取该Boss血量条的标题.
      * <p>
      * 原文:Returns the title of this boss bar
      *
