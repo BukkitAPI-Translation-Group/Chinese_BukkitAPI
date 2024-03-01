@@ -2050,7 +2050,7 @@ public final class Bukkit {
     }
 
     /**
-     * 创建一个Boos血量条实例. 血量条的进度默认为1.0.
+     * 创建一个Boss血量条实例. 血量条的进度默认为1.0.
      * <p>
      * 原文:
      * Creates a boss bar instance to display to players. The progress
@@ -2068,7 +2068,7 @@ public final class Bukkit {
     }
 
     /**
-     * 创建一个Boos血量条实例. 血量条的进度默认为1.0.
+     * 创建一个Boss血量条实例. 血量条的进度默认为1.0.
      * <br>
      * 该方法创建的实例会被添加到服务器的持久化存储空间中, 命令将可以编辑它们, 服务器重启后会被恢复.
      * <p>
