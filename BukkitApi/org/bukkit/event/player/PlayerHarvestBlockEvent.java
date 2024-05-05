@@ -10,14 +10,13 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called whenever a player harvests a block.
+ * 当玩家收获方块时触发此事件。
  * <br>
- * A 'harvest' is when a block drops an item (usually some sort of crop) and
- * changes state, but is not broken in order to drop the item.
+ * '收获'指的是当方块掉落物品（通常是某种作物）并改变状态，但并未被破坏以掉落物品。
  * <br>
- * This event is not called for when a block is broken, to handle that, listen
- * for {@link org.bukkit.event.block.BlockBreakEvent} and
- * {@link org.bukkit.event.block.BlockDropItemEvent}.
+ * 当方块被破坏时，此事件不会被触发。要处理这种情况，请监听
+ * {@link org.bukkit.event.block.BlockBreakEvent}和
+ * {@link org.bukkit.event.block.BlockDropItemEvent}。
  */
 public class PlayerHarvestBlockEvent extends PlayerEvent implements Cancellable {
 
@@ -40,9 +39,12 @@ public class PlayerHarvestBlockEvent extends PlayerEvent implements Cancellable 
     }
 
     /**
+     * 获取被收获的方块。
+     * <p>
+     * 原文：
      * Gets the block that is being harvested.
      *
-     * @return The block that is being harvested
+     * @return 被收获的方块
      */
     @NotNull
     public Block getHarvestedBlock() {
@@ -50,9 +52,12 @@ public class PlayerHarvestBlockEvent extends PlayerEvent implements Cancellable 
     }
 
     /**
+     * 获取用于收获方块的手。
+     * <p>
+     * 原文：
      * Get the hand used to harvest the block.
      *
-     * @return the hand
+     * @return 用于收获方块的手
      */
     @NotNull
     public EquipmentSlot getHand() {
@@ -60,9 +65,12 @@ public class PlayerHarvestBlockEvent extends PlayerEvent implements Cancellable 
     }
 
     /**
+     * 获取从此方块收获的物品列表。
+     * <p>
+     * 原文：
      * Gets a list of items that are being harvested from this block.
      *
-     * @return A list of items that are being harvested from this block
+     * @return 从此方块收获的物品列表
      */
     @NotNull
     public List<ItemStack> getItemsHarvested() {
