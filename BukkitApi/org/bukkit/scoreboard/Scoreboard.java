@@ -18,16 +18,14 @@ public interface Scoreboard {
      * @param name 计分项名称
      * @param criteria 计分项的准则
      * @return 注册的计分项实例
-     * @throws IllegalArgumentException 若参数 name 为 null
      * @throws IllegalArgumentException 若 name 长度超过 16 个字符
      * (注:此参数在1.18+支持最长32767个字符)
-     * @throws IllegalArgumentException 若参数 criteria 为 null
      * @throws IllegalArgumentException 若同名计分项已存在
      * @deprecated 应明确指定计分项的显示名
      */
     @Deprecated
     @NotNull
-    Objective registerNewObjective(@NotNull String name, @NotNull String criteria) throws IllegalArgumentException;
+    Objective registerNewObjective(@NotNull String name, @NotNull String criteria);
 
     /**
      * 向计分板注册一个计分项.
@@ -38,17 +36,14 @@ public interface Scoreboard {
      * @param criteria 计分项的准则
      * @param displayName 展示给玩家的计分项显示名称
      * @return 注册的计分项实例
-     * @throws IllegalArgumentException 若参数 name 为 null
      * @throws IllegalArgumentException 若 name 长度超过 16 个字符
      * (注:此参数在1.18+支持最长32767个字符)
-     * @throws IllegalArgumentException 若参数 criteria 为 null
-     * @throws IllegalArgumentException 若参数 displayName 为 null
-     * @throws IllegalArgumentException 若 displayName 长度超过 128 个字符
      * @throws IllegalArgumentException 若同名计分项已存在
      * @deprecated 请使用 {@link #registerNewObjective(String, Criteria, String)}
      */
+    @Deprecated
     @NotNull
-    Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName) throws IllegalArgumentException;
+    Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName);
 
     /**
      * 向计分板注册一个计分项.
@@ -60,18 +55,14 @@ public interface Scoreboard {
      * @param displayName 展示给玩家的计分项显示名称
      * @param renderType 计分项的渲染方式
      * @return 注册的计分项实例
-     * @throws IllegalArgumentException 若参数 name 为 null
      * @throws IllegalArgumentException 若 name 长度超过 16 个字符
      * (注:此参数在1.18+支持最长32767个字符)
-     * @throws IllegalArgumentException 若参数 criteria 为 null
-     * @throws IllegalArgumentException 若参数 displayName 为 null
-     * @throws IllegalArgumentException 若 displayName 长度超过 128 个字符
-     * @throws IllegalArgumentException 若参数 renderType 为 null
      * @throws IllegalArgumentException 若同名计分项已存在
      * @deprecated 请使用 {@link #registerNewObjective(String, Criteria, String, RenderType)}
      */
+    @Deprecated
     @NotNull
-    Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName, @NotNull RenderType renderType) throws IllegalArgumentException;
+    Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName, @NotNull RenderType renderType);
 
     /**
      * Registers an Objective on this Scoreboard
@@ -80,18 +71,13 @@ public interface Scoreboard {
      * @param criteria Criteria for the Objective
      * @param displayName Name displayed to players for the Objective.
      * @return The registered Objective
-     * @throws IllegalArgumentException if name is null
      * @throws IllegalArgumentException if name is longer than 32767
-     *     characters.
-     * @throws IllegalArgumentException if criteria is null
-     * @throws IllegalArgumentException if displayName is null
-     * @throws IllegalArgumentException if displayName is longer than 128
      *     characters.
      * @throws IllegalArgumentException if an objective by that name already
      *     exists
      */
     @NotNull
-    Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName) throws IllegalArgumentException;
+    Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName);
 
     /**
      * Registers an Objective on this Scoreboard
@@ -101,19 +87,13 @@ public interface Scoreboard {
      * @param displayName Name displayed to players for the Objective.
      * @param renderType Manner of rendering the Objective
      * @return The registered Objective
-     * @throws IllegalArgumentException if name is null
      * @throws IllegalArgumentException if name is longer than 32767
      *     characters.
-     * @throws IllegalArgumentException if criteria is null
-     * @throws IllegalArgumentException if displayName is null
-     * @throws IllegalArgumentException if displayName is longer than 128
-     *     characters.
-     * @throws IllegalArgumentException if renderType is null
      * @throws IllegalArgumentException if an objective by that name already
      *     exists
      */
     @NotNull
-    Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName, @NotNull RenderType renderType) throws IllegalArgumentException;
+    Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName, @NotNull RenderType renderType);
 
     /**
      * 根据名称获取计分项.
@@ -122,10 +102,9 @@ public interface Scoreboard {
      *
      * @param name 计分项名称
      * @return 计分项对象, 如果不存在则为 null
-     * @throws IllegalArgumentException 若参数 name 为 null
      */
     @Nullable
-    Objective getObjective(@NotNull String name) throws IllegalArgumentException;
+    Objective getObjective(@NotNull String name);
 
     /**
      * 获取使用此准则的所有计分项.
@@ -134,12 +113,11 @@ public interface Scoreboard {
      *
      * @param criteria 准则
      * @return 使用指定准测的计分项的不可变集合
-     * @throws IllegalArgumentException 若参数 criteria 为 null
      * @deprecated 请使用 {@link #getObjectivesByCriteria(Criteria)}
      */
     @Deprecated
     @NotNull
-    Set<Objective> getObjectivesByCriteria(@NotNull String criteria) throws IllegalArgumentException;
+    Set<Objective> getObjectivesByCriteria(@NotNull String criteria);
 
     /**
      * 获取使用此准则的所有计分项.
@@ -148,10 +126,9 @@ public interface Scoreboard {
      *
      * @param criteria 准则
      * @return 使用指定准测的计分项的不可变集合
-     * @throws IllegalArgumentException 若参数 criteria 为 null
      */
     @NotNull
-    Set<Objective> getObjectivesByCriteria(@NotNull Criteria criteria) throws IllegalArgumentException;
+    Set<Objective> getObjectivesByCriteria(@NotNull Criteria criteria);
 
     /**
      * 获取计分板上的所有计分项.
@@ -171,10 +148,9 @@ public interface Scoreboard {
      *
      * @param slot 显示位置
      * @return 此处的计分项, 如果没有则为 null
-     * @throws IllegalArgumentException 若参数 slot 为 null
      */
     @Nullable
-    Objective getObjective(@NotNull DisplaySlot slot) throws IllegalArgumentException;
+    Objective getObjective(@NotNull DisplaySlot slot);
 
     /**
      * 获取某玩家的所有分数记录.
@@ -183,13 +159,12 @@ public interface Scoreboard {
      *
      * @param player the player whose scores are being retrieved
      * @return 该玩家的所有分数记录的不可变集合
-     * @throws IllegalArgumentException if player is null
      * @deprecated 计分板可包含非玩家项目
      * @see #getScores(String)
      */
     @Deprecated
     @NotNull
-    Set<Score> getScores(@NotNull OfflinePlayer player) throws IllegalArgumentException;
+    Set<Score> getScores(@NotNull OfflinePlayer player);
 
     /**
      * 获取某项目的所有分数记录.
@@ -198,10 +173,9 @@ public interface Scoreboard {
      *
      * @param entry 项目
      * @return 该项目的所有分数记录的不可变集合
-     * @throws IllegalArgumentException 若参数 entry 为 null
      */
     @NotNull
-    Set<Score> getScores(@NotNull String entry) throws IllegalArgumentException;
+    Set<Score> getScores(@NotNull String entry);
 
     /**
      * 移除某玩家在此计分板上的所有分数.
@@ -209,12 +183,11 @@ public interface Scoreboard {
      * 原文:Removes all scores for a player on this Scoreboard
      *
      * @param player 清空哪一玩家的分数
-     * @throws IllegalArgumentException 若参数 player 为 null
      * @deprecated 计分板可包含非玩家项目
      * @see #resetScores(String)
      */
     @Deprecated
-    void resetScores(@NotNull OfflinePlayer player) throws IllegalArgumentException;
+    void resetScores(@NotNull OfflinePlayer player);
 
     /**
      * 移除某项目在此计分板上的所有分数.
@@ -222,9 +195,8 @@ public interface Scoreboard {
      * 原文:Removes all scores for an entry on this Scoreboard
      *
      * @param entry 清空哪一项目的分数
-     * @throws IllegalArgumentException 若参数 entry 为 null
      */
-    void resetScores(@NotNull String entry) throws IllegalArgumentException;
+    void resetScores(@NotNull String entry);
 
     /**
      * 获取玩家所处的队伍.
@@ -233,13 +205,12 @@ public interface Scoreboard {
      *
      * @param player 要搜索的玩家
      * @return 玩家所处队伍, 若玩家不在队伍内则为 null
-     * @throws IllegalArgumentException 若参数 player 为 null
      * @deprecated 计分板可包含非玩家项目
      * @see #getEntryTeam(String)
      */
     @Deprecated
     @Nullable
-    Team getPlayerTeam(@NotNull OfflinePlayer player) throws IllegalArgumentException;
+    Team getPlayerTeam(@NotNull OfflinePlayer player);
 
     /**
      * 获取项目所处的队伍.
@@ -248,10 +219,9 @@ public interface Scoreboard {
      *
      * @param entry 要搜索的项目
      * @return 项目所处队伍, 若此项目不在队伍内则为 null
-     * @throws IllegalArgumentException 若参数 entry 为 null
      */
     @Nullable
-    Team getEntryTeam(@NotNull String entry) throws IllegalArgumentException;
+    Team getEntryTeam(@NotNull String entry);
 
     /**
      * 根据名称获取指定队伍.
@@ -260,10 +230,9 @@ public interface Scoreboard {
      *
      * @param teamName 队伍名
      * @return 匹配的队伍, 若无此队伍则为 null
-     * @throws IllegalArgumentException 若参数 teamName 为 null
      */
     @Nullable
-    Team getTeam(@NotNull String teamName) throws IllegalArgumentException;
+    Team getTeam(@NotNull String teamName);
 
     /**
      * 获取计分板上的所有队伍.
@@ -282,11 +251,10 @@ public interface Scoreboard {
      *
      * @param name 队伍名
      * @return 注册的队伍
-     * @throws IllegalArgumentException 若参数 name 为 null
      * @throws IllegalArgumentException 若同名队伍已存在
      */
     @NotNull
-    Team registerNewTeam(@NotNull String name) throws IllegalArgumentException;
+    Team registerNewTeam(@NotNull String name);
 
     /**
      * 获取计分板跟踪的所有玩家.
@@ -317,7 +285,6 @@ public interface Scoreboard {
      * 原文:Clears any objective in the specified slot.
      *
      * @param slot 计分项位置
-     * @throws IllegalArgumentException 若参数 slot 为 null
      */
-    void clearSlot(@NotNull DisplaySlot slot) throws IllegalArgumentException;
+    void clearSlot(@NotNull DisplaySlot slot);
 }

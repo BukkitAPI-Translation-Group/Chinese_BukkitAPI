@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
@@ -20,10 +21,12 @@ import org.bukkit.entity.LightningStrike;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SpawnCategory;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.generator.WorldInfo;
+import org.bukkit.generator.structure.GeneratedStructure;
 import org.bukkit.generator.structure.Structure;
 import org.bukkit.generator.structure.StructureType;
 import org.bukkit.inventory.ItemStack;
@@ -32,8 +35,8 @@ import org.bukkit.metadata.Metadatable;
 import org.bukkit.persistence.PersistentDataHolder;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
+import org.bukkit.util.BiomeSearchResult;
 import org.bukkit.util.BoundingBox;
-import org.bukkit.util.Consumer;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.StructureSearchResult;
 import org.bukkit.util.Vector;
@@ -487,6 +490,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Collection<Plugin> getPluginChunkTickets(int x, int z);
 
     /**
+     * Gets all Chunks intersecting the given BoundingBox.
+     *
+     * @param box BoundingBox to check
+     * @return A collection of Chunks intersecting the given BoundingBox
+     */
+    @NotNull
+    public Collection<Chunk> getIntersectingChunks(@NotNull BoundingBox box);
+
+    /**
      * Returns a map of which plugins have tickets for what chunks. The returned
      * map is not updated when plugin tickets are added or removed to chunks. If
      * a plugin has no tickets, it will be absent from the map.
@@ -527,7 +539,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return ItemDrop entity created as a result of this method
      */
     @NotNull
-    public Item dropItem(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<Item> function);
+    public Item dropItem(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<? super Item> function);
 
     /**
      * 在指定的{@link Location 位置}丢出一个随机偏移的物品.
@@ -551,7 +563,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return ItemDrop entity created as a result of this method
      */
     @NotNull
-    public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<Item> function);
+    public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<? super Item> function);
 
     /**
      * 在指定的{@link Location 位置}创建一个{@link Arrow 箭}的实体.
@@ -605,7 +617,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param type 创建的树的类型
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
-     * @see #generateTree(org.bukkit.Location, java.util.Random, org.bukkit.TreeType, org.bukkit.util.Consumer)
+     * @see #generateTree(org.bukkit.Location, java.util.Random, org.bukkit.TreeType, java.util.function.Consumer)
      * @deprecated this method does not handle tile entities (bee nests)
      */
     @Deprecated
@@ -750,7 +762,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     non-null collection.
      */
     @NotNull
-    public Collection<Entity> getNearbyEntities(@NotNull Location location, double x, double y, double z, @Nullable Predicate<Entity> filter);
+    public Collection<Entity> getNearbyEntities(@NotNull Location location, double x, double y, double z, @Nullable Predicate<? super Entity> filter);
 
     /**
      * Returns a list of entities within the given bounding box.
@@ -780,7 +792,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     be a non-null collection
      */
     @NotNull
-    public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox, @Nullable Predicate<Entity> filter);
+    public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox, @Nullable Predicate<? super Entity> filter);
 
     /**
      * 执行检查实体碰撞的射线跟踪.
@@ -793,6 +805,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * This may not consider entities in currently unloaded chunks. Some
      * implementations may impose artificial restrictions on the maximum
      * distance.
+     * <p>
+     * <b>Note:</b> Due to display entities having a zero size hitbox, this method will not detect them.
+     * To detect display entities use {@link #rayTraceEntities(Location, Vector, double, double)} with a positive raySize
      *
      * @param start 起始位置
      * @param direction 射线方向
@@ -836,6 +851,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * This may not consider entities in currently unloaded chunks. Some
      * implementations may impose artificial restrictions on the maximum
      * distance.
+     * <p>
+     * <b>Note:</b> Due to display entities having a zero size hitbox, this method will not detect them.
+     * To detect display entities use {@link #rayTraceEntities(Location, Vector, double, double, Predicate)} with a positive raySize
      *
      * @param start 起始位置
      * @param direction 射线方向
@@ -845,7 +863,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @see #rayTraceEntities(Location, Vector, double, double, Predicate)
      */
     @Nullable
-    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, @Nullable Predicate<Entity> filter);
+    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, @Nullable Predicate<? super Entity> filter);
 
     /**
      * 执行检查实体碰撞的射线跟踪.
@@ -867,7 +885,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 最近的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      */
     @Nullable
-    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, double raySize, @Nullable Predicate<Entity> filter);
+    public RayTraceResult rayTraceEntities(@NotNull Location start, @NotNull Vector direction, double maxDistance, double raySize, @Nullable Predicate<? super Entity> filter);
 
     /**
      * 执行射线跟踪, 使用方块的精确碰撞形状来检查方块碰撞.
@@ -992,7 +1010,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 最近的方块或实体的射线跟踪命中结果, 如果没有命中, 则为<code>null</code>
      */
     @Nullable
-    public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<Entity> filter);
+    public RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode, boolean ignorePassableBlocks, double raySize, @Nullable Predicate<? super Entity> filter);
 
     /**
      * 获取这个世界的默认出生点{@link Location 位置}.
@@ -1302,6 +1320,12 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     /**
      * Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire or breaking blocks.
+     * <p>
+     * Note that if a non-null {@code source} Entity is provided and {@code
+     * breakBlocks} is {@code true}, the value of {@code breakBlocks} will be
+     * ignored if {@link GameRule#MOB_GRIEFING} is {@code false} in the world
+     * in which the explosion occurs. In other words, the mob griefing gamerule
+     * will take priority over {@code breakBlocks} if explosions are not allowed.
      *
      * @param x X coordinate
      * @param y Y coordinate
@@ -1355,6 +1379,12 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     /**
      * Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire or breaking blocks.
+     * <p>
+     * Note that if a non-null {@code source} Entity is provided and {@code
+     * breakBlocks} is {@code true}, the value of {@code breakBlocks} will be
+     * ignored if {@link GameRule#MOB_GRIEFING} is {@code false} in the world
+     * in which the explosion occurs. In other words, the mob griefing gamerule
+     * will take priority over {@code breakBlocks} if explosions are not allowed.
      *
      * @param loc Location to blow up
      * @param power The power of explosion, where 4F is TNT
@@ -1421,6 +1451,45 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @NotNull
     public List<BlockPopulator> getPopulators();
+
+    /**
+     * Creates a new entity at the given {@link Location} with the supplied
+     * function run before the entity is added to the world.
+     * <br>
+     * Note that when the function is run, the entity will not be actually in
+     * the world. Any operation involving such as teleporting the entity is undefined
+     * until after this function returns.
+     * The passed function however is run after the potential entity's spawn
+     * randomization and hence already allows access to the values of the mob,
+     * whether or not those were randomized, such as attributes or the entity
+     * equipment.
+     *
+     * @param location      the location at which the entity will be spawned.
+     * @param clazz         the class of the {@link LivingEntity} that is to be spawned.
+     * @param <T>           the generic type of the entity that is being created.
+     * @param spawnReason   the reason provided during the {@link CreatureSpawnEvent} call.
+     * @param randomizeData whether or not the entity's data should be randomised
+     *                      before spawning. By default entities are randomised
+     *                      before spawning in regards to their equipment, age,
+     *                      attributes, etc.
+     *                      An example of this randomization would be the color of
+     *                      a sheep, random enchantments on the equipment of mobs
+     *                      or even a zombie becoming a chicken jockey.
+     *                      If set to false, the entity will not be randomised
+     *                      before spawning, meaning all their data will remain
+     *                      in their default state and not further modifications
+     *                      to the entity will be made.
+     *                      Notably only entities that extend the
+     *                      {@link org.bukkit.entity.Mob} interface provide
+     *                      randomisation logic for their spawn.
+     *                      This parameter is hence useless for any other type
+     *                      of entity.
+     * @param function      the function to be run before the entity is spawned.
+     * @return the spawned entity instance.
+     * @throws IllegalArgumentException if either the world or clazz parameter are null.
+     */
+    @NotNull
+    public <T extends LivingEntity> T spawn(@NotNull Location location, @NotNull Class<T> clazz, @NotNull CreatureSpawnEvent.SpawnReason spawnReason, boolean randomizeData, @Nullable Consumer<? super T> function) throws IllegalArgumentException;
 
     /**
      * Spawn a {@link FallingBlock} entity at the given {@link Location} of
@@ -1788,7 +1857,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * or not.
      *
      * @return 如果世界的出生地区会在内存中保存加载则返回true
+     * @deprecated 使用 {@link GameRule#SPAWN_CHUNK_RADIUS} 以更好地控制
      */
+    @Deprecated
     public boolean getKeepSpawnInMemory();
 
     /**
@@ -1799,7 +1870,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * or not.
      *
      * @param keepLoaded 如果为true则世界的出生地区会在内存中保存加载
+     * @deprecated 使用 {@link GameRule#SPAWN_CHUNK_RADIUS} 以更好地控制
      */
+    @Deprecated
     public void setKeepSpawnInMemory(boolean keepLoaded);
 
     /**
@@ -1842,6 +1915,20 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @NotNull
     public Difficulty getDifficulty();
+
+    /**
+     * Returns the view distance used for this world.
+     *
+     * @return the view distance used for this world
+     */
+    int getViewDistance();
+
+    /**
+     * Returns the simulation distance used for this world.
+     *
+     * @return the simulation distance used for this world
+     */
+    int getSimulationDistance();
 
     /**
      * 获取这个世界保存在磁盘的哪个文件夹。
@@ -2524,6 +2611,18 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     void setSpawnLimit(@NotNull SpawnCategory spawnCategory, int limit);
 
     /**
+     * Play a note at the provided Location in the World. <br>
+     * This <i>will</i> work with cake.
+     * <p>
+     * This method will fail silently when called with {@link Instrument#CUSTOM_HEAD}.
+     *
+     * @param loc The location to play the note
+     * @param instrument The instrument
+     * @param note The note
+     */
+    void playNote(@NotNull Location loc, @NotNull Instrument instrument, @NotNull Note note);
+
+    /**
      * 在世界中指定的位置播放一个声音。
      * <p>
      * 如果位置或声音为空则这个函数会失效。
@@ -2583,6 +2682,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
+     * Play a Sound at the provided Location in the World. For sounds with multiple
+     * variations passing the same seed will always play the same variation.
+     * <p>
+     * This function will fail silently if Location or Sound are null.
+     *
+     * @param location The location to play the sound
+     * @param sound The sound to play
+     * @param category the category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
+
+    /**
+     * Play a Sound at the provided Location in the World. For sounds with multiple
+     * variations passing the same seed will always play the same variation.
+     * <p>
+     * This function will fail silently if Location or Sound are null. No sound will
+     * be heard by the players if their clients do not have the respective sound for
+     * the value passed.
+     *
+     * @param location The location to play the sound
+     * @param sound The internal sound name to play
+     * @param category the category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
+
+    /**
      * Play a Sound at the location of the provided entity in the World.
      * <p>
      * This function will fail silently if Entity or Sound are null.
@@ -2631,6 +2762,38 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param pitch The pitch of the sound
      */
     void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a Sound at the location of the provided entity in the World. For sounds
+     * with multiple variations passing the same seed will always play the same
+     * variation.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
+
+    /**
+     * Play a Sound at the location of the provided entity in the World. For sounds
+     * with multiple variations passing the same seed will always play the same
+     * variation.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
      * 获取包含所有{@link GameRule 游戏规则}的数组.
@@ -3091,22 +3254,6 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     StructureSearchResult locateNearestStructure(@NotNull Location origin, @NotNull Structure structure, int radius, boolean findUnexplored);
 
     // Spigot start
-    /**
-     * Returns the view distance used for this world.
-     *
-     * @return the view distance used for this world
-     */
-    int getViewDistance();
-
-    /**
-     * Returns the simulation distance used for this world.
-     *
-     * @return the simulation distance used for this world
-     */
-    int getSimulationDistance();
-    // Spigot end
-
-    // Spigot start
     public class Spigot {
 
         /**
@@ -3115,8 +3262,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          * @param loc The location to strike lightning
          * @param isSilent Whether this strike makes no sound
          * @return The lightning entity.
+         * @deprecated sound is now client side and cannot be removed
+         * @see World#strikeLightning(org.bukkit.Location)
          */
         @NotNull
+        @Deprecated
         public LightningStrike strikeLightning(@NotNull Location loc, boolean isSilent) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
@@ -3127,8 +3277,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          * @param loc The location to strike lightning
          * @param isSilent Whether this strike makes no sound
          * @return The lightning entity.
+         * @deprecated sound is now client side and cannot be removed
+         * @see World#strikeLightningEffect(org.bukkit.Location)
          */
         @NotNull
+        @Deprecated
         public LightningStrike strikeLightningEffect(@NotNull Location loc, boolean isSilent) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
@@ -3137,6 +3290,59 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     @NotNull
     Spigot spigot();
     // Spigot end
+
+    /**
+     * Find the closest nearby location with a biome matching the provided
+     * {@link Biome}(s). Finding biomes can, and will, block if the world is looking
+     * in chunks that have not generated yet. This can lead to the world temporarily
+     * freezing while locating a biome.
+     * <p>
+     * <b>Note:</b> This will <i>not</i> reflect changes made to the world after
+     * generation, this method only sees the biome at the time of world generation.
+     * This will <i>not</i> load or generate chunks.
+     * <p>
+     * If multiple biomes are provided {@link BiomeSearchResult#getBiome()} will
+     * indicate which one was located.
+     * <p>
+     * This method will use a horizontal interval of 32 and a vertical interval of
+     * 64, equal to the /locate command.
+     *
+     * @param origin where to start looking for a biome
+     * @param radius the radius, in blocks, around which to search
+     * @param biomes the biomes to search for
+     * @return a BiomeSearchResult containing the closest {@link Location} and
+     *         {@link Biome}, or null if no biome was found.
+     * @see #locateNearestBiome(Location, int, int, int, Biome...)
+     */
+    @Nullable
+    BiomeSearchResult locateNearestBiome(@NotNull Location origin, int radius, @NotNull Biome... biomes);
+
+    /**
+     * Find the closest nearby location with a biome matching the provided
+     * {@link Biome}(s). Finding biomes can, and will, block if the world is looking
+     * in chunks that have not generated yet. This can lead to the world temporarily
+     * freezing while locating a biome.
+     * <p>
+     * <b>Note:</b> This will <i>not</i> reflect changes made to the world after
+     * generation, this method only sees the biome at the time of world generation.
+     * This will <i>not</i> load or generate chunks.
+     * <p>
+     * If multiple biomes are provided {@link BiomeSearchResult#getBiome()} will
+     * indicate which one was located. Higher values for {@code horizontalInterval}
+     * and {@code verticalInterval} will result in faster searches, but may lead to
+     * small biomes being missed.
+     *
+     * @param origin             where to start looking for a biome
+     * @param radius             the radius, in blocks, around which to search
+     * @param horizontalInterval the horizontal distance between each check
+     * @param verticalInterval   the vertical distance between each check
+     * @param biomes             the biomes to search for
+     * @return a BiomeSearchResult containing the closest {@link Location} and
+     *         {@link Biome}, or null if no biome was found.
+     * @see #locateNearestBiome(Location, int, Biome...)
+     */
+    @Nullable
+    BiomeSearchResult locateNearestBiome(@NotNull Location origin, int radius, int horizontalInterval, int verticalInterval, @NotNull Biome... biomes);
 
     /**
      * 寻找与给定位置相距最近的袭击.
@@ -3182,6 +3388,33 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @NotNull
     public Set<FeatureFlag> getFeatureFlags();
+
+    /**
+     * Gets all generated structures that intersect the chunk at the given
+     * coordinates. <br>
+     * If no structures are present an empty collection will be returned.
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @return a collection of placed structures in the chunk at the given
+     * coordinates
+     */
+    @NotNull
+    public Collection<GeneratedStructure> getStructures(int x, int z);
+
+    /**
+     * Gets all generated structures of a given {@link Structure} that intersect
+     * the chunk at the given coordinates. <br>
+     * If no structures are present an empty collection will be returned.
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @param structure the structure to find
+     * @return a collection of placed structures in the chunk at the given
+     * coordinates
+     */
+    @NotNull
+    public Collection<GeneratedStructure> getStructures(int x, int z, @NotNull Structure structure);
 
     /**
      * 表示世界可能的各种地图环境类型.

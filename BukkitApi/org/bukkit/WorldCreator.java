@@ -1,5 +1,6 @@
 package org.bukkit;
 
+import com.google.common.base.Preconditions;
 import java.util.Random;
 import org.bukkit.command.CommandSender;
 import org.bukkit.generator.BiomeProvider;
@@ -21,6 +22,7 @@ public class WorldCreator {
     private boolean generateStructures = true;
     private String generatorSettings = "";
     private boolean hardcore = false;
+    private boolean keepSpawnInMemory = true;
 
     /**
      * 为指定世界的名称创建一个空的WorldCreationOptions类型。
@@ -31,9 +33,7 @@ public class WorldCreator {
      * @param name 将被创建的世界的名称
      */
     public WorldCreator(@NotNull String name) {
-        if (name == null) {
-            throw new IllegalArgumentException("World name cannot be null");
-        }
+        Preconditions.checkArgument(name != null, "World name cannot be null");
 
         this.name = name;
         this.seed = (new Random()).nextLong();
@@ -50,9 +50,7 @@ public class WorldCreator {
      */
     @NotNull
     public WorldCreator copy(@NotNull World world) {
-        if (world == null) {
-            throw new IllegalArgumentException("World cannot be null");
-        }
+        Preconditions.checkArgument(world != null, "World cannot be null");
 
         seed = world.getSeed();
         environment = world.getEnvironment();
@@ -61,6 +59,7 @@ public class WorldCreator {
         type = world.getWorldType();
         generateStructures = world.canGenerateStructures();
         hardcore = world.isHardcore();
+        keepSpawnInMemory = world.getKeepSpawnInMemory();
 
         return this;
     }
@@ -76,9 +75,7 @@ public class WorldCreator {
      */
     @NotNull
     public WorldCreator copy(@NotNull WorldCreator creator) {
-        if (creator == null) {
-            throw new IllegalArgumentException("Creator cannot be null");
-        }
+        Preconditions.checkArgument(creator != null, "Creator cannot be null");
 
         seed = creator.seed();
         environment = creator.environment();
@@ -88,6 +85,7 @@ public class WorldCreator {
         generateStructures = creator.generateStructures();
         generatorSettings = creator.generatorSettings();
         hardcore = creator.hardcore();
+        keepSpawnInMemory = creator.keepSpawnInMemory();
 
         return this;
     }
@@ -374,7 +372,7 @@ public class WorldCreator {
      * @param generatorSettings The settings that should be used by the
      * generator
      * @return This object, for chaining
-     * @see <a href="https://minecraft.gamepedia.com/Custom_dimension">Custom
+     * @see <a href="https://minecraft.wiki/w/Custom_dimension">Custom
      * dimension</a> (scroll to "When the generator ID type is
      * <code>minecraft:flat</code>)"
      */
@@ -441,6 +439,33 @@ public class WorldCreator {
         this.hardcore = hardcore;
 
         return this;
+    }
+
+    /**
+     * Sets whether the spawn chunks will be kept loaded. <br>
+     * Setting this to false will also stop the spawn chunks from being generated
+     * when creating a new world.
+     * <p>
+     * Has little performance benefit unless paired with a {@link ChunkGenerator}
+     * that overrides {@link ChunkGenerator#getFixedSpawnLocation(World, Random)}.
+     *
+     * @param keepSpawnInMemory Whether the spawn chunks will be kept loaded
+     * @return This object, for chaining
+     */
+    @NotNull
+    public WorldCreator keepSpawnInMemory(boolean keepSpawnInMemory) {
+        this.keepSpawnInMemory = keepSpawnInMemory;
+
+        return this;
+    }
+
+    /**
+     * Gets whether or not the spawn chunks will be kept loaded.
+     *
+     * @return True if the spawn chunks will be kept loaded
+     */
+    public boolean keepSpawnInMemory() {
+        return keepSpawnInMemory;
     }
 
     /**
@@ -511,11 +536,8 @@ public class WorldCreator {
      */
     @Nullable
     public static ChunkGenerator getGeneratorForName(@NotNull String world, @Nullable String name, @Nullable CommandSender output) {
+        Preconditions.checkArgument(world != null, "World name must be specified");
         ChunkGenerator result = null;
-
-        if (world == null) {
-            throw new IllegalArgumentException("World name must be specified");
-        }
 
         if (output == null) {
             output = Bukkit.getConsoleSender();
@@ -556,11 +578,8 @@ public class WorldCreator {
      */
     @Nullable
     public static BiomeProvider getBiomeProviderForName(@NotNull String world, @Nullable String name, @Nullable CommandSender output) {
+        Preconditions.checkArgument(world != null, "World name must be specified");
         BiomeProvider result = null;
-
-        if (world == null) {
-            throw new IllegalArgumentException("World name must be specified");
-        }
 
         if (output == null) {
             output = Bukkit.getConsoleSender();

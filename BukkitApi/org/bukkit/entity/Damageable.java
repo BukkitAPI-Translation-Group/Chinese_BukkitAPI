@@ -1,6 +1,9 @@
 package org.bukkit.entity;
 
 import org.bukkit.attribute.Attribute;
+import org.bukkit.damage.DamageSource;
+import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -8,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public interface Damageable extends Entity {
     /**
-     * 给予这个实体一定的伤害.。
+     * 给予这个实体一定的伤害.
      * <p>
      * 原文: Deals the given amount of damage to this entity.
      *
@@ -17,15 +20,25 @@ public interface Damageable extends Entity {
     void damage(double amount);
 
     /**
-     * 强制某实体伤害这个实体。
+     * 强制某实体伤害这个{@link Entity 实体}.
      * <p>
-     * 原文: Deals the given amount of damage to this entity, 
-     * from a specified entity.
+     * 原文: Deals the given amount of damage to this entity from a specified
+     * {@link Entity}.
      *
      * @param amount 伤害的数量
      * @param source 伤害来源
      */
     void damage(double amount, @Nullable Entity source);
+
+    /**
+     * Deals the given amount of damage to this entity from a specified
+     * {@link DamageSource}.
+     *
+     * @param amount amount of damage to deal
+     * @param damageSource source to which the damage should be attributed
+     */
+    @ApiStatus.Experimental
+    void damage(double amount, @NotNull DamageSource damageSource);
 
     /**
      * 获取当前实体的血量，从0到 {@link #getMaxHealth()}，当血量为 0 时为死亡状态.。
@@ -58,6 +71,10 @@ public interface Damageable extends Entity {
 
     /**
      * Sets the entity's absorption amount.
+     * <p>
+     * Note: The amount is capped to the value of
+     * {@link Attribute#GENERIC_MAX_ABSORPTION}. The effect of this method on
+     * that attribute is currently unspecified and subject to change.
      *
      * @param amount new absorption amount from 0
      * @throws IllegalArgumentException thrown if health is {@literal < 0} or

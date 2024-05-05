@@ -3,7 +3,7 @@ package org.bukkit;
 /**
  * 与高度图有关的信息.
  *
- * @see <a href="https://minecraft-zh.gamepedia.com/区块格式">Minecraft Wiki - 区块格式</a>
+ * @see <a href="https://zh.minecraft.wiki/w/%E5%8C%BA%E5%9D%97%E6%A0%BC%E5%BC%8F">Minecraft Wiki - 区块格式</a>
  */
 public enum HeightMap {
 

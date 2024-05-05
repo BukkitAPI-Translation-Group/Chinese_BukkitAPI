@@ -12,9 +12,11 @@ public interface PlayerInventory extends Inventory {
     /**
      * 获取装备槽内的全部物品. 
      * <p>原文: 
-     * Get all ItemStacks from the armor slots
+     * Gets all ItemStacks from the armor slots.
      *
-     * @return 装备槽的全部物品. 个别条目可能为null
+     * @return all the ItemStacks from the armor slots. Individual items can be
+     * null and are returned in a fixed order starting from the boots and going
+     * up to the helmet
      */
     @NotNull
     public ItemStack[] getArmorContents();

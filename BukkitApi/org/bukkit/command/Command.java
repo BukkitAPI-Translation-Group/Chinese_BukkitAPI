@@ -357,7 +357,12 @@ public abstract class Command {
      * command
      *
      * @return 无权提示消息
+     * @deprecated 自1.13版本, 权限消息对玩家执行的命令已不再可用,
+     * 因为没有执行相关命令的权限的客户端不知晓其存在性, 因此不会向服务端发送执行的命令.
+     * 此消息将只能在控制台上看到,
+     * 或命令使用 {@link Bukkit#dispatchCommand(CommandSender, String)} 执行时也能看到.
      */
+    @Deprecated
     @Nullable
     public String getPermissionMessage() {
         return permissionMessage;
@@ -431,7 +436,12 @@ public abstract class Command {
      *
      * @param permissionMessage 新的无权提示消息，null表示默认消息，空字符串表示没有提示消息
      * @return 这个命令对象，可用于链式调用
+     * @deprecated 自1.13版本, 权限消息对玩家执行的命令已不再可用,
+     * 因为没有执行相关命令的权限的客户端不知晓其存在性, 因此不会向服务端发送执行的命令.
+     * 此消息将只能在控制台上看到,
+     * 或命令使用 {@link Bukkit#dispatchCommand(CommandSender, String)} 执行时也能看到.
      */
+    @Deprecated
     @NotNull
     public Command setPermissionMessage(@Nullable String permissionMessage) {
         this.permissionMessage = permissionMessage;

@@ -17,6 +17,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.projectiles.ProjectileSource;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.Team;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
@@ -225,6 +227,32 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void setMaximumAir(int ticks);
 
     /**
+     * Gets the item that the player is using (eating food, drawing back a bow,
+     * blocking, etc.)
+     *
+     * @return the item being used by the player, or null if they are not using
+     * an item
+     */
+    @Nullable
+    public ItemStack getItemInUse();
+
+    /**
+     * Gets the number of ticks remaining for the current item's usage.
+     *
+     * @return The number of ticks remaining
+     */
+    public int getItemInUseTicks();
+
+    /**
+     * Sets the number of ticks that remain for the current item's usage.
+     * Applies to items that take time to use, like eating food, drawing a bow,
+     * or throwing a trident.
+     *
+     * @param ticks The number of ticks remaining
+     */
+    public void setItemInUseTicks(int ticks);
+
+    /**
      * Gets the time in ticks until the next arrow leaves the entity's body.
      *
      * @return ticks until arrow leaves
@@ -321,6 +349,30 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @param ticks 无伤害时间，单位为tick
      */
     public void setNoDamageTicks(int ticks);
+
+    /**
+     * Get the ticks that this entity has performed no action.
+     * <p>
+     * The details of what "no action ticks" entails varies from entity to entity
+     * and cannot be specifically defined. Some examples include squid using this
+     * value to determine when to swim, raiders for when they are to be expelled
+     * from raids, or creatures (such as withers) as a requirement to be despawned.
+     *
+     * @return amount of no action ticks
+     */
+    public int getNoActionTicks();
+
+    /**
+     * Set the ticks that this entity has performed no action.
+     * <p>
+     * The details of what "no action ticks" entails varies from entity to entity
+     * and cannot be specifically defined. Some examples include squid using this
+     * value to determine when to swim, raiders for when they are to be expelled
+     * from raids, or creatures (such as withers) as a requirement to be despawned.
+     *
+     * @param ticks amount of no action ticks
+     */
+    public void setNoActionTicks(int ticks);
 
     /**
      * 获取击杀指定生物实体的玩家.
@@ -654,10 +706,27 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void swingOffHand();
 
     /**
+     * Makes this entity flash red as if they were damaged.
+     *
+     * @param yaw The direction the damage is coming from in relation to the
+     * entity, where 0 is in front of the player, 90 is to the right, 180 is
+     * behind, and 270 is to the left
+     */
+    public void playHurtAnimation(float yaw);
+
+    /**
      * Set if this entity will be subject to collisions with other entities.
      * <p>
      * Exemptions to this rule can be managed with
      * {@link #getCollidableExemptions()}
+     * <p>
+     * Note that the client may predict the collision between itself and another
+     * entity, resulting in this flag not working for player collisions. This
+     * method should therefore only be used to set the collision status of
+     * non-player entities.
+     * <p>
+     * To control player collisions, use {@link Team.Option#COLLISION_RULE} in
+     * combination with a {@link Scoreboard} and a {@link Team}.
      *
      * @param collidable collision status
      */
@@ -672,6 +741,15 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * Please note that this method returns only the custom collidable state,
      * not whether the entity is non-collidable for other reasons such as being
      * dead.
+     * <p>
+     * Note that the client may predict the collision between itself and another
+     * entity, resulting in this flag not being accurate for player collisions.
+     * This method should therefore only be used to check the collision status
+     * of non-player entities.
+     * <p>
+     * To check the collision behavior for a player, use
+     * {@link Team.Option#COLLISION_RULE} in combination with a
+     * {@link Scoreboard} and a {@link Team}.
      *
      * @return collision status
      */
@@ -689,6 +767,14 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * entity is in this set then it will still collide with it.
      * <p>
      * Note these exemptions are not (currently) persistent.
+     * <p>
+     * Note that the client may predict the collision between itself and another
+     * entity, resulting in those exemptions not being accurate for player
+     * collisions. This method should therefore only be used to exempt
+     * non-player entities.
+     * <p>
+     * To exempt collisions for a player, use {@link Team.Option#COLLISION_RULE}
+     * in combination with a {@link Scoreboard} and a {@link Team}.
      *
      * @return the collidable exemption set
      */
@@ -802,8 +888,10 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * debuffs.
      *
      * @return the entity category
+     * @deprecated entity groupings are now managed by tags, not categories
      */
     @NotNull
+    @Deprecated
     public EntityCategory getCategory();
 
     /**

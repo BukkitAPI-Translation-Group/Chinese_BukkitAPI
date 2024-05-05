@@ -13,10 +13,10 @@ import org.jetbrains.annotations.NotNull;
 public class PlayerLoginEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();
     private final InetAddress address;
+    private final InetAddress realAddress;
     private final String hostname;
     private Result result = Result.ALLOWED;
     private String message = "";
-    private final InetAddress realAddress; // Spigot
 
     /**
      * 这个构造器默认踢出消息为空、登录状态为ALLOWED.
@@ -30,17 +30,26 @@ public class PlayerLoginEvent extends PlayerEvent {
      * @param address 玩家的IP地址
      * @param realAddress the actual, unspoofed connecting address
      */
-    public PlayerLoginEvent(@NotNull final Player player, @NotNull final String hostname, @NotNull final InetAddress address, final @NotNull InetAddress realAddress) { // Spigot
+    public PlayerLoginEvent(@NotNull final Player player, @NotNull final String hostname, @NotNull final InetAddress address, final @NotNull InetAddress realAddress) {
         super(player);
         this.hostname = hostname;
         this.address = address;
-        // Spigot start
         this.realAddress = realAddress;
     }
 
+    /**
+     * 这个构造器默认踢出消息为空、登录状态为ALLOWED.
+     * <p>
+     * 原文:
+     * This constructor defaults message to an empty string, and result to
+     * ALLOWED
+     *
+     * @param player 这个事件的{@link Player 玩家}
+     * @param hostname 用于连接服务器的主机名
+     * @param address 玩家的IP地址
+     */
     public PlayerLoginEvent(@NotNull final Player player, @NotNull final String hostname, @NotNull final InetAddress address) {
         this(player, hostname, address, address);
-        // Spigot end
     }
 
     /**
@@ -55,25 +64,11 @@ public class PlayerLoginEvent extends PlayerEvent {
      * @param message 拒绝登录时显示的消息
      * @param realAddress the actual, unspoofed connecting address
      */
-    public PlayerLoginEvent(@NotNull final Player player, @NotNull String hostname, @NotNull final InetAddress address, @NotNull final Result result, @NotNull final String message, @NotNull final InetAddress realAddress) { // Spigot
-        this(player, hostname, address, realAddress); // Spigot
+    public PlayerLoginEvent(@NotNull final Player player, @NotNull String hostname, @NotNull final InetAddress address, @NotNull final Result result, @NotNull final String message, @NotNull final InetAddress realAddress) {
+        this(player, hostname, address, realAddress);
         this.result = result;
         this.message = message;
     }
-
-    // Spigot start
-    /**
-     * 获取玩家的连接地址, 无论地址的真实与否.
-     * <p>
-     * 原文:Gets the connection address of this player, regardless of whether it has been spoofed or not.
-     *
-     * @return 玩家的连接地址
-     */
-    @NotNull
-    public InetAddress getRealAddress() {
-        return realAddress;
-    }
-    // Spigot end
 
     /**
      * 获取当前的登录状态.
@@ -171,6 +166,18 @@ public class PlayerLoginEvent extends PlayerEvent {
     @NotNull
     public InetAddress getAddress() {
         return address;
+    }
+
+    /**
+     * Gets the connection address of this player, regardless of whether it has
+     * been spoofed or not.
+     *
+     * @return the player's connection address
+     * @see #getAddress()
+     */
+    @NotNull
+    public InetAddress getRealAddress() {
+        return realAddress;
     }
 
     @NotNull

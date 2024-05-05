@@ -22,7 +22,7 @@ public enum UsageMode {
      * 数据模式, 用于运行特定的自定义的函数, 这些函数仅可用于某些结构.
      * 当这个函数执行完毕后, 此结构方块将被删除.
      * 所有的数据标签(函数)可在
-     * <a href="https://minecraft-zh.gamepedia.com/%E7%BB%93%E6%9E%84%E6%96%B9%E5%9D%97#.E6.95.B0.E6.8D.AE.E5.80.BC">wiki</a>
+     * <a href="https://zh.minecraft.wiki/w/%E7%BB%93%E6%9E%84%E6%96%B9%E5%9D%97#%E6%95%B0%E6%8D%AE%E5%80%BC">wiki</a>
      * 中找到.
      */
     DATA;

@@ -1,14 +1,22 @@
 package org.bukkit.entity;
 
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
+import org.bukkit.BanEntry;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Instrument;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Note;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
@@ -19,9 +27,12 @@ import org.bukkit.WeatherType;
 import org.bukkit.WorldBorder;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.advancement.AdvancementProgress;
+import org.bukkit.ban.IpBanList;
+import org.bukkit.ban.ProfileBanList;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Sign;
+import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.block.sign.Side;
 import org.bukkit.conversations.Conversable;
@@ -34,6 +45,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.map.MapView;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.messaging.PluginMessageRecipient;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.profile.PlayerProfile;
 import org.bukkit.scoreboard.Scoreboard;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
@@ -176,6 +190,48 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public InetSocketAddress getAddress();
 
     /**
+     * Gets if this connection has been transferred from another server.
+     *
+     * @return true if the connection has been transferred
+     */
+    public boolean isTransferred();
+
+    /**
+     * Retrieves a cookie from this player.
+     *
+     * @param key the key identifying the cookie cookie
+     * @return a {@link CompletableFuture} that will be completed when the
+     * Cookie response is received or otherwise available. If the cookie is not
+     * set in the client, the {@link CompletableFuture} will complete with a
+     * null value.
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    CompletableFuture<byte[]> retrieveCookie(@NotNull NamespacedKey key);
+
+    /**
+     * Stores a cookie in this player's client.
+     *
+     * @param key the key identifying the cookie cookie
+     * @param value the data to store in the cookie
+     * @throws IllegalStateException if a cookie cannot be stored at this time
+     */
+    @ApiStatus.Experimental
+    void storeCookie(@NotNull NamespacedKey key, @NotNull byte[] value);
+
+    /**
+     * Requests this player to connect to a different server specified by host
+     * and port.
+     *
+     * @param host the host of the server to transfer to
+     * @param port the port of the server to transfer to
+     * @throws IllegalStateException if a transfer cannot take place at this
+     * time
+     */
+    @ApiStatus.Experimental
+    void transfer(@NotNull String host, int port);
+
+    /**
      * 发送一条不含颜色代码的消息.
      * <p>
      * 译注:就是会把颜色代码过滤掉然后{@link #sendMessage}
@@ -195,6 +251,102 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param message 踢出消息
      */
     public void kickPlayer(@Nullable String message);
+
+    /**
+     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * update the entry.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param expires date for the ban's expiration (unban), or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @param kickPlayer if the player need to be kick
+     *
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Date expires, @Nullable String source, boolean kickPlayer);
+
+    /**
+     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * update the entry.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param expires date for the ban's expiration (unban), or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @param kickPlayer if the player need to be kick
+     *
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Instant expires, @Nullable String source, boolean kickPlayer);
+
+    /**
+     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * update the entry.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param duration the duration how long the ban lasts, or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @param kickPlayer if the player need to be kick
+     *
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Duration duration, @Nullable String source, boolean kickPlayer);
+
+    /**
+     * Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
+     * update the entry. If {@link #getAddress()} is null this method will throw an exception.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param expires date for the ban's expiration (unban), or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @param kickPlayer if the player need to be kick
+     *
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<InetAddress> banIp(@Nullable String reason, @Nullable Date expires, @Nullable String source, boolean kickPlayer);
+
+    /**
+     * Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
+     * update the entry. If {@link #getAddress()} is null this method will throw an exception.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param expires date for the ban's expiration (unban), or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @param kickPlayer if the player need to be kick
+     *
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<InetAddress> banIp(@Nullable String reason, @Nullable Instant expires, @Nullable String source, boolean kickPlayer);
+
+    /**
+     * Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
+     * update the entry. If {@link #getAddress()} is null this method will throw an exception.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param duration the duration how long the ban lasts, or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @param kickPlayer if the player need to be kick
+     *
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<InetAddress> banIp(@Nullable String reason, @Nullable Duration duration, @Nullable String source, boolean kickPlayer);
 
     /**
      * 强制玩家发送一个聊天消息,或强制使用命令(需要在内容前加 "/").
@@ -314,17 +466,44 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * they have not slept in one or their current bed spawn is invalid.
      *
      * @return Bed Spawn Location if bed exists, otherwise null.
+     *
+     * @see #getRespawnLocation()
+     * @deprecated Misleading name. This method also returns the location of
+     * respawn anchors.
      */
     @Nullable
     @Override
+    @Deprecated
     public Location getBedSpawnLocation();
+
+    /**
+     * Gets the Location where the player will spawn at, null if they
+     * don't have a valid respawn point.
+     *
+     * @return respawn location if exists, otherwise null.
+     */
+    @Nullable
+    @Override
+    public Location getRespawnLocation();
 
     /**
      * Sets the Location where the player will spawn at their bed.
      *
      * @param location where to set the respawn location
+     *
+     * @see #setRespawnLocation(Location)
+     * @deprecated Misleading name. This method sets the player's respawn
+     * location more generally and is not limited to beds.
      */
+    @Deprecated
     public void setBedSpawnLocation(@Nullable Location location);
+
+    /**
+     * Sets the Location where the player will respawn.
+     *
+     * @param location where to set the respawn location
+     */
+    public void setRespawnLocation(@Nullable Location location);
 
     /**
      * Sets the Location where the player will spawn at their bed.
@@ -332,17 +511,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param location where to set the respawn location
      * @param force whether to forcefully set the respawn location even if a
      *     valid bed is not present
+     *
+     * @see #setRespawnLocation(Location, boolean)
+     * @deprecated Misleading name. This method sets the player's respawn
+     * location more generally and is not limited to beds.
      */
+    @Deprecated
     public void setBedSpawnLocation(@Nullable Location location, boolean force);
 
     /**
-     * Play a note for a player at a location. This requires a note block
-     * at the particular location (as far as the client is concerned). This
-     * will not work without a note block. This will not work with cake.
-     * <p>
-     * 译注:貌似就是让一个音符盒播放指定乐器的指定声音..没试过...
+     * Sets the Location where the player will respawn.
      *
-     * @param loc 音符盒的位置.
+     * @param location where to set the respawn location
+     * @param force whether to forcefully set the respawn location even if a
+     *     valid respawn point is not present
+     */
+    public void setRespawnLocation(@Nullable Location location, boolean force);
+
+    /**
+     * 在指定位置处为玩家播放一个音符. <br>
+     * This <i>will</i> work with cake.
+     * <p>
+     * 原文:Play a note for the player at a location. <br>
+     * This <i>will</i> work with cake.
+     *
+     * @param loc 播放音符的位置
      * @param instrument 乐器ID
      * @param note 音符ID.
      * @deprecated 不安全的参数
@@ -351,12 +544,17 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void playNote(@NotNull Location loc, byte instrument, byte note);
 
     /**
-     * Play a note for a player at a location. This requires a note block
-     * at the particular location (as far as the client is concerned). This
-     * will not work without a note block. This will not work with cake.<p>
-     * 译注:貌似就是让一个音符盒播放指定乐器的指定声音..没试过...
+     * 在指定位置处为玩家播放一个音符. <br>
+     * This <i>will</i> work with cake.
+     * <p>
+     * 如果使用 {@link Instrument#CUSTOM_HEAD} 调用此方法, 将静默失败.
+     * <p>
+     * 原文:Play a note for the player at a location. <br>
+     * This <i>will</i> work with cake.
+     * <p>
+     * This method will fail silently when called with {@link Instrument#CUSTOM_HEAD}.
      *
-     * @param loc 音符盒的位置
+     * @param loc 播放音符的位置
      * @param instrument 乐器ID
      * @param note 音符
      */
@@ -430,6 +628,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
+     * Play a sound for a player at the location. For sounds with multiple
+     * variations passing the same seed will always play the same variation.
+     * <p>
+     * This function will fail silently if Location or Sound are null.
+     *
+     * @param location The location to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    public void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
+
+    /**
+     * Play a sound for a player at the location. For sounds with multiple
+     * variations passing the same seed will always play the same variation.
+     * <p>
+     * This function will fail silently if Location or Sound are null. No sound
+     * will be heard by the player if their client does not have the respective
+     * sound for the value passed.
+     *
+     * @param location The location to play the sound
+     * @param sound The internal sound name to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    public void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
+
+    /**
      * Play a sound for a player at the location of the entity.
      * <p>
      * This function will fail silently if Entity or Sound are null.
@@ -478,6 +708,36 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param pitch The pitch of the sound
      */
     public void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
+
+    /**
+     * Play a sound for a player at the location of the entity. For sounds with
+     * multiple variations passing the same seed will always play the same variation.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    public void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
+
+    /**
+     * Play a sound for a player at the location of the entity. For sounds with
+     * multiple variations passing the same seed will always play the same variation.
+     * <p>
+     * This function will fail silently if Entity or Sound are null.
+     *
+     * @param entity The entity to play the sound
+     * @param sound The sound to play
+     * @param category The category of the sound
+     * @param volume The volume of the sound
+     * @param pitch The pitch of the sound
+     * @param seed The seed for the sound
+     */
+    public void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
      * 停止播放指定的声音.
@@ -728,17 +988,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
 
     /**
      * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
-     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
+     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData) }
      * 方法在那个位置伪造一个牌子然后更改它.<p>
      * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.<p>
+     * 要改变告示牌的所有属性(包括告示牌背面), 请使用
+     * {@link #sendBlockUpdate(org.bukkit.Location, org.bukkit.block.TileState)}.
+     * <p>
      * 原文:Send a sign change. This fakes a sign change packet for a user at
      * a certain location. This will not actually change the world in any way.
      * This method will use a sign at the location's block or a faked sign
      * sent via
-     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData)}.
      * <p>
      * If the client does not have a sign at the given location it will
-     * display an error message to the user. <p>
+     * display an error message to the user.
+     * <p>
+     * To change all attributes of a sign, including the back Side, use
+     * {@link #sendBlockUpdate(org.bukkit.Location, org.bukkit.block.TileState)}.
+     * <p>
      * 译注:该方法类似于{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) },
      * 只不过sendBlockChange是伪装一个方块成其他方块,而它只是伪装牌子上的字.
      *
@@ -751,18 +1018,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
 
     /**
      * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
-     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
+     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData) }
      * 方法在那个位置伪造一个牌子然后更改它.<p>
      * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.
+     * <p>
+     * 要改变告示牌的所有属性(包括告示牌背面), 请使用
+     * {@link #sendBlockUpdate(org.bukkit.Location, org.bukkit.block.TileState)}.
      * <p>
      * 原文:Send a sign change. This fakes a sign change packet for a user at
      * a certain location. This will not actually change the world in any way.
      * This method will use a sign at the location's block or a faked sign
      * sent via
-     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData)}.
      * <p>
      * If the client does not have a sign at the given location it will
      * display an error message to the user.
+     * <p>
+     * To change all attributes of a sign, including the back Side, use
+     * {@link #sendBlockUpdate(org.bukkit.Location, org.bukkit.block.TileState)}.
      *
      * @param loc 要让玩家看起来改变了的牌子的位置
      * @param lines null或大小等于4的String数组;数组中每个元素都代表一行
@@ -775,18 +1048,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
 
     /**
      * 向该玩家发送一个伪造的牌子({@link org.bukkit.block.Sign})上的字的更改数据包.这不会改变世界中的任何方块. <p>
-     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte) }
+     * 如果那个位置没有牌子,这个方法将用{@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData) }
      * 方法在那个位置伪造一个牌子然后更改它.<p>
      * 如果客户端认为在指定的位置没有牌子,则会显示一个错误给玩家.
+     * <p>
+     * 要改变告示牌的所有属性(包括告示牌背面), 请使用
+     * {@link #sendBlockUpdate(org.bukkit.Location, org.bukkit.block.TileState)}.
      * <p>
      * 原文:Send a sign change. This fakes a sign change packet for a user at
      * a certain location. This will not actually change the world in any way.
      * This method will use a sign at the location's block or a faked sign
      * sent via
-     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.Material, byte)}.
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData)}.
      * <p>
      * If the client does not have a sign at the given location it will
      * display an error message to the user.
+     * <p>
+     * To change all attributes of a sign, including the back Side, use
+     * {@link #sendBlockUpdate(org.bukkit.Location, org.bukkit.block.TileState)}.
      *
      * @param loc 要让玩家看起来改变了的牌子的位置
      * @param lines null或大小等于4的String数组;数组中每个元素都代表一行
@@ -797,6 +1076,52 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException 如果lines数组的长度小于4
      */
     public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor, boolean hasGlowingText) throws IllegalArgumentException;
+
+    /**
+     * Send a TileState change. This fakes a TileState change for a user at
+     * the given location. This will not actually change the world in any way.
+     * This method will use a TileState at the location's block or a faked TileState
+     * sent via
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData)}.
+     * <p>
+     * If the client does not have an appropriate tile at the given location it
+     * may display an error message to the user.
+     * <p>
+     * {@link BlockData#createBlockState()} can be used to create a {@link BlockState}.
+     *
+     * @param loc the location of the sign
+     * @param tileState the tile state
+     * @throws IllegalArgumentException if location is null
+     * @throws IllegalArgumentException if tileState is null
+     */
+    @ApiStatus.Experimental
+    public void sendBlockUpdate(@NotNull Location loc, @NotNull TileState tileState) throws IllegalArgumentException;
+
+    /**
+     * Change a potion effect for the target entity. This will not actually
+     * change the entity's potion effects in any way.
+     * <p>
+     * <b>Note:</b> Sending an effect change to a player for themselves may
+     * cause unexpected behavior on the client. Effects sent this way will also
+     * not be removed when their timer reaches 0, they can be removed with
+     * {@link #sendPotionEffectChangeRemove(LivingEntity, PotionEffectType)}
+     *
+     * @param entity the entity whose potion effects to change
+     * @param effect the effect to change
+     */
+    public void sendPotionEffectChange(@NotNull LivingEntity entity, @NotNull PotionEffect effect);
+
+    /**
+     * Remove a potion effect for the target entity. This will not actually
+     * change the entity's potion effects in any way.
+     * <p>
+     * <b>Note:</b> Sending an effect change to a player for themselves may
+     * cause unexpected behavior on the client.
+     *
+     * @param entity the entity whose potion effects to change
+     * @param type the effect type to remove
+     */
+    public void sendPotionEffectChangeRemove(@NotNull LivingEntity entity, @NotNull PotionEffectType type);
 
     /**
      * Render a map and send it to the player in its entirety. This may be
@@ -1163,9 +1488,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param plugin 要隐藏此实体的插件实例
      * @param entity 要隐藏的实体
-     * @apiNote draft API
      */
-    @ApiStatus.Experimental
     public void hideEntity(@NotNull Plugin plugin, @NotNull Entity entity);
 
     /**
@@ -1175,9 +1498,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *
      * @param plugin Plugin that wants to show the entity
      * @param entity Entity to show
-     * @ApiStatus.Experimental
      */
-    @ApiStatus.Experimental
     public void showEntity(@NotNull Plugin plugin, @NotNull Entity entity);
 
     /**
@@ -1400,9 +1721,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     case this method will have no affect on them. Use the
      *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
      *     the player loaded the pack!
-     * <li>There is no concept of resetting resource packs back to default
-     *     within Minecraft, so players will have to relog to do so or you
-     *     have to send an empty pack.
+     * <li>To remove a resource pack you can use
+     *     {@link #removeResourcePack(UUID)} or {@link #removeResourcePacks()}.
      * <li>The request is sent with empty string as the hash when the hash is
      *     not provided. This might result in newer versions not loading the
      *     pack correctly.
@@ -1444,9 +1764,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     case this method will have no affect on them. Use the
      *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
      *     the player loaded the pack!
-     * <li>There is no concept of resetting resource packs back to default
-     *     within Minecraft, so players will have to relog to do so or you
-     *     have to send an empty pack.
+     * <li>To remove a resource pack you can use
+     *     {@link #removeResourcePack(UUID)} or {@link #removeResourcePacks()}.
      * <li>The request is sent with empty string as the hash when the hash is
      *     not provided. This might result in newer versions not loading the
      *     pack correctly.
@@ -1489,9 +1808,8 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     case this method will have no affect on them. Use the
      *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
      *     the player loaded the pack!
-     * <li>There is no concept of resetting resource packs back to default
-     *     within Minecraft, so players will have to relog to do so or you
-     *     have to send an empty pack.
+     * <li>To remove a resource pack you can use
+     *     {@link #removeResourcePack(UUID)} or {@link #removeResourcePacks()}.
      * <li>The request is sent with empty string as the hash when the hash is
      *     not provided. This might result in newer versions not loading the
      *     pack correctly.
@@ -1513,6 +1831,113 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     long.
      */
     public void setResourcePack(@NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
+
+    /**
+     * Request that the player's client download and switch resource packs.
+     * <p>
+     * The player's client will download the new resource pack asynchronously
+     * in the background, and will automatically switch to it once the
+     * download is complete. If the client has downloaded and cached a
+     * resource pack with the same hash in the past it will not download but
+     * directly apply the cached pack. If the hash is null and the client has
+     * downloaded and cached the same resource pack in the past, it will
+     * perform a file size check against the response content to determine if
+     * the resource pack has changed and needs to be downloaded again. When
+     * this request is sent for the very first time from a given server, the
+     * client will first display a confirmation GUI to the player before
+     * proceeding with the download.
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Players can disable server resources on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>To remove a resource pack you can use
+     *     {@link #removeResourcePack(UUID)} or {@link #removeResourcePacks()}.
+     * <li>The request is sent with empty string as the hash when the hash is
+     *     not provided. This might result in newer versions not loading the
+     *     pack correctly.
+     * </ul>
+     *
+     * @param id Unique resource pack ID.
+     * @param url The URL from which the client will download the resource
+     *     pack. The string must contain only US-ASCII characters and should
+     *     be encoded as per RFC 1738.
+     * @param hash The sha1 hash sum of the resource pack file which is used
+     *     to apply a cached version of the pack directly without downloading
+     *     if it is available. Hast to be 20 bytes long!
+     * @param prompt The optional custom prompt message to be shown to client.
+     * @param force If true, the client will be disconnected from the server
+     *     when it declines to use the resource pack.
+     * @throws IllegalArgumentException Thrown if the URL is null.
+     * @throws IllegalArgumentException Thrown if the URL is too long. The
+     *     length restriction is an implementation specific arbitrary value.
+     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
+     *     long.
+     */
+    public void setResourcePack(@NotNull UUID id, @NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
+
+    /**
+     * Request that the player's client download and include another resource pack.
+     * <p>
+     * The player's client will download the new resource pack asynchronously
+     * in the background, and will automatically add to it once the
+     * download is complete. If the client has downloaded and cached a
+     * resource pack with the same hash in the past it will not download but
+     * directly apply the cached pack. If the hash is null and the client has
+     * downloaded and cached the same resource pack in the past, it will
+     * perform a file size check against the response content to determine if
+     * the resource pack has changed and needs to be downloaded again. When
+     * this request is sent for the very first time from a given server, the
+     * client will first display a confirmation GUI to the player before
+     * proceeding with the download.
+     * <p>
+     * Notes:
+     * <ul>
+     * <li>Players can disable server resources on their client, in which
+     *     case this method will have no affect on them. Use the
+     *     {@link PlayerResourcePackStatusEvent} to figure out whether or not
+     *     the player loaded the pack!
+     * <li>To remove a resource pack you can use
+     *     {@link #removeResourcePack(UUID)} or {@link #removeResourcePacks()}.
+     * <li>The request is sent with empty string as the hash when the hash is
+     *     not provided. This might result in newer versions not loading the
+     *     pack correctly.
+     * </ul>
+     *
+     * @param id Unique resource pack ID.
+     * @param url The URL from which the client will download the resource
+     *     pack. The string must contain only US-ASCII characters and should
+     *     be encoded as per RFC 1738.
+     * @param hash The sha1 hash sum of the resource pack file which is used
+     *     to apply a cached version of the pack directly without downloading
+     *     if it is available. Hast to be 20 bytes long!
+     * @param prompt The optional custom prompt message to be shown to client.
+     * @param force If true, the client will be disconnected from the server
+     *     when it declines to use the resource pack.
+     * @throws IllegalArgumentException Thrown if the URL is null.
+     * @throws IllegalArgumentException Thrown if the URL is too long. The
+     *     length restriction is an implementation specific arbitrary value.
+     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
+     *     long.
+     */
+    public void addResourcePack(@NotNull UUID id, @NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
+
+    /**
+     * Request that the player's client remove a resource pack sent by the
+     * server.
+     *
+     * @param id the id of the resource pack.
+     * @throws IllegalArgumentException If the ID is null.
+     */
+    public void removeResourcePack(@NotNull UUID id);
+
+    /**
+     * Request that the player's client remove all loaded resource pack sent by
+     * the server.
+     */
+    public void removeResourcePacks();
 
     /**
      * 获取玩家的计分板. <p>
@@ -1557,6 +1982,25 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @see Server#createWorldBorder()
      */
     public void setWorldBorder(@Nullable WorldBorder border);
+
+    /**
+     * Send a health update to the player. This will adjust the health, food, and
+     * saturation on the client and will not affect the player's actual values on
+     * the server. As soon as any of these values change on the server, changes sent
+     * by this method will no longer be visible.
+     *
+     * @param health the health. If 0.0, the client will believe it is dead
+     * @param foodLevel the food level
+     * @param saturation the saturation
+     */
+    public void sendHealthUpdate(double health, int foodLevel, float saturation);
+
+    /**
+     * Send a health update to the player using its known server values. This will
+     * synchronize the health, food, and saturation on the client and therefore may
+     * be useful when changing a player's maximum health attribute.
+     */
+    public void sendHealthUpdate();
 
     /**
      * 获取客户端显示的玩家血量是否被"压缩"了. <p>

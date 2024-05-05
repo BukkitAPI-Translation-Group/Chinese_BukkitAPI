@@ -48,7 +48,9 @@ public interface PotionBrewer {
      * @param upgraded 是否为时长延长的药水
      * @param extended 是否为升阶的药水
      * @return 效果列表
+     * @deprecated 时长延长/升阶的药水已经有其专属的 {@link PotionType}. 请使用 {@link PotionType#getPotionEffects()}
      */
     @NotNull
+    @Deprecated
     public Collection<PotionEffect> getEffects(@NotNull PotionType type, boolean upgraded, boolean extended);
 }

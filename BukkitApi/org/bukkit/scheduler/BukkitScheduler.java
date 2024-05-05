@@ -292,7 +292,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public void runTask(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task) throws IllegalArgumentException;
+    public void runTask(@NotNull Plugin plugin, @NotNull Consumer<? super BukkitTask> task) throws IllegalArgumentException;
 
     /**
      * @param plugin 执行任务的插件
@@ -340,7 +340,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public void runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task) throws IllegalArgumentException;
+    public void runTaskAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<? super BukkitTask> task) throws IllegalArgumentException;
 
     /**
      * @param plugin 执行任务的插件
@@ -382,7 +382,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public void runTaskLater(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
+    public void runTaskLater(@NotNull Plugin plugin, @NotNull Consumer<? super BukkitTask> task, long delay) throws IllegalArgumentException;
 
     /**
      * @param plugin 执行任务的插件
@@ -435,7 +435,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public void runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay) throws IllegalArgumentException;
+    public void runTaskLaterAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<? super BukkitTask> task, long delay) throws IllegalArgumentException;
 
     /**
      * @param plugin 执行任务的插件
@@ -480,7 +480,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public void runTaskTimer(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
+    public void runTaskTimer(@NotNull Plugin plugin, @NotNull Consumer<? super BukkitTask> task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * @param plugin 执行任务的插件
@@ -536,7 +536,7 @@ public interface BukkitScheduler {
      * @throws IllegalArgumentException 如果插件为null
      * @throws IllegalArgumentException 如果任务为null
      */
-    public void runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<BukkitTask> task, long delay, long period) throws IllegalArgumentException;
+    public void runTaskTimerAsynchronously(@NotNull Plugin plugin, @NotNull Consumer<? super BukkitTask> task, long delay, long period) throws IllegalArgumentException;
 
     /**
      * @param plugin 执行任务的插件

@@ -1,16 +1,19 @@
 package org.bukkit.block.data;
 
+import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.SoundGroup;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.block.BlockSupport;
 import org.bukkit.block.PistonMoveReaction;
 import org.bukkit.block.structure.Mirror;
 import org.bukkit.block.structure.StructureRotation;
 import org.bukkit.inventory.ItemStack;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -283,6 +286,14 @@ public interface BlockData extends Cloneable {
     boolean isFaceSturdy(@NotNull BlockFace face, @NotNull BlockSupport support);
 
     /**
+     * Gets the color this block should appear as when rendered on a map.
+     *
+     * @return the color associated with this BlockData
+     */
+    @NotNull
+    Color getMapColor();
+
+    /**
      * 获取玩家放置此方块所使用的物品材质。
      * <p>
      * 对于大多数方块，这与 {@link #getMaterial()} 相同，但有些方块有不同的材质用于放置它们。
@@ -337,4 +348,24 @@ public interface BlockData extends Cloneable {
      * @param mirror 镜像
      */
     void mirror(@NotNull Mirror mirror);
+
+    /**
+     * Copies all applicable properties from this BlockData to the provided
+     * BlockData.
+     * <p>
+     * Only modifies properties that both blocks share in common.
+     *
+     * @param other the BlockData to copy properties to
+     */
+    void copyTo(@NotNull BlockData other);
+
+    /**
+     * Creates a new default {@link BlockState} for this type of Block, not
+     * bound to a location.
+     *
+     * @return a new {@link BlockState}
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    BlockState createBlockState();
 }

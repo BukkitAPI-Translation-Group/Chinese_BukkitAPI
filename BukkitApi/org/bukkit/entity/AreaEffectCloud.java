@@ -3,9 +3,9 @@ package org.bukkit.entity;
 import java.util.List;
 import org.bukkit.Color;
 import org.bukkit.Particle;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.bukkit.projectiles.ProjectileSource;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -199,25 +199,25 @@ public interface AreaEffectCloud extends Entity {
     <T> void setParticle(@NotNull Particle particle, @Nullable T data);
 
     /**
-     * 设置基本药水数据.
+     * 设置基本药水类型.
      * <p>
      * 原文:
-     * Sets the underlying potion data
+     * Sets the underlying potion type
      *
-     * @param data 用于设置基本药水状态的 {@link PotionData}
+     * @param type 用于设置基本药水状态的 {@link PotionType}
      */
-    void setBasePotionData(@NotNull PotionData data);
+    void setBasePotionType(@Nullable PotionType type);
 
     /**
-     * 返回基本药水的药水数据.
+     * 返回基本药水的药水类型.
      * <p>
      * 原文: 
-     * Returns the potion data about the base potion
+     * Returns the potion type about the base potion
      *
-     * @return 一个 PotionData 对象.
+     * @return 一个 PotionType 对象.
      */
-    @NotNull
-    PotionData getBasePotionData();
+    @Nullable
+    PotionType getBasePotionType();
 
     /**
      * 检查自定义药水效果是否有效.

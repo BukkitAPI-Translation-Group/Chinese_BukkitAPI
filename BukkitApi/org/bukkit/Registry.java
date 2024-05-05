@@ -3,24 +3,33 @@ package org.bukkit;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Predicates;
 import com.google.common.collect.ImmutableMap;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 import org.bukkit.advancement.Advancement;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Biome;
+import org.bukkit.block.banner.PatternType;
 import org.bukkit.boss.KeyedBossBar;
+import org.bukkit.damage.DamageType;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Cat;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Frog;
 import org.bukkit.entity.Villager;
+import org.bukkit.entity.Wolf;
 import org.bukkit.entity.memory.MemoryKey;
 import org.bukkit.generator.structure.Structure;
 import org.bukkit.generator.structure.StructureType;
 import org.bukkit.inventory.meta.trim.TrimMaterial;
 import org.bukkit.inventory.meta.trim.TrimPattern;
 import org.bukkit.loot.LootTables;
+import org.bukkit.map.MapCursor;
+import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -49,6 +58,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
 
         @NotNull
         @Override
+        public Stream<Advancement> stream() {
+            return StreamSupport.stream(spliterator(), false);
+        }
+
+        @NotNull
+        @Override
         public Iterator<Advancement> iterator() {
             return Bukkit.advancementIterator();
         }
@@ -65,6 +80,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      * @see Attribute
      */
     Registry<Attribute> ATTRIBUTE = new SimpleRegistry<>(Attribute.class);
+    /**
+     * Server banner patterns.
+     *
+     * @see PatternType
+     */
+    Registry<PatternType> BANNER_PATTERN = new SimpleRegistry<>(PatternType.class);
     /**
      * Server biomes.
      *
@@ -87,35 +108,40 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
 
         @NotNull
         @Override
+        public Stream<KeyedBossBar> stream() {
+            return StreamSupport.stream(spliterator(), false);
+        }
+
+        @NotNull
+        @Override
         public Iterator<KeyedBossBar> iterator() {
             return Bukkit.getBossBars();
         }
     };
     /**
+     * Server cat types.
+     *
+     * @see Cat.Type
+     */
+    Registry<Cat.Type> CAT_VARIANT = new SimpleRegistry<>(Cat.Type.class);
+    /**
      * Server enchantments.
      *
-     * @see Enchantment#getByKey(org.bukkit.NamespacedKey)
+     * @see Enchantment
      */
-    Registry<Enchantment> ENCHANTMENT = new Registry<Enchantment>() {
-
-        @Nullable
-        @Override
-        public Enchantment get(@NotNull NamespacedKey key) {
-            return Enchantment.getByKey(key);
-        }
-
-        @NotNull
-        @Override
-        public Iterator<Enchantment> iterator() {
-            return Arrays.asList(Enchantment.values()).iterator();
-        }
-    };
+    Registry<Enchantment> ENCHANTMENT = Objects.requireNonNull(Bukkit.getRegistry(Enchantment.class), "No registry present for Enchantment. This is a bug.");
     /**
      * Server entity types.
      *
      * @see EntityType
      */
     Registry<EntityType> ENTITY_TYPE = new SimpleRegistry<>(EntityType.class, (entity) -> entity != EntityType.UNKNOWN);
+    /**
+     * Server instruments.
+     *
+     * @see MusicInstrument
+     */
+    Registry<MusicInstrument> INSTRUMENT = Objects.requireNonNull(Bukkit.getRegistry(MusicInstrument.class), "No registry present for MusicInstrument. This is a bug.");
     /**
      * Default server loot tables.
      *
@@ -128,6 +154,24 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      * @see Material
      */
     Registry<Material> MATERIAL = new SimpleRegistry<>(Material.class, (mat) -> !mat.isLegacy());
+    /**
+     * Server mob effects.
+     *
+     * @see PotionEffectType
+     */
+    Registry<PotionEffectType> EFFECT = Objects.requireNonNull(Bukkit.getRegistry(PotionEffectType.class), "No registry present for PotionEffectType. This is a bug.");
+    /**
+     * Server particles.
+     *
+     * @see Particle
+     */
+    Registry<Particle> PARTICLE_TYPE = new SimpleRegistry<>(Particle.class, (par) -> par.register);
+    /**
+     * Server potions.
+     *
+     * @see PotionType
+     */
+    Registry<PotionType> POTION = new SimpleRegistry<>(PotionType.class);
     /**
      * Server statistics.
      *
@@ -167,6 +211,13 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
     @ApiStatus.Experimental
     Registry<TrimPattern> TRIM_PATTERN = Bukkit.getRegistry(TrimPattern.class);
     /**
+     * Damage types.
+     *
+     * @see DamageType
+     */
+    @ApiStatus.Experimental
+    Registry<DamageType> DAMAGE_TYPE = Objects.requireNonNull(Bukkit.getRegistry(DamageType.class), "No registry present for DamageType. This is a bug.");
+    /**
      * Villager profession.
      *
      * @see Villager.Profession
@@ -196,6 +247,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
         public MemoryKey get(@NotNull NamespacedKey key) {
             return MemoryKey.getByKey(key);
         }
+
+        @NotNull
+        @Override
+        public Stream<MemoryKey> stream() {
+            return StreamSupport.stream(spliterator(), false);
+        }
     };
     /**
      * Server fluids.
@@ -210,25 +267,24 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      */
     Registry<Frog.Variant> FROG_VARIANT = new SimpleRegistry<>(Frog.Variant.class);
     /**
+     * Wolf variants.
+     *
+     * @see Wolf.Variant
+     */
+    Registry<Wolf.Variant> WOLF_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Wolf.Variant.class), "No registry present for Wolf Variant. This is a bug.");
+    /**
+     * Map cursor types.
+     *
+     * @see MapCursor.Type
+     */
+    @ApiStatus.Internal
+    Registry<MapCursor.Type> MAP_DECORATION_TYPE = new SimpleRegistry<>(MapCursor.Type.class);
+    /**
      * Game events.
      *
      * @see GameEvent
      */
-    Registry<GameEvent> GAME_EVENT = new Registry<GameEvent>() {
-
-        @NotNull
-        @Override
-        public Iterator iterator() {
-            return GameEvent.values().iterator();
-        }
-
-        @Nullable
-        @Override
-        public GameEvent get(@NotNull NamespacedKey key) {
-            return GameEvent.getByKey(key);
-        }
-    };
-
+    Registry<GameEvent> GAME_EVENT = Objects.requireNonNull(Bukkit.getRegistry(GameEvent.class), "No registry present for GameEvent. This is a bug.");
     /**
      * Get the object by its key.
      *
@@ -237,6 +293,14 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      */
     @Nullable
     T get(@NotNull NamespacedKey key);
+
+    /**
+     * Returns a new stream, which contains all registry items, which are registered to the registry.
+     *
+     * @return a stream of all registry items
+     */
+    @NotNull
+    Stream<T> stream();
 
     /**
      * Attempts to match the registered object with the given key.
@@ -280,6 +344,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
         @Override
         public T get(@NotNull NamespacedKey key) {
             return map.get(key);
+        }
+
+        @NotNull
+        @Override
+        public Stream<T> stream() {
+            return StreamSupport.stream(spliterator(), false);
         }
 
         @NotNull

@@ -11,8 +11,11 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFlag;
+import org.bukkit.inventory.ItemRarity;
+import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
 import org.bukkit.persistence.PersistentDataHolder;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -61,13 +64,49 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setDisplayName(@Nullable String name);
 
     /**
+     * Checks for existence of an item name.
+     * <br>
+     * Item name differs from display name in that it is cannot be edited by an
+     * anvil, is not styled with italics, and does not show labels.
+     *
+     * @return true if this has an item name
+     */
+    boolean hasItemName();
+
+    /**
+     * Gets the item name that is set.
+     * <br>
+     * Item name differs from display name in that it is cannot be edited by an
+     * anvil, is not styled with italics, and does not show labels.
+     * <p>
+     * Plugins should check that hasItemName() returns <code>true</code> before
+     * calling this method.
+     *
+     * @return the item name that is set
+     */
+    @NotNull
+    String getItemName();
+
+    /**
+     * Sets the item name.
+     * <br>
+     * Item name differs from display name in that it is cannot be edited by an
+     * anvil, is not styled with italics, and does not show labels.
+     *
+     * @param name the name to set
+     */
+    void setItemName(@Nullable String name);
+
+    /**
      * 检查物品是否有本地化名称.
      * <p>
      * 原文:
      * Checks for existence of a localized name.
      *
      * @return 物品是否有本地化名称
+     * @deprecated 属性不再存在
      */
+    @Deprecated(forRemoval = true)
     boolean hasLocalizedName();
 
     /**
@@ -82,8 +121,10 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * before calling this method.
      *
      * @return 物品的本地化名称
+     * @deprecated 属性不再存在
      */
     @NotNull
+    @Deprecated(forRemoval = true)
     String getLocalizedName();
 
     /**
@@ -93,7 +134,9 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * Sets the localized name.
      *
      * @param name 要设置的物品名
+     * @deprecated 属性不再存在
      */
+    @Deprecated(forRemoval = true)
     void setLocalizedName(@Nullable String name);
 
     /**
@@ -254,6 +297,13 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     boolean removeEnchant(@NotNull Enchantment ench);
 
     /**
+     * 移除物品上的全部附魔.
+     * <p>
+     * 原文:Removes all enchantments from this item meta.
+     */
+    void removeEnchantments();
+
+    /**
      * 检查指定的附魔是否与任何 ItemMeta 里的附魔冲突.
      * <p>
      * 原文:
@@ -310,6 +360,22 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     boolean hasItemFlag(@NotNull ItemFlag flag);
 
     /**
+     * Gets if this item has hide_tooltip set. An item with this set will not
+     * show any tooltip whatsoever.
+     *
+     * @return hide_tooltip
+     */
+    boolean isHideTooltip();
+
+    /**
+     * Sets if this item has hide_tooltip set. An item with this set will not
+     * show any tooltip whatsoever.
+     *
+     * @param hideTooltip new hide_tooltip
+     */
+    void setHideTooltip(boolean hideTooltip);
+
+    /**
      * 返回物品的 unbreakable 标签是否为 true.
      * 一个牢不可破的物品不会丧失耐久度.
      * <p>
@@ -331,6 +397,120 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param unbreakable 要使物品牢不可破则设为 true
      */
     void setUnbreakable(boolean unbreakable);
+
+    /**
+     * Gets if an enchantment_glint_override is set.
+     *
+     * @return if an enchantment_glint_override is set
+     */
+    boolean hasEnchantmentGlintOverride();
+
+    /**
+     * Sets the enchantment_glint_override. If true, the item will glint, even
+     * without enchantments; if false, the item will not glint, even with
+     * enchantments.
+     *
+     * Plugins should check {@link #hasEnchantmentGlintOverride()} before
+     * calling this method.
+     *
+     * @return enchantment_glint_override
+     */
+    @NotNull
+    Boolean getEnchantmentGlintOverride();
+
+    /**
+     * Sets the enchantment_glint_override. If true, the item will glint, even
+     * without enchantments; if false, the item will not glint, even with
+     * enchantments. If null, the override will be cleared.
+     *
+     * @param override new enchantment_glint_override
+     */
+    void setEnchantmentGlintOverride(@Nullable Boolean override);
+
+    /**
+     * Checks if this item is fire_resistant. If true, it will not burn in fire
+     * or lava.
+     *
+     * @return fire_resistant
+     */
+    boolean isFireResistant();
+
+    /**
+     * Sets if this item is fire_resistant. If true, it will not burn in fire
+     * or lava.
+     *
+     * @param fireResistant fire_resistant
+     */
+    void setFireResistant(boolean fireResistant);
+
+    /**
+     * Gets if the max_stack_size is set.
+     *
+     * @return if a max_stack_size is set.
+     */
+    boolean hasMaxStackSize();
+
+    /**
+     * Gets the max_stack_size. This is the maximum amount which an item will
+     * stack.
+     *
+     * @return max_stack_size
+     */
+    int getMaxStackSize();
+
+    /**
+     * Sets the max_stack_size. This is the maximum amount which an item will
+     * stack.
+     *
+     * @param max max_stack_size, between 1 and 99 (inclusive)
+     */
+    void setMaxStackSize(@Nullable Integer max);
+
+    /**
+     * Gets if the rarity is set.
+     *
+     * @return rarity
+     */
+    boolean hasRarity();
+
+    /**
+     * Gets the item rarity.
+     *
+     * Plugins should check {@link #hasRarity()} before calling this method.
+     *
+     * @return rarity
+     */
+    @NotNull
+    ItemRarity getRarity();
+
+    /**
+     * Sets the item rarity.
+     *
+     * @param rarity new rarity
+     */
+    void setRarity(@Nullable ItemRarity rarity);
+
+    /**
+     * Checks if the food is set.
+     *
+     * @return if a food is set
+     */
+    boolean hasFood();
+
+    /**
+     * Gets the food set on this item, or creates an empty food instance.
+     *
+     * @return food
+     */
+    @NotNull
+    FoodComponent getFood();
+
+    /**
+     * Sets the item food.
+     *
+     * @param food new food
+     */
+    void setFood(@Nullable FoodComponent food);
 
     /**
      * 检查物品是否存在任何属性修饰符.
@@ -531,9 +711,9 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * Internal use only! Do not use under any circumstances!
      *
      * @param version meta的版本
-     * @deprecated 仅供内部使用
+     * @apiNote 仅供内部使用
      */
-    @Deprecated
+    @ApiStatus.Internal
     void setVersion(int version);
 
     @SuppressWarnings("javadoc")

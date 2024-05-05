@@ -93,6 +93,7 @@ public interface MapCanvas {
      * @param color 颜色,参考{@link MapPalette}
      * @deprecated 魔法值, 请使用 {@link #setPixelColor(int, int, Color)}
      */
+    @Deprecated
     public void setPixel(int x, int y, byte color);
 
     /**

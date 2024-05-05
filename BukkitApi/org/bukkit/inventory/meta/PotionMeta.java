@@ -2,9 +2,9 @@ package org.bukkit.inventory.meta;
 
 import java.util.List;
 import org.bukkit.Color;
-import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,25 +14,32 @@ import org.jetbrains.annotations.Nullable;
 public interface PotionMeta extends ItemMeta {
 
     /**
-     * 设置基础药水(主药水)的数据.
+     * 设置基础药水(主药水)的类型.
      * <p>
      * 原文:
-     * Sets the underlying potion data
+     * Sets the underlying potion type
      *
-     * @param data 基础药水数据
+     * @param type 基础药水类型
      */
-    void setBasePotionData(@NotNull PotionData data);
+    void setBasePotionType(@Nullable PotionType type);
 
     /**
-     * 返回关于这个基础药水(主药水)的药水数据.
+     * 返回关于这个基础药水(主药水)的药水类型.
      * <p>
      * 原文:
-     * Returns the potion data about the base potion
+     * Returns the potion type about the base potion
      *
-     * @return PotionData 对象
+     * @return PotionType 对象
      */
-    @NotNull
-    PotionData getBasePotionData();
+    @Nullable
+    PotionType getBasePotionType();
+
+    /**
+     * Checks for the presence of a base potion type
+     *
+     * @return true if a base potion type is present
+     */
+    boolean hasBasePotionType();
 
     /**
      * 检测这个药水是否存在药水效果.
@@ -110,7 +117,7 @@ public interface PotionMeta extends ItemMeta {
      *
      * @param type 要移动的药水效果
      * @return 如果药水的属性改变了则为 true
-     * @deprecated 请使用 {@link #setBasePotionData(org.bukkit.potion.PotionData)}
+     * @deprecated 请使用 {@link #setBasePotionType(org.bukkit.potion.PotionType)}
      */
     @Deprecated
     boolean setMainEffect(@NotNull PotionEffectType type);

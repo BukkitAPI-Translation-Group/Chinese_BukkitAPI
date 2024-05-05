@@ -7,6 +7,7 @@ import org.bukkit.World;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -50,6 +51,25 @@ public interface BlockState extends Metadatable {
      */
     @NotNull
     BlockData getBlockData();
+
+    /**
+     * Returns a copy of this BlockState as an unplaced BlockState.
+     *
+     * @return a copy of the block state
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    BlockState copy();
+
+    /**
+     * Copies the state to another block as an unplaced BlockState.
+     *
+     * @param location the location to copy the block state to
+     * @return the new block state
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    BlockState copy(@NotNull Location location);
 
     /**
      * 获取此方块状态的类型.

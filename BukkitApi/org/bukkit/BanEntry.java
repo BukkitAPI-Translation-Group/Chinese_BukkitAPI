@@ -15,8 +15,8 @@ import org.jetbrains.annotations.Nullable;
  *     <th>属性</th>
  *     <th>描述</th>
  * </tr><tr>
- *     <td>目标玩家名 / IP地址</td>
- *     <td>目标的玩家名或IP地址</td>
+ *     <td>目标玩家资料 / IP地址</td>
+ *     <td>目标玩家资料或IP地址</td>
  * </tr><tr>
  *     <td>创建日期</td>
  *     <td>本次封禁的创建日期(开始日期)</td>
@@ -42,20 +42,34 @@ import org.jetbrains.annotations.Nullable;
  * 译注: 最后一句是什么意思呢? 您每次从BanList里获取的BanEntry都是
  * 不同的对象(不同的内存地址), 您对其中一个BanEntry进行了修改, 但这并不会影响另一个
  * 已经获取到的BanEntry, 另一个BanEntry获取到的信息自然跟您修改后的信息不符.
+ *
+ * @param <T> 封禁目标
  */
-public interface BanEntry {
+public interface BanEntry<T> {
 
     /**
-     * 获取本次封禁的目标. 
+     * 获取本次封禁的目标.
      * 这可能是一个IP地址或玩家名. 
      * <p>
      * 原文: Gets the target involved. This may be in the form of an IP or a player
      * name.
      *
      * @return 被封禁的玩家的名字或IP地址
+     * @deprecated 参见 {@link #getBanTarget()}
      */
+    @Deprecated
     @NotNull
     public String getTarget();
+
+    /**
+     * 获取本次封禁的目标.
+     * <p>
+     * 原文:Gets the target involved.
+     *
+     * @return 被封禁的玩家资料或IP地址
+     */
+    @NotNull
+    public T getBanTarget();
 
     /**
      * 获取本次封禁的开始时间. 
@@ -166,4 +180,11 @@ public interface BanEntry {
      * banned once again.
      */
     public void save();
+
+    /**
+     * 从对应的封禁列表中移除此封禁条目.
+     * <p>
+     * 原文:Removes this ban entry from the appropriate ban list.
+     */
+    public void remove();
 }

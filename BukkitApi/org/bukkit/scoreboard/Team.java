@@ -22,7 +22,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    String getName() throws IllegalStateException;
+    String getName();
 
     /**
      * 获取此队伍的显示名.
@@ -33,7 +33,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    String getDisplayName() throws IllegalStateException;
+    String getDisplayName();
 
     /**
      * 设置队伍的显示名称.
@@ -41,10 +41,9 @@ public interface Team {
      * 原文:Sets the name displayed to entries for this team
      *
      * @param displayName 队伍显示名
-     * @throws IllegalArgumentException 若 displayName 长度超过 128 个字符
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void setDisplayName(@NotNull String displayName) throws IllegalStateException, IllegalArgumentException;
+    void setDisplayName(@NotNull String displayName);
 
     /**
      * 获取添加于队员名前的前缀.
@@ -55,7 +54,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    String getPrefix() throws IllegalStateException;
+    String getPrefix();
 
     /**
      * 设置添加于队员名前的前缀.
@@ -63,11 +62,9 @@ public interface Team {
      * 原文:Sets the prefix prepended to the display of entries on this team.
      *
      * @param prefix 队员名前缀
-     * @throws IllegalArgumentException 若参数 prefix 为 null
-     * @throws IllegalArgumentException 若 prefix 长度超过 64 个字符
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void setPrefix(@NotNull String prefix) throws IllegalStateException, IllegalArgumentException;
+    void setPrefix(@NotNull String prefix);
 
     /**
      * 获取添加于队员名后的后缀.
@@ -78,7 +75,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    String getSuffix() throws IllegalStateException;
+    String getSuffix();
 
     /**
      * 设置添加于队员名后的后缀.
@@ -86,11 +83,9 @@ public interface Team {
      * 原文:Sets the suffix appended to the display of entries on this team.
      *
      * @param suffix 要设置的队员名后缀
-     * @throws IllegalArgumentException 若参数 suffix 为 null
-     * @throws IllegalArgumentException 若 suffix 长度超过 64 个字符
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void setSuffix(@NotNull String suffix) throws IllegalStateException, IllegalArgumentException;
+    void setSuffix(@NotNull String suffix);
 
     /**
      * 获取队伍的颜色.
@@ -107,7 +102,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    ChatColor getColor() throws IllegalStateException;
+    ChatColor getColor();
 
     /**
      * 设置队伍的颜色.
@@ -132,7 +127,7 @@ public interface Team {
      * @return 如果允许互相攻击则为true
      * @throws IllegalStateException 若此队伍已被注销
      */
-    boolean allowFriendlyFire() throws IllegalStateException;
+    boolean allowFriendlyFire();
 
     /**
      * 设置队伍成员能否互相攻击.
@@ -142,7 +137,7 @@ public interface Team {
      * @param enabled 如果允许互相攻击则为true
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void setAllowFriendlyFire(boolean enabled) throws IllegalStateException;
+    void setAllowFriendlyFire(boolean enabled);
 
     /**
      * 获取此队伍能否看见处于{@link PotionEffectType#INVISIBILITY
@@ -154,7 +149,7 @@ public interface Team {
      * @return 如果隐身队友可被同队队友看见则为true
      * @throws IllegalStateException 若此队伍已被注销
      */
-    boolean canSeeFriendlyInvisibles() throws IllegalStateException;
+    boolean canSeeFriendlyInvisibles();
 
     /**
      * 设置此队伍能否看见处于{@link PotionEffectType#INVISIBILITY
@@ -166,7 +161,7 @@ public interface Team {
      * @param enabled 如果隐身队友可被同队队友看见则为true
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void setCanSeeFriendlyInvisibles(boolean enabled) throws IllegalStateException;
+    void setCanSeeFriendlyInvisibles(boolean enabled);
 
     /**
      * 获取此队伍的玩家名可见性.
@@ -175,11 +170,11 @@ public interface Team {
      *
      * @return 当前设置的可见性
      * @throws IllegalArgumentException 若此队伍已被注销
-     * @deprecated 另请参阅 {@link #getOption(org.bukkit.scoreboard.Team.Option)}
+     * @deprecated 另请参阅 {@link #getOption(Team.Option)}
      */
     @Deprecated
     @NotNull
-    NameTagVisibility getNameTagVisibility() throws IllegalArgumentException;
+    NameTagVisibility getNameTagVisibility();
 
     /**
      * 设置此队伍的玩家名可见性.
@@ -188,11 +183,10 @@ public interface Team {
      *
      * @param visibility 要设置的 nameTagVisibility
      * @throws IllegalArgumentException 若此队伍已被注销
-     * @deprecated 另请参阅
-     * {@link #setOption(org.bukkit.scoreboard.Team.Option, org.bukkit.scoreboard.Team.OptionStatus)}
+     * @deprecated 另请参阅 {@link #setOption(Team.Option, Team.OptionStatus)}
      */
     @Deprecated
-    void setNameTagVisibility(@NotNull NameTagVisibility visibility) throws IllegalArgumentException;
+    void setNameTagVisibility(@NotNull NameTagVisibility visibility);
 
     /**
      * 获取队伍内所有玩家的集合.
@@ -206,7 +200,7 @@ public interface Team {
      */
     @Deprecated
     @NotNull
-    Set<OfflinePlayer> getPlayers() throws IllegalStateException;
+    Set<OfflinePlayer> getPlayers();
 
     /**
      * 获取队伍内所有项目的集合.
@@ -217,7 +211,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    Set<String> getEntries() throws IllegalStateException;
+    Set<String> getEntries();
 
     /**
      * 获取此队伍的队员数.
@@ -227,7 +221,7 @@ public interface Team {
      * @return 队伍队员数
      * @throws IllegalStateException 若此队伍已被注销
      */
-    int getSize() throws IllegalStateException;
+    int getSize();
 
     /**
      * 获取此队伍所附属的计分板.
@@ -249,13 +243,12 @@ public interface Team {
      * This will remove the player from any other team on the scoreboard.
      *
      * @param player 要加入的玩家
-     * @throws IllegalArgumentException 若参数 player 为 null
      * @throws IllegalStateException 若此队伍已被注销
      * @see #addEntry(String)
      * @deprecated 队伍可包含非玩家项目
      */
     @Deprecated
-    void addPlayer(@NotNull OfflinePlayer player) throws IllegalStateException, IllegalArgumentException;
+    void addPlayer(@NotNull OfflinePlayer player);
 
     /**
      * 将某条项目加入这个队伍.
@@ -267,10 +260,9 @@ public interface Team {
      * This will remove the entry from any other team on the scoreboard.
      *
      * @param entry 要加入的项目
-     * @throws IllegalArgumentException 若参数 entry 为 null
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void addEntry(@NotNull String entry) throws IllegalStateException, IllegalArgumentException;
+    void addEntry(@NotNull String entry);
 
     /**
      * 使某玩家离开此队伍.
@@ -279,13 +271,12 @@ public interface Team {
      *
      * @param player 要移除的玩家
      * @return 此玩家是否曾为队伍中的一员
-     * @throws IllegalArgumentException 若参数 player 为 null
      * @throws IllegalStateException 若此队伍已被注销
      * @see #removeEntry(String)
      * @deprecated 队伍可包含非玩家项目
      */
     @Deprecated
-    boolean removePlayer(@NotNull OfflinePlayer player) throws IllegalStateException, IllegalArgumentException;
+    boolean removePlayer(@NotNull OfflinePlayer player);
 
     /**
      * 移除队伍中的某条项目.
@@ -294,10 +285,9 @@ public interface Team {
      *
      * @param entry 要移除的项目
      * @return 此项目是否曾为队伍中的一员
-     * @throws IllegalArgumentException 若参数 entry 为 null
      * @throws IllegalStateException 若此队伍已被注销
      */
-    boolean removeEntry(@NotNull String entry) throws IllegalStateException, IllegalArgumentException;
+    boolean removeEntry(@NotNull String entry);
 
     /**
      * 从这个计分板上注销这个队伍.
@@ -306,7 +296,7 @@ public interface Team {
      *
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void unregister() throws IllegalStateException;
+    void unregister();
 
     /**
      * 检测某玩家是否在此队伍内.
@@ -315,13 +305,12 @@ public interface Team {
      *
      * @param player 要查找的玩家
      * @return 如果在队伍内就返回true
-     * @throws IllegalArgumentException 若参数 player 为 null
      * @throws IllegalStateException 若此队伍已被注销
      * @see #hasEntry(String)
      * @deprecated 队伍可包含非玩家项目
      */
     @Deprecated
-    boolean hasPlayer(@NotNull OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
+    boolean hasPlayer(@NotNull OfflinePlayer player);
     /**
      * 检测某项目是否在此队伍内.
      * <p>
@@ -329,10 +318,9 @@ public interface Team {
      *
      * @param entry 要查找的项目
      * @return 如果在队伍内就返回true
-     * @throws IllegalArgumentException 若参数 entry 为 null
      * @throws IllegalStateException 若此队伍已被注销
      */
-    boolean hasEntry(@NotNull String entry) throws IllegalArgumentException, IllegalStateException;
+    boolean hasEntry(@NotNull String entry);
 
     /**
      * 获取队伍的一个选项.
@@ -344,7 +332,7 @@ public interface Team {
      * @throws IllegalStateException 若此队伍已被注销
      */
     @NotNull
-    OptionStatus getOption(@NotNull Option option) throws IllegalStateException;
+    OptionStatus getOption(@NotNull Option option);
 
     /**
      * 为队伍设置一个选项.
@@ -355,7 +343,7 @@ public interface Team {
      * @param status 选项状态值
      * @throws IllegalStateException 若此队伍已被注销
      */
-    void setOption(@NotNull Option option, @NotNull OptionStatus status) throws IllegalStateException;
+    void setOption(@NotNull Option option, @NotNull OptionStatus status);
 
     /**
      * 代表可应用于队伍的选项.

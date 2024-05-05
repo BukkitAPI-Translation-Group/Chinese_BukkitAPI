@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,6 +27,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityFactory;
+import org.bukkit.entity.EntitySnapshot;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SpawnCategory;
 import org.bukkit.event.inventory.InventoryType;
@@ -34,6 +37,7 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemCraftResult;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
@@ -42,6 +46,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
 import org.bukkit.packs.DataPackManager;
+import org.bukkit.packs.ResourcePack;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
@@ -312,6 +317,15 @@ public final class Bukkit {
         return server.getAllowNether();
     }
 
+    /**
+     * Gets whether the server is logging the IP addresses of players.
+     *
+     * @return whether the server is logging the IP addresses of players
+     */
+    public static boolean isLoggingIPs() {
+        return server.isLoggingIPs();
+    }
+
     @NotNull
     public static List<String> getInitialEnabledPacks() {
         return server.getInitialEnabledPacks();
@@ -330,6 +344,26 @@ public final class Bukkit {
     @NotNull
     public static DataPackManager getDataPackManager() {
         return server.getDataPackManager();
+    }
+
+    /**
+     * Gets the resource pack configured to be sent to clients by the server.
+     *
+     * @return the resource pack
+     */
+    @Nullable
+    public static ResourcePack getServerResourcePack() {
+        return server.getServerResourcePack();
+    }
+
+    /**
+     * Get the ServerTick Manager.
+     *
+     * @return the manager
+     */
+    @NotNull
+    public static ServerTickManager getServerTickManager() {
+        return server.getServerTickManager();
     }
 
     /**
@@ -1140,7 +1174,7 @@ public final class Bukkit {
     }
 
     /**
-     * Get the {@link Recipe} for the list of ItemStacks provided.
+     * Get the crafted item using the list of {@link ItemStack} provided.
      *
      * <p>The list is formatted as a crafting matrix where the index follow
      * the pattern below:</p>
@@ -1151,18 +1185,45 @@ public final class Bukkit {
      * [ 6 7 8 ]
      * </pre>
      *
-     * <p>NOTE: This method will not modify the provided ItemStack array, for that, use
-     * {@link #craftItem(ItemStack[], World, Player)}.</p>
+     * <p>The {@link World} and {@link Player} arguments are required to fulfill the Bukkit Crafting
+     * events.</p>
+     *
+     * <p>Calls {@link org.bukkit.event.inventory.PrepareItemCraftEvent} to imitate the {@link Player}
+     * initiating the crafting event.</p>
      *
      * @param craftingMatrix list of items to be crafted from.
      *                       Must not contain more than 9 items.
      * @param world The world the crafting takes place in.
-     * @return the {@link Recipe} resulting from the given crafting matrix.
+     * @param player The player to imitate the crafting event on.
+     * @return resulting {@link ItemCraftResult} containing the resulting item, matrix and any overflow items.
      */
-    @Nullable
-    public static Recipe getCraftingRecipe(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
-        return server.getCraftingRecipe(craftingMatrix, world);
+    @NotNull
+    public static ItemCraftResult craftItemResult(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player) {
+        return server.craftItemResult(craftingMatrix, world, player);
     }
+
+    /**
+     * Get the crafted item using the list of {@link ItemStack} provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @return resulting {@link ItemCraftResult} containing the resulting item, matrix and any overflow items.
+     */
+    @NotNull
+    public static ItemCraftResult craftItemResult(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
+        return server.craftItemResult(craftingMatrix, world);
+    }
+
 
     /**
      * Get the crafted item using the list of {@link ItemStack} provided.
@@ -1192,6 +1253,29 @@ public final class Bukkit {
     @NotNull
     public static ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player) {
         return server.craftItem(craftingMatrix, world, player);
+    }
+
+    /**
+     * Get the crafted item using the list of {@link ItemStack} provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @return the {@link ItemStack} resulting from the given crafting matrix, if no recipe is found
+     * an ItemStack of {@link Material#AIR} is returned.
+     */
+    @NotNull
+    public static ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
+        return server.craftItem(craftingMatrix, world);
     }
 
     /**
@@ -1297,6 +1381,16 @@ public final class Bukkit {
      */
     public static boolean isEnforcingSecureProfiles() {
         return server.isEnforcingSecureProfiles();
+    }
+
+    /**
+     * Gets whether this server is allowing connections transferred from other
+     * servers.
+     *
+     * @return true if the server accepts transfers, false otherwise
+     */
+    public static boolean isAcceptingTransfers() {
+        return server.isAcceptingTransfers();
     }
 
     /**
@@ -1475,7 +1569,10 @@ public final class Bukkit {
      * 原文:Bans the specified address from the server.
      *
      * @param address 要封禁的IP地址
+     *
+     * @deprecated 参见 {@link #banIP(InetAddress)}
      */
+    @Deprecated
     public static void banIP(@NotNull String address) {
         server.banIP(address);
     }
@@ -1486,8 +1583,33 @@ public final class Bukkit {
      * 原文:Unbans the specified address from the server.
      *
      * @param address 要解禁的IP地址
+     *
+     * @deprecated 参见 {@link #banIP(InetAddress)}
      */
+    @Deprecated
     public static void unbanIP(@NotNull String address) {
+        server.unbanIP(address);
+    }
+
+    /**
+     * 封禁指定的IP地址.
+     * <p>
+     * 原文:Bans the specified address from the server.
+     *
+     * @param address 要封禁的IP地址
+     */
+    public static void banIP(@NotNull InetAddress address) {
+        server.banIP(address);
+    }
+
+    /**
+     * 解禁指定的IP地址.
+     * <p>
+     * 原文:Unbans the specified address from the server.
+     *
+     * @param address 要解禁的IP地址
+     */
+    public static void unbanIP(@NotNull InetAddress address) {
         server.unbanIP(address);
     }
 
@@ -1506,18 +1628,15 @@ public final class Bukkit {
     /**
      * 获取指定类型的封禁列表.
      * <p>
-     * ban玩家名将不受支持(截至1.16.4还是支持的), 建议封禁玩家的uuid.
-     * <p>
      * 原文:Gets a ban list for the supplied type.
-     * <p>
-     * Bans by name are no longer supported and this method will return
-     * null when trying to request them. The replacement is bans by UUID.
      *
      * @param type 要获取的封禁列表的类型, 不能为null
+     * @param <T> 封禁目标
+     *
      * @return 指定类型的封禁列表
      */
     @NotNull
-    public static BanList getBanList(@NotNull BanList.Type type) {
+    public static <T extends BanList<?>> T getBanList(@NotNull BanList.Type type) {
         return server.getBanList(type);
     }
 
@@ -1925,6 +2044,17 @@ public final class Bukkit {
     }
 
     /**
+     * Gets the instance of the entity factory (for {@link EntitySnapshot}).
+     *
+     * @return the entity factory
+     * @see EntityFactory
+     */
+    @NotNull
+    public static EntityFactory getEntityFactory() {
+        return server.getEntityFactory();
+    }
+
+    /**
      * 获取计分板管理器实例.
      * <p>
      * 只在第一个世界加载后存在.
@@ -2217,7 +2347,7 @@ public final class Bukkit {
      * @return new data instance
      */
     @NotNull
-    public static BlockData createBlockData(@NotNull Material material, @Nullable Consumer<BlockData> consumer) {
+    public static BlockData createBlockData(@NotNull Material material, @Nullable Consumer<? super BlockData> consumer) {
         return server.createBlockData(material, consumer);
     }
 

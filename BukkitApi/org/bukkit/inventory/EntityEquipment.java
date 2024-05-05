@@ -246,11 +246,13 @@ public interface EntityEquipment {
     /**
      * 获得实体当前所有穿着盔甲的拷贝.
      * <p>
-     * 译注: 其顺序为  鞋子、护腿、胸甲、头盔
+     * 译注: 其顺序为  鞋子、护腿、胸甲、头盔.
      * <p>
-     * 原文: Gets a copy of all worn armor
+     * 原文: Gets all ItemStacks from the armor slots.
      *
-     * @return 一个关于实体当前所有穿着的盔甲的数组. 个别条目可能为null
+     * @return all the ItemStacks from the armor slots. Individual items can be
+     * null and are returned in a fixed order starting from the boots and going
+     * up to the helmet
      */
     @NotNull
     ItemStack[] getArmorContents();

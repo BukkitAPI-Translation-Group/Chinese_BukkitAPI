@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import java.util.Locale;
 import java.util.UUID;
 import org.bukkit.plugin.Plugin;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -73,9 +74,9 @@ public final class NamespacedKey {
      *
      * @param namespace 命名空间
      * @param key key
-     * @deprecated 插件应永不使用此构造器, 仅供内部使用!!
+     * @apiNote 插件应永不使用此构造器, 仅供内部使用!!
      */
-    @Deprecated
+    @ApiStatus.Internal
     public NamespacedKey(@NotNull String namespace, @NotNull String key) {
         Preconditions.checkArgument(namespace != null && isValidNamespace(namespace), "Invalid namespace. Must be [a-z0-9._-]: %s", namespace);
         Preconditions.checkArgument(key != null && isValidKey(key), "Invalid key. Must be [a-z0-9/._-]: %s", key);
@@ -163,8 +164,9 @@ public final class NamespacedKey {
      * @return 新 key
      * @deprecated 插件应永不使用此方法, 仅供内部使用!!
      */
-    @Deprecated
+    @ApiStatus.Internal
     @NotNull
+    @Deprecated
     public static NamespacedKey randomKey() {
         return new NamespacedKey(BUKKIT, UUID.randomUUID().toString());
     }

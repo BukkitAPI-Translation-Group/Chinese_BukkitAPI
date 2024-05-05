@@ -7,8 +7,13 @@ package org.bukkit.util;
  * result.
  *
  * @param <T> 输入参数类型
+ * @deprecated 请使用 {@link java.util.function.Consumer}
  */
-public interface Consumer<T> {
+// Bukkit developer note (NOT plugin developers):
+// NEVER use this consumer in the API.
+// API methods which use this consumer will be remapped to Java's consumer at runtime, resulting in an error.
+@Deprecated
+public interface Consumer<T> extends java.util.function.Consumer<T> {
 
     /**
      * 使用给定的参数执行操作.
@@ -17,5 +22,6 @@ public interface Consumer<T> {
      *
      * @param t 输入参数
      */
+    @Override
     void accept(T t);
 }

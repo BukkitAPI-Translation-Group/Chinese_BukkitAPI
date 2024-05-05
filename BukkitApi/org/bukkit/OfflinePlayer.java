@@ -1,6 +1,10 @@
 package org.bukkit;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.Date;
 import java.util.UUID;
+import org.bukkit.ban.ProfileBanList;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.entity.AnimalTamer;
 import org.bukkit.entity.EntityType;
@@ -72,6 +76,48 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      * @return 是否被封禁
      */
     public boolean isBanned();
+
+    /**
+     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * update the entry.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param expires date for the ban's expiration (unban), or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Date expires, @Nullable String source);
+
+    /**
+     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * update the entry.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param expires instant for the ban's expiration (unban), or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Instant expires, @Nullable String source);
+
+    /**
+     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * update the entry.
+     *
+     * @param reason reason for the ban, null indicates implementation default
+     * @param duration how long the ban last, or null to imply
+     *     forever
+     * @param source source of the ban, null indicates implementation default
+     * @return the entry for the newly created ban, or the entry for the
+     *     (updated) previous ban
+     */
+    @Nullable
+    public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Duration duration, @Nullable String source);
 
     /**
      * 检测玩家是否存在白名单列表中
@@ -147,9 +193,22 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      * they have not slept in one or their current bed spawn is invalid.
      *
      * @return 获取玩家的床重生点Location对象信息.如果不存在返回null
+     *
+     * @see #getRespawnLocation()
+     * @deprecated 误导性的方法名称. 此方法也同时返回复活锚点的位置
      */
     @Nullable
+    @Deprecated
     public Location getBedSpawnLocation();
+
+    /**
+     * Gets the Location where the player will spawn at, null if they
+     * don't have a valid respawn point.
+     *
+     * @return respawn location if exists, otherwise null.
+     */
+    @Nullable
+    public Location getRespawnLocation();
 
     /**
      * 把该玩家的统计信息里的某项+1. <p>
@@ -423,4 +482,13 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      */
     @Nullable
     public Location getLastDeathLocation();
+
+    /**
+     * Gets the player's current location.
+     *
+     * @return the player's location, {@code null} if player hasn't ever played
+     * before.
+     */
+    @Nullable
+    public Location getLocation();
 }

@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -26,6 +27,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityFactory;
+import org.bukkit.entity.EntitySnapshot;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.SpawnCategory;
 import org.bukkit.event.inventory.InventoryType;
@@ -34,6 +37,7 @@ import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.help.HelpMap;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.ItemCraftResult;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Merchant;
@@ -42,6 +46,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.loot.LootTable;
 import org.bukkit.map.MapView;
 import org.bukkit.packs.DataPackManager;
+import org.bukkit.packs.ResourcePack;
 import org.bukkit.permissions.Permissible;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicesManager;
@@ -267,6 +272,13 @@ public interface Server extends PluginMessageRecipient {
     public boolean getAllowNether();
 
     /**
+     * Gets whether the server is logging the IP addresses of players.
+     *
+     * @return whether the server is logging the IP addresses of players
+     */
+    public boolean isLoggingIPs();
+
+    /**
      * Gets a list of packs to be enabled.
      *
      * @return a list of packs names
@@ -289,6 +301,22 @@ public interface Server extends PluginMessageRecipient {
      */
     @NotNull
     public DataPackManager getDataPackManager();
+
+    /**
+     * Get the ServerTick Manager.
+     *
+     * @return the manager
+     */
+    @NotNull
+    public ServerTickManager getServerTickManager();
+
+    /**
+     * Gets the resource pack configured to be sent to clients by the server.
+     *
+     * @return the resource pack
+     */
+    @Nullable
+    public ResourcePack getServerResourcePack();
 
     /**
      * Gets the server resource pack uri, or empty string if not specified.
@@ -1053,6 +1081,74 @@ public interface Server extends PluginMessageRecipient {
     public ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player);
 
     /**
+     * Get the crafted item using the list of {@link ItemStack} provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @return the {@link ItemStack} resulting from the given crafting matrix, if no recipe is found
+     * an ItemStack of {@link Material#AIR} is returned.
+     */
+    @NotNull
+    public ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world);
+
+    /**
+     * Get the crafted item using the list of {@link ItemStack} provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>The {@link World} and {@link Player} arguments are required to fulfill the Bukkit Crafting
+     * events.</p>
+     *
+     * <p>Calls {@link org.bukkit.event.inventory.PrepareItemCraftEvent} to imitate the {@link Player}
+     * initiating the crafting event.</p>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @param player The player to imitate the crafting event on.
+     * @return resulting {@link ItemCraftResult} containing the resulting item, matrix and any overflow items.
+     */
+    @NotNull
+    public ItemCraftResult craftItemResult(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player);
+
+    /**
+     * Get the crafted item using the list of {@link ItemStack} provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @return resulting {@link ItemCraftResult} containing the resulting item, matrix and any overflow items.
+     */
+    @NotNull
+    public ItemCraftResult craftItemResult(@NotNull ItemStack[] craftingMatrix, @NotNull World world);
+
+    /**
      * 获取合成配方列表迭代器.
      * <p>
      * 原文:Get an iterator through the list of crafting recipes.
@@ -1138,6 +1234,14 @@ public interface Server extends PluginMessageRecipient {
      * @return true if only Mojang-signed players can join, false otherwise
      */
     public boolean isEnforcingSecureProfiles();
+
+    /**
+     * Gets whether this server is allowing connections transferred from other
+     * servers.
+     *
+     * @return true if the server accepts transfers, false otherwise
+     */
+    public boolean isAcceptingTransfers();
 
     /**
      * Gets whether the Server hide online players in server status.
@@ -1291,7 +1395,10 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Bans the specified address from the server.
      *
      * @param address 要封禁的IP地址
+     *
+     * @deprecated 参见 {@link #banIP(InetAddress)}
      */
+    @Deprecated
     public void banIP(@NotNull String address);
 
     /**
@@ -1300,8 +1407,29 @@ public interface Server extends PluginMessageRecipient {
      * 原文:Unbans the specified address from the server.
      *
      * @param address 要解禁的IP地址
+     *
+     * @deprecated 参见 {@link #unbanIP(InetAddress)}
      */
+    @Deprecated
     public void unbanIP(@NotNull String address);
+
+    /**
+     * 封禁指定的IP地址.
+     * <p>
+     * 原文:Bans the specified address from the server.
+     *
+     * @param address 要封禁的IP地址
+     */
+    public void banIP(@NotNull InetAddress address);
+
+    /**
+     * 解禁指定的IP地址.
+     * <p>
+     * 原文:Unbans the specified address from the server.
+     *
+     * @param address 要解禁的IP地址
+     */
+    public void unbanIP(@NotNull InetAddress address);
 
     /**
      * 获取所有已被封禁的玩家.
@@ -1316,18 +1444,15 @@ public interface Server extends PluginMessageRecipient {
     /**
      * 获取指定类型的封禁列表.
      * <p>
-     * ban玩家名将不受支持(截至1.16.4还是支持的), 建议封禁玩家的uuid.
-     * <p>
      * 原文:Gets a ban list for the supplied type.
-     * <p>
-     * Bans by name are no longer supported and this method will return
-     * null when trying to request them. The replacement is bans by UUID.
      *
      * @param type 要获取的封禁列表的类型, 不能为null
+     * @param <T> 封禁目标
+     *
      * @return 指定类型的封禁列表
      */
     @NotNull
-    public BanList getBanList(@NotNull BanList.Type type);
+    public <T extends BanList<?>> T getBanList(@NotNull BanList.Type type);
 
     /**
      * 获取服务器的所有OP(管理员).
@@ -1678,6 +1803,15 @@ public interface Server extends PluginMessageRecipient {
     ItemFactory getItemFactory();
 
     /**
+     * Gets the instance of the entity factory (for {@link EntitySnapshot}).
+     *
+     * @return the entity factory
+     * @see EntityFactory
+     */
+    @NotNull
+    EntityFactory getEntityFactory();
+
+    /**
      * 获取计分板管理器实例.
      * <p>
      * 只在第一个世界加载后存在.
@@ -1936,7 +2070,7 @@ public interface Server extends PluginMessageRecipient {
      * @return new data instance
      */
     @NotNull
-    public BlockData createBlockData(@NotNull Material material, @Nullable Consumer<BlockData> consumer);
+    public BlockData createBlockData(@NotNull Material material, @Nullable Consumer<? super BlockData> consumer);
 
     /**
      * Creates a new {@link BlockData} instance with material and properties

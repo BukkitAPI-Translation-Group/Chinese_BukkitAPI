@@ -1,9 +1,13 @@
 package org.bukkit.enchantments;
 
-import java.util.HashMap;
-import java.util.Map;
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import org.bukkit.Keyed;
+import org.bukkit.MinecraftExperimental;
+import org.bukkit.MinecraftExperimental.Requires;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
+import org.bukkit.Translatable;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
@@ -12,215 +16,228 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 附魔类.
  */
-public abstract class Enchantment implements Keyed {
+public abstract class Enchantment implements Keyed, Translatable {
     /**
      * 附魔：保护
      */
-    public static final Enchantment PROTECTION_ENVIRONMENTAL = new EnchantmentWrapper("protection");
+    public static final Enchantment PROTECTION = getEnchantment("protection");
 
     /**
      * 附魔：火焰保护
      */
-    public static final Enchantment PROTECTION_FIRE = new EnchantmentWrapper("fire_protection");
+    public static final Enchantment FIRE_PROTECTION = getEnchantment("fire_protection");
 
     /**
      * 附魔：摔落保护
      */
-    public static final Enchantment PROTECTION_FALL = new EnchantmentWrapper("feather_falling");
+    public static final Enchantment FEATHER_FALLING = getEnchantment("feather_falling");
 
     /**
      * 附魔：爆炸保护
      */
-    public static final Enchantment PROTECTION_EXPLOSIONS = new EnchantmentWrapper("blast_protection");
+    public static final Enchantment BLAST_PROTECTION = getEnchantment("blast_protection");
 
     /**
      * 附魔：弹射物保护
      */
-    public static final Enchantment PROTECTION_PROJECTILE = new EnchantmentWrapper("projectile_protection");
+    public static final Enchantment PROJECTILE_PROTECTION = getEnchantment("projectile_protection");
 
     /**
      * 附魔：水下呼吸
      */
-    public static final Enchantment OXYGEN = new EnchantmentWrapper("respiration");
+    public static final Enchantment RESPIRATION = getEnchantment("respiration");
 
     /**
      * 附魔：水下速掘
      */
-    public static final Enchantment WATER_WORKER = new EnchantmentWrapper("aqua_affinity");
+    public static final Enchantment AQUA_AFFINITY = getEnchantment("aqua_affinity");
 
     /**
      * 附魔：荆棘
      */
-    public static final Enchantment THORNS = new EnchantmentWrapper("thorns");
+    public static final Enchantment THORNS = getEnchantment("thorns");
 
     /**
      * 附魔：深海探索者
      */
-    public static final Enchantment DEPTH_STRIDER = new EnchantmentWrapper("depth_strider");
+    public static final Enchantment DEPTH_STRIDER = getEnchantment("depth_strider");
 
     /**
      * 附魔：冰霜行者
      */
-    public static final Enchantment FROST_WALKER = new EnchantmentWrapper("frost_walker");
+    public static final Enchantment FROST_WALKER = getEnchantment("frost_walker");
 
     /**
      * 附魔：绑定诅咒
      */
-    public static final Enchantment BINDING_CURSE = new EnchantmentWrapper("binding_curse");
+    public static final Enchantment BINDING_CURSE = getEnchantment("binding_curse");
 
     /**
      * 附魔：锋利
      */
-    public static final Enchantment DAMAGE_ALL = new EnchantmentWrapper("sharpness");
+    public static final Enchantment SHARPNESS = getEnchantment("sharpness");
 
     /**
      * 附魔：亡灵杀手
      */
-    public static final Enchantment DAMAGE_UNDEAD = new EnchantmentWrapper("smite");
+    public static final Enchantment SMITE = getEnchantment("smite");
 
     /**
      * 附魔：节肢杀手
      */
-    public static final Enchantment DAMAGE_ARTHROPODS = new EnchantmentWrapper("bane_of_arthropods");
+    public static final Enchantment BANE_OF_ARTHROPODS = getEnchantment("bane_of_arthropods");
 
     /**
      * 附魔：击退
      */
-    public static final Enchantment KNOCKBACK = new EnchantmentWrapper("knockback");
+    public static final Enchantment KNOCKBACK = getEnchantment("knockback");
 
     /**
      * 附魔：火焰附加
      */
-    public static final Enchantment FIRE_ASPECT = new EnchantmentWrapper("fire_aspect");
+    public static final Enchantment FIRE_ASPECT = getEnchantment("fire_aspect");
 
     /**
      * 附魔：抢夺
      */
-    public static final Enchantment LOOT_BONUS_MOBS = new EnchantmentWrapper("looting");
+    public static final Enchantment LOOTING = getEnchantment("looting");
 
     /**
      * 附魔：横扫之刃
      */
-    public static final Enchantment SWEEPING_EDGE = new EnchantmentWrapper("sweeping");
+    public static final Enchantment SWEEPING_EDGE = getEnchantment("sweeping_edge");
 
     /**
      * 附魔：效率
      */
-    public static final Enchantment DIG_SPEED = new EnchantmentWrapper("efficiency");
+    public static final Enchantment EFFICIENCY = getEnchantment("efficiency");
 
     /**
      * 附魔：精准采集
      */
-    public static final Enchantment SILK_TOUCH = new EnchantmentWrapper("silk_touch");
+    public static final Enchantment SILK_TOUCH = getEnchantment("silk_touch");
 
     /**
      * 附魔：耐久
      */
-    public static final Enchantment DURABILITY = new EnchantmentWrapper("unbreaking");
+    public static final Enchantment UNBREAKING = getEnchantment("unbreaking");
 
     /**
      * 附魔：时运
      */
-    public static final Enchantment LOOT_BONUS_BLOCKS = new EnchantmentWrapper("fortune");
+    public static final Enchantment FORTUNE = getEnchantment("fortune");
 
     /**
      * 附魔：力量 (弓)
      */
-    public static final Enchantment ARROW_DAMAGE = new EnchantmentWrapper("power");
+    public static final Enchantment POWER = getEnchantment("power");
 
     /**
      * 附魔：冲击 (弓)
      */
-    public static final Enchantment ARROW_KNOCKBACK = new EnchantmentWrapper("punch");
+    public static final Enchantment PUNCH = getEnchantment("punch");
 
     /**
      * 附魔：火矢 (弓)
      */
-    public static final Enchantment ARROW_FIRE = new EnchantmentWrapper("flame");
+    public static final Enchantment FLAME = getEnchantment("flame");
 
     /**
      * 附魔：无限 (弓)
      */
-    public static final Enchantment ARROW_INFINITE = new EnchantmentWrapper("infinity");
+    public static final Enchantment INFINITY = getEnchantment("infinity");
 
     /**
      * 附魔：海之眷顾 (钓鱼杆)
      */
-    public static final Enchantment LUCK = new EnchantmentWrapper("luck_of_the_sea");
+    public static final Enchantment LUCK_OF_THE_SEA = getEnchantment("luck_of_the_sea");
 
     /**
      * 附魔：饵钓 (钓鱼杆)
      */
-    public static final Enchantment LURE = new EnchantmentWrapper("lure");
+    public static final Enchantment LURE = getEnchantment("lure");
 
     /**
      * 附魔：忠诚 (三叉戟)
      */
-    public static final Enchantment LOYALTY = new EnchantmentWrapper("loyalty");
+    public static final Enchantment LOYALTY = getEnchantment("loyalty");
 
     /**
      * 附魔：穿刺 (三叉戟)
      */
-    public static final Enchantment IMPALING = new EnchantmentWrapper("impaling");
+    public static final Enchantment IMPALING = getEnchantment("impaling");
 
     /**
      * 附魔：激流 (三叉戟)
      */
-    public static final Enchantment RIPTIDE = new EnchantmentWrapper("riptide");
+    public static final Enchantment RIPTIDE = getEnchantment("riptide");
 
     /**
      * 附魔：引雷 (三叉戟)
      */
-    public static final Enchantment CHANNELING = new EnchantmentWrapper("channeling");
+    public static final Enchantment CHANNELING = getEnchantment("channeling");
 
     /**
      * 附魔：多重射击 (弩)
      */
-    public static final Enchantment MULTISHOT = new EnchantmentWrapper("multishot");
+    public static final Enchantment MULTISHOT = getEnchantment("multishot");
 
     /**
      * 附魔：快速装填 (弩)
      */
-    public static final Enchantment QUICK_CHARGE = new EnchantmentWrapper("quick_charge");
+    public static final Enchantment QUICK_CHARGE = getEnchantment("quick_charge");
 
     /**
      * 附魔：穿透 (弩)
      */
-    public static final Enchantment PIERCING = new EnchantmentWrapper("piercing");
+    public static final Enchantment PIERCING = getEnchantment("piercing");
+
+    /**
+     * Increases fall damage of maces
+     */
+    @MinecraftExperimental(Requires.UPDATE_1_21)
+    public static final Enchantment DENSITY = getEnchantment("density");
+
+    /**
+     * Reduces armor effectiveness against maces
+     */
+    @MinecraftExperimental(Requires.UPDATE_1_21)
+    public static final Enchantment BREACH = getEnchantment("breach");
+
+    /**
+     * Emits wind burst upon hitting enemy
+     */
+    @MinecraftExperimental(Requires.UPDATE_1_21)
+    public static final Enchantment WIND_BURST = getEnchantment("wind_burst");
 
     /**
      * 附魔：经验修补
      */
-    public static final Enchantment MENDING = new EnchantmentWrapper("mending");
+    public static final Enchantment MENDING = getEnchantment("mending");
 
     /**
      * 附魔：消失诅咒
      */
-    public static final Enchantment VANISHING_CURSE = new EnchantmentWrapper("vanishing_curse");
+    public static final Enchantment VANISHING_CURSE = getEnchantment("vanishing_curse");
 
     /**
      * 附魔：灵魂疾行
      */
-    public static final Enchantment SOUL_SPEED = new EnchantmentWrapper("soul_speed");
+    public static final Enchantment SOUL_SPEED = getEnchantment("soul_speed");
 
     /**
      * 附魔：迅捷潜行
      */
-    public static final Enchantment SWIFT_SNEAK = new EnchantmentWrapper("swift_sneak");
-
-    private static final Map<NamespacedKey, Enchantment> byKey = new HashMap<NamespacedKey, Enchantment>();
-    private static final Map<String, Enchantment> byName = new HashMap<String, Enchantment>();
-    private static boolean acceptingNew = true;
-    private final NamespacedKey key;
-
-    public Enchantment(@NotNull NamespacedKey key) {
-        this.key = key;
-    }
+    public static final Enchantment SWIFT_SNEAK = getEnchantment("swift_sneak");
 
     @NotNull
-    @Override
-    public NamespacedKey getKey() {
-        return key;
+    private static Enchantment getEnchantment(@NotNull String key) {
+        NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
+        Enchantment enchantment = Registry.ENCHANTMENT.get(namespacedKey);
+
+        Preconditions.checkNotNull(enchantment, "No Enchantment found for %s. This is a bug.", namespacedKey);
+
+        return enchantment;
     }
 
     /**
@@ -263,8 +280,10 @@ public abstract class Enchantment implements Keyed {
      * Gets the type of {@link ItemStack} that may fit this Enchantment.
      *
      * @return 这个附魔的目标物品.
+     * @deprecated 附魔分组现由标签管理, 而非分类
      */
     @NotNull
+    @Deprecated
     public abstract EnchantmentTarget getItemTarget();
 
     /**
@@ -324,76 +343,6 @@ public abstract class Enchantment implements Keyed {
      */
     public abstract boolean canEnchantItem(@NotNull ItemStack item);
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (!(obj instanceof Enchantment)) {
-            return false;
-        }
-        final Enchantment other = (Enchantment) obj;
-        if (!this.key.equals(other.key)) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        return key.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "Enchantment[" + key + ", " + getName() + "]";
-    }
-
-    /**
-     * 注册一个附魔的ID和对象.
-     * <p>
-     * 一般不在插件中使用.
-     * <p>
-     * 原文：
-     * Registers an enchantment with the given ID and object.
-     * <p>
-     * Generally not to be used from within a plugin.
-     *
-     * @param enchantment 用于注册的附魔
-     */
-    public static void registerEnchantment(@NotNull Enchantment enchantment) {
-        if (byKey.containsKey(enchantment.key) || byName.containsKey(enchantment.getName())) {
-            throw new IllegalArgumentException("Cannot set already-set enchantment");
-        } else if (!isAcceptingRegistrations()) {
-            throw new IllegalStateException("No longer accepting new enchantments (can only be done by the server implementation)");
-        }
-
-        byKey.put(enchantment.key, enchantment);
-        byName.put(enchantment.getName(), enchantment);
-    }
-
-    /**
-     * 检查是否接受附魔注册.
-     * <p>
-     * 原文：
-     * Checks if this is accepting Enchantment registrations.
-     *
-     * @return 如果服务器可能实现添加附魔则返回True
-     */
-    public static boolean isAcceptingRegistrations() {
-        return acceptingNew;
-    }
-
-    /**
-     * 停止接受任何附魔注册.
-     * <p>
-     * 原文：
-     * Stops accepting any enchantment registrations
-     */
-    public static void stopAcceptingRegistrations() {
-        acceptingNew = false;
-    }
-
     /**
      * 通过指定键值获取附魔.
      * <p>
@@ -402,11 +351,16 @@ public abstract class Enchantment implements Keyed {
      *
      * @param key 附魔键值key
      * @return 返回该key所对应的附魔,要是没有所对应的的附魔则返回null.
+     * @deprecated 仅为保障作向后兼容性, 请使用 {@link Registry#get(NamespacedKey)} instead
      */
     @Contract("null -> null")
     @Nullable
+    @Deprecated
     public static Enchantment getByKey(@Nullable NamespacedKey key) {
-        return byKey.get(key);
+        if (key == null) {
+            return null;
+        }
+        return Registry.ENCHANTMENT.get(key);
     }
 
     /**
@@ -423,7 +377,11 @@ public abstract class Enchantment implements Keyed {
     @Contract("null -> null")
     @Nullable
     public static Enchantment getByName(@Nullable String name) {
-        return byName.get(name);
+        if (name == null) {
+            return null;
+        }
+
+        return getByKey(NamespacedKey.fromString(name.toLowerCase()));
     }
 
     /**
@@ -433,9 +391,11 @@ public abstract class Enchantment implements Keyed {
      * Gets an array of all the registered {@link Enchantment}s
      *
      * @return 一个包含所有已注册附魔的数组
+     * @deprecated 请使用 {@link Registry#iterator() Registry.ENCHANTMENT.iterator()}
      */
     @NotNull
+    @Deprecated
     public static Enchantment[] values() {
-        return byName.values().toArray(new Enchantment[byName.size()]);
+        return Lists.newArrayList(Registry.ENCHANTMENT).toArray(new Enchantment[0]);
     }
 }

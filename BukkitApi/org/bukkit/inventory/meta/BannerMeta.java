@@ -1,35 +1,10 @@
 package org.bukkit.inventory.meta;
 
 import java.util.List;
-import org.bukkit.DyeColor;
 import org.bukkit.block.banner.Pattern;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public interface BannerMeta extends ItemMeta {
-
-    /**
-     * 返回这个旗帜的底色.
-     * <p>
-     * 原文：Returns the base color for this banner
-     *
-     * @return 底色
-     * @deprecated 旗帜底色现以数据值的形式存储，而不是元数据.
-     */
-    @Deprecated
-    @Nullable
-    DyeColor getBaseColor();
-
-    /**
-     * 设置这个旗帜的底色.
-     * <p>
-     * 原文：Sets the base color for this banner
-     *
-     * @param color 底色
-     * @deprecated 旗帜底色现以数据值的形式存储，而不是元数据.
-     */
-    @Deprecated
-    void setBaseColor(@Nullable DyeColor color);
 
     /**
      * 返回这个旗帜的图案的列表.

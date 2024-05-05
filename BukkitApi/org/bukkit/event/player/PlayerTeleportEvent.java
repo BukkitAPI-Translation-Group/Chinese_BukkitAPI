@@ -73,6 +73,10 @@ public class PlayerTeleportEvent extends PlayerMoveEvent {
          */
         DISMOUNT,
         /**
+         * Indicates the teleportation was caused by a player exiting a bed
+         */
+        EXIT_BED,
+        /**
          * 由除已知枚举外的其他情况进行了传送.
          */
         UNKNOWN;

@@ -1,9 +1,9 @@
 package org.bukkit;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -11,18 +11,16 @@ import org.jetbrains.annotations.Nullable;
  * 代表 Mojang 通用游戏事件.
  * <p>
  * 译注:这些事件非 Bukkit 框架内提供的事件, 而是 Mojang 在原游戏引入的事件,
- * 目前已知原版游戏用于<a href="https://minecraft-zh.gamepedia.com/Sculk_Sensor">Sculk_Sensor</a>中.
+ * 目前已知原版游戏用于<a href="https://zh.minecraft.wiki/w/%E5%B9%BD%E5%8C%BF%E6%84%9F%E6%B5%8B%E4%BD%93">幽匿感测体</a>中.
  * <p>
- * 不过 Bukkit 框架提供了一个新的事件: {@link GenericGameEvent}, 使得监听 Mojang 游戏事件成为可能.
+ * 不过 Bukkit 框架提供了一个新的事件: {@link org.bukkit.event.world.GenericGameEvent}, 使得监听 Mojang 游戏事件成为可能.
  * <p>
  * 原文:Represents a generic Mojang game event.
  *
  * @since 1.17
  */
-public final class GameEvent implements Keyed {
+public abstract class GameEvent implements Keyed {
 
-    private static final Map<NamespacedKey, GameEvent> GAME_EVENTS = new HashMap<>();
-    //
     public static final GameEvent BLOCK_ACTIVATE = getEvent("block_activate");
     public static final GameEvent BLOCK_ATTACH = getEvent("block_attach");
     public static final GameEvent BLOCK_CHANGE = getEvent("block_change");
@@ -63,8 +61,11 @@ public final class GameEvent implements Keyed {
     @Deprecated
     public static final GameEvent ENTITY_KILLED = getEvent("entity_die");
     public static final GameEvent ENTITY_PLACE = getEvent("entity_place");
-    public static final GameEvent ENTITY_ROAR = getEvent("entity_roar");
-    public static final GameEvent ENTITY_SHAKE = getEvent("entity_shake");
+    public static final GameEvent ENTITY_ACTION = getEvent("entity_action");
+    @Deprecated
+    public static final GameEvent ENTITY_ROAR = getEvent("entity_action");
+    @Deprecated
+    public static final GameEvent ENTITY_SHAKE = getEvent("entity_action");
     public static final GameEvent EQUIP = getEvent("equip");
     public static final GameEvent EXPLODE = getEvent("explode");
     public static final GameEvent FLAP = getEvent("flap");
@@ -88,7 +89,7 @@ public final class GameEvent implements Keyed {
     public static final GameEvent PROJECTILE_LAND = getEvent("projectile_land");
     public static final GameEvent PROJECTILE_SHOOT = getEvent("projectile_shoot");
     @Deprecated
-    public static final GameEvent RAVAGER_ROAR = getEvent("entity_roar");
+    public static final GameEvent RAVAGER_ROAR = getEvent("entity_action");
     @Deprecated
     public static final GameEvent RING_BELL = getEvent("block_change");
     public static final GameEvent SCULK_SENSOR_TENDRILS_CLICKING = getEvent("sculk_sensor_tendrils_clicking");
@@ -102,8 +103,9 @@ public final class GameEvent implements Keyed {
     public static final GameEvent STEP = getEvent("step");
     public static final GameEvent SWIM = getEvent("swim");
     public static final GameEvent TELEPORT = getEvent("teleport");
+    public static final GameEvent UNEQUIP = getEvent("unequip");
     @Deprecated
-    public static final GameEvent WOLF_SHAKING = getEvent("entity_shake");
+    public static final GameEvent WOLF_SHAKING = getEvent("entity_action");
     public static final GameEvent RESONATE_1 = getEvent("resonate_1");
     public static final GameEvent RESONATE_2 = getEvent("resonate_2");
     public static final GameEvent RESONATE_3 = getEvent("resonate_3");
@@ -119,20 +121,6 @@ public final class GameEvent implements Keyed {
     public static final GameEvent RESONATE_13 = getEvent("resonate_13");
     public static final GameEvent RESONATE_14 = getEvent("resonate_14");
     public static final GameEvent RESONATE_15 = getEvent("resonate_15");
-    //
-    private final NamespacedKey key;
-
-    private GameEvent(NamespacedKey key) {
-        this.key = key;
-
-        GAME_EVENTS.put(key, this);
-    }
-
-    @NotNull
-    @Override
-    public NamespacedKey getKey() {
-        return key;
-    }
 
     /**
      * 根据指定的{@link NamespacedKey}获取{@link GameEvent 游戏事件}.
@@ -141,10 +129,12 @@ public final class GameEvent implements Keyed {
      *
      * @param namespacedKey the key
      * @return 游戏事件, 如果 key 不存在则返回 null
+     * @deprecated 请使用 {@link Registry#get(NamespacedKey)}
      */
     @Nullable
+    @Deprecated
     public static GameEvent getByKey(@NotNull NamespacedKey namespacedKey) {
-        return GAME_EVENTS.get(namespacedKey);
+        return Registry.GAME_EVENT.get(namespacedKey);
     }
 
     /**
@@ -153,13 +143,21 @@ public final class GameEvent implements Keyed {
      * 原文:Returns the set of all GameEvents.
      *
      * @return 游戏事件键的集合
+     * @deprecated 请使用 {@link Registry#iterator()}
      */
     @NotNull
+    @Deprecated
     public static Collection<GameEvent> values() {
-        return Collections.unmodifiableCollection(GAME_EVENTS.values());
+        return Collections.unmodifiableCollection(Lists.newArrayList(Registry.GAME_EVENT));
     }
 
-    private static GameEvent getEvent(String vanilla) {
-        return new GameEvent(NamespacedKey.minecraft(vanilla));
+    @NotNull
+    private static GameEvent getEvent(@NotNull String key) {
+        NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
+        GameEvent gameEvent = Registry.GAME_EVENT.get(namespacedKey);
+
+        Preconditions.checkNotNull(gameEvent, "No GameEvent found for %s. This is a bug.", namespacedKey);
+
+        return gameEvent;
     }
 }

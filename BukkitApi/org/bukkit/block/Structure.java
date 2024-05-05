@@ -276,12 +276,12 @@ public interface Structure extends TileState {
 
     /**
      * 仅在结构方块处于{@link UsageMode#DATA 数据模式}时应用. 元数据是可应用于结构标注位置的特定函数.
-     * 查阅<a href="https://minecraft-zh.gamepedia.com/%E7%BB%93%E6%9E%84%E6%96%B9%E5%9D%97#.E6.95.B0.E6.8D.AE.E5.80.BC">Minecraft
+     * 查阅<a href="https://zh.minecraft.wiki/w/%E7%BB%93%E6%9E%84%E6%96%B9%E5%9D%97#%E6%95%B0%E6%8D%AE%E5%80%BC">Minecraft
      * Wiki</a>获取更多信息.
      * <p>
      * 原文:Only applicable while in {@link UsageMode#DATA}. Metadata are specific
      * functions that can be applied to the structure location. Consult the
-     * <a href="https://minecraft.gamepedia.com/Structure_Block#Data">Minecraft
+     * <a href="https://minecraft.wiki/w/Structure_Block#Data">Minecraft
      * wiki</a> for more information.
      *
      * @param metadata 要执行于标注位置的函数
@@ -290,12 +290,12 @@ public interface Structure extends TileState {
 
     /**
      * 获取当此结构方块激活时将执行的函数元数据.
-     * 查阅<a href="https://minecraft-zh.gamepedia.com/%E7%BB%93%E6%9E%84%E6%96%B9%E5%9D%97#.E6.95.B0.E6.8D.AE.E5.80.BC">Minecraft
+     * 查阅<a href="https://zh.minecraft.wiki/w/%E7%BB%93%E6%9E%84%E6%96%B9%E5%9D%97#%E6%95%B0%E6%8D%AE%E5%80%BC">Minecraft
      * Wiki</a>获取更多信息.
      * <p>
      * 原文:Get the metadata function this structure block will perform when
      * activated. Consult the
-     * <a href="https://minecraft.gamepedia.com/Structure_Block#Data">Minecraft
+     * <a href="https://minecraft.wiki/w/Structure_Block#Data">Minecraft
      * Wiki</a> for more information.
      *
      * @return 当此结构方块激活时将执行的函数

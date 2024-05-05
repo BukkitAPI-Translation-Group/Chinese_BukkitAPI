@@ -47,4 +47,36 @@ public interface Enderman extends Monster {
      * @param blockData 为该方块设置的BlockData对象, 设为null移除末影人手持的方块
      */
     public void setCarriedBlock(@Nullable BlockData blockData);
+
+    /**
+     * Randomly teleports the Enderman in a 64x64x64 block cuboid region.
+     * <p>
+     * If the randomly selected point is in the ground, the point is moved 1 block
+     * down until air is found or until it goes under
+     * {@link org.bukkit.World#getMinHeight()}.
+     * <p>
+     * This method will return false if this Enderman is not alive, or if the
+     * teleport location was obstructed, or if the teleport location is in water.
+     *
+     * @return true if the teleport succeeded.
+     */
+    public boolean teleport();
+
+    /**
+     * Randomly teleports the Enderman towards the given <code>entity</code>.
+     * <p>
+     * The point is selected by drawing a vector between this enderman and the
+     * given <code>entity</code>. That vector's length is set to 16 blocks.
+     * That point is then moved within a 8x8x8 cuboid region. If the randomly
+     * selected point is in the ground, the point is moved 1 block down until
+     * air is found or until it goes under
+     * {@link org.bukkit.World#getMinHeight()}.
+     * <p>
+     * This method will return false if this Enderman is not alive, or if the
+     * teleport location was obstructed, or if the teleport location is in water.
+     *
+     * @param entity The entity to teleport towards.
+     * @return true if the teleport succeeded.
+     */
+    public boolean teleportTowards(@NotNull Entity entity);
 }

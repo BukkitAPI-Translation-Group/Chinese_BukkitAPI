@@ -81,6 +81,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      * @param damage 损耗值
      * @deprecated 另请参阅 {@link #setDurability(short)}
      */
+    @Deprecated
     public ItemStack(@NotNull final Material type, final int amount, final short damage) {
         this(type, amount, damage, null);
     }
@@ -267,20 +268,21 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
     }
 
     /**
-     * 获取该物品的最大堆叠数 (若物品未知返回-1).
-     * <p>
-     * 原文:Get the maximum stacksize for the material hold in this ItemStack.
-     * (Returns -1 if it has no idea)
+     * Get the maximum stack size for this item. If this item has a max stack
+     * size component ({@link ItemMeta#hasMaxStackSize()}), the value of that
+     * component will be returned. Otherwise, this item's Material's {@link
+     * Material#getMaxStackSize() default maximum stack size} will be returned
+     * instead.
      *
      * @return 该物品的最大堆叠数
      */
     @Utility
     public int getMaxStackSize() {
-        Material material = getType();
-        if (material != null) {
-            return material.getMaxStackSize();
+        if (meta != null && meta.hasMaxStackSize()) {
+            return meta.getMaxStackSize();
         }
-        return -1;
+
+        return getType().getMaxStackSize();
     }
 
     private void createData(final byte data) {
@@ -515,6 +517,19 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
         }
         meta.removeEnchant(ench);
         return level;
+    }
+
+    /**
+     * 移除物品堆上的全部附魔.
+     * <p>
+     * 原文:Removes all enchantments on this ItemStack.
+     */
+    public void removeEnchantments() {
+        if (meta == null) {
+            return;
+        }
+
+        meta.removeEnchantments();
     }
 
     @Override

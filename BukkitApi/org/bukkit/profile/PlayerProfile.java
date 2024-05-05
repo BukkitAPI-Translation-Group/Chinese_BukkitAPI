@@ -38,11 +38,11 @@ public interface PlayerProfile extends Cloneable, ConfigurationSerializable {
     String getName();
 
     /**
-     * 获取{@link PlayerTextures玩家纹理}信息 (玩家的皮肤+披风).
+     * 获取{@link PlayerTextures 玩家纹理}信息 (玩家的皮肤+披风).
      * <p>
      * 原文:Gets the {@link PlayerTextures} of this profile.
      *
-     * @return {@link PlayerTextures玩家纹理}信息, 不为 null
+     * @return {@link PlayerTextures 玩家纹理}信息, 不为 null
      */
     @NotNull
     PlayerTextures getTextures();

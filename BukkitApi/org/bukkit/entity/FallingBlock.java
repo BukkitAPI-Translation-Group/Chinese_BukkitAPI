@@ -34,10 +34,17 @@ public interface FallingBlock extends Entity {
     BlockData getBlockData();
 
     /**
-     * 获取下落方块被阻挡时是否会变为掉落物. 
+     * 获取下落方块被阻挡时是否会变为掉落物.
+     * <p>
+     * 请注意, 如果 {@link #getCancelDrop()} 为 {@code true}, 则下落方块将不会掉落物品,
+     * 无论此方法是否返回 {@code true}.
      * <p>
      * 原文: 
-     * Get if the falling block will break into an item if it cannot be placed
+     * Get if the falling block will break into an item if it cannot be placed.
+     * <p>
+     * Note that if {@link #getCancelDrop()} is {@code true}, the falling block
+     * will not drop an item regardless of whether or not the returned value is
+     * {@code true}.
      *
      * @return 方块在被阻挡时是否会变为掉落物. 
      */
@@ -46,12 +53,44 @@ public interface FallingBlock extends Entity {
     /**
      * 设置下落方块被阻挡时是否会变为掉落物. 
      * <p>
+     * 请注意, 如果 {@link #getCancelDrop()} 为 {@code true}, 则下落方块将不会掉落物品,
+     * 无论是否设置为 {@code true}.
      * 原文: 
-     * Set if the falling block will break into an item if it cannot be placed
+     * Set if the falling block will break into an item if it cannot be placed.
+     * <p>
+     * Note that if {@link #getCancelDrop()} is {@code true}, the falling block
+     * will not drop an item regardless of whether or not the value is set to
+     * {@code true}.
      *
      * @param drop 当被阻挡时变为掉落物时返回 true. 
      */
     void setDropItem(boolean drop);
+
+    /**
+     * Get if the falling block will not become a block upon landing and not drop
+     * an item.
+     * <p>
+     * Unlike {@link #getDropItem()}, this property will prevent the block from
+     * forming into a block when it lands, causing it to disappear. If this property
+     * is true and {@link #getDropItem()} is true, an item will <strong>NOT</strong>
+     * be dropped.
+     *
+     * @return true if the block will disappear
+     */
+    boolean getCancelDrop();
+
+    /**
+     * Get if the falling block will not become a block upon landing and not drop
+     * an item.
+     * <p>
+     * Unlike {@link #setDropItem(boolean)}, this property will prevent the block
+     * from forming into a block when it lands, causing it to disappear. If this
+     * property is true and {@link #getDropItem()} is true, an item will
+     * <strong>NOT</strong> be dropped.
+     *
+     * @param cancelDrop true to make the block disappear when landing
+     */
+    void setCancelDrop(boolean cancelDrop);
 
     /**
      * 获取此方块能否砸伤实体. 

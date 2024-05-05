@@ -7,9 +7,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 代表书({@link Material#WRITABLE_BOOK}或者{@link Material#WRITTEN_BOOK 成书})，可以有标题，作者，页面.
+ * 代表{@link Material#WRITTEN_BOOK 成书}，有标题，作者，页面.
  */
-public interface BookMeta extends ItemMeta {
+public interface BookMeta extends WritableBookMeta {
 
     /**
      * 代表成书的代次 (或副本级别).
@@ -138,99 +138,6 @@ public interface BookMeta extends ItemMeta {
      * @param generation 要设置的代次
      */
     void setGeneration(@Nullable Generation generation);
-
-    /**
-     * 检测这本书是否存在页面.
-     * <p>
-     * 原文：Checks for the existence of pages in the book.
-     *
-     * @return 如果这本书有页面返回true
-     */
-    boolean hasPages();
-
-    /**
-     * 获取这本书指定页面的内容.给定的页面必须存在.
-     * <p>
-     * 页码在1-书本总页数范围内.
-     * <p>
-     * 原文：Gets the specified page in the book. The given page must exist.
-     * <p>
-     * Pages are 1-indexed.
-     *
-     * @param page 指定页码
-     * @return 这个页码的内容
-     */
-    @NotNull
-    String getPage(int page);
-
-    /**
-     * 设置这本书指定页面的内容.书页必须是连续的.
-     * <p>
-     * 数据的长度最大为256个字符，超出部分将被截断.
-     * <p>
-     * 页码在1-书本总页数范围内.
-     * <p>
-     * 原文：Sets the specified page in the book. Pages of the book must be
-     * contiguous.
-     * <p>
-     * The data can be up to 256 characters in length, additional characters
-     * are truncated.
-     * <p>
-     * Pages are 1-indexed.
-     *
-     * @param page 要设置的页码,在[1, getPageCount()]区间内
-     * @param data 那个书页的内容
-     */
-    void setPage(int page, @NotNull String data);
-
-    /**
-     * 获取这本书的全部页面.
-     * <p>
-     * 原文：Gets all the pages in the book.
-     *
-     * @return 这本书的全部页面的内容
-     */
-    @NotNull
-    List<String> getPages();
-
-    /**
-     * 清除存在的书页，并设置书提供的书页.最多100页，每页最多256个字符.
-     * <p>
-     * 原文：Clears the existing book pages, and sets the book to use the provided
-     * pages. Maximum 100 pages with 256 characters per page.
-     *
-     * @param pages 要设置的书页的内容的列表
-     */
-    void setPages(@NotNull List<String> pages);
-
-    /**
-     * 清除存在的书页，并设置书提供的书页.最多50页，每页最多256个字符.
-     * <p>
-     * 原文：Clears the existing book pages, and sets the book to use the provided
-     * pages. Maximum 50 pages with 256 characters per page.
-     *
-     * @param pages 每页的内容的列表
-     */
-    void setPages(@NotNull String... pages);
-
-    /**
-     * 在这本书的最后添加页面.最多50页，每页最多256个字符.
-     * <p>
-     * 原文：Adds new pages to the end of the book. Up to a maximum of 50 pages with
-     * 256 characters per page.
-     *
-     * @param pages 每页的内容的列表
-     */
-    void addPage(@NotNull String... pages);
-
-    /**
-     * 获取这本书有多少页.
-     * <p>
-     * 原文：Gets the number of pages in the book.
-     *
-     * @return 这本书的页数
-     */
-    int getPageCount();
 
     @Override
     @NotNull

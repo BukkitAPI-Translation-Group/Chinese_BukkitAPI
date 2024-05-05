@@ -1,13 +1,15 @@
 package org.bukkit.attribute;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Translatable;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * 在 {@link Attributable} 里面的枚举.
  */
-public enum Attribute implements Keyed {
+public enum Attribute implements Keyed, Translatable {
 
     /**
      * 生物的最大血量
@@ -50,13 +52,49 @@ public enum Attribute implements Keyed {
      */
     GENERIC_ARMOR_TOUGHNESS("generic.armor_toughness"),
     /**
+     * The fall damage multiplier of an Entity.
+     */
+    GENERIC_FALL_DAMAGE_MULTIPLIER("generic.fall_damage_multiplier"),
+    /**
      * 生物的可能的掉落物
      */
     GENERIC_LUCK("generic.luck"),
     /**
-     * 马跳起来的蓄力条
+     * Maximum absorption of an Entity.
      */
-    HORSE_JUMP_STRENGTH("horse.jump_strength"),
+    GENERIC_MAX_ABSORPTION("generic.max_absorption"),
+    /**
+     * The distance which an Entity can fall without damage.
+     */
+    GENERIC_SAFE_FALL_DISTANCE("generic.safe_fall_distance"),
+    /**
+     * The relative scale of an Entity.
+     */
+    GENERIC_SCALE("generic.scale"),
+    /**
+     * The height which an Entity can walk over.
+     */
+    GENERIC_STEP_HEIGHT("generic.step_height"),
+    /**
+     * The gravity applied to an Entity.
+     */
+    GENERIC_GRAVITY("generic.gravity"),
+    /**
+     * Strength with which an Entity will jump.
+     */
+    GENERIC_JUMP_STRENGTH("generic.jump_strength"),
+    /**
+     * The block reach distance of a Player.
+     */
+    PLAYER_BLOCK_INTERACTION_RANGE("player.block_interaction_range"),
+    /**
+     * The entity reach distance of a Player.
+     */
+    PLAYER_ENTITY_INTERACTION_RANGE("player.entity_interaction_range"),
+    /**
+     * Block break speed of a Player.
+     */
+    PLAYER_BLOCK_BREAK_SPEED("player.block_break_speed"),
     /**
      * 僵尸增援的几率
      */
@@ -72,5 +110,11 @@ public enum Attribute implements Keyed {
     @Override
     public NamespacedKey getKey() {
         return key;
+    }
+
+    @NotNull
+    @Override
+    public String getTranslationKey() {
+        return Bukkit.getUnsafe().getTranslationKey(this);
     }
 }

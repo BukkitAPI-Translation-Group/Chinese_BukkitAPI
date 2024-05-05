@@ -19,7 +19,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      */
     @NotNull
-    String getName() throws IllegalStateException;
+    String getName();
 
     /**
      * 获取此计分项展示给玩家的名称.
@@ -30,7 +30,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      */
     @NotNull
-    String getDisplayName() throws IllegalStateException;
+    String getDisplayName();
 
     /**
      * 设置此计分项展示给玩家的名称.
@@ -39,10 +39,8 @@ public interface Objective {
      *
      * @param displayName 计分项显示名
      * @throws IllegalStateException 若此计分项已被注销
-     * @throws IllegalArgumentException 若参数 displayName 为 null
-     * @throws IllegalArgumentException 若 displayName 长度超过 128 个字符
      */
-    void setDisplayName(@NotNull String displayName) throws IllegalStateException, IllegalArgumentException;
+    void setDisplayName(@NotNull String displayName);
 
     /**
      * 获取此计分项跟踪的准则.
@@ -55,7 +53,7 @@ public interface Objective {
      */
     @Deprecated
     @NotNull
-    String getCriteria() throws IllegalStateException;
+    String getCriteria();
 
     /**
      * 获取此计分项跟踪的准则.
@@ -66,7 +64,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      */
     @NotNull
-    Criteria getTrackedCriteria() throws IllegalStateException;
+    Criteria getTrackedCriteria();
 
     /**
      * 判断此计分项的分数能否被插件直接修改.
@@ -77,7 +75,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      * @see Criterias#HEALTH
      */
-    boolean isModifiable() throws IllegalStateException;
+    boolean isModifiable();
 
     /**
      * 获取此计分项附属的计分板.
@@ -96,7 +94,7 @@ public interface Objective {
      *
      * @throws IllegalStateException 若此计分项已被注销
      */
-    void unregister() throws IllegalStateException;
+    void unregister();
 
     /**
      * 设置此计分项显示在指定位置, 并将其从原位置移除 (就是从A处移到B处的意思).
@@ -107,7 +105,7 @@ public interface Objective {
      * @param slot 显示的位置, null 为不显示/隐藏
      * @throws IllegalStateException 若此计分项已被注销
      */
-    void setDisplaySlot(@Nullable DisplaySlot slot) throws IllegalStateException;
+    void setDisplaySlot(@Nullable DisplaySlot slot);
 
     /**
      * 获取此计分项显示的位置.
@@ -118,7 +116,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      */
     @Nullable
-    DisplaySlot getDisplaySlot() throws IllegalStateException;
+    DisplaySlot getDisplaySlot();
 
     /**
      * 设置计分项数值的渲染方式.
@@ -128,7 +126,7 @@ public interface Objective {
      * @param renderType 渲染方式
      * @throws IllegalStateException 若此计分项已被注销
      */
-    void setRenderType(@NotNull RenderType renderType) throws IllegalStateException;
+    void setRenderType(@NotNull RenderType renderType);
 
     /**
      * 获取计分项数值的渲染方式.
@@ -139,7 +137,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      */
     @NotNull
-    RenderType getRenderType() throws IllegalStateException;
+    RenderType getRenderType();
 
     /**
      * 获取某玩家的分数.
@@ -148,14 +146,13 @@ public interface Objective {
      *
      * @param player 玩家名
      * @return 指定玩家的分数
-     * @throws IllegalArgumentException 若参数 player 为 null
      * @throws IllegalStateException 若此计分项已被注销
      * @see #getScore(String)
      * @deprecated 计分板可包含非玩家项目
      */
     @Deprecated
     @NotNull
-    Score getScore(@NotNull OfflinePlayer player) throws IllegalArgumentException, IllegalStateException;
+    Score getScore(@NotNull OfflinePlayer player);
 
     /**
      * 获取某条项目的分数.
@@ -164,10 +161,9 @@ public interface Objective {
      *
      * @param entry 项目名
      * @return 指定项目的分数
-     * @throws IllegalArgumentException 若参数 entry 为 null
      * @throws IllegalStateException 若此计分项已被注销
      * @throws IllegalArgumentException 若 entry 长度超过 32767 个字符
      */
     @NotNull
-    Score getScore(@NotNull String entry) throws IllegalArgumentException, IllegalStateException;
+    Score getScore(@NotNull String entry);
 }

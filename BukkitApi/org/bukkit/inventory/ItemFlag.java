@@ -41,7 +41,7 @@ public enum ItemFlag {
      * 原文:Setting to show/hide potion effects, book and firework information, map
      * tooltips, patterns of banners, and enchantments of enchanted books.
      */
-    HIDE_POTION_EFFECTS,
+    HIDE_ADDITIONAL_TOOLTIP,
     /**
      * 设置显示/隐藏彩色皮革盔甲的染料.
      * <p>

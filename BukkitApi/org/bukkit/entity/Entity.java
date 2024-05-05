@@ -25,10 +25,15 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 表示世界中的基本实体
+ * 表示世界中的基本实体.
+ * <p>
+ * 当 {@link #isInWorld()} 返回 false 时, 不保证所有方法都可用/或者有副作用.
  * <p>
  * 原文:
  * Represents a base entity in the world
+ * <p>
+ * Not all methods are guaranteed to work/may have side effects when
+ * {@link #isInWorld()} is false.
  */
 public interface Entity extends Metadatable, CommandSender, Nameable, PersistentDataHolder {
 
@@ -325,7 +330,9 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * 将实体标记为删除. 
      * <p>
      * 原文:
-     * Mark the entity's removal. 
+     * Mark the entity's removal.
+     *
+     * @throws UnsupportedOperationException 如果你试图移除一名 {@link Player 玩家}. 对于此场景请使用 {@link Player#kickPlayer(String)}
      */
     public void remove();
 
@@ -340,11 +347,11 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public boolean isDead();
 
     /**
-     * 如果此实体已经死亡, 或因为其他原因被抹去, 则返回false. 
+     * 如果此实体已经死亡、因为其他原因被抹去或尚未添加到世界, 则返回false. 
      * <p>
      * 原文:
-     * Returns false if the entity has died or been despawned for some other
-     * reason. 
+     * Returns false if the entity has died, been despawned for some other
+     * reason, or has not been added to the world. 
      *
      * @return 实体是否有效. 
      */
@@ -504,7 +511,9 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * Record the last {@link EntityDamageEvent} inflicted on this entity
      *
      * @param event 一个 {@link EntityDamageEvent}
+     * @deprecated 此方法仅供内部使用, 将被移除
      */
+    @Deprecated(forRemoval = true)
     public void setLastDamageCause(@Nullable EntityDamageEvent event);
 
     /**
@@ -687,9 +696,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * will need to be called before the entity is visible to a given player.
      *
      * @param visible default visibility status
-     * @apiNote draft API
      */
-    @ApiStatus.Experimental
     public void setVisibleByDefault(boolean visible);
 
     /**
@@ -700,10 +707,21 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * will need to be called before the entity is visible to a given player.
      *
      * @return default visibility status
-     * @apiNote draft API
      */
-    @ApiStatus.Experimental
     public boolean isVisibleByDefault();
+    
+    /**
+     * Get all players that are currently tracking this entity.
+     * <p>
+     * 'Tracking' means that this entity has been sent to the player and that
+     * they are receiving updates on its state. Note that the client's {@code
+     * 'Entity Distance'} setting does not affect the range at which entities
+     * are tracked.
+     *
+     * @return the players tracking this entity, or an empty set if none
+     */
+    @NotNull
+    Set<Player> getTrackedBy();
 
     /**
      * 设置实体是否有团队颜色(默认白色)的发光. 
@@ -907,6 +925,56 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      */
     @NotNull
     SpawnCategory getSpawnCategory();
+
+    /**
+     * Checks if this entity has been spawned in a world. <br>
+     * Entities not spawned in a world will not tick, be sent to players, or be
+     * saved to the server files.
+     *
+     * @return whether the entity has been spawned in a world
+     */
+    boolean isInWorld();
+
+    /**
+     * Get this entity as an NBT string.
+     * <p>
+     * This string should not be relied upon as a serializable value.
+     *
+     * @return the NBT string or null if one cannot be made
+     */
+    @Nullable
+    @ApiStatus.Experimental
+    String getAsString();
+
+    /**
+     * Crates an {@link EntitySnapshot} representing the current state of this entity.
+     *
+     * @return a snapshot representing this entity or null if one cannot be made
+     */
+    @Nullable
+    @ApiStatus.Experimental
+    EntitySnapshot createSnapshot();
+
+    /**
+     * Creates a copy of this entity and all its data. Does not spawn the copy in
+     * the world. <br>
+     * <b>Note:</b> Players cannot be copied.
+     *
+     * @return a copy of this entity.
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    Entity copy();
+
+    /**
+     * Creates a copy of this entity and all its data. Spawns the copy at the given location. <br>
+     * <b>Note:</b> Players cannot be copied.
+     * @param to the location to copy to
+     * @return a copy of this entity.
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    Entity copy(@NotNull Location to);
 
     // Spigot start
     public class Spigot extends CommandSender.Spigot {

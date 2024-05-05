@@ -51,7 +51,7 @@ public interface Score {
      * @return 分数
      * @throws IllegalStateException 若相关的计分项已被注销
      */
-    int getScore() throws IllegalStateException;
+    int getScore();
 
     /**
      * 设置当前分数.
@@ -61,7 +61,7 @@ public interface Score {
      * @param score 分数
      * @throws IllegalStateException 若相关的计分项已被注销
      */
-    void setScore(int score) throws IllegalStateException;
+    void setScore(int score);
 
     /**
      * 判断是否曾设置过分数数据.
@@ -71,7 +71,7 @@ public interface Score {
      * @return 是否曾设置过分数数据
      * @throws IllegalStateException 若相关的计分项已被注销
      */
-    boolean isScoreSet() throws IllegalStateException;
+    boolean isScoreSet();
 
     /**
      * 获取相关计分项所属的计分板.

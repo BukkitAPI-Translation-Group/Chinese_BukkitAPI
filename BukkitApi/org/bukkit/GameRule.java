@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
  * 游戏规则控制着Minecraft自身的某些行为.
  * <br>
  * 欲了解更多信息请访问
- * <a href="https://minecraft-zh.gamepedia.com/%E5%91%BD%E4%BB%A4/gamerule" target="_blank">Minecraft
+ * <a href="https://zh.minecraft.wiki/w/%E5%91%BD%E4%BB%A4/gamerule" target="_blank">Minecraft
  * Wiki</a>
  * <p>
  * 版权说明:以下常量翻译大部分引自 Minecraft Wiki.
@@ -60,6 +60,11 @@ public final class GameRule<T> {
      * 生物在死亡是否掉落物品 (战利品).
      */
     public static final GameRule<Boolean> DO_MOB_LOOT = new GameRule<>("doMobLoot", Boolean.class);
+
+    /**
+     * Whether projectiles can break blocks.
+     */
+    public static final GameRule<Boolean> PROJECTILES_CAN_BREAK_BLOCKS = new GameRule<>("projectilesCanBreakBlocks", Boolean.class);
 
     /**
      * 生物是否自然生成. 不影响刷怪箱.
@@ -209,6 +214,10 @@ public final class GameRule<T> {
      * Whether vines will spread.
      */
     public static final GameRule<Boolean> DO_VINES_SPREAD = new GameRule<>("doVinesSpread", Boolean.class);
+    /**
+     * Whether ender pearls will vanish on player death.
+     */
+    public static final GameRule<Boolean> ENDER_PEARLS_VANISH_ON_DEATH = new GameRule<>("enderPearlsVanishOnDeath", Boolean.class);
 
     // Numerical rules
     /**
@@ -237,6 +246,12 @@ public final class GameRule<T> {
     public static final GameRule<Integer> MAX_COMMAND_CHAIN_LENGTH = new GameRule<>("maxCommandChainLength", Integer.class);
 
     /**
+     * Determines the number of different commands/functions which execute
+     * commands can fork into.
+     */
+    public static final GameRule<Integer> MAX_COMMAND_FORK_COUNT = new GameRule<>("maxCommandForkCount", Integer.class);
+
+    /**
      * Determines the maximum number of blocks which a command can modify.
      */
     public static final GameRule<Integer> COMMAND_MODIFICATION_BLOCK_LIMIT = new GameRule<>("commandModificationBlockLimit", Integer.class);
@@ -246,6 +261,23 @@ public final class GameRule<T> {
      */
     public static final GameRule<Integer> PLAYERS_SLEEPING_PERCENTAGE = new GameRule<>("playersSleepingPercentage", Integer.class);
 	public static final GameRule<Integer> SNOW_ACCUMULATION_HEIGHT = new GameRule<>("snowAccumulationHeight", Integer.class);
+
+    /**
+     * The amount of time a player must stand in a nether portal before the
+     * portal activates.
+     */
+    public static final GameRule<Integer> PLAYERS_NETHER_PORTAL_DEFAULT_DELAY = new GameRule<>("playersNetherPortalDefaultDelay", Integer.class);
+
+    /**
+     * The amount of time a player in creative mode must stand in a nether
+     * portal before the portal activates.
+     */
+    public static final GameRule<Integer> PLAYERS_NETHER_PORTAL_CREATIVE_DELAY = new GameRule<>("playersNetherPortalCreativeDelay", Integer.class);
+
+    /**
+     * The number of chunks around spawn which will be kept loaded at all times.
+     */
+    public static final GameRule<Integer> SPAWN_CHUNK_RADIUS = new GameRule<>("spawnChunkRadius", Integer.class);
 
     // All GameRules instantiated above this for organizational purposes
     private final String name;

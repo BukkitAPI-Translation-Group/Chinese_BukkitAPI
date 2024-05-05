@@ -81,7 +81,19 @@ public enum ClickType {
      * @return 如果这个按键类型为键盘按键则返回true，否则返回false.
      */
     public boolean isKeyboardClick() {
-        return (this == ClickType.NUMBER_KEY) || (this == ClickType.DROP) || (this == ClickType.CONTROL_DROP);
+        return (this == ClickType.NUMBER_KEY) || (this == ClickType.DROP) || (this == ClickType.CONTROL_DROP) || (this == ClickType.SWAP_OFFHAND);
+    }
+
+    /**
+     * 判断这个按键类型是否为鼠标按键.
+     * <p>
+     * 原文:Gets whether this ClickType represents the pressing of a mouse button
+     *
+     * @return 如果这个按键类型为鼠标按键则返回true，否则返回false.
+     */
+    public boolean isMouseClick() {
+        return (this == ClickType.DOUBLE_CLICK) || (this == ClickType.LEFT) || (this == ClickType.RIGHT) || (this == ClickType.MIDDLE)
+                || (this == ClickType.WINDOW_BORDER_LEFT) || (this == ClickType.SHIFT_LEFT) || (this == ClickType.SHIFT_RIGHT) || (this == ClickType.WINDOW_BORDER_RIGHT);
     }
 
     /**

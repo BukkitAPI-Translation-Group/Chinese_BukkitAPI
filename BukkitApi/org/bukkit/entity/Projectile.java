@@ -40,7 +40,9 @@ public interface Projectile extends Entity {
      * If a small fireball does not bounce it will set the target on fire.
      *
      * @return 如果应该弹跳，则返回true。
+     * @deprecated 不起任何作用
      */
+    @Deprecated
     public boolean doesBounce();
 
     /**
@@ -50,6 +52,8 @@ public interface Projectile extends Entity {
      * something.
      *
      * @param doesBounce 是否应该弹跳
+     * @deprecated 不起任何作用
      */
+    @Deprecated
     public void setBounce(boolean doesBounce);
 }
