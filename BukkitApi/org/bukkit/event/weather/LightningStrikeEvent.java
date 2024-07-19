@@ -99,6 +99,10 @@ public class LightningStrikeEvent extends WeatherEvent implements Cancellable {
          */
         WEATHER,
         /**
+         * 由附魔触发（非三叉戟）.
+         */
+        ENCHANTMENT,
+        /**
          * 未知触发原因.
          */
         UNKNOWN;

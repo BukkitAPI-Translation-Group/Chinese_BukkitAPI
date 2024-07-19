@@ -150,7 +150,17 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
     /**
      * 打开指定的物品栏.
      * <p>
+     * InventoryView 关联的玩家必须与此 HumanEntity 实例相同.
+     * <p>
+     * InventoryView 关联的玩家可通过 {@link InventoryView#getPlayer()} 获取.
+     * <p>
      * 原文:Opens an inventory window to the specified inventory view.
+     * <p>
+     * The player associated with the InventoryView must be the same as this
+     * instance of HumanEntity.
+     * <p>
+     * The player of the InventoryView can be checked using
+     * {@link InventoryView#getPlayer()}.
      *
      * @param inventory 要打开的物品栏视图
      */

@@ -1,6 +1,7 @@
 package org.bukkit.event.block;
 
 import java.util.List;
+import org.bukkit.ExplosionResult;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.event.Cancellable;
@@ -21,18 +22,15 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     private final BlockState blockState;
     private final List<Block> blocks;
     private float yield;
+    private final ExplosionResult result;
 
-    public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield) {
+    public BlockExplodeEvent(@NotNull final Block what, @NotNull final BlockState blockState, @NotNull final List<Block> blocks, final float yield, @NotNull final ExplosionResult result) {
         super(what);
         this.blockState = blockState;
         this.blocks = blocks;
         this.yield = yield;
         this.cancel = false;
-    }
-
-    @Deprecated(forRemoval = true)
-    public BlockExplodeEvent(@NotNull final Block what, @NotNull final List<Block> blocks, final float yield) {
-        this(what, what.getState(), blocks, yield);
+        this.result = result;
     }
 
     @Override
@@ -43,6 +41,18 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     @Override
     public void setCancelled(boolean cancel) {
         this.cancel = cancel;
+    }
+
+    /**
+     * 返回此次爆炸的结果 (如果事件未被取消).
+     * <p>
+     * 原文:Returns the result of the explosion if it is not cancelled.
+     *
+     * @return 爆炸结果
+     */
+    @NotNull
+    public ExplosionResult getExplosionResult() {
+        return result;
     }
 
     /**

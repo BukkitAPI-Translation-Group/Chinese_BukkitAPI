@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 import com.google.common.collect.Lists;
+import java.util.Locale;
 import org.bukkit.Color;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
@@ -249,6 +250,16 @@ public abstract class PotionEffectType implements Keyed, Translatable {
     public abstract boolean isInstant();
 
     /**
+     * 返回本效果所属的{@link PotionEffectTypeCategory 分类}.
+     * <p>
+     * 原文:Returns the {@link PotionEffectTypeCategory category} of this effect type.
+     *
+     * @return 分类
+     */
+    @NotNull
+    public abstract PotionEffectTypeCategory getCategory();
+
+    /**
      * 返回本效果的颜色.
      * <p>
      * 原文:Returns the color of this effect type.
@@ -280,11 +291,6 @@ public abstract class PotionEffectType implements Keyed, Translatable {
     @Deprecated
     public abstract int getId();
 
-    @NotNull
-    @Override
-    public NamespacedKey getKey() {
-       return key;
-    }
 
     /**
      * 返回本状态效果类型的名称.
@@ -359,7 +365,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
     @Deprecated
     public static PotionEffectType getByName(@NotNull String name) {
         Preconditions.checkArgument(name != null, "name cannot be null");
-        return Registry.EFFECT.get(NamespacedKey.fromString(name.toLowerCase(java.util.Locale.ENGLISH)));
+        return Registry.EFFECT.get(NamespacedKey.fromString(name.toLowerCase(Locale.ROOT)));
     }
 
     /**

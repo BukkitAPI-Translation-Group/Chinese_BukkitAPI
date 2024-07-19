@@ -1,5 +1,8 @@
 package org.bukkit.entity;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 /**
  * 代表苦力怕.
  */
@@ -93,11 +96,12 @@ public interface Creeper extends Monster {
 
     /**
      * 使该苦力怕立刻爆炸.
+     * <br>
      * 使用本方法引起的爆炸可被{@link org.bukkit.event.entity.ExplosionPrimeEvent}取消,
      * 并且遵循其所处世界的{@link org.bukkit.GameRule#MOB_GRIEFING mobGriefing游戏规则}.
      * <p>
      * 原文:Makes this Creeper explode instantly.
-     *
+     * <br>
      * The resulting explosion can be cancelled by an
      * {@link org.bukkit.event.entity.ExplosionPrimeEvent} and obeys the mob
      * griefing gamerule.
@@ -106,12 +110,33 @@ public interface Creeper extends Monster {
 
     /**
      * 点燃此苦力怕, 开始其爆炸计时.
+     * <br>
      * 苦力怕从点燃到爆炸所需时间取决于{@link #setMaxFuseTicks}的设置,默认值为30.
      * 使用本方法引起的爆炸可被{@link org.bukkit.event.entity.ExplosionPrimeEvent}取消,
      * 并且遵循其所处世界的{@link org.bukkit.GameRule#MOB_GRIEFING mobGriefing游戏规则}.
      * <p>
      * 原文:Ignites this Creeper, beginning its fuse.
+     * <br>
+     * The amount of time the Creeper takes to explode will depend on what
+     * {@link #setMaxFuseTicks} is set as.
+     * <br>
+     * The resulting explosion can be cancelled by an
+     * {@link org.bukkit.event.entity.ExplosionPrimeEvent} and obeys the mob
+     * griefing gamerule.
      *
+     * @param entity 点燃苦力怕的实体
+     */
+    public void ignite(@NotNull Entity entity);
+
+    /**
+     * 点燃此苦力怕, 开始其爆炸计时.
+     * <br>
+     * 苦力怕从点燃到爆炸所需时间取决于{@link #setMaxFuseTicks}的设置,默认值为30.
+     * 使用本方法引起的爆炸可被{@link org.bukkit.event.entity.ExplosionPrimeEvent}取消,
+     * 并且遵循其所处世界的{@link org.bukkit.GameRule#MOB_GRIEFING mobGriefing游戏规则}.
+     * <p>
+     * 原文:Ignites this Creeper, beginning its fuse.
+     * <br>
      * The amount of time the Creeper takes to explode will depend on what
      * {@link #setMaxFuseTicks} is set as.
      *
@@ -120,4 +145,14 @@ public interface Creeper extends Monster {
      * griefing gamerule.
      */
     public void ignite();
+
+    /**
+     * 获取点燃此苦力怕的实体（如存在）.
+     * <p>
+     * 原文:Gets the entity which ignited the creeper, if available.
+     *
+     * @return 点燃此苦力怕的实体，不存在返回 null
+     */
+    @Nullable
+    public Entity getIgniter();
 }

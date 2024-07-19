@@ -57,6 +57,7 @@ import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.structure.StructureManager;
 import org.bukkit.util.CachedServerIcon;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -785,8 +786,10 @@ public final class Bukkit {
     }
 
     /**
-     * 使用给定玩家名模糊搜索玩家.
-     * 这个方法不可能返回离线玩家的对象.
+     * 使用给定玩家名模糊搜索玩家（名字最近似的玩家）.
+     * <p>
+     * 使用 {@link #getPlayerExact(String)} 以精准匹配某个玩家，
+     * 若要搜索所有匹配的玩家，请使用 {@link #matchPlayer(String)}.
      * <p>
      * 译注: 注意此方法用于模糊搜索——当服务器内有玩家 aaa, aab, abc 时,
      * 使用 <code>getPlayer("ab")</code> 会返回玩家 abc 的实例, 而如果 ab 在线则会返回 ab 的实例
@@ -795,8 +798,10 @@ public final class Bukkit {
      * #getPlayer(java.util.UUID) } 代替.
      * <p>
      * 原文: 
-     * Gets a player object by the given username.
-     * This method may not return objects for offline players.
+     * Gets a player whose name matches the given name closest.
+     * <p>
+     * Use {@link #getPlayerExact(String)} to get the player matching the input exactly
+     * and {@link #matchPlayer(String)} if you want a list of all players matching the input.
      *
      * @param name 用来查找的玩家名
      * @return 如果找到了则返回玩家对象, 否则返回null
@@ -1171,6 +1176,31 @@ public final class Bukkit {
     @Nullable
     public static Recipe getRecipe(@NotNull NamespacedKey recipeKey) {
         return server.getRecipe(recipeKey);
+    }
+
+    /**
+     * Get the {@link Recipe} for the list of ItemStacks provided.
+     *
+     * <p>The list is formatted as a crafting matrix where the index follow
+     * the pattern below:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>NOTE: This method will not modify the provided ItemStack array, for that, use
+     * {@link #craftItem(ItemStack[], World, Player)}.</p>
+     *
+     * @param craftingMatrix list of items to be crafted from.
+     *                       Must not contain more than 9 items.
+     * @param world The world the crafting takes place in.
+     * @return the {@link Recipe} resulting from the given crafting matrix.
+     */
+    @Nullable
+    public static Recipe getCraftingRecipe(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
+        return server.getCraftingRecipe(craftingMatrix, world);
     }
 
     /**
@@ -2004,6 +2034,17 @@ public final class Bukkit {
      */
     public static void setMotd(@NotNull String motd) {
         server.setMotd(motd);
+    }
+
+    /**
+     * Gets the server links which will be sent to clients
+     *
+     * @return the server's links
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    public static ServerLinks getServerLinks() {
+        return server.getServerLinks();
     }
 
     /**

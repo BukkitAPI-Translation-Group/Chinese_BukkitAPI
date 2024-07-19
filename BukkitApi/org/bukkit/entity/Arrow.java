@@ -2,6 +2,7 @@ package org.bukkit.entity;
 
 import java.util.List;
 import org.bukkit.Color;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
@@ -12,6 +13,25 @@ import org.jetbrains.annotations.Nullable;
  * 表示一只箭矢.
  */
 public interface Arrow extends AbstractArrow {
+
+    /**
+     * Sets the underlying potion data
+     *
+     * @param data PotionData to set the base potion state to
+     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #setBasePotionType} instead.
+     */
+    @Deprecated
+    void setBasePotionData(@Nullable PotionData data);
+
+    /**
+     * Returns the potion data about the base potion
+     *
+     * @return a PotionData object
+     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #getBasePotionType()} instead.
+     */
+    @Nullable
+    @Deprecated
+    PotionData getBasePotionData();
 
     /**
      * Sets the underlying potion type

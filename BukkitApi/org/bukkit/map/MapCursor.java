@@ -1,7 +1,12 @@
 package org.bukkit.map;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import java.util.Locale;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
+import org.bukkit.util.OldEnum;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -13,9 +18,10 @@ import org.jetbrains.annotations.Nullable;
  */
 public final class MapCursor {
     private byte x, y;
-    private byte direction, type;
+    private byte direction;
     private boolean visible;
     private String caption;
+    private Type type;
 
     /**
      * 初始化地图光标.
@@ -60,7 +66,7 @@ public final class MapCursor {
      * @param type 地图光标的类型（颜色、风格）
      * @param visible 光标在默认情况下是否可见
      * @param caption 光标标题
-     * @deprecated 不安全的参数
+     * @deprecated 不安全的参数，请使用 {@link #MapCursor(byte, byte, byte, Type, boolean, String)}
      */
     @Deprecated
     public MapCursor(byte x, byte y, byte direction, byte type, boolean visible, @Nullable String caption) {
@@ -88,7 +94,7 @@ public final class MapCursor {
         this.x = x;
         this.y = y;
         setDirection(direction);
-        setType(type);
+        this.type = type;
         this.visible = visible;
         this.caption = caption;
     }
@@ -139,8 +145,7 @@ public final class MapCursor {
      */
     @NotNull
     public Type getType() {
-        // It should be impossible to set type to something without appropriate Type, so this shouldn't return null
-        return Type.byValue(type);
+        return type;
     }
 
     /**
@@ -154,7 +159,7 @@ public final class MapCursor {
      */
     @Deprecated
     public byte getRawType() {
-        return type;
+        return type.getValue();
     }
 
     /**
@@ -202,9 +207,7 @@ public final class MapCursor {
      * @param direction 这个光标的朝向，范围为0到15
      */
     public void setDirection(byte direction) {
-        if (direction < 0 || direction > 15) {
-            throw new IllegalArgumentException("Direction must be in the range 0-15");
-        }
+        Preconditions.checkArgument(direction >= 0 && direction <= 15, "direction must be between 0 and 15 but is %s", direction);
         this.direction = direction;
     }
 
@@ -217,7 +220,7 @@ public final class MapCursor {
      * @param type 地图光标的类型（颜色、风格）
      */
     public void setType(@NotNull Type type) {
-        setRawType(type.value);
+        this.type = type;
     }
 
     /**
@@ -231,10 +234,9 @@ public final class MapCursor {
      */
     @Deprecated
     public void setRawType(byte type) {
-        if (type < 0 || type > 26) {
-            throw new IllegalArgumentException("Type must be in the range 0-26");
-        }
-        this.type = type;
+        Type enumType = Type.byValue(type);
+        Preconditions.checkArgument(enumType != null, "Unknown type by id %s", type);
+        this.type = enumType;
     }
 
     /**
@@ -277,56 +279,51 @@ public final class MapCursor {
      * index in the file './assets/minecraft/textures/map/map_icons.png' from minecraft.jar or from a
      * resource pack.
      */
-    public enum Type implements Keyed {
-        PLAYER(0, "player"),
-        FRAME(1, "frame"),
-        RED_MARKER(2, "red_marker"),
-        BLUE_MARKER(3, "blue_marker"),
-        TARGET_X(4, "target_x"),
-        TARGET_POINT(5, "target_point"),
-        PLAYER_OFF_MAP(6, "player_off_map"),
-        PLAYER_OFF_LIMITS(7, "player_off_limits"),
-        MANSION(8, "mansion"),
-        MONUMENT(9, "monument"),
-        BANNER_WHITE(10, "banner_white"),
-        BANNER_ORANGE(11, "banner_orange"),
-        BANNER_MAGENTA(12, "banner_magenta"),
-        BANNER_LIGHT_BLUE(13, "banner_light_blue"),
-        BANNER_YELLOW(14, "banner_yellow"),
-        BANNER_LIME(15, "banner_lime"),
-        BANNER_PINK(16, "banner_pink"),
-        BANNER_GRAY(17, "banner_gray"),
-        BANNER_LIGHT_GRAY(18, "banner_light_gray"),
-        BANNER_CYAN(19, "banner_cyan"),
-        BANNER_PURPLE(20, "banner_purple"),
-        BANNER_BLUE(21, "banner_blue"),
-        BANNER_BROWN(22, "banner_brown"),
-        BANNER_GREEN(23, "banner_green"),
-        BANNER_RED(24, "banner_red"),
-        BANNER_BLACK(25, "banner_black"),
-        RED_X(26, "red_x"),
-        VILLAGE_DESERT(27, "village_desert"),
-        VILLAGE_PLAINS(28, "village_plains"),
-        VILLAGE_SAVANNA(29, "village_savanna"),
-        VILLAGE_SNOWY(30, "village_snowy"),
-        VILLAGE_TAIGA(31, "village_taiga"),
-        JUNGLE_TEMPLE(32, "jungle_temple"),
-        SWAMP_HUT(33, "swamp_hut"),
-        TRIAL_CHAMBERS(34, "trial_chambers")
-        ;
+    public interface Type extends OldEnum<Type>, Keyed {
 
-        private byte value;
-        private final NamespacedKey key;
-
-        private Type(int value, String key) {
-            this.value = (byte) value;
-            this.key = NamespacedKey.minecraft(key);
-        }
+        Type PLAYER = getType("player");
+        Type FRAME = getType("frame");
+        Type RED_MARKER = getType("red_marker");
+        Type BLUE_MARKER = getType("blue_marker");
+        Type TARGET_X = getType("target_x");
+        Type TARGET_POINT = getType("target_point");
+        Type PLAYER_OFF_MAP = getType("player_off_map");
+        Type PLAYER_OFF_LIMITS = getType("player_off_limits");
+        Type MANSION = getType("mansion");
+        Type MONUMENT = getType("monument");
+        Type BANNER_WHITE = getType("banner_white");
+        Type BANNER_ORANGE = getType("banner_orange");
+        Type BANNER_MAGENTA = getType("banner_magenta");
+        Type BANNER_LIGHT_BLUE = getType("banner_light_blue");
+        Type BANNER_YELLOW = getType("banner_yellow");
+        Type BANNER_LIME = getType("banner_lime");
+        Type BANNER_PINK = getType("banner_pink");
+        Type BANNER_GRAY = getType("banner_gray");
+        Type BANNER_LIGHT_GRAY = getType("banner_light_gray");
+        Type BANNER_CYAN = getType("banner_cyan");
+        Type BANNER_PURPLE = getType("banner_purple");
+        Type BANNER_BLUE = getType("banner_blue");
+        Type BANNER_BROWN = getType("banner_brown");
+        Type BANNER_GREEN = getType("banner_green");
+        Type BANNER_RED = getType("banner_red");
+        Type BANNER_BLACK = getType("banner_black");
+        Type RED_X = getType("red_x");
+        Type VILLAGE_DESERT = getType("village_desert");
+        Type VILLAGE_PLAINS = getType("village_plains");
+        Type VILLAGE_SAVANNA = getType("village_savanna");
+        Type VILLAGE_SNOWY = getType("village_snowy");
+        Type VILLAGE_TAIGA = getType("village_taiga");
+        Type JUNGLE_TEMPLE = getType("jungle_temple");
+        Type SWAMP_HUT = getType("swamp_hut");
+        Type TRIAL_CHAMBERS = getType("trial_chambers");
 
         @NotNull
-        @Override
-        public NamespacedKey getKey() {
-            return key;
+        private static Type getType(@NotNull String key) {
+            NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
+            Type type = Registry.MAP_DECORATION_TYPE.get(namespacedKey);
+
+            Preconditions.checkNotNull(type, "No type found for %s. This is a bug.", namespacedKey);
+            return type;
         }
 
         /**
@@ -336,9 +333,7 @@ public final class MapCursor {
          * @deprecated Magic value
          */
         @Deprecated
-        public byte getValue() {
-            return value;
-        }
+        byte getValue();
 
         /**
          * Get a cursor by its internal value.
@@ -349,11 +344,34 @@ public final class MapCursor {
          */
         @Deprecated
         @Nullable
-        public static Type byValue(byte value) {
+        static Type byValue(byte value) {
             for (Type t : values()) {
-                if (t.value == value) return t;
+                if (t.getValue() == value) return t;
             }
             return null;
+        }
+
+        /**
+         * @param name of the type.
+         * @return the type with the given name.
+         * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+         */
+        @NotNull
+        @Deprecated(since = "1.21")
+        static Type valueOf(@NotNull String name) {
+            Type type = Registry.MAP_DECORATION_TYPE.get(NamespacedKey.fromString(name.toLowerCase(Locale.ROOT)));
+            Preconditions.checkArgument(type != null, "No Type found with the name %s", name);
+            return type;
+        }
+
+        /**
+         * @return an array of all known map cursor types.
+         * @deprecated use {@link Registry#iterator()}.
+         */
+        @NotNull
+        @Deprecated(since = "1.21")
+        static Type[] values() {
+            return Lists.newArrayList(Registry.MAP_DECORATION_TYPE).toArray(new Type[0]);
         }
     }
 

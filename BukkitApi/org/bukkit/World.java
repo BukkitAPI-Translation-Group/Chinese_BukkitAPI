@@ -386,6 +386,33 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public boolean refreshChunk(int x, int z);
 
     /**
+     * Get a list of all players who are can view the specified chunk from their
+     * client
+     * <p>
+     * This list will be empty if no players are viewing the chunk, or the chunk
+     * is unloaded.
+     *
+     * @param chunk the chunk to check
+     * @return collection of players who can see the chunk
+     */
+    @NotNull
+    public Collection<Player> getPlayersSeeingChunk(@NotNull Chunk chunk);
+
+    /**
+     * Get a list of all players who are can view the specified chunk from their
+     * client
+     * <p>
+     * This list will be empty if no players are viewing the chunk, or the chunk
+     * is unloaded.
+     *
+     * @param x X-coordinate of the chunk
+     * @param z Z-coordinate of the chunk
+     * @return collection of players who can see the chunk
+     */
+    @NotNull
+    public Collection<Player> getPlayersSeeingChunk(int x, int z);
+
+    /**
      * Gets whether the chunk at the specified chunk coordinates is force
      * loaded.
      * <p>
@@ -490,15 +517,6 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Collection<Plugin> getPluginChunkTickets(int x, int z);
 
     /**
-     * Gets all Chunks intersecting the given BoundingBox.
-     *
-     * @param box BoundingBox to check
-     * @return A collection of Chunks intersecting the given BoundingBox
-     */
-    @NotNull
-    public Collection<Chunk> getIntersectingChunks(@NotNull BoundingBox box);
-
-    /**
      * Returns a map of which plugins have tickets for what chunks. The returned
      * map is not updated when plugin tickets are added or removed to chunks. If
      * a plugin has no tickets, it will be absent from the map.
@@ -515,6 +533,15 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      */
     @NotNull
     public Map<Plugin, Collection<Chunk>> getPluginChunkTickets();
+
+    /**
+     * Gets all Chunks intersecting the given BoundingBox.
+     *
+     * @param box BoundingBox to check
+     * @return A collection of Chunks intersecting the given BoundingBox
+     */
+    @NotNull
+    public Collection<Chunk> getIntersectingChunks(@NotNull BoundingBox box);
 
     /**
      * 在指定的{@link Location 位置}丢出一个物品.

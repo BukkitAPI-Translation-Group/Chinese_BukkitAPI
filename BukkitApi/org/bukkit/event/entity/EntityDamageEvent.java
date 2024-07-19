@@ -263,6 +263,10 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         BASE,
         /**
+         * This represents the damage increased by freezing status.
+         */
+        FREEZING,
+        /**
          * This represents the damage reduced by a wearing a helmet when hit
          * by a falling block.
          */
@@ -603,6 +607,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          * Damage: 1
          */
         HOT_FLOOR,
+        /**
+         * Damage caused when an entity steps on {@link Material#CAMPFIRE} or {@link Material#SOUL_CAMPFIRE}.
+         * <p>
+         * Damage: 1
+         */
+        CAMPFIRE,
         /**
          * 由于游戏规则:maxEntityCramming,一个实体和许多其他实体挤压受到的伤害.
          * <p>

@@ -18,7 +18,7 @@ public interface Messenger {
     /**
      * 代表单个插件消息的最大大小.
      */
-    public static final int MAX_MESSAGE_SIZE = 32766;
+    public static final int MAX_MESSAGE_SIZE = 1048576;
 
     /**
      * 代表单个插件通道的最大大小.

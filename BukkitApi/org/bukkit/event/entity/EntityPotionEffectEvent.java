@@ -207,7 +207,7 @@ public class EntityPotionEffectEvent extends EntityEvent implements Cancellable 
          */
         CONVERSION,
         /**
-         * 当所有效果因死亡而被移除时 (注:重生时调用此事件, 因此这种情况仅针对于玩家!).
+         * 当所有效果因死亡而被移除时.
          */
         DEATH,
         /**

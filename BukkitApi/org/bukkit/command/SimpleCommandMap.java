@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import org.bukkit.Location;
 import org.bukkit.Server;
@@ -67,8 +68,8 @@ public class SimpleCommandMap implements CommandMap {
      */
     @Override
     public boolean register(@NotNull String label, @NotNull String fallbackPrefix, @NotNull Command command) {
-        label = label.toLowerCase(java.util.Locale.ENGLISH).trim();
-        fallbackPrefix = fallbackPrefix.toLowerCase(java.util.Locale.ENGLISH).trim();
+        label = label.toLowerCase(Locale.ROOT).trim();
+        fallbackPrefix = fallbackPrefix.toLowerCase(Locale.ROOT).trim();
         boolean registered = register(label, command, false, fallbackPrefix);
 
         Iterator<String> iterator = command.getAliases().iterator();
@@ -90,16 +91,15 @@ public class SimpleCommandMap implements CommandMap {
     }
 
     /**
-     * 用给定的可能的名称注册命令.另外使用fallbackPrefix来创建唯一名称.
-     * <p>
-     * 原文:Registers a command with the given name is possible. Also uses
+     * Registers a command with the given name is possible. Also uses
      * fallbackPrefix to create a unique name.
      *
-     * @param label 这个命令的名称，没有“/”前缀
-     * @param command 要注册的命令
-     * @param isAlias 这个命令是不是以别名执行的
-     * @param fallbackPrefix 添加到命令的前缀作为唯一地址
-     * @return 如果命令注册成功则为true，false反之
+     * @param label the name of the command, without the '/'-prefix.
+     * @param command the command to register
+     * @param isAlias whether the command is an alias
+     * @param fallbackPrefix a prefix which is prepended to the command for a
+     *     unique address
+     * @return true if command was registered, false otherwise.
      */
     private synchronized boolean register(@NotNull String label, @NotNull Command command, boolean isAlias, @NotNull String fallbackPrefix) {
         knownCommands.put(fallbackPrefix + ":" + label, command);
@@ -137,7 +137,7 @@ public class SimpleCommandMap implements CommandMap {
             return false;
         }
 
-        String sentCommandLabel = args[0].toLowerCase(java.util.Locale.ENGLISH);
+        String sentCommandLabel = args[0].toLowerCase(Locale.ROOT);
         Command target = getCommand(sentCommandLabel);
 
         if (target == null) {
@@ -173,7 +173,7 @@ public class SimpleCommandMap implements CommandMap {
     @Override
     @Nullable
     public Command getCommand(@NotNull String name) {
-        Command target = knownCommands.get(name.toLowerCase(java.util.Locale.ENGLISH));
+        Command target = knownCommands.get(name.toLowerCase(Locale.ROOT));
         return target;
     }
 
@@ -277,9 +277,9 @@ public class SimpleCommandMap implements CommandMap {
 
             // We register these as commands so they have absolute priority.
             if (targets.size() > 0) {
-                knownCommands.put(alias.toLowerCase(java.util.Locale.ENGLISH), new FormattedCommandAlias(alias.toLowerCase(java.util.Locale.ENGLISH), targets.toArray(new String[targets.size()])));
+                knownCommands.put(alias.toLowerCase(Locale.ROOT), new FormattedCommandAlias(alias.toLowerCase(Locale.ROOT), targets.toArray(new String[targets.size()])));
             } else {
-                knownCommands.remove(alias.toLowerCase(java.util.Locale.ENGLISH));
+                knownCommands.remove(alias.toLowerCase(Locale.ROOT));
             }
         }
     }

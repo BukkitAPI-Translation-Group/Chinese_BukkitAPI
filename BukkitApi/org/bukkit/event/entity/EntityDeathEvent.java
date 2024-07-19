@@ -1,25 +1,28 @@
 package org.bukkit.event.entity;
 
 import java.util.List;
+import org.bukkit.damage.DamageSource;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 当任何一个实体死亡时触发本事件
+ * 当一个实体死亡时触发本事件
  */
 public class EntityDeathEvent extends EntityEvent {
     private static final HandlerList handlers = new HandlerList();
+    private final DamageSource damageSource;
     private final List<ItemStack> drops;
     private int dropExp = 0;
 
-    public EntityDeathEvent(@NotNull final LivingEntity entity, @NotNull final List<ItemStack> drops) {
-        this(entity, drops, 0);
+    public EntityDeathEvent(@NotNull final LivingEntity entity, @NotNull DamageSource damageSource, @NotNull final List<ItemStack> drops) {
+        this(entity, damageSource, drops, 0);
     }
 
-    public EntityDeathEvent(@NotNull final LivingEntity what, @NotNull final List<ItemStack> drops, final int droppedExp) {
+    public EntityDeathEvent(@NotNull final LivingEntity what, @NotNull DamageSource damageSource, @NotNull final List<ItemStack> drops, final int droppedExp) {
         super(what);
+        this.damageSource = damageSource;
         this.drops = drops;
         this.dropExp = droppedExp;
     }
@@ -28,6 +31,18 @@ public class EntityDeathEvent extends EntityEvent {
     @Override
     public LivingEntity getEntity() {
         return (LivingEntity) entity;
+    }
+
+    /**
+     * 获取造成此实体死亡的伤害来源.
+     * <p>
+     * 原文:Gets the source of damage which caused the death.
+     *
+     * @return 造成此实体死亡的伤害来源
+     */
+    @NotNull
+    public DamageSource getDamageSource() {
+        return damageSource;
     }
 
     /**

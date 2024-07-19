@@ -21,6 +21,7 @@ import org.bukkit.Note;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.Particle;
 import org.bukkit.Server;
+import org.bukkit.ServerLinks;
 import org.bukkit.Sound;
 import org.bukkit.SoundCategory;
 import org.bukkit.WeatherType;
@@ -206,7 +207,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * null value.
      */
     @NotNull
-    @ApiStatus.Experimental
     CompletableFuture<byte[]> retrieveCookie(@NotNull NamespacedKey key);
 
     /**
@@ -216,7 +216,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param value the data to store in the cookie
      * @throws IllegalStateException if a cookie cannot be stored at this time
      */
-    @ApiStatus.Experimental
     void storeCookie(@NotNull NamespacedKey key, @NotNull byte[] value);
 
     /**
@@ -228,7 +227,6 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalStateException if a transfer cannot take place at this
      * time
      */
-    @ApiStatus.Experimental
     void transfer(@NotNull String host, int port);
 
     /**
@@ -1142,6 +1140,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendHurtAnimation(float yaw);
 
     /**
+     * Sends the given server links to the player.
+     *
+     * @param links links to send
+     */
+    public void sendLinks(@NotNull ServerLinks links);
+
+    /**
      * Add custom chat completion suggestions shown to the player while typing a
      * message.
      *
@@ -1507,9 +1512,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param entity Entity to check
      * @return True if the provided entity is not being hidden from this
      *     player
-     * @apiNote draft API
      */
-    @ApiStatus.Experimental
     public boolean canSee(@NotNull Entity entity);
 
     /**
@@ -2330,6 +2333,54 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
+     * @param particle the particle to spawn
+     * @param location the location to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     * @param force whether to send the particle to the player in an extended
+     *              range and encourage their client to render it regardless of
+     *              settings
+     */
+    public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
+
+    /**
+     * Spawns the particle (the number of times specified by count)
+     * at the target location. The position of each particle will be
+     * randomized positively and negatively by the offset parameters
+     * on each axis.
+     *
+     * @param <T> type of particle data (see {@link Particle#getDataType()}
+     * @param particle the particle to spawn
+     * @param x the position on the x axis to spawn at
+     * @param y the position on the y axis to spawn at
+     * @param z the position on the z axis to spawn at
+     * @param count the number of particles
+     * @param offsetX the maximum random offset on the X axis
+     * @param offsetY the maximum random offset on the Y axis
+     * @param offsetZ the maximum random offset on the Z axis
+     * @param extra the extra data for this particle, depends on the
+     *              particle used (normally speed)
+     * @param data the data to use for the particle or null,
+     *             the type of this depends on {@link Particle#getDataType()}
+     * @param force whether to send the particle to the player in an extended
+     *              range and encourage their client to render it regardless of
+     *              settings
+     */
+    public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
     /**
      * 返回玩家指定进度的完成进度.

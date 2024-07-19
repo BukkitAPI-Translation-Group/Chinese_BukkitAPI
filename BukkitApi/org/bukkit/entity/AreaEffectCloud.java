@@ -3,6 +3,7 @@ package org.bukkit.entity;
 import java.util.List;
 import org.bukkit.Color;
 import org.bukkit.Particle;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.potion.PotionType;
@@ -197,6 +198,25 @@ public interface AreaEffectCloud extends Entity {
      * @param data 为此粒子效果使用的数据, 可为null, 数据类型取决于 {@link Particle#getDataType()}
      */
     <T> void setParticle(@NotNull Particle particle, @Nullable T data);
+
+    /**
+     * Sets the underlying potion data
+     *
+     * @param data PotionData to set the base potion state to
+     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #setBasePotionType} instead.
+     */
+    @Deprecated
+    void setBasePotionData(@Nullable PotionData data);
+
+    /**
+     * Returns the potion data about the base potion
+     *
+     * @return a PotionData object
+     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #getBasePotionType()} instead.
+     */
+    @Nullable
+    @Deprecated
+    PotionData getBasePotionData();
 
     /**
      * 设置基本药水类型.

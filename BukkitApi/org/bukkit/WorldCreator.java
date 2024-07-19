@@ -442,6 +442,17 @@ public class WorldCreator {
     }
 
     /**
+     * Gets whether the world will be hardcore or not.
+     *
+     * In a hardcore world the difficulty will be locked to hard.
+     *
+     * @return hardcore status
+     */
+    public boolean hardcore() {
+        return hardcore;
+    }
+
+    /**
      * Sets whether the spawn chunks will be kept loaded. <br>
      * Setting this to false will also stop the spawn chunks from being generated
      * when creating a new world.
@@ -466,17 +477,6 @@ public class WorldCreator {
      */
     public boolean keepSpawnInMemory() {
         return keepSpawnInMemory;
-    }
-
-    /**
-     * Gets whether the world will be hardcore or not.
-     *
-     * In a hardcore world the difficulty will be locked to hard.
-     *
-     * @return hardcore status
-     */
-    public boolean hardcore() {
-        return hardcore;
     }
 
     /**
