@@ -99,7 +99,7 @@ public interface TrimPattern extends Keyed, Translatable {
      */
     public static final TrimPattern FLOW = Registry.TRIM_PATTERN.get(NamespacedKey.minecraft("flow"));
     /**
-     * 闪电盔甲纹饰
+     * 镶铆盔甲纹饰
      * {@link Material#BOLT_ARMOR_TRIM_SMITHING_TEMPLATE}.
      */
     public static final TrimPattern BOLT = Registry.TRIM_PATTERN.get(NamespacedKey.minecraft("bolt"));
