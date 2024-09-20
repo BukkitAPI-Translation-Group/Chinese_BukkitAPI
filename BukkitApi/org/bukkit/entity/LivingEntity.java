@@ -120,6 +120,13 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public List<Block> getLastTwoTargetBlocks(@Nullable Set<Material> transparent, int maxDistance);
 
     /**
+     * 获取该生物实体瞄准的方块。
+     * <p>
+     * 这会考虑方块的精确碰撞形状。流体将被忽略。
+     * <p>
+     * 此操作可能会导致区块加载！某些实现可能会对最大距离施加人工限制。
+     * <p>
+     * 原文：
      * Gets the block that the living entity has targeted.
      * <p>
      * This takes the blocks' precise collision shapes into account. Fluids are
@@ -128,14 +135,21 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * This may cause loading of chunks! Some implementations may impose
      * artificial restrictions on the maximum distance.
      *
-     * @param maxDistance the maximum distance to scan
-     * @return block that the living entity has targeted
+     * @param maxDistance 扫描的最大距离
+     * @return 生物实体瞄准的方块
      * @see #getTargetBlockExact(int, org.bukkit.FluidCollisionMode)
      */
     @Nullable
     public Block getTargetBlockExact(int maxDistance);
 
     /**
+     * 获取该生物实体瞄准的方块。
+     * <p>
+     * 这会考虑方块的精确碰撞形状。
+     * <p>
+     * 此操作可能会导致区块加载！某些实现可能会对最大距离施加人工限制。
+     * <p>
+     * 原文：
      * Gets the block that the living entity has targeted.
      * <p>
      * This takes the blocks' precise collision shapes into account.
@@ -143,15 +157,22 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * This may cause loading of chunks! Some implementations may impose
      * artificial restrictions on the maximum distance.
      *
-     * @param maxDistance the maximum distance to scan
-     * @param fluidCollisionMode the fluid collision mode
-     * @return block that the living entity has targeted
+     * @param maxDistance 扫描的最大距离
+     * @param fluidCollisionMode 流体碰撞模式
+     * @return 生物实体瞄准的方块
      * @see #rayTraceBlocks(double, FluidCollisionMode)
      */
     @Nullable
     public Block getTargetBlockExact(int maxDistance, @NotNull FluidCollisionMode fluidCollisionMode);
 
     /**
+     * 执行一次射线追踪，提供有关目标方块的信息。
+     * <p>
+     * 这会考虑方块的精确碰撞形状。流体将被忽略。
+     * <p>
+     * 此操作可能会导致区块加载！某些实现可能会对最大距离施加人工限制。
+     * <p>
+     * 原文：
      * Performs a ray trace that provides information on the targeted block.
      * <p>
      * This takes the blocks' precise collision shapes into account. Fluids are
@@ -160,15 +181,21 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * This may cause loading of chunks! Some implementations may impose
      * artificial restrictions on the maximum distance.
      *
-     * @param maxDistance the maximum distance to scan
-     * @return information on the targeted block, or <code>null</code> if there
-     *     is no targeted block in range
+     * @param maxDistance 扫描的最大距离
+     * @return 目标方块的信息，如果范围内没有目标方块则返回 <code>null</code>
      * @see #rayTraceBlocks(double, FluidCollisionMode)
      */
     @Nullable
     public RayTraceResult rayTraceBlocks(double maxDistance);
 
     /**
+     * 执行一次射线追踪，提供有关目标方块的信息。
+     * <p>
+     * 这会考虑方块的精确碰撞形状。
+     * <p>
+     * 此操作可能会导致区块加载！某些实现可能会对最大距离施加人工限制。
+     * <p>
+     * 原文：
      * Performs a ray trace that provides information on the targeted block.
      * <p>
      * This takes the blocks' precise collision shapes into account.
@@ -176,10 +203,9 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * This may cause loading of chunks! Some implementations may impose
      * artificial restrictions on the maximum distance.
      *
-     * @param maxDistance the maximum distance to scan
-     * @param fluidCollisionMode the fluid collision mode
-     * @return information on the targeted block, or <code>null</code> if there
-     *     is no targeted block in range
+     * @param maxDistance 扫描的最大距离
+     * @param fluidCollisionMode 流体碰撞模式
+     * @return 目标方块的信息，如果范围内没有目标方块则返回 <code>null</code>
      * @see World#rayTraceBlocks(Location, Vector, double, FluidCollisionMode)
      */
     @Nullable
@@ -227,56 +253,77 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void setMaximumAir(int ticks);
 
     /**
+     * 获取玩家正在使用的物品（吃食物、拉弓、格挡等）。
+     * <p>
+     * 原文：
      * Gets the item that the player is using (eating food, drawing back a bow,
      * blocking, etc.)
      *
-     * @return the item being used by the player, or null if they are not using
-     * an item
+     * @return 玩家正在使用的物品，如果未使用物品则返回 null
      */
     @Nullable
     public ItemStack getItemInUse();
 
     /**
+     * 获取当前物品使用的剩余 tick 数。
+     * <p>
+     * 原文：
      * Gets the number of ticks remaining for the current item's usage.
      *
-     * @return The number of ticks remaining
+     * @return 剩余的 tick 数
      */
     public int getItemInUseTicks();
 
     /**
+     * 设置当前物品使用的剩余 tick 数。
+     * 适用于需要时间使用的物品，如吃食物、拉弓或投掷三叉戟。
+     * <p>
+     * 原文：
      * Sets the number of ticks that remain for the current item's usage.
      * Applies to items that take time to use, like eating food, drawing a bow,
      * or throwing a trident.
      *
-     * @param ticks The number of ticks remaining
+     * @param ticks 剩余的 tick 数
      */
     public void setItemInUseTicks(int ticks);
 
     /**
+     * 获取箭矢离开实体身体的剩余时间（以 tick 为单位）。
+     * <p>
+     * 原文：
      * Gets the time in ticks until the next arrow leaves the entity's body.
      *
-     * @return ticks until arrow leaves
+     * @return 箭矢离开的 tick 数
      */
     public int getArrowCooldown();
 
     /**
+     * 设置箭矢离开实体身体的剩余时间（以 tick 为单位）。
+     * <p>
+     * 原文：
      * Sets the time in ticks until the next arrow leaves the entity's body.
      *
-     * @param ticks time until arrow leaves
+     * @param ticks 箭矢离开的时间
      */
     public void setArrowCooldown(int ticks);
 
     /**
+     * 获取实体身体内的箭矢数量。
+     * <p>
+     * 原文：
      * Gets the amount of arrows in an entity's body.
      *
-     * @return amount of arrows in body
+     * @return 身体内的箭矢数量
      */
     public int getArrowsInBody();
 
     /**
+     * 设置实体身体内的箭矢数量。
+     * <p>
+     * 原文：
      * Set the amount of arrows in the entity's body.
      *
-     * @param count amount of arrows in entity's body
+     * @param count 实体身体内的箭矢数量
      */
     public void setArrowsInBody(int count);
 
@@ -310,7 +357,8 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * <p>
      * 只有当伤害高于这个数值时生物实体才会进一步受到伤害.
      * <p>
-     * 原文:Returns the living entity's last damage taken in the current no damage
+     * 原文:
+     * Returns the living entity's last damage taken in the current no damage
      * ticks time.
      * <p>
      * Only damage higher than this amount will further damage the living
@@ -351,6 +399,13 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void setNoDamageTicks(int ticks);
 
     /**
+     * 获取此实体未执行任何操作的 tick 数。
+     * <p>
+     * "未操作 tick" 的具体含义因实体而异，无法明确定义。
+     * 一些示例包括乌贼使用此值来判断何时游泳，袭击者判断何时被驱逐出袭击，
+     * 或生物（如凋灵）作为消失的条件。
+     * <p>
+     * 原文：
      * Get the ticks that this entity has performed no action.
      * <p>
      * The details of what "no action ticks" entails varies from entity to entity
@@ -358,11 +413,18 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * value to determine when to swim, raiders for when they are to be expelled
      * from raids, or creatures (such as withers) as a requirement to be despawned.
      *
-     * @return amount of no action ticks
+     * @return 未操作的 tick 数
      */
     public int getNoActionTicks();
 
     /**
+     * 设置此实体未执行任何操作的 tick 数。
+     * <p>
+     * "未操作 tick" 的具体含义因实体而异，无法明确定义。
+     * 一些示例包括乌贼使用此值来判断何时游泳，袭击者判断何时被驱逐出袭击，
+     * 或生物（如凋灵）作为消失的条件。
+     * <p>
+     * 原文：
      * Set the ticks that this entity has performed no action.
      * <p>
      * The details of what "no action ticks" entails varies from entity to entity
@@ -370,7 +432,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * value to determine when to swim, raiders for when they are to be expelled
      * from raids, or creatures (such as withers) as a requirement to be despawned.
      *
-     * @param ticks amount of no action ticks
+     * @param ticks 未操作的 tick 数
      */
     public void setNoActionTicks(int ticks);
 
@@ -606,33 +668,47 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public boolean isGliding();
 
     /**
+     * 使实体开始或停止滑翔。即使没有装备鞘翅，这也会有效，但除非有事件取消机制，否则服务器会立即恢复。
+     * <p>
+     * 原文：
      * Makes entity start or stop gliding. This will work even if an Elytra
      * is not equipped, but will be reverted by the server immediately after
      * unless an event-cancelling mechanism is put in place.
-     * @param gliding True if the entity is gliding.
+     * @param gliding 如果实体正在滑翔，则为 true。
      */
     public void setGliding(boolean gliding);
 
     /**
+     * 检查实体是否正在游泳。
+     * <p>
+     * 原文：
      * Checks to see if an entity is swimming.
      *
-     * @return True if this entity is swimming.
+     * @return 如果该实体正在游泳，则返回 true。
      */
     public boolean isSwimming();
 
     /**
+     * 使实体开始或停止游泳。
+     *
+     * 如果实体不在水中，可能会产生意想不到的结果。
+     * <p>
+     * 原文：
      * Makes entity start or stop swimming.
      *
      * This may have unexpected results if the entity is not in water.
      *
-     * @param swimming True if the entity is swimming.
+     * @param swimming 如果实体正在游泳，则为 true。
      */
     public void setSwimming(boolean swimming);
 
     /**
+     * 检查实体是否正在使用涡流附魔。
+     * <p>
+     * 原文：
      * Checks to see if an entity is currently using the Riptide enchantment.
      *
-     * @return True if this entity is currently riptiding.
+     * @return 如果该实体当前正在使用涡流，则返回 true。
      */
     public boolean isRiptiding();
 
@@ -679,17 +755,26 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     boolean hasAI();
 
     /**
+     * 让此实体对指定实体进行近战攻击。
+     * 攻击伤害由服务器根据该生物的属性和装备计算，
+     * 根据需要对 {@code target} 施加击退效果。
+     * <p>
+     * 原文：
      * Makes this entity attack the given entity with a melee attack.
      *
      * Attack damage is calculated by the server from the attributes and
      * equipment of this mob, and knockback is applied to {@code target} as
      * appropriate.
      *
-     * @param target entity to attack.
+     * @param target 要攻击的实体。
      */
     public void attack(@NotNull Entity target);
 
     /**
+     * 让此实体挥动其主手。
+     * 如果此实体没有挥动主手的动画，则此方法不会执行任何操作。
+     * <p>
+     * 原文：
      * Makes this entity swing their main hand.
      *
      * This method does nothing if this entity does not have an animation for
@@ -698,6 +783,10 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void swingMainHand();
 
     /**
+     * 让此实体挥动其副手。
+     * 如果此实体没有挥动副手的动画，则此方法不会执行任何操作。
+     * <p>
+     * 原文：
      * Makes this entity swing their off hand.
      *
      * This method does nothing if this entity does not have an animation for
@@ -706,15 +795,26 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void swingOffHand();
 
     /**
+     * 使此实体闪烁红色，仿佛它们受到了伤害。
+     * <p>
+     * 原文：
      * Makes this entity flash red as if they were damaged.
      *
-     * @param yaw The direction the damage is coming from in relation to the
-     * entity, where 0 is in front of the player, 90 is to the right, 180 is
-     * behind, and 270 is to the left
+     * @param yaw 伤害来源相对于实体的方向，其中 0 表示玩家面前，90 表示右侧，180 表示后方，270 表示左侧。
      */
     public void playHurtAnimation(float yaw);
 
     /**
+     * 设置此实体是否会与其他实体发生碰撞。
+     * <p>
+     * 对此规则的豁免可以通过 {@link #getCollidableExemptions()} 进行管理。
+     * <p>
+     * 请注意，客户端可能会预测其与其他实体之间的碰撞，导致此标志在玩家碰撞时无效。
+     * 因此，此方法应仅用于设置非玩家实体的碰撞状态。
+     * <p>
+     * 要控制玩家碰撞，请使用 {@link Team.Option#COLLISION_RULE}，结合 {@link Scoreboard} 和 {@link Team}。
+     * <p>
+     * 原文：
      * Set if this entity will be subject to collisions with other entities.
      * <p>
      * Exemptions to this rule can be managed with
@@ -728,11 +828,27 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * To control player collisions, use {@link Team.Option#COLLISION_RULE} in
      * combination with a {@link Scoreboard} and a {@link Team}.
      *
-     * @param collidable collision status
+     * @param collidable 碰撞状态
      */
     void setCollidable(boolean collidable);
 
     /**
+     * 获取此实体是否会与其他实体发生碰撞。
+     * <p>
+     * 某些实体可能会被豁免于此实体的可碰撞规则。
+     * 使用 {@link #getCollidableExemptions()} 获取这些实体。
+     * <p>
+     * 请注意，此方法仅返回自定义的可碰撞状态，
+     * 而不考虑实体因其他原因（如死亡）而变得不可碰撞的情况。
+     * <p>
+     * 请注意，客户端可能会预测其与其他实体之间的碰撞，
+     * 导致此标志在玩家碰撞时不准确。
+     * 因此，此方法应仅用于检查非玩家实体的碰撞状态。
+     * <p>
+     * 要检查玩家的碰撞行为，请使用
+     * {@link Team.Option#COLLISION_RULE}，结合 {@link Scoreboard} 和 {@link Team}。
+     * <p>
+     * 原文：
      * Gets if this entity is subject to collisions with other entities.
      * <p>
      * Some entities might be exempted from the collidable rule of this entity.
@@ -751,11 +867,30 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * {@link Team.Option#COLLISION_RULE} in combination with a
      * {@link Scoreboard} and a {@link Team}.
      *
-     * @return collision status
+     * @return 碰撞状态
      */
     boolean isCollidable();
 
     /**
+     * 获取可变的 UUID 集合，其中包含被豁免于实体可碰撞规则的实体，
+     * 这些实体与此实体的碰撞行为将与之相反。
+     * <p>
+     * 此集合可以修改，以添加或移除豁免。
+     * <p>
+     * 例如，如果可碰撞为 true，且某个实体在豁免集合中，
+     * 则该实体将不会与其发生碰撞。类似地，如果可碰撞为 false，
+     * 而某个实体在此集合中，则仍会与其发生碰撞。
+     * <p>
+     * 请注意，这些豁免当前不是持久的。
+     * <p>
+     * 请注意，客户端可能会预测其与其他实体之间的碰撞，
+     * 导致这些豁免在玩家碰撞时不准确。
+     * 因此，此方法应仅用于豁免非玩家实体。
+     * <p>
+     * 要为玩家豁免碰撞，请使用 {@link Team.Option#COLLISION_RULE}
+     *，结合 {@link Scoreboard} 和 {@link Team}。
+     * <p>
+     * 原文：
      * Gets a mutable set of UUIDs of the entities which are exempt from the
      * entity's collidable rule and which's collision with this entity will
      * behave the opposite of it.
@@ -776,59 +911,79 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * To exempt collisions for a player, use {@link Team.Option#COLLISION_RULE}
      * in combination with a {@link Scoreboard} and a {@link Team}.
      *
-     * @return the collidable exemption set
+     * @return 可碰撞豁免集合
      */
     @NotNull
     Set<UUID> getCollidableExemptions();
 
     /**
+     * 返回指定记忆的值。
+     * <p>
+     * 请注意，当特定实体默认没有该值时，值为 null。
+     * <p>
+     * 原文：
      * Returns the value of the memory specified.
      * <p>
      * Note that the value is null when the specific entity does not have that
      * value by default.
      *
-     * @param memoryKey memory to access
-     * @param <T> the type of the return value
-     * @return a instance of the memory section value or null if not present
+     * @param memoryKey 要访问的记忆
+     * @param <T> 返回值的类型
+     * @return 记忆部分值的实例，如果不存在则返回 null
      */
     @Nullable
     <T> T getMemory(@NotNull MemoryKey<T> memoryKey);
 
     /**
+     * 设置指定记忆的值。
+     * <p>
+     * 请注意，当特定实体默认没有该值时，值不会被持久化。
+     * <p>
+     * 原文：
      * Sets the value of the memory specified.
      * <p>
      * Note that the value will not be persisted when the specific entity does
      * not have that value by default.
      *
-     * @param memoryKey the memory to access
-     * @param memoryValue a typed memory value
-     * @param <T> the type of the passed value
+     * @param memoryKey 要访问的记忆
+     * @param memoryValue 一个类型化的记忆值
+     * @param <T> 传递值的类型
      */
     <T> void setMemory(@NotNull MemoryKey<T> memoryKey, @Nullable T memoryValue);
 
     /**
+     * 获取此实体在受伤时发出的 {@link Sound}。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make when damaged.
      *
-     * @return the hurt sound, or null if the entity does not make any sound
+     * @return 受伤声音，如果实体不发出声音则返回 null
      */
     @Nullable
     public Sound getHurtSound();
 
     /**
+     * 获取此实体在死亡时发出的 {@link Sound}。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make on death.
      *
-     * @return the death sound, or null if the entity does not make any sound
+     * @return 死亡声音，如果实体不发出声音则返回 null
      */
     @Nullable
     public Sound getDeathSound();
 
     /**
+     * 获取此实体从给定高度（以方块为单位）坠落时发出的 {@link Sound}。
+     * 如果高度超过 4 个方块，声音通常会在小坠落和大坠落伤害声之间有所不同。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make when falling from the given
      * height (in blocks). The sound will often differ between either a small
      * or a big fall damage sound if the height exceeds 4 blocks.
      *
-     * @param fallHeight the fall height in blocks
-     * @return the fall damage sound
+     * @param fallHeight 坠落高度（以方块为单位）
+     * @return 坠落伤害声音
      * @see #getFallDamageSoundSmall()
      * @see #getFallDamageSoundBig()
      */
@@ -836,75 +991,100 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public Sound getFallDamageSound(int fallHeight);
 
     /**
+     * 获取此实体从小高度坠落时发出的 {@link Sound}。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make when falling from a small
      * height.
      *
-     * @return the fall damage sound
+     * @return 坠落伤害声音
      */
     @NotNull
     public Sound getFallDamageSoundSmall();
 
     /**
+     * 获取此实体从大高度坠落时发出的 {@link Sound}。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make when falling from a large
      * height.
      *
-     * @return the fall damage sound
+     * @return 坠落伤害声音
      */
     @NotNull
     public Sound getFallDamageSoundBig();
 
     /**
+     * 获取此实体饮用给定 {@link ItemStack} 时发出的 {@link Sound}。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make when drinking the given
      * {@link ItemStack}.
      *
-     * @param itemStack the item stack being drank
-     * @return the drinking sound
+     * @param itemStack 正在饮用的物品堆
+     * @return 饮用声音
      */
     @NotNull
     public Sound getDrinkingSound(@NotNull ItemStack itemStack);
 
     /**
+     * 获取此实体食用给定 {@link ItemStack} 时发出的 {@link Sound}。
+     * <p>
+     * 原文：
      * Get the {@link Sound} this entity will make when eating the given
      * {@link ItemStack}.
      *
-     * @param itemStack the item stack being eaten
-     * @return the eating sound
+     * @param itemStack 正在食用的物品堆
+     * @return 食用声音
      */
     @NotNull
     public Sound getEatingSound(@NotNull ItemStack itemStack);
 
     /**
+     * 如果此实体可以在水下呼吸，并且在空气供应达到零时不会受到窒息伤害，则返回 true。
+     * <p>
+     * 原文：
      * Returns true if this entity can breathe underwater and will not take
      * suffocation damage when its air supply reaches zero.
      *
-     * @return <code>true</code> if the entity can breathe underwater
+     * @return <code>true</code> 如果实体可以在水下呼吸
      */
     public boolean canBreatheUnderwater();
 
     /**
+     * 获取此实体所属的类别。
+     * 类别可能会使此实体受到额外的效果、收益或负面影响。
+     * <p>
+     * 原文：
      * Get the category to which this entity belongs.
      *
      * Categories may subject this entity to additional effects, benefits or
      * debuffs.
      *
-     * @return the entity category
-     * @deprecated entity groupings are now managed by tags, not categories
+     * @return 实体类别
+     * @deprecated 实体分组现在由标签管理，而不是类别
      */
     @NotNull
     @Deprecated
     public EntityCategory getCategory();
 
     /**
+     * 设置实体是否不可见。
+     * <p>
+     * 原文：
      * Sets whether the entity is invisible or not.
      *
-     * @param invisible If the entity is invisible
+     * @param invisible 如果实体不可见，则为 true。
      */
     public void setInvisible(boolean invisible);
 
     /**
+     * 获取实体是否不可见。
+     * <p>
+     * 原文：
      * Gets whether the entity is invisible or not.
      *
-     * @return Whether the entity is invisible
+     * @return 实体是否不可见
      */
     public boolean isInvisible();
 }
