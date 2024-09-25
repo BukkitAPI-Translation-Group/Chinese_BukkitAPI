@@ -81,65 +81,94 @@ public class PlayerDeathEvent extends EntityDeathEvent {
     }
 
     /**
+     * 设置玩家在重生时应该拥有多少经验值。
+     * <p>
+     * 这并不表示应该掉落多少经验值，请参见 {@link #setDroppedExp(int)}。
+     * <p>
+     * 原文:
      * Sets how much EXP the Player should have at respawn.
      * <p>
      * This does not indicate how much EXP should be dropped, please see
      * {@link #setDroppedExp(int)} for that.
      *
-     * @param exp New EXP of the respawned player
+     * @param exp 重生玩家的新经验值
      */
     public void setNewExp(int exp) {
         newExp = exp;
     }
 
     /**
+     * 获取玩家在重生时应该拥有的等级。
+     * <p>
+     * 原文:
      * Gets the Level the Player should have at respawn.
      *
-     * @return New Level of the respawned player
+     * @return 重生玩家的新等级
      */
     public int getNewLevel() {
         return newLevel;
     }
 
     /**
+     * 设置玩家在重生时应该拥有的等级。
+     * <p>
+     * 原文:
      * Sets the Level the Player should have at respawn.
      *
-     * @param level New Level of the respawned player
+     * @param level 重生玩家的新等级
      */
     public void setNewLevel(int level) {
         newLevel = level;
     }
 
     /**
+     * 获取玩家在重生时应该拥有的总经验值。
+     * <p>
+     * 原文:
      * Gets the Total EXP the Player should have at respawn.
      *
-     * @return New Total EXP of the respawned player
+     * @return 重生玩家的新总经验值
      */
     public int getNewTotalExp() {
         return newTotalExp;
     }
 
     /**
+     * 设置玩家在重生时应该拥有的总经验值。
+     * <p>
+     * 原文:
      * Sets the Total EXP the Player should have at respawn.
      *
-     * @param totalExp New Total EXP of the respawned player
+     * @param totalExp 重生玩家的新总经验值
      */
     public void setNewTotalExp(int totalExp) {
         newTotalExp = totalExp;
     }
 
     /**
+     * 获取玩家在重生时是否应该保留所有经验值。
+     * <p>
+     * 此标志会覆盖其他经验值设置。
+     * <p>
+     * 原文:
      * Gets if the Player should keep all EXP at respawn.
      * <p>
      * This flag overrides other EXP settings
      *
-     * @return True if Player should keep all pre-death exp
+     * @return 如果玩家应该保留所有死亡前的经验值，则返回 true
      */
     public boolean getKeepLevel() {
         return keepLevel;
     }
 
     /**
+     * 设置玩家在重生时是否应该保留所有经验值。
+     * <p>
+     * 这会覆盖所有其他经验值设置。
+     * <p>
+     * <b>这并不会阻止经验值掉落。应使用 {@link #setDroppedExp(int)} 来阻止经验值掉落。
+     * <p>
+     * 原文:
      * Sets if the Player should keep all EXP at respawn.
      * <p>
      * This overrides all other EXP settings
@@ -148,29 +177,37 @@ public class PlayerDeathEvent extends EntityDeathEvent {
      * {@link #setDroppedExp(int)} should be used stop the
      * EXP from dropping.</b>
      *
-     * @param keepLevel True to keep all current value levels
+     * @param keepLevel 如果为 true，则保留所有当前经验值
      */
     public void setKeepLevel(boolean keepLevel) {
         this.keepLevel = keepLevel;
     }
 
     /**
+     * 设置玩家在死亡时是否保留物品栏。
+     * <p>
+     * <b>这并不会阻止物品掉落。应使用 {@code getDrops().clear()}来阻止物品掉落。
+     * <p>
+     * 原文:
      * Sets if the Player keeps inventory on death.
      * <p>
      * <b>This doesn't prevent the items from dropping.
      * {@code getDrops().clear()} should be used stop the
      * items from dropping.</b>
      *
-     * @param keepInventory True to keep the inventory
+     * @param keepInventory 如果为 true，则保留物品栏
      */
     public void setKeepInventory(boolean keepInventory) {
         this.keepInventory = keepInventory;
     }
 
     /**
+     * 获取玩家在死亡时是否保留物品栏。
+     * <p>
+     * 原文:
      * Gets if the Player keeps inventory on death.
      *
-     * @return True if the player keeps inventory on death
+     * @return 如果玩家在死亡时保留物品栏，则返回 true
      */
     public boolean getKeepInventory() {
         return keepInventory;
