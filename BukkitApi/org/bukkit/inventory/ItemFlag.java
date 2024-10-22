@@ -49,6 +49,9 @@ public enum ItemFlag {
      */
     HIDE_DYE,
     /**
+     * 显示/隐藏皮革盔甲上的盔甲纹饰设置
+     * <p>
+     * 原文:
      * Setting to show/hide armor trim from leather armor.
      */
     HIDE_ARMOR_TRIM;
