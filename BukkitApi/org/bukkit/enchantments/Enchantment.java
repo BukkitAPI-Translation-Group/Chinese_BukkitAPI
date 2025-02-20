@@ -192,17 +192,17 @@ public abstract class Enchantment implements Keyed, Translatable {
     public static final Enchantment PIERCING = getEnchantment("piercing");
 
     /**
-     * Increases fall damage of maces
+     * 附魔：致密 (重锤)
      */
     public static final Enchantment DENSITY = getEnchantment("density");
 
     /**
-     * Reduces armor effectiveness against maces
+     * 附魔：破甲 (重锤)
      */
     public static final Enchantment BREACH = getEnchantment("breach");
 
     /**
-     * Emits wind burst upon hitting enemy
+     * 附魔：风爆 (重锤)
      */
     public static final Enchantment WIND_BURST = getEnchantment("wind_burst");
 
