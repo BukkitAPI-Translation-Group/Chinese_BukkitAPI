@@ -225,7 +225,7 @@ public class AttributeModifier implements ConfigurationSerializable, Keyed {
          * <p>
          * 原文: Adds this scalar of amount to the base value
          * <p>
-         * 译注: 即 <a href="https://minecraft-zh.gamepedia.com/%E5%B1%9E%E6%80%A7#%E8%BF%90%E7%AE%97%E6%A8%A1%E5%BC%8F" target="_blank">Minecraft Wiki - 属性#运算模式</a> 中的 "倍率增量".
+         * 译注: 即 <a href="https://zh.minecraft.wiki/w/%E5%B1%9E%E6%80%A7#%E8%BF%90%E7%AE%97%E6%A8%A1%E5%BC%8F" target="_blank">Minecraft Wiki - 属性#运算模式</a> 中的 "倍率增量".
          * 该运算模式与下一个运算模式 "最终倍乘" 的区别在于, 若拥有多个该运算模式的修饰符, 会将修饰值都加起来进行一次运算, 而拥有多少个 "最终倍乘" 修饰符就会进行多少次相乘运算 (导致属性值变得很大).
          */
         ADD_SCALAR,
