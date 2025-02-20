@@ -3,7 +3,7 @@ package org.bukkit.entity;
 /**
  * 代表凋零之首.
  * <p>
- * 有关凋零之首，请参阅 MineCraft 中文Wiki 上的<a href="http://minecraft-zh.gamepedia.com/%E5%87%8B%E9%9B%B6">凋零</a>部分.
+ * 有关凋零之首，请参阅 MineCraft 中文Wiki 上的<a href="http://zh.minecraft.wiki/w/%E5%87%8B%E9%9B%B6">凋零</a>部分.
  */
 public interface WitherSkull extends Fireball {
 

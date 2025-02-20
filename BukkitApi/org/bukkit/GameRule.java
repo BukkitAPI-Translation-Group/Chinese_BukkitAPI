@@ -126,12 +126,12 @@ public final class GameRule<T> {
     public static final GameRule<Boolean> SPECTATORS_GENERATE_CHUNKS = new GameRule<>("spectatorsGenerateChunks", Boolean.class);
 
     /**
-     * 是否禁用<a href="https://minecraft-zh.gamepedia.com/%E8%A2%AD%E5%87%BB" target="_blank">袭击</a>.
+     * 是否禁用<a href="https://zh.minecraft.wiki/w/%E8%A2%AD%E5%87%BB" target="_blank">袭击</a>.
      */
     public static final GameRule<Boolean> DISABLE_RAIDS = new GameRule<>("disableRaids", Boolean.class);
 
     /**
-     * <a href="https://minecraft-zh.gamepedia.com/%E5%B9%BB%E7%BF%BC" target="_blank">幻翼</a>是否在夜晚生成.
+     * <a href="https://zh.minecraft.wiki/w/%E5%B9%BB%E7%BF%BC" target="_blank">幻翼</a>是否在夜晚生成.
      */
     public static final GameRule<Boolean> DO_INSOMNIA = new GameRule<>("doInsomnia", Boolean.class);
 
@@ -161,12 +161,12 @@ public final class GameRule<T> {
     public static final GameRule<Boolean> FREEZE_DAMAGE = new GameRule<>("freezeDamage", Boolean.class);
 
     /**
-     * <a href="https://minecraft-zh.gamepedia.com/%E7%81%BE%E5%8E%84%E5%B7%A1%E9%80%BB%E9%98%9F" target="_blank">灾厄巡逻队</a>是否自然生成.
+     * <a href="https://zh.minecraft.wiki/w/%E7%81%BE%E5%8E%84%E5%B7%A1%E9%80%BB%E9%98%9F" target="_blank">灾厄巡逻队</a>是否自然生成.
      */
     public static final GameRule<Boolean> DO_PATROL_SPAWNING = new GameRule<>("doPatrolSpawning", Boolean.class);
 
     /**
-     * <a href="https://minecraft-zh.gamepedia.com/%E6%B5%81%E6%B5%AA%E5%95%86%E4%BA%BA" target="_blank">流浪商人</a>是否自然生成.
+     * <a href="https://zh.minecraft.wiki/w/%E6%B5%81%E6%B5%AA%E5%95%86%E4%BA%BA" target="_blank">流浪商人</a>是否自然生成.
      */
     public static final GameRule<Boolean> DO_TRADER_SPAWNING = new GameRule<>("doTraderSpawning", Boolean.class);
 

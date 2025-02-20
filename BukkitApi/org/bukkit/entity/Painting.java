@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表画.
  * <p>
- * 前往<a href="http://minecraft-zh.gamepedia.com/%E7%94%BB">wiki</a>了解更多
+ * 前往<a href="http://zh.minecraft.wiki/w/%E7%94%BB">wiki</a>了解更多
  */
 public interface Painting extends Hanging {
 

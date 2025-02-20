@@ -7,7 +7,7 @@ import org.bukkit.entity.Raider;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 代表袭击事件 (<a href="https://minecraft-zh.gamepedia.com/%E8%A2%AD%E5%87%BB" target="_blank">Minecraft Wiki - 袭击</a>).
+ * 代表袭击事件 (<a href="https://zh.minecraft.wiki/w/%E8%A2%AD%E5%87%BB" target="_blank">Minecraft Wiki - 袭击</a>).
  */
 public interface Raid {
 

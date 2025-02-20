@@ -184,7 +184,7 @@ Magic value具体是什么意思有点难以解释, 请查阅百度百科 "Magic
 ```
 -----
 # 译名标准
-对于 Minecraft 上的名词, 如果你不知道其确切的意义, 可以参考[译名标准化](https://minecraft-zh.gamepedia.com/Minecraft_Wiki:%E8%AF%91%E5%90%8D%E6%A0%87%E5%87%86%E5%8C%96) 和 [1.13 扁平化](https://minecraft-zh.gamepedia.com/1.13/%E6%89%81%E5%B9%B3%E5%8C%96). 尽量使用官译名.
+对于 Minecraft 上的名词, 如果你不知道其确切的意义, 可以参考[译名标准化](https://zh.minecraft.wiki/w/Minecraft_Wiki:%E8%AF%91%E5%90%8D%E6%A0%87%E5%87%86%E5%8C%96) 和 [1.13 扁平化](https://zh.minecraft.wiki/w/1.13/%E6%89%81%E5%B9%B3%E5%8C%96). 尽量使用官译名.
 # 翻译须知
 ## 翻译质量  
 **严禁直接机翻, 若实在不会*请以单词和句子结构为单位进行查询*, 加入自己的理解, 重新组织语言. 否则将撤回**

@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表 Mojang 通用游戏事件.
  *
- * 你应该尽可能地使用 Bukkit 框架提供的其它事件, 此事件在游戏内部主要用于<a href="https://minecraft-zh.gamepedia.com/Sculk_Sensor">Sculk_Sensor</a>.
+ * 你应该尽可能地使用 Bukkit 框架提供的其它事件, 此事件在游戏内部主要用于<a href="https://zh.minecraft.wiki/w/Sculk_Sensor">Sculk_Sensor</a>.
  * <p>
  * 原文:Represents a generic Mojang game event.
  *
