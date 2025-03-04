@@ -32,6 +32,13 @@ public class ItemDespawnEvent extends EntityEvent implements Cancellable {
         canceled = cancel;
     }
 
+    /**
+     * 返回这个事件所涉及的实体.
+     * <p>
+     * 原文:
+     * Returns the Entity involved in this event.
+     * @return 参与此事件的实体
+     */
     @NotNull
     @Override
     public Item getEntity() {
@@ -39,7 +46,7 @@ public class ItemDespawnEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * 获取即将消失的掉落物.
+     * 获取物品消失的位置.
      * <p>
      * 原文:
      * Gets the location at which the item is despawning.
