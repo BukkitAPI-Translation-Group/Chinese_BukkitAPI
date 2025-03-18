@@ -181,37 +181,38 @@ public abstract class PotionEffectType implements Keyed, Translatable {
     public static final PotionEffectType HERO_OF_THE_VILLAGE = getPotionEffectType(32, "hero_of_the_village");
 
     /**
-     * Causes the player's vision to dim occasionally.
+     *
+     * 黑暗
      */
     public static final PotionEffectType DARKNESS = getPotionEffectType(33, "darkness");
 
     /**
-     * Causes trial spawners to become ominous.
+     * 试炼之兆
      */
     public static final PotionEffectType TRIAL_OMEN = getPotionEffectType(34, "trial_omen");
 
     /**
-     * Triggers a raid when a player enters a village.
+     * 袭击之兆
      */
     public static final PotionEffectType RAID_OMEN = getPotionEffectType(35, "raid_omen");
 
     /**
-     * Emits a wind burst upon death.
+     * 蓄风
      */
     public static final PotionEffectType WIND_CHARGED = getPotionEffectType(36, "wind_charged");
 
     /**
-     * Creates cobwebs upon death.
+     * 盘丝
      */
     public static final PotionEffectType WEAVING = getPotionEffectType(37, "weaving");
 
     /**
-     * Causes slimes to spawn upon death.
+     * 渗浆
      */
     public static final PotionEffectType OOZING = getPotionEffectType(38, "oozing");
 
     /**
-     * Chance of spawning silverfish when hurt.
+     * 寄生
      */
     public static final PotionEffectType INFESTED = getPotionEffectType(39, "infested");
 
