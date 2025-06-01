@@ -58,7 +58,9 @@ public enum ClickType {
      */
     CREATIVE,
     /**
-     * The "swap item with offhand" key (defaults to F).
+     * 交换主副手物品的快捷键（默认为 F 键）
+     * <p>
+     * 原文: The "swap item with offhand" key (defaults to F).
      */
     SWAP_OFFHAND,
     /**
