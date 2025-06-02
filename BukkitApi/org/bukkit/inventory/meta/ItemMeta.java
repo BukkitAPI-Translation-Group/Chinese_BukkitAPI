@@ -409,6 +409,12 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     boolean hasEnchantmentGlintOverride();
 
     /**
+     * 获取附魔光效覆盖。若为true，物品将始终显示光效（即使无附魔）；
+     * 若为false，物品将始终不显示光效（即使有附魔）。
+     *
+     * 插件在调用此方法前应检查 {@link #hasEnchantmentGlintOverride()}。
+     * <p>
+     * 原文:
      * Sets the enchantment_glint_override. If true, the item will glint, even
      * without enchantments; if false, the item will not glint, even with
      * enchantments.
@@ -416,17 +422,21 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * Plugins should check {@link #hasEnchantmentGlintOverride()} before
      * calling this method.
      *
-     * @return enchantment_glint_override
+     * @return 新的附魔光效覆盖值
      */
     @NotNull
     Boolean getEnchantmentGlintOverride();
 
     /**
+     * 设置附魔光效覆盖。若为true，物品将始终显示光效（即使无附魔）；
+     * 若为false，物品将始终不显示光效（即使有附魔）；若为null，则清除覆盖设置。
+     * <p>
+     * 原文:
      * Sets the enchantment_glint_override. If true, the item will glint, even
      * without enchantments; if false, the item will not glint, even with
      * enchantments. If null, the override will be cleared.
      *
-     * @param override new enchantment_glint_override
+     * @param override 新的附魔光效覆盖值
      */
     void setEnchantmentGlintOverride(@Nullable Boolean override);
 
