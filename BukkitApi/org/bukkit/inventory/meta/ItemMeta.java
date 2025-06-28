@@ -67,16 +67,29 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setDisplayName(@Nullable String name);
 
     /**
+     * 检查是否存在物品名称。
+     * <br>
+     * 物品名称与显示名称的区别在于：它无法通过铁砧编辑、不会以斜体样式显示，且不展示标签文本。
+     * <p>
+     * 原文:
      * Checks for existence of an item name.
      * <br>
      * Item name differs from display name in that it is cannot be edited by an
      * anvil, is not styled with italics, and does not show labels.
      *
-     * @return true if this has an item name
+     *
+     * @return 若存在物品名称则返回 true
      */
     boolean hasItemName();
 
     /**
+     * 获取已设置的物品名称。
+     * <br>
+     * 物品名称与显示名称的区别在于：它无法通过铁砧编辑、不会以斜体样式显示，且不展示标签文本。
+     * <p>
+     * 插件在调用此方法前应确保 hasItemName() 返回 <code>true</code>。
+     * <p>
+     * 原文:
      * Gets the item name that is set.
      * <br>
      * Item name differs from display name in that it is cannot be edited by an
@@ -85,18 +98,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * Plugins should check that hasItemName() returns <code>true</code> before
      * calling this method.
      *
-     * @return the item name that is set
+     * @return 已设置的物品名称
      */
     @NotNull
     String getItemName();
 
     /**
+     * 设置物品名称。
+     * <br>
+     * 物品名称与显示名称的区别在于：它无法通过铁砧编辑、不会以斜体样式显示，且不展示标签文本。
+     * <p>
+     * 原文:
      * Sets the item name.
      * <br>
      * Item name differs from display name in that it is cannot be edited by an
      * anvil, is not styled with italics, and does not show labels.
      *
-     * @param name the name to set
+     * @param name 要设置的名称
      */
     void setItemName(@Nullable String name);
 
