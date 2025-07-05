@@ -15,7 +15,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * 与{@link HoverEvent.Action#SHOW_ITEM}共同使用的元数据.
+ * Metadata for use in conjunction with {@link HoverEvent.Action#SHOW_ITEM}
  */
 @Builder(builderClassName = "Builder", access = AccessLevel.PRIVATE)
 @ToString(of = "nbt")
@@ -43,7 +43,7 @@ public final class ItemTag
         private final int level;
         private final int id;
     }
-    */
+     */
 
     private ItemTag(String nbt)
     {

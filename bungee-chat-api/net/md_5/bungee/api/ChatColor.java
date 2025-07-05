@@ -10,114 +10,115 @@ import java.util.regex.Pattern;
 import lombok.Getter;
 
 /**
- * 聊天消息所有支持的颜色.
+ * Simplistic enumeration of all supported color values for chat.
  */
 public final class ChatColor
 {
 
     /**
-     * 所有聊天颜色代码的特殊字符前辍.如果你需要动态转换您自定义格式的颜色代码，请使用这个.
+     * The special character which prefixes all chat colour codes. Use this if
+     * you need to dynamically convert colour codes from your custom format.
      */
     public static final char COLOR_CHAR = '\u00A7';
     public static final String ALL_CODES = "0123456789AaBbCcDdEeFfKkLlMmNnOoRrXx";
     /**
-     * 用于移除所有颜色代码的正则表达式
+     * Pattern to remove all colour codes.
      */
     public static final Pattern STRIP_COLOR_PATTERN = Pattern.compile( "(?i)" + String.valueOf( COLOR_CHAR ) + "[0-9A-FK-ORX]" );
     /**
-     * 以颜色代码为键的所有活跃的颜色实例.
+     * Colour instances keyed by their active character.
      */
     private static final Map<Character, ChatColor> BY_CHAR = new HashMap<Character, ChatColor>();
     /**
-     * 以颜色名称为键的所有颜色实例.
+     * Colour instances keyed by their name.
      */
     private static final Map<String, ChatColor> BY_NAME = new HashMap<String, ChatColor>();
     /**
-     * <span style="color:#000000">黑色: <span style="background:#000000"> 黑色 </span></span>
+     * Represents black.
      */
     public static final ChatColor BLACK = new ChatColor( '0', "black", new Color( 0x000000 ) );
     /**
-     * <span style="color:#0000be">深蓝: <span style="background:#0000be"> 深蓝 </span></span>
+     * Represents dark blue.
      */
     public static final ChatColor DARK_BLUE = new ChatColor( '1', "dark_blue", new Color( 0x0000AA ) );
     /**
-     * <span style="color:#00bf00">深绿: <span style="background:#00bf00"> 深绿 </span></span>
+     * Represents dark green.
      */
     public static final ChatColor DARK_GREEN = new ChatColor( '2', "dark_green", new Color( 0x00AA00 ) );
     /**
-     * <span style="color:#00bebe">深蓝: <span style="background:#00bebe"> 深蓝 </span></span>
+     * Represents dark blue (aqua).
      */
     public static final ChatColor DARK_AQUA = new ChatColor( '3', "dark_aqua", new Color( 0x00AAAA ) );
     /**
-     * <span style="color:#be0000">深红: <span style="background:#be0000"> 深红 </span></span>
+     * Represents dark red.
      */
     public static final ChatColor DARK_RED = new ChatColor( '4', "dark_red", new Color( 0xAA0000 ) );
     /**
-     * <span style="color:#be00be">深紫: <span style="background:#be00be"> 深紫 </span></span>
+     * Represents dark purple.
      */
     public static final ChatColor DARK_PURPLE = new ChatColor( '5', "dark_purple", new Color( 0xAA00AA ) );
     /**
-     * <span style="color:#d8a333">橙色: <span style="background:#d8a333"> 橙色 </span></span>
+     * Represents gold.
      */
     public static final ChatColor GOLD = new ChatColor( '6', "gold", new Color( 0xFFAA00 ) );
     /**
-     * <span style="color:#bebebe">灰色: <span style="background:#bebebe"> 灰色 </span></span>
+     * Represents gray.
      */
     public static final ChatColor GRAY = new ChatColor( '7', "gray", new Color( 0xAAAAAA ) );
     /**
-     * <span style="color:#3f3f3f">深灰: <span style="background:#3f3f3f"> 深灰 </span></span>
+     * Represents dark gray.
      */
     public static final ChatColor DARK_GRAY = new ChatColor( '8', "dark_gray", new Color( 0x555555 ) );
     /**
-     * <span style="color:#3f40fd">蓝色: <span style="background:#3f40fd"> 蓝色 </span></span>
+     * Represents blue.
      */
     public static final ChatColor BLUE = new ChatColor( '9', "blue", new Color( 0x5555FF ) );
     /**
-     * <span style="color:#3ffe3f">绿色: <span style="background:#3ffe3f"> 绿色 </span></span>
+     * Represents green.
      */
     public static final ChatColor GREEN = new ChatColor( 'a', "green", new Color( 0x55FF55 ) );
     /**
-     * <span style="color:#3dffff">淡蓝: <span style="background:#3dffff"> 淡蓝 </span></span>
+     * Represents aqua.
      */
     public static final ChatColor AQUA = new ChatColor( 'b', "aqua", new Color( 0x55FFFF ) );
     /**
-     * <span style="color:#fd3f3f">红色: <span style="background:#fd3f3f"> 红色 </span></span>
+     * Represents red.
      */
     public static final ChatColor RED = new ChatColor( 'c', "red", new Color( 0xFF5555 ) );
     /**
-     * <span style="color:#fe3ffe">紫色: <span style="background:#fe3ffe"> 紫色 </span></span>
+     * Represents light purple.
      */
     public static final ChatColor LIGHT_PURPLE = new ChatColor( 'd', "light_purple", new Color( 0xFF55FF ) );
     /**
-     * <span style="color:#fefe3e">黄色: <span style="background:#fefe3e"> 黄色 </span></span>
+     * Represents yellow.
      */
     public static final ChatColor YELLOW = new ChatColor( 'e', "yellow", new Color( 0xFFFF55 ) );
     /**
-     * <span style="color:#000000">白色: <span style="background:#ffffff;color:#ffffff"> 白色 </span></span>
+     * Represents white.
      */
     public static final ChatColor WHITE = new ChatColor( 'f', "white", new Color( 0xFFFFFF ) );
     /**
-     * 随机字符(聊天不可用)
+     * Represents magical characters that change around randomly.
      */
     public static final ChatColor MAGIC = new ChatColor( 'k', "obfuscated" );
     /**
-     * 粗体: <b> 粗体 </b>
+     * Makes the text bold.
      */
     public static final ChatColor BOLD = new ChatColor( 'l', "bold" );
     /**
-     * 删除线: <span style="text-decoration:line-through"> 删除线 </span>
+     * Makes a line appear through the text.
      */
     public static final ChatColor STRIKETHROUGH = new ChatColor( 'm', "strikethrough" );
     /**
-     * 下划线: <u> 下划线 </u>
+     * Makes the text appear underlined.
      */
     public static final ChatColor UNDERLINE = new ChatColor( 'n', "underline" );
     /**
-     * 斜体: <i> 斜体 </i>
+     * Makes the text italic.
      */
     public static final ChatColor ITALIC = new ChatColor( 'o', "italic" );
     /**
-     * 重置字体颜色以及效果
+     * Resets all previous chat colors or formats.
      */
     public static final ChatColor RESET = new ChatColor( 'r', "reset" );
     /**
@@ -125,14 +126,14 @@ public final class ChatColor
      */
     private static int count = 0;
     /**
-     * 带{@link #COLOR_CHAR}前缀的颜色代码.
+     * This colour's colour char prefixed by the {@link #COLOR_CHAR}.
      */
     private final String toString;
     @Getter
     private final String name;
     private final int ordinal;
     /**
-     * 此ChatColor的RGB颜色. null表示无颜色(formatting)
+     * The RGB color of the ChatColor. null for non-colors (formatting)
      */
     @Getter
     private final Color color;
@@ -195,12 +196,10 @@ public final class ChatColor
     }
 
     /**
-     * 去除给定消息的所有颜色代码.
-     * <p>
-     * 原文:Strips the given message of all color codes
+     * Strips the given message of all color codes
      *
-     * @param input 要去除颜色的字符串
-     * @return 没有颜色代码的字符串副本
+     * @param input String to strip of color
+     * @return A copy of the input string, without any coloring
      */
     public static String stripColor(final String input)
     {
@@ -212,22 +211,6 @@ public final class ChatColor
         return STRIP_COLOR_PATTERN.matcher( input ).replaceAll( "" );
     }
 
-    /**
-     * 转换交替的颜色代码字符到内部的ChatColor.COLOR_CHAR颜色代码字符.如果它后面紧跟着的是0-9, A-F, a-f, K-O, k-o, R 或 r，其它的颜色代码只会被替换.
-     * <p>
-     * 译注:这个方法是用来把其他的颜色代码替换成Minecraft本身的.比如我们在Minecraft服务器聊天时，为了输入方便，就使用"{@literal &}"来替换"§"，服务器要处理这种消息时就要用到本方法.
-     * <p>
-     * 范例:<code>System.out.println(translateAlternateColorCodes('{@literal &}', "{@literal &}cred{@literal &}agreen{@literal &}9blue"));</code>这段代码会把"{@literal &}cred{@literal &}agreen{@literal &}9blue"替换成"§cred§agreen§9blue"，"§"是ChatColor.COLOR_CHAR的默认值.
-     * <p>
-     * 原文:Translates a string using an alternate color code character into a
-     * string that uses the internal ChatColor.COLOR_CODE color code
-     * character. The alternate color code character will only be replaced if
-     * it is immediately followed by 0-9, A-F, a-f, K-O, k-o, R or r.
-     *
-     * @param altColorChar 要替换的其他颜色代码.比如:{@literal &}
-     * @param textToTranslate 包含了其他颜色代码的字符
-     * @return 包含了ChatColor.COLOR_CHAR颜色代码字符的文本
-     */
     public static String translateAlternateColorCodes(char altColorChar, String textToTranslate)
     {
         char[] b = textToTranslate.toCharArray();
@@ -243,12 +226,10 @@ public final class ChatColor
     }
 
     /**
-     * 获取指定的颜色代码代表的颜色或格式.
-     * <p>
-     * 原文:Get the colour represented by the specified code.
+     * Get the colour represented by the specified code.
      *
-     * @param code 要检测的代码
-     * @return 与给定代码相关联的{@link org.bukkit.ChatColor}，如果不存在则为null
+     * @param code the code to search for
+     * @return the mapped colour, or null if non exists
      */
     public static ChatColor getByChar(char code)
     {
@@ -263,7 +244,7 @@ public final class ChatColor
     public static ChatColor of(String string)
     {
         Preconditions.checkArgument( string != null, "string cannot be null" );
-        if ( string.startsWith( "#" ) && string.length() == 7 )
+        if ( string.length() == 7 && string.charAt( 0 ) == '#' )
         {
             int rgb;
             try
@@ -293,9 +274,9 @@ public final class ChatColor
     }
 
     /**
-     * 另请参见 {@link Enum#valueOf(java.lang.Class, java.lang.String)}.
+     * See {@link Enum#valueOf(java.lang.Class, java.lang.String)}.
      *
-     * @param name 颜色名
+     * @param name color name
      * @return ChatColor
      * @deprecated holdover from when this class was an enum
      */
@@ -311,11 +292,9 @@ public final class ChatColor
     }
 
     /**
-    * 获取包含所有已定义的颜色和格式的数组.
-     * <p>
-     * 原文:Get an array of all defined colors and formats.
+     * Get an array of all defined colors and formats.
      *
-     * @return 所有颜色和格式的数组的副本
+     * @return copied array of all colors and formats
      * @deprecated holdover from when this class was an enum
      */
     @Deprecated
@@ -325,9 +304,9 @@ public final class ChatColor
     }
 
     /**
-     * 另请参见 {@link Enum#name()}.
+     * See {@link Enum#name()}.
      *
-     * @return 常量名
+     * @return constant name
      * @deprecated holdover from when this class was an enum
      */
     @Deprecated
@@ -337,9 +316,9 @@ public final class ChatColor
     }
 
     /**
-     * 另请参见 {@link Enum#ordinal()}.
+     * See {@link Enum#ordinal()}.
      *
-     * @return 颜色代码序数
+     * @return ordinal
      * @deprecated holdover from when this class was an enum
      */
     @Deprecated

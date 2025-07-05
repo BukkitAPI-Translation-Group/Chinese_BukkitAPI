@@ -1,11 +1,10 @@
 package net.md_5.bungee.api;
 
 /**
- * 代表消息在屏幕出现的位置(直接理解为消息类型即可)
+ * Represents the position on the screen where a message will appear.
  */
 public enum ChatMessageType
 {
-
 
     CHAT,
     SYSTEM,
