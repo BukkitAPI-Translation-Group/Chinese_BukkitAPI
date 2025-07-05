@@ -26,7 +26,7 @@ public interface AbstractArrow extends Projectile {
      * @see #getWeapon()
      * @deprecated a function of the firing weapon
      */
-    @Deprecated
+    @Deprecated(since = "1.21")
     public int getKnockbackStrength();
 
     /**
@@ -39,7 +39,7 @@ public interface AbstractArrow extends Projectile {
      * @see #setWeapon(org.bukkit.inventory.ItemStack)
      * @deprecated a function of the firing weapon
      */
-    @Deprecated
+    @Deprecated(since = "1.21")
     public void setKnockbackStrength(int knockbackStrength);
 
     /**
@@ -182,7 +182,7 @@ public interface AbstractArrow extends Projectile {
      * @see #setWeapon(org.bukkit.inventory.ItemStack)
      * @deprecated a function of the firing weapon instead
      */
-    @Deprecated
+    @Deprecated(since = "1.21")
     public void setShotFromCrossbow(boolean shotFromCrossbow);
 
     /**

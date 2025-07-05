@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  *     <p>
  *     监听这个事件迫使聊天等待主线程，会导致聊天消息延迟展现。建议使用线程安全的{@link AsyncPlayerChatEvent}
  */
-@Deprecated
+@Deprecated(since = "1.3.1")
 @Warning(reason = "Listening to this event forces chat to wait for the main thread, delaying chat messages.")
 public class PlayerChatEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

@@ -81,7 +81,7 @@ public enum MushroomBlockTexture {
      * @return 包含这个蘑菇方块朝向的数据值
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public byte getData() {
         return data;
     }
@@ -107,7 +107,7 @@ public enum MushroomBlockTexture {
      * @return 代表这个数据值的 {@link MushroomBlockTexture}，如果相关数据值不存在为null
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @Nullable
     public static MushroomBlockTexture getByData(final byte data) {
         return BY_DATA.get(data);

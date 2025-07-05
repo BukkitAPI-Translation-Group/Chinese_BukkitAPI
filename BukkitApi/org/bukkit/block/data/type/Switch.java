@@ -17,7 +17,7 @@ public interface Switch extends Directional, FaceAttachable, Powerable {
      * @deprecated 请使用 {@link #getAttachedFace()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     Face getFace();
 
     /**
@@ -29,7 +29,7 @@ public interface Switch extends Directional, FaceAttachable, Powerable {
      * @param face 新的 'face' 属性值
      * @deprecated 请使用 {@link #getAttachedFace()}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     void setFace(@NotNull Face face);
 
     /**
@@ -37,7 +37,7 @@ public interface Switch extends Directional, FaceAttachable, Powerable {
      *
      * @deprecated 请使用 {@link AttachedFace}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     public enum Face {
         /**
          * 拉杆安装在地板上且朝上

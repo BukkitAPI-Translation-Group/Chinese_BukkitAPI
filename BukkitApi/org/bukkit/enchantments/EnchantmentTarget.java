@@ -16,7 +16,7 @@ public enum EnchantmentTarget {
      *
      * @deprecated 原版中该适用目标不复存在
      */
-    @Deprecated
+    @Deprecated(since = "1.16.1")
     ALL {
         @Override
         public boolean includes(@NotNull Material item) {

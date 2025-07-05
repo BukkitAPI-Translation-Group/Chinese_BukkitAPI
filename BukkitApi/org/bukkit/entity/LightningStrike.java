@@ -96,7 +96,7 @@ public interface LightningStrike extends Entity {
          * @return 此雷击是否为静默的(true代表静默, 不会发声, false代表会产生雷响).
          * @deprecated 声音现由客户端控制, 且不可移除
          */
-        @Deprecated
+        @Deprecated(since = "1.20.4")
         public boolean isSilent() {
             throw new UnsupportedOperationException("Not supported yet.");
         }

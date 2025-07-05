@@ -3,10 +3,13 @@ package org.bukkit.entity;
 import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import java.util.Locale;
+import java.util.UUID;
+import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
+import org.bukkit.registry.RegistryAware;
 import org.bukkit.util.OldEnum;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -119,10 +122,173 @@ public interface Villager extends AbstractVillager {
     public ZombieVillager zombify();
 
     /**
+     * Gets the reputation of an entity for a given type.
+     *
+     * @param uuid the UUID of the entity whose reputation is being checked
+     * @param reputationType reputation type to be retrieved
+     * @return current reputation for the given reputation type
+     */
+    public int getReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType);
+
+    /**
+     * Gets the weighted reputation of an entity for a given type.
+     *
+     * <p>The total reputation of an entity is a sum of its weighted
+     * reputations of each type, where the reputation is multiplied by weight
+     * assigned to its type.
+     *
+     * @param uuid the UUID of the entity whose reputation is being checked
+     * @param reputationType reputation type to be retrieved
+     * @return current reputation for the given reputation type
+     * @see ReputationType#getWeight()
+     */
+    public int getWeightedReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType);
+
+    /**
+     * Gets the reputation of an entity.
+     *
+     * @param uuid the UUID of the entity whose reputation is being checked
+     * @return current reputation for the given reputation type
+     */
+    public int getReputation(@NotNull UUID uuid);
+
+    /**
+     * Add reputation of a given type towards a given entity.
+     *
+     * <p>The final value will be clamped to the maximum value supported by the
+     * provided reputation type. If the final value is below the reputation
+     * discard threshold, gossip associated with this reputation type will be
+     * removed.
+     *
+     * <p>Note: this will fire a
+     * {@link org.bukkit.event.entity.VillagerReputationChangeEvent}.
+     *
+     * @param uuid the UUID of the entity for whom the reputation is being
+     *             added
+     * @param reputationType reputation type to be modified
+     * @param amount amount of reputation to add
+     */
+    public void addReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType, int amount);
+
+    /**
+     * Add reputation of a given type towards a given entity, with a specific
+     * change reason.
+     *
+     * <p>The final value will be clamped to the maximum value supported by the
+     * provided reputation type. If the final value is below the reputation
+     * discard threshold, gossip associated with this reputation type will be
+     * removed.
+     *
+     * <p>Note: this will fire a
+     * {@link org.bukkit.event.entity.VillagerReputationChangeEvent}.
+     *
+     * @param uuid the UUID of the entity for whom the reputation is being
+     *             added
+     * @param reputationType reputation type to be modified
+     * @param amount amount of reputation to add
+     * @param changeReason reputation change reason
+     */
+    public void addReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType, int amount, @NotNull ReputationEvent changeReason);
+
+    /**
+     * Remove reputation of a given type towards a given entity.
+     *
+     * <p>The final value will be clamped to the maximum value supported by the
+     * provided reputation type. If the final value is below the reputation
+     * discard threshold, gossip associated with this reputation type will be
+     * removed.
+     *
+     * <p>Note: this will fire a
+     * {@link org.bukkit.event.entity.VillagerReputationChangeEvent}.
+     *
+     * @param uuid the UUID of the entity for whom the reputation is being
+     *             removed
+     * @param reputationType reputation type to be modified
+     * @param amount amount of reputation to remove
+     */
+    public void removeReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType, int amount);
+
+    /**
+     * Remove reputation of a given type towards a given entity, with a
+     * specific change reason.
+     *
+     * <p>The final value will be clamped to the maximum value supported by the
+     * provided reputation type. If the final value is below the reputation
+     * discard threshold, gossip associated with this reputation type will be
+     * removed.
+     *
+     * <p>Note: this will fire a
+     * {@link org.bukkit.event.entity.VillagerReputationChangeEvent}.
+     *
+     * @param uuid the UUID of the entity for whom the reputation is being
+     *             removed
+     * @param reputationType reputation type to be modified
+     * @param amount amount of reputation to remove
+     * @param changeReason reputation change reason
+     */
+    public void removeReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType, int amount, @NotNull ReputationEvent changeReason);
+
+    /**
+     * Set reputation of a given type towards a given entity.
+     *
+     * <p>The final value will be clamped to the maximum value supported by the
+     * provided reputation type. If the final value is below the reputation
+     * discard threshold, gossip associated with this reputation type will be
+     * removed.
+     *
+     * <p>Note: this will fire a
+     * {@link org.bukkit.event.entity.VillagerReputationChangeEvent}.
+     *
+     * @param uuid the UUID of the entity for whom the reputation is being
+     *             added
+     * @param reputationType reputation type to be modified
+     * @param amount amount of reputation to add
+     */
+    public void setReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType, int amount);
+
+    /**
+     * Set reputation of a given type towards a given entity, with a specific
+     * change reason.
+     *
+     * <p>The final value will be clamped to the maximum value supported by the
+     * provided reputation type. If the final value is below the reputation
+     * discard threshold, gossip associated with this reputation type will be
+     * removed.
+     *
+     * <p>Note: this will fire a
+     * {@link org.bukkit.event.entity.VillagerReputationChangeEvent}.
+     *
+     * @param uuid the UUID of the entity for whom the reputation is being
+     *             added
+     * @param reputationType reputation type to be modified
+     * @param amount amount of reputation to add
+     * @param changeReason reputation change reason
+     */
+    public void setReputation(@NotNull UUID uuid, @NotNull ReputationType reputationType, int amount, @NotNull ReputationEvent changeReason);
+
+    /**
+     * Sets the reputation decay time for this villager.
+     *
+     * <p>Defaults to <b>24000</b> (1 daylight cycle).
+     *
+     * @param ticks amount of ticks until the villager's reputation decays
+     */
+    public void setGossipDecayTime(long ticks);
+
+    /**
+     * Gets the reputation decay time for this villager.
+     *
+     * <p>Defaults to <b>24000</b> (1 daylight cycle).
+     *
+     * @return amount of ticks until the villager's reputation decays
+     */
+    public long getGossipDecayTime();
+
+    /**
      * Represents Villager type, usually corresponding to what biome they spawn
      * in.
      */
-    interface Type extends OldEnum<Type>, Keyed {
+    interface Type extends OldEnum<Type>, Keyed, RegistryAware {
 
         Type DESERT = getType("desert");
         Type JUNGLE = getType("jungle");
@@ -134,12 +300,20 @@ public interface Villager extends AbstractVillager {
 
         @NotNull
         private static Type getType(@NotNull String key) {
-            NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
-            Type type = Registry.VILLAGER_TYPE.get(namespacedKey);
-
-            Preconditions.checkNotNull(type, "No villager type found for %s. This is a bug.", namespacedKey);
-            return type;
+            return Registry.VILLAGER_TYPE.getOrThrow(NamespacedKey.minecraft(key));
         }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see #getKeyOrThrow()
+         * @see #isRegistered()
+         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         */
+        @NotNull
+        @Override
+        @Deprecated(since = "1.21.4")
+        NamespacedKey getKey();
 
         /**
          * @param name of the villager type.
@@ -169,7 +343,7 @@ public interface Villager extends AbstractVillager {
      * Represents the various different Villager professions there may be.
      * Villagers have different trading options depending on their profession,
      */
-    interface Profession extends OldEnum<Profession>, Keyed {
+    interface Profession extends OldEnum<Profession>, Keyed, RegistryAware {
 
         Profession NONE = getProfession("none");
         /**
@@ -245,12 +419,20 @@ public interface Villager extends AbstractVillager {
 
         @NotNull
         private static Profession getProfession(@NotNull String key) {
-            NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
-            Profession profession = Registry.VILLAGER_PROFESSION.get(namespacedKey);
-
-            Preconditions.checkNotNull(profession, "No villager profession found for %s. This is a bug.", namespacedKey);
-            return profession;
+            return Registry.VILLAGER_PROFESSION.getOrThrow(NamespacedKey.minecraft(key));
         }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see #getKeyOrThrow()
+         * @see #isRegistered()
+         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         */
+        @NotNull
+        @Override
+        @Deprecated(since = "1.21.4")
+        NamespacedKey getKey();
 
         /**
          * @param name of the villager profession.
@@ -273,6 +455,99 @@ public interface Villager extends AbstractVillager {
         @Deprecated(since = "1.21")
         static Profession[] values() {
             return Lists.newArrayList(Registry.VILLAGER_PROFESSION).toArray(new Profession[0]);
+        }
+    }
+
+    /**
+     * Reputation type used in gossips.
+     */
+    interface ReputationType {
+
+        /**
+         * Major negative reputation. It is caused by killing a villager.
+         */
+        ReputationType MAJOR_NEGATIVE = getReputationType("major_negative");
+        /**
+         * Minor negative reputation. It is caused by attacking a villager.
+         */
+        ReputationType MINOR_NEGATIVE = getReputationType("minor_negative");
+        /**
+         * Minor positive reputation. It is caused by curing a villager.
+         */
+        ReputationType MINOR_POSITIVE = getReputationType("minor_positive");
+        /**
+         * Major positive reputation. It is caused by curing a villager, it is
+         * never shared in gossip and never decays.
+         */
+        ReputationType MAJOR_POSITIVE = getReputationType("major_positive");
+        /**
+         * Trading reputation. It has the same weight as minor positive
+         * reputation and is caused by trading with a villager.
+         */
+        ReputationType TRADING = getReputationType("trading");
+
+        /**
+         * Get maximum reputation value of this type.
+         * @return maximum value of this reputation type
+         */
+        int getMaxValue();
+
+        /**
+         * Get weight of this reputation type.
+         *
+         * <p>When calculating total reputation of an entity, reputation of
+         * each type is multiplied by its weight.
+         *
+         * @return weight assigned to this reputation type
+         */
+        int getWeight();
+
+        private static ReputationType getReputationType(String key) {
+            return Bukkit.getUnsafe().createReputationType(key);
+        }
+    }
+
+    /**
+     * Reputation change reason.
+     */
+    interface ReputationEvent {
+
+        /**
+         * A villager was cured by a player.
+         */
+        ReputationEvent ZOMBIE_VILLAGER_CURED = getReputationEvent("zombie_villager_cured");
+        /**
+         * A player traded with a villager.
+         */
+        ReputationEvent TRADE = getReputationEvent("trade");
+        /**
+         * A villager was hurt by an entity.
+         */
+        ReputationEvent VILLAGER_HURT = getReputationEvent("villager_hurt");
+        /**
+         * A villager was killed by an entity.
+         */
+        ReputationEvent VILLAGER_KILLED = getReputationEvent("villager_killed");
+        /**
+         * A villager gossiped with another villager.
+         */
+        ReputationEvent GOSSIP = getReputationEvent("bukkit_gossip");
+        /**
+         * Reputation decayed over time.
+         */
+        ReputationEvent DECAY = getReputationEvent("bukkit_decay");
+        /**
+         * Village's iron golem was killed by an entity.
+         */
+        ReputationEvent GOLEM_KILLED = getReputationEvent("golem_killed");
+        /**
+         * Unspecified reason. Available only by setting the reputation
+         * programmatically.
+         */
+        ReputationEvent UNSPECIFIED = getReputationEvent("bukkit_unspecified");
+
+        private static ReputationEvent getReputationEvent(String key) {
+            return Bukkit.getUnsafe().createReputationEvent(key);
         }
     }
 }

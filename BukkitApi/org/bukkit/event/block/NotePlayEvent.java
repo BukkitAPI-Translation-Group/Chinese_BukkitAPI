@@ -65,7 +65,7 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
      * @param instrument 乐器，没有为null.
      * @deprecated 在较新版本的Minecraft(1.13及以上)无效
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public void setInstrument(@NotNull Instrument instrument) {
         if (instrument != null) {
             this.instrument = instrument;
@@ -80,7 +80,7 @@ public class NotePlayEvent extends BlockEvent implements Cancellable {
      * @param note 音符，没有为null
      * @deprecated 在较新版本的Minecraft(1.13及以上)无效
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public void setNote(@NotNull Note note) {
         if (note != null) {
             this.note = note;

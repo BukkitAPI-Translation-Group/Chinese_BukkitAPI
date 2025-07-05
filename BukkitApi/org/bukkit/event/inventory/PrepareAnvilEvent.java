@@ -2,8 +2,8 @@ package org.bukkit.event.inventory;
 
 import org.bukkit.event.HandlerList;
 import org.bukkit.inventory.AnvilInventory;
-import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.view.AnvilView;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,14 +14,20 @@ public class PrepareAnvilEvent extends PrepareInventoryResultEvent {
 
     private static final HandlerList handlers = new HandlerList();
 
-    public PrepareAnvilEvent(@NotNull InventoryView inventory, @Nullable ItemStack result) {
+    public PrepareAnvilEvent(@NotNull AnvilView inventory, @Nullable ItemStack result) {
         super(inventory, result);
     }
 
-	@NotNull
+    @NotNull
     @Override
     public AnvilInventory getInventory() {
         return (AnvilInventory) super.getInventory();
+    }
+
+    @NotNull
+    @Override
+    public AnvilView getView() {
+        return (AnvilView) super.getView();
     }
 
     @NotNull

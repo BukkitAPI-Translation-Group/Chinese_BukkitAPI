@@ -26,7 +26,7 @@ public interface JukeboxPlayableComponent extends ConfigurationSerializable {
      *
      * @return the song key
      */
-    @NotNull
+    @Nullable
     NamespacedKey getSongKey();
 
     /**
@@ -42,18 +42,4 @@ public interface JukeboxPlayableComponent extends ConfigurationSerializable {
      * @param song the song key
      */
     void setSongKey(@NotNull NamespacedKey song);
-
-    /**
-     * Gets if the song will show in the item tooltip.
-     *
-     * @return if the song will show in the tooltip
-     */
-    boolean isShowInTooltip();
-
-    /**
-     * Sets if the song will show in the item tooltip.
-     *
-     * @param show true if the song will show in the tooltip
-     */
-    void setShowInTooltip(boolean show);
 }

@@ -45,7 +45,7 @@ public enum Difficulty {
      * @return 返回一个整数的难度数值.
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public int getValue() {
         return value;
     }
@@ -57,7 +57,7 @@ public enum Difficulty {
      * @return 返回一个难度 {@link Difficulty} 若不存在，返回 null
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static Difficulty getByValue(final int value) {
         return BY_ID.get(value);

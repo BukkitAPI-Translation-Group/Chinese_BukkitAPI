@@ -172,7 +172,7 @@ public interface Team {
      * @throws IllegalArgumentException 若此队伍已被注销
      * @deprecated 另请参阅 {@link #getOption(Team.Option)}
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @NotNull
     NameTagVisibility getNameTagVisibility();
 
@@ -185,7 +185,7 @@ public interface Team {
      * @throws IllegalArgumentException 若此队伍已被注销
      * @deprecated 另请参阅 {@link #setOption(Team.Option, Team.OptionStatus)}
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     void setNameTagVisibility(@NotNull NameTagVisibility visibility);
 
     /**
@@ -198,7 +198,7 @@ public interface Team {
      * @see #getEntries()
      * @deprecated 队伍可包含非玩家项目
      */
-    @Deprecated
+    @Deprecated(since = "1.8.6")
     @NotNull
     Set<OfflinePlayer> getPlayers();
 
@@ -247,7 +247,7 @@ public interface Team {
      * @see #addEntry(String)
      * @deprecated 队伍可包含非玩家项目
      */
-    @Deprecated
+    @Deprecated(since = "1.8.6")
     void addPlayer(@NotNull OfflinePlayer player);
 
     /**
@@ -275,7 +275,7 @@ public interface Team {
      * @see #removeEntry(String)
      * @deprecated 队伍可包含非玩家项目
      */
-    @Deprecated
+    @Deprecated(since = "1.8.6")
     boolean removePlayer(@NotNull OfflinePlayer player);
 
     /**
@@ -309,7 +309,7 @@ public interface Team {
      * @see #hasEntry(String)
      * @deprecated 队伍可包含非玩家项目
      */
-    @Deprecated
+    @Deprecated(since = "1.8.6")
     boolean hasPlayer(@NotNull OfflinePlayer player);
     /**
      * 检测某项目是否在此队伍内.

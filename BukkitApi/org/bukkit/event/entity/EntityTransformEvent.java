@@ -120,7 +120,7 @@ public class EntityTransformEvent extends EntityEvent implements Cancellable {
          */
         SPLIT,
         /**
-         * 猪灵转化为僵尸猪灵.
+         * 猪灵(或疣猪兽)因身处主世界而转化为僵尸化变种.
          */
         PIGLIN_ZOMBIFIED,
         /**

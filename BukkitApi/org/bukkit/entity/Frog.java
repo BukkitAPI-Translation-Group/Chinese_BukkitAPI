@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
+import org.bukkit.registry.RegistryAware;
 import org.bukkit.util.OldEnum;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -48,7 +49,7 @@ public interface Frog extends Animals {
     /**
      * Represents the variant of a frog - ie its color.
      */
-    interface Variant extends OldEnum<Variant>, Keyed {
+    interface Variant extends OldEnum<Variant>, Keyed, RegistryAware {
 
         /**
          * Temperate (brown-orange) frog.
@@ -65,12 +66,20 @@ public interface Frog extends Animals {
 
         @NotNull
         private static Variant getVariant(@NotNull String key) {
-            NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
-            Variant variant = Registry.FROG_VARIANT.get(namespacedKey);
-
-            Preconditions.checkNotNull(variant, "No frog variant found for %s. This is a bug.", namespacedKey);
-            return variant;
+            return Registry.FROG_VARIANT.getOrThrow(NamespacedKey.minecraft(key));
         }
+
+        /**
+         * {@inheritDoc}
+         *
+         * @see #getKeyOrThrow()
+         * @see #isRegistered()
+         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         */
+        @NotNull
+        @Override
+        @Deprecated(since = "1.21.4")
+        NamespacedKey getKey();
 
         /**
          * @param name of the frog variant.

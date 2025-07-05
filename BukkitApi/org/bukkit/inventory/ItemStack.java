@@ -84,7 +84,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      * @param damage 损耗值
      * @deprecated 另请参阅 {@link #setDurability(short)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     public ItemStack(@NotNull final Material type, final int amount, final short damage) {
         this(type, amount, damage, null);
     }
@@ -96,7 +96,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      * @param data 数据值或null
      * @deprecated 该方法使用了意义不明确的data byte对象
      */
-    @Deprecated
+    @Deprecated(since = "1.4.5")
     public ItemStack(@NotNull Material type, final int amount, final short damage, @Nullable final Byte data) {
         Preconditions.checkArgument(type != null, "Material cannot be null");
         if (type.isLegacy()) {
@@ -254,7 +254,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      * {@link Damageable#setDamage(int)}. 这是因为在调用此方法之前创建的 ItemMeta
      * 的后续变动将覆盖调用此方法设置的物品元数据.
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public void setDurability(final short durability) {
         ItemMeta meta = getItemMeta();
         if (meta != null) {
@@ -271,7 +271,7 @@ public class ItemStack implements Cloneable, ConfigurationSerializable, Translat
      * @return 物品耐久度
      * @deprecated 另请参阅 {@link #setDurability(short)}
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public short getDurability() {
         ItemMeta meta = getItemMeta();
         return (meta == null) ? 0 : (short) ((Damageable) meta).getDamage();

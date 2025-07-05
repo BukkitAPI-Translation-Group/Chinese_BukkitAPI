@@ -39,6 +39,7 @@ import org.jetbrains.annotations.Nullable;
 class LibraryLoader
 {
 
+    private static final String REPOSITORY_PROPERTY = "org.bukkit.plugin.java.LibraryLoader.centralURL";
     private final Logger logger;
     private final RepositorySystem repository;
     private final DefaultRepositorySystemSession session;
@@ -72,7 +73,7 @@ class LibraryLoader
         session.setSystemProperties( System.getProperties() );
         session.setReadOnly();
 
-        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", "https://repo.maven.apache.org/maven2" ).build() ) );
+        this.repositories = repository.newResolutionRepositories( session, Arrays.asList( new RemoteRepository.Builder( "central", "default", System.getProperty( REPOSITORY_PROPERTY, "https://repo.maven.apache.org/maven2" ) ).build() ) );
     }
 
     @Nullable

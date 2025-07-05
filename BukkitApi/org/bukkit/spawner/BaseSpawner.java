@@ -65,11 +65,8 @@ public interface BaseSpawner {
      * 如果该值小于或等于0, 则此刷怪笼永远处于激活状态.
      * <br>
      * 默认值为 16.
-     * <br>
-     * 译注:原文中的 "distance(squared)" 意为在比较距离时会使用此距离的平方与
-     * 两点(玩家与刷怪笼)间坐标差的平方和作比较, 毕竟乘法运算比开方运算快很多.
      * <p>
-     * 原文:Get the maximum distance(squared) a player can be in order for this
+     * 原文:Get the maximum distance a player can be in order for this
      * spawner to be active.
      * <br>
      * If this value is less than or equal to 0, this spawner is always active
@@ -86,7 +83,7 @@ public interface BaseSpawner {
      * <br>
      * 如果设置小于或等于0的值, 将使刷怪笼永远处于激活状态.
      * <p>
-     * 原文:Set the maximum distance (squared) a player can be in order for this
+     * 原文:Set the maximum distance a player can be in order for this
      * spawner to be active.
      * <br>
      * Setting this value to less than or equal to 0 will make this spawner

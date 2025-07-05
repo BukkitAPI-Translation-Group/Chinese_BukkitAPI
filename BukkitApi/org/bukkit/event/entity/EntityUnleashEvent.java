@@ -51,6 +51,14 @@ public class EntityUnleashEvent extends EntityEvent {
          * When the entity's leashholder is more than 10 blocks away
          */
         DISTANCE,
+        /**
+         * The leash has been sheared
+         */
+        SHEAR,
+        /**
+         * A firework has been used
+         */
+        FIREWORK,
         UNKNOWN;
     }
 }

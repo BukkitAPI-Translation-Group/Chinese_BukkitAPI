@@ -25,7 +25,7 @@ public interface BanList<T> {
          *
          * @deprecated 被 {@link #PROFILE} 取代
          */
-        @Deprecated
+        @Deprecated(since = "1.20.1")
         NAME,
         /**
          * 已封禁的玩家ip地址
@@ -47,7 +47,7 @@ public interface BanList<T> {
      * @return 对应的封禁条目, 如果没有则返回null
      * @deprecated 参见 {@link #getBanEntry(Object)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     @Nullable
     public BanEntry<T> getBanEntry(@NotNull String target);
 
@@ -75,7 +75,7 @@ public interface BanList<T> {
      * @return 新创建的封禁条目，或为更新之前的封禁
      * @deprecated 参见 {@link #addBan(Object, String, Date, String)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     @Nullable
     public BanEntry<T> addBan(@NotNull String target, @Nullable String reason, @Nullable Date expires, @Nullable String source);
 
@@ -133,7 +133,7 @@ public interface BanList<T> {
      * @return 包含了通过此列表跟踪的每个BanEntry的一个不可变列表
      * @deprecated 该方法返回了一个形参化类的原始使用, 推荐使用带泛型参数的 {@link #getEntries()}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     @NotNull
     public Set<BanEntry> getBanEntries();
 
@@ -170,7 +170,7 @@ public interface BanList<T> {
      * @return 如果{@link BanEntry}存在这个目标则表示被封禁了，否则为false
      * @deprecated 参见 {@link #isBanned(Object)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public boolean isBanned(@NotNull String target);
 
     /**
@@ -195,6 +195,6 @@ public interface BanList<T> {
      *
      * @deprecated 参见 {@link #pardon(Object)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public void pardon(@NotNull String target);
 }

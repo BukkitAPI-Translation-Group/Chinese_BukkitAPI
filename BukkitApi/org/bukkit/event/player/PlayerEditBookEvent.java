@@ -84,7 +84,7 @@ public class PlayerEditBookEvent extends PlayerEvent implements Cancellable {
      * @return 事件中书本在玩家物品栏所占用的格子序号
      * @deprecated 书可能被副手签名
      */
-    @Deprecated
+    @Deprecated(since = "1.13.1")
     public int getSlot() {
         return slot;
     }

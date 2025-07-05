@@ -158,7 +158,7 @@ public class InventoryClickEvent extends InventoryInteractEvent {
      *             server, and to make unexpected changes in the behavior of the
      *             clicked Inventory.
      */
-    @Deprecated
+    @Deprecated(since = "1.5.2")
     public void setCursor(@Nullable ItemStack stack) {
         getView().setCursor(stack);
     }

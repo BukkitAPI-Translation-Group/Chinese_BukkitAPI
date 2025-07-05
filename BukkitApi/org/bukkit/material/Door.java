@@ -24,7 +24,7 @@ import org.bukkit.block.BlockFace;
  * @deprecated all usage of MaterialData is deprecated and subject to removal.
  * Use {@link org.bukkit.block.data.BlockData}.
  */
-@Deprecated
+@Deprecated(since = "1.14.1")
 public class Door extends MaterialData implements Directional, Openable {
 
     // This class breaks API contracts on Directional and Openable because
@@ -33,7 +33,7 @@ public class Door extends MaterialData implements Directional, Openable {
     /**
      * @deprecated 遗留的旧API，相当于new <code>Door(Material.LEGACY_WOODEN_DOOR);</code>
      */
-    @Deprecated
+    @Deprecated(since = "1.8.7")
     public Door() {
         super(Material.LEGACY_WOODEN_DOOR);
     }
@@ -179,7 +179,7 @@ public class Door extends MaterialData implements Directional, Openable {
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public Door(final Material type, final byte data) {
         super(type, data);
     }
@@ -259,7 +259,7 @@ public class Door extends MaterialData implements Directional, Openable {
      * @return BlockFace.SELF
      * @deprecated 不应使用此方法;请使用hinge/facing对应的getter
      */
-    @Deprecated
+    @Deprecated(since = "1.4.5")
     public BlockFace getHingeCorner() {
         return BlockFace.SELF;
     }

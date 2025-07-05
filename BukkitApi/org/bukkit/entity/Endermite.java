@@ -16,7 +16,7 @@ public interface Endermite extends Monster {
      * @return 该末影螨是否因玩家而生成
      * @deprecated 本功能不再存在(自1.17版本起)
      */
-    @Deprecated
+    @Deprecated(since = "1.17")
     boolean isPlayerSpawned();
 
     /**
@@ -30,6 +30,6 @@ public interface Endermite extends Monster {
      * @param playerSpawned 该末影螨是否因玩家而生成
      * @deprecated 本功能不再存在(自1.17版本起)
      */
-    @Deprecated
+    @Deprecated(since = "1.17")
     void setPlayerSpawned(boolean playerSpawned);
 }

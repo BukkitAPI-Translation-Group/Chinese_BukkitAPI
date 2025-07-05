@@ -128,7 +128,7 @@ public enum Instrument {
      * @return 乐器的类型ID
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getType() {
         return this.type;
     }
@@ -143,7 +143,7 @@ public enum Instrument {
      * @return 相应的Instrument对象
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static Instrument getByType(final byte type) {
         return BY_DATA.get(type);

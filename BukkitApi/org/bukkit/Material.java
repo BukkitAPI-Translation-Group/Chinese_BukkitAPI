@@ -1,12 +1,14 @@
 package org.bukkit;
 
 import com.google.common.base.Preconditions;
+import com.google.common.base.Suppliers;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 import java.util.Map;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.block.Block;
@@ -51,10 +53,12 @@ import org.bukkit.block.data.type.Comparator;
 import org.bukkit.block.data.type.CopperBulb;
 import org.bukkit.block.data.type.CoralWallFan;
 import org.bukkit.block.data.type.Crafter;
+import org.bukkit.block.data.type.CreakingHeart;
 import org.bukkit.block.data.type.DaylightDetector;
 import org.bukkit.block.data.type.DecoratedPot;
 import org.bukkit.block.data.type.Dispenser;
 import org.bukkit.block.data.type.Door;
+import org.bukkit.block.data.type.DriedGhast;
 import org.bukkit.block.data.type.Dripleaf;
 import org.bukkit.block.data.type.EndPortalFrame;
 import org.bukkit.block.data.type.EnderChest;
@@ -66,17 +70,20 @@ import org.bukkit.block.data.type.Gate;
 import org.bukkit.block.data.type.GlassPane;
 import org.bukkit.block.data.type.GlowLichen;
 import org.bukkit.block.data.type.Grindstone;
+import org.bukkit.block.data.type.HangingMoss;
 import org.bukkit.block.data.type.HangingSign;
 import org.bukkit.block.data.type.Hopper;
 import org.bukkit.block.data.type.Jigsaw;
 import org.bukkit.block.data.type.Jukebox;
 import org.bukkit.block.data.type.Ladder;
 import org.bukkit.block.data.type.Lantern;
+import org.bukkit.block.data.type.LeafLitter;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.block.data.type.Lectern;
 import org.bukkit.block.data.type.Light;
 import org.bukkit.block.data.type.LightningRod;
 import org.bukkit.block.data.type.MangrovePropagule;
+import org.bukkit.block.data.type.MossyCarpet;
 import org.bukkit.block.data.type.NoteBlock;
 import org.bukkit.block.data.type.Observer;
 import org.bukkit.block.data.type.PinkPetals;
@@ -88,6 +95,7 @@ import org.bukkit.block.data.type.RedstoneRail;
 import org.bukkit.block.data.type.RedstoneWallTorch;
 import org.bukkit.block.data.type.RedstoneWire;
 import org.bukkit.block.data.type.Repeater;
+import org.bukkit.block.data.type.ResinClump;
 import org.bukkit.block.data.type.RespawnAnchor;
 import org.bukkit.block.data.type.Sapling;
 import org.bukkit.block.data.type.Scaffolding;
@@ -97,6 +105,7 @@ import org.bukkit.block.data.type.SculkShrieker;
 import org.bukkit.block.data.type.SculkVein;
 import org.bukkit.block.data.type.SeaPickle;
 import org.bukkit.block.data.type.Sign;
+import org.bukkit.block.data.type.Skull;
 import org.bukkit.block.data.type.Slab;
 import org.bukkit.block.data.type.SmallDripleaf;
 import org.bukkit.block.data.type.Snow;
@@ -105,6 +114,7 @@ import org.bukkit.block.data.type.StructureBlock;
 import org.bukkit.block.data.type.Switch;
 import org.bukkit.block.data.type.TNT;
 import org.bukkit.block.data.type.TechnicalPiston;
+import org.bukkit.block.data.type.TestBlock;
 import org.bukkit.block.data.type.TrapDoor;
 import org.bukkit.block.data.type.TrialSpawner;
 import org.bukkit.block.data.type.Tripwire;
@@ -114,12 +124,14 @@ import org.bukkit.block.data.type.Vault;
 import org.bukkit.block.data.type.Wall;
 import org.bukkit.block.data.type.WallHangingSign;
 import org.bukkit.block.data.type.WallSign;
+import org.bukkit.block.data.type.WallSkull;
 import org.bukkit.inventory.CreativeCategory;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ItemType;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.MaterialData;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -127,7 +139,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 所有物品的枚举.
  */
-public enum Material implements Keyed, Translatable {
+public enum Material implements Keyed, Translatable, RegistryAware {
     //<editor-fold desc="Materials" defaultstate="collapsed">
     AIR(9648, 0),
     STONE(22948),
@@ -208,6 +220,7 @@ public enum Material implements Keyed, Translatable {
     ACACIA_PLANKS(31312),
     CHERRY_PLANKS(8354),
     DARK_OAK_PLANKS(20869),
+    PALE_OAK_PLANKS(21660),
     MANGROVE_PLANKS(7078),
     BAMBOO_PLANKS(8520),
     CRIMSON_PLANKS(18812),
@@ -241,6 +254,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Sapling}
      */
     DARK_OAK_SAPLING(14933, Sapling.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
+    PALE_OAK_SAPLING(15508, Sapling.class),
     /**
      * BlockData: {@link MangrovePropagule}
      */
@@ -411,6 +428,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Orientable}
      */
+    PALE_OAK_LOG(13346, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     DARK_OAK_LOG(14831, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -467,6 +488,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Orientable}
      */
+    STRIPPED_PALE_OAK_LOG(25375, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     STRIPPED_MANGROVE_LOG(15197, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -507,6 +532,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Orientable}
      */
+    STRIPPED_PALE_OAK_WOOD(20330, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     STRIPPED_MANGROVE_WOOD(4828, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -544,6 +573,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Orientable}
      */
     CHERRY_WOOD(9826, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
+    PALE_OAK_WOOD(29429, Orientable.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -591,6 +624,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Leaves}
      */
+    PALE_OAK_LEAVES(6408, Leaves.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
     MANGROVE_LEAVES(15310, Leaves.class),
     /**
      * BlockData: {@link Leaves}
@@ -611,9 +648,13 @@ public enum Material implements Keyed, Translatable {
     COBWEB(9469),
     SHORT_GRASS(16335),
     FERN(15794),
+    BUSH(17693),
     AZALEA(29386),
     FLOWERING_AZALEA(28270),
     DEAD_BUSH(22888),
+    FIREFLY_BUSH(26077),
+    SHORT_DRY_GRASS(6637),
+    TALL_DRY_GRASS(14832),
     SEAGRASS(23942),
     /**
      * BlockData: {@link SeaPickle}
@@ -636,6 +677,8 @@ public enum Material implements Keyed, Translatable {
     RED_WOOL(11621),
     BLACK_WOOL(16693),
     DANDELION(30558),
+    OPEN_EYEBLOSSOM(31238),
+    CLOSED_EYEBLOSSOM(29262),
     POPPY(12851),
     BLUE_ORCHID(13432),
     ALLIUM(6871),
@@ -677,12 +720,29 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Ageable}
      */
     KELP(21916, Ageable.class),
-    MOSS_CARPET(8221),
     /**
      * BlockData: {@link PinkPetals}
      */
     PINK_PETALS(10420, PinkPetals.class),
+    /**
+     * BlockData: {@link PinkPetals}
+     */
+    WILDFLOWERS(27608, PinkPetals.class),
+    /**
+     * BlockData: {@link LeafLitter}
+     */
+    LEAF_LITTER(22095, LeafLitter.class),
+    MOSS_CARPET(8221),
     MOSS_BLOCK(9175),
+    /**
+     * BlockData: {@link MossyCarpet}
+     */
+    PALE_MOSS_CARPET(24824, MossyCarpet.class),
+    /**
+     * BlockData: {@link HangingMoss}
+     */
+    PALE_HANGING_MOSS(13108, HangingMoss.class),
+    PALE_MOSS_BLOCK(5318),
     /**
      * BlockData: {@link Waterlogged}
      */
@@ -727,6 +787,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Slab}
      */
     DARK_OAK_SLAB(28852, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    PALE_OAK_SLAB(22048, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -855,6 +919,10 @@ public enum Material implements Keyed, Translatable {
     PURPUR_STAIRS(8921, Stairs.class),
     SPAWNER(7018),
     /**
+     * BlockData: {@link CreakingHeart}
+     */
+    CREAKING_HEART(11442, CreakingHeart.class),
+    /**
      * BlockData: {@link Chest}
      */
     CHEST(22969, Chest.class),
@@ -885,6 +953,7 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Ageable}
      */
     CACTUS(12191, Ageable.class),
+    CACTUS_FLOWER(29751),
     CLAY(27880),
     /**
      * BlockData: {@link Jukebox}
@@ -918,6 +987,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Fence}
      */
     DARK_OAK_FENCE(21767, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    PALE_OAK_FENCE(10547, Fence.class),
     /**
      * BlockData: {@link Fence}
      */
@@ -1013,6 +1086,25 @@ public enum Material implements Keyed, Translatable {
      */
     GLOW_LICHEN(19165, GlowLichen.class),
     /**
+     * BlockData: {@link ResinClump}
+     */
+    RESIN_CLUMP(28662, ResinClump.class),
+    RESIN_BLOCK(26344),
+    RESIN_BRICKS(8331),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    RESIN_BRICK_STAIRS(31170, Stairs.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    RESIN_BRICK_SLAB(25553, Slab.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    RESIN_BRICK_WALL(8538, Wall.class),
+    CHISELED_RESIN_BRICKS(5529),
+    /**
      * BlockData: {@link Stairs}
      */
     BRICK_STAIRS(21534, Stairs.class),
@@ -1098,6 +1190,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Stairs}
      */
     DARK_OAK_STAIRS(22921, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    PALE_OAK_STAIRS(20755, Stairs.class),
     /**
      * BlockData: {@link Stairs}
      */
@@ -1597,6 +1693,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Hatchable}
      */
     SNIFFER_EGG(12980, Hatchable.class),
+    /**
+     * BlockData: {@link DriedGhast}
+     */
+    DRIED_GHAST(6424, DriedGhast.class),
     DEAD_TUBE_CORAL_BLOCK(28350),
     DEAD_BRAIN_CORAL_BLOCK(12979),
     DEAD_BUBBLE_CORAL_BLOCK(28220),
@@ -1963,6 +2063,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Switch}
      */
+    PALE_OAK_BUTTON(5238, Switch.class),
+    /**
+     * BlockData: {@link Switch}
+     */
     MANGROVE_BUTTON(9838, Switch.class),
     /**
      * BlockData: {@link Switch}
@@ -2023,6 +2127,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Powerable}
      */
+    PALE_OAK_PRESSURE_PLATE(30527, Powerable.class),
+    /**
+     * BlockData: {@link Powerable}
+     */
     MANGROVE_PRESSURE_PLATE(9748, Powerable.class),
     /**
      * BlockData: {@link Powerable}
@@ -2068,6 +2176,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Door}
      */
     DARK_OAK_DOOR(10669, Door.class),
+    /**
+     * BlockData: {@link Door}
+     */
+    PALE_OAK_DOOR(23817, Door.class),
     /**
      * BlockData: {@link Door}
      */
@@ -2151,6 +2263,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link TrapDoor}
      */
+    PALE_OAK_TRAPDOOR(20647, TrapDoor.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     MANGROVE_TRAPDOOR(17066, TrapDoor.class),
     /**
      * BlockData: {@link TrapDoor}
@@ -2227,6 +2343,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Gate}
      */
+    PALE_OAK_FENCE_GATE(21221, Gate.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     MANGROVE_FENCE_GATE(28476, Gate.class),
     /**
      * BlockData: {@link Gate}
@@ -2257,6 +2377,22 @@ public enum Material implements Keyed, Translatable {
      */
     ACTIVATOR_RAIL(5834, RedstoneRail.class),
     SADDLE(30206, 1),
+    WHITE_HARNESS(16194, 1),
+    ORANGE_HARNESS(29145, 1),
+    MAGENTA_HARNESS(28316, 1),
+    LIGHT_BLUE_HARNESS(10514, 1),
+    YELLOW_HARNESS(21404, 1),
+    LIME_HARNESS(16572, 1),
+    PINK_HARNESS(19439, 1),
+    GRAY_HARNESS(18078, 1),
+    LIGHT_GRAY_HARNESS(6733, 1),
+    CYAN_HARNESS(4109, 1),
+    PURPLE_HARNESS(14314, 1),
+    BLUE_HARNESS(15650, 1),
+    BROWN_HARNESS(8213, 1),
+    GREEN_HARNESS(18400, 1),
+    RED_HARNESS(30368, 1),
+    BLACK_HARNESS(18915, 1),
     MINECART(14352, 1),
     CHEST_MINECART(4497, 1),
     FURNACE_MINECART(14196, 1),
@@ -2264,6 +2400,7 @@ public enum Material implements Keyed, Translatable {
     HOPPER_MINECART(19024, 1),
     CARROT_ON_A_STICK(27809, 1, 25),
     WARPED_FUNGUS_ON_A_STICK(11706, 1, 100),
+    PHANTOM_MEMBRANE(18398),
     ELYTRA(23829, 1, 432),
     OAK_BOAT(17570, 1),
     OAK_CHEST_BOAT(7765, 1),
@@ -2279,6 +2416,8 @@ public enum Material implements Keyed, Translatable {
     CHERRY_CHEST_BOAT(7165, 1),
     DARK_OAK_BOAT(28618, 1),
     DARK_OAK_CHEST_BOAT(8733, 1),
+    PALE_OAK_BOAT(18534, 1),
+    PALE_OAK_CHEST_BOAT(26297, 1),
     MANGROVE_BOAT(20792, 1),
     MANGROVE_CHEST_BOAT(18572, 1),
     BAMBOO_RAFT(25901, 1),
@@ -2291,6 +2430,11 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Jigsaw}
      */
     JIGSAW(17398, Jigsaw.class),
+    /**
+     * BlockData: {@link TestBlock}
+     */
+    TEST_BLOCK(30798, TestBlock.class),
+    TEST_INSTANCE_BLOCK(16508),
     TURTLE_HELMET(30120, 1, 275),
     TURTLE_SCUTE(6766),
     ARMADILLO_SCUTE(11497),
@@ -2417,6 +2561,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Sign}
      */
+    PALE_OAK_SIGN(12116, 16, Sign.class),
+    /**
+     * BlockData: {@link Sign}
+     */
     MANGROVE_SIGN(21975, 16, Sign.class),
     /**
      * BlockData: {@link Sign}
@@ -2461,6 +2609,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link HangingSign}
      */
+    PALE_OAK_HANGING_SIGN(7097, 16, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
     MANGROVE_HANGING_SIGN(25106, 16, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
@@ -2494,9 +2646,27 @@ public enum Material implements Keyed, Translatable {
     BOOK(23097),
     SLIME_BALL(5242),
     EGG(21603, 16),
+    BLUE_EGG(11157, 16),
+    BROWN_EGG(14373, 16),
     COMPASS(24139),
     RECOVERY_COMPASS(12710),
     BUNDLE(16835, 1),
+    WHITE_BUNDLE(12072, 1),
+    ORANGE_BUNDLE(18288, 1),
+    MAGENTA_BUNDLE(15328, 1),
+    LIGHT_BLUE_BUNDLE(18639, 1),
+    YELLOW_BUNDLE(27749, 1),
+    LIME_BUNDLE(30093, 1),
+    PINK_BUNDLE(21400, 1),
+    GRAY_BUNDLE(21262, 1),
+    LIGHT_GRAY_BUNDLE(26338, 1),
+    CYAN_BUNDLE(8942, 1),
+    PURPLE_BUNDLE(10319, 1),
+    BLUE_BUNDLE(31501, 1),
+    BROWN_BUNDLE(15464, 1),
+    GREEN_BUNDLE(4597, 1),
+    RED_BUNDLE(19986, 1),
+    BLACK_BUNDLE(22519, 1),
     FISHING_ROD(4167, 1, 64),
     CLOCK(14980),
     SPYGLASS(27490, 1),
@@ -2621,8 +2791,8 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link Ageable}
      */
     NETHER_WART(29227, Ageable.class),
-    POTION(24020, 1),
     GLASS_BOTTLE(6116),
+    POTION(24020, 1),
     SPIDER_EYE(9318),
     FERMENTED_SPIDER_EYE(19386),
     BLAZE_POWDER(18941),
@@ -2660,6 +2830,7 @@ public enum Material implements Keyed, Translatable {
     FOX_SPAWN_EGG(22376),
     FROG_SPAWN_EGG(26682),
     GHAST_SPAWN_EGG(9970),
+    HAPPY_GHAST_SPAWN_EGG(6330),
     GLOW_SQUID_SPAWN_EGG(31578),
     GOAT_SPAWN_EGG(30639),
     GUARDIAN_SPAWN_EGG(20113),
@@ -2710,6 +2881,7 @@ public enum Material implements Keyed, Translatable {
     WITHER_SKELETON_SPAWN_EGG(10073),
     WOLF_SPAWN_EGG(21692),
     ZOGLIN_SPAWN_EGG(7442),
+    CREAKING_SPAWN_EGG(9598),
     ZOMBIE_SPAWN_EGG(5814),
     ZOMBIE_HORSE_SPAWN_EGG(4275),
     ZOMBIE_VILLAGER_SPAWN_EGG(10311),
@@ -2719,6 +2891,7 @@ public enum Material implements Keyed, Translatable {
     WIND_CHARGE(23928),
     WRITABLE_BOOK(13393, 1),
     WRITTEN_BOOK(24164, 16),
+    BREEZE_ROD(14281),
     MACE(4771, 1, 500),
     ITEM_FRAME(27318),
     GLOW_ITEM_FRAME(26473),
@@ -2730,39 +2903,40 @@ public enum Material implements Keyed, Translatable {
     MAP(21655),
     GOLDEN_CARROT(5300),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    SKELETON_SKULL(13270, Rotatable.class),
+    SKELETON_SKULL(13270, Skull.class),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    WITHER_SKELETON_SKULL(31487, Rotatable.class),
+    WITHER_SKELETON_SKULL(31487, Skull.class),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    PLAYER_HEAD(21174, Rotatable.class),
+    PLAYER_HEAD(21174, Skull.class),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    ZOMBIE_HEAD(9304, Rotatable.class),
+    ZOMBIE_HEAD(9304, Skull.class),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    CREEPER_HEAD(29146, Rotatable.class),
+    CREEPER_HEAD(29146, Skull.class),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    DRAGON_HEAD(20084, Rotatable.class),
+    DRAGON_HEAD(20084, Skull.class),
     /**
-     * BlockData: {@link Rotatable}
+     * BlockData: {@link Skull}
      */
-    PIGLIN_HEAD(5512, Rotatable.class),
+    PIGLIN_HEAD(5512, Skull.class),
     NETHER_STAR(12469),
     PUMPKIN_PIE(28725),
     FIREWORK_ROCKET(23841),
     FIREWORK_STAR(12190),
     ENCHANTED_BOOK(11741, 1),
     NETHER_BRICK(19996),
+    RESIN_BRICK(19050),
     PRISMARINE_SHARD(10993),
     PRISMARINE_CRYSTALS(31546),
     RABBIT(23068),
@@ -2807,7 +2981,7 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link Rotatable}
      */
-    PINK_BANNER(19439, 16, Rotatable.class),
+    PINK_BANNER(14302, 16, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
@@ -2882,9 +3056,9 @@ public enum Material implements Keyed, Translatable {
     MUSIC_DISC_5(9212, 1),
     MUSIC_DISC_PIGSTEP(21323, 1),
     MUSIC_DISC_PRECIPICE(28677, 1),
+    MUSIC_DISC_TEARS(27850, 1),
     DISC_FRAGMENT_5(29729),
     TRIDENT(7534, 1, 250),
-    PHANTOM_MEMBRANE(18398),
     NAUTILUS_SHELL(19989),
     HEART_OF_THE_SEA(11807),
     CROSSBOW(4340, 1, 465),
@@ -2901,6 +3075,8 @@ public enum Material implements Keyed, Translatable {
     PIGLIN_BANNER_PATTERN(22028, 1),
     FLOW_BANNER_PATTERN(32683, 1),
     GUSTER_BANNER_PATTERN(27267, 1),
+    FIELD_MASONED_BANNER_PATTERN(19157, 1),
+    BORDURE_INDENTED_BANNER_PATTERN(25850, 1),
     GOAT_HORN(28237, 1),
     /**
      * BlockData: {@link Levelled}
@@ -3219,7 +3395,6 @@ public enum Material implements Keyed, Translatable {
      */
     VAULT(6288, Vault.class),
     OMINOUS_BOTTLE(26321),
-    BREEZE_ROD(14281),
     /**
      * BlockData: {@link Levelled}
      */
@@ -3284,6 +3459,10 @@ public enum Material implements Keyed, Translatable {
     /**
      * BlockData: {@link WallSign}
      */
+    PALE_OAK_WALL_SIGN(23103, 16, WallSign.class),
+    /**
+     * BlockData: {@link WallSign}
+     */
     MANGROVE_WALL_SIGN(27203, 16, WallSign.class),
     /**
      * BlockData: {@link WallSign}
@@ -3317,6 +3496,10 @@ public enum Material implements Keyed, Translatable {
      * BlockData: {@link WallHangingSign}
      */
     DARK_OAK_WALL_HANGING_SIGN(14296, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    PALE_OAK_WALL_HANGING_SIGN(23484, WallHangingSign.class),
     /**
      * BlockData: {@link WallHangingSign}
      */
@@ -3387,6 +3570,7 @@ public enum Material implements Keyed, Translatable {
     POTTED_ACACIA_SAPLING(14096),
     POTTED_CHERRY_SAPLING(30785),
     POTTED_DARK_OAK_SAPLING(6486),
+    POTTED_PALE_OAK_SAPLING(15538),
     POTTED_MANGROVE_PROPAGULE(22003),
     POTTED_FERN(23315),
     POTTED_DANDELION(9727),
@@ -3415,33 +3599,33 @@ public enum Material implements Keyed, Translatable {
      */
     POTATOES(10879, Ageable.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    SKELETON_WALL_SKULL(31650, Directional.class),
+    SKELETON_WALL_SKULL(31650, WallSkull.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    WITHER_SKELETON_WALL_SKULL(9326, Directional.class),
+    WITHER_SKELETON_WALL_SKULL(9326, WallSkull.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    ZOMBIE_WALL_HEAD(16296, Directional.class),
+    ZOMBIE_WALL_HEAD(16296, WallSkull.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    PLAYER_WALL_HEAD(13164, Directional.class),
+    PLAYER_WALL_HEAD(13164, WallSkull.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    CREEPER_WALL_HEAD(30123, Directional.class),
+    CREEPER_WALL_HEAD(30123, WallSkull.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    DRAGON_WALL_HEAD(19818, Directional.class),
+    DRAGON_WALL_HEAD(19818, WallSkull.class),
     /**
-     * BlockData: {@link Directional}
+     * BlockData: {@link WallSkull}
      */
-    PIGLIN_WALL_HEAD(4446, Directional.class),
+    PIGLIN_WALL_HEAD(4446, WallSkull.class),
     /**
      * BlockData: {@link Directional}
      */
@@ -3673,941 +3857,943 @@ public enum Material implements Keyed, Translatable {
     BIG_DRIPLEAF_STEM(13167, Dripleaf.class),
     POTTED_AZALEA_BUSH(20430),
     POTTED_FLOWERING_AZALEA_BUSH(10609),
+    POTTED_OPEN_EYEBLOSSOM(24999),
+    POTTED_CLOSED_EYEBLOSSOM(16694),
     // ----- Legacy Separator -----
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_AIR(0, 0),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE(1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GRASS(2),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIRT(3),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COBBLESTONE(4),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD(5, org.bukkit.material.Wood.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SAPLING(6, org.bukkit.material.Sapling.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BEDROCK(7),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WATER(8, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STATIONARY_WATER(9, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LAVA(10, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STATIONARY_LAVA(11, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SAND(12),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GRAVEL(13),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_ORE(14),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_ORE(15),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COAL_ORE(16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LOG(17, org.bukkit.material.Tree.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEAVES(18, org.bukkit.material.Leaves.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPONGE(19),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GLASS(20),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LAPIS_ORE(21),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LAPIS_BLOCK(22),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DISPENSER(23, org.bukkit.material.Dispenser.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SANDSTONE(24, org.bukkit.material.Sandstone.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NOTE_BLOCK(25),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BED_BLOCK(26, org.bukkit.material.Bed.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_POWERED_RAIL(27, org.bukkit.material.PoweredRail.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DETECTOR_RAIL(28, org.bukkit.material.DetectorRail.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PISTON_STICKY_BASE(29, org.bukkit.material.PistonBaseMaterial.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WEB(30),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LONG_GRASS(31, org.bukkit.material.LongGrass.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DEAD_BUSH(32),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PISTON_BASE(33, org.bukkit.material.PistonBaseMaterial.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PISTON_EXTENSION(34, org.bukkit.material.PistonExtensionMaterial.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOL(35, org.bukkit.material.Wool.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PISTON_MOVING_PIECE(36),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_YELLOW_FLOWER(37),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_ROSE(38),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BROWN_MUSHROOM(39),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_MUSHROOM(40),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_BLOCK(41),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_BLOCK(42),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DOUBLE_STEP(43, org.bukkit.material.Step.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STEP(44, org.bukkit.material.Step.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BRICK(45),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TNT(46),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOOKSHELF(47),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MOSSY_COBBLESTONE(48),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_OBSIDIAN(49),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TORCH(50, org.bukkit.material.Torch.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FIRE(51),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MOB_SPAWNER(52),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_STAIRS(53, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHEST(54, org.bukkit.material.Chest.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_WIRE(55, org.bukkit.material.RedstoneWire.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_ORE(56),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_BLOCK(57),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WORKBENCH(58),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CROPS(59, org.bukkit.material.Crops.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SOIL(60, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FURNACE(61, org.bukkit.material.Furnace.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BURNING_FURNACE(62, org.bukkit.material.Furnace.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SIGN_POST(63, 64, org.bukkit.material.Sign.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOODEN_DOOR(64, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LADDER(65, org.bukkit.material.Ladder.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RAILS(66, org.bukkit.material.Rails.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COBBLESTONE_STAIRS(67, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WALL_SIGN(68, 64, org.bukkit.material.Sign.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEVER(69, org.bukkit.material.Lever.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_PLATE(70, org.bukkit.material.PressurePlate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_DOOR_BLOCK(71, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_PLATE(72, org.bukkit.material.PressurePlate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_ORE(73),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GLOWING_REDSTONE_ORE(74),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_TORCH_OFF(75, org.bukkit.material.RedstoneTorch.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_TORCH_ON(76, org.bukkit.material.RedstoneTorch.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_BUTTON(77, org.bukkit.material.Button.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SNOW(78),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ICE(79),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SNOW_BLOCK(80),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CACTUS(81, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CLAY(82),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SUGAR_CANE_BLOCK(83, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JUKEBOX(84),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FENCE(85),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PUMPKIN(86, org.bukkit.material.Pumpkin.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHERRACK(87),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SOUL_SAND(88),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GLOWSTONE(89),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PORTAL(90),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JACK_O_LANTERN(91, org.bukkit.material.Pumpkin.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CAKE_BLOCK(92, 64, org.bukkit.material.Cake.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIODE_BLOCK_OFF(93, org.bukkit.material.Diode.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIODE_BLOCK_ON(94, org.bukkit.material.Diode.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STAINED_GLASS(95),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TRAP_DOOR(96, org.bukkit.material.TrapDoor.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MONSTER_EGGS(97, org.bukkit.material.MonsterEggs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SMOOTH_BRICK(98, org.bukkit.material.SmoothBrick.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_HUGE_MUSHROOM_1(99, org.bukkit.material.Mushroom.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_HUGE_MUSHROOM_2(100, org.bukkit.material.Mushroom.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_FENCE(101),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_THIN_GLASS(102),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MELON_BLOCK(103),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PUMPKIN_STEM(104, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MELON_STEM(105, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_VINE(106, org.bukkit.material.Vine.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FENCE_GATE(107, org.bukkit.material.Gate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BRICK_STAIRS(108, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SMOOTH_STAIRS(109, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MYCEL(110),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WATER_LILY(111),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_BRICK(112),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_FENCE(113),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_BRICK_STAIRS(114, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_WARTS(115, org.bukkit.material.NetherWarts.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENCHANTMENT_TABLE(116),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BREWING_STAND(117, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CAULDRON(118, org.bukkit.material.Cauldron.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENDER_PORTAL(119),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENDER_PORTAL_FRAME(120),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENDER_STONE(121),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DRAGON_EGG(122),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_LAMP_OFF(123),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_LAMP_ON(124),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_DOUBLE_STEP(125, org.bukkit.material.Wood.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_STEP(126, org.bukkit.material.WoodenStep.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COCOA(127, org.bukkit.material.CocoaPlant.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SANDSTONE_STAIRS(128, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EMERALD_ORE(129),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENDER_CHEST(130, org.bukkit.material.EnderChest.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TRIPWIRE_HOOK(131, org.bukkit.material.TripwireHook.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TRIPWIRE(132, org.bukkit.material.Tripwire.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EMERALD_BLOCK(133),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPRUCE_WOOD_STAIRS(134, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BIRCH_WOOD_STAIRS(135, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JUNGLE_WOOD_STAIRS(136, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COMMAND(137, org.bukkit.material.Command.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BEACON(138),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COBBLE_WALL(139),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FLOWER_POT(140, org.bukkit.material.FlowerPot.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CARROT(141, org.bukkit.material.Crops.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_POTATO(142, org.bukkit.material.Crops.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_BUTTON(143, org.bukkit.material.Button.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SKULL(144, org.bukkit.material.Skull.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ANVIL(145),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TRAPPED_CHEST(146, org.bukkit.material.Chest.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_PLATE(147),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_PLATE(148),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_COMPARATOR_OFF(149, org.bukkit.material.Comparator.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_COMPARATOR_ON(150, org.bukkit.material.Comparator.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DAYLIGHT_DETECTOR(151),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_BLOCK(152),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_QUARTZ_ORE(153),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_HOPPER(154, org.bukkit.material.Hopper.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_QUARTZ_BLOCK(155),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_QUARTZ_STAIRS(156, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ACTIVATOR_RAIL(157, org.bukkit.material.PoweredRail.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DROPPER(158, org.bukkit.material.Dispenser.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STAINED_CLAY(159),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STAINED_GLASS_PANE(160),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEAVES_2(161, org.bukkit.material.Leaves.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LOG_2(162, org.bukkit.material.Tree.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ACACIA_STAIRS(163, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DARK_OAK_STAIRS(164, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SLIME_BLOCK(165),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BARRIER(166),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_TRAPDOOR(167, org.bukkit.material.TrapDoor.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PRISMARINE(168),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SEA_LANTERN(169),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_HAY_BLOCK(170),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CARPET(171),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_HARD_CLAY(172),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COAL_BLOCK(173),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PACKED_ICE(174),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DOUBLE_PLANT(175),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STANDING_BANNER(176, org.bukkit.material.Banner.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WALL_BANNER(177, org.bukkit.material.Banner.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DAYLIGHT_DETECTOR_INVERTED(178),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_SANDSTONE(179),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_SANDSTONE_STAIRS(180, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DOUBLE_STONE_SLAB2(181),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_SLAB2(182),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPRUCE_FENCE_GATE(183, org.bukkit.material.Gate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BIRCH_FENCE_GATE(184, org.bukkit.material.Gate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JUNGLE_FENCE_GATE(185, org.bukkit.material.Gate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DARK_OAK_FENCE_GATE(186, org.bukkit.material.Gate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ACACIA_FENCE_GATE(187, org.bukkit.material.Gate.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPRUCE_FENCE(188),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BIRCH_FENCE(189),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JUNGLE_FENCE(190),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DARK_OAK_FENCE(191),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ACACIA_FENCE(192),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPRUCE_DOOR(193, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BIRCH_DOOR(194, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JUNGLE_DOOR(195, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ACACIA_DOOR(196, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DARK_OAK_DOOR(197, org.bukkit.material.Door.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_END_ROD(198),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHORUS_PLANT(199),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHORUS_FLOWER(200),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPUR_BLOCK(201),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPUR_PILLAR(202),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPUR_STAIRS(203, org.bukkit.material.Stairs.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPUR_DOUBLE_SLAB(204),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPUR_SLAB(205),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_END_BRICKS(206),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BEETROOT_BLOCK(207, org.bukkit.material.Crops.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GRASS_PATH(208),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_END_GATEWAY(209),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COMMAND_REPEATING(210, org.bukkit.material.Command.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COMMAND_CHAIN(211, org.bukkit.material.Command.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FROSTED_ICE(212),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MAGMA(213),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_WART_BLOCK(214),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_NETHER_BRICK(215),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BONE_BLOCK(216),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STRUCTURE_VOID(217),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_OBSERVER(218, org.bukkit.material.Observer.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WHITE_SHULKER_BOX(219, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ORANGE_SHULKER_BOX(220, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MAGENTA_SHULKER_BOX(221, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LIGHT_BLUE_SHULKER_BOX(222, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_YELLOW_SHULKER_BOX(223, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LIME_SHULKER_BOX(224, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PINK_SHULKER_BOX(225, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GRAY_SHULKER_BOX(226, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SILVER_SHULKER_BOX(227, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CYAN_SHULKER_BOX(228, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPLE_SHULKER_BOX(229, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BLUE_SHULKER_BOX(230, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BROWN_SHULKER_BOX(231, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GREEN_SHULKER_BOX(232, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_SHULKER_BOX(233, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BLACK_SHULKER_BOX(234, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WHITE_GLAZED_TERRACOTTA(235),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ORANGE_GLAZED_TERRACOTTA(236),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MAGENTA_GLAZED_TERRACOTTA(237),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LIGHT_BLUE_GLAZED_TERRACOTTA(238),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_YELLOW_GLAZED_TERRACOTTA(239),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LIME_GLAZED_TERRACOTTA(240),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PINK_GLAZED_TERRACOTTA(241),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GRAY_GLAZED_TERRACOTTA(242),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SILVER_GLAZED_TERRACOTTA(243),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CYAN_GLAZED_TERRACOTTA(244),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PURPLE_GLAZED_TERRACOTTA(245),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BLUE_GLAZED_TERRACOTTA(246),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BROWN_GLAZED_TERRACOTTA(247),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GREEN_GLAZED_TERRACOTTA(248),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RED_GLAZED_TERRACOTTA(249),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BLACK_GLAZED_TERRACOTTA(250),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CONCRETE(251),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CONCRETE_POWDER(252),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STRUCTURE_BLOCK(255),
     // ----- Item Separator -----
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_SPADE(256, 1, 250),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_PICKAXE(257, 1, 250),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_AXE(258, 1, 250),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FLINT_AND_STEEL(259, 1, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_APPLE(260),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOW(261, 1, 384),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ARROW(262),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COAL(263, org.bukkit.material.Coal.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND(264),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_INGOT(265),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_INGOT(266),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_SWORD(267, 1, 250),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_SWORD(268, 1, 59),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_SPADE(269, 1, 59),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_PICKAXE(270, 1, 59),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_AXE(271, 1, 59),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_SWORD(272, 1, 131),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_SPADE(273, 1, 131),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_PICKAXE(274, 1, 131),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_AXE(275, 1, 131),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_SWORD(276, 1, 1561),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_SPADE(277, 1, 1561),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_PICKAXE(278, 1, 1561),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_AXE(279, 1, 1561),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STICK(280),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOWL(281),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MUSHROOM_SOUP(282, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_SWORD(283, 1, 32),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_SPADE(284, 1, 32),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_PICKAXE(285, 1, 32),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_AXE(286, 1, 32),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STRING(287),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FEATHER(288),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SULPHUR(289),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_HOE(290, 1, 59),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STONE_HOE(291, 1, 131),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_HOE(292, 1, 250),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_HOE(293, 1, 1561),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_HOE(294, 1, 32),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SEEDS(295),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WHEAT(296),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BREAD(297),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEATHER_HELMET(298, 1, 55),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEATHER_CHESTPLATE(299, 1, 80),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEATHER_LEGGINGS(300, 1, 75),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEATHER_BOOTS(301, 1, 65),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHAINMAIL_HELMET(302, 1, 165),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHAINMAIL_CHESTPLATE(303, 1, 240),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHAINMAIL_LEGGINGS(304, 1, 225),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHAINMAIL_BOOTS(305, 1, 195),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_HELMET(306, 1, 165),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_CHESTPLATE(307, 1, 240),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_LEGGINGS(308, 1, 225),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_BOOTS(309, 1, 195),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_HELMET(310, 1, 363),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_CHESTPLATE(311, 1, 528),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_LEGGINGS(312, 1, 495),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_BOOTS(313, 1, 429),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_HELMET(314, 1, 77),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_CHESTPLATE(315, 1, 112),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_LEGGINGS(316, 1, 105),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_BOOTS(317, 1, 91),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FLINT(318),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PORK(319),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GRILLED_PORK(320),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PAINTING(321),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLDEN_APPLE(322),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SIGN(323, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WOOD_DOOR(324, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BUCKET(325, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WATER_BUCKET(326, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LAVA_BUCKET(327, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MINECART(328, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SADDLE(329, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_DOOR(330, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE(331),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SNOW_BALL(332, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOAT(333, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEATHER(334),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MILK_BUCKET(335, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CLAY_BRICK(336),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CLAY_BALL(337),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SUGAR_CANE(338),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PAPER(339),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOOK(340),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SLIME_BALL(341),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_STORAGE_MINECART(342, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_POWERED_MINECART(343, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EGG(344, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COMPASS(345),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FISHING_ROD(346, 1, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WATCH(347),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GLOWSTONE_DUST(348),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RAW_FISH(349),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COOKED_FISH(350),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_INK_SACK(351, org.bukkit.material.Dye.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BONE(352),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SUGAR(353),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CAKE(354, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BED(355, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIODE(356),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COOKIE(357),
     /**
      * @see org.bukkit.map.MapView
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MAP(358, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SHEARS(359, 1, 238),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MELON(360),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PUMPKIN_SEEDS(361),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MELON_SEEDS(362),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RAW_BEEF(363),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COOKED_BEEF(364),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RAW_CHICKEN(365),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COOKED_CHICKEN(366),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ROTTEN_FLESH(367),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENDER_PEARL(368, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BLAZE_ROD(369),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GHAST_TEAR(370),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_NUGGET(371),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_STALK(372),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_POTION(373, 1, org.bukkit.material.MaterialData.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GLASS_BOTTLE(374),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPIDER_EYE(375),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FERMENTED_SPIDER_EYE(376),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BLAZE_POWDER(377),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MAGMA_CREAM(378),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BREWING_STAND_ITEM(379),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CAULDRON_ITEM(380),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EYE_OF_ENDER(381),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPECKLED_MELON(382),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MONSTER_EGG(383, 64, org.bukkit.material.SpawnEgg.class),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EXP_BOTTLE(384, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FIREBALL(385, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOOK_AND_QUILL(386, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_WRITTEN_BOOK(387, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EMERALD(388, 64),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ITEM_FRAME(389),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FLOWER_POT_ITEM(390),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CARROT_ITEM(391),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_POTATO_ITEM(392),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BAKED_POTATO(393),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_POISONOUS_POTATO(394),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EMPTY_MAP(395),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLDEN_CARROT(396),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SKULL_ITEM(397),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CARROT_STICK(398, 1, 25),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_STAR(399),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PUMPKIN_PIE(400),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FIREWORK(401),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_FIREWORK_CHARGE(402),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ENCHANTED_BOOK(403, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_REDSTONE_COMPARATOR(404),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NETHER_BRICK_ITEM(405),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_QUARTZ(406),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_EXPLOSIVE_MINECART(407, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_HOPPER_MINECART(408, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PRISMARINE_SHARD(409),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_PRISMARINE_CRYSTALS(410),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RABBIT(411),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COOKED_RABBIT(412),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RABBIT_STEW(413, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RABBIT_FOOT(414),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RABBIT_HIDE(415),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ARMOR_STAND(416, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_BARDING(417, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_BARDING(418, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DIAMOND_BARDING(419, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LEASH(420),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_NAME_TAG(421),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COMMAND_MINECART(422, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_MUTTON(423),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_COOKED_MUTTON(424),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BANNER(425, 16),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_END_CRYSTAL(426),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPRUCE_DOOR_ITEM(427),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BIRCH_DOOR_ITEM(428),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_JUNGLE_DOOR_ITEM(429),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ACACIA_DOOR_ITEM(430),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DARK_OAK_DOOR_ITEM(431),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHORUS_FRUIT(432),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_CHORUS_FRUIT_POPPED(433),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BEETROOT(434),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BEETROOT_SEEDS(435),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BEETROOT_SOUP(436, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_DRAGONS_BREATH(437),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPLASH_POTION(438, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SPECTRAL_ARROW(439),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TIPPED_ARROW(440),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_LINGERING_POTION(441, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SHIELD(442, 1, 336),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_ELYTRA(443, 1, 431),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOAT_SPRUCE(444, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOAT_BIRCH(445, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOAT_JUNGLE(446, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOAT_ACACIA(447, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_BOAT_DARK_OAK(448, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_TOTEM(449, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_SHULKER_SHELL(450),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_IRON_NUGGET(452),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_KNOWLEDGE_BOOK(453, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GOLD_RECORD(2256, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_GREEN_RECORD(2257, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_3(2258, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_4(2259, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_5(2260, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_6(2261, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_7(2262, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_8(2263, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_9(2264, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_10(2265, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_11(2266, 1),
-    @Deprecated
+    @Deprecated(since = "1.13")
     LEGACY_RECORD_12(2267, 1),
     ;
     //</editor-fold>
 
-    @Deprecated
+    @Deprecated(since = "1.13")
     public static final String LEGACY_PREFIX = "LEGACY_";
 
     private final int id;
@@ -4618,6 +4804,8 @@ public enum Material implements Keyed, Translatable {
     public final Class<?> data;
     private final boolean legacy;
     private final NamespacedKey key;
+    private final Supplier<ItemType> itemType;
+    private final Supplier<BlockType> blockType;
 
     private Material(final int id) {
         this(id, 64);
@@ -4658,6 +4846,21 @@ public enum Material implements Keyed, Translatable {
         } catch (SecurityException ex) {
             throw new AssertionError(ex);
         }
+
+        this.itemType = Suppliers.memoize(() -> {
+            Material material = this;
+            if (isLegacy()) {
+                material = Bukkit.getUnsafe().fromLegacy(new MaterialData(this), true);
+            }
+            return Registry.ITEM.get(material.key);
+        });
+        this.blockType = Suppliers.memoize(() -> {
+            Material material = this;
+            if (isLegacy()) {
+                material = Bukkit.getUnsafe().fromLegacy(new MaterialData(this), false);
+            }
+            return Registry.BLOCK.get(material.key);
+        });
     }
 
     /**
@@ -4668,7 +4871,7 @@ public enum Material implements Keyed, Translatable {
      * @return 物品id
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public int getId() {
         Preconditions.checkArgument(legacy, "Cannot get ID of Modern Material");
         return id;
@@ -4681,16 +4884,41 @@ public enum Material implements Keyed, Translatable {
      *
      * @return 是否为旧版表示方式
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public boolean isLegacy() {
         return legacy;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
     @NotNull
     @Override
+    @Deprecated(since = "1.21.4")
     public NamespacedKey getKey() {
-        Preconditions.checkArgument(!legacy, "Cannot get key of Legacy Material");
-        return key;
+        return getKeyOrThrow();
+    }
+
+    @NotNull
+    @Override
+    public NamespacedKey getKeyOrThrow() {
+        Preconditions.checkState(isRegistered(), "Cannot get key of this registry item, because it is not registered. Use #isRegistered() before calling this method.");
+        return this.key;
+    }
+
+    @Nullable
+    @Override
+    public NamespacedKey getKeyOrNull() {
+        return this.key;
+    }
+
+    @Override
+    public boolean isRegistered() {
+        return !legacy;
     }
 
     /**
@@ -4780,7 +5008,7 @@ public enum Material implements Keyed, Translatable {
      * @return 给定值的MaterialData对象
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @NotNull
     public MaterialData getNewData(final byte raw) {
         Preconditions.checkArgument(legacy, "Cannot get new data of Modern Material");
@@ -4966,7 +5194,7 @@ public enum Material implements Keyed, Translatable {
      * @deprecated 目前还没有一个与底层服务器联系紧密的
      * 实现。欢迎贡献.(如果你有idea，请左转Spigot Stash贡献你的代码)
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public boolean isTransparent() {
         if (!isBlock()) {
             return false;
@@ -5378,27 +5606,45 @@ public enum Material implements Keyed, Translatable {
             case SHIELD:
                 return EquipmentSlot.OFF_HAND;
             case BLACK_CARPET:
+            case BLACK_HARNESS:
             case BLUE_CARPET:
+            case BLUE_HARNESS:
             case BROWN_CARPET:
+            case BROWN_HARNESS:
             case CYAN_CARPET:
+            case CYAN_HARNESS:
             case DIAMOND_HORSE_ARMOR:
             case GOLDEN_HORSE_ARMOR:
             case GRAY_CARPET:
+            case GRAY_HARNESS:
             case GREEN_CARPET:
+            case GREEN_HARNESS:
             case IRON_HORSE_ARMOR:
             case LEATHER_HORSE_ARMOR:
             case LIGHT_BLUE_CARPET:
+            case LIGHT_BLUE_HARNESS:
             case LIGHT_GRAY_CARPET:
+            case LIGHT_GRAY_HARNESS:
             case LIME_CARPET:
+            case LIME_HARNESS:
             case MAGENTA_CARPET:
+            case MAGENTA_HARNESS:
             case ORANGE_CARPET:
+            case ORANGE_HARNESS:
             case PINK_CARPET:
+            case PINK_HARNESS:
             case PURPLE_CARPET:
+            case PURPLE_HARNESS:
             case RED_CARPET:
+            case RED_HARNESS:
             case WHITE_CARPET:
+            case WHITE_HARNESS:
             case WOLF_ARMOR:
             case YELLOW_CARPET:
+            case YELLOW_HARNESS:
                 return EquipmentSlot.BODY;
+            case SADDLE:
+                return EquipmentSlot.SADDLE;
             default:
                 return EquipmentSlot.HAND;
             // </editor-fold>
@@ -5538,11 +5784,7 @@ public enum Material implements Keyed, Translatable {
     @ApiStatus.Internal
     @Nullable
     public ItemType asItemType() {
-        Material material = this;
-        if (isLegacy()) {
-            material = Bukkit.getUnsafe().fromLegacy(this);
-        }
-        return Registry.ITEM.get(material.key);
+        return itemType.get();
     }
 
     /**
@@ -5554,10 +5796,6 @@ public enum Material implements Keyed, Translatable {
     @ApiStatus.Internal
     @Nullable
     public BlockType asBlockType() {
-        Material material = this;
-        if (isLegacy()) {
-            material = Bukkit.getUnsafe().fromLegacy(this);
-        }
-        return Registry.BLOCK.get(material.key);
+        return blockType.get();
     }
 }

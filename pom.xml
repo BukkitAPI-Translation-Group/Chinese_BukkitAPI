@@ -7,7 +7,7 @@
 
     <groupId>org.spigotmc</groupId>
     <artifactId>spigot-api</artifactId>
-    <version>1.21-R0.1-SNAPSHOT</version>
+    <version>1.21.6-R0.1-SNAPSHOT</version>
     <name>Spigot-API</name>
 
     <properties>
@@ -20,17 +20,24 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <version>32.1.2-jre</version>
+            <version>33.3.1-jre</version>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
-            <version>2.10.1</version>
+            <version>2.11.0</version>
         </dependency>
         <dependency>
             <groupId>org.joml</groupId>
             <artifactId>joml</artifactId>
-            <version>1.10.5</version>
+            <version>1.10.8</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.md-5</groupId>
+            <artifactId>bungeecord-serializer</artifactId>
+            <version>1.21-R0.3</version>
+            <type>jar</type>
             <scope>compile</scope>
         </dependency>
         <dependency>

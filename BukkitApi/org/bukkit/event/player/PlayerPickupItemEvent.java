@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
  * 玩家捡起掉落物品事件.
  * @deprecated {@link EntityPickupItemEvent}
  */
-@Deprecated
+@Deprecated(since = "1.12")
 @Warning(false)
 public class PlayerPickupItemEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();

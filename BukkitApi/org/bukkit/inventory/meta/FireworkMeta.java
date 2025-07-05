@@ -97,15 +97,29 @@ public interface FireworkMeta extends ItemMeta {
     boolean hasEffects();
 
     /**
+     * 判断这个烟花火箭是否含有能量.
+     * <p>
+     * 原文:Get whether this firework has power set by component.
+     *
+     * @return 是否含有能量
+     */
+    boolean hasPower();
+
+    /**
      * 获取这个烟花火箭的飞行时间的近似值.
+     * <br>
+     * 插件调用此方法前应检查 hasPower() 是否返回 <code>true</code>.
      * <p>
      * 译注: 原文中 "height" 有误, 实际为飞行时间而非高度, 但"近似"表述无误,
      * 因为底层的烟花生命周期(单位为 tick)的计算公式为: <code>飞行时间 * 10 + 0~5的随机整数 + 0~6的随机整数</code>.
      * <p>
-     * 原文:
-     * Gets the approximate height the firework will fly.
+     * 原文:Gets the approximate height the firework will fly.
+     * <br>
+     * Plugins should check that hasPower() returns <code>true</code>
+     * before calling this method.
      *
      * @return 飞行时间近似值
+     * @see #hasPower()
      */
     int getPower();
 
@@ -116,8 +130,8 @@ public interface FireworkMeta extends ItemMeta {
      * Sets the approximate power of the firework. Each level of power is half
      * a second of flight time.
      *
-     * @param power 烟花火箭的能量 (持续时间), 取值范围 0 {@literal <=} power {@literal <} 128
-     * @throws IllegalArgumentException 若 {@literal power<0 或 power>127}
+     * @param power 烟花火箭的能量 (持续时间), 取值范围 0 {@literal <=} power {@literal <=} 255
+     * @throws IllegalArgumentException 若 {@literal power<0 或 power>255}
      */
     void setPower(int power) throws IllegalArgumentException;
 

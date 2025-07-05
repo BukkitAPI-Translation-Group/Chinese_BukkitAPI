@@ -27,7 +27,7 @@ public enum CoalType {
      * @return 煤的数据值
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getData() {
         return data;
     }
@@ -42,7 +42,7 @@ public enum CoalType {
      * @return {@link CoalType} 代表给定的值, 如果不存在则为null
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static CoalType getByData(final byte data) {
         return BY_DATA.get(data);

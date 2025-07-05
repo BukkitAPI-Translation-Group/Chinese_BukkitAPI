@@ -14,8 +14,10 @@ public interface AbstractHorseInventory extends Inventory {
      * 原文:Gets the item in the horse's saddle slot.
      *
      * @return 马鞍
+     * @deprecated 不能给羊驼装配鞍
      */
     @Nullable
+    @Deprecated(since = "1.21.5")
     ItemStack getSaddle();
 
     /**
@@ -24,6 +26,8 @@ public interface AbstractHorseInventory extends Inventory {
      * 原文:Sets the item in the horse's saddle slot.
      *
      * @param stack 马鞍
+     * @deprecated 不能给羊驼装配鞍
      */
+    @Deprecated(since = "1.21.5")
     void setSaddle(@Nullable ItemStack stack);
 }

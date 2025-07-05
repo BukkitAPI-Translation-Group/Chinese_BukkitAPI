@@ -1,6 +1,5 @@
 package org.bukkit.inventory;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Multimap;
 import java.util.function.Consumer;
 import org.bukkit.Keyed;
@@ -31,10 +30,12 @@ import org.bukkit.inventory.meta.MapMeta;
 import org.bukkit.inventory.meta.MusicInstrumentMeta;
 import org.bukkit.inventory.meta.OminousBottleMeta;
 import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.inventory.meta.ShieldMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.inventory.meta.SpawnEggMeta;
 import org.bukkit.inventory.meta.SuspiciousStewMeta;
 import org.bukkit.inventory.meta.TropicalFishBucketMeta;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -47,7 +48,7 @@ import org.jetbrains.annotations.Nullable;
  * changes may occur. Do not use this API in plugins.
  */
 @ApiStatus.Internal
-public interface ItemType extends Keyed, Translatable {
+public interface ItemType extends Keyed, Translatable, RegistryAware {
 
     /**
      * Typed represents a subtype of {@link ItemType}s that have a known item meta type
@@ -135,6 +136,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_PLANKS = getItemType("acacia_planks");
     ItemType.Typed<ItemMeta> CHERRY_PLANKS = getItemType("cherry_planks");
     ItemType.Typed<ItemMeta> DARK_OAK_PLANKS = getItemType("dark_oak_planks");
+    ItemType.Typed<ItemMeta> PALE_OAK_PLANKS = getItemType("pale_oak_planks");
     ItemType.Typed<ItemMeta> MANGROVE_PLANKS = getItemType("mangrove_planks");
     ItemType.Typed<ItemMeta> BAMBOO_PLANKS = getItemType("bamboo_planks");
     ItemType.Typed<ItemMeta> CRIMSON_PLANKS = getItemType("crimson_planks");
@@ -147,6 +149,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_SAPLING = getItemType("acacia_sapling");
     ItemType.Typed<ItemMeta> CHERRY_SAPLING = getItemType("cherry_sapling");
     ItemType.Typed<ItemMeta> DARK_OAK_SAPLING = getItemType("dark_oak_sapling");
+    ItemType.Typed<ItemMeta> PALE_OAK_SAPLING = getItemType("pale_oak_sapling");
     ItemType.Typed<ItemMeta> MANGROVE_PROPAGULE = getItemType("mangrove_propagule");
     ItemType.Typed<ItemMeta> BEDROCK = getItemType("bedrock");
     ItemType.Typed<ItemMeta> SAND = getItemType("sand");
@@ -237,6 +240,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_LOG = getItemType("acacia_log");
     ItemType.Typed<ItemMeta> CHERRY_LOG = getItemType("cherry_log");
     ItemType.Typed<ItemMeta> DARK_OAK_LOG = getItemType("dark_oak_log");
+    ItemType.Typed<ItemMeta> PALE_OAK_LOG = getItemType("pale_oak_log");
     ItemType.Typed<ItemMeta> MANGROVE_LOG = getItemType("mangrove_log");
     ItemType.Typed<ItemMeta> MANGROVE_ROOTS = getItemType("mangrove_roots");
     ItemType.Typed<ItemMeta> MUDDY_MANGROVE_ROOTS = getItemType("muddy_mangrove_roots");
@@ -250,6 +254,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> STRIPPED_ACACIA_LOG = getItemType("stripped_acacia_log");
     ItemType.Typed<ItemMeta> STRIPPED_CHERRY_LOG = getItemType("stripped_cherry_log");
     ItemType.Typed<ItemMeta> STRIPPED_DARK_OAK_LOG = getItemType("stripped_dark_oak_log");
+    ItemType.Typed<ItemMeta> STRIPPED_PALE_OAK_LOG = getItemType("stripped_pale_oak_log");
     ItemType.Typed<ItemMeta> STRIPPED_MANGROVE_LOG = getItemType("stripped_mangrove_log");
     ItemType.Typed<ItemMeta> STRIPPED_CRIMSON_STEM = getItemType("stripped_crimson_stem");
     ItemType.Typed<ItemMeta> STRIPPED_WARPED_STEM = getItemType("stripped_warped_stem");
@@ -260,6 +265,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> STRIPPED_ACACIA_WOOD = getItemType("stripped_acacia_wood");
     ItemType.Typed<ItemMeta> STRIPPED_CHERRY_WOOD = getItemType("stripped_cherry_wood");
     ItemType.Typed<ItemMeta> STRIPPED_DARK_OAK_WOOD = getItemType("stripped_dark_oak_wood");
+    ItemType.Typed<ItemMeta> STRIPPED_PALE_OAK_WOOD = getItemType("stripped_pale_oak_wood");
     ItemType.Typed<ItemMeta> STRIPPED_MANGROVE_WOOD = getItemType("stripped_mangrove_wood");
     ItemType.Typed<ItemMeta> STRIPPED_CRIMSON_HYPHAE = getItemType("stripped_crimson_hyphae");
     ItemType.Typed<ItemMeta> STRIPPED_WARPED_HYPHAE = getItemType("stripped_warped_hyphae");
@@ -271,6 +277,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_WOOD = getItemType("acacia_wood");
     ItemType.Typed<ItemMeta> CHERRY_WOOD = getItemType("cherry_wood");
     ItemType.Typed<ItemMeta> DARK_OAK_WOOD = getItemType("dark_oak_wood");
+    ItemType.Typed<ItemMeta> PALE_OAK_WOOD = getItemType("pale_oak_wood");
     ItemType.Typed<ItemMeta> MANGROVE_WOOD = getItemType("mangrove_wood");
     ItemType.Typed<ItemMeta> CRIMSON_HYPHAE = getItemType("crimson_hyphae");
     ItemType.Typed<ItemMeta> WARPED_HYPHAE = getItemType("warped_hyphae");
@@ -281,6 +288,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_LEAVES = getItemType("acacia_leaves");
     ItemType.Typed<ItemMeta> CHERRY_LEAVES = getItemType("cherry_leaves");
     ItemType.Typed<ItemMeta> DARK_OAK_LEAVES = getItemType("dark_oak_leaves");
+    ItemType.Typed<ItemMeta> PALE_OAK_LEAVES = getItemType("pale_oak_leaves");
     ItemType.Typed<ItemMeta> MANGROVE_LEAVES = getItemType("mangrove_leaves");
     ItemType.Typed<ItemMeta> AZALEA_LEAVES = getItemType("azalea_leaves");
     ItemType.Typed<ItemMeta> FLOWERING_AZALEA_LEAVES = getItemType("flowering_azalea_leaves");
@@ -296,8 +304,12 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> SHORT_GRASS = getItemType("short_grass");
     ItemType.Typed<ItemMeta> FERN = getItemType("fern");
     ItemType.Typed<ItemMeta> AZALEA = getItemType("azalea");
+    ItemType.Typed<ItemMeta> BUSH = getItemType("bush");
     ItemType.Typed<ItemMeta> FLOWERING_AZALEA = getItemType("flowering_azalea");
     ItemType.Typed<ItemMeta> DEAD_BUSH = getItemType("dead_bush");
+    ItemType.Typed<ItemMeta> FIREFLY_BUSH = getItemType("firefly_bush");
+    ItemType.Typed<ItemMeta> SHORT_DRY_GRASS = getItemType("short_dry_grass");
+    ItemType.Typed<ItemMeta> TALL_DRY_GRASS = getItemType("tall_dry_grass");
     ItemType.Typed<ItemMeta> SEAGRASS = getItemType("seagrass");
     ItemType.Typed<ItemMeta> SEA_PICKLE = getItemType("sea_pickle");
     ItemType.Typed<ItemMeta> WHITE_WOOL = getItemType("white_wool");
@@ -317,6 +329,8 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> RED_WOOL = getItemType("red_wool");
     ItemType.Typed<ItemMeta> BLACK_WOOL = getItemType("black_wool");
     ItemType.Typed<ItemMeta> DANDELION = getItemType("dandelion");
+    ItemType.Typed<ItemMeta> OPEN_EYEBLOSSOM = getItemType("open_eyeblossom");
+    ItemType.Typed<ItemMeta> CLOSED_EYEBLOSSOM = getItemType("closed_eyeblossom");
     ItemType.Typed<ItemMeta> POPPY = getItemType("poppy");
     ItemType.Typed<ItemMeta> BLUE_ORCHID = getItemType("blue_orchid");
     ItemType.Typed<ItemMeta> ALLIUM = getItemType("allium");
@@ -343,9 +357,14 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> TWISTING_VINES = getItemType("twisting_vines");
     ItemType.Typed<ItemMeta> SUGAR_CANE = getItemType("sugar_cane");
     ItemType.Typed<ItemMeta> KELP = getItemType("kelp");
-    ItemType.Typed<ItemMeta> MOSS_CARPET = getItemType("moss_carpet");
     ItemType.Typed<ItemMeta> PINK_PETALS = getItemType("pink_petals");
+    ItemType.Typed<ItemMeta> WILDFLOWERS = getItemType("wildflowers");
+    ItemType.Typed<ItemMeta> LEAF_LITTER = getItemType("leaf_litter");
+    ItemType.Typed<ItemMeta> MOSS_CARPET = getItemType("moss_carpet");
     ItemType.Typed<ItemMeta> MOSS_BLOCK = getItemType("moss_block");
+    ItemType.Typed<ItemMeta> PALE_MOSS_CARPET = getItemType("pale_moss_carpet");
+    ItemType.Typed<ItemMeta> PALE_HANGING_MOSS = getItemType("pale_hanging_moss");
+    ItemType.Typed<ItemMeta> PALE_MOSS_BLOCK = getItemType("pale_moss_block");
     ItemType.Typed<ItemMeta> HANGING_ROOTS = getItemType("hanging_roots");
     ItemType.Typed<ItemMeta> BIG_DRIPLEAF = getItemType("big_dripleaf");
     ItemType.Typed<ItemMeta> SMALL_DRIPLEAF = getItemType("small_dripleaf");
@@ -357,6 +376,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_SLAB = getItemType("acacia_slab");
     ItemType.Typed<ItemMeta> CHERRY_SLAB = getItemType("cherry_slab");
     ItemType.Typed<ItemMeta> DARK_OAK_SLAB = getItemType("dark_oak_slab");
+    ItemType.Typed<ItemMeta> PALE_OAK_SLAB = getItemType("pale_oak_slab");
     ItemType.Typed<ItemMeta> MANGROVE_SLAB = getItemType("mangrove_slab");
     ItemType.Typed<ItemMeta> BAMBOO_SLAB = getItemType("bamboo_slab");
     ItemType.Typed<ItemMeta> BAMBOO_MOSAIC_SLAB = getItemType("bamboo_mosaic_slab");
@@ -409,6 +429,10 @@ public interface ItemType extends Keyed, Translatable {
     /**
      * ItemMeta: {@link BlockStateMeta}
      */
+    ItemType.Typed<BlockStateMeta> CREAKING_HEART = getItemType("creaking_heart");
+    /**
+     * ItemMeta: {@link BlockStateMeta}
+     */
     ItemType.Typed<BlockStateMeta> CHEST = getItemType("chest");
     ItemType.Typed<ItemMeta> CRAFTING_TABLE = getItemType("crafting_table");
     ItemType.Typed<ItemMeta> FARMLAND = getItemType("farmland");
@@ -422,6 +446,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ICE = getItemType("ice");
     ItemType.Typed<ItemMeta> SNOW_BLOCK = getItemType("snow_block");
     ItemType.Typed<ItemMeta> CACTUS = getItemType("cactus");
+    ItemType.Typed<ItemMeta> CACTUS_FLOWER = getItemType("cactus_flower");
     ItemType.Typed<ItemMeta> CLAY = getItemType("clay");
     /**
      * ItemMeta: {@link BlockStateMeta}
@@ -434,6 +459,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_FENCE = getItemType("acacia_fence");
     ItemType.Typed<ItemMeta> CHERRY_FENCE = getItemType("cherry_fence");
     ItemType.Typed<ItemMeta> DARK_OAK_FENCE = getItemType("dark_oak_fence");
+    ItemType.Typed<ItemMeta> PALE_OAK_FENCE = getItemType("pale_oak_fence");
     ItemType.Typed<ItemMeta> MANGROVE_FENCE = getItemType("mangrove_fence");
     ItemType.Typed<ItemMeta> BAMBOO_FENCE = getItemType("bamboo_fence");
     ItemType.Typed<ItemMeta> CRIMSON_FENCE = getItemType("crimson_fence");
@@ -477,6 +503,13 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> MELON = getItemType("melon");
     ItemType.Typed<ItemMeta> VINE = getItemType("vine");
     ItemType.Typed<ItemMeta> GLOW_LICHEN = getItemType("glow_lichen");
+    ItemType.Typed<ItemMeta> RESIN_CLUMP = getItemType("resin_clump");
+    ItemType.Typed<ItemMeta> RESIN_BLOCK = getItemType("resin_block");
+    ItemType.Typed<ItemMeta> RESIN_BRICKS = getItemType("resin_bricks");
+    ItemType.Typed<ItemMeta> RESIN_BRICK_STAIRS = getItemType("resin_brick_stairs");
+    ItemType.Typed<ItemMeta> RESIN_BRICK_SLAB = getItemType("resin_brick_slab");
+    ItemType.Typed<ItemMeta> RESIN_BRICK_WALL = getItemType("resin_brick_wall");
+    ItemType.Typed<ItemMeta> CHISELED_RESIN_BRICKS = getItemType("chiseled_resin_bricks");
     ItemType.Typed<ItemMeta> BRICK_STAIRS = getItemType("brick_stairs");
     ItemType.Typed<ItemMeta> STONE_BRICK_STAIRS = getItemType("stone_brick_stairs");
     ItemType.Typed<ItemMeta> MUD_BRICK_STAIRS = getItemType("mud_brick_stairs");
@@ -518,6 +551,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_STAIRS = getItemType("acacia_stairs");
     ItemType.Typed<ItemMeta> CHERRY_STAIRS = getItemType("cherry_stairs");
     ItemType.Typed<ItemMeta> DARK_OAK_STAIRS = getItemType("dark_oak_stairs");
+    ItemType.Typed<ItemMeta> PALE_OAK_STAIRS = getItemType("pale_oak_stairs");
     ItemType.Typed<ItemMeta> MANGROVE_STAIRS = getItemType("mangrove_stairs");
     ItemType.Typed<ItemMeta> BAMBOO_STAIRS = getItemType("bamboo_stairs");
     ItemType.Typed<ItemMeta> BAMBOO_MOSAIC_STAIRS = getItemType("bamboo_mosaic_stairs");
@@ -780,6 +814,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> BLACK_CONCRETE_POWDER = getItemType("black_concrete_powder");
     ItemType.Typed<ItemMeta> TURTLE_EGG = getItemType("turtle_egg");
     ItemType.Typed<ItemMeta> SNIFFER_EGG = getItemType("sniffer_egg");
+    ItemType.Typed<ItemMeta> DRIED_GHAST = getItemType("dried_ghast");
     ItemType.Typed<ItemMeta> DEAD_TUBE_CORAL_BLOCK = getItemType("dead_tube_coral_block");
     ItemType.Typed<ItemMeta> DEAD_BRAIN_CORAL_BLOCK = getItemType("dead_brain_coral_block");
     ItemType.Typed<ItemMeta> DEAD_BUBBLE_CORAL_BLOCK = getItemType("dead_bubble_coral_block");
@@ -909,6 +944,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_BUTTON = getItemType("acacia_button");
     ItemType.Typed<ItemMeta> CHERRY_BUTTON = getItemType("cherry_button");
     ItemType.Typed<ItemMeta> DARK_OAK_BUTTON = getItemType("dark_oak_button");
+    ItemType.Typed<ItemMeta> PALE_OAK_BUTTON = getItemType("pale_oak_button");
     ItemType.Typed<ItemMeta> MANGROVE_BUTTON = getItemType("mangrove_button");
     ItemType.Typed<ItemMeta> BAMBOO_BUTTON = getItemType("bamboo_button");
     ItemType.Typed<ItemMeta> CRIMSON_BUTTON = getItemType("crimson_button");
@@ -924,6 +960,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_PRESSURE_PLATE = getItemType("acacia_pressure_plate");
     ItemType.Typed<ItemMeta> CHERRY_PRESSURE_PLATE = getItemType("cherry_pressure_plate");
     ItemType.Typed<ItemMeta> DARK_OAK_PRESSURE_PLATE = getItemType("dark_oak_pressure_plate");
+    ItemType.Typed<ItemMeta> PALE_OAK_PRESSURE_PLATE = getItemType("pale_oak_pressure_plate");
     ItemType.Typed<ItemMeta> MANGROVE_PRESSURE_PLATE = getItemType("mangrove_pressure_plate");
     ItemType.Typed<ItemMeta> BAMBOO_PRESSURE_PLATE = getItemType("bamboo_pressure_plate");
     ItemType.Typed<ItemMeta> CRIMSON_PRESSURE_PLATE = getItemType("crimson_pressure_plate");
@@ -936,6 +973,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_DOOR = getItemType("acacia_door");
     ItemType.Typed<ItemMeta> CHERRY_DOOR = getItemType("cherry_door");
     ItemType.Typed<ItemMeta> DARK_OAK_DOOR = getItemType("dark_oak_door");
+    ItemType.Typed<ItemMeta> PALE_OAK_DOOR = getItemType("pale_oak_door");
     ItemType.Typed<ItemMeta> MANGROVE_DOOR = getItemType("mangrove_door");
     ItemType.Typed<ItemMeta> BAMBOO_DOOR = getItemType("bamboo_door");
     ItemType.Typed<ItemMeta> CRIMSON_DOOR = getItemType("crimson_door");
@@ -956,6 +994,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_TRAPDOOR = getItemType("acacia_trapdoor");
     ItemType.Typed<ItemMeta> CHERRY_TRAPDOOR = getItemType("cherry_trapdoor");
     ItemType.Typed<ItemMeta> DARK_OAK_TRAPDOOR = getItemType("dark_oak_trapdoor");
+    ItemType.Typed<ItemMeta> PALE_OAK_TRAPDOOR = getItemType("pale_oak_trapdoor");
     ItemType.Typed<ItemMeta> MANGROVE_TRAPDOOR = getItemType("mangrove_trapdoor");
     ItemType.Typed<ItemMeta> BAMBOO_TRAPDOOR = getItemType("bamboo_trapdoor");
     ItemType.Typed<ItemMeta> CRIMSON_TRAPDOOR = getItemType("crimson_trapdoor");
@@ -975,6 +1014,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> ACACIA_FENCE_GATE = getItemType("acacia_fence_gate");
     ItemType.Typed<ItemMeta> CHERRY_FENCE_GATE = getItemType("cherry_fence_gate");
     ItemType.Typed<ItemMeta> DARK_OAK_FENCE_GATE = getItemType("dark_oak_fence_gate");
+    ItemType.Typed<ItemMeta> PALE_OAK_FENCE_GATE = getItemType("pale_oak_fence_gate");
     ItemType.Typed<ItemMeta> MANGROVE_FENCE_GATE = getItemType("mangrove_fence_gate");
     ItemType.Typed<ItemMeta> BAMBOO_FENCE_GATE = getItemType("bamboo_fence_gate");
     ItemType.Typed<ItemMeta> CRIMSON_FENCE_GATE = getItemType("crimson_fence_gate");
@@ -984,6 +1024,22 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> RAIL = getItemType("rail");
     ItemType.Typed<ItemMeta> ACTIVATOR_RAIL = getItemType("activator_rail");
     ItemType.Typed<ItemMeta> SADDLE = getItemType("saddle");
+    ItemType.Typed<ItemMeta> WHITE_HARNESS = getItemType("white_harness");
+    ItemType.Typed<ItemMeta> ORANGE_HARNESS = getItemType("orange_harness");
+    ItemType.Typed<ItemMeta> MAGENTA_HARNESS = getItemType("magenta_harness");
+    ItemType.Typed<ItemMeta> LIGHT_BLUE_HARNESS = getItemType("light_blue_harness");
+    ItemType.Typed<ItemMeta> YELLOW_HARNESS = getItemType("yellow_harness");
+    ItemType.Typed<ItemMeta> LIME_HARNESS = getItemType("lime_harness");
+    ItemType.Typed<ItemMeta> PINK_HARNESS = getItemType("pink_harness");
+    ItemType.Typed<ItemMeta> GRAY_HARNESS = getItemType("gray_harness");
+    ItemType.Typed<ItemMeta> LIGHT_GRAY_HARNESS = getItemType("light_gray_harness");
+    ItemType.Typed<ItemMeta> CYAN_HARNESS = getItemType("cyan_harness");
+    ItemType.Typed<ItemMeta> PURPLE_HARNESS = getItemType("purple_harness");
+    ItemType.Typed<ItemMeta> BLUE_HARNESS = getItemType("blue_harness");
+    ItemType.Typed<ItemMeta> BROWN_HARNESS = getItemType("brown_harness");
+    ItemType.Typed<ItemMeta> GREEN_HARNESS = getItemType("green_harness");
+    ItemType.Typed<ItemMeta> RED_HARNESS = getItemType("red_harness");
+    ItemType.Typed<ItemMeta> BLACK_HARNESS = getItemType("black_harness");
     ItemType.Typed<ItemMeta> MINECART = getItemType("minecart");
     ItemType.Typed<ItemMeta> CHEST_MINECART = getItemType("chest_minecart");
     ItemType.Typed<ItemMeta> FURNACE_MINECART = getItemType("furnace_minecart");
@@ -991,6 +1047,7 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> HOPPER_MINECART = getItemType("hopper_minecart");
     ItemType.Typed<ItemMeta> CARROT_ON_A_STICK = getItemType("carrot_on_a_stick");
     ItemType.Typed<ItemMeta> WARPED_FUNGUS_ON_A_STICK = getItemType("warped_fungus_on_a_stick");
+    ItemType.Typed<ItemMeta> PHANTOM_MEMBRANE = getItemType("phantom_membrane");
     ItemType.Typed<ItemMeta> ELYTRA = getItemType("elytra");
     ItemType.Typed<ItemMeta> OAK_BOAT = getItemType("oak_boat");
     ItemType.Typed<ItemMeta> OAK_CHEST_BOAT = getItemType("oak_chest_boat");
@@ -1006,6 +1063,8 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> CHERRY_CHEST_BOAT = getItemType("cherry_chest_boat");
     ItemType.Typed<ItemMeta> DARK_OAK_BOAT = getItemType("dark_oak_boat");
     ItemType.Typed<ItemMeta> DARK_OAK_CHEST_BOAT = getItemType("dark_oak_chest_boat");
+    ItemType.Typed<ItemMeta> PALE_OAK_BOAT = getItemType("pale_oak_boat");
+    ItemType.Typed<ItemMeta> PALE_OAK_CHEST_BOAT = getItemType("pale_oak_chest_boat");
     ItemType.Typed<ItemMeta> MANGROVE_BOAT = getItemType("mangrove_boat");
     ItemType.Typed<ItemMeta> MANGROVE_CHEST_BOAT = getItemType("mangrove_chest_boat");
     ItemType.Typed<ItemMeta> BAMBOO_RAFT = getItemType("bamboo_raft");
@@ -1019,6 +1078,14 @@ public interface ItemType extends Keyed, Translatable {
      */
     ItemType.Typed<BlockStateMeta> JIGSAW = getItemType("jigsaw");
     /**
+     * ItemMeta: {@link BlockStateMeta}
+     */
+    ItemType.Typed<BlockStateMeta> TEST_BLOCK = getItemType("test_block");
+    /**
+     * ItemMeta: {@link BlockStateMeta}
+     */
+    ItemType.Typed<BlockStateMeta> TEST_INSTANCE_BLOCK = getItemType("test_instance_block");
+    /**
      * ItemMeta: {@link ArmorMeta}
      */
     ItemType.Typed<ArmorMeta> TURTLE_HELMET = getItemType("turtle_helmet");
@@ -1028,8 +1095,8 @@ public interface ItemType extends Keyed, Translatable {
      * ItemMeta: {@link ColorableArmorMeta}
      */
     ItemType.Typed<ColorableArmorMeta> WOLF_ARMOR = getItemType("wolf_armor");
-    ItemType.Typed<ItemMeta> BOWL = getItemType("bowl");
     ItemType.Typed<ItemMeta> FLINT_AND_STEEL = getItemType("flint_and_steel");
+    ItemType.Typed<ItemMeta> BOWL = getItemType("bowl");
     ItemType.Typed<ItemMeta> APPLE = getItemType("apple");
     ItemType.Typed<ItemMeta> BOW = getItemType("bow");
     ItemType.Typed<ItemMeta> ARROW = getItemType("arrow");
@@ -1219,6 +1286,10 @@ public interface ItemType extends Keyed, Translatable {
     /**
      * ItemMeta: {@link BlockStateMeta}
      */
+    ItemType.Typed<BlockStateMeta> PALE_OAK_SIGN = getItemType("pale_oak_sign");
+    /**
+     * ItemMeta: {@link BlockStateMeta}
+     */
     ItemType.Typed<BlockStateMeta> MANGROVE_SIGN = getItemType("mangrove_sign");
     /**
      * ItemMeta: {@link BlockStateMeta}
@@ -1263,6 +1334,10 @@ public interface ItemType extends Keyed, Translatable {
     /**
      * ItemMeta: {@link BlockStateMeta}
      */
+    ItemType.Typed<BlockStateMeta> PALE_OAK_HANGING_SIGN = getItemType("pale_oak_hanging_sign");
+    /**
+     * ItemMeta: {@link BlockStateMeta}
+     */
     ItemType.Typed<BlockStateMeta> MANGROVE_HANGING_SIGN = getItemType("mangrove_hanging_sign");
     /**
      * ItemMeta: {@link BlockStateMeta}
@@ -1302,6 +1377,8 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> BOOK = getItemType("book");
     ItemType.Typed<ItemMeta> SLIME_BALL = getItemType("slime_ball");
     ItemType.Typed<ItemMeta> EGG = getItemType("egg");
+    ItemType.Typed<ItemMeta> BLUE_EGG = getItemType("blue_egg");
+    ItemType.Typed<ItemMeta> BROWN_EGG = getItemType("brown_egg");
     /**
      * ItemMeta: {@link CompassMeta}
      */
@@ -1311,6 +1388,70 @@ public interface ItemType extends Keyed, Translatable {
      * ItemMeta: {@link BundleMeta}
      */
     ItemType.Typed<BundleMeta> BUNDLE = getItemType("bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> WHITE_BUNDLE = getItemType("white_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> ORANGE_BUNDLE = getItemType("orange_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> MAGENTA_BUNDLE = getItemType("magenta_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> LIGHT_BLUE_BUNDLE = getItemType("light_blue_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> YELLOW_BUNDLE = getItemType("yellow_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> LIME_BUNDLE = getItemType("lime_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> PINK_BUNDLE = getItemType("pink_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> GRAY_BUNDLE = getItemType("gray_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> LIGHT_GRAY_BUNDLE = getItemType("light_gray_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> CYAN_BUNDLE = getItemType("cyan_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> PURPLE_BUNDLE = getItemType("purple_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> BLUE_BUNDLE = getItemType("blue_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> BROWN_BUNDLE = getItemType("brown_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> GREEN_BUNDLE = getItemType("green_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> RED_BUNDLE = getItemType("red_bundle");
+    /**
+     * ItemMeta: {@link BundleMeta}
+     */
+    ItemType.Typed<BundleMeta> BLACK_BUNDLE = getItemType("black_bundle");
     ItemType.Typed<ItemMeta> FISHING_ROD = getItemType("fishing_rod");
     ItemType.Typed<ItemMeta> CLOCK = getItemType("clock");
     ItemType.Typed<ItemMeta> SPYGLASS = getItemType("spyglass");
@@ -1384,11 +1525,11 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> GHAST_TEAR = getItemType("ghast_tear");
     ItemType.Typed<ItemMeta> GOLD_NUGGET = getItemType("gold_nugget");
     ItemType.Typed<ItemMeta> NETHER_WART = getItemType("nether_wart");
+    ItemType.Typed<ItemMeta> GLASS_BOTTLE = getItemType("glass_bottle");
     /**
      * ItemMeta: {@link PotionMeta}
      */
     ItemType.Typed<PotionMeta> POTION = getItemType("potion");
-    ItemType.Typed<ItemMeta> GLASS_BOTTLE = getItemType("glass_bottle");
     ItemType.Typed<ItemMeta> SPIDER_EYE = getItemType("spider_eye");
     ItemType.Typed<ItemMeta> FERMENTED_SPIDER_EYE = getItemType("fermented_spider_eye");
     ItemType.Typed<ItemMeta> BLAZE_POWDER = getItemType("blaze_powder");
@@ -1459,6 +1600,10 @@ public interface ItemType extends Keyed, Translatable {
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
+    ItemType.Typed<SpawnEggMeta> CREAKING_SPAWN_EGG = getItemType("creaking_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
     ItemType.Typed<SpawnEggMeta> CREEPER_SPAWN_EGG = getItemType("creeper_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
@@ -1504,6 +1649,10 @@ public interface ItemType extends Keyed, Translatable {
      * ItemMeta: {@link SpawnEggMeta}
      */
     ItemType.Typed<SpawnEggMeta> GHAST_SPAWN_EGG = getItemType("ghast_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> HAPPY_GHAST_SPAWN_EGG = getItemType("happy_ghast_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
@@ -1731,6 +1880,7 @@ public interface ItemType extends Keyed, Translatable {
      * ItemMeta: {@link BookMeta}
      */
     ItemType.Typed<BookMeta> WRITTEN_BOOK = getItemType("written_book");
+    ItemType.Typed<ItemMeta> BREEZE_ROD = getItemType("breeze_rod");
     ItemType.Typed<ItemMeta> MACE = getItemType("mace");
     ItemType.Typed<ItemMeta> ITEM_FRAME = getItemType("item_frame");
     ItemType.Typed<ItemMeta> GLOW_ITEM_FRAME = getItemType("glow_item_frame");
@@ -1784,6 +1934,7 @@ public interface ItemType extends Keyed, Translatable {
      */
     ItemType.Typed<EnchantmentStorageMeta> ENCHANTED_BOOK = getItemType("enchanted_book");
     ItemType.Typed<ItemMeta> NETHER_BRICK = getItemType("nether_brick");
+    ItemType.Typed<ItemMeta> RESIN_BRICK = getItemType("resin_brick");
     ItemType.Typed<ItemMeta> PRISMARINE_SHARD = getItemType("prismarine_shard");
     ItemType.Typed<ItemMeta> PRISMARINE_CRYSTALS = getItemType("prismarine_crystals");
     ItemType.Typed<ItemMeta> RABBIT = getItemType("rabbit");
@@ -1891,9 +2042,9 @@ public interface ItemType extends Keyed, Translatable {
      */
     ItemType.Typed<PotionMeta> LINGERING_POTION = getItemType("lingering_potion");
     /**
-     * ItemMeta: {@link BlockStateMeta}
+     * ItemMeta: {@link ShieldMeta}
      */
-    ItemType.Typed<BlockStateMeta> SHIELD = getItemType("shield");
+    ItemType.Typed<ShieldMeta> SHIELD = getItemType("shield");
     ItemType.Typed<ItemMeta> TOTEM_OF_UNDYING = getItemType("totem_of_undying");
     ItemType.Typed<ItemMeta> SHULKER_SHELL = getItemType("shulker_shell");
     ItemType.Typed<ItemMeta> IRON_NUGGET = getItemType("iron_nugget");
@@ -1921,9 +2072,9 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> MUSIC_DISC_5 = getItemType("music_disc_5");
     ItemType.Typed<ItemMeta> MUSIC_DISC_PIGSTEP = getItemType("music_disc_pigstep");
     ItemType.Typed<ItemMeta> MUSIC_DISC_PRECIPICE = getItemType("music_disc_precipice");
+    ItemType.Typed<ItemMeta> MUSIC_DISC_TEARS = getItemType("music_disc_tears");
     ItemType.Typed<ItemMeta> DISC_FRAGMENT_5 = getItemType("disc_fragment_5");
     ItemType.Typed<ItemMeta> TRIDENT = getItemType("trident");
-    ItemType.Typed<ItemMeta> PHANTOM_MEMBRANE = getItemType("phantom_membrane");
     ItemType.Typed<ItemMeta> NAUTILUS_SHELL = getItemType("nautilus_shell");
     ItemType.Typed<ItemMeta> HEART_OF_THE_SEA = getItemType("heart_of_the_sea");
     /**
@@ -1943,6 +2094,8 @@ public interface ItemType extends Keyed, Translatable {
     ItemType.Typed<ItemMeta> PIGLIN_BANNER_PATTERN = getItemType("piglin_banner_pattern");
     ItemType.Typed<ItemMeta> FLOW_BANNER_PATTERN = getItemType("flow_banner_pattern");
     ItemType.Typed<ItemMeta> GUSTER_BANNER_PATTERN = getItemType("guster_banner_pattern");
+    ItemType.Typed<ItemMeta> FIELD_MASONED_BANNER_PATTERN = getItemType("field_masoned_banner_pattern");
+    ItemType.Typed<ItemMeta> BORDURE_INDENTED_BANNER_PATTERN = getItemType("bordure_indented_banner_pattern");
     /**
      * ItemMeta: {@link MusicInstrumentMeta}
      */
@@ -2108,18 +2261,12 @@ public interface ItemType extends Keyed, Translatable {
      * ItemMeta: {@link OminousBottleMeta}
      */
     ItemType.Typed<OminousBottleMeta> OMINOUS_BOTTLE = getItemType("ominous_bottle");
-    ItemType.Typed<ItemMeta> BREEZE_ROD = getItemType("breeze_rod");
-
-
     //</editor-fold>
 
     @NotNull
     private static <M extends ItemType> M getItemType(@NotNull String key) {
-        NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
-        ItemType itemType = Registry.ITEM.get(namespacedKey);
-        Preconditions.checkNotNull(itemType, "No ItemType found for %s. This is a bug.", namespacedKey);
         // Cast instead of using ItemType#typed, since item type can be a mock during testing and would return null
-        return (M) itemType;
+        return (M) Registry.ITEM.getOrThrow(NamespacedKey.minecraft(key));
     }
 
     /**
@@ -2282,7 +2429,7 @@ public interface ItemType extends Keyed, Translatable {
      * @deprecated creative categories no longer exist on the server
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.6")
     CreativeCategory getCreativeCategory();
 
     /**
@@ -2294,12 +2441,24 @@ public interface ItemType extends Keyed, Translatable {
     boolean isEnabledByFeature(@NotNull World world);
 
     /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
+    NamespacedKey getKey();
+
+    /**
      * Tries to convert this ItemType into a Material
      *
      * @return the converted Material or null
      * @deprecated only for internal use
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.6")
     Material asMaterial();
 }

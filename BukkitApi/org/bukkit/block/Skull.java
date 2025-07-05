@@ -34,7 +34,7 @@ public interface Skull extends TileState {
      * @return 头颅主人的名字，如果此头颅没有主人将返回null
      * @deprecated 请查阅 {@link #getOwningPlayer()}.
      */
-    @Deprecated
+    @Deprecated(since = "1.9.4")
     @Nullable
     public String getOwner();
 
@@ -53,7 +53,7 @@ public interface Skull extends TileState {
      * @return true表示成功设置这个头颅的主人
      * @deprecated 请查阅 {@link #setOwningPlayer(org.bukkit.OfflinePlayer)}.
      */
-    @Deprecated
+    @Deprecated(since = "1.9.4")
     @Contract("null -> false")
     public boolean setOwner(@Nullable String name);
 
@@ -139,7 +139,7 @@ public interface Skull extends TileState {
      * @return 头颅的角度
      * @deprecated 请使用 {@link BlockData}
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @NotNull
     public BlockFace getRotation();
 
@@ -153,7 +153,7 @@ public interface Skull extends TileState {
      * @param rotation 头颅的角度
      * @deprecated 请使用 {@link BlockData}
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public void setRotation(@NotNull BlockFace rotation);
 
     /**
@@ -165,7 +165,7 @@ public interface Skull extends TileState {
      * @return 头颅的类型
      * @deprecated 请检查 {@link Material} 类型
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @NotNull
     public SkullType getSkullType();
 
@@ -178,7 +178,7 @@ public interface Skull extends TileState {
      * @param skullType 头颅的类型
      * @deprecated 请检查 {@link Material} 类型
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @Contract("_ -> fail")
     public void setSkullType(SkullType skullType);
 }

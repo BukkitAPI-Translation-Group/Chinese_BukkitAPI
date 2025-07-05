@@ -93,7 +93,7 @@ public interface MapCanvas {
      * @param color 颜色,参考{@link MapPalette}
      * @deprecated 魔法值, 请使用 {@link #setPixelColor(int, int, Color)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     public void setPixel(int x, int y, byte color);
 
     /**
@@ -106,7 +106,7 @@ public interface MapCanvas {
      * @return 颜色. 参阅 {@link MapPalette}.
      * @deprecated 魔法值, 请使用 {@link #getPixelColor(int, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.19")
     public byte getPixel(int x, int y);
 
     /**
@@ -119,7 +119,7 @@ public interface MapCanvas {
      * @return 颜色. 参阅 {@link MapPalette}.
      * @deprecated 魔法值, 请使用 {@link #getBasePixelColor(int, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.19")
     public byte getBasePixel(int x, int y);
 
     /**

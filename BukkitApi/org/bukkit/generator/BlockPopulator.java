@@ -42,7 +42,7 @@ public abstract class BlockPopulator {
      * @param source 用于生成的区块
      * @deprecated 建议使用 {@link #populate(WorldInfo, Random, int, int, LimitedRegion)}
      */
-    @Deprecated
+    @Deprecated(since = "1.17.1")
     public void populate(@NotNull World world, @NotNull Random random, @NotNull Chunk source) {
     }
 

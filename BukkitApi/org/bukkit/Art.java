@@ -1,77 +1,78 @@
 package org.bukkit;
 
 import com.google.common.base.Preconditions;
-import com.google.common.collect.Maps;
-import java.util.HashMap;
+import com.google.common.collect.Lists;
 import java.util.Locale;
+import org.bukkit.packs.DataPack;
+import org.bukkit.registry.RegistryAware;
+import org.bukkit.util.OldEnum;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * 代表画.
+ * <p>
+ * The arts listed in this interface are present in the default server
+ * or can be enabled via a {@link FeatureFlag}.
+ * There may be additional arts present in the server, for example from a {@link DataPack}
+ * which can be accessed via {@link Registry#ART}.
  */
-public enum Art implements Keyed {
-    KEBAB(0, 1, 1),
-    AZTEC(1, 1, 1),
-    ALBAN(2, 1, 1),
-    AZTEC2(3, 1, 1),
-    BOMB(4, 1, 1),
-    PLANT(5, 1, 1),
-    WASTELAND(6, 1, 1),
-    POOL(7, 2, 1),
-    COURBET(8, 2, 1),
-    SEA(9, 2, 1),
-    SUNSET(10, 2, 1),
-    CREEBET(11, 2, 1),
-    WANDERER(12, 1, 2),
-    GRAHAM(13, 1, 2),
-    MATCH(14, 2, 2),
-    BUST(15, 2, 2),
-    STAGE(16, 2, 2),
-    VOID(17, 2, 2),
-    SKULL_AND_ROSES(18, 2, 2),
-    WITHER(19, 2, 2),
-    FIGHTERS(20, 4, 2),
-    POINTER(21, 4, 4),
-    PIGSCENE(22, 4, 4),
-    BURNING_SKULL(23, 4, 4),
-    SKELETON(24, 4, 3),
-    DONKEY_KONG(25, 4, 3),
-    EARTH(26, 2, 2),
-    WIND(27, 2, 2),
-    WATER(28, 2, 2),
-    FIRE(29, 2, 2),
-    BAROQUE(30, 2, 2),
-    HUMBLE(31, 2, 2),
-    MEDITATIVE(32, 1, 1),
-    PRAIRIE_RIDE(33, 1, 2),
-    UNPACKED(34, 4, 4),
-    BACKYARD(35, 3, 4),
-    BOUQUET(36, 3, 3),
-    CAVEBIRD(37, 3, 3),
-    CHANGING(38, 4, 2),
-    COTAN(39, 3, 3),
-    ENDBOSS(40, 3, 3),
-    FERN(41, 3, 3),
-    FINDING(42, 4, 2),
-    LOWMIST(43, 4, 2),
-    ORB(44, 4, 4),
-    OWLEMONS(45, 3, 3),
-    PASSAGE(46, 4, 2),
-    POND(47, 3, 4),
-    SUNFLOWERS(48, 3, 3),
-    TIDES(49, 3, 3);
+public interface Art extends OldEnum<Art>, Keyed, RegistryAware {
 
-    private final int id, width, height;
-    private final NamespacedKey key;
-    private static final HashMap<String, Art> BY_NAME = Maps.newHashMap();
-    private static final HashMap<Integer, Art> BY_ID = Maps.newHashMap();
+    Art KEBAB = getArt("kebab");
+    Art AZTEC = getArt("aztec");
+    Art ALBAN = getArt("alban");
+    Art AZTEC2 = getArt("aztec2");
+    Art BOMB = getArt("bomb");
+    Art PLANT = getArt("plant");
+    Art WASTELAND = getArt("wasteland");
+    Art POOL = getArt("pool");
+    Art COURBET = getArt("courbet");
+    Art SEA = getArt("sea");
+    Art SUNSET = getArt("sunset");
+    Art CREEBET = getArt("creebet");
+    Art WANDERER = getArt("wanderer");
+    Art GRAHAM = getArt("graham");
+    Art MATCH = getArt("match");
+    Art BUST = getArt("bust");
+    Art STAGE = getArt("stage");
+    Art VOID = getArt("void");
+    Art SKULL_AND_ROSES = getArt("skull_and_roses");
+    Art WITHER = getArt("wither");
+    Art FIGHTERS = getArt("fighters");
+    Art POINTER = getArt("pointer");
+    Art PIGSCENE = getArt("pigscene");
+    Art BURNING_SKULL = getArt("burning_skull");
+    Art SKELETON = getArt("skeleton");
+    Art DONKEY_KONG = getArt("donkey_kong");
+    Art EARTH = getArt("earth");
+    Art WIND = getArt("wind");
+    Art WATER = getArt("water");
+    Art FIRE = getArt("fire");
+    Art BAROQUE = getArt("baroque");
+    Art HUMBLE = getArt("humble");
+    Art MEDITATIVE = getArt("meditative");
+    Art PRAIRIE_RIDE = getArt("prairie_ride");
+    Art UNPACKED = getArt("unpacked");
+    Art BACKYARD = getArt("backyard");
+    Art BOUQUET = getArt("bouquet");
+    Art CAVEBIRD = getArt("cavebird");
+    Art CHANGING = getArt("changing");
+    Art COTAN = getArt("cotan");
+    Art ENDBOSS = getArt("endboss");
+    Art FERN = getArt("fern");
+    Art FINDING = getArt("finding");
+    Art LOWMIST = getArt("lowmist");
+    Art ORB = getArt("orb");
+    Art OWLEMONS = getArt("owlemons");
+    Art PASSAGE = getArt("passage");
+    Art POND = getArt("pond");
+    Art SUNFLOWERS = getArt("sunflowers");
+    Art TIDES = getArt("tides");
 
-    private Art(int id, int width, int height) {
-        this.id = id;
-        this.width = width;
-        this.height = height;
-        this.key = NamespacedKey.minecraft(name().toLowerCase(Locale.ROOT));
+    @NotNull
+    private static Art getArt(@NotNull String key) {
+        return Registry.ART.getOrThrow(NamespacedKey.minecraft(key));
     }
 
     /**
@@ -81,9 +82,7 @@ public enum Art implements Keyed {
      *
      * @return 这幅画的宽度，以块为单位.
      */
-    public int getBlockWidth() {
-        return width;
-    }
+    int getBlockWidth();
 
     /**
      * 得到这幅画的高度,单位：块
@@ -92,9 +91,19 @@ public enum Art implements Keyed {
      *
      * @return 这幅画的高度，以块为单位.
      */
-    public int getBlockHeight() {
-        return height;
-    }
+    int getBlockHeight();
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
+    NamespacedKey getKey();
 
     /**
      * 得到这幅画的ID.
@@ -104,16 +113,8 @@ public enum Art implements Keyed {
      * @return 这幅画的ID
      * @deprecated Magic value
      */
-    @Deprecated
-    public int getId() {
-        return id;
-    }
-
-    @NotNull
-    @Override
-    public NamespacedKey getKey() {
-        return key;
-    }
+    @Deprecated(since = "1.6.2")
+    int getId();
 
     /**
      * 通过ID获得一幅画.
@@ -123,31 +124,57 @@ public enum Art implements Keyed {
      * @return 画
      * @deprecated Magic value
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
-    public static Art getById(int id) {
-        return BY_ID.get(id);
+    static Art getById(int id) {
+        for (Art art : Registry.ART) {
+            if (id == art.getId()) {
+                return art;
+            }
+        }
+
+        return null;
     }
 
     /**
-     * 通过一幅画的唯一名称来获取这幅画,忽略大小写和下划线。
+     * 通过一幅画的唯一名称来获取这幅画,忽略大小写。
      * <p>
-     * 原文：Get a painting by its unique name.This ignores underscores and capitalization.
+     * 原文：Get a painting by its unique name
+     * <p>
+     * This ignores capitalization
      *
      * @param name 画的唯一名称
      * @return 画
+     * @deprecated 仅用于向后兼容，请使用{@link Registry#get(NamespacedKey)}代替。
      */
+    @Deprecated(since = "1.21.3")
     @Nullable
-    public static Art getByName(@NotNull String name) {
+    static Art getByName(@NotNull String name) {
         Preconditions.checkArgument(name != null, "Name cannot be null");
 
-        return BY_NAME.get(name.toLowerCase(Locale.ROOT));
+        return Bukkit.getUnsafe().get(Registry.ART, NamespacedKey.fromString(name.toLowerCase(Locale.ROOT)));
     }
 
-    static {
-        for (Art art : values()) {
-            BY_ID.put(art.id, art);
-            BY_NAME.put(art.toString().toLowerCase(Locale.ROOT), art);
-        }
+    /**
+     * @param name of the art.
+     * @return the art with the given name.
+     * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+     */
+    @NotNull
+    @Deprecated(since = "1.21.3")
+    static Art valueOf(@NotNull String name) {
+        Art art = Bukkit.getUnsafe().get(Registry.ART, NamespacedKey.fromString(name.toLowerCase(Locale.ROOT)));
+        Preconditions.checkArgument(art != null, "No art found with the name %s", name);
+        return art;
+    }
+
+    /**
+     * @return an array of all known arts.
+     * @deprecated use {@link Registry#iterator()}.
+     */
+    @NotNull
+    @Deprecated(since = "1.21.3")
+    static Art[] values() {
+        return Lists.newArrayList(Registry.ART).toArray(new Art[0]);
     }
 }

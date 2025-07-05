@@ -1,11 +1,12 @@
 package org.bukkit.entity.minecart;
 
+import org.bukkit.entity.Explosive;
 import org.bukkit.entity.Minecart;
 
 /**
  * 代表TNT矿车，可以被引爆.
  */
-public interface ExplosiveMinecart extends Minecart {
+public interface ExplosiveMinecart extends Minecart, Explosive {
 
     /**
      * Set the fuse ticks of this minecart.
@@ -26,6 +27,22 @@ public interface ExplosiveMinecart extends Minecart {
      * ignited
      */
     public int getFuseTicks();
+
+    /**
+     * Gets the factor by which explosion yield increases based on Minecart
+     * speed.
+     *
+     * @return increase factor
+     */
+    public float getExplosionSpeedFactor();
+
+    /**
+     * Sets the factor by which explosion yield increases based on Minecart
+     * speed.
+     *
+     * @param factor new factor
+     */
+    public void setExplosionSpeedFactor(float factor);
 
     /**
      * Ignite this minecart's fuse naturally.

@@ -17,7 +17,7 @@ public interface Zombie extends Monster, Ageable {
      * @return 这个僵尸是否为小僵尸
      * @deprecated 另请参阅 {@link Ageable#isAdult()}
      */
-    @Deprecated
+    @Deprecated(since = "1.16.2")
     public boolean isBaby();
 
     /**
@@ -29,7 +29,7 @@ public interface Zombie extends Monster, Ageable {
      * @param flag 这个僵尸是否为小僵尸
      * @deprecated 另请参阅 {@link Ageable#setBaby()} 和 {@link Ageable#setAdult()}
      */
-    @Deprecated
+    @Deprecated(since = "1.16.2")
     public void setBaby(boolean flag);
 
     /**
@@ -41,14 +41,14 @@ public interface Zombie extends Monster, Ageable {
      * @return 这个僵尸是否为村民僵尸
     * @deprecated 检查 instanceof {@link ZombieVillager} 的是与否.
      */
-    @Deprecated
+    @Deprecated(since = "1.10.2")
     public boolean isVillager();
 
     /**
      * @param flag flag
      * @deprecated must spawn {@link ZombieVillager}.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @Contract("_ -> fail")
     public void setVillager(boolean flag);
 
@@ -56,7 +56,7 @@ public interface Zombie extends Monster, Ageable {
      * @param profession profession
      * @see ZombieVillager#getVillagerProfession()
      */
-    @Deprecated
+    @Deprecated(since = "1.10.2")
     @Contract("_ -> fail")
     public void setVillagerProfession(Villager.Profession profession);
 
@@ -64,7 +64,7 @@ public interface Zombie extends Monster, Ageable {
      * @return profession
      * @see ZombieVillager#getVillagerProfession()
      */
-    @Deprecated
+    @Deprecated(since = "1.10.2")
     @Nullable
     @Contract("-> null")
     public Villager.Profession getVillagerProfession();

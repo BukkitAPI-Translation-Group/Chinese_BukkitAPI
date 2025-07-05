@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @deprecated 已弃用, see usage methods for replacement(s)
  */
-@Deprecated
+@Deprecated(since = "1.19")
 public enum TreeSpecies {
 
     /**
@@ -53,7 +53,7 @@ public enum TreeSpecies {
      * @return 包含该物种相关数据值的字节
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getData() {
         return data;
     }
@@ -67,7 +67,7 @@ public enum TreeSpecies {
      * @return {@link TreeSpecies}所代表的值，如果不存在则为null
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static TreeSpecies getByData(final byte data) {
         return BY_DATA.get(data);

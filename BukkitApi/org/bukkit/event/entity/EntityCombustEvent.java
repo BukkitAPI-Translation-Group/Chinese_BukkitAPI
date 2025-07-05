@@ -15,7 +15,7 @@ public class EntityCombustEvent extends EntityEvent implements Cancellable {
     private float duration;
     private boolean cancel;
 
-    @Deprecated
+    @Deprecated(since = "1.21")
     public EntityCombustEvent(@NotNull final Entity combustee, final int duration) {
         this(combustee, (float) duration);
     }
@@ -73,7 +73,7 @@ public class EntityCombustEvent extends EntityEvent implements Cancellable {
      * @see #setDuration(float)
      * @deprecated duration 现在为浮点数
      */
-    @Deprecated(forRemoval = true)
+    @Deprecated(since = "1.21", forRemoval = true)
     public void setDuration(int duration) {
         this.duration = duration;
     }

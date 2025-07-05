@@ -52,7 +52,7 @@ public interface Block extends Metadatable, Translatable {
      * @return 方块元数据
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     byte getData();
 
     /**

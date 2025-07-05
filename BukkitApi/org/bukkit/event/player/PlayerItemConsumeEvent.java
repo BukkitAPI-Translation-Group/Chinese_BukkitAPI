@@ -49,7 +49,7 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
      * @param item   将要被消耗掉的物品
      * @deprecated 请使用 {@link #PlayerItemConsumeEvent(Player, ItemStack, EquipmentSlot)}
      */
-    @Deprecated
+    @Deprecated(since = "1.19.2")
     public PlayerItemConsumeEvent(@NotNull final Player player, @NotNull final ItemStack item) {
         this(player, item, EquipmentSlot.HAND);
     }

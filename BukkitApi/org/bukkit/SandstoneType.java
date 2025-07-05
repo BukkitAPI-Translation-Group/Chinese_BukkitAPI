@@ -28,7 +28,7 @@ public enum SandstoneType {
      * @return 沙石的数据值
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getData() {
         return data;
     }
@@ -43,7 +43,7 @@ public enum SandstoneType {
      * @return 用给定的值获取到的{@link SandstoneType},如不存在就为null, 
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static SandstoneType getByData(final byte data) {
         return BY_DATA.get(data);

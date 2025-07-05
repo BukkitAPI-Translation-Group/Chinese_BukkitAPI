@@ -733,7 +733,7 @@ public final class SimplePluginManager implements PluginManager {
         addPermission(perm, true);
     }
 
-    @Deprecated
+    @Deprecated(since = "1.12")
     public void addPermission(@NotNull Permission perm, boolean dirty) {
         String name = perm.getName().toLowerCase(Locale.ROOT);
 
@@ -786,7 +786,7 @@ public final class SimplePluginManager implements PluginManager {
         }
     }
 
-    @Deprecated
+    @Deprecated(since = "1.12")
     public void dirtyPermissibles() {
         dirtyPermissibles(true);
         dirtyPermissibles(false);

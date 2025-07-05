@@ -3,7 +3,7 @@ package org.bukkit.inventory.meta;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a map that can be scalable.
+ * Represents meta for an Ominous Bottle.
  */
 public interface OminousBottleMeta extends ItemMeta {
 

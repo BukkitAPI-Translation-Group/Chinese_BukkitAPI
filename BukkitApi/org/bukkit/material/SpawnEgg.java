@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.SpawnEggMeta;
  * 代表刷怪蛋.
  * @deprecated 请使用 {@link SpawnEggMeta}
  */
-@Deprecated
+@Deprecated(since = "1.11")
 public class SpawnEgg extends MaterialData {
 
     public SpawnEgg() {
@@ -20,7 +20,7 @@ public class SpawnEgg extends MaterialData {
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public SpawnEgg(final Material type, final byte data) {
         super(type, data);
     }
@@ -29,7 +29,7 @@ public class SpawnEgg extends MaterialData {
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public SpawnEgg(byte data) {
         super(Material.LEGACY_MONSTER_EGG, data);
     }
@@ -47,7 +47,7 @@ public class SpawnEgg extends MaterialData {
      * @return 实体种类
      * @deprecated 现存储在 {@link SpawnEggMeta}.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public EntityType getSpawnedType() {
         return EntityType.fromId(getData());
     }
@@ -60,7 +60,7 @@ public class SpawnEgg extends MaterialData {
      * @param type 实体种类
      * @deprecated 现存储在 {@link SpawnEggMeta}.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setSpawnedType(EntityType type) {
         setData((byte) type.getTypeId());
     }

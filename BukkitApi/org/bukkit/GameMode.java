@@ -45,7 +45,7 @@ public enum GameMode {
      * @return 游戏模式
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public int getValue() {
         return value;
     }
@@ -60,7 +60,7 @@ public enum GameMode {
      * @return 给定值关联的{@link GameMode},如果为null则不存在
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static GameMode getByValue(final int value) {
         return BY_ID.get(value);

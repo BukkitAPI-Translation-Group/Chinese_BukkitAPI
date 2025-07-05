@@ -23,7 +23,7 @@ public interface AbstractSkeleton extends Monster {
      * @return 当前的种类
      * @deprecated 应检查这是什么类实例
      */
-    @Deprecated
+    @Deprecated(since = "1.17")
     @NotNull
     public Skeleton.SkeletonType getSkeletonType();
 
@@ -31,7 +31,7 @@ public interface AbstractSkeleton extends Monster {
      * @param type 种类
      * @deprecated Must spawn a new subtype variant
      */
-    @Deprecated
+    @Deprecated(since = "1.17")
     @Contract("_ -> fail")
     public void setSkeletonType(Skeleton.SkeletonType type);
 }

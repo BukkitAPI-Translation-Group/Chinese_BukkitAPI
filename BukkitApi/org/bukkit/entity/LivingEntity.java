@@ -4,9 +4,11 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import org.bukkit.Color;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.attribute.Attributable;
@@ -480,7 +482,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * <p>译注:在某次版本更新后, Minecraft 自身支持了多个同种药水效果, 效果弱的会被隐藏;
      * 但为兼容性考虑, 如确有覆盖效果需求的, 还是指定force为true
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     public boolean addPotionEffect(@NotNull PotionEffect effect, boolean force);
 
     /**
@@ -703,14 +705,24 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
     public void setSwimming(boolean swimming);
 
     /**
-     * 检查实体是否正在使用涡流附魔。
+     * 检查实体是否正在激流。
      * <p>
      * 原文：
-     * Checks to see if an entity is currently using the Riptide enchantment.
+     * Checks to see if an entity is currently riptiding.
      *
-     * @return 如果该实体当前正在使用涡流，则返回 true。
+     * @return 如果该实体当前正在激流，则返回 true。
      */
     public boolean isRiptiding();
+
+    /**
+     * Makes entity start or stop riptiding.
+     * <p>
+     * Note: This does not damage attackable entities.
+     *
+     * @param riptiding whether the entity should start riptiding.
+     * @see HumanEntity#startRiptideAttack(int, float, ItemStack)
+     */
+    public void setRiptiding(boolean riptiding);
 
     /**
      * 返回实体是否正在睡觉.
@@ -1065,7 +1077,7 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @deprecated 实体分组现在由标签管理，而不是类别
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     public EntityCategory getCategory();
 
     /**
@@ -1087,4 +1099,34 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @return 实体是否不可见
      */
     public boolean isInvisible();
+
+    /**
+     * Gets the waypoint color of this entity or null if default/not set.
+     *
+     * @return waypoint color
+     */
+    @Nullable
+    public Color getWaypointColor();
+
+    /**
+     * Sets the waypoint color of this entity, null to reset to default.
+     *
+     * @param color new color
+     */
+    public void setWaypointColor(@Nullable Color color);
+
+    /**
+     * Gets the waypoint style of this entity.
+     *
+     * @return waypoint style
+     */
+    @NotNull
+    public NamespacedKey getWaypointStyle();
+
+    /**
+     * Sets the waypoint style of this entity.
+     *
+     * @param key new style key or null for default
+     */
+    public void setWaypointStyle(@Nullable NamespacedKey key);
 }

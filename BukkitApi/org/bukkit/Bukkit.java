@@ -40,6 +40,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemCraftResult;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.MenuType;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -582,7 +583,7 @@ public final class Bukkit {
      * @return 每隔多少tick应该生成一次动物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getTicksPerAnimalSpawns() {
         return server.getTicksPerAnimalSpawns();
     }
@@ -620,7 +621,7 @@ public final class Bukkit {
      * @return 每隔多少tick应该生成一次怪物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getTicksPerMonsterSpawns() {
         return server.getTicksPerMonsterSpawns();
     }
@@ -657,7 +658,7 @@ public final class Bukkit {
      * @return 每隔多少tick应该生成一次怪物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getTicksPerWaterSpawns() {
         return server.getTicksPerWaterSpawns();
     }
@@ -694,7 +695,7 @@ public final class Bukkit {
      * @return 每隔多少tick应该生成一次环境生物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getTicksPerAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
     }
@@ -731,7 +732,7 @@ public final class Bukkit {
      * @return 每隔多少tick应该生成一次水生环境生物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getTicksPerWaterAmbientSpawns() {
         return server.getTicksPerAmbientSpawns();
     }
@@ -755,7 +756,7 @@ public final class Bukkit {
      * @return the default ticks per water underground creature spawn value
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getTicksPerWaterUndergroundCreatureSpawns() {
         return server.getTicksPerWaterUndergroundCreatureSpawns();
     }
@@ -1006,7 +1007,7 @@ public final class Bukkit {
      * @return 如果找到则返回对应的 {@link MapView}, 否则返回null
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static MapView getMap(int id) {
         return server.getMap(id);
@@ -1398,7 +1399,7 @@ public final class Bukkit {
      * @return true if the server should send a preview, false otherwise
      * @deprecated chat previews have been removed
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     public static boolean shouldSendChatPreviews() {
         return server.shouldSendChatPreviews();
     }
@@ -1513,7 +1514,7 @@ public final class Bukkit {
      (译注:正版玩家更改它们的玩家名后,其uuid不会改变,其他正版玩家可以使用这些玩家的曾用名,
      可能会出现同一玩家名对应两个或多个不同玩家的情况)
      */
-    @Deprecated
+    @Deprecated(since = "1.7.5")
     @NotNull
     public static OfflinePlayer getOfflinePlayer(@NotNull String name) {
         return server.getOfflinePlayer(name);
@@ -1602,7 +1603,7 @@ public final class Bukkit {
      *
      * @deprecated 参见 {@link #banIP(InetAddress)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public static void banIP(@NotNull String address) {
         server.banIP(address);
     }
@@ -1616,7 +1617,7 @@ public final class Bukkit {
      *
      * @deprecated 参见 {@link #banIP(InetAddress)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public static void unbanIP(@NotNull String address) {
         server.unbanIP(address);
     }
@@ -1881,10 +1882,25 @@ public final class Bukkit {
      *
      * @param title 查看商人物品栏时显示的标题
      * @return 新的商人
+     * @deprecated The title parameter is no-longer needed when used with
+     * {@link MenuType#MERCHANT} and {@link MenuType.Typed#builder()}.
      */
+    @Deprecated(since = "1.21.4")
     @NotNull
     public static Merchant createMerchant(@Nullable String title) {
         return server.createMerchant(title);
+    }
+
+    /**
+     * 创建一个空的商人.
+     * <p>
+     * 原文:Creates an empty merchant.
+     *
+     * @return 新的商人
+     */
+    @NotNull
+    public static Merchant createMerchant() {
+        return server.createMerchant();
     }
 
     /**
@@ -1907,7 +1923,7 @@ public final class Bukkit {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getMonsterSpawnLimit() {
         return server.getMonsterSpawnLimit();
     }
@@ -1922,7 +1938,7 @@ public final class Bukkit {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getAnimalSpawnLimit() {
         return server.getAnimalSpawnLimit();
     }
@@ -1936,7 +1952,7 @@ public final class Bukkit {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getWaterAnimalSpawnLimit() {
         return server.getWaterAnimalSpawnLimit();
     }
@@ -1950,7 +1966,7 @@ public final class Bukkit {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getWaterAmbientSpawnLimit() {
         return server.getAmbientSpawnLimit();
     }
@@ -1962,7 +1978,7 @@ public final class Bukkit {
      * @return the water underground creature limit
      * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getWaterUndergroundCreatureSpawnLimit() {
         return server.getWaterUndergroundCreatureSpawnLimit();
     }
@@ -1976,7 +1992,7 @@ public final class Bukkit {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public static int getAmbientSpawnLimit() {
         return server.getAmbientSpawnLimit();
     }
@@ -2202,6 +2218,30 @@ public final class Bukkit {
      */
     public static int getIdleTimeout() {
         return server.getIdleTimeout();
+    }
+
+    /**
+     * Gets the pause when empty threshold seconds. To save resources, the
+     * server will pause most functions after this time if there are no players
+     * online.
+     *
+     * @return the pause threshold in seconds
+     */
+    public static int getPauseWhenEmptyTime() {
+        return server.getPauseWhenEmptyTime();
+    }
+
+    /**
+     * Sets the pause when empty threshold seconds. To save resources, the
+     * server will pause most functions after this time if there are no players
+     * online.
+     * <p>
+     * A value of less than 0 will disable the setting
+     *
+     * @param seconds the pause threshold in seconds
+     */
+    public static void setPauseWhenEmptyTime(int seconds) {
+        server.setPauseWhenEmptyTime(seconds);
     }
 
     /**
@@ -2541,7 +2581,7 @@ public final class Bukkit {
      * @return UnsafeValues实例
      * @see UnsafeValues
      */
-    @Deprecated
+    @Deprecated(since = "1.7.2")
     @NotNull
     public static UnsafeValues getUnsafe() {
         return server.getUnsafe();

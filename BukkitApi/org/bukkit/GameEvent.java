@@ -1,9 +1,9 @@
 package org.bukkit;
 
-import com.google.common.base.Preconditions;
 import com.google.common.collect.Lists;
 import java.util.Collection;
 import java.util.Collections;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @since 1.17
  */
-public abstract class GameEvent implements Keyed {
+public abstract class GameEvent implements Keyed, RegistryAware {
 
     public static final GameEvent BLOCK_ACTIVATE = getEvent("block_activate");
     public static final GameEvent BLOCK_ATTACH = getEvent("block_attach");
@@ -30,41 +30,41 @@ public abstract class GameEvent implements Keyed {
     public static final GameEvent BLOCK_DETACH = getEvent("block_detach");
     public static final GameEvent BLOCK_OPEN = getEvent("block_open");
     public static final GameEvent BLOCK_PLACE = getEvent("block_place");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent BLOCK_PRESS = getEvent("block_activate");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent BLOCK_SWITCH = getEvent("block_activate");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent BLOCK_UNPRESS = getEvent("block_deactivate");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent BLOCK_UNSWITCH = getEvent("block_deactivate");
     public static final GameEvent CONTAINER_CLOSE = getEvent("container_close");
     public static final GameEvent CONTAINER_OPEN = getEvent("container_open");
-    @Deprecated
+    @Deprecated(since = "1.20")
     public static final GameEvent DISPENSE_FAIL = getEvent("block_activate");
     public static final GameEvent DRINK = getEvent("drink");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent DRINKING_FINISH = getEvent("drink");
     public static final GameEvent EAT = getEvent("eat");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent ELYTRA_FREE_FALL = getEvent("elytra_glide");
     public static final GameEvent ELYTRA_GLIDE = getEvent("elytra_glide");
     public static final GameEvent ENTITY_DAMAGE = getEvent("entity_damage");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent ENTITY_DAMAGED = getEvent("entity_damage");
     public static final GameEvent ENTITY_DIE = getEvent("entity_die");
     public static final GameEvent ENTITY_DISMOUNT = getEvent("entity_dismount");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent ENTITY_DYING = getEvent("entity_die");
     public static final GameEvent ENTITY_INTERACT = getEvent("entity_interact");
     public static final GameEvent ENTITY_MOUNT = getEvent("entity_mount");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent ENTITY_KILLED = getEvent("entity_die");
     public static final GameEvent ENTITY_PLACE = getEvent("entity_place");
     public static final GameEvent ENTITY_ACTION = getEvent("entity_action");
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public static final GameEvent ENTITY_ROAR = getEvent("entity_action");
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public static final GameEvent ENTITY_SHAKE = getEvent("entity_action");
     public static final GameEvent EQUIP = getEvent("equip");
     public static final GameEvent EXPLODE = getEvent("explode");
@@ -78,33 +78,33 @@ public abstract class GameEvent implements Keyed {
     public static final GameEvent JUKEBOX_PLAY = getEvent("jukebox_play");
     public static final GameEvent JUKEBOX_STOP_PLAY = getEvent("jukebox_stop_play");
     public static final GameEvent LIGHTNING_STRIKE = getEvent("lightning_strike");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent MOB_INTERACT = getEvent("entity_interact");
     public static final GameEvent NOTE_BLOCK_PLAY = getEvent("note_block_play");
-    @Deprecated
+    @Deprecated(since = "1.20")
     public static final GameEvent PISTON_CONTRACT = getEvent("block_deactivate");
-    @Deprecated
+    @Deprecated(since = "1.20")
     public static final GameEvent PISTON_EXTEND = getEvent("block_activate");
     public static final GameEvent PRIME_FUSE = getEvent("prime_fuse");
     public static final GameEvent PROJECTILE_LAND = getEvent("projectile_land");
     public static final GameEvent PROJECTILE_SHOOT = getEvent("projectile_shoot");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent RAVAGER_ROAR = getEvent("entity_action");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent RING_BELL = getEvent("block_change");
     public static final GameEvent SCULK_SENSOR_TENDRILS_CLICKING = getEvent("sculk_sensor_tendrils_clicking");
     public static final GameEvent SHEAR = getEvent("shear");
     public static final GameEvent SHRIEK = getEvent("shriek");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent SHULKER_CLOSE = getEvent("container_close");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent SHULKER_OPEN = getEvent("container_open");
     public static final GameEvent SPLASH = getEvent("splash");
     public static final GameEvent STEP = getEvent("step");
     public static final GameEvent SWIM = getEvent("swim");
     public static final GameEvent TELEPORT = getEvent("teleport");
     public static final GameEvent UNEQUIP = getEvent("unequip");
-    @Deprecated
+    @Deprecated(since = "1.19")
     public static final GameEvent WOLF_SHAKING = getEvent("entity_action");
     public static final GameEvent RESONATE_1 = getEvent("resonate_1");
     public static final GameEvent RESONATE_2 = getEvent("resonate_2");
@@ -123,6 +123,18 @@ public abstract class GameEvent implements Keyed {
     public static final GameEvent RESONATE_15 = getEvent("resonate_15");
 
     /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
+    public abstract NamespacedKey getKey();
+
+    /**
      * 根据指定的{@link NamespacedKey}获取{@link GameEvent 游戏事件}.
      * <p>
      * 原文:Returns a {@link GameEvent} by a {@link NamespacedKey}.
@@ -132,7 +144,7 @@ public abstract class GameEvent implements Keyed {
      * @deprecated 请使用 {@link Registry#get(NamespacedKey)}
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public static GameEvent getByKey(@NotNull NamespacedKey namespacedKey) {
         return Registry.GAME_EVENT.get(namespacedKey);
     }
@@ -146,18 +158,13 @@ public abstract class GameEvent implements Keyed {
      * @deprecated 请使用 {@link Registry#iterator()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public static Collection<GameEvent> values() {
         return Collections.unmodifiableCollection(Lists.newArrayList(Registry.GAME_EVENT));
     }
 
     @NotNull
     private static GameEvent getEvent(@NotNull String key) {
-        NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
-        GameEvent gameEvent = Registry.GAME_EVENT.get(namespacedKey);
-
-        Preconditions.checkNotNull(gameEvent, "No GameEvent found for %s. This is a bug.", namespacedKey);
-
-        return gameEvent;
+        return Registry.GAME_EVENT.getOrThrow(NamespacedKey.minecraft(key));
     }
 }

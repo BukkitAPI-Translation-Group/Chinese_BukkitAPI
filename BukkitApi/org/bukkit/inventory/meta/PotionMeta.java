@@ -20,7 +20,7 @@ public interface PotionMeta extends ItemMeta {
      * @param data PotionData to set the base potion state to
      * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #setBasePotionType} instead.
      */
-    @Deprecated
+    @Deprecated(since = "1.20.6")
     void setBasePotionData(@Nullable PotionData data);
 
     /**
@@ -30,7 +30,7 @@ public interface PotionMeta extends ItemMeta {
      * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #getBasePotionType()} instead.
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.6")
     PotionData getBasePotionData();
 
     /**
@@ -139,7 +139,7 @@ public interface PotionMeta extends ItemMeta {
      * @return 如果药水的属性改变了则为 true
      * @deprecated 请使用 {@link #setBasePotionType(org.bukkit.potion.PotionType)}
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     boolean setMainEffect(@NotNull PotionEffectType type);
 
     /**
@@ -190,6 +190,56 @@ public interface PotionMeta extends ItemMeta {
      * @param color 颜色
      */
     void setColor(@Nullable Color color);
+
+    /**
+     * Checks for existence of a custom potion name translation suffix.
+     *
+     * @return true if this has a custom potion name
+     */
+    boolean hasCustomName();
+
+    /**
+     * Gets the potion name translation suffix that is set.
+     * <p>
+     * Plugins should check that hasCustomName() returns <code>true</code>
+     * before calling this method.
+     *
+     * @return the potion name that is set
+     */
+    @Nullable
+    String getCustomName();
+
+    /**
+     * Sets the potion name translation suffix.
+     *
+     * @param name the name to set
+     */
+    void setCustomName(@Nullable String name);
+
+    /**
+     * Checks for existence of a potion duration scale.
+     *
+     * @return true if this has a potion duration scale.
+     */
+    boolean hasDurationScale();
+
+    /**
+     * Gets the potion duration scale that is set.
+     * <p>
+     * Plugins should check that hasDurationScale() returns <code>true</code>
+     * before calling this method.
+     *
+     * @return the scale factor applied to all potion effect durations
+     */
+    @Nullable
+    float getDurationScale();
+
+    /**
+     * Gets the potion duration scale.
+     *
+     * @param scale the scale factor applied to all potion effect durations
+     */
+    void setDurationScale(@Nullable Float scale);
 
     @Override
     PotionMeta clone();

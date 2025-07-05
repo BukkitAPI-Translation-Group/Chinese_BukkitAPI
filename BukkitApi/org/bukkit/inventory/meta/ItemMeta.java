@@ -5,19 +5,31 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.bukkit.NamespacedKey;
+import org.bukkit.Sound;
+import org.bukkit.Tag;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
+import org.bukkit.damage.DamageType;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.components.BlocksAttacksComponent;
+import org.bukkit.inventory.meta.components.CustomModelDataComponent;
+import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.inventory.meta.components.JukeboxPlayableComponent;
 import org.bukkit.inventory.meta.components.ToolComponent;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
+import org.bukkit.inventory.meta.components.WeaponComponent;
+import org.bukkit.inventory.meta.components.consumable.ConsumableComponent;
 import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
 import org.bukkit.persistence.PersistentDataHolder;
+import org.bukkit.tag.DamageTypeTags;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -127,7 +139,7 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @return 物品是否有本地化名称
      * @deprecated 属性不再存在
      */
-    @Deprecated(forRemoval = true)
+    @Deprecated(since = "1.20.5", forRemoval = true)
     boolean hasLocalizedName();
 
     /**
@@ -145,7 +157,7 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @deprecated 属性不再存在
      */
     @NotNull
-    @Deprecated(forRemoval = true)
+    @Deprecated(since = "1.20.5", forRemoval = true)
     String getLocalizedName();
 
     /**
@@ -157,7 +169,7 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param name 要设置的物品名
      * @deprecated 属性不再存在
      */
-    @Deprecated(forRemoval = true)
+    @Deprecated(since = "1.20.5", forRemoval = true)
     void setLocalizedName(@Nullable String name);
 
     /**
@@ -210,7 +222,12 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * custom item model.
      *
      * @return 物品是否存在自定义模型数据
+     * @deprecated more complex custom model data can be specified with
+     * {@link #hasCustomModelDataComponent()}. Integers from the old custom
+     * model data are equivalent to a single float in the
+     * {@link CustomModelDataComponent#getFloats()} list.
      */
+    @Deprecated(since = "1.21.5")
     boolean hasCustomModelData();
 
     /**
@@ -230,8 +247,28 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * before calling this method.
      *
      * @return 物品的自定义模型数据
+     * @deprecated more complex custom model data can be specified with
+     * {@link #getCustomModelDataComponent()}. Integers from the old custom
+     * model data are equivalent to a single float in the
+     * {@link CustomModelDataComponent#getFloats()} list.
      */
+    @Deprecated(since = "1.21.5")
     int getCustomModelData();
+
+    /**
+     * Gets the custom model data set on this item, or creates an empty custom
+     * model data instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setCustomModelDataComponent(CustomModelDataComponent)} to apply
+     * the changes.
+     *
+     * @return component
+     */
+    @NotNull
+    CustomModelDataComponent getCustomModelDataComponent();
 
     /**
      * 设置物品的自定义模型数据.
@@ -245,8 +282,48 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * custom item model.
      *
      * @param data 要设置的数据, 传递 null 以清除数据
+     * @deprecated more complex custom model data can be specified with
+     * {@link #setCustomModelDataComponent(org.bukkit.inventory.meta.components.CustomModelDataComponent)}.
+     * Integers from the old custom model data are equivalent to a single float
+     * in the {@link CustomModelDataComponent#setFloats(java.util.List)} list.
      */
+    @Deprecated(since = "1.21.5")
     void setCustomModelData(@Nullable Integer data);
+
+    /**
+     * Checks if the custom model data component is set.
+     *
+     * @return if a custom model data component is set
+     */
+    boolean hasCustomModelDataComponent();
+
+    /**
+     * Sets the custom model data component.
+     *
+     * @param customModelData new component
+     */
+    void setCustomModelDataComponent(@Nullable CustomModelDataComponent customModelData);
+
+    /**
+     * Gets if the enchantable component is set.
+     *
+     * @return if an enchantable is set.
+     */
+    boolean hasEnchantable();
+
+    /**
+     * Gets the enchantable component. Higher values allow higher enchantments.
+     *
+     * @return max_stack_size
+     */
+    int getEnchantable();
+
+    /**
+     * Sets the enchantable. Higher values allow higher enchantments.
+     *
+     * @param enchantable enchantable value
+     */
+    void setEnchantable(@Nullable Integer enchantable);
 
     /**
      * 检查物品是否含有附魔.
@@ -397,6 +474,50 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setHideTooltip(boolean hideTooltip);
 
     /**
+     * Gets if this item has a custom tooltip style.
+     *
+     * @return if a tooltip_style is set
+     */
+    boolean hasTooltipStyle();
+
+    /**
+     * Gets the custom tooltip style.
+     *
+     * @return the tooltip style
+     */
+    @Nullable
+    NamespacedKey getTooltipStyle();
+
+    /**
+     * Sets the custom tooltip style.
+     *
+     * @param tooltipStyle the new style
+     */
+    void setTooltipStyle(@Nullable NamespacedKey tooltipStyle);
+
+    /**
+     * Gets if this item has a custom item model.
+     *
+     * @return if a item_model is set
+     */
+    boolean hasItemModel();
+
+    /**
+     * Gets the custom item model.
+     *
+     * @return the item model
+     */
+    @Nullable
+    NamespacedKey getItemModel();
+
+    /**
+     * Sets the custom item model.
+     *
+     * @param itemModel the new model
+     */
+    void setItemModel(@Nullable NamespacedKey itemModel);
+
+    /**
      * 返回物品的 unbreakable 标签是否为 true.
      * 一个牢不可破的物品不会丧失耐久度.
      * <p>
@@ -459,11 +580,30 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setEnchantmentGlintOverride(@Nullable Boolean override);
 
     /**
+     * Checks if this item is a glider. If true, this item will allow players to
+     * glide when it is equipped.
+     *
+     * @return glider
+     */
+    boolean isGlider();
+
+    /**
+     * Sets if this item is a glider. If true, this item will allow players to
+     * glide when it is equipped.
+     *
+     * @param glider glider
+     */
+    void setGlider(boolean glider);
+
+    /**
      * Checks if this item is fire_resistant. If true, it will not burn in fire
      * or lava.
      *
      * @return fire_resistant
+     * @deprecated use {@link #getDamageResistant()} and
+     * {@link DamageTypeTags#IS_FIRE}
      */
+    @Deprecated(since = "1.21.2")
     boolean isFireResistant();
 
     /**
@@ -471,8 +611,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * or lava.
      *
      * @param fireResistant fire_resistant
+     * @deprecated use {@link #setDamageResistant(org.bukkit.Tag)} and
+     * {@link DamageTypeTags#IS_FIRE}
      */
+    @Deprecated(since = "1.21.2")
     void setFireResistant(boolean fireResistant);
+
+    /**
+     * Gets if this item is resistant to certain types of damage.
+     *
+     * @return true if a resistance is set
+     */
+    boolean hasDamageResistant();
+
+    /**
+     * Gets the type of damage this item will be resistant to when in entity
+     * form.
+     *
+     * Plugins should check {@link #hasDamageResistant()} before calling this
+     * method.
+     *
+     * @return damage type
+     */
+    @Nullable
+    Tag<DamageType> getDamageResistant();
+
+    /**
+     * Sets the type of damage this item will be resistant to when in entity
+     * form.
+     *
+     * @param tag the tag, or null to clear
+     */
+    void setDamageResistant(@Nullable Tag<DamageType> tag);
 
     /**
      * Gets if the max_stack_size is set.
@@ -522,6 +692,61 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setRarity(@Nullable ItemRarity rarity);
 
     /**
+     * Checks if the use remainder is set.
+     *
+     * @return if a use remainder item is set
+     */
+    boolean hasUseRemainder();
+
+    /**
+     * Gets the item which this item will convert to when used.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with {@link #setUseRemainder(ItemStack)}
+     * to apply the changes.
+     *
+     * @return remainder
+     */
+    @Nullable
+    ItemStack getUseRemainder();
+
+    /**
+     * Sets the item which this item will convert to when used.
+     *
+     * @param remainder new item
+     */
+    void setUseRemainder(@Nullable ItemStack remainder);
+
+    /**
+     * Checks if the use cooldown is set.
+     *
+     * @return if a use cooldown is set
+     */
+    boolean hasUseCooldown();
+
+    /**
+     * Gets the use cooldown set on this item, or creates an empty cooldown
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setUseCooldown(UseCooldownComponent)} to apply the changes.
+     *
+     * @return cooldown
+     */
+    @NotNull
+    UseCooldownComponent getUseCooldown();
+
+    /**
+     * Sets the item use cooldown.
+     *
+     * @param cooldown new cooldown
+     */
+    void setUseCooldown(@Nullable UseCooldownComponent cooldown);
+
+    /**
      * Checks if the food is set.
      *
      * @return if a food is set
@@ -547,6 +772,33 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param food new food
      */
     void setFood(@Nullable FoodComponent food);
+
+    /**
+     * Checks if the consumable is set.
+     *
+     * @return if a consumable is set
+     */
+    boolean hasConsumable();
+
+    /**
+     * Gets the consumable set on this item, or creates an empty consumable instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with {@link #setConsumable(ConsumableComponent)} to
+     * apply the changes.
+     *
+     * @return food
+     */
+    @NotNull
+    ConsumableComponent getConsumable();
+
+    /**
+     * Sets the item consumable.
+     *
+     * @param consumable new consumable
+     */
+    void setConsumable(@Nullable ConsumableComponent consumable);
 
     /**
      * Checks if the tool is set.
@@ -576,6 +828,89 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setTool(@Nullable ToolComponent tool);
 
     /**
+     * Checks if the weapon is set.
+     *
+     * @return if a weapon is set
+     */
+    boolean hasWeapon();
+
+    /**
+     * Gets the weapon set on this item, or creates an empty weapon instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with {@link #setWeapon(WeaponComponent)} to
+     * apply the changes.
+     *
+     * @return weapon
+     */
+    @NotNull
+    WeaponComponent getWeapon();
+
+    /**
+     * Sets the item weapon.
+     *
+     * @param weapon new weapon
+     */
+    void setWeapon(@Nullable WeaponComponent weapon);
+
+    /**
+     * Checks if the {@link BlocksAttacksComponent} is set.
+     *
+     * @return if a {@link BlocksAttacksComponent} is set
+     */
+    boolean hasBlocksAttacks();
+
+    /**
+     * Gets the {@link BlocksAttacksComponent} set on this item, or creates an
+     * empty {@link BlocksAttacksComponent} instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setBlocksAttacks(BlocksAttacksComponent)} to apply the changes.
+     *
+     * @return component
+     */
+    @NotNull
+    BlocksAttacksComponent getBlocksAttacks();
+
+    /**
+     * Sets the item {@link BlocksAttacksComponent}.
+     *
+     * @param blocksAttacks new component
+     */
+    void setBlocksAttacks(@Nullable BlocksAttacksComponent blocksAttacks);
+
+    /**
+     * Checks if the equippable is set.
+     *
+     * @return if a equippable is set
+     */
+    boolean hasEquippable();
+
+    /**
+     * Gets the equippable set on this item, or creates an empty equippable
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setEquippable(EquippableComponent)} to apply the changes.
+     *
+     * @return equippable
+     */
+    @NotNull
+    EquippableComponent getEquippable();
+
+    /**
+     * Sets the equippable tool.
+     *
+     * @param equippable new equippable
+     */
+    void setEquippable(@Nullable EquippableComponent equippable);
+
+    /**
      * Checks if the jukebox playable is set.
      *
      * @return if a jukebox playable is set
@@ -602,6 +937,30 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param jukeboxPlayable new component
      */
     void setJukeboxPlayable(@Nullable JukeboxPlayableComponent jukeboxPlayable);
+
+    /**
+     * Gets if the break sound is set.
+     *
+     * @return if break sound is set
+     */
+    boolean hasBreakSound();
+
+    /**
+     * Gets the sound to play when the item is broken.
+     *
+     * Plugins should check {@link #hasBreakSound()} before calling this method.
+     *
+     * @return the sound
+     */
+    @Nullable
+    Sound getBreakSound();
+
+    /**
+     * Sets the sound to play when the item is broken.
+     *
+     * @param sound sound
+     */
+    void setBreakSound(@Nullable Sound sound);
 
     /**
      * 检查物品是否存在任何属性修饰符.
@@ -831,7 +1190,7 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * 请使用 {@link PersistentDataHolder#getPersistentDataContainer()}.
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.14")
     CustomItemTagContainer getCustomTagContainer();
 
     /**

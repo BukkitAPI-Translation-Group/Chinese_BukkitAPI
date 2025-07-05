@@ -32,7 +32,7 @@ public interface Ocelot extends Animals {
      * @deprecated 猫现在是单独的实体
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.19.4")
     public Type getCatType();
 
     /**
@@ -43,7 +43,7 @@ public interface Ocelot extends Animals {
      * @param type 这只猫的新种类
      * @deprecated 猫现在是单独的实体
      */
-    @Deprecated
+    @Deprecated(since = "1.19.4")
     public void setCatType(@NotNull Type type);
 
     /**
@@ -52,7 +52,7 @@ public interface Ocelot extends Animals {
      * 译注：具体有哪些种类及特征可以查阅MineCraft Wiki.
      * @deprecated 不同猫种现在属于不同的生物/Cats are now a separate entity.
      */
-    @Deprecated
+    @Deprecated(since = "1.14")
     public enum Type {
         WILD_OCELOT(0),
         BLACK_CAT(1),
@@ -80,7 +80,7 @@ public interface Ocelot extends Animals {
          * @return 种类id
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         public int getId() {
             return id;
         }
@@ -94,7 +94,7 @@ public interface Ocelot extends Animals {
          * @return 种类,如果是null的话就是没找到
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         @Nullable
         public static Type getType(int id) {
             return (id >= types.length) ? null : types[id];

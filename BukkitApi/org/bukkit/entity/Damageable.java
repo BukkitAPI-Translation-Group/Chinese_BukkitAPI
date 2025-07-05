@@ -73,7 +73,7 @@ public interface Damageable extends Entity {
      * Sets the entity's absorption amount.
      * <p>
      * Note: The amount is capped to the value of
-     * {@link Attribute#GENERIC_MAX_ABSORPTION}. The effect of this method on
+     * {@link Attribute#MAX_ABSORPTION}. The effect of this method on
      * that attribute is currently unspecified and subject to change.
      *
      * @param amount new absorption amount from 0
@@ -88,9 +88,9 @@ public interface Damageable extends Entity {
      * 原文: Gets the maximum health this entity has.
      *
      * @return 最大血量
-     * @deprecated 请使用 {@link Attribute#GENERIC_MAX_HEALTH}.
+     * @deprecated 请使用 {@link Attribute#MAX_HEALTH}.
      */
-    @Deprecated
+    @Deprecated(since = "1.11")
     double getMaxHealth();
 
     /**
@@ -109,17 +109,17 @@ public interface Damageable extends Entity {
      * {@link Wither}, etc...} will have their bar scaled accordingly.
      *
      * @param health amount of health to set the maximum to
-     * @deprecated 请使用 {@link Attribute#GENERIC_MAX_HEALTH}.
+     * @deprecated 请使用 {@link Attribute#MAX_HEALTH}.
      */
-    @Deprecated
+    @Deprecated(since = "1.11")
     void setMaxHealth(double health);
 
     /**
      * 重置最大血量为 20。
      * <p>
      * 原文: Resets the max health to the original amount.
-     * @deprecated 请使用 {@link Attribute#GENERIC_MAX_HEALTH}.
+     * @deprecated 请使用 {@link Attribute#MAX_HEALTH}.
      */
-    @Deprecated
+    @Deprecated(since = "1.11")
     void resetMaxHealth();
 }

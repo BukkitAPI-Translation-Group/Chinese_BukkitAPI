@@ -11,7 +11,7 @@ import org.bukkit.TreeSpecies;
  * @deprecated all usage of MaterialData is deprecated and subject to removal.
  * Use {@link org.bukkit.block.data.BlockData}.
  */
-@Deprecated
+@Deprecated(since = "1.14.1")
 public class WoodenStep extends Wood {
     protected static final Material DEFAULT_TYPE = Material.LEGACY_WOOD_STEP;
     protected static final boolean DEFAULT_INVERTED = false;
@@ -55,7 +55,7 @@ public class WoodenStep extends Wood {
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public WoodenStep(final Material type, final byte data) {
         super(type, data);
     }

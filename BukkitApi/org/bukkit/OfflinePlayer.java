@@ -198,7 +198,7 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
      * @deprecated 误导性的方法名称. 此方法也同时返回复活锚点的位置
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.4")
     public Location getBedSpawnLocation();
 
     /**

@@ -1,213 +1,254 @@
 package org.bukkit.attribute;
 
+import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
+import java.util.Locale;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Registry;
 import org.bukkit.Translatable;
+import org.bukkit.registry.RegistryAware;
+import org.bukkit.util.OldEnum;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * 在 {@link Attributable} 里面的枚举.
  */
-public enum Attribute implements Keyed, Translatable {
+public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, RegistryAware {
 
     /**
      * 生物的最大血量
      */
-    GENERIC_MAX_HEALTH("generic.max_health"),
+    Attribute MAX_HEALTH = getAttribute("max_health");
     /**
      * 当一个生物正在跟随其他生物/人的时候的跟随范围
      */
-    GENERIC_FOLLOW_RANGE("generic.follow_range"),
+    Attribute FOLLOW_RANGE = getAttribute("follow_range");
     /**
      * 当生物被攻击的时候的击退抗性
      */
-    GENERIC_KNOCKBACK_RESISTANCE("generic.knockback_resistance"),
+    Attribute KNOCKBACK_RESISTANCE = getAttribute("knockback_resistance");
     /**
      * 生物的移动速度
      */
-    GENERIC_MOVEMENT_SPEED("generic.movement_speed"),
+    Attribute MOVEMENT_SPEED = getAttribute("movement_speed");
     /**
      * 实体的飞行速度
      */
-    GENERIC_FLYING_SPEED("generic.flying_speed"),
+    Attribute FLYING_SPEED = getAttribute("flying_speed");
     /**
      * 当生物攻击其他生物/实体时所造成的伤害
      */
-    GENERIC_ATTACK_DAMAGE("generic.attack_damage"),
+    Attribute ATTACK_DAMAGE = getAttribute("attack_damage");
     /**
      * 生物的攻击击退力度
      */
-    GENERIC_ATTACK_KNOCKBACK("generic.attack_knockback"),
+    Attribute ATTACK_KNOCKBACK = getAttribute("attack_knockback");
     /**
      * 生物的攻击速率
      */
-    GENERIC_ATTACK_SPEED("generic.attack_speed"),
+    Attribute ATTACK_SPEED = getAttribute("attack_speed");
     /**
      * 护甲的防御值
      */
-    GENERIC_ARMOR("generic.armor"),
+    Attribute ARMOR = getAttribute("armor");
     /**
      * 护甲的韧性
      */
-    GENERIC_ARMOR_TOUGHNESS("generic.armor_toughness"),
+    Attribute ARMOR_TOUGHNESS = getAttribute("armor_toughness");
     /**
      * 实体的坠落伤害倍增器。
      * <p>
      * 原文:
      * The fall damage multiplier of an Entity.
      */
-    GENERIC_FALL_DAMAGE_MULTIPLIER("generic.fall_damage_multiplier"),
+    Attribute FALL_DAMAGE_MULTIPLIER = getAttribute("fall_damage_multiplier");
     /**
      * 生物的可能的掉落物
      */
-    GENERIC_LUCK("generic.luck"),
+    Attribute LUCK = getAttribute("luck");
     /**
      * 实体的最大吸收值（即护甲吸收）。
      * <p>
      * 原文:
      * Maximum absorption of an Entity.
      */
-    GENERIC_MAX_ABSORPTION("generic.max_absorption"),
+    Attribute MAX_ABSORPTION = getAttribute("max_absorption");
     /**
      * 实体可以坠落而不受伤害的高度。
      * <p>
      * 原文:
      * The distance which an Entity can fall without damage.
      */
-    GENERIC_SAFE_FALL_DISTANCE("generic.safe_fall_distance"),
+    Attribute SAFE_FALL_DISTANCE = getAttribute("safe_fall_distance");
     /**
      * 实体的相对大小。
      * <p>
      * 原文:
      * The relative scale of an Entity.
      */
-    GENERIC_SCALE("generic.scale"),
+    Attribute SCALE = getAttribute("scale");
     /**
      * 实体可以跨越的高度。
      * <p>
      * 原文:
      * The height which an Entity can walk over.
      */
-    GENERIC_STEP_HEIGHT("generic.step_height"),
+    Attribute STEP_HEIGHT = getAttribute("step_height");
     /**
      * 施加在实体上的重力。
      * <p>
      * 原文:
      * The gravity applied to an Entity.
      */
-    GENERIC_GRAVITY("generic.gravity"),
+    Attribute GRAVITY = getAttribute("gravity");
     /**
      * 实体跳跃的力量。
      * <p>
      * 原文:
      * Strength with which an Entity will jump.
      */
-    GENERIC_JUMP_STRENGTH("generic.jump_strength"),
+    Attribute JUMP_STRENGTH = getAttribute("jump_strength");
     /**
      * 实体在着火后保持燃烧的时间。
      * <p>
      * 原文:
      * How long an entity remains burning after ignition.
      */
-    GENERIC_BURNING_TIME("generic.burning_time"),
+    Attribute BURNING_TIME = getAttribute("burning_time");
+    /**
+     * The distance at which the camera is placed away.
+     */
+    Attribute CAMERA_DISTANCE = getAttribute("camera_distance");
     /**
      * 对爆炸造成的击退的抗性。
      * <p>
      * 原文:
      * Resistance to knockback from explosions.
      */
-    GENERIC_EXPLOSION_KNOCKBACK_RESISTANCE("generic.explosion_knockback_resistance"),
+    Attribute EXPLOSION_KNOCKBACK_RESISTANCE = getAttribute("explosion_knockback_resistance");
     /**
      * 在困难地形中的移动速度。
      * <p>
      * 原文:
      * Movement speed through difficult terrain.
      */
-    GENERIC_MOVEMENT_EFFICIENCY("generic.movement_efficiency"),
+    Attribute MOVEMENT_EFFICIENCY = getAttribute("movement_efficiency");
     /**
      * 水下使用的氧气。
      * <p>
      * 原文:
      * Oxygen use underwater.
      */
-    GENERIC_OXYGEN_BONUS("generic.oxygen_bonus"),
+    Attribute OXYGEN_BONUS = getAttribute("oxygen_bonus");
     /**
      * 在水中移动的速度。
-     * <p>
-     * 原文:
-     * Movement speed through water.
      */
-    GENERIC_WATER_MOVEMENT_EFFICIENCY("generic.water_movement_efficiency"),
+    Attribute WATER_MOVEMENT_EFFICIENCY = getAttribute("water_movement_efficiency");
+    /**
+     * Range at which mobs will be tempted by items.
+     */
+    Attribute TEMPT_RANGE = getAttribute("tempt_range");
     /**
      * 玩家可以触及的方块距离。
      * <p>
      * 原文:
      * The block reach distance of a Player.
      */
-    PLAYER_BLOCK_INTERACTION_RANGE("player.block_interaction_range"),
+    Attribute BLOCK_INTERACTION_RANGE = getAttribute("block_interaction_range");
     /**
      * 玩家可以触及的实体距离。
      * <p>
      * 原文:
      * The entity reach distance of a Player.
      */
-    PLAYER_ENTITY_INTERACTION_RANGE("player.entity_interaction_range"),
+    Attribute ENTITY_INTERACTION_RANGE = getAttribute("entity_interaction_range");
     /**
      * 玩家破坏方块的速度。
      * <p>
      * 原文:
      * Block break speed of a Player.
      */
-    PLAYER_BLOCK_BREAK_SPEED("player.block_break_speed"),
+    Attribute BLOCK_BREAK_SPEED = getAttribute("block_break_speed");
     /**
      * 正确工具的挖矿速度。
      * <p>
      * 原文:
      * Mining speed for correct tools.
      */
-    PLAYER_MINING_EFFICIENCY("player.mining_efficiency"),
+    Attribute MINING_EFFICIENCY = getAttribute("mining_efficiency");
     /**
      * 潜行速度。
      * <p>
      * 原文:
      * Sneaking speed.
      */
-    PLAYER_SNEAKING_SPEED("player.sneaking_speed"),
+    Attribute SNEAKING_SPEED = getAttribute("sneaking_speed");
     /**
      * 水下挖掘速度。
      * <p>
      * 原文:
      * Underwater mining speed.
      */
-    PLAYER_SUBMERGED_MINING_SPEED("player.submerged_mining_speed"),
+    Attribute SUBMERGED_MINING_SPEED = getAttribute("submerged_mining_speed");
     /**
      * 横扫伤害。
      * <p>
      * 原文:
      * Sweeping damage.
      */
-    PLAYER_SWEEPING_DAMAGE_RATIO("player.sweeping_damage_ratio"),
+    Attribute SWEEPING_DAMAGE_RATIO = getAttribute("sweeping_damage_ratio");
     /**
      * 僵尸增援的几率
      */
-    ZOMBIE_SPAWN_REINFORCEMENTS("zombie.spawn_reinforcements");
-
-    private final NamespacedKey key;
-
-    private Attribute(String key) {
-        this.key = NamespacedKey.minecraft(key);
-    }
-
-    @NotNull
-    @Override
-    public NamespacedKey getKey() {
-        return key;
-    }
+    Attribute SPAWN_REINFORCEMENTS = getAttribute("spawn_reinforcements");
+    /**
+     * Waypoint transmission range.
+     */
+    Attribute WAYPOINT_TRANSMIT_RANGE = getAttribute("waypoint_transmit_range");
+    /**
+     * Waypoing receive range.
+     */
+    Attribute WAYPOINT_RECEIVE_RANGE = getAttribute("waypoint_receive_range");
 
     @NotNull
+    private static Attribute getAttribute(@NotNull String key) {
+        return Registry.ATTRIBUTE.getOrThrow(NamespacedKey.minecraft(key));
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
     @Override
-    public String getTranslationKey() {
-        return Bukkit.getUnsafe().getTranslationKey(this);
+    @Deprecated(since = "1.21.4")
+    NamespacedKey getKey();
+
+    /**
+     * @param name of the attribute.
+     * @return the attribute with the given name.
+     * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+     */
+    @NotNull
+    @Deprecated(since = "1.21.3")
+    static Attribute valueOf(@NotNull String name) {
+        Attribute attribute = Bukkit.getUnsafe().get(Registry.ATTRIBUTE, NamespacedKey.fromString(name.toLowerCase(Locale.ROOT)));
+        Preconditions.checkArgument(attribute != null, "No attribute found with the name %s", name);
+        return attribute;
+    }
+
+    /**
+     * @return an array of all known attributes.
+     * @deprecated use {@link Registry#iterator()}.
+     */
+    @NotNull
+    @Deprecated(since = "1.21.3")
+    static Attribute[] values() {
+        return Lists.newArrayList(Registry.ATTRIBUTE).toArray(new Attribute[0]);
     }
 }

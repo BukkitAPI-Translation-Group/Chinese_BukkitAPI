@@ -20,12 +20,12 @@ public class AsyncPlayerPreLoginEvent extends Event {
     private final UUID uniqueId;
     private final boolean transferred;
 
-    @Deprecated
+    @Deprecated(since = "1.7.5")
     public AsyncPlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress) {
         this(name, ipAddress, null);
     }
 
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     public AsyncPlayerPreLoginEvent(@NotNull final String name, @NotNull final InetAddress ipAddress, @NotNull final UUID uniqueId) {
         this(name, ipAddress, uniqueId, false);
     }
@@ -61,7 +61,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @see #getLoginResult()
      * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      */
-    @Deprecated
+    @Deprecated(since = "1.3.2")
     @NotNull
     public PlayerPreLoginEvent.Result getResult() {
         return result == null ? null : result.old();
@@ -87,7 +87,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @see #setLoginResult(Result)
      * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      */
-    @Deprecated
+    @Deprecated(since = "1.3.2")
     public void setResult(@NotNull final PlayerPreLoginEvent.Result result) {
         this.result = result == null ? null : Result.valueOf(result.name());
     }
@@ -149,7 +149,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
      * @see #disallow(Result, String)
      * @deprecated 这个方法使用了来自 {@link PlayerPreLoginEvent} 的已弃用的枚举
      */
-    @Deprecated
+    @Deprecated(since = "1.3.2")
     public void disallow(@NotNull final PlayerPreLoginEvent.Result result, @NotNull final String message) {
         this.result = result == null ? null : Result.valueOf(result.name());
         this.message = message;
@@ -237,7 +237,7 @@ public class AsyncPlayerPreLoginEvent extends Event {
          */
         KICK_OTHER;
 
-        @Deprecated
+        @Deprecated(since = "1.3.2")
         @NotNull
         private PlayerPreLoginEvent.Result old() {
             return PlayerPreLoginEvent.Result.valueOf(name());

@@ -3,4 +3,4 @@ package org.bukkit.entity;
 /**
  * 这是海豚~
  */
-public interface Dolphin extends WaterMob { }
+public interface Dolphin extends Ageable, WaterMob { }

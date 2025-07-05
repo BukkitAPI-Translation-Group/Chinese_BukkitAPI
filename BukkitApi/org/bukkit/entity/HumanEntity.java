@@ -11,6 +11,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.MainHand;
+import org.bukkit.inventory.MenuType;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.FireworkMeta;
@@ -73,7 +74,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param prop 窗口属性
      * @param value 要设置的属性值
      * @return 若属性成功设置返回true
+     * @deprecated 请使用 {@link InventoryView} 及其子类
      */
+    @Deprecated(forRemoval = true, since = "1.21")
     public boolean setWindowProperty(@NotNull InventoryView.Property prop, int value);
 
     /**
@@ -129,7 +132,10 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param force 若为false, 同时指定位置不是工作台方块, 将不会打开工作台物品栏, 并返回null(true就是不管怎样都向
      * 玩家展示工作台界面)
      * @return 新打开的物品栏的视图, 如果不能打开返回null
+     * @deprecated 此方法应由 {@link MenuType#CRAFTING} 代替,
+     * 参见 {@link MenuType.Typed#builder()} 及其选项.
      */
+    @Deprecated(since = "1.21.4")
     @Nullable
     public InventoryView openWorkbench(@Nullable Location location, boolean force);
 
@@ -143,7 +149,10 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param force 若为false, 同时指定位置不是附魔台方块, 将不会打开工作台物品栏, 并返回null(true就是不管怎样都向
      * 玩家展示附魔台界面)
      * @return 新打开的物品栏的视图, 如果不能打开返回null
+     * @deprecated T此方法应由 {@link MenuType#ENCHANTMENT} 代替,
+     * 参见 {@link MenuType.Typed#builder()} 及其选项.
      */
+    @Deprecated(since = "1.21.4")
     @Nullable
     public InventoryView openEnchanting(@Nullable Location location, boolean force);
 
@@ -179,7 +188,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param trader 与哪位村民交易. 不能为null
      * @param force 是否强制开始交易, 即使另一名玩家正在与此村民交易
      * @return 新打开的物品栏的视图, 如果不能打开返回null
+     * @deprecated 此方法可由 {@link MenuType#MERCHANT} 代替, 并使用 {@link #openInventory(InventoryView)}
      */
+    @Deprecated(since = "1.21.4")
     @Nullable
     public InventoryView openMerchant(@NotNull Villager trader, boolean force);
 
@@ -196,7 +207,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param merchant 与哪个商人交易. 不能为null
      * @param force 是否强制开始交易, 即使另一名玩家正在与此商人交易
      * @return 新打开的物品栏的视图, 如果不能打开返回null
+     * @deprecated 此方法可由 {@link MenuType#MERCHANT} 代替, 并使用 {@link #openInventory(InventoryView)}
      */
+    @Deprecated(since = "1.21.4")
     @Nullable
     public InventoryView openMerchant(@NotNull Merchant merchant, boolean force);
 
@@ -215,7 +228,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @return 你正在握持的物品的ItemStack(物品堆)对象
      * @deprecated 人类现能双持, 请使用 {@link PlayerInventory} 中更明确的方法
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @NotNull
     public ItemStack getItemInHand();
 
@@ -228,7 +241,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param item 要设置的物品堆
      * @deprecated 人类现能双持, 请使用 {@link PlayerInventory} 中更明确的方法
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setItemInHand(@Nullable ItemStack item);
 
     // 待求证
@@ -301,6 +314,37 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
     public void setCooldown(@NotNull Material material, int ticks);
 
     /**
+     * Check whether a cooldown is active on the specified item.
+     *
+     * @param item the item to check
+     * @return if a cooldown is active on the item
+     */
+    public boolean hasCooldown(@NotNull ItemStack item);
+
+    /**
+     * Get the cooldown time in ticks remaining for the specified item.
+     *
+     * @param item the item to check
+     * @return the remaining cooldown time in ticks
+     */
+    public int getCooldown(@NotNull ItemStack item);
+
+    /**
+     * Set a cooldown on the specified item for a certain amount of ticks.
+     * ticks. 0 ticks will result in the removal of the cooldown.
+     * <p>
+     * Cooldowns are used by the server for items such as ender pearls and
+     * shields to prevent them from being used repeatedly.
+     * <p>
+     * Note that cooldowns will not by themselves stop an item from being used
+     * for attacking.
+     *
+     * @param item the item to set the cooldown for
+     * @param ticks the amount of ticks to set or 0 to remove
+     */
+    public void setCooldown(@NotNull ItemStack item, int ticks);
+
+    /**
      * 获取玩家的睡眠时间 (以tick为单位), 该值可能有上限.
      * <p>
      * 原文:Get the sleep ticks of the player. This value may be capped.
@@ -331,6 +375,15 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @throws IllegalStateException if not sleeping
      */
     public void wakeup(boolean setSpawnLocation);
+
+    /**
+     * Make the player start a riptide spin attack.
+     *
+     * @param duration spin attack duration in ticks.
+     * @param attackStrength damage value inflicted upon entities hit by spin attack.
+     * @param attackItem item used to attack.
+     */
+    public void startRiptideAttack(int duration, float attackStrength, @Nullable ItemStack attackItem);
 
     /**
      * Gets the location of the bed the player is currently sleeping in
@@ -481,7 +534,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @return 坐在玩家左肩的实体
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
-    @Deprecated
+    @Deprecated(since = "1.12")
     @Nullable
     public Entity getShoulderEntityLeft();
 
@@ -504,7 +557,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param entity 坐在玩家左肩的实体
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
-    @Deprecated
+    @Deprecated(since = "1.12")
     public void setShoulderEntityLeft(@Nullable Entity entity);
 
     /**
@@ -521,7 +574,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @return 坐在玩家右肩的实体
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
-    @Deprecated
+    @Deprecated(since = "1.12")
     @Nullable
     public Entity getShoulderEntityRight();
 
@@ -544,7 +597,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param entity 坐在玩家右肩的实体
      * @deprecated Bukkit中目前还没有关于序列化实体的语义(格式)的良好定义. 请谨慎使用.
      */
-    @Deprecated
+    @Deprecated(since = "1.12")
     public void setShoulderEntityRight(@Nullable Entity entity);
 
     /**

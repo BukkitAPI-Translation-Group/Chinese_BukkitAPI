@@ -1,5 +1,6 @@
 package org.bukkit.entity.memory;
 
+import com.google.common.base.Preconditions;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -8,6 +9,7 @@ import java.util.UUID;
 import org.bukkit.Keyed;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,7 +19,7 @@ import org.jetbrains.annotations.Nullable;
  *
  * @param <T> the class type of the memory value
  */
-public final class MemoryKey<T> implements Keyed {
+public final class MemoryKey<T> implements Keyed, RegistryAware {
 
     private final NamespacedKey namespacedKey;
     private final Class<T> tClass;
@@ -30,8 +32,34 @@ public final class MemoryKey<T> implements Keyed {
 
     @NotNull
     @Override
+    public NamespacedKey getKeyOrThrow() {
+        Preconditions.checkState(isRegistered(), "Cannot get key of this registry item, because it is not registered. Use #isRegistered() before calling this method.");
+        return this.namespacedKey;
+    }
+
+    @Nullable
+    @Override
+    public NamespacedKey getKeyOrNull() {
+        return this.namespacedKey;
+    }
+
+    @Override
+    public boolean isRegistered() {
+        return this.namespacedKey != null;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
     public NamespacedKey getKey() {
-        return namespacedKey;
+        return getKeyOrThrow();
     }
 
     /**

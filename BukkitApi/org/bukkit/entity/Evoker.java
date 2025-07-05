@@ -15,7 +15,7 @@ public interface Evoker extends Spellcaster {
      *
      * @deprecated 将来 Minecraft 会有更多的可施法的生物
      */
-    @Deprecated
+    @Deprecated(since = "1.11.2")
     public enum Spell {
 
         /**
@@ -52,7 +52,7 @@ public interface Evoker extends Spellcaster {
      * @return 唤魔者当前使用的咒语
      * @deprecated 将来 Minecraft 会有更多的可施法的生物
      */
-    @Deprecated
+    @Deprecated(since = "1.11.2")
     @NotNull
     Spell getCurrentSpell();
 
@@ -64,6 +64,6 @@ public interface Evoker extends Spellcaster {
      * @param spell 唤魔者应使用的咒语
      * @deprecated 将来 Minecraft 会有更多的可施法的生物
      */
-    @Deprecated
+    @Deprecated(since = "1.11.2")
     void setCurrentSpell(@Nullable Spell spell);
 }

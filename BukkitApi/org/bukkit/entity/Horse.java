@@ -11,7 +11,7 @@ public interface Horse extends AbstractHorse {
     /**
      * @deprecated 不同的种类对应不同的类.
      */
-    @Deprecated
+    @Deprecated(since = "1.11")
     public enum Variant {
         /**
          * 普通马.
@@ -173,14 +173,14 @@ public interface Horse extends AbstractHorse {
      * @return 是否携带箱子
      * @deprecated 请参阅 {@link ChestedHorse}
      */
-    @Deprecated
+    @Deprecated(since = "1.11")
     public boolean isCarryingChest();
 
     /**
      * @param chest 是否携带箱子
      * @deprecated 请参阅 {@link ChestedHorse}
      */
-    @Deprecated
+    @Deprecated(since = "1.11")
     public void setCarryingChest(boolean chest);
 
     @NotNull

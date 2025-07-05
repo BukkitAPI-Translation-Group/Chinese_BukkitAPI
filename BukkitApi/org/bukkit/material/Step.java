@@ -11,7 +11,7 @@ import org.bukkit.Material;
  * @deprecated all usage of MaterialData is deprecated and subject to removal.
  * Use {@link org.bukkit.block.data.BlockData}.
  */
-@Deprecated
+@Deprecated(since = "1.14.1")
 public class Step extends TexturedMaterial {
     private static final List<Material> textures = new ArrayList<Material>();
     static {
@@ -41,7 +41,7 @@ public class Step extends TexturedMaterial {
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public Step(final Material type, final byte data) {
         super(type, data);
     }
@@ -83,7 +83,7 @@ public class Step extends TexturedMaterial {
      * @deprecated Magic value
      */
     @Override
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     protected int getTextureIndex() {
         return getData() & 0x7;
     }
@@ -93,7 +93,7 @@ public class Step extends TexturedMaterial {
      *
      * @deprecated Magic value
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Override
     protected void setTextureIndex(int idx) {
         setData((byte) ((getData() & 0x8) | idx));

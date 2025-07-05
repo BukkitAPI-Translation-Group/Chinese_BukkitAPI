@@ -244,7 +244,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * 由于当前 Minecraft 的区块被严格管理, 并且除非那些区块正被使用, 否则不会加载超过1tick时长
      * (意思是mc现在对区块管理更好了, 不用的区块会被及时卸载并回收)
      */
-    @Deprecated
+    @Deprecated(since = "1.14")
     public boolean isChunkInUse(int x, int z);
 
     /**
@@ -367,7 +367,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @deprecated 无法保证重新生成单个区块会产生与之前相同的区块, 因为地形装饰可分布在区块上.
      * 应避免使用本方法, 由于已知本方法易产生bug
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public boolean regenerateChunk(int x, int z);
 
     /**
@@ -382,7 +382,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * 
      * @deprecated 这个方法不能保证在所有的客户端接口都正常地工作。
      */
-    @Deprecated
+    @Deprecated(since = "1.8")
     public boolean refreshChunk(int x, int z);
 
     /**
@@ -647,7 +647,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @see #generateTree(org.bukkit.Location, java.util.Random, org.bukkit.TreeType, java.util.function.Consumer)
      * @deprecated this method does not handle tile entities (bee nests)
      */
-    @Deprecated
+    @Deprecated(since = "1.17.1")
     public boolean generateTree(@NotNull Location loc, @NotNull TreeType type, @NotNull BlockChangeDelegate delegate);
 
     /**
@@ -707,7 +707,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param classes 用于匹配的表示实体类型的类
      * @return 一个当前处在这个世界的所有与指定的类/接口相匹配的实体的列表
      */
-    @Deprecated
+    @Deprecated(since = "1.1")
     @NotNull
     public <T extends Entity> Collection<T> getEntitiesByClass(@NotNull Class<T>... classes);
 
@@ -1574,7 +1574,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     Material} 为null 或 {@link Material} 不是方块
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.7.5")
     @NotNull
     public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull Material material, byte data) throws IllegalArgumentException;
 
@@ -1692,7 +1692,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @deprecated 1.15更新后生物群系已三维化
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15")
     Biome getBiome(int x, int z);
 
     /**
@@ -1705,7 +1705,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param bio 这个方块的新生物群系类型
      * @deprecated 1.15更新后生物群系已三维化
      */
-    @Deprecated
+    @Deprecated(since = "1.15")
     void setBiome(int x, int z, @NotNull Biome bio);
 
     /**
@@ -1729,7 +1729,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 查询方块的温度
      * @deprecated 1.15更新后生物群系已三维化
      */
-    @Deprecated
+    @Deprecated(since = "1.15")
     public double getTemperature(int x, int z);
 
     /**
@@ -1764,7 +1764,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 查询方块的湿度
      * @deprecated 1.15更新后生物群系已三维化
      */
-    @Deprecated
+    @Deprecated(since = "1.15")
     public double getHumidity(int x, int z);
 
     /**
@@ -1886,7 +1886,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 如果世界的出生地区会在内存中保存加载则返回true
      * @deprecated 使用 {@link GameRule#SPAWN_CHUNK_RADIUS} 以更好地控制
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     public boolean getKeepSpawnInMemory();
 
     /**
@@ -1899,7 +1899,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param keepLoaded 如果为true则世界的出生地区会在内存中保存加载
      * @deprecated 使用 {@link GameRule#SPAWN_CHUNK_RADIUS} 以更好地控制
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     public void setKeepSpawnInMemory(boolean keepLoaded);
 
     /**
@@ -1980,7 +1980,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * this method to always return the correct value.
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.16.1")
     public WorldType getWorldType();
 
     /**
@@ -2053,7 +2053,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 世界生成动物的时间间隔（单位为tick）
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public long getTicksPerAnimalSpawns();
 
     /**
@@ -2098,7 +2098,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param ticksPerAnimalSpawns 设置的世界生成动物的时间间隔（单位为tick）
      * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public void setTicksPerAnimalSpawns(int ticksPerAnimalSpawns);
 
     /**
@@ -2143,7 +2143,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 世界生成怪物的时间间隔（单位为tick）
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public long getTicksPerMonsterSpawns();
 
     /**
@@ -2188,7 +2188,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param ticksPerMonsterSpawns 设置的世界生成怪物的时间间隔（单位为tick）
      * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns);
 
     /**
@@ -2214,7 +2214,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return The world's ticks per water mob spawns value
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public long getTicksPerWaterSpawns();
 
     /**
@@ -2241,7 +2241,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     want to set the world to
      * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public void setTicksPerWaterSpawns(int ticksPerWaterSpawns);
 
     /**
@@ -2263,7 +2263,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return the default ticks per water ambient mobs spawn value
      * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public long getTicksPerWaterAmbientSpawns();
 
     /**
@@ -2290,7 +2290,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     want to set the world to
      * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public void setTicksPerWaterAmbientSpawns(int ticksPerAmbientSpawns);
 
     /**
@@ -2312,7 +2312,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return the default ticks per water underground creature spawn value
      * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public long getTicksPerWaterUndergroundCreatureSpawns();
 
     /**
@@ -2339,7 +2339,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     want to set the world to
      * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public void setTicksPerWaterUndergroundCreatureSpawns(int ticksPerWaterUndergroundCreatureSpawns);
 
     /**
@@ -2365,7 +2365,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return the default ticks per ambient mobs spawn value
      * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public long getTicksPerAmbientSpawns();
 
     /**
@@ -2392,7 +2392,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *     want to set the world to
      * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public void setTicksPerAmbientSpawns(int ticksPerAmbientSpawns);
 
     /**
@@ -2456,7 +2456,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 怪物生成限制
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getMonsterSpawnLimit();
 
     /**
@@ -2474,7 +2474,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param limit 新的怪物限制
      * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     void setMonsterSpawnLimit(int limit);
 
     /**
@@ -2487,7 +2487,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 动物生成限制
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getAnimalSpawnLimit();
 
     /**
@@ -2505,7 +2505,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param limit 新的动物限制
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     void setAnimalSpawnLimit(int limit);
 
     /**
@@ -2518,7 +2518,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 水生动物生成限制
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getWaterAnimalSpawnLimit();
 
     /**
@@ -2536,7 +2536,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param limit 新的水生动物限制
      * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     void setWaterAnimalSpawnLimit(int limit);
 
     /**
@@ -2546,7 +2546,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return The water underground creature spawn limit
      * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getWaterUndergroundCreatureSpawnLimit();
 
     /**
@@ -2559,7 +2559,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param limit the new mob limit
      * @deprecated Deprecated in favor of {@link #setSpawnLimit(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     void setWaterUndergroundCreatureSpawnLimit(int limit);
 
     /**
@@ -2569,7 +2569,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return the water ambient spawn limit
      * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getWaterAmbientSpawnLimit();
 
     /**
@@ -2582,7 +2582,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param limit the new mob limit
      * @deprecated Deprecated in favor of {@link #setSpawnLimit(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     void setWaterAmbientSpawnLimit(int limit);
 
     /**
@@ -2595,7 +2595,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 周围的怪物的生成限制
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getAmbientSpawnLimit();
 
     /**
@@ -2613,7 +2613,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param limit 新的周围的怪物的限制
      * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     void setAmbientSpawnLimit(int limit);
 
     /**
@@ -2846,7 +2846,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 规则的字符串数值
      * @deprecated 请使用 {@link #getGameRuleValue(GameRule)}
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @Contract("null -> null; !null -> !null")
     @Nullable
     public String getGameRuleValue(@Nullable String rule);
@@ -2871,7 +2871,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @return 规则被设置则返回true
      * @deprecated 请使用 {@link #setGameRule(GameRule, Object)}
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     public boolean setGameRuleValue(@NotNull String rule, @NotNull String value);
 
     /**
@@ -3211,7 +3211,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * instead.
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.19")
     public Location locateNearestStructure(@NotNull Location origin, @NotNull org.bukkit.StructureType structureType, int radius, boolean findUnexplored);
 
     /**
@@ -3293,7 +3293,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          * @see World#strikeLightning(org.bukkit.Location)
          */
         @NotNull
-        @Deprecated
+        @Deprecated(since = "1.20.4")
         public LightningStrike strikeLightning(@NotNull Location loc, boolean isSilent) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
@@ -3308,7 +3308,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          * @see World#strikeLightningEffect(org.bukkit.Location)
          */
         @NotNull
-        @Deprecated
+        @Deprecated(since = "1.20.4")
         public LightningStrike strikeLightningEffect(@NotNull Location loc, boolean isSilent) {
             throw new UnsupportedOperationException("Not supported yet.");
         }
@@ -3481,7 +3481,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          * @return ID
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         public int getId() {
             return id;
         }
@@ -3496,7 +3496,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
          * @return 环境
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         @Nullable
         public static Environment getEnvironment(int id) {
             return lookup.get(id);

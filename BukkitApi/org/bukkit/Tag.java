@@ -52,7 +52,7 @@ public interface Tag<T extends Keyed> extends Keyed {
     /**
      * @deprecated {@link #WOOL_CARPETS}.
      */
-    @Deprecated
+    @Deprecated(since = "1.19")
     Tag<Material> CARPETS = WOOL_CARPETS;
     /**
      * Vanilla block tag representing all wooden doors.
@@ -111,6 +111,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla block tag representing all dark oak log and bark variants.
      */
     Tag<Material> DARK_OAK_LOGS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("dark_oak_logs"), Material.class);
+    /**
+     * Vanilla block tag representing all pale oak log and bark variants.
+     */
+    Tag<Material> PALE_OAK_LOGS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("pale_oak_logs"), Material.class);
     /**
      * Vanilla block tag representing all oak log and bark variants.
      */
@@ -209,13 +213,13 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> FENCES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("fences"), Material.class);
     /**
-     * Vanilla block tag representing all tall flowers.
-     */
-    Tag<Material> TALL_FLOWERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("tall_flowers"), Material.class);
-    /**
      * Vanilla block tag representing all flowers.
      */
     Tag<Material> FLOWERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("flowers"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which attract bees.
+     */
+    Tag<Material> BEE_ATTRACTIVE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("bee_attractive"), Material.class);
     /**
      * Vanilla block tag representing all piglin repellents.
      */
@@ -448,8 +452,14 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla block tag representing all unstable bottom center blocks.
      */
     Tag<Material> UNSTABLE_BOTTOM_CENTER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("unstable_bottom_center"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which mushrooms may grow on.
+     */
     Tag<Material> MUSHROOM_GROW_BLOCK = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("mushroom_grow_block"), Material.class);
-
+    /**
+     * Vanilla block tag representing all blocks which may be eaten by sheep.
+     */
+    Tag<Material> EDIBLE_FOR_SHEEP = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("edible_for_sheep"), Material.class);
     /**
      * Vanilla block tag representing all blocks that burn forever in the
      * overworld.
@@ -516,6 +526,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> CAMEL_SAND_STEP_SOUND_BLOCKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("camel_sand_step_sound_blocks"), Material.class);
     /**
+     * Vanilla block tag representing all blocks that happy ghasts avoid.
+     */
+    Tag<Material> HAPPY_GHAST_AVOIDS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("happy_ghast_avoids"), Material.class);
+    /**
      * Vanilla block tag representing all blocks that block vibration signals.
      */
     Tag<Material> OCCLUDES_VIBRATION_SIGNALS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("occludes_vibration_signals"), Material.class);
@@ -579,6 +593,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla block tag representing all blocks that can be efficiently mined with a sword.
      */
     Tag<Material> SWORD_EFFICIENT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("sword_efficient"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks that can be instantly mined with a sword.
+     */
+    Tag<Material> SWORD_INSTANTLY_MINES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("sword_instantly_mines"), Material.class);
     /**
      * Vanilla block tag representing all blocks which require a diamond tool.
      */
@@ -697,6 +715,14 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> FROGS_SPAWNABLE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("frogs_spawnable_on"), Material.class);
     /**
+     * Vanilla block tag representing all blocks which bats will spawn on.
+     */
+    Tag<Material> BATS_SPAWNABLE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("bats_spawnable_on"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which camels will spawn on.
+     */
+    Tag<Material> CAMELS_SPAWNABLE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("camels_spawnable_on"), Material.class);
+    /**
      * Vanilla block tag representing all blocks which azaleas will grow on.
      */
     Tag<Material> AZALEA_GROWS_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("azalea_grows_on"), Material.class);
@@ -715,10 +741,18 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> MANGROVE_ROOTS_CAN_GROW_THROUGH = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("mangrove_roots_can_grow_through"), Material.class);
     /**
-     * Vanilla block tag representing all blocks which dead bushes may be placed
+     * Vanilla block tag representing all blocks which dry vegetation may be placed
      * on.
      */
-    Tag<Material> DEAD_BUSH_MAY_PLACE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("dead_bush_may_place_on"), Material.class);
+    Tag<Material> DRY_VEGETATION_MAY_PLACE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("dry_vegetation_may_place_on"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which dead bushes may be placed
+     * on.
+     *
+     * @deprecated use {@link #DRY_VEGETATION_MAY_PLACE_ON}
+     */
+    @Deprecated(since = "1.21.5")
+    Tag<Material> DEAD_BUSH_MAY_PLACE_ON = DRY_VEGETATION_MAY_PLACE_ON;
     /**
      * Vanilla block tag representing all blocks which snap dropped goat horns.
      */
@@ -727,6 +761,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla block tag representing all blocks replaceable by growing trees.
      */
     Tag<Material> REPLACEABLE_BY_TREES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("replaceable_by_trees"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks replaceable by growing mushrooms.
+     */
+    Tag<Material> REPLACEABLE_BY_MUSHROOMS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("replaceable_by_mushrooms"), Material.class);
     /**
      * Vanilla block tag representing blocks which snow cannot survive on.
      */
@@ -776,6 +814,23 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> DOES_NOT_BLOCK_HOPPERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("does_not_block_hoppers"), Material.class);
     /**
+     * Vanilla block tag representing all blocks that will play ambient desert block sounds.
+     */
+    Tag<Material> TRIGGERS_AMBIENT_DESERT_SAND_BLOCK_SOUNDS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("triggers_ambient_desert_sand_block_sounds"), Material.class);
+    /**
+     * @deprecated see {@link #TRIGGERS_AMBIENT_DESERT_SAND_BLOCK_SOUNDS}
+     */
+    @Deprecated(since = "1.21.6")
+    Tag<Material> PLAYS_AMBIENT_DESERT_BLOCK_SOUNDS = TRIGGERS_AMBIENT_DESERT_SAND_BLOCK_SOUNDS;
+    /**
+     * Vanilla block tag representing all blocks that will play ambient desert dry vegetation sounds.
+     */
+    Tag<Material> TRIGGERS_AMBIENT_DESERT_DRY_VEGETATION_BLOCK_SOUNDS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("triggers_ambient_desert_dry_vegetation_block_sounds"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks that trigger ambient Dried Ghast sounds to play when a Dried Ghast block is placed on them.
+     */
+    Tag<Material> RIGGERS_AMBIENT_DRIED_GHAST_BLOCK_SOUNDS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("triggers_ambient_dried_ghast_block_sounds"), Material.class);
+    /**
      * Vanilla block tag representing all blocks that resemble air.
      */
     Tag<Material> AIR = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("air"), Material.class);
@@ -791,6 +846,22 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla item tag representing all items ignored by piglin babies.
      */
     Tag<Material> IGNORED_BY_PIGLIN_BABIES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("ignored_by_piglin_babies"), Material.class);
+    /**
+     * Vanilla item tag representing all items which will prevent piglins from being angered.
+     */
+    Tag<Material> ITEMS_PIGLIN_SAFE_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("piglin_safe_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which can be used to duplicate Allays when they are dancing.
+     */
+    Tag<Material> ITEMS_DUPLICATES_ALLAYS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("duplicates_allays"), Material.class);
+    /**
+     * Vanilla item tag representing all brewing stand fuel items.
+     */
+    Tag<Material> ITEMS_BREWING_FUEL = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("brewing_fuel"), Material.class);
+    /**
+     * Vanilla item tag representing all eggs.
+     */
+    Tag<Material> ITEMS_EGGS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("eggs"), Material.class);
     /**
      * Vanilla item tag representing all meat.
      */
@@ -808,7 +879,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      *
      * @deprecated use {@link #ITEMS_PIGLIN_FOOD}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     Tag<Material> PIGLIN_FOOD = ITEMS_PIGLIN_FOOD;
     /**
      * Vanilla item tag representing all fox food.
@@ -819,7 +890,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      *
      * @deprecated use {@link #ITEMS_FOX_FOOD}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     Tag<Material> FOX_FOOD = ITEMS_FOX_FOOD;
     /**
      * Vanilla item tag representing all cow food.
@@ -849,6 +920,18 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla item tag representing all horse tempt items.
      */
     Tag<Material> ITEMS_HORSE_TEMPT_ITEMS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("horse_tempt_items"), Material.class);
+    /**
+     * Vanilla item tag representing all harnesses.
+     */
+    Tag<Material> ITEMS_HARNESSES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("harnesses"), Material.class);
+    /**
+     * Vanilla item tag representing all happy ghast food items.
+     */
+    Tag<Material> ITEMS_HAPPY_GHAST_FOOD = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("happy_ghast_food"), Material.class);
+    /**
+     * Vanilla item tag representing all happy ghast tempt items.
+     */
+    Tag<Material> ITEMS_HAPPY_GHAST_TEMPT_ITEMS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("happy_ghast_tempt_items"), Material.class);
     /**
      * Vanilla item tag representing all camel food.
      */
@@ -889,6 +972,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla item tag representing all panda food.
      */
     Tag<Material> ITEMS_PANDA_FOOD = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("panda_food"), Material.class);
+    /**
+     * Vanilla item tag representing all items that a panda will pick up and eat from the ground.
+     */
+    Tag<Material> ITEMS_PANDA_EATS_FROM_GROUND = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("panda_eats_from_ground"), Material.class);
     /**
      * Vanilla item tag representing all pig food.
      */
@@ -966,9 +1053,61 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> ITEMS_BEACON_PAYMENT_ITEMS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("beacon_payment_items"), Material.class);
     /**
+     * Vanilla item tag representing all wooden tool materials.
+     */
+    Tag<Material> ITEMS_WOODEN_TOOL_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("wooden_tool_materials"), Material.class);
+    /**
      * Vanilla item tag representing all stone tool materials.
      */
     Tag<Material> ITEMS_STONE_TOOL_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("stone_tool_materials"), Material.class);
+    /**
+     * Vanilla item tag representing all iron tool materials.
+     */
+    Tag<Material> ITEMS_IRON_TOOL_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("iron_tool_materials"), Material.class);
+    /**
+     * Vanilla item tag representing all gold tool materials.
+     */
+    Tag<Material> ITEMS_GOLD_TOOL_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("gold_tool_materials"), Material.class);
+    /**
+     * Vanilla item tag representing all diamond tool materials.
+     */
+    Tag<Material> ITEMS_DIAMOND_TOOL_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("diamond_tool_materials"), Material.class);
+    /**
+     * Vanilla item tag representing all netherite tool materials.
+     */
+    Tag<Material> ITEMS_NETHERITE_TOOL_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("netherite_tool_materials"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair leather armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_LEATHER_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_leather_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair chain armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_CHAIN_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_chain_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair iron armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_IRON_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_iron_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair gold armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_GOLD_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_gold_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair diamond armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_DIAMOND_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_diamond_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair netherite armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_NETHERITE_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_netherite_armor"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair turtle helmets.
+     */
+    Tag<Material> ITEMS_REPAIRS_TURTLE_HELMET = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_turtle_helmet"), Material.class);
+    /**
+     * Vanilla item tag representing all items which repair wolf armor.
+     */
+    Tag<Material> ITEMS_REPAIRS_WOLF_ARMOR = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("repairs_wolf_armor"), Material.class);
     /**
      * Vanilla item tag representing all furnace materials.
      */
@@ -1019,10 +1158,6 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> ITEMS_TRIM_MATERIALS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("trim_materials"), Material.class);
     /**
-     * Vanilla item tag representing all trimming templates.
-     */
-    Tag<Material> ITEMS_TRIM_TEMPLATES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("trim_templates"), Material.class);
-    /**
      * Vanilla item tag representing all decorated pot sherds.
      */
     Tag<Material> ITEMS_DECORATED_POT_SHERDS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("decorated_pot_sherds"), Material.class);
@@ -1061,16 +1196,52 @@ public interface Tag<T extends Keyed> extends Keyed {
      * this constant now acts as a reference to {@link #ITEMS_BREAKS_DECORATED_POTS} which largely shares
      * the same contents of the old "minecraft:tools" tag.
      */
-    @Deprecated(forRemoval = true)
+    @Deprecated(since = "1.20.6", forRemoval = true)
     Tag<Material> ITEMS_TOOLS = ITEMS_BREAKS_DECORATED_POTS;
     /**
-     * Vanilla item tag representing all seeds planteable by villagers.
+     * Vanilla item tag representing all seeds plantable by villagers.
      */
     Tag<Material> ITEMS_VILLAGER_PLANTABLE_SEEDS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("villager_plantable_seeds"), Material.class);
+    /**
+     * Vanilla item tag representing all items which villagers pick up.
+     */
+    Tag<Material> ITEMS_VILLAGER_PICKS_UP = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("villager_picks_up"), Material.class);
     /**
      * Vanilla item tag representing all dyeable items.
      */
     Tag<Material> ITEMS_DYEABLE = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("dyeable"), Material.class);
+    /**
+     * Vanilla item tag representing all furnace minecart fuel.
+     */
+    Tag<Material> ITEMS_FURNACE_MINECART_FUEL = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("furnace_minecart_fuel"), Material.class);
+    /**
+     * Vanilla item tag representing all bundle items.
+     */
+    Tag<Material> ITEMS_BUNDLES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("bundles"), Material.class);
+    /**
+     * Vanilla item tag representing all booking cloning target items.
+     */
+    Tag<Material> ITEMS_BOOK_CLONING_TARGET = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("book_cloning_target"), Material.class);
+    /**
+     * Vanilla item tag representing all skeleton preferred weapons.
+     */
+    Tag<Material> ITEMS_SKELETON_PREFERRED_WEAPONS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("skeleton_preferred_weapons"), Material.class);
+    /**
+     * Vanilla item tag representing all drowned preferred weapons.
+     */
+    Tag<Material> ITEMS_DROWNED_PREFERRED_WEAPONS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("drowned_preferred_weapons"), Material.class);
+    /**
+     * Vanilla item tag representing all piglin preferred weapons.
+     */
+    Tag<Material> ITEMS_PIGLIN_PREFERRED_WEAPONS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("piglin_preferred_weapons"), Material.class);
+    /**
+     * Vanilla item tag representing all pillager preferred weapons.
+     */
+    Tag<Material> ITEMS_PILLAGER_PREFERRED_WEAPONS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("pillager_preferred_weapons"), Material.class);
+    /**
+     * Vanilla item tag representing all wither skeleton disliked weapons.
+     */
+    Tag<Material> ITEMS_WITHER_SKELETON_DISLIKED_WEAPONS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("wither_skeleton_disliked_weapons"), Material.class);
     /**
      * Vanilla item tag representing all enchantable foot armor.
      */
@@ -1147,6 +1318,14 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla item tag representing all items enchantable with mace enchantments.
      */
     Tag<Material> ITEMS_ENCHANTABLE_MACE = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("enchantable/mace"), Material.class);
+        /**
+     * Vanilla item tag representing all items which when equipped will hide the entity from maps.
+     */
+    Tag<Material> ITEMS_MAP_INVISIBILITY_EQUIPMENT = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("map_invisibility_equipment"), Material.class);
+        /**
+     * Vanilla item tag representing all items which disguise the wearer's gaze from other entities.
+     */
+    Tag<Material> ITEMS_GAZE_DISGUISE_EQUIPMENT = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("gaze_disguise_equipment"), Material.class);
     /**
      * Vanilla item tag representing all items that confer freeze immunity on
      * the wearer.
@@ -1157,7 +1336,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      *
      * @deprecated use {@link #ITEMS_AXOLOTL_FOOD}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     Tag<Material> AXOLOTL_TEMPT_ITEMS = ITEMS_AXOLOTL_FOOD;
     /**
      * Vanilla item tag representing all items which are preferred for
@@ -1244,7 +1423,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla tag representing entities which deflect arrows.
      * @deprecated use {@link #ENTITY_TYPES_DEFLECTS_PROJECTILES}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     Tag<EntityType> ENTITY_TYPES_DEFLECTS_ARROWS = ENTITY_TYPES_DEFLECTS_PROJECTILES;
     /**
      * Vanilla tag representing entities which can turn in boats.
@@ -1310,6 +1489,18 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla tag representing all projectiles which can be punched back.
      */
     Tag<EntityType> ENTITY_TYPES_REDIRECTABLE_PROJECTILE = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("redirectable_projectile"), EntityType.class);
+    /**
+     * Vanilla tag representing all projectiles which can be punched back.
+     */
+    Tag<EntityType> ENTITY_TYPES_CAN_EQUIP_SADDLE = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("can_equip_saddle"), EntityType.class);
+    /**
+     * Vanilla tag representing all entities which can be harnessed.
+     */
+    Tag<EntityType> ENTITY_TYPES_CAN_EQUIP_HARNESS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("can_equip_harnessed"), EntityType.class);
+    /**
+     * Vanilla tag representing all projectiles which can be punched back.
+     */
+    Tag<EntityType> ENTITY_TYPES_CAN_WEAR_HORSE_ARMOR = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("can_wear_horse_armor"), EntityType.class);
 
     /**
      * Returns whether or not this tag has an entry for the specified item.

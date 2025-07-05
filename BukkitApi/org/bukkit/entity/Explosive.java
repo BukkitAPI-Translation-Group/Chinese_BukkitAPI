@@ -7,8 +7,12 @@ public interface Explosive extends Entity {
 
     /**
      * 设置爆炸的影响半径.
+     * <br>
+     * 这是爆炸的初始影响半径，可能会被其他实体属性影响.
      * <p>
-     * 原文:Set the radius affected by this explosive's explosion
+     * 原文:Set the radius affected by this explosive's explosion.
+     * <br>
+     * This is the base yield, which may be affected by other entity attributes.
      *
      * @param yield 爆炸的影响半径
      */
@@ -16,8 +20,12 @@ public interface Explosive extends Entity {
 
     /**
      * 返回爆炸的影响半径.
+     * <br>
+     * 这是爆炸的初始影响半径，可能会被其他实体属性影响.
      * <p>
-     * 原文:Return the radius or yield of this explosive's explosion
+     * 原文:Return the radius or yield of this explosive's explosion.
+     * <br>
+     * This is the base yield, which may be affected by other entity attributes.
      *
      * @return 爆炸的影响半径
      */

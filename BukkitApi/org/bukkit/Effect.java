@@ -27,70 +27,70 @@ public enum Effect {
      * @deprecated 不复存在
      * @see Sound#BLOCK_WOODEN_DOOR_OPEN
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     DOOR_TOGGLE(1006, Type.SOUND),
     /**
      * 开门声（铁门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_IRON_DOOR_OPEN
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     IRON_DOOR_TOGGLE(1005, Type.SOUND),
     /**
      * 开门声（木活板门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_IRON_TRAPDOOR_OPEN
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     TRAPDOOR_TOGGLE(1007, Type.SOUND),
     /**
      * 开门声（铁活板门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_IRON_TRAPDOOR_OPEN
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     IRON_TRAPDOOR_TOGGLE(1037, Type.SOUND),
     /**
      * 开门声（栅栏门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_FENCE_GATE_OPEN
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     FENCE_GATE_TOGGLE(1008, Type.SOUND),
     /**
      * 关门声（木门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_WOODEN_DOOR_CLOSE
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     DOOR_CLOSE(1012, Type.SOUND),
     /**
      * 关门声（铁门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_IRON_DOOR_CLOSE
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     IRON_DOOR_CLOSE(1011, Type.SOUND),
     /**
      * 关门声（木活板门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_WOODEN_TRAPDOOR_CLOSE
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     TRAPDOOR_CLOSE(1013, Type.SOUND),
     /**
      * 关门声（铁活板门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_IRON_TRAPDOOR_CLOSE
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     IRON_TRAPDOOR_CLOSE(1036, Type.SOUND),
     /**
      * 关门声（栅栏门）
      * @deprecated 不复存在
      * @see Sound#BLOCK_FENCE_GATE_CLOSE
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     FENCE_GATE_CLOSE(1014, Type.SOUND),
     /**
      * 火焰熄灭的声音
@@ -357,7 +357,7 @@ public enum Effect {
      * @return 效果id
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public int getId() {
         return this.id;
     }
@@ -387,7 +387,7 @@ public enum Effect {
      * @return 给定id相关联效果
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static Effect getById(int id) {
         return BY_ID.get(id);

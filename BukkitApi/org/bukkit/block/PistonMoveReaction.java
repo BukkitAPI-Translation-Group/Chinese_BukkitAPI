@@ -48,7 +48,7 @@ public enum PistonMoveReaction {
      * @return 此移动的反应ID
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public int getId() {
         return this.id;
     }
@@ -58,7 +58,7 @@ public enum PistonMoveReaction {
      * @return 这个移动反应的ID
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static PistonMoveReaction getById(int id) {
         return byId.get(id);

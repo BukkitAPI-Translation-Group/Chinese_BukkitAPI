@@ -10,6 +10,7 @@ import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
 import org.bukkit.Translatable;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -17,7 +18,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表应用于实体上的药水和效果类型.
  */
-public abstract class PotionEffectType implements Keyed, Translatable {
+public abstract class PotionEffectType implements Keyed, Translatable, RegistryAware {
     private static final BiMap<Integer, PotionEffectType> ID_MAP = HashBiMap.create();
 
     /**
@@ -218,9 +219,8 @@ public abstract class PotionEffectType implements Keyed, Translatable {
 
     @NotNull
     private static PotionEffectType getPotionEffectType(int typeId, @NotNull String key) {
-        NamespacedKey namespacedKey = NamespacedKey.minecraft(key);
-        PotionEffectType potionEffectType = Registry.EFFECT.get(namespacedKey);
-        Preconditions.checkNotNull(potionEffectType, "No PotionEffectType found for %s. This is a bug.", namespacedKey);
+        PotionEffectType potionEffectType = Registry.EFFECT.getOrThrow(NamespacedKey.minecraft(key));
+
         if (typeId > 0) {
             ID_MAP.put(typeId, potionEffectType);
         }
@@ -271,6 +271,18 @@ public abstract class PotionEffectType implements Keyed, Translatable {
     public abstract Color getColor();
 
     /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
+    public abstract NamespacedKey getKey();
+
+    /**
      * 返回应用于此效果类型的持续时间.
      * <p>
      * 原文:Returns the duration modifier applied to effects of this type.
@@ -278,7 +290,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      * @return 持续时间
      * @deprecated 未被使用, 总是 1.0
      */
-    @Deprecated
+    @Deprecated(since = "1.14")
     public abstract double getDurationModifier();
 
     /**
@@ -289,7 +301,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      * @return 唯一 ID
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public abstract int getId();
 
 
@@ -302,7 +314,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      * @deprecated 仅为保障向后兼容性, 请使用 {@link #getKey()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.20.3")
     public abstract String getName();
 
     /**
@@ -316,7 +328,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      */
     @Contract("null -> null")
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.3")
     public static PotionEffectType getByKey(@Nullable NamespacedKey key) {
         if (key == null) {
             return null;
@@ -334,7 +346,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      * @return 对应的效果类型, 如果找不到返回 null
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static PotionEffectType getById(int id) {
         PotionEffectType type = ID_MAP.get(id);
@@ -363,7 +375,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      * @deprecated 仅为保障向后兼容性, 请使用 {@link Registry#get(NamespacedKey)}
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.3")
     public static PotionEffectType getByName(@NotNull String name) {
         Preconditions.checkArgument(name != null, "name cannot be null");
         return Registry.EFFECT.get(NamespacedKey.fromString(name.toLowerCase(Locale.ROOT)));
@@ -374,7 +386,7 @@ public abstract class PotionEffectType implements Keyed, Translatable {
      * @deprecated 请使用 {@link Registry#iterator()}.
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.20.3")
     public static PotionEffectType[] values() {
         return Lists.newArrayList(Registry.EFFECT).toArray(new PotionEffectType[0]);
     }

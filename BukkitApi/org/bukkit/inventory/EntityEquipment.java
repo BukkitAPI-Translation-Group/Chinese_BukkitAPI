@@ -108,7 +108,7 @@ public interface EntityEquipment {
      * @see #getItemInOffHand()
      * @deprecated 现在实体可以双持, 所以需要特定的方法来获取指定的手
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @NotNull
     ItemStack getItemInHand();
 
@@ -124,7 +124,7 @@ public interface EntityEquipment {
      * @see #setItemInOffHand(ItemStack)
      * @deprecated 现在实体可以双持, 所以需要特定的方法来获取指定的手
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     void setItemInHand(@Nullable ItemStack stack);
 
     /**
@@ -285,7 +285,7 @@ public interface EntityEquipment {
      * @see #getItemInOffHandDropChance()
      * @deprecated 现在实体可以双持, 所以需要特定的方法来设置指定的手
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     float getItemInHandDropChance();
 
     /**
@@ -294,7 +294,7 @@ public interface EntityEquipment {
      * @see #setItemInOffHandDropChance(float)
      * @deprecated 现在实体可以双持, 所以需要特定的方法来设置指定的手
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     void setItemInHandDropChance(float chance);
 
     /**

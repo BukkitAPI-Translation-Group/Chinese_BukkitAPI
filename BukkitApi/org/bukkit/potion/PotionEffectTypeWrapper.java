@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * @deprecated 仅为保障向后兼容性, PotionEffectTypeWrapper 已不再使用.
  */
-@Deprecated
+@Deprecated(since = "1.20.3")
 public abstract class PotionEffectTypeWrapper extends PotionEffectType {
     protected PotionEffectTypeWrapper() {
     }

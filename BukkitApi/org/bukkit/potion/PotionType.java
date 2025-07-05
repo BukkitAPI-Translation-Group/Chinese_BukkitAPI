@@ -1,11 +1,13 @@
 package org.bukkit.potion;
 
+import com.google.common.base.Preconditions;
 import com.google.common.base.Suppliers;
 import java.util.List;
 import java.util.function.Supplier;
 import org.bukkit.Bukkit;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -13,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 药水种类枚举, 反应并匹配创造模式物品栏中可获取的每种药水的状态.
  */
-public enum PotionType implements Keyed {
+public enum PotionType implements Keyed, RegistryAware {
     WATER("water"),
     MUNDANE("mundane"),
     THICK("thick"),
@@ -75,7 +77,7 @@ public enum PotionType implements Keyed {
      * @deprecated Potions can have multiple effects use {@link #getPotionEffects()}
      */
     @Nullable
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public PotionEffectType getEffectType() {
         return internalPotionDataSupplier.get().getEffectType();
     }
@@ -93,7 +95,7 @@ public enum PotionType implements Keyed {
      * @deprecated PotionType can have multiple effects, some of which can be instant and others not.
      * Use {@link PotionEffectType#isInstant()} in combination with {@link #getPotionEffects()} and {@link PotionEffect#getType()}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public boolean isInstant() {
         return internalPotionDataSupplier.get().isInstant();
     }
@@ -128,12 +130,30 @@ public enum PotionType implements Keyed {
         return internalPotionDataSupplier.get().getMaxLevel();
     }
 
+    @NotNull
+    @Override
+    public NamespacedKey getKeyOrThrow() {
+        Preconditions.checkState(isRegistered(), "Cannot get key of this registry item, because it is not registered. Use #isRegistered() before calling this method.");
+        return this.key;
+    }
+
+    @Nullable
+    @Override
+    public NamespacedKey getKeyOrNull() {
+        return this.key;
+    }
+
+    @Override
+    public boolean isRegistered() {
+        return this.key != null;
+    }
+
     /**
      * @param effectType 根据何种状态效果获取对应药水类型
      * @return 匹配的药水类型
      * @deprecated 有误导性
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @Nullable
     public static PotionType getByEffect(@Nullable PotionEffectType effectType) {
         if (effectType == null)
@@ -145,16 +165,24 @@ public enum PotionType implements Keyed {
         return null;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
     @NotNull
     @Override
+    @Deprecated(since = "1.21.4")
     public NamespacedKey getKey() {
-        return key;
+        return getKeyOrThrow();
     }
 
     /**
      * @deprecated 请勿使用, 该接口将被移除, 插件将无法运作
      */
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     @ApiStatus.Internal
     public interface InternalPotionData {
 

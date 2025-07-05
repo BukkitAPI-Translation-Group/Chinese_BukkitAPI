@@ -5,7 +5,7 @@ package org.bukkit.scoreboard;
  *
  * @deprecated 应使用 {@link Criteria} 内定义的常量
  */
-@Deprecated
+@Deprecated(since = "1.19.2")
 public final class Criterias {
 
     public static final String HEALTH = "health";

@@ -16,7 +16,7 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
     private final int length;
     private List<Block> blocks;
 
-    @Deprecated
+    @Deprecated(since = "1.8")
     public BlockPistonExtendEvent(@NotNull final Block block, final int length, @NotNull final BlockFace direction) {
         super(block, direction);
 
@@ -40,7 +40,7 @@ public class BlockPistonExtendEvent extends BlockPistonEvent {
      * 这个方法是不准确的因为它不包含史莱姆方块粘走的方块,
      * 如MC版本低于1.8请无视此句.
      */
-    @Deprecated
+    @Deprecated(since = "1.8")
     public int getLength() {
         return this.length;
     }

@@ -92,7 +92,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
         }
 
         World world = this.world.get();
-        return world != null && Bukkit.getWorld(world.getUID()) != null;
+        return world != null && world.equals(Bukkit.getWorld(world.getUID()));
     }
 
     /**

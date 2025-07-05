@@ -362,7 +362,7 @@ public abstract class Command {
      * 此消息将只能在控制台上看到,
      * 或命令使用 {@link Bukkit#dispatchCommand(CommandSender, String)} 执行时也能看到.
      */
-    @Deprecated
+    @Deprecated(since = "1.20.4")
     @Nullable
     public String getPermissionMessage() {
         return permissionMessage;
@@ -441,7 +441,7 @@ public abstract class Command {
      * 此消息将只能在控制台上看到,
      * 或命令使用 {@link Bukkit#dispatchCommand(CommandSender, String)} 执行时也能看到.
      */
-    @Deprecated
+    @Deprecated(since = "1.20.4")
     @NotNull
     public Command setPermissionMessage(@Nullable String permissionMessage) {
         this.permissionMessage = permissionMessage;

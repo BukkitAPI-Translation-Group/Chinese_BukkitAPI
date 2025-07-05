@@ -69,14 +69,14 @@ public interface Guardian extends Monster {
      * @return 此守卫者是否为远古守卫者
      * @deprecated 应检测此实例是否为{@link ElderGuardian} (entity instanceof ElderGuardian)
      */
-    @Deprecated
+    @Deprecated(since = "1.10.2")
     public boolean isElder();
 
     /**
      * @param shouldBeElder shouldBeElder
      * @deprecated <b>必须</b>生成新的 {@link ElderGuardian}
      */
-    @Deprecated
+    @Deprecated(since = "1.10.2")
     public void setElder(boolean shouldBeElder);
 
     /**

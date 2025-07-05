@@ -3,9 +3,12 @@ package org.bukkit;
 import com.google.common.base.Preconditions;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.registry.RegistryAware;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-public enum Particle implements Keyed {
+public enum Particle implements Keyed, RegistryAware {
     POOF("poof"),
     EXPLOSION("explosion"),
     EXPLOSION_EMITTER("explosion_emitter"),
@@ -125,6 +128,11 @@ public enum Particle implements Keyed {
      */
     SHRIEK("shriek", Integer.class),
     CHERRY_LEAVES("cherry_leaves"),
+    PALE_OAK_LEAVES("pale_oak_leaves"),
+    /**
+     * Uses {@link Color} as DataType
+     */
+    TINTED_LEAVES("tinted_leaves", Color.class),
     EGG_CRACK("egg_crack"),
     DUST_PLUME("dust_plume"),
     WHITE_SMOKE("white_smoke"),
@@ -141,13 +149,25 @@ public enum Particle implements Keyed {
      * Uses {@link BlockData} as DataType
      */
     DUST_PILLAR("dust_pillar", BlockData.class),
+    /**
+     * Uses {@link BlockData} as DataType
+     */
+    @ApiStatus.Experimental
+    BLOCK_CRUMBLE("block_crumble", BlockData.class),
+    /**
+     * Uses {@link Trail} as DataType
+     */
+    @ApiStatus.Experimental
+    TRAIL("trail", Trail.class),
     OMINOUS_SPAWNING("ominous_spawning"),
     RAID_OMEN("raid_omen"),
     TRIAL_OMEN("trial_omen"),
     /**
      * Uses {@link BlockData} as DataType
      */
-    BLOCK_MARKER("block_marker", BlockData.class);
+    BLOCK_MARKER("block_marker", BlockData.class),
+    FIREFLY("firefly"),
+    ;
 
     private final NamespacedKey key;
     private final Class<?> dataType;
@@ -186,12 +206,34 @@ public enum Particle implements Keyed {
 
     @NotNull
     @Override
-    public NamespacedKey getKey() {
-        if (key == null) {
-            throw new UnsupportedOperationException("Cannot get key from legacy particle");
-        }
+    public NamespacedKey getKeyOrThrow() {
+        Preconditions.checkState(isRegistered(), "Cannot get key of this registry item, because it is not registered. Use #isRegistered() before calling this method.");
+        return this.key;
+    }
 
-        return key;
+    @Nullable
+    @Override
+    public NamespacedKey getKeyOrNull() {
+        return this.key;
+    }
+
+    @Override
+    public boolean isRegistered() {
+        return this.key != null;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
+    public NamespacedKey getKey() {
+        return getKeyOrThrow();
     }
 
     /**
@@ -251,6 +293,52 @@ public enum Particle implements Keyed {
         @NotNull
         public Color getToColor() {
             return toColor;
+        }
+    }
+
+    /**
+     * Options which can be applied to trail particles - a location, color and duration.
+     */
+    @ApiStatus.Experimental
+    public static class Trail {
+
+        private final Location target;
+        private final Color color;
+        private final int duration;
+
+        public Trail(@NotNull Location target, @NotNull Color color, int duration) {
+            this.target = target;
+            this.color = color;
+            this.duration = duration;
+        }
+
+        /**
+         * The target of the particles to be displayed.
+         *
+         * @return particle target
+         */
+        @NotNull
+        public Location getTarget() {
+            return target;
+        }
+
+        /**
+         * The color of the particles to be displayed.
+         *
+         * @return particle color
+         */
+        @NotNull
+        public Color getColor() {
+            return color;
+        }
+
+        /**
+         * The duration of the trail to be displayed.
+         *
+         * @return trail duration
+         */
+        public int getDuration() {
+            return duration;
         }
     }
 }

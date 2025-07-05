@@ -58,7 +58,7 @@ public enum CropState {
      * @return 一个包含这个生长阶段的数值的字节
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getData() {
         return data;
     }
@@ -73,7 +73,7 @@ public enum CropState {
      * @return 表示指定数值的农作物阶段{@link CropState}，如果不存在则返回null
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static CropState getByData(final byte data) {
         return BY_DATA.get(data);

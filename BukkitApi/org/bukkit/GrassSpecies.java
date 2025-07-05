@@ -38,7 +38,7 @@ public enum GrassSpecies {
      * @return 包含这种草丛的数据值字节
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getData() {
         return data;
     }
@@ -53,7 +53,7 @@ public enum GrassSpecies {
      * @return 给定值代表的草丛品种({@link GrassSpecies})，如果不存在则为null
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static GrassSpecies getByData(final byte data) {
         return BY_DATA.get(data);

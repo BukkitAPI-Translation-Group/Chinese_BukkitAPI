@@ -22,6 +22,14 @@ public interface Advancement extends Keyed {
     Collection<String> getCriteria();
 
     /**
+     * Returns the requirements for this advancement.
+     *
+     * @return an AdvancementRequirements object.
+     */
+    @NotNull
+    AdvancementRequirements getRequirements();
+
+    /**
      * 返回此进度的展示信息.
      *
      * 展示信息包括进度的名称、描述和可见性标签.

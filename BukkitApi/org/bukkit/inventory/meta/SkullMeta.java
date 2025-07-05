@@ -20,7 +20,7 @@ public interface SkullMeta extends ItemMeta {
      * @return 头颅的主人
      * @deprecated 另请参阅 {@link #getOwningPlayer()}..
      */
-    @Deprecated
+    @Deprecated(since = "1.12.1")
     @Nullable
     String getOwner();
 
@@ -44,7 +44,7 @@ public interface SkullMeta extends ItemMeta {
      * @return 如果头颅主人成功被设置则为 true
      * @deprecated 另请参阅 {@link #setOwningPlayer(org.bukkit.OfflinePlayer)}.
      */
-    @Deprecated
+    @Deprecated(since = "1.12.1")
     boolean setOwner(@Nullable String owner);
 
     /**

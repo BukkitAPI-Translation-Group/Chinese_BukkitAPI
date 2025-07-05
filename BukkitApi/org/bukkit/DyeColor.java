@@ -101,7 +101,7 @@ public enum DyeColor {
      * @see #getDyeData()
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getWoolData() {
         return woolData;
     }
@@ -116,7 +116,7 @@ public enum DyeColor {
      * @see #getWoolData()
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getDyeData() {
         return dyeData;
     }
@@ -158,7 +158,7 @@ public enum DyeColor {
      * @see #getByDyeData(byte)
      * @deprecated 魔法值
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static DyeColor getByWoolData(final byte data) {
         int i = 0xff & data;
@@ -179,7 +179,7 @@ public enum DyeColor {
      * @see #getByWoolData(byte)
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public static DyeColor getByDyeData(final byte data) {
         int i = 0xff & data;
@@ -224,7 +224,7 @@ public enum DyeColor {
      * @return dye color
      * @deprecated legacy use only
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @NotNull
     public static DyeColor legacyValueOf(@Nullable String name) {
         return "SILVER".equals(name) ? DyeColor.LIGHT_GRAY : DyeColor.valueOf(name);

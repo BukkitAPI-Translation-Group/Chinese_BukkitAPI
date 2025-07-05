@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
  * @deprecated 所有关于MaterialData的用法已过时，并且将来会被移除.
  * 请使用 {@link org.bukkit.block.data.BlockData}.
  */
-@Deprecated
+@Deprecated(since = "1.13")
 public class MaterialData implements Cloneable {
     private final Material type;
     private byte data = 0;
@@ -23,7 +23,7 @@ public class MaterialData implements Cloneable {
      * @param data the raw data value
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public MaterialData(final Material type, final byte data) {
         this.type = type;
         this.data = data;
@@ -37,7 +37,7 @@ public class MaterialData implements Cloneable {
      * @return 原始数据值
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getData() {
         return data;
     }
@@ -50,7 +50,7 @@ public class MaterialData implements Cloneable {
      * @param data 原始数据值
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public void setData(byte data) {
         this.data = data;
     }
@@ -75,7 +75,7 @@ public class MaterialData implements Cloneable {
      * @deprecated 该方法创建了一个堆叠数为0的物品堆，一般没什么用.
      * 请考虑 {@link #toItemStack(int)}.
      */
-    @Deprecated
+    @Deprecated(since = "1.12")
     public ItemStack toItemStack() {
         return new ItemStack(type, 0, data);
     }

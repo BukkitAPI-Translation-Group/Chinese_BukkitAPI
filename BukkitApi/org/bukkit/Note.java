@@ -44,7 +44,7 @@ public class Note {
          * @return 这个音调未升高的ID
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         public byte getId() {
             return getId(false);
         }
@@ -61,7 +61,7 @@ public class Note {
          * @return 这个音调的ID
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         public byte getId(boolean sharped) {
             byte id = (byte) (sharped && sharpable ? this.id + 1 : this.id);
 
@@ -91,7 +91,7 @@ public class Note {
          * @throws IllegalArgumentException 如果音调和半音都没有ID则抛出错误
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         public boolean isSharped(byte id) {
             if (id == getId(false)) {
                 return false;
@@ -113,7 +113,7 @@ public class Note {
          * @return 音调对应的ID
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         @Nullable
         public static Tone getById(byte id) {
             return BY_DATA.get(id);
@@ -253,7 +253,7 @@ public class Note {
      * @return 这个音符的内部ID
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getId() {
         return note;
     }

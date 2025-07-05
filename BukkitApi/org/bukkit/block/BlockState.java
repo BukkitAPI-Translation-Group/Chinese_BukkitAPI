@@ -269,14 +269,14 @@ public interface BlockState extends Metadatable {
      * @return 原始字节数据
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public byte getRawData();
 
     /**
      * @param data 方块新数据值
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public void setRawData(byte data);
 
     /**

@@ -248,7 +248,7 @@ public interface PlayerInventory extends Inventory {
      * @deprecated players can duel wield now use the methods for the
      *      specific hand instead
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     @NotNull
     public ItemStack getItemInHand();
 
@@ -261,7 +261,7 @@ public interface PlayerInventory extends Inventory {
      * @deprecated players can duel wield now use the methods for the
      *      specific hand instead
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setItemInHand(@Nullable ItemStack stack);
 
     /**

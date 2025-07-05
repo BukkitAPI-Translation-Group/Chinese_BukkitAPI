@@ -218,7 +218,7 @@ public abstract class ChunkGenerator {
      * generateBlockSections() or generateExtBlockSections().
      * @deprecated 现在使用 {@link BiomeProvider} 设置生物群系
      */
-    @Deprecated
+    @Deprecated(since = "1.17.1")
     public interface BiomeGrid {
 
         /**
@@ -233,7 +233,7 @@ public abstract class ChunkGenerator {
          * @deprecated biomes are now 3-dimensional
          */
         @NotNull
-        @Deprecated
+        @Deprecated(since = "1.15")
         Biome getBiome(int x, int z);
 
         /**
@@ -258,7 +258,7 @@ public abstract class ChunkGenerator {
          * @param bio - 生物群系数值
          * @deprecated biomes are now 3-dimensional
          */
-        @Deprecated
+        @Deprecated(since = "1.15")
         void setBiome(int x, int z, @NotNull Biome bio);
 
         /**
@@ -298,7 +298,7 @@ public abstract class ChunkGenerator {
      * @deprecated The generation is now split up and the new methods should be used, see {@link ChunkGenerator}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.17.1")
     public ChunkData generateChunkData(@NotNull World world, @NotNull Random random, int x, int z, @NotNull BiomeGrid biome) {
         throw new UnsupportedOperationException("Not implemented, no longer needed");
     }
@@ -310,7 +310,7 @@ public abstract class ChunkGenerator {
      * @deprecated {@link ChunkData} are now directly provided
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.17.1")
     protected final ChunkData createChunkData(@NotNull World world) {
         return Bukkit.getServer().createChunkData(world);
     }
@@ -383,7 +383,7 @@ public abstract class ChunkGenerator {
      * @return parallel capable status
      * @deprecated the chunk generation code should be thread safe
      */
-    @Deprecated
+    @Deprecated(since = "1.17.1")
     public boolean isParallelCapable() {
         return false;
     }
@@ -472,7 +472,7 @@ public abstract class ChunkGenerator {
      * @return true if the server should generate Vanilla bedrock
      * @deprecated has no effect, bedrock generation is part of the surface step, see {@link #shouldGenerateSurface()}
      */
-    @Deprecated
+    @Deprecated(since = "1.19.2")
     public boolean shouldGenerateBedrock() {
         return false;
     }
@@ -788,7 +788,7 @@ public abstract class ChunkGenerator {
          * @return the block data value or air if x, y or z are outside the chunk's bounds
          * @deprecated Uses magic values
          */
-        @Deprecated
+        @Deprecated(since = "1.8.8")
         public byte getData(int x, int y, int z);
     }
 }

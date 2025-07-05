@@ -16,7 +16,9 @@ public interface InventoryView {
     public static final int OUTSIDE = -999;
     /**
      * 代表物品栏窗口视图的一些额外属性.
+     * @deprecated 请使用 {@link InventoryView} 及其子类
      */
+    @Deprecated(forRemoval = true, since = "1.21")
     public enum Property {
         /**
          * 酿造台燃烧进度.
@@ -127,7 +129,7 @@ public interface InventoryView {
          * @return 此窗口视图的id
          * @deprecated 不安全的参数
          */
-        @Deprecated
+        @Deprecated(since = "1.6.2")
         public int getId() {
             return id;
         }

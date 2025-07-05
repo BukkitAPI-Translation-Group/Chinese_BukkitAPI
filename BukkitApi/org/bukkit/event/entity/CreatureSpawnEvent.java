@@ -57,7 +57,7 @@ public class CreatureSpawnEvent extends EntitySpawnEvent {
          * 请考虑使用{@link ChunkLoadEvent#isNewChunk()} 和 {@link Chunk#getEntities()}
          * 以达到类似效果
          */
-        @Deprecated
+        @Deprecated(since = "1.14")
         CHUNK_GEN,
         /**
          * 当生物由于刷怪箱生成时
@@ -75,6 +75,10 @@ public class CreatureSpawnEvent extends EntitySpawnEvent {
          * 当生物由于刷怪蛋生成时
          */
         SPAWNER_EGG,
+        /**
+         * When a creature spawns from a mob bucket
+         */
+        BUCKET,
         /**
          * 当生物由于闪电而生成时
          */

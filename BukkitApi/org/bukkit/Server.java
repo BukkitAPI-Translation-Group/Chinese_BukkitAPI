@@ -40,6 +40,7 @@ import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemCraftResult;
 import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.MenuType;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -507,7 +508,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 每隔多少tick应该生成一次动物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public int getTicksPerAnimalSpawns();
 
     /**
@@ -543,7 +544,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 每隔多少tick应该生成一次怪物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public int getTicksPerMonsterSpawns();
 
     /**
@@ -578,7 +579,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 每隔多少tick应该生成一次怪物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public int getTicksPerWaterSpawns();
 
     /**
@@ -613,7 +614,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 每隔多少tick应该生成一次水生环境生物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public int getTicksPerWaterAmbientSpawns();
 
     /**
@@ -635,7 +636,7 @@ public interface Server extends PluginMessageRecipient {
      * @return the default ticks per water underground creature spawn value
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public int getTicksPerWaterUndergroundCreatureSpawns();
 
     /**
@@ -670,7 +671,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 每隔多少tick应该生成一次环境生物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     public int getTicksPerAmbientSpawns();
 
     /**
@@ -889,7 +890,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 如果找到则返回对应的 {@link MapView}, 否则返回null
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @Nullable
     public MapView getMap(int id);
 
@@ -1229,7 +1230,7 @@ public interface Server extends PluginMessageRecipient {
      * @return true if the server should send a preview, false otherwise
      * @deprecated chat previews have been removed
      */
-    @Deprecated
+    @Deprecated(since = "1.19.3")
     public boolean shouldSendChatPreviews();
 
     /**
@@ -1326,7 +1327,7 @@ public interface Server extends PluginMessageRecipient {
      (译注:正版玩家更改它们的玩家名后,其uuid不会改变,其他正版玩家可以使用这些玩家的曾用名,
      可能会出现同一玩家名对应两个或多个不同玩家的情况)
      */
-    @Deprecated
+    @Deprecated(since = "1.7.5")
     @NotNull
     public OfflinePlayer getOfflinePlayer(@NotNull String name);
 
@@ -1403,7 +1404,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @deprecated 参见 {@link #banIP(InetAddress)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public void banIP(@NotNull String address);
 
     /**
@@ -1415,7 +1416,7 @@ public interface Server extends PluginMessageRecipient {
      *
      * @deprecated 参见 {@link #unbanIP(InetAddress)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public void unbanIP(@NotNull String address);
 
     /**
@@ -1548,10 +1549,10 @@ public interface Server extends PluginMessageRecipient {
      * 新的物品栏的大小则是27, 否则是与物品栏类型对应的正常大小.
      * <br>
      * 如果type是{@link InventoryType#WORKBENCH}, 则这个物品栏不会处理合成配方.
-     * 请使用{@link Player#openWorkbench(Location, boolean)}.
+     * 请使用{@link MenuType#CRAFTING}.
      * <br>
      * 同理, 以{@link InventoryType#ENCHANTING}创建的附魔台物品栏也不起作用.
-     * 请使用{@link Player#openEnchanting(Location, boolean)}.
+     * 请使用{@link MenuType#ENCHANTMENT}.
      * <p>
      * 原文:Creates an empty inventory with the specified type. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
@@ -1559,11 +1560,11 @@ public interface Server extends PluginMessageRecipient {
      * <br>
      * {@link InventoryType#WORKBENCH} will not process crafting recipes if
      * created with this method. Use
-     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * {@link MenuType#CRAFTING} instead.
      * <br>
      * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
      * for possible enchanting results. Use
-     * {@link Player#openEnchanting(Location, boolean)} instead.
+     * {@link MenuType#ENCHANTMENT} instead.
      *
      * @param owner 物品栏的持有者, 不指定持有者为null
      * @param type 要创建的物品栏的种类
@@ -1580,10 +1581,10 @@ public interface Server extends PluginMessageRecipient {
      * 新的物品栏的大小则是27, 否则是与物品栏类型对应的正常大小.
      * <br>
      * 如果type是{@link InventoryType#WORKBENCH}, 则这个物品栏不会处理合成配方.
-     * 请使用{@link Player#openWorkbench(Location, boolean)}.
+     * 请使用{@link MenuType#CRAFTING}.
      * <br>
      * 同理, 以{@link InventoryType#ENCHANTING}创建的附魔台物品栏也不起作用.
-     * 请使用{@link Player#openEnchanting(Location, boolean)}.
+     * 请使用{@link MenuType#ENCHANTMENT}.
      * <p>
      * 原文:Creates an empty inventory with the specified type and title. If the type
      * is {@link InventoryType#CHEST}, the new inventory has a size of 27;
@@ -1593,11 +1594,11 @@ public interface Server extends PluginMessageRecipient {
      * <br>
      * {@link InventoryType#WORKBENCH} will not process crafting recipes if
      * created with this method. Use
-     * {@link Player#openWorkbench(Location, boolean)} instead.
+     * {@link MenuType#CRAFTING} instead.
      * <br>
      * {@link InventoryType#ENCHANTING} will not process {@link ItemStack}s
      * for possible enchanting results. Use
-     * {@link Player#openEnchanting(Location, boolean)} instead.
+     * {@link MenuType#ENCHANTMENT} instead.
      *
      * @param owner 物品栏的持有者, 如果没有持有者可为null
      * @param type 要创建的物品栏的种类
@@ -1646,9 +1647,22 @@ public interface Server extends PluginMessageRecipient {
      *
      * @param title 查看商人物品栏时显示的标题
      * @return 新的商人
+     * @deprecated The title parameter is no-longer needed when used with
+     * {@link MenuType#MERCHANT} and {@link MenuType.Typed#builder()}.
      */
+    @Deprecated(since = "1.21.4")
     @NotNull
     Merchant createMerchant(@Nullable String title);
+
+    /**
+     * 创建一个空的商人.
+     * <p>
+     * 原文:Creates an empty merchant.
+     *
+     * @return 新的商人
+     */
+    @NotNull
+    Merchant createMerchant();
 
     /**
      * Gets the amount of consecutive neighbor updates before skipping
@@ -1668,7 +1682,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getMonsterSpawnLimit();
 
     /**
@@ -1681,7 +1695,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getAnimalSpawnLimit();
 
     /**
@@ -1693,7 +1707,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getWaterAnimalSpawnLimit();
 
     /**
@@ -1705,7 +1719,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getWaterAmbientSpawnLimit();
 
     /**
@@ -1714,7 +1728,7 @@ public interface Server extends PluginMessageRecipient {
      * @return the water underground creature limit
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getWaterUndergroundCreatureSpawnLimit();
 
     /**
@@ -1726,7 +1740,7 @@ public interface Server extends PluginMessageRecipient {
      * @return 生成限制数
      * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
-    @Deprecated
+    @Deprecated(since = "1.18.1")
     int getAmbientSpawnLimit();
 
     /**
@@ -1919,6 +1933,24 @@ public interface Server extends PluginMessageRecipient {
      * @return the 闲置超时的分钟数
      */
     public int getIdleTimeout();
+
+    /**
+     * Gets the pause when empty threshold seconds. To save resources, the
+     * pause most functions after this time if there are no players online.
+     *
+     * @return the pause threshold in seconds
+     */
+    public int getPauseWhenEmptyTime();
+
+    /**
+     * Sets the pause when empty threshold seconds. To save resources, the
+     * pause most functions after this time if there are no players online.
+     * <p>
+     * A value of less than 0 will disable the setting
+     *
+     * @param seconds the pause threshold in seconds
+     */
+    public void setPauseWhenEmptyTime(int seconds);
 
     /**
      * 创建一个 ChunkData 实例，以用于区块生成。
@@ -2218,7 +2250,7 @@ public interface Server extends PluginMessageRecipient {
      * @return UnsafeValues实例
      * @see UnsafeValues
      */
-    @Deprecated
+    @Deprecated(since = "1.7.2")
     @NotNull
     UnsafeValues getUnsafe();
 
@@ -2227,6 +2259,15 @@ public interface Server extends PluginMessageRecipient {
 
         @NotNull
         public org.bukkit.configuration.file.YamlConfiguration getConfig() {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        /**
+         * 重启服务器. 如果服务器管理员没有配置/未正确配置"spigot.yml"中的重启配置, 服务器将停止运行.
+         * <p>
+         * 原文:Restart the server. If the server administrator has not configured restarting, the server will stop.
+         */
+        public void restart() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
 
@@ -2249,15 +2290,6 @@ public interface Server extends PluginMessageRecipient {
          * @param components 要发送的聊天消息组件
          */
         public void broadcast(@NotNull net.md_5.bungee.api.chat.BaseComponent... components) {
-            throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        /**
-         * 重启服务器. 如果服务器管理员没有配置/未正确配置"spigot.yml"中的重启配置, 服务器将停止运行.
-         * <p>
-         * 原文:Restart the server. If the server administrator has not configured restarting, the server will stop.
-         */
-        public void restart() {
             throw new UnsupportedOperationException("Not supported yet.");
         }
     }

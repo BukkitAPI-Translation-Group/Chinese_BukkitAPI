@@ -31,6 +31,11 @@ public final class GameRule<T> {
     public static final GameRule<Boolean> COMMAND_BLOCK_OUTPUT = new GameRule<>("commandBlockOutput", Boolean.class);
 
     /**
+     * Whether the server should skip checking player speed.
+     */
+    public static final GameRule<Boolean> DISABLE_PLAYER_MOVEMENT_CHECK = new GameRule<>("disablePlayerMovementCheck", Boolean.class);
+
+    /**
      * 是否让服务器停止检查使用鞘翅玩家的移动速度.
      * 有助于减轻因服务器延迟而导致的飞行卡顿, 但有可能导致生存模式下玩家飞行过快 (作弊).
      */
@@ -50,6 +55,12 @@ public final class GameRule<T> {
      * 火是否蔓延及自然熄灭.
      */
     public static final GameRule<Boolean> DO_FIRE_TICK = new GameRule<>("doFireTick", Boolean.class);
+
+    /**
+     * Whether fire should spread and naturally extinguish when there are no players nearby.
+     */
+    public static final GameRule<Boolean> ALLOW_FIRE_TICKS_AWAY_FROM_PLAYER = new GameRule<>("allowFireTicksAwayFromPlayer", Boolean.class);
+
 
     /**
      * 玩家的合成配方是否需要解锁才能使用.
@@ -218,6 +229,15 @@ public final class GameRule<T> {
      * Whether ender pearls will vanish on player death.
      */
     public static final GameRule<Boolean> ENDER_PEARLS_VANISH_ON_DEATH = new GameRule<>("enderPearlsVanishOnDeath", Boolean.class);
+    /**
+     * Whether TNT explodes.
+     */
+    public static final GameRule<Boolean> TNT_EXPLODES = new GameRule<>("tntExplodes", Boolean.class);
+    /**
+     * Whether the locator bar is enabled.
+     */
+    public static final GameRule<Boolean> LOCATOR_BAR = new GameRule<>("locatorBar", Boolean.class);
+
 
     // Numerical rules
     /**
@@ -273,6 +293,12 @@ public final class GameRule<T> {
      * portal before the portal activates.
      */
     public static final GameRule<Integer> PLAYERS_NETHER_PORTAL_CREATIVE_DELAY = new GameRule<>("playersNetherPortalCreativeDelay", Integer.class);
+
+    /**
+     * The maximum speed of minecarts (when the new movement algorithm is
+     * enabled).
+     */
+    public static final GameRule<Integer> MINECART_MAX_SPEED = new GameRule<>("minecartMaxSpeed", Integer.class);
 
     /**
      * The number of chunks around spawn which will be kept loaded at all times.

@@ -17,10 +17,10 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 盔甲架当前握持的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#getItemInHand()}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#getItemInHand()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     ItemStack getItemInHand();
 
     /**
@@ -31,9 +31,9 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 盔甲架当前握持的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#setItemInHand(org.bukkit.inventory.ItemStack)}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#setItemInHand(org.bukkit.inventory.ItemStack)}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     void setItemInHand(@Nullable ItemStack item);
 
     /**
@@ -44,10 +44,10 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#getBoots()}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#getBoots()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     ItemStack getBoots();
 
     /**
@@ -58,9 +58,9 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#setBoots(org.bukkit.inventory.ItemStack)}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#setBoots(org.bukkit.inventory.ItemStack)}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     void setBoots(@Nullable ItemStack item);
 
     /**
@@ -71,10 +71,10 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#getLeggings()}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#getLeggings()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     ItemStack getLeggings();
 
     /**
@@ -86,9 +86,9 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#setLeggings(org.bukkit.inventory.ItemStack)}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#setLeggings(org.bukkit.inventory.ItemStack)}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     void setLeggings(@Nullable ItemStack item);
 
     /**
@@ -99,10 +99,10 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#getChestplate()}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#getChestplate()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     ItemStack getChestplate();
 
     /**
@@ -113,9 +113,9 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#setChestplate(org.bukkit.inventory.ItemStack)}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#setChestplate(org.bukkit.inventory.ItemStack)}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     void setChestplate(@Nullable ItemStack item);
 
     /**
@@ -126,10 +126,10 @@ public interface ArmorStand extends LivingEntity {
      *
      * @return 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#getHelmet()}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#getHelmet()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     ItemStack getHelmet();
 
     /**
@@ -140,9 +140,9 @@ public interface ArmorStand extends LivingEntity {
      *
      * @param item 穿戴的物品
      * @see #getEquipment()
-     * @deprecated 建议使用 {@link EntityEquipment#setHelmet(org.bukkit.inventory.ItemStack)}
+     * @deprecated(since = "1.15.2") 建议使用 {@link EntityEquipment#setHelmet(org.bukkit.inventory.ItemStack)}
      */
-    @Deprecated
+    @Deprecated(since = "1.15.2")
     void setHelmet(@Nullable ItemStack item);
 
     /**

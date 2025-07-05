@@ -408,7 +408,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * @deprecated 实体可能有多名乘客. 请使用
      * {@link #getPassengers()}
      */
-    @Deprecated
+    @Deprecated(since = "1.11.2")
     @Nullable
     public Entity getPassenger();
 
@@ -423,7 +423,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * @deprecated 实体可能有多名乘客. 请使用
      * {@link #addPassenger(org.bukkit.entity.Entity)}
      */
-    @Deprecated
+    @Deprecated(since = "1.11.2")
     public boolean setPassenger(@NotNull Entity passenger);
 
     /**
@@ -513,7 +513,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * @param event 一个 {@link EntityDamageEvent}
      * @deprecated 此方法仅供内部使用, 将被移除
      */
-    @Deprecated(forRemoval = true)
+    @Deprecated(since = "1.20.4", forRemoval = true)
     public void setLastDamageCause(@Nullable EntityDamageEvent event);
 
     /**

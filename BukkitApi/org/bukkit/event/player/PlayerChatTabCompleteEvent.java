@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * @deprecated 因客户端的改变(1.13更新较大幅度改善了命令输入的体验), 该事件不再触发.
  * 1.13+版本可以参考:{@link PlayerCommandSendEvent}
  */
-@Deprecated
+@Deprecated(since = "1.13")
 @Warning(reason = "This event is no longer fired due to client changes")
 public class PlayerChatTabCompleteEvent extends PlayerEvent {
     private static final HandlerList handlers = new HandlerList();

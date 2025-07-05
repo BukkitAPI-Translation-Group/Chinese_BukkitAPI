@@ -176,7 +176,7 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
      * @deprecated 该方法无法保证在每个版本上的效果
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.3.1")
     public Set<Player> getRecipients() {
         return recipients;
     }

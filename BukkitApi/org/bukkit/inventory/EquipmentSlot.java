@@ -15,7 +15,11 @@ public enum EquipmentSlot {
     /**
      * Only for certain entities such as horses and wolves.
      */
-    BODY(() -> EquipmentSlotGroup.ARMOR);
+    BODY(() -> EquipmentSlotGroup.ARMOR),
+    /**
+     * Only for certain entities such as horses and pigs.
+     */
+    SADDLE(() -> EquipmentSlotGroup.ARMOR);
 
     private final Supplier<EquipmentSlotGroup> group; // Supplier because of class loading order, since EquipmentSlot and EquipmentSlotGroup reference each other on class init
 

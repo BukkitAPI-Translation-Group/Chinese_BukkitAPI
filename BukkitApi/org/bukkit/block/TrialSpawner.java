@@ -28,7 +28,7 @@ public interface TrialSpawner extends TileState {
     public void setCooldownLength(int ticks);
 
     /**
-     * Get the maximum distance(squared) a player can be in order for this
+     * Get the maximum distance a player can be in order for this
      * spawner to be active.
      * <br>
      * If this value is less than or equal to 0, this spawner is always active
@@ -36,19 +36,19 @@ public interface TrialSpawner extends TileState {
      * <br>
      * Default value is 16.
      *
-     * @return the maximum distance(squared) a player can be in order for this
+     * @return the maximum distance a player can be in order for this
      * spawner to be active.
      */
     public int getRequiredPlayerRange();
 
     /**
-     * Set the maximum distance (squared) a player can be in order for this
+     * Set the maximum distance a player can be in order for this
      * spawner to be active.
      * <br>
      * Setting this value to less than or equal to 0 will make this spawner
      * always active (given that there are players online).
      *
-     * @param requiredPlayerRange the maximum distance (squared) a player can be
+     * @param requiredPlayerRange the maximum distance a player can be
      * in order for this spawner to be active.
      */
     public void setRequiredPlayerRange(int requiredPlayerRange);

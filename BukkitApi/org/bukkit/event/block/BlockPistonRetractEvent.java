@@ -28,7 +28,7 @@ public class BlockPistonRetractEvent extends BlockPistonEvent {
      *
      * @return 这个活塞粘住的方块的位置
      */
-    @Deprecated
+    @Deprecated(since = "1.8")
     @NotNull
     public Location getRetractLocation() {
         return getBlock().getRelative(getDirection(), 2).getLocation();

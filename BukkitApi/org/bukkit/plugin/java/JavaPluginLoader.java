@@ -63,7 +63,7 @@ public final class JavaPluginLoader implements PluginLoader {
      *
      * @param instance 服务器实例
      */
-    @Deprecated
+    @Deprecated(since = "1.4.5")
     public JavaPluginLoader(@NotNull Server instance) {
         Preconditions.checkArgument(instance != null, "Server cannot be null");
         server = instance;

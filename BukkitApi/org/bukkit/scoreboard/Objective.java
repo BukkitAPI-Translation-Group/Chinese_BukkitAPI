@@ -51,7 +51,7 @@ public interface Objective {
      * @throws IllegalStateException 若此计分项已被注销
      * @deprecated 请使用 {@link #getTrackedCriteria()}
      */
-    @Deprecated
+    @Deprecated(since = "1.19.2")
     @NotNull
     String getCriteria();
 
@@ -150,7 +150,7 @@ public interface Objective {
      * @see #getScore(String)
      * @deprecated 计分板可包含非玩家项目
      */
-    @Deprecated
+    @Deprecated(since = "1.7.8")
     @NotNull
     Score getScore(@NotNull OfflinePlayer player);
 

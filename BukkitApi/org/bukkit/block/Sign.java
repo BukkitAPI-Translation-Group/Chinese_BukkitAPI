@@ -22,7 +22,7 @@ public interface Sign extends TileState, Colorable {
      * @return 每行文本字符串数组
      * @deprecated 告示牌现在多面可写. 请使用 {@link Sign#getSide(Side)} 和 {@link SignSide#getLines()}.
      */
-    @Deprecated
+    @Deprecated(since = "1.20")
     @NotNull
     public String[] getLines();
 
@@ -41,7 +41,7 @@ public interface Sign extends TileState, Colorable {
      * @throws IndexOutOfBoundsException 当此行不存在(尚未设置)时抛出
      * @deprecated 告示牌现在多面可写. 请使用 {@link Sign#getSide(Side)} 和 {@link SignSide#getLines()}.
      */
-    @Deprecated
+    @Deprecated(since = "1.20")
     @NotNull
     public String getLine(int index) throws IndexOutOfBoundsException;
 
@@ -63,7 +63,7 @@ public interface Sign extends TileState, Colorable {
      * @throws IndexOutOfBoundsException 如果索引超出了0-3的范围
      * @deprecated 告示牌现在多面可写. 请使用 {@link Sign#getSide(Side)} 和 {@link SignSide#getLines()}.
      */
-    @Deprecated
+    @Deprecated(since = "1.20")
     public void setLine(int index, @NotNull String line) throws IndexOutOfBoundsException;
 
     /**
@@ -74,7 +74,7 @@ public interface Sign extends TileState, Colorable {
      * @return 告示牌目前是否可被编辑
      * @deprecated 请使用 {@link #isWaxed()}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public boolean isEditable();
 
     /**
@@ -85,7 +85,7 @@ public interface Sign extends TileState, Colorable {
      * @param editable 告示牌目前是否可被编辑
      * @deprecated 请使用 {@link #isWaxed()}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     public void setEditable(boolean editable);
 
     /**
@@ -110,7 +110,7 @@ public interface Sign extends TileState, Colorable {
      * @return if this sign has glowing text
      * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#isGlowingText()}.
      */
-    @Deprecated
+    @Deprecated(since = "1.20")
     public boolean isGlowingText();
 
     /**
@@ -119,7 +119,7 @@ public interface Sign extends TileState, Colorable {
      * @param glowing if this sign has glowing text
      * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#setGlowingText(boolean)}.
      */
-    @Deprecated
+    @Deprecated(since = "1.20")
     public void setGlowingText(boolean glowing);
 
     /**
@@ -129,7 +129,7 @@ public interface Sign extends TileState, Colorable {
      */
     @NotNull
     @Override
-    @Deprecated
+    @Deprecated(since = "1.20")
     public DyeColor getColor();
 
     /**
@@ -138,7 +138,7 @@ public interface Sign extends TileState, Colorable {
      * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#setColor(org.bukkit.DyeColor)}.
      */
     @Override
-    @Deprecated
+    @Deprecated(since = "1.20")
     public void setColor(@NotNull DyeColor color);
 
     /**

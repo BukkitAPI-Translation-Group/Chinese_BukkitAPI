@@ -34,7 +34,7 @@ public interface PotionBrewer {
      * @return 效果列表
      * @deprecated 无任何作用
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     @NotNull
     public Collection<PotionEffect> getEffectsFromDamage(int damage);
 
@@ -51,6 +51,6 @@ public interface PotionBrewer {
      * @deprecated 时长延长/升阶的药水已经有其专属的 {@link PotionType}. 请使用 {@link PotionType#getPotionEffects()}
      */
     @NotNull
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public Collection<PotionEffect> getEffects(@NotNull PotionType type, boolean upgraded, boolean extended);
 }

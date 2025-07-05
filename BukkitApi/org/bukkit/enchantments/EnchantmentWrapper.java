@@ -6,7 +6,7 @@ import org.jetbrains.annotations.NotNull;
  * 方便选择{@link Enchantment}的一个简单的封装类.
  * @deprecated 仅为保障向后兼容性, EnchantmentWrapper 已不再使用
  */
-@Deprecated
+@Deprecated(since = "1.20.3")
 public abstract class EnchantmentWrapper extends Enchantment {
     protected EnchantmentWrapper() {
     }

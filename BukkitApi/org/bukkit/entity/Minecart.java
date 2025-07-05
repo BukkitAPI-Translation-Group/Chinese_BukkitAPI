@@ -1,5 +1,6 @@
 package org.bukkit.entity;
 
+import org.bukkit.GameRule;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.material.MaterialData;
 import org.bukkit.util.Vector;
@@ -40,10 +41,10 @@ public interface Minecart extends Vehicle {
     public double getMaxSpeed();
 
     /**
-     * 设置矿车的最大速率. 此值不能是负数(速率是标量). 默认值为0.4D.
+     * 设置矿车的最大速率. 此值不能是负数(速率是标量). 默认值为0.4D或{@link GameRule#MINECART_MAX_SPEED}.
      * <p>
      * 原文:Sets the maximum speed of a minecart. Must be nonnegative. Default is
-     * 0.4D.
+     * 0.4D or {@link GameRule#MINECART_MAX_SPEED}.
      *
      * @param speed 最大速率
      */

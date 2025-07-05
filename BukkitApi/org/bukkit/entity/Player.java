@@ -13,6 +13,7 @@ import org.bukkit.BanEntry;
 import org.bukkit.DyeColor;
 import org.bukkit.Effect;
 import org.bukkit.GameMode;
+import org.bukkit.Input;
 import org.bukkit.Instrument;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -119,6 +120,21 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param name 新的显示在玩家列表中的名字
      */
     public void setPlayerListName(@Nullable String name);
+
+    /**
+     * Gets the relative order that the player is shown on the player list.
+     *
+     * @return the player list order
+     */
+    public int getPlayerListOrder();
+
+    /**
+     * Sets the relative order that the player is shown on the in-game player
+     * list.
+     *
+     * @param order new player list order, must be non-negative
+     */
+    public void setPlayerListOrder(int order);
 
     /**
      * Gets the currently displayed player list header for this player.
@@ -376,7 +392,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * context/time which it is accessed
      */
     @Override
-    @Deprecated
+    @Deprecated(since = "1.16.1")
     public boolean isOnGround();
 
     /**
@@ -417,21 +433,21 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
 
     /**
      * 保存玩家数据(位置,血量,背包,移动方向
-     * 及其他信息至在world/player文件夹中的"玩家名.dat"文件).
+     * 及其他信息至在 &lt;主世界&gt;/playerdata 文件夹中的"玩家名.dat"文件).
      * <p>
      * 原文:Saves the players current location, health, inventory, motion, and
-     * other information into the username.dat file, in the world/player
-     * folder
+     * other information into the uuid.dat file, in the &lt;main
+     * world&gt;/playerdata folder.
      */
     public void saveData();
 
     /**
-     * 加载上一次保存的数据(从在world/player文件夹中的玩家名.dat文件中加载
+     * 加载上一次保存的数据(从在 &lt;主世界&gt;/playerdata 文件夹中的玩家名.dat文件中加载
      * 位置,血量,背包,移动方向及其他信息).<p>
      * 这将会覆盖当前内存中的数据. <p>
      * 原文:Loads the players current location, health, inventory, motion, and
-     * other information from the username.dat file, in the world/player
-     * folder.
+     * other information from the uuid.dat file, in the &lt;main
+     * world&gt;/playerdata folder.
      * <p>
      * Note: This will overwrite the players current inventory, health,
      * motion, etc, with the state from the saved dat file.
@@ -471,7 +487,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      */
     @Nullable
     @Override
-    @Deprecated
+    @Deprecated(since = "1.20.4")
     public Location getBedSpawnLocation();
 
     /**
@@ -493,7 +509,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated Misleading name. This method sets the player's respawn
      * location more generally and is not limited to beds.
      */
-    @Deprecated
+    @Deprecated(since = "1.20.4")
     public void setBedSpawnLocation(@Nullable Location location);
 
     /**
@@ -514,7 +530,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated Misleading name. This method sets the player's respawn
      * location more generally and is not limited to beds.
      */
-    @Deprecated
+    @Deprecated(since = "1.20.4")
     public void setBedSpawnLocation(@Nullable Location location, boolean force);
 
     /**
@@ -525,6 +541,30 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     valid respawn point is not present
      */
     public void setRespawnLocation(@Nullable Location location, boolean force);
+
+    /**
+     * Gets the ender pearls currently associated with this entity.
+     * <p>
+     * The returned list will not be directly linked to the entity's current
+     * pearls, and no guarantees are made as to its mutability.
+     *
+     * @return collection of entities corresponding to current pearls.
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    public Collection<EnderPearl> getEnderPearls();
+
+    /**
+     * Gets the current movement input, as last provided by the player.
+     * <br>
+     * <b>Note: that this may not always be consistent with the current movement
+     * of the player.</b>
+     *
+     * @return current input
+     */
+    @NotNull
+    @ApiStatus.Experimental
+    public Input getCurrentInput();
 
     /**
      * 在指定位置处为玩家播放一个音符. <br>
@@ -538,7 +578,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param note 音符ID.
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public void playNote(@NotNull Location loc, byte instrument, byte note);
 
     /**
@@ -798,7 +838,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param data 某些效果需要的附加值.
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public void playEffect(@NotNull Location loc, @NotNull Effect effect, int data);
 
     /**
@@ -857,7 +897,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param data 要改变成的方块的副ID
      * @deprecated 不安全的参数
      */
-    @Deprecated
+    @Deprecated(since = "1.6.2")
     public void sendBlockChange(@NotNull Location loc, @NotNull Material material, byte data);
 
 	/**
@@ -913,7 +953,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @deprecated suppressLightUpdates is not functional in versions greater
      * than 1.19.4
      */
-    @Deprecated
+    @Deprecated(since = "1.20")
     public void sendBlockChanges(@NotNull Collection<BlockState> blocks, boolean suppressLightUpdates);
 
     /**
@@ -1441,7 +1481,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param player 要让该玩家看不见的玩家.
      * @deprecated 另请参阅 {@link #hidePlayer(Plugin, Player)}
      */
-    @Deprecated
+    @Deprecated(since = "1.12.2")
     public void hidePlayer(@NotNull Player player);
 
     /**
@@ -1461,7 +1501,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param player 要让该玩家看得见的玩家.
      * @deprecated 另请参阅 {@link #showPlayer(Plugin, Player)}
      */
-    @Deprecated
+    @Deprecated(since = "1.12.2")
     public void showPlayer(@NotNull Player player);
 
     /**
@@ -1607,7 +1647,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @throws IllegalArgumentException Thrown if the URL is too long.
      * @deprecated Minecraft已经不使用材质包了,应该用{@link #setResourcePack(String)}设置资源包(额这不是一个意思么..).
      */
-    @Deprecated
+    @Deprecated(since = "1.7.2")
     public void setTexturePack(@NotNull String url);
 
     /**
@@ -2102,7 +2142,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @param subtitle 副标题文本
      * @deprecated API行为有所改变
      */
-    @Deprecated
+    @Deprecated(since = "1.8.7")
     public void sendTitle(@Nullable String title, @Nullable String subtitle);
 
     /**
@@ -2486,6 +2526,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * @return whether the player allows server listings
      */
     public boolean isAllowingServerListings();
+
+    /**
+     * Clear the player's open dialog.
+     */
+    @ApiStatus.Experimental
+    public void clearDialog();
+
+    /**
+     * Show a dialog to the player.
+     *
+     * @param dialog the dialog to show
+     */
+    public void showDialog(@NotNull net.md_5.bungee.api.dialog.Dialog dialog);
 
     // Spigot start
     public class Spigot extends Entity.Spigot {

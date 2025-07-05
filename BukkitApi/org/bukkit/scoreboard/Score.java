@@ -19,7 +19,7 @@ public interface Score {
      * @see #getEntry()
      * @deprecated 计分板可包含非玩家项目
      */
-    @Deprecated
+    @Deprecated(since = "1.7.8")
     @NotNull
     OfflinePlayer getPlayer();
 

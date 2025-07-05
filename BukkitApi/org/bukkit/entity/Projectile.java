@@ -42,7 +42,7 @@ public interface Projectile extends Entity {
      * @return 如果应该弹跳，则返回true。
      * @deprecated 不起任何作用
      */
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public boolean doesBounce();
 
     /**
@@ -54,6 +54,6 @@ public interface Projectile extends Entity {
      * @param doesBounce 是否应该弹跳
      * @deprecated 不起任何作用
      */
-    @Deprecated
+    @Deprecated(since = "1.20.2")
     public void setBounce(boolean doesBounce);
 }

@@ -23,7 +23,7 @@ public interface Scoreboard {
      * @throws IllegalArgumentException 若同名计分项已存在
      * @deprecated 应明确指定计分项的显示名
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull String criteria);
 
@@ -41,7 +41,7 @@ public interface Scoreboard {
      * @throws IllegalArgumentException 若同名计分项已存在
      * @deprecated 请使用 {@link #registerNewObjective(String, Criteria, String)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName);
 
@@ -60,7 +60,7 @@ public interface Scoreboard {
      * @throws IllegalArgumentException 若同名计分项已存在
      * @deprecated 请使用 {@link #registerNewObjective(String, Criteria, String, RenderType)}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.5")
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName, @NotNull RenderType renderType);
 
@@ -115,7 +115,7 @@ public interface Scoreboard {
      * @return 使用指定准测的计分项的不可变集合
      * @deprecated 请使用 {@link #getObjectivesByCriteria(Criteria)}
      */
-    @Deprecated
+    @Deprecated(since = "1.19.2")
     @NotNull
     Set<Objective> getObjectivesByCriteria(@NotNull String criteria);
 
@@ -162,7 +162,7 @@ public interface Scoreboard {
      * @deprecated 计分板可包含非玩家项目
      * @see #getScores(String)
      */
-    @Deprecated
+    @Deprecated(since = "1.7.8")
     @NotNull
     Set<Score> getScores(@NotNull OfflinePlayer player);
 
@@ -186,7 +186,7 @@ public interface Scoreboard {
      * @deprecated 计分板可包含非玩家项目
      * @see #resetScores(String)
      */
-    @Deprecated
+    @Deprecated(since = "1.7.8")
     void resetScores(@NotNull OfflinePlayer player);
 
     /**
@@ -208,7 +208,7 @@ public interface Scoreboard {
      * @deprecated 计分板可包含非玩家项目
      * @see #getEntryTeam(String)
      */
-    @Deprecated
+    @Deprecated(since = "1.8.6")
     @Nullable
     Team getPlayerTeam(@NotNull OfflinePlayer player);
 
@@ -265,7 +265,7 @@ public interface Scoreboard {
      * @deprecated 计分板可包含非玩家项目
      * @see #getEntries()
      */
-    @Deprecated
+    @Deprecated(since = "1.7.8")
     @NotNull
     Set<OfflinePlayer> getPlayers();
 

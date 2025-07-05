@@ -57,7 +57,7 @@ public interface BanEntry<T> {
      * @return 被封禁的玩家的名字或IP地址
      * @deprecated 参见 {@link #getBanTarget()}
      */
-    @Deprecated
+    @Deprecated(since = "1.20.1")
     @NotNull
     public String getTarget();
 

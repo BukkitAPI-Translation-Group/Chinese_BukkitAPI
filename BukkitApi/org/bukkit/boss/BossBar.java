@@ -174,7 +174,7 @@ public interface BossBar {
      * 原文:Shows the previously hidden boss bar to all attached players
      * @deprecated 请使用{@link #setVisible(boolean)}
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     void show();
 
     /**
@@ -183,6 +183,6 @@ public interface BossBar {
      * 原文:Hides this boss bar from all attached players
      * @deprecated 请使用{@link #setVisible(boolean)}
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     void hide();
 }

@@ -34,6 +34,7 @@ public enum Statistic implements Keyed {
     MINECART_ONE_CM,
     BOAT_ONE_CM,
     PIG_ONE_CM,
+    HAPPY_GHAST_ONE_CM,
     HORSE_ONE_CM,
     SPRINT_ONE_CM,
     CROUCH_ONE_CM,

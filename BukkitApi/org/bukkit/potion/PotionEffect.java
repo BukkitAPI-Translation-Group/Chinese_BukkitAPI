@@ -274,9 +274,9 @@ public class PotionEffect implements ConfigurationSerializable {
      * @return 药水效果粒子的颜色. 如果无粒子效果/未定义颜色, 将可能为null
      * @deprecated 现在粒子效果颜色不属于药水效果的一部分
      */
-     @Deprecated
-     @Nullable
-     @Contract("-> null")
+    @Deprecated(since = "1.13")
+    @Nullable
+    @Contract("-> null")
     public Color getColor() {
         return null;
     }

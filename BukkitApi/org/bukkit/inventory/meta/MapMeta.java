@@ -24,7 +24,7 @@ public interface MapMeta extends ItemMeta {
      * 现代的实现 - 例如, 服务器会生成一个不同 id 的新地图.
      * 开发者应使用 xxxMapView 家族的方法.
      */
-    @Deprecated
+    @Deprecated(since = "1.13.2")
     boolean hasMapId();
 
     /**
@@ -46,7 +46,7 @@ public interface MapMeta extends ItemMeta {
      * 现代的实现 - 例如, 服务器会生成一个不同 id 的新地图.
      * 开发者应使用 xxxMapView 家族的方法.
      */
-    @Deprecated
+    @Deprecated(since = "1.13.2")
     int getMapId();
 
     /**
@@ -62,7 +62,7 @@ public interface MapMeta extends ItemMeta {
      * 现代的实现 - 例如, 服务器会生成一个不同 id 的新地图.
      * 开发者应使用 xxxMapView 家族的方法.
      */
-    @Deprecated
+    @Deprecated(since = "1.13.2")
     void setMapId(int id);
 
     /**
@@ -139,7 +139,7 @@ public interface MapMeta extends ItemMeta {
      * @return 是否有位置名
      * @deprecated 本方法没有预期效果, 这实际上是 {@link ItemMeta#hasLocalizedName()} 的别名
      */
-    @Deprecated
+    @Deprecated(since = "1.19.4")
     boolean hasLocationName();
 
     /**
@@ -156,7 +156,7 @@ public interface MapMeta extends ItemMeta {
      * @return 位置名
      * @deprecated 本方法没有预期效果, 这实际上是 {@link ItemMeta#getLocalizedName()} 的别名
      */
-    @Deprecated
+    @Deprecated(since = "1.19.4")
     @Nullable
     String getLocationName();
 
@@ -170,7 +170,7 @@ public interface MapMeta extends ItemMeta {
      * @param name 位置名
      * @deprecated 本方法没有预期效果, 这实际上是 {@link ItemMeta#setLocalizedName(String)} 的别名
      */
-    @Deprecated
+    @Deprecated(since = "1.19.4")
     void setLocationName(@Nullable String name);
 
     /**

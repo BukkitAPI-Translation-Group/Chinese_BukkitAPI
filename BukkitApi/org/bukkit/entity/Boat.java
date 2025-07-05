@@ -18,7 +18,7 @@ public interface Boat extends Vehicle {
      * @return 船的木质种类
      * @deprecated 建议使用 {@link #getBoatType()}
      */
-    @Deprecated
+    @Deprecated(since = "1.19")
     @NotNull
     TreeSpecies getWoodType();
 
@@ -31,14 +31,16 @@ public interface Boat extends Vehicle {
      * @param species 新的木质种类
      * @deprecated 建议使用 {@link #setBoatType(Type)}
      */
-    @Deprecated
+    @Deprecated(since = "1.19")
     void setWoodType(@NotNull TreeSpecies species);
 
     /**
      * Gets the type of the boat.
      *
      * @return the boat type
+     * @deprecated different boats types are now different entity types
      */
+    @Deprecated(since = "1.21.2")
     @NotNull
     Type getBoatType();
 
@@ -46,7 +48,9 @@ public interface Boat extends Vehicle {
      * Sets the type of the boat.
      *
      * @param type the new type
+     * @deprecated different boats types are now different entity types
      */
+    @Deprecated(since = "1.21.2")
     void setBoatType(@NotNull Type type);
 
     /**
@@ -59,7 +63,7 @@ public interface Boat extends Vehicle {
      * @return 最大速度.
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public double getMaxSpeed();
 
     /**
@@ -71,7 +75,7 @@ public interface Boat extends Vehicle {
      * @param speed 最大速度.
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setMaxSpeed(double speed);
 
     /**
@@ -84,7 +88,7 @@ public interface Boat extends Vehicle {
      * @return 加减速率
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public double getOccupiedDeceleration();
 
     /**
@@ -99,7 +103,7 @@ public interface Boat extends Vehicle {
      * @param rate 加减速率
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setOccupiedDeceleration(double rate);
 
     /**
@@ -114,7 +118,7 @@ public interface Boat extends Vehicle {
      * @return 加减速速率
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public double getUnoccupiedDeceleration();
 
     /**
@@ -131,7 +135,7 @@ public interface Boat extends Vehicle {
      * @param rate 加减速速率
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setUnoccupiedDeceleration(double rate);
 
     /**
@@ -143,7 +147,7 @@ public interface Boat extends Vehicle {
      * @return 能否在陆地上工作.
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public boolean getWorkOnLand();
 
     /**
@@ -155,7 +159,7 @@ public interface Boat extends Vehicle {
      * @param workOnLand 能否在陆地上工作
      * @deprecated 船是复杂的,其中许多方法不能在多个版本中正常的工作.
      */
-    @Deprecated
+    @Deprecated(since = "1.9")
     public void setWorkOnLand(boolean workOnLand);
 
     /**
@@ -168,7 +172,9 @@ public interface Boat extends Vehicle {
 
     /**
      * Represents the type of boats.
+     * @deprecated different boats types are now different entity types
      */
+    @Deprecated(since = "1.21.2")
     public enum Type {
         OAK(Material.OAK_PLANKS),
         SPRUCE(Material.SPRUCE_PLANKS),

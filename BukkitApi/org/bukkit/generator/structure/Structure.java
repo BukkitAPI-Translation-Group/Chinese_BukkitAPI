@@ -3,6 +3,7 @@ package org.bukkit.generator.structure;
 import org.bukkit.Keyed;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
+import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -12,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
  * there might be additional structures present (for example structures added by
  * data packs), which can be received via {@link Registry#STRUCTURE}.
  */
-public abstract class Structure implements Keyed {
+public abstract class Structure implements Keyed, RegistryAware {
 
     public static final Structure PILLAGER_OUTPOST = getStructure("pillager_outpost");
     public static final Structure MINESHAFT = getStructure("mineshaft");
@@ -49,8 +50,9 @@ public abstract class Structure implements Keyed {
     public static final Structure TRAIL_RUINS = getStructure("trail_ruins");
     public static final Structure TRIAL_CHAMBERS = getStructure("trial_chambers");
 
-    private static Structure getStructure(String name) {
-        return Registry.STRUCTURE.get(NamespacedKey.minecraft(name));
+    @NotNull
+    private static Structure getStructure(@NotNull String name) {
+        return Registry.STRUCTURE.getOrThrow(NamespacedKey.minecraft(name));
     }
 
     /**
@@ -60,4 +62,16 @@ public abstract class Structure implements Keyed {
      */
     @NotNull
     public abstract StructureType getStructureType();
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
+     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     */
+    @NotNull
+    @Override
+    @Deprecated(since = "1.21.4")
+    public abstract NamespacedKey getKey();
 }

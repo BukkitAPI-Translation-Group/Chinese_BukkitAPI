@@ -20,7 +20,7 @@ public interface SpawnEggMeta extends ItemMeta {
      * @return 实体类型. 根据实现指定的默认值, 可能为 null
      * @deprecated 不同实体类型对应不同的刷怪蛋物品
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @Contract("-> fail")
     EntityType getSpawnedType();
 
@@ -33,7 +33,7 @@ public interface SpawnEggMeta extends ItemMeta {
      * @param type 实体类型. 根据实现指定的默认值, 可能为 null
      * @deprecated 不同实体类型对应不同的刷怪蛋物品
      */
-    @Deprecated
+    @Deprecated(since = "1.13")
     @Contract("_ -> fail")
     void setSpawnedType(EntityType type);
 
