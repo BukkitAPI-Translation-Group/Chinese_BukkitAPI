@@ -489,9 +489,12 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     NamespacedKey getTooltipStyle();
 
     /**
-     * Sets the custom tooltip style.
+     * 设置自定义工具提示样式。
      *
-     * @param tooltipStyle the new style
+     * @param tooltipStyle 新的样式
+     * <p>
+     * 原文：
+     * Sets the custom tooltip style.
      */
     void setTooltipStyle(@Nullable NamespacedKey tooltipStyle);
 
