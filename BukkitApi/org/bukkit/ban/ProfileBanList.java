@@ -8,6 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
+ * 针对玩家配置文件封禁的 {@link BanList}.
+ * <p>
+ * 原文:
  * A {@link BanList} targeting player profile bans.
  */
 public interface ProfileBanList extends BanList<PlayerProfile> {
@@ -15,14 +18,12 @@ public interface ProfileBanList extends BanList<PlayerProfile> {
     /**
      * {@inheritDoc}
      *
-     * @param target the target of the ban
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
-     * @throws IllegalArgumentException if ProfilePlayer has an invalid UUID
+     * @param target 封禁的目标
+     * @param reason 封禁原因, null表示使用实现默认值
+     * @param expires 封禁的过期日期(解封日期), null表示永久封禁
+     * @param source 封禁的来源, null表示使用实现默认值
+     * @return 新创建的封禁条目, 或(更新后的)先前封禁条目
+     * @throws IllegalArgumentException 如果PlayerProfile具有无效的UUID
      */
     @Nullable
     public BanEntry<PlayerProfile> addBan(@NotNull PlayerProfile target, @Nullable String reason, @Nullable Date expires, @Nullable String source);

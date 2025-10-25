@@ -44,51 +44,73 @@ public interface Rail extends Waterlogged {
     Set<Shape> getShapes();
 
     /**
-     * 铁轨方块可使用的不同形态.
+     * 铁轨方块可使用的不同形态。
+     * 
+     * 原文:Rail shapes which are allowed.
      */
     public enum Shape {
 
         /**
-         * The rail runs flat along the north/south (Z) axis.
+         * 铁轨沿北/南（Z轴）方向平铺。
+         * 
+         * 原文:The rail runs flat along the north/south (Z) axis.
          */
         NORTH_SOUTH,
         /**
-         * The rail runs flat along the east/west (X) axis.
+         * 铁轨沿东/西（X轴）方向平铺。
+         * 
+         * 原文:The rail runs flat along the east/west (X) axis.
          */
         EAST_WEST,
         /**
-         * The rail ascends in the east (positive X) direction.
+         * 铁轨向东（正X方向）上升。
+         * 
+         * 原文:The rail ascends in the east (positive X) direction.
          */
         ASCENDING_EAST,
         /**
-         * The rail ascends in the west (negative X) direction.
+         * 铁轨向西（负X方向）上升。
+         * 
+         * 原文:The rail ascends in the west (negative X) direction.
          */
         ASCENDING_WEST,
         /**
-         * The rail ascends in the north (negative Z) direction.
+         * 铁轨向北（负Z方向）上升。
+         * 
+         * 原文:The rail ascends in the north (negative Z) direction.
          */
         ASCENDING_NORTH,
         /**
-         * The rail ascends in the south (positive Z) direction.
+         * 铁轨向南（正Z方向）上升。
+         * 
+         * 原文:The rail ascends in the south (positive Z) direction.
          */
         ASCENDING_SOUTH,
         /**
-         * The rail forms a curve connecting the south and east faces of the
+         * 铁轨形成连接方块南面和东面的曲线。
+         * 
+         * 原文:The rail forms a curve connecting the south and east faces of the
          * block.
          */
         SOUTH_EAST,
         /**
-         * The rail forms a curve connecting the south and west faces of the
+         * 铁轨形成连接方块南面和西面的曲线。
+         * 
+         * 原文:The rail forms a curve connecting the south and west faces of the
          * block.
          */
         SOUTH_WEST,
         /**
-         * The rail forms a curve connecting the north and west faces of the
+         * 铁轨形成连接方块北面和西面的曲线。
+         * 
+         * 原文:The rail forms a curve connecting the north and west faces of the
          * block.
          */
         NORTH_WEST,
         /**
-         * The rail forms a curve connecting the north and east faces of the
+         * 铁轨形成连接方块北面和东面的曲线。
+         * 
+         * 原文:The rail forms a curve connecting the north and east faces of the
          * block.
          */
         NORTH_EAST;

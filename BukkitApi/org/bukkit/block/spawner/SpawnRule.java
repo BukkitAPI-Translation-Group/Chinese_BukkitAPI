@@ -8,7 +8,9 @@ import org.bukkit.configuration.serialization.SerializableAs;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a spawn rule that controls what conditions an entity from a
+ * 表示一个生成规则，控制从怪物生成器生成的实体在什么条件下可以生成。
+ * 
+ * 原文:Represents a spawn rule that controls what conditions an entity from a
  * monster spawner can spawn.
  */
 @SerializableAs("SpawnRule")
@@ -20,15 +22,21 @@ public class SpawnRule implements Cloneable, ConfigurationSerializable {
     private int maxSkyLight;
 
     /**
-     * Constructs a new SpawnRule.
+     * 构造一个新的SpawnRule。
+     * 
+     * 原文:Constructs a new SpawnRule.
      *
-     * @param minBlockLight The minimum (inclusive) block light required for
+     * @param minBlockLight 生成成功所需的最小（包含）方块光照等级。
+     * 原文:The minimum (inclusive) block light required for
      * spawning to succeed.
-     * @param maxBlockLight The maximum (inclusive) block light required for
+     * @param maxBlockLight 生成成功所需的最大（包含）方块光照等级。
+     * 原文:The maximum (inclusive) block light required for
      * spawning to succeed.
-     * @param minSkyLight The minimum (inclusive) sky light required for
+     * @param minSkyLight 生成成功所需的最小（包含）天空光照等级。
+     * 原文:The minimum (inclusive) sky light required for
      * spawning to succeed.
-     * @param maxSkyLight The maximum (inclusive) sky light required for
+     * @param maxSkyLight 生成成功所需的最大（包含）天空光照等级。
+     * 原文:The maximum (inclusive) sky light required for
      * spawning to succeed.
      */
     public SpawnRule(int minBlockLight, int maxBlockLight, int minSkyLight, int maxSkyLight) {
@@ -46,20 +54,26 @@ public class SpawnRule implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets the minimum (inclusive) block light required for spawning to
+     * 获取生成成功所需的最小（包含）方块光照等级。
+     * 
+     * 原文:Gets the minimum (inclusive) block light required for spawning to
      * succeed.
      *
-     * @return minimum block light
+     * @return 最小方块光照等级
+     * 原文:minimum block light
      */
     public int getMinBlockLight() {
         return minBlockLight;
     }
 
     /**
-     * Sets the minimum (inclusive) block light required for spawning to
+     * 设置生成成功所需的最小（包含）方块光照等级。
+     * 
+     * 原文:Sets the minimum (inclusive) block light required for spawning to
      * succeed.
      *
-     * @param minBlockLight minimum block light
+     * @param minBlockLight 最小方块光照等级
+     * 原文:minimum block light
      */
     public void setMinBlockLight(int minBlockLight) {
         Preconditions.checkArgument(minBlockLight >= 0, "minBlockLight must be >= 0 (given %s)", minBlockLight);
@@ -69,20 +83,26 @@ public class SpawnRule implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets the maximum (inclusive) block light required for spawning to
+     * 获取生成成功所需的最大（包含）方块光照等级。
+     * 
+     * 原文:Gets the maximum (inclusive) block light required for spawning to
      * succeed.
      *
-     * @return maximum block light
+     * @return 最大方块光照等级
+     * 原文:maximum block light
      */
     public int getMaxBlockLight() {
         return maxBlockLight;
     }
 
     /**
-     * Sets the maximum (inclusive) block light required for spawning to
+     * 设置生成成功所需的最大（包含）方块光照等级。
+     * 
+     * 原文:Sets the maximum (inclusive) block light required for spawning to
      * succeed.
      *
-     * @param maxBlockLight maximum block light
+     * @param maxBlockLight 最大方块光照等级
+     * 原文:maximum block light
      */
     public void setMaxBlockLight(int maxBlockLight) {
         Preconditions.checkArgument(maxBlockLight >= 0, "maxBlockLight must be >= 0 (given %s)", maxBlockLight);
@@ -91,18 +111,24 @@ public class SpawnRule implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets the minimum (inclusive) sky light required for spawning to succeed.
+     * 获取生成成功所需的最小（包含）天空光照等级。
+     * 
+     * 原文:Gets the minimum (inclusive) sky light required for spawning to succeed.
      *
-     * @return minimum sky light
+     * @return 最小天空光照等级
+     * 原文:minimum sky light
      */
     public int getMinSkyLight() {
         return minSkyLight;
     }
 
     /**
-     * Sets the minimum (inclusive) sky light required for spawning to succeed.
+     * 设置生成成功所需的最小（包含）天空光照等级。
+     * 
+     * 原文:Sets the minimum (inclusive) sky light required for spawning to succeed.
      *
-     * @param minSkyLight minimum sky light
+     * @param minSkyLight 最小天空光照等级
+     * 原文:minimum sky light
      */
     public void setMinSkyLight(int minSkyLight) {
         Preconditions.checkArgument(minSkyLight >= 0, "minSkyLight must be >= 0 (given %s)", minSkyLight);
@@ -112,18 +138,24 @@ public class SpawnRule implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets the maximum (inclusive) sky light required for spawning to succeed.
+     * 获取生成成功所需的最大（包含）天空光照等级。
+     * 
+     * 原文:Gets the maximum (inclusive) sky light required for spawning to succeed.
      *
-     * @return maximum sky light
+     * @return 最大天空光照等级
+     * 原文:maximum sky light
      */
     public int getMaxSkyLight() {
         return maxSkyLight;
     }
 
     /**
-     * Sets the maximum (inclusive) sky light required for spawning to succeed.
+     * 设置生成成功所需的最大（包含）天空光照等级。
+     * 
+     * 原文:Sets the maximum (inclusive) sky light required for spawning to succeed.
      *
-     * @param maxSkyLight maximum sky light
+     * @param maxSkyLight 最大天空光照等级
+     * 原文:maximum sky light
      */
     public void setMaxSkyLight(int maxSkyLight) {
         Preconditions.checkArgument(maxSkyLight >= 0, "maxSkyLight must be >= 0 (given %s)", maxSkyLight);

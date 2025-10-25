@@ -95,10 +95,13 @@ public enum BlockFace {
     }
 
     /**
+     * 如果此面与三维笛卡尔空间中的单位轴对齐(即NORTH、SOUTH、EAST、WEST、UP、DOWN), 则返回true.
+     * <p>
+     * 原文:
      * Returns true if this face is aligned with one of the unit axes in 3D
      * Cartesian space (ie NORTH, SOUTH, EAST, WEST, UP, DOWN).
      *
-     * @return Cartesian status
+     * @return 笛卡尔状态
      */
     public boolean isCartesian() {
         switch (this) {
@@ -114,6 +117,14 @@ public enum BlockFace {
         }
     }
 
+    /**
+     * 获取与此面相对的面.
+     * <p>
+     * 原文:
+     * Gets the opposite face.
+     *
+     * @return 相对的面
+     */
     @NotNull
     public BlockFace getOppositeFace() {
         switch (this) {

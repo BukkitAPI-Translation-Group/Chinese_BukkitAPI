@@ -8,27 +8,39 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a captured state of a trial spawner.
+ * 代表一个捕获的试炼刷怪笼状态.
+ * <p>
+ * 原文:Represents a captured state of a trial spawner.
  */
 @ApiStatus.Experimental
 public interface TrialSpawner extends TileState {
 
     /**
-     * Gets the length in ticks the spawner will stay in cooldown for.
+     * 获取刷怪笼冷却状态的持续时间(以游戏刻为单位).
+     * <p>
+     * 原文:Gets the length in ticks the spawner will stay in cooldown for.
      *
-     * @return the number of ticks
+     * @return 游戏刻数量
      */
     public int getCooldownLength();
 
     /**
-     * Sets the length in ticks the spawner will stay in cooldown for.
+     * 设置刷怪笼冷却状态的持续时间(以游戏刻为单位).
+     * <p>
+     * 原文:Sets the length in ticks the spawner will stay in cooldown for.
      *
-     * @param ticks the number of ticks
+     * @param ticks 游戏刻数量
      */
     public void setCooldownLength(int ticks);
 
     /**
-     * Get the maximum distance a player can be in order for this
+     * 获取玩家必须在此范围内才能使此刷怪笼激活的最大距离.
+     * <br>
+     * 如果此值小于或等于0, 则此刷怪笼始终处于激活状态(前提是有玩家在线).
+     * <br>
+     * 默认值为16.
+     * <p>
+     * 原文:Get the maximum distance a player can be in order for this
      * spawner to be active.
      * <br>
      * If this value is less than or equal to 0, this spawner is always active
@@ -36,136 +48,177 @@ public interface TrialSpawner extends TileState {
      * <br>
      * Default value is 16.
      *
-     * @return the maximum distance a player can be in order for this
-     * spawner to be active.
+     * @return 玩家必须在此范围内才能使此刷怪笼激活的最大距离
      */
     public int getRequiredPlayerRange();
 
     /**
-     * Set the maximum distance a player can be in order for this
+     * 设置玩家必须在此范围内才能使此刷怪笼激活的最大距离.
+     * <br>
+     * 将此值设置为小于或等于0将使此刷怪笼始终处于激活状态(前提是有玩家在线).
+     * <p>
+     * 原文:Set the maximum distance a player can be in order for this
      * spawner to be active.
      * <br>
      * Setting this value to less than or equal to 0 will make this spawner
      * always active (given that there are players online).
      *
-     * @param requiredPlayerRange the maximum distance a player can be
-     * in order for this spawner to be active.
+     * @param requiredPlayerRange 玩家必须在此范围内才能使此刷怪笼激活的最大距离
      */
     public void setRequiredPlayerRange(int requiredPlayerRange);
 
     /**
-     * Gets the players this spawner is currently tracking.
+     * 获取此刷怪笼当前正在追踪的玩家.
+     * <p>
+     * <b>注意:</b> 返回的集合是不可变的, 请使用
+     * {@link #startTrackingPlayer(Player)} 或 {@link #stopTrackingPlayer(Player)}
+     * 代替.
+     * <p>
+     * 原文:Gets the players this spawner is currently tracking.
      * <p>
      * <b>Note:</b> the returned collection is immutable, use
      * {@link #startTrackingPlayer(Player)} or {@link #stopTrackingPlayer(Player)}
      * instead.
      *
-     * @return a collection of players this spawner is tracking or an empty
-     *         collection if there aren't any
+     * @return 此刷怪笼正在追踪的玩家集合, 如果没有则为空集合
      */
     @NotNull
     public Collection<Player> getTrackedPlayers();
 
     /**
-     * Checks if this spawner is currently tracking the provided player.
+     * 检查此刷怪笼当前是否正在追踪指定的玩家.
+     * <p>
+     * 原文:Checks if this spawner is currently tracking the provided player.
      *
-     * @param player the player
-     * @return true if this spawner is tracking the provided player
+     * @param player 玩家
+     * @return 如果此刷怪笼正在追踪指定的玩家则返回true
      */
     public boolean isTrackingPlayer(@NotNull Player player);
 
     /**
-     * Force this spawner to start tracking the provided player.
+     * 强制此刷怪笼开始追踪指定的玩家.
+     * <p>
+     * <b>注意:</b> 刷怪笼可能在任何时候决定停止追踪此玩家.
+     * <p>
+     * 原文:Force this spawner to start tracking the provided player.
      * <p>
      * <b>Note:</b> the spawner may decide to stop tracking this player at any given
      * time.
      *
-     * @param player the player
+     * @param player 玩家
      */
     public void startTrackingPlayer(@NotNull Player player);
 
     /**
-     * Force this spawner to stop tracking the provided player.
+     * 强制此刷怪笼停止追踪指定的玩家.
+     * <p>
+     * <b>注意:</b> 刷怪笼可能在任何时候决定重新开始追踪此玩家.
+     * <p>
+     * 原文:Force this spawner to stop tracking the provided player.
      * <p>
      * <b>Note:</b> the spawner may decide to start tracking this player again at
      * any given time.
      *
-     * @param player the player
+     * @param player 玩家
      */
     public void stopTrackingPlayer(@NotNull Player player);
 
     /**
-     * Gets a list of entities this spawner is currently tracking.
+     * 获取此刷怪笼当前正在追踪的实体列表.
+     * <p>
+     * <b>注意:</b> 返回的集合是不可变的, 请使用
+     * {@link #startTrackingEntity(Entity)} 或 {@link #stopTrackingEntity(Entity)}
+     * 代替.
+     * <p>
+     * 原文:Gets a list of entities this spawner is currently tracking.
      * <p>
      * <b>Note:</b> the returned collection is immutable, use
      * {@link #startTrackingEntity(Entity)} or {@link #stopTrackingEntity(Entity)}
      * instead.
      *
-     * @return a collection of entities this spawner is tracking or an empty
-     *         collection if there aren't any
+     * @return 此刷怪笼正在追踪的实体集合, 如果没有则为空集合
      */
     @NotNull
     public Collection<Entity> getTrackedEntities();
 
     /**
-     * Checks if this spawner is currently tracking the provided entity.
+     * 检查此刷怪笼当前是否正在追踪指定的实体.
+     * <p>
+     * 原文:Checks if this spawner is currently tracking the provided entity.
      *
-     * @param entity the entity
-     * @return true if this spawner is tracking the provided entity
+     * @param entity 实体
+     * @return 如果此刷怪笼正在追踪指定的实体则返回true
      */
     public boolean isTrackingEntity(@NotNull Entity entity);
 
     /**
-     * Force this spawner to start tracking the provided entity.
+     * 强制此刷怪笼开始追踪指定的实体.
+     * <p>
+     * <b>注意:</b> 刷怪笼可能在任何时候决定停止追踪此实体.
+     * <p>
+     * 原文:Force this spawner to start tracking the provided entity.
      * <p>
      * <b>Note:</b> the spawner may decide to stop tracking this entity at any given
      * time.
      *
-     * @param entity the entity
+     * @param entity 实体
      */
     public void startTrackingEntity(@NotNull Entity entity);
 
     /**
-     * Force this spawner to stop tracking the provided entity.
+     * 强制此刷怪笼停止追踪指定的实体.
+     * <p>
+     * <b>注意:</b> 刷怪笼可能在任何时候决定重新开始追踪此实体.
+     * <p>
+     * 原文:Force this spawner to stop tracking the provided entity.
      * <p>
      * <b>Note:</b> the spawner may decide to start tracking this entity again at
      * any given time.
      *
-     * @param entity the entity
+     * @param entity 实体
      */
     public void stopTrackingEntity(@NotNull Entity entity);
 
     /**
-     * Checks if this spawner is using the ominous
+     * 检查此刷怪笼是否正在使用不祥的
+     * {@link TrialSpawnerConfiguration}.
+     * <p>
+     * 原文:Checks if this spawner is using the ominous
      * {@link TrialSpawnerConfiguration}.
      *
-     * @return true is using the ominous configuration
+     * @return 如果正在使用不祥配置则返回true
      */
     public boolean isOminous();
 
     /**
-     * Changes this spawner between the normal and ominous
+     * 在普通和不祥的{@link TrialSpawnerConfiguration}之间切换此刷怪笼.
+     * <p>
+     * 原文:Changes this spawner between the normal and ominous
      * {@link TrialSpawnerConfiguration}.
      *
-     * @param ominous true to use the ominous TrialSpawnerConfiguration, false to
-     *                use the normal one.
+     * @param ominous true表示使用不祥的TrialSpawnerConfiguration, false表示
+     *                使用普通的配置
      */
     public void setOminous(boolean ominous);
 
     /**
-     * Gets the {@link TrialSpawnerConfiguration} used when {@link #isOminous()} is
+     * 获取当{@link #isOminous()}为false时使用的{@link TrialSpawnerConfiguration}.
+     * <p>
+     * 原文:Gets the {@link TrialSpawnerConfiguration} used when {@link #isOminous()} is
      * false.
      *
-     * @return the TrialSpawnerConfiguration
+     * @return TrialSpawnerConfiguration
      */
     @NotNull
     public TrialSpawnerConfiguration getNormalConfiguration();
 
     /**
-     * Gets the {@link TrialSpawnerConfiguration} used when {@link #isOminous()} is
+     * 获取当{@link #isOminous()}为true时使用的{@link TrialSpawnerConfiguration}.
+     * <p>
+     * 原文:Gets the {@link TrialSpawnerConfiguration} used when {@link #isOminous()} is
      * true.
      *
-     * @return the TrialSpawnerConfiguration
+     * @return TrialSpawnerConfiguration
      */
     @NotNull
     public TrialSpawnerConfiguration getOminousConfiguration();

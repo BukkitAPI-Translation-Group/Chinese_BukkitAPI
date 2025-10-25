@@ -9,101 +9,139 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a captured state of a vault.
+ * 代表一个捕获的保险库状态.
+ * 
+ * 原文:Represents a captured state of a vault.
  */
 @ApiStatus.Experimental
 public interface Vault extends TileState {
 
     /**
-     * Gets the distance at which a player must enter for this vault to
+     * 获取玩家必须进入才能激活此保险库的距离.
+     * 
+     * 原文:Gets the distance at which a player must enter for this vault to
      * activate.
      *
-     * @return the distance at which a player must enter for this vault
+     * @return 玩家必须进入才能激活此保险库的距离
+     * 原文:the distance at which a player must enter for this vault
      * to activate.
      */
     double getActivationRange();
 
     /**
-     * Sets the distance at which a player must enter for this vault to
+     * 设置玩家必须进入才能激活此保险库的距离.
+     * 
+     * 原文:Sets the distance at which a player must enter for this vault to
      * activate.
      *
-     * @param range the distance at which a player must enter for this
+     * @param range 玩家必须进入才能激活此保险库的距离
+     * 原文:the distance at which a player must enter for this
      * vault to activate.
      */
     void setActivationRange(double range);
 
     /**
-     * Gets the distance at which a player must exit for the vault to
+     * 获取玩家必须退出才能停用此保险库的距离.
+     * 
+     * 原文:Gets the distance at which a player must exit for the vault to
      * deactivate.
      *
-     * @return the distance at which a player must exit for the vault
+     * @return 玩家必须退出才能停用此保险库的距离
+     * 原文:the distance at which a player must exit for the vault
      * to deactivate.
      */
     double getDeactivationRange();
 
     /**
-     * Sets the distance at which a player must exit for this vault to
+     * 设置玩家必须退出才能停用此保险库的距离.
+     * 
+     * 原文:Sets the distance at which a player must exit for the vault to
      * deactivate.
      *
-     * @param range the distance at which a player must exit for this
+     * @param range 玩家必须退出才能停用此保险库的距离
+     * 原文:the distance at which a player must exit for this
      * vault to deactivate.
      */
     void setDeactivationRange(double range);
 
     /**
-     * Gets the {@link LootTable} this vault will pick rewards from.
+     * 获取此保险库将从中选择奖励的{@link LootTable 战利品表}.
+     * 
+     * 原文:Gets the {@link LootTable} this vault will pick rewards from.
      *
-     * @return the loot table
+     * @return 战利品表
+     * 原文:the loot table
      */
     @NotNull
     LootTable getLootTable();
 
     /**
-     * Sets the {@link LootTable} this vault will pick rewards from.
+     * 设置此保险库将从中选择奖励的{@link LootTable 战利品表}.
+     * 
+     * 原文:Sets the {@link LootTable} this vault will pick rewards from.
      *
-     * @param table the loot table
+     * @param table 战利品表
+     * 原文:the loot table
      */
     void setLootTable(@NotNull LootTable table);
 
     /**
-     * Gets the {@link LootTable} this vault will display items from. <br>
+     * 获取此保险库将用于显示物品的{@link LootTable 战利品表}. <br>
+     * 如果此值为null，则将使用常规战利品表来显示物品.
+     * 
+     * 原文:Gets the {@link LootTable} this vault will display items from. <br>
      * If this value is null the regular loot table will be used to display
      * items.
      *
-     * @return the loot table to display items from
+     * @return 用于显示物品的战利品表
+     * 原文:the loot table to display items from
      */
     @Nullable
     LootTable getDisplayLootTable();
 
     /**
-     * Sets the {@link LootTable} this vault will display items from. <br>
+     * 设置此保险库将用于显示物品的{@link LootTable 战利品表}. <br>
+     * 如果此值设置为null，则将使用常规战利品表来显示物品.
+     * 
+     * 原文:Sets the {@link LootTable} this vault will display items from. <br>
      * If this value is set to null the regular loot table will be used to
      * display items.
      *
-     * @param table the loot table to display items from
+     * @param table 用于显示物品的战利品表
+     * 原文:the loot table to display items from
      */
     void setDisplayLootTable(@Nullable LootTable table);
 
     /**
-     * Gets the {@link ItemStack} players must use to unlock this vault.
+     * 获取玩家必须用来解锁此保险库的{@link ItemStack 物品堆}.
+     * 
+     * 原文:Gets the {@link ItemStack} players must use to unlock this vault.
      *
-     * @return the key item
+     * @return 钥匙物品
+     * 原文:the key item
      */
     @NotNull
     ItemStack getKeyItem();
 
     /**
-     * Sets the {@link ItemStack} players must use to unlock this vault.
+     * 设置玩家必须用来解锁此保险库的{@link ItemStack 物品堆}.
+     * 
+     * 原文:Sets the {@link ItemStack} players must use to unlock this vault.
      *
-     * @param keyItem the key item
+     * @param keyItem 钥匙物品
+     * 原文:the key item
      */
     void setKeyItem(@NotNull ItemStack keyItem);
 
     /**
-     * Gets the players who have already received rewards from this vault.
+     * 获取已经从此保险库收到奖励的玩家.
+     * 
+     * 原文:Gets the players who have already received rewards from this vault.
      *
-     * @return unmodifiable set of player UUIDs
-     * @throws IllegalStateException if this block state is not placed
+     * @return 玩家UUID的不可修改集合
+     * 原文:unmodifiable set of player UUIDs
+     * @throws IllegalStateException 如果此方块状态未被放置
+     * 原文:if this block state is not placed
      */
     @NotNull
     Set<UUID> getRewardedPlayers();

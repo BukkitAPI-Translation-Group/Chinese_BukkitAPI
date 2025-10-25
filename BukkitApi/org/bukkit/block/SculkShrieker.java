@@ -4,34 +4,46 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a captured state of a sculk shrieker.
+ * 代表幽匿尖啸体的捕获状态.
  */
 public interface SculkShrieker extends TileState {
 
     /**
-     * Gets the most recent warning level of this block.
+     * 获取此方块的最新警告等级.
+     * <p>
+     * 当警告等级达到4时, 尖啸体将尝试生成一个
+     * 监守者.
+     * <p>
+     * 原文:Gets the most recent warning level of this block.
      *
      * When the warning level reaches 4, the shrieker will attempt to spawn a
      * Warden.
      *
-     * @return current warning level
+     * @return 当前警告等级
      */
     int getWarningLevel();
 
     /**
-     * Sets the most recent warning level of this block.
+     * 设置此方块的最新警告等级.
+     * <p>
+     * 当警告等级达到4时, 尖啸体将尝试生成一个
+     * 监守者.
+     * <p>
+     * 原文:Sets the most recent warning level of this block.
      *
      * When the warning level reaches 4, the shrieker will attempt to spawn a
      * Warden.
      *
-     * @param level new warning level
+     * @param level 新警告等级
      */
     void setWarningLevel(int level);
 
     /**
-     * Simulates a player causing a vibration.
+     * 模拟玩家引起振动.
+     * <p>
+     * 原文:Simulates a player causing a vibration.
      *
-     * @param player the player that "caused" the shriek
+     * @param player "引起"尖啸的玩家
      */
     void tryShriek(@Nullable Player player);
 }

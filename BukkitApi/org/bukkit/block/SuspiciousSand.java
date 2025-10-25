@@ -1,7 +1,9 @@
 package org.bukkit.block;
 
 /**
- * Represents a captured state of suspicious sand.
+ * 代表一个捕获的诡异沙子状态.
+ * <p>
+ * 原文:Represents a captured state of suspicious sand.
  *
  * @see BrushableBlock
  */

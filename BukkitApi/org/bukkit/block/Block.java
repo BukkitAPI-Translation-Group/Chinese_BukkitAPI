@@ -598,17 +598,23 @@ public interface Block extends Metadatable, Translatable {
     Collection<ItemStack> getDrops(@NotNull ItemStack tool, @Nullable Entity entity);
 
     /**
+     * 返回给定物品是否是破坏此方块的首选工具.
+     * <p>
+     * 原文:
      * Returns if the given item is a preferred choice to break this Block.
      *
      * In some cases this determines if a block will drop anything or extra
      * loot.
      *
-     * @param tool The tool or item used for breaking this block
-     * @return true if the tool is preferred for breaking this block.
+     * @param tool 用于破坏此方块的工具或物品
+     * @return 如果该工具是破坏此方块的首选则返回true
      */
     boolean isPreferredTool(@NotNull ItemStack tool);
 
     /**
+     * 获取指定玩家破坏此方块的速度, 考虑工具、药水效果、玩家是否在水中、附魔等因素.
+     * <p>
+     * 原文:
      * Gets the speed at which the given player would break this block, taking
      * into account tools, potion effects, whether or not the player is in
      * water, enchantments, etc.
@@ -619,8 +625,12 @@ public interface Block extends Metadatable, Translatable {
      * breaking a block, e.g. if a potion effect is applied or expires, or the
      * player jumps/enters water.
      *
-     * @param player player breaking the block
-     * @return the speed at which the player breaks this block
+     * 返回值是每刻破坏方块的进度量. 当总破坏进度达到 {@code 1.0f} 时,
+     * 方块被破坏. 请注意, 在破坏方块的过程中破坏速度可能会发生变化,
+     * 例如如果药水效果被应用或过期, 或者玩家跳跃/进入水中.
+     *
+     * @param player 破坏方块的玩家
+     * @return 玩家破坏此方块的速度
      */
     float getBreakSpeed(@NotNull Player player);
 
@@ -646,19 +656,25 @@ public interface Block extends Metadatable, Translatable {
     boolean isPassable();
 
     /**
+     * 对此特定方块执行射线追踪, 使用其精确的碰撞形状检查碰撞情况.
+     * <p>
+     * 原文:
      * Performs a ray trace that checks for collision with this specific block
      * in its current state using its precise collision shape.
      *
-     * @param start the start location
-     * @param direction the ray direction
-     * @param maxDistance the maximum distance
-     * @param fluidCollisionMode the fluid collision mode
-     * @return the ray trace hit result, or <code>null</code> if there is no hit
+     * @param start 起始位置
+     * @param direction 射线方向
+     * @param maxDistance 最大距离
+     * @param fluidCollisionMode 流体碰撞模式
+     * @return 射线追踪命中结果, 如果没有命中则返回 <code>null</code>
      */
     @Nullable
     RayTraceResult rayTrace(@NotNull Location start, @NotNull Vector direction, double maxDistance, @NotNull FluidCollisionMode fluidCollisionMode);
 
     /**
+     * 获取此方块的大致边界框.
+     * <p>
+     * 原文:
      * Gets the approximate bounding box for this block.
      * <p>
      * This isn't exact as some blocks {@link org.bukkit.block.data.type.Stairs}
@@ -670,26 +686,38 @@ public interface Block extends Metadatable, Translatable {
      * This method will return an empty bounding box if the geometric shape of
      * the block is empty (such as air blocks).
      *
-     * @return the approximate bounding box of the block
+     * 这不是精确的, 因为一些方块(如楼梯)包含多个边界框来建立它们的完整形态.
+     *
+     * 此外, 边界框可能与碰撞形状不完全相同(例如仙人掌, 它是一个16/16的方块,
+     * 但碰撞边界为15/16).
+     *
+     * 如果方块的几何形状为空(如空气方块), 此方法将返回一个空的边界框.
+     *
+     * @return 方块的大致边界框
      */
     @NotNull
     BoundingBox getBoundingBox();
 
     /**
+     * 获取此方块的碰撞形状.
+     * <p>
+     * 原文:
      * Gets the collision shape of this block.
      *
-     * @return a {@link VoxelShape} representing the collision shape of this
-     * block.
+     * @return 表示此方块碰撞形状的 {@link VoxelShape}
      */
     @NotNull
     VoxelShape getCollisionShape();
 
     /**
+     * 检查此方块是否是指定方块数据的有效放置位置.
+     * <p>
+     * 原文:
      * Checks if this block is a valid placement location for the specified
      * block data.
      *
-     * @param data the block data to check
-     * @return <code>true</code> if the block data can be placed here
+     * @param data 要检查的方块数据
+     * @return 如果可以在此处放置方块数据则返回 <code>true</code>
      */
     boolean canPlace(@NotNull BlockData data);
 }

@@ -53,19 +53,25 @@ public interface BlockState extends Metadatable {
     BlockData getBlockData();
 
     /**
+     * 返回此BlockState的未放置副本.
+     * <p>
+     * 原文:
      * Returns a copy of this BlockState as an unplaced BlockState.
      *
-     * @return a copy of the block state
+     * @return 方块状态的副本
      */
     @NotNull
     @ApiStatus.Experimental
     BlockState copy();
 
     /**
+     * 将此状态复制到另一个位置作为未放置的BlockState.
+     * <p>
+     * 原文:
      * Copies the state to another block as an unplaced BlockState.
      *
-     * @param location the location to copy the block state to
-     * @return the new block state
+     * @param location 要复制方块状态到的位置
+     * @return 新的方块状态
      */
     @NotNull
     @ApiStatus.Experimental

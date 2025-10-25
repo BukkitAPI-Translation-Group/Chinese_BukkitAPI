@@ -9,7 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a weighted spawn potential that can be added to a monster spawner.
+ * 表示一个可以添加到怪物生成器的加权生成潜力。
+ * 
+ * 原文:Represents a weighted spawn potential that can be added to a monster spawner.
  */
 public class SpawnerEntry {
 
@@ -32,9 +34,12 @@ public class SpawnerEntry {
     }
 
     /**
-     * Gets the {@link EntitySnapshot} for this SpawnerEntry.
+     * 获取此SpawnerEntry的{@link EntitySnapshot}。
+     * 
+     * 原文:Gets the {@link EntitySnapshot} for this SpawnerEntry.
      *
-     * @return the snapshot
+     * @return 实体快照
+     * 原文:the snapshot
      */
     @NotNull
     public EntitySnapshot getSnapshot() {
@@ -42,9 +47,12 @@ public class SpawnerEntry {
     }
 
     /**
-     * Sets the {@link EntitySnapshot} for this SpawnerEntry.
+     * 设置此SpawnerEntry的{@link EntitySnapshot}。
+     * 
+     * 原文:Sets the {@link EntitySnapshot} for this SpawnerEntry.
      *
-     * @param snapshot the snapshot
+     * @param snapshot 实体快照
+     * 原文:the snapshot
      */
     public void setSnapshot(@NotNull EntitySnapshot snapshot) {
         Preconditions.checkArgument(snapshot != null, "Snapshot cannot be null");
@@ -52,30 +60,39 @@ public class SpawnerEntry {
     }
 
     /**
-     * Gets the weight for this SpawnerEntry, when added to a spawner entries
+     * 获取此SpawnerEntry的权重，当添加到生成器时，权重较高的条目会更频繁地生成。
+     * 
+     * 原文:Gets the weight for this SpawnerEntry, when added to a spawner entries
      * with higher weight will spawn more often.
      *
-     * @return the weight
+     * @return 权重值
+     * 原文:the weight
      */
     public int getSpawnWeight() {
         return spawnWeight;
     }
 
     /**
-     * Sets the weight for this SpawnerEntry, when added to a spawner entries
+     * 设置此SpawnerEntry的权重，当添加到生成器时，权重较高的条目会更频繁地生成。
+     * 
+     * 原文:Sets the weight for this SpawnerEntry, when added to a spawner entries
      * with higher weight will spawn more often.
      *
-     * @param spawnWeight the new spawn weight
+     * @param spawnWeight 新的生成权重
+     * 原文:the new spawn weight
      */
     public void setSpawnWeight(int spawnWeight) {
         this.spawnWeight = spawnWeight;
     }
 
     /**
-     * Gets a copy of the {@link SpawnRule} for this SpawnerEntry, or null if
+     * 获取此SpawnerEntry的{@link SpawnRule}的副本，如果没有设置则返回null。
+     * 
+     * 原文:Gets a copy of the {@link SpawnRule} for this SpawnerEntry, or null if
      * none has been set.
      *
-     * @return a copy of the spawn rule or null
+     * @return 生成规则的副本或null
+     * 原文:a copy of the spawn rule or null
      */
     @Nullable
     public SpawnRule getSpawnRule() {
@@ -83,19 +100,25 @@ public class SpawnerEntry {
     }
 
     /**
-     * Sets the {@link SpawnRule} for this SpawnerEntry, null may be used to
+     * 设置此SpawnerEntry的{@link SpawnRule}，可以使用null来清除当前的生成规则。
+     * 
+     * 原文:Sets the {@link SpawnRule} for this SpawnerEntry, null may be used to
      * clear the current spawn rule.
      *
-     * @param spawnRule the new spawn rule to use or null
+     * @param spawnRule 要使用的新生成规则或null
+     * 原文:the new spawn rule to use or null
      */
     public void setSpawnRule(@Nullable SpawnRule spawnRule) {
         this.spawnRule = spawnRule;
     }
 
     /**
-     * Gets the equipment which will be applied to the spawned entity.
+     * 获取将应用于生成实体的装备。
+     * 
+     * 原文:Gets the equipment which will be applied to the spawned entity.
      *
-     * @return the equipment, or null
+     * @return 装备，或null
+     * 原文:the equipment, or null
      */
     @Nullable
     public Equipment getEquipment() {
@@ -103,16 +126,21 @@ public class SpawnerEntry {
     }
 
     /**
-     * Sets the equipment which will be applied to the spawned entity.
+     * 设置将应用于生成实体的装备。
+     * 
+     * 原文:Sets the equipment which will be applied to the spawned entity.
      *
-     * @param equipment new equipment, or null
+     * @param equipment 新装备，或null
+     * 原文:new equipment, or null
      */
     public void setEquipment(@Nullable Equipment equipment) {
         this.equipment = equipment;
     }
 
     /**
-     * Represents the equipment loot table applied to a spawned entity.
+     * 表示应用于生成实体的装备战利品表。
+     * 
+     * 原文:Represents the equipment loot table applied to a spawned entity.
      */
     public static class Equipment {
 
@@ -125,24 +153,32 @@ public class SpawnerEntry {
         }
 
         /**
-         * Set the loot table for the entity.
+         * 设置实体的战利品表。
+         * <br>
+         * 要移除战利品表，使用null。
+         * 
+         * 原文:Set the loot table for the entity.
          * <br>
          * To remove a loot table use null.
          *
-         * @param table this {@link org.bukkit.entity.Mob} will have.
+         * @param table 这个{@link org.bukkit.entity.Mob}将拥有的战利品表。
+         * 原文:table this {@link org.bukkit.entity.Mob} will have.
          */
         public void setEquipmentLootTable(@NotNull LootTable table) {
             this.equipmentLootTable = table;
         }
 
         /**
-         * Gets the loot table for the entity.
+         * 获取实体的战利品表。
          * <br>
-         *
+         * 
+         * 原文:Gets the loot table for the entity.
+         * <br>
          * If an entity does not have a loot table, this will return null, NOT
          * an empty loot table.
          *
-         * @return the loot table for this entity.
+         * @return 这个实体的战利品表。
+         * 原文:the loot table for this entity.
          */
         @NotNull
         public LootTable getEquipmentLootTable() {
@@ -150,11 +186,15 @@ public class SpawnerEntry {
         }
 
         /**
-         * Gets a mutable map of the drop chances for each slot of the entity.
+         * 获取实体每个槽位掉落概率的可变映射。
+         * 如果非null，实体的掉落概率将被给定的值覆盖。
+         * 
+         * 原文:Gets a mutable map of the drop chances for each slot of the entity.
          * If non-null, the entity's drop chances will be overridden with the
          * given value.
          *
-         * @return mutable map of drop chances
+         * @return 掉落概率的可变映射
+         * 原文:mutable map of drop chances
          */
         @NotNull
         public Map<EquipmentSlot, Float> getDropChances() {
