@@ -36,7 +36,7 @@ public interface Minecart extends Vehicle {
 
     /**
      * Sets the maximum speed of a minecart. Must be nonnegative. Default is
-     * 0.4D or {@link GameRule#MINECART_MAX_SPEED}.
+     * 0.4D or {@link GameRule#MAX_MINECART_SPEED}.
      *
      * @param speed The max speed
      */
