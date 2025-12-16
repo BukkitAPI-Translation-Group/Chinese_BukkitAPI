@@ -256,6 +256,12 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     int getCustomModelData();
 
     /**
+     * 获取此物品上设置的自定义模型数据组件, 或创建一个空的自定义模型数据实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setCustomModelDataComponent(CustomModelDataComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the custom model data set on this item, or creates an empty custom
      * model data instance.
      * <p>
@@ -265,7 +271,7 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * {@link #setCustomModelDataComponent(CustomModelDataComponent)} to apply
      * the changes.
      *
-     * @return component
+     * @return 自定义模型数据组件
      */
     @NotNull
     CustomModelDataComponent getCustomModelDataComponent();
@@ -291,37 +297,52 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setCustomModelData(@Nullable Integer data);
 
     /**
+     * 检查是否设置了自定义模型数据组件.
+     * <p>
+     * 原文:
      * Checks if the custom model data component is set.
      *
-     * @return if a custom model data component is set
+     * @return 如果设置了自定义模型数据组件则返回 true
      */
     boolean hasCustomModelDataComponent();
 
     /**
+     * 设置自定义模型数据组件.
+     * <p>
+     * 原文:
      * Sets the custom model data component.
      *
-     * @param customModelData new component
+     * @param customModelData 新的自定义模型数据组件
      */
     void setCustomModelDataComponent(@Nullable CustomModelDataComponent customModelData);
 
     /**
+     * 获取是否设置了可附魔性组件.
+     * <p>
+     * 原文:
      * Gets if the enchantable component is set.
      *
-     * @return if an enchantable is set.
+     * @return 如果设置了可附魔性组件则返回 true
      */
     boolean hasEnchantable();
 
     /**
+     * 获取可附魔性组件. 数值越高, 允许的附魔等级也越高.
+     * <p>
+     * 原文:
      * Gets the enchantable component. Higher values allow higher enchantments.
      *
-     * @return max_stack_size
+     * @return 可附魔性等级
      */
     int getEnchantable();
 
     /**
+     * 设置可附魔性组件. 数值越高, 允许的附魔等级也越高.
+     * <p>
+     * 原文:
      * Sets the enchantable. Higher values allow higher enchantments.
      *
-     * @param enchantable enchantable value
+     * @param enchantable 可附魔性等级
      */
     void setEnchantable(@Nullable Integer enchantable);
 
@@ -458,32 +479,44 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     boolean hasItemFlag(@NotNull ItemFlag flag);
 
     /**
+     * 获取此物品是否设置了隐藏工具提示. 设置此属性的物品将不会显示任何工具提示.
+     * <p>
+     * 原文:
      * Gets if this item has hide_tooltip set. An item with this set will not
      * show any tooltip whatsoever.
      *
-     * @return hide_tooltip
+     * @return 是否隐藏工具提示
      */
     boolean isHideTooltip();
 
     /**
+     * 设置此物品是否启用隐藏工具提示. 设置此属性的物品将不会显示任何工具提示.
+     * <p>
+     * 原文:
      * Sets if this item has hide_tooltip set. An item with this set will not
      * show any tooltip whatsoever.
      *
-     * @param hideTooltip new hide_tooltip
+     * @param hideTooltip 是否隐藏工具提示
      */
     void setHideTooltip(boolean hideTooltip);
 
     /**
+     * 获取此物品是否拥有自定义的工具提示样式.
+     * <p>
+     * 原文:
      * Gets if this item has a custom tooltip style.
      *
-     * @return if a tooltip_style is set
+     * @return 如果设置了工具提示样式则返回 true
      */
     boolean hasTooltipStyle();
 
     /**
+     * 获取自定义的工具提示样式.
+     * <p>
+     * 原文:
      * Gets the custom tooltip style.
      *
-     * @return the tooltip style
+     * @return 工具提示样式对应的命名空间键, 如果未设置则返回 null
      */
     @Nullable
     NamespacedKey getTooltipStyle();
@@ -499,24 +532,33 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setTooltipStyle(@Nullable NamespacedKey tooltipStyle);
 
     /**
+     * 获取此物品是否拥有自定义的物品模型.
+     * <p>
+     * 原文:
      * Gets if this item has a custom item model.
      *
-     * @return if a item_model is set
+     * @return 如果设置了自定义物品模型则返回 true
      */
     boolean hasItemModel();
 
     /**
+     * 获取自定义的物品模型.
+     * <p>
+     * 原文:
      * Gets the custom item model.
      *
-     * @return the item model
+     * @return 物品模型对应的命名空间键, 如果未设置则返回 null
      */
     @Nullable
     NamespacedKey getItemModel();
 
     /**
+     * 设置自定义的物品模型.
+     * <p>
+     * 原文:
      * Sets the custom item model.
      *
-     * @param itemModel the new model
+     * @param itemModel 新的物品模型对应的命名空间键
      */
     void setItemModel(@Nullable NamespacedKey itemModel);
 
@@ -544,9 +586,12 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setUnbreakable(boolean unbreakable);
 
     /**
+     * 获取是否设置了附魔光效覆盖.
+     * <p>
+     * 原文:
      * Gets if an enchantment_glint_override is set.
      *
-     * @return if an enchantment_glint_override is set
+     * @return 如果设置了附魔光效覆盖则返回 true
      */
     boolean hasEnchantmentGlintOverride();
 
@@ -583,125 +628,175 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setEnchantmentGlintOverride(@Nullable Boolean override);
 
     /**
+     * 检查此物品是否为滑翔装备. 如果是, 当玩家装备此物品时将被允许滑翔.
+     * <p>
+     * 原文:
      * Checks if this item is a glider. If true, this item will allow players to
      * glide when it is equipped.
      *
-     * @return glider
+     * @return 此物品是否为滑翔装备
      */
     boolean isGlider();
 
     /**
+     * 设置此物品是否为滑翔装备. 如果是, 当玩家装备此物品时将被允许滑翔.
+     * <p>
+     * 原文:
      * Sets if this item is a glider. If true, this item will allow players to
      * glide when it is equipped.
      *
-     * @param glider glider
+     * @param glider 是否设置为滑翔装备
      */
     void setGlider(boolean glider);
 
     /**
+     * 检查此物品是否耐火. 如果为 true, 它将在火或熔岩中不会燃烧.
+     * <p>
+     * 原文:
      * Checks if this item is fire_resistant. If true, it will not burn in fire
      * or lava.
      *
-     * @return fire_resistant
-     * @deprecated use {@link #getDamageResistant()} and
-     * {@link DamageTypeTags#IS_FIRE}
+     * @return 此物品是否耐火
+     * @deprecated 请使用 {@link #getDamageResistant()} 和 {@link DamageTypeTags#IS_FIRE}
      */
     @Deprecated(since = "1.21.2")
     boolean isFireResistant();
 
     /**
+     * 设置此物品是否耐火. 如果为 true, 它将在火或熔岩中不会燃烧.
+     * <p>
+     * 原文:
      * Sets if this item is fire_resistant. If true, it will not burn in fire
      * or lava.
      *
-     * @param fireResistant fire_resistant
-     * @deprecated use {@link #setDamageResistant(org.bukkit.Tag)} and
-     * {@link DamageTypeTags#IS_FIRE}
+     * @param fireResistant 是否设置为耐火
+     * @deprecated 请使用 {@link #setDamageResistant(org.bukkit.Tag)} 和 {@link DamageTypeTags#IS_FIRE}
      */
     @Deprecated(since = "1.21.2")
     void setFireResistant(boolean fireResistant);
 
     /**
+     * 获取此物品是否对特定类型的伤害有抗性.
+     * <p>
+     * 原文:
      * Gets if this item is resistant to certain types of damage.
      *
-     * @return true if a resistance is set
+     * @return 如果设置了伤害抗性则返回 true
      */
     boolean hasDamageResistant();
 
     /**
+     * 获取当此物品以实体形式存在时, 其对何种伤害类型具有抗性.
+     * <p>
+     * 插件在调用此方法前应检查 {@link #hasDamageResistant()} 是否返回 true.
+     * <p>
+     * 原文:
      * Gets the type of damage this item will be resistant to when in entity
      * form.
-     *
+     * <p>
      * Plugins should check {@link #hasDamageResistant()} before calling this
      * method.
      *
-     * @return damage type
+     * @return 伤害类型标签, 如果未设置则返回 null
      */
     @Nullable
     Tag<DamageType> getDamageResistant();
 
     /**
+     * 设置当此物品以实体形式存在时, 其对何种伤害类型具有抗性.
+     * <p>
+     * 原文:
      * Sets the type of damage this item will be resistant to when in entity
      * form.
      *
-     * @param tag the tag, or null to clear
+     * @param tag 伤害类型标签, 设置为 null 以清除
      */
     void setDamageResistant(@Nullable Tag<DamageType> tag);
 
     /**
+     * 获取是否设置了最大堆叠数量.
+     * <p>
+     * 原文:
      * Gets if the max_stack_size is set.
      *
-     * @return if a max_stack_size is set.
+     * @return 如果设置了最大堆叠数量则返回 true
      */
     boolean hasMaxStackSize();
 
     /**
+     * 获取最大堆叠数量. 这是物品可以堆叠的最大数量.
+     * <p>
+     * 原文:
      * Gets the max_stack_size. This is the maximum amount which an item will
      * stack.
      *
-     * @return max_stack_size
+     * @return 最大堆叠数量
      */
     int getMaxStackSize();
 
     /**
+     * 设置最大堆叠数量. 这是物品可以堆叠的最大数量.
+     * <p>
+     * 原文:
      * Sets the max_stack_size. This is the maximum amount which an item will
      * stack.
      *
-     * @param max max_stack_size, between 1 and 99 (inclusive)
+     * @param max 最大堆叠数量, 必须在 1 到 99 之间(包含边界)
      */
     void setMaxStackSize(@Nullable Integer max);
 
     /**
+     * 获取是否设置了稀有度.
+     * <p>
+     * 原文:
      * Gets if the rarity is set.
      *
-     * @return rarity
+     * @return 如果设置了稀有度则返回 true
      */
     boolean hasRarity();
 
     /**
+     * 获取物品的稀有度.
+     * <p>
+     * 插件在调用此方法前应检查 {@link #hasRarity()} 是否返回 true.
+     * <p>
+     * 原文:
      * Gets the item rarity.
-     *
+     * <p>
      * Plugins should check {@link #hasRarity()} before calling this method.
      *
-     * @return rarity
+     * @return 物品稀有度
      */
     @NotNull
     ItemRarity getRarity();
 
     /**
+     * 设置物品的稀有度.
+     * <p>
+     * 原文:
      * Sets the item rarity.
      *
-     * @param rarity new rarity
+     * @param rarity 新的物品稀有度
      */
     void setRarity(@Nullable ItemRarity rarity);
 
     /**
+     * 检查是否设置了使用后残留物.
+     * <p>
+     * 原文:
      * Checks if the use remainder is set.
      *
-     * @return if a use remainder item is set
+     * @return 如果设置了使用后残留物则返回 true
      */
     boolean hasUseRemainder();
 
     /**
+     * 获取当此物品被使用后, 其将转换为何种物品.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setUseRemainder(ItemStack)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the item which this item will convert to when used.
      * <p>
      * The returned component is a snapshot of its current state and does not
@@ -709,26 +804,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with {@link #setUseRemainder(ItemStack)}
      * to apply the changes.
      *
-     * @return remainder
+     * @return 使用后生成的物品堆栈, 如果未设置则返回 null
      */
     @Nullable
     ItemStack getUseRemainder();
 
     /**
+     * 设置当此物品被使用后, 其将转换为何种物品.
+     * <p>
+     * 原文:
      * Sets the item which this item will convert to when used.
      *
-     * @param remainder new item
+     * @param remainder 新的使用后生成的物品堆栈
      */
     void setUseRemainder(@Nullable ItemStack remainder);
 
     /**
+     * 检查是否设置了使用冷却.
+     * <p>
+     * 原文:
      * Checks if the use cooldown is set.
      *
-     * @return if a use cooldown is set
+     * @return 如果设置了使用冷却则返回 true
      */
     boolean hasUseCooldown();
 
     /**
+     * 获取此物品上设置的使用冷却组件, 或创建一个空的使用冷却实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setUseCooldown(UseCooldownComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the use cooldown set on this item, or creates an empty cooldown
      * instance.
      * <p>
@@ -737,26 +844,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setUseCooldown(UseCooldownComponent)} to apply the changes.
      *
-     * @return cooldown
+     * @return 使用冷却组件
      */
     @NotNull
     UseCooldownComponent getUseCooldown();
 
     /**
+     * 设置物品的使用冷却组件.
+     * <p>
+     * 原文:
      * Sets the item use cooldown.
      *
-     * @param cooldown new cooldown
+     * @param cooldown 新的使用冷却组件
      */
     void setUseCooldown(@Nullable UseCooldownComponent cooldown);
 
     /**
+     * 检查是否设置了食物组件.
+     * <p>
+     * 原文:
      * Checks if the food is set.
      *
-     * @return if a food is set
+     * @return 如果设置了食物组件则返回 true
      */
     boolean hasFood();
 
     /**
+     * 获取此物品上设置的食物组件, 或创建一个空的食物实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setFood(FoodComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the food set on this item, or creates an empty food instance.
      * <p>
      * The returned component is a snapshot of its current state and does not
@@ -764,26 +883,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with {@link #setFood(FoodComponent)} to
      * apply the changes.
      *
-     * @return food
+     * @return 食物组件
      */
     @NotNull
     FoodComponent getFood();
 
     /**
+     * 设置物品的食物组件.
+     * <p>
+     * 原文:
      * Sets the item food.
      *
-     * @param food new food
+     * @param food 新的食物组件
      */
     void setFood(@Nullable FoodComponent food);
 
     /**
+     * 检查是否设置了消耗品组件.
+     * <p>
+     * 原文:
      * Checks if the consumable is set.
      *
-     * @return if a consumable is set
+     * @return 如果设置了消耗品组件则返回 true
      */
     boolean hasConsumable();
 
     /**
+     * 获取此物品上设置的消耗品组件, 或创建一个空的消耗品实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setConsumable(ConsumableComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the consumable set on this item, or creates an empty consumable instance.
      * <p>
      * The returned component is a snapshot of its current state and does not
@@ -791,26 +922,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with {@link #setConsumable(ConsumableComponent)} to
      * apply the changes.
      *
-     * @return food
+     * @return 消耗品组件
      */
     @NotNull
     ConsumableComponent getConsumable();
 
     /**
+     * 设置物品的消耗品组件.
+     * <p>
+     * 原文:
      * Sets the item consumable.
      *
-     * @param consumable new consumable
+     * @param consumable 新的消耗品组件
      */
     void setConsumable(@Nullable ConsumableComponent consumable);
 
     /**
+     * 检查是否设置了工具组件.
+     * <p>
+     * 原文:
      * Checks if the tool is set.
      *
-     * @return if a tool is set
+     * @return 如果设置了工具组件则返回 true
      */
     boolean hasTool();
 
     /**
+     * 获取此物品上设置的工具组件, 或创建一个空的工具实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setTool(ToolComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the tool set on this item, or creates an empty tool instance.
      * <p>
      * The returned component is a snapshot of its current state and does not
@@ -818,26 +961,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with {@link #setTool(ToolComponent)} to
      * apply the changes.
      *
-     * @return tool
+     * @return 工具组件
      */
     @NotNull
     ToolComponent getTool();
 
     /**
+     * 设置物品的工具组件.
+     * <p>
+     * 原文:
      * Sets the item tool.
      *
-     * @param tool new tool
+     * @param tool 新的工具组件
      */
     void setTool(@Nullable ToolComponent tool);
 
     /**
+     * 检查是否设置了武器组件.
+     * <p>
+     * 原文:
      * Checks if the weapon is set.
      *
-     * @return if a weapon is set
+     * @return 如果设置了武器组件则返回 true
      */
     boolean hasWeapon();
 
     /**
+     * 获取此物品上设置的武器组件, 或创建一个空的武器实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setWeapon(WeaponComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the weapon set on this item, or creates an empty weapon instance.
      * <p>
      * The returned component is a snapshot of its current state and does not
@@ -845,26 +1000,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with {@link #setWeapon(WeaponComponent)} to
      * apply the changes.
      *
-     * @return weapon
+     * @return 武器组件
      */
     @NotNull
     WeaponComponent getWeapon();
 
     /**
+     * 设置物品的武器组件.
+     * <p>
+     * 原文:
      * Sets the item weapon.
      *
-     * @param weapon new weapon
+     * @param weapon 新的武器组件
      */
     void setWeapon(@Nullable WeaponComponent weapon);
 
     /**
+     * 检查是否设置了 {@link BlocksAttacksComponent 格挡攻击组件}.
+     * <p>
+     * 原文:
      * Checks if the {@link BlocksAttacksComponent} is set.
      *
-     * @return if a {@link BlocksAttacksComponent} is set
+     * @return 如果设置了格挡攻击组件则返回 true
      */
     boolean hasBlocksAttacks();
 
     /**
+     * 获取此物品上设置的格挡攻击组件, 或创建一个空的格挡攻击组件实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setBlocksAttacks(BlocksAttacksComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the {@link BlocksAttacksComponent} set on this item, or creates an
      * empty {@link BlocksAttacksComponent} instance.
      * <p>
@@ -873,26 +1040,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setBlocksAttacks(BlocksAttacksComponent)} to apply the changes.
      *
-     * @return component
+     * @return 格挡攻击组件
      */
     @NotNull
     BlocksAttacksComponent getBlocksAttacks();
 
     /**
+     * 设置物品的{@link BlocksAttacksComponent 格挡攻击组件}.
+     * <p>
+     * 原文:
      * Sets the item {@link BlocksAttacksComponent}.
      *
-     * @param blocksAttacks new component
+     * @param blocksAttacks 新的格挡攻击组件
      */
     void setBlocksAttacks(@Nullable BlocksAttacksComponent blocksAttacks);
 
     /**
+     * 检查是否设置了可装备组件.
+     * <p>
+     * 原文:
      * Checks if the equippable is set.
      *
-     * @return if a equippable is set
+     * @return 如果设置了可装备组件则返回 true
      */
     boolean hasEquippable();
 
     /**
+     * 获取此物品上设置的可装备组件, 或创建一个空的可装备实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setEquippable(EquippableComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the equippable set on this item, or creates an empty equippable
      * instance.
      * <p>
@@ -901,26 +1080,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setEquippable(EquippableComponent)} to apply the changes.
      *
-     * @return equippable
+     * @return 可装备组件
      */
     @NotNull
     EquippableComponent getEquippable();
 
     /**
+     * 设置物品的可装备组件.
+     * <p>
+     * 原文:
      * Sets the equippable tool.
      *
-     * @param equippable new equippable
+     * @param equippable 新的可装备组件
      */
     void setEquippable(@Nullable EquippableComponent equippable);
 
     /**
+     * 检查是否设置了唱片机可播放组件.
+     * <p>
+     * 原文:
      * Checks if the jukebox playable is set.
      *
-     * @return if a jukebox playable is set
+     * @return 如果设置了唱片机可播放组件则返回 true
      */
     boolean hasJukeboxPlayable();
 
     /**
+     * 获取此物品上设置的唱片机可播放组件.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setJukeboxPlayable(org.bukkit.inventory.meta.components.JukeboxComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the jukebox playable component set on this item.
      * <p>
      * The returned component is a snapshot of its current state and does not
@@ -929,39 +1120,53 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * {@link #setJukeboxPlayable(org.bukkit.inventory.meta.components.JukeboxComponent)}
      * to apply the changes.
      *
-     * @return component
+     * @return 唱片机可播放组件, 如果未设置则返回 null
      */
     @Nullable
     JukeboxPlayableComponent getJukeboxPlayable();
 
     /**
+     * 设置物品的唱片机可播放组件.
+     * <p>
+     * 原文:
      * Sets the item tool.
      *
-     * @param jukeboxPlayable new component
+     * @param jukeboxPlayable 新的唱片机可播放组件
      */
     void setJukeboxPlayable(@Nullable JukeboxPlayableComponent jukeboxPlayable);
 
     /**
+     * 获取是否设置了损坏音效.
+     * <p>
+     * 原文:
      * Gets if the break sound is set.
      *
-     * @return if break sound is set
+     * @return 如果设置了损坏音效则返回 true
      */
     boolean hasBreakSound();
 
     /**
+     * 获取当物品损坏时播放的音效.
+     * <p>
+     * 插件在调用此方法前应检查 {@link #hasBreakSound()} 是否返回 true.
+     * <p>
+     * 原文:
      * Gets the sound to play when the item is broken.
-     *
+     * <p>
      * Plugins should check {@link #hasBreakSound()} before calling this method.
      *
-     * @return the sound
+     * @return 损坏时播放的音效, 如果未设置则返回 null
      */
     @Nullable
     Sound getBreakSound();
 
     /**
+     * 设置当物品损坏时播放的音效.
+     * <p>
+     * 原文:
      * Sets the sound to play when the item is broken.
      *
-     * @param sound sound
+     * @param sound 损坏时播放的音效
      */
     void setBreakSound(@Nullable Sound sound);
 
@@ -1120,6 +1325,13 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     boolean removeAttributeModifier(@NotNull Attribute attribute, @NotNull AttributeModifier modifier);
 
     /**
+     * 将此 ItemMeta 转换为 NBT 字符串. 如果此 ItemMeta 没有任何 NBT 数据, 则返回 {@code "{}"}.
+     * <p>
+     * 译注: NBT (Named Binary Tag) 是 Minecraft 中用于存储数据的一种格式.
+     * <p>
+     * 此字符串<strong>绝不应</strong>被视为可序列化的值. 如果需要序列化, 则应使用 {@link ConfigurationSerializable} API.
+     * <p>
+     * 原文:
      * Get this ItemMeta as an NBT string. If this ItemMeta does not have any
      * NBT, then {@code "{}"} will be returned.
      * <p>
@@ -1127,12 +1339,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * serialization is desired, the {@link ConfigurationSerializable} API should be used
      * instead.
      *
-     * @return the NBT string
+     * @return NBT 字符串
      */
     @NotNull
     String getAsString();
 
     /**
+     * 将此 ItemMeta 转换为组件兼容的字符串. 如果此 ItemMeta 不包含任何组件, 则返回 {@code "[]"}.
+     * <p>
+     * 此方法的结果应生成一个代表由此 ItemMeta 实例修改的组件的字符串. 当与前置的物品类型一起传递给 {@link ItemFactory#createItemStack(String)} 时,
+     * 它将创建一个拥有与此 ItemMeta 实例完全匹配的 ItemMeta 的 ItemStack. 请注意, 此方法<strong>仅</strong>返回组件部分,
+     * 不能单独传递给 createItemStack().
+     * 示例如下:
+     * <pre>
+     * ItemStack itemStack = // ... 从某处获取的物品堆栈
+     * ItemMeta itemMeta = itemStack.getItemMeta();
+     *
+     * String components = itemMeta.getAsComponentString(); // 示例: "[minecraft:damage=53]"
+     * String itemTypeKey = itemStack.getType().getKey().toString(); // 示例: "minecraft:diamond_sword"
+     * String itemAsString = itemTypeKey + components; // 结果: "minecraft:diamond_sword[minecraft:damage=53]"
+     *
+     * ItemStack recreatedItemStack = Bukkit.getItemFactory().createItemStack(itemAsString);
+     * assert itemStack.isSimilar(recreatedItemStack); // 应为 true*
+     * </pre>
+     * <p>
+     * *未被此 ItemMeta 实例表示或显式覆盖的组件将不会包含在结果字符串中, 因此可能导致 ItemStack <em>不完全</em>匹配.
+     * 例如, 如果未设置 {@link #setDisplayName(String)}, 则自定义名称组件将不会被包含.
+     * 或者, 如果此 ItemMeta 是 PotionMeta, 它将不包含与磁石指针、旗帜或书等相关的任何组件,
+     * 仅包含可通过 PotionMeta 实例修改的组件.
+     * <p>
+     * 此字符串<strong>绝不应</strong>被视为可序列化的值. 如果需要序列化, 则应使用 {@link ConfigurationSerializable} API.
+     * <p>
+     * 原文:
      * Get this ItemMeta as a component-compliant string. If this ItemMeta does
      * not contain any components, then {@code "[]"} will be returned.
      * <p>
@@ -1165,7 +1403,7 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * serialization is desired, the {@link ConfigurationSerializable} API should be used
      * instead.
      *
-     * @return the component-compliant string
+     * @return 组件兼容的字符串
      */
     @NotNull
     String getAsComponentString();
