@@ -39,7 +39,7 @@ public interface UseCooldownComponent extends ConfigurationSerializable {
     /**
      * Sets the custom cooldown group to be used for similar items.
      *
-     * @param song the cooldown group
+     * @param key the cooldown group
      */
-    void setCooldownGroup(@Nullable NamespacedKey song);
+    void setCooldownGroup(@Nullable NamespacedKey key);
 }

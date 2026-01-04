@@ -2,13 +2,11 @@ package org.bukkit.spawner;
 
 import java.util.Map;
 import org.bukkit.loot.LootTable;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * Represents one of the configurations of a trial spawner.
  */
-@ApiStatus.Experimental
 public interface TrialSpawnerConfiguration extends BaseSpawner {
 
     /**

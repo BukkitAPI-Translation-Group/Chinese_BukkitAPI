@@ -404,6 +404,18 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> SMOOTH_SANDSTONE = getItemType("smooth_sandstone");
     ItemType.Typed<ItemMeta> SMOOTH_STONE = getItemType("smooth_stone");
     ItemType.Typed<ItemMeta> BRICKS = getItemType("bricks");
+    ItemType.Typed<ItemMeta> ACACIA_SHELF = getItemType("acacia_shelf");
+    ItemType.Typed<ItemMeta> BAMBOO_SHELF = getItemType("bamboo_shelf");
+    ItemType.Typed<ItemMeta> BIRCH_SHELF = getItemType("birch_shelf");
+    ItemType.Typed<ItemMeta> CHERRY_SHELF = getItemType("cherry_shelf");
+    ItemType.Typed<ItemMeta> CRIMSON_SHELF = getItemType("crimson_shelf");
+    ItemType.Typed<ItemMeta> DARK_OAK_SHELF = getItemType("dark_oak_shelf");
+    ItemType.Typed<ItemMeta> JUNGLE_SHELF = getItemType("jungle_shelf");
+    ItemType.Typed<ItemMeta> MANGROVE_SHELF = getItemType("mangrove_shelf");
+    ItemType.Typed<ItemMeta> OAK_SHELF = getItemType("oak_shelf");
+    ItemType.Typed<ItemMeta> PALE_OAK_SHELF = getItemType("pale_oak_shelf");
+    ItemType.Typed<ItemMeta> SPRUCE_SHELF = getItemType("spruce_shelf");
+    ItemType.Typed<ItemMeta> WARPED_SHELF = getItemType("warped_shelf");
     ItemType.Typed<ItemMeta> BOOKSHELF = getItemType("bookshelf");
     /**
      * ItemMeta: {@link BlockStateMeta}
@@ -416,6 +428,7 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> MOSSY_COBBLESTONE = getItemType("mossy_cobblestone");
     ItemType.Typed<ItemMeta> OBSIDIAN = getItemType("obsidian");
     ItemType.Typed<ItemMeta> TORCH = getItemType("torch");
+    ItemType.Typed<ItemMeta> COPPER_TORCH = getItemType("copper_torch");
     ItemType.Typed<ItemMeta> END_ROD = getItemType("end_rod");
     ItemType.Typed<ItemMeta> CHORUS_PLANT = getItemType("chorus_plant");
     ItemType.Typed<ItemMeta> CHORUS_FLOWER = getItemType("chorus_flower");
@@ -498,7 +511,9 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> RED_MUSHROOM_BLOCK = getItemType("red_mushroom_block");
     ItemType.Typed<ItemMeta> MUSHROOM_STEM = getItemType("mushroom_stem");
     ItemType.Typed<ItemMeta> IRON_BARS = getItemType("iron_bars");
-    ItemType.Typed<ItemMeta> CHAIN = getItemType("chain");
+    ItemType.Typed<ItemMeta> COPPER_BARS = getItemType("copper_bars");
+    ItemType.Typed<ItemMeta> IRON_CHAIN = getItemType("iron_chain");
+    ItemType.Typed<ItemMeta> COPPER_CHAIN = getItemType("copper_chain");
     ItemType.Typed<ItemMeta> GLASS_PANE = getItemType("glass_pane");
     ItemType.Typed<ItemMeta> MELON = getItemType("melon");
     ItemType.Typed<ItemMeta> VINE = getItemType("vine");
@@ -915,6 +930,13 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> TARGET = getItemType("target");
     ItemType.Typed<ItemMeta> LEVER = getItemType("lever");
     ItemType.Typed<ItemMeta> LIGHTNING_ROD = getItemType("lightning_rod");
+    ItemType.Typed<ItemMeta> EXPOSED_LIGHTNING_ROD = getItemType("exposed_lightning_rod");
+    ItemType.Typed<ItemMeta> WEATHERED_LIGHTNING_ROD = getItemType("weathered_lightning_rod");
+    ItemType.Typed<ItemMeta> OXIDIZED_LIGHTNING_ROD = getItemType("oxidized_lightning_rod");
+    ItemType.Typed<ItemMeta> WAXED_LIGHTNING_ROD = getItemType("waxed_lightning_rod");
+    ItemType.Typed<ItemMeta> WAXED_EXPOSED_LIGHTNING_ROD = getItemType("waxed_exposed_lightning_rod");
+    ItemType.Typed<ItemMeta> WAXED_WEATHERED_LIGHTNING_ROD = getItemType("waxed_weathered_lightning_rod");
+    ItemType.Typed<ItemMeta> WAXED_OXIDIZED_LIGHTNING_ROD = getItemType("waxed_oxidized_lightning_rod");
     /**
      * ItemMeta: {@link BlockStateMeta}
      */
@@ -1120,6 +1142,11 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> WOODEN_PICKAXE = getItemType("wooden_pickaxe");
     ItemType.Typed<ItemMeta> WOODEN_AXE = getItemType("wooden_axe");
     ItemType.Typed<ItemMeta> WOODEN_HOE = getItemType("wooden_hoe");
+    ItemType.Typed<ItemMeta> COPPER_SWORD = getItemType("copper_sword");
+    ItemType.Typed<ItemMeta> COPPER_SHOVEL = getItemType("copper_shovel");
+    ItemType.Typed<ItemMeta> COPPER_PICKAXE = getItemType("copper_pickaxe");
+    ItemType.Typed<ItemMeta> COPPER_AXE = getItemType("copper_axe");
+    ItemType.Typed<ItemMeta> COPPER_HOE = getItemType("copper_hoe");
     ItemType.Typed<ItemMeta> STONE_SWORD = getItemType("stone_sword");
     ItemType.Typed<ItemMeta> STONE_SHOVEL = getItemType("stone_shovel");
     ItemType.Typed<ItemMeta> STONE_PICKAXE = getItemType("stone_pickaxe");
@@ -1169,6 +1196,22 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
      * ItemMeta: {@link ColorableArmorMeta}
      */
     ItemType.Typed<ColorableArmorMeta> LEATHER_BOOTS = getItemType("leather_boots");
+    /**
+     * ItemMeta: {@link ArmorMeta}
+     */
+    ItemType.Typed<ArmorMeta> COPPER_HELMET = getItemType("copper_helmet");
+    /**
+     * ItemMeta: {@link ArmorMeta}
+     */
+    ItemType.Typed<ArmorMeta> COPPER_CHESTPLATE = getItemType("copper_chestplate");
+    /**
+     * ItemMeta: {@link ArmorMeta}
+     */
+    ItemType.Typed<ArmorMeta> COPPER_LEGGINGS = getItemType("copper_leggings");
+    /**
+     * ItemMeta: {@link ArmorMeta}
+     */
+    ItemType.Typed<ArmorMeta> COPPER_BOOTS = getItemType("copper_boots");
     /**
      * ItemMeta: {@link ArmorMeta}
      */
@@ -1544,15 +1587,51 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
+    ItemType.Typed<SpawnEggMeta> CHICKEN_SPAWN_EGG = getItemType("chicken_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> COW_SPAWN_EGG = getItemType("cow_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PIG_SPAWN_EGG = getItemType("pig_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SHEEP_SPAWN_EGG = getItemType("sheep_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> CAMEL_SPAWN_EGG = getItemType("camel_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> DONKEY_SPAWN_EGG = getItemType("donkey_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> HORSE_SPAWN_EGG = getItemType("horse_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> MULE_SPAWN_EGG = getItemType("mule_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> CAT_SPAWN_EGG = getItemType("cat_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PARROT_SPAWN_EGG = getItemType("parrot_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> WOLF_SPAWN_EGG = getItemType("wolf_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
     ItemType.Typed<SpawnEggMeta> ARMADILLO_SPAWN_EGG = getItemType("armadillo_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> ALLAY_SPAWN_EGG = getItemType("allay_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> AXOLOTL_SPAWN_EGG = getItemType("axolotl_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
@@ -1564,31 +1643,35 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> BLAZE_SPAWN_EGG = getItemType("blaze_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> FOX_SPAWN_EGG = getItemType("fox_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> BOGGED_SPAWN_EGG = getItemType("bogged_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> GOAT_SPAWN_EGG = getItemType("goat_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> BREEZE_SPAWN_EGG = getItemType("breeze_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> LLAMA_SPAWN_EGG = getItemType("llama_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> CAT_SPAWN_EGG = getItemType("cat_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> OCELOT_SPAWN_EGG = getItemType("ocelot_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> CAMEL_SPAWN_EGG = getItemType("camel_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> PANDA_SPAWN_EGG = getItemType("panda_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> CAVE_SPIDER_SPAWN_EGG = getItemType("cave_spider_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> POLAR_BEAR_SPAWN_EGG = getItemType("polar_bear_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> CHICKEN_SPAWN_EGG = getItemType("chicken_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> RABBIT_SPAWN_EGG = getItemType("rabbit_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> AXOLOTL_SPAWN_EGG = getItemType("axolotl_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
@@ -1596,7 +1679,147 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> COW_SPAWN_EGG = getItemType("cow_spawn_egg");
+    ItemType.Typed<SpawnEggMeta> DOLPHIN_SPAWN_EGG = getItemType("dolphin_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> FROG_SPAWN_EGG = getItemType("frog_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> GLOW_SQUID_SPAWN_EGG = getItemType("glow_squid_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> NAUTILUS_SPAWN_EGG = getItemType("nautilus_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PUFFERFISH_SPAWN_EGG = getItemType("pufferfish_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SALMON_SPAWN_EGG = getItemType("salmon_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SQUID_SPAWN_EGG = getItemType("squid_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> TADPOLE_SPAWN_EGG = getItemType("tadpole_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> TROPICAL_FISH_SPAWN_EGG = getItemType("tropical_fish_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> TURTLE_SPAWN_EGG = getItemType("turtle_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ALLAY_SPAWN_EGG = getItemType("allay_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> MOOSHROOM_SPAWN_EGG = getItemType("mooshroom_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SNIFFER_SPAWN_EGG = getItemType("sniffer_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> COPPER_GOLEM_SPAWN_EGG = getItemType("copper_golem_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> IRON_GOLEM_SPAWN_EGG = getItemType("iron_golem_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SNOW_GOLEM_SPAWN_EGG = getItemType("snow_golem_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> TRADER_LLAMA_SPAWN_EGG = getItemType("trader_llama_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> VILLAGER_SPAWN_EGG = getItemType("villager_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> WANDERING_TRADER_SPAWN_EGG = getItemType("wandering_trader_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> BOGGED_SPAWN_EGG = getItemType("bogged_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> CAMEL_HUSK_SPAWN_EGG = getItemType("camel_husk_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> DROWNED_SPAWN_EGG = getItemType("drowned_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> HUSK_SPAWN_EGG = getItemType("husk_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PARCHED_SPAWN_EGG = getItemType("parched_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SKELETON_SPAWN_EGG = getItemType("skeleton_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SKELETON_HORSE_SPAWN_EGG = getItemType("skeleton_horse_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> STRAY_SPAWN_EGG = getItemType("stray_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> WITHER_SPAWN_EGG = getItemType("wither_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> WITHER_SKELETON_SPAWN_EGG = getItemType("wither_skeleton_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ZOMBIE_SPAWN_EGG = getItemType("zombie_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ZOMBIE_HORSE_SPAWN_EGG = getItemType("zombie_horse_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ZOMBIE_NAUTILUS_SPAWN_EGG = getItemType("zombie_nautilus_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ZOMBIE_VILLAGER_SPAWN_EGG = getItemType("zombie_villager_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> CAVE_SPIDER_SPAWN_EGG = getItemType("cave_spider_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SPIDER_SPAWN_EGG = getItemType("spider_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> BREEZE_SPAWN_EGG = getItemType("breeze_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
@@ -1608,19 +1831,91 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> DOLPHIN_SPAWN_EGG = getItemType("dolphin_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> DONKEY_SPAWN_EGG = getItemType("donkey_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> DROWNED_SPAWN_EGG = getItemType("drowned_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
     ItemType.Typed<SpawnEggMeta> ELDER_GUARDIAN_SPAWN_EGG = getItemType("elder_guardian_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> GUARDIAN_SPAWN_EGG = getItemType("guardian_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PHANTOM_SPAWN_EGG = getItemType("phantom_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SILVERFISH_SPAWN_EGG = getItemType("silverfish_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> SLIME_SPAWN_EGG = getItemType("slime_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> WARDEN_SPAWN_EGG = getItemType("warden_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> WITCH_SPAWN_EGG = getItemType("witch_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> EVOKER_SPAWN_EGG = getItemType("evoker_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PILLAGER_SPAWN_EGG = getItemType("pillager_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> RAVAGER_SPAWN_EGG = getItemType("ravager_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> VINDICATOR_SPAWN_EGG = getItemType("vindicator_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> VEX_SPAWN_EGG = getItemType("vex_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> BLAZE_SPAWN_EGG = getItemType("blaze_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> GHAST_SPAWN_EGG = getItemType("ghast_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> HAPPY_GHAST_SPAWN_EGG = getItemType("happy_ghast_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> HOGLIN_SPAWN_EGG = getItemType("hoglin_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> MAGMA_CUBE_SPAWN_EGG = getItemType("magma_cube_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PIGLIN_SPAWN_EGG = getItemType("piglin_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> PIGLIN_BRUTE_SPAWN_EGG = getItemType("piglin_brute_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> STRIDER_SPAWN_EGG = getItemType("strider_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ZOGLIN_SPAWN_EGG = getItemType("zoglin_spawn_egg");
+    /**
+     * ItemMeta: {@link SpawnEggMeta}
+     */
+    ItemType.Typed<SpawnEggMeta> ZOMBIFIED_PIGLIN_SPAWN_EGG = getItemType("zombified_piglin_spawn_egg");
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
@@ -1636,239 +1931,7 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     /**
      * ItemMeta: {@link SpawnEggMeta}
      */
-    ItemType.Typed<SpawnEggMeta> EVOKER_SPAWN_EGG = getItemType("evoker_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> FOX_SPAWN_EGG = getItemType("fox_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> FROG_SPAWN_EGG = getItemType("frog_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> GHAST_SPAWN_EGG = getItemType("ghast_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> HAPPY_GHAST_SPAWN_EGG = getItemType("happy_ghast_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> GLOW_SQUID_SPAWN_EGG = getItemType("glow_squid_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> GOAT_SPAWN_EGG = getItemType("goat_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> GUARDIAN_SPAWN_EGG = getItemType("guardian_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> HOGLIN_SPAWN_EGG = getItemType("hoglin_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> HORSE_SPAWN_EGG = getItemType("horse_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> HUSK_SPAWN_EGG = getItemType("husk_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> IRON_GOLEM_SPAWN_EGG = getItemType("iron_golem_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> LLAMA_SPAWN_EGG = getItemType("llama_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> MAGMA_CUBE_SPAWN_EGG = getItemType("magma_cube_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> MOOSHROOM_SPAWN_EGG = getItemType("mooshroom_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> MULE_SPAWN_EGG = getItemType("mule_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> OCELOT_SPAWN_EGG = getItemType("ocelot_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PANDA_SPAWN_EGG = getItemType("panda_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PARROT_SPAWN_EGG = getItemType("parrot_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PHANTOM_SPAWN_EGG = getItemType("phantom_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PIG_SPAWN_EGG = getItemType("pig_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PIGLIN_SPAWN_EGG = getItemType("piglin_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PIGLIN_BRUTE_SPAWN_EGG = getItemType("piglin_brute_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PILLAGER_SPAWN_EGG = getItemType("pillager_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> POLAR_BEAR_SPAWN_EGG = getItemType("polar_bear_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> PUFFERFISH_SPAWN_EGG = getItemType("pufferfish_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> RABBIT_SPAWN_EGG = getItemType("rabbit_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> RAVAGER_SPAWN_EGG = getItemType("ravager_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SALMON_SPAWN_EGG = getItemType("salmon_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SHEEP_SPAWN_EGG = getItemType("sheep_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
     ItemType.Typed<SpawnEggMeta> SHULKER_SPAWN_EGG = getItemType("shulker_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SILVERFISH_SPAWN_EGG = getItemType("silverfish_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SKELETON_SPAWN_EGG = getItemType("skeleton_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SKELETON_HORSE_SPAWN_EGG = getItemType("skeleton_horse_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SLIME_SPAWN_EGG = getItemType("slime_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SNIFFER_SPAWN_EGG = getItemType("sniffer_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SNOW_GOLEM_SPAWN_EGG = getItemType("snow_golem_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SPIDER_SPAWN_EGG = getItemType("spider_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> SQUID_SPAWN_EGG = getItemType("squid_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> STRAY_SPAWN_EGG = getItemType("stray_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> STRIDER_SPAWN_EGG = getItemType("strider_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> TADPOLE_SPAWN_EGG = getItemType("tadpole_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> TRADER_LLAMA_SPAWN_EGG = getItemType("trader_llama_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> TROPICAL_FISH_SPAWN_EGG = getItemType("tropical_fish_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> TURTLE_SPAWN_EGG = getItemType("turtle_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> VEX_SPAWN_EGG = getItemType("vex_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> VILLAGER_SPAWN_EGG = getItemType("villager_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> VINDICATOR_SPAWN_EGG = getItemType("vindicator_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> WANDERING_TRADER_SPAWN_EGG = getItemType("wandering_trader_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> WARDEN_SPAWN_EGG = getItemType("warden_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> WITCH_SPAWN_EGG = getItemType("witch_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> WITHER_SPAWN_EGG = getItemType("wither_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> WITHER_SKELETON_SPAWN_EGG = getItemType("wither_skeleton_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> WOLF_SPAWN_EGG = getItemType("wolf_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> ZOGLIN_SPAWN_EGG = getItemType("zoglin_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> ZOMBIE_SPAWN_EGG = getItemType("zombie_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> ZOMBIE_HORSE_SPAWN_EGG = getItemType("zombie_horse_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> ZOMBIE_VILLAGER_SPAWN_EGG = getItemType("zombie_villager_spawn_egg");
-    /**
-     * ItemMeta: {@link SpawnEggMeta}
-     */
-    ItemType.Typed<SpawnEggMeta> ZOMBIFIED_PIGLIN_SPAWN_EGG = getItemType("zombified_piglin_spawn_egg");
     ItemType.Typed<ItemMeta> EXPERIENCE_BOTTLE = getItemType("experience_bottle");
     ItemType.Typed<ItemMeta> FIRE_CHARGE = getItemType("fire_charge");
     ItemType.Typed<ItemMeta> WIND_CHARGE = getItemType("wind_charge");
@@ -1943,9 +2006,11 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> RABBIT_FOOT = getItemType("rabbit_foot");
     ItemType.Typed<ItemMeta> RABBIT_HIDE = getItemType("rabbit_hide");
     ItemType.Typed<ItemMeta> ARMOR_STAND = getItemType("armor_stand");
+    ItemType.Typed<ItemMeta> COPPER_HORSE_ARMOR = getItemType("copper_horse_armor");
     ItemType.Typed<ItemMeta> IRON_HORSE_ARMOR = getItemType("iron_horse_armor");
     ItemType.Typed<ItemMeta> GOLDEN_HORSE_ARMOR = getItemType("golden_horse_armor");
     ItemType.Typed<ItemMeta> DIAMOND_HORSE_ARMOR = getItemType("diamond_horse_armor");
+    ItemType.Typed<ItemMeta> NETHERITE_HORSE_ARMOR = getItemType("netherite_horse_armor");
     /**
      * ItemMeta: {@link LeatherArmorMeta}
      */
@@ -2045,9 +2110,17 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
      * ItemMeta: {@link ShieldMeta}
      */
     ItemType.Typed<ShieldMeta> SHIELD = getItemType("shield");
+    ItemType.Typed<ItemMeta> WOODEN_SPEAR = getItemType("wooden_spear");
+    ItemType.Typed<ItemMeta> STONE_SPEAR = getItemType("stone_spear");
+    ItemType.Typed<ItemMeta> COPPER_SPEAR = getItemType("copper_spear");
+    ItemType.Typed<ItemMeta> IRON_SPEAR = getItemType("iron_spear");
+    ItemType.Typed<ItemMeta> GOLDEN_SPEAR = getItemType("golden_spear");
+    ItemType.Typed<ItemMeta> DIAMOND_SPEAR = getItemType("diamond_spear");
+    ItemType.Typed<ItemMeta> NETHERITE_SPEAR = getItemType("netherite_spear");
     ItemType.Typed<ItemMeta> TOTEM_OF_UNDYING = getItemType("totem_of_undying");
     ItemType.Typed<ItemMeta> SHULKER_SHELL = getItemType("shulker_shell");
     ItemType.Typed<ItemMeta> IRON_NUGGET = getItemType("iron_nugget");
+    ItemType.Typed<ItemMeta> COPPER_NUGGET = getItemType("copper_nugget");
     /**
      * ItemMeta: {@link KnowledgeBookMeta}
      */
@@ -2060,6 +2133,7 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> MUSIC_DISC_CREATOR = getItemType("music_disc_creator");
     ItemType.Typed<ItemMeta> MUSIC_DISC_CREATOR_MUSIC_BOX = getItemType("music_disc_creator_music_box");
     ItemType.Typed<ItemMeta> MUSIC_DISC_FAR = getItemType("music_disc_far");
+    ItemType.Typed<ItemMeta> MUSIC_DISC_LAVA_CHICKEN = getItemType("music_disc_lava_chicken");
     ItemType.Typed<ItemMeta> MUSIC_DISC_MALL = getItemType("music_disc_mall");
     ItemType.Typed<ItemMeta> MUSIC_DISC_MELLOHI = getItemType("music_disc_mellohi");
     ItemType.Typed<ItemMeta> MUSIC_DISC_STAL = getItemType("music_disc_stal");
@@ -2076,6 +2150,11 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> DISC_FRAGMENT_5 = getItemType("disc_fragment_5");
     ItemType.Typed<ItemMeta> TRIDENT = getItemType("trident");
     ItemType.Typed<ItemMeta> NAUTILUS_SHELL = getItemType("nautilus_shell");
+    ItemType.Typed<ItemMeta> IRON_NAUTILUS_ARMOR = getItemType("iron_nautilus_armor");
+    ItemType.Typed<ItemMeta> GOLDEN_NAUTILUS_ARMOR = getItemType("golden_nautilus_armor");
+    ItemType.Typed<ItemMeta> DIAMOND_NAUTILUS_ARMOR = getItemType("diamond_nautilus_armor");
+    ItemType.Typed<ItemMeta> NETHERITE_NAUTILUS_ARMOR = getItemType("netherite_nautilus_armor");
+    ItemType.Typed<ItemMeta> COPPER_NAUTILUS_ARMOR = getItemType("copper_nautilus_armor");
     ItemType.Typed<ItemMeta> HEART_OF_THE_SEA = getItemType("heart_of_the_sea");
     /**
      * ItemMeta: {@link CrossbowMeta}
@@ -2123,6 +2202,7 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
      */
     ItemType.Typed<BlockStateMeta> BELL = getItemType("bell");
     ItemType.Typed<ItemMeta> LANTERN = getItemType("lantern");
+    ItemType.Typed<ItemMeta> COPPER_LANTERN = getItemType("copper_lantern");
     ItemType.Typed<ItemMeta> SOUL_LANTERN = getItemType("soul_lantern");
     ItemType.Typed<ItemMeta> SWEET_BERRIES = getItemType("sweet_berries");
     ItemType.Typed<ItemMeta> GLOW_BERRIES = getItemType("glow_berries");
@@ -2247,6 +2327,22 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> WAXED_EXPOSED_COPPER_BULB = getItemType("waxed_exposed_copper_bulb");
     ItemType.Typed<ItemMeta> WAXED_WEATHERED_COPPER_BULB = getItemType("waxed_weathered_copper_bulb");
     ItemType.Typed<ItemMeta> WAXED_OXIDIZED_COPPER_BULB = getItemType("waxed_oxidized_copper_bulb");
+    ItemType.Typed<ItemMeta> COPPER_CHEST = getItemType("copper_chest");
+    ItemType.Typed<ItemMeta> EXPOSED_COPPER_CHEST = getItemType("exposed_copper_chest");
+    ItemType.Typed<ItemMeta> WEATHERED_COPPER_CHEST = getItemType("weathered_copper_chest");
+    ItemType.Typed<ItemMeta> OXIDIZED_COPPER_CHEST = getItemType("oxidized_copper_chest");
+    ItemType.Typed<ItemMeta> WAXED_COPPER_CHEST = getItemType("waxed_copper_chest");
+    ItemType.Typed<ItemMeta> WAXED_EXPOSED_COPPER_CHEST = getItemType("waxed_exposed_copper_chest");
+    ItemType.Typed<ItemMeta> WAXED_WEATHERED_COPPER_CHEST = getItemType("waxed_weathered_copper_chest");
+    ItemType.Typed<ItemMeta> WAXED_OXIDIZED_COPPER_CHEST = getItemType("waxed_oxidized_copper_chest");
+    ItemType.Typed<ItemMeta> COPPER_GOLEM_STATUE = getItemType("copper_golem_statue");
+    ItemType.Typed<ItemMeta> EXPOSED_COPPER_GOLEM_STATUE = getItemType("exposed_copper_golem_statue");
+    ItemType.Typed<ItemMeta> WEATHERED_COPPER_GOLEM_STATUE = getItemType("weathered_copper_golem_statue");
+    ItemType.Typed<ItemMeta> OXIDIZED_COPPER_GOLEM_STATUE = getItemType("oxidized_copper_golem_statue");
+    ItemType.Typed<ItemMeta> WAXED_COPPER_GOLEM_STATUE = getItemType("waxed_copper_golem_statue");
+    ItemType.Typed<ItemMeta> WAXED_EXPOSED_COPPER_GOLEM_STATUE = getItemType("waxed_exposed_copper_golem_statue");
+    ItemType.Typed<ItemMeta> WAXED_WEATHERED_COPPER_GOLEM_STATUE = getItemType("waxed_weathered_copper_golem_statue");
+    ItemType.Typed<ItemMeta> WAXED_OXIDIZED_COPPER_GOLEM_STATUE = getItemType("waxed_oxidized_copper_golem_statue");
     /**
      * ItemMeta: {@link BlockStateMeta}
      */

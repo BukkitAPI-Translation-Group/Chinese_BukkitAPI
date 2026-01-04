@@ -2,7 +2,6 @@ package org.bukkit.event.entity;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -12,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
  * of modifying the entity during or after this event is unspecified.
  * This event is not called for a {@link org.bukkit.entity.Player}.
  */
-@ApiStatus.Experimental
 public class EntityRemoveEvent extends EntityEvent {
 
     private static final HandlerList handlers = new HandlerList();

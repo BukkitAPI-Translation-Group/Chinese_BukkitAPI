@@ -8,7 +8,7 @@ public enum InventoryAction {
     /**
      * 这一次点击什么都不会发生. 
      * <p>
-     * There may be cases where nothing will happen and this is value is not
+     * There may be cases where nothing will happen and this value is not
      * provided, but it is guaranteed that this value is accurate when given.
      */
     NOTHING,

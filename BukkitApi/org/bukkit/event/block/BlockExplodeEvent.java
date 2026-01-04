@@ -68,12 +68,12 @@ public class BlockExplodeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * 返回被炸毁的方块的列表.
+     * 返回由于此爆炸事件而将受影响或已受影响的方块列表.
      * <p>
-     * 原文：Returns the list of blocks that would have been removed or were removed
-     * from the explosion event.
+     * 原文：Returns the list of blocks that would have been affected or were affected
+     * by the explosion event.
      *
-     * @return 炸毁的方块的列表
+     * @return 所有受影响的方块的列表
      */
     @NotNull
     public List<Block> blockList() {

@@ -26,6 +26,7 @@ import org.bukkit.entity.Frog;
 import org.bukkit.entity.Pig;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wolf;
+import org.bukkit.entity.ZombieNautilus;
 import org.bukkit.entity.memory.MemoryKey;
 import org.bukkit.generator.structure.Structure;
 import org.bukkit.generator.structure.StructureType;
@@ -183,6 +184,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      */
     Registry<Chicken.Variant> CHICKEN_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Chicken.Variant.class), "No registry present for Chicken Variant. This is a bug.");
     /**
+     * Server zombie nautilus variants.
+     *
+     * @see ZombieNautilus.Variant
+     */
+    Registry<ZombieNautilus.Variant> ZOMBIE_NAUTILUS_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(ZombieNautilus.Variant.class), "No registry present for ZombieNautilus Variant. This is a bug.");
+    /**
      * Server enchantments.
      *
      * @see Enchantment
@@ -311,6 +318,12 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
      * @see Villager.Type
      */
     Registry<Villager.Type> VILLAGER_TYPE = Objects.requireNonNull(Bukkit.getRegistry(Villager.Type.class), "No registry present for Villager Type. This is a bug.");
+    /**
+     * Game rule.
+     *
+     * @see GameRule
+     */
+    Registry<GameRule> GAME_RULE = Objects.requireNonNull(Bukkit.getRegistry(GameRule.class), "No registry present for Game Rule. This is a bug.");
     /**
      * Memory Keys.
      *

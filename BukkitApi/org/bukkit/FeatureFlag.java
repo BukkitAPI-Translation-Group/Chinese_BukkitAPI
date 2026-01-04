@@ -1,14 +1,11 @@
 package org.bukkit;
 
-import org.jetbrains.annotations.ApiStatus;
-
 /**
  * This represents a Feature Flag for a World.
  * <br>
  * Flags which are unavailable in the current version will be null and/or
  * removed.
  */
-@ApiStatus.Experimental
 public interface FeatureFlag extends Keyed {
 
     public static final FeatureFlag VANILLA = Bukkit.getUnsafe().getFeatureFlag(NamespacedKey.minecraft("vanilla"));

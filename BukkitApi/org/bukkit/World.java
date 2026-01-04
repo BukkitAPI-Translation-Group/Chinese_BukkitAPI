@@ -40,7 +40,6 @@ import org.bukkit.util.BoundingBox;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.StructureSearchResult;
 import org.bukkit.util.Vector;
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -1884,7 +1883,8 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * or not.
      *
      * @return 如果世界的出生地区会在内存中保存加载则返回true
-     * @deprecated 使用 {@link GameRule#SPAWN_CHUNK_RADIUS} 以更好地控制
+     * @deprecated "出生点区块"的概念已被移除, 使用
+     * {@link #isChunkForceLoaded(int, int)} 以更好地控制
      */
     @Deprecated(since = "1.20.5")
     public boolean getKeepSpawnInMemory();
@@ -1898,6 +1898,8 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param keepLoaded 如果为true则世界的出生地区会在内存中保存加载
      * @deprecated 使用 {@link GameRule#SPAWN_CHUNK_RADIUS} 以更好地控制
+     * @deprecated "出生点区块"的概念已被移除, 使用
+     * {@link #setChunkForceLoaded(int, int, boolean)} 以更好地控制
      */
     @Deprecated(since = "1.20.5")
     public void setKeepSpawnInMemory(boolean keepLoaded);
@@ -2828,51 +2830,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * 原文:Get an array containing the names of all the {@link GameRule}s.
      *
      * @return {@link GameRule 游戏规则}名列表.
+     * @deprecated 请使用 {@link Registry#iterator()}.
      */
     @NotNull
+    @Deprecated(since = "1.21.11")
     public String[] getGameRules();
-
-    /**
-     * 获取指定游戏规则的当前状态.
-     * <p>
-     * 如果rule为null则会返回null.
-     * <p>
-     * 原文：
-     * Gets the current state of the specified rule
-     * <p>
-     * Will return null if rule passed is null
-     *
-     * @param rule 要查找的规则
-     * @return 规则的字符串数值
-     * @deprecated 请使用 {@link #getGameRuleValue(GameRule)}
-     */
-    @Deprecated(since = "1.13")
-    @Contract("null -> null; !null -> !null")
-    @Nullable
-    public String getGameRuleValue(@Nullable String rule);
-
-    /**
-     * 将指定的游戏规则设置为指定数值.
-     * <p>
-     * 规则可能会尝试验证值，如果数值被设置则会返回true.
-     * <p>
-     * 如果rule为null，则这个函数会返回false.
-     * <p>
-     * 原文：
-     * Set the specified gamerule to specified value.
-     * <p>
-     * The rule may attempt to validate the value passed, will return true if
-     * value was set.
-     * <p>
-     * If rule is null, the function will return false.
-     *
-     * @param rule 要设置的规则
-     * @param value 要设置的规则数值
-     * @return 规则被设置则返回true
-     * @deprecated 请使用 {@link #setGameRule(GameRule, Object)}
-     */
-    @Deprecated(since = "1.13")
-    public boolean setGameRuleValue(@NotNull String rule, @NotNull String value);
 
     /**
      * 检查字符串是否是一个有效的游戏规则.
@@ -2882,7 +2844,9 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      *
      * @param rule 要检测的规则
      * @return 如果规则存在则返回true
+     * @deprecated 请使用 {@link Registry#get(NamespacedKey)} instead.
      */
+    @Deprecated(since = "1.21.11")
     public boolean isGameRule(@NotNull String rule);
 
     /**

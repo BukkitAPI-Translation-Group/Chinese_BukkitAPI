@@ -47,5 +47,6 @@ public @interface MinecraftExperimental {
     @ApiStatus.Internal
     public enum Requires {
 
+        MINECART_IMPROVEMENTS;
     }
 }

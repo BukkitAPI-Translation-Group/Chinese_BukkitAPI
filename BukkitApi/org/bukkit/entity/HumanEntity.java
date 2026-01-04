@@ -6,6 +6,7 @@ import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.model.PlayerModelPart;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.InventoryView;
@@ -15,6 +16,7 @@ import org.bukkit.inventory.MenuType;
 import org.bukkit.inventory.Merchant;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -64,6 +66,14 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      */
     @NotNull
     public MainHand getMainHand();
+
+    /**
+     * Gets whether a part of the player model is shown.
+     *
+     * @param part model part
+     * @return if it is shown
+     */
+    public boolean isModelPartShown(@NotNull PlayerModelPart part);
 
     /**
      * 若玩家当前打开了一个物品栏窗口, 此方法将设置窗口的属性, 比如酿造台的酿造进度.
@@ -310,6 +320,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * @param material 为哪个物品设置冷却
      * @param ticks 冷却时长(以tick为单位)或设为0来移除它
      * @throws IllegalArgumentException 如果 material 不是物品
+     * @see org.bukkit.inventory.meta.components.UseCooldownComponent
      */
     public void setCooldown(@NotNull Material material, int ticks);
 
@@ -336,11 +347,18 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * Cooldowns are used by the server for items such as ender pearls and
      * shields to prevent them from being used repeatedly.
      * <p>
+     * If a {@link UseCooldownComponent} is present then the cooldown is applied
+     * to all items with the same
+     * {@link UseCooldownComponent#getCooldownGroup()} for the current
+     * HumanEntity, otherwise the cooldown is applied to all items with the same
+     * {@link Material}.
+     * <p>
      * Note that cooldowns will not by themselves stop an item from being used
      * for attacking.
      *
      * @param item the item to set the cooldown for
      * @param ticks the amount of ticks to set or 0 to remove
+     * @see UseCooldownComponent
      */
     public void setCooldown(@NotNull ItemStack item, int ticks);
 

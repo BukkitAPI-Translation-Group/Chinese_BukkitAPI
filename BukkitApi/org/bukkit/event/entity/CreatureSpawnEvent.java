@@ -92,6 +92,10 @@ public class CreatureSpawnEvent extends EntitySpawnEvent {
          */
         BUILD_IRONGOLEM,
         /**
+         * When a copper golem is spawned by being built
+         */
+        BUILD_COPPERGOLEM,
+        /**
          * 当一个凋零被建造时
          */
         BUILD_WITHER,
@@ -213,6 +217,10 @@ public class CreatureSpawnEvent extends EntitySpawnEvent {
          * {@link org.bukkit.potion.PotionType#OOZING}, {@link org.bukkit.potion.PotionType#INFESTED}
          */
         POTION_EFFECT,
+        /**
+         * When a copper golem statue is turned back into a copper golem
+         */
+        REANIMATE,
         /**
          * 当生物被插件生成时
          */

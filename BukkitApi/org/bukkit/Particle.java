@@ -21,8 +21,14 @@ public enum Particle implements Keyed, RegistryAware {
     ENCHANTED_HIT("enchanted_hit"),
     SMOKE("smoke"),
     LARGE_SMOKE("large_smoke"),
-    EFFECT("effect"),
-    INSTANT_EFFECT("instant_effect"),
+    /**
+     * Uses {@link Spell} as DataType
+     */
+    EFFECT("effect", Spell.class),
+    /**
+     * Uses {@link Spell} as DataType
+     */
+    INSTANT_EFFECT("instant_effect", Spell.class),
     /**
      * Uses {@link Color} as DataType
      */
@@ -56,7 +62,10 @@ public enum Particle implements Keyed, RegistryAware {
     BLOCK("block", BlockData.class),
     RAIN("rain"),
     ELDER_GUARDIAN("elder_guardian"),
-    DRAGON_BREATH("dragon_breath"),
+    /**
+     * Uses {@link Float} as DataType
+     */
+    DRAGON_BREATH("dragon_breath", Float.class),
     END_ROD("end_rod"),
     DAMAGE_INDICATOR("damage_indicator"),
     SWEEP_ATTACK("sweep_attack"),
@@ -76,7 +85,10 @@ public enum Particle implements Keyed, RegistryAware {
     CAMPFIRE_COSY_SMOKE("campfire_cosy_smoke"),
     CAMPFIRE_SIGNAL_SMOKE("campfire_signal_smoke"),
     COMPOSTER("composter"),
-    FLASH("flash"),
+    /**
+     * Uses {@link Color} as DataType
+     */
+    FLASH("flash", Color.class),
     FALLING_LAVA("falling_lava"),
     LANDING_LAVA("landing_lava"),
     FALLING_WATER("falling_water"),
@@ -167,6 +179,7 @@ public enum Particle implements Keyed, RegistryAware {
      */
     BLOCK_MARKER("block_marker", BlockData.class),
     FIREFLY("firefly"),
+    COPPER_FIRE_FLAME("copper_fire_flame"),
     ;
 
     private final NamespacedKey key;
@@ -339,6 +352,41 @@ public enum Particle implements Keyed, RegistryAware {
          */
         public int getDuration() {
             return duration;
+        }
+    }
+
+    /**
+     * Options which can be applied to spell effect particles - a color and
+     * power.
+     */
+    @ApiStatus.Experimental
+    public static class Spell {
+
+        private final Color color;
+        private final float power;
+
+        public Spell(@NotNull Color color, float power) {
+            this.color = color;
+            this.power = power;
+        }
+
+        /**
+         * The color of the particles to be displayed.
+         *
+         * @return particle color
+         */
+        @NotNull
+        public Color getColor() {
+            return color;
+        }
+
+        /**
+         * The power of the effect to be displayed.
+         *
+         * @return power
+         */
+        public float getPower() {
+            return power;
         }
     }
 }

@@ -3,13 +3,11 @@ package org.bukkit.event.player;
 import org.bukkit.ServerLinks;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
  * This event is called when the list of links is sent to the player.
  */
-@ApiStatus.Experimental
 public class PlayerLinksSendEvent extends PlayerEvent {
 
     private static final HandlerList handlers = new HandlerList();

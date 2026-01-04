@@ -79,25 +79,29 @@ public final class MemoryKey<T> implements Keyed, RegistryAware {
     public static final MemoryKey<Location> JOB_SITE = new MemoryKey<>(NamespacedKey.minecraft("job_site"), Location.class);
     public static final MemoryKey<Location> MEETING_POINT = new MemoryKey<>(NamespacedKey.minecraft("meeting_point"), Location.class);
     public static final MemoryKey<Boolean> GOLEM_DETECTED_RECENTLY = new MemoryKey<>(NamespacedKey.minecraft("golem_detected_recently"), Boolean.class);
+    public static final MemoryKey<Boolean> DANGER_DETECTED_RECENTLY = new MemoryKey<>(NamespacedKey.minecraft("danger_detected_recently"), Boolean.class);
     public static final MemoryKey<Long> LAST_SLEPT = new MemoryKey<>(NamespacedKey.minecraft("last_slept"), Long.class);
     public static final MemoryKey<Long> LAST_WOKEN = new MemoryKey<>(NamespacedKey.minecraft("last_woken"), Long.class);
     public static final MemoryKey<Long> LAST_WORKED_AT_POI = new MemoryKey<>(NamespacedKey.minecraft("last_worked_at_poi"), Long.class);
     public static final MemoryKey<Boolean> UNIVERSAL_ANGER = new MemoryKey<>(NamespacedKey.minecraft("universal_anger"), Boolean.class);
+    public static final MemoryKey<Integer> CHARGE_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("charge_cooldown_ticks"), Integer.class);
+    public static final MemoryKey<Integer> ATTACK_TARGET_COOLDOWN = new MemoryKey<>(NamespacedKey.minecraft("attack_target_cooldown"), Integer.class);
     public static final MemoryKey<UUID> ANGRY_AT = new MemoryKey<>(NamespacedKey.minecraft("angry_at"), UUID.class);
     public static final MemoryKey<Boolean> ADMIRING_ITEM = new MemoryKey<>(NamespacedKey.minecraft("admiring_item"), Boolean.class);
     public static final MemoryKey<Boolean> ADMIRING_DISABLED = new MemoryKey<>(NamespacedKey.minecraft("admiring_disabled"), Boolean.class);
     public static final MemoryKey<Boolean> HUNTED_RECENTLY = new MemoryKey<>(NamespacedKey.minecraft("hunted_recently"), Boolean.class);
     public static final MemoryKey<Integer> PLAY_DEAD_TICKS = new MemoryKey<>(NamespacedKey.minecraft("play_dead_ticks"), Integer.class);
     public static final MemoryKey<Integer> TEMPTATION_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("temptation_cooldown_ticks"), Integer.class);
+    public static final MemoryKey<Integer> GAZE_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("gaze_cooldown_ticks"), Integer.class);
     public static final MemoryKey<Boolean> IS_TEMPTED = new MemoryKey<>(NamespacedKey.minecraft("is_tempted"), Boolean.class);
     public static final MemoryKey<Integer> LONG_JUMP_COOLING_DOWN = new MemoryKey<>(NamespacedKey.minecraft("long_jump_cooling_down"), Integer.class);
     public static final MemoryKey<Boolean> HAS_HUNTING_COOLDOWN = new MemoryKey<>(NamespacedKey.minecraft("has_hunting_cooldown"), Boolean.class);
     public static final MemoryKey<Integer> RAM_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("ram_cooldown_ticks"), Integer.class);
+    public static final MemoryKey<Boolean> IS_PANICKING = new MemoryKey<>(NamespacedKey.minecraft("is_panicking"), Boolean.class);
     public static final MemoryKey<UUID> LIKED_PLAYER = new MemoryKey<>(NamespacedKey.minecraft("liked_player"), UUID.class);
     public static final MemoryKey<Location> LIKED_NOTEBLOCK_POSITION = new MemoryKey<>(NamespacedKey.minecraft("liked_noteblock"), Location.class);
     public static final MemoryKey<Integer> LIKED_NOTEBLOCK_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("liked_noteblock_cooldown_ticks"), Integer.class);
     public static final MemoryKey<Integer> ITEM_PICKUP_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("item_pickup_cooldown_ticks"), Integer.class);
-    public static final MemoryKey<Location> SNIFFER_EXPLORED_POSITIONS = new MemoryKey<>(NamespacedKey.minecraft("sniffer_explored_positions"), Location.class);
 
     /**
      * Returns a {@link MemoryKey} by a {@link NamespacedKey}.

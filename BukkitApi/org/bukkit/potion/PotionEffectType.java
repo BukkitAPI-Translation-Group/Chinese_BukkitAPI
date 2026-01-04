@@ -217,6 +217,11 @@ public abstract class PotionEffectType implements Keyed, Translatable, RegistryA
      */
     public static final PotionEffectType INFESTED = getPotionEffectType(39, "infested");
 
+    /**
+     * 鹦鹉螺之息
+     */
+    public static final PotionEffectType BREATH_OF_THE_NAUTILUS = getPotionEffectType(40, "breath_of_the_nautilus");
+
     @NotNull
     private static PotionEffectType getPotionEffectType(int typeId, @NotNull String key) {
         PotionEffectType potionEffectType = Registry.EFFECT.getOrThrow(NamespacedKey.minecraft(key));

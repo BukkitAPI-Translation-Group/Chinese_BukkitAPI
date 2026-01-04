@@ -1,10 +1,7 @@
 package org.bukkit.entity;
 
-import org.jetbrains.annotations.ApiStatus;
-
 /**
- * Represents a Breeze. Whoosh!
+ * 代表旋风人. 呼呼!
  */
-@ApiStatus.Experimental
 public interface Breeze extends Monster {
 }

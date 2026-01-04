@@ -207,6 +207,11 @@ public abstract class Enchantment implements Keyed, Translatable, RegistryAware 
     public static final Enchantment WIND_BURST = getEnchantment("wind_burst");
 
     /**
+     * 附魔：突进 (矛)
+     */
+    public static final Enchantment LUNGE = getEnchantment("lunge");
+
+    /**
      * 附魔：经验修补
      */
     public static final Enchantment MENDING = getEnchantment("mending");

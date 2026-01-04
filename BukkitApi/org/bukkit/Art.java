@@ -69,6 +69,7 @@ public interface Art extends OldEnum<Art>, Keyed, RegistryAware {
     Art POND = getArt("pond");
     Art SUNFLOWERS = getArt("sunflowers");
     Art TIDES = getArt("tides");
+    Art DENNIS = getArt("dennis");
 
     @NotNull
     private static Art getArt(@NotNull String key) {

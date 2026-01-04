@@ -1,12 +1,10 @@
 package org.bukkit.block;
 
 import org.bukkit.loot.Lootable;
-import org.jetbrains.annotations.ApiStatus;
 
 /**
  * 代表合成器的捕获状态.
  */
-@ApiStatus.Experimental
 public interface Crafter extends Container, Lootable {
 
     /**

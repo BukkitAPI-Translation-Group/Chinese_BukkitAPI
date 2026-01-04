@@ -93,7 +93,8 @@ public enum Statistic implements Keyed {
     INTERACT_WITH_GRINDSTONE,
     TARGET_HIT,
     INTERACT_WITH_SMITHING_TABLE,
-    STRIDER_ONE_CM;
+    STRIDER_ONE_CM,
+    NAUTILUS_ONE_CM;
 
     private final Type type;
     private final NamespacedKey key;

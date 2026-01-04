@@ -7,7 +7,6 @@ import org.bukkit.World;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.material.MaterialData;
 import org.bukkit.metadata.Metadatable;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -61,7 +60,6 @@ public interface BlockState extends Metadatable {
      * @return 方块状态的副本
      */
     @NotNull
-    @ApiStatus.Experimental
     BlockState copy();
 
     /**
@@ -74,7 +72,6 @@ public interface BlockState extends Metadatable {
      * @return 新的方块状态
      */
     @NotNull
-    @ApiStatus.Experimental
     BlockState copy(@NotNull Location location);
 
     /**

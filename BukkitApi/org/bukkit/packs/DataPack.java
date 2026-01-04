@@ -38,7 +38,9 @@ public interface DataPack extends Keyed {
      * @return the pack version
      * @see #getMinSupportedPackFormat()
      * @see #getMaxSupportedPackFormat()
+     * @deprecated packs have a major/minor and max/min format
      */
+    @Deprecated(since = "1.21.9")
     public int getPackFormat();
 
     /**
@@ -50,7 +52,9 @@ public interface DataPack extends Keyed {
      * <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.
      *
      * @return the min pack version supported
+     * @deprecated packs have a major and minor format, see {@link #getMinSupportedFormat()}
      */
+    @Deprecated(since = "1.21.9")
     public int getMinSupportedPackFormat();
 
     /**
@@ -62,8 +66,34 @@ public interface DataPack extends Keyed {
      * <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.
      *
      * @return the max pack version supported
+     * @deprecated packs have a major and minor format, see {@link #getMaxSupportedFormat()}
      */
+    @Deprecated(since = "1.21.9")
     public int getMaxSupportedPackFormat();
+
+    /**
+     * Gets the minimum supported pack format.
+     * <br>
+     * Pack formats are non-standard and unrelated to the version of Minecraft. For
+     * a list of known pack versions, see the
+     * <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.
+     *
+     * @return the min pack version supported
+     */
+    @NotNull
+    public DataPackFormat getMinSupportedFormat();
+
+    /**
+     * Gets the maximum supported pack format.
+     * <br>
+     * Pack formats are non-standard and unrelated to the version of Minecraft. For
+     * a list of known pack versions, see the
+     * <a href="https://minecraft.wiki/w/Data_pack#Pack_format">Minecraft Wiki</a>.
+     *
+     * @return the max pack version supported
+     */
+    @NotNull
+    public DataPackFormat getMaxSupportedFormat();
 
     /**
      * Gets if the data pack is enabled on the server.
@@ -117,9 +147,13 @@ public interface DataPack extends Keyed {
          */
         OLD,
         /**
-         * Its compatible with the server pack version.
+         * It's compatible with the server pack version.
          */
-        COMPATIBLE;
+        COMPATIBLE,
+        /**
+         * It's unknown whether it is compatible with the server pack version.
+         */
+        UNKNOWN;
     }
 
     /**

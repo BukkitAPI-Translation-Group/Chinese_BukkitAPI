@@ -5,7 +5,6 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
 import org.bukkit.Translatable;
 import org.bukkit.registry.RegistryAware;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -17,7 +16,6 @@ import org.jetbrains.annotations.NotNull;
  *
  * @see <a href="https://minecraft.wiki/w/Damage_type">Minecraft Wiki</a>
  */
-@ApiStatus.Experimental
 public interface DamageType extends Keyed, Translatable, RegistryAware {
 
     public static final DamageType IN_FIRE = getDamageType("in_fire");
@@ -50,6 +48,7 @@ public interface DamageType extends Keyed, Translatable, RegistryAware {
     public static final DamageType MOB_ATTACK = getDamageType("mob_attack");
     public static final DamageType MOB_ATTACK_NO_AGGRO = getDamageType("mob_attack_no_aggro");
     public static final DamageType PLAYER_ATTACK = getDamageType("player_attack");
+    public static final DamageType SPEAR = getDamageType("spear");
     public static final DamageType ARROW = getDamageType("arrow");
     public static final DamageType TRIDENT = getDamageType("trident");
     public static final DamageType MOB_PROJECTILE = getDamageType("mob_projectile");

@@ -45,6 +45,7 @@ import org.bukkit.block.data.type.Cocoa;
 import org.bukkit.block.data.type.CommandBlock;
 import org.bukkit.block.data.type.Comparator;
 import org.bukkit.block.data.type.CopperBulb;
+import org.bukkit.block.data.type.CopperGolemStatue;
 import org.bukkit.block.data.type.CoralWallFan;
 import org.bukkit.block.data.type.Crafter;
 import org.bukkit.block.data.type.CreakingHeart;
@@ -98,6 +99,7 @@ import org.bukkit.block.data.type.SculkSensor;
 import org.bukkit.block.data.type.SculkShrieker;
 import org.bukkit.block.data.type.SculkVein;
 import org.bukkit.block.data.type.SeaPickle;
+import org.bukkit.block.data.type.Shelf;
 import org.bukkit.block.data.type.Sign;
 import org.bukkit.block.data.type.Skull;
 import org.bukkit.block.data.type.Slab;
@@ -645,6 +647,54 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link ChiseledBookshelf}
      */
     BlockType.Typed<ChiseledBookshelf> CHISELED_BOOKSHELF = getBlockType("chiseled_bookshelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> ACACIA_SHELF = getBlockType("acacia_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> BAMBOO_SHELF = getBlockType("bamboo_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> BIRCH_SHELF = getBlockType("birch_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> CHERRY_SHELF = getBlockType("cherry_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> CRIMSON_SHELF = getBlockType("crimson_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> DARK_OAK_SHELF = getBlockType("dark_oak_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> JUNGLE_SHELF = getBlockType("jungle_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> MANGROVE_SHELF = getBlockType("mangrove_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> OAK_SHELF = getBlockType("oak_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> PALE_OAK_SHELF = getBlockType("pale_oak_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> SPRUCE_SHELF = getBlockType("spruce_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BlockType.Typed<Shelf> WARPED_SHELF = getBlockType("warped_shelf");
     BlockType.Typed<BlockData> MOSSY_COBBLESTONE = getBlockType("mossy_cobblestone");
     BlockType.Typed<BlockData> OBSIDIAN = getBlockType("obsidian");
     BlockType.Typed<BlockData> TORCH = getBlockType("torch");
@@ -994,6 +1044,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Directional}
      */
     BlockType.Typed<Directional> SOUL_WALL_TORCH = getBlockType("soul_wall_torch");
+    BlockType.Typed<BlockData> COPPER_TORCH = getBlockType("copper_torch");
+    /**
+     * BlockData: {@link Directional}
+     */
+    BlockType.Typed<Directional> COPPER_WALL_TORCH = getBlockType("copper_wall_torch");
     BlockType.Typed<BlockData> GLOWSTONE = getBlockType("glowstone");
     /**
      * BlockData: {@link Orientable}
@@ -1100,9 +1155,73 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Fence> IRON_BARS = getBlockType("iron_bars");
     /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> COPPER_BARS = getBlockType("copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> EXPOSED_COPPER_BARS = getBlockType("exposed_copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> WEATHERED_COPPER_BARS = getBlockType("weathered_copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> OXIDIZED_COPPER_BARS = getBlockType("oxidized_copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> WAXED_COPPER_BARS = getBlockType("waxed_copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> WAXED_EXPOSED_COPPER_BARS = getBlockType("waxed_exposed_copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> WAXED_WEATHERED_COPPER_BARS = getBlockType("waxed_weathered_copper_bars");
+    /**
+     * BlockData: {@link Fence}
+     */
+    BlockType.Typed<Fence> WAXED_OXIDIZED_COPPER_BARS = getBlockType("waxed_oxidized_copper_bars");
+    /**
      * BlockData: {@link Chain}
      */
-    BlockType.Typed<Chain> CHAIN = getBlockType("chain");
+    BlockType.Typed<Chain> IRON_CHAIN = getBlockType("iron_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> COPPER_CHAIN = getBlockType("copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> EXPOSED_COPPER_CHAIN = getBlockType("exposed_copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> WEATHERED_COPPER_CHAIN = getBlockType("weathered_copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> OXIDIZED_COPPER_CHAIN = getBlockType("oxidized_copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> WAXED_COPPER_CHAIN = getBlockType("waxed_copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> WAXED_EXPOSED_COPPER_CHAIN = getBlockType("waxed_exposed_copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> WAXED_WEATHERED_COPPER_CHAIN = getBlockType("waxed_weathered_copper_chain");
+    /**
+     * BlockData: {@link Chain}
+     */
+    BlockType.Typed<Chain> WAXED_OXIDIZED_COPPER_CHAIN = getBlockType("waxed_oxidized_copper_chain");
     /**
      * BlockData: {@link Fence}
      */
@@ -2597,6 +2716,38 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Lantern> SOUL_LANTERN = getBlockType("soul_lantern");
     /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> COPPER_LANTERN = getBlockType("copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> EXPOSED_COPPER_LANTERN = getBlockType("exposed_copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> WEATHERED_COPPER_LANTERN = getBlockType("weathered_copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> OXIDIZED_COPPER_LANTERN = getBlockType("oxidized_copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> WAXED_COPPER_LANTERN = getBlockType("waxed_copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> WAXED_EXPOSED_COPPER_LANTERN = getBlockType("waxed_exposed_copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> WAXED_WEATHERED_COPPER_LANTERN = getBlockType("waxed_weathered_copper_lantern");
+    /**
+     * BlockData: {@link Lantern}
+     */
+    BlockType.Typed<Lantern> WAXED_OXIDIZED_COPPER_LANTERN = getBlockType("waxed_oxidized_copper_lantern");
+    /**
      * BlockData: {@link Campfire}
      */
     BlockType.Typed<Campfire> CAMPFIRE = getBlockType("campfire");
@@ -3275,9 +3426,101 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<CopperBulb> WAXED_OXIDIZED_COPPER_BULB = getBlockType("waxed_oxidized_copper_bulb");
     /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> COPPER_CHEST = getBlockType("copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> EXPOSED_COPPER_CHEST = getBlockType("exposed_copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> WEATHERED_COPPER_CHEST = getBlockType("weathered_copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> OXIDIZED_COPPER_CHEST = getBlockType("oxidized_copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> WAXED_COPPER_CHEST = getBlockType("waxed_copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> WAXED_EXPOSED_COPPER_CHEST = getBlockType("waxed_exposed_copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> WAXED_WEATHERED_COPPER_CHEST = getBlockType("waxed_weathered_copper_chest");
+    /**
+     * BlockData: {@link Chest}
+     */
+    BlockType.Typed<Chest> WAXED_OXIDIZED_COPPER_CHEST = getBlockType("waxed_oxidized_copper_chest");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> COPPER_GOLEM_STATUE = getBlockType("copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> EXPOSED_COPPER_GOLEM_STATUE = getBlockType("exposed_copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> WEATHERED_COPPER_GOLEM_STATUE = getBlockType("weathered_copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> OXIDIZED_COPPER_GOLEM_STATUE = getBlockType("oxidized_copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> WAXED_COPPER_GOLEM_STATUE = getBlockType("waxed_copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> WAXED_EXPOSED_COPPER_GOLEM_STATUE = getBlockType("waxed_exposed_copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> WAXED_WEATHERED_COPPER_GOLEM_STATUE = getBlockType("waxed_weathered_copper_golem_statue");
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    BlockType.Typed<CopperGolemStatue> WAXED_OXIDIZED_COPPER_GOLEM_STATUE = getBlockType("waxed_oxidized_copper_golem_statue");
+    /**
      * BlockData: {@link LightningRod}
      */
     BlockType.Typed<LightningRod> LIGHTNING_ROD = getBlockType("lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> EXPOSED_LIGHTNING_ROD = getBlockType("exposed_lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> WEATHERED_LIGHTNING_ROD = getBlockType("weathered_lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> OXIDIZED_LIGHTNING_ROD = getBlockType("oxidized_lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> WAXED_LIGHTNING_ROD = getBlockType("waxed_lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> WAXED_EXPOSED_LIGHTNING_ROD = getBlockType("waxed_exposed_lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> WAXED_WEATHERED_LIGHTNING_ROD = getBlockType("waxed_weathered_lightning_rod");
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    BlockType.Typed<LightningRod> WAXED_OXIDIZED_LIGHTNING_ROD = getBlockType("waxed_oxidized_lightning_rod");
     /**
      * BlockData: {@link PointedDripstone}
      */

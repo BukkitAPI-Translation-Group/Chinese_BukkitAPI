@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表一个生物实体，比如一只怪物或一名玩家.
  */
-public interface LivingEntity extends Attributable, Damageable, ProjectileSource {
+public interface LivingEntity extends Attributable, Damageable, Leashable, ProjectileSource {
 
     /**
      * 获取生物实体眼睛离脚高度.
@@ -620,45 +620,6 @@ public interface LivingEntity extends Attributable, Damageable, ProjectileSource
      * @return 生物实体是否能捡拾物品
      */
     public boolean getCanPickupItems();
-
-    /**
-     * 返回实体当前是否被拴住.
-     * <p>
-     * 原文：
-     * Returns whether the entity is currently leashed.
-     *
-     * @return 实体是否被拴住
-     */
-    public boolean isLeashed();
-
-    /**
-     * 获取当前牵引此实体的实体.
-     * <p>
-     * 原文：
-     * Gets the entity that is currently leading this entity.
-     *
-     * @return 握持拴绳的实体
-     * @throws IllegalStateException 如果当前实体没被拴住则抛出错误
-     */
-    @NotNull
-    public Entity getLeashHolder() throws IllegalStateException;
-
-    /**
-     * 设置握持拴绳的实体.
-     * <p>
-     * 此方法对末影龙，凋零，玩家或蝙蝠无效。除拴绳外的非生物实体将不会像握持拴绳者一样持续存在.
-     * <p>
-     * 原文：
-     * Sets the leash on this entity to be held by the supplied entity.
-     * <p>
-     * This method has no effect on EnderDragons, Withers, Players, or Bats.
-     * Non-living entities excluding leashes will not persist as leash
-     * holders.
-     *
-     * @param holder 握持拴绳的实体
-     * @return 操作是否成功
-     */
-    public boolean setLeashHolder(@Nullable Entity holder);
 
     /**
      * 检查实体是否正在滑翔，如正在使用鞘翅.

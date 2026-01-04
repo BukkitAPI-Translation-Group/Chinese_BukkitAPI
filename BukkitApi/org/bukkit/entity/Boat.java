@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 代表船实体
  */
-public interface Boat extends Vehicle {
+public interface Boat extends Leashable, Vehicle {
 
     /**
      * 获取船的木质种类. (例如:橡木质船/云杉木质船/白桦木质船等 ...)

@@ -192,11 +192,12 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 返回被点击的方块.
+     * 返回被交互的方块, 即使交互方式为 {@link Action#PHYSICAL} 而非点击方块.
      * <p>
-     * 原文:Returns the clicked block
+     * 原文:Returns the block that was interacted with, even if the interaction was
+     * {@link Action#PHYSICAL} rather than clicking on the block.
      *
-     * @return Block 被点击的方块
+     * @return Block 被交互的方块
      */
     @Nullable
     public Block getClickedBlock() {
@@ -204,11 +205,11 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * 返回被点击的方块的朝向.
+     * 返回被交互的方块的朝向.
      * <p>
-     * Returns the face of the block that was clicked
+     * 原文:Returns the face of the block that was interacted with.
      *
-     * @return BlockFace 被点击的方块的朝向
+     * @return BlockFace 被交互的方块的朝向
      */
     @NotNull
     public BlockFace getBlockFace() {
@@ -220,7 +221,7 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
      * 任意方块都能触发本事件, 不过大部分情况下都没有默认动作.
      * <p>
      * 原文:This controls the action to take with the block (if any) that was
-     * clicked on. This event gets processed for all blocks, but most don't
+     * interacted with. This event gets processed for all blocks, but most don't
      * have a default action
      *
      * @return 对被交互的方块采取的动作

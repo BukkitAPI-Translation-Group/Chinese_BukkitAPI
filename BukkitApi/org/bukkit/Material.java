@@ -51,6 +51,7 @@ import org.bukkit.block.data.type.Cocoa;
 import org.bukkit.block.data.type.CommandBlock;
 import org.bukkit.block.data.type.Comparator;
 import org.bukkit.block.data.type.CopperBulb;
+import org.bukkit.block.data.type.CopperGolemStatue;
 import org.bukkit.block.data.type.CoralWallFan;
 import org.bukkit.block.data.type.Crafter;
 import org.bukkit.block.data.type.CreakingHeart;
@@ -104,6 +105,7 @@ import org.bukkit.block.data.type.SculkSensor;
 import org.bukkit.block.data.type.SculkShrieker;
 import org.bukkit.block.data.type.SculkVein;
 import org.bukkit.block.data.type.SeaPickle;
+import org.bukkit.block.data.type.Shelf;
 import org.bukkit.block.data.type.Sign;
 import org.bukkit.block.data.type.Skull;
 import org.bukkit.block.data.type.Slab;
@@ -141,7 +143,7 @@ import org.jetbrains.annotations.Nullable;
  */
 public enum Material implements Keyed, Translatable, RegistryAware {
     //<editor-fold desc="Materials" defaultstate="collapsed">
-    AIR(9648, 0),
+    AIR(9648),
     STONE(22948),
     GRANITE(21091),
     POLISHED_GRANITE(5477),
@@ -884,6 +886,54 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     SMOOTH_SANDSTONE(30039),
     SMOOTH_STONE(21910),
     BRICKS(14165),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    ACACIA_SHELF(19769, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BAMBOO_SHELF(21454, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    BIRCH_SHELF(28060, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    CHERRY_SHELF(20011, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    CRIMSON_SHELF(24897, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    DARK_OAK_SHELF(25315, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    JUNGLE_SHELF(21925, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    MANGROVE_SHELF(11590, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    OAK_SHELF(24518, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    PALE_OAK_SHELF(18125, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    SPRUCE_SHELF(30849, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    WARPED_SHELF(29418, Shelf.class),
     BOOKSHELF(10069),
     /**
      * BlockData: {@link ChiseledBookshelf}
@@ -1029,6 +1079,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     POLISHED_BASALT(11659, Orientable.class),
     SMOOTH_BASALT(13617),
     SOUL_TORCH(14292),
+    COPPER_TORCH(31502),
     GLOWSTONE(32713),
     INFESTED_STONE(18440),
     INFESTED_COBBLESTONE(4348),
@@ -1069,9 +1120,73 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     IRON_BARS(9378, Fence.class),
     /**
+     * BlockData: {@link Fence}
+     */
+    COPPER_BARS(12028, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    EXPOSED_COPPER_BARS(12265, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    WEATHERED_COPPER_BARS(6386, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    OXIDIZED_COPPER_BARS(32395, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    WAXED_COPPER_BARS(26850, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    WAXED_EXPOSED_COPPER_BARS(20181, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    WAXED_WEATHERED_COPPER_BARS(29718, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    WAXED_OXIDIZED_COPPER_BARS(11648, Fence.class),
+    /**
      * BlockData: {@link Chain}
      */
-    CHAIN(28265, Chain.class),
+    IRON_CHAIN(18572, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    COPPER_CHAIN(20569, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    EXPOSED_COPPER_CHAIN(14574, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    WEATHERED_COPPER_CHAIN(20897, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    OXIDIZED_COPPER_CHAIN(24940, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    WAXED_COPPER_CHAIN(6723, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    WAXED_EXPOSED_COPPER_CHAIN(30641, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    WAXED_WEATHERED_COPPER_CHAIN(16132, Chain.class),
+    /**
+     * BlockData: {@link Chain}
+     */
+    WAXED_OXIDIZED_COPPER_CHAIN(28540, Chain.class),
     /**
      * BlockData: {@link Fence}
      */
@@ -1524,71 +1639,71 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Directional}
      */
-    SHULKER_BOX(7776, 1, Directional.class),
+    SHULKER_BOX(7776, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    WHITE_SHULKER_BOX(31750, 1, Directional.class),
+    WHITE_SHULKER_BOX(31750, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    ORANGE_SHULKER_BOX(21673, 1, Directional.class),
+    ORANGE_SHULKER_BOX(21673, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    MAGENTA_SHULKER_BOX(21566, 1, Directional.class),
+    MAGENTA_SHULKER_BOX(21566, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    LIGHT_BLUE_SHULKER_BOX(18226, 1, Directional.class),
+    LIGHT_BLUE_SHULKER_BOX(18226, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    YELLOW_SHULKER_BOX(28700, 1, Directional.class),
+    YELLOW_SHULKER_BOX(28700, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    LIME_SHULKER_BOX(28360, 1, Directional.class),
+    LIME_SHULKER_BOX(28360, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    PINK_SHULKER_BOX(24968, 1, Directional.class),
+    PINK_SHULKER_BOX(24968, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    GRAY_SHULKER_BOX(12754, 1, Directional.class),
+    GRAY_SHULKER_BOX(12754, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    LIGHT_GRAY_SHULKER_BOX(21345, 1, Directional.class),
+    LIGHT_GRAY_SHULKER_BOX(21345, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    CYAN_SHULKER_BOX(28123, 1, Directional.class),
+    CYAN_SHULKER_BOX(28123, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    PURPLE_SHULKER_BOX(10373, 1, Directional.class),
+    PURPLE_SHULKER_BOX(10373, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    BLUE_SHULKER_BOX(11476, 1, Directional.class),
+    BLUE_SHULKER_BOX(11476, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    BROWN_SHULKER_BOX(24230, 1, Directional.class),
+    BROWN_SHULKER_BOX(24230, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    GREEN_SHULKER_BOX(9377, 1, Directional.class),
+    GREEN_SHULKER_BOX(9377, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    RED_SHULKER_BOX(32448, 1, Directional.class),
+    RED_SHULKER_BOX(32448, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
-    BLACK_SHULKER_BOX(24076, 1, Directional.class),
+    BLACK_SHULKER_BOX(24076, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
@@ -1993,6 +2108,34 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     LIGHTNING_ROD(30770, LightningRod.class),
     /**
+     * BlockData: {@link LightningRod}
+     */
+    EXPOSED_LIGHTNING_ROD(23926, LightningRod.class),
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    WEATHERED_LIGHTNING_ROD(10980, LightningRod.class),
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    OXIDIZED_LIGHTNING_ROD(19667, LightningRod.class),
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    WAXED_LIGHTNING_ROD(28055, LightningRod.class),
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    WAXED_EXPOSED_LIGHTNING_ROD(8347, LightningRod.class),
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    WAXED_WEATHERED_LIGHTNING_ROD(12535, LightningRod.class),
+    /**
+     * BlockData: {@link LightningRod}
+     */
+    WAXED_OXIDIZED_LIGHTNING_ROD(24839, LightningRod.class),
+    /**
      * BlockData: {@link DaylightDetector}
      */
     DAYLIGHT_DETECTOR(8864, DaylightDetector.class),
@@ -2376,52 +2519,52 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link RedstoneRail}
      */
     ACTIVATOR_RAIL(5834, RedstoneRail.class),
-    SADDLE(30206, 1),
-    WHITE_HARNESS(16194, 1),
-    ORANGE_HARNESS(29145, 1),
-    MAGENTA_HARNESS(28316, 1),
-    LIGHT_BLUE_HARNESS(10514, 1),
-    YELLOW_HARNESS(21404, 1),
-    LIME_HARNESS(16572, 1),
-    PINK_HARNESS(19439, 1),
-    GRAY_HARNESS(18078, 1),
-    LIGHT_GRAY_HARNESS(6733, 1),
-    CYAN_HARNESS(4109, 1),
-    PURPLE_HARNESS(14314, 1),
-    BLUE_HARNESS(15650, 1),
-    BROWN_HARNESS(8213, 1),
-    GREEN_HARNESS(18400, 1),
-    RED_HARNESS(30368, 1),
-    BLACK_HARNESS(18915, 1),
-    MINECART(14352, 1),
-    CHEST_MINECART(4497, 1),
-    FURNACE_MINECART(14196, 1),
-    TNT_MINECART(4277, 1),
-    HOPPER_MINECART(19024, 1),
-    CARROT_ON_A_STICK(27809, 1, 25),
-    WARPED_FUNGUS_ON_A_STICK(11706, 1, 100),
+    SADDLE(30206),
+    WHITE_HARNESS(16194),
+    ORANGE_HARNESS(29145),
+    MAGENTA_HARNESS(28316),
+    LIGHT_BLUE_HARNESS(10514),
+    YELLOW_HARNESS(21404),
+    LIME_HARNESS(16572),
+    PINK_HARNESS(19439),
+    GRAY_HARNESS(18078),
+    LIGHT_GRAY_HARNESS(6733),
+    CYAN_HARNESS(4109),
+    PURPLE_HARNESS(14314),
+    BLUE_HARNESS(15650),
+    BROWN_HARNESS(8213),
+    GREEN_HARNESS(18400),
+    RED_HARNESS(30368),
+    BLACK_HARNESS(18915),
+    MINECART(14352),
+    CHEST_MINECART(4497),
+    FURNACE_MINECART(14196),
+    TNT_MINECART(4277),
+    HOPPER_MINECART(19024),
+    CARROT_ON_A_STICK(27809),
+    WARPED_FUNGUS_ON_A_STICK(11706),
     PHANTOM_MEMBRANE(18398),
-    ELYTRA(23829, 1, 432),
-    OAK_BOAT(17570, 1),
-    OAK_CHEST_BOAT(7765, 1),
-    SPRUCE_BOAT(31427, 1),
-    SPRUCE_CHEST_BOAT(30841, 1),
-    BIRCH_BOAT(28104, 1),
-    BIRCH_CHEST_BOAT(18546, 1),
-    JUNGLE_BOAT(4495, 1),
-    JUNGLE_CHEST_BOAT(20133, 1),
-    ACACIA_BOAT(27326, 1),
-    ACACIA_CHEST_BOAT(28455, 1),
-    CHERRY_BOAT(13628, 1),
-    CHERRY_CHEST_BOAT(7165, 1),
-    DARK_OAK_BOAT(28618, 1),
-    DARK_OAK_CHEST_BOAT(8733, 1),
-    PALE_OAK_BOAT(18534, 1),
-    PALE_OAK_CHEST_BOAT(26297, 1),
-    MANGROVE_BOAT(20792, 1),
-    MANGROVE_CHEST_BOAT(18572, 1),
-    BAMBOO_RAFT(25901, 1),
-    BAMBOO_CHEST_RAFT(20056, 1),
+    ELYTRA(23829),
+    OAK_BOAT(17570),
+    OAK_CHEST_BOAT(7765),
+    SPRUCE_BOAT(31427),
+    SPRUCE_CHEST_BOAT(30841),
+    BIRCH_BOAT(28104),
+    BIRCH_CHEST_BOAT(18546),
+    JUNGLE_BOAT(4495),
+    JUNGLE_CHEST_BOAT(20133),
+    ACACIA_BOAT(27326),
+    ACACIA_CHEST_BOAT(28455),
+    CHERRY_BOAT(13628),
+    CHERRY_CHEST_BOAT(7165),
+    DARK_OAK_BOAT(28618),
+    DARK_OAK_CHEST_BOAT(8733),
+    PALE_OAK_BOAT(18534),
+    PALE_OAK_CHEST_BOAT(26297),
+    MANGROVE_BOAT(20792),
+    MANGROVE_CHEST_BOAT(12568),
+    BAMBOO_RAFT(25901),
+    BAMBOO_CHEST_RAFT(20056),
     /**
      * BlockData: {@link StructureBlock}
      */
@@ -2435,14 +2578,14 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     TEST_BLOCK(30798, TestBlock.class),
     TEST_INSTANCE_BLOCK(16508),
-    TURTLE_HELMET(30120, 1, 275),
+    TURTLE_HELMET(30120),
     TURTLE_SCUTE(6766),
     ARMADILLO_SCUTE(11497),
-    WOLF_ARMOR(17138, 1, 64),
-    FLINT_AND_STEEL(28620, 1, 64),
+    WOLF_ARMOR(17138),
+    FLINT_AND_STEEL(28620),
     BOWL(32661),
     APPLE(7720),
-    BOW(8745, 1, 384),
+    BOW(8745),
     ARROW(31091),
     COAL(29067),
     CHARCOAL(5390),
@@ -2459,38 +2602,43 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     GOLD_INGOT(28927),
     NETHERITE_INGOT(32457),
     NETHERITE_SCRAP(29331),
-    WOODEN_SWORD(7175, 1, 59),
-    WOODEN_SHOVEL(28432, 1, 59),
-    WOODEN_PICKAXE(12792, 1, 59),
-    WOODEN_AXE(6292, 1, 59),
-    WOODEN_HOE(16043, 1, 59),
-    STONE_SWORD(25084, 1, 131),
-    STONE_SHOVEL(9520, 1, 131),
-    STONE_PICKAXE(14611, 1, 131),
-    STONE_AXE(6338, 1, 131),
-    STONE_HOE(22855, 1, 131),
-    GOLDEN_SWORD(10505, 1, 32),
-    GOLDEN_SHOVEL(15597, 1, 32),
-    GOLDEN_PICKAXE(25898, 1, 32),
-    GOLDEN_AXE(4878, 1, 32),
-    GOLDEN_HOE(19337, 1, 32),
-    IRON_SWORD(10904, 1, 250),
-    IRON_SHOVEL(30045, 1, 250),
-    IRON_PICKAXE(8842, 1, 250),
-    IRON_AXE(15894, 1, 250),
-    IRON_HOE(11339, 1, 250),
-    DIAMOND_SWORD(27707, 1, 1561),
-    DIAMOND_SHOVEL(25415, 1, 1561),
-    DIAMOND_PICKAXE(24291, 1, 1561),
-    DIAMOND_AXE(27277, 1, 1561),
-    DIAMOND_HOE(24050, 1, 1561),
-    NETHERITE_SWORD(23871, 1, 2031),
-    NETHERITE_SHOVEL(29728, 1, 2031),
-    NETHERITE_PICKAXE(9930, 1, 2031),
-    NETHERITE_AXE(29533, 1, 2031),
-    NETHERITE_HOE(27385, 1, 2031),
+    WOODEN_SWORD(7175),
+    WOODEN_SHOVEL(28432),
+    WOODEN_PICKAXE(12792),
+    WOODEN_AXE(6292),
+    WOODEN_HOE(16043),
+    COPPER_SWORD(21316),
+    COPPER_SHOVEL(12063),
+    COPPER_PICKAXE(28429),
+    COPPER_AXE(21136),
+    COPPER_HOE(28483),
+    STONE_SWORD(25084),
+    STONE_SHOVEL(9520),
+    STONE_PICKAXE(14611),
+    STONE_AXE(6338),
+    STONE_HOE(22855),
+    GOLDEN_SWORD(10505),
+    GOLDEN_SHOVEL(15597),
+    GOLDEN_PICKAXE(25898),
+    GOLDEN_AXE(4878),
+    GOLDEN_HOE(19337),
+    IRON_SWORD(10904),
+    IRON_SHOVEL(30045),
+    IRON_PICKAXE(8842),
+    IRON_AXE(15894),
+    IRON_HOE(11339),
+    DIAMOND_SWORD(27707),
+    DIAMOND_SHOVEL(25415),
+    DIAMOND_PICKAXE(24291),
+    DIAMOND_AXE(27277),
+    DIAMOND_HOE(24050),
+    NETHERITE_SWORD(23871),
+    NETHERITE_SHOVEL(29728),
+    NETHERITE_PICKAXE(9930),
+    NETHERITE_AXE(29533),
+    NETHERITE_HOE(27385),
     STICK(9773),
-    MUSHROOM_STEW(16336, 1),
+    MUSHROOM_STEW(16336),
     STRING(12806),
     FEATHER(30548),
     GUNPOWDER(29974),
@@ -2500,30 +2648,34 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     WHEAT(27709, Ageable.class),
     BREAD(32049),
-    LEATHER_HELMET(11624, 1, 55),
-    LEATHER_CHESTPLATE(29275, 1, 80),
-    LEATHER_LEGGINGS(28210, 1, 75),
-    LEATHER_BOOTS(15282, 1, 65),
-    CHAINMAIL_HELMET(26114, 1, 165),
-    CHAINMAIL_CHESTPLATE(23602, 1, 240),
-    CHAINMAIL_LEGGINGS(19087, 1, 225),
-    CHAINMAIL_BOOTS(17953, 1, 195),
-    IRON_HELMET(12025, 1, 165),
-    IRON_CHESTPLATE(28112, 1, 240),
-    IRON_LEGGINGS(18951, 1, 225),
-    IRON_BOOTS(8531, 1, 195),
-    DIAMOND_HELMET(10755, 1, 363),
-    DIAMOND_CHESTPLATE(32099, 1, 528),
-    DIAMOND_LEGGINGS(26500, 1, 495),
-    DIAMOND_BOOTS(16522, 1, 429),
-    GOLDEN_HELMET(7945, 1, 77),
-    GOLDEN_CHESTPLATE(4507, 1, 112),
-    GOLDEN_LEGGINGS(21002, 1, 105),
-    GOLDEN_BOOTS(7859, 1, 91),
-    NETHERITE_HELMET(15907, 1, 407),
-    NETHERITE_CHESTPLATE(6106, 1, 592),
-    NETHERITE_LEGGINGS(25605, 1, 555),
-    NETHERITE_BOOTS(8923, 1, 481),
+    LEATHER_HELMET(11624),
+    LEATHER_CHESTPLATE(29275),
+    LEATHER_LEGGINGS(28210),
+    LEATHER_BOOTS(15282),
+    COPPER_HELMET(30897),
+    COPPER_CHESTPLATE(9884),
+    COPPER_LEGGINGS(18225),
+    COPPER_BOOTS(27031),
+    CHAINMAIL_HELMET(26114),
+    CHAINMAIL_CHESTPLATE(23602),
+    CHAINMAIL_LEGGINGS(19087),
+    CHAINMAIL_BOOTS(17953),
+    IRON_HELMET(12025),
+    IRON_CHESTPLATE(28112),
+    IRON_LEGGINGS(18951),
+    IRON_BOOTS(8531),
+    DIAMOND_HELMET(10755),
+    DIAMOND_CHESTPLATE(32099),
+    DIAMOND_LEGGINGS(26500),
+    DIAMOND_BOOTS(16522),
+    GOLDEN_HELMET(7945),
+    GOLDEN_CHESTPLATE(4507),
+    GOLDEN_LEGGINGS(21002),
+    GOLDEN_BOOTS(7859),
+    NETHERITE_HELMET(15907),
+    NETHERITE_CHESTPLATE(6106),
+    NETHERITE_LEGGINGS(25605),
+    NETHERITE_BOOTS(8923),
     FLINT(23596),
     PORKCHOP(30896),
     COOKED_PORKCHOP(27231),
@@ -2533,143 +2685,143 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Sign}
      */
-    OAK_SIGN(8192, 16, Sign.class),
+    OAK_SIGN(8192, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    SPRUCE_SIGN(21502, 16, Sign.class),
+    SPRUCE_SIGN(21502, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    BIRCH_SIGN(11351, 16, Sign.class),
+    BIRCH_SIGN(11351, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    JUNGLE_SIGN(24717, 16, Sign.class),
+    JUNGLE_SIGN(24717, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    ACACIA_SIGN(29808, 16, Sign.class),
+    ACACIA_SIGN(29808, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    CHERRY_SIGN(16520, 16, Sign.class),
+    CHERRY_SIGN(16520, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    DARK_OAK_SIGN(15127, 16, Sign.class),
+    DARK_OAK_SIGN(15127, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    PALE_OAK_SIGN(12116, 16, Sign.class),
+    PALE_OAK_SIGN(12116, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    MANGROVE_SIGN(21975, 16, Sign.class),
+    MANGROVE_SIGN(21975, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    BAMBOO_SIGN(26139, 16, Sign.class),
+    BAMBOO_SIGN(26139, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    CRIMSON_SIGN(12162, 16, Sign.class),
+    CRIMSON_SIGN(12162, Sign.class),
     /**
      * BlockData: {@link Sign}
      */
-    WARPED_SIGN(10407, 16, Sign.class),
+    WARPED_SIGN(10407, Sign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    OAK_HANGING_SIGN(20116, 16, HangingSign.class),
+    OAK_HANGING_SIGN(20116, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    SPRUCE_HANGING_SIGN(24371, 16, HangingSign.class),
+    SPRUCE_HANGING_SIGN(24371, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    BIRCH_HANGING_SIGN(17938, 16, HangingSign.class),
+    BIRCH_HANGING_SIGN(17938, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    JUNGLE_HANGING_SIGN(27671, 16, HangingSign.class),
+    JUNGLE_HANGING_SIGN(27671, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    ACACIA_HANGING_SIGN(30257, 16, HangingSign.class),
+    ACACIA_HANGING_SIGN(30257, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    CHERRY_HANGING_SIGN(5088, 16, HangingSign.class),
+    CHERRY_HANGING_SIGN(5088, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    DARK_OAK_HANGING_SIGN(23360, 16, HangingSign.class),
+    DARK_OAK_HANGING_SIGN(23360, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    PALE_OAK_HANGING_SIGN(7097, 16, HangingSign.class),
+    PALE_OAK_HANGING_SIGN(7097, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    MANGROVE_HANGING_SIGN(25106, 16, HangingSign.class),
+    MANGROVE_HANGING_SIGN(25106, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    BAMBOO_HANGING_SIGN(4726, 16, HangingSign.class),
+    BAMBOO_HANGING_SIGN(4726, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    CRIMSON_HANGING_SIGN(20696, 16, HangingSign.class),
+    CRIMSON_HANGING_SIGN(20696, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
      */
-    WARPED_HANGING_SIGN(8195, 16, HangingSign.class),
-    BUCKET(15215, 16),
-    WATER_BUCKET(8802, 1),
-    LAVA_BUCKET(9228, 1),
-    POWDER_SNOW_BUCKET(31101, 1),
-    SNOWBALL(19487, 16),
+    WARPED_HANGING_SIGN(8195, HangingSign.class),
+    BUCKET(15215),
+    WATER_BUCKET(8802),
+    LAVA_BUCKET(9228),
+    POWDER_SNOW_BUCKET(31101),
+    SNOWBALL(19487),
     LEATHER(16414),
-    MILK_BUCKET(9680, 1),
-    PUFFERFISH_BUCKET(8861, 1),
-    SALMON_BUCKET(9606, 1),
-    COD_BUCKET(28601, 1),
-    TROPICAL_FISH_BUCKET(29995, 1),
-    AXOLOTL_BUCKET(20669, 1),
-    TADPOLE_BUCKET(9731, 1),
+    MILK_BUCKET(9680),
+    PUFFERFISH_BUCKET(8861),
+    SALMON_BUCKET(9606),
+    COD_BUCKET(28601),
+    TROPICAL_FISH_BUCKET(29995),
+    AXOLOTL_BUCKET(20669),
+    TADPOLE_BUCKET(9731),
     BRICK(6820),
     CLAY_BALL(24603),
     DRIED_KELP_BLOCK(12966),
     PAPER(9923),
     BOOK(23097),
     SLIME_BALL(5242),
-    EGG(21603, 16),
-    BLUE_EGG(11157, 16),
-    BROWN_EGG(14373, 16),
+    EGG(21603),
+    BLUE_EGG(11157),
+    BROWN_EGG(14373),
     COMPASS(24139),
     RECOVERY_COMPASS(12710),
-    BUNDLE(16835, 1),
-    WHITE_BUNDLE(12072, 1),
-    ORANGE_BUNDLE(18288, 1),
-    MAGENTA_BUNDLE(15328, 1),
-    LIGHT_BLUE_BUNDLE(18639, 1),
-    YELLOW_BUNDLE(27749, 1),
-    LIME_BUNDLE(30093, 1),
-    PINK_BUNDLE(21400, 1),
-    GRAY_BUNDLE(21262, 1),
-    LIGHT_GRAY_BUNDLE(26338, 1),
-    CYAN_BUNDLE(8942, 1),
-    PURPLE_BUNDLE(10319, 1),
-    BLUE_BUNDLE(31501, 1),
-    BROWN_BUNDLE(15464, 1),
-    GREEN_BUNDLE(4597, 1),
-    RED_BUNDLE(19986, 1),
-    BLACK_BUNDLE(22519, 1),
-    FISHING_ROD(4167, 1, 64),
+    BUNDLE(16835),
+    WHITE_BUNDLE(12072),
+    ORANGE_BUNDLE(18288),
+    MAGENTA_BUNDLE(15328),
+    LIGHT_BLUE_BUNDLE(18639),
+    YELLOW_BUNDLE(27749),
+    LIME_BUNDLE(30093),
+    PINK_BUNDLE(21400),
+    GRAY_BUNDLE(21262),
+    LIGHT_GRAY_BUNDLE(26338),
+    CYAN_BUNDLE(8942),
+    PURPLE_BUNDLE(10319),
+    BLUE_BUNDLE(31501),
+    BROWN_BUNDLE(15464),
+    GREEN_BUNDLE(4597),
+    RED_BUNDLE(19986),
+    BLACK_BUNDLE(22519),
+    FISHING_ROD(4167),
     CLOCK(14980),
-    SPYGLASS(27490, 1),
+    SPYGLASS(27490),
     GLOWSTONE_DUST(6665),
     COD(24691),
     SALMON(18516),
@@ -2702,78 +2854,78 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Cake}
      */
-    CAKE(27048, 1, Cake.class),
+    CAKE(27048, Cake.class),
     /**
      * BlockData: {@link Bed}
      */
-    WHITE_BED(8185, 1, Bed.class),
+    WHITE_BED(8185, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    ORANGE_BED(11194, 1, Bed.class),
+    ORANGE_BED(11194, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    MAGENTA_BED(20061, 1, Bed.class),
+    MAGENTA_BED(20061, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    LIGHT_BLUE_BED(20957, 1, Bed.class),
+    LIGHT_BLUE_BED(20957, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    YELLOW_BED(30410, 1, Bed.class),
+    YELLOW_BED(30410, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    LIME_BED(27860, 1, Bed.class),
+    LIME_BED(27860, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    PINK_BED(13795, 1, Bed.class),
+    PINK_BED(13795, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    GRAY_BED(15745, 1, Bed.class),
+    GRAY_BED(15745, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    LIGHT_GRAY_BED(5090, 1, Bed.class),
+    LIGHT_GRAY_BED(5090, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    CYAN_BED(16746, 1, Bed.class),
+    CYAN_BED(16746, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    PURPLE_BED(29755, 1, Bed.class),
+    PURPLE_BED(29755, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    BLUE_BED(12714, 1, Bed.class),
+    BLUE_BED(12714, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    BROWN_BED(26672, 1, Bed.class),
+    BROWN_BED(26672, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    GREEN_BED(13797, 1, Bed.class),
+    GREEN_BED(13797, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    RED_BED(30910, 1, Bed.class),
+    RED_BED(30910, Bed.class),
     /**
      * BlockData: {@link Bed}
      */
-    BLACK_BED(20490, 1, Bed.class),
+    BLACK_BED(20490, Bed.class),
     COOKIE(27431),
     /**
      * BlockData: {@link Crafter}
      */
     CRAFTER(25243, Crafter.class),
     FILLED_MAP(23504),
-    SHEARS(27971, 1, 238),
+    SHEARS(27971),
     MELON_SLICE(5347),
     DRIED_KELP(21042),
     PUMPKIN_SEEDS(28985),
@@ -2783,7 +2935,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     CHICKEN(17281),
     COOKED_CHICKEN(16984),
     ROTTEN_FLESH(21591),
-    ENDER_PEARL(5259, 16),
+    ENDER_PEARL(5259),
     BLAZE_ROD(8289),
     GHAST_TEAR(18222),
     GOLD_NUGGET(28814),
@@ -2792,7 +2944,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     NETHER_WART(29227, Ageable.class),
     GLASS_BOTTLE(6116),
-    POTION(24020, 1),
+    POTION(24020),
     SPIDER_EYE(9318),
     FERMENTED_SPIDER_EYE(19386),
     BLAZE_POWDER(18941),
@@ -2804,95 +2956,100 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     CAULDRON(26531),
     ENDER_EYE(24860),
     GLISTERING_MELON_SLICE(20158),
+    CHICKEN_SPAWN_EGG(5462),
+    COW_SPAWN_EGG(14761),
+    PIG_SPAWN_EGG(22584),
+    SHEEP_SPAWN_EGG(24488),
+    CAMEL_SPAWN_EGG(14760),
+    DONKEY_SPAWN_EGG(14513),
+    HORSE_SPAWN_EGG(25981),
+    MULE_SPAWN_EGG(11229),
+    CAT_SPAWN_EGG(29583),
+    PARROT_SPAWN_EGG(23614),
+    WOLF_SPAWN_EGG(21692),
     ARMADILLO_SPAWN_EGG(22098),
-    ALLAY_SPAWN_EGG(7909),
-    AXOLOTL_SPAWN_EGG(30381),
     BAT_SPAWN_EGG(14607),
     BEE_SPAWN_EGG(22924),
-    BLAZE_SPAWN_EGG(4759),
-    BOGGED_SPAWN_EGG(12042),
-    BREEZE_SPAWN_EGG(7580),
-    CAT_SPAWN_EGG(29583),
-    CAMEL_SPAWN_EGG(14760),
-    CAVE_SPIDER_SPAWN_EGG(23341),
-    CHICKEN_SPAWN_EGG(5462),
+    FOX_SPAWN_EGG(22376),
+    GOAT_SPAWN_EGG(30639),
+    LLAMA_SPAWN_EGG(23640),
+    OCELOT_SPAWN_EGG(30080),
+    PANDA_SPAWN_EGG(23759),
+    POLAR_BEAR_SPAWN_EGG(17015),
+    RABBIT_SPAWN_EGG(26496),
+    AXOLOTL_SPAWN_EGG(30381),
     COD_SPAWN_EGG(27248),
-    COW_SPAWN_EGG(14761),
-    CREEPER_SPAWN_EGG(9653),
     DOLPHIN_SPAWN_EGG(20787),
-    DONKEY_SPAWN_EGG(14513),
+    FROG_SPAWN_EGG(26682),
+    GLOW_SQUID_SPAWN_EGG(31578),
+    NAUTILUS_SPAWN_EGG(6905),
+    PUFFERFISH_SPAWN_EGG(24570),
+    SALMON_SPAWN_EGG(18739),
+    SQUID_SPAWN_EGG(10682),
+    TADPOLE_SPAWN_EGG(32467),
+    TROPICAL_FISH_SPAWN_EGG(19713),
+    TURTLE_SPAWN_EGG(17324),
+    ALLAY_SPAWN_EGG(7909),
+    MOOSHROOM_SPAWN_EGG(22125),
+    SNIFFER_SPAWN_EGG(27473),
+    COPPER_GOLEM_SPAWN_EGG(7297),
+    IRON_GOLEM_SPAWN_EGG(12781),
+    SNOW_GOLEM_SPAWN_EGG(24732),
+    TRADER_LLAMA_SPAWN_EGG(8439),
+    VILLAGER_SPAWN_EGG(30348),
+    WANDERING_TRADER_SPAWN_EGG(17904),
+    BOGGED_SPAWN_EGG(12042),
+    CAMEL_HUSK_SPAWN_EGG(31067),
     DROWNED_SPAWN_EGG(19368),
+    HUSK_SPAWN_EGG(20178),
+    PARCHED_SPAWN_EGG(24104),
+    SKELETON_SPAWN_EGG(15261),
+    SKELETON_HORSE_SPAWN_EGG(21356),
+    STRAY_SPAWN_EGG(30153),
+    WITHER_SPAWN_EGG(8024),
+    WITHER_SKELETON_SPAWN_EGG(10073),
+    ZOMBIE_SPAWN_EGG(5814),
+    ZOMBIE_HORSE_SPAWN_EGG(4275),
+    ZOMBIE_NAUTILUS_SPAWN_EGG(30501),
+    ZOMBIE_VILLAGER_SPAWN_EGG(10311),
+    CAVE_SPIDER_SPAWN_EGG(23341),
+    SPIDER_SPAWN_EGG(14984),
+    BREEZE_SPAWN_EGG(7580),
+    CREAKING_SPAWN_EGG(9598),
+    CREEPER_SPAWN_EGG(9653),
     ELDER_GUARDIAN_SPAWN_EGG(11418),
+    GUARDIAN_SPAWN_EGG(20113),
+    PHANTOM_SPAWN_EGG(24648),
+    SILVERFISH_SPAWN_EGG(14537),
+    SLIME_SPAWN_EGG(17196),
+    WARDEN_SPAWN_EGG(27553),
+    WITCH_SPAWN_EGG(11837),
+    EVOKER_SPAWN_EGG(21271),
+    PILLAGER_SPAWN_EGG(28659),
+    RAVAGER_SPAWN_EGG(8726),
+    VINDICATOR_SPAWN_EGG(25324),
+    VEX_SPAWN_EGG(27751),
+    BLAZE_SPAWN_EGG(4759),
+    GHAST_SPAWN_EGG(9970),
+    HAPPY_GHAST_SPAWN_EGG(6330),
+    HOGLIN_SPAWN_EGG(14088),
+    MAGMA_CUBE_SPAWN_EGG(26638),
+    PIGLIN_SPAWN_EGG(16193),
+    PIGLIN_BRUTE_SPAWN_EGG(30230),
+    STRIDER_SPAWN_EGG(6203),
+    ZOGLIN_SPAWN_EGG(7442),
+    ZOMBIFIED_PIGLIN_SPAWN_EGG(6626),
     ENDER_DRAGON_SPAWN_EGG(28092),
     ENDERMAN_SPAWN_EGG(29488),
     ENDERMITE_SPAWN_EGG(16617),
-    EVOKER_SPAWN_EGG(21271),
-    FOX_SPAWN_EGG(22376),
-    FROG_SPAWN_EGG(26682),
-    GHAST_SPAWN_EGG(9970),
-    HAPPY_GHAST_SPAWN_EGG(6330),
-    GLOW_SQUID_SPAWN_EGG(31578),
-    GOAT_SPAWN_EGG(30639),
-    GUARDIAN_SPAWN_EGG(20113),
-    HOGLIN_SPAWN_EGG(14088),
-    HORSE_SPAWN_EGG(25981),
-    HUSK_SPAWN_EGG(20178),
-    IRON_GOLEM_SPAWN_EGG(12781),
-    LLAMA_SPAWN_EGG(23640),
-    MAGMA_CUBE_SPAWN_EGG(26638),
-    MOOSHROOM_SPAWN_EGG(22125),
-    MULE_SPAWN_EGG(11229),
-    OCELOT_SPAWN_EGG(30080),
-    PANDA_SPAWN_EGG(23759),
-    PARROT_SPAWN_EGG(23614),
-    PHANTOM_SPAWN_EGG(24648),
-    PIG_SPAWN_EGG(22584),
-    PIGLIN_SPAWN_EGG(16193),
-    PIGLIN_BRUTE_SPAWN_EGG(30230),
-    PILLAGER_SPAWN_EGG(28659),
-    POLAR_BEAR_SPAWN_EGG(17015),
-    PUFFERFISH_SPAWN_EGG(24570),
-    RABBIT_SPAWN_EGG(26496),
-    RAVAGER_SPAWN_EGG(8726),
-    SALMON_SPAWN_EGG(18739),
-    SHEEP_SPAWN_EGG(24488),
     SHULKER_SPAWN_EGG(31848),
-    SILVERFISH_SPAWN_EGG(14537),
-    SKELETON_SPAWN_EGG(15261),
-    SKELETON_HORSE_SPAWN_EGG(21356),
-    SLIME_SPAWN_EGG(17196),
-    SNIFFER_SPAWN_EGG(27473),
-    SNOW_GOLEM_SPAWN_EGG(24732),
-    SPIDER_SPAWN_EGG(14984),
-    SQUID_SPAWN_EGG(10682),
-    STRAY_SPAWN_EGG(30153),
-    STRIDER_SPAWN_EGG(6203),
-    TADPOLE_SPAWN_EGG(32467),
-    TRADER_LLAMA_SPAWN_EGG(8439),
-    TROPICAL_FISH_SPAWN_EGG(19713),
-    TURTLE_SPAWN_EGG(17324),
-    VEX_SPAWN_EGG(27751),
-    VILLAGER_SPAWN_EGG(30348),
-    VINDICATOR_SPAWN_EGG(25324),
-    WANDERING_TRADER_SPAWN_EGG(17904),
-    WARDEN_SPAWN_EGG(27553),
-    WITCH_SPAWN_EGG(11837),
-    WITHER_SPAWN_EGG(8024),
-    WITHER_SKELETON_SPAWN_EGG(10073),
-    WOLF_SPAWN_EGG(21692),
-    ZOGLIN_SPAWN_EGG(7442),
-    CREAKING_SPAWN_EGG(9598),
-    ZOMBIE_SPAWN_EGG(5814),
-    ZOMBIE_HORSE_SPAWN_EGG(4275),
-    ZOMBIE_VILLAGER_SPAWN_EGG(10311),
-    ZOMBIFIED_PIGLIN_SPAWN_EGG(6626),
     EXPERIENCE_BOTTLE(12858),
     FIRE_CHARGE(4842),
     WIND_CHARGE(23928),
-    WRITABLE_BOOK(13393, 1),
-    WRITTEN_BOOK(24164, 16),
+    WRITABLE_BOOK(13393),
+    WRITTEN_BOOK(24164),
     BREEZE_ROD(14281),
-    MACE(4771, 1, 500),
+    MACE(4771),
     ITEM_FRAME(27318),
     GLOW_ITEM_FRAME(26473),
     FLOWER_POT(30567),
@@ -2934,90 +3091,92 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     PUMPKIN_PIE(28725),
     FIREWORK_ROCKET(23841),
     FIREWORK_STAR(12190),
-    ENCHANTED_BOOK(11741, 1),
+    ENCHANTED_BOOK(11741),
     NETHER_BRICK(19996),
     RESIN_BRICK(19050),
     PRISMARINE_SHARD(10993),
     PRISMARINE_CRYSTALS(31546),
     RABBIT(23068),
     COOKED_RABBIT(4454),
-    RABBIT_STEW(25318, 1),
+    RABBIT_STEW(25318),
     RABBIT_FOOT(13864),
     RABBIT_HIDE(12467),
-    ARMOR_STAND(12852, 16),
-    IRON_HORSE_ARMOR(30108, 1),
-    GOLDEN_HORSE_ARMOR(7996, 1),
-    DIAMOND_HORSE_ARMOR(10321, 1),
-    LEATHER_HORSE_ARMOR(30667, 1),
+    ARMOR_STAND(12852),
+    COPPER_HORSE_ARMOR(19221),
+    IRON_HORSE_ARMOR(30108),
+    GOLDEN_HORSE_ARMOR(7996),
+    DIAMOND_HORSE_ARMOR(10321),
+    NETHERITE_HORSE_ARMOR(7132),
+    LEATHER_HORSE_ARMOR(30667),
     LEAD(29539),
     NAME_TAG(30731),
-    COMMAND_BLOCK_MINECART(7992, 1),
+    COMMAND_BLOCK_MINECART(7992),
     MUTTON(4792),
     COOKED_MUTTON(31447),
     /**
      * BlockData: {@link Rotatable}
      */
-    WHITE_BANNER(17562, 16, Rotatable.class),
+    WHITE_BANNER(17562, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    ORANGE_BANNER(4839, 16, Rotatable.class),
+    ORANGE_BANNER(4839, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    MAGENTA_BANNER(15591, 16, Rotatable.class),
+    MAGENTA_BANNER(15591, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    LIGHT_BLUE_BANNER(18060, 16, Rotatable.class),
+    LIGHT_BLUE_BANNER(18060, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    YELLOW_BANNER(30382, 16, Rotatable.class),
+    YELLOW_BANNER(30382, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    LIME_BANNER(18887, 16, Rotatable.class),
+    LIME_BANNER(18887, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    PINK_BANNER(14302, 16, Rotatable.class),
+    PINK_BANNER(14302, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    GRAY_BANNER(12053, 16, Rotatable.class),
+    GRAY_BANNER(12053, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    LIGHT_GRAY_BANNER(11417, 16, Rotatable.class),
+    LIGHT_GRAY_BANNER(11417, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    CYAN_BANNER(9839, 16, Rotatable.class),
+    CYAN_BANNER(9839, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    PURPLE_BANNER(29027, 16, Rotatable.class),
+    PURPLE_BANNER(29027, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    BLUE_BANNER(18481, 16, Rotatable.class),
+    BLUE_BANNER(18481, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    BROWN_BANNER(11481, 16, Rotatable.class),
+    BROWN_BANNER(11481, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    GREEN_BANNER(10698, 16, Rotatable.class),
+    GREEN_BANNER(10698, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    RED_BANNER(26961, 16, Rotatable.class),
+    RED_BANNER(26961, Rotatable.class),
     /**
      * BlockData: {@link Rotatable}
      */
-    BLACK_BANNER(9365, 16, Rotatable.class),
+    BLACK_BANNER(9365, Rotatable.class),
     END_CRYSTAL(19090),
     CHORUS_FRUIT(7652),
     POPPED_CHORUS_FRUIT(27844),
@@ -3025,59 +3184,73 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     PITCHER_POD(7977),
     BEETROOT(23305),
     BEETROOT_SEEDS(21282),
-    BEETROOT_SOUP(16036, 1),
+    BEETROOT_SOUP(16036),
     DRAGON_BREATH(20154),
-    SPLASH_POTION(30248, 1),
+    SPLASH_POTION(30248),
     SPECTRAL_ARROW(4568),
     TIPPED_ARROW(25164),
-    LINGERING_POTION(25857, 1),
-    SHIELD(29943, 1, 336),
-    TOTEM_OF_UNDYING(10139, 1),
+    LINGERING_POTION(25857),
+    SHIELD(29943),
+    WOODEN_SPEAR(6788),
+    STONE_SPEAR(23651),
+    COPPER_SPEAR(13732),
+    IRON_SPEAR(5761),
+    GOLDEN_SPEAR(17968),
+    DIAMOND_SPEAR(8445),
+    NETHERITE_SPEAR(24728),
+    TOTEM_OF_UNDYING(10139),
     SHULKER_SHELL(27848),
     IRON_NUGGET(13715),
-    KNOWLEDGE_BOOK(12646, 1),
-    DEBUG_STICK(24562, 1),
-    MUSIC_DISC_13(16359, 1),
-    MUSIC_DISC_CAT(16246, 1),
-    MUSIC_DISC_BLOCKS(26667, 1),
-    MUSIC_DISC_CHIRP(19436, 1),
-    MUSIC_DISC_CREATOR(20345, 1),
-    MUSIC_DISC_CREATOR_MUSIC_BOX(7202, 1),
-    MUSIC_DISC_FAR(31742, 1),
-    MUSIC_DISC_MALL(11517, 1),
-    MUSIC_DISC_MELLOHI(26117, 1),
-    MUSIC_DISC_STAL(14989, 1),
-    MUSIC_DISC_STRAD(16785, 1),
-    MUSIC_DISC_WARD(24026, 1),
-    MUSIC_DISC_11(27426, 1),
-    MUSIC_DISC_WAIT(26499, 1),
-    MUSIC_DISC_OTHERSIDE(12974, 1),
-    MUSIC_DISC_RELIC(8200, 1),
-    MUSIC_DISC_5(9212, 1),
-    MUSIC_DISC_PIGSTEP(21323, 1),
-    MUSIC_DISC_PRECIPICE(28677, 1),
-    MUSIC_DISC_TEARS(27850, 1),
+    COPPER_NUGGET(13487),
+    KNOWLEDGE_BOOK(12646),
+    DEBUG_STICK(24562),
+    MUSIC_DISC_13(16359),
+    MUSIC_DISC_CAT(16246),
+    MUSIC_DISC_BLOCKS(26667),
+    MUSIC_DISC_CHIRP(19436),
+    MUSIC_DISC_CREATOR(20345),
+    MUSIC_DISC_CREATOR_MUSIC_BOX(7202),
+    MUSIC_DISC_FAR(31742),
+    MUSIC_DISC_LAVA_CHICKEN(9662),
+    MUSIC_DISC_MALL(11517),
+    MUSIC_DISC_MELLOHI(26117),
+    MUSIC_DISC_STAL(14989),
+    MUSIC_DISC_STRAD(16785),
+    MUSIC_DISC_WARD(24026),
+    MUSIC_DISC_11(27426),
+    MUSIC_DISC_WAIT(26499),
+    MUSIC_DISC_OTHERSIDE(12974),
+    MUSIC_DISC_RELIC(8200),
+    MUSIC_DISC_5(9212),
+    MUSIC_DISC_PIGSTEP(21323),
+    MUSIC_DISC_PRECIPICE(28677),
+    MUSIC_DISC_TEARS(27850),
     DISC_FRAGMENT_5(29729),
-    TRIDENT(7534, 1, 250),
+    TRIDENT(7534),
     NAUTILUS_SHELL(19989),
+    IRON_NAUTILUS_ARMOR(21013),
+    GOLDEN_NAUTILUS_ARMOR(18659),
+    DIAMOND_NAUTILUS_ARMOR(25922),
+    NETHERITE_NAUTILUS_ARMOR(27983),
+    COPPER_NAUTILUS_ARMOR(10266),
     HEART_OF_THE_SEA(11807),
-    CROSSBOW(4340, 1, 465),
-    SUSPICIOUS_STEW(8173, 1),
+    CROSSBOW(4340),
+    SUSPICIOUS_STEW(8173),
     /**
      * BlockData: {@link Directional}
      */
     LOOM(14276, Directional.class),
-    FLOWER_BANNER_PATTERN(5762, 1),
-    CREEPER_BANNER_PATTERN(15774, 1),
-    SKULL_BANNER_PATTERN(7680, 1),
-    MOJANG_BANNER_PATTERN(11903, 1),
-    GLOBE_BANNER_PATTERN(27753, 1),
-    PIGLIN_BANNER_PATTERN(22028, 1),
-    FLOW_BANNER_PATTERN(32683, 1),
-    GUSTER_BANNER_PATTERN(27267, 1),
-    FIELD_MASONED_BANNER_PATTERN(19157, 1),
-    BORDURE_INDENTED_BANNER_PATTERN(25850, 1),
-    GOAT_HORN(28237, 1),
+    FLOWER_BANNER_PATTERN(5762),
+    CREEPER_BANNER_PATTERN(15774),
+    SKULL_BANNER_PATTERN(7680),
+    MOJANG_BANNER_PATTERN(11903),
+    GLOBE_BANNER_PATTERN(27753),
+    PIGLIN_BANNER_PATTERN(22028),
+    FLOW_BANNER_PATTERN(32683),
+    GUSTER_BANNER_PATTERN(27267),
+    FIELD_MASONED_BANNER_PATTERN(19157),
+    BORDURE_INDENTED_BANNER_PATTERN(25850),
+    GOAT_HORN(28237),
     /**
      * BlockData: {@link Levelled}
      */
@@ -3117,6 +3290,38 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Lantern}
      */
     SOUL_LANTERN(27778, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    COPPER_LANTERN(13477, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    EXPOSED_COPPER_LANTERN(31182, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    WEATHERED_COPPER_LANTERN(25446, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    OXIDIZED_COPPER_LANTERN(10587, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    WAXED_COPPER_LANTERN(13391, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    WAXED_EXPOSED_COPPER_LANTERN(22265, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    WAXED_WEATHERED_COPPER_LANTERN(12282, Lantern.class),
+    /**
+     * BlockData: {@link Lantern}
+     */
+    WAXED_OXIDIZED_COPPER_LANTERN(27309, Lantern.class),
     SWEET_BERRIES(19747),
     GLOW_BERRIES(11584),
     /**
@@ -3137,7 +3342,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Beehive}
      */
     BEEHIVE(11830, Beehive.class),
-    HONEY_BOTTLE(22927, 16),
+    HONEY_BOTTLE(22927),
     HONEYCOMB_BLOCK(28780),
     LODESTONE(23127),
     CRYING_OBSIDIAN(31545),
@@ -3277,7 +3482,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     PEARLESCENT_FROGLIGHT(21441, Orientable.class),
     FROGSPAWN(8350),
     ECHO_SHARD(12529),
-    BRUSH(30569, 1, 64),
+    BRUSH(30569),
     NETHERITE_UPGRADE_SMITHING_TEMPLATE(7615),
     SENTRY_ARMOR_TRIM_SMITHING_TEMPLATE(16124),
     DUNE_ARMOR_TRIM_SMITHING_TEMPLATE(30925),
@@ -3385,6 +3590,70 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     WAXED_OXIDIZED_COPPER_BULB(26892, CopperBulb.class),
     /**
+     * BlockData: {@link Chest}
+     */
+    COPPER_CHEST(12729, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    EXPOSED_COPPER_CHEST(11459, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    WEATHERED_COPPER_CHEST(21689, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    OXIDIZED_COPPER_CHEST(18328, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    WAXED_COPPER_CHEST(13300, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    WAXED_EXPOSED_COPPER_CHEST(13846, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    WAXED_WEATHERED_COPPER_CHEST(17952, Chest.class),
+    /**
+     * BlockData: {@link Chest}
+     */
+    WAXED_OXIDIZED_COPPER_CHEST(20550, Chest.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    COPPER_GOLEM_STATUE(10634, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    EXPOSED_COPPER_GOLEM_STATUE(9031, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    WEATHERED_COPPER_GOLEM_STATUE(5243, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    OXIDIZED_COPPER_GOLEM_STATUE(31172, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    WAXED_COPPER_GOLEM_STATUE(17708, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    WAXED_EXPOSED_COPPER_GOLEM_STATUE(26261, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    WAXED_WEATHERED_COPPER_GOLEM_STATUE(31078, CopperGolemStatue.class),
+    /**
+     * BlockData: {@link CopperGolemStatue}
+     */
+    WAXED_OXIDIZED_COPPER_GOLEM_STATUE(14944, CopperGolemStatue.class),
+    /**
      * BlockData: {@link TrialSpawner}
      */
     TRIAL_SPAWNER(19902, TrialSpawner.class),
@@ -3431,43 +3700,43 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link WallSign}
      */
-    OAK_WALL_SIGN(12984, 16, WallSign.class),
+    OAK_WALL_SIGN(12984, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    SPRUCE_WALL_SIGN(7352, 16, WallSign.class),
+    SPRUCE_WALL_SIGN(7352, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    BIRCH_WALL_SIGN(9887, 16, WallSign.class),
+    BIRCH_WALL_SIGN(9887, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    ACACIA_WALL_SIGN(20316, 16, WallSign.class),
+    ACACIA_WALL_SIGN(20316, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    CHERRY_WALL_SIGN(20188, 16, WallSign.class),
+    CHERRY_WALL_SIGN(20188, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    JUNGLE_WALL_SIGN(29629, 16, WallSign.class),
+    JUNGLE_WALL_SIGN(29629, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    DARK_OAK_WALL_SIGN(9508, 16, WallSign.class),
+    DARK_OAK_WALL_SIGN(9508, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    PALE_OAK_WALL_SIGN(23103, 16, WallSign.class),
+    PALE_OAK_WALL_SIGN(23103, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    MANGROVE_WALL_SIGN(27203, 16, WallSign.class),
+    MANGROVE_WALL_SIGN(27203, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    BAMBOO_WALL_SIGN(18857, 16, WallSign.class),
+    BAMBOO_WALL_SIGN(18857, WallSign.class),
     /**
      * BlockData: {@link WallHangingSign}
      */
@@ -3524,6 +3793,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Directional}
      */
     SOUL_WALL_TORCH(27500, Directional.class),
+    /**
+     * BlockData: {@link Directional}
+     */
+    COPPER_WALL_TORCH(23592, Directional.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -3765,11 +4038,11 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link WallSign}
      */
-    CRIMSON_WALL_SIGN(19242, 16, WallSign.class),
+    CRIMSON_WALL_SIGN(19242, WallSign.class),
     /**
      * BlockData: {@link WallSign}
      */
-    WARPED_WALL_SIGN(13534, 16, WallSign.class),
+    WARPED_WALL_SIGN(13534, WallSign.class),
     POTTED_CRIMSON_FUNGUS(5548),
     POTTED_WARPED_FUNGUS(30800),
     POTTED_CRIMSON_ROOTS(13852),
@@ -3861,7 +4134,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     POTTED_CLOSED_EYEBLOSSOM(16694),
     // ----- Legacy Separator -----
     @Deprecated(since = "1.13")
-    LEGACY_AIR(0, 0),
+    LEGACY_AIR(0),
     @Deprecated(since = "1.13")
     LEGACY_STONE(1),
     @Deprecated(since = "1.13")
@@ -3987,7 +4260,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_BURNING_FURNACE(62, org.bukkit.material.Furnace.class),
     @Deprecated(since = "1.13")
-    LEGACY_SIGN_POST(63, 64, org.bukkit.material.Sign.class),
+    LEGACY_SIGN_POST(63, org.bukkit.material.Sign.class),
     @Deprecated(since = "1.13")
     LEGACY_WOODEN_DOOR(64, org.bukkit.material.Door.class),
     @Deprecated(since = "1.13")
@@ -3997,7 +4270,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_COBBLESTONE_STAIRS(67, org.bukkit.material.Stairs.class),
     @Deprecated(since = "1.13")
-    LEGACY_WALL_SIGN(68, 64, org.bukkit.material.Sign.class),
+    LEGACY_WALL_SIGN(68, org.bukkit.material.Sign.class),
     @Deprecated(since = "1.13")
     LEGACY_LEVER(69, org.bukkit.material.Lever.class),
     @Deprecated(since = "1.13")
@@ -4045,7 +4318,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_JACK_O_LANTERN(91, org.bukkit.material.Pumpkin.class),
     @Deprecated(since = "1.13")
-    LEGACY_CAKE_BLOCK(92, 64, org.bukkit.material.Cake.class),
+    LEGACY_CAKE_BLOCK(92, org.bukkit.material.Cake.class),
     @Deprecated(since = "1.13")
     LEGACY_DIODE_BLOCK_OFF(93, org.bukkit.material.Diode.class),
     @Deprecated(since = "1.13")
@@ -4299,37 +4572,37 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_OBSERVER(218, org.bukkit.material.Observer.class),
     @Deprecated(since = "1.13")
-    LEGACY_WHITE_SHULKER_BOX(219, 1),
+    LEGACY_WHITE_SHULKER_BOX(219),
     @Deprecated(since = "1.13")
-    LEGACY_ORANGE_SHULKER_BOX(220, 1),
+    LEGACY_ORANGE_SHULKER_BOX(220),
     @Deprecated(since = "1.13")
-    LEGACY_MAGENTA_SHULKER_BOX(221, 1),
+    LEGACY_MAGENTA_SHULKER_BOX(221),
     @Deprecated(since = "1.13")
-    LEGACY_LIGHT_BLUE_SHULKER_BOX(222, 1),
+    LEGACY_LIGHT_BLUE_SHULKER_BOX(222),
     @Deprecated(since = "1.13")
-    LEGACY_YELLOW_SHULKER_BOX(223, 1),
+    LEGACY_YELLOW_SHULKER_BOX(223),
     @Deprecated(since = "1.13")
-    LEGACY_LIME_SHULKER_BOX(224, 1),
+    LEGACY_LIME_SHULKER_BOX(224),
     @Deprecated(since = "1.13")
-    LEGACY_PINK_SHULKER_BOX(225, 1),
+    LEGACY_PINK_SHULKER_BOX(225),
     @Deprecated(since = "1.13")
-    LEGACY_GRAY_SHULKER_BOX(226, 1),
+    LEGACY_GRAY_SHULKER_BOX(226),
     @Deprecated(since = "1.13")
-    LEGACY_SILVER_SHULKER_BOX(227, 1),
+    LEGACY_SILVER_SHULKER_BOX(227),
     @Deprecated(since = "1.13")
-    LEGACY_CYAN_SHULKER_BOX(228, 1),
+    LEGACY_CYAN_SHULKER_BOX(228),
     @Deprecated(since = "1.13")
-    LEGACY_PURPLE_SHULKER_BOX(229, 1),
+    LEGACY_PURPLE_SHULKER_BOX(229),
     @Deprecated(since = "1.13")
-    LEGACY_BLUE_SHULKER_BOX(230, 1),
+    LEGACY_BLUE_SHULKER_BOX(230),
     @Deprecated(since = "1.13")
-    LEGACY_BROWN_SHULKER_BOX(231, 1),
+    LEGACY_BROWN_SHULKER_BOX(231),
     @Deprecated(since = "1.13")
-    LEGACY_GREEN_SHULKER_BOX(232, 1),
+    LEGACY_GREEN_SHULKER_BOX(232),
     @Deprecated(since = "1.13")
-    LEGACY_RED_SHULKER_BOX(233, 1),
+    LEGACY_RED_SHULKER_BOX(233),
     @Deprecated(since = "1.13")
-    LEGACY_BLACK_SHULKER_BOX(234, 1),
+    LEGACY_BLACK_SHULKER_BOX(234),
     @Deprecated(since = "1.13")
     LEGACY_WHITE_GLAZED_TERRACOTTA(235),
     @Deprecated(since = "1.13")
@@ -4370,17 +4643,17 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     LEGACY_STRUCTURE_BLOCK(255),
     // ----- Item Separator -----
     @Deprecated(since = "1.13")
-    LEGACY_IRON_SPADE(256, 1, 250),
+    LEGACY_IRON_SPADE(256, 250),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_PICKAXE(257, 1, 250),
+    LEGACY_IRON_PICKAXE(257, 250),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_AXE(258, 1, 250),
+    LEGACY_IRON_AXE(258, 250),
     @Deprecated(since = "1.13")
-    LEGACY_FLINT_AND_STEEL(259, 1, 64),
+    LEGACY_FLINT_AND_STEEL(259, 64),
     @Deprecated(since = "1.13")
     LEGACY_APPLE(260),
     @Deprecated(since = "1.13")
-    LEGACY_BOW(261, 1, 384),
+    LEGACY_BOW(261, 384),
     @Deprecated(since = "1.13")
     LEGACY_ARROW(262),
     @Deprecated(since = "1.13")
@@ -4392,45 +4665,45 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_GOLD_INGOT(266),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_SWORD(267, 1, 250),
+    LEGACY_IRON_SWORD(267, 250),
     @Deprecated(since = "1.13")
-    LEGACY_WOOD_SWORD(268, 1, 59),
+    LEGACY_WOOD_SWORD(268, 59),
     @Deprecated(since = "1.13")
-    LEGACY_WOOD_SPADE(269, 1, 59),
+    LEGACY_WOOD_SPADE(269, 59),
     @Deprecated(since = "1.13")
-    LEGACY_WOOD_PICKAXE(270, 1, 59),
+    LEGACY_WOOD_PICKAXE(270, 59),
     @Deprecated(since = "1.13")
-    LEGACY_WOOD_AXE(271, 1, 59),
+    LEGACY_WOOD_AXE(271, 59),
     @Deprecated(since = "1.13")
-    LEGACY_STONE_SWORD(272, 1, 131),
+    LEGACY_STONE_SWORD(272, 131),
     @Deprecated(since = "1.13")
-    LEGACY_STONE_SPADE(273, 1, 131),
+    LEGACY_STONE_SPADE(273, 131),
     @Deprecated(since = "1.13")
-    LEGACY_STONE_PICKAXE(274, 1, 131),
+    LEGACY_STONE_PICKAXE(274, 131),
     @Deprecated(since = "1.13")
-    LEGACY_STONE_AXE(275, 1, 131),
+    LEGACY_STONE_AXE(275, 131),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_SWORD(276, 1, 1561),
+    LEGACY_DIAMOND_SWORD(276, 1561),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_SPADE(277, 1, 1561),
+    LEGACY_DIAMOND_SPADE(277, 1561),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_PICKAXE(278, 1, 1561),
+    LEGACY_DIAMOND_PICKAXE(278, 1561),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_AXE(279, 1, 1561),
+    LEGACY_DIAMOND_AXE(279, 1561),
     @Deprecated(since = "1.13")
     LEGACY_STICK(280),
     @Deprecated(since = "1.13")
     LEGACY_BOWL(281),
     @Deprecated(since = "1.13")
-    LEGACY_MUSHROOM_SOUP(282, 1),
+    LEGACY_MUSHROOM_SOUP(282),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_SWORD(283, 1, 32),
+    LEGACY_GOLD_SWORD(283, 32),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_SPADE(284, 1, 32),
+    LEGACY_GOLD_SPADE(284, 32),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_PICKAXE(285, 1, 32),
+    LEGACY_GOLD_PICKAXE(285, 32),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_AXE(286, 1, 32),
+    LEGACY_GOLD_AXE(286, 32),
     @Deprecated(since = "1.13")
     LEGACY_STRING(287),
     @Deprecated(since = "1.13")
@@ -4438,15 +4711,15 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_SULPHUR(289),
     @Deprecated(since = "1.13")
-    LEGACY_WOOD_HOE(290, 1, 59),
+    LEGACY_WOOD_HOE(290, 59),
     @Deprecated(since = "1.13")
-    LEGACY_STONE_HOE(291, 1, 131),
+    LEGACY_STONE_HOE(291, 131),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_HOE(292, 1, 250),
+    LEGACY_IRON_HOE(292, 250),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_HOE(293, 1, 1561),
+    LEGACY_DIAMOND_HOE(293, 1561),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_HOE(294, 1, 32),
+    LEGACY_GOLD_HOE(294, 32),
     @Deprecated(since = "1.13")
     LEGACY_SEEDS(295),
     @Deprecated(since = "1.13")
@@ -4454,45 +4727,45 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_BREAD(297),
     @Deprecated(since = "1.13")
-    LEGACY_LEATHER_HELMET(298, 1, 55),
+    LEGACY_LEATHER_HELMET(298, 55),
     @Deprecated(since = "1.13")
-    LEGACY_LEATHER_CHESTPLATE(299, 1, 80),
+    LEGACY_LEATHER_CHESTPLATE(299, 80),
     @Deprecated(since = "1.13")
-    LEGACY_LEATHER_LEGGINGS(300, 1, 75),
+    LEGACY_LEATHER_LEGGINGS(300, 75),
     @Deprecated(since = "1.13")
-    LEGACY_LEATHER_BOOTS(301, 1, 65),
+    LEGACY_LEATHER_BOOTS(301, 65),
     @Deprecated(since = "1.13")
-    LEGACY_CHAINMAIL_HELMET(302, 1, 165),
+    LEGACY_CHAINMAIL_HELMET(302, 165),
     @Deprecated(since = "1.13")
-    LEGACY_CHAINMAIL_CHESTPLATE(303, 1, 240),
+    LEGACY_CHAINMAIL_CHESTPLATE(303, 240),
     @Deprecated(since = "1.13")
-    LEGACY_CHAINMAIL_LEGGINGS(304, 1, 225),
+    LEGACY_CHAINMAIL_LEGGINGS(304, 225),
     @Deprecated(since = "1.13")
-    LEGACY_CHAINMAIL_BOOTS(305, 1, 195),
+    LEGACY_CHAINMAIL_BOOTS(305, 195),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_HELMET(306, 1, 165),
+    LEGACY_IRON_HELMET(306, 165),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_CHESTPLATE(307, 1, 240),
+    LEGACY_IRON_CHESTPLATE(307, 240),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_LEGGINGS(308, 1, 225),
+    LEGACY_IRON_LEGGINGS(308, 225),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_BOOTS(309, 1, 195),
+    LEGACY_IRON_BOOTS(309, 195),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_HELMET(310, 1, 363),
+    LEGACY_DIAMOND_HELMET(310, 363),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_CHESTPLATE(311, 1, 528),
+    LEGACY_DIAMOND_CHESTPLATE(311, 528),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_LEGGINGS(312, 1, 495),
+    LEGACY_DIAMOND_LEGGINGS(312, 495),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_BOOTS(313, 1, 429),
+    LEGACY_DIAMOND_BOOTS(313, 429),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_HELMET(314, 1, 77),
+    LEGACY_GOLD_HELMET(314, 77),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_CHESTPLATE(315, 1, 112),
+    LEGACY_GOLD_CHESTPLATE(315, 112),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_LEGGINGS(316, 1, 105),
+    LEGACY_GOLD_LEGGINGS(316, 105),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_BOOTS(317, 1, 91),
+    LEGACY_GOLD_BOOTS(317, 91),
     @Deprecated(since = "1.13")
     LEGACY_FLINT(318),
     @Deprecated(since = "1.13")
@@ -4504,31 +4777,31 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_GOLDEN_APPLE(322),
     @Deprecated(since = "1.13")
-    LEGACY_SIGN(323, 16),
+    LEGACY_SIGN(323),
     @Deprecated(since = "1.13")
-    LEGACY_WOOD_DOOR(324, 64),
+    LEGACY_WOOD_DOOR(324),
     @Deprecated(since = "1.13")
-    LEGACY_BUCKET(325, 16),
+    LEGACY_BUCKET(325),
     @Deprecated(since = "1.13")
-    LEGACY_WATER_BUCKET(326, 1),
+    LEGACY_WATER_BUCKET(326),
     @Deprecated(since = "1.13")
-    LEGACY_LAVA_BUCKET(327, 1),
+    LEGACY_LAVA_BUCKET(327),
     @Deprecated(since = "1.13")
-    LEGACY_MINECART(328, 1),
+    LEGACY_MINECART(328),
     @Deprecated(since = "1.13")
-    LEGACY_SADDLE(329, 1),
+    LEGACY_SADDLE(329),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_DOOR(330, 64),
+    LEGACY_IRON_DOOR(330),
     @Deprecated(since = "1.13")
     LEGACY_REDSTONE(331),
     @Deprecated(since = "1.13")
-    LEGACY_SNOW_BALL(332, 16),
+    LEGACY_SNOW_BALL(332),
     @Deprecated(since = "1.13")
-    LEGACY_BOAT(333, 1),
+    LEGACY_BOAT(333),
     @Deprecated(since = "1.13")
     LEGACY_LEATHER(334),
     @Deprecated(since = "1.13")
-    LEGACY_MILK_BUCKET(335, 1),
+    LEGACY_MILK_BUCKET(335),
     @Deprecated(since = "1.13")
     LEGACY_CLAY_BRICK(336),
     @Deprecated(since = "1.13")
@@ -4542,15 +4815,15 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_SLIME_BALL(341),
     @Deprecated(since = "1.13")
-    LEGACY_STORAGE_MINECART(342, 1),
+    LEGACY_STORAGE_MINECART(342),
     @Deprecated(since = "1.13")
-    LEGACY_POWERED_MINECART(343, 1),
+    LEGACY_POWERED_MINECART(343),
     @Deprecated(since = "1.13")
-    LEGACY_EGG(344, 16),
+    LEGACY_EGG(344),
     @Deprecated(since = "1.13")
     LEGACY_COMPASS(345),
     @Deprecated(since = "1.13")
-    LEGACY_FISHING_ROD(346, 1, 64),
+    LEGACY_FISHING_ROD(346, 64),
     @Deprecated(since = "1.13")
     LEGACY_WATCH(347),
     @Deprecated(since = "1.13")
@@ -4566,9 +4839,9 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_SUGAR(353),
     @Deprecated(since = "1.13")
-    LEGACY_CAKE(354, 1),
+    LEGACY_CAKE(354),
     @Deprecated(since = "1.13")
-    LEGACY_BED(355, 1),
+    LEGACY_BED(355),
     @Deprecated(since = "1.13")
     LEGACY_DIODE(356),
     @Deprecated(since = "1.13")
@@ -4579,7 +4852,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_MAP(358, org.bukkit.material.MaterialData.class),
     @Deprecated(since = "1.13")
-    LEGACY_SHEARS(359, 1, 238),
+    LEGACY_SHEARS(359, 238),
     @Deprecated(since = "1.13")
     LEGACY_MELON(360),
     @Deprecated(since = "1.13")
@@ -4597,7 +4870,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_ROTTEN_FLESH(367),
     @Deprecated(since = "1.13")
-    LEGACY_ENDER_PEARL(368, 16),
+    LEGACY_ENDER_PEARL(368),
     @Deprecated(since = "1.13")
     LEGACY_BLAZE_ROD(369),
     @Deprecated(since = "1.13")
@@ -4607,7 +4880,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_NETHER_STALK(372),
     @Deprecated(since = "1.13")
-    LEGACY_POTION(373, 1, org.bukkit.material.MaterialData.class),
+    LEGACY_POTION(373, org.bukkit.material.MaterialData.class),
     @Deprecated(since = "1.13")
     LEGACY_GLASS_BOTTLE(374),
     @Deprecated(since = "1.13")
@@ -4627,17 +4900,17 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_SPECKLED_MELON(382),
     @Deprecated(since = "1.13")
-    LEGACY_MONSTER_EGG(383, 64, org.bukkit.material.SpawnEgg.class),
+    LEGACY_MONSTER_EGG(383, org.bukkit.material.SpawnEgg.class),
     @Deprecated(since = "1.13")
-    LEGACY_EXP_BOTTLE(384, 64),
+    LEGACY_EXP_BOTTLE(384),
     @Deprecated(since = "1.13")
-    LEGACY_FIREBALL(385, 64),
+    LEGACY_FIREBALL(385),
     @Deprecated(since = "1.13")
-    LEGACY_BOOK_AND_QUILL(386, 1),
+    LEGACY_BOOK_AND_QUILL(386),
     @Deprecated(since = "1.13")
-    LEGACY_WRITTEN_BOOK(387, 16),
+    LEGACY_WRITTEN_BOOK(387),
     @Deprecated(since = "1.13")
-    LEGACY_EMERALD(388, 64),
+    LEGACY_EMERALD(388),
     @Deprecated(since = "1.13")
     LEGACY_ITEM_FRAME(389),
     @Deprecated(since = "1.13")
@@ -4657,7 +4930,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_SKULL_ITEM(397),
     @Deprecated(since = "1.13")
-    LEGACY_CARROT_STICK(398, 1, 25),
+    LEGACY_CARROT_STICK(398, 25),
     @Deprecated(since = "1.13")
     LEGACY_NETHER_STAR(399),
     @Deprecated(since = "1.13")
@@ -4667,7 +4940,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_FIREWORK_CHARGE(402),
     @Deprecated(since = "1.13")
-    LEGACY_ENCHANTED_BOOK(403, 1),
+    LEGACY_ENCHANTED_BOOK(403),
     @Deprecated(since = "1.13")
     LEGACY_REDSTONE_COMPARATOR(404),
     @Deprecated(since = "1.13")
@@ -4675,9 +4948,9 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_QUARTZ(406),
     @Deprecated(since = "1.13")
-    LEGACY_EXPLOSIVE_MINECART(407, 1),
+    LEGACY_EXPLOSIVE_MINECART(407),
     @Deprecated(since = "1.13")
-    LEGACY_HOPPER_MINECART(408, 1),
+    LEGACY_HOPPER_MINECART(408),
     @Deprecated(since = "1.13")
     LEGACY_PRISMARINE_SHARD(409),
     @Deprecated(since = "1.13")
@@ -4687,31 +4960,31 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_COOKED_RABBIT(412),
     @Deprecated(since = "1.13")
-    LEGACY_RABBIT_STEW(413, 1),
+    LEGACY_RABBIT_STEW(413),
     @Deprecated(since = "1.13")
     LEGACY_RABBIT_FOOT(414),
     @Deprecated(since = "1.13")
     LEGACY_RABBIT_HIDE(415),
     @Deprecated(since = "1.13")
-    LEGACY_ARMOR_STAND(416, 16),
+    LEGACY_ARMOR_STAND(416),
     @Deprecated(since = "1.13")
-    LEGACY_IRON_BARDING(417, 1),
+    LEGACY_IRON_BARDING(417),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_BARDING(418, 1),
+    LEGACY_GOLD_BARDING(418),
     @Deprecated(since = "1.13")
-    LEGACY_DIAMOND_BARDING(419, 1),
+    LEGACY_DIAMOND_BARDING(419),
     @Deprecated(since = "1.13")
     LEGACY_LEASH(420),
     @Deprecated(since = "1.13")
     LEGACY_NAME_TAG(421),
     @Deprecated(since = "1.13")
-    LEGACY_COMMAND_MINECART(422, 1),
+    LEGACY_COMMAND_MINECART(422),
     @Deprecated(since = "1.13")
     LEGACY_MUTTON(423),
     @Deprecated(since = "1.13")
     LEGACY_COOKED_MUTTON(424),
     @Deprecated(since = "1.13")
-    LEGACY_BANNER(425, 16),
+    LEGACY_BANNER(425),
     @Deprecated(since = "1.13")
     LEGACY_END_CRYSTAL(426),
     @Deprecated(since = "1.13")
@@ -4733,63 +5006,63 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     @Deprecated(since = "1.13")
     LEGACY_BEETROOT_SEEDS(435),
     @Deprecated(since = "1.13")
-    LEGACY_BEETROOT_SOUP(436, 1),
+    LEGACY_BEETROOT_SOUP(436),
     @Deprecated(since = "1.13")
     LEGACY_DRAGONS_BREATH(437),
     @Deprecated(since = "1.13")
-    LEGACY_SPLASH_POTION(438, 1),
+    LEGACY_SPLASH_POTION(438),
     @Deprecated(since = "1.13")
     LEGACY_SPECTRAL_ARROW(439),
     @Deprecated(since = "1.13")
     LEGACY_TIPPED_ARROW(440),
     @Deprecated(since = "1.13")
-    LEGACY_LINGERING_POTION(441, 1),
+    LEGACY_LINGERING_POTION(441),
     @Deprecated(since = "1.13")
-    LEGACY_SHIELD(442, 1, 336),
+    LEGACY_SHIELD(442, 336),
     @Deprecated(since = "1.13")
-    LEGACY_ELYTRA(443, 1, 431),
+    LEGACY_ELYTRA(443, 431),
     @Deprecated(since = "1.13")
-    LEGACY_BOAT_SPRUCE(444, 1),
+    LEGACY_BOAT_SPRUCE(444),
     @Deprecated(since = "1.13")
-    LEGACY_BOAT_BIRCH(445, 1),
+    LEGACY_BOAT_BIRCH(445),
     @Deprecated(since = "1.13")
-    LEGACY_BOAT_JUNGLE(446, 1),
+    LEGACY_BOAT_JUNGLE(446),
     @Deprecated(since = "1.13")
-    LEGACY_BOAT_ACACIA(447, 1),
+    LEGACY_BOAT_ACACIA(447),
     @Deprecated(since = "1.13")
-    LEGACY_BOAT_DARK_OAK(448, 1),
+    LEGACY_BOAT_DARK_OAK(448),
     @Deprecated(since = "1.13")
-    LEGACY_TOTEM(449, 1),
+    LEGACY_TOTEM(449),
     @Deprecated(since = "1.13")
     LEGACY_SHULKER_SHELL(450),
     @Deprecated(since = "1.13")
     LEGACY_IRON_NUGGET(452),
     @Deprecated(since = "1.13")
-    LEGACY_KNOWLEDGE_BOOK(453, 1),
+    LEGACY_KNOWLEDGE_BOOK(453),
     @Deprecated(since = "1.13")
-    LEGACY_GOLD_RECORD(2256, 1),
+    LEGACY_GOLD_RECORD(2256),
     @Deprecated(since = "1.13")
-    LEGACY_GREEN_RECORD(2257, 1),
+    LEGACY_GREEN_RECORD(2257),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_3(2258, 1),
+    LEGACY_RECORD_3(2258),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_4(2259, 1),
+    LEGACY_RECORD_4(2259),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_5(2260, 1),
+    LEGACY_RECORD_5(2260),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_6(2261, 1),
+    LEGACY_RECORD_6(2261),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_7(2262, 1),
+    LEGACY_RECORD_7(2262),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_8(2263, 1),
+    LEGACY_RECORD_8(2263),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_9(2264, 1),
+    LEGACY_RECORD_9(2264),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_10(2265, 1),
+    LEGACY_RECORD_10(2265),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_11(2266, 1),
+    LEGACY_RECORD_11(2266),
     @Deprecated(since = "1.13")
-    LEGACY_RECORD_12(2267, 1),
+    LEGACY_RECORD_12(2267),
     ;
     //</editor-fold>
 
@@ -4799,7 +5072,6 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     private final int id;
     private final Constructor<? extends MaterialData> ctor;
     private static final Map<String, Material> BY_NAME = Maps.newHashMap();
-    private final int maxStack;
     private final short durability;
     public final Class<?> data;
     private final boolean legacy;
@@ -4808,29 +5080,20 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     private final Supplier<BlockType> blockType;
 
     private Material(final int id) {
-        this(id, 64);
+        this(id, MaterialData.class);
     }
 
-    private Material(final int id, final int stack) {
-        this(id, stack, MaterialData.class);
-    }
-
-    private Material(final int id, final int stack, final int durability) {
-        this(id, stack, durability, MaterialData.class);
+    private Material(final int id, final int durability) {
+        this(id, durability, MaterialData.class);
     }
 
     private Material(final int id, /*@NotNull*/ final Class<?> data) {
-        this(id, 64, data);
+        this(id, 0, data);
     }
 
-    private Material(final int id, final int stack, /*@NotNull*/ final Class<?> data) {
-        this(id, stack, 0, data);
-    }
-
-    private Material(final int id, final int stack, final int durability, /*@NotNull*/ final Class<?> data) {
+    private Material(final int id, final int durability, /*@NotNull*/ final Class<?> data) {
         this.id = id;
         this.durability = (short) durability;
-        this.maxStack = stack;
         this.data = data;
         this.legacy = this.name().startsWith(LEGACY_PREFIX);
         this.key = NamespacedKey.minecraft(this.name().toLowerCase(Locale.ROOT));
@@ -4861,6 +5124,8 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             }
             return Registry.BLOCK.get(material.key);
         });
+        // validate durability
+        Preconditions.checkArgument(durability == 0 || this.legacy, "Only legacy Materials may have manually specified durability");
     }
 
     /**
@@ -4934,7 +5199,8 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * @return 物品的最大堆叠数量
      */
     public int getMaxStackSize() {
-        return maxStack;
+        ItemType type = asItemType();
+        return (type != null) ? type.getMaxStackSize() : 64;
     }
 
     /**
@@ -4945,7 +5211,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * @return 物品的最大耐久度
      */
     public short getMaxDurability() {
-        return durability;
+        if (isLegacy()) {
+            return durability;
+        }
+
+        ItemType type = asItemType();
+        return (type) != null ? type.getMaxDurability() : 0;
     }
 
     /**
@@ -5567,6 +5838,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             // <editor-fold defaultstate="collapsed" desc="getEquipmentSlot">
             case CARVED_PUMPKIN:
             case CHAINMAIL_HELMET:
+            case COPPER_HELMET:
             case CREEPER_HEAD:
             case DIAMOND_HELMET:
             case DRAGON_HEAD:
@@ -5582,6 +5854,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case ZOMBIE_HEAD:
                 return EquipmentSlot.HEAD;
             case CHAINMAIL_CHESTPLATE:
+            case COPPER_CHESTPLATE:
             case DIAMOND_CHESTPLATE:
             case ELYTRA:
             case GOLDEN_CHESTPLATE:
@@ -5589,6 +5862,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case LEATHER_CHESTPLATE:
             case NETHERITE_CHESTPLATE:
                 return EquipmentSlot.CHEST;
+            case COPPER_LEGGINGS:
             case CHAINMAIL_LEGGINGS:
             case DIAMOND_LEGGINGS:
             case GOLDEN_LEGGINGS:
@@ -5596,6 +5870,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case LEATHER_LEGGINGS:
             case NETHERITE_LEGGINGS:
                 return EquipmentSlot.LEGS;
+            case COPPER_BOOTS:
             case CHAINMAIL_BOOTS:
             case DIAMOND_BOOTS:
             case GOLDEN_BOOTS:
@@ -5611,15 +5886,20 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case BLUE_HARNESS:
             case BROWN_CARPET:
             case BROWN_HARNESS:
+            case COPPER_HORSE_ARMOR:
+            case COPPER_NAUTILUS_ARMOR:
             case CYAN_CARPET:
             case CYAN_HARNESS:
             case DIAMOND_HORSE_ARMOR:
+            case DIAMOND_NAUTILUS_ARMOR:
             case GOLDEN_HORSE_ARMOR:
+            case GOLDEN_NAUTILUS_ARMOR:
             case GRAY_CARPET:
             case GRAY_HARNESS:
             case GREEN_CARPET:
             case GREEN_HARNESS:
             case IRON_HORSE_ARMOR:
+            case IRON_NAUTILUS_ARMOR:
             case LEATHER_HORSE_ARMOR:
             case LIGHT_BLUE_CARPET:
             case LIGHT_BLUE_HARNESS:
@@ -5629,6 +5909,8 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case LIME_HARNESS:
             case MAGENTA_CARPET:
             case MAGENTA_HARNESS:
+            case NETHERITE_HORSE_ARMOR:
+            case NETHERITE_NAUTILUS_ARMOR:
             case ORANGE_CARPET:
             case ORANGE_HARNESS:
             case PINK_CARPET:

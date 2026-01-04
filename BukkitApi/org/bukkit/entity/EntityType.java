@@ -333,6 +333,12 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
     SPRUCE_CHEST_BOAT("spruce_chest_boat", SpruceChestBoat.class, -1),
     CREAKING("creaking", Creaking.class, -1),
     HAPPY_GHAST("happy_ghast", HappyGhast.class, -1),
+    COPPER_GOLEM("copper_golem", CopperGolem.class, -1),
+    MANNEQUIN("mannequin", Mannequin.class, -1),
+    CAMEL_HUSK("camel_husk", CamelHusk.class, -1),
+    NAUTILUS("nautilus", Nautilus.class, -1),
+    PARCHED("parched", Parched.class, -1),
+    ZOMBIE_NAUTILUS("zombie_nautilus", ZombieNautilus.class, -1),
     /**
      * A fishing line and bobber.
      */

@@ -2537,7 +2537,18 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * Show a dialog to the player.
      *
      * @param dialog the dialog to show
+     * @throws IllegalArgumentException if the dialog does not exist on the
+     * server
      */
+    @ApiStatus.Experimental
+    public void showDialog(@NotNull NamespacedKey dialog);
+
+    /**
+     * Show a dialog to the player.
+     *
+     * @param dialog the dialog to show
+     */
+    @ApiStatus.Experimental
     public void showDialog(@NotNull net.md_5.bungee.api.dialog.Dialog dialog);
 
     // Spigot start

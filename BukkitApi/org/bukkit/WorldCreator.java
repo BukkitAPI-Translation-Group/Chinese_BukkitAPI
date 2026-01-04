@@ -22,7 +22,6 @@ public class WorldCreator {
     private boolean generateStructures = true;
     private String generatorSettings = "";
     private boolean hardcore = false;
-    private boolean keepSpawnInMemory = true;
 
     /**
      * 为指定世界的名称创建一个空的WorldCreationOptions类型。
@@ -59,7 +58,6 @@ public class WorldCreator {
         type = world.getWorldType();
         generateStructures = world.canGenerateStructures();
         hardcore = world.isHardcore();
-        keepSpawnInMemory = world.getKeepSpawnInMemory();
 
         return this;
     }
@@ -85,7 +83,6 @@ public class WorldCreator {
         generateStructures = creator.generateStructures();
         generatorSettings = creator.generatorSettings();
         hardcore = creator.hardcore();
-        keepSpawnInMemory = creator.keepSpawnInMemory();
 
         return this;
     }
@@ -462,11 +459,12 @@ public class WorldCreator {
      *
      * @param keepSpawnInMemory Whether the spawn chunks will be kept loaded
      * @return This object, for chaining
+     * @deprecated "出生点区块"的概念已被移除, 使用
+     * {@link World#setChunkForceLoaded(int, int, boolean)} 以更好地控制
      */
     @NotNull
+    @Deprecated(since = "1.21.9")
     public WorldCreator keepSpawnInMemory(boolean keepSpawnInMemory) {
-        this.keepSpawnInMemory = keepSpawnInMemory;
-
         return this;
     }
 
@@ -474,9 +472,12 @@ public class WorldCreator {
      * Gets whether or not the spawn chunks will be kept loaded.
      *
      * @return True if the spawn chunks will be kept loaded
+     * @deprecated "出生点区块"的概念已被移除, 使用
+     * {@link World#isChunkForceLoaded(int, int)} 以更好地控制
      */
+    @Deprecated(since = "1.21.9")
     public boolean keepSpawnInMemory() {
-        return keepSpawnInMemory;
+        return false;
     }
 
     /**

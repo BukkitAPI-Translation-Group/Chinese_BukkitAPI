@@ -18,13 +18,18 @@ import org.bukkit.inventory.ItemFactory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemRarity;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.components.AttackRangeComponent;
 import org.bukkit.inventory.meta.components.BlocksAttacksComponent;
 import org.bukkit.inventory.meta.components.CustomModelDataComponent;
 import org.bukkit.inventory.meta.components.EquippableComponent;
 import org.bukkit.inventory.meta.components.FoodComponent;
 import org.bukkit.inventory.meta.components.JukeboxPlayableComponent;
+import org.bukkit.inventory.meta.components.KineticWeaponComponent;
+import org.bukkit.inventory.meta.components.PiercingWeaponComponent;
+import org.bukkit.inventory.meta.components.SwingAnimationComponent;
 import org.bukkit.inventory.meta.components.ToolComponent;
 import org.bukkit.inventory.meta.components.UseCooldownComponent;
+import org.bukkit.inventory.meta.components.UseEffectsComponent;
 import org.bukkit.inventory.meta.components.WeaponComponent;
 import org.bukkit.inventory.meta.components.consumable.ConsumableComponent;
 import org.bukkit.inventory.meta.tags.CustomItemTagContainer;
@@ -714,6 +719,47 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setDamageResistant(@Nullable Tag<DamageType> tag);
 
     /**
+     * Gets if this item delivers a certain type of damage.
+     *
+     * @return true if a resistance is set
+     */
+    boolean hasDamageType();
+
+    /**
+     * Gets the type of damage this item will deliver.
+     *
+     * Plugins should check {@link #hasDamageType()} before calling this method.
+     *
+     * @return damage type
+     */
+    @Nullable
+    DamageType getDamageType();
+
+    /**
+     * Gets the type of damage this item will deliver.
+     *
+     * Plugins should check {@link #hasDamageType()} before calling this method.
+     *
+     * @return damage type
+     */
+    @Nullable
+    NamespacedKey getDamageTypeKey();
+
+    /**
+     * Sets the type of damage this item will deliver.
+     *
+     * @param type the type, or null to clear
+     */
+    void setDamageType(@Nullable DamageType type);
+
+    /**
+     * Sets the type of damage this item will deliver.
+     *
+     * @param type the type, or null to clear
+     */
+    void setDamageTypeKey(@Nullable NamespacedKey type);
+
+    /**
      * 获取是否设置了最大堆叠数量.
      * <p>
      * 原文:
@@ -858,6 +904,146 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param cooldown 新的使用冷却组件
      */
     void setUseCooldown(@Nullable UseCooldownComponent cooldown);
+
+    /**
+     * Checks if the use effects is set.
+     *
+     * @return if a use effects is set
+     */
+    boolean hasUseEffects();
+
+    /**
+     * Gets the use effects set on this item, or creates an empty effects
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setUseEffects(UseEffectsComponent)} to apply the changes.
+     *
+     * @return use effects
+     */
+    @NotNull
+    UseEffectsComponent getUseEffects();
+
+    /**
+     * Sets the item use effects.
+     *
+     * @param effects new effects
+     */
+    void setUseEffects(@Nullable UseEffectsComponent effects);
+
+    /**
+     * Checks if a swing animation is set.
+     *
+     * @return if a swing animation is set
+     */
+    boolean hasSwingAnimation();
+
+    /**
+     * Gets the swing animation set on this item, or creates an empty animation
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setSwingAnimation(SwingAnimationComponent)} to apply the changes.
+     *
+     * @return swing animation
+     */
+    @NotNull
+    SwingAnimationComponent getSwingAnimation();
+
+    /**
+     * Sets the item swing animation.
+     *
+     * @param component new animation component
+     */
+    void setSwingAnimation(@Nullable SwingAnimationComponent component);
+
+    /**
+     * Checks if a attack range component is set.
+     *
+     * @return if a attack range component is set
+     */
+    boolean hasAttackRange();
+
+    /**
+     * Gets the attack range component set on this item, or creates an empty
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setAttackRange(AttackRangeComponent)} to apply the changes.
+     *
+     * @return attack range component
+     */
+    @NotNull
+    AttackRangeComponent getAttackRange();
+
+    /**
+     * Sets the attack range component.
+     *
+     * @param component new attack range component
+     */
+    void setAttackRange(@Nullable AttackRangeComponent component);
+
+    /**
+     * Checks if a piercing weapon component is set.
+     *
+     * @return if a piercing weapon component is set
+     */
+    boolean hasPiercingWeapon();
+
+    /**
+     * Gets the piercing weapon component set on this item, or creates an empty
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setPiercingWeapon(PiercingWeaponComponent)} to apply the changes.
+     *
+     * @return piercing weapon component
+     */
+    @NotNull
+    PiercingWeaponComponent getPiercingWeapon();
+
+    /**
+     * Sets the piercing weapon component.
+     *
+     * @param component new piercing weapon component
+     */
+    void setPiercingWeapon(@Nullable PiercingWeaponComponent component);
+
+    /**
+     * Checks if a kinetic weapon component is set.
+     *
+     * @return if a kinetic weapon component is set
+     */
+    boolean hasKineticWeapon();
+
+    /**
+     * Gets the kinetic weapon component set on this item, or creates an empty
+     * instance.
+     * <p>
+     * The returned component is a snapshot of its current state and does not
+     * reflect a live view of what is on an item. After changing any value on
+     * this component, it must be set with
+     * {@link #setKineticWeapon(KineticWeaponComponent)} to apply the changes.
+     *
+     * @return kinetic weapon component
+     */
+    @NotNull
+    KineticWeaponComponent getKineticWeapon();
+
+    /**
+     * Sets the kinetic weapon component.
+     *
+     * @param component new kinetic weapon component
+     */
+    void setKineticWeapon(@Nullable KineticWeaponComponent component);
 
     /**
      * 检查是否设置了食物组件.
@@ -1169,6 +1355,29 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param sound 损坏时播放的音效
      */
     void setBreakSound(@Nullable Sound sound);
+
+    /**
+     * Checks to see if this item has a minimum attack charge.
+     *
+     * @return true if this has a minimum attack charge
+     */
+    boolean hasMinimumAttackCharge();
+
+    /**
+     * Gets the minimum attack charge.
+     *
+     * Plugins should check {@link #hasMinimumAttackCharge()} before calling this method.
+     *
+     * @return the minimum attack charge
+     */
+    float getMinimumAttackCharge();
+
+    /**
+     * Sets the minimum attack charge.
+     *
+     * @param minimumAttackCharge minimum attack charge
+     */
+    void setMinimumAttackCharge(@Nullable Float minimumAttackCharge);
 
     /**
      * 检查物品是否存在任何属性修饰符.

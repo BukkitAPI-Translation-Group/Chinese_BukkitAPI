@@ -58,7 +58,6 @@ import org.bukkit.scoreboard.Criteria;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.structure.StructureManager;
 import org.bukkit.util.CachedServerIcon;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -366,6 +365,17 @@ public final class Bukkit {
     @NotNull
     public static ServerTickManager getServerTickManager() {
         return server.getServerTickManager();
+    }
+
+    /**
+     * Gets the code of conducts enabled on the server. The returned map is a
+     * map of string language codes (eg, en_us) to codes of conducts.
+     *
+     * @return the codes of conduct or empty if none
+     */
+    @NotNull
+    public static Map<String, String> getCodeOfConducts() {
+        return server.getCodeOfConducts();
     }
 
     /**
@@ -2058,7 +2068,6 @@ public final class Bukkit {
      * @return the server's links
      */
     @NotNull
-    @ApiStatus.Experimental
     public static ServerLinks getServerLinks() {
         return server.getServerLinks();
     }

@@ -41,10 +41,10 @@ public interface Minecart extends Vehicle {
     public double getMaxSpeed();
 
     /**
-     * 设置矿车的最大速率. 此值不能是负数(速率是标量). 默认值为0.4D或{@link GameRule#MINECART_MAX_SPEED}.
+     * 设置矿车的最大速率. 此值不能是负数(速率是标量). 默认值为0.4D或{@link GameRule#MAX_MINECART_SPEED}.
      * <p>
      * 原文:Sets the maximum speed of a minecart. Must be nonnegative. Default is
-     * 0.4D or {@link GameRule#MINECART_MAX_SPEED}.
+     * 0.4D or {@link GameRule#MAX_MINECART_SPEED}.
      *
      * @param speed 最大速率
      */
@@ -172,4 +172,20 @@ public interface Minecart extends Vehicle {
      * @return 展示在矿车中的方块的偏移像素值
      */
     public int getDisplayBlockOffset();
+
+    /**
+     * Sets the multiplier of the minecart's acceleration while on powered
+     * rails.
+     *
+     * @param multiplier a value of 1.0 is the default acceleration
+     */
+    public void setPoweredRailAccelerationMultiplier(double multiplier);
+
+    /**
+     * Gets the multiplier of the minecart's acceleration while on powered
+     * rails.
+     *
+     * @return acceleration multiplier
+     */
+    public double getPoweredRailAccelerationMultiplier();
 }

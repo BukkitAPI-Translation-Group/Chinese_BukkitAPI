@@ -4,7 +4,6 @@ import java.util.Collection;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.spawner.TrialSpawnerConfiguration;
-import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -12,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
  * <p>
  * 原文:Represents a captured state of a trial spawner.
  */
-@ApiStatus.Experimental
 public interface TrialSpawner extends TileState {
 
     /**
