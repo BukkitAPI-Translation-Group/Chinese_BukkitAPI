@@ -12,6 +12,9 @@ import org.jetbrains.annotations.NotNull;
  * 译注：该组件用于为物品指定更复杂的客户端模型替换规则，替代旧版简单的整数型 customModelData。
  * 它可以定义基于范围(range_dispatch)、条件(condition)、选择(select)等不同模型类型的参数。
  * <p>
+ * 更多有关“自定义模型数据”的细节，请阅 <a href="https://zh.minecraft.wiki/w/%E6%95%B0%E6%8D%AE%E7%BB%84%E4%BB%B6#custom_model_data" target="_blank">Minecraft
+ * Wiki - 数据组件</a>。
+ * <p>
  * 原文:
  * Represents a component which adds custom model data.
  */
