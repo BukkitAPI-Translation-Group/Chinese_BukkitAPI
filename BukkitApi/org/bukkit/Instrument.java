@@ -4,99 +4,101 @@ import com.google.common.collect.Maps;
 import java.util.Map;
 import org.jetbrains.annotations.Nullable;
 
+/**
+ * 代表音符盒可以演奏的乐器类型.
+ */
 public enum Instrument {
 
     /**
-     * 钢琴是音符盒的标准乐器。
+     * 钢琴是音符盒的标准乐器.
      */
     PIANO(0x0, Sound.BLOCK_NOTE_BLOCK_HARP),
     /**
-     * 当音符盒在一个石类方块的顶部时通常会以低音鼓的形式演奏。
+     * 当音符盒在一个石类方块的顶部时通常会以低音鼓的形式演奏.
      */
     BASS_DRUM(0x1, Sound.BLOCK_NOTE_BLOCK_BASEDRUM),
     /**
-     * 当音符盒在一个沙类方块的顶部时通常会以小军鼓的形式演奏。
+     * 当音符盒在一个沙类方块的顶部时通常会以小军鼓的形式演奏.
      */
     SNARE_DRUM(0x2, Sound.BLOCK_NOTE_BLOCK_SNARE),
     /**
-     * 当音符盒在一个玻璃方块的顶部时通常会以鼓槌的形式演奏。
+     * 当音符盒在一个玻璃方块的顶部时通常会以鼓槌的形式演奏.
      */
     STICKS(0x3, Sound.BLOCK_NOTE_BLOCK_HAT),
     /**
-     * 当音符盒在一个木类方块的顶部时通常会以低音吉他的形式演奏。
+     * 当音符盒在一个木类方块的顶部时通常会以低音吉他的形式演奏.
      */
     BASS_GUITAR(0x4, Sound.BLOCK_NOTE_BLOCK_BASS),
     /**
-     * Flute is normally played when a note block is on top of a clay block.
+     * 当音符盒在一个黏土方块的顶部时通常会以长笛的形式演奏.
      */
     FLUTE(0x5, Sound.BLOCK_NOTE_BLOCK_FLUTE),
     /**
-     * Bell is normally played when a note block is on top of a gold block.
+     * 当音符盒在一个金块的顶部时通常会以钟的形式演奏.
      */
     BELL(0x6, Sound.BLOCK_NOTE_BLOCK_BELL),
     /**
-     * Guitar is normally played when a note block is on top of a woolen block.
+     * 当音符盒在一个羊毛方块的顶部时通常会以吉他的形式演奏.
      */
     GUITAR(0x7, Sound.BLOCK_NOTE_BLOCK_GUITAR),
     /**
-     * Chime is normally played when a note block is on top of a packed ice
-     * block.
+     * 当音符盒在一个浮冰的顶部时通常会以管钟的形式演奏.
      */
     CHIME(0x8, Sound.BLOCK_NOTE_BLOCK_CHIME),
     /**
-     * Xylophone is normally played when a note block is on top of a bone block.
+     * 当音符盒在一个骨块的顶部时通常会以木琴的形式演奏.
      */
     XYLOPHONE(0x9, Sound.BLOCK_NOTE_BLOCK_XYLOPHONE),
     /**
-     * Iron Xylophone is normally played when a note block is on top of a iron block.
+     * 当音符盒在一个铁块的顶部时通常会以铁木琴的形式演奏.
      */
     IRON_XYLOPHONE(0xA, Sound.BLOCK_NOTE_BLOCK_IRON_XYLOPHONE),
     /**
-     * Cow Bell is normally played when a note block is on top of a soul sand block.
+     * 当音符盒在一个灵魂沙的顶部时通常会以牛铃的形式演奏.
      */
     COW_BELL(0xB, Sound.BLOCK_NOTE_BLOCK_COW_BELL),
     /**
-     * Didgeridoo is normally played when a note block is on top of a pumpkin block.
+     * 当音符盒在一个南瓜的顶部时通常会以迪吉里杜管的形式演奏.
      */
     DIDGERIDOO(0xC, Sound.BLOCK_NOTE_BLOCK_DIDGERIDOO),
     /**
-     * Bit is normally played when a note block is on top of a emerald block.
+     * 当音符盒在一个绿宝石块的顶部时通常会以比特音乐的形式演奏.
      */
     BIT(0xD, Sound.BLOCK_NOTE_BLOCK_BIT),
     /**
-     * Banjo is normally played when a note block is on top of a hay block.
+     * 当音符盒在一个干草块的顶部时通常会以班卓琴的形式演奏.
      */
     BANJO(0xE, Sound.BLOCK_NOTE_BLOCK_BANJO),
     /**
-     * Pling is normally played when a note block is on top of a glowstone block.
+     * 当音符盒在一个荧石块的顶部时通常会以电子音的形式演奏.
      */
     PLING(0xF, Sound.BLOCK_NOTE_BLOCK_PLING),
     /**
-     * Zombie is normally played when a Zombie Head is on top of the note block.
+     * 当僵尸头颅在音符盒的顶部时通常会以僵尸音效的形式演奏.
      */
     ZOMBIE(Sound.BLOCK_NOTE_BLOCK_IMITATE_ZOMBIE),
     /**
-     * Skeleton is normally played when a Skeleton Head is on top of the note block.
+     * 当骷髅头颅在音符盒的顶部时通常会以骷髅音效的形式演奏.
      */
     SKELETON(Sound.BLOCK_NOTE_BLOCK_IMITATE_SKELETON),
     /**
-     * Creeper is normally played when a Creeper Head is on top of the note block.
+     * 当苦力怕头颅在音符盒的顶部时通常会以苦力怕音效的形式演奏.
      */
     CREEPER(Sound.BLOCK_NOTE_BLOCK_IMITATE_CREEPER),
     /**
-     * Dragon is normally played when a Dragon Head is on top of the note block.
+     * 当末影龙头颅在音符盒的顶部时通常会以末影龙音效的形式演奏.
      */
     DRAGON(Sound.BLOCK_NOTE_BLOCK_IMITATE_ENDER_DRAGON),
     /**
-     * Wither Skeleton is normally played when a Wither Skeleton Head is on top of the note block.
+     * 当凋灵骷髅头颅在音符盒的顶部时通常会以凋灵骷髅音效的形式演奏.
      */
     WITHER_SKELETON(Sound.BLOCK_NOTE_BLOCK_IMITATE_WITHER_SKELETON),
     /**
-     * Piglin is normally played when a Piglin Head is on top of the note block.
+     * 当猪灵头颅在音符盒的顶部时通常会以猪灵音效的形式演奏.
      */
     PIGLIN(Sound.BLOCK_NOTE_BLOCK_IMITATE_PIGLIN),
     /**
-     * Custom Sound is normally played when a Player Head with the required data is on top of the note block.
+     * 当具有所需数据的玩家头颅在音符盒的顶部时通常会以自定义音效的形式演奏.
      */
     CUSTOM_HEAD(null);
 
@@ -114,10 +116,15 @@ public enum Instrument {
     }
 
     /**
+     * 获取与此乐器关联的音效.
+     * <br>
+     * 对于 {@link Instrument#CUSTOM_HEAD} 将返回 null.
+     * <p>
+     * 原文:
      * Gets the sound associated with this instrument. <br>
      * Will be null for {@link Instrument#CUSTOM_HEAD}
      *
-     * @return the sound or null
+     * @return 音效, 如果不存在则返回 null
      */
     @Nullable
     public Sound getSound() {
