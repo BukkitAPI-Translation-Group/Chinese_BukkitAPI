@@ -104,22 +104,34 @@ public interface SkullMeta extends ItemMeta {
     void setOwnerProfile(@Nullable PlayerProfile profile);
 
     /**
+     * 设置在音符盒上放置此头颅时播放的音效.
+     * <br>
+     * <strong>注意：</strong> 这仅对玩家头颅有效. 对于其他类型的头颅,
+     * 请参阅 {@link org.bukkit.Instrument}.
+     * <p>
+     * 原文:
      * Sets the sound to play if the skull is placed on a note block.
      * <br>
      * <strong>Note:</strong> This only works for player heads. For other heads,
      * see {@link org.bukkit.Instrument}.
      *
-     * @param noteBlockSound the key of the sound to be played, or null
+     * @param noteBlockSound 要播放的音效对应的命名空间键, 设置为 null 以清除
      */
     void setNoteBlockSound(@Nullable NamespacedKey noteBlockSound);
 
     /**
+     * 获取在音符盒上放置此头颅时播放的音效.
+     * <br>
+     * <strong>注意：</strong> 这仅对玩家头颅有效. 对于其他类型的头颅,
+     * 请参阅 {@link org.bukkit.Instrument}.
+     * <p>
+     * 原文:
      * Gets the sound to play if the skull is placed on a note block.
      * <br>
      * <strong>Note:</strong> This only works for player heads. For other heads,
      * see {@link org.bukkit.Instrument}.
      *
-     * @return the key of the sound, or null
+     * @return 音效对应的命名空间键, 如果未设置则返回 null
      */
     @Nullable
     NamespacedKey getNoteBlockSound();

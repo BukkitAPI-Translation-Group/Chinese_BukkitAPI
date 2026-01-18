@@ -6,21 +6,20 @@ import org.jetbrains.annotations.Nullable;
 public interface ShieldMeta extends BannerMeta {
 
     /**
-     * Gets the base color for this shield.
+     * 获取此盾牌的基础颜色.
      *
-     * @return the base color or null
+     * @return 基础颜色, 如果未设置则返回 null
      */
     @Nullable
     DyeColor getBaseColor();
 
     /**
-     * Sets the base color for this shield.
-     * <br>
-     * <b>Note:</b> If the shield contains a
-     * {@link org.bukkit.block.banner.Pattern}, then a null base color will
-     * retain the pattern but default the base color to {@link DyeColor#WHITE}.
+     * 设置此盾牌的基础颜色.
+     * <p>
+     * <b>注意:</b> 如果盾牌包含 {@link org.bukkit.block.banner.Pattern} (旗帜图案),
+     * 那么将基础颜色设置为 null 会保留图案, 但会将基础颜色默认设为 {@link DyeColor#WHITE} (白色).
      *
-     * @param color the base color or null
+     * @param color 基础颜色, 或 null
      */
     void setBaseColor(@Nullable DyeColor color);
 

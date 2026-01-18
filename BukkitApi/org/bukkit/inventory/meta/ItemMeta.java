@@ -719,43 +719,62 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setDamageResistant(@Nullable Tag<DamageType> tag);
 
     /**
+     * 获取此物品是否设置了能造成的伤害类型.
+     * <p>
+     * 原文:
      * Gets if this item delivers a certain type of damage.
      *
-     * @return true if a resistance is set
+     * @return 如果设置了伤害类型则返回 true
      */
     boolean hasDamageType();
 
     /**
+     * 获取此物品能造成的伤害类型.
+     * <p>
+     * 插件在调用此方法前应检查 {@link #hasDamageType()} 是否返回 true.
+     * <p>
+     * 原文:
      * Gets the type of damage this item will deliver.
      *
      * Plugins should check {@link #hasDamageType()} before calling this method.
      *
-     * @return damage type
+     * @return 伤害类型, 如果未设置则返回 null
      */
     @Nullable
     DamageType getDamageType();
 
     /**
+     * 获取此物品能造成的伤害类型的命名空间键.
+     * <p>
+     * 插件在调用此方法前应检查 {@link #hasDamageType()} 是否返回 true.
+     * <p>
+     * 原文:
      * Gets the type of damage this item will deliver.
      *
      * Plugins should check {@link #hasDamageType()} before calling this method.
      *
-     * @return damage type
+     * @return 伤害类型的命名空间键, 如果未设置则返回 null
      */
     @Nullable
     NamespacedKey getDamageTypeKey();
 
     /**
+     * 设置此物品能造成的伤害类型.
+     * <p>
+     * 原文:
      * Sets the type of damage this item will deliver.
      *
-     * @param type the type, or null to clear
+     * @param type 伤害类型, 设置为 null 以清除
      */
     void setDamageType(@Nullable DamageType type);
 
     /**
+     * 设置此物品能造成的伤害类型的命名空间键.
+     * <p>
+     * 原文:
      * Sets the type of damage this item will deliver.
      *
-     * @param type the type, or null to clear
+     * @param type 伤害类型的命名空间键, 设置为 null 以清除
      */
     void setDamageTypeKey(@Nullable NamespacedKey type);
 
@@ -906,13 +925,22 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setUseCooldown(@Nullable UseCooldownComponent cooldown);
 
     /**
+     * 检查是否设置了使用效果(use effects)组件.
+     * <p>
+     * 原文:
      * Checks if the use effects is set.
      *
-     * @return if a use effects is set
+     * @return 如果设置了使用效果组件则返回 true
      */
     boolean hasUseEffects();
 
     /**
+     * 获取此物品上设置的使用效果组件, 或创建一个空的效果实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setUseEffects(UseEffectsComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the use effects set on this item, or creates an empty effects
      * instance.
      * <p>
@@ -921,26 +949,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setUseEffects(UseEffectsComponent)} to apply the changes.
      *
-     * @return use effects
+     * @return 使用效果组件
      */
     @NotNull
     UseEffectsComponent getUseEffects();
 
     /**
+     * 设置物品的使用效果组件.
+     * <p>
+     * 原文:
      * Sets the item use effects.
      *
-     * @param effects new effects
+     * @param effects 新的使用效果组件
      */
     void setUseEffects(@Nullable UseEffectsComponent effects);
 
     /**
+     * 检查是否设置了挥动动画(swing animation)组件.
+     * <p>
+     * 原文:
      * Checks if a swing animation is set.
      *
-     * @return if a swing animation is set
+     * @return 如果设置了挥动动画组件则返回 true
      */
     boolean hasSwingAnimation();
 
     /**
+     * 获取此物品上设置的挥动动画组件, 或创建一个空的动画实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setSwingAnimation(SwingAnimationComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the swing animation set on this item, or creates an empty animation
      * instance.
      * <p>
@@ -949,26 +989,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setSwingAnimation(SwingAnimationComponent)} to apply the changes.
      *
-     * @return swing animation
+     * @return 挥动动画组件
      */
     @NotNull
     SwingAnimationComponent getSwingAnimation();
 
     /**
+     * 设置物品的挥动动画组件.
+     * <p>
+     * 原文:
      * Sets the item swing animation.
      *
-     * @param component new animation component
+     * @param component 新的挥动动画组件
      */
     void setSwingAnimation(@Nullable SwingAnimationComponent component);
 
     /**
+     * 检查是否设置了攻击范围(attack range)组件.
+     * <p>
+     * 原文:
      * Checks if a attack range component is set.
      *
-     * @return if a attack range component is set
+     * @return 如果设置了攻击范围组件则返回 true
      */
     boolean hasAttackRange();
 
     /**
+     * 获取此物品上设置的攻击范围组件, 或创建一个空的实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setAttackRange(AttackRangeComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the attack range component set on this item, or creates an empty
      * instance.
      * <p>
@@ -977,26 +1029,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setAttackRange(AttackRangeComponent)} to apply the changes.
      *
-     * @return attack range component
+     * @return 攻击范围组件
      */
     @NotNull
     AttackRangeComponent getAttackRange();
 
     /**
+     * 设置攻击范围组件.
+     * <p>
+     * 原文:
      * Sets the attack range component.
      *
-     * @param component new attack range component
+     * @param component 新的攻击范围组件
      */
     void setAttackRange(@Nullable AttackRangeComponent component);
 
     /**
+     * 检查是否设置了穿刺武器(piercing weapon)组件.
+     * <p>
+     * 原文:
      * Checks if a piercing weapon component is set.
      *
-     * @return if a piercing weapon component is set
+     * @return 如果设置了穿刺武器组件则返回 true
      */
     boolean hasPiercingWeapon();
 
     /**
+     * 获取此物品上设置的穿刺武器组件, 或创建一个空的实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setPiercingWeapon(PiercingWeaponComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the piercing weapon component set on this item, or creates an empty
      * instance.
      * <p>
@@ -1005,26 +1069,38 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setPiercingWeapon(PiercingWeaponComponent)} to apply the changes.
      *
-     * @return piercing weapon component
+     * @return 穿刺武器组件
      */
     @NotNull
     PiercingWeaponComponent getPiercingWeapon();
 
     /**
+     * 设置穿刺武器组件.
+     * <p>
+     * 原文:
      * Sets the piercing weapon component.
      *
-     * @param component new piercing weapon component
+     * @param component 新的穿刺武器组件
      */
     void setPiercingWeapon(@Nullable PiercingWeaponComponent component);
 
     /**
+     * 检查是否设置了动能武器(kinetic weapon)组件.
+     * <p>
+     * 原文:
      * Checks if a kinetic weapon component is set.
      *
-     * @return if a kinetic weapon component is set
+     * @return 如果设置了动能武器组件则返回 true
      */
     boolean hasKineticWeapon();
 
     /**
+     * 获取此物品上设置的动能武器组件, 或创建一个空的实例.
+     * <p>
+     * 返回的组件是其当前状态的快照, 不反映物品上数据的实时视图. 更改此组件上的任何值后,
+     * 必须使用 {@link #setKineticWeapon(KineticWeaponComponent)} 来应用更改.
+     * <p>
+     * 原文:
      * Gets the kinetic weapon component set on this item, or creates an empty
      * instance.
      * <p>
@@ -1033,15 +1109,18 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * this component, it must be set with
      * {@link #setKineticWeapon(KineticWeaponComponent)} to apply the changes.
      *
-     * @return kinetic weapon component
+     * @return 动能武器组件
      */
     @NotNull
     KineticWeaponComponent getKineticWeapon();
 
     /**
+     * 设置动能武器组件.
+     * <p>
+     * 原文:
      * Sets the kinetic weapon component.
      *
-     * @param component new kinetic weapon component
+     * @param component 新的动能武器组件
      */
     void setKineticWeapon(@Nullable KineticWeaponComponent component);
 
@@ -1357,25 +1436,36 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
     void setBreakSound(@Nullable Sound sound);
 
     /**
+     * 检查此物品是否设置了最低攻击充能(minimum attack charge)要求.
+     * <p>
+     * 原文:
      * Checks to see if this item has a minimum attack charge.
      *
-     * @return true if this has a minimum attack charge
+     * @return 如果设置了最低攻击充能要求则返回 true
      */
     boolean hasMinimumAttackCharge();
 
     /**
+     * 获取最低攻击充能要求.
+     * <p>
+     * 插件在调用此方法前应检查 {@link #hasMinimumAttackCharge()} 是否返回 true.
+     * <p>
+     * 原文:
      * Gets the minimum attack charge.
-     *
+     * <p>
      * Plugins should check {@link #hasMinimumAttackCharge()} before calling this method.
      *
-     * @return the minimum attack charge
+     * @return 最低攻击充能值
      */
     float getMinimumAttackCharge();
 
     /**
+     * 设置最低攻击充能要求.
+     * <p>
+     * 原文:
      * Sets the minimum attack charge.
      *
-     * @param minimumAttackCharge minimum attack charge
+     * @param minimumAttackCharge 最低攻击充能值
      */
     void setMinimumAttackCharge(@Nullable Float minimumAttackCharge);
 
