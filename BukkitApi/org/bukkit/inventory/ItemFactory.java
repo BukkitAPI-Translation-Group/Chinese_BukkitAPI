@@ -1,6 +1,7 @@
 package org.bukkit.inventory;
 
 import org.bukkit.Color;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Server;
 import org.bukkit.World;
@@ -10,6 +11,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.meta.BookMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.map.MapCursor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -200,4 +202,15 @@ public interface ItemFactory {
      */
     @NotNull
     ItemStack enchantItem(@NotNull final ItemStack item, final int level, final boolean allowTreasures);
+
+    /**
+     * Create a new explorer map targeting the given structure location.
+     *
+     * @param world the world the map will belong to
+     * @param structureLocation the location of the structure
+     * @param mapIcon the icon displayed for the given structure
+     * @return the newly created item stack
+     */
+    @NotNull
+    public ItemStack createExplorerMap(@NotNull World world, @NotNull Location structureLocation, @NotNull MapCursor.Type mapIcon);
 }
