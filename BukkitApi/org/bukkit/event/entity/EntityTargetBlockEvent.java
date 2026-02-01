@@ -53,10 +53,11 @@ public class EntityTargetBlockEvent extends EntityEvent implements Cancellable {
      * It is possible to be null, null will cause the entity to be target-less.
      * <p>
      * This is different from cancelling the event. Cancelling the event will
-     * cause the entity to keep an original target, while setting to be null
-     * will cause the entity to be reset.
+     * cause the entity to keep an original target or attempt to find an
+     * alternative target, while setting to be null will cause the target to be
+     * cleared.
      *
-     * @param target The entity to target
+     * @param target The block to target
      */
     public void setTarget(@Nullable Block target) {
         this.target = target;
