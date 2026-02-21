@@ -87,9 +87,19 @@ public interface Mannequin extends LivingEntity {
      * Gets the description which shows as part of the mannequin's name.
      *
      * @return description the description text
+     * @deprecated typo, use {@link #getDescription()}
      */
     @Nullable
+    @Deprecated(since = "1.21.11")
     String getDescripion();
+
+    /**
+     * Gets the description which shows as part of the mannequin's name.
+     *
+     * @return description the description text
+     */
+    @Nullable
+    String getDescription();
 
     /**
      * Sets the description which shows as part of the mannequin's name.
