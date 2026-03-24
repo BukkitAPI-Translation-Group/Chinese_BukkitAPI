@@ -620,6 +620,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<TechnicalPiston> MOVING_PISTON = getBlockType("moving_piston");
     BlockType.Typed<BlockData> DANDELION = getBlockType("dandelion");
+    BlockType.Typed<BlockData> GOLDEN_DANDELION = getBlockType("golden_dandelion");
     BlockType.Typed<BlockData> TORCHFLOWER = getBlockType("torchflower");
     BlockType.Typed<BlockData> POPPY = getBlockType("poppy");
     BlockType.Typed<BlockData> BLUE_ORCHID = getBlockType("blue_orchid");
@@ -1392,6 +1393,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> POTTED_MANGROVE_PROPAGULE = getBlockType("potted_mangrove_propagule");
     BlockType.Typed<BlockData> POTTED_FERN = getBlockType("potted_fern");
     BlockType.Typed<BlockData> POTTED_DANDELION = getBlockType("potted_dandelion");
+    BlockType.Typed<BlockData> POTTED_GOLDEN_DANDELION = getBlockType("potted_golden_dandelion");
     BlockType.Typed<BlockData> POTTED_POPPY = getBlockType("potted_poppy");
     BlockType.Typed<BlockData> POTTED_BLUE_ORCHID = getBlockType("potted_blue_orchid");
     BlockType.Typed<BlockData> POTTED_ALLIUM = getBlockType("potted_allium");

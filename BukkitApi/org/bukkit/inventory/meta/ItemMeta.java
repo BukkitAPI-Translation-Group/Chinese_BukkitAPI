@@ -515,9 +515,23 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * method.
      *
      * @return damage type
+     * @deprecated use {@link #getDamageResistances()}
      */
     @Nullable
+    @Deprecated(since = "26.1")
     Tag<DamageType> getDamageResistant();
+
+    /**
+     * Gets the types of damage this item will be resistant to when in entity
+     * form.
+     *
+     * Plugins should check {@link #hasDamageResistant()} before calling this
+     * method.
+     *
+     * @return damage type
+     */
+    @Nullable
+    Collection<DamageType> getDamageResistances();
 
     /**
      * Sets the type of damage this item will be resistant to when in entity
@@ -526,6 +540,14 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param tag the tag, or null to clear
      */
     void setDamageResistant(@Nullable Tag<DamageType> tag);
+
+    /**
+     * Sets the type of damage this item will be resistant to when in entity
+     * form.
+     *
+     * @param damages the tag, or null to clear
+     */
+    void setDamageResistant(@Nullable Collection<DamageType> damages);
 
     /**
      * Gets if this item delivers a certain type of damage.
@@ -590,6 +612,29 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param max max_stack_size, between 1 and 99 (inclusive)
      */
     void setMaxStackSize(@Nullable Integer max);
+
+    /**
+     * Gets if the additional_trade_cost is set.
+     *
+     * @return if a additional_trade_cost is set.
+     */
+    boolean hasAdditionalTradeCost();
+
+    /**
+     * Gets the additional_trade_cost. This is the additional cost for villager
+     * trades.
+     *
+     * @return max_stack_size
+     */
+    int getAdditionalTradeCost();
+
+    /**
+     * Sets the additional_trade_cost. This is the additional cost for villager
+     * trades.
+     *
+     * @param cost additional_trade_cost
+     */
+    void setAdditionalTradeCost(@Nullable Integer cost);
 
     /**
      * Gets if the rarity is set.

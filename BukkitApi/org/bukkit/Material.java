@@ -679,6 +679,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     RED_WOOL(11621),
     BLACK_WOOL(16693),
     DANDELION(30558),
+    GOLDEN_DANDELION(21472),
     OPEN_EYEBLOSSOM(31238),
     CLOSED_EYEBLOSSOM(29262),
     POPPY(12851),
@@ -3847,6 +3848,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     POTTED_MANGROVE_PROPAGULE(22003),
     POTTED_FERN(23315),
     POTTED_DANDELION(9727),
+    POTTED_GOLDEN_DANDELION(29394),
     POTTED_POPPY(7457),
     POTTED_BLUE_ORCHID(6599),
     POTTED_ALLIUM(13184),
@@ -5519,6 +5521,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case POTTED_DEAD_BUSH:
             case POTTED_FERN:
             case POTTED_FLOWERING_AZALEA_BUSH:
+            case POTTED_GOLDEN_DANDELION:
             case POTTED_JUNGLE_SAPLING:
             case POTTED_OAK_SAPLING:
             case POTTED_ORANGE_TULIP:

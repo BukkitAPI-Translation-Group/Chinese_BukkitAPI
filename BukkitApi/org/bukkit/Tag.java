@@ -200,6 +200,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> LEAVES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("leaves"), Material.class);
     /**
+     * Vanilla block tag representing all tags which prevent nearby leaves from decaying.
+     */
+    Tag<Material> PREVENTS_NEARBY_LEAF_DECAY = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("prevents_nearby_leaf_decay"), Material.class);
+    /**
      * Vanilla block tag representing all trapdoors (inherits from
      * {@link #WOODEN_TRAPDOORS}.
      */
@@ -272,6 +276,18 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla block tag representing all dirt.
      */
     Tag<Material> DIRT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("dirt"), Material.class);
+    /**
+     * Vanilla block tag representing all mud.
+     */
+    Tag<Material> MUD = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("mud"), Material.class);
+    /**
+     * Vanilla block tag representing all moss blocks.
+     */
+    Tag<Material> MOSS_BLOCKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("moss_blocks"), Material.class);
+    /**
+     * Vanilla block tag representing all grass blocks.
+     */
+    Tag<Material> GRASS_BLOCKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("grass_blocks"), Material.class);
     /**
      * Vanilla block tag representing all terracotta.
      */
@@ -515,6 +531,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> INFINIBURN_END = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("infiniburn_end"), Material.class);
     /**
+     * Vanilla block tag used for world generation.
+     */
+    Tag<Material> SUBSTRATE_OVERWORLD = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("substrate_overworld"), Material.class);
+    /**
      * Vanilla block tag representing the overworld base material.
      */
     Tag<Material> BASE_STONE_OVERWORLD = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("base_stone_overworld"), Material.class);
@@ -541,6 +561,18 @@ public interface Tag<T extends Keyed> extends Keyed {
      * carver.
      */
     Tag<Material> NETHER_CARVER_REPLACEABLES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("nether_carver_replaceables"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks replaceable by podzol beneath trees.
+     */
+    Tag<Material> BENEATH_TREE_PODZOL_REPLACEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("beneath_tree_podzol_replaceable"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks replaceable by podzol beneath bamboo.
+     */
+    Tag<Material> BENEATH_BAMBOO_PODZOL_REPLACEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("beneath_bamboo_podzol_replaceable"), Material.class);
+    /**
+     * Vanilla block tag used for world generation.
+     */
+    Tag<Material> CANNOT_REPLACE_BELOW_TREE_TRUNK = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("cannot_replace_below_tree_trunk"), Material.class);
     /**
      * Vanilla block tag representing all candle cakes.
      */
@@ -600,15 +632,21 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> AZALEA_ROOT_REPLACEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("azalea_root_replaceable"), Material.class);
     /**
-     * Vanilla block tag representing all blocks which small dripleaf can be
-     * placed on.
+     * Vanilla block tag representing all ice_spike_replaceable.
      */
-    Tag<Material> SMALL_DRIPLEAF_PLACEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("small_dripleaf_placeable"), Material.class);
+    Tag<Material> ICE_SPIKE_REPLACEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("ice_spike_replaceable"), Material.class);
     /**
-     * Vanilla block tag representing all blocks which big dripleaf can be
-     * placed on.
+     * Vanilla block tag representing all forest_rock_can_place_on.
      */
-    Tag<Material> BIG_DRIPLEAF_PLACEABLE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("big_dripleaf_placeable"), Material.class);
+    Tag<Material> FOREST_ROCK_CAN_PLACE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("forest_rock_can_place_on"), Material.class);
+    /**
+     * Vanilla block tag representing all huge_brown_mushroom_can_place_on.
+     */
+    Tag<Material> HUGE_BROWN_MUSHROOM_CAN_PLACE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("huge_brown_mushroom_can_place_on"), Material.class);
+    /**
+     * Vanilla block tag representing all huge_red_mushroom_can_place_on.
+     */
+    Tag<Material> HUGE_RED_MUSHROOM_CAN_PLACE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("huge_red_mushroom_can_place_on"), Material.class);
     /**
      * Vanilla block tag representing all snow blocks.
      */
@@ -785,19 +823,6 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> MANGROVE_ROOTS_CAN_GROW_THROUGH = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("mangrove_roots_can_grow_through"), Material.class);
     /**
-     * Vanilla block tag representing all blocks which dry vegetation may be placed
-     * on.
-     */
-    Tag<Material> DRY_VEGETATION_MAY_PLACE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("dry_vegetation_may_place_on"), Material.class);
-    /**
-     * Vanilla block tag representing all blocks which dead bushes may be placed
-     * on.
-     *
-     * @deprecated use {@link #DRY_VEGETATION_MAY_PLACE_ON}
-     */
-    @Deprecated(since = "1.21.5")
-    Tag<Material> DEAD_BUSH_MAY_PLACE_ON = DRY_VEGETATION_MAY_PLACE_ON;
-    /**
      * Vanilla block tag representing all blocks which snap dropped goat horns.
      */
     Tag<Material> SNAPS_GOAT_HORN = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("snaps_goat_horn"), Material.class);
@@ -810,13 +835,175 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> REPLACEABLE_BY_MUSHROOMS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("replaceable_by_mushrooms"), Material.class);
     /**
-     * Vanilla block tag representing blocks which snow cannot survive on.
+     * Vanilla block tag representing all blocks which enable bubble column drag down.
      */
-    Tag<Material> SNOW_LAYER_CANNOT_SURVIVE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("snow_layer_cannot_survive_on"), Material.class);
+    Tag<Material> ENABLES_BUBBLE_COLUMN_DRAG_DOWN = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("enables_bubble_column_drag_down"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which enable bubble column push up.
+     */
+    Tag<Material> ENABLES_BUBBLE_COLUMN_PUSH_UP = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("enables_bubble_column_push_up"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support vegetation.
+     */
+    Tag<Material> SUPPORTS_VEGETATION = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_vegetation"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support dry vegetation.
+     */
+    Tag<Material> SUPPORTS_DRY_VEGETATION = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_dry_vegetation"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support crops.
+     */
+    Tag<Material> SUPPORTS_CROPS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_crops"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support stem crops.
+     */
+    Tag<Material> SUPPORTS_STEM_CROPS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_stem_crops"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support stem fruit.
+     */
+    Tag<Material> SUPPORTS_STEM_FRUIT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_stem_fruit"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support pumpkin stems.
+     */
+    Tag<Material> SUPPORTS_PUMPKIN_STEM = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_pumpkin_stem"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support melon stems.
+     */
+    Tag<Material> SUPPORTS_MELON_STEM = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_melon_stem"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support pumpkin stem fruit.
+     */
+    Tag<Material> SUPPORTS_PUMPKIN_STEM_FRUIT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_pumpkin_stem_fruit"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support melon stem fruit.
+     */
+    Tag<Material> SUPPORTS_MELON_STEM_FRUIT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_melon_stem_fruit"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support sugar cane.
+     */
+    Tag<Material> SUPPORTS_SUGAR_CANE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_sugar_cane"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support sugar cane adjacently.
+     */
+    Tag<Material> SUPPORTS_SUGAR_CANE_ADJACENTLY = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_sugar_cane_adjacently"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support bamboo.
+     */
+    Tag<Material> SUPPORTS_BAMBOO = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_bamboo"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support small dripleafs.
+     */
+    Tag<Material> SUPPORTS_SMALL_DRIPLEAF = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_small_dripleaf"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support big dripleafs.
+     */
+    Tag<Material> SUPPORTS_BIG_DRIPLEAF = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_big_dripleaf"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support cacti.
+     */
+    Tag<Material> SUPPORTS_CACTUS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_cactus"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support chorus plants.
+     */
+    Tag<Material> SUPPORTS_CHORUS_PLANT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_chorus_plant"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support chorus flowers.
+     */
+    Tag<Material> SUPPORTS_CHORUS_FLOWER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_chorus_flower"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support nether sprouts.
+     */
+    Tag<Material> SUPPORTS_NETHER_SPROUTS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_nether_sprouts"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support azalea.
+     */
+    Tag<Material> SUPPORTS_AZALEA = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_azalea"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support warped fungi.
+     */
+    Tag<Material> SUPPORTS_WARPED_FUNGUS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_warped_fungus"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support crimson fungi.
+     */
+    Tag<Material> SUPPORTS_CRIMSON_FUNGUS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_crimson_fungus"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support mangrove propagules.
+     */
+    Tag<Material> SUPPORTS_MANGROVE_PROPAGULE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_mangrove_propagule"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support hanging mangrove propagules.
+     */
+    Tag<Material> SUPPORTS_HANGING_MANGROVE_PROPAGULE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_hanging_mangrove_propagule"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support nether warts.
+     */
+    Tag<Material> SUPPORTS_NETHER_WART = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_nether_wart"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support crimson roots.
+     */
+    Tag<Material> SUPPORTS_CRIMSON_ROOTS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_crimson_roots"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support warped roots.
+     */
+    Tag<Material> SUPPORTS_WARPED_ROOTS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_warped_roots"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support wither roses.
+     */
+    Tag<Material> SUPPORTS_WITHER_ROSE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_wither_rose"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support cocoa.
+     */
+    Tag<Material> SUPPORTS_COCOA = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_cocoa"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support lily pads.
+     */
+    Tag<Material> SUPPORTS_LILY_PAD = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_lily_pad"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which support frogspawn.
+     */
+    Tag<Material> SUPPORTS_FROGSPAWN = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("supports_frogspawn"), Material.class);
+    /**
+     * Vanilla block tag representing all support_override_cactus flowers.
+     */
+    Tag<Material> SUPPORT_OVERRIDE_CACTUS_FLOWER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("support_override_cactus_flower"), Material.class);
     /**
      * Vanilla block tag representing blocks which snow can survive on.
      */
-    Tag<Material> SNOW_LAYER_CAN_SURVIVE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("snow_layer_can_survive_on"), Material.class);
+    Tag<Material> SUPPORT_OVERRIDE_SNOW_LAYER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("support_override_snow_layer"), Material.class);
+    /**
+     * Vanilla block tag representing blocks which snow cannot survive on.
+     */
+    Tag<Material> CANNOT_SUPPORT_SNOW_LAYER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("cannot_support_snow_layer"), Material.class);
+    /**
+     * Vanilla block tag representing blocks which seagrass cannot survive on.
+     */
+    Tag<Material> CANNOT_SUPPORT_SEAGRASS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("cannot_support_seagrass"), Material.class);
+    /**
+     * Vanilla block tag representing blocks which kelp cannot survive on.
+     */
+    Tag<Material> CANNOT_SUPPORT_KELP = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("cannot_support_kelp"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which overrides the mushroom light requirement.
+     */
+    Tag<Material> OVERRIDES_MUSHROOM_LIGHT_REQUIREMENT = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("overrides_mushroom_light_requirement"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which can grow crops.
+     */
+    Tag<Material> GROWS_CROPS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("grows_crops"), Material.class);
+    /**
+     * Vanilla block tag representing blocks which snow cannot survive on.
+     *
+     * @deprecated use {@link #CANNOT_SUPPORT_SNOW_LAYER}
+     */
+    @Deprecated(since = "26.1")
+    Tag<Material> SNOW_LAYER_CANNOT_SURVIVE_ON = CANNOT_SUPPORT_SNOW_LAYER;
+    /**
+     * Vanilla block tag representing blocks which snow can survive on.
+     *
+     * @deprecated use {@link #SUPPORT_OVERRIDE_SNOW_LAYER}
+     */
+    @Deprecated(since = "26.1")
+    Tag<Material> SNOW_LAYER_CAN_SURVIVE_ON = SUPPORT_OVERRIDE_SNOW_LAYER;
     /**
      * Vanilla block tag representing blocks which cannot be dismounted into.
      */
@@ -878,6 +1065,38 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla block tag representing all blocks that resemble air.
      */
     Tag<Material> AIR = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("air"), Material.class);
+    /**
+     * Vanilla block tag representing all blocks which small dripleaf can be
+     * placed on.
+     *
+     * @deprecated use {@link #SUPPORTS_SMALL_DRIPLEAF}
+     */
+    @Deprecated(since = "26.1")
+    Tag<Material> SMALL_DRIPLEAF_PLACEABLE = SUPPORTS_SMALL_DRIPLEAF;
+    /**
+     * Vanilla block tag representing all blocks which big dripleaf can be
+     * placed on.
+     *
+     * @deprecated use {@link #SUPPORTS_BIG_DRIPLEAF}
+     */
+    @Deprecated(since = "26.1")
+    Tag<Material> BIG_DRIPLEAF_PLACEABLE = SUPPORTS_BIG_DRIPLEAF;
+    /**
+     * Vanilla block tag representing all blocks which dry vegetation may be placed
+     * on.
+     *
+     * @deprecated use {@link #SUPPORTS_DRY_VEGETATION}
+     */
+    @Deprecated(since = "26.1")
+    Tag<Material> DRY_VEGETATION_MAY_PLACE_ON = SUPPORTS_DRY_VEGETATION;
+    /**
+     * Vanilla block tag representing all blocks which dead bushes may be placed
+     * on.
+     *
+     * @deprecated use {@link #DRY_VEGETATION_MAY_PLACE_ON}
+     */
+    @Deprecated(since = "1.21.5")
+    Tag<Material> DEAD_BUSH_MAY_PLACE_ON = DRY_VEGETATION_MAY_PLACE_ON;
     /**
      * Key for the built in item registry.
      */
@@ -1283,10 +1502,6 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> ITEMS_VILLAGER_PICKS_UP = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("villager_picks_up"), Material.class);
     /**
-     * Vanilla item tag representing all dyeable items.
-     */
-    Tag<Material> ITEMS_DYEABLE = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("dyeable"), Material.class);
-    /**
      * Vanilla item tag representing all furnace minecart fuel.
      */
     Tag<Material> ITEMS_FURNACE_MINECART_FUEL = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("furnace_minecart_fuel"), Material.class);
@@ -1298,6 +1513,30 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla item tag representing all booking cloning target items.
      */
     Tag<Material> ITEMS_BOOK_CLONING_TARGET = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("book_cloning_target"), Material.class);
+    /**
+     * Vanilla item tag representing all dye items.
+     */
+    Tag<Material> ITEMS_DYES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("dyes"), Material.class);
+    /**
+     * Vanilla item tag representing all loom dye items.
+     */
+    Tag<Material> ITEMS_LOOM_DYES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("loom_dyes"), Material.class);
+    /**
+     * Vanilla item tag representing all loom pattern items.
+     */
+    Tag<Material> ITEMS_LOOM_PATTERNS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("loom_patterns"), Material.class);
+    /**
+     * Vanilla item tag representing all items which a cauldron can remove dye from.
+     */
+    Tag<Material> ITEMS_CAULDRON_CAN_REMOVE_DYE = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("cauldron_can_remove_dye"), Material.class);
+    /**
+     * Vanilla item tag representing all items which can dye a cat collar.
+     */
+    Tag<Material> ITEMS_CAT_COLLAR_DYES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("cat_collar_dyes"), Material.class);
+    /**
+     * Vanilla item tag representing all items which can dye a wolf collar.
+     */
+    Tag<Material> ITEMS_WOLF_COLLAR_DYES = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("wolf_collar_dyes"), Material.class);
     /**
      * Vanilla item tag representing all skeleton preferred weapons.
      */
@@ -1322,6 +1561,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla item tag representing all items which can be sheared off from a copper golem.
      */
     Tag<Material> ITEMS_SHEARABLE_FROM_COPPER_GOLEM = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("shearable_from_copper_golem"), Material.class);
+    /**
+     * Vanilla item tag representing all metal nugget items.
+     */
+    Tag<Material> ITEMS_METAL_NUGGETS = Bukkit.getTag(REGISTRY_ITEMS, NamespacedKey.minecraft("metal_nuggets"), Material.class);
     /**
      * Vanilla item tag representing all enchantable foot armor.
      */
@@ -1451,6 +1694,22 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla fluid tag representing water and flowing water.
      */
     Tag<Fluid> FLUIDS_WATER = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("water"), Fluid.class);
+    /**
+     * Vanilla fluid tag representing all fluids which support sugar cane adjacently.
+     */
+    Tag<Fluid> FLUIDS_SUPPORTS_SUGAR_CANE_ADJACENTLY = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("supports_sugar_cane_adjacently"), Fluid.class);
+    /**
+     * Vanilla fluid tag representing all fluids which support lily pads.
+     */
+    Tag<Fluid> FLUIDS_SUPPORTS_LILY_PAD = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("supports_lily_pad"), Fluid.class);
+    /**
+     * Vanilla fluid tag representing all fluids which support frogspawn.
+     */
+    Tag<Fluid> FLUIDS_SUPPORTS_FROGSPAWN = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("supports_frogspawn"), Fluid.class);
+    /**
+     * Vanilla fluid tag representing all fluids which bubble columns can occupy.
+     */
+    Tag<Fluid> FLUIDS_BUBBLE_COLUMN_CAN_OCCUPY = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("bubble_column_can_occupy"), Fluid.class);
     /**
      * Key for the built in entity registry.
      */
@@ -1645,6 +1904,10 @@ public interface Tag<T extends Keyed> extends Keyed {
      * Vanilla tag representing all entities which can float in water while ridden.
      */
     Tag<EntityType> ENTITY_TYPES_CAN_FLOAT_WHILE_RIDDEN = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("can_float_while_ridden"), EntityType.class);
+    /**
+     * Vanilla tag representing all entities which cannot be age locked with a golden dandelion.
+     */
+    Tag<EntityType> ENTITY_TYPES_CANNOT_BE_AGE_LOCKED = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("cannot_be_age_locked"), EntityType.class);
 
     /**
      * Returns whether or not this tag has an entry for the specified item.

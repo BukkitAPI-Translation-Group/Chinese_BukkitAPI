@@ -199,9 +199,19 @@ public interface BlocksAttacksComponent extends ConfigurationSerializable {
      * Gets the type of damage that will bypass blocking by this item.
      *
      * @return damage type
+     * @deprecated use {@link #getBypassedBys()}
      */
     @Nullable
+    @Deprecated(since = "26.1")
     Tag<DamageType> getBypassedBy();
+
+    /**
+     * Gets the type of damage that will bypass blocking by this item.
+     *
+     * @return damage type
+     */
+    @Nullable
+    Collection<DamageType> getBypassedBys();
 
     /**
      * Sets the type of damage that will bypass blocking by this item.
@@ -209,6 +219,13 @@ public interface BlocksAttacksComponent extends ConfigurationSerializable {
      * @param tag the tag, or null to clear
      */
     void setBypassedBy(@Nullable Tag<DamageType> tag);
+
+    /**
+     * Sets the types of damage that will bypass blocking by this item.
+     *
+     * @param damages the tag, or null to clear
+     */
+    void setBypassedBy(@Nullable Collection<DamageType> damages);
 
     /**
      * A damage reduction for a specific set of damage types.

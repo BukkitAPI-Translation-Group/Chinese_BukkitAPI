@@ -329,6 +329,7 @@ public interface ItemType extends Keyed, Translatable, RegistryAware {
     ItemType.Typed<ItemMeta> RED_WOOL = getItemType("red_wool");
     ItemType.Typed<ItemMeta> BLACK_WOOL = getItemType("black_wool");
     ItemType.Typed<ItemMeta> DANDELION = getItemType("dandelion");
+    ItemType.Typed<ItemMeta> GOLDEN_DANDELION = getItemType("golden_dandelion");
     ItemType.Typed<ItemMeta> OPEN_EYEBLOSSOM = getItemType("open_eyeblossom");
     ItemType.Typed<ItemMeta> CLOSED_EYEBLOSSOM = getItemType("closed_eyeblossom");
     ItemType.Typed<ItemMeta> POPPY = getItemType("poppy");
