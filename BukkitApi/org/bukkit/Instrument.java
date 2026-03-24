@@ -80,6 +80,22 @@ public enum Instrument {
      */
     ZOMBIE(Sound.BLOCK_NOTE_BLOCK_IMITATE_ZOMBIE),
     /**
+     * Trumpet is normally played when a note block is on top of a copper block.
+     */
+    TRUMPET(Sound.BLOCK_NOTE_BLOCK_TRUMPET),
+    /**
+     * Trumpet is normally played when a note block is on top of an exposed copper block.
+     */
+    TRUMPET_EXPOSED(Sound.BLOCK_NOTE_BLOCK_TRUMPET_EXPOSED),
+    /**
+     * Trumpet is normally played when a note block is on top of a oxidized copper block.
+     */
+    TRUMPET_OXIDIZED(Sound.BLOCK_NOTE_BLOCK_TRUMPET_OXIDIZED),
+    /**
+     * Trumpet is normally played when a note block is on top of a weathered copper block.
+     */
+    TRUMPET_WEATHERED(Sound.BLOCK_NOTE_BLOCK_TRUMPET_WEATHERED),
+    /**
      * Skeleton is normally played when a Skeleton Head is on top of the note block.
      */
     SKELETON(Sound.BLOCK_NOTE_BLOCK_IMITATE_SKELETON),
