@@ -26,9 +26,11 @@ public class Dispenser extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>
+     * 原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public Dispenser(final Material type, final byte data) {
