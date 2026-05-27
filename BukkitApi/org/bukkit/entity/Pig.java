@@ -12,23 +12,27 @@ import org.jetbrains.annotations.NotNull;
 public interface Pig extends Steerable, Vehicle {
 
     /**
-     * Get the variant of this pig.
+     * 获取此猪的变种。
      *
-     * @return pig variant
+     * @return 猪的变种.
+     * <p>
+     * 原文: Get the variant of this pig.
      */
     @NotNull
     Variant getVariant();
 
     /**
-     * Set the variant of this pig.
+     * 设置此猪的变种。
      *
-     * @param variant pig variant
+     * @param variant 猪的变种.
+     * <p>
+     * 原文: Set the variant of this pig.
      */
     void setVariant(@NotNull Variant variant);
 
-    /**
-     * Represents the variant of a pig.
-     */
+        /**
+         * 代表猪的变种。
+         */
     interface Variant extends Keyed, RegistryAware {
 
         Variant TEMPERATE = getType("temperate");
@@ -40,7 +44,9 @@ public interface Pig extends Steerable, Vehicle {
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()
-         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}.
+         * <p>
+         * 原文: A key might not always be present, use {@link #getKeyOrThrow()} instead.
          */
         @NotNull
         @Override
