@@ -68,9 +68,9 @@ public class FileConfigurationOptions extends MemoryConfigurationOptions {
     }
 
     /**
-     * @return The string header.
+     * @return 字符串形式的头部注释.
      *
-     * @deprecated use getHeader() instead.
+     * @deprecated 请改用getHeader().
      */
     @NotNull
     @Deprecated(since = "1.18.1")
@@ -112,10 +112,10 @@ public class FileConfigurationOptions extends MemoryConfigurationOptions {
     }
 
     /**
-     * @param value The string header.
-     * @return This object, for chaining.
+     * @param value 字符串形式的头部注释.
+     * @return 此对象, 用于链式调用.
      *
-     * @deprecated use setHeader() instead
+     * @deprecated 请改用setHeader()
      */
     @NotNull
     @Deprecated(since = "1.18.1")
@@ -216,9 +216,9 @@ public class FileConfigurationOptions extends MemoryConfigurationOptions {
     }
 
     /**
-     * @return Whether or not comments are parsed.
+     * @return 是否解析注释.
      *
-     * @deprecated Call {@link #parseComments()} instead.
+     * @deprecated 请改用{@link #parseComments()}.
      */
     @Deprecated(since = "1.18.1")
     public boolean copyHeader() {
