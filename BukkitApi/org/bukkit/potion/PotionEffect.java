@@ -22,7 +22,7 @@ import org.jetbrains.annotations.Nullable;
 @SerializableAs("PotionEffect")
 public class PotionEffect implements ConfigurationSerializable {
     /**
-     * A constant denoting infinite potion duration.
+     * 表示无限药水持续时间的常量.
      */
     public static final int INFINITE_DURATION = -1;
 
@@ -215,26 +215,34 @@ public class PotionEffect implements ConfigurationSerializable {
     }
 
     /**
-     * Returns whether or not this potion effect has an infinite duration. Potion
+     * 返回此药水效果是否具有无限持续时间. 具有无限持续时间的药水效果将显示无限符号,
+     * 除非手动移除, 否则永远不会过期.
+     * <p>
+     * 原文:Returns whether or not this potion effect has an infinite duration. Potion
      * effects with infinite durations will display an infinite symbol and never
      * expire unless manually removed.
      *
-     * @return whether this duration is infinite or not
+     * @return 此持续时间是否为无限
      */
     public boolean isInfinite() {
         return duration == INFINITE_DURATION;
     }
 
     /**
-     * Returns whether or not this potion effect has a shorter duration than the
+     * 返回此药水效果的持续时间是否比提供的药水效果短.
+     * <p>
+     * 无限持续时间被认为比非无限持续时间长. 如果两个药水效果都具有无限持续时间,
+     * 则两者都不比对方短, 此方法将返回 false.
+     * <p>
+     * 原文:Returns whether or not this potion effect has a shorter duration than the
      * provided potion effect.
      * <p>
      * An infinite duration is considered longer than non-infinite durations. If
      * both potion effects have infinite durations, then neither is shorter than
      * the other and this method will return false.
      *
-     * @param other the other effect
-     * @return true if this effect is shorter than the other, false if longer or equal
+     * @param other 另一个效果
+     * @return 如果此效果比另一个短则为 true, 如果更长或相等则为 false
      */
     public boolean isShorterThan(@NotNull PotionEffect other) {
         return !isInfinite() && (duration < other.duration || other.isInfinite());
