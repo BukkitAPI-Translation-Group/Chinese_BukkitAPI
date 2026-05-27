@@ -46,7 +46,9 @@ public interface PigZombie extends Zombie {
     boolean isAngry();
 
     /**
-     * <b>Not applicable to this entity</b>
+     * <b>不适用于此实体</b>
+     * <p>
+     * 原文:<b>Not applicable to this entity</b>
      *
      * @return false
      */
@@ -54,17 +56,21 @@ public interface PigZombie extends Zombie {
     public boolean isConverting();
 
     /**
-     * <b>Not applicable to this entity</b>
+     * <b>不适用于此实体</b>
+     * <p>
+     * 原文:<b>Not applicable to this entity</b>
      *
-     * @return UnsuppotedOperationException
+     * @return UnsupportedOperationException
      */
     @Override
     public int getConversionTime();
 
     /**
-     * <b>Not applicable to this entity</b>
+     * <b>不适用于此实体</b>
+     * <p>
+     * 原文:<b>Not applicable to this entity</b>
      *
-     * @param time unused
+     * @param time 未使用
      */
     @Override
     public void setConversionTime(int time);

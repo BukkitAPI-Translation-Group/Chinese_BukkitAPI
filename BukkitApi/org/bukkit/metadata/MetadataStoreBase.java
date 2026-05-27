@@ -97,13 +97,15 @@ public abstract class MetadataStoreBase<T> {
     }
 
     /**
+     * 从对象中移除指定插件拥有的元数据项.
+     * <p>
+     * 原文:
      * Removes a metadata item owned by a plugin from a subject.
      *
-     * @param subject the object to remove the metadata from.
-     * @param metadataKey the unique metadata key identifying the metadata to
-     *     remove.
-     * @param owningPlugin the plugin attempting to remove a metadata item.
-     * @throws IllegalArgumentException If plugin is null
+     * @param subject 要移除元数据的对象.
+     * @param metadataKey 用于标识要移除的元数据的唯一键.
+     * @param owningPlugin 尝试移除元数据项的插件.
+     * @throws IllegalArgumentException 如果插件为null
      * @see MetadataStore#removeMetadata(Object, String,
      *     org.bukkit.plugin.Plugin)
      */
@@ -122,12 +124,16 @@ public abstract class MetadataStoreBase<T> {
     }
 
     /**
+     * 使元数据存储中所有来自指定插件的元数据失效.
+     * 这样做将强制每个失效的元数据项在下次被访问时重新计算.
+     * <p>
+     * 原文:
      * Invalidates all metadata in the metadata store that originates from the
      * given plugin. Doing this will force each invalidated metadata item to
      * be recalculated the next time it is accessed.
      *
-     * @param owningPlugin the plugin requesting the invalidation.
-     * @throws IllegalArgumentException If plugin is null
+     * @param owningPlugin 请求失效的插件.
+     * @throws IllegalArgumentException 如果插件为null
      * @see MetadataStore#invalidateAll(org.bukkit.plugin.Plugin)
      */
     public synchronized void invalidateAll(@NotNull Plugin owningPlugin) {
@@ -140,6 +146,12 @@ public abstract class MetadataStoreBase<T> {
     }
 
     /**
+     * 通过组合对象的唯一数据和metadataKey, 为接收元数据的对象创建唯一名称.
+     * <p>
+     * 创建的名称对于给定对象必须是全局唯一的, 任何两个等价的对象必须生成相同的唯一名称.
+     * 例如, 如果两个Player对象代表同一个玩家, 即使这两个对象无法通过引用相等性测试, 它们也必须生成相同的字符串.
+     * <p>
+     * 原文:
      * Creates a unique name for the object receiving metadata by combining
      * unique data from the subject with a metadataKey.
      * <p>
@@ -148,9 +160,9 @@ public abstract class MetadataStoreBase<T> {
      * two Player objects must generate the same string if they represent the
      * same player, even if the objects would fail a reference equality test.
      *
-     * @param subject The object for which this key is being generated.
-     * @param metadataKey The name identifying the metadata value.
-     * @return a unique metadata key for the given subject.
+     * @param subject 为此对象生成键.
+     * @param metadataKey 标识元数据值的名称.
+     * @return 给定对象的唯一元数据键.
      */
     @NotNull
     protected abstract String disambiguate(@NotNull T subject, @NotNull String metadataKey);
