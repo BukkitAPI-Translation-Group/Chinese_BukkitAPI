@@ -15,6 +15,16 @@ public abstract class MetadataStoreBase<T> {
     private Map<String, Map<Plugin, MetadataValue>> metadataMap = new HashMap<String, Map<Plugin, MetadataValue>>();
 
     /**
+     * 向对象添加元数据值. 每个元数据值由特定{@link Plugin}拥有.
+     * 如果插件已经向对象添加了元数据值, 该值将被{@code newMetadataValue}的值替换.
+     * 多个插件可以为相同的{@code metadataKey}设置独立的值而不会冲突.
+     * <p>
+     * 实现说明：我考虑使用{@link java.util.concurrent.locks.ReadWriteLock}来控制对{@code metadataMap}的访问,
+     * 但认为增加的开销不值得更细粒度的访问控制.
+     * <p>
+     * Bukkit几乎完全是单线程的, 所以锁定开销应该不会造成问题.
+     * <p>
+     * 原文：
      * Adds a metadata value to an object. Each metadata value is owned by a
      * specific {@link Plugin}. If a plugin has already added a metadata value
      * to an object, that value will be replaced with the value of {@code
@@ -29,11 +39,10 @@ public abstract class MetadataStoreBase<T> {
      * Bukkit is almost entirely single threaded so locking overhead shouldn't
      * pose a problem.
      *
-     * @param subject The object receiving the metadata.
-     * @param metadataKey A unique key to identify this metadata.
-     * @param newMetadataValue The metadata value to apply.
-     * @throws IllegalArgumentException If value is null, or the owning plugin
-     *     is null
+     * @param subject 接收元数据的对象.
+     * @param metadataKey 用于标识此元数据的唯一键.
+     * @param newMetadataValue 要应用的元数据值.
+     * @throws IllegalArgumentException 如果值为null, 或拥有插件为null
      * @see MetadataStore#setMetadata(Object, String, MetadataValue)
      */
     public synchronized void setMetadata(@NotNull T subject, @NotNull String metadataKey, @NotNull MetadataValue newMetadataValue) {
@@ -50,13 +59,15 @@ public abstract class MetadataStoreBase<T> {
     }
 
     /**
+     * 返回附加到对象的所有元数据值. 如果多个插件附加了元数据, 每个值都将被包含.
+     * <p>
+     * 原文：
      * Returns all metadata values attached to an object. If multiple
      * have attached metadata, each will value will be included.
      *
-     * @param subject the object being interrogated.
-     * @param metadataKey the unique metadata key being sought.
-     * @return A list of values, one for each plugin that has set the
-     *     requested value.
+     * @param subject 正在查询的对象.
+     * @param metadataKey 正在查找的唯一元数据键.
+     * @return 值列表, 每个设置了请求值的插件一个.
      * @see MetadataStore#getMetadata(Object, String)
      */
     @NotNull
@@ -71,12 +82,14 @@ public abstract class MetadataStoreBase<T> {
     }
 
     /**
+     * 测试对象上是否设置了元数据属性.
+     * <p>
+     * 原文：
      * Tests to see if a metadata attribute has been set on an object.
      *
-     * @param subject the object upon which the has-metadata test is
-     *     performed.
-     * @param metadataKey the unique metadata key being queried.
-     * @return the existence of the metadataKey within subject.
+     * @param subject 执行has-metadata测试的对象.
+     * @param metadataKey 正在查询的唯一元数据键.
+     * @return metadataKey在主体中的存在性.
      */
     public synchronized boolean hasMetadata(@NotNull T subject, @NotNull String metadataKey) {
         String key = disambiguate(subject, metadataKey);

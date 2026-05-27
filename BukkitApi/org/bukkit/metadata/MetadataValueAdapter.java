@@ -8,11 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Optional base class for facilitating MetadataValue implementations.
+ * 用于简化MetadataValue实现的可选基类.
  * <p>
- * This provides all the conversion functions for MetadataValue so that
- * writing an implementation of MetadataValue is as simple as implementing
- * value() and invalidate().
+ * 此类为MetadataValue提供所有转换函数, 使得编写MetadataValue实现只需实现value()和invalidate()即可.
  */
 public abstract class MetadataValueAdapter implements MetadataValue {
     protected final WeakReference<Plugin> owningPlugin;
