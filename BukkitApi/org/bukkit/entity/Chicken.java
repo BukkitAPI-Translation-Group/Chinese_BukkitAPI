@@ -12,22 +12,26 @@ import org.jetbrains.annotations.NotNull;
 public interface Chicken extends Animals {
 
     /**
-     * Get the variant of this chicken.
+     * 获取这只鸡的变种.
+     * <p>
+     * 原文: Get the variant of this chicken.
      *
-     * @return chicken variant
+     * @return 鸡的变种
      */
     @NotNull
     Variant getVariant();
 
     /**
-     * Set the variant of this chicken.
+     * 设置这只鸡的变种.
+     * <p>
+     * 原文: Set the variant of this chicken.
      *
-     * @param variant chicken variant
+     * @param variant 鸡的变种
      */
     void setVariant(@NotNull Variant variant);
 
     /**
-     * Represents the variant of a chicken.
+     * 代表鸡的变种.
      */
     interface Variant extends Keyed, RegistryAware {
 
@@ -40,7 +44,7 @@ public interface Chicken extends Animals {
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()
-         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         * @deprecated key 可能不总是存在, 请使用 {@link #getKeyOrThrow()} 代替.
          */
         @NotNull
         @Override
