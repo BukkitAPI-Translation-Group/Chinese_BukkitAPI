@@ -38,24 +38,29 @@ public interface SpawnEggMeta extends ItemMeta {
     void setSpawnedType(EntityType type);
 
     /**
-     * Gets the {@link EntitySnapshot} that will be spawned by this spawn egg or null if no entity
-     * has been set. <br>
+     * 获取此刷怪蛋将会生成的 {@link EntitySnapshot}, 如果未设置实体则返回 null.
      * <p>
-     * All applicable data from the egg will be copied, such as custom name, health,
-     * and velocity. <br>
+     * 蛋中所有适用的数据都会被复制, 例如自定义名称、生命值和速度.
+     * <p>
+     * 原文：Gets the {@link EntitySnapshot} that will be spawned by this spawn egg or null if no entity
+     * has been set. All applicable data from the egg will be copied, such as custom name, health,
+     * and velocity.
      *
-     * @return the entity snapshot or null if no entity has been set
+     * @return 实体快照, 如果未设置实体则返回 null
      */
     @Nullable
     EntitySnapshot getSpawnedEntity();
 
     /**
-     * Sets the {@link EntitySnapshot} that will be spawned by this spawn egg. <br>
+     * 设置此刷怪蛋将会生成的 {@link EntitySnapshot}.
      * <p>
+     * 实体中所有适用的数据都会被复制, 例如自定义名称、生命值和速度.
+     * <p>
+     * 原文：Sets the {@link EntitySnapshot} that will be spawned by this spawn egg.
      * All applicable data from the entity will be copied, such as custom name,
-     * health, and velocity. <br>
+     * health, and velocity.
      *
-     * @param snapshot the snapshot
+     * @param snapshot 实体快照
      */
     void setSpawnedEntity(@NotNull EntitySnapshot snapshot);
 
