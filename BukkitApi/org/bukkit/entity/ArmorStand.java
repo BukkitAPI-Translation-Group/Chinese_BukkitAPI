@@ -386,53 +386,59 @@ public interface ArmorStand extends LivingEntity {
     void setMarker(boolean marker);
 
     /**
+     * 使用指定的 {@link LockType 锁定机制} 锁定装备槽位.
+     * <p>
+     * 原文:
      * Locks the equipment slot with the specified
      * {@link LockType locking mechanism}.
      *
-     * @param slot the equipment slot to lock
-     * @param lockType the LockType to lock the equipment slot with
+     * @param slot 要锁定的装备槽位
+     * @param lockType 用于锁定装备槽位的 LockType
      */
     void addEquipmentLock(@NotNull EquipmentSlot slot, @NotNull LockType lockType);
 
     /**
+     * 移除 {@link LockType 锁定机制}.
+     * <p>
+     * 原文:
      * Remove a {@link LockType locking mechanism}.
      *
-     * @param slot the equipment slot to change
-     * @param lockType the LockType to remove
+     * @param slot 要更改的装备槽位
+     * @param lockType 要移除的 LockType
      */
     void removeEquipmentLock(@NotNull EquipmentSlot slot, @NotNull LockType lockType);
 
     /**
+     * 返回此盔甲架是否具有指定的 {@link LockType 锁定机制}.
+     * <p>
+     * 原文:
      * Returns if the ArmorStand has the specified
      * {@link LockType locking mechanism}.
      *
-     * @param slot the EquipmentSlot to test
-     * @param lockType the LockType to test
-     * @return if the ArmorStand has been locked with the parameters specified
+     * @param slot 要检测的装备槽位
+     * @param lockType 要检测的 LockType
+     * @return 此盔甲架是否已被指定参数锁定
      */
     boolean hasEquipmentLock(@NotNull EquipmentSlot slot, @NotNull LockType lockType);
 
     /**
-     * Represents types of locking mechanisms for ArmorStand equipment.
+     * 代表盔甲架装备的锁定机制类型.
      */
     public enum LockType {
 
         /**
-         * Prevents adding or changing the respective equipment - players cannot
-         * replace the empty slot with a new item or swap the items between
-         * themselves and the ArmorStand.
+         * 阻止添加或更改相应装备 - 玩家无法用新物品替换空槽位,
+         * 也无法在自身与盔甲架之间交换物品.
          */
         ADDING_OR_CHANGING,
         /**
-         * Prevents removing or changing the respective equipment - players
-         * cannot take an item from the slot or swap the items between
-         * themselves and the ArmorStand.
+         * 阻止移除或更改相应装备 - 玩家无法从槽位取出物品,
+         * 也无法在自身与盔甲架之间交换物品.
          */
         REMOVING_OR_CHANGING,
         /**
-         * Prevents adding the respective equipment - players cannot replace the
-         * empty slot with a new item, but can swap items between themselves and
-         * the ArmorStand.
+         * 阻止添加相应装备 - 玩家无法用新物品替换空槽位,
+         * 但可以在自身与盔甲架之间交换物品.
          */
         ADDING;
     }
