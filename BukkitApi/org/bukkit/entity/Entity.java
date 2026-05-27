@@ -108,12 +108,17 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public double getWidth();
 
     /**
+     * 获取实体当前的边界框.
+     * <p>
+     * 返回的边界框反映了实体的当前位置和大小.
+     * <p>
+     * 原文:
      * Gets the entity's current bounding box.
      * <p>
      * The returned bounding box reflects the entity's current location and
      * size.
      *
-     * @return the entity's current bounding box
+     * @return 实体当前的边界框
      */
     @NotNull
     public BoundingBox getBoundingBox();
@@ -155,13 +160,18 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public World getWorld();
 
     /**
+     * 设置实体的旋转角度.
+     * <p>
+     * 注意: 如果实体受 AI 影响, AI 可能会覆盖此旋转.
+     * <p>
+     * 原文:
      * Sets the entity's rotation.
      * <p>
      * Note that if the entity is affected by AI, it may override this rotation.
      *
-     * @param yaw the yaw
-     * @param pitch the pitch
-     * @throws UnsupportedOperationException if used for players
+     * @param yaw 偏航角
+     * @param pitch 俯仰角
+     * @throws UnsupportedOperationException 如果用于玩家
      */
     public void setRotation(float yaw, float pitch);
 
@@ -281,48 +291,66 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public void setFireTicks(int ticks);
 
     /**
+     * 设置实体是否有视觉上的火焰效果 (实体将始终显示为着火状态).
+     * <p>
+     * 原文:
      * Sets if the entity has visual fire (it will always appear to be on fire).
      *
-     * @param fire whether visual fire is enabled
+     * @param fire 是否启用视觉火焰
      */
     void setVisualFire(boolean fire);
 
     /**
+     * 获取实体是否有视觉上的火焰效果 (实体将始终显示为着火状态).
+     * <p>
+     * 原文:
      * Gets if the entity has visual fire (it will always appear to be on fire).
      *
-     * @return whether visual fire is enabled
+     * @return 是否启用了视觉火焰
      */
     boolean isVisualFire();
 
     /**
+     * 返回实体当前的冰冻刻 (实体处于细雪中的刻数).
+     * <p>
+     * 原文:
      * Returns the entity's current freeze ticks (amount of ticks the entity has
      * been in powdered snow).
      *
-     * @return int freeze ticks
+     * @return 冰冻刻数值
      */
     int getFreezeTicks();
 
     /**
+     * 返回实体的最大冰冻刻 (完全冰冻所需的刻数).
+     * <p>
+     * 原文:
      * Returns the entity's maximum freeze ticks (amount of ticks before it will
      * be fully frozen)
      *
-     * @return int max freeze ticks
+     * @return 最大冰冻刻数值
      */
     int getMaxFreezeTicks();
 
     /**
+     * 设置实体当前的冰冻刻 (实体处于细雪中的刻数).
+     * <p>
+     * 原文:
      * Sets the entity's current freeze ticks (amount of ticks the entity has
      * been in powdered snow).
      *
-     * @param ticks Current ticks
+     * @param ticks 当前刻数
      */
     void setFreezeTicks(int ticks);
 
     /**
+     * 获取实体是否已完全冰冻 (在细雪中待满了最大冰冻刻).
+     * <p>
+     * 原文:
      * Gets if the entity is fully frozen (it has been in powdered snow for max
      * freeze ticks).
      *
-     * @return freeze status
+     * @return 冰冻状态
      */
     boolean isFrozen();
 
@@ -370,6 +398,15 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public Server getServer();
 
     /**
+     * 返回实体是否会被持久化.
+     * <p>
+     * 默认情况下所有实体都是持久化的. 如果实体骑乘的载具不是持久化的, 则该实体也不会被持久化.
+     * <p>
+     * 玩家的持久化标志控制在玩家退出时是否保存其玩家数据文件. 如果玩家直接或间接骑乘非持久化实体, 则根级载具及其所有乘客都不会被持久化.
+     * <p>
+     * <b>注意: 不要与 {@link LivingEntity#setRemoveWhenFarAway(boolean)} 混淆, 后者控制生物实体的消失.</b>
+     * <p>
+     * 原文:
      * Returns true if the entity gets persisted.
      * <p>
      * By default all entities are persistent. An entity will also not get
@@ -384,14 +421,17 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * {@link LivingEntity#setRemoveWhenFarAway(boolean)} which controls
      * despawning of living entities. </b>
      *
-     * @return true if this entity is persistent
+     * @return 实体是否持久化
      */
     public boolean isPersistent();
 
     /**
+     * 设置实体是否会被持久化.
+     * <p>
+     * 原文:
      * Sets whether or not the entity gets persisted.
      *
-     * @param persistent the persistence status
+     * @param persistent 持久化状态
      * @see #isPersistent()
      */
     public void setPersistent(boolean persistent);
@@ -598,27 +638,36 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public EntityType getType();
 
     /**
+     * 获取此实体游泳时发出的 {@link Sound}.
+     * <p>
+     * 原文:
      * Get the {@link Sound} this entity makes while swimming.
      *
-     * @return the swimming sound
+     * @return 游泳声音
      */
     @NotNull
     public Sound getSwimSound();
 
     /**
+     * 获取此实体溅入水中时发出的 {@link Sound}. 对于大多数实体, 这只是 {@link Sound#ENTITY_GENERIC_SPLASH}.
+     * <p>
+     * 原文:
      * Get the {@link Sound} this entity makes when splashing in water. For most
      * entities, this is just {@link Sound#ENTITY_GENERIC_SPLASH}.
      *
-     * @return the splash sound
+     * @return 溅水声
      */
     @NotNull
     public Sound getSwimSplashSound();
 
     /**
+     * 获取此实体高速溅入水中时发出的 {@link Sound}. 对于大多数实体, 这只是 {@link Sound#ENTITY_GENERIC_SPLASH}.
+     * <p>
+     * 原文:
      * Get the {@link Sound} this entity makes when splashing in water at high
      * speeds. For most entities, this is just {@link Sound#ENTITY_GENERIC_SPLASH}.
      *
-     * @return the splash sound
+     * @return 溅水声
      */
     @NotNull
     public Sound getSwimHighSpeedSplashSound();
@@ -689,28 +738,47 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     public boolean isCustomNameVisible();
 
     /**
+     * 设置此实体是否默认可见.
+     * <p>
+     * 如果此实体默认不可见, 则需要调用
+     * {@link Player#showEntity(org.bukkit.plugin.Plugin, org.bukkit.entity.Entity)}
+     * 才能使指定玩家看到该实体.
+     * <p>
+     * 原文:
      * Sets whether or not this entity is visible by default.
      *
      * If this entity is not visible by default, then
      * {@link Player#showEntity(org.bukkit.plugin.Plugin, org.bukkit.entity.Entity)}
      * will need to be called before the entity is visible to a given player.
      *
-     * @param visible default visibility status
+     * @param visible 默认可见性状态
      */
     public void setVisibleByDefault(boolean visible);
 
     /**
+     * 获取此实体是否默认可见.
+     * <p>
+     * 如果此实体默认不可见, 则需要调用
+     * {@link Player#showEntity(org.bukkit.plugin.Plugin, org.bukkit.entity.Entity)}
+     * 才能使指定玩家看到该实体.
+     * <p>
+     * 原文:
      * Gets whether or not this entity is visible by default.
      *
      * If this entity is not visible by default, then
      * {@link Player#showEntity(org.bukkit.plugin.Plugin, org.bukkit.entity.Entity)}
      * will need to be called before the entity is visible to a given player.
      *
-     * @return default visibility status
+     * @return 默认可见性状态
      */
     public boolean isVisibleByDefault();
     
     /**
+     * 获取当前正在追踪此实体的所有玩家.
+     * <p>
+     * "追踪"意味着此实体已被发送给玩家, 且玩家正在接收其状态更新. 注意: 客户端的 {@code '实体距离'} 设置不会影响实体被追踪的范围.
+     * <p>
+     * 原文:
      * Get all players that are currently tracking this entity.
      * <p>
      * 'Tracking' means that this entity has been sent to the player and that
@@ -718,7 +786,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * 'Entity Distance'} setting does not affect the range at which entities
      * are tracked.
      *
-     * @return the players tracking this entity, or an empty set if none
+     * @return 正在追踪此实体的玩家集合, 若无则为空集合
      */
     @NotNull
     Set<Player> getTrackedBy();
@@ -829,9 +897,12 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     int getPortalCooldown();
 
     /**
-     * Sets the period of time (in ticks) before this entity can use a portal. 
+     * 设置此实体使用传送门前需要等待的时间 (以刻为单位).
+     * <p>
+     * 原文:
+     * Sets the period of time (in ticks) before this entity can use a portal.
      *
-     * @param cooldown portal cooldown ticks
+     * @param cooldown 传送门冷却刻数
      */
     void setPortalCooldown(int cooldown);
 
@@ -890,6 +961,13 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     PistonMoveReaction getPistonMoveReaction();
 
     /**
+     * 获取实体当前朝向的最接近的基本 {@link BlockFace} 方向.
+     * <br>
+     * 不会返回任何非基本方向, 如 {@link BlockFace#UP} 或 {@link BlockFace#DOWN}.
+     * <br>
+     * {@link Hanging} 实体会覆盖此调用, 因此其行为可能不同.
+     * <p>
+     * 原文:
      * Get the closest cardinal {@link BlockFace} direction an entity is
      * currently facing.
      * <br>
@@ -899,7 +977,7 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
      * {@link Hanging} entities will override this call and thus their behavior
      * may be different.
      *
-     * @return the entity's current cardinal facing.
+     * @return 实体当前的基本朝向
      * @see Hanging
      * @see Directional#getFacing()
      */
@@ -907,70 +985,102 @@ public interface Entity extends Metadatable, CommandSender, Nameable, Persistent
     BlockFace getFacing();
 
     /**
+     * 获取实体当前的姿势.
+     * <p>
+     * <b>注意: 姿势仅在 tick 结束时更新, 因此可能与其他方法不一致. 例如 {@link Player#isSneaking()} 返回 true 并不意味着当前姿势为 {@link Pose#SNEAKING}.</b>
+     * <p>
+     * 原文:
      * Gets the entity's current pose.
      *
      * <b>Note that the pose is only updated at the end of a tick, so may be
      * inconsistent with other methods. eg {@link Player#isSneaking()} being
      * true does not imply the current pose will be {@link Pose#SNEAKING}</b>
      *
-     * @return current pose
+     * @return 当前姿势
      */
     @NotNull
     Pose getPose();
 
     /**
+     * 获取此实体所属的生成类别.
+     * <p>
+     * 原文:
      * Get the category of spawn to which this entity belongs.
      *
-     * @return the entity´s category spawn
+     * @return 实体的生成类别
      */
     @NotNull
     SpawnCategory getSpawnCategory();
 
     /**
+     * 检查此实体是否已生成在世界中.
+     * <br>
+     * 未在世界中生成的实体不会被 tick 更新, 不会发送给玩家, 也不会保存到服务器文件中.
+     * <p>
+     * 原文:
      * Checks if this entity has been spawned in a world. <br>
      * Entities not spawned in a world will not tick, be sent to players, or be
      * saved to the server files.
      *
-     * @return whether the entity has been spawned in a world
+     * @return 实体是否已生成在世界中
      */
     boolean isInWorld();
 
     /**
+     * 获取此实体的 NBT 字符串.
+     * <p>
+     * 不应将此字符串作为可序列化的值使用.
+     * <p>
+     * 原文:
      * Get this entity as an NBT string.
      * <p>
      * This string should not be relied upon as a serializable value.
      *
-     * @return the NBT string or null if one cannot be made
+     * @return NBT 字符串, 若无法生成则返回 null
      */
     @Nullable
     @ApiStatus.Experimental
     String getAsString();
 
     /**
+     * 创建一个表示此实体当前状态的 {@link EntitySnapshot}.
+     * <p>
+     * 原文:
      * Crates an {@link EntitySnapshot} representing the current state of this entity.
      *
-     * @return a snapshot representing this entity or null if one cannot be made
+     * @return 表示此实体的快照, 若无法创建则返回 null
      */
     @Nullable
     @ApiStatus.Experimental
     EntitySnapshot createSnapshot();
 
     /**
+     * 创建此实体及其所有数据的副本. 不会在世界中生成该副本.
+     * <br>
+     * <b>注意:</b> 玩家无法被复制.
+     * <p>
+     * 原文:
      * Creates a copy of this entity and all its data. Does not spawn the copy in
      * the world. <br>
      * <b>Note:</b> Players cannot be copied.
      *
-     * @return a copy of this entity.
+     * @return 此实体的副本
      */
     @NotNull
     @ApiStatus.Experimental
     Entity copy();
 
     /**
+     * 创建此实体及其所有数据的副本. 在给定位置生成该副本.
+     * <br>
+     * <b>注意:</b> 玩家无法被复制.
+     * <p>
+     * 原文:
      * Creates a copy of this entity and all its data. Spawns the copy at the given location. <br>
      * <b>Note:</b> Players cannot be copied.
-     * @param to the location to copy to
-     * @return a copy of this entity.
+     *
+     * @param to 要复制到的位置
+     * @return 此实体的副本
      */
     @NotNull
     @ApiStatus.Experimental
