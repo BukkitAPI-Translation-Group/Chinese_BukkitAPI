@@ -18,11 +18,9 @@ public final class PotionData {
      * <p>
      * 原文：Instantiates a final PotionData object to contain information about a Potion
      *
-     * @param type the type of the Potion
-     * @param extended whether the potion is extended PotionType#isExtendable()
-     * must be true
-     * @param upgraded whether the potion is upgraded PotionType#isUpgradable()
-     * must be true
+     * @param type 药水的类型
+     * @param extended 药水是否为延长版本，{@link PotionType#isExtendable()} 必须为 true
+     * @param upgraded 药水是否为升级版本，{@link PotionType#isUpgradable()} 必须为 true
      */
     public PotionData(@NotNull PotionType type, boolean extended, boolean upgraded) {
         Preconditions.checkArgument(type != null, "Potion Type must not be null");
@@ -45,7 +43,7 @@ public final class PotionData {
      * <p>
      * 原文：Gets the type of the potion, Type matches up with each kind of craftable potion
      *
-     * @return the potion type
+     * @return 药水类型
      */
     @NotNull
     public PotionType getType() {
@@ -57,7 +55,7 @@ public final class PotionData {
      * <p>
      * 原文：Checks if the potion is in an upgraded state. This refers to whether or not the potion is Tier 2, such as Potion of Fire Resistance II.
      *
-     * @return true if the potion is upgraded;
+     * @return 如果药水已升级则返回 true
      */
     public boolean isUpgraded() {
         return upgraded;
@@ -68,7 +66,7 @@ public final class PotionData {
      * <p>
      * 原文：Checks if the potion is in an extended state. This refers to the extended duration potions
      *
-     * @return true if the potion is extended
+     * @return 如果药水已延长则返回 true
      */
     public boolean isExtended() {
         return extended;
