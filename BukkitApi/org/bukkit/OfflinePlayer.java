@@ -78,43 +78,43 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
     public boolean isBanned();
 
     /**
-     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * 将此用户添加到 {@link ProfileBanList} 中. 如果之前已有封禁记录, 则会更新该记录.
+     * <p>
+     * 原文:Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
      * update the entry.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @param reason 封禁原因, null 表示使用默认值
+     * @param expires 封禁到期日期(解封时间), null 表示永久封禁
+     * @param source 封禁来源, null 表示使用默认值
+     * @return 新创建的封禁记录条目, 或已更新的先前封禁记录条目
      */
     @Nullable
     public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Date expires, @Nullable String source);
 
     /**
-     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * 将此用户添加到 {@link ProfileBanList} 中. 如果之前已有封禁记录, 则会更新该记录.
+     * <p>
+     * 原文:Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
      * update the entry.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires instant for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @param reason 封禁原因, null 表示使用默认值
+     * @param expires 封禁到期时间点(解封时间), null 表示永久封禁
+     * @param source 封禁来源, null 表示使用默认值
+     * @return 新创建的封禁记录条目, 或已更新的先前封禁记录条目
      */
     @Nullable
     public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Instant expires, @Nullable String source);
 
     /**
-     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * 将此用户添加到 {@link ProfileBanList} 中. 如果之前已有封禁记录, 则会更新该记录.
+     * <p>
+     * 原文:Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
      * update the entry.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param duration how long the ban last, or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @param reason 封禁原因, null 表示使用默认值
+     * @param duration 封禁持续时长, null 表示永久封禁
+     * @param source 封禁来源, null 表示使用默认值
+     * @return 新创建的封禁记录条目, 或已更新的先前封禁记录条目
      */
     @Nullable
     public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Duration duration, @Nullable String source);
@@ -202,10 +202,12 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
     public Location getBedSpawnLocation();
 
     /**
-     * Gets the Location where the player will spawn at, null if they
+     * 获取玩家的重生点位置, 如果没有有效的重生点则返回 null.
+     * <p>
+     * 原文:Gets the Location where the player will spawn at, null if they
      * don't have a valid respawn point.
      *
-     * @return respawn location if exists, otherwise null.
+     * @return 重生点位置, 如果不存在则返回 null.
      */
     @Nullable
     public Location getRespawnLocation();
@@ -476,18 +478,21 @@ public interface OfflinePlayer extends ServerOperator, AnimalTamer, Configuratio
     public void setStatistic(@NotNull Statistic statistic, @NotNull EntityType entityType, int newValue);
 
     /**
-     * Gets the player's last death location.
+     * 获取玩家最后一次死亡的位置.
+     * <p>
+     * 原文:Gets the player's last death location.
      *
-     * @return the last death location if it exists, otherwise null.
+     * @return 最后一次死亡的位置, 如果不存在则返回 null.
      */
     @Nullable
     public Location getLastDeathLocation();
 
     /**
-     * Gets the player's current location.
+     * 获取玩家当前位置.
+     * <p>
+     * 原文:Gets the player's current location.
      *
-     * @return the player's location, {@code null} if player hasn't ever played
-     * before.
+     * @return 玩家的位置, 如果玩家从未游玩过则返回 {@code null}.
      */
     @Nullable
     public Location getLocation();
