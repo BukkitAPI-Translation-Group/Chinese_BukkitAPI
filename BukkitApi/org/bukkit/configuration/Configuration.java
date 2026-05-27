@@ -60,8 +60,8 @@ public interface Configuration extends ConfigurationSection {
      * <p>
      * If you require this, you should set the default source with {@link #setDefaults(org.bukkit.configuration.Configuration)}.
      *
-     * @param defaults A configuration holding a list of defaults to copy.
-     * @throws IllegalArgumentException Thrown if defaults is null or this.
+     * @param defaults 包含要复制的默认值列表的配置.
+     * @throws IllegalArgumentException 如果 defaults 为 null 或等于 this.
      */
     public void addDefaults(@NotNull Configuration defaults);
 
