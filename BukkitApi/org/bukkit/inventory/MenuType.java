@@ -206,7 +206,7 @@ public interface MenuType extends Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并非始终存在, 请改用 {@link #getKeyOrThrow()}.
      */
     @NotNull
     @Override

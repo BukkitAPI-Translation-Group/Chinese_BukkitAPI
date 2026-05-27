@@ -32,13 +32,15 @@ public class FurnaceRecipe extends CookingRecipe<FurnaceRecipe> {
     }
 
     /**
-     * Create a furnace recipe to craft the specified ItemStack.
+     * 创建一个熔炉配方来制作指定的 ItemStack.
+     * <p>
+     * 原文:Create a furnace recipe to craft the specified ItemStack.
      *
-     * @param key The unique recipe key
-     * @param result The item you want the recipe to create.
-     * @param source The input material.
-     * @param experience The experience given by this recipe
-     * @param cookingTime The cooking time (in ticks)
+     * @param key 唯一的配方键
+     * @param result 你想要配方创建的物品.
+     * @param source 输入材料.
+     * @param experience 此配方给予的经验值
+     * @param cookingTime 烹饪时间 (以刻为单位)
      */
     public FurnaceRecipe(@NotNull NamespacedKey key, @NotNull ItemStack result, @NotNull Material source, float experience, int cookingTime) {
         this(key, result, source, 0, experience, cookingTime);
@@ -50,13 +52,15 @@ public class FurnaceRecipe extends CookingRecipe<FurnaceRecipe> {
     }
 
     /**
-     * Create a furnace recipe to craft the specified ItemStack.
+     * 创建一个熔炉配方来制作指定的 ItemStack.
+     * <p>
+     * 原文:Create a furnace recipe to craft the specified ItemStack.
      *
-     * @param key The unique recipe key
-     * @param result The item you want the recipe to create.
-     * @param input The input choices.
-     * @param experience The experience given by this recipe
-     * @param cookingTime The cooking time (in ticks)
+     * @param key 唯一的配方键
+     * @param result 你想要配方创建的物品.
+     * @param input 输入选项.
+     * @param experience 此配方给予的经验值
+     * @param cookingTime 烹饪时间 (以刻为单位)
      */
     public FurnaceRecipe(@NotNull NamespacedKey key, @NotNull ItemStack result, @NotNull RecipeChoice input, float experience, int cookingTime) {
         super(key, result, input, experience, cookingTime);
