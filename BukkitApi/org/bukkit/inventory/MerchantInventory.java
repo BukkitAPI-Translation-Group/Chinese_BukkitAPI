@@ -47,9 +47,11 @@ public interface MerchantInventory extends Inventory {
     MerchantRecipe getSelectedRecipe();
 
     /**
-     * Gets the Merchant associated with this inventory.
+     * 获取与此物品栏关联的商人.
+     * <p>
+     * 原文: Gets the Merchant associated with this inventory.
      *
-     * @return merchant
+     * @return 商人
      */
     @NotNull
     Merchant getMerchant();
