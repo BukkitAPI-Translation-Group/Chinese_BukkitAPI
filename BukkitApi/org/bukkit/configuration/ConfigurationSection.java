@@ -90,6 +90,13 @@ public interface ConfigurationSection {
     public boolean contains(@NotNull String path);
 
     /**
+     * 检查此 {@link ConfigurationSection} 是否包含给定路径.
+     * <p>
+     * 如果请求路径的值不存在, 但布尔参数为 true 且该路径存在默认值, 则返回 true.
+     * <p>
+     * 如果布尔参数为 false, 则只有在指定路径存在已设置的值时才返回 true.
+     * <p>
+     * 原文：
      * Checks if this {@link ConfigurationSection} contains the given path.
      * <p>
      * If the value for the requested path does not exist, the boolean parameter
@@ -99,12 +106,10 @@ public interface ConfigurationSection {
      * If a boolean parameter of false has been specified, true will only be
      * returned if there is a set value for the specified path.
      *
-     * @param path Path to check for existence.
-     * @param ignoreDefault Whether or not to ignore if a default value for the
-     * specified path exists.
-     * @return True if this section contains the requested path, or if a default
-     * value exist and the boolean parameter for this method is true.
-     * @throws IllegalArgumentException Thrown when path is null.
+     * @param path 要检查是否存在的路径.
+     * @param ignoreDefault 是否忽略指定路径的默认值.
+     * @return 如果此节包含请求的路径, 或者存在默认值且此方法的布尔参数为 true, 则返回 true.
+     * @throws IllegalArgumentException 当 path 为 null 时抛出此异常.
      */
     public boolean contains(@NotNull String path, boolean ignoreDefault);
 
@@ -150,35 +155,54 @@ public interface ConfigurationSection {
     public String getCurrentPath();
 
     /**
-     * Gets the name of this individual {@link ConfigurationSection}, in the path. 
+     * 获取此 {@link ConfigurationSection} 在路径中的单独名称.
      * <p>
-     * This will always be the final part of {@link #getCurrentPath()}, unless the section is orphaned. 
+     * 除非该节已成为孤立节点, 否则这始终是 {@link #getCurrentPath()} 的最后一部分.
+     * <p>
+     * 原文：
+     * Gets the name of this individual {@link ConfigurationSection}, in the path.
+     * <p>
+     * This will always be the final part of {@link #getCurrentPath()}, unless the section is orphaned.
      *
-     * @return Name of this section
-     *///魔法值@11110154
+     * @return 此节的名称.
+     */
     @NotNull
     public String getName();
 
     /**
+     * 获取包含此 {@link ConfigurationSection} 的根 {@link Configuration}.
+     * <p>
+     * 对于任何 {@link Configuration} 自身, 将返回其自身的对象.
+     * <p>
+     * 如果该节因任何原因不再被包含在其根中 (例如被替换为不同的值), 可能返回 null.
+     * <p>
+     * 原文：
      * Gets the root {@link Configuration} that contains this {@link ConfigurationSection}
      * <p>
-     * For any {@link Configuration} themselves, this will return its own object. 
+     * For any {@link Configuration} themselves, this will return its own object.
      * <p>
-     * If the section is no longer contained within its root for any reason, such as being replaced with a different value, this may return null. 
+     * If the section is no longer contained within its root for any reason, such as being replaced with a different value, this may return null.
      *
-     * @return Root configuration containing this section. 
+     * @return 包含此节的根配置.
      */
     @Nullable
     public Configuration getRoot();
 
     /**
-     * Gets the parent {@link ConfigurationSection} that directly contains this {@link ConfigurationSection}. 
+     * 获取直接包含此 {@link ConfigurationSection} 的父 {@link ConfigurationSection}.
      * <p>
-     * For any {@link Configuration} themselves, this will return null. 
+     * 对于任何 {@link Configuration} 自身, 将返回 null.
      * <p>
-     * If the section is no longer contained within its parent for any reason, such as being replaced with a different value, this may return null. 
+     * 如果该节因任何原因不再被包含在其父节中 (例如被替换为不同的值), 可能返回 null.
+     * <p>
+     * 原文：
+     * Gets the parent {@link ConfigurationSection} that directly contains this {@link ConfigurationSection}.
+     * <p>
+     * For any {@link Configuration} themselves, this will return null.
+     * <p>
+     * If the section is no longer contained within its parent for any reason, such as being replaced with a different value, this may return null.
      *
-     * @return Parent section containing this section. 
+     * @return 包含此节的父节.
      */
     @Nullable
     public ConfigurationSection getParent();
@@ -219,41 +243,58 @@ public interface ConfigurationSection {
     public Object get(@NotNull String path, @Nullable Object def);
 
     /**
-     * Sets the specified path to the given value. 
+     * 将指定路径设置为给定值.
      * <p>
-     * If value is null, the entry will be removed. 
-     * Any existing entry will be replaced, regardless of what the new value is. 
+     * 如果值为 null, 则删除该条目. 无论新值是什么, 任何已存在的条目都将被替换.
      * <p>
-     * Some implementations may have limitations on what you may store. 
-     * See their individual javadocs for details. 
-     * No implementations should allow you to store {@link Configuration}s or {@link ConfigurationSection}s, please use {@link #createSection(java.lang.String)} for that. 
+     * 某些实现可能对你能存储的内容有限制. 详见它们各自的 javadoc. 没有实现应该允许你存储 {@link Configuration} 或 {@link ConfigurationSection}, 请使用 {@link #createSection(java.lang.String)} 来创建.
+     * <p>
+     * 原文：
+     * Sets the specified path to the given value.
+     * <p>
+     * If value is null, the entry will be removed.
+     * Any existing entry will be replaced, regardless of what the new value is.
+     * <p>
+     * Some implementations may have limitations on what you may store.
+     * See their individual javadocs for details.
+     * No implementations should allow you to store {@link Configuration}s or {@link ConfigurationSection}s, please use {@link #createSection(java.lang.String)} for that.
      *
-     * @param path Path of the object to set. 
-     * @param value New value to set the path to. 
+     * @param path 要设置的对象路径.
+     * @param value 要设置的新值.
      */
     public void set(@NotNull String path, @Nullable Object value);
 
     /**
-     * Creates an empty {@link ConfigurationSection} at the specified path. 
+     * 在指定路径创建一个空的 {@link ConfigurationSection}.
      * <p>
-     * Any value that was previously set at this path will be overwritten. 
-     * If the previous value was itself a {@link ConfigurationSection}, it will be orphaned. 
+     * 此路径上之前设置的任何值都将被覆盖. 如果之前的值本身是一个 {@link ConfigurationSection}, 它将成为孤立节点.
+     * <p>
+     * 原文：
+     * Creates an empty {@link ConfigurationSection} at the specified path.
+     * <p>
+     * Any value that was previously set at this path will be overwritten.
+     * If the previous value was itself a {@link ConfigurationSection}, it will be orphaned.
      *
-     * @param path Path to create the section at. 
-     * @return Newly created section
+     * @param path 要创建节的路径.
+     * @return 新创建的节.
      */
     @NotNull
     public ConfigurationSection createSection(@NotNull String path);
 
     /**
-     * Creates a {@link ConfigurationSection} at the specified path, with specified values. 
+     * 在指定路径创建一个带有指定值的 {@link ConfigurationSection}.
      * <p>
-     * Any value that was previously set at this path will be overwritten. 
-     * If the previous value was itself a {@link ConfigurationSection}, it will be orphaned. 
+     * 此路径上之前设置的任何值都将被覆盖. 如果之前的值本身是一个 {@link ConfigurationSection}, 它将成为孤立节点.
+     * <p>
+     * 原文：
+     * Creates a {@link ConfigurationSection} at the specified path, with specified values.
+     * <p>
+     * Any value that was previously set at this path will be overwritten.
+     * If the previous value was itself a {@link ConfigurationSection}, it will be orphaned.
      *
-     * @param path Path to create the section at. 
-     * @param map The values to used. 
-     * @return Newly created section
+     * @param path 要创建节的路径.
+     * @param map 要使用的值.
+     * @return 新创建的节.
      */
     @NotNull
     public ConfigurationSection createSection(@NotNull String path, @NotNull Map<?, ?> map);
@@ -800,6 +841,13 @@ public interface ConfigurationSection {
 
     // Bukkit
     /**
+     * 在给定路径获取请求的对象.
+     * <p>
+     * 如果对象不存在, 但已指定默认值, 则返回默认值. 如果对象不存在且未指定默认值, 则返回 null.
+     * <p>
+     * <b>注意:</b> 例如 #getObject(path, String.class) 与 {@link #getString(String) #getString(path)} <b>不</b>等价, 因为 {@link #getString(String) #getString(path)} 会内部将所有对象转换为字符串. 然而, #getObject(path, Boolean.class) 与 {@link #getBoolean(String) #getBoolean(path)} 等价.
+     * <p>
+     * 原文：
      * Gets the requested object at the given path.
      *
      * If the Object does not exist but a default value has been specified, this
@@ -812,15 +860,22 @@ public interface ConfigurationSection {
      * Objects to Strings. However, #getObject(path, Boolean.class) is
      * equivalent to {@link #getBoolean(String) #getBoolean(path)} for example.
      *
-     * @param <T> the type of the requested object
-     * @param path the path to the object.
-     * @param clazz the type of the requested object
-     * @return Requested object
+     * @param <T> 请求对象的类型.
+     * @param path 对象的路径.
+     * @param clazz 请求对象的类型.
+     * @return 请求的对象.
      */
     @Nullable
     public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz);
 
     /**
+     * 在给定路径获取请求的对象, 如果未找到则返回默认值.
+     * <p>
+     * 如果对象不存在, 则返回指定的默认值, 无论根 {@link Configuration} 中是否已识别默认值.
+     * <p>
+     * <b>注意:</b> 例如 #getObject(path, String.class, def) 与 {@link #getString(String, String) #getString(path, def)} <b>不</b>等价, 因为 {@link #getString(String, String) #getString(path, def)} 会内部将所有对象转换为字符串. 然而, #getObject(path, Boolean.class, def) 与 {@link #getBoolean(String, boolean) #getBoolean(path, def)} 等价.
+     * <p>
+     * 原文：
      * Gets the requested object at the given path, returning a default value if
      * not found
      *
@@ -836,18 +891,22 @@ public interface ConfigurationSection {
      * Boolean.class, def) is equivalent to {@link #getBoolean(String, boolean) #getBoolean(path,
      * def)} for example.
      *
-     * @param <T> the type of the requested object
-     * @param path the path to the object.
-     * @param clazz the type of the requested object
-     * @param def the default object to return if the object is not present at
-     * the path
-     * @return Requested object
+     * @param <T> 请求对象的类型.
+     * @param path 对象的路径.
+     * @param clazz 请求对象的类型.
+     * @param def 如果对象不在该路径上时返回的默认对象.
+     * @return 请求的对象.
      */
     @Contract("_, _, !null -> !null")
     @Nullable
     public <T extends Object> T getObject(@NotNull String path, @NotNull Class<T> clazz, @Nullable T def);
 
     /**
+     * 在给定路径获取请求的 {@link ConfigurationSerializable} 对象.
+     * <p>
+     * 如果对象不存在, 但已指定默认值, 则返回默认值. 如果对象不存在且未指定默认值, 则返回 null.
+     * <p>
+     * 原文：
      * Gets the requested {@link ConfigurationSerializable} object at the given
      * path.
      *
@@ -855,15 +914,20 @@ public interface ConfigurationSection {
      * will return the default value. If the Object does not exist and no
      * default value was specified, this will return null.
      *
-     * @param <T> the type of {@link ConfigurationSerializable}
-     * @param path the path to the object.
-     * @param clazz the type of {@link ConfigurationSerializable}
-     * @return Requested {@link ConfigurationSerializable} object
+     * @param <T> {@link ConfigurationSerializable} 的类型.
+     * @param path 对象的路径.
+     * @param clazz {@link ConfigurationSerializable} 的类型.
+     * @return 请求的 {@link ConfigurationSerializable} 对象.
      */
     @Nullable
     public <T extends ConfigurationSerializable> T getSerializable(@NotNull String path, @NotNull Class<T> clazz);
 
     /**
+     * 在给定路径获取请求的 {@link ConfigurationSerializable} 对象, 如果未找到则返回默认值.
+     * <p>
+     * 如果对象不存在, 则返回指定的默认值, 无论根 {@link Configuration} 中是否已识别默认值.
+     * <p>
+     * 原文：
      * Gets the requested {@link ConfigurationSerializable} object at the given
      * path, returning a default value if not found
      *
@@ -871,12 +935,11 @@ public interface ConfigurationSection {
      * returned regardless of if a default has been identified in the root
      * {@link Configuration}.
      *
-     * @param <T> the type of {@link ConfigurationSerializable}
-     * @param path the path to the object.
-     * @param clazz the type of {@link ConfigurationSerializable}
-     * @param def the default object to return if the object is not present at
-     * the path
-     * @return Requested {@link ConfigurationSerializable} object
+     * @param <T> {@link ConfigurationSerializable} 的类型.
+     * @param path 对象的路径.
+     * @param clazz {@link ConfigurationSerializable} 的类型.
+     * @param def 如果对象不在该路径上时返回的默认对象.
+     * @return 请求的 {@link ConfigurationSerializable} 对象.
      */
     @Contract("_, _, !null -> !null")
     @Nullable
@@ -1102,19 +1165,31 @@ public interface ConfigurationSection {
     public boolean isColor(@NotNull String path);
 
     /**
+     * 在指定路径获取一个 Location 类型的值.
+     * <p>
+     * 如果这个 Location 不存在, 但已指定一个缺省值, 这将返回缺省值.
+     * <p>
+     * 如果这个 Location 不存在, 并且没有指定缺省值, 则返回 null.
+     * <p>
+     * 原文：
      * Gets the requested Location by path.
      * <p>
      * If the Location does not exist but a default value has been specified,
      * this will return the default value. If the Location does not exist and no
      * default value was specified, this will return null.
      *
-     * @param path Path of the Location to get.
-     * @return Requested Location.
+     * @param path 获取 Location 的路径.
+     * @return 请求的 Location.
      */
     @Nullable
     public Location getLocation(@NotNull String path);
 
     /**
+     * 在指定路径获取一个 {@link Location}, 如果未找到则返回默认值.
+     * <p>
+     * 如果 Location 不存在, 则返回指定的默认值, 无论根 {@link Configuration} 中是否已识别默认值.
+     * <p>
+     * 原文：
      * Gets the requested {@link Location} by path, returning a default value if
      * not found.
      * <p>
@@ -1122,16 +1197,20 @@ public interface ConfigurationSection {
      * returned regardless of if a default has been identified in the root
      * {@link Configuration}.
      *
-     * @param path Path of the Location to get.
-     * @param def The default value to return if the path is not found or is not
-     * a Location.
-     * @return Requested Location.
+     * @param path 获取 Location 的路径.
+     * @param def 如果路径未找到或不是 Location 时返回的默认值.
+     * @return 请求的 Location.
      */
     @Contract("_, !null -> !null")
     @Nullable
     public Location getLocation(@NotNull String path, @Nullable Location def);
 
     /**
+     * 检查指定路径是否是 Location.
+     * <p>
+     * 如果路径存在但不是 Location, 则返回 false. 如果路径不存在, 则返回 false. 如果路径不存在但已指定默认值, 则检查该默认值是否是 Location 并相应返回.
+     * <p>
+     * 原文：
      * Checks if the specified path is a Location.
      * <p>
      * If the path exists but is not a Location, this will return false. If the
@@ -1139,8 +1218,8 @@ public interface ConfigurationSection {
      * but a default value has been specified, this will check if that default
      * value is a Location and return appropriately.
      *
-     * @param path Path of the Location to check.
-     * @return Whether or not the specified path is a Location.
+     * @param path 要检查的 Location 路径.
+     * @return 指定路径是否是 Location.
      */
     public boolean isLocation(@NotNull String path);
 
@@ -1202,11 +1281,16 @@ public interface ConfigurationSection {
     public boolean isConfigurationSection(@NotNull String path);
 
     /**
-     * Gets the equivalent {@link ConfigurationSection} from the default {@link Configuration} defined in {@link #getRoot()}. 
+     * 从 {@link #getRoot()} 中定义的默认 {@link Configuration} 获取等效的 {@link ConfigurationSection}.
      * <p>
-     * If the root contains no defaults, or the defaults doesn't contain a value for this path, or the value at this path is not a {@link ConfigurationSection} then this will return null. 
+     * 如果根不包含默认值, 或默认值不包含此路径的值, 或此路径的值不是 {@link ConfigurationSection}, 则返回 null.
+     * <p>
+     * 原文：
+     * Gets the equivalent {@link ConfigurationSection} from the default {@link Configuration} defined in {@link #getRoot()}.
+     * <p>
+     * If the root contains no defaults, or the defaults doesn't contain a value for this path, or the value at this path is not a {@link ConfigurationSection} then this will return null.
      *
-     * @return Equivalent section in root configuration
+     * @return 根配置中的等效节.
      */
     @Nullable
     public ConfigurationSection getDefaultSection();
@@ -1235,34 +1319,49 @@ public interface ConfigurationSection {
     public void addDefault(@NotNull String path, @Nullable Object value);
 
     /**
+     * 按路径获取请求的注释列表.
+     * <p>
+     * 如果不存在注释, 将返回一个空列表. null 条目代表一个空行, 空字符串代表一个空的注释行.
+     * <p>
+     * 原文：
      * Gets the requested comment list by path.
      * <p>
      * If no comments exist, an empty list will be returned. A null entry
      * represents an empty line and an empty String represents an empty comment
      * line.
      *
-     * @param path Path of the comments to get.
-     * @return A unmodifiable list of the requested comments, every entry
-     * represents one line.
+     * @param path 要获取注释的路径.
+     * @return 一个不可修改的注释列表, 每个条目代表一行.
      */
     @NotNull
     public List<String> getComments(@NotNull String path);
 
     /**
+     * 按路径获取请求的行内注释列表.
+     * <p>
+     * 如果不存在注释, 将返回一个空列表. null 条目代表一个空行, 空字符串代表一个空的注释行.
+     * <p>
+     * 原文：
      * Gets the requested inline comment list by path.
      * <p>
      * If no comments exist, an empty list will be returned. A null entry
      * represents an empty line and an empty String represents an empty comment
      * line.
      *
-     * @param path Path of the comments to get.
-     * @return A unmodifiable list of the requested comments, every entry
-     * represents one line.
+     * @param path 要获取注释的路径.
+     * @return 一个不可修改的注释列表, 每个条目代表一行.
      */
     @NotNull
     public List<String> getInlineComments(@NotNull String path);
 
     /**
+     * 在指定路径设置注释列表.
+     * <p>
+     * 如果值为 null, 则删除注释. null 条目代表一个空行, 空字符串条目代表一个空的注释行. 如果路径不存在, 则不设置任何注释. 无论新注释是什么, 所有已有的注释都将被替换.
+     * <p>
+     * 某些实现在持久化方面可能有限制. 详见它们各自的 javadoc.
+     * <p>
+     * 原文：
      * Sets the comment list at the specified path.
      * <p>
      * If value is null, the comments will be removed. A null entry is an empty
@@ -1273,13 +1372,19 @@ public interface ConfigurationSection {
      * Some implementations may have limitations on what persists. See their
      * individual javadocs for details.
      *
-     * @param path Path of the comments to set.
-     * @param comments New comments to set at the path, every entry represents
-     * one line.
+     * @param path 要设置注释的路径.
+     * @param comments 要在该路径设置的新注释, 每个条目代表一行.
      */
     public void setComments(@NotNull String path, @Nullable List<String> comments);
 
     /**
+     * 在指定路径设置行内注释列表.
+     * <p>
+     * 如果值为 null, 则删除注释. null 条目代表一个空行, 空字符串条目代表一个空的注释行. 如果路径不存在, 则不设置任何注释. 无论新注释是什么, 所有已有的注释都将被替换.
+     * <p>
+     * 某些实现在持久化方面可能有限制. 详见它们各自的 javadoc.
+     * <p>
+     * 原文：
      * Sets the inline comment list at the specified path.
      * <p>
      * If value is null, the comments will be removed. A null entry is an empty
@@ -1290,9 +1395,8 @@ public interface ConfigurationSection {
      * Some implementations may have limitations on what persists. See their
      * individual javadocs for details.
      *
-     * @param path Path of the comments to set.
-     * @param comments New comments to set at the path, every entry represents
-     * one line.
+     * @param path 要设置注释的路径.
+     * @param comments 要在该路径设置的新注释, 每个条目代表一行.
      */
     public void setInlineComments(@NotNull String path, @Nullable List<String> comments);
 }

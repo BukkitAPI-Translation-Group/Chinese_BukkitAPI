@@ -35,8 +35,8 @@ import org.yaml.snakeyaml.nodes.Tag;
 import org.yaml.snakeyaml.reader.UnicodeReader;
 
 /**
- * An implementation of {@link Configuration} which saves all files in Yaml.
- * Note that this implementation is not synchronized.
+ * {@link Configuration} 的一种实现, 所有文件以 Yaml 格式保存.
+ * 注意: 此实现不是线程安全的.
  */
 public class YamlConfiguration extends FileConfiguration {
     /**
@@ -122,10 +122,13 @@ public class YamlConfiguration extends FileConfiguration {
     }
 
     /**
+     * 此方法在最后一个空行处分割头部, 并将该行以下的注释设置为 map 对象第一个键的注释.
+     * <p>
+     * 原文：
      * This method splits the header on the last empty line, and sets the
      * comments below this line as comments for the first key on the map object.
      *
-     * @param node The root node of the yaml object
+     * @param node yaml 对象的根节点.
      */
     private void adjustNodeComments(final MappingNode node) {
         if (node.getBlockComments() == null && !node.getValue().isEmpty()) {
@@ -238,12 +241,15 @@ public class YamlConfiguration extends FileConfiguration {
     }
 
     /**
+     * 移除头部末尾用于分隔头部和后续注释的空行. 同时移除所有空的头部开头 (向后兼容).
+     * <p>
+     * 原文：
      * Removes the empty line at the end of the header that separates the header
      * from further comments. Also removes all empty header starts (backwards
      * compat).
      *
-     * @param header The list of heading comments
-     * @return The modified list
+     * @param header 头部注释列表.
+     * @return 修改后的列表.
      */
     private List<String> loadHeader(List<String> header) {
         LinkedList<String> list = new LinkedList<>(header);
@@ -260,11 +266,14 @@ public class YamlConfiguration extends FileConfiguration {
     }
 
     /**
+     * 在头部末尾添加用于分隔头部和后续注释的空行.
+     * <p>
+     * 原文：
      * Adds the empty line at the end of the header that separates the header
      * from further comments.
      *
-     * @param header The list of heading comments
-     * @return The modified list
+     * @param header 头部注释列表.
+     * @return 修改后的列表.
      */
     private List<String> saveHeader(List<String> header) {
         LinkedList<String> list = new LinkedList<>(header);
@@ -287,6 +296,13 @@ public class YamlConfiguration extends FileConfiguration {
     }
 
     /**
+     * 从给定文件创建并加载一个新的 {@link YamlConfiguration}.
+     * <p>
+     * 加载配置时的任何错误将被记录然后忽略. 如果指定的输入不是有效的配置, 将返回一个空白配置.
+     * <p>
+     * 使用的编码可能遵循系统相关的默认值.
+     * <p>
+     * 原文：
      * Creates a new {@link YamlConfiguration}, loading from the given file.
      * <p>
      * Any errors loading the Configuration will be logged and then ignored.
@@ -295,9 +311,9 @@ public class YamlConfiguration extends FileConfiguration {
      * <p>
      * The encoding used may follow the system dependent default.
      *
-     * @param file Input file
-     * @return Resulting configuration
-     * @throws IllegalArgumentException Thrown if file is null
+     * @param file 输入文件.
+     * @return 生成的配置.
+     * @throws IllegalArgumentException 如果 file 为 null 则抛出此异常.
      */
     @NotNull
     public static YamlConfiguration loadConfiguration(@NotNull File file) {
@@ -318,15 +334,20 @@ public class YamlConfiguration extends FileConfiguration {
     }
 
     /**
+     * 从给定读取器创建并加载一个新的 {@link YamlConfiguration}.
+     * <p>
+     * 加载配置时的任何错误将被记录然后忽略. 如果指定的输入不是有效的配置, 将返回一个空白配置.
+     * <p>
+     * 原文：
      * Creates a new {@link YamlConfiguration}, loading from the given reader.
      * <p>
      * Any errors loading the Configuration will be logged and then ignored.
      * If the specified input is not a valid config, a blank config will be
      * returned.
      *
-     * @param reader input
-     * @return resulting configuration
-     * @throws IllegalArgumentException Thrown if stream is null
+     * @param reader 输入读取器.
+     * @return 生成的配置.
+     * @throws IllegalArgumentException 如果流为 null 则抛出此异常.
      */
     @NotNull
     public static YamlConfiguration loadConfiguration(@NotNull Reader reader) {

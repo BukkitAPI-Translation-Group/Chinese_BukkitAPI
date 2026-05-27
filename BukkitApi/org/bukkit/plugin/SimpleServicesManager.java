@@ -17,23 +17,26 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A simple services manager.
+ * 一个简单的服务管理器.
  */
 public class SimpleServicesManager implements ServicesManager {
 
     /**
-     * Map of providers.
+     * 提供者映射.
      */
     private final Map<Class<?>, List<RegisteredServiceProvider<?>>> providers = new HashMap<Class<?>, List<RegisteredServiceProvider<?>>>();
 
     /**
+     * 注册一个服务的提供者.
+     * <p>
+     * 原文：
      * Register a provider of a service.
      *
-     * @param <T> Provider
-     * @param service service class
-     * @param provider provider to register
-     * @param plugin plugin with the provider
-     * @param priority priority of the provider
+     * @param <T> 提供者类型
+     * @param service 服务类
+     * @param provider 要注册的提供者
+     * @param plugin 拥有该提供者的插件
+     * @param priority 提供者的优先级
      */
     @Override
     public <T> void register(@NotNull Class<T> service, @NotNull T provider, @NotNull Plugin plugin, @NotNull ServicePriority priority) {
@@ -60,9 +63,12 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
+     * 注销特定插件注册的所有提供者.
+     * <p>
+     * 原文：
      * Unregister all the providers registered by a particular plugin.
      *
-     * @param plugin The plugin
+     * @param plugin 要注销的插件
      */
     @Override
     public void unregisterAll(@NotNull Plugin plugin) {
@@ -102,10 +108,13 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
+     * 注销特定服务的特定提供者.
+     * <p>
+     * 原文：
      * Unregister a particular provider for a particular service.
      *
-     * @param service The service interface
-     * @param provider The service provider implementation
+     * @param service 服务接口
+     * @param provider 服务提供者实现
      */
     @Override
     public void unregister(@NotNull Class<?> service, @NotNull Object provider) {
@@ -151,9 +160,12 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
+     * 注销特定提供者.
+     * <p>
+     * 原文：
      * Unregister a particular provider.
      *
-     * @param provider The service provider implementation
+     * @param provider 服务提供者实现
      */
     @Override
     public void unregister(@NotNull Object provider) {
@@ -193,12 +205,14 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
-     * Queries for a provider. This may return if no provider has been
-     * registered for a service. The highest priority provider is returned.
+     * 查询提供者. 如果没有为服务注册提供者, 可能返回 null. 返回优先级最高的提供者.
+     * <p>
+     * 原文：
+     * Queries for a provider. This may return if no provider has been registered for a service. The highest priority provider is returned.
      *
-     * @param <T> The service interface
-     * @param service The service interface
-     * @return provider or null
+     * @param <T> 服务接口类型
+     * @param service 服务接口
+     * @return 提供者或 null
      */
     @Override
     @Nullable
@@ -216,12 +230,14 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
-     * Queries for a provider registration. This may return if no provider
-     * has been registered for a service.
+     * 查询提供者注册信息. 如果没有为服务注册提供者, 可能返回 null.
+     * <p>
+     * 原文：
+     * Queries for a provider registration. This may return if no provider has been registered for a service.
      *
-     * @param <T> The service interface
-     * @param service The service interface
-     * @return provider registration or null
+     * @param <T> 服务接口类型
+     * @param service 服务接口
+     * @return 提供者注册信息或 null
      */
     @Override
     @Nullable
@@ -240,10 +256,13 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
+     * 获取插件的提供者注册信息.
+     * <p>
+     * 原文：
      * Get registrations of providers for a plugin.
      *
-     * @param plugin The plugin
-     * @return provider registrations
+     * @param plugin 插件
+     * @return 提供者注册信息
      */
     @Override
     @NotNull
@@ -262,12 +281,14 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
-     * Get registrations of providers for a service. The returned list is
-     * an unmodifiable copy.
+     * 获取服务的提供者注册信息. 返回的列表是不可修改的副本.
+     * <p>
+     * 原文：
+     * Get registrations of providers for a service. The returned list is an unmodifiable copy.
      *
-     * @param <T> The service interface
-     * @param service The service interface
-     * @return a copy of the list of registrations
+     * @param <T> 服务接口类型
+     * @param service 服务接口
+     * @return 注册信息列表的副本
      */
     @Override
     @NotNull
@@ -292,10 +313,12 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
-     * Get a list of known services. A service is known if it has registered
-     * providers for it.
+     * 获取已知服务列表. 如果服务有已注册的提供者, 则该服务是已知的.
+     * <p>
+     * 原文：
+     * Get a list of known services. A service is known if it has registered providers for it.
      *
-     * @return a copy of the set of known services
+     * @return 已知服务集合的副本
      */
     @Override
     @NotNull
@@ -306,11 +329,14 @@ public class SimpleServicesManager implements ServicesManager {
     }
 
     /**
+     * 返回是否已为服务注册了提供者.
+     * <p>
+     * 原文：
      * Returns whether a provider has been registered for a service.
      *
-     * @param <T> service
-     * @param service service to check
-     * @return true if and only if there are registered providers
+     * @param <T> 服务类型
+     * @param service 要检查的服务
+     * @return 当且仅当有已注册的提供者时返回 true
      */
     @Override
     public <T> boolean isProvidedFor(@NotNull Class<T> service) {

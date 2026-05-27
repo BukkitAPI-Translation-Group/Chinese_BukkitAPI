@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A type of {@link ConfigurationSection} that is stored in memory.
+ * 一种存储在内存中的 {@link ConfigurationSection}.
  */
 public class MemorySection implements ConfigurationSection {
     protected final Map<String, SectionPathData> map = new LinkedHashMap<String, SectionPathData>();
@@ -31,14 +31,18 @@ public class MemorySection implements ConfigurationSection {
     private final String fullPath;
 
     /**
+     * 创建一个空的 MemorySection, 用作根 {@link Configuration} 节.
+     * <p>
+     * 注意: 如果自身不是 {@link Configuration} 实例, 调用此构造函数将抛出异常!
+     * <p>
+     * 原文：
      * Creates an empty MemorySection for use as a root {@link Configuration}
      * section.
      * <p>
      * Note that calling this without being yourself a {@link Configuration}
      * will throw an exception!
      *
-     * @throws IllegalStateException Thrown if this is not a {@link
-     *     Configuration} root.
+     * @throws IllegalStateException 如果此实例不是 {@link Configuration} 根则抛出此异常.
      */
     protected MemorySection() {
         if (!(this instanceof Configuration)) {
@@ -52,13 +56,14 @@ public class MemorySection implements ConfigurationSection {
     }
 
     /**
+     * 创建一个具有指定父节和路径的空 MemorySection.
+     * <p>
+     * 原文：
      * Creates an empty MemorySection with the specified parent and path.
      *
-     * @param parent Parent section that contains this own section.
-     * @param path Path that you may access this section from via the root
-     *     {@link Configuration}.
-     * @throws IllegalArgumentException Thrown is parent or path is null, or
-     *     if parent contains no root Configuration.
+     * @param parent 包含此节的父节.
+     * @param path 可以通过根 {@link Configuration} 访问此节的路径.
+     * @throws IllegalArgumentException 如果 parent 或 path 为 null, 或者 parent 不包含根 Configuration 则抛出此异常.
      */
     protected MemorySection(@NotNull ConfigurationSection parent, @NotNull String path) {
         Preconditions.checkArgument(parent != null, "Parent cannot be null");
@@ -912,15 +917,20 @@ public class MemorySection implements ConfigurationSection {
     }
 
     /**
+     * 从根 {@link Configuration} 创建到给定 {@link ConfigurationSection} 的完整路径.
+     * <p>
+     * 此方法适用于任何 {@link ConfigurationSection}, 不仅限于 {@link MemorySection}.
+     * <p>
+     * 原文：
      * Creates a full path to the given {@link ConfigurationSection} from its
      * root {@link Configuration}.
      * <p>
      * You may use this method for any given {@link ConfigurationSection}, not
      * only {@link MemorySection}.
      *
-     * @param section Section to create a path for.
-     * @param key Name of the specified section.
-     * @return Full path of the section from its root.
+     * @param section 要为其创建路径的节.
+     * @param key 指定节的名称.
+     * @return 该节从根开始的完整路径.
      */
     @NotNull
     public static String createPath(@NotNull ConfigurationSection section, @Nullable String key) {
@@ -928,16 +938,21 @@ public class MemorySection implements ConfigurationSection {
     }
 
     /**
+     * 从给定的相对节创建到给定 {@link ConfigurationSection} 的相对路径.
+     * <p>
+     * 此方法适用于任何 {@link ConfigurationSection}, 不仅限于 {@link MemorySection}.
+     * <p>
+     * 原文：
      * Creates a relative path to the given {@link ConfigurationSection} from
      * the given relative section.
      * <p>
      * You may use this method for any given {@link ConfigurationSection}, not
      * only {@link MemorySection}.
      *
-     * @param section Section to create a path for.
-     * @param key Name of the specified section.
-     * @param relativeTo Section to create the path relative to.
-     * @return Full path of the section from its root.
+     * @param section 要为其创建路径的节.
+     * @param key 指定节的名称.
+     * @param relativeTo 创建路径所相对的节.
+     * @return 该节从根开始的完整路径.
      */
     @NotNull
     public static String createPath(@NotNull ConfigurationSection section, @Nullable String key, @Nullable ConfigurationSection relativeTo) {

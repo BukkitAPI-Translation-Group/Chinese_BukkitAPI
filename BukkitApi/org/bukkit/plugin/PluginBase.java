@@ -3,10 +3,9 @@ package org.bukkit.plugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a base {@link Plugin}
+ * 表示一个基础的 {@link Plugin}.
  * <p>
- * Extend this class if your plugin is not a {@link
- * org.bukkit.plugin.java.JavaPlugin}
+ * 如果你的插件不是 {@link org.bukkit.plugin.java.JavaPlugin}，请扩展此类。
  */
 public abstract class PluginBase implements Plugin {
     @Override

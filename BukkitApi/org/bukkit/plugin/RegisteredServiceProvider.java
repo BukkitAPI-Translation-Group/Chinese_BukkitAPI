@@ -3,9 +3,9 @@ package org.bukkit.plugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * A registered service provider.
+ * 已注册的服务提供者.
  *
- * @param <T> Service
+ * @param <T> 服务类型
  */
 public class RegisteredServiceProvider<T> implements Comparable<RegisteredServiceProvider<?>> {
 

@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Stores relevant information for plugin listeners
+ * 存储插件监听器的相关信息.
  */
 public class RegisteredListener {
     private final Listener listener;
@@ -26,9 +26,12 @@ public class RegisteredListener {
     }
 
     /**
+     * 获取此注册的监听器.
+     * <p>
+     * 原文：
      * Gets the listener for this registration
      *
-     * @return Registered Listener
+     * @return 已注册的监听器
      */
     @NotNull
     public Listener getListener() {
@@ -36,9 +39,12 @@ public class RegisteredListener {
     }
 
     /**
+     * 获取此注册的插件.
+     * <p>
+     * 原文：
      * Gets the plugin for this registration
      *
-     * @return Registered Plugin
+     * @return 已注册的插件
      */
     @NotNull
     public Plugin getPlugin() {
@@ -46,9 +52,12 @@ public class RegisteredListener {
     }
 
     /**
+     * 获取此注册的优先级.
+     * <p>
+     * 原文：
      * Gets the priority for this registration
      *
-     * @return Registered Priority
+     * @return 已注册的优先级
      */
     @NotNull
     public EventPriority getPriority() {
@@ -56,10 +65,13 @@ public class RegisteredListener {
     }
 
     /**
+     * 调用事件执行器.
+     * <p>
+     * 原文：
      * Calls the event executor
      *
-     * @param event The event
-     * @throws EventException If an event handler throws an exception.
+     * @param event 事件对象
+     * @throws EventException 如果事件处理器抛出异常
      */
     public void callEvent(@NotNull final Event event) throws EventException {
         if (event instanceof Cancellable) {
@@ -71,9 +83,12 @@ public class RegisteredListener {
     }
 
     /**
+     * 此监听器是否忽略已取消的事件.
+     * <p>
+     * 原文：
      * Whether this listener accepts cancelled events
      *
-     * @return True when ignoring cancelled events
+     * @return 当忽略已取消事件时返回 true
      */
     public boolean isIgnoringCancelled() {
         return ignoreCancelled;

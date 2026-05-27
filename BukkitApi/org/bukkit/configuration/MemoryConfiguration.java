@@ -6,25 +6,26 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * This is a {@link Configuration} implementation that does not save or load
- * from any source, and stores all values in memory only.
- * This is useful for temporary Configurations for providing defaults.
+ * {@link Configuration} 的一种实现, 不会从任何数据源进行保存或加载, 所有值仅存储在内存中.
+ * 这对于临时的配置对象或提供默认值非常有用.
  */
 public class MemoryConfiguration extends MemorySection implements Configuration {
     protected Configuration defaults;
     protected MemoryConfigurationOptions options;
 
     /**
+     * 创建一个没有默认值的空 {@link MemoryConfiguration}.
+     * <p>
+     * 原文：
      * Creates an empty {@link MemoryConfiguration} with no default values.
      */
     public MemoryConfiguration() {}
 
     /**
-     * Creates an empty {@link MemoryConfiguration} using the specified {@link
-     * Configuration} as a source for all default values.
+     * 创建一个空的 {@link MemoryConfiguration}, 并使用指定的 {@link Configuration} 作为所有默认值的来源.
      *
-     * @param defaults Default value provider
-     * @throws IllegalArgumentException Thrown if defaults is null
+     * @param defaults 默认值提供者
+     * @throws IllegalArgumentException 如果 defaults 为 null 则抛出此异常
      */
     public MemoryConfiguration(@Nullable Configuration defaults) {
         this.defaults = defaults;
