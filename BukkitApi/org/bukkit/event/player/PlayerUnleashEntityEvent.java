@@ -41,9 +41,11 @@ public class PlayerUnleashEntityEvent extends EntityUnleashEvent implements Canc
     }
 
     /**
-     * Get the hand used by the player to unleash the entity.
+     * 获取玩家用来解开拴绳的手.
+     * <p>
+     * 原文: Get the hand used by the player to unleash the entity.
      *
-     * @return the hand
+     * @return 使用的手
      */
     @NotNull
     public EquipmentSlot getHand() {
