@@ -43,42 +43,41 @@ public interface MapCanvas {
     public void setCursors(@NotNull MapCursorCollection cursors);
 
     /**
-     * Draw a pixel to the canvas.
+     * 向画布绘制一个像素。
+     * <p>原文：Draw a pixel to the canvas.
      * <p>
-     * The provided color might be converted to another color,
-     * which is in the map color range. This means, that
-     * {@link #getPixelColor(int, int)} might return another
-     * color than set.
+     * 提供的颜色可能会被转换为地图颜色范围内的另一种颜色。
+     * 这意味着 {@link #getPixelColor(int, int)} 返回的颜色可能与设置的颜色不同。
+     * <p>
+     * 如果使用 null 作为颜色，则地图上会显示 {@link #getBasePixelColor(int, int)} 返回的颜色。
      *
-     * If null is used as color, then the color returned by
-     * {@link #getBasePixelColor(int, int)} is shown on the map.
-     *
-     * @param x The x coordinate, from 0 to 127.
-     * @param y The y coordinate, from 0 to 127.
-     * @param color The color.
+     * @param x x 坐标，从 0 到 127。
+     * @param y y 坐标，从 0 到 127。
+     * @param color 颜色。
      */
     void setPixelColor(int x, int y, @Nullable Color color);
 
     /**
-     * Get a pixel from the canvas.
+     * 从画布获取一个像素。
+     * <p>原文：Get a pixel from the canvas.
+     * <p>
+     * 如果此画布在给定位置没有设置颜色，则返回 null，
+     * 地图上会显示 {@link #getBasePixelColor(int, int)} 返回的颜色。
      *
-     * If no color is set at the given position for this canvas, then null is
-     * returned and the color returned by {@link #getBasePixelColor(int, int)}
-     * is shown on the map.
-     *
-     * @param x The x coordinate, from 0 to 127.
-     * @param y The y coordinate, from 0 to 127.
-     * @return The color, or null if no color is set.
+     * @param x x 坐标，从 0 到 127。
+     * @param y y 坐标，从 0 到 127。
+     * @return 颜色，如果未设置颜色则为 null。
      */
     @Nullable
     Color getPixelColor(int x, int y);
 
     /**
-     * Get a pixel from the layers below this canvas.
+     * 从画布下方的图层获取一个像素。
+     * <p>原文：Get a pixel from the layers below this canvas.
      *
-     * @param x The x coordinate, from 0 to 127.
-     * @param y The y coordinate, from 0 to 127.
-     * @return The color.
+     * @param x x 坐标，从 0 到 127。
+     * @param y y 坐标，从 0 到 127。
+     * @return 颜色。
      */
     @NotNull
     Color getBasePixelColor(int x, int y);
