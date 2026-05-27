@@ -1870,7 +1870,9 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键不一定总是存在, 请改用 {@link #getKeyOrThrow()}.
+     * <p>
+     * 原文：A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
     @Override
@@ -1878,7 +1880,11 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     NamespacedKey getKey();
 
     /**
-     * @param name of the sound.
+     * @param name 声音的名称.
+     * @return 具有给定名称的声音.
+     * @deprecated 仅为向后兼容而保留, 请改用 {@link Registry#get(NamespacedKey)}.
+     * <p>
+     * 原文：@param name of the sound.
      * @return the sound with the given name.
      * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
      */
@@ -1903,7 +1909,10 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     }
 
     /**
-     * @return an array of all known sounds.
+     * @return 所有已知声音的数组.
+     * @deprecated 请改用 {@link Registry#iterator()}.
+     * <p>
+     * 原文：@return an array of all known sounds.
      * @deprecated use {@link Registry#iterator()}.
      */
     @NotNull
