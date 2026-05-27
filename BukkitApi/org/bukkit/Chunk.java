@@ -15,10 +15,8 @@ import org.jetbrains.annotations.NotNull;
 
 /**
  * 代表一个16*256*16的空间.
- * 
- * If the chunk is not yet fully generated and data is requested from the chunk,
- * then the chunk will only be generated as far as it needs to provide the
- * requested data.
+ * <p>
+ * 如果区块尚未完全生成，但又被请求了数据，那么区块只会生成到足以提供所请求数据的程度。
  */
 public interface Chunk extends PersistentDataHolder {
 
@@ -34,7 +32,7 @@ public interface Chunk extends PersistentDataHolder {
     /**
      * 获取该区块的Z轴坐标.
      * <p>
-     * Gets the Z-coordinate of this chunk
+     * 原文:Gets the Z-coordinate of this chunk
      *
      * @return 区块的Z轴坐标
      */
@@ -64,31 +62,34 @@ public interface Chunk extends PersistentDataHolder {
     Block getBlock(int x, int y, int z);
 
     /**
-     * Capture thread-safe read-only snapshot of chunk data
+     * 获取区块数据的线程安全只读快照.
+     * <p>
+     * 原文:Capture thread-safe read-only snapshot of chunk data
      *
-     * @return ChunkSnapshot
+     * @return 区块快照
      */
     @NotNull
     ChunkSnapshot getChunkSnapshot();
 
     /**
-     * Capture thread-safe read-only snapshot of chunk data
+     * 获取区块数据的线程安全只读快照.
+     * <p>
+     * 原文:Capture thread-safe read-only snapshot of chunk data
      *
-     * @param includeMaxblocky - if true, snapshot includes per-coordinate
-     *     maximum Y values
-     * @param includeBiome - if true, snapshot includes per-coordinate biome
-     *     type
-     * @param includeBiomeTempRain - if true, snapshot includes per-coordinate
-     *     raw biome temperature and rainfall
-     * @return ChunkSnapshot
+     * @param includeMaxblocky 如果为true，快照将包含每个坐标的最大Y轴高度值
+     * @param includeBiome 如果为true，快照将包含每个坐标的生物群系类型
+     * @param includeBiomeTempRain 如果为true，快照将包含每个坐标的原始生物群系温度和降雨量
+     * @return 区块快照
      */
     @NotNull
     ChunkSnapshot getChunkSnapshot(boolean includeMaxblocky, boolean includeBiome, boolean includeBiomeTempRain);
 
     /**
-     * Checks if entities in this chunk are loaded.
+     * 检查此区块中的实体是否已加载.
+     * <p>
+     * 原文:Checks if entities in this chunk are loaded.
      *
-     * @return True if entities are loaded.
+     * @return 如果实体已加载则返回true
      */
     boolean isEntitiesLoaded();
 
@@ -115,9 +116,11 @@ public interface Chunk extends PersistentDataHolder {
     BlockState[] getTileEntities();
 
     /**
-     * Checks if the chunk is fully generated.
+     * 检查区块是否已完全生成.
+     * <p>
+     * 原文:Checks if the chunk is fully generated.
      *
-     * @return True if it is fully generated.
+     * @return 如果已完全生成则返回true
      */
     boolean isGenerated();
 
@@ -167,179 +170,188 @@ public interface Chunk extends PersistentDataHolder {
     boolean unload();
  
     /**
-     * Checks if this chunk can spawn slimes without being a swamp biome.
+     * 检查此区块是否能在非沼泽生物群系中生成史莱姆.
+     * <p>
+     * 原文:Checks if this chunk can spawn slimes without being a swamp biome.
      *
-     * @return true if slimes are able to spawn in this chunk
+     * @return 如果史莱姆能在此区块生成则返回true
      */
     boolean isSlimeChunk();
 
     /**
-     * Gets whether the chunk at the specified chunk coordinates is force
-     * loaded.
+     * 获取指定坐标处的区块是否被强制加载.
      * <p>
-     * A force loaded chunk will not be unloaded due to lack of player activity.
+     * 强制加载的区块不会因为缺少玩家活动而被卸载.
+     * <p>
+     * 原文:Gets whether the chunk at the specified chunk coordinates is force loaded.
      *
-     * @return force load status
+     * @return 强制加载状态
      * @see World#isChunkForceLoaded(int, int)
      */
     boolean isForceLoaded();
 
     /**
-     * Sets whether the chunk at the specified chunk coordinates is force
-     * loaded.
+     * 设置指定坐标处的区块是否被强制加载.
      * <p>
-     * A force loaded chunk will not be unloaded due to lack of player activity.
+     * 强制加载的区块不会因为缺少玩家活动而被卸载.
+     * <p>
+     * 原文:Sets whether the chunk at the specified chunk coordinates is force loaded.
      *
-     * @param forced force load status
+     * @param forced 强制加载状态
      * @see World#setChunkForceLoaded(int, int, boolean)
      */
     void setForceLoaded(boolean forced);
 
     /**
-     * Adds a plugin ticket for this chunk, loading this chunk if it is not
-     * already loaded.
+     * 为此区块添加一个插件票据，如果区块尚未加载则会加载该区块.
      * <p>
-     * A plugin ticket will prevent a chunk from unloading until it is
-     * explicitly removed. A plugin instance may only have one ticket per chunk,
-     * but each chunk can have multiple plugin tickets.
-     * </p>
+     * 插件票据会阻止区块被卸载，直到被显式移除。每个插件实例在每个区块上只能有一个票据，但每个区块可以有多个插件票据.
+     * <p>
+     * 原文:Adds a plugin ticket for this chunk, loading this chunk if it is not already loaded.
      *
-     * @param plugin Plugin which owns the ticket
-     * @return {@code true} if a plugin ticket was added, {@code false} if the
-     * ticket already exists for the plugin
-     * @throws IllegalStateException If the specified plugin is not enabled
+     * @param plugin 拥有该票据的插件
+     * @return 如果添加了插件票据则返回{@code true}，如果该插件的票据已存在则返回{@code false}
+     * @throws IllegalStateException 如果指定的插件未启用
      * @see World#addPluginChunkTicket(int, int, Plugin)
      */
     boolean addPluginChunkTicket(@NotNull Plugin plugin);
 
     /**
-     * Removes the specified plugin's ticket for this chunk
+     * 移除指定插件在此区块上的票据.
      * <p>
-     * A plugin ticket will prevent a chunk from unloading until it is
-     * explicitly removed. A plugin instance may only have one ticket per chunk,
-     * but each chunk can have multiple plugin tickets.
-     * </p>
+     * 插件票据会阻止区块被卸载，直到被显式移除。每个插件实例在每个区块上只能有一个票据，但每个区块可以有多个插件票据.
+     * <p>
+     * 原文:Removes the specified plugin's ticket for this chunk
      *
-     * @param plugin Plugin which owns the ticket
-     * @return {@code true} if the plugin ticket was removed, {@code false} if
-     * there is no plugin ticket for the chunk
+     * @param plugin 拥有该票据的插件
+     * @return 如果移除了插件票据则返回{@code true}，如果该区块没有该插件的票据则返回{@code false}
      * @see World#removePluginChunkTicket(int, int, Plugin)
      */
     boolean removePluginChunkTicket(@NotNull Plugin plugin);
 
     /**
-     * Retrieves a collection specifying which plugins have tickets for this
-     * chunk. This collection is not updated when plugin tickets are added or
-     * removed to this chunk.
+     * 获取指定哪些插件在此区块拥有票据的集合。当插件票据被添加或移除时，此集合不会更新.
      * <p>
-     * A plugin ticket will prevent a chunk from unloading until it is
-     * explicitly removed. A plugin instance may only have one ticket per chunk,
-     * but each chunk can have multiple plugin tickets.
-     * </p>
+     * 插件票据会阻止区块被卸载，直到被显式移除。每个插件实例在每个区块上只能有一个票据，但每个区块可以有多个插件票据.
+     * <p>
+     * 原文:Retrieves a collection specifying which plugins have tickets for this chunk.
      *
-     * @return unmodifiable collection containing which plugins have tickets for
-     * this chunk
+     * @return 包含在此区块拥有票据的插件的不可修改集合
      * @see World#getPluginChunkTickets(int, int)
      */
     @NotNull
     Collection<Plugin> getPluginChunkTickets();
 
     /**
-     * Gets the amount of time in ticks that this chunk has been inhabited.
+     * 获取此区块已被居住的时间（以tick为单位）.
+     * <p>
+     * 注意：对于在怪物生成距离内的每个玩家，每个tick时间会增加一次.
+     * <p>
+     * 原文:Gets the amount of time in ticks that this chunk has been inhabited.
      *
-     * Note that the time is incremented once per tick per player within mob
-     * spawning distance of this chunk.
-     *
-     * @return inhabited time
+     * @return 已被居住的时间
      */
     long getInhabitedTime();
 
     /**
-     * Sets the amount of time in ticks that this chunk has been inhabited.
+     * 设置此区块已被居住的时间（以tick为单位）.
+     * <p>
+     * 原文:Sets the amount of time in ticks that this chunk has been inhabited.
      *
-     * @param ticks new inhabited time
+     * @param ticks 新的居住时间
      */
     void setInhabitedTime(long ticks);
 
     /**
-     * Tests if this chunk contains the specified block.
+     * 测试此区块是否包含指定的方块.
+     * <p>
+     * 原文:Tests if this chunk contains the specified block.
      *
-     * @param block block to test
-     * @return if the block is contained within
+     * @param block 要测试的方块
+     * @return 如果区块包含该方块则返回true
      */
     boolean contains(@NotNull BlockData block);
 
     /**
-     * Tests if this chunk contains the specified biome.
+     * 测试此区块是否包含指定的生物群系.
+     * <p>
+     * 原文:Tests if this chunk contains the specified biome.
      *
-     * @param biome biome to test
-     * @return if the biome is contained within
+     * @param biome 要测试的生物群系
+     * @return 如果区块包含该生物群系则返回true
      */
     boolean contains(@NotNull Biome biome);
 
     /**
-     * Gets the load level of this chunk, which determines what game logic is
-     * processed.
+     * 获取此区块的加载级别，该级别决定了会处理哪些游戏逻辑.
+     * <p>
+     * 原文:Gets the load level of this chunk, which determines what game logic is processed.
      *
-     * @return the load level
+     * @return 加载级别
      */
     @NotNull
     LoadLevel getLoadLevel();
 
     /**
-     * Gets all generated structures that intersect this chunk. <br>
-     * If no structures are present an empty collection will be returned.
+     * 获取与此区块相交的所有已生成结构.
+     * <p>
+     * 如果没有结构存在，将返回空集合.
+     * <p>
+     * 原文:Gets all generated structures that intersect this chunk.
      *
-     * @return a collection of placed structures in this chunk
+     * @return 此区块中已放置结构的集合
      */
     @NotNull
     Collection<GeneratedStructure> getStructures();
 
     /**
-     * Gets all generated structures of a given {@link Structure} that intersect
-     * this chunk. <br>
-     * If no structures are present an empty collection will be returned.
+     * 获取与此区块相交的所有给定 {@link Structure} 类型的已生成结构.
+     * <p>
+     * 如果没有结构存在，将返回空集合.
+     * <p>
+     * 原文:Gets all generated structures of a given {@link Structure} that intersect this chunk.
      *
-     * @param structure the structure to find
-     * @return a collection of placed structures in this chunk
+     * @param structure 要查找的结构类型
+     * @return 此区块中已放置结构的集合
      */
     @NotNull
     Collection<GeneratedStructure> getStructures(@NotNull Structure structure);
 
     /**
-     * Get a list of all players who are can view the chunk from their client
+     * 获取所有能从客户端查看此区块的玩家列表.
      * <p>
-     * This list will be empty if no players are viewing the chunk, or the chunk
-     * is unloaded.
+     * 如果没有玩家正在查看此区块，或区块已卸载，则此列表为空.
+     * <p>
+     * 原文:Get a list of all players who are can view the chunk from their client
      *
-     * @return collection of players who can see the chunk
+     * @return 能看到此区块的玩家集合
      */
     @NotNull
     public Collection<Player> getPlayersSeeingChunk();
 
     /**
-     * An enum to specify the load level of a chunk.
+     * 用于指定区块加载级别的枚举.
      */
     public enum LoadLevel {
 
         /**
-         * No game logic is processed, world generation may still occur.
+         * 不处理任何游戏逻辑，但世界生成可能仍然发生.
          */
         INACCESSIBLE,
         /**
-         * Most game logic is not processed, including entities and redstone.
+         * 大部分游戏逻辑不会被处理，包括实体和红石.
          */
         BORDER,
         /**
-         * All game logic except entities is processed.
+         * 除实体外的所有游戏逻辑都会被处理.
          */
         TICKING,
         /**
-         * All game logic is processed.
+         * 所有游戏逻辑都会被处理.
          */
         ENTITY_TICKING,
         /**
-         * This chunk is not loaded.
+         * 此区块未加载.
          */
         UNLOADED;
     }
