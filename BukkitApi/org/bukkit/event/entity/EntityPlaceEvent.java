@@ -78,9 +78,11 @@ public class EntityPlaceEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * Get the hand used to place the entity.
+     * 返回放置实体时使用的手.
+     * <p>
+     * 原文:Get the hand used to place the entity.
      *
-     * @return the hand
+     * @return 使用的手
      */
     @NotNull
     public EquipmentSlot getHand() {
