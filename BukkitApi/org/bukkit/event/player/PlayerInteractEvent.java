@@ -19,23 +19,7 @@ import org.jetbrains.annotations.Nullable;
  * <p>
  * 无论玩家使用的是左手还是右手, 都有可能分别触发本事件. 你可以使用 {@link #getHand()} 方法来确定玩家使用的是哪只手.
  * <p>
- * 如果是原版行为触发了本事件, 则本事件将会被取消(例如与空气进行交互).
- * For the purpose of avoiding doubt, this means
- * that the event will only be in the cancelled state if it is fired as a result
- * of some prediction made by the server where no subsequent code will run,
- * rather than when the subsequent interaction activity (e.g. placing a block in
- * an illegal position ({@link BlockCanBuildEvent}) will fail.
- * <p>
- * 原文:Represents an event that is called when a player interacts with an object or
- * air, potentially fired once for each hand. The hand can be determined using
- * {@link #getHand()}.
- * <p>
- * This event will fire as cancelled if the vanilla behavior is to do nothing
- * (e.g interacting with air). For the purpose of avoiding doubt, this means
- * that the event will only be in the cancelled state if it is fired as a result
- * of some prediction made by the server where no subsequent code will run,
- * rather than when the subsequent interaction activity (e.g. placing a block in
- * an illegal position ({@link BlockCanBuildEvent}) will fail.
+ * 如果是原版行为触发了本事件, 则本事件将会被取消(例如与空气进行交互). 为避免歧义, 这意味着事件仅在因服务器做出的预测而触发且后续代码不会运行时才会处于取消状态, 而非在后续交互活动(例如在非法位置放置方块({@link BlockCanBuildEvent}))将会失败时.
  */
 public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -276,12 +260,14 @@ public class PlayerInteractEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the exact position on the block the player interacted with, this will
+     * 获取玩家交互方块时的精确位置, 在 {@link Action#RIGHT_CLICK_BLOCK} 之外的情况下为 null.
+     * <p>
+     * 原文：Gets the exact position on the block the player interacted with, this will
      * be null outside of {@link Action#RIGHT_CLICK_BLOCK}.
      * <p>
-     * All vector components are between 0.0 and 1.0 inclusive.
+     * 所有向量分量均在 0.0 到 1.0 之间(含端点).
      *
-     * @return the clicked position. May be null.
+     * @return 被点击的位置. 可能为 null.
      */
     @Nullable
     public Vector getClickedPosition() {
