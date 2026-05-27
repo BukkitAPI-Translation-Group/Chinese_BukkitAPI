@@ -133,9 +133,11 @@ public abstract class PlayerBucketEvent extends PlayerEvent implements Cancellab
     }
 
     /**
-     * Get the hand that was used in this event.
+     * 获取在此事件中使用的手.
+     * <p>
+     * 原文：Get the hand that was used in this event.
      *
-     * @return the hand
+     * @return 使用的手
      */
     @NotNull
     public EquipmentSlot getHand() {
