@@ -48,6 +48,9 @@ public enum EntityEffect {
      */
     RABBIT_JUMP(1, Rabbit.class),
     /**
+     * 将刷怪笼矿车的延迟重置为 200. 不影响实际刷怪延迟, 仅影响刷怪笼中实体旋转的速度.
+     * <p>
+     * 原文：
      * Resets a spawner minecart's delay to 200. Does not effect actual spawning
      * delay, only the speed at which the entity in the spawner spins
      */
@@ -76,40 +79,69 @@ public enum EntityEffect {
     @Deprecated(since = "1.12.2")
     DEATH(3, Entity.class),
     /**
+     * 生成鸡蛋破碎粒子.
+     * <p>
+     * 原文：
      * Spawns the egg breaking particles
      */
     EGG_BREAK(3, Egg.class),
     /**
+     * 生成雪球破碎粒子.
+     * <p>
+     * 原文：
      * Spawns the snowball breaking particles
      */
     SNOWBALL_BREAK(3, Snowball.class),
     /**
+     * 播放实体死亡音效和动画.
+     * <p>
+     * <b>这会导致客户端故障!</b>
+     * <p>
+     * 原文：
      * Plays the entity death sound and animation
      * <p>
      * <b>This will cause client-glitches!</b>
      */
     ENTITY_DEATH(3, LivingEntity.class),
     /**
+     * 播放尖牙攻击动画.
+     * <p>
+     * 原文：
      * Plays the fang attack animation
      */
     FANG_ATTACK(4, EvokerFangs.class),
     /**
+     * 播放疣猪兽攻击动画.
+     * <p>
+     * 原文：
      * Plays the hoglin attack animation
      */
     HOGLIN_ATTACK(4, Hoglin.class),
     /**
+     * 播放铁傀儡攻击动画.
+     * <p>
+     * 原文：
      * Plays the iron golem attack animation
      */
     IRON_GOLEN_ATTACK(4, IronGolem.class),
     /**
+     * 播放劫掠兽攻击动画.
+     * <p>
+     * 原文：
      * Plays the ravager attack animation
      */
     RAVAGER_ATTACK(4, Ravager.class),
     /**
+     * 播放监守者攻击动画.
+     * <p>
+     * 原文：
      * Plays the warden attack animation
      */
     WARDEN_ATTACK(4, Warden.class),
     /**
+     * 播放僵尸疣猪兽攻击动画.
+     * <p>
+     * 原文：
      * Plays the zoglin attack animation
      */
     ZOGLIN_ATTACK(4, Zoglin.class),
@@ -152,10 +184,18 @@ public enum EntityEffect {
     @Deprecated(since = "1.12.2")
     SHEEP_EAT(10, Entity.class),
     /**
+     * 播放绵羊吃草动画.
+     * <p>
+     * 原文：
      * Plays the sheep eating grass animation
      */
     SHEEP_EAT_GRASS(10, Sheep.class),
     /**
+     * 使TNT矿车点燃, 不播放点燃音效.
+     * <p>
+     * <b>这会导致客户端故障!</b>
+     * <p>
+     * 原文：
      * Causes the TNT minecart to ignite, does not play the ignition sound
      * <p>
      * <b>This will cause client-glitches!</b>
@@ -216,6 +256,9 @@ public enum EntityEffect {
      */
     LOVE_HEARTS(18, Ageable.class),
     /**
+     * 重置鱿鱼旋转.
+     * <p>
+     * 原文：
      * Resets squid rotation.
      */
     SQUID_ROTATE(19, Squid.class),
@@ -224,6 +267,9 @@ public enum EntityEffect {
      */
     ENTITY_POOF(20, LivingEntity.class),
     /**
+     * 守卫者播放攻击音效.
+     * <p>
+     * 原文：
      * Guardian plays the attack sound effect.
      */
     GUARDIAN_TARGET(21, Guardian.class),
@@ -242,130 +288,225 @@ public enum EntityEffect {
      */
     ARMOR_STAND_HIT(32, ArmorStand.class),
     /**
+     * 实体受到荆棘攻击伤害.
+     * <p>
+     * 原文：
      * Entity hurt by thorns attack.
      */
     THORNS_HURT(33, LivingEntity.class),
     /**
+     * 铁傀儡收起玫瑰.
+     * <p>
+     * 原文：
      * Iron golem puts away rose.
      */
     IRON_GOLEM_SHEATH(34, IronGolem.class),
     /**
+     * 图腾阻止实体死亡.
+     * <p>
+     * 原文：
      * Totem prevents entity death.
      */
     TOTEM_RESURRECT(35, LivingEntity.class),
     /**
+     * 实体因溺水伤害而受伤.
+     * <p>
+     * 原文：
      * Entity hurt due to drowning damage.
      */
     HURT_DROWN(36, LivingEntity.class),
     /**
+     * 实体因爆炸伤害而受伤.
+     * <p>
+     * 原文：
      * Entity hurt due to explosion damage.
      */
     HURT_EXPLOSION(37, LivingEntity.class),
     /**
+     * 海豚被喂食后正在定位结构.
+     * <p>
+     * 原文：
      * Dolphin has been fed and is locating a structure.
      */
     DOLPHIN_FED(38, Dolphin.class),
     /**
+     * 劫掠兽被击晕 40 tick.
+     * <p>
+     * 原文：
      * Ravager has been stunned for 40 ticks.
      */
     RAVAGER_STUNNED(39, Ravager.class),
     /**
+     * 猫驯服失败.
+     * <p>
+     * 原文：
      * Cat taming failed.
      */
     CAT_TAME_FAIL(40, Cat.class),
     /**
+     * 猫驯服成功.
+     * <p>
+     * 原文：
      * Cat taming succeeded.
      */
     CAT_TAME_SUCCESS(41, Cat.class),
     /**
+     * 村民在袭击中溅出粒子.
+     * <p>
+     * 原文：
      * Villager splashes particles during a raid.
      */
     VILLAGER_SPLASH(42, Villager.class),
     /**
+     * 玩家的不祥之兆效果被移除, 以开始或增加袭击难度.
+     * <p>
+     * 原文：
      * Player's bad omen effect removed to start or increase raid difficult.
      */
     PLAYER_BAD_OMEN_RAID(43, Player.class),
     /**
+     * 实体因浆果丛受伤. 好痛!
+     * <p>
+     * 原文：
      * Entity hurt due to berry bush. Prickly!
      */
     HURT_BERRY_BUSH(44, LivingEntity.class),
     /**
+     * 狐狸咀嚼嘴里的食物.
+     * <p>
+     * 原文：
      * Fox chews the food in its mouth
      */
     FOX_CHEW(45, Fox.class),
     /**
+     * 实体因紫颂果或作为末影人而传送.
+     * <p>
+     * 原文：
      * Entity teleported as a result of chorus fruit or as an enderman
      */
     TELEPORT_ENDER(46, LivingEntity.class),
     /**
+     * 实体损坏主手物品.
+     * <p>
+     * 原文：
      * Entity breaks item in main hand
      */
     BREAK_EQUIPMENT_MAIN_HAND(47, LivingEntity.class),
     /**
+     * 实体损坏副手物品.
+     * <p>
+     * 原文：
      * Entity breaks item in off hand
      */
     BREAK_EQUIPMENT_OFF_HAND(48, LivingEntity.class),
     /**
+     * 实体损坏头盔槽物品.
+     * <p>
+     * 原文：
      * Entity breaks item in helmet slot
      */
     BREAK_EQUIPMENT_HELMET(49, LivingEntity.class),
     /**
+     * 实体损坏胸甲槽物品.
+     * <p>
+     * 原文：
      * Entity breaks item in chestplate slot
      */
     BREAK_EQUIPMENT_CHESTPLATE(50, LivingEntity.class),
     /**
+     * 实体损坏护腿槽物品.
+     * <p>
+     * 原文：
      * Entity breaks item in legging slot
      */
     BREAK_EQUIPMENT_LEGGINGS(51, LivingEntity.class),
     /**
+     * 实体损坏靴子槽物品.
+     * <p>
+     * 原文：
      * Entity breaks item in boot slot
      */
     BREAK_EQUIPMENT_BOOTS(52, LivingEntity.class),
     /**
+     * 在实体脚部生成蜂蜜块滑动粒子.
+     * <p>
+     * 原文：
      * Spawns honey block slide particles at the entity's feet
      */
     HONEY_BLOCK_SLIDE_PARTICLES(53, Entity.class),
     /**
+     * 在实体脚部生成蜂蜜块坠落粒子.
+     * <p>
+     * 原文：
      * Spawns honey block fall particles at the entity's feet
      */
     HONEY_BLOCK_FALL_PARTICLES(54, LivingEntity.class),
     /**
+     * 实体交换主手和副手物品.
+     * <p>
+     * 原文：
      * Entity swaps the items in their hand and offhand
      */
     SWAP_HAND_ITEMS(55, LivingEntity.class),
     /**
-     * Stops a wolf that is currently shaking
+     * 停止正在抖动的狼.
      *
      * @see EntityEffect#WOLF_SHAKE
+     * <p>
+     * 原文：
+     * Stops a wolf that is currently shaking
      */
     WOLF_SHAKE_STOP(56, Wolf.class),
     // 57 - unused
     /**
-     * Goat lowers its head for ramming
+     * 山羊低头准备冲撞.
      *
      * @see #GOAT_RAISE_HEAD
+     * <p>
+     * 原文：
+     * Goat lowers its head for ramming
      */
     GOAT_LOWER_HEAD(58, Goat.class),
     /**
-     * Goat raises its head
+     * 山羊抬头.
      *
      * @see #GOAT_LOWER_HEAD
+     * <p>
+     * 原文：
+     * Goat raises its head
      */
     GOAT_RAISE_HEAD(59, Goat.class),
     /**
+     * 生成死亡烟雾粒子.
+     * <p>
+     * 原文：
      * Spawns death smoke particles
      */
     SPAWN_DEATH_SMOKE(60, LivingEntity.class),
     /**
+     * 监守者抖动触须.
+     * <p>
+     * 原文：
      * Warden shakes its tendrils
      */
     WARDEN_TENDRIL_SHAKE(61, Warden.class),
     /**
+     * 监守者执行音波攻击动画.
+     * <p>
+     * 不播放音效或发射光束.
+     * <p>
+     * 原文：
      * Warden performs sonic attack animation <br>
      * Does not play the sound or fire the beam
      */
     WARDEN_SONIC_ATTACK(62, Warden.class),
     /**
+     * 播放嗅探兽挖掘音效.
+     * <p>
+     * 嗅探兽必须有目标且处于 {@link Sniffer.State#SEARCHING} 或
+     * {@link Sniffer.State#DIGGING} 状态.
+     * <p>
+     * 原文：
      * Plays sniffer digging sound <br>
      * Sniffer must have a target and be in {@link Sniffer.State#SEARCHING} or
      * {@link Sniffer.State#DIGGING}
@@ -407,10 +548,13 @@ public enum EntityEffect {
     }
 
     /**
+     * 检查此效果是否适用于给定实体.
+     * <p>
+     * 原文：
      * Checks if this effect is applicable to the given entity.
      *
-     * @param entity the entity to check
-     * @return true if applicable
+     * @param entity 要检查的实体
+     * @return 如果适用则为 true
      */
     public boolean isApplicableTo(@NotNull Entity entity) {
         Preconditions.checkArgument(entity != null, "Entity cannot be null");
@@ -419,10 +563,13 @@ public enum EntityEffect {
     }
 
     /**
+     * 检查此效果是否适用于给定的实体类.
+     * <p>
+     * 原文：
      * Checks if this effect is applicable to the given entity class.
      *
-     * @param clazz the entity class to check
-     * @return true if applicable
+     * @param clazz 要检查的实体类
+     * @return 如果适用则为 true
      */
     public boolean isApplicableTo(@NotNull Class<? extends Entity> clazz) {
         Preconditions.checkArgument(clazz != null, "Class cannot be null");
