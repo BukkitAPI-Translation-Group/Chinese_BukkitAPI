@@ -702,7 +702,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * @param delegate 这个方法会返回一个用于调用每个方块的改变的类作为结果
      * @return 如果树被成功生成则返回true，否则返回false
      * @see #generateTree(org.bukkit.Location, java.util.Random, org.bukkit.TreeType, java.util.function.Consumer)
-     * @deprecated this method does not handle tile entities (bee nests)
+     * @deprecated 此方法不处理方块实体（蜂巢）
      */
     @Deprecated(since = "1.17.1")
     public boolean generateTree(@NotNull Location loc, @NotNull TreeType type, @NotNull BlockChangeDelegate delegate);
@@ -2105,9 +2105,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * Gets the type of this world.
      *
      * @return 世界类型
-     * @deprecated world type is only used to select the default word generation
-     * settings and is not stored in Vanilla worlds, making it impossible for
-     * this method to always return the correct value.
+     * @deprecated 世界类型仅用于选择默认的世界生成设置, 且不会存储在原版世界中, 因此此方法无法始终返回正确的值.
      */
     @Nullable
     @Deprecated(since = "1.16.1")
@@ -3401,116 +3399,121 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于使用的粒子（通常是速度）
      */
     public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于使用的粒子（通常是速度）
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于使用的粒子（通常是速度）
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
-     * @param force whether to send the particle to players within an extended
-     *              range and encourage their client to render it regardless of
-     *              settings
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于使用的粒子（通常是速度）
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
+     * @param force 是否将粒子发送给扩展范围内的玩家并强制其客户端渲染, 无论设置如何
      */
     public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
-     * @param force whether to send the particle to players within an extended
-     *              range and encourage their client to render it regardless of
-     *              settings
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于使用的粒子（通常是速度）
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
+     * @param force 是否将粒子发送给扩展范围内的玩家并强制其客户端渲染, 无论设置如何
      */
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
     /**
-     * Find the closest nearby structure of a given {@link StructureType}.
+     * 查找最近的指定{@link StructureType 结构类型}的结构.
+     * 查找未探索的结构可能会阻塞, 如果世界正在查看尚未生成的区块. 这可能导致世界在定位未探索的结构时暂时冻结.
+     * <p>
+     * {@code radius}不是严格的方形半径. 每种结构可能改变每次迭代检查的区块数量. 不要假设只会检查半径*半径的区块区域. 例如,
+     * {@link StructureType#WOODLAND_MANSION}可能会检查距离20000个方块（或更多）远的地方, 无论使用的半径是多少.
+     * <p>
+     * 此方法<i>不会</i>加载或生成区块. 如果你只查找未探索的结构, 这也可能导致服务器挂起的情况. 这是因为它会不断向外寻找以找到该结构.
+     * <p>
+     * 原文：Find the closest nearby structure of a given {@link StructureType}.
      * Finding unexplored structures can, and will, block if the world is
      * looking in chunks that gave not generated yet. This can lead to the world
      * temporarily freezing while locating an unexplored structure.
@@ -3526,25 +3529,34 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * unexplored structures. This is because it will keep looking further and
      * further out in order to find the structure.
      *
-     * @param origin where to start looking for a structure
-     * @param structureType the type of structure to find
-     * @param radius the radius, in chunks, around which to search
-     * @param findUnexplored true to only find unexplored structures
-     * @return the closest {@link Location}, or null if no structure of the
-     * specified type exists.
+     * @param origin 开始查找结构的位置
+     * @param structureType 要查找的结构类型
+     * @param radius 搜索半径（以区块为单位）
+     * @param findUnexplored 是否只查找未探索的结构
+     * @return 最近的{@link Location 位置}, 如果不存在指定类型的结构则返回null
      * @see #locateNearestStructure(Location, Structure, int, boolean)
      * @see #locateNearestStructure(Location, StructureType, int, boolean)
-     * @deprecated Use
-     * {@link #locateNearestStructure(Location, Structure, int, boolean)} or
+     * @deprecated 建议使用
+     * {@link #locateNearestStructure(Location, Structure, int, boolean)} 或
      * {@link #locateNearestStructure(Location, StructureType, int, boolean)}
-     * instead.
      */
     @Nullable
     @Deprecated(since = "1.19")
     public Location locateNearestStructure(@NotNull Location origin, @NotNull org.bukkit.StructureType structureType, int radius, boolean findUnexplored);
 
     /**
-     * Find the closest nearby structure of a given {@link StructureType}.
+     * 查找最近的指定{@link StructureType 结构类型}的结构.
+     * 查找未探索的结构可能会阻塞, 如果世界正在查看尚未生成的区块. 这可能导致世界在定位未探索的结构时暂时冻结.
+     * <p>
+     * {@code radius}不是严格的方形半径. 每种结构可能改变每次迭代检查的区块数量. 不要假设只会检查半径*半径的区块区域. 例如,
+     * {@link StructureType#WOODLAND_MANSION}可能会检查距离20000个方块（或更多）远的地方, 无论使用的半径是多少.
+     * <p>
+     * 此方法<i>不会</i>加载或生成区块. 如果你只查找未探索的结构, 这也可能导致服务器挂起的情况. 这是因为它会不断向外寻找以找到该结构.
+     * <p>
+     * 搜索{@link StructureType}和{@link Structure}的区别在于, {@link StructureType}可以引用多个{@link Structure 结构},
+     * 而搜索{@link Structure}只会搜索给定的{@link Structure}.
+     * <p>
+     * 原文：Find the closest nearby structure of a given {@link StructureType}.
      * Finding unexplored structures can, and will, block if the world is
      * looking in chunks that gave not generated yet. This can lead to the world
      * temporarily freezing while locating an unexplored structure.
@@ -3565,19 +3577,29 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * {@link Structure Structures} while searching for a {@link Structure}
      * while only search for the given {@link Structure}.
      *
-     * @param origin where to start looking for a structure
-     * @param structureType the type of structure to find
-     * @param radius the radius, in chunks, around which to search
-     * @param findUnexplored true to only find unexplored structures
-     * @return the closest {@link Location} and {@link Structure}, or null if no
-     * structure of the specified type exists.
+     * @param origin 开始查找结构的位置
+     * @param structureType 要查找的结构类型
+     * @param radius 搜索半径（以区块为单位）
+     * @param findUnexplored 是否只查找未探索的结构
+     * @return 最近的{@link Location 位置}和{@link Structure 结构}, 如果不存在指定类型的结构则返回null
      * @see #locateNearestStructure(Location, Structure, int, boolean)
      */
     @Nullable
     StructureSearchResult locateNearestStructure(@NotNull Location origin, @NotNull StructureType structureType, int radius, boolean findUnexplored);
 
     /**
-     * Find the closest nearby structure of a given {@link Structure}. Finding
+     * 查找最近的指定{@link Structure 结构}的结构.
+     * 查找未探索的结构可能会阻塞, 如果世界正在查看尚未生成的区块. 这可能导致世界在定位未探索的结构时暂时冻结.
+     * <p>
+     * {@code radius}不是严格的方形半径. 每种结构可能改变每次迭代检查的区块数量. 不要假设只会检查半径*半径的区块区域. 例如,
+     * {@link Structure#MANSION}可能会检查距离20000个方块（或更多）远的地方, 无论使用的半径是多少.
+     * <p>
+     * 此方法<i>不会</i>加载或生成区块. 如果你只查找未探索的结构, 这也可能导致服务器挂起的情况. 这是因为它会不断向外寻找以找到该结构.
+     * <p>
+     * 搜索{@link StructureType}和{@link Structure}的区别在于, {@link StructureType}可以引用多个{@link Structure 结构},
+     * 而搜索{@link Structure}只会搜索给定的{@link Structure}.
+     * <p>
+     * 原文：Find the closest nearby structure of a given {@link Structure}. Finding
      * unexplored structures can, and will, block if the world is looking in
      * chunks that gave not generated yet. This can lead to the world
      * temporarily freezing while locating an unexplored structure.
@@ -3598,12 +3620,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * {@link Structure Structures} while searching for a {@link Structure}
      * while only search for the given {@link Structure}.
      *
-     * @param origin where to start looking for a structure
-     * @param structure the structure to find
-     * @param radius the radius, in chunks, around which to search
-     * @param findUnexplored true to only find unexplored structures
-     * @return the closest {@link Location} and {@link Structure}, or null if no
-     * structure was found.
+     * @param origin 开始查找结构的位置
+     * @param structure 要查找的结构
+     * @param radius 搜索半径（以区块为单位）
+     * @param findUnexplored 是否只查找未探索的结构
+     * @return 最近的{@link Location 位置}和{@link Structure 结构}, 如果未找到结构则返回null
      * @see #locateNearestStructure(Location, StructureType, int, boolean)
      */
     @Nullable
@@ -3613,12 +3634,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public class Spigot {
 
         /**
-         * Strikes lightning at the given {@link Location} and possibly without sound
+         * 在给定的{@link Location 位置}劈下闪电, 可能不发出声音.
+         * <p>
+         * 原文：Strikes lightning at the given {@link Location} and possibly without sound
          *
-         * @param loc The location to strike lightning
-         * @param isSilent Whether this strike makes no sound
-         * @return The lightning entity.
-         * @deprecated sound is now client side and cannot be removed
+         * @param loc 劈下闪电的位置
+         * @param isSilent 此次闪电是否不发出声音
+         * @return 闪电实体
+         * @deprecated 声音现在是客户端侧的, 无法移除
          * @see World#strikeLightning(org.bukkit.Location)
          */
         @NotNull
@@ -3628,12 +3651,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
         }
 
         /**
-         * Strikes lightning at the given {@link Location} without doing damage and possibly without sound
+         * 在给定的{@link Location 位置}劈下不会造成伤害的闪电, 可能不发出声音.
+         * <p>
+         * 原文：Strikes lightning at the given {@link Location} without doing damage and possibly without sound
          *
-         * @param loc The location to strike lightning
-         * @param isSilent Whether this strike makes no sound
-         * @return The lightning entity.
-         * @deprecated sound is now client side and cannot be removed
+         * @param loc 劈下闪电的位置
+         * @param isSilent 此次闪电是否不发出声音
+         * @return 闪电实体
+         * @deprecated 声音现在是客户端侧的, 无法移除
          * @see World#strikeLightningEffect(org.bukkit.Location)
          */
         @NotNull
@@ -3648,7 +3673,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     // Spigot end
 
     /**
-     * Find the closest nearby location with a biome matching the provided
+     * 查找最近的与提供的{@link Biome 生物群系}匹配的位置.
+     * 查找生物群系可能会阻塞, 如果世界正在查看尚未生成的区块. 这可能导致世界在定位生物群系时暂时冻结.
+     * <p>
+     * <b>注意：</b>此方法<i>不会</i>反映世界生成后所做的更改, 此方法只能看到世界生成时的生物群系.
+     * 此方法<i>不会</i>加载或生成区块.
+     * <p>
+     * 如果提供了多个生物群系, {@link BiomeSearchResult#getBiome()}将指示定位到的是哪一个.
+     * <p>
+     * 此方法将使用32的水平间隔和64的垂直间隔, 等同于/locate命令.
+     * <p>
+     * 原文：Find the closest nearby location with a biome matching the provided
      * {@link Biome}(s). Finding biomes can, and will, block if the world is looking
      * in chunks that have not generated yet. This can lead to the world temporarily
      * freezing while locating a biome.
@@ -3663,18 +3698,26 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * This method will use a horizontal interval of 32 and a vertical interval of
      * 64, equal to the /locate command.
      *
-     * @param origin where to start looking for a biome
-     * @param radius the radius, in blocks, around which to search
-     * @param biomes the biomes to search for
-     * @return a BiomeSearchResult containing the closest {@link Location} and
-     *         {@link Biome}, or null if no biome was found.
+     * @param origin 开始查找生物群系的位置
+     * @param radius 搜索半径（以方块为单位）
+     * @param biomes 要搜索的生物群系
+     * @return 包含最近的{@link Location 位置}和{@link Biome 生物群系}的BiomeSearchResult, 如果未找到生物群系则返回null
      * @see #locateNearestBiome(Location, int, int, int, Biome...)
      */
     @Nullable
     BiomeSearchResult locateNearestBiome(@NotNull Location origin, int radius, @NotNull Biome... biomes);
 
     /**
-     * Find the closest nearby location with a biome matching the provided
+     * 查找最近的与提供的{@link Biome 生物群系}匹配的位置.
+     * 查找生物群系可能会阻塞, 如果世界正在查看尚未生成的区块. 这可能导致世界在定位生物群系时暂时冻结.
+     * <p>
+     * <b>注意：</b>此方法<i>不会</i>反映世界生成后所做的更改, 此方法只能看到世界生成时的生物群系.
+     * 此方法<i>不会</i>加载或生成区块.
+     * <p>
+     * 如果提供了多个生物群系, {@link BiomeSearchResult#getBiome()}将指示定位到的是哪一个.
+     * 较高的{@code horizontalInterval}和{@code verticalInterval}值将导致更快的搜索, 但可能会遗漏较小的生物群系.
+     * <p>
+     * 原文：Find the closest nearby location with a biome matching the provided
      * {@link Biome}(s). Finding biomes can, and will, block if the world is looking
      * in chunks that have not generated yet. This can lead to the world temporarily
      * freezing while locating a biome.
@@ -3688,13 +3731,12 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * and {@code verticalInterval} will result in faster searches, but may lead to
      * small biomes being missed.
      *
-     * @param origin             where to start looking for a biome
-     * @param radius             the radius, in blocks, around which to search
-     * @param horizontalInterval the horizontal distance between each check
-     * @param verticalInterval   the vertical distance between each check
-     * @param biomes             the biomes to search for
-     * @return a BiomeSearchResult containing the closest {@link Location} and
-     *         {@link Biome}, or null if no biome was found.
+     * @param origin             开始查找生物群系的位置
+     * @param radius             搜索半径（以方块为单位）
+     * @param horizontalInterval 每次检查之间的水平距离
+     * @param verticalInterval   每次检查之间的垂直距离
+     * @param biomes             要搜索的生物群系
+     * @return 包含最近的{@link Location 位置}和{@link Biome 生物群系}的BiomeSearchResult, 如果未找到生物群系则返回null
      * @see #locateNearestBiome(Location, int, Biome...)
      */
     @Nullable
@@ -3723,7 +3765,13 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public List<Raid> getRaids();
 
     /**
-     * Get the {@link DragonBattle} associated with this world.
+     * 获取与此世界关联的{@link DragonBattle 末影龙战斗}.
+     * <p>
+     * 如果此世界的环境不是{@link Environment#THE_END}, 将返回null.
+     * <p>
+     * 如果是末地世界, 无论世界中是否存在末影龙或是否已激活战斗序列, 都将返回一个末影龙战斗实例. 末影龙战斗实例用作状态持有者.
+     * <p>
+     * 原文：Get the {@link DragonBattle} associated with this world.
      *
      * If this world's environment is not {@link Environment#THE_END}, null will
      * be returned.
@@ -3732,42 +3780,48 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * whether or not a dragon is present in the world or a fight sequence has
      * been activated. The dragon battle instance acts as a state holder.
      *
-     * @return the dragon battle instance
+     * @return 末影龙战斗实例
      */
     @Nullable
     public DragonBattle getEnderDragonBattle();
 
     /**
-     * Get all {@link FeatureFlag} enabled in this world.
+     * 获取此世界启用的所有{@link FeatureFlag 功能标志}.
+     * <p>
+     * 原文：Get all {@link FeatureFlag} enabled in this world.
      *
-     * @return all enabled {@link FeatureFlag}
+     * @return 所有启用的{@link FeatureFlag 功能标志}
      */
     @NotNull
     public Set<FeatureFlag> getFeatureFlags();
 
     /**
-     * Gets all generated structures that intersect the chunk at the given
+     * 获取与给定坐标区块相交的所有已生成结构. <br>
+     * 如果不存在结构, 则返回空集合.
+     * <p>
+     * 原文：Gets all generated structures that intersect the chunk at the given
      * coordinates. <br>
      * If no structures are present an empty collection will be returned.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return a collection of placed structures in the chunk at the given
-     * coordinates
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @return 给定坐标区块中已放置的结构集合
      */
     @NotNull
     public Collection<GeneratedStructure> getStructures(int x, int z);
 
     /**
-     * Gets all generated structures of a given {@link Structure} that intersect
+     * 获取与给定坐标区块相交的所有指定{@link Structure 结构}的已生成结构. <br>
+     * 如果不存在结构, 则返回空集合.
+     * <p>
+     * 原文：Gets all generated structures of a given {@link Structure} that intersect
      * the chunk at the given coordinates. <br>
      * If no structures are present an empty collection will be returned.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param structure the structure to find
-     * @return a collection of placed structures in the chunk at the given
-     * coordinates
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param structure 要查找的结构
+     * @return 给定坐标区块中已放置的结构集合
      */
     @NotNull
     public Collection<GeneratedStructure> getStructures(int x, int z, @NotNull Structure structure);
