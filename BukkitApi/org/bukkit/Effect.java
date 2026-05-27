@@ -137,8 +137,9 @@ public enum Effect {
      */
     POTION_BREAK(2002, Type.VISUAL, Color.class),
     /**
-     * Visual effect of an instant splash potion breaking. Needs color data
-     * value as additional info.
+     * 瞬间喷溅药水破碎时的视觉效果。需要颜色数据值作为附加信息.
+     * <p>
+     * 原文：Visual effect of an instant splash potion breaking. Needs color data value as additional info.
      */
     INSTANT_POTION_BREAK(2007, Type.VISUAL, Color.class),
     /**
@@ -227,109 +228,155 @@ public enum Effect {
      */
     ENDERDRAGON_GROWL(3001, Type.SOUND),
     /**
-     * The sound played when phantom bites.
+     * 幻翼咬人时播放的声音.
+     * <p>
+     * 原文：The sound played when phantom bites.
      */
     PHANTOM_BITE(1039, Type.SOUND),
     /**
-     * The sound played when a zombie converts to a drowned.
+     * 僵尸转化为溺尸时播放的声音.
+     * <p>
+     * 原文：The sound played when a zombie converts to a drowned.
      */
     ZOMBIE_CONVERTED_TO_DROWNED(1040, Type.SOUND),
     /**
-     * The sound played when a husk converts to a zombie.
+     * 尸壳转化为僵尸时播放的声音.
+     * <p>
+     * 原文：The sound played when a husk converts to a zombie.
      */
     HUSK_CONVERTED_TO_ZOMBIE(1041, Type.SOUND),
     /**
-     * The sound played when a grindstone is being used.
+     * 使用砂轮时播放的声音.
+     * <p>
+     * 原文：The sound played when a grindstone is being used.
      */
     GRINDSTONE_USE(1042, Type.SOUND),
     /**
-     * The sound played when a book page is being turned.
+     * 翻书页时播放的声音.
+     * <p>
+     * 原文：The sound played when a book page is being turned.
      */
     BOOK_PAGE_TURN(1043, Type.SOUND),
     /**
-     * The sound played when a smithing table is being used.
+     * 使用锻造台时播放的声音.
+     * <p>
+     * 原文：The sound played when a smithing table is being used.
      */
     SMITHING_TABLE_USE(1044, Type.SOUND),
     /**
-     * The sound played when a pointed dripstone hits the surface.
+     * 尖锐滴水石落在表面时播放的声音.
+     * <p>
+     * 原文：The sound played when a pointed dripstone hits the surface.
      */
     POINTED_DRIPSTONE_LAND(1045, Type.SOUND),
     /**
-     * The sound played when a pointed dripstone drips lava into a cauldron.
+     * 尖锐滴水石将岩浆滴入炼药锅时播放的声音.
+     * <p>
+     * 原文：The sound played when a pointed dripstone drips lava into a cauldron.
      */
     POINTED_DRIPSTONE_DRIP_LAVA_INTO_CAULDRON(1046, Type.SOUND),
     /**
-     * The sound played when a pointed dripstone drips water into a cauldron.
+     * 尖锐滴水石将水滴入炼药锅时播放的声音.
+     * <p>
+     * 原文：The sound played when a pointed dripstone drips water into a cauldron.
      */
     POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON(1047, Type.SOUND),
     /**
-     * The sound played when a skeleton converts to a stray.
+     * 骷髅转化为流浪者时播放的声音.
+     * <p>
+     * 原文：The sound played when a skeleton converts to a stray.
      */
     SKELETON_CONVERTED_TO_STRAY(1048, Type.SOUND),
     /**
-     * The sound played / particles shown when a composter is being attempted to
-     * fill.
+     * 尝试填充堆肥桶时播放的声音/显示的粒子.
+     * <p>
+     * 成功时为 true，失败时为 false.
+     * <p>
+     * 原文：The sound played / particles shown when a composter is being attempted to fill.
      *
      * True for a successful attempt false for an unsuccessful attempt.
      */
     COMPOSTER_FILL_ATTEMPT(1500, Type.VISUAL, Boolean.class),
     /**
-     * The sound played / particles shown when lava interacts with the world.
+     * 岩浆与世界交互时播放的声音/显示的粒子.
+     * <p>
+     * 例如形成石头、黑曜石、玄武岩，或破坏方块（如火把）.
+     * <p>
+     * 原文：The sound played / particles shown when lava interacts with the world.
      *
-     * For example by forming stone, obsidian, basalt or destroying blocks such
-     * as torches.
+     * For example by forming stone, obsidian, basalt or destroying blocks such as torches.
      */
     LAVA_INTERACT(1501, Type.VISUAL),
     /**
-     * The sound played / particles shown when a redstone torch burns out.
+     * 红石火把烧毁时播放的声音/显示的粒子.
+     * <p>
+     * 原文：The sound played / particles shown when a redstone torch burns out.
      */
     REDSTONE_TORCH_BURNOUT(1502, Type.VISUAL),
     /**
-     * The sound played / particles shown when an eye of ender is placed into an
-     * ender portal frame.
+     * 将末影之眼放入末地传送门框架时播放的声音/显示的粒子.
+     * <p>
+     * 原文：The sound played / particles shown when an eye of ender is placed into an ender portal frame.
      */
     END_PORTAL_FRAME_FILL(1503, Type.VISUAL),
     /**
-     * The particles shown when a dripstone drips lava or water.
+     * 滴水石滴落岩浆或水时显示的粒子.
+     * <p>
+     * 此效果需要在该位置有滴水石，并且滴水石根部有岩浆或水.
+     * <p>
+     * 原文：The particles shown when a dripstone drips lava or water.
      *
-     * This effect requires a dripstone at the location as well as lava or water
-     * at the root of the dripstone.
+     * This effect requires a dripstone at the location as well as lava or water at the root of the dripstone.
      */
     DRIPPING_DRIPSTONE(1504, Type.VISUAL),
     /**
-     * The sound played / particles shown when bone meal is used to grow a
-     * plant.
+     * 使用骨粉催熟植物时播放的声音/显示的粒子.
+     * <p>
+     * 数据为粒子数量.
+     * <p>
+     * 原文：The sound played / particles shown when bone meal is used to grow a plant.
      *
      * Data is the number of particles.
      */
     BONE_MEAL_USE(1505, Type.VISUAL, Integer.class),
     /**
-     * The particles shown when an ender dragon destroys blocks.
+     * 末影龙破坏方块时显示的粒子.
+     * <p>
+     * 原文：The particles shown when an ender dragon destroys blocks.
      */
     ENDER_DRAGON_DESTROY_BLOCK(2008, Type.VISUAL),
     /**
-     * The particles shown when a sponge dries in an ultra warm world (nether).
+     * 海绵在超温暖世界（下界）中干燥时显示的粒子.
+     * <p>
+     * 原文：The particles shown when a sponge dries in an ultra warm world (nether).
      */
     SPONGE_DRY(2009, Type.VISUAL),
     /**
-     * The particles shown when a lightning hits a lightning rod or oxidized
-     * copper.
+     * 闪电击中避雷针或氧化铜时显示的粒子.
+     * <p>
+     * 数据为粒子显示的轴。如果未提供数据，将在方块面显示粒子.
+     * <p>
+     * 原文：The particles shown when a lightning hits a lightning rod or oxidized copper.
      *
-     * Data is the axis at which the particle should be shown. If no data is
-     * provided it will show the particles at the block faces.
+     * Data is the axis at which the particle should be shown. If no data is provided it will show the particles at the block faces.
      */
     ELECTRIC_SPARK(3002, Type.VISUAL, Axis.class),
     /**
-     * The sound played / particles shown when wax is applied to a copper block.
+     * 对铜方块涂蜡时播放的声音/显示的粒子.
+     * <p>
+     * 原文：The sound played / particles shown when wax is applied to a copper block.
      */
     COPPER_WAX_ON(3003, Type.VISUAL),
     /**
-     * The particles shown when wax is removed from a copper block.
+     * 从铜方块上除蜡时显示的粒子.
+     * <p>
+     * 原文：The particles shown when wax is removed from a copper block.
      */
     COPPER_WAX_OFF(3004, Type.VISUAL),
     /**
-     * The particles shown when oxidation is scraped of an oxidized copper
-     * block.
+     * 从氧化铜方块上刮除氧化层时显示的粒子.
+     * <p>
+     * 原文：The particles shown when oxidation is scraped of an oxidized copper block.
      */
     OXIDISED_COPPER_SCRAPE(3005, Type.VISUAL),
     ;
