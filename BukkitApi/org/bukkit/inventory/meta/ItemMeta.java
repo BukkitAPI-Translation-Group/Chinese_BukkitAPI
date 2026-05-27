@@ -227,10 +227,8 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * custom item model.
      *
      * @return 物品是否存在自定义模型数据
-     * @deprecated more complex custom model data can be specified with
-     * {@link #hasCustomModelDataComponent()}. Integers from the old custom
-     * model data are equivalent to a single float in the
-     * {@link CustomModelDataComponent#getFloats()} list.
+     * @deprecated 可以使用 {@link #hasCustomModelDataComponent()} 指定更复杂的自定义模型数据.
+     * 旧版自定义模型数据中的整数等同于 {@link CustomModelDataComponent#getFloats()} 列表中的单个浮点数.
      */
     @Deprecated(since = "1.21.5")
     boolean hasCustomModelData();
@@ -252,10 +250,8 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * before calling this method.
      *
      * @return 物品的自定义模型数据
-     * @deprecated more complex custom model data can be specified with
-     * {@link #getCustomModelDataComponent()}. Integers from the old custom
-     * model data are equivalent to a single float in the
-     * {@link CustomModelDataComponent#getFloats()} list.
+     * @deprecated 可以使用 {@link #getCustomModelDataComponent()} 指定更复杂的自定义模型数据.
+     * 旧版自定义模型数据中的整数等同于 {@link CustomModelDataComponent#getFloats()} 列表中的单个浮点数.
      */
     @Deprecated(since = "1.21.5")
     int getCustomModelData();
@@ -293,10 +289,9 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * custom item model.
      *
      * @param data 要设置的数据, 传递 null 以清除数据
-     * @deprecated more complex custom model data can be specified with
-     * {@link #setCustomModelDataComponent(org.bukkit.inventory.meta.components.CustomModelDataComponent)}.
-     * Integers from the old custom model data are equivalent to a single float
-     * in the {@link CustomModelDataComponent#setFloats(java.util.List)} list.
+     * @deprecated 可以使用 {@link #setCustomModelDataComponent(org.bukkit.inventory.meta.components.CustomModelDataComponent)}
+     * 指定更复杂的自定义模型数据. 旧版自定义模型数据中的整数等同于
+     * {@link CustomModelDataComponent#setFloats(java.util.List)} 列表中的单个浮点数.
      */
     @Deprecated(since = "1.21.5")
     void setCustomModelData(@Nullable Integer data);
@@ -1509,9 +1504,8 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * will be returned.
      *
      * @param slot 要检查的 {@link EquipmentSlot}
-     * @return the immutable {@link Multimap} with the
-     *         respective Attributes and modifiers, or an empty map
-     *         if no attributes are set.
+     * @return 包含对应属性和修饰符的不可变 {@link Multimap},
+     *         如果未设置任何属性则返回空 map.
      */
     @NotNull
     Multimap<Attribute, AttributeModifier> getAttributeModifiers(@NotNull EquipmentSlot slot);
