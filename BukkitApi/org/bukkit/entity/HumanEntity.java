@@ -104,10 +104,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 设置玩家的附魔种子。
      * <p>原文：Sets the player's enchantment seed.
      *
-     * The Seed is used to generate enchantment options in the enchanting table
-     * for the player.
+     * 该种子用于在附魔台中为玩家生成附魔选项。
      *
-     * @param seed the player's new enchantment seed
+     * @param seed 玩家的新附魔种子
      */
     public void setEnchantmentSeed(int seed);
 
@@ -330,8 +329,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 检查指定物品是否处于冷却状态。
      * <p>原文：Check whether a cooldown is active on the specified item.
      *
-     * @param item the item to check
-     * @return if a cooldown is active on the item
+     * @param item 要检查的物品
+     * @return 该物品是否处于冷却状态
      */
     public boolean hasCooldown(@NotNull ItemStack item);
 
@@ -339,8 +338,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取指定物品的剩余冷却时间（以tick为单位）。
      * <p>原文：Get the cooldown time in ticks remaining for the specified item.
      *
-     * @param item the item to check
-     * @return the remaining cooldown time in ticks
+     * @param item 要检查的物品
+     * @return 剩余冷却时间（以tick为单位）
      */
     public int getCooldown(@NotNull ItemStack item);
 
@@ -349,20 +348,16 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * <p>原文：Set a cooldown on the specified item for a certain amount of ticks.
      * ticks. 0 ticks will result in the removal of the cooldown.
      * <p>
-     * Cooldowns are used by the server for items such as ender pearls and
-     * shields to prevent them from being used repeatedly.
+     * 冷却被服务器用来针对某些物品比如末影珍珠、盾牌等以防止它们被经常重复使用。
      * <p>
-     * If a {@link UseCooldownComponent} is present then the cooldown is applied
-     * to all items with the same
-     * {@link UseCooldownComponent#getCooldownGroup()} for the current
-     * HumanEntity, otherwise the cooldown is applied to all items with the same
-     * {@link Material}.
+     * 如果存在 {@link UseCooldownComponent}，则冷却会应用于当前 HumanEntity 的所有具有相同
+     * {@link UseCooldownComponent#getCooldownGroup()} 的物品，否则冷却会应用于所有具有相同
+     * {@link Material} 的物品。
      * <p>
-     * Note that cooldowns will not by themselves stop an item from being used
-     * for attacking.
+     * 请注意，冷却时间本身不会阻止物品被用于攻击。
      *
-     * @param item the item to set the cooldown for
-     * @param ticks the amount of ticks to set or 0 to remove
+     * @param item 要设置冷却的物品
+     * @param ticks 要设置的tick数，设为0则移除冷却
      * @see UseCooldownComponent
      */
     public void setCooldown(@NotNull ItemStack item, int ticks);
@@ -380,14 +375,12 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 尝试使实体在指定位置睡觉。
      * <p>原文：Attempts to make the entity sleep at the given location.
      * <br>
-     * The location must be in the current world and have a bed placed at the
-     * location. The game may also enforce other requirements such as proximity
-     * to bed, monsters, and dimension type if force is not set.
+     * 该位置必须在当前世界中且放置了床。如果未设置force参数，游戏还可能强制执行其他要求，例如
+     * 与床的距离、怪物以及维度类型。
      *
-     * @param location the location of the bed
-     * @param force whether to try and sleep at the location even if not
-     * normally possible
-     * @return whether the sleep was successful
+     * @param location 床的位置
+     * @param force 是否尝试在该位置睡觉，即使通常情况下不可能
+     * @return 睡觉是否成功
      */
     public boolean sleep(@NotNull Location location, boolean force);
 
@@ -395,9 +388,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 使玩家醒来（如果他们正在睡觉）。
      * <p>原文：Causes the player to wakeup if they are currently sleeping.
      *
-     * @param setSpawnLocation whether to set their spawn location to the bed
-     * they are currently sleeping in
-     * @throws IllegalStateException if not sleeping
+     * @param setSpawnLocation 是否将重生点设置为他们当前睡觉的床
+     * @throws IllegalStateException 如果玩家没有在睡觉
      */
     public void wakeup(boolean setSpawnLocation);
 
@@ -405,9 +397,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 使玩家开始激流旋转攻击。
      * <p>原文：Make the player start a riptide spin attack.
      *
-     * @param duration spin attack duration in ticks.
-     * @param attackStrength damage value inflicted upon entities hit by spin attack.
-     * @param attackItem item used to attack.
+     * @param duration 旋转攻击持续时间（以tick为单位）
+     * @param attackStrength 旋转攻击命中实体时造成的伤害值
+     * @param attackItem 用于攻击的物品
      */
     public void startRiptideAttack(int duration, float attackStrength, @Nullable ItemStack attackItem);
 
@@ -415,8 +407,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取玩家当前正在睡觉的床的位置。
      * <p>原文：Gets the location of the bed the player is currently sleeping in
      *
-     * @return location
-     * @throws IllegalStateException if not sleeping
+     * @return 床的位置
+     * @throws IllegalStateException 如果玩家没有在睡觉
      */
     @NotNull
     public Location getBedLocation();
@@ -473,10 +465,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取玩家攻击的当前冷却时间。
      * <p>原文：Gets the current cooldown for a player's attack.
      *
-     * This is used to calculate damage, with 1.0 representing a fully charged
-     * attack and 0.0 representing a non-charged attack
+     * 这用于计算伤害，1.0表示完全充能的攻击，0.0表示未充能的攻击。
      *
-     * @return A float between 0.0-1.0 representing the progress of the charge
+     * @return 一个0.0-1.0之间的浮点数，表示充能进度
      */
     public float getAttackCooldown();
 
@@ -486,9 +477,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * discovered. This method will add the key's associated recipe to the
      * player's recipe book.
      *
-     * @param recipe the key of the recipe to discover
+     * @param recipe 要发现的配方的key
      *
-     * @return whether or not the recipe was newly discovered
+     * @return 该配方是否是新发现的
      */
     public boolean discoverRecipe(@NotNull NamespacedKey recipe);
 
@@ -499,11 +490,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * recipes to the player's recipe book. If a recipe in the provided
      * collection has already been discovered, it will be silently ignored.
      *
-     * @param recipes the keys of the recipes to discover
+     * @param recipes 要发现的配方的key集合
      *
-     * @return the amount of newly discovered recipes where 0 indicates that
-     * none were newly discovered and a number equal to {@code recipes.size()}
-     * indicates that all were new
+     * @return 新发现的配方数量，0表示没有新发现的配方，等于 {@code recipes.size()} 的数字表示所有配方都是新发现的
      */
     public int discoverRecipes(@NotNull Collection<NamespacedKey> recipes);
 
@@ -513,10 +502,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * discovered. This method will remove the key's associated recipe from the
      * player's recipe book.
      *
-     * @param recipe the key of the recipe to undiscover
+     * @param recipe 要取消发现的配方的key
      *
-     * @return whether or not the recipe was successfully undiscovered (i.e. it
-     * was previously discovered)
+     * @return 配方是否被成功取消发现（即它之前已被发现）
      */
     public boolean undiscoverRecipe(@NotNull NamespacedKey recipe);
 
@@ -527,11 +515,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * recipes from the player's recipe book. If a recipe in the provided
      * collection has not yet been discovered, it will be silently ignored.
      *
-     * @param recipes the keys of the recipes to undiscover
+     * @param recipes 要取消发现的配方的key集合
      *
-     * @return the amount of undiscovered recipes where 0 indicates that none
-     * were undiscovered and a number equal to {@code recipes.size()} indicates
-     * that all were undiscovered
+     * @return 被取消发现的配方数量，0表示没有被取消发现的配方，等于 {@code recipes.size()} 的数字表示所有配方都被取消发现
      */
     public int undiscoverRecipes(@NotNull Collection<NamespacedKey> recipes);
 
@@ -539,9 +525,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 检查此实体是否已发现指定配方。
      * <p>原文：Check whether or not this entity has discovered the specified recipe.
      *
-     * @param recipe the key of the recipe to check
+     * @param recipe 要检查的配方的key
      *
-     * @return true if discovered, false otherwise
+     * @return 如果已发现则返回true，否则返回false
      */
     public boolean hasDiscoveredRecipe(@NotNull NamespacedKey recipe);
 
@@ -549,7 +535,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取此实体已发现的配方的不可变集合。
      * <p>原文：Get an immutable set of recipes this entity has discovered.
      *
-     * @return all discovered recipes
+     * @return 所有已发现的配方
      */
     @NotNull
     public Set<NamespacedKey> getDiscoveredRecipes();
@@ -638,11 +624,10 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 使实体丢弃手中的物品。
      * <p>原文：Make the entity drop the item in their hand.
      * <br>
-     * This will force the entity to drop the item they are holding with
-     * an option to drop the entire {@link ItemStack} or just 1 of the items.
+     * 这将强制实体丢弃他们持有的物品，可选择丢弃整个 {@link ItemStack} 或只丢弃1个物品。
      *
-     * @param dropAll True to drop entire stack, false to drop 1 of the stack
-     * @return True if item was dropped successfully
+     * @param dropAll 设为true丢弃整个物品堆，设为false只丢弃1个物品
+     * @return 如果物品成功丢弃则返回true
      */
     public boolean dropItem(boolean dropAll);
 
@@ -724,7 +709,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * the HumanEntity when they have saturation and
      * their food level is {@literal >=} 20. Default is 10.
      *
-     * @return the regeneration rate
+     * @return 再生速率
      */
     public int getSaturatedRegenRate();
 
@@ -735,7 +720,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * their food level is {@literal >=} 20. Default is 10.
      * Not affected if the world's difficulty is peaceful.
      *
-     * @param ticks the amount of ticks to gain 1 health.
+     * @param ticks 恢复1点生命值所需的tick数
      */
     public void setSaturatedRegenRate(int ticks);
 
@@ -745,18 +730,18 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * the HumanEntity when they have no saturation and
      * their food level is {@literal >=} 18. Default is 80.
      *
-     * @return the regeneration rate
+     * @return 再生速率
      */
     public int getUnsaturatedRegenRate();
 
     /**
      * 设置玩家在没有饱食度且食物等级 {@literal >=} 18 时的再生速率（每x tick恢复1点生命值）。默认为80。
-     * <p>原文：Get the regeneration rate (1 health per x ticks) of
+     * <p>原文：Set the regeneration rate (1 health per x ticks) of
      * the HumanEntity when they have no saturation and
      * their food level is {@literal >=} 18. Default is 80.
      * Not affected if the world's difficulty is peaceful.
      *
-     * @param ticks the amount of ticks to gain 1 health.
+     * @param ticks 恢复1点生命值所需的tick数
      */
     public void setUnsaturatedRegenRate(int ticks);
 
@@ -765,16 +750,16 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * <p>原文：Get the starvation rate (1 health per x ticks) of
      * the HumanEntity. Default is 80.
      *
-     * @return the starvation rate
+     * @return 饥饿速率
      */
     public int getStarvationRate();
 
     /**
      * 设置玩家的饥饿速率（每x tick失去1点生命值）。默认为80。
-     * <p>原文：Get the starvation rate (1 health per x ticks) of
+     * <p>原文：Set the starvation rate (1 health per x ticks) of
      * the HumanEntity. Default is 80.
      *
-     * @param ticks the amount of ticks to lose 1 health
+     * @param ticks 失去1点生命值所需的tick数
      */
     public void setStarvationRate(int ticks);
 
@@ -782,7 +767,7 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取玩家上次死亡的位置。
      * <p>原文：Gets the player's last death location.
      *
-     * @return the last death location if it exists, otherwise null.
+     * @return 上次死亡的位置，如果不存在则返回null
      */
     @Nullable
     public Location getLastDeathLocation();
@@ -791,10 +776,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 设置玩家上次死亡的位置。
      * <p>原文：Sets the player's last death location.
      * <br>
-     * <b>Note:</b> This data is updated in the player's client only when the
-     * player respawns.
+     * <b>注意：</b>此数据仅在玩家重生时才会在玩家客户端更新。
      *
-     * @param location where to set the last death player location
+     * @param location 要设置的上次死亡位置
      */
     public void setLastDeathLocation(@Nullable Location location);
 
@@ -802,15 +786,12 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 执行烟花火箭加速。
      * <p>原文：Perform a firework boost.
      * <p>
-     * This method will only work such that {@link #isGliding()} is true and
-     * the entity is actively gliding with an elytra. Additionally, the supplied
-     * {@code fireworkItemStack} must be a firework rocket. The power of the boost
-     * will directly correlate to {@link FireworkMeta#getPower()}.
+     * 此方法仅在 {@link #isGliding()} 为true且实体正在使用鞘翅滑翔时有效。此外，提供的
+     * {@code fireworkItemStack} 必须是烟花火箭。加速的威力将直接关联到 {@link FireworkMeta#getPower()}。
      *
-     * @param fireworkItemStack the firework item stack to use to glide
-     * @return the attached {@link Firework}, or null if the entity could not
-     * be boosted
-     * @throws IllegalArgumentException if the fireworkItemStack is not a firework
+     * @param fireworkItemStack 用于滑翔的烟花火箭物品堆
+     * @return 附加的 {@link Firework}，如果实体无法被加速则返回null
+     * @throws IllegalArgumentException 如果fireworkItemStack不是烟花火箭
      */
     @Nullable
     public Firework fireworkBoost(@NotNull ItemStack fireworkItemStack);
