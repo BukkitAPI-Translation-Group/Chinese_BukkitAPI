@@ -89,35 +89,43 @@ public interface Sign extends TileState, Colorable {
     public void setEditable(boolean editable);
 
     /**
-     * Gets whether or not this sign has been waxed. If a sign has been waxed, it
+     * 获取此告示牌是否已被涂蜡. 如果告示牌已被涂蜡, 则玩家无法编辑.
+     * <p>
+     * 原文:Gets whether or not this sign has been waxed. If a sign has been waxed, it
      * cannot be edited by a player.
      *
-     * @return if this sign is waxed
+     * @return 此告示牌是否已被涂蜡
      */
     public boolean isWaxed();
 
     /**
-     * Sets whether or not this sign has been waxed. If a sign has been waxed, it
+     * 设置此告示牌是否已被涂蜡. 如果告示牌已被涂蜡, 则玩家无法编辑.
+     * <p>
+     * 原文:Sets whether or not this sign has been waxed. If a sign has been waxed, it
      * cannot be edited by a player.
      *
-     * @param waxed if this sign is waxed
+     * @param waxed 此告示牌是否已被涂蜡
      */
     public void setWaxed(boolean waxed);
 
     /**
-     * Gets whether this sign has glowing text. Only affects the {@link Side#FRONT}.
+     * 获取此告示牌是否有发光文本. 仅影响 {@link Side#FRONT}.
+     * <p>
+     * 原文:Gets whether this sign has glowing text. Only affects the {@link Side#FRONT}.
      *
-     * @return if this sign has glowing text
-     * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#isGlowingText()}.
+     * @return 此告示牌是否有发光文本
+     * @deprecated 告示牌现在可以有多个可写面. 请使用 {@link #getSide(Side)} 和 {@link SignSide#isGlowingText()}.
      */
     @Deprecated(since = "1.20")
     public boolean isGlowingText();
 
     /**
-     * Sets whether this sign has glowing text. Only affects the {@link Side#FRONT}.
+     * 设置此告示牌是否有发光文本. 仅影响 {@link Side#FRONT}.
+     * <p>
+     * 原文:Sets whether this sign has glowing text. Only affects the {@link Side#FRONT}.
      *
-     * @param glowing if this sign has glowing text
-     * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#setGlowingText(boolean)}.
+     * @param glowing 此告示牌是否有发光文本
+     * @deprecated 告示牌现在可以有多个可写面. 请使用 {@link #getSide(Side)} 和 {@link SignSide#setGlowingText(boolean)}.
      */
     @Deprecated(since = "1.20")
     public void setGlowingText(boolean glowing);
@@ -125,7 +133,7 @@ public interface Sign extends TileState, Colorable {
     /**
      * {@inheritDoc}
      *
-     * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#getColor()}.
+     * @deprecated 告示牌现在可以有多个可写面. 请使用 {@link #getSide(Side)} 和 {@link SignSide#getColor()}.
      */
     @NotNull
     @Override
@@ -135,35 +143,42 @@ public interface Sign extends TileState, Colorable {
     /**
      * {@inheritDoc}
      *
-     * @deprecated A sign may have multiple writable sides now. Use {@link #getSide(Side)} and {@link SignSide#setColor(org.bukkit.DyeColor)}.
+     * @deprecated 告示牌现在可以有多个可写面. 请使用 {@link #getSide(Side)} 和 {@link SignSide#setColor(org.bukkit.DyeColor)}.
      */
     @Override
     @Deprecated(since = "1.20")
     public void setColor(@NotNull DyeColor color);
 
     /**
-     * Return the side of the sign.
+     * 返回告示牌的指定面.
+     * <p>
+     * 原文:Return the side of the sign.
      *
-     * @param side the side of the sign
-     * @return the selected side of the sign
+     * @param side 告示牌的面
+     * @return 告示牌的选定面
      */
     @NotNull
     public SignSide getSide(@NotNull Side side);
 
     /**
-     * Gets the side of this sign the given player is currently standing on.
+     * 获取给定玩家当前所站的告示牌面.
+     * <p>
+     * 原文:Gets the side of this sign the given player is currently standing on.
      *
-     * @param player the player
-     * @return the side the player is standing on
+     * @param player 玩家
+     * @return 玩家所站的告示牌面
      */
     @NotNull
     public SignSide getTargetSide(@NotNull Player player);
 
     /**
-     * Gets the player that is currently allowed to edit this sign. <br>
+     * 获取当前被允许编辑此告示牌的玩家. <br>
+     * 如果此值不为 null, 则其他玩家的编辑将被拒绝.
+     * <p>
+     * 原文:Gets the player that is currently allowed to edit this sign. <br>
      * Edits from other players will be rejected if this value is not null.
      *
-     * @return the player allowed to edit this sign, or null
+     * @return 被允许编辑此告示牌的玩家, 或 null
      */
     @Nullable
     public Player getAllowedEditor();
