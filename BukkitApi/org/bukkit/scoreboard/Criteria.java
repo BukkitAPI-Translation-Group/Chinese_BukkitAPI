@@ -195,7 +195,7 @@ public interface Criteria {
      * <p>
      * 原文：Get the name of this criteria (its unique id).
      *
-     * @return the name
+     * @return 名称
      */
     @NotNull
     public String getName();
@@ -205,7 +205,7 @@ public interface Criteria {
      * <p>
      * 原文：Get whether or not this criteria is read only. If read only, scoreboards with this criteria cannot have their scores changed.
      *
-     * @return true if read only, false otherwise
+     * @return 如果为只读则返回 true，否则返回 false
      */
     public boolean isReadOnly();
 
@@ -214,7 +214,7 @@ public interface Criteria {
      * <p>
      * 原文：Get the {@link RenderType} used by default for this criteria.
      *
-     * @return the default render type
+     * @return 默认渲染类型
      */
     @NotNull
     public RenderType getDefaultRenderType();
@@ -230,12 +230,12 @@ public interface Criteria {
      * <p>
      * 原文：Get a {@link Criteria} for the specified statistic pertaining to blocks or items. This method expects a {@link Statistic} of {@link Type#BLOCK} or {@link Type#ITEM} and the {@link Material} matching said type (e.g. BLOCK statistics require materials where {@link Material#isBlock()} is true). This acts as a convenience to create more complex compound criteria such as those that increment on block breaks, or item uses. An example would be {@code Criteria.statistic(Statistic.CRAFT_ITEM, Material.STICK)}, returning a Criteria representing "minecraft.crafted:minecraft.stick" which will increment when the player crafts a stick. If the provided statistic does not require additional data, {@link #statistic(Statistic)} is called and returned instead. This method provides no guarantee that any given criteria exists on the vanilla server.
      *
-     * @param statistic the statistic for which to get a criteria
-     * @param material the relevant material
-     * @return the criteria
-     * @throws IllegalArgumentException if {@link Statistic#getType()} is anything other than {@link Type#BLOCK} or {@link Type#ITEM}
-     * @throws IllegalArgumentException if {@link Statistic#getType()} is {@link Type#BLOCK}, but {@link Material#isBlock()} is false
-     * @throws IllegalArgumentException if {@link Statistic#getType()} is {@link Type#ITEM}, but {@link Material#isItem()} is false
+     * @param statistic 要获取条件的统计信息
+     * @param material 相关材料
+     * @return 条件
+     * @throws IllegalArgumentException 如果 {@link Statistic#getType()} 不是 {@link Type#BLOCK} 或 {@link Type#ITEM}
+     * @throws IllegalArgumentException 如果 {@link Statistic#getType()} 是 {@link Type#BLOCK}，但 {@link Material#isBlock()} 为 false
+     * @throws IllegalArgumentException 如果 {@link Statistic#getType()} 是 {@link Type#ITEM}，但 {@link Material#isItem()} 为 false
      */
     @NotNull
     public static Criteria statistic(@NotNull Statistic statistic, @NotNull Material material) {
@@ -286,10 +286,10 @@ public interface Criteria {
      * <p>
      * 原文：Get a {@link Criteria} for the specified statistic pertaining to an entity type. This method expects a {@link Statistic} of {@link Type#ENTITY}. This acts as a convenience to create more complex compound criteria such as being killed by a specific entity type. An example would be {@code Criteria.statistic(Statistic.KILL_ENTITY, EntityType.CREEPER)}, returning a Criteria representing "minecraft.killed:minecraft.creeper" which will increment when the player kills a creepers. If the provided statistic does not require additional data, {@link #statistic(Statistic)} is called and returned instead. This method provides no guarantee that any given criteria exists on the vanilla server.
      *
-     * @param statistic the statistic for which to get a criteria
-     * @param entityType the relevant entity type
-     * @return the criteria
-     * @throws IllegalArgumentException if {@link Statistic#getType()} is not {@link Type#ENTITY}
+     * @param statistic 要获取条件的统计信息
+     * @param entityType 相关实体类型
+     * @return 条件
+     * @throws IllegalArgumentException 如果 {@link Statistic#getType()} 不是 {@link Type#ENTITY}
      */
     @NotNull
     public static Criteria statistic(@NotNull Statistic statistic, @NotNull EntityType entityType) {
@@ -318,8 +318,8 @@ public interface Criteria {
      * <p>
      * 原文：Get a {@link Criteria} for the specified statistic. An example would be {@code Criteria.statistic(Statistic.FLY_ONE_CM)}, returning a Criteria representing "minecraft.custom:minecraft.aviate_one_cm" which will increment when the player flies with an elytra. This method provides no guarantee that any given criteria exists on the vanilla server. All statistics are accepted, however some may not operate as expected if additional data is required. For block/item-related statistics, see {@link #statistic(Statistic, Material)}, and for entity-related statistics, see {@link #statistic(Statistic, EntityType)}
      *
-     * @param statistic the statistic for which to get a criteria
-     * @return the criteria
+     * @param statistic 要获取条件的统计信息
+     * @return 条件
      */
     @NotNull
     public static Criteria statistic(@NotNull Statistic statistic) {
@@ -332,8 +332,8 @@ public interface Criteria {
      * <p>
      * 原文：Get (or create) a new {@link Criteria} by its name.
      *
-     * @param name the criteria name
-     * @return the created criteria
+     * @param name 条件名称
+     * @return 创建的条件
      */
     @NotNull
     public static Criteria create(@NotNull String name) {

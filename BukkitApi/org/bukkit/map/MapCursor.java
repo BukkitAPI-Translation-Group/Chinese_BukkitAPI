@@ -253,9 +253,11 @@ public final class MapCursor {
     }
 
     /**
-     * Gets the caption on this cursor.
+     * 获取此光标的标题。
+     * <p>
+     * 原文：Gets the caption on this cursor.
      *
-     * @return caption
+     * @return 标题
      */
     @Nullable
     public String getCaption() {
@@ -263,9 +265,11 @@ public final class MapCursor {
     }
 
     /**
-     * Sets the caption on this cursor.
+     * 设置此光标的标题。
+     * <p>
+     * 原文：Sets the caption on this cursor.
      *
-     * @param caption new caption
+     * @param caption 新标题
      */
     public void setCaption(@Nullable String caption) {
         this.caption = caption;
@@ -328,7 +332,7 @@ public final class MapCursor {
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()
-         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
          */
         @NotNull
         @Override
@@ -336,20 +340,24 @@ public final class MapCursor {
         NamespacedKey getKey();
 
         /**
-         * Gets the internal value of the cursor.
+         * 获取光标的内部值。
+         * <p>
+         * 原文：Gets the internal value of the cursor.
          *
-         * @return the value
-         * @deprecated Magic value
+         * @return 内部值
+         * @deprecated 魔法值
          */
         @Deprecated(since = "1.6.2")
         byte getValue();
 
         /**
-         * Get a cursor by its internal value.
+         * 通过内部值获取光标类型。
+         * <p>
+         * 原文：Get a cursor by its internal value.
          *
-         * @param value the value
-         * @return the matching type
-         * @deprecated Magic value
+         * @param value 内部值
+         * @return 匹配的类型
+         * @deprecated 魔法值
          */
         @Deprecated(since = "1.6.2")
         @Nullable
@@ -361,9 +369,13 @@ public final class MapCursor {
         }
 
         /**
-         * @param name of the type.
-         * @return the type with the given name.
-         * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+         * 通过名称获取光标类型。
+         * <p>
+         * 原文：Get a cursor type by name.
+         *
+         * @param name 类型的名称
+         * @return 具有给定名称的类型
+         * @deprecated 仅为向后兼容，请改用 {@link Registry#get(NamespacedKey)}。
          */
         @NotNull
         @Deprecated(since = "1.21")
@@ -374,8 +386,12 @@ public final class MapCursor {
         }
 
         /**
-         * @return an array of all known map cursor types.
-         * @deprecated use {@link Registry#iterator()}.
+         * 获取所有已知地图光标类型的数组。
+         * <p>
+         * 原文：Get an array of all known map cursor types.
+         *
+         * @return 所有已知地图光标类型的数组
+         * @deprecated 请使用 {@link Registry#iterator()}。
          */
         @NotNull
         @Deprecated(since = "1.21")
