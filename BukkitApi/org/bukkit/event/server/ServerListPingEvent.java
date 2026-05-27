@@ -58,10 +58,11 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
     }
 
     /**
-     * Gets the hostname that the player used to connect to the server, or
-     * blank if unknown
+     * 获取玩家连接服务器时使用的主机名，若未知则为空字符串。
+     * <p>
+     * 原文：Gets the hostname that the player used to connect to the server, or blank if unknown.
      *
-     * @return The hostname
+     * @return 主机名
      */
     @NotNull
     public String getHostname() {
@@ -138,11 +139,12 @@ public class ServerListPingEvent extends ServerEvent implements Iterable<Player>
     }
 
     /**
-     * Gets whether the server needs to send a preview of the chat to the
-     * client.
+     * 获取服务器是否需要向客户端发送聊天预览。
+     * <p>
+     * 原文：Gets whether the server needs to send a preview of the chat to the client.
      *
-     * @return true if chat preview is enabled, false otherwise
-     * @deprecated chat previews have been removed
+     * @return 如果聊天预览已启用则为true，否则为false
+     * @deprecated 聊天预览已被移除
      */
     @Deprecated(since = "1.19.3")
     public boolean shouldSendChatPreviews() {
