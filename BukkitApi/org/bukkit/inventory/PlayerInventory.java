@@ -14,9 +14,8 @@ public interface PlayerInventory extends Inventory {
      * <p>原文: 
      * Gets all ItemStacks from the armor slots.
      *
-     * @return all the ItemStacks from the armor slots. Individual items can be
-     * null and are returned in a fixed order starting from the boots and going
-     * up to the helmet
+     * @return 装备槽内的全部物品栈. 个别条目可能为null, 以固定顺序返回,
+     * 从靴子槽开始一直到头盔槽.
      */
     @NotNull
     public ItemStack[] getArmorContents();
@@ -119,21 +118,25 @@ public interface PlayerInventory extends Inventory {
     public void setItem(int index, @Nullable ItemStack item);
 
     /**
-     * Stores the ItemStack at the given equipment slot in the inventory.
+     * 将给定的物品栈设置到指定的装备槽位中.
+     * <p>
+     * 原文:Stores the ItemStack at the given equipment slot in the inventory.
      *
-     * @param slot the slot to put the ItemStack
-     * @param item the ItemStack to set
+     * @param slot 要放置物品的槽位
+     * @param item 要设置的物品栈
      *
      * @see #setItem(int, ItemStack)
      */
     public void setItem(@NotNull EquipmentSlot slot, @Nullable ItemStack item);
 
     /**
-     * Gets the ItemStack at the given equipment slot in the inventory.
+     * 获取指定装备槽位中的物品栈.
+     * <p>
+     * 原文:Gets the ItemStack at the given equipment slot in the inventory.
      *
-     * @param slot the slot to get the ItemStack
+     * @param slot 要获取物品的槽位
      *
-     * @return the ItemStack in the given slot or null if there is not one
+     * @return 指定槽位中的物品栈, 如果该槽位没有物品则返回null
      */
     @Nullable
     public ItemStack getItem(@NotNull EquipmentSlot slot);
@@ -240,26 +243,28 @@ public interface PlayerInventory extends Inventory {
     void setItemInOffHand(@Nullable ItemStack item);
 
     /**
-     * 玩家可以双持了，不再详细介绍.Gets a copy of the item the player is currently holding
+     * 玩家可以双持了，不再详细介绍. 获取玩家当前握着的物品(的副本).
+     * <p>
+     * 原文:Gets a copy of the item the player is currently holding.
      *
      * @see #getItemInMainHand()
      * @see #getItemInOffHand()
-     * @return the currently held item
-     * @deprecated players can duel wield now use the methods for the
-     *      specific hand instead
+     * @return 当前握着的物品
+     * @deprecated 玩家现在可以双持了, 请使用针对特定手的方法代替.
      */
     @Deprecated(since = "1.9")
     @NotNull
     public ItemStack getItemInHand();
 
     /**
-     * 玩家可以双持了,不再详细介绍.Sets the item the player is holding
+     * 玩家可以双持了, 不再详细介绍. 设置玩家当前握着的物品.
+     * <p>
+     * 原文:Sets the item the player is holding.
      *
      * @see #setItemInMainHand(ItemStack)
      * @see #setItemInOffHand(ItemStack)
-     * @param stack The item to put into the player's hand
-     * @deprecated players can duel wield now use the methods for the
-     *      specific hand instead
+     * @param stack 要放入玩家手中的物品
+     * @deprecated 玩家现在可以双持了, 请使用针对特定手的方法代替.
      */
     @Deprecated(since = "1.9")
     public void setItemInHand(@Nullable ItemStack stack);
