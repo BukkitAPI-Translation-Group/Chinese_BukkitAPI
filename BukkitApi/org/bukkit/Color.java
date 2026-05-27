@@ -112,14 +112,16 @@ public final class Color implements ConfigurationSerializable {
     private final byte blue;
 
     /**
-     * Creates a new Color object from an alpha, red, green, and blue
+     * 用透明度、红、绿、蓝创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object from an alpha, red, green, and blue
      *
-     * @param alpha integer from 0-255
-     * @param red integer from 0-255
-     * @param green integer from 0-255
-     * @param blue integer from 0-255
-     * @return a new Color object for the alpha, red, green, blue
-     * @throws IllegalArgumentException if any value is strictly {@literal >255 or <0}
+     * @param alpha 0-255的整数
+     * @param red 0-255的整数
+     * @param green 0-255的整数
+     * @param blue 0-255的整数
+     * @return 一个包含指定透明度、红、绿、蓝值的新颜色对象
+     * @throws IllegalArgumentException 如果任何值严格 {@literal >255 或 <0}
      */
     @NotNull
     public static Color fromARGB(int alpha, int red, int green, int blue) throws IllegalArgumentException {
@@ -127,13 +129,15 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * 用 红,绿,蓝 创建一个新的颜色对象
+     * 用红、绿、蓝创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object from an alpha, red, green, and blue
      *
-     * @param red integer 取值0-255
-     * @param green integer 取值 0-255
-     * @param blue integer 取值 0-255
+     * @param red 0-255的整数
+     * @param green 0-255的整数
+     * @param blue 0-255的整数
      * @return 一个RGB颜色对象
-     * @throws IllegalArgumentException if any value is strictly {@literal >255 or <0}
+     * @throws IllegalArgumentException 如果任何值严格 {@literal >255 或 <0}
      */
     @NotNull
     public static Color fromRGB(int red, int green, int blue) throws IllegalArgumentException {
@@ -141,13 +145,15 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * 用 蓝,绿,红 创建一个新的颜色对象
+     * 用蓝、绿、红创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object from an alpha, red, green, and blue
      *
-     * @param blue integer 取值 0-255
-     * @param green integer 取值 0-255
-     * @param red integer 取值 0-255
-     * @return a new Color object for the red, green, blue
-     * @throws IllegalArgumentException 任何一个参数超出 {@literal >255 or <0} 范围
+     * @param blue 0-255的整数
+     * @param green 0-255的整数
+     * @param red 0-255的整数
+     * @return 一个包含指定红、绿、蓝值的新颜色对象
+     * @throws IllegalArgumentException 任何一个参数超出 {@literal >255 或 <0} 范围
      */
     @NotNull
     public static Color fromBGR(int blue, int green, int red) throws IllegalArgumentException {
@@ -155,12 +161,14 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * 从一个RGB整数中创建一个新的颜色对象，该对象包含最低24bits
+     * 从一个RGB整数中创建一个新的颜色对象，该对象包含最低24位.
+     * <p>
+     * 原文：Creates a new Color object from an integer that contains the alpha, red,
+     * green, and blue bytes.
      *
-     * @param rgb the integer storing the red, green, and blue values
-     * @return a new color object for specified values
-     * @throws IllegalArgumentException if any data is in the highest order 8
-     *     bits
+     * @param rgb 存储红、绿、蓝值的整数
+     * @return 一个包含指定值的新颜色对象
+     * @throws IllegalArgumentException 如果最高8位有任何数据
      */
     @NotNull
     public static Color fromRGB(int rgb) throws IllegalArgumentException {
@@ -169,11 +177,13 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Creates a new color object from an integer that contains the alpha, red,
+     * 从一个包含透明度、红、绿、蓝字节的整数中创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new color object from an integer that contains the alpha, red,
      * green, and blue bytes.
      *
-     * @param argb the integer storing the alpha, red, green, and blue values
-     * @return a new color object for specified values
+     * @param argb 存储透明度、红、绿、蓝值的整数
+     * @return 一个包含指定值的新颜色对象
      */
     @NotNull
     public static Color fromARGB(int argb) {
@@ -181,13 +191,14 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Creates a new color object from an integer that contains the blue,
+     * 从一个包含蓝、绿、红字节的整数中创建一个新的颜色对象，该整数在最低24位中存储.
+     * <p>
+     * 原文：Creates a new color object from an integer that contains the blue,
      * green, and red bytes in the lowest order 24 bits.
      *
-     * @param bgr the integer storing the blue, green, and red values
-     * @return a new color object for specified values
-     * @throws IllegalArgumentException if any data is in the highest order 8
-     *     bits
+     * @param bgr 存储蓝、绿、红值的整数
+     * @return 一个包含指定值的新颜色对象
+     * @throws IllegalArgumentException 如果最高8位有任何数据
      */
     @NotNull
     public static Color fromBGR(int bgr) throws IllegalArgumentException {
@@ -212,19 +223,23 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Gets the alpha component
+     * 获取透明度分量.
+     * <p>
+     * 原文：Gets the alpha component
      *
-     * @return alpha component, from 0 to 255
+     * @return 透明度分量，范围0-255
      */
     public int getAlpha() {
         return BIT_MASK & alpha;
     }
 
     /**
-     * Creates a new Color object with specified component
+     * 用指定的透明度分量创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object with specified component
      *
-     * @param alpha the alpha component, from 0 to 255
-     * @return a new color object with the red component
+     * @param alpha 透明度分量，范围0-255
+     * @return 一个包含指定透明度分量的新颜色对象
      */
     @NotNull
     public Color setAlpha(int alpha) {
@@ -232,19 +247,23 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Gets the red component
+     * 获取红色分量.
+     * <p>
+     * 原文：Gets the red component
      *
-     * @return red component, from 0 to 255
+     * @return 红色分量，范围0-255
      */
     public int getRed() {
         return BIT_MASK & red;
     }
 
     /**
-     * Creates a new Color object with specified component
+     * 用指定的红色分量创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object with specified component
      *
-     * @param red the red component, from 0 to 255
-     * @return a new color object with the red component
+     * @param red 红色分量，范围0-255
+     * @return 一个包含指定红色分量的新颜色对象
      */
     @NotNull
     public Color setRed(int red) {
@@ -252,19 +271,23 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Gets the green component
+     * 获取绿色分量.
+     * <p>
+     * 原文：Gets the green component
      *
-     * @return green component, from 0 to 255
+     * @return 绿色分量，范围0-255
      */
     public int getGreen() {
         return BIT_MASK & green;
     }
 
     /**
-     * Creates a new Color object with specified component
+     * 用指定的绿色分量创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object with specified component
      *
-     * @param green the red component, from 0 to 255
-     * @return a new color object with the red component
+     * @param green 绿色分量，范围0-255
+     * @return 一个包含指定绿色分量的新颜色对象
      */
     @NotNull
     public Color setGreen(int green) {
@@ -272,19 +295,23 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Gets the blue component
+     * 获取蓝色分量.
+     * <p>
+     * 原文：Gets the blue component
      *
-     * @return blue component, from 0 to 255
+     * @return 蓝色分量，范围0-255
      */
     public int getBlue() {
         return BIT_MASK & blue;
     }
 
     /**
-     * Creates a new Color object with specified component
+     * 用指定的蓝色分量创建一个新的颜色对象.
+     * <p>
+     * 原文：Creates a new Color object with specified component
      *
-     * @param blue the red component, from 0 to 255
-     * @return a new color object with the red component
+     * @param blue 蓝色分量，范围0-255
+     * @return 一个包含指定蓝色分量的新颜色对象
      */
     @NotNull
     public Color setBlue(int blue) {
@@ -292,37 +319,46 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
+     * 获取此颜色的RGB整数表示.
+     * <p>
+     * 原文：Gets the color as an RGB integer.
      *
-     * @return An integer representation of this color, as 0xRRGGBB
+     * @return 此颜色的整数表示，格式为0xRRGGBB
      */
     public int asRGB() {
         return getRed() << 16 | getGreen() << 8 | getBlue();
     }
 
     /**
-     * Gets the color as an ARGB integer.
+     * 获取此颜色的ARGB整数表示.
+     * <p>
+     * 原文：Gets the color as an ARGB integer.
      *
-     * @return An integer representation of this color, as 0xAARRGGBB
+     * @return 此颜色的整数表示，格式为0xAARRGGBB
      */
     public int asARGB() {
         return getAlpha() << 24 | getRed() << 16 | getGreen() << 8 | getBlue();
     }
 
     /**
-     * Gets the color as an BGR integer.
+     * 获取此颜色的BGR整数表示.
+     * <p>
+     * 原文：Gets the color as an BGR integer.
      *
-     * @return An integer representation of this color, as 0xBBGGRR
+     * @return 此颜色的整数表示，格式为0xBBGGRR
      */
     public int asBGR() {
         return getBlue() << 16 | getGreen() << 8 | getRed();
     }
 
     /**
-     * Creates a new color with its RGB components changed as if it was dyed
+     * 使用传入的染料颜色对当前颜色的RGB分量进行染色，创建一个新的颜色，模拟原版工作台染色.
+     * <p>
+     * 原文：Creates a new color with its RGB components changed as if it was dyed
      * with the colors passed in, replicating vanilla workbench dyeing
      *
-     * @param colors The DyeColors to dye with
-     * @return A new color with the changed rgb components
+     * @param colors 用于染色的染料颜色
+     * @return 一个RGB分量改变后的新颜色
      */
     // TODO: Javadoc what this method does, not what it mimics. API != Implementation
     @NotNull
@@ -338,14 +374,18 @@ public final class Color implements ConfigurationSerializable {
     }
 
     /**
-     * Creates a new color with its RGB components changed as if it was dyed
+     * 使用传入的颜色对当前颜色的RGB分量进行染色，创建一个新的颜色，模拟原版工作台染色.
+     * <p>
+     * 原文：Creates a new color with its RGB components changed as if it was dyed
      * with the colors passed in, replicating vanilla workbench dyeing.
      *
-     * <b>Note that this method does not currently take into account alpha
+     * <b>注意：此方法当前不考虑透明度分量.</b>
+     * <p>
+     * 原文：<b>Note that this method does not currently take into account alpha
      * components.</b>
      *
-     * @param colors The colors to dye with
-     * @return A new color with the changed rgb components
+     * @param colors 用于染色的颜色
+     * @return 一个RGB分量改变后的新颜色
      */
     // TODO: Javadoc what this method does, not what it mimics. API != Implementation
     @NotNull
