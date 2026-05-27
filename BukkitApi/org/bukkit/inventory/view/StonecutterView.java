@@ -16,37 +16,30 @@ public interface StonecutterView extends InventoryView {
     StonecutterInventory getTopInventory();
 
     /**
-     * 获取当前选中配方的索引。
-     *
-     * @return 切石机中选中配方的索引，如果为null则返回-1
+     * 获取当前选中配方的索引.
      * <p>
      * 原文：Gets the current index of the selected recipe.
      *
-     * @return The index of the selected recipe in the stonecutter or -1 if null
+     * @return 切石机中选中配方的索引, 如果为null则返回-1
      */
     int getSelectedRecipeIndex();
 
     /**
-     * 获取玩家当前可用的所有配方副本。
-     *
-     * @return 玩家当前可用的 {@link StonecuttingRecipe} 副本
+     * 获取玩家当前可用的所有配方副本.
      * <p>
      * 原文：Gets a copy of all recipes currently available to the player.
      *
-     * @return A copy of the {@link StonecuttingRecipe}'s currently available
-     * for the player
+     * @return 玩家当前可用的{@link StonecuttingRecipe}副本
      */
     @NotNull
     List<StonecuttingRecipe> getRecipes();
 
     /**
-     * 获取当前可用的配方数量。
-     *
-     * @return 玩家当前可用的配方数量
+     * 获取当前可用的配方数量.
      * <p>
      * 原文：Gets the amount of recipes currently available.
      *
-     * @return The amount of recipes currently available for the player
+     * @return 玩家当前可用的配方数量
      */
     int getRecipeAmount();
 }
