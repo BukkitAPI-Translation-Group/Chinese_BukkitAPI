@@ -9,7 +9,7 @@ public interface InventoryHolder {
      * <p>
      * 原文:Get the object's inventory.
      *
-     * @return The inventory.
+     * @return 该对象的物品栏.
      */
     @NotNull
     public Inventory getInventory();
