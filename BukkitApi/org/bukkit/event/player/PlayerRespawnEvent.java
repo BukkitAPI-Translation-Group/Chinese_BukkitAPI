@@ -72,18 +72,24 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
+     * 获取重生位置是否为玩家的重生锚.
+     * <p>
+     * 原文:
      * Gets whether the respawn location is the player's respawn anchor.
      *
-     * @return true if the respawn location is the player's respawn anchor.
+     * @return 如果重生位置是玩家的重生锚则返回true
      */
     public boolean isAnchorSpawn() {
         return isAnchorSpawn;
     }
 
     /**
+     * 获取此重生事件被触发的原因.
+     * <p>
+     * 原文:
      * Gets the reason this respawn event was called.
      *
-     * @return the reason the event was called.
+     * @return 事件被触发的原因
      */
     @NotNull
     public RespawnReason getRespawnReason() {
@@ -102,20 +108,20 @@ public class PlayerRespawnEvent extends PlayerEvent {
     }
 
     /**
-     * An enum to specify the reason a respawn event was called.
+     * 用于指定重生事件被触发原因的枚举.
      */
     public enum RespawnReason {
 
         /**
-         * When the player dies and presses the respawn button.
+         * 当玩家死亡并按下重生按钮时.
          */
         DEATH,
         /**
-         * When the player exits the end through the end portal.
+         * 当玩家通过末地传送门离开末地时.
          */
         END_PORTAL,
         /**
-         * When a plugin respawns the player.
+         * 当插件使玩家重生时.
          */
         PLUGIN;
     }
