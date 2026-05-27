@@ -146,10 +146,15 @@ public class AttributeModifier implements ConfigurationSerializable, Keyed {
     }
 
     /**
+     * 获取该修饰符生效的 {@link EquipmentSlotGroup}.
+     * <p>
+     * 若该修饰符可以在任意槽位生效, 返回 {@link EquipmentSlotGroup#ANY}.
+     * <p>
+     * 原文:
      * Get the {@link EquipmentSlot} this AttributeModifier is active on,
      * or null if this modifier is applicable for any slot.
      *
-     * @return the slot
+     * @return 目标槽位组
      */
     @NotNull
     public EquipmentSlotGroup getSlotGroup() {
@@ -242,8 +247,9 @@ public class AttributeModifier implements ConfigurationSerializable, Keyed {
          */
         ADD_SCALAR,
         /**
-         * 将该值 +1 后乘以基值
-         * Multiply amount by this value, after adding 1 to it
+         * 将该值 +1 后乘以基值.
+         * <p>
+         * 原文: Multiply amount by this value, after adding 1 to it.
          */
         MULTIPLY_SCALAR_1;
     }
