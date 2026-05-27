@@ -5,8 +5,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.minecart.SpawnerMinecart;
 
 /**
- * Represents an entity spawner. <br>
- * May be a {@link SpawnerMinecart} or a {@link CreatureSpawner}.
+ * 表示一个实体刷怪笼。 <br>
+ * 可以是 {@link SpawnerMinecart} 或 {@link CreatureSpawner}。
  */
 public interface Spawner extends BaseSpawner {
 
