@@ -60,10 +60,13 @@ public class PlayerItemMendEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 获取被修复的 {@link ItemStack} 所在的 {@link EquipmentSlot}.
+     * <p>
+     * 原文:
      * Get the {@link EquipmentSlot} in which the repaired {@link ItemStack}
      * may be found.
      *
-     * @return the repaired slot
+     * @return 被修复的槽位
      */
     @NotNull
     public EquipmentSlot getSlot() {
