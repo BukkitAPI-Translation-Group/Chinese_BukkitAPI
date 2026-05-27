@@ -34,13 +34,13 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the entity caught by the player.
+     * 获取玩家钓到的实体.
      * <p>
-     * If player has fished successfully, the result may be cast to {@link
-     * org.bukkit.entity.Item}.
+     * 原文：Gets the entity caught by the player.
+     * <p>
+     * 如果玩家钓鱼成功, 结果可以转换为 {@link org.bukkit.entity.Item}.
      *
-     * @return Entity caught by the player, Entity if fishing, and null if
-     *     bobber has gotten stuck in the ground or nothing has been caught
+     * @return 玩家钓到的实体, 钓鱼时为实体, 如果鱼钩卡在地面上或什么都没钓到则为 null
      */
     @Nullable
     public Entity getCaught() {
@@ -48,9 +48,11 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the fishing hook.
+     * 获取钓鱼钩.
+     * <p>
+     * 原文：Gets the fishing hook.
      *
-     * @return Fish the entity representing the fishing hook/bobber.
+     * @return 代表钓鱼钩/浮标的实体
      */
     @NotNull
     public FishHook getHook() {
@@ -68,36 +70,40 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the amount of experience received when fishing.
+     * 获取钓鱼时获得的经验值.
      * <p>
-     * Note: This value has no default effect unless the event state is {@link
-     * State#CAUGHT_FISH}.
+     * 原文：Gets the amount of experience received when fishing.
+     * <p>
+     * 注意: 除非事件状态为 {@link State#CAUGHT_FISH}, 否则此值没有默认效果.
      *
-     * @return the amount of experience to drop
+     * @return 掉落的经验值数量
      */
     public int getExpToDrop() {
         return exp;
     }
 
     /**
-     * Sets the amount of experience received when fishing.
+     * 设置钓鱼时获得的经验值.
      * <p>
-     * Note: This value has no default effect unless the event state is {@link
-     * State#CAUGHT_FISH}.
+     * 原文：Sets the amount of experience received when fishing.
+     * <p>
+     * 注意: 除非事件状态为 {@link State#CAUGHT_FISH}, 否则此值没有默认效果.
      *
-     * @param amount the amount of experience to drop
+     * @param amount 掉落的经验值数量
      */
     public void setExpToDrop(int amount) {
         exp = amount;
     }
 
     /**
-     * Get the hand that was used in this event.
+     * 获取此事件中使用的手.
      * <p>
-     * The hand used is only present when the event state is {@link State#FISHING}.
-     * In all other states, the hand is null.
+     * 原文：Get the hand that was used in this event.
+     * <p>
+     * 使用的手仅在事件状态为 {@link State#FISHING} 时存在.
+     * 在所有其他状态下, 手为 null.
      *
-     * @return the hand
+     * @return 使用的手
      */
     @Nullable
     public EquipmentSlot getHand() {
@@ -105,9 +111,11 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Gets the state of the fishing
+     * 获取钓鱼的状态.
+     * <p>
+     * 原文：Gets the state of the fishing.
      *
-     * @return A State detailing the state of the fishing
+     * @return 描述钓鱼状态的枚举值
      */
     @NotNull
     public State getState() {
@@ -126,42 +134,39 @@ public class PlayerFishEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * An enum to specify the state of the fishing
+     * 用于指定钓鱼状态的枚举
      */
     public enum State {
 
         /**
-         * When a player is fishing, ie casting the line out.
+         * 当玩家正在钓鱼时, 即抛出鱼线.
          */
         FISHING,
         /**
-         * When a player has successfully caught a fish and is reeling it in. In
-         * this instance, a "fish" is any item retrieved from water as a result
-         * of fishing, ie an item, but not necessarily a fish.
+         * 当玩家成功钓到鱼并正在收线时.
+         * 在这种情况下, "鱼" 是指通过钓鱼从水中获取的任何物品,
+         * 即一个物品, 但不一定是鱼.
          */
         CAUGHT_FISH,
         /**
-         * When a player has successfully caught an entity. This refers to any
-         * already spawned entity in the world that has been hooked directly by
-         * the rod.
+         * 当玩家成功钓到一个实体时.
+         * 这指的是世界上任何已经被鱼钩直接钩住的已生成实体.
          */
         CAUGHT_ENTITY,
         /**
-         * When a bobber is stuck in the ground.
+         * 当鱼钩卡在地面上时.
          */
         IN_GROUND,
         /**
-         * When a player fails to catch a bite while fishing usually due to
-         * poor timing.
+         * 当玩家在钓鱼时未能咬钩, 通常是由于时机不对.
          */
         FAILED_ATTEMPT,
         /**
-         * When a player reels in their hook without receiving any bites.
+         * 当玩家收线但没有鱼上钩时.
          */
         REEL_IN,
         /**
-         * Called when there is a bite on the hook and it is ready to be reeled
-         * in.
+         * 当鱼钩上有鱼咬钩并准备收线时调用.
          */
         BITE
     }
