@@ -8,16 +8,20 @@ import org.bukkit.entity.Minecart;
 public interface PoweredMinecart extends Minecart {
 
     /**
-     * Get the number of ticks until the minecart runs out of fuel.
+     * 获取矿车燃料耗尽前的剩余 tick 数.
+     * <p>
+     * 原文:Get the number of ticks until the minecart runs out of fuel.
      *
-     * @return Number of ticks until the minecart runs out of fuel
+     * @return 矿车燃料耗尽前的剩余 tick 数
      */
     public int getFuel();
 
     /**
-     * Set the number of ticks until the minecart runs out of fuel.
+     * 设置矿车燃料耗尽前的剩余 tick 数.
+     * <p>
+     * 原文:Set the number of ticks until the minecart runs out of fuel.
      *
-     * @param fuel Number of ticks until the minecart runs out of fuel
+     * @param fuel 矿车燃料耗尽前的剩余 tick 数
      */
     public void setFuel(int fuel);
 }
