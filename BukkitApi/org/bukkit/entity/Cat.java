@@ -87,7 +87,7 @@ public interface Cat extends Tameable, Sittable {
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()
-         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         * @deprecated 键可能并不总是存在，请使用 {@link #getKeyOrThrow()} 代替。
          */
         @NotNull
         @Override
@@ -95,9 +95,9 @@ public interface Cat extends Tameable, Sittable {
         NamespacedKey getKey();
 
         /**
-         * @param name of the cat type.
-         * @return the cat type with the given name.
-         * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+         * @param name 猫品种的名称。
+         * @return 具有给定名称的猫品种。
+         * @deprecated 仅用于向后兼容，请使用 {@link Registry#get(NamespacedKey)} 代替。
          */
         @NotNull
         @Deprecated(since = "1.21")
@@ -108,8 +108,8 @@ public interface Cat extends Tameable, Sittable {
         }
 
         /**
-         * @return an array of all known cat types.
-         * @deprecated use {@link Registry#iterator()}.
+         * @return 所有已知猫品种的数组。
+         * @deprecated 请使用 {@link Registry#iterator()}。
          */
         @NotNull
         @Deprecated(since = "1.21")
