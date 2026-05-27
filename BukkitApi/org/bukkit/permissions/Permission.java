@@ -299,7 +299,16 @@ public class Permission {
     }
 
     /**
-     * Loads a Permission from a map of data, usually used from retrieval from
+     * 从数据映射加载一个权限, 通常用于从 yaml 文件中检索.
+     * <p>
+     * 数据可能包含以下键：
+     * <ul>
+     * <li>default: Boolean true 或 false. 如果未指定则为 false.
+     * <li>children: 子权限的 {@code Map<String, Boolean>}. 如果未指定则为空列表.
+     * <li>description: 包含此权限简要描述的短字符串. 如果未指定则为空字符串.
+     * </ul>
+     * <p>
+     * 原文：Loads a Permission from a map of data, usually used from retrieval from
      * a yaml file.
      * <p>
      * The data may contain the following keys:
@@ -311,9 +320,9 @@ public class Permission {
      *     this description. If not specified, empty string.
      * </ul>
      *
-     * @param name Name of the permission
-     * @param data Map of keys
-     * @return Permission object
+     * @param name 权限名称
+     * @param data 键映射
+     * @return Permission 对象
      */
     @NotNull
     public static Permission loadPermission(@NotNull String name, @NotNull Map<String, Object> data) {
@@ -321,7 +330,16 @@ public class Permission {
     }
 
     /**
-     * Loads a Permission from a map of data, usually used from retrieval from
+     * 从数据映射加载一个权限, 通常用于从 yaml 文件中检索.
+     * <p>
+     * 数据可能包含以下键：
+     * <ul>
+     * <li>default: Boolean true 或 false. 如果未指定则为 false.
+     * <li>children: 子权限的 {@code Map<String, Boolean>}. 如果未指定则为空列表.
+     * <li>description: 包含此权限简要描述的短字符串. 如果未指定则为空字符串.
+     * </ul>
+     * <p>
+     * 原文：Loads a Permission from a map of data, usually used from retrieval from
      * a yaml file.
      * <p>
      * The data may contain the following keys:
@@ -333,11 +351,11 @@ public class Permission {
      *     this description. If not specified, empty string.
      * </ul>
      *
-     * @param name Name of the permission
-     * @param data Map of keys
-     * @param def Default permission value to use if not set
-     * @param output A list to append any created child-Permissions to, may be null
-     * @return Permission object
+     * @param name 权限名称
+     * @param data 键映射
+     * @param def 如果未设置则使用的默认权限值
+     * @param output 用于追加创建的子权限的列表, 可以为 null
+     * @return Permission 对象
      */
     @NotNull
     public static Permission loadPermission(@NotNull String name, @NotNull Map<?, ?> data, @Nullable PermissionDefault def, @Nullable List<Permission> output) {
