@@ -52,9 +52,11 @@ public class EntityDamageByBlockEvent extends EntityDamageEvent {
     }
 
     /**
-     * Returns the captured BlockState of the block that damaged the player.
+     * 返回使玩家受到伤害的方块的已捕获 BlockState.
+     * <p>
+     * 原文:Returns the captured BlockState of the block that damaged the player.
      *
-     * @return the block state
+     * @return 方块状态
      */
     @Nullable
     public BlockState getDamagerBlockState() {
