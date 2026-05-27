@@ -352,7 +352,7 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * facing.
      *
      * @return 指向此位置的{@link
-     *     #getPitch() 偏航角}和{@link #getYaw() 俯仰角}的向量
+     *     #getYaw() 偏航角}和{@link #getPitch() 俯仰角}的向量
      */
     @NotNull
     public Vector getDirection() {
@@ -576,9 +576,9 @@ public class Location implements Cloneable, ConfigurationSerializable {
      * will be caused if the distance is too long.
      *
      * @see Vector
-     * @param o The other location
-     * @return the distance
-     * @throws IllegalArgumentException for differing worlds
+     * @param o 另一个位置
+     * @return 距离
+     * @throws IllegalArgumentException 若两个位置所处世界各不相同
      */
     public double distance(@NotNull Location o) {
         return Math.sqrt(distanceSquared(o));
