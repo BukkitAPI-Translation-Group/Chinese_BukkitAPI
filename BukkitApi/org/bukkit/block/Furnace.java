@@ -85,12 +85,17 @@ public interface Furnace extends Container {
     public void setCookTimeTotal(int cookTimeTotal);
 
     /**
+     * 获取此熔炉中使用的配方.
+     *
+     * <b>注意:</b> 当结果物品被手动从熔炉中取出时, 已使用的配方会被重置.
+     * <p>
+     * 原文：
      * Get the recipes used in this furnace.
      *
      * <b>Note:</b> These recipes used are reset when the result item is
      * manually taken from the furnace.
      *
-     * @return An immutable map with the recipes used and the times used
+     * @return 包含已使用配方和使用次数的不可变映射
      */
     @NotNull
     public Map<CookingRecipe<?>, Integer> getRecipesUsed();
