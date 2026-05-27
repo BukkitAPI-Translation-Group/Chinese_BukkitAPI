@@ -63,43 +63,62 @@ public interface Fox extends Animals, Sittable {
     void setSleeping(boolean sleeping);
 
     /**
+     * 获取第一个受信任的玩家.
+     * <p>
+     * 原文:
      * Gets the first trusted player.
      *
-     * @return the owning AnimalTamer, or null if not owned
+     * @return 拥有此狐狸的 AnimalTamer，若无则返回 null.
      */
     @Nullable
     public AnimalTamer getFirstTrustedPlayer();
 
     /**
+     * 设置第一个受信任的玩家.
+     * <p>
+     * 第一个受信任的玩家只能在第二个之后被移除.
+     * <p>
+     * 原文:
      * Set the first trusted player.
      * <p>
      * The first trusted player may only be removed after the second.
      *
-     * @param player the AnimalTamer to be trusted
+     * @param player 要信任的 AnimalTamer.
      */
     public void setFirstTrustedPlayer(@Nullable AnimalTamer player);
 
     /**
+     * 获取第二个受信任的玩家.
+     * <p>
+     * 原文:
      * Gets the second trusted player.
      *
-     * @return the owning AnimalTamer, or null if not owned
+     * @return 拥有此狐狸的 AnimalTamer，若无则返回 null.
      */
     @Nullable
     public AnimalTamer getSecondTrustedPlayer();
 
     /**
+     * 设置第二个受信任的玩家.
+     * <p>
+     * 第二个受信任的玩家只能在第一个之后被添加.
+     * <p>
+     * 原文:
      * Set the second trusted player.
      * <p>
      * The second trusted player may only be added after the first.
      *
-     * @param player the AnimalTamer to be trusted
+     * @param player 要信任的 AnimalTamer.
      */
     public void setSecondTrustedPlayer(@Nullable AnimalTamer player);
 
     /**
-     * Gets whether the fox is faceplanting the ground
+     * 判断狐狸是否正在面部朝地.
+     * <p>
+     * 原文:
+     * Gets whether the fox is faceplanting the ground.
      *
-     * @return Whether the fox is faceplanting the ground
+     * @return 如果狐狸正在面部朝地则返回 true.
      */
     boolean isFaceplanted();
 
