@@ -285,9 +285,11 @@ public interface BlockData extends Cloneable {
     boolean isFaceSturdy(@NotNull BlockFace face, @NotNull BlockSupport support);
 
     /**
-     * Gets the color this block should appear as when rendered on a map.
+     * 获取此方块在地图上渲染时应显示的颜色。
+     * <p>
+     * 原文: Gets the color this block should appear as when rendered on a map.
      *
-     * @return the color associated with this BlockData
+     * @return 与此 BlockData 关联的颜色
      */
     @NotNull
     Color getMapColor();
@@ -349,20 +351,24 @@ public interface BlockData extends Cloneable {
     void mirror(@NotNull Mirror mirror);
 
     /**
-     * Copies all applicable properties from this BlockData to the provided
-     * BlockData.
+     * 将此 BlockData 中所有适用的属性复制到提供的 BlockData 中。
      * <p>
-     * Only modifies properties that both blocks share in common.
+     * 仅修改两种方块共有的属性。
+     * <p>
+     * 原文: Copies all applicable properties from this BlockData to the provided
+     * BlockData. Only modifies properties that both blocks share in common.
      *
-     * @param other the BlockData to copy properties to
+     * @param other 要复制属性到的 BlockData
      */
     void copyTo(@NotNull BlockData other);
 
     /**
-     * Creates a new default {@link BlockState} for this type of Block, not
+     * 为此类型的方块创建一个新的默认 {@link BlockState}，不绑定到任何位置。
+     * <p>
+     * 原文: Creates a new default {@link BlockState} for this type of Block, not
      * bound to a location.
      *
-     * @return a new {@link BlockState}
+     * @return 一个新的 {@link BlockState}
      */
     @NotNull
     BlockState createBlockState();
