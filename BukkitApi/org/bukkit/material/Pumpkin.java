@@ -6,8 +6,8 @@ import org.bukkit.block.BlockFace;
 /**
  * 代表南瓜.
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated MaterialData 的所有用法均已弃用且将被移除.
+ * 请使用 {@link org.bukkit.block.data.BlockData}.
  */
 @Deprecated(since = "1.14.1")
 public class Pumpkin extends MaterialData implements Directional {
