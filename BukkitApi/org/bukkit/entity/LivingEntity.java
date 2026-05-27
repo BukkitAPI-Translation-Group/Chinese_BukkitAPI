@@ -676,11 +676,16 @@ public interface LivingEntity extends Attributable, Damageable, Leashable, Proje
     public boolean isRiptiding();
 
     /**
+     * 使实体开始或停止激流。
+     * <p>
+     * 注意：这不会对可攻击实体造成伤害。
+     * <p>
+     * 原文：
      * Makes entity start or stop riptiding.
      * <p>
      * Note: This does not damage attackable entities.
      *
-     * @param riptiding whether the entity should start riptiding.
+     * @param riptiding 实体是否应开始激流。
      * @see HumanEntity#startRiptideAttack(int, float, ItemStack)
      */
     public void setRiptiding(boolean riptiding);
@@ -1062,24 +1067,33 @@ public interface LivingEntity extends Attributable, Damageable, Leashable, Proje
     public boolean isInvisible();
 
     /**
+     * 获取此实体的路径点颜色，如果为默认/未设置则返回 null。
+     * <p>
+     * 原文：
      * Gets the waypoint color of this entity or null if default/not set.
      *
-     * @return waypoint color
+     * @return 路径点颜色
      */
     @Nullable
     public Color getWaypointColor();
 
     /**
+     * 设置此实体的路径点颜色，null 则重置为默认值。
+     * <p>
+     * 原文：
      * Sets the waypoint color of this entity, null to reset to default.
      *
-     * @param color new color
+     * @param color 新颜色
      */
     public void setWaypointColor(@Nullable Color color);
 
     /**
+     * 获取此实体的路径点样式。
+     * <p>
+     * 原文：
      * Gets the waypoint style of this entity.
      *
-     * @return waypoint style
+     * @return 路径点样式
      */
     @NotNull
     public NamespacedKey getWaypointStyle();

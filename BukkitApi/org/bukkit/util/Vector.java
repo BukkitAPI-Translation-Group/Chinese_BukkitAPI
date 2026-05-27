@@ -447,9 +447,11 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Check whether or not each component of this vector is equal to 0.
+     * 检查本向量的每个坐标是否都等于0.
+     * <p>
+     * 原文:Check whether or not each component of this vector is equal to 0.
      *
-     * @return true if equal to zero, false if at least one component is non-zero
+     * @return 如果等于零则返回true,如果至少有一个坐标不为零则返回false
      */
     public boolean isZero() {
         return x == 0 && y == 0 && z == 0;
@@ -502,25 +504,27 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Returns if a vector is normalized
+     * 判断一个向量是否为单位向量.
+     * <p>
+     * 原文:Returns if a vector is normalized
      *
-     * @return whether the vector is normalised
+     * @return 这个向量是否是单位向量
      */
     public boolean isNormalized() {
         return Math.abs(this.lengthSquared() - 1) < getEpsilon();
     }
 
     /**
-     * Rotates the vector around the x axis.
+     * 将向量绕X轴旋转.
      * <p>
-     * This piece of math is based on the standard rotation matrix for vectors
-     * in three dimensional space. This matrix can be found here:
+     * 这个算法基于三维空间中向量的标准旋转矩阵.这个矩阵可以在这里找到:
      * <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations">Rotation
      * Matrix</a>.
+     * <p>
+     * 原文:Rotates the vector around the x axis.
      *
-     * @param angle the angle to rotate the vector about. This angle is passed
-     * in radians
-     * @return the same vector
+     * @param angle 旋转的角度,以弧度为单位
+     * @return 返回自身作为结果向量
      */
     @NotNull
     public Vector rotateAroundX(double angle) {
@@ -533,16 +537,16 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Rotates the vector around the y axis.
+     * 将向量绕Y轴旋转.
      * <p>
-     * This piece of math is based on the standard rotation matrix for vectors
-     * in three dimensional space. This matrix can be found here:
+     * 这个算法基于三维空间中向量的标准旋转矩阵.这个矩阵可以在这里找到:
      * <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations">Rotation
      * Matrix</a>.
+     * <p>
+     * 原文:Rotates the vector around the y axis.
      *
-     * @param angle the angle to rotate the vector about. This angle is passed
-     * in radians
-     * @return the same vector
+     * @param angle 旋转的角度,以弧度为单位
+     * @return 返回自身作为结果向量
      */
     @NotNull
     public Vector rotateAroundY(double angle) {
@@ -555,16 +559,16 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Rotates the vector around the z axis
+     * 将向量绕Z轴旋转.
      * <p>
-     * This piece of math is based on the standard rotation matrix for vectors
-     * in three dimensional space. This matrix can be found here:
+     * 这个算法基于三维空间中向量的标准旋转矩阵.这个矩阵可以在这里找到:
      * <a href="https://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations">Rotation
      * Matrix</a>.
+     * <p>
+     * 原文:Rotates the vector around the z axis
      *
-     * @param angle the angle to rotate the vector about. This angle is passed
-     * in radians
-     * @return the same vector
+     * @param angle 旋转的角度,以弧度为单位
+     * @return 返回自身作为结果向量
      */
     @NotNull
     public Vector rotateAroundZ(double angle) {

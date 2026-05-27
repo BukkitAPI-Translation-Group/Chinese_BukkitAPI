@@ -71,8 +71,8 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取玩家模型的某一部分是否显示。
      * <p>原文：Gets whether a part of the player model is shown.
      *
-     * @param part model part
-     * @return if it is shown
+     * @param part 模型部件
+     * @return 该部件是否显示
      */
     public boolean isModelPartShown(@NotNull PlayerModelPart part);
 
@@ -94,10 +94,9 @@ public interface HumanEntity extends LivingEntity, AnimalTamer, InventoryHolder 
      * 获取玩家当前的附魔种子。
      * <p>原文：Gets the player's current enchantment seed.
      *
-     * The Seed is used to generate enchantment options in the enchanting table
-     * for the player.
+     * 该种子用于在附魔台中为玩家生成附魔选项。
      *
-     * @return the player's enchantment seed
+     * @return 玩家的附魔种子
      */
     public int getEnchantmentSeed();
 

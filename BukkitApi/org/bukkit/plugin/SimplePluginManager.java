@@ -127,10 +127,12 @@ public final class SimplePluginManager implements PluginManager {
     }
 
     /**
-     * Loads the plugins in the list of the files
+     * 从文件列表中加载插件.
+     * <p>
+     * 原文:Loads the plugins in the list of the files
      *
-     * @param files List of files containing plugins to load
-     * @return A list of all plugins loaded
+     * @param files 包含待加载插件的文件列表
+     * @return 返回所有已成功加载的插件列表
      */
     @NotNull
     public Plugin[] loadPlugins(@NotNull File[] files) {

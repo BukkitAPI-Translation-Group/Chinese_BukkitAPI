@@ -56,7 +56,7 @@ import org.yaml.snakeyaml.representer.Representer;
  * <p>
  * 下面是plugin.yml可能拥有的条目表格,具体细节包括各自的方法:
  * <table border=1>
- * <caption>The description of the plugin.yml layout</caption>
+ * <caption>plugin.yml 布局说明</caption>
  * <tr>
  *     <th>条目</th>
  *     <th>方法</th>
@@ -68,7 +68,7 @@ import org.yaml.snakeyaml.representer.Representer;
  * </tr><tr>
  *     <td><code>provides</code></td>
  *     <td>{@link #getProvides()}</td>
- *     <td>The plugin APIs which this plugin provides</td>
+ *     <td>此插件提供的插件 API</td>
  * </tr><tr>
  *     <td><code>version</code></td>
  *     <td>{@link #getVersion()}</td>
@@ -758,8 +758,13 @@ public final class PluginDescriptionFile {
     }
 
     /**
-     * @return unused
-     * @deprecated unused
+     * 未使用的方法.
+     * <p>
+     * 原文：
+     * unused
+     *
+     * @return 未使用
+     * @deprecated 未使用
      */
     @Deprecated(since = "1.7.2")
     @Nullable
@@ -1042,8 +1047,13 @@ public final class PluginDescriptionFile {
     }
 
     /**
-     * @return internal use
-     * @apiNote Internal use
+     * 获取插件的原始名称. 内部使用.
+     * <p>
+     * 原文：
+     * Gets the raw name of the plugin. Internal use.
+     *
+     * @return 插件的原始名称
+     * @apiNote 内部使用
      */
     @ApiStatus.Internal
     @NotNull

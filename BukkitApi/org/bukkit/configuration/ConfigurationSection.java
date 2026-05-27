@@ -19,8 +19,6 @@ import org.jetbrains.annotations.Nullable;
 /**
  * {@link Configuration}的基类. 
  * 所有用于扩展配置文件读取的类都应当实现以下方法. 
- * <p>
- * Represents a section of a {@link Configuration}
  */
 public interface ConfigurationSection {
 
