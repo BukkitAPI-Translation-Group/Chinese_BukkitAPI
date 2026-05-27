@@ -8,8 +8,8 @@ import org.bukkit.block.BlockFace;
  *
  * @see Material#HOPPER
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法均已弃用并可能被移除.
+ * 请使用 {@link org.bukkit.block.data.BlockData}.
  */
 @Deprecated(since = "1.14.1")
 public class Hopper extends MaterialData implements Directional, Redstone {
@@ -29,7 +29,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 构造一个面向指定方向且初始激活的漏斗。
      * <p>原文：Constructs a hopper facing the specified direction and initially active.
      *
-     * @param facingDirection the direction the hopper is facing
+     * @param facingDirection 漏斗面向的方向
      *
      * @see BlockFace
      */
@@ -41,9 +41,8 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 构造一个面向指定方向且激活或停用的漏斗。
      * <p>原文：Constructs a hopper facing the specified direction and either active or not.
      *
-     * @param facingDirection the direction the hopper is facing
-     * @param isActive True if the hopper is initially active, false if
-     * deactivated
+     * @param facingDirection 漏斗面向的方向
+     * @param isActive 如果漏斗初始为激活状态则为 true，如果停用则为 false
      *
      * @see BlockFace
      */
@@ -58,8 +57,8 @@ public class Hopper extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
+     * @param type 材料类型
+     * @param data 原始数据值
      * @deprecated Magic value
      */
     @Deprecated(since = "1.9")
@@ -71,8 +70,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 设置漏斗是否激活。
      * <p>原文：Sets whether the hopper is active or not.
      *
-     * @param isActive True if the hopper is active, false if deactivated as if
-     * powered by redstone
+     * @param isActive 如果漏斗激活则为 true，如果被红石信号停用则为 false
      */
     public void setActive(boolean isActive) {
         setData((byte) (getData() & 0x7 | (isActive ? 0x0 : 0x8)));
@@ -82,7 +80,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 检查漏斗是否激活。
      * <p>原文：Checks whether the hopper is active or not.
      *
-     * @return True if the hopper is active, false if deactivated
+     * @return 如果漏斗激活则为 true，如果停用则为 false
      */
     public boolean isActive() {
         return (getData() & 0x8) == 0;
@@ -92,7 +90,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 设置此漏斗面向的方向。
      * <p>原文：Sets the direction this hopper is facing
      *
-     * @param face The direction to set this hopper to
+     * @param face 要设置的漏斗朝向
      *
      * @see BlockFace
      */
@@ -125,7 +123,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 获取此漏斗面向的方向。
      * <p>原文：Gets the direction this hopper is facing
      *
-     * @return The direction this hopper is facing
+     * @return 漏斗面向的方向
      *
      * @see BlockFace
      */
@@ -162,7 +160,7 @@ public class Hopper extends MaterialData implements Directional, Redstone {
      * 检查漏斗是否被充能。
      * <p>原文：Checks if the hopper is powered.
      *
-     * @return true if the hopper is powered
+     * @return 如果漏斗被充能则为 true
      */
     @Override
     public boolean isPowered() {
