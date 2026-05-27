@@ -6,16 +6,20 @@ package org.bukkit.entity;
 public interface Ghast extends Flying, Enemy {
 
     /**
-     * Gets whether the Ghast is charging
+     * 获取恶魂是否正在充能.
+     * <p>
+     * 原文：Gets whether the Ghast is charging
      *
-     * @return Whether the Ghast is charging
+     * @return 恶魂是否正在充能
      */
     boolean isCharging();
 
     /**
-     * Sets whether the Ghast is charging
+     * 设置恶魂是否正在充能.
+     * <p>
+     * 原文：Sets whether the Ghast is charging
      *
-     * @param flag Whether the Ghast is charging
+     * @param flag 恶魂是否正在充能
      */
     void setCharging(boolean flag);
 }
