@@ -123,11 +123,11 @@ public class PlayerCommandPreprocessEvent extends PlayerEvent implements Cancell
     }
 
     /**
-     * 设置玩家即将要发送的命令的字符串
+     * 设置玩家即将要发送的命令的字符串.
      * <p>
-     * 虽然所获取的命令字符串会带有一个“/”,但你执行命令的时候,不用输入这个“/”.
+     * 虽然所获取的命令字符串会带有一个"/",但你执行命令的时候,不用输入这个"/".
      * <p>
-     * Sets the command that the player will send.
+     * 原文: Sets the command that the player will send.
      * <p>
      * All commands begin with a special character; implementations do not
      * consider the first character when executing the content.
