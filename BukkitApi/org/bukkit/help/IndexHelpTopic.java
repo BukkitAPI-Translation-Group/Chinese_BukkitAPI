@@ -87,11 +87,14 @@ public class IndexHelpTopic extends HelpTopic {
     }
 
     /**
+     * 构建主题前言. 重写此方法可更改索引前言的外观.
+     * <p>
+     * 原文:
      * Builds the topic preamble. Override this method to change how the index
      * preamble looks.
      *
-     * @param sender The command sender requesting the preamble.
-     * @return The topic preamble.
+     * @param sender 请求前言的命令发送者
+     * @return 主题前言
      */
     @NotNull
     protected String buildPreamble(@NotNull CommandSender sender) {
@@ -99,12 +102,15 @@ public class IndexHelpTopic extends HelpTopic {
     }
 
     /**
+     * 构建索引主题中的每一行. 重写此方法可更改索引行的渲染方式.
+     * <p>
+     * 原文:
      * Builds individual lines in the index topic. Override this method to
      * change how index lines are rendered.
      *
-     * @param sender The command sender requesting the index line.
-     * @param topic  The topic to render into an index line.
-     * @return The rendered index line.
+     * @param sender 请求索引行的命令发送者
+     * @param topic  要渲染为索引行的主题
+     * @return 渲染后的索引行
      */
     @NotNull
     protected String buildIndexLine(@NotNull CommandSender sender, @NotNull HelpTopic topic) {
