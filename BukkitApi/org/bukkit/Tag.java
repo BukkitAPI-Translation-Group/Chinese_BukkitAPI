@@ -27,7 +27,6 @@ public interface Tag<T extends Keyed> extends Keyed {
     Tag<Material> PLANKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("planks"), Material.class);
     /**
      * 原版方块标签，代表所有普通/苔石/裂纹/錾制石砖。
-     * bricks.
      */
     Tag<Material> STONE_BRICKS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("stone_bricks"), Material.class);
     /**
@@ -495,13 +494,11 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> CAN_GLIDE_THROUGH = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("can_glide_through"), Material.class);
     /**
-     * 原版方块标签，代表所有在
-     * overworld.
+     * 原版方块标签，代表所有在主世界中永远燃烧的方块。
      */
     Tag<Material> INFINIBURN_OVERWORLD = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("infiniburn_overworld"), Material.class);
     /**
-     * 原版方块标签，代表所有在
-     * nether.
+     * 原版方块标签，代表所有在下界中永远燃烧的方块。
      */
     Tag<Material> INFINIBURN_NETHER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("infiniburn_nether"), Material.class);
     /**
@@ -509,7 +506,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> INFINIBURN_END = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("infiniburn_end"), Material.class);
     /**
-     * 原版方块标签，代表 the overworld base material.
+     * 原版方块标签，代表主世界的基础岩石方块。
      */
     Tag<Material> BASE_STONE_OVERWORLD = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("base_stone_overworld"), Material.class);
     /**
@@ -521,7 +518,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> DEEPSLATE_ORE_REPLACEABLES = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("deepslate_ore_replaceables"), Material.class);
     /**
-     * 原版方块标签，代表 the nether base material.
+     * 原版方块标签，代表下界的基础岩石方块。
      */
     Tag<Material> BASE_STONE_NETHER = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("base_stone_nether"), Material.class);
     /**
@@ -788,19 +785,19 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> REPLACEABLE_BY_MUSHROOMS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("replaceable_by_mushrooms"), Material.class);
     /**
-     * 原版方块标签，代表 blocks which snow cannot survive on.
+     * 原版方块标签，代表雪层无法存续的方块。
      */
     Tag<Material> SNOW_LAYER_CANNOT_SURVIVE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("snow_layer_cannot_survive_on"), Material.class);
     /**
-     * 原版方块标签，代表 blocks which snow can survive on.
+     * 原版方块标签，代表雪层可以存续的方块。
      */
     Tag<Material> SNOW_LAYER_CAN_SURVIVE_ON = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("snow_layer_can_survive_on"), Material.class);
     /**
-     * 原版方块标签，代表 blocks which cannot be dismounted into.
+     * 原版方块标签，代表不可骑乘进入的方块。
      */
     Tag<Material> INVALID_SPAWN_INSIDE = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("invalid_spawn_inside"), Material.class);
     /**
-     * 原版方块标签，代表 blocks which can be dug by sniffers.
+     * 原版方块标签，代表嗅探兽可挖掘的方块。
      */
     Tag<Material> SNIFFER_DIGGABLE_BLOCK = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("sniffer_diggable_block"), Material.class);
     /**
@@ -832,7 +829,7 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     Tag<Material> BLOCKS_WIND_CHARGE_EXPLOSIONS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("blocks_wind_charge_explosions"), Material.class);
     /**
-     * 原版方块标签，代表 solid blocks which do not block hopper operation.
+     * 原版方块标签，代表不阻碍漏斗运作的实体方块。
      */
     Tag<Material> DOES_NOT_BLOCK_HOPPERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("does_not_block_hoppers"), Material.class);
     /**
@@ -1419,11 +1416,11 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     String REGISTRY_FLUIDS = "fluids";
     /**
-     * 原版流体标签，代表 lava and flowing lava.
+     * 原版流体标签，代表岩浆和流动岩浆。
      */
     Tag<Fluid> FLUIDS_LAVA = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("lava"), Fluid.class);
     /**
-     * 原版流体标签，代表 water and flowing water.
+     * 原版流体标签，代表水和流水。
      */
     Tag<Fluid> FLUIDS_WATER = Bukkit.getTag(REGISTRY_FLUIDS, NamespacedKey.minecraft("water"), Fluid.class);
     /**
@@ -1431,89 +1428,89 @@ public interface Tag<T extends Keyed> extends Keyed {
      */
     String REGISTRY_ENTITY_TYPES = "entity_types";
     /**
-     * 原版标签，代表 skeletons.
+     * 原版标签，代表所有骷髅变种。
      */
     Tag<EntityType> ENTITY_TYPES_SKELETONS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("skeletons"), EntityType.class);
     /**
-     * 原版标签，代表 zombies.
+     * 原版标签，代表所有僵尸变种。
      */
     Tag<EntityType> ENTITY_TYPES_ZOMBIES = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("zombies"), EntityType.class);
     /**
-     * 原版标签，代表 raiders.
+     * 原版标签，代表所有袭击者。
      */
     Tag<EntityType> ENTITY_TYPES_RAIDERS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("raiders"), EntityType.class);
     /**
-     * 原版标签，代表 the undead.
+     * 原版标签，代表所有亡灵生物。
      */
     Tag<EntityType> ENTITY_TYPES_UNDEAD = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("undead"), EntityType.class);
     /**
-     * 原版标签，代表 entities which burn in daylight.
+     * 原版标签，代表在日光下会燃烧的实体。
      */
     Tag<EntityType> ENTITY_TYPES_BURN_IN_DAYLIGHT = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("burn_in_daylight"), EntityType.class);
     /**
-     * 原版标签，代表 entities which can live in beehives.
+     * 原版标签，代表可栖息在蜂巢中的实体。
      */
     Tag<EntityType> ENTITY_TYPES_BEEHIVE_INHABITORS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("beehive_inhabitors"), EntityType.class);
     /**
-     * 原版标签，代表 arrows.
+     * 原版标签，代表所有箭矢。
      */
     Tag<EntityType> ENTITY_TYPES_ARROWS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("arrows"), EntityType.class);
     /**
-     * 原版标签，代表 projectiles.
+     * 原版标签，代表所有可碰撞的弹射物。
      */
     Tag<EntityType> ENTITY_TYPES_IMPACT_PROJECTILES = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("impact_projectiles"), EntityType.class);
     /**
-     * 原版标签，代表 mobs which can walk on powder snow.
+     * 原版标签，代表可在细雪上行走的生物。
      */
     Tag<EntityType> ENTITY_TYPES_POWDER_SNOW_WALKABLE_MOBS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("powder_snow_walkable_mobs"), EntityType.class);
     /**
-     * 原版标签，代表 which entities axolotls are always hostile to.
+     * 原版标签，代表美西螈始终敌对的实体。
      */
     Tag<EntityType> ENTITY_TYPES_AXOLOTL_ALWAYS_HOSTILES = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("axolotl_always_hostiles"), EntityType.class);
     /**
-     * 原版标签，代表 axolotl targets.
+     * 原版标签，代表美西螈的狩猎目标。
      */
     Tag<EntityType> ENTITY_TYPES_AXOLOTL_HUNT_TARGETS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("axolotl_hunt_targets"), EntityType.class);
     /**
-     * 原版标签，代表 entities immune from freezing.
+     * 原版标签，代表免疫冰冻的实体。
      */
     Tag<EntityType> ENTITY_TYPES_FREEZE_IMMUNE_ENTITY_TYPES = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("freeze_immune_entity_types"), EntityType.class);
     /**
-     * 原版标签，代表 entities extra susceptible to freezing.
+     * 原版标签，代表对冰冻伤害格外敏感的实体。
      */
     Tag<EntityType> ENTITY_TYPES_FREEZE_HURTS_EXTRA_TYPES = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("freeze_hurts_extra_types"), EntityType.class);
     /**
-     * 原版标签，代表 entities which can breathe under water.
+     * 原版标签，代表可在水下呼吸的实体。
      */
     Tag<EntityType> ENTITY_TYPES_CAN_BREATHE_UNDER_WATER = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("can_breathe_under_water"), EntityType.class);
     /**
-     * 原版标签，代表 entities which can be eaten by frogs.
+     * 原版标签，代表可被青蛙捕食的实体。
      */
     Tag<EntityType> ENTITY_TYPES_FROG_FOOD = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("frog_food"), EntityType.class);
     /**
-     * 原版标签，代表 entities which are immune from fall damage.
+     * 原版标签，代表免疫摔落伤害的实体。
      */
     Tag<EntityType> ENTITY_TYPES_FALL_DAMAGE_IMMUNE = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("fall_damage_immune"), EntityType.class);
     /**
-     * 原版标签，代表 entities which are dismounted when underwater.
+     * 原版标签，代表在水下会被强制取消骑乘的实体。
      */
     Tag<EntityType> ENTITY_TYPES_DISMOUNTS_UNDERWATER = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("dismounts_underwater"), EntityType.class);
     /**
-     * 原版标签，代表 entities which are not controlled by their mount.
+     * 原版标签，代表骑乘时不受骑乘者控制的实体。
      */
     Tag<EntityType> ENTITY_TYPES_NON_CONTROLLING_RIDER = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("non_controlling_rider"), EntityType.class);
     /**
-     * 原版标签，代表 entities which deflect projectiles.
+     * 原版标签，代表可偏转弹射物的实体。
      */
     Tag<EntityType> ENTITY_TYPES_DEFLECTS_PROJECTILES = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("deflects_projectiles"), EntityType.class);
     /**
-     * 原版标签，代表 entities which deflect arrows.
+     * 原版标签，代表可偏转箭矢的实体。
      * @deprecated 使用 {@link #ENTITY_TYPES_DEFLECTS_PROJECTILES}
      */
     @Deprecated(since = "1.20.5")
     Tag<EntityType> ENTITY_TYPES_DEFLECTS_ARROWS = ENTITY_TYPES_DEFLECTS_PROJECTILES;
     /**
-     * 原版标签，代表 entities which can turn in boats.
+     * 原版标签，代表在船中可转向的实体。
      */
     Tag<EntityType> ENTITY_TYPES_CAN_TURN_IN_BOATS = Bukkit.getTag(REGISTRY_ENTITY_TYPES, NamespacedKey.minecraft("can_turn_in_boats"), EntityType.class);
     /**
@@ -1640,9 +1637,11 @@ public interface Tag<T extends Keyed> extends Keyed {
     boolean isTagged(@NotNull T item);
 
     /**
-     * Gets an immutable set of all tagged items.
+     * 获取所有已标记项目的不可变集合。
      *
-     * @return set of tagged items
+     * @return 已标记项目的集合
+     * <p>
+     * 原文：Gets an immutable set of all tagged items.
      */
     @NotNull
     Set<T> getValues();
