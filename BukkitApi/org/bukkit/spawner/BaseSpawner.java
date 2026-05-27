@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a basic entity spawner. <br>
- * May be a {@link SpawnerMinecart}, {@link CreatureSpawner} or {@link TrialSpawnerConfiguration}.
+ * 代表一个基础实体刷怪笼。<br>
+ * 可能是 {@link SpawnerMinecart}、{@link CreatureSpawner} 或 {@link TrialSpawnerConfiguration}。
  */
 public interface BaseSpawner {
 
@@ -29,10 +29,13 @@ public interface BaseSpawner {
     public EntityType getSpawnedType();
 
     /**
-     * Set the spawner's creature type. <br>
+     * 设置刷怪笼的生物类型。<br>
+     * 这将覆盖任何通过 {@link #addPotentialSpawn} 添加的实体。
+     * <p>
+     * 原文：Set the spawner's creature type. <br>
      * This will override any entities that have been added with {@link #addPotentialSpawn}
      *
-     * @param creatureType The creature type or null to clear.
+     * @param creatureType 生物类型，设为 null 以清除。
      */
     public void setSpawnedType(@Nullable EntityType creatureType);
 
@@ -130,41 +133,57 @@ public interface BaseSpawner {
     public void setSpawnRange(int spawnRange);
 
     /**
-     * Gets the {@link EntitySnapshot} that will be spawned by this spawner or null
+     * 获取将由此刷怪笼生成的 {@link EntitySnapshot}，如果未为此刷怪笼分配任何实体则返回 null。<br>
+     * <p>
+     * 刷怪笼中所有适用的数据都将被复制，例如自定义名称、生命值和速度。<br>
+     * <p>
+     * 原文：Gets the {@link EntitySnapshot} that will be spawned by this spawner or null
      * if no entities have been assigned to this spawner. <br>
      * <p>
      * All applicable data from the spawner will be copied, such as custom name,
      * health, and velocity. <br>
      *
-     * @return the entity snapshot or null if no entities have been assigned to this
-     *         spawner.
+     * @return 实体快照，如果未为此刷怪笼分配任何实体则返回 null。
      */
     @Nullable
     public EntitySnapshot getSpawnedEntity();
 
     /**
-     * Sets the entity that will be spawned by this spawner. <br>
+     * 设置将由此刷怪笼生成的实体。<br>
+     * 这将覆盖任何先前通过 {@link #addPotentialSpawn} 添加的条目。
+     * <p>
+     * 快照中所有适用的数据都将被复制，例如自定义名称、生命值和速度。<br>
+     * <p>
+     * 原文：Sets the entity that will be spawned by this spawner. <br>
      * This will override any previous entries that have been added with
      * {@link #addPotentialSpawn}
      * <p>
      * All applicable data from the snapshot will be copied, such as custom name,
      * health, and velocity. <br>
      *
-     * @param snapshot the entity snapshot or null to clear
+     * @param snapshot 实体快照，设为 null 以清除。
      */
     public void setSpawnedEntity(@Nullable EntitySnapshot snapshot);
 
     /**
-     * Sets the {@link SpawnerEntry} that will be spawned by this spawner. <br>
+     * 设置将由此刷怪笼生成的 {@link SpawnerEntry}。<br>
+     * 这将覆盖任何先前通过 {@link #addPotentialSpawn} 添加的条目。
+     * <p>
+     * 原文：Sets the {@link SpawnerEntry} that will be spawned by this spawner. <br>
      * This will override any previous entries that have been added with
      * {@link #addPotentialSpawn}
      *
-     * @param spawnerEntry the spawner entry to use
+     * @param spawnerEntry 要使用的刷怪笼条目。
      */
     public void setSpawnedEntity(@NotNull SpawnerEntry spawnerEntry);
 
     /**
-     * Adds a new {@link EntitySnapshot} to the list of entities this spawner can
+     * 向此刷怪笼可生成的实体列表中添加一个新的 {@link EntitySnapshot}。
+     * <p>
+     * 权重将决定此条目被选中生成的频率，权重较高的条目将比权重较低的条目更频繁地生成。<br>
+     * {@link SpawnRule} 将决定此条目在什么条件下可以生成，传入 null 将使用给定实体的默认条件。
+     * <p>
+     * 原文：Adds a new {@link EntitySnapshot} to the list of entities this spawner can
      * spawn.
      * <p>
      * The weight will determine how often this entry is chosen to spawn, higher
@@ -172,38 +191,45 @@ public interface BaseSpawner {
      * The {@link SpawnRule} will determine under what conditions this entry can
      * spawn, passing null will use the default conditions for the given entity.
      *
-     * @param snapshot  the snapshot that will be spawned
-     * @param weight    the weight
-     * @param spawnRule the spawn rule for this entity, or null
+     * @param snapshot  将被生成的快照
+     * @param weight    权重
+     * @param spawnRule 此实体的生成规则，或 null
      */
     public void addPotentialSpawn(@NotNull EntitySnapshot snapshot, int weight, @Nullable SpawnRule spawnRule);
 
     /**
-     * Adds a new {@link SpawnerEntry} to the list of entities this spawner can
+     * 向此刷怪笼可生成的实体列表中添加一个新的 {@link SpawnerEntry}。
+     * <p>
+     * 原文：Adds a new {@link SpawnerEntry} to the list of entities this spawner can
      * spawn.
      *
-     * @param spawnerEntry the spawner entry to use
+     * @param spawnerEntry 要使用的刷怪笼条目
      * @see #addPotentialSpawn(EntitySnapshot, int, SpawnRule)
      */
     public void addPotentialSpawn(@NotNull final SpawnerEntry spawnerEntry);
 
     /**
-     * Sets the list of {@link SpawnerEntry} this spawner can spawn. <br>
+     * 设置此刷怪笼可生成的 {@link SpawnerEntry} 列表。<br>
+     * 这将覆盖任何先前通过 {@link #addPotentialSpawn} 添加的条目。
+     * <p>
+     * 原文：Sets the list of {@link SpawnerEntry} this spawner can spawn. <br>
      * This will override any previous entries added with
      * {@link #addPotentialSpawn}
      *
-     * @param entries the list of entries
+     * @param entries 条目列表
      */
     public void setPotentialSpawns(@NotNull final Collection<SpawnerEntry> entries);
 
     /**
-     * Gets a list of potential spawns from this spawner or an empty list if no
+     * 获取此刷怪笼的潜在生成列表，如果未为此刷怪笼分配任何实体则返回空列表。<br>
+     * 对返回列表所做的更改不会反映在刷怪笼中，除非通过 {@link #setPotentialSpawns} 应用。
+     * <p>
+     * 原文：Gets a list of potential spawns from this spawner or an empty list if no
      * entities have been assigned to this spawner. <br>
      * Changes made to the returned list will not be reflected in the spawner unless
      * applied with {@link #setPotentialSpawns}
      *
-     * @return a list of potential spawns from this spawner, or an empty list if no
-     *         entities have been assigned to this spawner
+     * @return 此刷怪笼的潜在生成列表，如果未为此刷怪笼分配任何实体则返回空列表
      * @see #getSpawnedType()
      */
     @NotNull
