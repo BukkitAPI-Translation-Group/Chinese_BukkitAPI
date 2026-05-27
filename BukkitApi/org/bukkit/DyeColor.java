@@ -218,11 +218,14 @@ public enum DyeColor {
     }
 
     /**
+     * 获取给定名称的DyeColor，可能会进行旧版转换.
+     * <p>
+     * 原文:
      * Gets the DyeColor for the given name, possibly doing legacy transformations.
      *
-     * @param name dye name
-     * @return dye color
-     * @deprecated legacy use only
+     * @param name 染料名称
+     * @return 染料颜色
+     * @deprecated 仅用于旧版
      */
     @Deprecated(since = "1.13")
     @NotNull
