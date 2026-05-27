@@ -17,9 +17,9 @@ public class DirectionalContainer extends MaterialData implements Directional {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 方块类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public DirectionalContainer(final Material type, final byte data) {
