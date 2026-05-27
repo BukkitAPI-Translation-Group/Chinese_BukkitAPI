@@ -32,8 +32,8 @@ public class Furnace extends FurnaceAndDispenser {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
+     * @param type 材质类型
+     * @param data 原始数据值
      * @deprecated 不安全的参数
      */
     @Deprecated(since = "1.6.2")
