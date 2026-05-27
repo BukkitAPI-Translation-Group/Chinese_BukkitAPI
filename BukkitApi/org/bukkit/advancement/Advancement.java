@@ -22,9 +22,12 @@ public interface Advancement extends Keyed {
     Collection<String> getCriteria();
 
     /**
+     * 返回此进度的需求条件.
+     * <p>
+     * 原文:
      * Returns the requirements for this advancement.
      *
-     * @return an AdvancementRequirements object.
+     * @return 一个 AdvancementRequirements 对象
      */
     @NotNull
     AdvancementRequirements getRequirements();
