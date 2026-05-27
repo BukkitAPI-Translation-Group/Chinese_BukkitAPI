@@ -1099,9 +1099,12 @@ public interface LivingEntity extends Attributable, Damageable, Leashable, Proje
     public NamespacedKey getWaypointStyle();
 
     /**
+     * 设置此实体的路径点样式。
+     * <p>
+     * 原文：
      * Sets the waypoint style of this entity.
      *
-     * @param key new style key or null for default
+     * @param key 新样式键，null 则使用默认值
      */
     public void setWaypointStyle(@Nullable NamespacedKey key);
 }
