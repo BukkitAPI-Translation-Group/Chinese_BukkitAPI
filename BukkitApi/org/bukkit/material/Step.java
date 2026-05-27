@@ -8,8 +8,8 @@ import org.bukkit.Material;
 /**
  * 代表不同的台阶.
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并将被移除.
+ * 请使用 {@link org.bukkit.block.data.BlockData}.
  */
 @Deprecated(since = "1.14.1")
 public class Step extends TexturedMaterial {
@@ -37,8 +37,8 @@ public class Step extends TexturedMaterial {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
+     * @param type 材质类型
+     * @param data 原始数据值
      * @deprecated 不安全的参数
      */
     @Deprecated(since = "1.6.2")
@@ -80,7 +80,7 @@ public class Step extends TexturedMaterial {
     /**
      * {@inheritDoc}
      *
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Override
     @Deprecated(since = "1.20.5")
@@ -91,7 +91,7 @@ public class Step extends TexturedMaterial {
     /**
      * {@inheritDoc}
      *
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     @Override
