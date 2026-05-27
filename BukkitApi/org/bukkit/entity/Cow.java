@@ -12,22 +12,28 @@ import org.jetbrains.annotations.NotNull;
 public interface Cow extends AbstractCow {
 
     /**
+     * 获取此牛的变种.
+     * <p>
+     * 原文:
      * Get the variant of this cow.
      *
-     * @return cow variant
+     * @return 牛的变种
      */
     @NotNull
     Variant getVariant();
 
     /**
+     * 设置此牛的变种.
+     * <p>
+     * 原文:
      * Set the variant of this cow.
      *
-     * @param variant cow variant
+     * @param variant 牛的变种
      */
     void setVariant(@NotNull Variant variant);
 
     /**
-     * Represents the variant of a cow.
+     * 代表牛的变种.
      */
     interface Variant extends Keyed, RegistryAware {
 
@@ -40,7 +46,7 @@ public interface Cow extends AbstractCow {
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()
-         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         * @deprecated 键可能并不总是存在, 请改用 {@link #getKeyOrThrow()}.
          */
         @NotNull
         @Override
