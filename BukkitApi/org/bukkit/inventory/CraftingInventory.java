@@ -38,19 +38,21 @@ public interface CraftingInventory extends Inventory {
     void setResult(@Nullable ItemStack newResult);
 
     /**
-     * Replace the contents of the crafting matrix
+     * 替换合成矩阵的内容.
+     * <p>
+     * 原文:Replace the contents of the crafting matrix.
      *
-     * @param contents The new contents. Individual entries may be null.
-     * @throws IllegalArgumentException if the length of contents is greater
-     *     than the size of the crafting matrix.
+     * @param contents 新的内容. 个别条目可能为null.
+     * @throws IllegalArgumentException 如果contents的长度大于合成矩阵的大小.
      */
     void setMatrix(@NotNull ItemStack[] contents);
 
     /**
-     * Get the current recipe formed on the crafting inventory, if any.
+     * 获取当前合成台上形成的合成配方(如果有的话).
+     * <p>
+     * 原文:Get the current recipe formed on the crafting inventory, if any.
      *
-     * @return The recipe, or null if the current contents don't match any
-     *     recipe.
+     * @return 配方, 如果当前内容不匹配任何配方则返回null.
      */
     @Nullable
     Recipe getRecipe();
