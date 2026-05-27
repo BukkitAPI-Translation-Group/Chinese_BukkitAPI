@@ -5159,7 +5159,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并非始终存在, 请使用{@link #getKeyOrThrow()}代替.
      */
     @NotNull
     @Override
@@ -5191,10 +5191,9 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * <p>
      * 原文:Gets the maximum amount of this material that can be held in a stack.
      * <p>
-     * Note that this is the <strong>default</strong> maximum size for this Material.
-     * {@link ItemStack ItemStacks} are able to change their maximum stack size per
-     * stack with {@link ItemMeta#setMaxStackSize(Integer)}. If an ItemStack instance
-     * is available, {@link ItemStack#getMaxStackSize()} may be preferred.
+     * 请注意, 这是此Material的<strong>默认</strong>最大堆叠数量.
+     * {@link ItemStack ItemStack}可以通过{@link ItemMeta#setMaxStackSize(Integer)}更改其最大堆叠数量.
+     * 如果有ItemStack实例可用, 建议使用{@link ItemStack#getMaxStackSize()}.
      *
      * @return 物品的最大堆叠数量
      */
@@ -5220,10 +5219,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Creates a new {@link BlockData} instance for this Material, with all
+     * 为此Material创建一个新的{@link BlockData}实例, 所有属性初始化为未指定的默认值.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance for this Material, with all
      * properties initialized to unspecified defaults.
      *
-     * @return new data instance
+     * @return 新的BlockData实例
      */
     @NotNull
     public BlockData createBlockData() {
@@ -5231,11 +5232,13 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Creates a new {@link BlockData} instance for this Material, with
+     * 为此Material创建一个新的{@link BlockData}实例, 所有属性初始化为未指定的默认值.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance for this Material, with
      * all properties initialized to unspecified defaults.
      *
-     * @param consumer consumer to run on new instance before returning
-     * @return new data instance
+     * @param consumer 在返回前对新实例执行的操作
+     * @return 新的BlockData实例
      */
     @NotNull
     public BlockData createBlockData(@Nullable Consumer<? super BlockData> consumer) {
@@ -5243,13 +5246,15 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Creates a new {@link BlockData} instance for this Material, with all
+     * 为此Material创建一个新的{@link BlockData}实例, 所有属性初始化为未指定的默认值, 但data中提供的属性除外.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance for this Material, with all
      * properties initialized to unspecified defaults, except for those provided
      * in data.
      *
-     * @param data data string
-     * @return new data instance
-     * @throws IllegalArgumentException if the specified data is not valid
+     * @param data 数据字符串
+     * @return 新的BlockData实例
+     * @throws IllegalArgumentException 如果指定的数据无效
      */
     @NotNull
     public BlockData createBlockData(@Nullable String data) throws IllegalArgumentException {
@@ -5376,14 +5381,18 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Attempts to match the Material with the given name.
+     * 尝试根据给定名称匹配Material对象.
+     * <p>
+     * 这是一种模糊匹配: 名称会先去除"minecraft:"命名空间前缀, 转换为大写, 然后去除特殊字符, 以尝试将其格式化为枚举名称.
+     * <p>
+     * 原文:Attempts to match the Material with the given name.
      * <p>
      * This is a match lookup; names will be stripped of the "minecraft:"
      * namespace, converted to uppercase, then stripped of special characters in
      * an attempt to format it like the enum.
      *
      * @param name 用来获取Material对象的名称
-     * @return 如果找不到返回null,否则返回Material对象
+     * @return 如果找不到返回null, 否则返回Material对象
      */
     @Nullable
     public static Material matchMaterial(@NotNull final String name) {
@@ -5391,7 +5400,11 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Attempts to match the Material with the given name.
+     * 尝试根据给定名称匹配Material对象.
+     * <p>
+     * 这是一种模糊匹配: 名称会先去除"minecraft:"命名空间前缀, 转换为大写, 然后去除特殊字符, 以尝试将其格式化为枚举名称.
+     * <p>
+     * 原文:Attempts to match the Material with the given name.
      * <p>
      * This is a match lookup; names will be stripped of the "minecraft:"
      * namespace, converted to uppercase, then stripped of special characters in
@@ -5399,8 +5412,8 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      *
      * @param name 用来获取Material对象的名称
      * @param legacyName 传入的名称是否为旧版表示方式 (参考
-     * {@link #getMaterial(java.lang.String, boolean)}
-     * @return 如果找不到返回null,否则返回Material对象
+     * {@link #getMaterial(java.lang.String, boolean)})
+     * @return 如果找不到返回null, 否则返回Material对象
      */
     @Nullable
     public static Material matchMaterial(@NotNull final String name, boolean legacyName) {
@@ -5694,7 +5707,20 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Check if the material is a block and occludes light in the lighting engine.
+     * 检测此Material是否为遮光方块(在光照引擎中会阻挡光线).
+     * <p>
+     * 一般来说, 大多数完整方块都会遮光. 非完整方块(如铁砧、箱子、高草丛、楼梯等)不会遮光, 某些特殊完整方块(如屏障、刷怪笼)尽管纹理不透明但也会阻挡光线.
+     * <p>
+     * 遮光方块会产生以下效果:
+     * <ul>
+     *   <li>如果遮光方块在箱子上方, 箱子将无法打开.</li>
+     *   <li>生物无法在遮光方块内部生成.</li>
+     *   <li>只有遮光方块可以被"充能"({@link Block#isBlockPowered()}).</li>
+     * </ul>
+     * 此列表可能不完整. 有关遮光方块的完整副作用列表, 请参阅
+     * <a href="https://minecraft.wiki/w/Opacity">Minecraft Wiki</a>.
+     * <p>
+     * 原文:Check if the material is a block and occludes light in the lighting engine.
      * <p>
      * Generally speaking, most full blocks will occlude light. Non-full blocks are
      * not occluding (e.g. anvils, chests, tall grass, stairs, etc.), nor are specific
@@ -5709,7 +5735,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * This list may be inconclusive. For a full list of the side effects of an occluding
      * block, see the <a href="https://minecraft.wiki/w/Opacity">Minecraft Wiki</a>.
      *
-     * @return True if this material is a block and occludes light
+     * @return 如果此Material是遮光方块则返回true
      */
     public boolean isOccluding() {
         BlockType type = asBlockType();
@@ -5739,20 +5765,28 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Checks if this Material can be interacted with.
-     *
+     * 检测此Material是否可以被交互.
+     * <p>
+     * 可交互的Material包括那些在玩家交互时具有功能的方块, 如箱子、熔炉等.
+     * <p>
+     * 某些方块(如活塞头和楼梯)也被视为可交互的, 尽管它们可能不会执行额外的功能.
+     * <p>
+     * 请注意, 某些Material的可交互性可能取决于其状态. 如果该Material在至少一种状态下会执行额外的交互处理, 则此方法返回true.
+     * <p>
+     * 原文:Checks if this Material can be interacted with.
+     * <p>
      * Interactable materials include those with functionality when they are
      * interacted with by a player such as chests, furnaces, etc.
-     *
+     * <p>
      * Some blocks such as piston heads and stairs are considered interactable
      * though may not perform any additional functionality.
-     *
+     * <p>
      * Note that the interactability of some materials may be dependant on their
      * state as well. This method will return true if there is at least one
      * state in which additional interact handling is performed for the
      * material.
      *
-     * @return true if this material can be interacted with.
+     * @return 如果此Material可以被交互则返回true
      */
     public boolean isInteractable() {
         BlockType type = asBlockType();
@@ -5760,13 +5794,19 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Obtains the block's hardness level (also known as "strength").
+     * 获取方块的硬度等级(也称为"强度").
+     * <br>
+     * 此数值用于计算破坏每个方块所需的时间.
+     * <br>
+     * 仅当{@link #isBlock()}为true时可用.
+     * <p>
+     * 原文:Obtains the block's hardness level (also known as "strength").
      * <br>
      * This number is used to calculate the time required to break each block.
      * <br>
      * Only available when {@link #isBlock()} is true.
      *
-     * @return the hardness of that material.
+     * @return 此Material的硬度值
      */
     public float getHardness() {
         BlockType type = asBlockType();
@@ -5776,14 +5816,20 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Obtains the blast resistance value (also known as block "durability").
+     * 获取方块的爆炸抗性(也称为方块"耐久度").
+     * <br>
+     * 此值在爆炸计算中用于判断方块是否应该被炸毁.
+     * <br>
+     * 仅当{@link #isBlock()}为true时可用.
+     * <p>
+     * 原文:Obtains the blast resistance value (also known as block "durability").
      * <br>
      * This value is used in explosions to calculate whether a block should be
      * broken or not.
      * <br>
      * Only available when {@link #isBlock()} is true.
      *
-     * @return the blast resistance of that material.
+     * @return 此Material的爆炸抗性
      */
     public float getBlastResistance() {
         BlockType type = asBlockType();
@@ -5792,16 +5838,24 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Returns a value that represents how 'slippery' the block is.
-     *
+     * 返回表示方块"滑溜程度"的数值.
+     * <p>
+     * 滑溜程度较高的方块(如{@link Material#ICE})可以让玩家和其他实体滑行得更远.
+     * <p>
+     * 大多数方块的默认滑溜程度为{@code 0.6f}.
+     * <p>
+     * 仅当{@link #isBlock()}为true时可用.
+     * <p>
+     * 原文:Returns a value that represents how 'slippery' the block is.
+     * <p>
      * Blocks with higher slipperiness, like {@link Material#ICE} can be slid on
      * further by the player and other entities.
-     *
+     * <p>
      * Most blocks have a default slipperiness of {@code 0.6f}.
-     *
+     * <p>
      * Only available when {@link #isBlock()} is true.
      *
-     * @return the slipperiness of this block
+     * @return 此方块的滑溜程度
      */
     public float getSlipperiness() {
         BlockType type = asBlockType();
@@ -5810,12 +5864,16 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Determines the remaining item in a crafting grid after crafting with this
+     * 确定使用此材料在合成网格中合成后剩余的物品.
+     * <br>
+     * 仅当{@link #isItem()}为true时可用.
+     * <p>
+     * 原文:Determines the remaining item in a crafting grid after crafting with this
      * ingredient.
      * <br>
      * Only available when {@link #isItem()} is true.
      *
-     * @return the item left behind when crafting, or null if nothing is.
+     * @return 合成后剩余的物品, 如果没有则返回null
      */
     @Nullable
     public Material getCraftingRemainingItem() {
@@ -5825,11 +5883,15 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Get the best suitable slot for this Material.
-     *
+     * 获取此Material最合适的装备槽位.
+     * <p>
+     * 对于大多数物品, 这将是{@link EquipmentSlot#HAND}.
+     * <p>
+     * 原文:Get the best suitable slot for this Material.
+     * <p>
      * For most items this will be {@link EquipmentSlot#HAND}.
      *
-     * @return the best EquipmentSlot for this Material
+     * @return 此Material最合适的EquipmentSlot
      */
     @NotNull
     public EquipmentSlot getEquipmentSlot() {
@@ -5934,17 +5996,22 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Return an immutable copy of all default {@link Attribute}s and their
+     * 返回给定{@link EquipmentSlot}上所有默认{@link Attribute}及其{@link AttributeModifier}的不可变副本.
+     * <p>
+     * 默认属性是指某些物品上始终存在的属性, 如武器的攻击力或盔甲的护甲值.
+     * <p>
+     * 仅当{@link #isItem()}为true时可用.
+     * <p>
+     * 原文:Return an immutable copy of all default {@link Attribute}s and their
      * {@link AttributeModifier}s for a given {@link EquipmentSlot}.
-     *
+     * <p>
      * Default attributes are those that are always preset on some items, such
      * as the attack damage on weapons or the armor value on armor.
-     *
+     * <p>
      * Only available when {@link #isItem()} is true.
      *
-     * @param slot the {@link EquipmentSlot} to check
-     * @return the immutable {@link Multimap} with the respective default
-     * Attributes and modifiers, or an empty map if no attributes are set.
+     * @param slot 要检查的{@link EquipmentSlot}
+     * @return 包含相应默认属性和修饰符的不可变{@link Multimap}, 如果没有设置属性则返回空map
      */
     @NotNull
     public Multimap<Attribute, AttributeModifier> getDefaultAttributeModifiers(@NotNull EquipmentSlot slot) {
@@ -5954,9 +6021,11 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Get the {@link CreativeCategory} to which this material belongs.
+     * 获取此Material所属的{@link CreativeCategory}.
+     * <p>
+     * 原文:Get the {@link CreativeCategory} to which this material belongs.
      *
-     * @return the creative category. null if does not belong to a category
+     * @return 创造模式分类, 如果不属于任何分类则返回null
      */
     @Nullable
     public CreativeCategory getCreativeCategory() {
@@ -5965,14 +6034,17 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Get the translation key of the item or block associated with this
+     * 获取与此Material关联的物品或方块的翻译键.
+     * <p>
+     * 如果此Material同时具有物品和方块形式, 则使用物品形式.
+     * <p>
+     * 原文:Get the translation key of the item or block associated with this
      * material.
-     *
+     * <p>
      * If this material has both an item and a block form, the item form is
      * used.
      *
-     * @return the translation key of the item or block associated with this
-     * material
+     * @return 与此Material关联的物品或方块的翻译键
      * @see #getBlockTranslationKey()
      * @see #getItemTranslationKey()
      */
@@ -5987,11 +6059,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Get the translation key of the block associated with this material, or
+     * 获取与此Material关联的方块的翻译键, 如果此Material没有关联的方块则返回null.
+     * <p>
+     * 原文:Get the translation key of the block associated with this material, or
      * null if this material does not have an associated block.
      *
-     * @return the translation key of the block associated with this material,
-     * or null if this material does not have an associated block
+     * @return 与此Material关联的方块的翻译键, 如果此Material没有关联的方块则返回null
      */
     @Nullable
     public String getBlockTranslationKey() {
@@ -6000,11 +6073,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Get the translation key of the item associated with this material, or
+     * 获取与此Material关联的物品的翻译键, 如果此Material没有关联的物品则返回null.
+     * <p>
+     * 原文:Get the translation key of the item associated with this material, or
      * null if this material does not have an associated item.
      *
-     * @return the translation key of the item associated with this material, or
-     * null if this material does not have an associated item.
+     * @return 与此Material关联的物品的翻译键, 如果此Material没有关联的物品则返回null
      */
     @Nullable
     public String getItemTranslationKey() {
@@ -6013,10 +6087,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Gets if the Material is enabled by the features in a world.
+     * 检测此Material是否在世界中被特性启用.
+     * <p>
+     * 原文:Gets if the Material is enabled by the features in a world.
      *
-     * @param world the world to check
-     * @return true if this material can be used in this World.
+     * @param world 要检查的世界
+     * @return 如果此Material可以在此世界中使用则返回true
      */
     public boolean isEnabledByFeature(@NotNull World world) {
         if (isItem()) {
@@ -6027,10 +6103,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Checks whether this material is compostable (can be inserted into a
+     * 检测此Material是否可堆肥(可以放入堆肥桶中).
+     * <p>
+     * 原文:Checks whether this material is compostable (can be inserted into a
      * composter).
      *
-     * @return true if this material is compostable
+     * @return 如果此Material可堆肥则返回true
      * @see #getCompostChance()
      */
     public boolean isCompostable() {
@@ -6038,17 +6116,23 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Get the chance that this material will successfully compost. The returned
+     * 获取此Material成功堆肥的概率. 返回值在0到1之间(包含0和1).
+     * <p>
+     * 堆肥概率为1的材料将始终提升堆肥桶的等级, 而堆肥概率为0的材料永远不会提升.
+     * <p>
+     * 插件在调用此方法之前应检查{@link #isCompostable()}是否返回true.
+     * <p>
+     * 原文:Get the chance that this material will successfully compost. The returned
      * value is between 0 and 1 (inclusive).
-     *
+     * <p>
      * Materials with a compost chance of 1 will always raise the composter's
      * level, while materials with a compost chance of 0 will never raise it.
-     *
+     * <p>
      * Plugins should check that {@link #isCompostable} returns true before
      * calling this method.
      *
-     * @return the chance that this material will successfully compost
-     * @throws IllegalArgumentException if the material is not compostable
+     * @return 此Material成功堆肥的概率
+     * @throws IllegalArgumentException 如果此Material不可堆肥
      * @see #isCompostable()
      */
     public float getCompostChance() {
@@ -6058,10 +6142,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Tries to convert this Material to an item type
+     * 尝试将此Material转换为物品类型
+     * <p>
+     * 原文:Tries to convert this Material to an item type
      *
-     * @return the converted item type or null
-     * @apiNote only for internal use
+     * @return 转换后的物品类型, 如果无法转换则返回null
+     * @apiNote 仅供内部使用
      */
     @ApiStatus.Internal
     @Nullable
@@ -6070,10 +6156,12 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Tries to convert this Material to a block type
+     * 尝试将此Material转换为方块类型
+     * <p>
+     * 原文:Tries to convert this Material to a block type
      *
-     * @return the converted block type or null
-     * @apiNote only for internal use
+     * @return 转换后的方块类型, 如果无法转换则返回null
+     * @apiNote 仅供内部使用
      */
     @ApiStatus.Internal
     @Nullable
