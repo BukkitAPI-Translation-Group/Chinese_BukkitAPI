@@ -9,8 +9,8 @@ import org.bukkit.block.BlockFace;
  * @see Material#LEGACY_DIODE_BLOCK_OFF
  * @see Material#LEGACY_DIODE_BLOCK_ON
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有MaterialData的用法都已弃用并将被移除。
+ * 请使用{@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Diode extends MaterialData implements Directional, Redstone {
@@ -22,9 +22,8 @@ public class Diode extends MaterialData implements Directional, Redstone {
     /**
      * 构造一个开启的二极管，延迟为1且面向默认方向（北）。
      * <p>原文：Constructs a diode switched on, with a delay of 1 and facing the default direction (north).
-     *
-     * By default this constructor creates a diode that is switched on for
-     * backwards compatibility with past implementations.
+     * <p>
+     * 默认情况下, 此构造函数创建一个开启的二极管, 以保持与过去实现的向后兼容性.
      */
     public Diode() {
         this(DEFAULT_DIRECTION, DEFAULT_DELAY, true);
@@ -34,7 +33,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 构造一个关闭的二极管，延迟为1且面向指定方向。
      * <p>原文：Constructs a diode switched off, with a delay of 1 and facing the specified direction.
      *
-     * @param facingDirection the direction the diode is facing
+     * @param facingDirection 二极管面向的方向
      *
      * @see BlockFace
      */
@@ -46,9 +45,8 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 构造一个关闭的二极管，具有指定延迟并面向指定方向。
      * <p>原文：Constructs a diode switched off, with the specified delay and facing the specified direction.
      *
-     * @param facingDirection the direction the diode is facing
-     * @param delay The number of ticks (1-4) before the diode turns on after
-     * being powered
+     * @param facingDirection 二极管面向的方向
+     * @param delay 二极管被充能后开启所需的 tick 数（1-4）
      *
      * @see BlockFace
      */
@@ -60,10 +58,9 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 构造一个开启或关闭的二极管，具有指定延迟并面向指定方向。
      * <p>原文：Constructs a diode switched on or off, with the specified delay and facing the specified direction.
      *
-     * @param facingDirection the direction the diode is facing
-     * @param delay The number of ticks (1-4) before the diode turns on after
-     * being powered
-     * @param state True if the diode is in the on state
+     * @param facingDirection 二极管面向的方向
+     * @param delay 二极管被充能后开启所需的 tick 数（1-4）
+     * @param state 二极管是否处于开启状态
      *
      * @see BlockFace
      */
@@ -78,9 +75,9 @@ public class Diode extends MaterialData implements Directional, Redstone {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 不安全的参数
      */
     @Deprecated(since = "1.6.2")
     public Diode(Material type, byte data) {
@@ -91,7 +88,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 设置中继器的延迟。
      * <p>原文：Sets the delay of the repeater.
      *
-     * @param delay The new delay (1-4)
+     * @param delay 新延迟（1-4）
      */
     public void setDelay(int delay) {
         if (delay > 4) {
@@ -109,7 +106,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 获取中继器的延迟（以tick为单位）。
      * <p>原文：Gets the delay of the repeater in ticks.
      *
-     * @return The delay (1-4)
+     * @return 延迟（1-4）
      */
     public int getDelay() {
         return (getData() >> 2) + 1;
@@ -119,7 +116,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 设置此二极管面向的方向。
      * <p>原文：Sets the direction this diode is facing.
      *
-     * @param face The direction to set this diode to
+     * @param face 此二极管要面向的方向
      *
      * @see BlockFace
      */
@@ -149,9 +146,9 @@ public class Diode extends MaterialData implements Directional, Redstone {
 
     /**
      * 获取此二极管面向的方向。
-     * <p>原文：Gets the direction this diode is facing
+     * <p>原文：Gets the direction this diode is facing.
      *
-     * @return The direction this diode is facing
+     * @return 此二极管面向的方向
      *
      * @see BlockFace
      */
@@ -189,7 +186,7 @@ public class Diode extends MaterialData implements Directional, Redstone {
      * 检查二极管是否被充能。
      * <p>原文：Checks if the diode is powered.
      *
-     * @return true if the diode is powered
+     * @return 二极管是否被充能
      */
     @Override
     public boolean isPowered() {
