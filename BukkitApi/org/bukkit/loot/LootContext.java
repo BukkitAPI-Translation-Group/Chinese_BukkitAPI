@@ -8,8 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents additional information a {@link LootTable} can use to modify it's
- * generated loot.
+ * 表示 {@link LootTable} 可以用来修改其生成的战利品的附加信息。
  */
 public final class LootContext {
 
@@ -32,9 +31,12 @@ public final class LootContext {
     }
 
     /**
+     * 存储战利品生成位置的 {@link Location}。
+     * <p>
+     * 原文：
      * The {@link Location} to store where the loot will be generated.
      *
-     * @return the Location of where the loot will be generated
+     * @return 战利品将生成的位置
      */
     @NotNull
     public Location getLocation() {
@@ -42,17 +44,25 @@ public final class LootContext {
     }
 
     /**
+     * 表示实体可以拥有的 {@link org.bukkit.potion.PotionEffectType#LUCK}。值越高，获得更多战利品的几率越大。
+     * <p>
+     * 原文：
      * Represents the {@link org.bukkit.potion.PotionEffectType#LUCK} that an
      * entity can have. The higher the value the better chance of receiving more
      * loot.
      *
-     * @return luck
+     * @return 幸运值
      */
     public float getLuck() {
         return luck;
     }
 
     /**
+     * 表示 {@link #getKiller()} 实体在其装备物品上的 {@link org.bukkit.enchantments.Enchantment#LOOTING}。
+     *
+     * 此值仅通过 {@link LootContext.Builder#lootingModifier(int)} 设置。如果未设置，将使用 {@link #getKiller()} 实体的抢夺等级。
+     * <p>
+     * 原文：
      * Represents the
      * {@link org.bukkit.enchantments.Enchantment#LOOTING} the
      * {@link #getKiller()} entity has on their equipped item.
@@ -61,8 +71,8 @@ public final class LootContext {
      * {@link LootContext.Builder#lootingModifier(int)}. If not set, the
      * {@link #getKiller()} entity's looting level will be used instead.
      *
-     * @return the looting level
-     * @deprecated no longer functional
+     * @return 抢夺等级
+     * @deprecated 不再起作用
      */
     @Deprecated(since = "1.21")
     public int getLootingModifier() {
@@ -70,9 +80,12 @@ public final class LootContext {
     }
 
     /**
+     * 获取被杀死的 {@link Entity}。可能为 null。
+     * <p>
+     * 原文：
      * Get the {@link Entity} that was killed. Can be null.
      *
-     * @return the looted entity or null
+     * @return 被掠夺的实体或 null
      */
     @Nullable
     public Entity getLootedEntity() {
@@ -80,10 +93,13 @@ public final class LootContext {
     }
 
     /**
+     * 获取杀死 {@link #getLootedEntity()} 的 {@link HumanEntity}。可能为 null。
+     * <p>
+     * 原文：
      * Get the {@link HumanEntity} who killed the {@link #getLootedEntity()}.
      * Can be null.
      *
-     * @return the killer entity, or null.
+     * @return 击杀者实体，或 null。
      */
     @Nullable
     public HumanEntity getKiller() {
@@ -91,9 +107,7 @@ public final class LootContext {
     }
 
     /**
-     * Utility class to make building {@link LootContext} easier. The only
-     * required argument is {@link Location} with a valid (non-null)
-     * {@link org.bukkit.World}.
+     * 用于更轻松地构建 {@link LootContext} 的实用工具类。唯一必需的参数是具有有效（非 null）{@link org.bukkit.World} 的 {@link Location}。
      */
     public static class Builder {
 
@@ -104,20 +118,26 @@ public final class LootContext {
         private HumanEntity killer;
 
         /**
+         * 创建一个新的 LootContext.Builder 实例，以便于轻松创建 {@link LootContext}。
+         * <p>
+         * 原文：
          * Creates a new LootContext.Builder instance to facilitate easy
          * creation of {@link LootContext}s.
          *
-         * @param location the location the LootContext should use
+         * @param location LootContext 应使用的位置
          */
         public Builder(@NotNull Location location) {
             this.location = location;
         }
 
         /**
+         * 设置生成战利品时的幸运值。
+         * <p>
+         * 原文：
          * Set how much luck to have when generating loot.
          *
-         * @param luck the luck level
-         * @return the Builder
+         * @param luck 幸运等级
+         * @return Builder 实例
          */
         @NotNull
         public Builder luck(float luck) {
@@ -126,14 +146,17 @@ public final class LootContext {
         }
 
         /**
+         * 设置生成战利品时使用的 {@link org.bukkit.enchantments.Enchantment#LOOTING} 等级等效值。小于或等于 0 的值将强制 {@link LootTable} 每个池只返回一个 {@link org.bukkit.inventory.ItemStack}。
+         * <p>
+         * 原文：
          * Set the {@link org.bukkit.enchantments.Enchantment#LOOTING}
          * level equivalent to use when generating loot. Values less than or
          * equal to 0 will force the {@link LootTable} to only return a single
          * {@link org.bukkit.inventory.ItemStack} per pool.
          *
-         * @param modifier the looting level modifier
-         * @return the Builder
-         * @deprecated no longer functional
+         * @param modifier 抢夺等级修饰符
+         * @return Builder 实例
+         * @deprecated 不再起作用
          */
         @NotNull
         @Deprecated(since = "1.21")
@@ -143,10 +166,13 @@ public final class LootContext {
         }
 
         /**
+         * 被杀死的实体。
+         * <p>
+         * 原文：
          * The entity that was killed.
          *
-         * @param lootedEntity the looted entity
-         * @return the Builder
+         * @param lootedEntity 被掠夺的实体
+         * @return Builder 实例
          */
         @NotNull
         public Builder lootedEntity(@Nullable Entity lootedEntity) {
@@ -155,12 +181,15 @@ public final class LootContext {
         }
 
         /**
+         * 设置杀死 {@link #getLootedEntity()} 的 {@link org.bukkit.entity.HumanEntity}。如果未设置 {@link #lootingModifier(int)}，此实体将用于获取抢夺等级。
+         * <p>
+         * 原文：
          * Set the {@link org.bukkit.entity.HumanEntity} that killed
          * {@link #getLootedEntity()}. This entity will be used to get the
          * looting level if {@link #lootingModifier(int)} is not set.
          *
-         * @param killer the killer entity
-         * @return the Builder
+         * @param killer 击杀者实体
+         * @return Builder 实例
          */
         @NotNull
         public Builder killer(@Nullable HumanEntity killer) {
@@ -169,10 +198,13 @@ public final class LootContext {
         }
 
         /**
+         * 使用提供的参数创建一个新的 {@link LootContext} 实例。
+         * <p>
+         * 原文：
          * Create a new {@link LootContext} instance using the supplied
          * parameters.
          *
-         * @return a new {@link LootContext} instance
+         * @return 一个新的 {@link LootContext} 实例
          */
         @NotNull
         public LootContext build() {
