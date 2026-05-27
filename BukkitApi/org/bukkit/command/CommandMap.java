@@ -130,19 +130,18 @@ public interface CommandMap {
     public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String cmdLine) throws IllegalArgumentException;
 
     /**
-     * Looks for the requested command and executes an appropriate
+     * 查找请求的命令并执行适当的tab补全器，如果找到了. 此方法也会对部分命令进行tab补全.
+     * <p>
+     * 原文：Looks for the requested command and executes an appropriate
      * tab-completer if found. This method will also tab-complete partial
      * commands.
      *
-     * @param sender The command's sender.
-     * @param cmdLine The entire command string to tab-complete, excluding
-     *     initial slash.
-     * @param location The position looked at by the sender, or null if none
-     * @return a list of possible tab-completions. This list may be immutable.
-     *     Will be null if no matching command of which sender has permission.
-     * @throws CommandException Thrown when the tab-completer for the given
-     *     command fails with an unhandled exception
-     * @throws IllegalArgumentException if either sender or cmdLine are null
+     * @param sender 命令发送者
+     * @param cmdLine 整个被tab补全的命令字符串，不包括最前的"/"
+     * @param location 发送者注视的位置，如果没有则为null
+     * @return 可能的tab补全项的列表. 这个列表可能是不变的. 如果命令发送者没有匹配命令的权限将会为null
+     * @throws CommandException 当给定命令的tab补全器处理时有异常未处理则抛出
+     * @throws IllegalArgumentException 如果sender或cmdLine其一为null
      */
     @Nullable
     public List<String> tabComplete(@NotNull CommandSender sender, @NotNull String cmdLine, @Nullable Location location) throws IllegalArgumentException;
