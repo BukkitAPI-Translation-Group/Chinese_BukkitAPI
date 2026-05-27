@@ -151,13 +151,11 @@ public interface PersistentDataType<P, C> {
     C fromPrimitive(@NotNull P primitive, @NotNull PersistentDataAdapterContext context);
 
     /**
-     * A default implementation that simply exists to pass on the retrieved or
-     * inserted value to the next layer.
+     * 一个默认实现，仅用于将检索或插入的值传递到下一层。
      * <p>
-     * This implementation does not add any kind of logic, but is used to
-     * provide default implementations for the primitive types.
+     * 此实现不添加任何逻辑，而是用于为原始类型提供默认实现。
      *
-     * @param <P> the generic type of the primitive objects
+     * @param <P> 原始对象的泛型类型
      */
     class PrimitivePersistentDataType<P> implements PersistentDataType<P, P> {
 
