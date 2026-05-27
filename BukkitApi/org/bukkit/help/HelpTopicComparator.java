@@ -4,10 +4,9 @@ import java.util.Comparator;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Used to impose a custom total ordering on help topics.
+ * 用于对帮助主题施加自定义全序排列.
  * <p>
- * All topics are listed in alphabetic order, but topics that start with a
- * slash come after topics that don't.
+ * 所有主题按字母顺序排列, 但以斜杠开头的主题排在不以斜杠开头的主题之后.
  */
 public final class HelpTopicComparator implements Comparator<HelpTopic> {
 

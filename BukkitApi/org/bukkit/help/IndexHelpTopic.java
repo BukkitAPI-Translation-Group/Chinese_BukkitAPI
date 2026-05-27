@@ -10,12 +10,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * This help topic generates a list of other help topics. This class is useful
- * for adding your own index help topics. To enforce a particular order, use a
- * sorted collection.
+ * 此帮助主题生成其他帮助主题的列表. 此类对于添加自己的索引帮助主题很有用.
+ * 要强制特定顺序, 请使用排序集合.
  * <p>
- * If a preamble is provided to the constructor, that text will be displayed
- * before the first item in the index.
+ * 如果向构造函数提供了前言文本, 该文本将在索引中的第一项之前显示.
  */
 public class IndexHelpTopic extends HelpTopic {
 
@@ -36,9 +34,12 @@ public class IndexHelpTopic extends HelpTopic {
     }
 
     /**
+     * 设置内部allTopics集合的内容.
+     * <p>
+     * 原文：
      * Sets the contents of the internal allTopics collection.
      *
-     * @param topics The topics to set.
+     * @param topics 要设置的主题.
      */
     protected void setTopicsCollection(@NotNull Collection<HelpTopic> topics) {
         this.allTopics = topics;
