@@ -49,9 +49,11 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
     }
 
     /**
-     * Gets the new state of the cauldron.
+     * 获取炼药锅的新状态.
+     * <p>
+     * 原文: Gets the new state of the cauldron.
      *
-     * @return The block state of the block that will be changed
+     * @return 将被更改的方块的状态
      */
     @NotNull
     public BlockState getNewState() {
@@ -59,11 +61,13 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
     }
 
     /**
-     * Gets the old level of the cauldron.
+     * 获取炼药锅的旧水位.
+     * <p>
+     * 原文: Gets the old level of the cauldron.
      *
-     * @return old level
+     * @return 旧水位
      * @see #getBlock()
-     * @deprecated not all cauldron contents are Levelled
+     * @deprecated 并非所有炼药锅的内容物都是 Levelled 类型的
      */
     @Deprecated(since = "1.17")
     public int getOldLevel() {
@@ -72,11 +76,13 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
     }
 
     /**
-     * Gets the new level of the cauldron.
+     * 获取炼药锅的新水位.
+     * <p>
+     * 原文: Gets the new level of the cauldron.
      *
-     * @return new level
+     * @return 新水位
      * @see #getNewState()
-     * @deprecated not all cauldron contents are Levelled
+     * @deprecated 并非所有炼药锅的内容物都是 Levelled 类型的
      */
     @Deprecated(since = "1.17")
     public int getNewLevel() {
@@ -85,11 +91,13 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
     }
 
     /**
-     * Sets the new level of the cauldron.
+     * 设置炼药锅的新水位.
+     * <p>
+     * 原文: Sets the new level of the cauldron.
      *
-     * @param newLevel new level
+     * @param newLevel 新水位
      * @see #getNewState()
-     * @deprecated not all cauldron contents are Levelled
+     * @deprecated 并非所有炼药锅的内容物都是 Levelled 类型的
      */
     @Deprecated(since = "1.17")
     public void setNewLevel(int newLevel) {
@@ -150,7 +158,7 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
          */
         ARMOR_WASH,
         /**
-         * Player cleaning a shulker box.
+         * 玩家清洗潜影盒.
          */
         SHULKER_WASH,
         /**
@@ -162,7 +170,7 @@ public class CauldronLevelChangeEvent extends BlockEvent implements Cancellable 
          */
         EVAPORATE,
         /**
-         * Filling due to natural fluid sources, eg rain or dripstone.
+         * 自然流体源导致的填充, 例如雨水或滴水石.
          */
         NATURAL_FILL,
         /**
