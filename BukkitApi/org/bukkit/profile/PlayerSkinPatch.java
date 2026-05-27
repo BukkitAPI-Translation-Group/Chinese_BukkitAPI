@@ -11,7 +11,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the path to the profile texture patched onto this profile.
      *
-     * @return the model texture
+     * @return 模型纹理.
      */
     @Nullable
     public NamespacedKey getTexturePatch();
@@ -21,7 +21,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the path to the profile texture patched onto this profile.
      *
-     * @param texture the model texture
+     * @param texture 模型纹理.
      */
     public void setTexturePatch(@Nullable NamespacedKey texture);
 
@@ -30,7 +30,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the path to the profile cape texture patched onto this profile.
      *
-     * @return the cape texture
+     * @return 披风纹理.
      */
     @Nullable
     public NamespacedKey getCapeTexturePatch();
@@ -40,7 +40,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the path to the profile cape texture patched onto this profile.
      *
-     * @param cape the cape texture
+     * @param cape 披风纹理.
      */
     public void setCapeTexturePatch(@Nullable NamespacedKey cape);
 
@@ -49,7 +49,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the path to the profile elytra texture patched onto this profile.
      *
-     * @return the elyra texture
+     * @return 鞘翅纹理.
      */
     @Nullable
     public NamespacedKey getElytraTexturePatch();
@@ -59,7 +59,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the path to the profile elytra texture patched onto this profile.
      *
-     * @param elytra the elyra texture
+     * @param elytra 鞘翅纹理.
      */
     public void setElytraTexturePatch(@Nullable NamespacedKey elytra);
 
@@ -68,7 +68,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the type of model patched onto this profile.
      *
-     * @return model type
+     * @return 模型类型.
      */
     @Nullable
     public PlayerTextures.SkinModel getModelPatch();
@@ -78,7 +78,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Gets the type of model patched onto this profile.
      *
-     * @param model model type
+     * @param model 模型类型.
      */
     public void setModelPatch(@Nullable PlayerTextures.SkinModel model);
 
@@ -87,7 +87,7 @@ public interface PlayerSkinPatch extends ConfigurationSerializable {
      * <p>
      * 原文：Checks if the patch has no patched components.
      *
-     * @return <code>true</code> if the patch has no patched components
+     * @return 如果补丁没有修补的组件则返回 <code>true</code>.
      */
     boolean isEmpty();
 }
