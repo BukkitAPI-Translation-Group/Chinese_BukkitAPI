@@ -5,8 +5,8 @@ import org.bukkit.Material;
 /**
  * 代表命令方块.
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有MaterialData的用法都已弃用并将被移除。
+ * 请使用{@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Command extends MaterialData implements Redstone {
@@ -19,8 +19,8 @@ public class Command extends MaterialData implements Redstone {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
+     * @param type 类型
+     * @param data 原始数据值
      * @deprecated 不安全的参数
      */
     @Deprecated(since = "1.6.2")
