@@ -12,82 +12,106 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Manager of data packs.
+ * 数据包管理器.
  */
 public interface DataPackManager {
 
     /**
+     * 返回服务器上所有可用的{@link DataPack}.
+     * <p>
+     * 原文：
      * Return all the available {@link DataPack}s on the server.
      *
-     * @return a Collection of {@link DataPack}
+     * @return {@link DataPack}的集合
      */
     @NotNull
     public Collection<DataPack> getDataPacks();
 
     /**
+     * 通过键获取{@link DataPack}.
+     * <p>
+     * 原文：
      * Gets a {@link DataPack} by its key.
      *
-     * @param dataPackKey the key of the {@link DataPack}
-     * @return the {@link DataPack} or null if it does not exist
+     * @param dataPackKey {@link DataPack}的键
+     * @return {@link DataPack}, 如果不存在则返回null
      */
     @Nullable
     public DataPack getDataPack(@NotNull NamespacedKey dataPackKey);
 
     /**
+     * 返回世界中所有启用的{@link DataPack}.
+     * <p>
+     * 原文：
      * Return all the enabled {@link DataPack} in the World.
      *
-     * @param world the world to search
-     * @return a Collection of {@link DataPack}
+     * @param world 要搜索的世界
+     * @return {@link DataPack}的集合
      */
     @NotNull
     public Collection<DataPack> getEnabledDataPacks(@NotNull World world);
 
     /**
+     * 返回世界中所有禁用的{@link DataPack}.
+     * <p>
+     * 原文：
      * Return all the disabled {@link DataPack} in the World.
      *
-     * @param world the world to search
-     * @return a Collection of {@link DataPack}
+     * @param world 要搜索的世界
+     * @return {@link DataPack}的集合
      */
     @NotNull
     public Collection<DataPack> getDisabledDataPacks(@NotNull World world);
 
     /**
+     * 获取Material是否在世界中被特性启用.
+     * <p>
+     * 原文：
      * Gets if the Material is enabled for use by the features in World.
      *
-     * @param material Material to check (needs to be an {@link Material#isItem()} or {@link Material#isBlock()})
-     * @param world World to check
-     * @return {@code True} if the Item/Block related to the material is enabled
+     * @param material 要检查的Material(需要是{@link Material#isItem()}或{@link Material#isBlock()})
+     * @param world 要检查的世界
+     * @return {@code True} 如果与material相关的物品/方块被启用
      */
     public boolean isEnabledByFeature(@NotNull Material material, @NotNull World world);
 
     /**
+     * 获取ItemType是否在世界中被特性启用.
+     * <p>
+     * 原文：
      * Gets if the ItemType is enabled for use by the features in World.
      *
-     * @param itemType ItemType to check
-     * @param world World to check
-     * @return {@code True} if the ItemType is enabled
-     * @apiNote this method is not ready for public usage yet
+     * @param itemType 要检查的ItemType
+     * @param world 要检查的世界
+     * @return {@code True} 如果ItemType被启用
+     * @apiNote 此方法尚未准备好公开使用
      */
     @ApiStatus.Internal
     public boolean isEnabledByFeature(@NotNull ItemType itemType, @NotNull World world);
 
     /**
+     * 获取BlockType是否在世界中被特性启用.
+     * <p>
+     * 原文：
      * Gets if the BlockType is enabled for use by the features in World.
      *
-     * @param blockType BlockType to check
-     * @param world World to check
-     * @return {@code True} if the BlockType is enabled
-     * @apiNote this method is not ready for public usage yet
+     * @param blockType 要检查的BlockType
+     * @param world 要检查的世界
+     * @return {@code True} 如果BlockType被启用
+     * @apiNote 此方法尚未准备好公开使用
      */
     @ApiStatus.Internal
     public boolean isEnabledByFeature(@NotNull BlockType blockType, @NotNull World world);
 
     /**
+     * 获取EntityType是否在世界中被特性启用.
+     * <p>
+     * 原文：
      * Gets if the EntityType is enabled for use by the Features in World.
      *
-     * @param entityType EntityType to check
-     * @param world World to check
-     * @return {@code True} if the type of entity is enabled
+     * @param entityType 要检查的EntityType
+     * @param world 要检查的世界
+     * @return {@code True} 如果实体类型被启用
      */
     public boolean isEnabledByFeature(@NotNull EntityType entityType, @NotNull World world);
 }

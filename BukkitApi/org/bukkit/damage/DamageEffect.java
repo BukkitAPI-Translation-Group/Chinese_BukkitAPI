@@ -6,33 +6,32 @@ import org.bukkit.Sound;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a type of effect that occurs when damage is inflicted. Currently,
- * effects only determine the sound that plays.
+ * 代表造成伤害时发生的效果类型. 目前, 效果仅决定播放的声音.
  */
 public interface DamageEffect {
 
     /**
-     * The default damage effect.
+     * 默认的伤害效果.
      */
     public static final DamageEffect HURT = getDamageEffect("hurt");
     /**
-     * Thorns.
+     * 荆棘.
      */
     public static final DamageEffect THORNS = getDamageEffect("thorns");
     /**
-     * Drowning.
+     * 溺水.
      */
     public static final DamageEffect DROWNING = getDamageEffect("drowning");
     /**
-     * A single burn tick (fire, lava, etc.).
+     * 单次燃烧刻(火焰、岩浆等).
      */
     public static final DamageEffect BURNING = getDamageEffect("burning");
     /**
-     * Poked by a berry bush.
+     * 被浆果丛刺伤.
      */
     public static final DamageEffect POKING = getDamageEffect("poking");
     /**
-     * Freeze tick (powder snow).
+     * 冻结刻(细雪).
      */
     public static final DamageEffect FREEZING = getDamageEffect("freezing");
 
@@ -42,9 +41,12 @@ public interface DamageEffect {
     }
 
     /**
+     * 获取此{@link DamageEffect}播放的{@link Sound}.
+     * <p>
+     * 原文：
      * Get the {@link Sound} played for this {@link DamageEffect}.
      *
-     * @return the sound
+     * @return 声音
      */
     @NotNull
     public Sound getSound();

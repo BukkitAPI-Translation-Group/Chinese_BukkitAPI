@@ -1,23 +1,22 @@
 package org.bukkit.damage;
 
 /**
- * Represents a type of death message used by a {@link DamageSource}.
+ * 代表{@link DamageSource}使用的死亡消息类型.
  */
 public enum DeathMessageType {
 
     /**
-     * No special death message logic is applied.
+     * 不应用特殊的死亡消息逻辑.
      */
     DEFAULT,
     /**
-     * Shows a variant of fall damage death instead of a regular death message.
+     * 显示摔落伤害死亡的变体而非普通死亡消息.
      * <br>
-     * <b>Example:</b> death.fell.assist.item
+     * <b>示例：</b>death.fell.assist.item
      */
     FALL_VARIANTS,
     /**
-     * Shows the intentional game design death message instead of a regular
-     * death message.
+     * 显示有意设计的死亡消息而非普通死亡消息.
      */
     INTENTIONAL_GAME_DESIGN;
 }

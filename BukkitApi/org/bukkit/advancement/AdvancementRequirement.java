@@ -6,18 +6,23 @@ import org.jetbrains.annotations.NotNull;
 public interface AdvancementRequirement {
 
     /**
+     * 获取所有必需的条件.
+     * <p>
+     * 原文：
      * Get all required criteria.
      *
-     * @return the list of required criteria for this requirement.
+     * @return 此需求的必需条件列表.
      */
     @NotNull
     List<String> getRequiredCriteria();
 
     /**
+     * 检查需求是否为严格模式.
+     * <p>
+     * 原文：
      * Check if the requirement is strict.
      *
-     * @return true if requirement list contains one criteria, false if
-     * multiple.
+     * @return 如果需求列表包含一个条件则返回true, 多个则返回false.
      */
     boolean isStrict();
 }

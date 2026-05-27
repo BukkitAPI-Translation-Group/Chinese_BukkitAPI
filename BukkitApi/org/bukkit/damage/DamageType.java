@@ -8,11 +8,10 @@ import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represent a type of damage that an entity can receive.
+ * 代表实体可以受到的伤害类型.
  * <p>
- * Constants in this class include the base types provided by the vanilla
- * server. Data packs are capable of registering more types of damage which may
- * be obtained through the {@link Registry#DAMAGE_TYPE}.
+ * 此类中的常量包括原版服务器提供的基础类型.
+ * 数据包能够注册更多类型的伤害, 可以通过{@link Registry#DAMAGE_TYPE}获取.
  *
  * @see <a href="https://minecraft.wiki/w/Damage_type">Minecraft Wiki</a>
  */
@@ -77,44 +76,54 @@ public interface DamageType extends Keyed, Translatable, RegistryAware {
     /**
      * {@inheritDoc}
      * <p>
-     * The returned key is that of the death message sent when this damage type
-     * is responsible for the death of an entity.
+     * 返回的键是当此伤害类型导致实体死亡时发送的死亡消息的键.
      * <p>
-     * <strong>Note</strong> This translation key is only used if
-     * {@link #getDeathMessageType()} is {@link DeathMessageType#DEFAULT}
+     * <strong>注意</strong> 此翻译键仅在{@link #getDeathMessageType()}为{@link DeathMessageType#DEFAULT}时使用
      */
     @NotNull
     @Override
     public String getTranslationKey();
 
     /**
+     * 获取此伤害类型的{@link DamageScaling}.
+     * <p>
+     * 原文：
      * Get the {@link DamageScaling} for this damage type.
      *
-     * @return the damage scaling
+     * @return 伤害缩放
      */
     @NotNull
     public DamageScaling getDamageScaling();
 
     /**
+     * 获取此伤害类型的{@link DamageEffect}.
+     * <p>
+     * 原文：
      * Get the {@link DamageEffect} for this damage type.
      *
-     * @return the damage effect
+     * @return 伤害效果
      */
     @NotNull
     public DamageEffect getDamageEffect();
 
     /**
+     * 获取此伤害类型的{@link DeathMessageType}.
+     * <p>
+     * 原文：
      * Get the {@link DeathMessageType} for this damage type.
      *
-     * @return the death message type
+     * @return 死亡消息类型
      */
     @NotNull
     public DeathMessageType getDeathMessageType();
 
     /**
+     * 获取此伤害类型造成的饥饿消耗量.
+     * <p>
+     * 原文：
      * Get the amount of hunger exhaustion caused by this damage type.
      *
-     * @return the exhaustion
+     * @return 消耗量
      */
     public float getExhaustion();
 
