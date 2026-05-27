@@ -65,32 +65,32 @@ public interface Scoreboard {
     Objective registerNewObjective(@NotNull String name, @NotNull String criteria, @NotNull String displayName, @NotNull RenderType renderType);
 
     /**
-     * Registers an Objective on this Scoreboard
+     * 向计分板注册一个计分项.
+     * <p>
+     * 原文：Registers an Objective on this Scoreboard
      *
-     * @param name Name of the Objective
-     * @param criteria Criteria for the Objective
-     * @param displayName Name displayed to players for the Objective.
-     * @return The registered Objective
-     * @throws IllegalArgumentException if name is longer than 32767
-     *     characters.
-     * @throws IllegalArgumentException if an objective by that name already
-     *     exists
+     * @param name 计分项名称
+     * @param criteria 计分项的准则
+     * @param displayName 展示给玩家的计分项显示名称
+     * @return 注册的计分项实例
+     * @throws IllegalArgumentException 若名称长度超过32767个字符
+     * @throws IllegalArgumentException 若同名计分项已存在
      */
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName);
 
     /**
-     * Registers an Objective on this Scoreboard
+     * 向计分板注册一个计分项.
+     * <p>
+     * 原文：Registers an Objective on this Scoreboard
      *
-     * @param name Name of the Objective
-     * @param criteria Criteria for the Objective
-     * @param displayName Name displayed to players for the Objective.
-     * @param renderType Manner of rendering the Objective
-     * @return The registered Objective
-     * @throws IllegalArgumentException if name is longer than 32767
-     *     characters.
-     * @throws IllegalArgumentException if an objective by that name already
-     *     exists
+     * @param name 计分项名称
+     * @param criteria 计分项的准则
+     * @param displayName 展示给玩家的计分项显示名称
+     * @param renderType 计分项的渲染方式
+     * @return 注册的计分项实例
+     * @throws IllegalArgumentException 若名称长度超过32767个字符
+     * @throws IllegalArgumentException 若同名计分项已存在
      */
     @NotNull
     Objective registerNewObjective(@NotNull String name, @NotNull Criteria criteria, @NotNull String displayName, @NotNull RenderType renderType);
