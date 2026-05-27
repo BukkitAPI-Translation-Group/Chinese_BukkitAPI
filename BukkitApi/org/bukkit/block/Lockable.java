@@ -45,11 +45,13 @@ public interface Lockable {
     void setLock(@Nullable String key);
 
     /**
-     * Sets the key required to access this container. All explicit
+     * 设置访问此容器所需的钥匙. 所有对已设置钥匙的显式修改都必须与开启钥匙相匹配. 设为 null 以移除钥匙.
+     * <p>
+     * 原文：Sets the key required to access this container. All explicit
      * modifications to the set key will be required to match on the opening
      * key. Set to null to remove key.
      *
-     * @param key the key required to access the container.
+     * @param key 访问此容器所需的钥匙.
      */
     @ApiStatus.Experimental
     void setLockItem(@Nullable ItemStack key);
