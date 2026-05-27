@@ -9,31 +9,39 @@ import org.jetbrains.annotations.Nullable;
 public interface Raider extends Monster {
 
     /**
-     * Set the {@link Raid} that this raider is participating in.
+     * 设置此袭击者正在参与的 {@link Raid}。
+     * <p>
+     * 原文：Set the {@link Raid} that this raider is participating in.
      *
-     * @param raid the raid to set
+     * @param raid 要设置的袭击
      */
     void setRaid(@Nullable Raid raid);
 
     /**
-     * Get the {@link Raid} that this raider is participating in, if any.
+     * 获取此袭击者正在参与的 {@link Raid}（如果有的话）。
+     * <p>
+     * 原文：Get the {@link Raid} that this raider is participating in, if any.
      *
-     * @return the raid, or null if not participating in a raid
+     * @return 袭击事件，若未参与则为null
      */
     @Nullable
     Raid getRaid();
 
     /**
-     * Get the raid wave that this raider spawned as part of.
+     * 获取此袭击者生成时所属的袭击波次。
+     * <p>
+     * 原文：Get the raid wave that this raider spawned as part of.
      *
-     * @return the raid wave, or 0 if not participating in a raid
+     * @return 袭击波次，若未参与袭击则为0
      */
     int getWave();
 
     /**
-     * Set the raid wave that this raider was spawned as part of.
+     * 设置此袭击者生成时所属的袭击波次。
+     * <p>
+     * 原文：Set the raid wave that this raider was spawned as part of.
      *
-     * @param wave the raid wave to set. Must be >= 0
+     * @param wave 要设置的袭击波次，必须 >= 0
      */
     void setWave(int wave);
 
