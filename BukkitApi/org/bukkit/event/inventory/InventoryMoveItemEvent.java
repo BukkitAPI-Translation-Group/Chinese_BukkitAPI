@@ -9,20 +9,13 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when some entity or block (e.g. hopper) tries to move items directly
- * from one inventory to another.
+ * 当某个实体或方块（例如漏斗）尝试将物品直接从一个物品栏移动到另一个物品栏时调用。
  * <p>
- * When this event is called, the initiator may already have removed the item
- * from the source inventory and is ready to move it into the destination
- * inventory.
+ * 当此事件被调用时，发起者可能已经从源物品栏中移除了该物品，并准备将其移动到目标物品栏中。
  * <p>
- * If this event is cancelled, the items will be returned to the source
- * inventory, if needed.
+ * 如果此事件被取消，物品将被返回到源物品栏（如果需要）。
  * <p>
- * If this event is not cancelled, the initiator will try to put the ItemStack
- * into the destination inventory. If this is not possible and the ItemStack
- * has not been modified, the source inventory slot will be restored to its
- * former state. Otherwise any additional items will be discarded.
+ * 如果此事件未被取消，发起者将尝试将 ItemStack 放入目标物品栏。如果这不可能且 ItemStack 未被修改，源物品栏槽位将恢复到之前的状态。否则，任何额外的物品将被丢弃。
  */
 public class InventoryMoveItemEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -41,9 +34,10 @@ public class InventoryMoveItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the Inventory that the ItemStack is being taken from
+     * 获取 ItemStack 被取出的物品栏。
      *
-     * @return Inventory that the ItemStack is being taken from
+     * @return ItemStack 被取出的物品栏
+     * <p>原文：Gets the Inventory that the ItemStack is being taken from
      */
     @NotNull
     public Inventory getSource() {
@@ -51,10 +45,11 @@ public class InventoryMoveItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the ItemStack being moved; if modified, the original item will not
-     * be removed from the source inventory.
+     * 获取正在移动的 ItemStack；如果被修改，原始物品将不会从源物品栏中移除。
      *
      * @return ItemStack
+     * <p>原文：Gets the ItemStack being moved; if modified, the original item will not
+     * be removed from the source inventory.
      */
     @NotNull
     public ItemStack getItem() {
@@ -62,11 +57,12 @@ public class InventoryMoveItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Sets the ItemStack being moved; if this is different from the original
+     * 设置正在移动的 ItemStack；如果这与原始 ItemStack 不同，原始物品将不会从源物品栏中移除。
+     *
+     * @param itemStack ItemStack
+     * <p>原文：Sets the ItemStack being moved; if this is different from the original
      * ItemStack, the original item will not be removed from the source
      * inventory.
-     *
-     * @param itemStack The ItemStack
      */
     public void setItem(@NotNull ItemStack itemStack) {
         Preconditions.checkArgument(itemStack != null, "ItemStack cannot be null.  Cancel the event if you want nothing to be transferred.");
@@ -74,9 +70,10 @@ public class InventoryMoveItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the Inventory that the ItemStack is being put into
+     * 获取 ItemStack 被放入的物品栏。
      *
-     * @return Inventory that the ItemStack is being put into
+     * @return ItemStack 被放入的物品栏
+     * <p>原文：Gets the Inventory that the ItemStack is being put into
      */
     @NotNull
     public Inventory getDestination() {
@@ -84,10 +81,11 @@ public class InventoryMoveItemEvent extends Event implements Cancellable {
     }
 
     /**
-     * Gets the Inventory that initiated the transfer. This will always be
-     * either the destination or source Inventory.
+     * 获取发起传输的物品栏。这将始终是目标或源物品栏。
      *
-     * @return Inventory that initiated the transfer
+     * @return 发起传输的物品栏
+     * <p>原文：Gets the Inventory that initiated the transfer. This will always be
+     * either the destination or source Inventory.
      */
     @NotNull
     public Inventory getInitiator() {

@@ -4,10 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * MaterialData for signs
+ * 告示牌的 MaterialData。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Sign extends MaterialData implements Attachable {
@@ -20,9 +20,10 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * @param type the raw type id
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 原始类型 ID
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public Sign(final Material type, final byte data) {
@@ -30,19 +31,20 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * Check if this sign is attached to a wall
+     * 检查此告示牌是否附着在墙上。
      *
-     * @return true if this sign is attached to a wall, false if set on top of
-     *     a block
+     * @return 如果此告示牌附着在墙上则返回 true，如果放置在方块顶部则返回 false
+     * <p>原文：Check if this sign is attached to a wall
      */
     public boolean isWallSign() {
         return getItemType() == Material.LEGACY_WALL_SIGN;
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取此方块所附着的面。
      *
-     * @return BlockFace attached to
+     * @return 附着的 BlockFace
+     * <p>原文：Gets the face that this block is attached on
      */
     @Override
     public BlockFace getAttachedFace() {
@@ -70,9 +72,10 @@ public class Sign extends MaterialData implements Attachable {
     }
 
     /**
-     * Gets the direction that this sign is currently facing
+     * 获取此告示牌当前朝向的方向。
      *
-     * @return BlockFace indicating where this sign is facing
+     * @return 指示此告示牌朝向的 BlockFace
+     * <p>原文：Gets the direction that this sign is currently facing
      */
     @Override
     public BlockFace getFacing() {

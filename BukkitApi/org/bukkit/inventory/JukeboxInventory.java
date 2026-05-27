@@ -4,24 +4,29 @@ import org.bukkit.block.Jukebox;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Interface to the inventory of a Jukebox.
+ * 唱片机物品栏的接口。
  */
 public interface JukeboxInventory extends Inventory {
 
     /**
-     * Set the record in the jukebox.
+     * 设置唱片机中的唱片。
      * <p>
-     * This will immediately start playing the inserted item or stop playing if the
+     * 这将立即开始播放插入的物品，如果提供的物品为 null 则停止播放。
+     *
+     * <p>原文：Set the record in the jukebox.
+     * <p>This will immediately start playing the inserted item or stop playing if the
      * item provided is null.
      *
-     * @param item the new record
+     * @param item 新唱片
      */
     void setRecord(@Nullable ItemStack item);
 
     /**
-     * Get the record in the jukebox.
+     * 获取唱片机中的唱片。
      *
-     * @return the current record
+     * <p>原文：Get the record in the jukebox.
+     *
+     * @return 当前唱片
      */
     @Nullable
     ItemStack getRecord();

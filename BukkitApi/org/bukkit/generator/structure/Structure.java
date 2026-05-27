@@ -7,11 +7,11 @@ import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represent a Structure from the world.
+ * 表示来自世界的结构。
  *
- * Listed structures are present in the default server. Depending on the server
- * there might be additional structures present (for example structures added by
- * data packs), which can be received via {@link Registry#STRUCTURE}.
+ * 列出的结构存在于默认服务器中。根据服务器的不同，
+ * 可能会有额外的结构存在（例如由数据包添加的结构），
+ * 可以通过 {@link Registry#STRUCTURE} 获取。
  */
 public abstract class Structure implements Keyed, RegistryAware {
 
@@ -56,7 +56,9 @@ public abstract class Structure implements Keyed, RegistryAware {
     }
 
     /**
-     * Returns the type of the structure.
+     * 返回结构的类型。
+     * <p>
+     * 原文：Returns the type of the structure.
      *
      * @return the type of structure
      */
@@ -65,10 +67,12 @@ public abstract class Structure implements Keyed, RegistryAware {
 
     /**
      * {@inheritDoc}
+     * <p>
+     * 原文：{@inheritDoc}
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
      */
     @NotNull
     @Override

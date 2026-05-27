@@ -4,22 +4,24 @@ import org.bukkit.block.data.BlockData;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a block display entity.
+ * 代表一个方块展示实体。
  */
 public interface BlockDisplay extends Display {
 
     /**
-     * Gets the displayed block.
+     * 获取展示的方块。
      *
-     * @return the displayed block
+     * @return 展示的方块
+     * <p>原文：Gets the displayed block.
      */
     @NotNull
     public BlockData getBlock();
 
     /**
-     * Sets the displayed block.
+     * 设置展示的方块。
      *
-     * @param block the new block
+     * @param block 新的方块
+     * <p>原文：Sets the displayed block.
      */
     public void setBlock(@NotNull BlockData block);
 }

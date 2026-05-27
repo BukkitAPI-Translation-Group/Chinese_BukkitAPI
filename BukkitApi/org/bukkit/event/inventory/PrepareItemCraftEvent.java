@@ -19,11 +19,12 @@ public class PrepareItemCraftEvent extends InventoryEvent {
     }
 
     /**
-     * Get the recipe that has been formed. If this event was triggered by a
+     * 获取已形成的配方。如果此事件是由工具修复触发的，这将是一个代表修复的临时无序配方。
+     *
+     * @return 正在合成的配方
+     * <p>原文：Get the recipe that has been formed. If this event was triggered by a
      * tool repair, this will be a temporary shapeless recipe representing the
      * repair.
-     *
-     * @return The recipe being crafted.
      */
     @Nullable
     public Recipe getRecipe() {
@@ -31,7 +32,8 @@ public class PrepareItemCraftEvent extends InventoryEvent {
     }
 
     /**
-     * @return The crafting inventory on which the recipe was formed.
+     * @return 形成配方的合成物品栏。
+     * <p>原文：The crafting inventory on which the recipe was formed.
      */
     @NotNull
     @Override
@@ -40,10 +42,11 @@ public class PrepareItemCraftEvent extends InventoryEvent {
     }
 
     /**
-     * Check if this event was triggered by a tool repair operation rather
-     * than a crafting recipe.
+     * 检查此事件是否由工具修复操作而非合成配方触发。
      *
-     * @return True if this is a repair.
+     * @return 如果这是修复则返回 true
+     * <p>原文：Check if this event was triggered by a tool repair operation rather
+     * than a crafting recipe.
      */
     public boolean isRepair() {
         return repair;

@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when an item is put in a slot for repair or unenchanting in a grindstone.
+ * 当物品被放入砂轮中用于修复或解除附魔的槽位时调用。
  */
 public class PrepareGrindstoneEvent extends PrepareInventoryResultEvent {
 

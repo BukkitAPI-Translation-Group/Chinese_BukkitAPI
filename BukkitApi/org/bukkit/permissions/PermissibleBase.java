@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Base Permissible for use in any Permissible object via proxy or extension
+ * 通过代理或扩展在任何 Permissible 对象中使用的基础 Permissible
  */
 public class PermissibleBase implements Permissible {
     private final ServerOperator opable;

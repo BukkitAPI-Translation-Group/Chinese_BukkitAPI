@@ -6,154 +6,144 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents the different kinds of inventories available in Bukkit.
+ * 表示 Bukkit 中可用的不同类型的物品栏。
  * <br>
- * Only InventoryTypes marked {@link #isCreatable()} can be created.
+ * 只有标记为 {@link #isCreatable()} 的 InventoryType 才能被创建。
  * <br>
- * The current list of inventories that cannot be created via
- * {@link org.bukkit.Bukkit#createInventory} are:<br>
+ * 当前无法通过 {@link org.bukkit.Bukkit#createInventory} 创建的物品栏列表是：<br>
  * <blockquote>
- *     {@link InventoryType#CREATIVE}, {@link InventoryType#CRAFTING} and
+ *     {@link InventoryType#CREATIVE}、{@link InventoryType#CRAFTING} 和
  *     {@link InventoryType#MERCHANT}
  * </blockquote>
  *
- * See {@link org.bukkit.Bukkit#createInventory} for more information.
+ * 有关更多信息，请参阅 {@link org.bukkit.Bukkit#createInventory}。
  *
  * @see org.bukkit.Bukkit#createInventory(InventoryHolder, InventoryType)
  */
 public enum InventoryType {
 
     /**
-     * A chest inventory, with 0, 9, 18, 27, 36, 45, or 54 slots of type
-     * CONTAINER.
+     * 箱子物品栏，具有 0、9、18、27、36、45 或 54 个 CONTAINER 类型的槽位。
      */
     CHEST(27, "Chest", MenuType.GENERIC_9X3),
     /**
-     * A dispenser inventory, with 9 slots of type CONTAINER.
+     * 发射器物品栏，具有 9 个 CONTAINER 类型的槽位。
      */
     DISPENSER(9, "Dispenser", MenuType.GENERIC_3X3),
     /**
-     * A dropper inventory, with 9 slots of type CONTAINER.
+     * 投掷器物品栏，具有 9 个 CONTAINER 类型的槽位。
      */
     DROPPER(9, "Dropper", MenuType.GENERIC_3X3),
     /**
-     * A furnace inventory, with a RESULT slot, a CRAFTING slot, and a FUEL
-     * slot.
+     * 熔炉物品栏，具有一个 RESULT 槽位、一个 CRAFTING 槽位和一个 FUEL 槽位。
      */
     FURNACE(3, "Furnace", MenuType.FURNACE),
     /**
-     * A workbench inventory, with 9 CRAFTING slots and a RESULT slot.
+     * 工作台物品栏，具有 9 个 CRAFTING 槽位和一个 RESULT 槽位。
      */
     WORKBENCH(10, "Crafting", MenuType.CRAFTING),
     /**
-     * A player's crafting inventory, with 4 CRAFTING slots and a RESULT slot.
-     * Also implies that the 4 ARMOR slots are accessible.
+     * 玩家的合成物品栏，具有 4 个 CRAFTING 槽位和一个 RESULT 槽位。同时意味着 4 个 ARMOR 槽位是可访问的。
      */
     CRAFTING(5, "Crafting", null, false),
     /**
-     * An enchantment table inventory, with two CRAFTING slots and three
-     * enchanting buttons.
+     * 附魔台物品栏，具有两个 CRAFTING 槽位和三个附魔按钮。
      */
     ENCHANTING(2, "Enchanting", MenuType.ENCHANTMENT),
     /**
-     * A brewing stand inventory, with one FUEL slot and four CRAFTING slots.
+     * 酿造台物品栏，具有一个 FUEL 槽位和四个 CRAFTING 槽位。
      */
     BREWING(5, "Brewing", MenuType.BREWING_STAND),
     /**
-     * A player's inventory, with 9 QUICKBAR slots, 27 CONTAINER slots, 4 ARMOR
-     * slots and 1 offhand slot. The ARMOR and offhand slots may not be visible
-     * to the player, though.
+     * 玩家的物品栏，具有 9 个 QUICKBAR 槽位、27 个 CONTAINER 槽位、4 个 ARMOR 槽位和 1 个副手槽位。但 ARMOR 和副手槽位可能对玩家不可见。
      */
     PLAYER(41, "Player", MenuType.GENERIC_9X4),
     /**
-     * The creative mode inventory, with only 9 QUICKBAR slots and nothing
-     * else. (The actual creative interface with the items is client-side and
-     * cannot be altered by the server.)
+     * 创造模式物品栏，只有 9 个 QUICKBAR 槽位，没有其他。（实际的创造界面物品是客户端的，无法由服务器更改。）
      */
     CREATIVE(9, "Creative", null, false),
     /**
-     * The merchant inventory, with 2 CRAFTING slots, and 1 RESULT slot.
+     * 商人物品栏，具有 2 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      */
     MERCHANT(3, "Villager", MenuType.MERCHANT, false),
     /**
-     * The ender chest inventory, with 27 slots.
+     * 末影箱物品栏，具有 27 个槽位。
      */
     ENDER_CHEST(27, "Ender Chest", MenuType.GENERIC_9X3),
     /**
-     * An anvil inventory, with 2 CRAFTING slots and 1 RESULT slot
+     * 铁砧物品栏，具有 2 个 CRAFTING 槽位和 1 个 RESULT 槽位
      */
     ANVIL(3, "Repairing", MenuType.ANVIL),
     /**
-     * A smithing inventory, with 3 CRAFTING slots and 1 RESULT slot.
+     * 锻造台物品栏，具有 3 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      */
     SMITHING(4, "Upgrade Gear", MenuType.SMITHING),
     /**
-     * A beacon inventory, with 1 CRAFTING slot
+     * 信标物品栏，具有 1 个 CRAFTING 槽位
      */
     BEACON(1, "container.beacon", MenuType.BEACON),
     /**
-     * A hopper inventory, with 5 slots of type CONTAINER.
+     * 漏斗物品栏，具有 5 个 CONTAINER 类型的槽位。
      */
     HOPPER(5, "Item Hopper", MenuType.HOPPER),
     /**
-     * A shulker box inventory, with 27 slots of type CONTAINER.
+     * 潜影盒物品栏，具有 27 个 CONTAINER 类型的槽位。
      */
     SHULKER_BOX(27, "Shulker Box", MenuType.SHULKER_BOX),
     /**
-     * A barrel box inventory, with 27 slots of type CONTAINER.
+     * 桶物品栏，具有 27 个 CONTAINER 类型的槽位。
      */
     BARREL(27, "Barrel", MenuType.GENERIC_9X3),
     /**
-     * A blast furnace inventory, with a RESULT slot, a CRAFTING slot, and a
-     * FUEL slot.
+     * 高炉物品栏，具有一个 RESULT 槽位、一个 CRAFTING 槽位和一个 FUEL 槽位。
      */
     BLAST_FURNACE(3, "Blast Furnace", MenuType.BLAST_FURNACE),
     /**
-     * A lectern inventory, with 1 BOOK slot.
+     * 讲台物品栏，具有 1 个 BOOK 槽位。
      */
     LECTERN(1, "Lectern", MenuType.LECTERN),
     /**
-     * A smoker inventory, with a RESULT slot, a CRAFTING slot, and a FUEL slot.
+     * 烟熏炉物品栏，具有一个 RESULT 槽位、一个 CRAFTING 槽位和一个 FUEL 槽位。
      */
     SMOKER(3, "Smoker", MenuType.SMOKER),
     /**
-     * Loom inventory, with 3 CRAFTING slots, and 1 RESULT slot.
+     * 织布机物品栏，具有 3 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      */
     LOOM(4, "Loom", MenuType.LOOM),
     /**
-     * Cartography inventory with 2 CRAFTING slots, and 1 RESULT slot.
+     * 制图台物品栏，具有 2 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      */
     CARTOGRAPHY(3, "Cartography Table", MenuType.CARTOGRAPHY_TABLE),
     /**
-     * Grindstone inventory with 2 CRAFTING slots, and 1 RESULT slot.
+     * 砂轮物品栏，具有 2 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      */
     GRINDSTONE(3, "Repair & Disenchant", MenuType.GRINDSTONE),
     /**
-     * Stonecutter inventory with 1 CRAFTING slot, and 1 RESULT slot.
+     * 切石机物品栏，具有 1 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      */
     STONECUTTER(2, "Stonecutter", MenuType.STONECUTTER),
     /**
-     * Pseudo composter inventory with 0 or 1 slots of undefined type.
+     * 伪堆肥桶物品栏，具有 0 或 1 个未定义类型的槽位。
      */
     COMPOSTER(1, "Composter", null, false),
     /**
-     * Pseudo chiseled bookshelf inventory, with 6 slots of undefined type.
+     * 伪雕刻书架物品栏，具有 6 个未定义类型的槽位。
      */
     CHISELED_BOOKSHELF(6, "Chiseled Bookshelf", null, false),
     /**
-     * Pseudo jukebox inventory with 1 slot of undefined type.
+     * 伪唱片机物品栏，具有 1 个未定义类型的槽位。
      */
     JUKEBOX(1, "Jukebox", null, false),
     /**
-     * Pseudo decorated pot inventory with 1 slot of undefined type.
+     * 伪装饰罐物品栏，具有 1 个未定义类型的槽位。
      */
     DECORATED_POT(1, "Decorated Pot", null, false),
     /**
-     * A crafter inventory, with 9 CRAFTING slots.
+     * 合成器物品栏，具有 9 个 CRAFTING 槽位。
      */
     CRAFTER(9, "Crafter", MenuType.CRAFTER_3X3),
     /**
-     * The new smithing inventory, with 3 CRAFTING slots and 1 RESULT slot.
+     * 新的锻造台物品栏，具有 3 个 CRAFTING 槽位和 1 个 RESULT 槽位。
      *
      * @deprecated use {@link #SMITHING}
      */
@@ -187,7 +177,18 @@ public enum InventoryType {
     }
 
     /**
-     * Gets the corresponding {@link MenuType} of this InventoryType.
+     * 获取此 InventoryType 对应的 {@link MenuType}。
+     * <p>
+     * 并非所有 InventoryType 都对应一个 {@link MenuType}。这些 InventoryType 也是不可创建的。如果此方法返回 null，则 {@link #isCreatable()} 将返回 false，但 {@link #MERCHANT} 除外。
+     * <p>
+     * 除了不一定对应一个 {@link MenuType} 外，一些 InventoryType 对应相同的 {@link MenuType}，包括：
+     * <ul>
+     * <li>Dropper、Dispenser
+     * <li>ShulkerBox、Barrel、Chest
+     * </ul>
+     *
+     * @return 对应的 {@link MenuType}
+     * <p>原文：Gets the corresponding {@link MenuType} of this InventoryType.
      * <p>
      * Not all InventoryType correspond to a {@link MenuType}. These
      * InventoryTypes are also not creatable. If this method returns null,
@@ -200,8 +201,6 @@ public enum InventoryType {
      * <li>Dropper, Dispenser
      * <li>ShulkerBox, Barrel, Chest
      * </ul>
-     *
-     * @return the corresponding {@link MenuType}
      */
     @Nullable
     public MenuType getMenuType() {
@@ -209,10 +208,11 @@ public enum InventoryType {
     }
 
     /**
-     * Denotes that this InventoryType can be created via the normal
-     * {@link org.bukkit.Bukkit#createInventory} methods.
+     * 表示此 InventoryType 可以通过正常的 {@link org.bukkit.Bukkit#createInventory} 方法创建。
      *
-     * @return if this InventoryType can be created and shown to a player
+     * @return 此 InventoryType 是否可以被创建并展示给玩家
+     * <p>原文：Denotes that this InventoryType can be created via the normal
+     * {@link org.bukkit.Bukkit#createInventory} methods.
      */
     public boolean isCreatable() {
         return isCreatable;
@@ -220,33 +220,31 @@ public enum InventoryType {
 
     public enum SlotType {
         /**
-         * A result slot in a furnace or crafting inventory.
+         * 熔炉或合成物品栏中的结果槽位。
          */
         RESULT,
         /**
-         * A slot in the crafting matrix, or an 'input' slot.
+         * 合成矩阵中的槽位，或'输入'槽位。
          */
         CRAFTING,
         /**
-         * An armour slot in the player's inventory.
+         * 玩家物品栏中的盔甲槽位。
          */
         ARMOR,
         /**
-         * A regular slot in the container or the player's inventory; anything
-         * not covered by the other enum values.
+         * 容器或玩家物品栏中的常规槽位；任何其他枚举值未涵盖的内容。
          */
         CONTAINER,
         /**
-         * A slot in the bottom row or quickbar.
+         * 底部行或快捷栏中的槽位。
          */
         QUICKBAR,
         /**
-         * A pseudo-slot representing the area outside the inventory window.
+         * 代表物品栏窗口外部区域的伪槽位。
          */
         OUTSIDE,
         /**
-         * The fuel slot in a furnace inventory, or the ingredient slot in a
-         * brewing stand inventory.
+         * 熔炉物品栏中的燃料槽位，或酿造台物品栏中的材料槽位。
          */
         FUEL;
     }

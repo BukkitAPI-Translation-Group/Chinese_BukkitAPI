@@ -3,8 +3,7 @@ package org.bukkit.configuration;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Various settings for controlling the input and output of a {@link
- * MemoryConfiguration}
+ * 用于控制 {@link MemoryConfiguration} 输入输出的各种设置。
  */
 public class MemoryConfigurationOptions extends ConfigurationOptions {
     protected MemoryConfigurationOptions(@NotNull MemoryConfiguration configuration) {

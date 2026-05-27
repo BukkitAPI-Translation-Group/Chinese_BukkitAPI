@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when an item is put in a slot for upgrade by a Smithing Table.
+ * 当物品被放入锻造台中用于升级的槽位时调用。
  */
 public class PrepareSmithingEvent extends PrepareInventoryResultEvent {
 

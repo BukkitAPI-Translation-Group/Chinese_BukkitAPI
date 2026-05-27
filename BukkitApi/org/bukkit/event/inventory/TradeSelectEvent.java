@@ -7,11 +7,9 @@ import org.bukkit.inventory.view.MerchantView;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called whenever a player clicks a new trade on the trades
- * sidebar.
+ * 每当玩家在交易侧边栏点击新交易时调用此事件。
  * <p>
- * This event allows the user to get the index of the trade, letting them get
- * the MerchantRecipe via the Merchant.
+ * 此事件允许用户获取交易的索引，让他们通过 Merchant 获取 MerchantRecipe。
  */
 public class TradeSelectEvent extends InventoryInteractEvent {
 
@@ -25,9 +23,10 @@ public class TradeSelectEvent extends InventoryInteractEvent {
     }
 
     /**
-     * Used to get the index of the trade the player clicked on.
+     * 用于获取玩家点击的交易的索引。
      *
-     * @return The index of the trade clicked by the player
+     * @return 玩家点击的交易的索引
+     * <p>原文：Used to get the index of the trade the player clicked on.
      */
     public int getIndex() {
         return index;
@@ -40,9 +39,10 @@ public class TradeSelectEvent extends InventoryInteractEvent {
     }
 
     /**
-     * Get the Merchant involved.
+     * 获取涉及的 Merchant。
      *
-     * @return the Merchant
+     * @return Merchant
+     * <p>原文：Get the Merchant involved.
      */
     @NotNull
     public Merchant getMerchant() {

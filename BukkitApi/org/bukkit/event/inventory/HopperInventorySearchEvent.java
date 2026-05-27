@@ -8,8 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Event that gets called each time a Hopper attempts to find its
- * source/attached containers.
+ * 每次漏斗尝试查找其源/附加容器时调用的事件。
  */
 public class HopperInventorySearchEvent extends BlockEvent {
 
@@ -21,15 +20,15 @@ public class HopperInventorySearchEvent extends BlockEvent {
     public enum ContainerType {
 
         /**
-         * The source container the hopper is looking for.
+         * 漏斗正在寻找的源容器。
          *
-         * This is the Inventory above the Hopper where it extracts items from.
+         * 这是漏斗上方的物品栏，漏斗从中提取物品。
          */
         SOURCE,
         /**
-         * The container the hopper is attached to.
+         * 漏斗所附加的容器。
          *
-         * This is the Inventory the Hopper pushes items into.
+         * 这是漏斗将物品推入的物品栏。
          */
         DESTINATION;
     }
@@ -42,20 +41,22 @@ public class HopperInventorySearchEvent extends BlockEvent {
     }
 
     /**
-     * Set the {@link Inventory} that the Hopper will use for its
-     * source/attached Container.
+     * 设置漏斗将用于其源/附加容器的 {@link Inventory}。
      *
-     * @param inventory the inventory to use
+     * @param inventory 要使用的物品栏
+     * <p>原文：Set the {@link Inventory} that the Hopper will use for its
+     * source/attached Container.
      */
     public void setInventory(@Nullable Inventory inventory) {
         this.inventory = inventory;
     }
 
     /**
-     * Gets the {@link Inventory} that the Hopper will use for its
-     * source/attached Container.
+     * 获取漏斗将用于其源/附加容器的 {@link Inventory}。
      *
-     * @return the inventory which will be used
+     * @return 将被使用的物品栏
+     * <p>原文：Gets the {@link Inventory} that the Hopper will use for its
+     * source/attached Container.
      */
     @Nullable
     public Inventory getInventory() {
@@ -63,9 +64,10 @@ public class HopperInventorySearchEvent extends BlockEvent {
     }
 
     /**
-     * Gets the Container type the Hopper is searching for.
+     * 获取漏斗正在搜索的容器类型。
      *
-     * @return the container type being searched for
+     * @return 正在搜索的容器类型
+     * <p>原文：Gets the Container type the Hopper is searching for.
      */
     @NotNull
     public ContainerType getContainerType() {
@@ -73,9 +75,10 @@ public class HopperInventorySearchEvent extends BlockEvent {
     }
 
     /**
-     * Gets the Block that is being searched for an inventory.
+     * 获取正在被搜索物品栏的方块。
      *
-     * @return block being searched for an inventory
+     * @return 正在被搜索物品栏的方块
+     * <p>原文：Gets the Block that is being searched for an inventory.
      */
     @NotNull
     public Block getSearchBlock() {

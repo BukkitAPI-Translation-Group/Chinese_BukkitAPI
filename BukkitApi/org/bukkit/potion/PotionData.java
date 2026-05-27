@@ -4,7 +4,7 @@ import com.google.common.base.Preconditions;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * @deprecated Upgraded / extended potions are now their own {@link PotionType} use them instead.
+ * @deprecated 升级/延长的药水现在是它们自己的 {@link PotionType}，请改用它们。
  */
 @Deprecated(since = "1.20.6", forRemoval = true)
 public final class PotionData {
@@ -14,8 +14,9 @@ public final class PotionData {
     private final boolean upgraded;
 
     /**
-     * Instantiates a final PotionData object to contain information about a
-     * Potion
+     * 实例化一个最终的 PotionData 对象以包含有关药水的信息
+     * <p>
+     * 原文：Instantiates a final PotionData object to contain information about a Potion
      *
      * @param type the type of the Potion
      * @param extended whether the potion is extended PotionType#isExtendable()
@@ -40,8 +41,9 @@ public final class PotionData {
     }
 
     /**
-     * Gets the type of the potion, Type matches up with each kind of craftable
-     * potion
+     * 获取药水的类型，类型与每种可制作的药水相匹配。
+     * <p>
+     * 原文：Gets the type of the potion, Type matches up with each kind of craftable potion
      *
      * @return the potion type
      */
@@ -51,8 +53,9 @@ public final class PotionData {
     }
 
     /**
-     * Checks if the potion is in an upgraded state. This refers to whether or
-     * not the potion is Tier 2, such as Potion of Fire Resistance II.
+     * 检查药水是否处于升级状态。这指的是药水是否为第二级，例如抗火药水 II。
+     * <p>
+     * 原文：Checks if the potion is in an upgraded state. This refers to whether or not the potion is Tier 2, such as Potion of Fire Resistance II.
      *
      * @return true if the potion is upgraded;
      */
@@ -61,8 +64,9 @@ public final class PotionData {
     }
 
     /**
-     * Checks if the potion is in an extended state. This refers to the extended
-     * duration potions
+     * 检查药水是否处于延长状态。这指的是延长持续时间的药水。
+     * <p>
+     * 原文：Checks if the potion is in an extended state. This refers to the extended duration potions
      *
      * @return true if the potion is extended
      */

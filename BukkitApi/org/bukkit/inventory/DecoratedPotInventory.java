@@ -4,21 +4,25 @@ import org.bukkit.block.DecoratedPot;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Interface to the inventory of a DecoratedPot.
+ * 装饰陶罐物品栏的接口。
  */
 public interface DecoratedPotInventory extends Inventory {
 
     /**
-     * Set the item stack in the decorated pot.
+     * 设置装饰陶罐中的物品堆。
      *
-     * @param item the new item stack
+     * <p>原文：Set the item stack in the decorated pot.
+     *
+     * @param item 新的物品堆
      */
     public void setItem(@Nullable ItemStack item);
 
     /**
-     * Get the item stack in the decorated pot.
+     * 获取装饰陶罐中的物品堆。
      *
-     * @return the current item stack
+     * <p>原文：Get the item stack in the decorated pot.
+     *
+     * @return 当前物品堆
      */
     @Nullable
     public ItemStack getItem();

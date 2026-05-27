@@ -7,12 +7,11 @@ import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represent a StructureType of a {@link Structure}.
+ * 表示 {@link Structure} 的结构类型。
  *
- * Listed structure types are present in the default server. Depending on the
- * server there might be additional structure types present (for example
- * structure types added by data packs), which can be received via
- * {@link Registry#STRUCTURE_TYPE}.
+ * 列出的结构类型存在于默认服务器中。根据服务器的不同，
+ * 可能会有额外的结构类型存在（例如由数据包添加的结构类型），
+ * 可以通过 {@link Registry#STRUCTURE_TYPE} 获取。
  */
 public abstract class StructureType implements Keyed, RegistryAware {
 
@@ -40,10 +39,12 @@ public abstract class StructureType implements Keyed, RegistryAware {
 
     /**
      * {@inheritDoc}
+     * <p>
+     * 原文：{@inheritDoc}
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
      */
     @NotNull
     @Override

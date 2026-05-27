@@ -8,8 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an ItemStack is about to increase the fuel level of a brewing
- * stand.
+ * 当一个 ItemStack 即将增加酿造台的燃料等级时调用。
  */
 public class BrewingStandFuelEvent extends BlockEvent implements Cancellable {
 
@@ -26,9 +25,10 @@ public class BrewingStandFuelEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the ItemStack of the fuel before the amount was subtracted.
+     * 获取燃料的 ItemStack，在数量被扣除之前。
      *
-     * @return the fuel ItemStack
+     * @return 燃料的 ItemStack
+     * <p>原文：Gets the ItemStack of the fuel before the amount was subtracted.
      */
     @NotNull
     public ItemStack getFuel() {
@@ -36,38 +36,42 @@ public class BrewingStandFuelEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Gets the fuel power for this fuel. Each unit of power can fuel one
-     * brewing operation.
+     * 获取此燃料的燃料能量。每单位能量可以为一次酿造操作提供燃料。
      *
-     * @return the fuel power for this fuel
+     * @return 此燃料的燃料能量
+     * <p>原文：Gets the fuel power for this fuel. Each unit of power can fuel one
+     * brewing operation.
      */
     public int getFuelPower() {
         return fuelPower;
     }
 
     /**
-     * Sets the fuel power for this fuel. Each unit of power can fuel one
-     * brewing operation.
+     * 设置此燃料的燃料能量。每单位能量可以为一次酿造操作提供燃料。
      *
-     * @param fuelPower the fuel power for this fuel
+     * @param fuelPower 此燃料的燃料能量
+     * <p>原文：Sets the fuel power for this fuel. Each unit of power can fuel one
+     * brewing operation.
      */
     public void setFuelPower(int fuelPower) {
         this.fuelPower = fuelPower;
     }
 
     /**
-     * Gets whether the brewing stand's fuel will be reduced / consumed or not.
+     * 获取酿造台的燃料是否会被减少/消耗。
      *
-     * @return whether the fuel will be reduced or not
+     * @return 燃料是否会被减少
+     * <p>原文：Gets whether the brewing stand's fuel will be reduced / consumed or not.
      */
     public boolean isConsuming() {
         return consuming;
     }
 
     /**
-     * Sets whether the brewing stand's fuel will be reduced / consumed or not.
+     * 设置酿造台的燃料是否会被减少/消耗。
      *
-     * @param consuming whether the fuel will be reduced or not
+     * @param consuming 燃料是否会被减少
+     * <p>原文：Sets whether the brewing stand's fuel will be reduced / consumed or not.
      */
     public void setConsuming(boolean consuming) {
         this.consuming = consuming;

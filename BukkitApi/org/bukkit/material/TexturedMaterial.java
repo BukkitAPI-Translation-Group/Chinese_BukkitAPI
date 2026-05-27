@@ -4,10 +4,10 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * Represents textured materials like steps and smooth bricks
+ * 代表带有纹理的材质，如台阶和平滑砖。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public abstract class TexturedMaterial extends MaterialData {
@@ -17,9 +17,10 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public TexturedMaterial(final Material type, final byte data) {
@@ -27,17 +28,19 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Retrieve a list of possible textures. The first element of the list
-     * will be used as a default.
+     * 检索可用纹理的列表。列表的第一个元素将用作默认值。
      *
-     * @return a list of possible textures for this block
+     * @return 此方块可用纹理的列表
+     * <p>原文：Retrieve a list of possible textures. The first element of the list
+     * will be used as a default.
      */
     public abstract List<Material> getTextures();
 
     /**
-     * Gets the current Material this block is made of
+     * 获取此方块当前构成的材质。
      *
-     * @return Material of this block
+     * @return 此方块的 Material
+     * <p>原文：Gets the current Material this block is made of
      */
     public Material getMaterial() {
         int n = getTextureIndex();
@@ -49,10 +52,11 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Sets the material this block is made of
+     * 设置此方块构成的材质。
      *
      * @param material
-     *            New material of this block
+     *            此方块的新材质
+     * <p>原文：Sets the material this block is made of
      */
     public void setMaterial(Material material) {
         if (getTextures().contains(material)) {
@@ -63,10 +67,12 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Get material index from data
+     * 从数据中获取材质索引。
      *
-     * @return index of data in textures list
-     * @deprecated Magic value
+     * @return 数据在纹理列表中的索引
+     * @deprecated 魔法值
+     * <p>原文：Get material index from data
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     protected int getTextureIndex() {
@@ -74,10 +80,12 @@ public abstract class TexturedMaterial extends MaterialData {
     }
 
     /**
-     * Set material index
+     * 设置材质索引。
      *
-     * @param idx - index of data in textures list
-     * @deprecated Magic value
+     * @param idx - 数据在纹理列表中的索引
+     * @deprecated 魔法值
+     * <p>原文：Set material index
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     protected void setTextureIndex(int idx) {

@@ -4,10 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents the tripwire hook
+ * 代表绊线钩。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class TripwireHook extends SimpleAttachableMaterialData implements Redstone {
@@ -17,9 +17,10 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public TripwireHook(final Material type, final byte data) {
@@ -32,18 +33,20 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
     }
 
     /**
-     * Test if tripwire is connected
+     * 测试绊线是否已连接。
      *
-     * @return true if connected, false if not
+     * @return 如果已连接则返回 true，否则返回 false
+     * <p>原文：Test if tripwire is connected
      */
     public boolean isConnected() {
         return (getData() & 0x4) != 0;
     }
 
     /**
-     * Set tripwire connection state
+     * 设置绊线的连接状态。
      *
-     * @param connected - true if connected, false if not
+     * @param connected - 如果已连接则为 true，否则为 false
+     * <p>原文：Set tripwire connection state
      */
     public void setConnected(boolean connected) {
         int dat = getData() & (0x8 | 0x3);
@@ -54,18 +57,20 @@ public class TripwireHook extends SimpleAttachableMaterialData implements Redsto
     }
 
     /**
-     * Test if hook is currently activated
+     * 测试钩子当前是否被激活。
      *
-     * @return true if activated, false if not
+     * @return 如果被激活则返回 true，否则返回 false
+     * <p>原文：Test if hook is currently activated
      */
     public boolean isActivated() {
         return (getData() & 0x8) != 0;
     }
 
     /**
-     * Set hook activated state
+     * 设置钩子的激活状态。
      *
-     * @param act - true if activated, false if not
+     * @param act - 如果被激活则为 true，否则为 false
+     * <p>原文：Set hook activated state
      */
     public void setActivated(boolean act) {
         int dat = getData() & (0x4 | 0x3);

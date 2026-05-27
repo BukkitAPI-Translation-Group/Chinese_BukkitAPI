@@ -4,7 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents Ladder data
+ * 代表梯子数据。
  *
  * @deprecated all usage of MaterialData is deprecated and subject to removal.
  * Use {@link org.bukkit.block.data.BlockData}.
@@ -30,7 +30,8 @@ public class Ladder extends SimpleAttachableMaterialData {
     }
 
     /**
-     * Gets the face that this block is attached on
+     * 获取此方块所附着的面。
+     * <p>原文：Gets the face that this block is attached on
      *
      * @return BlockFace attached to
      */
@@ -56,7 +57,8 @@ public class Ladder extends SimpleAttachableMaterialData {
     }
 
     /**
-     * Sets the direction this ladder is facing
+     * 设置此梯子面向的方向。
+     * <p>原文：Sets the direction this ladder is facing
      */
     @Override
     public void setFacingDirection(BlockFace face) {

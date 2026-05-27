@@ -8,7 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a Furnace starts smelting.
+ * 当熔炉开始熔炼时调用。
  */
 public class FurnaceStartSmeltEvent extends InventoryBlockStartEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -22,9 +22,10 @@ public class FurnaceStartSmeltEvent extends InventoryBlockStartEvent {
     }
 
     /**
-     * Gets the FurnaceRecipe associated with this event
+     * 获取与此事件关联的熔炉配方。
      *
-     * @return the FurnaceRecipe being cooked
+     * @return 正在烹饪的熔炉配方
+     * <p>原文：Gets the FurnaceRecipe associated with this event
      */
     @NotNull
     public CookingRecipe<?> getRecipe() {
@@ -32,18 +33,20 @@ public class FurnaceStartSmeltEvent extends InventoryBlockStartEvent {
     }
 
     /**
-     * Gets the total cook time associated with this event
+     * 获取与此事件关联的总烹饪时间。
      *
-     * @return the total cook time
+     * @return 总烹饪时间
+     * <p>原文：Gets the total cook time associated with this event
      */
     public int getTotalCookTime() {
         return totalCookTime;
     }
 
     /**
-     * Sets the total cook time for this event
+     * 设置此事件的总烹饪时间。
      *
-     * @param cookTime the new total cook time
+     * @param cookTime 新的总烹饪时间
+     * <p>原文：Sets the total cook time for this event
      */
     public void setTotalCookTime(int cookTime) {
         this.totalCookTime = cookTime;

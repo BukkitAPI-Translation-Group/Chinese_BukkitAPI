@@ -5,7 +5,7 @@ import org.bukkit.entity.Entity;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a vibration from a Skulk sensor.
+ * 表示来自幽匿感测体的振动。
  */
 public class Vibration {
 
@@ -20,9 +20,11 @@ public class Vibration {
     }
 
     /**
-     * Get the origin of the vibration.
+     * 获取振动的起源位置。
      *
-     * @return origin
+     * @return 起源位置
+     * <p>
+     * 原文：Get the origin of the vibration.
      */
     @NotNull
     public Location getOrigin() {
@@ -30,9 +32,11 @@ public class Vibration {
     }
 
     /**
-     * Get the vibration destination.
+     * 获取振动的目的地。
      *
-     * @return destination
+     * @return 目的地
+     * <p>
+     * 原文：Get the vibration destination.
      */
     @NotNull
     public Destination getDestination() {
@@ -40,9 +44,11 @@ public class Vibration {
     }
 
     /**
-     * Get the vibration arrival time in ticks.
+     * 获取振动到达时间（以刻为单位）。
      *
-     * @return arrival time
+     * @return 到达时间
+     * <p>
+     * 原文：Get the vibration arrival time in ticks.
      */
     public int getArrivalTime() {
         return arrivalTime;

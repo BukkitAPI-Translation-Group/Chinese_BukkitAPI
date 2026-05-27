@@ -4,7 +4,7 @@ import org.bukkit.DyeColor;
 import org.bukkit.Material;
 
 /**
- * Represents dye
+ * 代表染料。
  *
  * @deprecated all usage of MaterialData is deprecated and subject to removal.
  * Use {@link org.bukkit.block.data.BlockData}.
@@ -37,7 +37,8 @@ public class Dye extends MaterialData implements Colorable {
     }
 
     /**
-     * Gets the current color of this dye
+     * 获取此染料的当前颜色。
+     * <p>原文：Gets the current color of this dye
      *
      * @return DyeColor of this dye
      */
@@ -47,7 +48,8 @@ public class Dye extends MaterialData implements Colorable {
     }
 
     /**
-     * Sets the color of this dye
+     * 设置此染料的颜色。
+     * <p>原文：Sets the color of this dye
      *
      * @param color New color of this dye
      */

@@ -3,10 +3,10 @@ package org.bukkit.material;
 import org.bukkit.Material;
 
 /**
- * Represents a redstone torch
+ * 代表一个红石火把。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class RedstoneTorch extends Torch implements Redstone {
@@ -19,9 +19,10 @@ public class RedstoneTorch extends Torch implements Redstone {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public RedstoneTorch(final Material type, final byte data) {
@@ -29,10 +30,11 @@ public class RedstoneTorch extends Torch implements Redstone {
     }
 
     /**
-     * Gets the current state of this Material, indicating if it's powered or
-     * unpowered
+     * 获取此材质的当前状态，指示其是否已通电。
      *
-     * @return true if powered, otherwise false
+     * @return 如果已通电则返回 true，否则返回 false
+     * <p>原文：Gets the current state of this Material, indicating if it's powered or
+     * unpowered
      */
     @Override
     public boolean isPowered() {

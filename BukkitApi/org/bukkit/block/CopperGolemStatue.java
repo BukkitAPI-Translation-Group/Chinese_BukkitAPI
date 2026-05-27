@@ -1,7 +1,7 @@
 package org.bukkit.block;
 
 /**
- * Represents a captured state of a copper golem statute.
+ * 表示铜傀儡雕像的捕获状态。
  */
 public interface CopperGolemStatue extends TileState {
 }

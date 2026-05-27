@@ -1,7 +1,7 @@
 package org.bukkit.inventory.recipe;
 
 /**
- * Represents categories within the cooking recipe book.
+ * 代表烹饪配方书中的分类。
  */
 public enum CookingBookCategory {
 

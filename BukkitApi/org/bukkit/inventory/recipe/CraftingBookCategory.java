@@ -1,7 +1,7 @@
 package org.bukkit.inventory.recipe;
 
 /**
- * Represents categories within the crafting recipe book.
+ * 代表合成配方书中的分类。
  */
 public enum CraftingBookCategory {
 

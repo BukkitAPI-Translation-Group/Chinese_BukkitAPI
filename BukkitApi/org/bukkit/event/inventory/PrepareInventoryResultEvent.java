@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when an item is put in a slot and the result is calculated.
+ * 当物品被放入槽位并且结果被计算时调用。
  */
 public class PrepareInventoryResultEvent extends InventoryEvent {
 
@@ -20,9 +20,10 @@ public class PrepareInventoryResultEvent extends InventoryEvent {
     }
 
     /**
-     * Get result item, may be null.
+     * 获取结果物品，可能为 null。
      *
-     * @return result item
+     * @return 结果物品
+     * <p>原文：Get result item, may be null.
      */
     @Nullable
     public ItemStack getResult() {
@@ -30,9 +31,10 @@ public class PrepareInventoryResultEvent extends InventoryEvent {
     }
 
     /**
-     * Set result item, may be null.
+     * 设置结果物品，可能为 null。
      *
-     * @param result result item
+     * @param result 结果物品
+     * <p>原文：Set result item, may be null.
      */
     public void setResult(@Nullable ItemStack result) {
         this.result = result;

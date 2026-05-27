@@ -4,10 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents minecart rails.
+ * 代表矿车铁轨。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Rails extends MaterialData {
@@ -21,9 +21,10 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public Rails(final Material type, final byte data) {
@@ -31,7 +32,8 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * @return the whether this track is set on a slope
+     * @return 该铁轨是否设置在斜坡上
+     * <p>原文：the whether this track is set on a slope
      */
     public boolean isOnSlope() {
         byte d = getConvertedData();
@@ -40,7 +42,8 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * @return the whether this track is set as a curve
+     * @return 该铁轨是否设置为弯道
+     * <p>原文：the whether this track is set as a curve
      */
     public boolean isCurve() {
         byte d = getConvertedData();
@@ -49,7 +52,11 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * @return the direction these tracks are set
+     * @return 这些铁轨设置的方向
+     *     <p>
+     *     注意铁轨是双向的，如果铁轨设置在斜坡上，返回的方向是上升方向。
+     *     如果设置为弯道，则返回铁轨的拐角方向。
+     * <p>原文：the direction these tracks are set
      *     <p>
      *     Note that tracks are bidirectional and that the direction returned
      *     is the ascending direction if the track is set on a slope. If it is
@@ -98,12 +105,15 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * Return the data without the extended properties used by {@link
+     * 返回不包含 {@link PoweredRail} 和 {@link DetectorRail} 使用的扩展属性的数据。
+     * 在 {@link ExtendedRails} 中被重写。
+     *
+     * @return 不包含扩展部分的数据
+     * @deprecated 魔法值
+     * <p>原文：Return the data without the extended properties used by {@link
      * PoweredRail} and {@link DetectorRail}. Overridden in {@link
      * ExtendedRails}
-     *
-     * @return the data without the extended part
-     * @deprecated Magic value
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     protected byte getConvertedData() {
@@ -111,14 +121,17 @@ public class Rails extends MaterialData {
     }
 
     /**
-     * Set the direction of these tracks
+     * 设置这些铁轨的方向。
      * <p>
-     * Note that tracks are bidirectional and that the direction returned is
+     * 注意铁轨是双向的，如果铁轨设置在斜坡上，返回的方向是上升方向。
+     * 如果设置为弯道，则应提供铁轨的拐角方向。
+     *
+     * @param face 铁轨应朝向的方向
+     * @param isOnSlope 铁轨是否应设置在斜坡上
+     * <p>原文：Set the direction of these tracks
+     * <p>原文：Note that tracks are bidirectional and that the direction returned is
      * the ascending direction if the track is set on a slope. If it is set as
      * a curve, the corner of the track should be supplied.
-     *
-     * @param face the direction the track should be facing
-     * @param isOnSlope whether or not the track should be on a slope
      */
     public void setDirection(BlockFace face, boolean isOnSlope) {
         switch (face) {

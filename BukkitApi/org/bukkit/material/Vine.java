@@ -6,10 +6,10 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents a vine
+ * 代表藤蔓。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Vine extends MaterialData {
@@ -24,9 +24,10 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public Vine(final Material type, final byte data) {
@@ -34,8 +35,9 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public Vine(byte data) {
@@ -72,12 +74,14 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * Check if the vine is attached to the specified face of an adjacent
+     * 检查藤蔓是否附着在相邻方块的指定面上。
+     * 你可以通过传递例如 {@link BlockFace#NORTH_EAST} 来同时检查两个面。
+     *
+     * @param face 要检查的面。
+     * @return 是否附着在该面上。
+     * <p>原文：Check if the vine is attached to the specified face of an adjacent
      * block. You can check two faces at once by passing e.g. {@link
      * BlockFace#NORTH_EAST}.
-     *
-     * @param face The face to check.
-     * @return Whether it is attached to that face.
      */
     public boolean isOnFace(BlockFace face) {
         switch (face) {
@@ -105,9 +109,10 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * Attach the vine to the specified face of an adjacent block.
+     * 将藤蔓附着到相邻方块的指定面上。
      *
-     * @param face The face to attach.
+     * @param face 要附着的面。
+     * <p>原文：Attach the vine to the specified face of an adjacent block.
      */
     public void putOnFace(BlockFace face) {
         switch (face) {
@@ -147,9 +152,10 @@ public class Vine extends MaterialData {
     }
 
     /**
-     * Detach the vine from the specified face of an adjacent block.
+     * 将藤蔓从相邻方块的指定面上分离。
      *
-     * @param face The face to detach.
+     * @param face 要分离的面。
+     * <p>原文：Detach the vine from the specified face of an adjacent block.
      */
     public void removeFromFace(BlockFace face) {
         switch (face) {

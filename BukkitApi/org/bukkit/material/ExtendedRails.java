@@ -4,8 +4,7 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * This is the superclass for the {@link DetectorRail} and {@link PoweredRail}
- * classes
+ * 这是 {@link DetectorRail} 和 {@link PoweredRail} 类的父类。
  *
  * @deprecated all usage of MaterialData is deprecated and subject to removal.
  * Use {@link org.bukkit.block.data.BlockData}.

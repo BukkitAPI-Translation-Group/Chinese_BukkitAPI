@@ -5,13 +5,13 @@ import org.bukkit.TreeSpecies;
 import org.bukkit.block.BlockFace;
 
 /**
- * Represents the different types of Tree block that face a direction.
+ * 代表不同类型的朝向特定方向的树木方块。
  *
  * @see Material#LEGACY_LOG
  * @see Material#LEGACY_LOG_2
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Tree extends Wood {
@@ -19,58 +19,64 @@ public class Tree extends Wood {
     protected static final BlockFace DEFAULT_DIRECTION = BlockFace.UP;
 
     /**
-     * Constructs a tree block.
+     * 构造一个树木方块。
+     * <p>原文：Constructs a tree block.
      */
     public Tree() {
         this(DEFAULT_TYPE, DEFAULT_SPECIES, DEFAULT_DIRECTION);
     }
 
     /**
-     * Constructs a tree block of the given tree species.
+     * 构造一个给定树种的树木方块。
      *
-     * @param species the species of the tree block
+     * @param species 树木方块的树种
+     * <p>原文：Constructs a tree block of the given tree species.
      */
     public Tree(TreeSpecies species) {
         this(DEFAULT_TYPE, species, DEFAULT_DIRECTION);
     }
 
     /**
-     * Constructs a tree block of the given tree species, and facing the given
-     * direction.
+     * 构造一个给定树种且朝向给定方向的树木方块。
      *
-     * @param species the species of the tree block
-     * @param dir the direction the tree block is facing
+     * @param species 树木方块的树种
+     * @param dir 树木方块朝向的方向
+     * <p>原文：Constructs a tree block of the given tree species, and facing the given
+     * direction.
      */
     public Tree(TreeSpecies species, BlockFace dir) {
         this(DEFAULT_TYPE, species, dir);
     }
 
     /**
-     * Constructs a tree block of the given type.
+     * 构造一个给定类型的树木方块。
      *
-     * @param type the type of tree block
+     * @param type 树木方块的类型
+     * <p>原文：Constructs a tree block of the given type.
      */
     public Tree(final Material type) {
         this(type, DEFAULT_SPECIES, DEFAULT_DIRECTION);
     }
 
     /**
-     * Constructs a tree block of the given type and tree species.
+     * 构造一个给定类型和树种的树木方块。
      *
-     * @param type the type of tree block
-     * @param species the species of the tree block
+     * @param type 树木方块的类型
+     * @param species 树木方块的树种
+     * <p>原文：Constructs a tree block of the given type and tree species.
      */
     public Tree(final Material type, TreeSpecies species) {
         this(type, species, DEFAULT_DIRECTION);
     }
 
     /**
-     * Constructs a tree block of the given type and tree species, and facing
-     * the given direction.
+     * 构造一个给定类型和树种且朝向给定方向的树木方块。
      *
-     * @param type the type of tree block
-     * @param species the species of the tree block
-     * @param dir the direction the tree block is facing
+     * @param type 树木方块的类型
+     * @param species 树木方块的树种
+     * @param dir 树木方块朝向的方向
+     * <p>原文：Constructs a tree block of the given type and tree species, and facing
+     * the given direction.
      */
     public Tree(final Material type, TreeSpecies species, BlockFace dir) {
         super(type, species);
@@ -78,9 +84,10 @@ public class Tree extends Wood {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public Tree(final Material type, final byte data) {
@@ -88,15 +95,16 @@ public class Tree extends Wood {
     }
 
     /**
-     * Get direction of the log
+     * 获取原木的方向。
      *
-     * @return one of:
+     * @return 以下之一：
      * <ul>
-     * <li>BlockFace.TOP for upright (default)
-     * <li>BlockFace.NORTH (east-west)
-     * <li>BlockFace.WEST (north-south)
-     * <li>BlockFace.SELF (directionless)
+     * <li>BlockFace.UP 表示直立（默认）
+     * <li>BlockFace.NORTH 表示东西方向
+     * <li>BlockFace.WEST 表示南北方向
+     * <li>BlockFace.SELF 表示无方向
      * </ul>
+     * <p>原文：Get direction of the log
      */
     @SuppressWarnings("deprecation")
     public BlockFace getDirection() {
@@ -114,9 +122,10 @@ public class Tree extends Wood {
     }
 
     /**
-     * Set direction of the log
+     * 设置原木的方向。
      *
-     * @param dir - direction of end of log (BlockFace.SELF for no direction)
+     * @param dir - 原木末端的方向（BlockFace.SELF 表示无方向）
+     * <p>原文：Set direction of the log
      */
     @SuppressWarnings("deprecation")
     public void setDirection(BlockFace dir) {

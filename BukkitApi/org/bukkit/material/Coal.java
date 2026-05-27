@@ -4,10 +4,10 @@ import org.bukkit.CoalType;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of coals.
+ * 代表不同类型的煤炭。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法均已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class Coal extends MaterialData {
@@ -25,9 +25,9 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public Coal(final Material type, final byte data) {
@@ -35,18 +35,22 @@ public class Coal extends MaterialData {
     }
 
     /**
-     * Gets the current type of this coal
+     * 获取此煤炭的当前类型。
      *
-     * @return CoalType of this coal
+     * @return 此煤炭的 CoalType
+     * <p>
+     * 原文：Gets the current type of this coal
      */
     public CoalType getType() {
         return CoalType.getByData(getData());
     }
 
     /**
-     * Sets the type of this coal
+     * 设置此煤炭的类型。
      *
-     * @param type New type of this coal
+     * @param type 此煤炭的新类型
+     * <p>
+     * 原文：Sets the type of this coal
      */
     public void setType(CoalType type) {
         setData(type.getData());

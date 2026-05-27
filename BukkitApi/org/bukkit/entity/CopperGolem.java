@@ -4,61 +4,64 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a copper golem entity.
+ * 代表一个铜傀儡实体。
  *
- * Note that the golem's antenna is controlled by {@link EquipmentSlot#SADDLE}.
+ * 注意，傀儡的天线由 {@link EquipmentSlot#SADDLE} 控制。
  */
 public interface CopperGolem extends Golem {
 
     /**
-     * Gets the next tick at which the golem will progress to the next weather
-     * state.
+     * 获取傀儡进入下一个氧化阶段的下一个刻。
      *
-     * @return next weathering tick
+     * @return 下一个氧化刻
+     * <p>原文：Gets the next tick at which the golem will progress to the next weather state.
      */
     long getNextWeatheringTick();
 
     /**
-     * Sets the tick at which the golem will progress to the next weather state.
+     * 设置傀儡进入下一个氧化阶段的刻。
      *
-     * @param tick new weathering tick
+     * @param tick 新的氧化刻
+     * <p>原文：Sets the tick at which the golem will progress to the next weather state.
      */
     void setNextWeatheringTick(long tick);
 
     /**
-     * Gets the golem's current weather state.
+     * 获取傀儡当前的氧化状态。
      *
-     * @return current weather state
+     * @return 当前的氧化状态
+     * <p>原文：Gets the golem's current weather state.
      */
     @NotNull
     CopperWeatherState getWeatherState();
 
     /**
-     * Sets the golem's current wheather state
+     * 设置傀儡当前的氧化状态。
      *
-     * @param state new state
+     * @param state 新的状态
+     * <p>原文：Sets the golem's current wheather state
      */
     void setWeatherState(@NotNull CopperWeatherState state);
 
     /**
-     * Represents a state of copper weathering/oxidation.
+     * 代表铜的氧化状态。
      */
     public enum CopperWeatherState {
 
         /**
-         * No weathering/oxidation.
+         * 未氧化。
          */
         UNAFFECTED,
         /**
-         * Some weathering/oxidation.
+         * 轻度氧化。
          */
         EXPOSED,
         /**
-         * Significant weathering/oxidation.
+         * 中度氧化。
          */
         WEATHERED,
         /**
-         * Total weathering/oxidation.
+         * 完全氧化。
          */
         OXIDIZED;
     }

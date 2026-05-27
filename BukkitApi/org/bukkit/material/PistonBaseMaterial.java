@@ -4,10 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
 
 /**
- * Material data for the piston base block
+ * 活塞底座方块的材质数据
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的使用都已弃用并可能被移除。
+ * 使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class PistonBaseMaterial extends MaterialData implements Directional, Redstone {
@@ -17,11 +17,11 @@ public class PistonBaseMaterial extends MaterialData implements Directional, Red
     }
 
     /**
-     * Constructs a PistonBaseMaterial.
+     * 构造一个PistonBaseMaterial。
      *
-     * @param type the material type to use
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 要使用的材质类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public PistonBaseMaterial(final Material type, final byte data) {
@@ -80,18 +80,22 @@ public class PistonBaseMaterial extends MaterialData implements Directional, Red
     }
 
     /**
-     * Sets the current state of this piston
+     * 设置此活塞的当前状态
      *
-     * @param powered true if the piston is extended {@literal &} powered, or false
+     * @param powered 如果活塞已伸出并通电则为true，否则为false
+     * <p>
+     * 原文：Sets the current state of this piston
      */
     public void setPowered(boolean powered) {
         setData((byte) (powered ? (getData() | 0x8) : (getData() & ~0x8)));
     }
 
     /**
-     * Checks if this piston base is sticky, and returns true if so
+     * 检查此活塞底座是否为粘性活塞，如果是则返回true
      *
-     * @return true if this piston is "sticky", or false
+     * @return 如果此活塞是"粘性"的则返回true，否则返回false
+     * <p>
+     * 原文：Checks if this piston base is sticky, and returns true if so
      */
     public boolean isSticky() {
         return this.getItemType() == Material.LEGACY_PISTON_STICKY_BASE;

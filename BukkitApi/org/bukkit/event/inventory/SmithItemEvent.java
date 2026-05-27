@@ -5,7 +5,7 @@ import org.bukkit.inventory.SmithingInventory;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when the recipe of an Item is completed inside a smithing table.
+ * 当物品的配方在锻造台内完成时调用。
  */
 public class SmithItemEvent extends InventoryClickEvent {
 

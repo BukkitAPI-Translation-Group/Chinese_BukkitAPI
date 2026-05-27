@@ -167,13 +167,12 @@ public class HelpCommand extends BukkitCommand {
     }
 
     /**
-     * Computes the Dameraur-Levenshtein Distance between two strings. Adapted
-     * from the algorithm at <a href="http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance">Wikipedia: Damerau–Levenshtein distance</a>
+     * 计算两个字符串之间的 Damerau-Levenshtein 距离。改编自 <a href="http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance">Wikipedia: Damerau–Levenshtein distance</a> 中的算法。
      *
-     * @param s1 The first string being compared.
-     * @param s2 The second string being compared.
-     * @return The number of substitutions, deletions, insertions, and
-     * transpositions required to get from s1 to s2.
+     * @param s1 第一个被比较的字符串。
+     * @param s2 第二个被比较的字符串。
+     * @return 从 s1 转换到 s2 所需的替换、删除、插入和转置操作次数。
+     * <p>原文：Computes the Dameraur-Levenshtein Distance between two strings. Adapted from the algorithm at <a href="http://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance">Wikipedia: Damerau–Levenshtein distance</a>
      */
     protected static int damerauLevenshteinDistance(@Nullable String s1, @Nullable String s2) {
         if (s1 == null && s2 == null) {

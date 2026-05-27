@@ -5,10 +5,10 @@ import java.util.List;
 import org.bukkit.Material;
 
 /**
- * Represents the different types of smooth bricks.
+ * 代表不同类型的平滑砖。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法都已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class SmoothBrick extends TexturedMaterial {
@@ -33,9 +33,10 @@ public class SmoothBrick extends TexturedMaterial {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 物品类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
+     * <p>原文：Magic value
      */
     @Deprecated(since = "1.6.2")
     public SmoothBrick(final Material type, final byte data) {

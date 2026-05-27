@@ -1,25 +1,27 @@
 package org.bukkit.entity;
 
 /**
- * A Glow Squid.
+ * 发光鱿鱼。
  */
 public interface GlowSquid extends Squid {
 
     /**
-     * Get the number of dark ticks remaining for this squid.
+     * 获取此鱿鱼剩余的黑暗刻数。
      *
-     * Bravo Six will go dark for 100 ticks (5 seconds) if damaged.
+     * 受到伤害后，Bravo Six 将进入黑暗状态 100 刻（5 秒）。
      *
-     * @return dark ticks remaining
+     * @return 剩余的黑暗刻数
+     * <p>原文：Get the number of dark ticks remaining for this squid.
      */
     int getDarkTicksRemaining();
 
     /**
-     * Sets the number of dark ticks remaining for this squid.
+     * 设置此鱿鱼剩余的黑暗刻数。
      *
-     * Bravo Six will go dark for 100 ticks (5 seconds) if damaged.
+     * 受到伤害后，Bravo Six 将进入黑暗状态 100 刻（5 秒）。
      *
-     * @param darkTicksRemaining dark ticks remaining
+     * @param darkTicksRemaining 剩余的黑暗刻数
+     * <p>原文：Sets the number of dark ticks remaining for this squid.
      */
     void setDarkTicksRemaining(int darkTicksRemaining);
 }
