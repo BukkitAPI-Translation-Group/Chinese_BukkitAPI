@@ -53,12 +53,14 @@ public interface ChunkSnapshot {
     Material getBlockType(int x, int y, int z);
 
     /**
-     * Get block data for block at corresponding coordinate in the chunk
+     * 获取区块中对应坐标方块的方块数据.
+     * <p>
+     * 原文:Get block data for block at corresponding coordinate in the chunk
      *
      * @param x 0-15
      * @param y [世界最低高度, 世界最高高度)
      * @param z 0-15
-     * @return block material type
+     * @return 方块数据
      */
     @NotNull
     BlockData getBlockData(int x, int y, int z);
@@ -128,12 +130,14 @@ public interface ChunkSnapshot {
     Biome getBiome(int x, int z);
 
     /**
-     * Get biome at given coordinates
+     * 获取指定坐标的生物群系.
+     * <p>
+     * 原文:Get biome at given coordinates
      *
-     * @param x X-coordinate (0-15)
-     * @param y Y-coordinate [世界最低高度, 世界最高高度)
-     * @param z Z-coordinate (0-15)
-     * @return Biome at given coordinate
+     * @param x X坐标 (0-15)
+     * @param y Y坐标 [世界最低高度, 世界最高高度)
+     * @param z Z坐标 (0-15)
+     * @return 指定坐标的生物群系
      */
     @NotNull
     Biome getBiome(int x, int y, int z);
@@ -152,12 +156,14 @@ public interface ChunkSnapshot {
     double getRawBiomeTemperature(int x, int z);
 
     /**
-     * Get raw biome temperature at given coordinates
+     * 获取指定坐标的原始生物群系温度.
+     * <p>
+     * 原文:Get raw biome temperature at given coordinates
      *
-     * @param x X-coordinate (0-15)
-     * @param y Y-coordinate (0-15)
-     * @param z Z-coordinate (0-15)
-     * @return temperature at given coordinate
+     * @param x X坐标 (0-15)
+     * @param y Y坐标 (0-15)
+     * @param z Z坐标 (0-15)
+     * @return 指定坐标的温度
      */
     double getRawBiomeTemperature(int x, int y, int z);
 
@@ -181,18 +187,22 @@ public interface ChunkSnapshot {
     boolean isSectionEmpty(int sy);
 
     /**
-     * Tests if this snapshot contains the specified block.
+     * 测试此快照是否包含指定的方块.
+     * <p>
+     * 原文:Tests if this snapshot contains the specified block.
      *
-     * @param block block to test
-     * @return if the block is contained within
+     * @param block 要测试的方块
+     * @return 是否包含该方块
      */
     boolean contains(@NotNull BlockData block);
 
     /**
-     * Tests if this chunk contains the specified biome.
+     * 测试此区块是否包含指定的生物群系.
+     * <p>
+     * 原文:Tests if this chunk contains the specified biome.
      *
-     * @param biome biome to test
-     * @return if the biome is contained within
+     * @param biome 要测试的生物群系
+     * @return 是否包含该生物群系
      */
     boolean contains(@NotNull Biome biome);
 }
