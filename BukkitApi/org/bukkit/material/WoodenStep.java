@@ -8,8 +8,7 @@ import org.bukkit.TreeSpecies;
  *
  * @see Material#LEGACY_WOOD_STEP
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有MaterialData的用法都已弃用并将被移除。请使用{@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class WoodenStep extends Wood {
@@ -43,7 +42,7 @@ public class WoodenStep extends Wood {
      * inverted or not.
      *
      * @param species 木台阶的树种
-     * @param inv true the step is at the top of the block
+     * @param inv 为true时表示上半台阶（方块顶部），为false时表示普通台阶（底部台阶）
      */
     public WoodenStep(final TreeSpecies species, boolean inv) {
         super(DEFAULT_TYPE, species);
@@ -51,8 +50,8 @@ public class WoodenStep extends Wood {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
+     * @param type 材质类型
+     * @param data 原始数据值
      * @deprecated 不安全的参数
      */
     @Deprecated(since = "1.6.2")

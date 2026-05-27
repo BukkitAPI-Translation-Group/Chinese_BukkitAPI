@@ -163,7 +163,14 @@ public interface ItemFactory {
     Color getDefaultLeatherColor();
 
     /**
-     * Create a new {@link ItemStack} given the supplied input.
+     * 根据提供的输入创建一个新的{@link ItemStack}。
+     * <p>
+     * 输入应与Minecraft的{@code /give}命令期望的输入格式相同。例如，
+     * <pre>"minecraft:diamond_sword[minecraft:enchantments={levels:{"minecraft:sharpness": 3}}]"</pre>
+     * 将生成一个{@link Material#DIAMOND_SWORD}的ItemStack，其{@link ItemMeta}包含
+     * 3级的{@link Enchantment#SHARPNESS}附魔。
+     * <p>
+     * 原文：Create a new {@link ItemStack} given the supplied input.
      * <p>
      * The input should match the same input as expected by Minecraft's {@code /give}
      * command. For example,
@@ -171,62 +178,77 @@ public interface ItemFactory {
      * would yield an ItemStack of {@link Material#DIAMOND_SWORD} with an {@link ItemMeta}
      * containing a level 3 {@link Enchantment#SHARPNESS} enchantment.
      *
-     * @param input the item input string
-     * @return the created ItemStack
-     * @throws IllegalArgumentException if the input string was provided in an
-     * invalid or unsupported format
+     * @param input 物品输入字符串
+     * @return 创建的ItemStack
+     * @throws IllegalArgumentException 如果输入字符串的格式无效或不支持
      */
     @NotNull
     ItemStack createItemStack(@NotNull String input) throws IllegalArgumentException;
 
     /**
-     * Gets a {@link Material} representing the spawn egg for the provided
+     * 获取代表指定{@link EntityType}刷怪蛋的{@link Material}。
+     * <br>
+     * 对于没有对应刷怪蛋的实体类型，将返回null。
+     * <p>
+     * 原文：Gets a {@link Material} representing the spawn egg for the provided
      * {@link EntityType}. <br>
      * Will return null for EntityTypes that do not have a corresponding spawn egg.
      *
-     * @param type the entity type
-     * @return the Material of this EntityTypes spawn egg or null
+     * @param type 实体类型
+     * @return 该实体类型的刷怪蛋Material，如果没有则返回null
      */
     @Nullable
     Material getSpawnEgg(@NotNull EntityType type);
 
     /**
-     * Enchants the given item at the provided level.
+     * 在指定等级对给定物品进行附魔。
+     * <br>
+     * 如果传入的物品是空气，将抛出错误。
+     * <p>
+     * 原文：Enchants the given item at the provided level.
      * <br>
      * If an item that is air is passed through an error is thrown.
      *
-     * @param entity the entity to use as a source of randomness
-     * @param item the item to enchant
-     * @param level the level to use, which is the level in the enchantment table
-     * @param allowTreasures allows treasure enchants, e.g. mending, if true.
-     * @return a new ItemStack containing the result of the Enchantment
+     * @param entity 用作随机源的实体
+     * @param item 要附魔的物品
+     * @param level 要使用的等级，即附魔台中的等级
+     * @param allowTreasures 如果为true，允许宝藏附魔，例如经验修补
+     * @return 包含附魔结果的新ItemStack
      */
     @NotNull
     ItemStack enchantItem(@NotNull final Entity entity, @NotNull final ItemStack item, final int level, final boolean allowTreasures);
 
     /**
-     * Enchants the given item at the provided level.
+     * 在指定等级对给定物品进行附魔。
+     * <br>
+     * 如果传入的物品是空气，将抛出错误。
+     * <p>
+     * 原文：Enchants the given item at the provided level.
      * <br>
      * If an item that is air is passed through an error is thrown.
      *
-     * @param world the world to use as a source of randomness
-     * @param item the item to enchant
-     * @param level the level to use, which is the level in the enchantment table
-     * @param allowTreasures allow the treasure enchants, e.g. mending, if true.
-     * @return a new ItemStack containing the result of the Enchantment
+     * @param world 用作随机源的世界
+     * @param item 要附魔的物品
+     * @param level 要使用的等级，即附魔台中的等级
+     * @param allowTreasures 如果为true，允许宝藏附魔，例如经验修补
+     * @return 包含附魔结果的新ItemStack
      */
     @NotNull
     ItemStack enchantItem(@NotNull final World world, @NotNull final ItemStack item, final int level, final boolean allowTreasures);
 
     /**
-     * Enchants the given item at the provided level.
+     * 在指定等级对给定物品进行附魔。
+     * <br>
+     * 如果传入的物品是空气，将抛出错误。
+     * <p>
+     * 原文：Enchants the given item at the provided level.
      * <br>
      * If an item that is air is passed through an error is thrown.
      *
-     * @param item the item to enchant
-     * @param level the level to use, which is the level in the enchantment table
-     * @param allowTreasures allow treasure enchantments, e.g. mending, if true.
-     * @return a new ItemStack containing the result of the Enchantment
+     * @param item 要附魔的物品
+     * @param level 要使用的等级，即附魔台中的等级
+     * @param allowTreasures 如果为true，允许宝藏附魔，例如经验修补
+     * @return 包含附魔结果的新ItemStack
      */
     @NotNull
     ItemStack enchantItem(@NotNull final ItemStack item, final int level, final boolean allowTreasures);
