@@ -10,16 +10,20 @@ import org.jetbrains.annotations.Nullable;
 public interface Ocelot extends Animals {
 
     /**
-     * Checks if this ocelot trusts players.
+     * 检查此豹猫是否信任玩家.
+     * <p>
+     * 原文：Checks if this ocelot trusts players.
      *
-     * @return true if it trusts players
+     * @return 如果信任玩家则为true
      */
     public boolean isTrusting();
 
     /**
-     * Sets if this ocelot trusts players.
+     * 设置此豹猫是否信任玩家.
+     * <p>
+     * 原文：Sets if this ocelot trusts players.
      *
-     * @param trust true if it trusts players
+     * @param trust 如果信任玩家则为true
      */
     public void setTrusting(boolean trust);
 
@@ -50,7 +54,7 @@ public interface Ocelot extends Animals {
      * 代表不同的猫的种类.
      * <p>
      * 译注：具体有哪些种类及特征可以查阅MineCraft Wiki.
-     * @deprecated 不同猫种现在属于不同的生物/Cats are now a separate entity.
+     * @deprecated 不同猫种现在属于不同的实体.
      */
     @Deprecated(since = "1.14")
     public enum Type {
