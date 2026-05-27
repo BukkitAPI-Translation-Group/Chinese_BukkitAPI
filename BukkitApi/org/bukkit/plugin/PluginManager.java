@@ -108,10 +108,12 @@ public interface PluginManager {
     public Plugin[] loadPlugins(@NotNull File directory);
 
     /**
-     * Loads the plugins in the list of the files
+     * 载入指定文件列表中的插件.
+     * <p>
+     * 原文:Loads the plugins in the list of the files
      *
-     * @param files List of files containing plugins to load
-     * @return A list of all plugins loaded
+     * @param files 包含待加载插件的文件列表
+     * @return 返回所有已加载插件的数组
      */
     @NotNull
     public Plugin[] loadPlugins(@NotNull File[] files);
