@@ -20,68 +20,81 @@ public interface LightningStrike extends Entity {
     public boolean isEffect();
 
     /**
-     * Get the amount of flashes that will occur before the lightning is
+     * 获取雷击被移除前将会发生的闪烁次数。默认情况下此值在 1 到 3 之间。
+     * <p>
+     * 原文: Get the amount of flashes that will occur before the lightning is
      * removed. By default this value is between 1 and 3.
      *
-     * @return the flashes
+     * @return 闪烁次数
      */
     public int getFlashes();
 
     /**
-     * Set the amount of flashes that will occur before the lightning is
-     * removed. One flash will occur after this lightning strike's life
-     * has reduced below 0.
+     * 设置雷击被移除前将会发生的闪烁次数。当此雷击的生命值降至 0 以下时将会发生一次闪烁。
+     * <p>
+     * 原文: Set the amount of flashes that will occur before the lightning is
+     * removed. One flash will occur after this lightning strike's life has reduced below 0.
      *
-     * @param flashes the flashes
+     * @param flashes 闪烁次数
      */
     public void setFlashes(int flashes);
 
     /**
-     * Get the amount of ticks this lightning strike will inflict damage
-     * upon its hit entities.
+     * 获取此雷击对其命中实体造成伤害的持续刻数。
      * <p>
-     * When life ticks are negative, there is a random chance that another
-     * flash will be initiated and life ticks reset to 1.
+     * 当生命刻数为负时，有随机几率触发另一次闪烁并将生命刻数重置为 1。
+     * <p>
+     * 原文: Get the amount of ticks this lightning strike will inflict damage
+     * upon its hit entities. When life ticks are negative, there is a random
+     * chance that another flash will be initiated and life ticks reset to 1.
      *
-     * @return the life ticks
+     * @return 生命刻数
      */
     public int getLifeTicks();
 
     /**
-     * Get the amount of ticks this lightning strike will inflict damage
-     * upon its hit entities.
+     * 设置此雷击对其命中实体造成伤害的持续刻数。
      * <p>
-     * When life ticks are negative, there is a random chance that another
-     * flash will be initiated and life ticks reset to 1. Additionally, if
-     * life ticks are set to 2 (the default value when a lightning strike
-     * has been spawned), a list of events will occur:
+     * 当生命刻数为负时，有随机几率触发另一次闪烁并将生命刻数重置为 1。
+     * 此外，如果生命刻数设置为 2（雷击生成时的默认值），将会触发一系列事件：
      * <ul>
-     *   <li>Impact sound effects will be played
-     *   <li>Fire will be spawned (dependent on difficulty)
-     *   <li>Lightning rods will be powered (if hit)
-     *   <li>Copper will be stripped (if hit)
-     *   <li>{@link GameEvent#LIGHTNING_STRIKE} will be dispatched
+     *   <li>播放冲击音效
+     *   <li>生成火焰（取决于难度）
+     *   <li>激活避雷针（如果被击中）
+     *   <li>剥离铜锈（如果被击中）
+     *   <li>触发 {@link GameEvent#LIGHTNING_STRIKE} 游戏事件
      * </ul>
+     * <p>
+     * 原文: Get the amount of ticks this lightning strike will inflict damage
+     * upon its hit entities. When life ticks are negative, there is a random
+     * chance that another flash will be initiated and life ticks reset to 1.
+     * Additionally, if life ticks are set to 2 (the default value when a
+     * lightning strike has been spawned), a list of events will occur.
      *
-     * @param ticks the life ticks
+     * @param ticks 生命刻数
      */
     public void setLifeTicks(int ticks);
 
     /**
-     * Get the {@link Player} that caused this lightning to strike. This
+     * 获取导致此雷击的 {@link Player}。当玩家在暴风雨中向实体投掷带有
+     * {@link Enchantment#CHANNELING 引雷} 附魔的三叉戟时会自然触发此情况。
+     * <p>
+     * 原文: Get the {@link Player} that caused this lightning to strike. This
      * will occur naturally if a trident enchanted with
      * {@link Enchantment#CHANNELING Channeling} were thrown at an entity
      * during a storm.
      *
-     * @return the player
+     * @return 导致雷击的玩家
      */
     @Nullable
     public Player getCausingPlayer();
 
     /**
-     * Set the {@link Player} that caused this lightning to strike.
+     * 设置导致此雷击的 {@link Player}。
+     * <p>
+     * 原文: Set the {@link Player} that caused this lightning to strike.
      *
-     * @param player the player
+     * @param player 导致雷击的玩家
      */
     public void setCausingPlayer(@Nullable Player player);
 
