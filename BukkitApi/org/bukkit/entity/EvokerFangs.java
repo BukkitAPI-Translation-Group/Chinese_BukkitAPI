@@ -27,16 +27,22 @@ public interface EvokerFangs extends Entity {
     void setOwner(@Nullable LivingEntity owner);
 
     /**
+     * 获取尖牙攻击前的延迟 (tick).
+     * <p>
+     * 原文：
      * Get the delay in ticks until the fang attacks.
      *
-     * @return the delay
+     * @return 延迟时间
      */
     int getAttackDelay();
 
     /**
+     * 设置尖牙攻击前的延迟 (tick).
+     * <p>
+     * 原文：
      * Set the delay in ticks until the fang attacks.
      *
-     * @param delay the delay, must be positive
+     * @param delay 延迟时间, 必须为正数
      */
     void setAttackDelay(int delay);
 }
