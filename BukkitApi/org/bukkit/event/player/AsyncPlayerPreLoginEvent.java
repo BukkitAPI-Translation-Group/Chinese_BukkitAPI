@@ -192,9 +192,11 @@ public class AsyncPlayerPreLoginEvent extends Event {
     }
 
     /**
-     * Gets if this connection has been transferred from another server.
+     * 获取此连接是否从另一个服务器转移而来.
+     * <p>
+     * 原文：Gets if this connection has been transferred from another server.
      *
-     * @return true if the connection has been transferred
+     * @return 如果连接已被转移则返回 true
      */
     public boolean isTransferred() {
         return transferred;
