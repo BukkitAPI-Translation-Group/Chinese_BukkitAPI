@@ -83,6 +83,15 @@ public interface EnderDragon extends ComplexLivingEntity, Boss, Mob, Enemy {
     void setPhase(@NotNull Phase phase);
 
     /**
+     * 获取与此末影龙关联的{@link DragonBattle}。
+     * <br>
+     * 以下情况将返回null：
+     * <ul>
+     *     <li>末影龙不在末地维度</li>
+     *     <li>末影龙是通过命令/API召唤的</li>
+     * </ul>
+     * <p>
+     * 原文:
      * Get the {@link DragonBattle} associated with this EnderDragon.
      * <br>
      * This will return null for the following reasons:
@@ -91,7 +100,7 @@ public interface EnderDragon extends ComplexLivingEntity, Boss, Mob, Enemy {
      *     <li>The EnderDragon was summoned by command/API</li>
      * </ul>
      *
-     * @return the dragon battle
+     * @return 龙战
      *
      * @see World#getEnderDragonBattle()
      */

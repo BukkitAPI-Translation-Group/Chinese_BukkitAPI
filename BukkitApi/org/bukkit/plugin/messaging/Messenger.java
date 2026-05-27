@@ -9,9 +9,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 负责管理注册插件通道和监听器的类.
  *
- * Channel names must contain a colon separator and consist of only [a-z0-9/._-]
- * - i.e. they MUST be valid {@link NamespacedKey}. The "BungeeCord" channel is
- * an exception and may only take this form.
+ * 通道名称必须包含冒号分隔符, 且只能由 [a-z0-9/._-] 组成 - 即它们必须是有效的 {@link NamespacedKey}.
+ * "BungeeCord" 通道是一个例外, 只能使用这种形式.
  */
 public interface Messenger {
 
