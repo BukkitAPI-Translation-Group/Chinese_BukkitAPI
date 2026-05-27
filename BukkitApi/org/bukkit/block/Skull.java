@@ -108,23 +108,33 @@ public interface Skull extends TileState {
     void setOwnerProfile(@Nullable PlayerProfile profile);
 
     /**
-     * Gets the sound to play if the skull is placed on a note block.
+     * 获取头颅放置在音符盒上时播放的音效.
+     * <br>
+     * <strong>注意:</strong> 这仅对玩家头颅有效. 其他类型的头颅,
+     * 请参阅 {@link org.bukkit.Instrument}.
+     * <p>
+     * 原文: Gets the sound to play if the skull is placed on a note block.
      * <br>
      * <strong>Note:</strong> This only works for player heads. For other heads,
      * see {@link org.bukkit.Instrument}.
      *
-     * @return the key of the sound, or null
+     * @return 音效的键值, 或null
      */
     @Nullable
     public NamespacedKey getNoteBlockSound();
 
     /**
-     * Sets the sound to play if the skull is placed on a note block.
+     * 设置头颅放置在音符盒上时播放的音效.
+     * <br>
+     * <strong>注意:</strong> 这仅对玩家头颅有效. 其他类型的头颅,
+     * 请参阅 {@link org.bukkit.Instrument}.
+     * <p>
+     * 原文: Sets the sound to play if the skull is placed on a note block.
      * <br>
      * <strong>Note:</strong> This only works for player heads. For other heads,
      * see {@link org.bukkit.Instrument}.
      *
-     * @param noteBlockSound the key of the sound to be played, or null
+     * @param noteBlockSound 要播放的音效的键值, 或null
      *
      */
     public void setNoteBlockSound(@Nullable NamespacedKey noteBlockSound);
