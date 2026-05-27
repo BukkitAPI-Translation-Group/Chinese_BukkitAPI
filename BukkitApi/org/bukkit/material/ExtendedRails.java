@@ -6,8 +6,8 @@ import org.bukkit.block.BlockFace;
 /**
  * 这是 {@link DetectorRail} 和 {@link PoweredRail} 类的父类。
  *
- * @deprecated all usage of MaterialData is deprecated and subject to removal.
- * Use {@link org.bukkit.block.data.BlockData}.
+ * @deprecated 所有 MaterialData 的用法均已弃用并可能被移除。
+ * 请使用 {@link org.bukkit.block.data.BlockData}。
  */
 @Deprecated(since = "1.14.1")
 public class ExtendedRails extends Rails {
@@ -17,9 +17,9 @@ public class ExtendedRails extends Rails {
     }
 
     /**
-     * @param type the type
-     * @param data the raw data value
-     * @deprecated Magic value
+     * @param type 材料类型
+     * @param data 原始数据值
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public ExtendedRails(final Material type, final byte data) {
@@ -34,7 +34,7 @@ public class ExtendedRails extends Rails {
     /**
      * {@inheritDoc}
      *
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     @Override
