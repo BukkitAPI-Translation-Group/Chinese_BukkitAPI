@@ -32,7 +32,9 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     public static final GameRule<Boolean> COMMAND_BLOCK_OUTPUT = getRule("command_block_output");
 
     /**
-     * Whether the server should skip checking player speed.
+     * 服务器是否跳过检查玩家移动速度.
+     * <p>
+     * 原文:Whether the server should skip checking player speed.
      */
     public static final GameRule<Boolean> PLAYER_MOVEMENT_CHECK = getRule("player_movement_check");
 
@@ -63,7 +65,9 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     public static final GameRule<Boolean> MOB_DROPS = getRule("mob_drops");
 
     /**
-     * Whether projectiles can break blocks.
+     * 投射物是否可以破坏方块.
+     * <p>
+     * 原文:Whether projectiles can break blocks.
      */
     public static final GameRule<Boolean> PROJECTILES_CAN_BREAK_BLOCKS = getRule("projectiles_can_break_blocks");
 
@@ -172,7 +176,9 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     public static final GameRule<Boolean> SPAWN_WANDERING_TRADERS = getRule("spawn_wandering_traders");
 
     /**
-     * Whether wardens should naturally spawn.
+     * 监守者是否自然生成.
+     * <p>
+     * 原文:Whether wardens should naturally spawn.
      */
     public static final GameRule<Boolean> SPAWN_WARDENS = getRule("spawn_wardens");
 
@@ -187,64 +193,93 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     public static final GameRule<Boolean> UNIVERSAL_ANGER = getRule("universal_anger");
 
     /**
-     * Whether block explosions will destroy dropped items.
+     * 方块爆炸是否摧毁掉落物.
+     * <p>
+     * 原文:Whether block explosions will destroy dropped items.
      */
     public static final GameRule<Boolean> BLOCK_EXPLOSION_DROP_DECAY = getRule("block_explosion_drop_decay");
     /**
-     * * Whether mob explosions will destroy dropped items.
+     * 生物爆炸是否摧毁掉落物.
+     * <p>
+     * 原文:Whether mob explosions will destroy dropped items.
      */
     public static final GameRule<Boolean> MOB_EXPLOSION_DROP_DECAY = getRule("mob_explosion_drop_decay");
     /**
-     * Whether tnt explosions will destroy dropped items.
+     * TNT爆炸是否摧毁掉落物.
+     * <p>
+     * 原文:Whether tnt explosions will destroy dropped items.
      */
     public static final GameRule<Boolean> TNT_EXPLOSION_DROP_DECAY = getRule("tnt_explosion_drop_decay");
     /**
-     * Whether water blocks can convert into water source blocks.
+     * 水方块是否可以转化为水源方块.
+     * <p>
+     * 原文:Whether water blocks can convert into water source blocks.
      */
     public static final GameRule<Boolean> WATER_SOURCE_CONVERSION = getRule("water_source_conversion");
     /**
-     * Whether lava blocks can convert into lava source blocks.
+     * 岩浆方块是否可以转化为岩浆源方块.
+     * <p>
+     * 原文:Whether lava blocks can convert into lava source blocks.
      */
     public static final GameRule<Boolean> LAVA_SOURCE_CONVERSION = getRule("lava_source_conversion");
     /**
-     * Whether global level events such as ender dragon, wither, and completed
-     * end portal effects will propagate across the entire server.
+     * 全局世界事件（如末影龙、凋灵和已完成的末地传送门特效）是否传播到整个服务器.
+     * <p>
+     * 原文:Whether global level events such as ender dragon, wither, and completed end portal effects will propagate across the entire server.
      */
     public static final GameRule<Boolean> GLOBAL_SOUND_EVENTS = getRule("global_sound_events");
     /**
-     * Whether vines will spread.
+     * 藤蔓是否蔓延.
+     * <p>
+     * 原文:Whether vines will spread.
      */
     public static final GameRule<Boolean> SPREAD_VINES = getRule("spread_vines");
     /**
-     * Whether ender pearls will vanish on player death.
+     * 末影珍珠是否在玩家死亡时消失.
+     * <p>
+     * 原文:Whether ender pearls will vanish on player death.
      */
     public static final GameRule<Boolean> ENDER_PEARLS_VANISH_ON_DEATH = getRule("ender_pearls_vanish_on_death");
     /**
-     * Whether TNT explodes.
+     * TNT是否爆炸.
+     * <p>
+     * 原文:Whether TNT explodes.
      */
     public static final GameRule<Boolean> TNT_EXPLODES = getRule("tnt_explodes");
     /**
-     * Whether the locator bar is enabled.
+     * 定位器栏是否启用.
+     * <p>
+     * 原文:Whether the locator bar is enabled.
      */
     public static final GameRule<Boolean> LOCATOR_BAR = getRule("locator_bar");
     /**
-     * Whether PvP is enabled.
+     * PvP是否启用.
+     * <p>
+     * 原文:Whether PvP is enabled.
      */
     public static final GameRule<Boolean> PVP = getRule("pvp");
     /**
-     * Whether nether portals can be used to enter the nether.
+     * 下界传送门是否可用于进入下界.
+     * <p>
+     * 原文:Whether nether portals can be used to enter the nether.
      */
     public static final GameRule<Boolean> ALLOW_ENTERING_NETHER_USING_PORTALS = getRule("allow_entering_nether_using_portals");
     /**
-     * Whether monsters will spawn.
+     * 怪物是否生成.
+     * <p>
+     * 原文:Whether monsters will spawn.
      */
     public static final GameRule<Boolean> SPAWN_MONSTERS = getRule("spawn_monsters");
     /**
-     * Whether command blocks are enabled.
+     * 命令方块是否启用.
+     * <p>
+     * 原文:Whether command blocks are enabled.
      */
     public static final GameRule<Boolean> COMMAND_BLOCKS_WORK = getRule("command_blocks_work");
     /**
-     * Whether spawner blocks are enabled.
+     * 刷怪箱方块是否启用.
+     * <p>
+     * 原文:Whether spawner blocks are enabled.
      */
     public static final GameRule<Boolean> SPAWNER_BLOCKS_WORK = getRule("spawner_blocks_work");
 
@@ -275,13 +310,16 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     public static final GameRule<Integer> MAX_COMMAND_SEQUENCE_LENGTH = getRule("max_command_sequence_length");
 
     /**
-     * Determines the number of different commands/functions which execute
-     * commands can fork into.
+     * 决定执行命令可以分叉的不同命令/函数的数量.
+     * <p>
+     * 原文:Determines the number of different commands/functions which execute commands can fork into.
      */
     public static final GameRule<Integer> MAX_COMMAND_FORKS = getRule("max_command_forks");
 
     /**
-     * Determines the maximum number of blocks which a command can modify.
+     * 决定一个命令可以修改的最大方块数量.
+     * <p>
+     * 原文:Determines the maximum number of blocks which a command can modify.
      */
     public static final GameRule<Integer> MAX_BLOCK_MODIFICATIONS = getRule("max_block_modifications");
 
@@ -292,27 +330,32 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     public static final GameRule<Integer> MAX_SNOW_ACCUMULATION_HEIGHT = getRule("max_snow_accumulation_height");
 
     /**
-     * The amount of time a player must stand in a nether portal before the
-     * portal activates.
+     * 玩家在下界传送门中需要停留的时间（以游戏刻为单位），之后传送门才会激活.
+     * <p>
+     * 原文:The amount of time a player must stand in a nether portal before the portal activates.
      */
     public static final GameRule<Integer> PLAYERS_NETHER_PORTAL_DEFAULT_DELAY = getRule("players_nether_portal_default_delay");
 
     /**
-     * The amount of time a player in creative mode must stand in a nether
-     * portal before the portal activates.
+     * 创造模式玩家在下界传送门中需要停留的时间（以游戏刻为单位），之后传送门才会激活.
+     * <p>
+     * 原文:The amount of time a player in creative mode must stand in a nether portal before the portal activates.
      */
     public static final GameRule<Integer> PLAYERS_NETHER_PORTAL_CREATIVE_DELAY = getRule("players_nether_portal_creative_delay");
 
     /**
-     * The maximum speed of minecarts (when the new movement algorithm is
-     * enabled).
+     * 矿车的最大速度（当新移动算法启用时）.
+     * <p>
+     * 原文:The maximum speed of minecarts (when the new movement algorithm is enabled).
      */
     @ApiStatus.Experimental
     @MinecraftExperimental(MinecraftExperimental.Requires.MINECART_IMPROVEMENTS)
     public static final GameRule<Integer> MAX_MINECART_SPEED = getRule("max_minecart_speed");
 
     /**
-     * The radius in blocks that fire can spread around a player (0 to disable spread, -1 to allow spread without players).
+     * 火焰可以在玩家周围蔓延的半径（以方块为单位）. 0表示禁用蔓延, -1表示允许无玩家时蔓延.
+     * <p>
+     * 原文:The radius in blocks that fire can spread around a player (0 to disable spread, -1 to allow spread without players).
      */
     public static final GameRule<Integer> FIRE_SPREAD_RADIUS_AROUND_PLAYER = getRule("fire_spread_radius_around_player");
 
@@ -326,7 +369,7 @@ public interface GameRule<T> extends Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键不一定始终存在, 请使用 {@link #getKeyOrThrow()}.
      */
     @NotNull
     @Override
