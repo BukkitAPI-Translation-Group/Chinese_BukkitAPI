@@ -24,7 +24,7 @@ public interface AbstractArrow extends Projectile {
      *
      * @return 击退强度值
      * @see #getWeapon()
-     * @deprecated a function of the firing weapon
+     * @deprecated 发射武器的功能
      */
     @Deprecated(since = "1.21")
     public int getKnockbackStrength();
@@ -37,7 +37,7 @@ public interface AbstractArrow extends Projectile {
      *
      * @param knockbackStrength 击退强度值
      * @see #setWeapon(org.bukkit.inventory.ItemStack)
-     * @deprecated a function of the firing weapon
+     * @deprecated 发射武器的功能
      */
     @Deprecated(since = "1.21")
     public void setKnockbackStrength(int knockbackStrength);
@@ -79,142 +79,70 @@ public interface AbstractArrow extends Projectile {
     public int getPierceLevel();
 
     /**
-     * 设置此箭能够穿透实体的次数.
-     *
-     * 必须在 0 至 127 次之间.
+     * 获得此箭是否由弩射出.
      * <p>
      * 原文:
-     * Sets the number of times this arrow can pierce through an entity.
-     *
-     * Must be between 0 and 127 times.
-     *
-     * @param pierceLevel 新的穿透等级
-     */
-    public void setPierceLevel(int pierceLevel);
-
-    /**
-     * 获得此箭是否能造成暴击.
-     * <p>
-     * 暴击箭将会增加伤害并产生粒子效果.
-     * <p>
-     * 暴击箭一般是发生在玩家将弓箭完全蓄力后发射.
-     * <p>
-     * 原文:
-     * Gets whether this arrow is critical.
-     * <p>
-     * Critical arrows have increased damage and cause particle effects.
-     * <p>
-     * Critical arrows generally occur when a player fully draws a bow before
-     * firing.
-     *
-     * @return 暴击返回true
-     */
-    public boolean isCritical();
-
-    /**
-     * 设置此箭是否暴击.
-     * <p>
-     * 原文:
-     * Sets whether or not this arrow should be critical.
-     *
-     * @param critical 是否暴击
-     */
-    public void setCritical(boolean critical);
-
-    /**
-     * 获得此箭是否在一个方块上.
-     * <p>
-     * 在方块上的箭将静止, 且可能能被玩家拾起. 
-     * <p>
-     * 原文:
-     * Gets whether this arrow is in a block or not.
-     * <p>
-     * Arrows in a block are motionless and may be picked up by players.
-     *
-     * @return 如果在方块上返回true
-     */
-    public boolean isInBlock();
-
-    /**
-     * 获得这支箭连接的方块.
-     * 译注:箭插在方块上, 这个方块就是箭连接的方块.
-     * <p>
-     * 原文:
-     * Gets the block to which this arrow is attached.
-     *
-     * @return 返回所连接的方块, 否则返回null
-     */
-    @Nullable
-    public Block getAttachedBlock();
-
-    /**
-     * 获得此箭的拾起状态.
-     * <p>
-     * 原文:
-     * Gets the current pickup status of this arrow.
-     *
-     * @return 这只箭的拾起状态.
-     */
-    @NotNull
-    public PickupStatus getPickupStatus();
-
-    /**
-     * 设置此箭的拾起状态.
-     * <p>
-     * 原文:
-     * Sets the current pickup status of this arrow.
-     *
-     * @param status 新的拾起状态.
-     */
-    public void setPickupStatus(@NotNull PickupStatus status);
-
-    /**
      * Gets if this arrow was shot from a crossbow.
      *
-     * @return if shot from a crossbow
+     * @return 如果由弩射出则返回true
      */
     public boolean isShotFromCrossbow();
 
     /**
+     * 设置此箭是否由弩射出.
+     * <p>
+     * 原文:
      * Sets if this arrow was shot from a crossbow.
      *
-     * @param shotFromCrossbow if shot from a crossbow
+     * @param shotFromCrossbow 是否由弩射出
      * @see #setWeapon(org.bukkit.inventory.ItemStack)
-     * @deprecated a function of the firing weapon instead
+     * @deprecated 改用发射武器的功能
      */
     @Deprecated(since = "1.21")
     public void setShotFromCrossbow(boolean shotFromCrossbow);
 
     /**
+     * 获取此箭被拾起时将获得的 ItemStack.
+     * <p>
+     * 原文:
      * Gets the ItemStack which will be picked up from this arrow.
      *
-     * @return The picked up ItemStack
+     * @return 被拾起的 ItemStack
      */
     @NotNull
     @ApiStatus.Experimental
     public ItemStack getItem();
 
     /**
+     * 设置此箭被拾起时将获得的 ItemStack.
+     * <p>
+     * 原文:
      * Sets the ItemStack which will be picked up from this arrow.
      *
-     * @param item ItemStack set to be picked up
+     * @param item 被拾起时的 ItemStack
      */
     @ApiStatus.Experimental
     public void setItem(@NotNull ItemStack item);
 
     /**
+     * 获取发射此箭的 ItemStack.
+     * <p>
+     * 原文:
      * Gets the ItemStack which fired this arrow.
      *
-     * @return The firing ItemStack
+     * @return 发射此箭的 ItemStack
      */
     @NotNull
     @ApiStatus.Experimental
     public ItemStack getWeapon();
 
     /**
+     * 设置发射此箭的 ItemStack.
+     * <p>
+     * 原文:
      * Sets the ItemStack which fired this arrow.
      *
-     * @param item The firing ItemStack
+     * @param item 发射此箭的 ItemStack
      */
     @ApiStatus.Experimental
     public void setWeapon(@NotNull ItemStack item);
