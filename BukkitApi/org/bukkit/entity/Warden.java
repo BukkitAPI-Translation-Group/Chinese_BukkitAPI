@@ -10,76 +10,88 @@ import org.jetbrains.annotations.Nullable;
 public interface Warden extends Monster {
 
     /**
-     * Gets the anger level of this warden.
+     * 获取此监守者的愤怒等级。
+     * <p>
+     * 愤怒值为0到150的整数。当监守者对某个目标的愤怒值达到80时，它会主动追击该目标。
+     * <p>
+     * 原文：Gets the anger level of this warden.
      *
-     * Anger is an integer from 0 to 150. Once a Warden reaches 80 anger at a
-     * target it will actively pursue it.
-     *
-     * @return anger level
+     * @return 愤怒等级
      */
     int getAnger();
 
     /**
-     * Gets the anger level of this warden.
+     * 获取此监守者对指定实体的愤怒等级。
+     * <p>
+     * 愤怒值为0到150的整数。当监守者对某个目标的愤怒值达到80时，它会主动追击该目标。
+     * <p>
+     * 原文：Gets the anger level of this warden.
      *
-     * Anger is an integer from 0 to 150. Once a Warden reaches 80 anger at a
-     * target it will actively pursue it.
-     *
-     * @param entity target entity
-     * @return anger level
+     * @param entity 目标实体
+     * @return 愤怒等级
      */
     int getAnger(@NotNull Entity entity);
 
     /**
-     * Increases the anger level of this warden.
+     * 增加此监守者的愤怒等级。
+     * <p>
+     * 愤怒值为0到150的整数。当监守者对某个目标的愤怒值达到80时，它会主动追击该目标。
+     * <p>
+     * 原文：Increases the anger level of this warden.
      *
-     * Anger is an integer from 0 to 150. Once a Warden reaches 80 anger at a
-     * target it will actively pursue it.
-     *
-     * @param entity target entity
-     * @param increase number to increase by
+     * @param entity 目标实体
+     * @param increase 要增加的数量
      * @see #getAnger(org.bukkit.entity.Entity)
      */
     void increaseAnger(@NotNull Entity entity, int increase);
 
     /**
-     * Sets the anger level of this warden.
+     * 设置此监守者的愤怒等级。
+     * <p>
+     * 愤怒值为0到150的整数。当监守者对某个目标的愤怒值达到80时，它会主动追击该目标。
+     * <p>
+     * 原文：Sets the anger level of this warden.
      *
-     * Anger is an integer from 0 to 150. Once a Warden reaches 80 anger at a
-     * target it will actively pursue it.
-     *
-     * @param entity target entity
-     * @param anger new anger level
+     * @param entity 目标实体
+     * @param anger 新的愤怒等级
      * @see #getAnger(org.bukkit.entity.Entity)
      */
     void setAnger(@NotNull Entity entity, int anger);
 
     /**
-     * Clears the anger level of this warden.
+     * 清除此监守者对指定实体的愤怒等级。
+     * <p>
+     * 原文：Clears the anger level of this warden.
      *
-     * @param entity target entity
+     * @param entity 目标实体
      */
     void clearAnger(@NotNull Entity entity);
 
     /**
-     * Gets the {@link LivingEntity} at which this warden is most angry.
+     * 获取此监守者最为愤怒的 {@link LivingEntity}。
+     * <p>
+     * 原文：Gets the {@link LivingEntity} at which this warden is most angry.
      *
-     * @return The target {@link LivingEntity} or null
+     * @return 目标 {@link LivingEntity}，若无则为null
      */
     @Nullable
     LivingEntity getEntityAngryAt();
 
     /**
-     * Make the warden sense a disturbance in the force at the location given.
+     * 让监守者感知到指定位置的扰动。
+     * <p>
+     * 原文：Make the warden sense a disturbance in the force at the location given.
      *
-     * @param location location of the disturbance
+     * @param location 扰动的位置
      */
     void setDisturbanceLocation(@NotNull Location location);
 
     /**
-     * Get the level of anger of this warden.
+     * 获取此监守者的愤怒等级。
+     * <p>
+     * 原文：Get the level of anger of this warden.
      *
-     * @return The level of anger
+     * @return 愤怒等级
      */
     @NotNull
     AngerLevel getAngerLevel();
@@ -87,15 +99,15 @@ public interface Warden extends Monster {
     public enum AngerLevel {
 
         /**
-         * Anger level 0-39.
+         * 愤怒等级 0-39.
          */
         CALM,
         /**
-         * Anger level 40-79.
+         * 愤怒等级 40-79.
          */
         AGITATED,
         /**
-         * Anger level 80 or above.
+         * 愤怒等级 80 或以上.
          */
         ANGRY;
     }
