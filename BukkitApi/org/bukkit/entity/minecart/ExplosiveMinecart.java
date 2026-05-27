@@ -9,63 +9,74 @@ import org.bukkit.entity.Minecart;
 public interface ExplosiveMinecart extends Minecart, Explosive {
 
     /**
-     * Set the fuse ticks of this minecart.
+     * 设置此矿车的引信时间（以tick为单位）。
+     * <p>
+     * 如果将引信时间设置为非零值，将会点燃此爆炸物。
+     * <p>
+     * 原文：Set the fuse ticks of this minecart.
      *
-     * If the fuse ticks are set to a non-zero value, this will ignite the
-     * explosive.
-     *
-     * @param ticks the ticks
+     * @param ticks 引信时间（以tick为单位）
      */
     public void setFuseTicks(int ticks);
 
     /**
-     * Get the fuse ticks of this minecart.
+     * 获取此矿车的引信时间（以tick为单位）。
+     * <p>
+     * 如果引信时间降为0，矿车将会爆炸。
+     * <p>
+     * 原文：Get the fuse ticks of this minecart.
      *
-     * If the fuse ticks reach 0, the minecart will explode.
-     *
-     * @return the fuse ticks, or -1 if this minecart's fuse has not yet been
-     * ignited
+     * @return 引信时间（以tick为单位），如果此矿车的引信尚未点燃则返回-1
      */
     public int getFuseTicks();
 
     /**
-     * Gets the factor by which explosion yield increases based on Minecart
-     * speed.
+     * 获取基于矿车速度计算的爆炸威力增加系数。
+     * <p>
+     * 原文：Gets the factor by which explosion yield increases based on Minecart speed.
      *
-     * @return increase factor
+     * @return 增加系数
      */
     public float getExplosionSpeedFactor();
 
     /**
-     * Sets the factor by which explosion yield increases based on Minecart
-     * speed.
+     * 设置基于矿车速度计算的爆炸威力增加系数。
+     * <p>
+     * 原文：Sets the factor by which explosion yield increases based on Minecart speed.
      *
-     * @param factor new factor
+     * @param factor 新的系数
      */
     public void setExplosionSpeedFactor(float factor);
 
     /**
-     * Ignite this minecart's fuse naturally.
+     * 点燃此矿车的引信。
+     * <p>
+     * 原文：Ignite this minecart's fuse naturally.
      */
     public void ignite();
 
     /**
-     * Check whether or not this minecart's fuse has been ignited.
+     * 检查此矿车的引信是否已被点燃。
+     * <p>
+     * 原文：Check whether or not this minecart's fuse has been ignited.
      *
-     * @return true if ignited, false otherwise
+     * @return 如果已点燃则为true，否则为false
      */
     public boolean isIgnited();
 
     /**
-     * Immediately explode this minecart with the power assumed by its current
-     * movement.
+     * 立即引爆此矿车，爆炸威力由其当前移动速度决定。
+     * <p>
+     * 原文：Immediately explode this minecart with the power assumed by its current movement.
      */
     public void explode();
 
     /**
-     * Immediately explode this minecart with the given power.
+     * 以指定威力立即引爆此矿车。
+     * <p>
+     * 原文：Immediately explode this minecart with the given power.
      *
-     * @param power the power to use. Must be positive and cannot exceed 5.0
+     * @param power 爆炸威力，必须为正数且不能超过5.0
      */
     public void explode(double power);
 }
