@@ -12,10 +12,8 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 代表画.
  * <p>
- * The arts listed in this interface are present in the default server
- * or can be enabled via a {@link FeatureFlag}.
- * There may be additional arts present in the server, for example from a {@link DataPack}
- * which can be accessed via {@link Registry#ART}.
+ * 此接口中列出的画存在于默认服务器中,或可通过 {@link FeatureFlag} 启用.
+ * 服务器中可能存在其他画,例如来自 {@link DataPack} 的画,可通过 {@link Registry#ART} 访问.
  */
 public interface Art extends OldEnum<Art>, Keyed, RegistryAware {
 
@@ -157,9 +155,11 @@ public interface Art extends OldEnum<Art>, Keyed, RegistryAware {
     }
 
     /**
-     * @param name of the art.
-     * @return the art with the given name.
-     * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+     * 通过给定名称获取画.
+     *
+     * @param name 画的名称.
+     * @return 具有给定名称的画.
+     * @deprecated 仅用于向后兼容,请使用 {@link Registry#get(NamespacedKey)} 代替.
      */
     @NotNull
     @Deprecated(since = "1.21.3")
@@ -170,8 +170,10 @@ public interface Art extends OldEnum<Art>, Keyed, RegistryAware {
     }
 
     /**
-     * @return an array of all known arts.
-     * @deprecated use {@link Registry#iterator()}.
+     * 获取所有已知画的数组.
+     *
+     * @return 所有已知画的数组.
+     * @deprecated 请使用 {@link Registry#iterator()} 代替.
      */
     @NotNull
     @Deprecated(since = "1.21.3")
