@@ -48,14 +48,14 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
 
     // These strings MUST match the strings in nms.EntityTypes and are case sensitive.
     /**
-     * An item resting on the ground.
+     * 掉落在地面上的物品.
      * <p>
-     * Spawn with {@link World#dropItem(Location, ItemStack)} or {@link
-     * World#dropItemNaturally(Location, ItemStack)}
+     * 使用 {@link World#dropItem(Location, ItemStack)} 或 {@link
+     * World#dropItemNaturally(Location, ItemStack)} 生成.
      */
     ITEM("item", Item.class, 1),
     /**
-     * An experience orb.
+     * 经验球.
      */
     EXPERIENCE_ORB("experience_orb", ExperienceOrb.class, 2),
     /**
@@ -75,71 +75,71 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
      */
     STRAY("stray", Stray.class, 6),
     /**
-     * A flying chicken egg.
+     * 飞行中的鸡蛋.
      */
     EGG("egg", Egg.class, 7),
     /**
-     * A leash attached to a fencepost.
+     * 拴在栅栏柱上的拴绳.
      */
     LEASH_KNOT("leash_knot", LeashHitch.class, 8),
     /**
-     * A painting on a wall.
+     * 墙上的画.
      */
     PAINTING("painting", Painting.class, 9),
     /**
-     * An arrow projectile; may get stuck in the ground.
+     * 箭矢投射物, 可能会插在地面上.
      */
     ARROW("arrow", Arrow.class, 10),
     /**
-     * A flying snowball.
+     * 飞行中的雪球.
      */
     SNOWBALL("snowball", Snowball.class, 11),
     /**
-     * A flying large fireball, as thrown by a Ghast for example.
+     * 飞行中的大火球, 例如由恶魂投掷.
      */
     FIREBALL("fireball", LargeFireball.class, 12),
     /**
-     * A flying small fireball, such as thrown by a Blaze or player.
+     * 飞行中的小火球, 例如由烈焰人或玩家投掷.
      */
     SMALL_FIREBALL("small_fireball", SmallFireball.class, 13),
     /**
-     * A flying ender pearl.
+     * 飞行中的末影珍珠.
      */
     ENDER_PEARL("ender_pearl", EnderPearl.class, 14),
     /**
-     * An ender eye signal.
+     * 末影之眼信号.
      */
     EYE_OF_ENDER("eye_of_ender", EnderSignal.class, 15),
     /**
-     * A flying splash potion.
+     * 飞行中的喷溅药水.
      */
     SPLASH_POTION("splash_potion", SplashPotion.class, 16),
     /**
-     * A flying lingering splash potion.
+     * 飞行中的滞留药水.
      */
     LINGERING_POTION("lingering_potion", LingeringPotion.class, -1),
     /**
-     * A flying experience bottle.
+     * 飞行中的经验瓶.
      */
     EXPERIENCE_BOTTLE("experience_bottle", ThrownExpBottle.class, 17),
     /**
-     * An item frame on a wall.
+     * 墙上的物品展示框.
      */
     ITEM_FRAME("item_frame", ItemFrame.class, 18),
     /**
-     * A flying wither skull projectile.
+     * 飞行中的凋灵骷髅头颅投射物.
      */
     WITHER_SKULL("wither_skull", WitherSkull.class, 19),
     /**
-     * Primed TNT that is about to explode.
+     * 即将爆炸的已点燃TNT.
      */
     TNT("tnt", TNTPrimed.class, 20),
     /**
-     * A block that is going to or is about to fall.
+     * 正在下落或即将下落的方块.
      */
     FALLING_BLOCK("falling_block", FallingBlock.class, 21),
     /**
-     * Internal representation of a Firework once it has been launched.
+     * 烟花火箭发射后的内部表示.
      */
     FIREWORK_ROCKET("firework_rocket", Firework.class, 22),
     /**
@@ -147,15 +147,15 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
      */
     HUSK("husk", Husk.class, 23),
     /**
-     * Like {@link #ARROW} but causes the {@link PotionEffectType#GLOWING} effect on all team members.
+     * 类似 {@link #ARROW}, 但会对所有队友施加 {@link PotionEffectType#GLOWING} 效果.
      */
     SPECTRAL_ARROW("spectral_arrow", SpectralArrow.class, 24),
     /**
-     * Bullet fired by {@link #SHULKER}.
+     * 由 {@link #SHULKER} 发射的子弹.
      */
     SHULKER_BULLET("shulker_bullet", ShulkerBullet.class, 25),
     /**
-     * Like {@link #FIREBALL} but with added effects.
+     * 类似 {@link #FIREBALL}, 但附带额外效果.
      */
     DRAGON_FIREBALL("dragon_fireball", DragonFireball.class, 26),
     /**
@@ -171,7 +171,7 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
      */
     ZOMBIE_HORSE("zombie_horse", ZombieHorse.class, 29),
     /**
-     * Mechanical entity with an inventory for placing weapons / armor into.
+     * 用于放置武器/盔甲的机械实体, 带有物品栏.
      */
     ARMOR_STAND("armor_stand", ArmorStand.class, 30),
     /**
@@ -340,18 +340,18 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
     PARCHED("parched", Parched.class, -1),
     ZOMBIE_NAUTILUS("zombie_nautilus", ZombieNautilus.class, -1),
     /**
-     * A fishing line and bobber.
+     * 钓鱼线和浮漂.
      */
     FISHING_BOBBER("fishing_bobber", FishHook.class, -1, false),
     /**
-     * A bolt of lightning.
+     * 闪电.
      * <p>
-     * Spawn with {@link World#strikeLightning(Location)}.
+     * 使用 {@link World#strikeLightning(Location)} 生成.
      */
     LIGHTNING_BOLT("lightning_bolt", LightningStrike.class, -1),
     PLAYER("player", Player.class, -1, false),
     /**
-     * An unknown entity without an Entity Class
+     * 没有实体类的未知实体.
      */
     UNKNOWN(null, null, -1, false);
 
@@ -407,7 +407,7 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在, 请改用 {@link #getKeyOrThrow()}.
      */
     @NotNull
     @Override
@@ -472,12 +472,15 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Some entities cannot be spawned using {@link
+     * 某些实体无法使用 {@link World#spawnEntity(Location, EntityType)} 或 {@link
+     * World#spawn(Location, Class)} 生成, 通常是因为它们需要额外信息才能生成.
+     * <p>
+     * 原文：Some entities cannot be spawned using {@link
      * World#spawnEntity(Location, EntityType)} or {@link
      * World#spawn(Location, Class)}, usually because they require additional
      * information in order to spawn.
      *
-     * @return False if the entity type cannot be spawned
+     * @return 如果该实体种类无法生成则返回 false
      */
     public boolean isSpawnable() {
         return independent;
@@ -494,10 +497,12 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
     }
 
     /**
-     * Gets if this EntityType is enabled by feature in a world.
+     * 获取此实体种类是否在指定世界中通过特性启用.
+     * <p>
+     * 原文：Gets if this EntityType is enabled by feature in a world.
      *
-     * @param world the world to check
-     * @return true if this EntityType can be used to spawn an Entity for this World.
+     * @param world 要检查的世界
+     * @return 如果此实体种类可用于在该世界中生成实体则返回 true
      */
     public boolean isEnabledByFeature(@NotNull World world) {
         return Bukkit.getDataPackManager().isEnabledByFeature(this, world);
