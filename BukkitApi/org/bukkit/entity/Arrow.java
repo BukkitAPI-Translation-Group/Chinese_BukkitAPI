@@ -15,105 +15,128 @@ import org.jetbrains.annotations.Nullable;
 public interface Arrow extends AbstractArrow {
 
     /**
-     * Sets the underlying potion data
+     * 设置底层药水数据.
+     * <p>
+     * 原文：Sets the underlying potion data
      *
-     * @param data PotionData to set the base potion state to
-     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #setBasePotionType} instead.
+     * @param data 要设置的基础药水状态的 PotionData
+     * @deprecated 升级/延长的药水现在是独立的 {@link PotionType}，请使用 {@link #setBasePotionType} 替代.
      */
     @Deprecated(since = "1.20.6")
     void setBasePotionData(@Nullable PotionData data);
 
     /**
-     * Returns the potion data about the base potion
+     * 返回关于基础药水的药水数据.
+     * <p>
+     * 原文：Returns the potion data about the base potion
      *
-     * @return a PotionData object
-     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #getBasePotionType()} instead.
+     * @return PotionData 对象
+     * @deprecated 升级/延长的药水现在是独立的 {@link PotionType}，请使用 {@link #getBasePotionType()} 替代.
      */
     @Nullable
     @Deprecated(since = "1.20.6")
     PotionData getBasePotionData();
 
     /**
-     * Sets the underlying potion type
+     * 设置底层药水类型.
+     * <p>
+     * 原文：Sets the underlying potion type
      *
-     * @param type PotionType to set the base potion state to
+     * @param type 要设置的基础药水状态的 PotionType
      */
     void setBasePotionType(@Nullable PotionType type);
 
     /**
-     * Returns the potion type about the base potion
+     * 返回关于基础药水的药水类型.
+     * <p>
+     * 原文：Returns the potion type about the base potion
      *
-     * @return a PotionType object
+     * @return PotionType 对象
      */
     @Nullable
     PotionType getBasePotionType();
 
     /**
-     * Gets the color of this arrow.
+     * 获取此箭矢的颜色.
+     * <p>
+     * 原文：Gets the color of this arrow.
      *
-     * @return arrow {@link Color} or null if not color is set
+     * @return 箭矢的 {@link Color}，如果未设置颜色则为 null
      */
     @Nullable
     Color getColor();
 
     /**
-     * Sets the color of this arrow. Will be applied as a tint to its particles.
+     * 设置此箭矢的颜色. 将作为其粒子的着色应用.
+     * <p>
+     * 原文：Sets the color of this arrow. Will be applied as a tint to its particles.
      *
-     * @param color arrow color, null to clear the color
+     * @param color 箭矢颜色，null 表示清除颜色
      */
     void setColor(@Nullable Color color);
     /**
-     * Checks for the presence of custom potion effects.
+     * 检查是否存在自定义药水效果.
+     * <p>
+     * 原文：Checks for the presence of custom potion effects.
      *
-     * @return true if custom potion effects are applied
+     * @return 如果应用了自定义药水效果则为 true
      */
     boolean hasCustomEffects();
 
     /**
-     * Gets an immutable list containing all custom potion effects applied to
+     * 获取应用于此箭矢的所有自定义药水效果的不可变列表.
+     * <p>
+     * 插件应在调用此方法前检查 hasCustomEffects() 是否返回 true.
+     * <p>
+     * 原文：Gets an immutable list containing all custom potion effects applied to
      * this arrow.
      * <p>
      * Plugins should check that hasCustomEffects() returns true before calling
      * this method.
      *
-     * @return the immutable list of custom potion effects
+     * @return 自定义药水效果的不可变列表
      */
     @NotNull
     List<PotionEffect> getCustomEffects();
 
     /**
-     * Adds a custom potion effect to this arrow.
+     * 添加自定义药水效果到此箭矢.
+     * <p>
+     * 原文：Adds a custom potion effect to this arrow.
      *
-     * @param effect the potion effect to add
-     * @param overwrite true if any existing effect of the same type should be
-     * overwritten
-     * @return true if the effect was added as a result of this call
+     * @param effect 要添加的药水效果
+     * @param overwrite 如果为 true，则覆盖同类型的现有效果
+     * @return 如果因此次调用添加了效果则为 true
      */
     boolean addCustomEffect(@NotNull PotionEffect effect, boolean overwrite);
 
     /**
-     * Removes a custom potion effect from this arrow.
+     * 从此箭矢移除自定义药水效果.
+     * <p>
+     * 原文：Removes a custom potion effect from this arrow.
      *
-     * @param type the potion effect type to remove
-     * @return true if the an effect was removed as a result of this call
-     * @throws IllegalArgumentException if this operation would leave the Arrow
-     * in a state with no Custom Effects and PotionType.UNCRAFTABLE
+     * @param type 要移除的药水效果类型
+     * @return 如果因此次调用移除了效果则为 true
+     * @throws IllegalArgumentException 如果此操作会使箭矢处于无自定义效果且药水类型为 UNCRAFTABLE 的状态
      */
     boolean removeCustomEffect(@NotNull PotionEffectType type);
 
     /**
-     * Checks for a specific custom potion effect type on this arrow.
+     * 检查此箭矢上是否存在特定的自定义药水效果类型.
+     * <p>
+     * 原文：Checks for a specific custom potion effect type on this arrow.
      *
-     * @param type the potion effect type to check for
-     * @return true if the potion has this effect
+     * @param type 要检查的药水效果类型
+     * @return 如果药水有此效果则为 true
      */
     boolean hasCustomEffect(@Nullable PotionEffectType type);
 
     /**
-     * Removes all custom potion effects from this arrow.
+     * 移除此箭矢的所有自定义药水效果.
+     * <p>
+     * 原文：Removes all custom potion effects from this arrow.
      *
-     * @throws IllegalArgumentException if this operation would leave the Arrow
-     * in a state with no Custom Effects and PotionType.UNCRAFTABLE
+     * @throws IllegalArgumentException 如果此操作会使箭矢处于无自定义效果且药水类型为 UNCRAFTABLE 的状态
      */
     void clearCustomEffects();
 }
