@@ -22,19 +22,23 @@ public interface AnvilInventory extends Inventory {
     String getRenameText();
 
     /**
-     * Get the item cost (in amount) to complete the current repair.
+     * 获取完成当前修复所需物品的数量.
+     * <p>
+     * 原文：Get the item cost (in amount) to complete the current repair.
      *
-     * @return the amount
-     * @deprecated use {@link AnvilView#getRepairItemCountCost()}.
+     * @return 物品数量
+     * @deprecated 请使用 {@link AnvilView#getRepairItemCountCost()}.
      */
     @Deprecated(forRemoval = true, since = "1.21")
     int getRepairCostAmount();
 
     /**
-     * Set the item cost (in amount) to complete the current repair.
+     * 设置完成当前修复所需物品的数量.
+     * <p>
+     * 原文：Set the item cost (in amount) to complete the current repair.
      *
-     * @param amount the amount
-     * @deprecated use {@link AnvilView#setRepairItemCountCost(int)}.
+     * @param amount 物品数量
+     * @deprecated 请使用 {@link AnvilView#setRepairItemCountCost(int)}.
      */
     @Deprecated(forRemoval = true, since = "1.21")
     void setRepairCostAmount(int amount);
@@ -62,25 +66,33 @@ public interface AnvilInventory extends Inventory {
     void setRepairCost(int levels);
 
     /**
-     * Get the maximum experience cost (in levels) to be allowed by the current
+     * 获取当前修复所允许的最大经验等级花费.
+     * 如果 {@link #getRepairCost()} 的结果超过返回值, 修复结果将因"太贵"而变为空气.
+     * <p>
+     * 默认情况下, 此等级设置为 40. 创造模式的玩家忽略此最大修复花费.
+     * <p>
+     * 原文：Get the maximum experience cost (in levels) to be allowed by the current
      * repair. If the result of {@link #getRepairCost()} exceeds the returned
      * value, the repair result will be air to due being "too expensive".
      * <p>
      * By default, this level is set to 40. Players in creative mode ignore the
      * maximum repair cost.
      *
-     * @return the maximum experience cost
-     * @deprecated use {@link AnvilView#getMaximumRepairCost()}.
+     * @return 最大经验花费
+     * @deprecated 请使用 {@link AnvilView#getMaximumRepairCost()}.
      */
     @Deprecated(forRemoval = true, since = "1.21")
     int getMaximumRepairCost();
 
     /**
-     * Set the maximum experience cost (in levels) to be allowed by the current
+     * 设置当前修复所允许的最大经验等级花费.
+     * 原版 Minecraft 的默认值为 40.
+     * <p>
+     * 原文：Set the maximum experience cost (in levels) to be allowed by the current
      * repair. The default value set by vanilla Minecraft is 40.
      *
-     * @param levels the maximum experience cost
-     * @deprecated use {@link AnvilView#setMaximumRepairCost(int)}.
+     * @param levels 最大经验等级花费
+     * @deprecated 请使用 {@link AnvilView#setMaximumRepairCost(int)}.
      */
     @Deprecated(forRemoval = true, since = "1.21")
     void setMaximumRepairCost(int levels);
