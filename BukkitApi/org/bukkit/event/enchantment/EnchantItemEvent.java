@@ -125,10 +125,12 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * Get the {@link Enchantment} that was displayed as a hint to the player
+     * 获取在选中的附魔选项中作为提示显示给玩家的 {@link Enchantment}.
+     * <p>
+     * 原文: Get the {@link Enchantment} that was displayed as a hint to the player
      * on the selected enchantment offer.
      *
-     * @return the hinted enchantment
+     * @return 提示的附魔
      */
     @NotNull
     public Enchantment getEnchantmentHint() {
@@ -136,10 +138,12 @@ public class EnchantItemEvent extends InventoryEvent implements Cancellable {
     }
 
     /**
-     * Get the level of the enchantment that was displayed as a hint to the
+     * 获取在选中的附魔选项中作为提示显示给玩家的附魔等级.
+     * <p>
+     * 原文: Get the level of the enchantment that was displayed as a hint to the
      * player on the selected enchantment offer.
      *
-     * @return the level of the hinted enchantment
+     * @return 提示的附魔等级
      */
     public int getLevelHint() {
         return levelHint;
