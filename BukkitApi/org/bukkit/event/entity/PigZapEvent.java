@@ -10,7 +10,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Stores data for pigs being zapped
+ * 储存猪被闪电击中的数据。
  */
 public class PigZapEvent extends EntityTransformEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -41,9 +41,12 @@ public class PigZapEvent extends EntityTransformEvent implements Cancellable {
     }
 
     /**
+     * 获取击中猪的闪电。
+     * <p>
+     * 原文：
      * Gets the bolt which is striking the pig.
      *
-     * @return lightning entity
+     * @return 闪电实体
      */
     @NotNull
     public LightningStrike getLightning() {
@@ -51,11 +54,14 @@ public class PigZapEvent extends EntityTransformEvent implements Cancellable {
     }
 
     /**
+     * 获取将替换猪的僵尸猪灵，前提是事件未被取消。
+     * <p>
+     * 原文：
      * Gets the zombie pig that will replace the pig, provided the event is
      * not cancelled first.
      *
-     * @return resulting entity
-     * @deprecated use {@link EntityTransformEvent#getTransformedEntity()}
+     * @return 生成的实体
+     * @deprecated 使用 {@link EntityTransformEvent#getTransformedEntity()}
      */
     @NotNull
     @Deprecated(since = "1.13.2")

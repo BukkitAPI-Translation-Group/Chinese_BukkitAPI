@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a player stops damaging a Block.
+ * 当玩家停止破坏方块时触发.
  * @see BlockDamageEvent
  */
 public class BlockDamageAbortEvent extends BlockEvent {
@@ -23,9 +23,12 @@ public class BlockDamageAbortEvent extends BlockEvent {
     }
 
     /**
+     * 获取停止破坏此事件中方块的玩家.
+     *
+     * 原文：
      * Gets the player that stopped damaging the block involved in this event.
      *
-     * @return The player that stopped damaging the block
+     * @return 停止破坏方块的玩家
      */
     @NotNull
     public Player getPlayer() {
@@ -33,9 +36,12 @@ public class BlockDamageAbortEvent extends BlockEvent {
     }
 
     /**
+     * 获取玩家手中当前物品的 ItemStack.
+     *
+     * 原文：
      * Gets the ItemStack for the item currently in the player's hand.
      *
-     * @return The ItemStack for the item currently in the player's hand
+     * @return 玩家手中当前物品的 ItemStack
      */
     @NotNull
     public ItemStack getItemInHand() {

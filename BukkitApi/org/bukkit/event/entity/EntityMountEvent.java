@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity attempts to ride another entity.
+ * 当实体尝试骑乘另一个实体时调用。
  */
 public class EntityMountEvent extends EntityEvent implements Cancellable {
 
@@ -20,9 +20,12 @@ public class EntityMountEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取将被骑乘的实体。
+     * <p>
+     * 原文：
      * Gets the entity which will be ridden.
      *
-     * @return mounted entity
+     * @return 被骑乘的实体
      */
     @NotNull
     public Entity getMount() {

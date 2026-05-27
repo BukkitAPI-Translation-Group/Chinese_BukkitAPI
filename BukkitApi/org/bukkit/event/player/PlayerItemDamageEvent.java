@@ -7,8 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an item used by the player takes durability damage as a result of
- * being used.
+ * 当玩家使用的物品因使用而受到耐久度损伤时触发.
  */
 public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
 
@@ -24,9 +23,12 @@ public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 获取正在受损的物品.
+     * <p>
+     * 原文：
      * Gets the item being damaged.
      *
-     * @return the item
+     * @return 物品
      */
     @NotNull
     public ItemStack getItem() {
@@ -34,9 +36,12 @@ public class PlayerItemDamageEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 获取此物品将承受的耐久度损伤量.
+     * <p>
+     * 原文：
      * Gets the amount of durability damage this item will be taking.
      *
-     * @return durability change
+     * @return 耐久度变化
      */
     public int getDamage() {
         return damage;

@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when a block of TNT in the world become primed.
+ * 当世界中的 TNT 方块被激活时触发.
  * <p>
- * If a TNT Prime event is cancelled, the block of TNT will not become primed.
+ * 如果 TNT 激活事件被取消，TNT 方块将不会被激活.
  */
 public class TNTPrimeEvent extends BlockEvent implements Cancellable {
 
@@ -38,9 +38,12 @@ public class TNTPrimeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取 TNT 被激活的原因.
+     *
+     * 原文：
      * Get the cause of the TNT becoming primed.
      *
-     * @return the cause
+     * @return 原因
      */
     @NotNull
     public PrimeCause getCause() {
@@ -48,10 +51,12 @@ public class TNTPrimeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取导致 TNT 被激活的实体.
+     *
+     * 原文：
      * Get the entity that caused the TNT to be primed.
      *
-     * @return the entity that caused the TNT to be primed, or null if it was
-     * not caused by an entity.
+     * @return 导致 TNT 被激活的实体，如果不是由实体导致的则返回 null
      */
     @Nullable
     public Entity getPrimingEntity() {
@@ -59,10 +64,12 @@ public class TNTPrimeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取导致 TNT 被激活的方块.
+     *
+     * 原文：
      * Get the block that caused the TNT to be primed.
      *
-     * @return the block that caused the TNT to be primed, or null if it was not
-     * caused by a block.
+     * @return 导致 TNT 被激活的方块，如果不是由方块导致的则返回 null
      */
     @Nullable
     public Block getPrimingBlock() {
@@ -81,42 +88,40 @@ public class TNTPrimeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * An enum to represent the cause of a TNT block becoming primed.
+     * 表示 TNT 方块被激活原因的枚举.
      */
     public enum PrimeCause {
 
         /**
-         * When TNT is primed by fire spreading.
+         * 当 TNT 因火势蔓延而被激活时.
          */
         FIRE,
         /**
-         * When TNT is primed by a redstone signal.
+         * 当 TNT 因红石信号而被激活时.
          */
         REDSTONE,
         /**
-         * When TNT is primed by a player interacting with it directly.
+         * 当 TNT 被玩家直接交互而激活时.
          */
         PLAYER,
         /**
-         * When TNT is primed by a nearby explosion.
+         * 当 TNT 因附近爆炸而被激活时.
          */
         EXPLOSION,
         /**
-         * When TNT is primed after getting hit with a burning projectile.
+         * 当 TNT 被燃烧的投射物击中而激活时.
          */
         PROJECTILE,
         /**
-         * When TNT with the unstable block state set to true is broken.
+         * 当不稳定方块状态设置为 true 的 TNT 被破坏时.
          * <p>
-         * Note: Canceling a prime event with this cause will stop the primed
-         * TNT from spawning but will not stop the block from being broken.
+         * 注意：取消此原因导致的激活事件将阻止激活的 TNT 生成，但不会阻止方块被破坏.
          */
         BLOCK_BREAK,
         /**
-         * When TNT is primed by a dispenser holding flint and steel.
+         * 当 TNT 被持有打火石的发射器激活时.
          * <p>
-         * Note: This event is not called for a dispenser dispensing TNT
-         * directly.
+         * 注意：发射器直接发射 TNT 时不会触发此事件.
          */
         DISPENSER;
     }

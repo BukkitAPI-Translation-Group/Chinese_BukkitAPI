@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Thrown when an entity creates an item drop.
+ * 当实体创建物品掉落时触发。
  */
 public class EntityDropItemEvent extends EntityEvent implements Cancellable {
 
@@ -21,9 +21,12 @@ public class EntityDropItemEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取实体创建的物品。
+     * <p>
+     * 原文：
      * Gets the Item created by the entity
      *
-     * @return Item created by the entity
+     * @return 实体创建的物品
      */
     @NotNull
     public Item getItemDrop() {

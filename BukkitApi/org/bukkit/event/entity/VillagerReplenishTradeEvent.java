@@ -8,11 +8,9 @@ import org.bukkit.inventory.MerchantRecipe;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a {@link Villager} is about to restock one of its trades.
+ * 当 {@link Villager} 即将补充其交易之一时调用。
  * <p>
- * If this event passes, the villager will reset the
- * {@link MerchantRecipe#getUses() uses} of the affected {@link #getRecipe()
- * MerchantRecipe} to <code>0</code>.
+ * 如果此事件通过，村民将把受影响的 {@link #getRecipe() MerchantRecipe} 的 {@link MerchantRecipe#getUses() uses} 重置为 <code>0</code>。
  */
 public class VillagerReplenishTradeEvent extends EntityEvent implements Cancellable {
 
@@ -27,9 +25,12 @@ public class VillagerReplenishTradeEvent extends EntityEvent implements Cancella
     }
 
     /**
+     * 获取要补充的配方。
+     * <p>
+     * 原文：
      * Get the recipe to replenish.
      *
-     * @return the replenished recipe
+     * @return 补充的配方
      */
     @NotNull
     public MerchantRecipe getRecipe() {
@@ -37,20 +38,25 @@ public class VillagerReplenishTradeEvent extends EntityEvent implements Cancella
     }
 
     /**
+     * 设置要补充的配方。
+     * <p>
+     * 原文：
      * Set the recipe to replenish.
      *
-     * @param recipe the replenished recipe
+     * @param recipe 补充的配方
      */
     public void setRecipe(@NotNull MerchantRecipe recipe) {
         this.recipe = recipe;
     }
 
     /**
+     * 获取添加的额外使用次数。
+     * <p>
+     * 原文：
      * Get the bonus uses added.
      *
-     * @return the extra uses added
-     * @deprecated MC 1.14 has changed how villagers restock their trades. Use
-     * {@link MerchantRecipe#getUses()}.
+     * @return 添加的额外使用次数
+     * @deprecated MC 1.14 改变了村民补充交易的方式。使用 {@link MerchantRecipe#getUses()}。
      */
     @Deprecated(since = "1.18.1")
     public int getBonus() {
@@ -58,11 +64,13 @@ public class VillagerReplenishTradeEvent extends EntityEvent implements Cancella
     }
 
     /**
+     * 设置添加的额外使用次数。
+     * <p>
+     * 原文：
      * Set the bonus uses added.
      *
-     * @param bonus the extra uses added
-     * @deprecated MC 1.14 has changed how villagers restock their trades. This
-     * has no effect anymore.
+     * @param bonus 添加的额外使用次数
+     * @deprecated MC 1.14 改变了村民补充交易的方式。这不再有效。
      */
     @Deprecated(since = "1.18.1")
     public void setBonus(int bonus) {

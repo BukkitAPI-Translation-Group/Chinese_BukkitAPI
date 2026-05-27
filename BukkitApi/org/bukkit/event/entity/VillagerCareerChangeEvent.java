@@ -26,9 +26,12 @@ public class VillagerCareerChangeEvent extends EntityEvent implements Cancellabl
     }
 
     /**
+     * 获取村民的未来职业。
+     * <p>
+     * 原文：
      * Gets the future profession of the villager.
      *
-     * @return The profession the villager will change to
+     * @return 村民将要改变的职业
      */
     @NotNull
     public Profession getProfession() {
@@ -36,18 +39,24 @@ public class VillagerCareerChangeEvent extends EntityEvent implements Cancellabl
     }
 
     /**
+     * 设置村民将要成为的职业。
+     * <p>
+     * 原文：
      * Sets the profession the villager will become from this event.
      *
-     * @param profession new profession
+     * @param profession 新职业
      */
     public void setProfession(@NotNull Profession profession) {
         this.profession = profession;
     }
 
     /**
+     * 获取村民职业改变的原因。
+     * <p>
+     * 原文：
      * Gets the reason for why the villager's career is changing.
      *
-     * @return Reason for villager's profession changing
+     * @return 村民职业改变的原因
      */
     @NotNull
     public ChangeReason getReason() {
@@ -76,16 +85,16 @@ public class VillagerCareerChangeEvent extends EntityEvent implements Cancellabl
     }
 
     /**
-     * Reasons for the villager's profession changing.
+     * 村民职业改变的原因。
      */
     public enum ChangeReason {
 
         /**
-         * Villager lost their job due to too little experience.
+         * 村民因经验太少而失业。
          */
         LOSING_JOB,
         /**
-         * Villager gained employment.
+         * 村民就业。
          */
         EMPLOYED;
     }

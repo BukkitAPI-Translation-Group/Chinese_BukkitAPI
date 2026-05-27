@@ -7,7 +7,7 @@ import org.bukkit.inventory.MerchantRecipe;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called whenever a villager acquires a new trade.
+ * 当村民获得新交易时调用。
  */
 public class VillagerAcquireTradeEvent extends EntityEvent implements Cancellable {
 
@@ -22,9 +22,12 @@ public class VillagerAcquireTradeEvent extends EntityEvent implements Cancellabl
     }
 
     /**
+     * 获取将要获得的配方。
+     * <p>
+     * 原文：
      * Get the recipe to be acquired.
      *
-     * @return the new recipe
+     * @return 新配方
      */
     @NotNull
     public MerchantRecipe getRecipe() {
@@ -32,9 +35,12 @@ public class VillagerAcquireTradeEvent extends EntityEvent implements Cancellabl
     }
 
     /**
+     * 设置将要获得的配方。
+     * <p>
+     * 原文：
      * Set the recipe to be acquired.
      *
-     * @param recipe the new recipe
+     * @param recipe 新配方
      */
     public void setRecipe(@NotNull MerchantRecipe recipe) {
         this.recipe = recipe;

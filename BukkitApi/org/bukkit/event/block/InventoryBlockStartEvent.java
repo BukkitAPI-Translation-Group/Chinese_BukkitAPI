@@ -7,11 +7,11 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Used when:
+ * 用于以下情况：
  * <ul>
- * <li>A Furnace starts smelting {@link FurnaceStartSmeltEvent}</li>
- * <li>A Brewing-Stand starts brewing {@link BrewingStartEvent}</li>
- * <li>A Campfire starts cooking {@link CampfireStartEvent}</li>
+ * <li>熔炉开始熔炼 {@link FurnaceStartSmeltEvent}</li>
+ * <li>酿造台开始酿造 {@link BrewingStartEvent}</li>
+ * <li>营火开始烹饪 {@link CampfireStartEvent}</li>
  * </ul>
  */
 public class InventoryBlockStartEvent extends BlockEvent {
@@ -25,9 +25,12 @@ public class InventoryBlockStartEvent extends BlockEvent {
     }
 
     /**
+     * 获取此事件的源 ItemStack.
+     *
+     * 原文：
      * Gets the source ItemStack for this event.
      *
-     * @return the source ItemStack
+     * @return 源 ItemStack
      */
     @NotNull
     public ItemStack getSource() {

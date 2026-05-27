@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when an EnderDragon switches controller phase.
+ * 当末影龙切换控制器阶段时调用。
  */
 public class EnderDragonChangePhaseEvent extends EntityEvent implements Cancellable {
 
@@ -30,10 +30,13 @@ public class EnderDragonChangePhaseEvent extends EntityEvent implements Cancella
     }
 
     /**
+     * 获取龙当前所处的阶段。当龙首次生成且尚未分配阶段时，此方法将返回 null。
+     * <p>
+     * 原文：
      * Gets the current phase that the dragon is in. This method will return null
      * when a dragon is first spawned and hasn't yet been assigned a phase.
      *
-     * @return the current dragon phase
+     * @return 当前龙阶段
      */
     @Nullable
     public EnderDragon.Phase getCurrentPhase() {
@@ -41,9 +44,12 @@ public class EnderDragonChangePhaseEvent extends EntityEvent implements Cancella
     }
 
     /**
+     * 获取龙将要切换到的新阶段。
+     * <p>
+     * 原文：
      * Gets the new phase that the dragon will switch to.
      *
-     * @return the new dragon phase
+     * @return 新龙阶段
      */
     @NotNull
     public EnderDragon.Phase getNewPhase() {
@@ -51,9 +57,12 @@ public class EnderDragonChangePhaseEvent extends EntityEvent implements Cancella
     }
 
     /**
+     * 设置末影龙的新阶段。
+     * <p>
+     * 原文：
      * Sets the new phase for the ender dragon.
      *
-     * @param newPhase the new dragon phase
+     * @param newPhase 新龙阶段
      */
     public void setNewPhase(@NotNull EnderDragon.Phase newPhase) {
         Preconditions.checkArgument(newPhase != null, "New dragon phase cannot be null");

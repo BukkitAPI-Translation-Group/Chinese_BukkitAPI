@@ -6,8 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a {@link Strider}'s temperature has changed as a result of
- * entering or exiting blocks it considers warm.
+ * 当 {@link Strider} 因进入或退出其认为温暖的方块而导致温度改变时调用。
  */
 public class StriderTemperatureChangeEvent extends EntityEvent implements Cancellable {
 
@@ -27,9 +26,12 @@ public class StriderTemperatureChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取炽足兽的新颤抖状态。
+     * <p>
+     * 原文：
      * Get the Strider's new shivering state.
      *
-     * @return the new shivering state
+     * @return 新的颤抖状态
      */
     public boolean isShivering() {
         return shivering;

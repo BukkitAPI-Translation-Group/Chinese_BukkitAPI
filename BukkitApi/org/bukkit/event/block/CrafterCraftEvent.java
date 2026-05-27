@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Event called when a Crafter is about to craft an item.
+ * 当合成器即将合成物品时触发的事件.
  */
 public class CrafterCraftEvent extends BlockEvent implements Cancellable {
 
@@ -33,9 +33,12 @@ public class CrafterCraftEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取合成的结果.
+     *
+     * 原文：
      * Gets the result for the craft.
      *
-     * @return the result for the craft
+     * @return 合成的结果
      */
     @NotNull
     public ItemStack getResult() {
@@ -43,18 +46,24 @@ public class CrafterCraftEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 设置合成的结果.
+     *
+     * 原文：
      * Sets the result of the craft.
      *
-     * @param result the result of the craft
+     * @param result 合成的结果
      */
     public void setResult(@NotNull ItemStack result) {
         this.result = result.clone();
     }
 
     /**
+     * 获取配方合成后将剩余的物品.
+     *
+     * 原文：
      * Gets the items that will remain after the recipe has been crafted.
      *
-     * @return a list of the remaining items
+     * @return 剩余物品列表
      */
     @NotNull
     public List<ItemStack> getRemainingItems() {
@@ -62,9 +71,12 @@ public class CrafterCraftEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取用于合成此物品的配方.
+     *
+     * 原文：
      * Gets the recipe that was used to craft this item.
      *
-     * @return the recipe that was used to craft this item
+     * @return 用于合成此物品的配方
      */
     @NotNull
     public CraftingRecipe getRecipe() {

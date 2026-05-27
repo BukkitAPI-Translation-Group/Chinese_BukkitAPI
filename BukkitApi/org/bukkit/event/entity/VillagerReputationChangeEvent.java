@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called whenever an entity's reputation with a villager changes.
+ * 当实体与村民的声望发生变化时调用。
  */
 public class VillagerReputationChangeEvent extends EntityEvent implements Cancellable {
 
@@ -35,10 +35,12 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取与村民声望发生变化的实体的 UUID。
+     * <p>
+     * 原文：
      * Get UUID of the entity for whom the reputation with a villager changes.
      *
-     * @return UUID of the entity for whom the reputation with a villager
-     *         changes
+     * @return 与村民声望发生变化的实体的 UUID
      */
     @NotNull
     public UUID getTargetUUID() {
@@ -46,10 +48,12 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取与村民声望发生变化的实体。
+     * <p>
+     * 原文：
      * Get the Entity for whom the reputation with a villager changes.
      *
-     * @return the Entity for whom the reputation with a villager changes,
-     *         or {@code null} if it isn't found
+     * @return 与村民声望发生变化的实体，如果未找到则返回 {@code null}
      */
     @Nullable
     public Entity getTarget() {
@@ -57,9 +61,12 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取此声望变化的原因。
+     * <p>
+     * 原文：
      * Get the reason of this reputation change.
      *
-     * @return the reason of this reputation change
+     * @return 此声望变化的原因
      */
     @NotNull
     public Villager.ReputationEvent getReason() {
@@ -67,9 +74,12 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取变化的声望类型。
+     * <p>
+     * 原文：
      * Get the type of changed reputation.
      *
-     * @return the type of changed reputation
+     * @return 变化的声望类型
      */
     @NotNull
     public Villager.ReputationType getReputationType() {
@@ -77,24 +87,37 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取变化前的声望值。
+     * <p>
+     * 原文：
      * Get the reputation value before the change.
      *
-     * @return the reputation value before the change
+     * @return 变化前的声望值
      */
     public int getOldValue() {
         return oldValue;
     }
 
     /**
+     * 获取变化后的新声望值。
+     * <p>
+     * 原文：
      * Get new reputation value after the change.
      *
-     * @return the reputation value after the change
+     * @return 变化后的声望值
      */
     public int getNewValue() {
         return newValue;
     }
 
     /**
+     * 设置此事件的新声望值。
+     * <p>
+     * 如果最终值低于声望丢弃阈值，与此声望类型相关的闲话将被移除。
+     * <p>
+     * 提供的值必须介于 0 和 {@link VillagerReputationChangeEvent#getMaxValue()} 之间，否则将抛出 {@link IllegalArgumentException}。每种声望类型可能有不同的最大值。
+     * <p>
+     * 原文：
      * Set new reputation value for this event.
      *
      * <p>If the final value is below the reputation discard threshold, gossip
@@ -105,7 +128,7 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
      * {@link IllegalArgumentException} will be thrown. Each reputation type
      * may have a different maximum value.
      *
-     * @param newValue the reputation value after the change
+     * @param newValue 变化后的声望值
      * @see Villager.ReputationType#getMaxValue()
      */
     public void setNewValue(int newValue) {
@@ -114,9 +137,12 @@ public class VillagerReputationChangeEvent extends EntityEvent implements Cancel
     }
 
     /**
+     * 获取此事件受影响的声望类型的最大值。
+     * <p>
+     * 原文：
      * Get maximum value for the reputation type affected by this event.
      *
-     * @return the maximum value for the reputation type affected by this event
+     * @return 此事件受影响的声望类型的最大值
      * @see Villager.ReputationType#getMaxValue()
      */
     public int getMaxValue() {

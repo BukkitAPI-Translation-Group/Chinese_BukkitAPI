@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a player changes recipe book settings.
+ * 当玩家更改配方书设置时触发.
  */
 public class PlayerRecipeBookSettingsChangeEvent extends PlayerEvent {
 
@@ -22,9 +22,12 @@ public class PlayerRecipeBookSettingsChangeEvent extends PlayerEvent {
     }
 
     /**
+     * 获取玩家正在更改设置的配方书类型.
+     * <p>
+     * 原文：
      * Gets the type of recipe book the player is changing the settings for.
      *
-     * @return the type of recipe book
+     * @return 配方书类型
      */
     @NotNull
     public RecipeBookType getRecipeBookType() {
@@ -32,18 +35,24 @@ public class PlayerRecipeBookSettingsChangeEvent extends PlayerEvent {
     }
 
     /**
+     * 检查配方书是正在被打开还是关闭.
+     * <p>
+     * 原文：
      * Checks if the recipe book is being opened or closed.
      *
-     * @return true if opening
+     * @return 如果正在打开则为 true
      */
     public boolean isOpen() {
         return open;
     }
 
     /**
+     * 检查配方书过滤器是正在被启用还是禁用.
+     * <p>
+     * 原文：
      * Checks if the recipe book filter is being enabled or disabled.
      *
-     * @return true if enabling
+     * @return 如果正在启用则为 true
      */
     public boolean isFiltering() {
         return filtering;
@@ -61,26 +70,26 @@ public class PlayerRecipeBookSettingsChangeEvent extends PlayerEvent {
     }
 
     /**
-     * Enum representing the various types of recipe book.
+     * 表示各种配方书类型的枚举.
      * <br>
-     * Different types of recipe book are shown in different GUIs.
+     * 不同类型的配方书在不同的 GUI 中显示.
      */
     public enum RecipeBookType {
 
         /**
-         * Recipe book seen in crafting table and player inventory.
+         * 在工作台和玩家背包中看到的配方书.
          */
         CRAFTING,
         /**
-         * Recipe book seen in furnace.
+         * 在熔炉中看到的配方书.
          */
         FURNACE,
         /**
-         * Recipe book seen in blast furnace.
+         * 在高炉中看到的配方书.
          */
         BLAST_FURNACE,
         /**
-         * Recipe book seen in smoker.
+         * 在烟熏炉中看到的配方书.
          */
         SMOKER;
     }

@@ -12,12 +12,10 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when a block dispenses loot from its designated LootTable. This is not
- * to be confused with events like {@link BlockDispenseEvent} which fires when a
- * singular item is dispensed from its inventory container.
+ * 当方块从其指定的战利品表中发放战利品时触发.
+ * 不要与 {@link BlockDispenseEvent} 等事件混淆，后者在从其库存容器中发放单个物品时触发.
  * <br><br>
- * Example: A player unlocks a trial chamber vault and the vault block dispenses
- * its loot.
+ * 示例：玩家解锁试炼密室宝库，宝库方块发放其战利品.
  */
 @ApiStatus.Experimental
 public class BlockDispenseLootEvent extends BlockEvent implements Cancellable {
@@ -35,9 +33,12 @@ public class BlockDispenseLootEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取将被发放的战利品.
+     *
+     * 原文：
      * Gets the loot that will be dispensed.
      *
-     * @return the loot that will be dispensed
+     * @return 将被发放的战利品
      */
     @NotNull
     public List<ItemStack> getDispensedLoot() {
@@ -45,22 +46,30 @@ public class BlockDispenseLootEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 设置将被发放的战利品.
+     *
+     * 原文：
      * Sets the loot that will be dispensed.
      *
-     * @param dispensedLoot new loot to dispense
+     * @param dispensedLoot 新的战利品
      */
     public void setDispensedLoot(@Nullable List<ItemStack> dispensedLoot) {
         this.dispensedLoot = (dispensedLoot == null) ? new ArrayList<>() : dispensedLoot;
     }
 
     /**
+     * 获取与此事件关联的玩家.
+     * <br>
+     * <b>警告：</b> 某些事件实例，如 {@link org.bukkit.block.TrialSpawner} 发放其奖励战利品，可能没有关联的玩家，将返回 null.
+     *
+     * 原文：
      * Gets the player associated with this event.
      * <br>
      * <b>Warning:</b> Some event instances like a
      * {@link org.bukkit.block.TrialSpawner} dispensing its reward loot may not
      * have a player associated with them and will return null.
      *
-     * @return the player who unlocked the vault
+     * @return 解锁宝库的玩家
      */
     @Nullable
     public Player getPlayer() {

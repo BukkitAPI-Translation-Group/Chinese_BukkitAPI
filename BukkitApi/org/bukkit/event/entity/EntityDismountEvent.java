@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity stops riding another entity.
+ * 当实体停止骑乘另一个实体时调用。
  */
 public class EntityDismountEvent extends EntityEvent implements Cancellable {
 
@@ -20,9 +20,12 @@ public class EntityDismountEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取将不再被骑乘的实体。
+     * <p>
+     * 原文：
      * Gets the entity which will no longer be ridden.
      *
-     * @return dismounted entity
+     * @return 被骑乘的实体
      */
     @NotNull
     public Entity getDismounted() {

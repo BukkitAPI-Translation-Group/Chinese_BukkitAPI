@@ -6,12 +6,11 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a visible entity is hidden from a player.
+ * 当对玩家隐藏可见实体时触发.
  * <br>
- * This event is only called when the entity's visibility status is actually
- * changed.
+ * 此事件仅在实体的可见性状态实际改变时触发.
  * <br>
- * This event is called regardless of if the entity was within tracking range.
+ * 无论实体是否在追踪范围内，此事件都会触发.
  *
  * @see Player#hideEntity(org.bukkit.plugin.Plugin, org.bukkit.entity.Entity)
  */
@@ -26,9 +25,12 @@ public class PlayerHideEntityEvent extends PlayerEvent {
     }
 
     /**
+     * 获取已对玩家隐藏的实体.
+     * <p>
+     * 原文：
      * Gets the entity which has been hidden from the player.
      *
-     * @return the hidden entity
+     * @return 被隐藏的实体
      */
     @NotNull
     public Entity getEntity() {

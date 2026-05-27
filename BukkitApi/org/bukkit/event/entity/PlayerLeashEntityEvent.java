@@ -9,7 +9,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called immediately prior to a creature being leashed by a player.
+ * 在玩家将生物拴绳之前立即调用。
  */
 public class PlayerLeashEntityEvent extends Event implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -32,9 +32,12 @@ public class PlayerLeashEntityEvent extends Event implements Cancellable {
     }
 
     /**
+     * 返回持有拴绳的实体。
+     * <p>
+     * 原文：
      * Returns the entity that is holding the leash.
      *
-     * @return The leash holder
+     * @return 拴绳持有者
      */
     @NotNull
     public Entity getLeashHolder() {
@@ -42,9 +45,12 @@ public class PlayerLeashEntityEvent extends Event implements Cancellable {
     }
 
     /**
+     * 返回被拴绳的实体。
+     * <p>
+     * 原文：
      * Returns the entity being leashed.
      *
-     * @return The entity
+     * @return 实体
      */
     @NotNull
     public Entity getEntity() {
@@ -52,9 +58,12 @@ public class PlayerLeashEntityEvent extends Event implements Cancellable {
     }
 
     /**
+     * 返回参与此事件的玩家。
+     * <p>
+     * 原文：
      * Returns the player involved in this event
      *
-     * @return Player who is involved in this event
+     * @return 参与此事件的玩家
      */
     @NotNull
     public final Player getPlayer() {
@@ -62,9 +71,12 @@ public class PlayerLeashEntityEvent extends Event implements Cancellable {
     }
 
     /**
+     * 返回玩家用于拴绳实体的手。
+     * <p>
+     * 原文：
      * Returns the hand used by the player to leash the entity.
      *
-     * @return the hand
+     * @return 手
      */
     @NotNull
     public EquipmentSlot getHand() {

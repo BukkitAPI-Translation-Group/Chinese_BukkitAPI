@@ -6,7 +6,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a brewing stand starts to brew.
+ * 当酿造台开始酿造时触发.
  */
 public class BrewingStartEvent extends InventoryBlockStartEvent {
 
@@ -19,18 +19,24 @@ public class BrewingStartEvent extends InventoryBlockStartEvent {
     }
 
     /**
+     * 获取此事件关联的总酿造时间.
+     *
+     * 原文：
      * Gets the total brew time associated with this event.
      *
-     * @return the total brew time
+     * @return 总酿造时间
      */
     public int getTotalBrewTime() {
         return brewingTime;
     }
 
     /**
+     * 设置此事件的总酿造时间.
+     *
+     * 原文：
      * Sets the total brew time for this event.
      *
-     * @param brewTime the new total brew time
+     * @param brewTime 新的总酿造时间
      */
     public void setTotalBrewTime(int brewTime) {
         this.brewingTime = brewTime;

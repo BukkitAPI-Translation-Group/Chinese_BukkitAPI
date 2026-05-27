@@ -6,9 +6,9 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity is spawned into a world by a trial spawner.
+ * 当实体通过试炼刷怪笼生成到世界中时调用。
  * <p>
- * If a Trial Spawner Spawn event is cancelled, the entity will not spawn.
+ * 如果试炼刷怪笼生成事件被取消，实体将不会生成。
  */
 @ApiStatus.Experimental
 public class TrialSpawnerSpawnEvent extends EntitySpawnEvent {

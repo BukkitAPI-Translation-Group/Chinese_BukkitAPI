@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a {@link Spellcaster} casts a spell.
+ * 当 {@link Spellcaster} 施放法术时调用。
  */
 public class EntitySpellCastEvent extends EntityEvent implements Cancellable {
 
@@ -27,12 +27,17 @@ public class EntitySpellCastEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取此事件中将施放的法术。
+     * <p>
+     * 这是一个便捷方法，等同于 {@link Spellcaster#getSpell()}。
+     * <p>
+     * 原文：
      * Get the spell to be cast in this event.
      *
      * This is a convenience method equivalent to
      * {@link Spellcaster#getSpell()}.
      *
-     * @return the spell to cast
+     * @return 要施放的法术
      */
     @NotNull
     public Spellcaster.Spell getSpell() {

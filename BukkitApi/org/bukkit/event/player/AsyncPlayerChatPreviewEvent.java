@@ -7,11 +7,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Used to format chat for chat preview. If this event is used, then the result
- * of the corresponding {@link AsyncPlayerChatEvent} <b>must</b> be formatted in
- * the same way.
+ * 用于聊天预览的格式化。如果使用此事件，则对应的 {@link AsyncPlayerChatEvent} 的结果
+ * <b>必须</b>以相同的方式进行格式化。
  *
- * @deprecated chat previews have been removed
+ * @deprecated 聊天预览功能已被移除
  */
 @Deprecated(since = "1.19.1")
 @Warning(false)

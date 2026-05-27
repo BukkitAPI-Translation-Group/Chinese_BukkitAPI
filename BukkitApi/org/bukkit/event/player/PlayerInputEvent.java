@@ -7,7 +7,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called when a player sends updated input to the server.
+ * 当玩家向服务器发送更新的输入时触发.
  *
  * @see Player#getCurrentInput()
  */
@@ -23,9 +23,12 @@ public class PlayerInputEvent extends PlayerEvent {
     }
 
     /**
+     * 获取从此玩家接收到的新输入.
+     * <p>
+     * 原文：
      * Gets the new input received from this player.
      *
-     * @return the new input
+     * @return 新输入
      */
     @NotNull
     public Input getInput() {

@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called immediately prior to an entity being unleashed.
+ * 在实体被解除拴绳之前立即调用。
  */
 public class EntityUnleashEvent extends EntityEvent {
     private static final HandlerList handlers = new HandlerList();
@@ -17,9 +17,12 @@ public class EntityUnleashEvent extends EntityEvent {
     }
 
     /**
+     * 返回解除拴绳的原因。
+     * <p>
+     * 原文：
      * Returns the reason for the unleashing.
      *
-     * @return The reason
+     * @return 原因
      */
     @NotNull
     public UnleashReason getReason() {
@@ -39,24 +42,23 @@ public class EntityUnleashEvent extends EntityEvent {
 
     public enum UnleashReason {
         /**
-         * When the entity's leashholder has died or logged out, and so is
-         * unleashed
+         * 当实体的拴绳持有者已死亡或登出，因此被解除拴绳。
          */
         HOLDER_GONE,
         /**
-         * When the entity's leashholder attempts to unleash it
+         * 当实体的拴绳持有者尝试解除其拴绳时。
          */
         PLAYER_UNLEASH,
         /**
-         * When the entity's leashholder is more than 10 blocks away
+         * 当实体的拴绳持有者距离超过 10 个方块时。
          */
         DISTANCE,
         /**
-         * The leash has been sheared
+         * 拴绳被剪断。
          */
         SHEAR,
         /**
-         * A firework has been used
+         * 使用了烟花火箭。
          */
         FIREWORK,
         UNKNOWN;

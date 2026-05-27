@@ -8,10 +8,9 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Stores all data related to the bartering interaction with a piglin.
+ * 储存与猪灵以物易物交互相关的所有数据。
  *
- * This event can be triggered by a piglin picking up an item that's on its
- * bartering list.
+ * 此事件可由猪灵拾取其以物易物列表上的物品触发。
  */
 public class PiglinBarterEvent extends EntityEvent implements Cancellable {
 
@@ -34,9 +33,12 @@ public class PiglinBarterEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取以物易物的输入。
+     * <p>
+     * 原文：
      * Gets the input of the barter.
      *
-     * @return The item that was used to barter with
+     * @return 用于以物易物的物品
      */
     @NotNull
     public ItemStack getInput() {
@@ -44,9 +46,12 @@ public class PiglinBarterEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 返回表示以物易物结果的可变列表。
+     * <p>
+     * 原文：
      * Returns a mutable list representing the outcome of the barter.
      *
-     * @return A mutable list of the item the player will receive
+     * @return 玩家将收到的物品的可变列表
      */
     @NotNull
     public List<ItemStack> getOutcome() {

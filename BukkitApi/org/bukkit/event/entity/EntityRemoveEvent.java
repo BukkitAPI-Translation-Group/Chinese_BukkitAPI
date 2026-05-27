@@ -5,11 +5,10 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an {@link Entity} is removed.
+ * 当 {@link Entity} 被移除时调用。
  * <p>
- * This event should only be used for monitoring. The result
- * of modifying the entity during or after this event is unspecified.
- * This event is not called for a {@link org.bukkit.entity.Player}.
+ * 此事件仅应用于监控。在此事件期间或之后修改实体的结果是未指定的。
+ * 此事件不会为 {@link org.bukkit.entity.Player} 调用。
  */
 public class EntityRemoveEvent extends EntityEvent {
 
@@ -22,9 +21,12 @@ public class EntityRemoveEvent extends EntityEvent {
     }
 
     /**
+     * 获取实体被移除的原因。
+     * <p>
+     * 原文：
      * Gets the cause why the entity got removed.
      *
-     * @return the cause why the entity got removed
+     * @return 实体被移除的原因
      */
     @NotNull
     public Cause getCause() {
@@ -43,71 +45,68 @@ public class EntityRemoveEvent extends EntityEvent {
     }
 
     /**
-     * Represents various ways an entity gets removed.
+     * 表示实体被移除的各种方式。
      */
     public enum Cause {
         /**
-         * When an entity dies.
+         * 当实体死亡时。
          */
         DEATH,
         /**
-         * When an entity does despawn. This includes mobs which are too far away,
-         * items or arrows which lay to long on the ground or area effect cloud.
+         * 当实体消失时。这包括距离太远的生物、在地面上放置时间过长的物品或箭矢，或区域效果云。
          */
         DESPAWN,
         /**
-         * When an entity gets removed because it drops as an item.
-         * For example, trident or falling sand.
+         * 当实体因作为物品掉落而被移除时。
+         * 例如，三叉戟或下落的沙子。
          * <p>
-         * <b>Note:</b> Depending on other factors, such as gamerules, no item will actually drop,
-         * the cause, however, will still be drop.
+         * <b>注意：</b> 根据其他因素，如游戏规则，实际上可能不会掉落物品，但原因仍然是掉落。
          */
         DROP,
         /**
-         * When an entity gets removed because it enters a block.
-         * For example, bees or silverfish.
+         * 当实体因进入方块而被移除时。
+         * 例如，蜜蜂或蠹虫。
          */
         ENTER_BLOCK,
         /**
-         * When an entity gets removed because it exploded.
-         * For example, creepers, tnt or firework.
+         * 当实体因爆炸而被移除时。
+         * 例如，苦力怕、TNT 或烟花火箭。
          */
         EXPLODE,
         /**
-         * When an entity gets removed because it hit something. This mainly applies to projectiles.
+         * 当实体因击中某物而被移除时。这主要适用于弹射物。
          */
         HIT,
         /**
-         * When an entity gets removed because it merges with another one.
-         * For example, items or xp.
+         * 当实体因与另一个实体合并而被移除时。
+         * 例如，物品或经验值。
          */
         MERGE,
         /**
-         * When an entity gets removed because it is too far below the world.
-         * This only applies to entities which get removed immediately,
-         * some entities get damage instead.
+         * 当实体因位于世界底部以下而被移除时。
+         * 这仅适用于立即被移除的实体，有些实体会受到伤害。
          */
         OUT_OF_WORLD,
         /**
-         * When an entity gets removed because it got pickup.
-         * For example, items, arrows, xp or parrots which get on a player shoulder.
+         * 当实体因被拾取而被移除时。
+         * 例如，物品、箭矢、经验值或落在玩家肩膀上的鹦鹉。
          */
         PICKUP,
         /**
-         * When an entity gets removed with a player because the player quits the game.
-         * For example, a boat which gets removed with the player when he quits.
+         * 当实体因玩家退出游戏而与玩家一起被移除时。
+         * 例如，玩家退出时与玩家一起被移除的船。
          */
         PLAYER_QUIT,
         /**
-         * When a plugin manually removes an entity.
+         * 当插件手动移除实体时。
          */
         PLUGIN,
         /**
-         * When an entity gets removed because it transforms into another one.
+         * 当实体因转化为另一个实体而被移除时。
          */
         TRANSFORMATION,
         /**
-         * When the chunk an entity is in gets unloaded.
+         * 当实体所在的区块被卸载时。
          */
         UNLOAD,
     }

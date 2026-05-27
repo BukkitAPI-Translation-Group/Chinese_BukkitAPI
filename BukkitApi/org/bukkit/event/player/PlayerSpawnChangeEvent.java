@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * This event is fired when the spawn point of the player is changed.
+ * 当玩家的重生点改变时触发此事件.
  */
 public class PlayerSpawnChangeEvent extends PlayerEvent implements Cancellable {
 
@@ -27,9 +27,12 @@ public class PlayerSpawnChangeEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 获取重生点改变的原因.
+     * <p>
+     * 原文：
      * Gets the cause of spawn change.
      *
-     * @return change cause
+     * @return 改变原因
      */
     @NotNull
     public Cause getCause() {
@@ -37,29 +40,38 @@ public class PlayerSpawnChangeEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 获取重生位置是否将被使用，无论床是否被阻挡.
+     * <p>
+     * 原文：
      * Gets if the spawn position will be used regardless of bed obstruction
      * rules.
      *
-     * @return true if is forced
+     * @return 如果是强制的则为 true
      */
     public boolean isForced() {
         return this.forced;
     }
 
     /**
+     * 设置重生位置是否将被使用，无论床是否被阻挡.
+     * <p>
+     * 原文：
      * Sets if the spawn position will be used regardless of bed obstruction
      * rules.
      *
-     * @param forced true if forced
+     * @param forced 如果是强制的则为 true
      */
     public void setForced(boolean forced) {
         this.forced = forced;
     }
 
     /**
+     * 获取要设置的新重生点.
+     * <p>
+     * 原文：
      * Gets the new spawn to be set.
      *
-     * @return new spawn location
+     * @return 新重生点位置
      */
     @Nullable
     public Location getNewSpawn() {
@@ -67,9 +79,12 @@ public class PlayerSpawnChangeEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 设置新的重生点位置.
+     * <p>
+     * 原文：
      * Sets the new spawn location.
      *
-     * @param newSpawn new spawn location, with non-null world
+     * @param newSpawn 新重生点位置，世界不能为 null
      */
     public void setNewSpawn(@Nullable Location newSpawn) {
         if (newSpawn != null) {
@@ -104,29 +119,27 @@ public class PlayerSpawnChangeEvent extends PlayerEvent implements Cancellable {
     public enum Cause {
 
         /**
-         * Indicate the spawn was set by a command.
+         * 表示重生点由命令设置.
          */
         COMMAND,
         /**
-         * Indicate the spawn was set by the player interacting with a bed.
+         * 表示重生点由玩家与床交互设置.
          */
         BED,
         /**
-         * Indicate the spawn was set by the player interacting with a respawn
-         * anchor.
+         * 表示重生点由玩家与重生锚交互设置.
          */
         RESPAWN_ANCHOR,
         /**
-         * Indicate the spawn was set by the use of plugins.
+         * 表示重生点由插件使用设置.
          */
         PLUGIN,
         /**
-         * Indicate the spawn was reset by an invalid bed position or empty
-         * respawn anchor.
+         * 表示重生点因无效的床位置或空的重生锚而重置.
          */
         RESET,
         /**
-         * Indicate the spawn was caused by an unknown reason.
+         * 表示重生点因未知原因而改变.
          */
         UNKNOWN;
     }

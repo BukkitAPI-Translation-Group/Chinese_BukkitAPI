@@ -172,13 +172,18 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 设置事件造成的原始伤害值。
+     * <p>
+     * 为了兼容性，此方法还会重新计算修饰符，并根据前一个伤害值的修饰符与新值的差异进行缩放。
+     * <p>
+     * 原文：
      * Sets the raw amount of damage caused by the event.
      * <p>
      * For compatibility this also recalculates the modifiers and scales
      * them by the difference between the modifier for the previous damage
      * value and the new one.
      *
-     * @param damage The raw amount of damage caused by the event
+     * @param damage 事件造成的原始伤害值
      */
     public void setDamage(double damage) {
         // These have to happen in the same order as the server calculates them, keep the enum sorted
@@ -209,6 +214,16 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取伤害的原因。
+     * <p>
+     * 虽然 DamageCause 可能表示 Bukkit 分配的特定伤害原因，
+     * 但 {@link #getDamageSource()} 可能会暴露其他类型的伤害，
+     * 例如数据包提供的自定义伤害类型，以及任何直接或间接的实体、
+     * 位置或其他导致伤害的因素。通常更推荐使用后者，
+     * 但如果开发者需要一个简单的原因，此事件提供的 DamageCause
+     * 应该涵盖了大多数常见用例。
+     * <p>
+     * 原文：
      * Gets the cause of the damage.
      * <p>
      * While a DamageCause may indicate a specific Bukkit-assigned cause of damage,
@@ -219,7 +234,7 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
      * should largely encompass most common use cases for developers if a simple cause
      * is required.
      *
-     * @return a DamageCause value detailing the cause of the damage.
+     * @return 伤害原因的 DamageCause 值。
      */
     @NotNull
     public DamageCause getCause() {
@@ -227,9 +242,12 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取伤害来源。
+     * <p>
+     * 原文：
      * Get the source of damage.
      *
-     * @return a DamageSource detailing the source of the damage.
+     * @return 伤害来源的 DamageSource 详情。
      */
     @NotNull
     public DamageSource getDamageSource() {
@@ -248,56 +266,50 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * An enum to specify the types of modifier
+     * 指定修饰符类型的枚举。
      *
-     * @deprecated 这个API被废弃了，具体见后面的网址，很快就要被移除了，就不深入解释了.This API is responsible for a large number of implementation
-     * problems and is in general unsustainable to maintain. It is likely to be
-     * removed very soon in a subsequent release. Please see
-     * <a href="https://www.spigotmc.org/threads/194446/">this thread</a> for more information.
+     * @deprecated 这个API被废弃了，具体见后面的网址，很快就要被移除了，就不深入解释了。此API导致了大量实现问题，且通常难以持续维护。它很可能在后续版本中很快被移除。更多信息请参见
+     * <a href="https://www.spigotmc.org/threads/194446/">this thread</a>。
      */
     @Deprecated(since = "1.12")
     public enum DamageModifier {
         /**
-         * This represents the amount of damage being done, also known as the
-         * raw {@link EntityDamageEvent#getDamage()}.
+         * 表示造成的伤害量，也称为原始 {@link EntityDamageEvent#getDamage()}。
          */
         BASE,
         /**
-         * This represents the damage increased by freezing status.
+         * 表示冰冻状态增加的伤害。
          */
         FREEZING,
         /**
-         * This represents the damage reduced by a wearing a helmet when hit
-         * by a falling block.
+         * 表示佩戴头盔时被掉落方块击中所减少的伤害。
          */
         HARD_HAT,
         /**
-         * This represents  the damage reduction caused by blocking, only present for
-         * {@link Player Players}.
+         * 表示格挡造成的伤害减免，仅对 {@link Player 玩家} 有效。
          */
         BLOCKING,
         /**
-         * This represents the damage reduction caused by wearing armor.
+         * 表示穿戴护甲造成的伤害减免。
          */
         ARMOR,
         /**
-         * This represents the damage reduction caused by the Resistance potion effect.
+         * 表示抗性药水效果造成的伤害减免。
          */
         RESISTANCE,
         /**
-         * This represents the damage reduction caused by the combination of:
+         * 表示以下组合造成的伤害减免：
          * <ul>
          * <li>
-         *     Armor enchantments
+         *     护甲附魔
          * </li><li>
-         *     Witch's potion resistance
+         *     女巫的药水抗性
          * </li>
          * </ul>
          */
         MAGIC,
         /**
-         * This represents the damage reduction caused by the absorption potion
-         * effect.
+         * 表示吸收药水效果造成的伤害减免。
          */
         ABSORPTION,
         ;
@@ -309,15 +321,15 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
     public enum DamageCause {
 
         /**
-         * Damage caused by /kill command
+         * 由 /kill 命令造成的伤害。
          * <p>
-         * Damage: {@link Float#MAX_VALUE}
+         * 伤害：{@link Float#MAX_VALUE}
          */
         KILL,
         /**
-         * Damage caused by the World Border
+         * 由世界边界造成的伤害。
          * <p>
-         * Damage: {@link WorldBorder#getDamageAmount()}
+         * 伤害：{@link WorldBorder#getDamageAmount()}
          */
         WORLD_BORDER,
         /**
@@ -488,12 +500,11 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         LIGHTNING,
         /**
-         * Damage caused by committing suicide.
+         * 由自杀造成的伤害。
          * <p>
-         * <b>Note:</b> This is currently only used by plugins, default commands
-         * like /minecraft:kill use {@link #KILL} to damage players.
+         * <b>注意：</b> 目前仅由插件使用，默认命令如 /minecraft:kill 使用 {@link #KILL} 对玩家造成伤害。
          * <p>
-         * Damage: variable
+         * 伤害：动态改变。
          */
         SUICIDE,
         /**
@@ -608,9 +619,9 @@ public class EntityDamageEvent extends EntityEvent implements Cancellable {
          */
         HOT_FLOOR,
         /**
-         * Damage caused when an entity steps on {@link Material#CAMPFIRE} or {@link Material#SOUL_CAMPFIRE}.
+         * 当实体踩在 {@link Material#CAMPFIRE} 或 {@link Material#SOUL_CAMPFIRE} 上时造成的伤害。
          * <p>
-         * Damage: 1
+         * 伤害：1
          */
         CAMPFIRE,
         /**

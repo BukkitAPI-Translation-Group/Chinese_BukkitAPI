@@ -6,7 +6,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This event is called when the list of links is sent to the player.
+ * 当链接列表发送给玩家时触发.
  */
 public class PlayerLinksSendEvent extends PlayerEvent {
 
@@ -19,9 +19,12 @@ public class PlayerLinksSendEvent extends PlayerEvent {
     }
 
     /**
+     * 获取要发送的链接以进行修改.
+     * <p>
+     * 原文：
      * Gets the links to be sent, for modification.
      *
-     * @return the links
+     * @return 链接
      */
     @NotNull
     public ServerLinks getLinks() {

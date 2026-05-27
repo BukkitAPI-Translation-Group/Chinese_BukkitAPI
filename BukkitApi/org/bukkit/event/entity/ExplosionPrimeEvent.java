@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity has made a decision to explode.
+ * 当实体决定爆炸时调用。
  */
 public class ExplosionPrimeEvent extends EntityEvent implements Cancellable {
     private static final HandlerList handlers = new HandlerList();
@@ -37,36 +37,48 @@ public class ExplosionPrimeEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取爆炸半径。
+     * <p>
+     * 原文：
      * Gets the radius of the explosion
      *
-     * @return returns the radius of the explosion
+     * @return 返回爆炸半径
      */
     public float getRadius() {
         return radius;
     }
 
     /**
+     * 设置爆炸半径。
+     * <p>
+     * 原文：
      * Sets the radius of the explosion
      *
-     * @param radius the radius of the explosion
+     * @param radius 爆炸半径
      */
     public void setRadius(float radius) {
         this.radius = radius;
     }
 
     /**
+     * 获取此爆炸是否会创造火。
+     * <p>
+     * 原文：
      * Gets whether this explosion will create fire or not
      *
-     * @return true if this explosion will create fire
+     * @return 如果此爆炸会创造火则返回 true
      */
     public boolean getFire() {
         return fire;
     }
 
     /**
+     * 设置此爆炸是否会创造火。
+     * <p>
+     * 原文：
      * Sets whether this explosion will create fire or not
      *
-     * @param fire true if you want this explosion to create fire
+     * @param fire 如果你希望此爆炸创造火则设置为 true
      */
     public void setFire(boolean fire) {
         this.fire = fire;

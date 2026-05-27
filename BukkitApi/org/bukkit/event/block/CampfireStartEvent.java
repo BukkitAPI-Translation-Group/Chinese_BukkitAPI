@@ -7,7 +7,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a Campfire starts to cook.
+ * 当营火开始烹饪时触发.
  */
 public class CampfireStartEvent extends InventoryBlockStartEvent {
 
@@ -22,9 +22,12 @@ public class CampfireStartEvent extends InventoryBlockStartEvent {
     }
 
     /**
+     * 获取此事件关联的 CampfireRecipe.
+     *
+     * 原文：
      * Gets the CampfireRecipe associated with this event.
      *
-     * @return the CampfireRecipe being cooked
+     * @return 正在烹饪的 CampfireRecipe
      */
     @NotNull
     public CampfireRecipe getRecipe() {
@@ -32,18 +35,24 @@ public class CampfireStartEvent extends InventoryBlockStartEvent {
     }
 
     /**
+     * 获取此事件关联的总烹饪时间.
+     *
+     * 原文：
      * Gets the total cook time associated with this event.
      *
-     * @return the total cook time
+     * @return 总烹饪时间
      */
     public int getTotalCookTime() {
         return cookingTime;
     }
 
     /**
+     * 设置此事件的总烹饪时间.
+     *
+     * 原文：
      * Sets the total cook time for this event.
      *
-     * @param cookTime the new total cook time
+     * @param cookTime 新的总烹饪时间
      */
     public void setTotalCookTime(int cookTime) {
         this.cookingTime = cookTime;

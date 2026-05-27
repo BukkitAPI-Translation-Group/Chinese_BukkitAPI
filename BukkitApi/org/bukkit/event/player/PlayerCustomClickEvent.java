@@ -9,8 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called after a player runs a custom action from a chat event or form
- * submission.
+ * 当玩家从聊天事件或表单提交中运行自定义操作后触发.
  */
 @ApiStatus.Experimental
 public class PlayerCustomClickEvent extends PlayerEvent {
@@ -28,9 +27,12 @@ public class PlayerCustomClickEvent extends PlayerEvent {
     }
 
     /**
+     * 获取自定义操作的 ID.
+     * <p>
+     * 原文：
      * Gets the ID of the custom action.
      *
-     * @return custom action ID
+     * @return 自定义操作 ID
      */
     @NotNull
     public NamespacedKey getId() {
@@ -38,12 +40,15 @@ public class PlayerCustomClickEvent extends PlayerEvent {
     }
 
     /**
+     * 获取自定义操作的数据作为 {@link JsonElement}，如果不可用则返回 null.
+     * <p>
+     * 原文：
      * Gets the data of the custom action as a {@link JsonElement}, or null if
      * not available.
      * <br>
      * If not a form submission, then may be null.
      *
-     * @return data as JSON or null
+     * @return 数据作为 JSON 或 null
      */
     @Nullable
     public JsonElement getData() {

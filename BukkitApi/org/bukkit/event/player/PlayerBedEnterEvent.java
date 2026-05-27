@@ -13,41 +13,36 @@ import org.jetbrains.annotations.NotNull;
 public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
 
     /**
-     * Represents the default possible outcomes of this event.
+     * 表示此事件的默认可能结果.
      */
     public enum BedEnterResult {
         /**
-         * The player will enter the bed.
+         * 玩家将进入床.
          */
         OK,
         /**
-         * The world doesn't allow sleeping or saving the spawn point (eg,
-         * Nether, The End or Custom Worlds). This is based on
-         * {@link World#isBedWorks()} and {@link World#isNatural()}.
+         * 世界不允许睡觉或保存重生点（例如下界、末地或自定义世界）.
+         * 这基于 {@link World#isBedWorks()} 和 {@link World#isNatural()}.
          *
-         * Entering the bed is prevented and if {@link World#isBedWorks()} is
-         * false then the bed explodes.
+         * 进入床被阻止，如果 {@link World#isBedWorks()} 为 false 则床会爆炸.
          */
         NOT_POSSIBLE_HERE,
         /**
-         * Entering the bed is prevented due to it not being night nor
-         * thundering currently.
+         * 由于当前不是夜晚也不是雷暴天气，进入床被阻止.
          * <p>
-         * If the event is forcefully allowed during daytime, the player will
-         * enter the bed (and set its bed location), but might get immediately
-         * thrown out again.
+         * 如果在白天强制允许此事件，玩家将进入床（并设置其床位置），但可能会立即被弹出.
          */
         NOT_POSSIBLE_NOW,
         /**
-         * Entering the bed is prevented due to the player being too far away.
+         * 由于玩家距离太远，进入床被阻止.
          */
         TOO_FAR_AWAY,
         /**
-         * Entering the bed is prevented due to there being monsters nearby.
+         * 由于附近有怪物，进入床被阻止.
          */
         NOT_SAFE,
         /**
-         * Entering the bed is prevented due to there being some other problem.
+         * 由于存在其他问题，进入床被阻止.
          */
         OTHER_PROBLEM;
     }
@@ -69,9 +64,12 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 描述此事件的默认结果.
+     * <p>
+     * 原文：
      * This describes the default outcome of this event.
      *
-     * @return the bed enter result representing the default outcome of this event
+     * @return 表示此事件默认结果的床进入结果
      */
     @NotNull
     public BedEnterResult getBedEnterResult() {
@@ -79,12 +77,15 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 控制对点击的床采取的操作.
+     * <p>
+     * 原文：
      * This controls the action to take with the bed that was clicked on.
      * <p>
      * In case of {@link org.bukkit.event.Event.Result#DEFAULT}, the default outcome is described by
      * {@link #getBedEnterResult()}.
      *
-     * @return the action to take with the interacted bed
+     * @return 对交互的床采取的操作
      * @see #setUseBed(org.bukkit.event.Event.Result)
      */
     @NotNull
@@ -92,6 +93,9 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
         return useBed;
     }
     /**
+     * 设置对交互的床采取的操作.
+     * <p>
+     * 原文：
      * Sets the action to take with the interacted bed.
      * <p>
      * {@link org.bukkit.event.Event.Result#ALLOW} will result in the player sleeping, regardless of
@@ -103,7 +107,7 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
      * {@link org.bukkit.event.Event.Result#DEFAULT} will result in the outcome described by
      * {@link #getBedEnterResult()}.
      *
-     * @param useBed the action to take with the interacted bed
+     * @param useBed 对交互的床采取的操作
      * @see #useBed()
      */
     public void setUseBed(@NotNull Result useBed) {
@@ -111,6 +115,9 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 获取此事件的取消状态。设置为 true 以阻止玩家睡觉.
+     * <p>
+     * 原文：
      * Gets the cancellation state of this event. Set to true if you want to
      * prevent the player from sleeping.
      * <p>
@@ -121,7 +128,7 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
      * {@link #useBed()} is {@link org.bukkit.event.Event.Result#DEFAULT} and the
      * {@link #getBedEnterResult() default action} is to prevent bed entering.
      *
-     * @return boolean cancellation state
+     * @return 布尔值取消状态
      */
     @Override
     public boolean isCancelled() {
@@ -129,12 +136,15 @@ public class PlayerBedEnterEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
+     * 设置此事件的取消状态。取消的事件不会在服务器中执行，但仍会传递给其他插件.
+     * <p>
+     * 原文：
      * Sets the cancellation state of this event. A canceled event will not be
      * executed in the server, but will still pass to other plugins.
      * <p>
      * Canceling this event will prevent use of the bed.
      *
-     * @param cancel true if you wish to cancel this event
+     * @param cancel 如果希望取消此事件则为 true
      */
     @Override
     public void setCancelled(boolean cancel) {

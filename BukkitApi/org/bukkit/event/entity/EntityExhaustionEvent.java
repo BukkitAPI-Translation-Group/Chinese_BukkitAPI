@@ -6,9 +6,9 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a human entity experiences exhaustion.
+ * 当人类实体经历饥饿时调用。
  *
- * An exhaustion level greater than 4.0 causes a decrease in saturation by 1.
+ * 饥饿等级大于 4.0 会导致饱和度降低 1。
  */
 public class EntityExhaustionEvent extends EntityEvent implements Cancellable {
 
@@ -24,9 +24,12 @@ public class EntityExhaustionEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取此事件的 {@link ExhaustionReason}。
+     * <p>
+     * 原文：
      * Gets the {@link ExhaustionReason} for this event
      *
-     * @return the exhaustion reason
+     * @return 饥饿原因
      */
     @NotNull
     public ExhaustionReason getExhaustionReason() {
@@ -34,22 +37,30 @@ public class EntityExhaustionEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取要添加到玩家当前饥饿值的饥饿量。
+     * <p>
+     * 原文：
      * Get the amount of exhaustion to add to the player's current exhaustion.
      *
-     * @return amount of exhaustion
+     * @return 饥饿量
      */
     public float getExhaustion() {
         return exhaustion;
     }
 
     /**
+     * 设置要应用于玩家的饥饿值。
+     * <p>
+     * 玩家最大饥饿值为 40。达到此限制时不会抛出错误。此值可以为负数，但当饥饿值低于 0 时行为未知。
+     * <p>
+     * 原文：
      * Set the exhaustion to apply to the player.
      *
      * The maximum exhaustion that a player can have is 40. No error will be
      * thrown if this limit is hit. This value may be negative, but there is
      * unknown behavior for when exhaustion is below 0.
      *
-     * @param exhaustion new exhaustion to add
+     * @param exhaustion 要添加的新饥饿值
      */
     public void setExhaustion(float exhaustion) {
         this.exhaustion = exhaustion;
@@ -72,66 +83,64 @@ public class EntityExhaustionEvent extends EntityEvent implements Cancellable {
     }
 
     /**
-     * The reason for why a PlayerExhaustionEvent takes place
+     * 玩家饥饿事件发生的原因。
      */
     public enum ExhaustionReason {
 
         /**
-         * Player mines a block
+         * 玩家挖掘方块。
          */
         BLOCK_MINED,
         /**
-         * Player has the hunger potion effect
+         * 玩家拥有饥饿药水效果。
          */
         HUNGER_EFFECT,
         /**
-         * Player takes damage
+         * 玩家受到伤害。
          */
         DAMAGED,
         /**
-         * Player attacks another entity
+         * 玩家攻击其他实体。
          */
         ATTACK,
         /**
-         * Player is sprint jumping
+         * 玩家冲刺跳跃。
          */
         JUMP_SPRINT,
         /**
-         * Player jumps
+         * 玩家跳跃。
          */
         JUMP,
         /**
-         * Player swims one centimeter
+         * 玩家游泳一厘米。
          */
         SWIM,
         /**
-         * Player walks underwater one centimeter
+         * 玩家在水下行走一厘米。
          */
         WALK_UNDERWATER,
         /**
-         * Player moves on the surface of water one centimeter
+         * 玩家在水面移动一厘米。
          */
         WALK_ON_WATER,
         /**
-         * Player sprints one centimeter
+         * 玩家冲刺一厘米。
          */
         SPRINT,
         /**
-         * Player crouches one centimeter (does not effect exhaustion, but fires
-         * nonetheless)
+         * 玩家潜行一厘米（不影响饥饿值，但仍会触发事件）。
          */
         CROUCH,
         /**
-         * Player walks one centimeter (does not effect exhaustion, but fires
-         * nonetheless)
+         * 玩家行走一厘米（不影响饥饿值，但仍会触发事件）。
          */
         WALK,
         /**
-         * Player regenerated health
+         * 玩家恢复生命值。
          */
         REGEN,
         /**
-         * Unknown exhaustion reason
+         * 未知饥饿原因。
          */
         UNKNOWN
     }

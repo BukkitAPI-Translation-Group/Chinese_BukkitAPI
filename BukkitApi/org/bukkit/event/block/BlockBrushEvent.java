@@ -9,7 +9,7 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a block is brushed by a player.
+ * 当方块被玩家刷扫时触发.
  */
 @ApiStatus.Experimental
 public class BlockBrushEvent extends BlockEvent implements Cancellable {
@@ -27,9 +27,12 @@ public class BlockBrushEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取正在刷扫此事件中方块的玩家.
+     *
+     * 原文：
      * Gets the Player that is brushing the block involved in this event.
      *
-     * @return The Player that is brushing the block involved in this event
+     * @return 正在刷扫此事件中方块的玩家
      */
     @NotNull
     public Player getPlayer() {
@@ -37,9 +40,12 @@ public class BlockBrushEvent extends BlockEvent implements Cancellable {
     }
 
     /**
+     * 获取此方块将转变成的方块状态.
+     *
+     * 原文：
      * Gets the state of the block that this block will turn into.
      *
-     * @return The block state that the block will become
+     * @return 方块将转变成的方块状态
      */
     @NotNull
     public BlockState getNewState() {

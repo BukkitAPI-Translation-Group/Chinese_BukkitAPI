@@ -5,7 +5,7 @@ import org.bukkit.event.HandlerList;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when a player's experience cooldown changes.
+ * 当玩家的经验值冷却时间改变时触发.
  */
 public class PlayerExpCooldownChangeEvent extends PlayerEvent {
 
@@ -20,9 +20,12 @@ public class PlayerExpCooldownChangeEvent extends PlayerEvent {
     }
 
     /**
+     * 获取变更原因.
+     * <p>
+     * 原文：
      * Gets the reason for the change.
      *
-     * @return The reason for the change
+     * @return 变更原因
      */
     @NotNull
     public ChangeReason getReason() {
@@ -30,9 +33,12 @@ public class PlayerExpCooldownChangeEvent extends PlayerEvent {
     }
 
     /**
+     * 获取玩家的新冷却时间.
+     * <p>
+     * 原文：
      * Gets the new cooldown for the player.
      *
-     * @return The new cooldown
+     * @return 新冷却时间
      * @see Player#getExpCooldown()
      */
     public int getNewCooldown() {
@@ -40,9 +46,12 @@ public class PlayerExpCooldownChangeEvent extends PlayerEvent {
     }
 
     /**
+     * 设置玩家的新冷却时间.
+     * <p>
+     * 原文：
      * Sets the new cooldown for the player.
      *
-     * @param newCooldown The new cooldown to set
+     * @param newCooldown 要设置的新冷却时间
      * @see Player#setExpCooldown(int)
      */
     public void setNewCooldown(int newCooldown) {
@@ -63,11 +72,11 @@ public class PlayerExpCooldownChangeEvent extends PlayerEvent {
     public enum ChangeReason {
 
         /**
-         * The cooldown was set by picking up an experience orb.
+         * 冷却时间由拾取经验球设置.
          */
         PICKUP_ORB,
         /**
-         * The cooldown was set by a plugin.
+         * 冷却时间由插件设置.
          *
          * @see Player#setExpCooldown(int)
          */

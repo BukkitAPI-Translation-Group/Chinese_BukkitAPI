@@ -6,7 +6,7 @@ import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Called when an entity receives knockback from another entity.
+ * 当实体受到来自另一个实体的击退时调用。
  */
 public class EntityKnockbackByEntityEvent extends EntityKnockbackEvent {
 
@@ -19,9 +19,12 @@ public class EntityKnockbackByEntityEvent extends EntityKnockbackEvent {
     }
 
     /**
+     * 获取对防御者造成击退的实体。
+     * <p>
+     * 原文：
      * Get the entity that has caused knockback to the defender.
      *
-     * @return entity that caused knockback
+     * @return 造成击退的实体
      */
     @NotNull
     public Entity getSourceEntity() {

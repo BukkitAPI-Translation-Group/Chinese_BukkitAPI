@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Called when a Pig Zombie is angered by another entity.
+ * 当猪灵被另一个实体激怒时调用。
  * <p>
- * If the event is cancelled, the pig zombie will not be angered.
+ * 如果事件被取消，猪灵将不会被激怒。
  */
 public class PigZombieAngerEvent extends EntityEvent implements Cancellable {
 
@@ -26,9 +26,12 @@ public class PigZombieAngerEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取触发此愤怒更新的实体（如果有）。
+     * <p>
+     * 原文：
      * Gets the entity (if any) which triggered this anger update.
      *
-     * @return triggering entity, or null
+     * @return 触发实体，或 null
      */
     @Nullable
     public Entity getTarget() {
@@ -36,9 +39,12 @@ public class PigZombieAngerEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取此事件产生的新愤怒值。
+     * <p>
+     * 原文：
      * Gets the new anger resulting from this event.
      *
-     * @return new anger
+     * @return 新愤怒值
      * @see PigZombie#getAnger()
      */
     public int getNewAnger() {
@@ -46,9 +52,12 @@ public class PigZombieAngerEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 设置此事件产生的新愤怒值。
+     * <p>
+     * 原文：
      * Sets the new anger resulting from this event.
      *
-     * @param newAnger the new anger
+     * @param newAnger 新愤怒值
      * @see PigZombie#setAnger(int)
      */
     public void setNewAnger(int newAnger) {
