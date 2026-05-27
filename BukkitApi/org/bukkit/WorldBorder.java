@@ -7,10 +7,11 @@ import org.jetbrains.annotations.Nullable;
 public interface WorldBorder {
 
     /**
-     * Get the {@link World} in which the border resides.
+     * 获取边界所在的 {@link World}.
+     * <p>
+     * 原文：Get the {@link World} in which the border resides.
      *
-     * @return the associated world, or null if this world border is not associated
-     * with any specific world, such as those created via {@link Server#createWorldBorder()}
+     * @return 关联的世界，如果此世界边界未关联任何特定世界则返回 null，例如通过 {@link Server#createWorldBorder()} 创建的边界
      */
     @Nullable
     public World getWorld();
@@ -38,30 +39,32 @@ public interface WorldBorder {
      * 
      * @param newSize 边界的新长度.
      *
-     * @throws IllegalArgumentException if newSize is less than 1.0D or greater than {@link #getMaxSize()}
+     * @throws IllegalArgumentException 如果 newSize 小于 1.0D 或大于 {@link #getMaxSize()}
      */
     public void setSize(double newSize);
 
     /**
      * 以方块为单位，将边界设置为一个指定长度的正方形.
      * <p>
-     * 原文:Sets the border to a square region with the specified side length in blocks.
+     * 原文：Sets the border to a square region with the specified side length in blocks.
      * 
      * @param newSize 边界的新长度.
-     * @param seconds The time in seconds in which the border grows or shrinks from the previous size to that being set.
+     * @param seconds 边界从先前大小增长或缩小到新大小所需的时间（秒）.
      *
-     * @throws IllegalArgumentException if newSize is less than 1.0D or greater than {@link #getMaxSize()}
+     * @throws IllegalArgumentException 如果 newSize 小于 1.0D 或大于 {@link #getMaxSize()}
      */
     public void setSize(double newSize, long seconds);
 
     /**
-     * Sets the border to a square region with the specified side length in blocks.
+     * 以方块为单位，将边界设置为一个指定长度的正方形.
+     * <p>
+     * 原文：Sets the border to a square region with the specified side length in blocks.
      *
-     * @param newSize The new side length of the border.
-     * @param unit The time unit.
-     * @param time The time in which the border grows or shrinks from the previous size to that being set.
+     * @param newSize 边界的新长度.
+     * @param unit 时间单位.
+     * @param time 边界从先前大小增长或缩小到新大小所需的时间.
      *
-     * @throws IllegalArgumentException if unit is <code>null</code> or newSize is less than 1.0D or greater than {@link #getMaxSize()}
+     * @throws IllegalArgumentException 如果 unit 为 <code>null</code>，或 newSize 小于 1.0D 或大于 {@link #getMaxSize()}
      */
     public void setSize(double newSize, @NotNull TimeUnit unit, long time);
 
@@ -83,7 +86,7 @@ public interface WorldBorder {
      * @param x 新中心的x坐标.
      * @param z 新中心的z坐标.
      *
-     * @throws IllegalArgumentException if the absolute value of x or z is higher than {@link #getMaxCenterCoordinate()}
+     * @throws IllegalArgumentException 如果 x 或 z 的绝对值大于 {@link #getMaxCenterCoordinate()}
      */
     public void setCenter(double x, double z);
 
@@ -94,7 +97,7 @@ public interface WorldBorder {
      *
      * @param location 边界新中心的位置. (该位置只包含x z)
      *
-     * @throws IllegalArgumentException if location is <code>null</code> or the absolute value of {@link Location#getX()} or {@link Location#getZ()} is higher than {@link #getMaxCenterCoordinate()}
+     * @throws IllegalArgumentException 如果 location 为 <code>null</code>，或 {@link Location#getX()} 或 {@link Location#getZ()} 的绝对值大于 {@link #getMaxCenterCoordinate()}
      */
     public void setCenter(@NotNull Location location);
 
@@ -181,17 +184,20 @@ public interface WorldBorder {
     public boolean isInside(@NotNull Location location);
 
     /**
-     * Gets the maximum possible size of a WorldBorder.
+     * 获取世界边界的最大可能大小.
+     * <p>
+     * 原文：Gets the maximum possible size of a WorldBorder.
      *
-     * @return The maximum size the WorldBorder
+     * @return 世界边界的最大大小
      */
     public double getMaxSize();
 
     /**
-     * Gets the absolute value of the maximum x/z center coordinate of a
-     * WorldBorder.
+     * 获取世界边界最大 x/z 中心坐标的绝对值.
+     * <p>
+     * 原文：Gets the absolute value of the maximum x/z center coordinate of a WorldBorder.
      *
-     * @return The absolute maximum center coordinate of the WorldBorder
+     * @return 世界边界的最大中心坐标绝对值
      */
     public double getMaxCenterCoordinate();
 }
