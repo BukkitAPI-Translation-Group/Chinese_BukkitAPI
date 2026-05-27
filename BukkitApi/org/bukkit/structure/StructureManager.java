@@ -206,37 +206,49 @@ public interface StructureManager {
     Structure loadStructure(@NotNull InputStream inputStream) throws IOException;
 
     /**
+     * 将结构保存到文件。如果文件已存在，将被覆盖.
+     * <p>
+     * 原文：
      * Save a structure to a file. This will overwrite a file if it already
      * exists.
      *
-     * @param file the target to save to.
-     * @param structure the Structure to save.
-     * @throws IOException when the given file can not be written to.
+     * @param file 要保存到的目标文件.
+     * @param structure 要保存的结构.
+     * @throws IOException 当给定文件无法写入时.
      */
     void saveStructure(@NotNull File file, @NotNull Structure structure) throws IOException;
 
     /**
+     * 将结构保存到流.
+     * <p>
+     * 原文：
      * Save a structure to a stream.
      *
-     * @param outputStream the stream to write to.
-     * @param structure the Structure to save.
-     * @throws IOException when the given file can not be written to.
+     * @param outputStream 要写入的流.
+     * @param structure 要保存的结构.
+     * @throws IOException 当给定文件无法写入时.
      */
     void saveStructure(@NotNull OutputStream outputStream, @NotNull Structure structure) throws IOException;
 
     /**
+     * 创建一个新的空结构.
+     * <p>
+     * 原文：
      * Creates a new empty structure.
      *
-     * @return an empty structure.
+     * @return 一个空结构.
      */
     @NotNull
     Structure createStructure();
 
     /**
+     * 创建此结构的副本.
+     * <p>
+     * 原文：
      * Creates a copy of this structure.
      *
-     * @param structure The structure to copy
-     * @return a copy of the structure
+     * @param structure 要复制的结构.
+     * @return 结构的副本.
      */
     @NotNull
     Structure copy(@NotNull Structure structure);
