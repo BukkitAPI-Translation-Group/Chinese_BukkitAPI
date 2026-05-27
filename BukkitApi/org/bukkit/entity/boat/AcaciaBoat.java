@@ -3,7 +3,7 @@ package org.bukkit.entity.boat;
 import org.bukkit.entity.Boat;
 
 /**
- * Represents an acacia boat.
+ * 代表一艘金合欢木船.
  */
 public interface AcaciaBoat extends Boat {
 }

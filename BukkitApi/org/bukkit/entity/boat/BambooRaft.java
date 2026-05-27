@@ -3,7 +3,7 @@ package org.bukkit.entity.boat;
 import org.bukkit.entity.Boat;
 
 /**
- * Represents a bamboo raft.
+ * 代表一艘竹筏.
  */
 public interface BambooRaft extends Boat {
 }
