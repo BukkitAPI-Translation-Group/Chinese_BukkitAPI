@@ -200,19 +200,25 @@ public interface AreaEffectCloud extends Entity {
     <T> void setParticle(@NotNull Particle particle, @Nullable T data);
 
     /**
+     * 设置基本药水数据.
+     * <p>
+     * 原文:
      * Sets the underlying potion data
      *
-     * @param data PotionData to set the base potion state to
-     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #setBasePotionType} instead.
+     * @param data 用于设置基本药水状态的 PotionData
+     * @deprecated 升级 / 延长的药水现在是独立的 {@link PotionType}, 请使用 {@link #setBasePotionType} 代替.
      */
     @Deprecated(since = "1.20.6")
     void setBasePotionData(@Nullable PotionData data);
 
     /**
+     * 返回基本药水的药水数据.
+     * <p>
+     * 原文:
      * Returns the potion data about the base potion
      *
-     * @return a PotionData object
-     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #getBasePotionType()} instead.
+     * @return 一个 PotionData 对象
+     * @deprecated 升级 / 延长的药水现在是独立的 {@link PotionType}, 请使用 {@link #getBasePotionType()} 代替.
      */
     @Nullable
     @Deprecated(since = "1.20.6")
