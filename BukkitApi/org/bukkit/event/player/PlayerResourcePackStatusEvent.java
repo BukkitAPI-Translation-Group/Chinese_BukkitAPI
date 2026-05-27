@@ -77,19 +77,27 @@ public class PlayerResourcePackStatusEvent extends PlayerEvent {
          */
         ACCEPTED,
         /**
-         * The client successfully downloaded the pack.
+         * 客户端成功下载了资源包.
+         * <p>
+         * 原文: The client successfully downloaded the pack.
          */
         DOWNLOADED,
         /**
-         * The pack URL was invalid.
+         * 资源包的 URL 无效.
+         * <p>
+         * 原文: The pack URL was invalid.
          */
         INVALID_URL,
         /**
-         * The client was unable to reload the pack.
+         * 客户端无法重新加载资源包.
+         * <p>
+         * 原文: The client was unable to reload the pack.
          */
         FAILED_RELOAD,
         /**
-         * The pack was discarded by the client.
+         * 资源包被客户端丢弃.
+         * <p>
+         * 原文: The pack was discarded by the client.
          */
         DISCARDED;
     }
