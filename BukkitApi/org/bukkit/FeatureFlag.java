@@ -1,10 +1,9 @@
 package org.bukkit;
 
 /**
- * This represents a Feature Flag for a World.
+ * 表示世界的功能标志。
  * <br>
- * Flags which are unavailable in the current version will be null and/or
- * removed.
+ * 在当前版本中不可用的标志将为 null 和/或被移除。
  */
 public interface FeatureFlag extends Keyed {
 

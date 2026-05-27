@@ -8,28 +8,28 @@ import org.bukkit.util.OldEnum;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a fluid type.
+ * 表示流体类型。
  */
 public interface Fluid extends OldEnum<Fluid>, Keyed, RegistryAware {
 
     /**
-     * No fluid.
+     * 无流体。
      */
     Fluid EMPTY = getFluid("empty");
     /**
-     * Stationary water.
+     * 静止的水。
      */
     Fluid WATER = getFluid("water");
     /**
-     * Flowing water.
+     * 流动的水。
      */
     Fluid FLOWING_WATER = getFluid("flowing_water");
     /**
-     * Stationary lava.
+     * 静止的岩浆。
      */
     Fluid LAVA = getFluid("lava");
     /**
-     * Flowing lava.
+     * 流动的岩浆。
      */
     Fluid FLOWING_LAVA = getFluid("flowing_lava");
 
@@ -43,7 +43,10 @@ public interface Fluid extends OldEnum<Fluid>, Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
+     *
+     * 原文：
+     * A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
     @Override
@@ -51,6 +54,11 @@ public interface Fluid extends OldEnum<Fluid>, Keyed, RegistryAware {
     NamespacedKey getKey();
 
     /**
+     * @param name 流体的名称。
+     * @return 具有给定名称的流体。
+     * @deprecated 仅用于向后兼容，请改用 {@link Registry#get(NamespacedKey)}。
+     *
+     * 原文：
      * @param name of the fluid.
      * @return the fluid with the given name.
      * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
@@ -64,6 +72,10 @@ public interface Fluid extends OldEnum<Fluid>, Keyed, RegistryAware {
     }
 
     /**
+     * @return 所有已知流体的数组。
+     * @deprecated 请使用 {@link Registry#iterator()}。
+     *
+     * 原文：
      * @return an array of all known fluids.
      * @deprecated use {@link Registry#iterator()}.
      */

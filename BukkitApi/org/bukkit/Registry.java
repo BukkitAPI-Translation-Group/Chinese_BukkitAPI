@@ -44,19 +44,18 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a registry of Bukkit objects that may be retrieved by
- * {@link NamespacedKey}.
+ * 表示可以通过 {@link NamespacedKey} 检索的 Bukkit 对象注册表。
  *
- * @param <T> type of item in the registry
+ * @param <T> 注册表中项目的类型
  */
 public interface Registry<T extends Keyed> extends Iterable<T> {
 
     /**
-     * Server advancements.
+     * 服务器进度。
      *
      * @see Bukkit#getAdvancement(org.bukkit.NamespacedKey)
      * @see Bukkit#advancementIterator()
-     * @deprecated Advancement has no real server-side registry.
+     * @deprecated Advancement 没有真正的服务端注册表。
      */
     @Deprecated(since = "1.21.4")
     Registry<Advancement> ADVANCEMENT = new Registry<Advancement>() {
@@ -90,43 +89,43 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
         }
     };
     /**
-     * Server art.
+     * 服务器艺术品。
      *
      * @see Art
      */
     Registry<Art> ART = Objects.requireNonNull(Bukkit.getRegistry(Art.class), "No registry present for Art. This is a bug.");
     /**
-     * Attribute.
+     * 属性。
      *
      * @see Attribute
      */
     Registry<Attribute> ATTRIBUTE = Objects.requireNonNull(Bukkit.getRegistry(Attribute.class), "No registry present for Attribute. This is a bug.");
     /**
-     * Server banner patterns.
+     * 服务器旗帜图案。
      *
      * @see PatternType
      */
     Registry<PatternType> BANNER_PATTERN = Objects.requireNonNull(Bukkit.getRegistry(PatternType.class), "No registry present for Pattern Type. This is a bug.");
     /**
-     * Server biomes.
+     * 服务器生物群系。
      *
      * @see Biome
      */
     Registry<Biome> BIOME = Objects.requireNonNull(Bukkit.getRegistry(Biome.class), "No registry present for Biome. This is a bug.");
     /**
-     * Server block types.
+     * 服务器方块类型。
      *
      * @see BlockType
-     * @apiNote BlockType is not ready for public usage yet
+     * @apiNote BlockType 尚未准备好供公开使用。
      */
     @ApiStatus.Internal
     Registry<BlockType> BLOCK = Objects.requireNonNull(Bukkit.getRegistry(BlockType.class), "No registry present for BlockType. This is a bug.");
     /**
-     * Custom boss bars.
+     * 自定义 Boss 血条。
      *
      * @see Bukkit#getBossBar(org.bukkit.NamespacedKey)
      * @see Bukkit#getBossBars()
-     * @deprecated BossBar has no real server-side registry.
+     * @deprecated BossBar 没有真正的服务端注册表。
      */
     @Deprecated(since = "1.21.4")
     Registry<KeyedBossBar> BOSS_BARS = new Registry<KeyedBossBar>() {
@@ -160,172 +159,172 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
         }
     };
     /**
-     * Server cat types.
+     * 服务器猫品种。
      *
      * @see Cat.Type
      */
     Registry<Cat.Type> CAT_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Cat.Type.class), "No registry present for Cat Type. This is a bug.");
     /**
-     * Server pig variants.
+     * 服务器猪变种。
      *
      * @see Pig.Variant
      */
     Registry<Pig.Variant> PIG_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Pig.Variant.class), "No registry present for Pig Variant. This is a bug.");
     /**
-     * Server cow variants.
+     * 服务器牛变种。
      *
      * @see Cow.Variant
      */
     Registry<Cow.Variant> COW_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Cow.Variant.class), "No registry present for Cow Variant. This is a bug.");
     /**
-     * Server chicken variants.
+     * 服务器鸡变种。
      *
      * @see Chicken.Variant
      */
     Registry<Chicken.Variant> CHICKEN_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Chicken.Variant.class), "No registry present for Chicken Variant. This is a bug.");
     /**
-     * Server zombie nautilus variants.
+     * 服务器僵尸鹦鹉螺变种。
      *
      * @see ZombieNautilus.Variant
      */
     Registry<ZombieNautilus.Variant> ZOMBIE_NAUTILUS_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(ZombieNautilus.Variant.class), "No registry present for ZombieNautilus Variant. This is a bug.");
     /**
-     * Server enchantments.
+     * 服务器附魔。
      *
      * @see Enchantment
      */
     Registry<Enchantment> ENCHANTMENT = Objects.requireNonNull(Bukkit.getRegistry(Enchantment.class), "No registry present for Enchantment. This is a bug.");
     /**
-     * Server entity types.
+     * 服务器实体类型。
      *
      * @see EntityType
      */
     Registry<EntityType> ENTITY_TYPE = new SimpleRegistry<>(EntityType.class, (entity) -> entity != EntityType.UNKNOWN);
     /**
-     * Server instruments.
+     * 服务器乐器。
      *
      * @see MusicInstrument
      */
     Registry<MusicInstrument> INSTRUMENT = Objects.requireNonNull(Bukkit.getRegistry(MusicInstrument.class), "No registry present for MusicInstrument. This is a bug.");
     /**
-     * Server item types.
+     * 服务器物品类型。
      *
      * @see ItemType
-     * @apiNote ItemType is not ready for public usage yet
+     * @apiNote ItemType 尚未准备好供公开使用。
      */
     @ApiStatus.Internal
     Registry<ItemType> ITEM = Objects.requireNonNull(Bukkit.getRegistry(ItemType.class), "No registry present for ItemType. This is a bug.");
     /**
-     * Default server loot tables.
+     * 默认服务器战利品表。
      *
      * @see LootTables
-     * @deprecated LootTables, not to be confused with the {@link LootTable} class, has no real server-side registry.
+     * @deprecated LootTables（不要与 {@link LootTable} 类混淆）没有真正的服务端注册表。
      */
     @Deprecated(since = "1.21.4")
     Registry<LootTables> LOOT_TABLES = new SimpleRegistry<>(LootTables.class);
     /**
-     * Server materials.
+     * 服务器材质。
      *
      * @see Material
      */
     Registry<Material> MATERIAL = new SimpleRegistry<>(Material.class, (mat) -> !mat.isLegacy());
     /**
-     * Server menus.
+     * 服务器菜单。
      *
      * @see MenuType
      */
     @ApiStatus.Experimental
     Registry<MenuType> MENU = Objects.requireNonNull(Bukkit.getRegistry(MenuType.class), "No registry present for MenuType. This is a bug.");
     /**
-     * Server mob effects.
+     * 服务器药水效果。
      *
      * @see PotionEffectType
      */
     Registry<PotionEffectType> EFFECT = Objects.requireNonNull(Bukkit.getRegistry(PotionEffectType.class), "No registry present for PotionEffectType. This is a bug.");
     /**
-     * Server particles.
+     * 服务器粒子。
      *
      * @see Particle
      */
     Registry<Particle> PARTICLE_TYPE = new SimpleRegistry<>(Particle.class, (par) -> par.register);
     /**
-     * Server potions.
+     * 服务器药水。
      *
      * @see PotionType
      */
     Registry<PotionType> POTION = new SimpleRegistry<>(PotionType.class);
     /**
-     * Server statistics.
+     * 服务器统计。
      *
      * @see Statistic
      */
     Registry<Statistic> STATISTIC = new SimpleRegistry<>(Statistic.class);
     /**
-     * Server structures.
+     * 服务器结构。
      *
      * @see Structure
      */
     Registry<Structure> STRUCTURE = Objects.requireNonNull(Bukkit.getRegistry(Structure.class), "No registry present for Structure. This is a bug.");
     /**
-     * Server structure types.
+     * 服务器结构类型。
      *
      * @see StructureType
      */
     Registry<StructureType> STRUCTURE_TYPE = Objects.requireNonNull(Bukkit.getRegistry(StructureType.class), "No registry present for StructureType. This is a bug.");
     /**
-     * Sound keys.
+     * 声音键。
      *
      * @see Sound
      */
     Registry<Sound> SOUNDS = Objects.requireNonNull(Bukkit.getRegistry(Sound.class), "No registry present for Sound. This is a bug.");
     /**
-     * Trim materials.
+     * 装饰材料。
      *
      * @see TrimMaterial
      */
     @ApiStatus.Experimental
     Registry<TrimMaterial> TRIM_MATERIAL = Objects.requireNonNull(Bukkit.getRegistry(TrimMaterial.class), "No registry present for TrimMaterial. This is a bug.");
     /**
-     * Trim patterns.
+     * 装饰图案。
      *
      * @see TrimPattern
      */
     @ApiStatus.Experimental
     Registry<TrimPattern> TRIM_PATTERN = Objects.requireNonNull(Bukkit.getRegistry(TrimPattern.class), "No registry present for TrimPattern. This is a bug.");
     /**
-     * Damage types.
+     * 伤害类型。
      *
      * @see DamageType
      */
     @ApiStatus.Experimental
     Registry<DamageType> DAMAGE_TYPE = Objects.requireNonNull(Bukkit.getRegistry(DamageType.class), "No registry present for DamageType. This is a bug.");
     /**
-     * Jukebox songs.
+     * 唱片机歌曲。
      *
      * @see JukeboxSong
      */
     @ApiStatus.Experimental
     Registry<JukeboxSong> JUKEBOX_SONG = Objects.requireNonNull(Bukkit.getRegistry(JukeboxSong.class), "No registry present for JukeboxSong. This is a bug.");
     /**
-     * Villager profession.
+     * 村民职业。
      *
      * @see Villager.Profession
      */
     Registry<Villager.Profession> VILLAGER_PROFESSION = Objects.requireNonNull(Bukkit.getRegistry(Villager.Profession.class), "No registry present for Villager Profession. This is a bug.");
     /**
-     * Villager type.
+     * 村民类型。
      *
      * @see Villager.Type
      */
     Registry<Villager.Type> VILLAGER_TYPE = Objects.requireNonNull(Bukkit.getRegistry(Villager.Type.class), "No registry present for Villager Type. This is a bug.");
     /**
-     * Game rule.
+     * 游戏规则。
      *
      * @see GameRule
      */
     Registry<GameRule> GAME_RULE = Objects.requireNonNull(Bukkit.getRegistry(GameRule.class), "No registry present for Game Rule. This is a bug.");
     /**
-     * Memory Keys.
+     * 记忆键。
      *
      * @see MemoryKey
      */
@@ -360,36 +359,42 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
         }
     };
     /**
-     * Server fluids.
+     * 服务器流体。
      *
      * @see Fluid
      */
     Registry<Fluid> FLUID = Objects.requireNonNull(Bukkit.getRegistry(Fluid.class), "No registry present for Fluid. This is a bug.");
     /**
-     * Frog variants.
+     * 青蛙变种。
      *
      * @see Frog.Variant
      */
     Registry<Frog.Variant> FROG_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Frog.Variant.class), "No registry present for Frog Variant. This is a bug.");
     /**
-     * Wolf variants.
+     * 狼变种。
      *
      * @see Wolf.Variant
      */
     Registry<Wolf.Variant> WOLF_VARIANT = Objects.requireNonNull(Bukkit.getRegistry(Wolf.Variant.class), "No registry present for Wolf Variant. This is a bug.");
     /**
-     * Map cursor types.
+     * 地图光标类型。
      *
      * @see MapCursor.Type
      */
     Registry<MapCursor.Type> MAP_DECORATION_TYPE = Objects.requireNonNull(Bukkit.getRegistry(MapCursor.Type.class), "No registry present for MapCursor Type. This is a bug.");
     /**
-     * Game events.
+     * 游戏事件。
      *
      * @see GameEvent
      */
     Registry<GameEvent> GAME_EVENT = Objects.requireNonNull(Bukkit.getRegistry(GameEvent.class), "No registry present for GameEvent. This is a bug.");
     /**
+     * 通过键获取对象。
+     *
+     * @param key 非空键。
+     * @return 对象，如果不存在则返回 null。
+     *
+     * 原文：
      * Get the object by its key.
      *
      * @param key non-null key
@@ -399,6 +404,15 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
     T get(@NotNull NamespacedKey key);
 
     /**
+     * 通过键获取对象。
+     *
+     * 如果没有具有给定键的对象，将抛出异常。
+     *
+     * @param key 用于获取对象的键。
+     * @return 具有给定键的对象。
+     * @throws IllegalArgumentException 如果没有具有给定键的对象。
+     *
+     * 原文：
      * Get the object by its key.
      *
      * If there is no object with the given key, an exception will be thrown.
@@ -411,6 +425,11 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
     T getOrThrow(@NotNull NamespacedKey key);
 
     /**
+     * 返回一个包含所有已注册到注册表中的注册项的新流。
+     *
+     * @return 所有注册项的流。
+     *
+     * 原文：
      * Returns a new stream, which contains all registry items, which are registered to the registry.
      *
      * @return a stream of all registry items
@@ -419,6 +438,14 @@ public interface Registry<T extends Keyed> extends Iterable<T> {
     Stream<T> stream();
 
     /**
+     * 尝试将注册对象与给定键匹配。
+     * <p>
+     * 将尝试根据提供的输入找到合理的匹配，可能通过未指定的方式进行。
+     *
+     * @param input 非空输入。
+     * @return 注册对象，如果不存在则返回 null。
+     *
+     * 原文：
      * Attempts to match the registered object with the given key.
      * <p>
      * This will attempt to find a reasonable match based on the provided input

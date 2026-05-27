@@ -6,44 +6,50 @@ import org.bukkit.block.data.Waterlogged;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'side_chain' represents the state of the chain on the side of the block.
+ * 'side_chain' 表示方块侧面的链条状态.
  */
 public interface Shelf extends Directional, Powerable, Waterlogged {
 
     /**
+     * 获取 'side_chain' 属性的值.
+     * <p>
+     * 原文：
      * Gets the value of the 'side_chain' property.
      *
-     * @return the 'side_chain' value
+     * @return 'side_chain' 的值
      */
     @NotNull
     SideChain getSideChain();
 
     /**
+     * 设置 'side_chain' 属性的值.
+     * <p>
+     * 原文：
      * Sets the value of the 'side_chain' property.
      *
-     * @param sideChain the new 'side_chain' value
+     * @param sideChain 新的 'side_chain' 值
      */
     void setSideChain(@NotNull SideChain sideChain);
 
     /**
-     * Represents the state of the shelf's side chain.
+     * 架子侧面链条的状态.
      */
     public enum SideChain {
 
         /**
-         * Chain on the left.
+         * 左侧链条.
          */
         LEFT,
         /**
-         * Chain in the center.
+         * 中间链条.
          */
         CENTER,
         /**
-         * Chain on the right.
+         * 右侧链条.
          */
         RIGHT,
         /**
-         * Chain not connected.
+         * 未连接的链条.
          */
         UNCONNECTED;
     }

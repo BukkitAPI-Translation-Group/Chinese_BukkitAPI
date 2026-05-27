@@ -4,7 +4,7 @@ import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a song which may play in a Jukebox.
+ * 表示可以在唱片机中播放的歌曲。
  */
 public interface JukeboxSong extends Keyed, Translatable, RegistryAware {
 
@@ -40,7 +40,10 @@ public interface JukeboxSong extends Keyed, Translatable, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
+     *
+     * 原文：
+     * A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
     @Override

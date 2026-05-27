@@ -6,59 +6,71 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This class encompasses the 'north', 'east', 'south', 'west', height flags
- * which are used to set the height of a face.
+ * 此类包含 'north'、'east'、'south'、'west' 高度标志，
+ * 用于设置面的高度.
  *
- * 'bottom' denotes whether this is a bottom block.
+ * 'bottom' 表示这是否是底部方块.
  */
 @ApiStatus.Experimental
 public interface MossyCarpet extends BlockData {
 
     /**
+     * 获取 'bottom' 属性的值.
+     * <p>
+     * 原文：
      * Gets the value of the 'bottom' property.
      *
-     * @return the 'bottom' value
+     * @return 'bottom' 的值
      */
     boolean isBottom();
 
     /**
+     * 设置 'bottom' 属性的值.
+     * <p>
+     * 原文：
      * Sets the value of the 'bottom' property.
      *
-     * @param bottom the new 'bottom' value
+     * @param bottom 新的 'bottom' 值
      */
     void setBottom(boolean bottom);
 
     /**
+     * 获取指定面的高度.
+     * <p>
+     * 原文：
      * Gets the height of the specified face.
      *
-     * @param face to check
-     * @return if face is enabled
+     * @param face 要检查的面
+     * @return 面是否启用
      */
     @NotNull
     Height getHeight(@NotNull BlockFace face);
 
     /**
+     * 设置指定面的高度.
+     * <p>
+     * 原文：
      * Set the height of the specified face.
      *
-     * @param face to set
-     * @param height the height
+     * @param face 要设置的面
+     * @param height 高度
      */
     void setHeight(@NotNull BlockFace face, @NotNull Height height);
 
     /**
-     * The different heights a face may have.
+     * 面可能具有的不同高度.
      */
     public enum Height {
         /**
-         * Not present.
+         * 不存在.
          */
         NONE,
         /**
-         * Low face present.
+         * 低面存在.
          */
         LOW,
         /**
-         * Tall face present.
+         * 高面存在.
          */
         TALL;
     }

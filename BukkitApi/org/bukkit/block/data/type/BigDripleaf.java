@@ -3,43 +3,49 @@ package org.bukkit.block.data.type;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'tilt' indicates how far the leaf is tilted.
+ * 'tilt' 表示叶片的倾斜程度.
  */
 public interface BigDripleaf extends Dripleaf {
 
     /**
+     * 获取 'tilt' 属性的值.
+     * <p>
+     * 原文：
      * Gets the value of the 'tilt' property.
      *
-     * @return the 'tilt' value
+     * @return 'tilt' 的值
      */
     @NotNull
     Tilt getTilt();
 
     /**
+     * 设置 'tilt' 属性的值.
+     * <p>
+     * 原文：
      * Sets the value of the 'tilt' property.
      *
-     * @param tilt the new 'tilt' value
+     * @param tilt 新的 'tilt' 值
      */
     void setTilt(@NotNull Tilt tilt);
 
     /**
-     * The tilt of a leaf.
+     * 叶片的倾斜状态.
      */
     public enum Tilt {
         /**
-         * No tilt.
+         * 无倾斜.
          */
         NONE,
         /**
-         * Unstable tilt.
+         * 不稳定倾斜.
          */
         UNSTABLE,
         /**
-         * Partial tilt.
+         * 部分倾斜.
          */
         PARTIAL,
         /**
-         * Pinball.
+         * 完全倾斜.
          */
         FULL;
     }

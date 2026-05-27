@@ -8,12 +8,11 @@ import java.lang.annotation.Target;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Indicates that the annotated element (class, method, field, etc.) is part of a
- * <a href="https://minecraft.wiki/w/Experimental_Gameplay">minecraft experimental feature</a>
- * and is subject to changes by Mojang.
+ * 表示被注解的元素（类、方法、字段等）属于
+ * <a href="https://minecraft.wiki/w/Experimental_Gameplay">Minecraft 实验性功能</a>，
+ * 并可能被 Mojang 更改。
  * <p>
- * <b>Note:</b> Elements marked with this annotation require the use of a datapack or otherwise
- * non-standard feature to be enabled on the server.
+ * <b>注意：</b>标记有此注解的元素需要在服务器上启用数据包或其他非标准功能才能生效。
  *
  * @see <a href="https://www.minecraft.net/en-us/article/testing-new-minecraft-features/feature-toggles-java-edition">Features Toggles - Minecraft Article</a>
  */
@@ -26,6 +25,14 @@ import org.jetbrains.annotations.ApiStatus;
 public @interface MinecraftExperimental {
 
     /**
+     * 获取被注解对象有效所需启用的功能。
+     * <p>
+     * 虽然此值在 Bukkit 中未被使用，但它是一个便利值，用于帮助定位相关的被注解元素，
+     * 以便在 Minecraft 不再将其视为实验性功能时进行移除。有关在插件中的使用信息，请参阅 {@link Requires}。
+     *
+     * @return 所需的功能标志。
+     *
+     * 原文：
      * Get the feature that must be enabled for the annotated object to be valid.
      * <p>
      * While this value is not used anywhere in Bukkit, it is a convenience value to assist
@@ -37,12 +44,10 @@ public @interface MinecraftExperimental {
     Requires value();
 
     /**
-     * An enum identifying a feature flag required by a {@link MinecraftExperimental} feature.
+     * 一个枚举，标识 {@link MinecraftExperimental} 功能所需的功能标志。
      * <p>
-     * Constants defined by this enum <strong>ARE NOT API!</strong> Constants may be added or
-     * removed without warning and will not necessarily align perfectly with those defined in
-     * FeatureFlag. At no point should plugins depend on this enum. Refer to {@link FeatureFlag}
-     * instead.
+     * 此枚举定义的常量 <strong>不是 API！</strong>常量可能会在没有警告的情况下被添加或移除，
+     * 并且不一定与 FeatureFlag 中定义的常量完全一致。插件绝不应依赖此枚举。请改用 {@link FeatureFlag}。
      */
     @ApiStatus.Internal
     public enum Requires {

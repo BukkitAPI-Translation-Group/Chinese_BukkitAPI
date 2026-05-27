@@ -4,44 +4,50 @@ import org.bukkit.block.data.BlockData;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'mode' indicates what mode this test block is in.
+ * 'mode' 表示此测试方块所处的模式.
  */
 public interface TestBlock extends BlockData {
 
     /**
+     * 获取 'mode' 属性的值.
+     * <p>
+     * 原文：
      * Gets the value of the 'mode' property.
      *
-     * @return the 'mode' value
+     * @return 'mode' 的值
      */
     @NotNull
     Mode getMode();
 
     /**
+     * 设置 'mode' 属性的值.
+     * <p>
+     * 原文：
      * Sets the value of the 'mode' property.
      *
-     * @param mode the new 'mode' value
+     * @param mode 新的 'mode' 值
      */
     void setMode(@NotNull Mode mode);
 
     /**
-     * The mode in which a comparator will operate in.
+     * 比较器将运行的模式.
      */
     public enum Mode {
 
         /**
-         * Triggers a redstone pulse when the test starts.
+         * 测试开始时触发红石脉冲.
          */
         START,
         /**
-         * Logs a message to the log file when powered by redstone.
+         * 被红石充能时将消息记录到日志文件.
          */
         LOG,
         /**
-         * Fails the test when powered by redstone.
+         * 被红石充能时使测试失败.
          */
         FAIL,
         /**
-         * Completes the test when powered by redstone.
+         * 被红石充能时完成测试.
          */
         ACCEPT;
     }

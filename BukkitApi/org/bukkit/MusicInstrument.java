@@ -19,6 +19,11 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
     public static final MusicInstrument DREAM_GOAT_HORN = getInstrument("dream_goat_horn");
 
     /**
+     * 获取乐器的使用持续时间。
+     *
+     * @return 持续时间。
+     *
+     * 原文：
      * Gets how long the use duration is for the instrument.
      *
      * @return the duration.
@@ -26,6 +31,11 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
     public abstract float getDuration();
 
     /**
+     * 获取声音的范围。
+     *
+     * @return 声音的范围。
+     *
+     * 原文：
      * Gets the range of the sound.
      *
      * @return the range of the sound.
@@ -33,6 +43,11 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
     public abstract float getRange();
 
     /**
+     * 获取此乐器的描述。
+     *
+     * @return 描述。
+     *
+     * 原文：
      * Gets the description of this instrument.
      *
      * @return the description.
@@ -41,6 +56,11 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
     public abstract String getDescription();
 
     /**
+     * 获取此乐器的声音/声音事件。
+     *
+     * @return 声音。
+     *
+     * 原文：
      * Gets the sound/sound-event for this instrument.
      *
      * @return a sound.
@@ -53,7 +73,10 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
+     *
+     * 原文：
+     * A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
     @Override
@@ -61,6 +84,13 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
     public abstract NamespacedKey getKey();
 
     /**
+     * 通过 {@link NamespacedKey} 返回一个 {@link MusicInstrument}。
+     *
+     * @param namespacedKey 键。
+     * @return 事件或 null。
+     * @deprecated 请改用 {@link Registry#get(NamespacedKey)}。
+     *
+     * 原文：
      * Returns a {@link MusicInstrument} by a {@link NamespacedKey}.
      *
      * @param namespacedKey the key
@@ -74,6 +104,12 @@ public abstract class MusicInstrument implements Keyed, RegistryAware {
     }
 
     /**
+     * 返回所有已知的 MusicInstrument。
+     *
+     * @return 内存键。
+     * @deprecated 请使用 {@link Registry#iterator()}。
+     *
+     * 原文：
      * Returns all known MusicInstruments.
      *
      * @return the memoryKeys

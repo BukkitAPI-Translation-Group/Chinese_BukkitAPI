@@ -6,77 +6,89 @@ import org.bukkit.block.data.Waterlogged;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * 'thickness' represents the dripstone thickness.
+ * 'thickness' 表示滴水石锥的粗细程度.
  * <br>
- * 'vertical_direction' represents the dripstone orientation.
+ * 'vertical_direction' 表示滴水石锥的朝向.
  * <br>
- * Some blocks may not be able to face in all directions, use
- * {@link #getVerticalDirections()} to get all possible directions for this
- * block.
+ * 某些方块可能无法朝向所有方向，使用 {@link #getVerticalDirections()} 获取此方块所有可能的方向.
  */
 public interface PointedDripstone extends Waterlogged {
 
     /**
+     * 获取 'vertical_direction' 属性的值.
+     * <p>
+     * 原文：
      * Gets the value of the 'vertical_direction' property.
      *
-     * @return the 'vertical_direction' value
+     * @return 'vertical_direction' 的值
      */
     @NotNull
     BlockFace getVerticalDirection();
 
     /**
+     * 设置 'vertical_direction' 属性的值.
+     * <p>
+     * 原文：
      * Sets the value of the 'vertical_direction' property.
      *
-     * @param direction the new 'vertical_direction' value
+     * @param direction 新的 'vertical_direction' 值
      */
     void setVerticalDirection(@NotNull BlockFace direction);
 
     /**
+     * 获取此方块适用的面.
+     * <p>
+     * 原文：
      * Gets the faces which are applicable to this block.
      *
-     * @return the allowed 'vertical_direction' values
+     * @return 允许的 'vertical_direction' 值
      */
     @NotNull
     Set<BlockFace> getVerticalDirections();
 
     /**
+     * 获取 'thickness' 属性的值.
+     * <p>
+     * 原文：
      * Gets the value of the 'thickness' property.
      *
-     * @return the 'thickness' value
+     * @return 'thickness' 的值
      */
     @NotNull
     Thickness getThickness();
 
     /**
+     * 设置 'thickness' 属性的值.
+     * <p>
+     * 原文：
      * Sets the value of the 'thickness' property.
      *
-     * @param thickness the new 'thickness' value
+     * @param thickness 新的 'thickness' 值
      */
     void setThickness(@NotNull Thickness thickness);
 
     /**
-     * Represents the thickness of the dripstone, corresponding to its position
-     * within a multi-block dripstone formation.
+     * 滴水石锥的粗细程度，对应于其在多块滴水石锥结构中的位置.
      */
     public enum Thickness {
         /**
-         * Extended tip.
+         * 延伸的尖端.
          */
         TIP_MERGE,
         /**
-         * Just the tip.
+         * 仅尖端.
          */
         TIP,
         /**
-         * Top section.
+         * 顶部部分.
          */
         FRUSTUM,
         /**
-         * Middle section.
+         * 中间部分.
          */
         MIDDLE,
         /**
-         * Base.
+         * 底部.
          */
         BASE;
     }

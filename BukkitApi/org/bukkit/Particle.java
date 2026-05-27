@@ -209,6 +209,11 @@ public enum Particle implements Keyed, RegistryAware {
     }
 
     /**
+     * 返回粒子所需的数据类型。
+     *
+     * @return 所需的数据类型。
+     *
+     * 原文：
      * Returns the required data type for the particle
      * @return the required data type
      */
@@ -240,7 +245,10 @@ public enum Particle implements Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}。
+     *
+     * 原文：
+     * A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
     @Override
@@ -250,8 +258,7 @@ public enum Particle implements Keyed, RegistryAware {
     }
 
     /**
-     * Options which can be applied to redstone dust particles - a particle
-     * color and size.
+     * 可以应用于红石粉粒子的选项 - 粒子颜色和大小。
      */
     public static class DustOptions {
 
@@ -265,6 +272,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的粒子的颜色。
+         *
+         * @return 粒子颜色。
+         *
+         * 原文：
          * The color of the particles to be displayed.
          *
          * @return particle color
@@ -275,6 +287,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 粒子的相对大小。
+         *
+         * @return 粒子的相对大小。
+         *
+         * 原文：
          * Relative size of the particle.
          *
          * @return relative particle size
@@ -285,7 +302,7 @@ public enum Particle implements Keyed, RegistryAware {
     }
 
     /**
-     * Options which can be applied to a color transitioning dust particles.
+     * 可以应用于颜色渐变粒子的选项。
      */
     public static class DustTransition extends DustOptions {
 
@@ -299,6 +316,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的粒子的最终颜色。
+         *
+         * @return 粒子的最终颜色。
+         *
+         * 原文：
          * The final of the particles to be displayed.
          *
          * @return final particle color
@@ -310,7 +332,7 @@ public enum Particle implements Keyed, RegistryAware {
     }
 
     /**
-     * Options which can be applied to trail particles - a location, color and duration.
+     * 可以应用于轨迹粒子的选项 - 位置、颜色和持续时间。
      */
     @ApiStatus.Experimental
     public static class Trail {
@@ -326,6 +348,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的粒子的目标。
+         *
+         * @return 粒子目标。
+         *
+         * 原文：
          * The target of the particles to be displayed.
          *
          * @return particle target
@@ -336,6 +363,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的粒子的颜色。
+         *
+         * @return 粒子颜色。
+         *
+         * 原文：
          * The color of the particles to be displayed.
          *
          * @return particle color
@@ -346,6 +378,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的轨迹的持续时间。
+         *
+         * @return 轨迹持续时间。
+         *
+         * 原文：
          * The duration of the trail to be displayed.
          *
          * @return trail duration
@@ -356,8 +393,7 @@ public enum Particle implements Keyed, RegistryAware {
     }
 
     /**
-     * Options which can be applied to spell effect particles - a color and
-     * power.
+     * 可以应用于法术效果粒子的选项 - 颜色和强度。
      */
     @ApiStatus.Experimental
     public static class Spell {
@@ -371,6 +407,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的粒子的颜色。
+         *
+         * @return 粒子颜色。
+         *
+         * 原文：
          * The color of the particles to be displayed.
          *
          * @return particle color
@@ -381,6 +422,11 @@ public enum Particle implements Keyed, RegistryAware {
         }
 
         /**
+         * 要显示的效果的强度。
+         *
+         * @return 强度。
+         *
+         * 原文：
          * The power of the effect to be displayed.
          *
          * @return power

@@ -1,34 +1,31 @@
 package org.bukkit;
 
 /**
- * Represents the outcome of an explosion.
+ * 表示爆炸的结果。
  */
 public enum ExplosionResult {
 
     /**
-     * Represents an explosion where no change took place.
+     * 表示未发生任何变化的爆炸。
      *
-     * This is the case when {@link org.bukkit.GameRule#MOB_GRIEFING} is
-     * disabled.
+     * 当 {@link org.bukkit.GameRule#MOB_GRIEFING} 被禁用时会出现此情况。
      */
     KEEP,
     /**
-     * Represents an explosion where all destroyed blocks drop their items.
+     * 表示所有被破坏的方块都会掉落物品的爆炸。
      *
-     * This is the case when
-     * {@link org.bukkit.GameRule#TNT_EXPLOSION_DROP_DECAY} or
-     * {@link org.bukkit.GameRule#BLOCK_EXPLOSION_DROP_DECAY} is disabled.
+     * 当 {@link org.bukkit.GameRule#TNT_EXPLOSION_DROP_DECAY} 或
+     * {@link org.bukkit.GameRule#BLOCK_EXPLOSION_DROP_DECAY} 被禁用时会出现此情况。
      */
     DESTROY,
     /**
-     * Represents an explosion where explosions cause only some blocks to drop.
+     * 表示爆炸仅导致部分方块掉落的爆炸。
      */
     DESTROY_WITH_DECAY,
     /**
-     * Represents an explosion where a block change/update has happened.
+     * 表示已发生方块变化/更新的爆炸。
      *
-     * For example, when a wind charge is used it will cause nearby buttons,
-     * levers and bells to be activated.
+     * 例如，使用风弹时会导致附近的按钮、拉杆和钟被激活。
      */
     TRIGGER_BLOCK
 }
