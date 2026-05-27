@@ -241,9 +241,11 @@ public final class Bukkit {
     }
 
     /**
-     * Get the simulation distance from this server.
+     * 获取服务器的模拟距离.
+     * <p>
+     * 原文:Get the simulation distance from this server.
      *
-     * @return the simulation distance from this server.
+     * @return 服务器的模拟距离
      */
     public static int getSimulationDistance() {
         return server.getSimulationDistance();
@@ -319,28 +321,46 @@ public final class Bukkit {
     }
 
     /**
-     * Gets whether the server is logging the IP addresses of players.
+     * 获取服务器是否正在记录玩家的IP地址.
+     * <p>
+     * 原文:Gets whether the server is logging the IP addresses of players.
      *
-     * @return whether the server is logging the IP addresses of players
+     * @return 服务器是否正在记录玩家的IP地址
      */
     public static boolean isLoggingIPs() {
         return server.isLoggingIPs();
     }
 
+    /**
+     * 获取初始启用的数据包列表.
+     * <p>
+     * 原文:Gets the initial enabled packs.
+     *
+     * @return 初始启用的数据包名称列表
+     */
     @NotNull
     public static List<String> getInitialEnabledPacks() {
         return server.getInitialEnabledPacks();
     }
 
+    /**
+     * 获取初始禁用的数据包列表.
+     * <p>
+     * 原文:Gets the initial disabled packs.
+     *
+     * @return 初始禁用的数据包名称列表
+     */
     @NotNull
     public static List<String> getInitialDisabledPacks() {
         return server.getInitialDisabledPacks();
     }
 
     /**
-     * Get the DataPack Manager.
+     * 获取数据包管理器.
+     * <p>
+     * 原文:Get the DataPack Manager.
      *
-     * @return the manager
+     * @return 数据包管理器实例
      */
     @NotNull
     public static DataPackManager getDataPackManager() {
@@ -348,9 +368,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the resource pack configured to be sent to clients by the server.
+     * 获取服务器配置为发送给客户端的资源包.
+     * <p>
+     * 原文:Gets the resource pack configured to be sent to clients by the server.
      *
-     * @return the resource pack
+     * @return 服务器资源包
      */
     @Nullable
     public static ResourcePack getServerResourcePack() {
@@ -358,9 +380,11 @@ public final class Bukkit {
     }
 
     /**
-     * Get the ServerTick Manager.
+     * 获取服务器Tick管理器.
+     * <p>
+     * 原文:Get the ServerTick Manager.
      *
-     * @return the manager
+     * @return 服务器Tick管理器实例
      */
     @NotNull
     public static ServerTickManager getServerTickManager() {
@@ -368,10 +392,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the code of conducts enabled on the server. The returned map is a
+     * 获取服务器上启用的行为准则. 返回的映射是字符串语言代码 (例如 en_us) 到行为准则的映射.
+     * <p>
+     * 原文:Gets the code of conducts enabled on the server. The returned map is a
      * map of string language codes (eg, en_us) to codes of conducts.
      *
-     * @return the codes of conduct or empty if none
+     * @return 行为准则映射, 如果没有则为空映射
      */
     @NotNull
     public static Map<String, String> getCodeOfConducts() {
@@ -379,9 +405,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the server resource pack uri, or empty string if not specified.
+     * 获取服务器资源包的URI, 如果未指定则返回空字符串.
+     * <p>
+     * 原文:Gets the server resource pack uri, or empty string if not specified.
      *
-     * @return the server resource pack uri, otherwise empty string
+     * @return 服务器资源包的URI, 否则为空字符串
      */
     @NotNull
     public static String getResourcePack() {
@@ -389,11 +417,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the SHA-1 digest of the server resource pack, or empty string if
+     * 获取服务器资源包的SHA-1摘要, 如果未指定则返回空字符串.
+     * <p>
+     * 原文:Gets the SHA-1 digest of the server resource pack, or empty string if
      * not specified.
      *
-     * @return the SHA-1 digest of the server resource pack, otherwise empty
-     *     string
+     * @return 服务器资源包的SHA-1摘要, 否则为空字符串
      */
     @NotNull
     public static String getResourcePackHash() {
@@ -401,11 +430,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the custom prompt message to be shown when the server resource
+     * 获取服务器资源包为必填时显示的自定义提示消息, 如果未指定则返回空字符串.
+     * <p>
+     * 原文:Gets the custom prompt message to be shown when the server resource
      * pack is required, or empty string if not specified.
      *
-     * @return the custom prompt message to be shown when the server resource,
-     *     otherwise empty string
+     * @return 服务器资源包为必填时显示的自定义提示消息, 否则为空字符串
      */
     @NotNull
     public static String getResourcePackPrompt() {
@@ -413,9 +443,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets whether the server resource pack is enforced.
+     * 获取服务器资源包是否为强制要求.
+     * <p>
+     * 原文:Gets whether the server resource pack is enforced.
      *
-     * @return whether the server resource pack is enforced
+     * @return 服务器资源包是否为强制要求
      */
     public static boolean isResourcePackRequired() {
         return server.isResourcePackRequired();
@@ -444,24 +476,32 @@ public final class Bukkit {
     }
 
     /**
-     * Gets whether the server whitelist is enforced.
-     *
+     * 获取服务器白名单是否为强制执行.
+     * <p>
+     * 如果白名单为强制执行, 当服务器白名单被重载时, 不在白名单中的玩家将被断开连接.
+     * <p>
+     * 原文:Gets whether the server whitelist is enforced.
+     * <p>
      * If the whitelist is enforced, non-whitelisted players will be
      * disconnected when the server whitelist is reloaded.
      *
-     * @return whether the server whitelist is enforced
+     * @return 服务器白名单是否为强制执行
      */
     public static boolean isWhitelistEnforced() {
         return server.isWhitelistEnforced();
     }
 
     /**
-     * Sets if the server whitelist is enforced.
-     *
+     * 设置服务器白名单是否为强制执行.
+     * <p>
+     * 如果白名单为强制执行, 当服务器白名单被重载时, 不在白名单中的玩家将被断开连接.
+     * <p>
+     * 原文:Sets if the server whitelist is enforced.
+     * <p>
      * If the whitelist is enforced, non-whitelisted players will be
      * disconnected when the server whitelist is reloaded.
      *
-     * @param value true for enforced, false for not
+     * @param value true为强制执行, false为不强制执行
      */
     public static void setWhitelistEnforced(boolean value) {
         server.setWhitelistEnforced(value);
@@ -748,7 +788,20 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the default ticks per water underground creature spawns value.
+     * 获取每隔多少tick应该生成一次水下穴居生物.
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成水下穴居生物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成水下穴居生物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 水下穴居生物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <p>
+     * 原文:Gets the default ticks per water underground creature spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -763,7 +816,7 @@ public final class Bukkit {
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water underground creature spawn value
+     * @return 每隔多少tick应该生成一次水下穴居生物
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
@@ -772,7 +825,22 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the default ticks per {@link SpawnCategory} spawns value.
+     * 获取每隔多少tick应该生成一次指定{@link SpawnCategory 生成类别}的生物.
+     * <p>
+     * <b>例如:</b>
+     * <ul>
+     * <li>此值为 1 表示服务器会在每个tick尝试生成该类别的生物.
+     * <li>此值为 400 表示服务器会每隔400tick尝试生成该类别的生物.
+     * <li>此值小于 0 表示会使用Minecraft的默认设置.
+     * </ul>
+     * <p>
+     * <b>注意:</b> 如果设为 0, 该类别的生物生成会被禁用.
+     * <p>
+     * Minecraft使用的默认值: 1.
+     * <br>
+     * <b>注意: </b> {@link SpawnCategory#MISC} 类别不予考虑.
+     * <p>
+     * 原文:Gets the default ticks per {@link SpawnCategory} spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -789,8 +857,8 @@ public final class Bukkit {
      * <br>
      * <b>Note: </b> the {@link SpawnCategory#MISC} are not consider.
      *
-     * @param spawnCategory the category of spawn
-     * @return the default ticks per {@link SpawnCategory} mobs spawn value
+     * @param spawnCategory 生成类别
+     * @return 每隔多少tick应该生成一次该类别生物的默认值
      */
     public static int getTicksPerSpawns(@NotNull SpawnCategory spawnCategory) {
         return server.getTicksPerSpawns(spawnCategory);
@@ -1037,16 +1105,20 @@ public final class Bukkit {
     }
 
     /**
-     * Create a new explorer map targeting the closest nearby structure of a
+     * 创建一个以最近的指定{@link StructureType 结构类型}为目标的新探险家地图.
+     * <br>
+     * 此方法使用实现默认的半径和findUnexplored值 (通常为 100, true).
+     * <p>
+     * 原文:Create a new explorer map targeting the closest nearby structure of a
      * given {@link StructureType}.
      * <br>
      * This method uses implementation default values for radius and
      * findUnexplored (usually 100, true).
      *
-     * @param world the world the map will belong to
-     * @param location the origin location to find the nearest structure
-     * @param structureType the type of structure to find
-     * @return a newly created item stack
+     * @param world 地图所属的世界
+     * @param location 查找最近结构的起始位置
+     * @param structureType 要查找的结构类型
+     * @return 新创建的物品堆
      *
      * @see World#locateNearestStructure(org.bukkit.Location,
      *      org.bukkit.StructureType, int, boolean)
@@ -1057,19 +1129,22 @@ public final class Bukkit {
     }
 
     /**
-     * Create a new explorer map targeting the closest nearby structure of a
+     * 创建一个以最近的指定{@link StructureType 结构类型}为目标的新探险家地图.
+     * <br>
+     * 此方法使用实现默认的半径和findUnexplored值 (通常为 100, true).
+     * <p>
+     * 原文:Create a new explorer map targeting the closest nearby structure of a
      * given {@link StructureType}.
      * <br>
      * This method uses implementation default values for radius and
      * findUnexplored (usually 100, true).
      *
-     * @param world the world the map will belong to
-     * @param location the origin location to find the nearest structure
-     * @param structureType the type of structure to find
-     * @param radius radius to search, see World#locateNearestStructure for more
-     *               information
-     * @param findUnexplored whether to find unexplored structures
-     * @return the newly created item stack
+     * @param world 地图所属的世界
+     * @param location 查找最近结构的起始位置
+     * @param structureType 要查找的结构类型
+     * @param radius 搜索半径, 详见 World#locateNearestStructure
+     * @param findUnexplored 是否查找未探索的结构
+     * @return 新创建的物品堆
      *
      * @see World#locateNearestStructure(org.bukkit.Location,
      *      org.bukkit.StructureType, int, boolean)
@@ -1190,7 +1265,20 @@ public final class Bukkit {
     }
 
     /**
-     * Get the {@link Recipe} for the list of ItemStacks provided.
+     * 获取给定物品堆列表对应的{@link Recipe 配方}.
+     *
+     * <p>该列表的格式为合成矩阵, 索引遵循以下模式:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>注意: 此方法不会修改提供的物品堆数组, 如需修改, 请使用
+     * {@link #craftItem(ItemStack[], World, Player)}.</p>
+     * <p>
+     * 原文:Get the {@link Recipe} for the list of ItemStacks provided.
      *
      * <p>The list is formatted as a crafting matrix where the index follow
      * the pattern below:</p>
@@ -1204,10 +1292,9 @@ public final class Bukkit {
      * <p>NOTE: This method will not modify the provided ItemStack array, for that, use
      * {@link #craftItem(ItemStack[], World, Player)}.</p>
      *
-     * @param craftingMatrix list of items to be crafted from.
-     *                       Must not contain more than 9 items.
-     * @param world The world the crafting takes place in.
-     * @return the {@link Recipe} resulting from the given crafting matrix.
+     * @param craftingMatrix 要合成的物品列表. 最多不能超过9个物品.
+     * @param world 合成发生所在的世界
+     * @return 给定合成矩阵对应的{@link Recipe 配方}
      */
     @Nullable
     public static Recipe getCraftingRecipe(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
@@ -1215,7 +1302,21 @@ public final class Bukkit {
     }
 
     /**
-     * Get the crafted item using the list of {@link ItemStack} provided.
+     * 使用提供的{@link ItemStack}列表获取合成后的物品.
+     *
+     * <p>该列表的格式为合成矩阵, 索引遵循以下模式:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>{@link World}和{@link Player}参数是完成Bukkit合成事件所必需的.</p>
+     *
+     * <p>调用{@link org.bukkit.event.inventory.PrepareItemCraftEvent}以模拟{@link Player}发起合成事件.</p>
+     * <p>
+     * 原文:Get the crafted item using the list of {@link ItemStack} provided.
      *
      * <p>The list is formatted as a crafting matrix where the index follow
      * the pattern below:</p>
@@ -1232,11 +1333,10 @@ public final class Bukkit {
      * <p>Calls {@link org.bukkit.event.inventory.PrepareItemCraftEvent} to imitate the {@link Player}
      * initiating the crafting event.</p>
      *
-     * @param craftingMatrix list of items to be crafted from.
-     *                       Must not contain more than 9 items.
-     * @param world The world the crafting takes place in.
-     * @param player The player to imitate the crafting event on.
-     * @return resulting {@link ItemCraftResult} containing the resulting item, matrix and any overflow items.
+     * @param craftingMatrix 要合成的物品列表. 最多不能超过9个物品.
+     * @param world 合成发生所在的世界
+     * @param player 模拟合成事件的玩家
+     * @return 包含合成结果物品、矩阵和任何溢出物品的{@link ItemCraftResult}
      */
     @NotNull
     public static ItemCraftResult craftItemResult(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player) {
@@ -1244,7 +1344,17 @@ public final class Bukkit {
     }
 
     /**
-     * Get the crafted item using the list of {@link ItemStack} provided.
+     * 使用提供的{@link ItemStack}列表获取合成后的物品.
+     *
+     * <p>该列表的格式为合成矩阵, 索引遵循以下模式:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     * <p>
+     * 原文:Get the crafted item using the list of {@link ItemStack} provided.
      *
      * <p>The list is formatted as a crafting matrix where the index follow
      * the pattern below:</p>
@@ -1255,10 +1365,9 @@ public final class Bukkit {
      * [ 6 7 8 ]
      * </pre>
      *
-     * @param craftingMatrix list of items to be crafted from.
-     *                       Must not contain more than 9 items.
-     * @param world The world the crafting takes place in.
-     * @return resulting {@link ItemCraftResult} containing the resulting item, matrix and any overflow items.
+     * @param craftingMatrix 要合成的物品列表. 最多不能超过9个物品.
+     * @param world 合成发生所在的世界
+     * @return 包含合成结果物品、矩阵和任何溢出物品的{@link ItemCraftResult}
      */
     @NotNull
     public static ItemCraftResult craftItemResult(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
@@ -1267,7 +1376,21 @@ public final class Bukkit {
 
 
     /**
-     * Get the crafted item using the list of {@link ItemStack} provided.
+     * 使用提供的{@link ItemStack}列表获取合成后的物品.
+     *
+     * <p>该列表的格式为合成矩阵, 索引遵循以下模式:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     *
+     * <p>{@link World}和{@link Player}参数是完成Bukkit合成事件所必需的.</p>
+     *
+     * <p>调用{@link org.bukkit.event.inventory.PrepareItemCraftEvent}以模拟{@link Player}发起合成事件.</p>
+     * <p>
+     * 原文:Get the crafted item using the list of {@link ItemStack} provided.
      *
      * <p>The list is formatted as a crafting matrix where the index follow
      * the pattern below:</p>
@@ -1284,12 +1407,10 @@ public final class Bukkit {
      * <p>Calls {@link org.bukkit.event.inventory.PrepareItemCraftEvent} to imitate the {@link Player}
      * initiating the crafting event.</p>
      *
-     * @param craftingMatrix list of items to be crafted from.
-     *                       Must not contain more than 9 items.
-     * @param world The world the crafting takes place in.
-     * @param player The player to imitate the crafting event on.
-     * @return the {@link ItemStack} resulting from the given crafting matrix, if no recipe is found
-     * an ItemStack of {@link Material#AIR} is returned.
+     * @param craftingMatrix 要合成的物品列表. 最多不能超过9个物品.
+     * @param world 合成发生所在的世界
+     * @param player 模拟合成事件的玩家
+     * @return 给定合成矩阵对应的{@link ItemStack}, 如果未找到配方则返回{@link Material#AIR}的物品堆
      */
     @NotNull
     public static ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world, @NotNull Player player) {
@@ -1297,7 +1418,17 @@ public final class Bukkit {
     }
 
     /**
-     * Get the crafted item using the list of {@link ItemStack} provided.
+     * 使用提供的{@link ItemStack}列表获取合成后的物品.
+     *
+     * <p>该列表的格式为合成矩阵, 索引遵循以下模式:</p>
+     *
+     * <pre>
+     * [ 0 1 2 ]
+     * [ 3 4 5 ]
+     * [ 6 7 8 ]
+     * </pre>
+     * <p>
+     * 原文:Get the crafted item using the list of {@link ItemStack} provided.
      *
      * <p>The list is formatted as a crafting matrix where the index follow
      * the pattern below:</p>
@@ -1308,11 +1439,9 @@ public final class Bukkit {
      * [ 6 7 8 ]
      * </pre>
      *
-     * @param craftingMatrix list of items to be crafted from.
-     *                       Must not contain more than 9 items.
-     * @param world The world the crafting takes place in.
-     * @return the {@link ItemStack} resulting from the given crafting matrix, if no recipe is found
-     * an ItemStack of {@link Material#AIR} is returned.
+     * @param craftingMatrix 要合成的物品列表. 最多不能超过9个物品.
+     * @param world 合成发生所在的世界
+     * @return 给定合成矩阵对应的{@link ItemStack}, 如果未找到配方则返回{@link Material#AIR}的物品堆
      */
     @NotNull
     public static ItemStack craftItem(@NotNull ItemStack[] craftingMatrix, @NotNull World world) {
@@ -1403,11 +1532,13 @@ public final class Bukkit {
     }
 
     /**
-     * Gets whether the server should send a preview of the player's chat
+     * 获取服务器是否应该在玩家发送消息时向客户端发送玩家聊天消息的预览.
+     * <p>
+     * 原文:Gets whether the server should send a preview of the player's chat
      * message to the client when the player sends a message
      *
-     * @return true if the server should send a preview, false otherwise
-     * @deprecated chat previews have been removed
+     * @return 如果服务器应该发送预览则返回true, 否则返回false
+     * @deprecated 聊天预览功能已被移除
      */
     @Deprecated(since = "1.19.3")
     public static boolean shouldSendChatPreviews() {
@@ -1415,29 +1546,35 @@ public final class Bukkit {
     }
 
     /**
-     * Gets whether the server only allow players with Mojang-signed public key
+     * 获取服务器是否只允许拥有Mojang签名公钥的玩家加入.
+     * <p>
+     * 原文:Gets whether the server only allow players with Mojang-signed public key
      * to join
      *
-     * @return true if only Mojang-signed players can join, false otherwise
+     * @return 如果只有Mojang签名的玩家可以加入则返回true, 否则返回false
      */
     public static boolean isEnforcingSecureProfiles() {
         return server.isEnforcingSecureProfiles();
     }
 
     /**
-     * Gets whether this server is allowing connections transferred from other
+     * 获取此服务器是否允许从其他服务器转入的连接.
+     * <p>
+     * 原文:Gets whether this server is allowing connections transferred from other
      * servers.
      *
-     * @return true if the server accepts transfers, false otherwise
+     * @return 如果服务器接受转入则返回true, 否则返回false
      */
     public static boolean isAcceptingTransfers() {
         return server.isAcceptingTransfers();
     }
 
     /**
-     * Gets whether the Server hide online players in server status.
+     * 获取服务器是否在服务器状态中隐藏在线玩家.
+     * <p>
+     * 原文:Gets whether the Server hide online players in server status.
      *
-     * @return true if the server hide online players, false otherwise
+     * @return 如果服务器隐藏在线玩家则返回true, 否则返回false
      */
     public static boolean getHideOnlinePlayers() {
         return server.getHideOnlinePlayers();
@@ -1892,8 +2029,7 @@ public final class Bukkit {
      *
      * @param title 查看商人物品栏时显示的标题
      * @return 新的商人
-     * @deprecated The title parameter is no-longer needed when used with
-     * {@link MenuType#MERCHANT} and {@link MenuType.Typed#builder()}.
+     * @deprecated 当与{@link MenuType#MERCHANT}和{@link MenuType.Typed#builder()}一起使用时, 不再需要title参数.
      */
     @Deprecated(since = "1.21.4")
     @NotNull
@@ -1914,11 +2050,12 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the amount of consecutive neighbor updates before skipping
+     * 获取在跳过额外更新之前允许的连续邻居更新数量.
+     * <p>
+     * 原文:Gets the amount of consecutive neighbor updates before skipping
      * additional ones.
      *
-     * @return the amount of consecutive neighbor updates, if the value is
-     * negative then the limit it's not used
+     * @return 连续邻居更新的数量, 如果值为负数则表示未使用该限制
      */
     public static int getMaxChainedNeighborUpdates() {
         return server.getMaxChainedNeighborUpdates();
@@ -1982,11 +2119,13 @@ public final class Bukkit {
     }
 
     /**
-     * Get user-specified limit for number of water creature underground that can spawn
+     * 获取一个区块最大可生成的水下穴居生物数量.
+     * <p>
+     * 原文:Get user-specified limit for number of water creature underground that can spawn
      * in a chunk.
      *
-     * @return the water underground creature limit
-     * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
+     * @return 水下穴居生物的生成限制数
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     public static int getWaterUndergroundCreatureSpawnLimit() {
@@ -2008,13 +2147,17 @@ public final class Bukkit {
     }
 
     /**
-     * Gets user-specified limit for number of {@link SpawnCategory} mobs that can spawn in
+     * 获取一个区块最大可生成的指定{@link SpawnCategory 生成类别}生物的数量.
+     * <p>
+     * <b>注意: {@link SpawnCategory#MISC}类别不予考虑.</b>
+     * <p>
+     * 原文:Gets user-specified limit for number of {@link SpawnCategory} mobs that can spawn in
      * a chunk.
      *
      * <b>Note: the {@link SpawnCategory#MISC} are not consider.</b>
      *
-     * @param spawnCategory the category spawn
-     * @return the {@link SpawnCategory} spawn limit
+     * @param spawnCategory 生成类别
+     * @return 该{@link SpawnCategory 生成类别}的生成限制数
      */
     public static int getSpawnLimit(@NotNull SpawnCategory spawnCategory) {
         return server.getSpawnLimit(spawnCategory);
@@ -2063,9 +2206,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the server links which will be sent to clients
+     * 获取将发送给客户端的服务器链接.
+     * <p>
+     * 原文:Gets the server links which will be sent to clients
      *
-     * @return the server's links
+     * @return 服务器的链接
      */
     @NotNull
     public static ServerLinks getServerLinks() {
@@ -2110,9 +2255,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the instance of the entity factory (for {@link EntitySnapshot}).
+     * 获取实体工厂实例 (用于{@link EntitySnapshot}).
+     * <p>
+     * 原文:Gets the instance of the entity factory (for {@link EntitySnapshot}).
      *
-     * @return the entity factory
+     * @return 实体工厂实例
      * @see EntityFactory
      */
     @NotNull
@@ -2137,11 +2284,13 @@ public final class Bukkit {
     }
 
     /**
-     * Get (or create) a new {@link Criteria} by its name.
+     * 获取(或创建)一个按名称指定的新{@link Criteria 计分标准}.
+     * <p>
+     * 原文:Get (or create) a new {@link Criteria} by its name.
      *
-     * @param name the criteria name
-     * @return the criteria
-     * @see Criteria Criteria for a list of constants
+     * @param name 计分标准名称
+     * @return 计分标准实例
+     * @see Criteria 计分标准的常量列表
      */
     @NotNull
     public static Criteria getScoreboardCriteria(@NotNull String name) {
@@ -2230,24 +2379,30 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the pause when empty threshold seconds. To save resources, the
+     * 获取服务器空闲暂停阈值(秒). 为节省资源, 当没有玩家在线时, 服务器将在此时间后暂停大部分功能.
+     * <p>
+     * 原文:Gets the pause when empty threshold seconds. To save resources, the
      * server will pause most functions after this time if there are no players
      * online.
      *
-     * @return the pause threshold in seconds
+     * @return 暂停阈值(秒)
      */
     public static int getPauseWhenEmptyTime() {
         return server.getPauseWhenEmptyTime();
     }
 
     /**
-     * Sets the pause when empty threshold seconds. To save resources, the
+     * 设置服务器空闲暂停阈值(秒). 为节省资源, 当没有玩家在线时, 服务器将在此时间后暂停大部分功能.
+     * <p>
+     * 小于0的值将禁用此设置.
+     * <p>
+     * 原文:Sets the pause when empty threshold seconds. To save resources, the
      * server will pause most functions after this time if there are no players
      * online.
      * <p>
      * A value of less than 0 will disable the setting
      *
-     * @param seconds the pause threshold in seconds
+     * @param seconds 暂停阈值(秒)
      */
     public static void setPauseWhenEmptyTime(int seconds) {
         server.setPauseWhenEmptyTime(seconds);
@@ -2338,7 +2493,16 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the {@link KeyedBossBar} specified by this key.
+     * 获取由此key指定的{@link KeyedBossBar}.
+     * <ul>
+     *   <li><b>不</b>绑定到{@link org.bukkit.entity.Boss}</li>
+     *   <li>
+     *     <b>不是</b>由{@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}创建的
+     *   </li>
+     * </ul>
+     * 例如: 使用bossbar命令创建的boss血量条
+     * <p>
+     * 原文:Gets the {@link KeyedBossBar} specified by this key.
      * <ul>
      *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
      *   <li>
@@ -2349,8 +2513,8 @@ public final class Bukkit {
      *
      * e.g. bossbars created using the bossbar command
      *
-     * @param key unique bossbar key
-     * @return bossbar or null if not exists
+     * @param key 唯一的boss血量条key
+     * @return boss血量条, 如果不存在则返回null
      */
     @Nullable
     public static KeyedBossBar getBossBar(@NotNull NamespacedKey key) {
@@ -2358,7 +2522,16 @@ public final class Bukkit {
     }
 
     /**
-     * Removes a {@link KeyedBossBar} specified by this key.
+     * 移除此key指定的{@link KeyedBossBar}.
+     * <ul>
+     *   <li><b>不</b>绑定到{@link org.bukkit.entity.Boss}</li>
+     *   <li>
+     *     <b>不是</b>由{@link #createBossBar(String, BarColor, BarStyle, BarFlag...)}创建的
+     *   </li>
+     * </ul>
+     * 例如: 使用bossbar命令创建的boss血量条
+     * <p>
+     * 原文:Removes a {@link KeyedBossBar} specified by this key.
      * <ul>
      *   <li><b>not</b> bound to a {@link org.bukkit.entity.Boss}</li>
      *   <li>
@@ -2369,8 +2542,8 @@ public final class Bukkit {
      *
      * e.g. bossbars created using the bossbar command
      *
-     * @param key unique bossbar key
-     * @return true if removal succeeded or false
+     * @param key 唯一的boss血量条key
+     * @return 如果移除成功则返回true, 否则返回false
      */
     public static boolean removeBossBar(@NotNull NamespacedKey key) {
         return server.removeBossBar(key);
@@ -2417,11 +2590,13 @@ public final class Bukkit {
     }
 
     /**
-     * Creates a new {@link BlockData} instance for the specified Material, with
+     * 为指定的{@link Material 材质}创建一个新的{@link BlockData 方块数据}实例, 所有属性初始化为未指定的默认值.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance for the specified Material, with
      * all properties initialized to unspecified defaults.
      *
-     * @param material the material
-     * @return new data instance
+     * @param material 材质
+     * @return 新的方块数据实例
      */
     @NotNull
     public static BlockData createBlockData(@NotNull Material material) {
@@ -2429,12 +2604,14 @@ public final class Bukkit {
     }
 
     /**
-     * Creates a new {@link BlockData} instance for the specified Material, with
+     * 为指定的{@link Material 材质}创建一个新的{@link BlockData 方块数据}实例, 所有属性初始化为未指定的默认值.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance for the specified Material, with
      * all properties initialized to unspecified defaults.
      *
-     * @param material the material
-     * @param consumer consumer to run on new instance before returning
-     * @return new data instance
+     * @param material 材质
+     * @param consumer 返回前在新实例上运行的消费者函数
+     * @return 新的方块数据实例
      */
     @NotNull
     public static BlockData createBlockData(@NotNull Material material, @Nullable Consumer<? super BlockData> consumer) {
@@ -2442,12 +2619,14 @@ public final class Bukkit {
     }
 
     /**
-     * Creates a new {@link BlockData} instance with material and properties
+     * 创建一个从提供的数据字符串解析材质和属性的新{@link BlockData 方块数据}实例.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance with material and properties
      * parsed from provided data.
      *
-     * @param data data string
-     * @return new data instance
-     * @throws IllegalArgumentException if the specified data is not valid
+     * @param data 数据字符串
+     * @return 新的方块数据实例
+     * @throws IllegalArgumentException 如果指定的数据无效
      */
     @NotNull
     public static BlockData createBlockData(@NotNull String data) throws IllegalArgumentException {
@@ -2455,14 +2634,17 @@ public final class Bukkit {
     }
 
     /**
-     * Creates a new {@link BlockData} instance for the specified Material, with
+     * 为指定的{@link Material 材质}创建一个新的{@link BlockData 方块数据}实例, 所有属性初始化为未指定的默认值,
+     * 但数据字符串中提供的属性除外.
+     * <p>
+     * 原文:Creates a new {@link BlockData} instance for the specified Material, with
      * all properties initialized to unspecified defaults, except for those
      * provided in data.
      *
-     * @param material the material
-     * @param data data string
-     * @return new data instance
-     * @throws IllegalArgumentException if the specified data is not valid
+     * @param material 材质
+     * @param data 数据字符串
+     * @return 新的方块数据实例
+     * @throws IllegalArgumentException 如果指定的数据无效
      */
     @NotNull
     @Contract("null, null -> fail")
@@ -2471,7 +2653,14 @@ public final class Bukkit {
     }
 
     /**
-     * Gets a tag which has already been defined within the server. Plugins are
+     * 获取服务器中已定义的标签. 建议插件使用{@link Tag}中的具体标签, 而不是使用此方法,
+     * 因为此方法不保证哪些标签可用, 且由于缺乏缓存可能导致性能下降.
+     * <br>
+     * 标签将以实现特定的方式搜索, 但期望的路径格式为 namespace/tags/registry/key.
+     * <br>
+     * 服务器实现可以仅处理{@link Tag}中指示的注册表.
+     * <p>
+     * 原文:Gets a tag which has already been defined within the server. Plugins are
      * suggested to use the concrete tags in {@link Tag} rather than this method
      * which makes no guarantees about which tags are available, and may also be
      * less performant due to lack of caching.
@@ -2482,11 +2671,11 @@ public final class Bukkit {
      * Server implementations are allowed to handle only the registries
      * indicated in {@link Tag}.
      *
-     * @param <T> type of the tag
-     * @param registry the tag registry to look at
-     * @param tag the name of the tag
-     * @param clazz the class of the tag entries
-     * @return the tag or null
+     * @param <T> 标签的类型
+     * @param registry 要查看的标签注册表
+     * @param tag 标签的名称
+     * @param clazz 标签条目的类
+     * @return 标签实例, 如果不存在则返回null
      */
     @Nullable
     public static <T extends Keyed> Tag<T> getTag(@NotNull String registry, @NotNull NamespacedKey tag, @NotNull Class<T> clazz) {
@@ -2496,10 +2685,10 @@ public final class Bukkit {
     /**
      * 获取服务器定义的所有标签.
      * <br>
-     * Server implementations are allowed to handle only the registries
-     * indicated in {@link Tag}.
+     * 服务器实现可以仅处理{@link Tag}中指示的注册表.
      * <br>
      * 对返回的迭代器的可变性不作保证.
+     * <p>
      * 原文:Gets a all tags which have been defined within the server.
      * <br>
      * Server implementations are allowed to handle only the registries
@@ -2507,10 +2696,10 @@ public final class Bukkit {
      * <br>
      * No guarantees are made about the mutability of the returned iterator.
      *
-     * @param <T> tag的类型
-     * @param registry the tag registry to look at
-     * @param clazz the class of the tag entries
-     * @return all defined tags
+     * @param <T> 标签的类型
+     * @param registry 要查看的标签注册表
+     * @param clazz 标签条目的类
+     * @return 所有已定义的标签
      */
     @NotNull
     public static <T extends Keyed> Iterable<Tag<T>> getTags(@NotNull String registry, @NotNull Class<T> clazz) {
@@ -2531,10 +2720,14 @@ public final class Bukkit {
     }
 
     /**
-     * 以给定的原版选择器选择筛选实体.
+     * 使用给定的原版选择器选择实体.
      * <br>
-     * 既不保证选择器的格式, 也不保证.
-     *
+     * 不保证选择器格式, 只保证它们与当前Minecraft版本的原版格式匹配.
+     * <br>
+     * 通常选择器以'@'开头, 除非是选择玩家, 此时可能只是玩家的名称或UUID.
+     * <br>
+     * 注意在原版中, 使用'@'选择器通常需要提升权限, 但此方法不应检查发送者的此类权限.
+     * <p>
      * 原文:Selects entities using the given Vanilla selector.
      * <br>
      * No guarantees are made about the selector format, other than they match
@@ -2547,12 +2740,10 @@ public final class Bukkit {
      * '@' selectors, but this method should not check such permissions from the
      * sender.
      *
-     * @param sender the sender to execute as, must be provided
-     * @param selector the selection string
-     * @return a list of the selected entities. The list will not be null, but
-     * no further guarantees are made.
-     * @throws IllegalArgumentException if the selector is malformed in any way
-     * or a parameter is null
+     * @param sender 要执行的发送者, 必须提供
+     * @param selector 选择字符串
+     * @return 选择的实体列表. 列表不会为null, 但不作进一步保证.
+     * @throws IllegalArgumentException 如果选择器格式错误或参数为null
      */
     @NotNull
     public static List<Entity> selectEntities(@NotNull CommandSender sender, @NotNull String selector) throws IllegalArgumentException {
@@ -2560,9 +2751,11 @@ public final class Bukkit {
     }
 
     /**
-     * Gets the structure manager for loading and saving structures.
+     * 获取用于加载和保存结构的结构管理器.
+     * <p>
+     * 原文:Gets the structure manager for loading and saving structures.
      *
-     * @return the structure manager
+     * @return 结构管理器实例
      */
     @NotNull
     public static StructureManager getStructureManager() {
@@ -2570,16 +2763,22 @@ public final class Bukkit {
     }
 
     /**
-     * Returns the registry for the given class.
+     * 返回给定类的注册表.
+     * <br>
+     * 如果给定类没有注册表则返回null.
+     * <br>
+     * 根据实现的不同, 并非{@link Registry}中的每个注册表都会由此方法返回.
+     * <p>
+     * 原文:Returns the registry for the given class.
      * <br>
      * If no registry is present for the given class null will be returned.
      * <br>
      * Depending on the implementation not every registry present in
      * {@link Registry} will be returned by this method.
      *
-     * @param tClass of the registry to get
-     * @param <T> type of the registry
-     * @return the corresponding registry or null if not present
+     * @param tClass 要获取的注册表的类
+     * @param <T> 注册表的类型
+     * @return 对应的注册表, 如果不存在则返回null
      */
     @Nullable
     public static <T extends Keyed> Registry<T> getRegistry(@NotNull Class<T> tClass) {
