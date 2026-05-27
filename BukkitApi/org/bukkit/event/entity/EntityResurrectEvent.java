@@ -36,10 +36,13 @@ public class EntityResurrectEvent extends EntityEvent implements Cancellable {
     }
 
     /**
+     * 获取发现不死图腾的手, 如果实体没有不死图腾则返回null.
+     * <p>
+     * 原文:
      * Get the hand in which the totem of undying was found, or null if the
      * entity did not have a totem of undying.
      *
-     * @return the hand, or null
+     * @return 持有不死图腾的手, 或null
      */
     @Nullable
     public EquipmentSlot getHand() {
