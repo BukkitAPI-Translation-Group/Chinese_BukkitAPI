@@ -4,96 +4,104 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Represents a component which dictates the attack range of the item.
+ * 表示一个决定物品攻击范围的组件。
  */
 @ApiStatus.Experimental
 public interface AttackRangeComponent extends ConfigurationSerializable {
 
     /**
-     * Gets the minimum distance the target must be from the attacker.
+     * 获取目标必须距离攻击者的最小距离。
+     * <p>原文：Gets the minimum distance the target must be from the attacker.
      *
-     * @return minimum reach distance
+     * @return 最小reach距离
      */
     float getMinReach();
 
     /**
-     * Sets the minimum distance the target must be from the attacker.
+     * 设置目标必须距离攻击者的最小距离。
+     * <p>原文：Sets the minimum distance the target must be from the attacker.
      *
-     * @param reach minimum reach distance
+     * @param reach 最小reach距离
      */
     void setMinReach(float reach);
 
     /**
-     * Gets the maximum distance the target must be from the attacker.
+     * 获取目标必须距离攻击者的最大距离。
+     * <p>原文：Gets the maximum distance the target must be from the attacker.
      *
-     * @return maximum reach
+     * @return 最大reach距离
      */
     float getMaxReach();
 
     /**
-     * Sets the maximum distance the target must be from the attacker.
+     * 设置目标必须距离攻击者的最大距离。
+     * <p>原文：Sets the maximum distance the target must be from the attacker.
      *
-     * @param reach maximum reach
+     * @param reach 最大reach距离
      */
     void setMaxReach(float reach);
 
     /**
-     * Gets the minimum distance the target must be from the attacker when the
-     * attacker is in creative mode.
+     * 获取当攻击者处于创造模式时目标必须距离攻击者的最小距离。
+     * <p>原文：Gets the minimum distance the target must be from the attacker when the attacker is in creative mode.
      *
-     * @return minimum reach distance
+     * @return 最小reach距离
      */
     float getMinCreativeReach();
 
     /**
-     * Sets the minimum distance the target must be from the attacker when the
-     * attacker is in creative mode.
+     * 设置当攻击者处于创造模式时目标必须距离攻击者的最小距离。
+     * <p>原文：Sets the minimum distance the target must be from the attacker when the attacker is in creative mode.
      *
-     * @param reach minimum reach distance
+     * @param reach 最小reach距离
      */
     void setMinCreativeReach(float reach);
 
     /**
-     * Gets the maximum distance the target must be from the attacker when the
-     * attacker is in creative mode.
+     * 获取当攻击者处于创造模式时目标必须距离攻击者的最大距离。
+     * <p>原文：Gets the maximum distance the target must be from the attacker when the attacker is in creative mode.
      *
-     * @return maximum reach
+     * @return 最大reach距离
      */
     float getMaxCreativeReach();
 
     /**
-     * Sets the maximum distance the target must be from the attacker when the
-     * attacker is in creative mode.
+     * 设置当攻击者处于创造模式时目标必须距离攻击者的最大距离。
+     * <p>原文：Sets the maximum distance the target must be from the attacker when the attacker is in creative mode.
      *
-     * @param reach maximum reach
+     * @param reach 最大reach距离
      */
     void setMaxCreativeReach(float reach);
 
     /**
-     * Gets the margin applied to the target hitbox.
+     * 获取应用于目标碰撞箱的边距。
+     * <p>原文：Gets the margin applied to the target hitbox.
      *
-     * @return the margin
+     * @return 边距
      */
     float getHitboxMargin();
 
     /**
-     * Sets the margin applied to the target hitbox.
+     * 设置应用于目标碰撞箱的边距。
+     * <p>原文：Sets the margin applied to the target hitbox.
      *
-     * @param margin target hitbox margin
+     * @param margin 目标碰撞箱边距
      */
     void setHitboxMargin(float margin);
 
     /**
-     * Gets the multiplier applied to reach when the item is used by a mob.
+     * 获取当物品被生物使用时应用于reach的倍率。
+     * <p>原文：Gets the multiplier applied to reach when the item is used by a mob.
      *
-     * @return the multiplier
+     * @return 倍率
      */
     float getMobFactor();
 
     /**
-     * Sets the multiplier applied to reach when the item is used by a mob.
+     * 设置当物品被生物使用时应用于reach的倍率。
+     * <p>原文：Sets the multiplier applied to reach when the item is used by a mob.
      *
-     * @param factor mob use multiplier
+     * @param factor 生物使用倍率
      */
     void setMobFactor(float factor);
 }

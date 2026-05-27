@@ -4,50 +4,56 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Represents a component which determines the attributes while using this item.
+ * 表示一个决定使用此物品时属性的组件。
  */
 @ApiStatus.Experimental
 public interface UseEffectsComponent extends ConfigurationSerializable {
 
     /**
-     * Gets whether the player can sprint while using this item.
+     * 获取玩家在使用此物品时是否可以冲刺。
+     * <p>原文：Gets whether the player can sprint while using this item.
      *
-     * @return whether player can sprint
+     * @return 玩家是否可以冲刺
      */
     boolean canSprint();
 
     /**
-     * Sets whether the player can sprint while using this item.
+     * 设置玩家在使用此物品时是否可以冲刺。
+     * <p>原文：Sets whether the player can sprint while using this item.
      *
-     * @param sprint whether player can sprint
+     * @param sprint 玩家是否可以冲刺
      */
     void setCanSprint(boolean sprint);
 
     /**
-     * Gets whether using this item will trigger vibrations.
+     * 获取使用此物品是否会触发振动。
+     * <p>原文：Gets whether using this item will trigger vibrations.
      *
-     * @return whether use will trigger vibrations
+     * @return 使用是否会触发振动
      */
     boolean isInteractVibrations();
 
     /**
-     * Sets whether using this item will trigger vibrations.
+     * 设置使用此物品是否会触发振动。
+     * <p>原文：Sets whether using this item will trigger vibrations.
      *
-     * @param interactVibrations whether use will trigger vibrations
+     * @param interactVibrations 使用是否会触发振动
      */
     void setInteractVibrations(boolean interactVibrations);
 
     /**
-     * Gets the speed multiplier applied to the player while using this item.
+     * 获取使用此物品时应用于玩家的速度倍率。
+     * <p>原文：Gets the speed multiplier applied to the player while using this item.
      *
-     * @return speed multiplier
+     * @return 速度倍率
      */
     float getSpeedMultiplier();
 
     /**
-     * Sets the speed multiplier applied to the player while using this item.
+     * 设置使用此物品时应用于玩家的速度倍率。
+     * <p>原文：Sets the speed multiplier applied to the player while using this item.
      *
-     * @param multiplier new multiplier
+     * @param multiplier 新的倍率
      */
     void setSpeedMultiplier(float multiplier);
 }

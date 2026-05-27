@@ -5,30 +5,33 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represent the effects to be removed when an item is consumed.
+ * 表示物品被消耗时要移除的效果。
  */
 public interface ConsumableRemoveEffect extends ConsumableEffect {
 
     /**
-     * Gets the effects which may be removed by this item when consumed.
+     * 获取消耗此物品时可能移除的效果。
+     * <p>原文：Gets the effects which may be removed by this item when consumed.
      *
-     * @return the effects
+     * @return 效果
      */
     @NotNull
     List<PotionEffectType> getEffectTypes();
 
     /**
-     * Sets the effects which may be removed by this item when consumed.
+     * 设置消耗此物品时可能移除的效果。
+     * <p>原文：Sets the effects which may be removed by this item when consumed.
      *
-     * @param effects new effects
+     * @param effects 新的效果
      */
     void setEffectTypes(@NotNull List<PotionEffectType> effects);
 
     /**
-     * Adds an effect which may be applied by this item when consumed.
+     * 添加一个消耗此物品时可能应用的效果。
+     * <p>原文：Adds an effect which may be applied by this item when consumed.
      *
-     * @param effect the effect
-     * @return the added effect
+     * @param effect 效果
+     * @return 添加的效果
      */
     @NotNull
     PotionEffectType addEffectType(@NotNull PotionEffectType effect);

@@ -1,40 +1,45 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Hoglin.
+ * 代表一只疣猪兽。
  */
 public interface Hoglin extends Animals, Enemy {
 
     /**
-     * Gets whether the hoglin is immune to zombification.
+     * 获取疣猪兽是否免疫僵尸化。
+     * <p>原文：Gets whether the hoglin is immune to zombification.
      *
      * @return Whether the hoglin is immune to zombification
      */
     public boolean isImmuneToZombification();
 
     /**
-     * Sets whether the hoglin is immune to zombification.
+     * 设置疣猪兽是否免疫僵尸化。
+     * <p>原文：Sets whether the hoglin is immune to zombification.
      *
      * @param flag Whether the hoglin is immune to zombification
      */
     public void setImmuneToZombification(boolean flag);
 
     /**
-     * Get whether the hoglin is able to be hunted by piglins.
+     * 获取疣猪兽是否能被猪灵猎杀。
+     * <p>原文：Get whether the hoglin is able to be hunted by piglins.
      *
      * @return Whether the hoglin is able to be hunted by piglins
      */
     public boolean isAbleToBeHunted();
 
     /**
-     * Sets whether the hoglin is able to be hunted by piglins.
+     * 设置疣猪兽是否能被猪灵猎杀。
+     * <p>原文：Sets whether the hoglin is able to be hunted by piglins.
      *
      * @param flag Whether the hoglin is able to be hunted by piglins.
      */
     public void setIsAbleToBeHunted(boolean flag);
 
     /**
-     * Gets the amount of ticks until this entity will be converted to a Zoglin.
+     * 获取此实体转换为僵尸疣猪兽所需的刻数。
+     * <p>原文：Gets the amount of ticks until this entity will be converted to a Zoglin.
      *
      * When this reaches 300, the entity will be converted.
      *
@@ -44,7 +49,8 @@ public interface Hoglin extends Animals, Enemy {
     public int getConversionTime();
 
     /**
-     * Sets the amount of ticks until this entity will be converted to a Zoglin.
+     * 设置此实体转换为僵尸疣猪兽所需的刻数。
+     * <p>原文：Sets the amount of ticks until this entity will be converted to a Zoglin.
      *
      * When this reaches 0, the entity will be converted. A value of less than 0
      * will stop the current conversion process without converting the current
@@ -55,7 +61,8 @@ public interface Hoglin extends Animals, Enemy {
     public void setConversionTime(int time);
 
     /**
-     * Get if this entity is in the process of converting to a Zoglin.
+     * 获取此实体是否正在转换为僵尸疣猪兽。
+     * <p>原文：Get if this entity is in the process of converting to a Zoglin.
      *
      * @return conversion status
      */

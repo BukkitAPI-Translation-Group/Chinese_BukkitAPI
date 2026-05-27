@@ -13,11 +13,11 @@ public enum EquipmentSlot {
     CHEST(() -> EquipmentSlotGroup.CHEST),
     HEAD(() -> EquipmentSlotGroup.HEAD),
     /**
-     * Only for certain entities such as horses and wolves.
+     * 仅适用于某些实体, 如马和狼.
      */
     BODY(() -> EquipmentSlotGroup.ARMOR),
     /**
-     * Only for certain entities such as horses and pigs.
+     * 仅适用于某些实体, 如马和猪.
      */
     SADDLE(() -> EquipmentSlotGroup.ARMOR);
 
@@ -28,9 +28,11 @@ public enum EquipmentSlot {
     }
 
     /**
-     * Gets the {@link EquipmentSlotGroup} corresponding to this slot.
+     * 获取此槽位对应的 {@link EquipmentSlotGroup}.
+     * <p>
+     * 原文：Gets the {@link EquipmentSlotGroup} corresponding to this slot.
      *
-     * @return corresponding {@link EquipmentSlotGroup}
+     * @return 对应的 {@link EquipmentSlotGroup}
      */
     @NotNull
     @ApiStatus.Internal

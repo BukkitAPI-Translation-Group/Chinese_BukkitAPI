@@ -5,45 +5,50 @@ import org.bukkit.potion.PotionEffect;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represent the effects applied when an item is consumed.
+ * 表示物品被消耗时应用的效果。
  */
 public interface ConsumableApplyEffects extends ConsumableEffect {
 
     /**
-     * Gets the effects which may be applied by this item when consumed.
+     * 获取消耗此物品时可能应用的效果。
+     * <p>原文：Gets the effects which may be applied by this item when consumed.
      *
-     * @return consumable effects
+     * @return 消耗效果
      */
     @NotNull
     List<PotionEffect> getEffects();
 
     /**
-     * Sets the effects which may be applied by this item when consumed.
+     * 设置消耗此物品时可能应用的效果。
+     * <p>原文：Sets the effects which may be applied by this item when consumed.
      *
-     * @param effects new effects
+     * @param effects 新的效果
      */
     void setEffects(@NotNull List<PotionEffect> effects);
 
     /**
-     * Adds an effect which may be applied by this item when consumed.
+     * 添加一个消耗此物品时可能应用的效果。
+     * <p>原文：Adds an effect which may be applied by this item when consumed.
      *
-     * @param effect the effect
-     * @return the added effect
+     * @param effect 效果
+     * @return 添加的效果
      */
     @NotNull
     PotionEffect addEffect(@NotNull PotionEffect effect);
 
     /**
-     * Gets the probability of this effect being applied.
+     * 获取此效果被应用的概率。
+     * <p>原文：Gets the probability of this effect being applied.
      *
-     * @return probability
+     * @return 概率
      */
     float getProbability();
 
     /**
-     * Sets the probability of this effect being applied.
+     * 设置此效果被应用的概率。
+     * <p>原文：Sets the probability of this effect being applied.
      *
-     * @param probability between 0 and 1 inclusive.
+     * @param probability 介于0和1之间（包含0和1）
      */
     void setProbability(float probability);
 }

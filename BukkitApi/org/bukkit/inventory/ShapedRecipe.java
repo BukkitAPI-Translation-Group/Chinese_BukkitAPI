@@ -10,60 +10,62 @@ import org.bukkit.material.MaterialData;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a shaped (ie normal) crafting recipe.
+ * 代表一个有序（即普通的）合成配方。
  */
 public class ShapedRecipe extends CraftingRecipe {
     private String[] rows;
     private Map<Character, RecipeChoice> ingredients = new HashMap<>();
 
-    /**
-     * Create a shaped recipe to craft the specified ItemStack. The
-     * constructor merely determines the result and type; to set the actual
-     * recipe, you'll need to call the appropriate methods.
-     *
-     * @param result The item you want the recipe to create.
-     * @see ShapedRecipe#shape(String...)
-     * @see ShapedRecipe#setIngredient(char, Material)
-     * @see ShapedRecipe#setIngredient(char, Material, int)
-     * @see ShapedRecipe#setIngredient(char, MaterialData)
-     * @see ShapedRecipe#setIngredient(char, RecipeChoice)
-     * @deprecated Recipes must have keys. Use {@link #ShapedRecipe(NamespacedKey, ItemStack)}
-     * instead.
-     */
+/**
+ * 创建一个合成指定物品的配方。构造函数仅决定结果和类型；要设置实际配方，你需要调用适当的方法。
+ *
+ * @param result 你希望配方创建的物品。
+ * @see ShapedRecipe#shape(String...)
+ * @see ShapedRecipe#setIngredient(char, Material)
+ * @see ShapedRecipe#setIngredient(char, Material, int)
+ * @see ShapedRecipe#setIngredient(char, MaterialData)
+ * @see ShapedRecipe#setIngredient(char, RecipeChoice)
+ * @deprecated 配方必须有键。请改用 {@link #ShapedRecipe(NamespacedKey, ItemStack)}。
+ * <p>原文：Create a shaped recipe to craft the specified ItemStack. The
+ * constructor merely determines the result and type; to set the actual
+ * recipe, you'll need to call the appropriate methods.
+ */
     @Deprecated(since = "1.12")
     public ShapedRecipe(@NotNull ItemStack result) {
         this(NamespacedKey.randomKey(), result);
     }
 
-    /**
-     * Create a shaped recipe to craft the specified ItemStack. The
-     * constructor merely determines the result and type; to set the actual
-     * recipe, you'll need to call the appropriate methods.
-     *
-     * @param key the unique recipe key
-     * @param result The item you want the recipe to create.
-     * @exception IllegalArgumentException if the {@code result} is an empty item (AIR)
-     * @see ShapedRecipe#shape(String...)
-     * @see ShapedRecipe#setIngredient(char, Material)
-     * @see ShapedRecipe#setIngredient(char, Material, int)
-     * @see ShapedRecipe#setIngredient(char, MaterialData)
-     * @see ShapedRecipe#setIngredient(char, RecipeChoice)
-     */
+/**
+ * 创建一个合成指定物品的配方。构造函数仅决定结果和类型；要设置实际配方，你需要调用适当的方法。
+ *
+ * @param key 配方的唯一键。
+ * @param result 你希望配方创建的物品。
+ * @exception IllegalArgumentException 如果 {@code result} 是空物品（AIR）。
+ * @see ShapedRecipe#shape(String...)
+ * @see ShapedRecipe#setIngredient(char, Material)
+ * @see ShapedRecipe#setIngredient(char, Material, int)
+ * @see ShapedRecipe#setIngredient(char, MaterialData)
+ * @see ShapedRecipe#setIngredient(char, RecipeChoice)
+ * <p>原文：Create a shaped recipe to craft the specified ItemStack. The
+ * constructor merely determines the result and type; to set the actual
+ * recipe, you'll need to call the appropriate methods.
+ */
     public ShapedRecipe(@NotNull NamespacedKey key, @NotNull ItemStack result) {
         super(key, checkResult(result));
     }
 
-    /**
-     * Set the shape of this recipe to the specified rows. Each character
-     * represents a different ingredient; excluding space characters, which
-     * must be empty, exactly what each character represents is set separately.
-     * The first row supplied corresponds with the upper most part of the recipe
-     * on the workbench e.g. if all three rows are supplies the first string
-     * represents the top row on the workbench.
-     *
-     * @param shape The rows of the recipe (up to 3 rows).
-     * @return The changed recipe, so you can chain calls.
-     */
+/**
+ * 设置此配方的形状为指定的行。每个字符代表不同的成分；空格字符必须为空，每个字符代表什么需要单独设置。第一行对应工作台最上方的部分，例如如果提供三行，第一行代表工作台最上面一行。
+ *
+ * @param shape 配方的行（最多3行）。
+ * @return 修改后的配方，以便链式调用。
+ * <p>原文：Set the shape of this recipe to the specified rows. Each character
+ * represents a different ingredient; excluding space characters, which
+ * must be empty, exactly what each character represents is set separately.
+ * The first row supplied corresponds with the upper most part of the recipe
+ * on the workbench e.g. if all three rows are supplies the first string
+ * represents the top row on the workbench.
+ */
     @NotNull
     public ShapedRecipe shape(@NotNull final String... shape) {
         Preconditions.checkArgument(shape != null, "Must provide a shape");
@@ -99,54 +101,57 @@ public class ShapedRecipe extends CraftingRecipe {
         return this;
     }
 
-    /**
-     * Sets the material that a character in the recipe shape refers to.
-     * <p>
-     * Note that before an ingredient can be set, the recipe's shape must be defined
-     * with {@link #shape(String...)}.
-     *
-     * @param key The character that represents the ingredient in the shape.
-     * @param ingredient The ingredient.
-     * @return The changed recipe, so you can chain calls.
-     * @throws IllegalArgumentException if the {@code key} is a space character
-     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
-     */
+/**
+ * 设置配方形状中某个字符引用的 {@link RecipeChoice}。注意，在设置成分之前，必须先使用 {@link #shape(String...)} 定义配方的形状。
+ *
+ * @param key 形状中代表成分的字符。
+ * @param ingredient 成分。
+ * @return 修改后的配方，以便链式调用。
+ * @throws IllegalArgumentException 如果 {@code key} 是空格字符。
+ * @throws IllegalArgumentException 如果 {@code key} 未出现在形状中。
+ * <p>原文：Sets the {@link RecipeChoice} that a character in the recipe shape refers to.
+ * <p>
+ * Note that before an ingredient can be set, the recipe's shape must be defined
+ * with {@link #shape(String...)}.
+ */
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull MaterialData ingredient) {
         return setIngredient(key, ingredient.getItemType(), ingredient.getData());
     }
 
-    /**
-     * Sets the material that a character in the recipe shape refers to.
-     * <p>
-     * Note that before an ingredient can be set, the recipe's shape must be defined
-     * with {@link #shape(String...)}.
-     *
-     * @param key The character that represents the ingredient in the shape.
-     * @param ingredient The ingredient.
-     * @return The changed recipe, so you can chain calls.
-     * @throws IllegalArgumentException if the {@code key} is a space character
-     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
-     */
+/**
+ * 设置配方形状中某个字符代表的材料。注意，在设置成分之前，必须先使用 {@link #shape(String...)} 定义配方的形状。
+ *
+ * @param key 形状中代表成分的字符。
+ * @param ingredient 成分。
+ * @return 修改后的配方，以便链式调用。
+ * @throws IllegalArgumentException 如果 {@code key} 是空格字符。
+ * @throws IllegalArgumentException 如果 {@code key} 未出现在形状中。
+ * <p>原文：Sets the material that a character in the recipe shape refers to.
+ * <p>
+ * Note that before an ingredient can be set, the recipe's shape must be defined
+ * with {@link #shape(String...)}.
+ */
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull Material ingredient) {
         return setIngredient(key, ingredient, 0);
     }
 
-    /**
-     * Sets the material that a character in the recipe shape refers to.
-     * <p>
-     * Note that before an ingredient can be set, the recipe's shape must be defined
-     * with {@link #shape(String...)}.
-     *
-     * @param key The character that represents the ingredient in the shape.
-     * @param ingredient The ingredient.
-     * @param raw The raw material data as an integer.
-     * @return The changed recipe, so you can chain calls.
-     * @throws IllegalArgumentException if the {@code key} is a space character
-     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
-     * @deprecated Magic value
-     */
+/**
+ * 设置配方形状中某个字符代表的材料。注意，在设置成分之前，必须先使用 {@link #shape(String...)} 定义配方的形状。
+ *
+ * @param key 形状中代表成分的字符。
+ * @param ingredient 成分。
+ * @param raw 原始材料数据的整数值。
+ * @return 修改后的配方，以便链式调用。
+ * @throws IllegalArgumentException 如果 {@code key} 是空格字符。
+ * @throws IllegalArgumentException 如果 {@code key} 未出现在形状中。
+ * @deprecated 魔法值。
+ * <p>原文：Sets the material that a character in the recipe shape refers to.
+ * <p>
+ * Note that before an ingredient can be set, the recipe's shape must be defined
+ * with {@link #shape(String...)}.
+ */
     @Deprecated(since = "1.6.2")
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull Material ingredient, int raw) {
@@ -162,18 +167,19 @@ public class ShapedRecipe extends CraftingRecipe {
         return this;
     }
 
-    /**
-     * Sets the {@link RecipeChoice} that a character in the recipe shape refers to.
-     * <p>
-     * Note that before an ingredient can be set, the recipe's shape must be defined
-     * with {@link #shape(String...)}.
-     *
-     * @param key The character that represents the ingredient in the shape.
-     * @param ingredient The ingredient.
-     * @return The changed recipe, so you can chain calls.
-     * @throws IllegalArgumentException if the {@code key} is a space character
-     * @throws IllegalArgumentException if the {@code key} does not appear in the shape.
-     */
+/**
+ * 设置配方形状中某个字符代表的材料。注意，在设置成分之前，必须先使用 {@link #shape(String...)} 定义配方的形状。
+ *
+ * @param key 形状中代表成分的字符。
+ * @param ingredient 成分。
+ * @return 修改后的配方，以便链式调用。
+ * @throws IllegalArgumentException 如果 {@code key} 是空格字符。
+ * @throws IllegalArgumentException 如果 {@code key} 未出现在形状中。
+ * <p>原文：Sets the material that a character in the recipe shape refers to.
+ * <p>
+ * Note that before an ingredient can be set, the recipe's shape must be defined
+ * with {@link #shape(String...)}.
+ */
     @NotNull
     public ShapedRecipe setIngredient(char key, @NotNull RecipeChoice ingredient) {
         Preconditions.checkArgument(key != ' ', "Space in recipe shape must represent no ingredient");
@@ -183,11 +189,12 @@ public class ShapedRecipe extends CraftingRecipe {
         return this;
     }
 
-    /**
-     * Get a copy of the ingredients map.
-     *
-     * @return The mapping of character to ingredients.
-     */
+/**
+ * 获取成分映射的副本。
+ *
+ * @return 字符到成分的映射。
+ * <p>原文：Get a copy of the ingredients map.
+ */
     @NotNull
     public Map<Character, ItemStack> getIngredientMap() {
         HashMap<Character, ItemStack> result = new HashMap<Character, ItemStack>();
@@ -201,11 +208,12 @@ public class ShapedRecipe extends CraftingRecipe {
         return result;
     }
 
-    /**
-     * Get a copy of the choice map.
-     *
-     * @return The mapping of character to ingredients.
-     */
+/**
+ * 获取选择映射的副本。
+ *
+ * @return 字符到成分的映射。
+ * <p>原文：Get a copy of the choice map.
+ */
     @NotNull
     public Map<Character, RecipeChoice> getChoiceMap() {
         Map<Character, RecipeChoice> result = new HashMap<>();
@@ -219,12 +227,13 @@ public class ShapedRecipe extends CraftingRecipe {
         return result;
     }
 
-    /**
-     * Get the shape.
-     *
-     * @return The recipe's shape.
-     * @throws NullPointerException when not set yet
-     */
+/**
+ * 获取形状。
+ *
+ * @return 配方的形状。
+ * @throws NullPointerException 尚未设置时抛出。
+ * <p>原文：Get the shape.
+ */
     @NotNull
     public String[] getShape() {
         return rows.clone();

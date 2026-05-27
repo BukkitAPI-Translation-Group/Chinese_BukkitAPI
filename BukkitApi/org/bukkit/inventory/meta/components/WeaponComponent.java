@@ -4,36 +4,40 @@ import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Represents a component which can turn any item into a weapon.
+ * 表示一个可以将任何物品转变为武器的组件。
  */
 @ApiStatus.Experimental
 public interface WeaponComponent extends ConfigurationSerializable {
 
     /**
-     * Get the weapon damage per attack.
+     * 获取每次攻击的武器伤害。
+     * <p>原文：Get the weapon damage per attack.
      *
-     * @return the damage per attack
+     * @return 每次攻击的伤害
      */
     int getItemDamagePerAttack();
 
     /**
-     * Set the weapon damage per attack.
+     * 设置每次攻击的武器伤害。
+     * <p>原文：Set the weapon damage per attack.
      *
-     * @param damage the damage to set. Must be 0 or a positive integer
+     * @param damage 要设置的伤害值。必须为0或正整数
      */
     void setItemDamagePerAttack(int damage);
 
     /**
-     * Get the time in seconds which this weapon disabled blocking for.
+     * 获取此武器禁用格挡的时间（以秒为单位）。
+     * <p>原文：Get the time in seconds which this weapon disabled blocking for.
      *
-     * @return the blocking disable time in seconds
+     * @return 禁用格挡的时间（以秒为单位）
      */
     float getDisableBlockingForSeconds();
 
     /**
-     * Set the time in seconds which this weapon disabled blocking for.
+     * 设置此武器禁用格挡的时间（以秒为单位）。
+     * <p>原文：Set the time in seconds which this weapon disabled blocking for.
      *
-     * @param time the blocking disable time in seconds
+     * @param time 禁用格挡的时间（以秒为单位）
      */
     void setDisableBlockingForSeconds(float time);
 }

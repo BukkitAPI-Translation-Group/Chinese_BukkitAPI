@@ -1,43 +1,42 @@
 package org.bukkit.entity;
 
 /**
- * Represents groups of entities with shared spawn behaviors and mob caps.
+ * 代表具有共享生成行为和生物上限的实体组。
  *
  * @see <a href="https://minecraft.wiki/w/Spawn#Java_Edition_mob_cap">Minecraft Wiki</a>
  */
 public enum SpawnCategory {
 
     /**
-     * Entities related to Monsters, eg: Witch, Zombie, Creeper, etc.
+     * 与怪物相关的实体，例如：女巫、僵尸、苦力怕等。
      */
     MONSTER,
     /**
-     * Entities related to Animals, eg: Strider, Cow, Turtle, etc.
+     * 与动物相关的实体，例如：炽足兽、牛、海龟等。
      */
     ANIMAL,
     /**
-     * Entities related to Water Animals, eg: Squid or Dolphin.
+     * 与水生动物相关的实体，例如：鱿鱼或海豚。
      */
     WATER_ANIMAL,
     /**
-     * Entities related to Water Ambient, eg: Cod, PufferFish, Tropical Fish,
-     * Salmon, etc.
+     * 与水生环境生物相关的实体，例如：鳕鱼、河豚、热带鱼、鲑鱼等。
      */
     WATER_AMBIENT,
     /**
-     * Entities related to Water Underground, eg: Glow Squid.
+     * 与水下生物相关的实体，例如：发光鱿鱼。
      */
     WATER_UNDERGROUND_CREATURE,
     /**
-     * Entities related to Ambient, eg: Bat.
+     * 与环境生物相关的实体，例如：蝙蝠。
      */
     AMBIENT,
     /**
-     * All the Axolotl are represented by this Category.
+     * 所有美西螈都属于此分类。
      */
     AXOLOTL,
     /**
-     * Entities not related to a mob, eg: Player, ArmorStand, Boat, etc.
+     * 与生物无关的实体，例如：玩家、盔甲架、船等。
      */
     MISC;
 }

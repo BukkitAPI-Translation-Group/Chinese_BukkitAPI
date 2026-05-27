@@ -4,22 +4,24 @@ import org.bukkit.Sound;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represent a sound played when an item is consumed.
+ * 表示物品被消耗时播放的音效。
  */
 public interface ConsumablePlaySound extends ConsumableEffect {
 
     /**
-     * Gets the sound to play on completion of the item's consumption.
+     * 获取物品消耗完成时播放的音效。
+     * <p>原文：Gets the sound to play on completion of the item's consumption.
      *
-     * @return the sound
+     * @return 音效
      */
     @Nullable
     Sound getSound();
 
     /**
-     * Sets the sound to play on completion of the item's consumption.
+     * 设置物品消耗完成时播放的音效。
+     * <p>原文：Sets the sound to play on completion of the item's consumption.
      *
-     * @param sound sound
+     * @param sound 音效
      */
     void setSound(@Nullable Sound sound);
 }

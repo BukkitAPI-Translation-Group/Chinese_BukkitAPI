@@ -49,70 +49,80 @@ public interface Panda extends Animals, Sittable {
     void setHiddenGene(@NotNull Gene gene);
 
     /**
-     * Gets whether the Panda is rolling
+     * 获取熊猫是否正在翻滚。
+     * <p>原文：Gets whether the Panda is rolling
      *
      * @return Whether the Panda is rolling
      */
     boolean isRolling();
 
     /**
-     * Sets whether the Panda is rolling
+     * 设置熊猫是否正在翻滚。
+     * <p>原文：Sets whether the Panda is rolling
      *
      * @param flag Whether the Panda is rolling
      */
     void setRolling(boolean flag);
 
     /**
-     * Gets whether the Panda is sneezing
+     * 获取熊猫是否正在打喷嚏。
+     * <p>原文：Gets whether the Panda is sneezing
      *
      * @return Whether the Panda is sneezing
      */
     boolean isSneezing();
 
     /**
-     * Sets whether the Panda is sneezing
+     * 设置熊猫是否正在打喷嚏。
+     * <p>原文：Sets whether the Panda is sneezing
      *
      * @param flag Whether the Panda is sneezing
      */
     void setSneezing(boolean flag);
 
     /**
-     * Gets whether the Panda is on its back
+     * 获取熊猫是否正在翻倒（背朝下）。
+     * <p>原文：Gets whether the Panda is on its back
      *
      * @return Whether the Panda is on its back
      */
     boolean isOnBack();
 
     /**
-     * Sets whether the Panda is on its back
+     * 设置熊猫是否正在翻倒（背朝下）。
+     * <p>原文：Sets whether the Panda is on its back
      *
      * @param flag Whether the Panda is on its back
      */
     void setOnBack(boolean flag);
 
     /**
-     * Gets whether the Panda is eating
+     * 获取熊猫是否正在进食。
+     * <p>原文：Gets whether the Panda is eating
      *
      * @return Whether the Panda is eating
      */
     boolean isEating();
 
     /**
-     * Sets the Panda's eating status. The panda must be holding food for this to work
+     * 设置熊猫的进食状态。熊猫必须持有食物才能生效。
+     * <p>原文：Sets the Panda's eating status. The panda must be holding food for this to work
      *
      * @param flag Whether the Panda is eating
      */
     void setEating(boolean flag);
 
     /**
-     * Gets whether the Panda is scared
+     * 获取熊猫是否害怕。
+     * <p>原文：Gets whether the Panda is scared
      *
      * @return Whether the Panda is scared
      */
     boolean isScared();
 
     /**
-     * Gets how many ticks the panda will be unhappy for
+     * 获取熊猫将不开心持续多少tick。
+     * <p>原文：Gets how many ticks the panda will be unhappy for
      *
      * @return The number of ticks the panda will be unhappy for
      */

@@ -10,33 +10,41 @@ import org.jetbrains.annotations.Nullable;
 public interface BundleMeta extends ItemMeta {
 
     /**
-     * Returns whether the item has any items.
+     * 返回此物品是否包含任何物品.
+     * <p>
+     * 原文：Returns whether the item has any items.
      *
-     * @return whether items are present
+     * @return 是否存在物品
      */
     boolean hasItems();
 
     /**
-     * Returns an immutable list of the items stored in this item.
+     * 返回存储在此物品中的物品的不可变列表.
+     * <p>
+     * 原文：Returns an immutable list of the items stored in this item.
      *
-     * @return items
+     * @return 物品列表
      */
     @NotNull
     List<ItemStack> getItems();
 
     /**
-     * Sets the items stored in this item.
+     * 设置存储在此物品中的物品.
      * <br>
-     * Removes all items when given null.
+     * 传入 null 时将移除所有物品.
+     * <p>
+     * 原文：Sets the items stored in this item. Removes all items when given null.
      *
-     * @param items the items to set
+     * @param items 要设置的物品
      */
     void setItems(@Nullable List<ItemStack> items);
 
     /**
-     * Adds an item to this item.
+     * 向此物品添加一个物品.
+     * <p>
+     * 原文：Adds an item to this item.
      *
-     * @param item item to add
+     * @param item 要添加的物品
      */
     void addItem(@NotNull ItemStack item);
 }

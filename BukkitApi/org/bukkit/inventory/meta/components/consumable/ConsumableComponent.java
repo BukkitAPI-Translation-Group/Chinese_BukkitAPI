@@ -9,98 +9,106 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a component which item can be consumed on use.
+ * 表示一个物品可以在使用时被消耗的组件。
  */
 @ApiStatus.Experimental
 public interface ConsumableComponent extends ConfigurationSerializable {
 
     /**
-     * Gets the time in seconds it will take for this item to be consumed.
+     * 获取消耗此物品所需的时间（以秒为单位）。
+     * <p>原文：Gets the time in seconds it will take for this item to be consumed.
      *
-     * @return consume time
+     * @return 消耗时间
      */
     float getConsumeSeconds();
 
     /**
-     * Sets the time in seconds it will take for this item to be consumed.
+     * 设置消耗此物品所需的时间（以秒为单位）。
+     * <p>原文：Sets the time in seconds it will take for this item to be consumed.
      *
-     * @param consumeSeconds new consume time
+     * @param consumeSeconds 新的消耗时间
      */
     void setConsumeSeconds(float consumeSeconds);
 
     /**
-     * Gets the animation used during consumption of the item.
+     * 获取消耗物品时使用的动画。
+     * <p>原文：Gets the animation used during consumption of the item.
      *
-     * @return animation
+     * @return 动画
      */
     @NotNull
     Animation getAnimation();
 
     /**
-     * Sets the animation used during consumption of the item.
+     * 设置消耗物品时使用的动画。
+     * <p>原文：Sets the animation used during consumption of the item.
      *
-     * @param animation the new animation
+     * @param animation 新的动画
      */
     void setAnimation(@NotNull Animation animation);
 
     /**
-     * Gets the sound to play during and on completion of the item's
-     * consumption.
+     * 获取在物品消耗期间和完成时播放的音效。
+     * <p>原文：Gets the sound to play during and on completion of the item's consumption.
      *
-     * @return the sound
+     * @return 音效
      */
     @Nullable
     Sound getSound();
 
     /**
-     * Sets the sound to play during and on completion of the item's
-     * consumption.
+     * 设置在物品消耗期间和完成时播放的音效。
+     * <p>原文：Sets the sound to play during and on completion of the item's consumption.
      *
-     * @param sound sound or null for current default
+     * @param sound 音效或null表示使用当前默认值
      */
     void setSound(@Nullable Sound sound);
 
     /**
-     * Gets whether consumption particles are emitted while consuming this item.
+     * 获取消耗此物品时是否发射消耗粒子。
+     * <p>原文：Gets whether consumption particles are emitted while consuming this item.
      *
-     * @return true for particles emitted while consuming, false otherwise
+     * @return 如果消耗时发射粒子则返回true，否则返回false
      */
     boolean hasConsumeParticles();
 
     /**
-     * Sets whether consumption particles are emitted while consuming this item.
+     * 设置消耗此物品时是否发射消耗粒子。
+     * <p>原文：Sets whether consumption particles are emitted while consuming this item.
      *
-     * @param consumeParticles if particles need to be emitted while consuming
-     * the item
+     * @param consumeParticles 消耗物品时是否需要发射粒子
      */
     void setConsumeParticles(boolean consumeParticles);
 
     /**
-     * Gets the effects which may be applied by this item when consumed.
+     * 获取消耗此物品时可能应用的效果。
+     * <p>原文：Gets the effects which may be applied by this item when consumed.
      *
-     * @return consumable effects
+     * @return 消耗效果
      */
     @NotNull
     List<ConsumableEffect> getEffects();
 
     /**
-     * Sets the effects which may be applied by this item when consumed.
+     * 设置消耗此物品时可能应用的效果。
+     * <p>原文：Sets the effects which may be applied by this item when consumed.
      *
-     * @param effects new effects
+     * @param effects 新的效果
      */
     void setEffects(@NotNull List<ConsumableEffect> effects);
 
     /**
-     * Adds an effect which may be applied by this item when consumed.
+     * 添加一个消耗此物品时可能应用的效果。
+     * <p>原文：Adds an effect which may be applied by this item when consumed.
      *
-     * @param effect the effect
-     * @return the added effect
+     * @param effect 效果
+     * @return 添加的效果
      */
     @NotNull
     ConsumableEffect addEffect(@NotNull ConsumableEffect effect);
 
     /**
-     * Represents the animations for an item being consumed.
+     * 表示物品被消耗时的动画。
      */
     public enum Animation {
 

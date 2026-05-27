@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a group of {@link EquipmentSlot}.
+ * 代表一组 {@link EquipmentSlot}.
  */
 @ApiStatus.Experimental
 public final class EquipmentSlotGroup implements Predicate<EquipmentSlot> {
@@ -51,11 +51,13 @@ public final class EquipmentSlotGroup implements Predicate<EquipmentSlot> {
     }
 
     /**
-     * Gets an {@link EquipmentSlot} which is an example of a slot in this
+     * 获取一个 {@link EquipmentSlot} 作为此组中槽位的示例.
+     * <p>
+     * 原文：Gets an {@link EquipmentSlot} which is an example of a slot in this
      * group.
      *
-     * @return an example slot
-     * @deprecated for internal compatibility use only
+     * @return 示例槽位
+     * @deprecated 仅用于内部兼容性
      */
     @NotNull
     @Deprecated(since = "1.20.5")
@@ -65,10 +67,12 @@ public final class EquipmentSlotGroup implements Predicate<EquipmentSlot> {
     }
 
     /**
-     * Gets the {@link EquipmentSlotGroup} corresponding to the given string.
+     * 获取与给定字符串对应的 {@link EquipmentSlotGroup}.
+     * <p>
+     * 原文：Gets the {@link EquipmentSlotGroup} corresponding to the given string.
      *
-     * @param name group name
-     * @return associated group or null
+     * @param name 组名
+     * @return 关联的组, 或 null
      */
     @Nullable
     @ApiStatus.Internal

@@ -6,40 +6,41 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a component which determines the cooldown applied to use of this
- * item.
+ * 表示一个决定此物品使用冷却时间的组件。
  */
 @ApiStatus.Experimental
 public interface UseCooldownComponent extends ConfigurationSerializable {
 
     /**
-     * Gets the time in seconds it will take for an item in this cooldown group
-     * to be available to use again.
+     * 获取此冷却组中的物品可以再次使用所需的时间（以秒为单位）。
+     * <p>原文：Gets the time in seconds it will take for an item in this cooldown group to be available to use again.
      *
-     * @return cooldown time
+     * @return 冷却时间
      */
     float getCooldownSeconds();
 
     /**
-     * Sets the time in seconds it will take for an item in this cooldown group
-     * to be available to use again.
+     * 设置此冷却组中的物品可以再次使用所需的时间（以秒为单位）。
+     * <p>原文：Sets the time in seconds it will take for an item in this cooldown group to be available to use again.
      *
-     * @param cooldown new eat time, must be greater than 0
+     * @param cooldown 新的冷却时间，必须大于0
      */
     void setCooldownSeconds(float cooldown);
 
     /**
-     * Gets the custom cooldown group to be used for similar items, if set.
+     * 获取用于相似物品的自定义冷却组（如果已设置）。
+     * <p>原文：Gets the custom cooldown group to be used for similar items, if set.
      *
-     * @return the cooldown group
+     * @return 冷却组
      */
     @Nullable
     NamespacedKey getCooldownGroup();
 
     /**
-     * Sets the custom cooldown group to be used for similar items.
+     * 设置用于相似物品的自定义冷却组。
+     * <p>原文：Sets the custom cooldown group to be used for similar items.
      *
-     * @param key the cooldown group
+     * @param key 冷却组
      */
     void setCooldownGroup(@Nullable NamespacedKey key);
 }

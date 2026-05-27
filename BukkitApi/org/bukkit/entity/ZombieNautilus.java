@@ -7,12 +7,16 @@ import org.bukkit.registry.RegistryAware;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a Zombie Nautilus.
+ * 表示僵尸鹦鹉螺。
  */
 public interface ZombieNautilus extends AbstractNautilus {
 
     /**
-     * Get the variant of this zombie nautilus.
+     * 获取此僵尸鹦鹉螺的变体。
+     *
+     * @return 僵尸鹦鹉螺变体
+     * <p>
+     * 原文：Get the variant of this zombie nautilus.
      *
      * @return zombie nautilus variant
      */
@@ -20,14 +24,18 @@ public interface ZombieNautilus extends AbstractNautilus {
     Variant getVariant();
 
     /**
-     * Set the variant of this zombie nautilus.
+     * 设置此僵尸鹦鹉螺的变体。
+     *
+     * @param variant 僵尸鹦鹉螺变体
+     * <p>
+     * 原文：Set the variant of this zombie nautilus.
      *
      * @param variant zombie nautilus variant
      */
     void setVariant(@NotNull Variant variant);
 
     /**
-     * Represents the variant of a zombie nautilus.
+     * 表示僵尸鹦鹉螺的变体。
      */
     interface Variant extends Keyed, RegistryAware {
 
@@ -36,6 +44,13 @@ public interface ZombieNautilus extends AbstractNautilus {
 
         /**
          * {@inheritDoc}
+         *
+         * @see #getKeyOrThrow()
+         * @see #isRegistered()
+         * @deprecated 密钥可能并不总是存在，请使用
+         * {@link #getKeyOrThrow()}代替。
+         * <p>
+         * 原文：{@inheritDoc}
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()

@@ -5,55 +5,59 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a component which determines the animation when using this item.
+ * 表示一个决定使用此物品时动画的组件。
  */
 @ApiStatus.Experimental
 public interface SwingAnimationComponent extends ConfigurationSerializable {
 
     /**
-     * Gets the animation type.
+     * 获取动画类型。
+     * <p>原文：Gets the animation type.
      *
-     * @return animation type
+     * @return 动画类型
      */
     @NotNull
     Type getType();
 
     /**
-     * Sets the animation type
+     * 设置动画类型。
+     * <p>原文：Sets the animation type.
      *
-     * @param type animation type
+     * @param type 动画类型
      */
     void setType(@NotNull Type type);
 
     /**
-     * Gets the animation duration.
+     * 获取动画持续时间。
+     * <p>原文：Gets the animation duration.
      *
-     * @return animation duration in ticks
+     * @return 动画持续时间（以刻为单位）
      */
     int getDuration();
 
     /**
-     * Sets the animation duration.
+     * 设置动画持续时间。
+     * <p>原文：Sets the animation duration.
      *
-     * @param ticks duration in ticks
+     * @param ticks 持续时间（以刻为单位）
      */
     void setDuration(int ticks);
 
     /**
-     * The diferent types of animation.
+     * 不同类型的动画。
      */
     public enum Type {
 
         /**
-         * No animation.
+         * 无动画。
          */
         NONE,
         /**
-         * Whacking animation.
+         * 挥击动画。
          */
         WHACK,
         /**
-         * Stabbing animation.
+         * 刺击动画。
          */
         STAB;
     }

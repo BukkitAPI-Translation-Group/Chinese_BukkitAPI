@@ -4,12 +4,16 @@ import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a vehicle entity.
+ * 表示载具实体。
  */
 public interface Vehicle extends Entity {
 
     /**
-     * Gets the vehicle's velocity.
+     * 获取载具的速度。
+     *
+     * @return 速度向量
+     * <p>
+     * 原文：Gets the vehicle's velocity.
      *
      * @return velocity vector
      */
@@ -18,7 +22,11 @@ public interface Vehicle extends Entity {
     public Vector getVelocity();
 
     /**
-     * Sets the vehicle's velocity in meters per tick.
+     * 设置载具的速度（单位：米/刻）。
+     *
+     * @param vel 速度向量
+     * <p>
+     * 原文：Sets the vehicle's velocity in meters per tick.
      *
      * @param vel velocity vector
      */

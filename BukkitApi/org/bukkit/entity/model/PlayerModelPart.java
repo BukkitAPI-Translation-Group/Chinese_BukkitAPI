@@ -3,37 +3,37 @@ package org.bukkit.entity.model;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
- * Represents a part of a player model/texture.
+ * 表示玩家模型/纹理的一部分。
  */
 @ApiStatus.Experimental
 public enum PlayerModelPart {
 
     /**
-     * Player cape.
+     * 玩家披风。
      */
     CAPE,
     /**
-     * Player torso covering.
+     * 玩家躯干覆盖物。
      */
     JACKET,
     /**
-     * Player left arm covering.
+     * 玩家左臂覆盖物。
      */
     LEFT_SLEEVE,
     /**
-     * Player right arm covering.
+     * 玩家右臂覆盖物。
      */
     RIGHT_SLEEVE,
     /**
-     * Player left leg covering.
+     * 玩家左腿覆盖物。
      */
     LEFT_PANTS_LEG,
     /**
-     * Player right leg covering.
+     * 玩家右腿覆盖物。
      */
     RIGHT_PANTS_LEG,
     /**
-     * Player hat/helmet.
+     * 玩家帽子/头盔。
      */
     HAT;
 }

@@ -5,58 +5,60 @@ import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a recipe which will change the type of the input material when
- * combined with an additional material, but preserve all custom data. Only the
- * item type of the result stack will be used.
+ * 代表一种配方，当与额外材料结合时会改变输入材料的类型，但保留所有自定义数据。仅使用结果物品栈的物品类型。
  * <br>
- * Used for dyeing shulker boxes in Vanilla.
+ * 在原版中用于给潜影盒染色。
  */
 public class TransmuteRecipe extends CraftingRecipe implements ComplexRecipe {
 
     private final RecipeChoice input;
     private final RecipeChoice material;
 
-    /**
-     * Create a transmute recipe to produce a result of the specified type.
-     *
-     * @param key the unique recipe key
-     * @param result the transmuted result item
-     * @param input the input ingredient
-     * @param material the additional ingredient
-     */
+/**
+ * 创建一个转化配方以产生指定类型的结果。
+ *
+ * @param key 配方的唯一键。
+ * @param result 转化后的结果物品。
+ * @param input 输入成分。
+ * @param material 额外成分。
+ * <p>原文：Create a transmute recipe to produce a result of the specified type.
+ */
     public TransmuteRecipe(@NotNull NamespacedKey key, @NotNull ItemStack result, @NotNull RecipeChoice input, @NotNull RecipeChoice material) {
         super(key, checkResult(result));
         this.input = input;
         this.material = material;
     }
 
-    /**
-     * Create a transmute recipe to produce a result of the specified type.
-     *
-     * @param key the unique recipe key
-     * @param result the transmuted result material
-     * @param input the input ingredient
-     * @param material the additional ingredient
-     */
+/**
+ * 创建一个转化配方以产生指定类型的结果。
+ *
+ * @param key 配方的唯一键。
+ * @param result 转化后的结果材料。
+ * @param input 输入成分。
+ * @param material 额外成分。
+ * <p>原文：Create a transmute recipe to produce a result of the specified type.
+ */
     public TransmuteRecipe(@NotNull NamespacedKey key, @NotNull Material result, @NotNull RecipeChoice input, @NotNull RecipeChoice material) {
         this(key, new ItemStack(result), input, material);
     }
 
-    /**
-     * Gets the input material, which will be transmuted.
-     *
-     * @return the input from transmutation
-     */
+/**
+ * 获取将被转化的输入材料。
+ *
+ * @return 转化的输入。
+ * <p>原文：Gets the input material, which will be transmuted.
+ */
     @NotNull
     public RecipeChoice getInput() {
         return input.clone();
     }
 
-    /**
-     * Gets the additional material required to cause the transmutation.
-     *
-     * @return the ingredient material
-     */
+/**
+ * 获取触发转化所需的额外材料。
+ *
+ * @return 成分材料。
+ * <p>原文：Gets the additional material required to cause the transmutation.
+ */
     @NotNull
     public RecipeChoice getMaterial() {
         return material.clone();

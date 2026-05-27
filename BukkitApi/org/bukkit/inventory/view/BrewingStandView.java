@@ -5,8 +5,7 @@ import org.bukkit.inventory.InventoryView;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * An instance of {@link InventoryView} which provides extra methods related to
- * brewing stand view data.
+ * 一个提供与酿造台视图数据相关额外方法的 {@link InventoryView} 实例。
  */
 public interface BrewingStandView extends InventoryView {
 
@@ -15,7 +14,13 @@ public interface BrewingStandView extends InventoryView {
     BrewerInventory getTopInventory();
 
     /**
-     * Gets the fuel level of this brewing stand.
+     * 获取此酿造台的燃料等级。
+     * <p>
+     * Minecraft中默认最大燃料等级为20。
+     *
+     * @return 剩余的燃料等级数量
+     * <p>
+     * 原文：Gets the fuel level of this brewing stand.
      * <p>
      * The default maximum fuel level in minecraft is 20.
      *
@@ -24,14 +29,23 @@ public interface BrewingStandView extends InventoryView {
     int getFuelLevel();
 
     /**
-     * Gets the amount of brewing ticks left.
+     * 获取剩余的酿造刻数。
+     *
+     * @return 酿造任务剩余的刻数
+     * <p>
+     * 原文：Gets the amount of brewing ticks left.
      *
      * @return The amount of ticks left for the brewing task
      */
     int getBrewingTicks();
 
     /**
-     * Sets the fuel level left.
+     * 设置剩余的燃料等级。
+     *
+     * @param level 燃料等级，不得小于0
+     * @throws IllegalArgumentException 如果等级小于0
+     * <p>
+     * 原文：Sets the fuel level left.
      *
      * @param level the level of the fuel, which is no less than 0
      * @throws IllegalArgumentException if the level is less than 0
@@ -39,7 +53,12 @@ public interface BrewingStandView extends InventoryView {
     void setFuelLevel(final int level) throws IllegalArgumentException;
 
     /**
-     * Sets the brewing ticks left.
+     * 设置剩余的酿造刻数。
+     *
+     * @param ticks 剩余的刻数，不得小于0
+     * @throws IllegalArgumentException 如果刻数小于0
+     * <p>
+     * 原文：Sets the brewing ticks left.
      *
      * @param ticks the ticks left, which is no less than 0
      * @throws IllegalArgumentException if the ticks are less than 0

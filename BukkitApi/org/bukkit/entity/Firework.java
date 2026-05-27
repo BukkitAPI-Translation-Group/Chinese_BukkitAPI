@@ -29,62 +29,78 @@ public interface Firework extends Projectile {
     void setFireworkMeta(@NotNull FireworkMeta meta);
 
     /**
-     * Set the {@link LivingEntity} to which this firework is attached.
+     * 设置此烟花火箭附着的 {@link LivingEntity}.
+     * <p>
+     * 当附着到实体时, 烟花效果将正常作用但保持在实体位置.
+     * 如果实体 {@code LivingEntity#isGliding() 正在滑翔}, 则实体将获得朝向其视线方向的推进力.
+     * <p>
+     * 原文：Set the {@link LivingEntity} to which this firework is attached.
      * <p>
      * When attached to an entity, the firework effect will act as normal but
      * remain positioned on the entity. If the entity {@code LivingEntity#isGliding()
      * is gliding}, then the entity will receive a boost in the direction that
      * they are looking.
      *
-     * @param entity the entity to which the firework should be attached, or
-     * null to remove the attached entity
-     * @return true if the entity could be attached, false if the firework was
-     * already detonated
+     * @param entity 烟花应附着的实体, 或 null 以移除附着的实体
+     * @return 如果实体可以附着则为 true, 如果烟花已经引爆则为 false
      */
     boolean setAttachedTo(@Nullable LivingEntity entity);
 
     /**
-     * Get the {@link LivingEntity} to which this firework is attached.
+     * 获取此烟花火箭附着的 {@link LivingEntity}.
+     * <p>
+     * 当附着到实体时, 烟花效果将正常作用但保持在实体位置.
+     * 如果实体 {@code LivingEntity#isGliding() 正在滑翔}, 则实体将获得朝向其视线方向的推进力.
+     * <p>
+     * 原文：Get the {@link LivingEntity} to which this firework is attached.
      * <p>
      * When attached to an entity, the firework effect will act as normal but
      * remain positioned on the entity. If the entity {@code LivingEntity#isGliding()
      * is gliding}, then the entity will receive a boost in the direction that
      * they are looking.
      *
-     * @return the attached entity, or null if none
+     * @return 附着的实体, 如果没有则为 null
      */
     @Nullable
     LivingEntity getAttachedTo();
 
     /**
-     * Set the ticks that this firework has been alive. If this value exceeds
+     * 设置此烟花火箭已存活的 tick 数. 如果此值超过 {@link #getMaxLife()}, 烟花将引爆.
+     * <p>
+     * 原文：Set the ticks that this firework has been alive. If this value exceeds
      * {@link #getMaxLife()}, the firework will detonate.
      *
-     * @param ticks the ticks to set. Must be greater than or equal to 0
-     * @return true if the life was set, false if this firework has already detonated
+     * @param ticks 要设置的 tick 数. 必须大于或等于 0
+     * @return 如果设置成功则为 true, 如果烟花已经引爆则为 false
      */
     boolean setLife(int ticks);
 
     /**
-     * Get the ticks that this firework has been alive. When this value reaches
+     * 获取此烟花火箭已存活的 tick 数. 当此值达到 {@link #getMaxLife()} 时, 烟花将引爆.
+     * <p>
+     * 原文：Get the ticks that this firework has been alive. When this value reaches
      * {@link #getMaxLife()}, the firework will detonate.
      *
-     * @return the life ticks
+     * @return 存活 tick 数
      */
     int getLife();
 
     /**
-     * Set the time in ticks this firework will exist until it is detonated.
+     * 设置此烟花火箭在引爆前存在的时间 (以 tick 为单位).
+     * <p>
+     * 原文：Set the time in ticks this firework will exist until it is detonated.
      *
-     * @param ticks the ticks to set. Must be greater than 0
-     * @return true if the time was set, false if this firework has already detonated
+     * @param ticks 要设置的 tick 数. 必须大于 0
+     * @return 如果设置成功则为 true, 如果烟花已经引爆则为 false
      */
     boolean setMaxLife(int ticks);
 
     /**
-     * Get the time in ticks this firework will exist until it is detonated.
+     * 获取此烟花火箭在引爆前存在的时间 (以 tick 为单位).
+     * <p>
+     * 原文：Get the time in ticks this firework will exist until it is detonated.
      *
-     * @return the maximum life in ticks
+     * @return 最大存活时间 (以 tick 为单位)
      */
     int getMaxLife();
 
@@ -97,9 +113,11 @@ public interface Firework extends Projectile {
     void detonate();
 
     /**
-     * Check whether or not this firework has detonated.
+     * 检查此烟花是否已经引爆.
+     * <p>
+     * 原文：Check whether or not this firework has detonated.
      *
-     * @return true if detonated, false if still in the world
+     * @return 如果已引爆则为 true, 如果仍在世界中则为 false
      */
     boolean isDetonated();
 

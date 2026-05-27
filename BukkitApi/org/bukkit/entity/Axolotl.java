@@ -3,66 +3,78 @@ package org.bukkit.entity;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * An Axolotl.
+ * 美西螈.
  */
 public interface Axolotl extends Animals {
 
     /**
-     * Gets if this axolotl is playing dead.
+     * 获取此美西螈是否正在装死.
+     *
+     * 美西螈在水下受到伤害时可能会装死.
+     * <p>
+     * 原文：Gets if this axolotl is playing dead.
      *
      * An axolotl may play dead when it is damaged underwater.
      *
-     * @return playing dead status
+     * @return 装死状态
      */
     boolean isPlayingDead();
 
     /**
-     * Sets if this axolotl is playing dead.
+     * 设置此美西螈是否正在装死.
+     *
+     * 美西螈在水下受到伤害时可能会装死.
+     * <p>
+     * 原文：Sets if this axolotl is playing dead.
      *
      * An axolotl may play dead when it is damaged underwater.
      *
-     * @param playingDead playing dead status
+     * @param playingDead 装死状态
      */
     void setPlayingDead(boolean playingDead);
 
     /**
-     * Get the variant of this axolotl.
+     * 获取此美西螈的变种.
+     * <p>
+     * 原文：Get the variant of this axolotl.
      *
-     * @return axolotl variant
+     * @return 美西螈变种
      */
     @NotNull
     Variant getVariant();
 
     /**
-     * Set the variant of this axolotl.
+     * 设置此美西螈的变种.
+     * <p>
+     * 原文：Set the variant of this axolotl.
      *
-     * @param variant axolotl variant
+     * @param variant 美西螈变种
      */
     void setVariant(@NotNull Variant variant);
 
     /**
-     * Represents the variant of a axolotl - ie its color.
+     * 美西螈的变种 - 即其颜色.
      */
     public enum Variant {
 
         /**
-         * Leucistic (pink) axolotl.
+         * 白化 (粉色) 美西螈.
          */
         LUCY,
         /**
-         * Brown axolotl.
+         * 棕色美西螈.
          */
         WILD,
         /**
-         * Gold axolotl.
+         * 金色美西螈.
          */
         GOLD,
         /**
-         * Cyan axolotl.
+         * 青色美西螈.
          */
         CYAN,
         /**
-         * Blue axolotl.
+         * 蓝色美西螈.
          */
         BLUE;
     }

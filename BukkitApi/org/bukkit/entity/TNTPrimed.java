@@ -4,19 +4,27 @@ import org.bukkit.Location;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a Primed TNT.
+ * 表示已点燃的TNT。
  */
 public interface TNTPrimed extends Explosive {
 
     /**
-     * Set the number of ticks until the TNT blows up after being primed.
+     * 设置TNT点燃后爆炸的刻数。
+     *
+     * @param fuseTicks 引信刻数
+     * <p>
+     * 原文：Set the number of ticks until the TNT blows up after being primed.
      *
      * @param fuseTicks The fuse ticks
      */
     public void setFuseTicks(int fuseTicks);
 
     /**
-     * Retrieve the number of ticks until the explosion of this TNTPrimed
+     * 获取此TNTPrimed实体爆炸的剩余刻数。
+     *
+     * @return 此TNTPrimed爆炸的剩余刻数
+     * <p>
+     * 原文：Retrieve the number of ticks until the explosion of this TNTPrimed
      * entity
      *
      * @return the number of ticks until this TNTPrimed explodes
@@ -24,7 +32,13 @@ public interface TNTPrimed extends Explosive {
     public int getFuseTicks();
 
     /**
-     * Gets the source of this primed TNT. The source is the entity
+     * 获取此已点燃TNT的来源。来源是指创建此已点燃TNT的实体。（例如：玩家使用打火石点燃TNT。）请注意，如果没有合适的来源，这可能为null。（例如由{@link org.bukkit.World#spawn(Location, Class)}方法创建。）
+     * <p>
+     * 如果此已点燃TNT所在的区块被卸载后重新加载，来源将变为null。来源实体可能无效，例如它已经死亡或被卸载。调用者应检查{@link Entity#isValid()}。
+     *
+     * @return 此已点燃TNT的来源
+     * <p>
+     * 原文：Gets the source of this primed TNT. The source is the entity
      * responsible for the creation of this primed TNT. (I.E. player ignites
      * TNT with flint and steel.) Take note that this can be null if there is
      * no suitable source. (created by the {@link
@@ -41,7 +55,15 @@ public interface TNTPrimed extends Explosive {
     public Entity getSource();
 
     /**
-     * Sets the source of this primed TNT.
+     * 设置此已点燃TNT的来源。
+     *
+     * 来源是指创建此已点燃TNT的实体。
+     * <p>
+     * 必须是{@link org.bukkit.entity.LivingEntity}的实例，否则将被设置为null。参数类型为{@link org.bukkit.entity.Entity}，以与{@link org.bukkit.entity.TNTPrimed#getSource()}方法保持一致。
+     *
+     * @param source 此已点燃TNT的来源
+     * <p>
+     * 原文：Sets the source of this primed TNT.
      *
      * The source is the entity responsible for the creation of this primed TNT.
      * <p>

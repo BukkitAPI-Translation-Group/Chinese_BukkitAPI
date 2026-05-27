@@ -5,12 +5,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents an item display entity.
+ * 代表物品展示实体。
  */
 public interface ItemDisplay extends Display {
 
     /**
-     * Gets the displayed item stack.
+     * 获取显示的物品堆。
+     * <p>原文：Gets the displayed item stack.
      *
      * @return the displayed item stack
      */
@@ -18,14 +19,16 @@ public interface ItemDisplay extends Display {
     ItemStack getItemStack();
 
     /**
-     * Sets the displayed item stack.
+     * 设置显示的物品堆。
+     * <p>原文：Sets the displayed item stack.
      *
      * @param item the new item stack
      */
     void setItemStack(@Nullable ItemStack item);
 
     /**
-     * Gets the item display transform for this entity.
+     * 获取此实体的物品显示变换。
+     * <p>原文：Gets the item display transform for this entity.
      *
      * Defaults to {@link ItemDisplayTransform#FIXED}.
      *
@@ -35,7 +38,8 @@ public interface ItemDisplay extends Display {
     ItemDisplayTransform getItemDisplayTransform();
 
     /**
-     * Sets the item display transform for this entity.
+     * 设置此实体的物品显示变换。
+     * <p>原文：Sets the item display transform for this entity.
      *
      * Defaults to {@link ItemDisplayTransform#FIXED}.
      *
@@ -44,7 +48,7 @@ public interface ItemDisplay extends Display {
     void setItemDisplayTransform(@NotNull ItemDisplayTransform display);
 
     /**
-     * Represents the item model transform to be applied to the displayed item.
+     * 代表要应用于显示物品的物品模型变换。
      */
     public enum ItemDisplayTransform {
 

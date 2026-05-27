@@ -93,7 +93,12 @@ public interface Raider extends Monster {
     void setCanJoinRaid(boolean join);
 
     /**
-     * Get the amount of ticks that this mob has exited the bounds of a village
+     * 获取此生物作为袭击参与者离开村庄边界的时间（以tick为单位）。
+     * <p>
+     * 此值仅在生物无动作达到2400 tick时才会增加（根据 {@link #getNoActionTicks()}）。
+     * 当无动作tick达到该值且离开袭击的时间超过30 tick时，该生物将被驱逐出袭击。
+     * <p>
+     * 原文：Get the amount of ticks that this mob has exited the bounds of a village
      * as a raid participant.
      * <p>
      * This value is increased only when the mob has had no action for 2,400 ticks
@@ -101,12 +106,17 @@ public interface Raider extends Monster {
      * reached that value and the ticks outside a raid exceeds 30, the mob will be
      * expelled from the raid.
      *
-     * @return the ticks outside of a raid
+     * @return 离开袭击的时间（以tick为单位）
      */
     int getTicksOutsideRaid();
 
     /**
-     * Set the amount of ticks that this mob has exited the bounds of a village
+     * 设置此生物作为袭击参与者离开村庄边界的时间（以tick为单位）。
+     * <p>
+     * 此值仅在生物无动作达到2400 tick时才会被考虑（根据 {@link #getNoActionTicks()}）。
+     * 当无动作tick达到该值且离开袭击的时间超过30 tick时，该生物将被驱逐出袭击。
+     * <p>
+     * 原文：Set the amount of ticks that this mob has exited the bounds of a village
      * as a raid participant.
      * <p>
      * This value is considered only when the mob has had no action for 2,400 ticks
@@ -114,28 +124,34 @@ public interface Raider extends Monster {
      * reached that value and the ticks outside a raid exceeds 30, the mob will be
      * expelled from the raid.
      *
-     * @param ticks the ticks outside of a raid
+     * @param ticks 离开袭击的时间（以tick为单位）
      */
     void setTicksOutsideRaid(int ticks);
 
     /**
-     * Check whether or not this raider is celebrating a raid victory.
+     * 检查此袭击者是否正在庆祝袭击胜利。
+     * <p>
+     * 原文：Check whether or not this raider is celebrating a raid victory.
      *
-     * @return true if celebrating, false otherwise
+     * @return 如果正在庆祝则为true，否则为false
      */
     boolean isCelebrating();
 
     /**
-     * Set whether or not this mob is celebrating a raid victory.
+     * 设置此生物是否正在庆祝袭击胜利。
+     * <p>
+     * 原文：Set whether or not this mob is celebrating a raid victory.
      *
-     * @param celebrating whether or not to celebrate
+     * @param celebrating 是否庆祝
      */
     void setCelebrating(boolean celebrating);
 
     /**
-     * Get the {@link Sound} this entity will play when celebrating.
+     * 获取此实体庆祝时播放的 {@link Sound}。
+     * <p>
+     * 原文：Get the {@link Sound} this entity will play when celebrating.
      *
-     * @return the celebration sound
+     * @return 庆祝音效
      */
     @NotNull
     Sound getCelebrationSound();

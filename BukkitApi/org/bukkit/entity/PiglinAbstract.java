@@ -1,26 +1,29 @@
 package org.bukkit.entity;
 
 /**
- * Piglin / Piglin Brute.
+ * 猪灵 / 猪灵蛮兵。
  */
 public interface PiglinAbstract extends Monster, Ageable {
 
     /**
-     * Gets whether the piglin is immune to zombification.
+     * 获取猪灵是否免疫僵尸化。
+     * <p>原文：Gets whether the piglin is immune to zombification.
      *
      * @return Whether the piglin is immune to zombification
      */
     public boolean isImmuneToZombification();
 
     /**
-     * Sets whether the piglin is immune to zombification.
+     * 设置猪灵是否免疫僵尸化。
+     * <p>原文：Sets whether the piglin is immune to zombification.
      *
      * @param flag Whether the piglin is immune to zombification
      */
     public void setImmuneToZombification(boolean flag);
 
     /**
-     * Gets the amount of ticks until this entity will be converted to a
+     * 获取此实体转换为僵尸猪灵所需的刻数。
+     * <p>原文：Gets the amount of ticks until this entity will be converted to a
      * Zombified Piglin.
      *
      * When this reaches 300, the entity will be converted.
@@ -31,7 +34,8 @@ public interface PiglinAbstract extends Monster, Ageable {
     public int getConversionTime();
 
     /**
-     * Sets the amount of ticks until this entity will be converted to a
+     * 设置此实体转换为僵尸猪灵所需的刻数。
+     * <p>原文：Sets the amount of ticks until this entity will be converted to a
      * Zombified Piglin.
      *
      * When this reaches 0, the entity will be converted. A value of less than 0
@@ -43,14 +47,16 @@ public interface PiglinAbstract extends Monster, Ageable {
     public void setConversionTime(int time);
 
     /**
-     * Get if this entity is in the process of converting to a Zombified Piglin.
+     * 获取此实体是否正在转换为僵尸猪灵。
+     * <p>原文：Get if this entity is in the process of converting to a Zombified Piglin.
      *
      * @return conversion status
      */
     boolean isConverting();
 
     /**
-     * Gets whether the piglin is a baby
+     * 获取猪灵是否为幼年。
+     * <p>原文：Gets whether the piglin is a baby
      *
      * @return Whether the piglin is a baby
      * @deprecated see {@link Ageable#isAdult()}
@@ -59,7 +65,8 @@ public interface PiglinAbstract extends Monster, Ageable {
     public boolean isBaby();
 
     /**
-     * Sets whether the piglin is a baby
+     * 设置猪灵是否为幼年。
+     * <p>原文：Sets whether the piglin is a baby
      *
      * @param flag Whether the piglin is a baby
      * @deprecated see {@link Ageable#setBaby()} and {@link Ageable#setAdult()}

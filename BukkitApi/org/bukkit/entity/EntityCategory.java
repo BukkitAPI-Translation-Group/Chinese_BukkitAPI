@@ -4,59 +4,55 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.potion.PotionEffectType;
 
 /**
- * A classification of entities which may behave differently than others or be
- * affected uniquely by enchantments and potion effects among other things.
+ * 实体分类, 不同类别的实体可能行为不同, 或受附魔和药水效果的独特影响.
  */
 public enum EntityCategory {
 
     /**
-     * Any uncategorized entity. No additional effects are applied to these
-     * entities relating to a categorization.
+     * 未分类的实体. 这些实体没有与分类相关的额外效果.
      */
     NONE,
     /**
-     * Undead creatures. These creatures:
+     * 亡灵生物. 这些生物:
      * <ul>
-     *   <li>Are damaged by potions of healing.
-     *   <li>Are healed by potions of harming.
-     *   <li>Are immune to drowning and poison.
-     *   <li>Are subject to burning in daylight (though not all).
-     *   <li>Sink in water (except {@link Drowned}, {@link Phantom Phantoms}
-     *   and {@link Wither Withers}).
-     *   <li>Take additional damage from {@link Enchantment#SMITE}.
-     *   <li>Are ignored by {@link Wither Withers}.
+     *   <li>受到治疗药水的伤害.
+     *   <li>受到伤害药水的治疗.
+     *   <li>免疫溺水和中毒.
+     *   <li>在白天会燃烧 (但不是全部).
+     *   <li>在水中会下沉 (除了 {@link Drowned}、{@link Phantom 幻翼}
+     *   和 {@link Wither 凋灵}).
+     *   <li>受到 {@link Enchantment#SMITE} 的额外伤害.
+     *   <li>被 {@link Wither 凋灵} 忽视.
      * </ul>
      */
     UNDEAD,
     /**
-     * Entities of the arthropod family. These creatures:
+     * 节肢动物家族的实体. 这些生物:
      * <ul>
-     *   <li>Take additional damage and receive {@link PotionEffectType#SLOWNESS}
-     *   from {@link Enchantment#BANE_OF_ARTHROPODS}.
-     *   <li>Are immune to {@link PotionEffectType#POISON} if they are spiders.
+     *   <li>受到 {@link Enchantment#BANE_OF_ARTHROPODS} 的额外伤害并获得
+     *   {@link PotionEffectType#SLOWNESS} 效果.
+     *   <li>蜘蛛免疫 {@link PotionEffectType#POISON}.
      * </ul>
      */
     ARTHROPOD,
     /**
-     * Entities that participate in raids. These creatures:
+     * 参与袭击的实体. 这些生物:
      * <ul>
-     *   <li>Are immune to damage from {@link EvokerFangs}.
-     *   <li>Are ignored by {@link Vindicator vindicators} named "Johnny".
-     *   <li>Are hostile to {@link Villager villagers},
-     *   {@link WanderingTrader wandering traders}, {@link IronGolem iron golems}
-     *   and {@link Player players}.
+     *   <li>免疫 {@link EvokerFangs} 的伤害.
+     *   <li>被名为 "Johnny" 的 {@link Vindicator 卫道士} 忽视.
+     *   <li>对 {@link Villager 村民}、{@link WanderingTrader 流浪商人}、
+     *   {@link IronGolem 铁傀儡} 和 {@link Player 玩家} 敌对.
      * </ul>
      */
     ILLAGER,
     /**
-     * Entities that reside primarily underwater (excluding {@link Drowned}).
-     * These creatures:
+     * 主要生活在水下的实体 (不包括 {@link Drowned}). 这些生物:
      * <ul>
-     *   <li>Take additional damage from {@link Enchantment#IMPALING}.
-     *   <li>Are immune to drowning (excluding {@link Dolphin dolphins}).
-     *   <li>Take suffocation damage when out of water for extended periods of
-     *   time (excluding {@link Guardian guardians} and {@link Turtle turtles}).
-     *   <li>Are capable of swimming in water rather than floating or sinking.
+     *   <li>受到 {@link Enchantment#IMPALING} 的额外伤害.
+     *   <li>免疫溺水 (不包括 {@link Dolphin 海豚}).
+     *   <li>长时间离开水会受到窒息伤害 (不包括 {@link Guardian 守卫者}
+     *   和 {@link Turtle 海龟}).
+     *   <li>能够在水中游泳而不是漂浮或下沉.
      * </ul>
      */
     WATER;

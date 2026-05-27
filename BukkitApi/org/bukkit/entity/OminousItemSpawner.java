@@ -4,12 +4,13 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents an ominous item spawner.
+ * 代表一个不祥物品生成器。
  */
 public interface OminousItemSpawner extends Entity {
 
     /**
-     * Gets the item which will be spawned by this spawner.
+     * 获取此生成器将生成的物品。
+     * <p>原文：Gets the item which will be spawned by this spawner.
      *
      * @return the item
      */
@@ -17,21 +18,24 @@ public interface OminousItemSpawner extends Entity {
     ItemStack getItem();
 
     /**
-     * Sets the item which will be spawned by this spawner.
+     * 设置此生成器将生成的物品。
+     * <p>原文：Sets the item which will be spawned by this spawner.
      *
      * @param item the item
      */
     void setItem(@Nullable ItemStack item);
 
     /**
-     * Gets the ticks after which this item will be spawned.
+     * 获取此物品将在多少tick后生成。
+     * <p>原文：Gets the ticks after which this item will be spawned.
      *
      * @return total spawn ticks
      */
     long getSpawnItemAfterTicks();
 
     /**
-     * Sets the ticks after which this item will be spawned.
+     * 设置此物品将在多少tick后生成。
+     * <p>原文：Sets the ticks after which this item will be spawned.
      *
      * @param ticks total spawn ticks
      */

@@ -3,40 +3,44 @@ package org.bukkit.entity;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a salmon fish.
+ * 代表鲑鱼。
  */
 public interface Salmon extends Fish {
 
     /**
-     * Get the variant of this salmon.
+     * 获取此鲑鱼的变种。
+     * <p>
+     * 原文：Get the variant of this salmon.
      *
-     * @return salmon variant
+     * @return 鲑鱼变种
      */
     @NotNull
     public Variant getVariant();
 
     /**
-     * Set the variant of this salmon.
+     * 设置此鲑鱼的变种。
+     * <p>
+     * 原文：Set the variant of this salmon.
      *
-     * @param variant salmon variant
+     * @param variant 鲑鱼变种
      */
     public void setVariant(@NotNull Variant variant);
 
     /**
-     * Represents the variant of a salmon - ie its size.
+     * 代表鲑鱼的变种 - 即其大小。
      */
     public enum Variant {
 
         /**
-         * Small salmon.
+         * 小型鲑鱼。
          */
         SMALL,
         /**
-         * Default salmon.
+         * 默认鲑鱼。
          */
         MEDIUM,
         /**
-         * Large salmon.
+         * 大型鲑鱼。
          */
         LARGE;
     }

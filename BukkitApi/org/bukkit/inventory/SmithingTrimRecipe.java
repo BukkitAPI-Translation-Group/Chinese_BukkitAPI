@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a smithing trim recipe.
+ * 代表一个锻造装饰配方。
  */
 public class SmithingTrimRecipe extends SmithingRecipe implements ComplexRecipe {
 
@@ -63,16 +63,17 @@ public class SmithingTrimRecipe extends SmithingRecipe implements ComplexRecipe 
         };
     }
 
-    /**
-     * Create a smithing recipe to produce the specified result ItemStack.
-     *
-     * @param key The unique recipe key
-     * @param template The template item.
-     * @param base The base ingredient
-     * @param addition The addition ingredient
-     * @see #SmithingTrimRecipe(org.bukkit.NamespacedKey, org.bukkit.inventory.RecipeChoice, org.bukkit.inventory.RecipeChoice, org.bukkit.inventory.RecipeChoice, org.bukkit.inventory.meta.trim.TrimPattern)
-     * @deprecated trimPattern must be specified
-     */
+/**
+ * 创建一个锻造配方以产生指定的结果物品。
+ *
+ * @param key 配方的唯一键。
+ * @param template 模板物品。
+ * @param base 基础成分。
+ * @param addition 附加成分。
+ * @see #SmithingTrimRecipe(org.bukkit.NamespacedKey, org.bukkit.inventory.RecipeChoice, org.bukkit.inventory.RecipeChoice, org.bukkit.inventory.RecipeChoice, org.bukkit.inventory.meta.trim.TrimPattern)
+ * @deprecated 必须指定 trimPattern。
+ * <p>原文：Create a smithing recipe to produce the specified result ItemStack.
+ */
     @Deprecated(since = "1.21.5")
     public SmithingTrimRecipe(@NotNull NamespacedKey key, @Nullable RecipeChoice template, @Nullable RecipeChoice base, @Nullable RecipeChoice addition) {
         this(key, template, base, addition, getTrimPattern(template));
@@ -84,11 +85,12 @@ public class SmithingTrimRecipe extends SmithingRecipe implements ComplexRecipe 
         this.trimPattern = trimPattern;
     }
 
-    /**
-     * Get the template recipe item.
-     *
-     * @return template choice
-     */
+/**
+ * 获取模板配方物品。
+ *
+ * @return 模板选择。
+ * <p>原文：Get the template recipe item.
+ */
     @Nullable
     public RecipeChoice getTemplate() {
         return (template != null) ? template.clone() : null;

@@ -26,9 +26,11 @@ public interface FallingBlock extends Entity {
     Material getMaterial();
 
     /**
-     * Get the data for the falling block
+     * 获取下落方块的方块数据.
+     * <p>
+     * 原文：Get the data for the falling block
      *
-     * @return data of the block
+     * @return 方块的数据
      */
     @NotNull
     BlockData getBlockData();
@@ -67,7 +69,12 @@ public interface FallingBlock extends Entity {
     void setDropItem(boolean drop);
 
     /**
-     * Get if the falling block will not become a block upon landing and not drop
+     * 获取下落方块落地后是否会消失且不掉落物品.
+     * <p>
+     * 与 {@link #getDropItem()} 不同, 此属性会阻止方块落地时形成方块, 使其消失.
+     * 如果此属性为 true 且 {@link #getDropItem()} 为 true, 则 <strong>不会</strong> 掉落物品.
+     * <p>
+     * 原文：Get if the falling block will not become a block upon landing and not drop
      * an item.
      * <p>
      * Unlike {@link #getDropItem()}, this property will prevent the block from
@@ -75,12 +82,17 @@ public interface FallingBlock extends Entity {
      * is true and {@link #getDropItem()} is true, an item will <strong>NOT</strong>
      * be dropped.
      *
-     * @return true if the block will disappear
+     * @return 方块是否会消失
      */
     boolean getCancelDrop();
 
     /**
-     * Get if the falling block will not become a block upon landing and not drop
+     * 设置下落方块落地后是否会消失且不掉落物品.
+     * <p>
+     * 与 {@link #setDropItem(boolean)} 不同, 此属性会阻止方块落地时形成方块, 使其消失.
+     * 如果此属性为 true 且 {@link #getDropItem()} 为 true, 则 <strong>不会</strong> 掉落物品.
+     * <p>
+     * 原文：Get if the falling block will not become a block upon landing and not drop
      * an item.
      * <p>
      * Unlike {@link #setDropItem(boolean)}, this property will prevent the block
@@ -88,7 +100,7 @@ public interface FallingBlock extends Entity {
      * property is true and {@link #getDropItem()} is true, an item will
      * <strong>NOT</strong> be dropped.
      *
-     * @param cancelDrop true to make the block disappear when landing
+     * @param cancelDrop 设为 true 使方块落地时消失
      */
     void setCancelDrop(boolean cancelDrop);
 
@@ -113,40 +125,54 @@ public interface FallingBlock extends Entity {
     void setHurtEntities(boolean hurtEntities);
 
     /**
-     * Get the amount of damage inflicted upon entities multiplied by the distance
+     * 获取下落方块对实体造成的伤害乘以下落距离的值.
+     * <p>
+     * 原文：Get the amount of damage inflicted upon entities multiplied by the distance
      * that the block had fallen when this falling block lands on them.
      *
-     * @return the damage per block
+     * @return 每格伤害
      */
     float getDamagePerBlock();
 
     /**
-     * Set the amount of damage inflicted upon entities multiplied by the distance
+     * 设置下落方块对实体造成的伤害乘以下落距离的值.
+     * <p>
+     * 如果 {@code damage} 非零, 此方法会自动调用
+     * {@link #setHurtEntities(boolean) setHurtEntities(true)}.
+     * <p>
+     * 原文：Set the amount of damage inflicted upon entities multiplied by the distance
      * that the block had fallen when this falling block lands on them.
      * <p>
      * If {@code damage} is non-zero, this method will automatically call
      * {@link #setHurtEntities(boolean) setHurtEntities(true)}.
      *
-     * @param damage the damage per block to set. Must be >= 0.0
+     * @param damage 要设置的每格伤害. 必须 >= 0.0
      */
     void setDamagePerBlock(float damage);
 
     /**
-     * Get the maximum amount of damage that can be inflicted upon entities when
+     * 获取下落方块落地时对实体造成的最大伤害.
+     * <p>
+     * 原文：Get the maximum amount of damage that can be inflicted upon entities when
      * this falling block lands on them.
      *
-     * @return the max damage
+     * @return 最大伤害
      */
     int getMaxDamage();
 
     /**
-     * Set the maximum amount of damage that can be inflicted upon entities when
+     * 设置下落方块落地时对实体造成的最大伤害.
+     * <p>
+     * 如果 {@code damage} 非零, 此方法会自动调用
+     * {@link #setHurtEntities(boolean) setHurtEntities(true)}.
+     * <p>
+     * 原文：Set the maximum amount of damage that can be inflicted upon entities when
      * this falling block lands on them.
      * <p>
      * If {@code damage} is non-zero, this method will automatically call
      * {@link #setHurtEntities(boolean) setHurtEntities(true)}.
      *
-     * @param damage the max damage to set. Must be >= 0
+     * @param damage 要设置的最大伤害. 必须 >= 0
      */
     void setMaxDamage(int damage);
 }

@@ -6,191 +6,210 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a component which can turn any item into kinetic weapon that deals
- * damage based on the relative speed of the target and attacker.
+ * 表示一个可以将任何物品转变为动能武器的组件，该武器根据目标和攻击者的相对速度造成伤害。
  */
 @ApiStatus.Experimental
 public interface KineticWeaponComponent extends ConfigurationSerializable {
 
     /**
-     * Gets the delay before the weapon can be used after hitting an entity.
+     * 获取武器击中实体后可以再次使用前的延迟。
+     * <p>原文：Gets the delay before the weapon can be used after hitting an entity.
      *
-     * @return cooldown ticks
+     * @return 冷却时间（以刻为单位）
      */
     int getContactCooldownTicks();
 
     /**
-     * Sets the delay before the weapon can be used after hitting an entity.
+     * 设置武器击中实体后可以再次使用前的延迟。
+     * <p>原文：Sets the delay before the weapon can be used after hitting an entity.
      *
-     * @param ticks new cooldown ticks
+     * @param ticks 新的冷却时间（以刻为单位）
      */
     void setContactCooldownTicks(int ticks);
 
     /**
-     * Gets the delay before the weapon can be used.
+     * 获取武器可以使用前的延迟。
+     * <p>原文：Gets the delay before the weapon can be used.
      *
-     * @return delay ticks
+     * @return 延迟时间（以刻为单位）
      */
     int getDelayTicks();
 
     /**
-     * Sets the delay before the weapon can be used.
+     * 设置武器可以使用前的延迟。
+     * <p>原文：Sets the delay before the weapon can be used.
      *
-     * @param ticks new delay ticks
+     * @param ticks 新的延迟时间（以刻为单位）
      */
     void setDelayTicks(int ticks);
 
     /**
-     * Gets the conditions required for the weapon to dismount the target.
+     * 获取武器使目标下马所需的条件。
+     * <p>原文：Gets the conditions required for the weapon to dismount the target.
      *
-     * @return dismount condition
+     * @return 下马条件
      */
     @Nullable
     Condition getDismountConditions();
 
     /**
-     * Sets the conditions required for the weapon to dismount the target.
+     * 设置武器使目标下马所需的条件。
+     * <p>原文：Sets the conditions required for the weapon to dismount the target.
      *
-     * @param condition dismount condition
+     * @param condition 下马条件
      */
     void setDismountConditions(@Nullable Condition condition);
 
     /**
-     * Gets the conditions required for the weapon to knockback the target.
+     * 获取武器击退目标所需的条件。
+     * <p>原文：Gets the conditions required for the weapon to knockback the target.
      *
-     * @return knockback condition
+     * @return 击退条件
      */
     @Nullable
     Condition getKnockbackConditions();
 
     /**
-     * Sets the conditions required for the weapon to knockback the target.
+     * 设置武器击退目标所需的条件。
+     * <p>原文：Sets the conditions required for the weapon to knockback the target.
      *
-     * @param condition knockback condition
+     * @param condition 击退条件
      */
     void setKnockbackConditions(@Nullable Condition condition);
 
     /**
-     * Gets the conditions required for the weapon to damage the target.
+     * 获取武器对目标造成伤害所需的条件。
+     * <p>原文：Gets the conditions required for the weapon to damage the target.
      *
-     * @return damage condition
+     * @return 伤害条件
      */
     @Nullable
     Condition getDamageConditions();
 
     /**
-     * Sets the conditions required for the weapon to damage the target.
+     * 设置武器对目标造成伤害所需的条件。
+     * <p>原文：Sets the conditions required for the weapon to damage the target.
      *
-     * @param condition damage condition
+     * @param condition 伤害条件
      */
     void setDamageConditions(@Nullable Condition condition);
 
     /**
-     * Gets the forward movement animation of the item.
+     * 获取物品的前移动画。
+     * <p>原文：Gets the forward movement animation of the item.
      *
-     * @return forward movement distance
+     * @return 前移距离
      */
     float getForwardMovement();
 
     /**
-     * Sets the forward movement animation of the item.
+     * 设置物品的前移动画。
+     * <p>原文：Sets the forward movement animation of the item.
      *
-     * @param movement new forward movement distance
+     * @param movement 新的前移距离
      */
     void setForwardMovement(float movement);
 
     /**
-     * Gets the final damage multiplier based on target and attacker relative
-     * speed.
+     * 获取基于目标和攻击者相对速度的最终伤害倍率。
+     * <p>原文：Gets the final damage multiplier based on target and attacker relative speed.
      *
-     * @return damage multiplier
+     * @return 伤害倍率
      */
     float getDamageMultiplier();
 
     /**
-     * Sets the final damage multiplier based on target and attacker relative
-     * speed.
+     * 设置基于目标和攻击者相对速度的最终伤害倍率。
+     * <p>原文：Sets the final damage multiplier based on target and attacker relative speed.
      *
-     * @param multiplier new multiplier
+     * @param multiplier 新的倍率
      */
     void setDamageMultipler(float multiplier);
 
     /**
-     * Gets the sound to play when the item is used.
+     * 获取使用物品时播放的音效。
+     * <p>原文：Gets the sound to play when the item is used.
      *
-     * @return the sound
+     * @return 音效
      */
     @Nullable
     Sound getSound();
 
     /**
-     * Sets the sound to play when the item is used.
+     * 设置使用物品时播放的音效。
+     * <p>原文：Sets the sound to play when the item is used.
      *
-     * @param sound sound or null for current default
+     * @param sound 音效或null表示使用当前默认值
      */
     void setSound(@Nullable Sound sound);
 
     /**
-     * Gets the sound to play when the item successfully hits a target.
+     * 获取物品成功击中目标时播放的音效。
+     * <p>原文：Gets the sound to play when the item successfully hits a target.
      *
-     * @return the sound
+     * @return 音效
      */
     @Nullable
     Sound getHitSound();
 
     /**
-     * Sets the sound to play when the item successfully hits a target.
+     * 设置物品成功击中目标时播放的音效。
+     * <p>原文：Sets the sound to play when the item successfully hits a target.
      *
-     * @param sound sound or null for current default
+     * @param sound 音效或null表示使用当前默认值
      */
     void setHitSound(@Nullable Sound sound);
 
     /**
-     * Represents a condition for an attack effect.
+     * 表示攻击效果的条件。
      */
     public interface Condition extends ConfigurationSerializable {
 
         /**
-         * Gets the ticks after which the condition can no longer apply.
+         * 获取条件不再适用的刻数。
+         * <p>原文：Gets the ticks after which the condition can no longer apply.
          *
-         * @return max duration ticks
+         * @return 最大持续时间（以刻为单位）
          */
         int getMaxDurationTicks();
 
         /**
-         * Sets the ticks after which the condition can no longer apply.
+         * 设置条件不再适用的刻数。
+         * <p>原文：Sets the ticks after which the condition can no longer apply.
          *
-         * @param ticks new max duration ticks
+         * @param ticks 新的最大持续时间（以刻为单位）
          */
         void setMaxDurationTicks(int ticks);
 
         /**
-         * Gets the minimum speed of the attacker for the effect to apply.
+         * 获取效果生效所需的攻击者最低速度。
+         * <p>原文：Gets the minimum speed of the attacker for the effect to apply.
          *
-         * @return minimum speed
+         * @return 最低速度
          */
         float getMinSpeed();
 
         /**
-         * Sets the minimum speed of the attacker for the effect to apply.
+         * 设置效果生效所需的攻击者最低速度。
+         * <p>原文：Sets the minimum speed of the attacker for the effect to apply.
          *
-         * @param speed new minimum speed
+         * @param speed 新的最低速度
          */
         void setMinSpeed(float speed);
 
         /**
-         * Gets the minimum speed between the attacker and target for the effect
-         * to apply.
+         * 获取效果生效所需的攻击者与目标之间的最低相对速度。
+         * <p>原文：Gets the minimum speed between the attacker and target for the effect to apply.
          *
-         * @return minimum speed
+         * @return 最低速度
          */
         float getMinRelativeSpeed();
 
         /**
-         * Sets the minimum speed between the attacker and target for the effect
-         * to apply.
+         * 设置效果生效所需的攻击者与目标之间的最低相对速度。
+         * <p>原文：Sets the minimum speed between the attacker and target for the effect to apply.
          *
-         * @param speed new minimum speed
+         * @param speed 新的最低速度
          */
         void setMinRelativeSpeed(float speed);
     }

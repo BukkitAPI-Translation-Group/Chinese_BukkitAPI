@@ -1,25 +1,24 @@
 package org.bukkit.inventory;
 
 /**
- * A item's rarity determines the default color of its name. This enum is
- * ordered from least rare to most rare.
+ * 物品的稀有度决定了其名称的默认颜色. 此枚举按从最不稀有到最稀有的顺序排列.
  */
 public enum ItemRarity {
 
     /**
-     * White item name.
+     * 白色物品名称.
      */
     COMMON,
     /**
-     * Yellow item name.
+     * 黄色物品名称.
      */
     UNCOMMON,
     /**
-     * Aqua item name.
+     * 青色物品名称.
      */
     RARE,
     /**
-     * Light purple item name.
+     * 淡紫色物品名称.
      */
     EPIC;
 }

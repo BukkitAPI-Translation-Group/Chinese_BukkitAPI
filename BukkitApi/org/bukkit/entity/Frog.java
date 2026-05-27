@@ -12,55 +12,63 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A Frog.
+ * 青蛙.
  */
 public interface Frog extends Animals {
 
     /**
-     * Gets the tongue target of this frog.
+     * 获取此青蛙的舌头目标.
+     * <p>
+     * 原文：Gets the tongue target of this frog.
      *
-     * @return tongue target or null if not set
+     * @return 舌头目标, 如果未设置则为 null
      */
     @Nullable
     Entity getTongueTarget();
 
     /**
-     * Sets the tongue target of this frog.
+     * 设置此青蛙的舌头目标.
+     * <p>
+     * 原文：Sets the tongue target of this frog.
      *
-     * @param target tongue target or null to clear
+     * @param target 舌头目标, 或 null 以清除
      */
     void setTongueTarget(@Nullable Entity target);
 
     /**
-     * Get the variant of this frog.
+     * 获取此青蛙的变种.
+     * <p>
+     * 原文：Get the variant of this frog.
      *
-     * @return frog variant
+     * @return 青蛙变种
      */
     @NotNull
     Variant getVariant();
 
     /**
-     * Set the variant of this frog.
+     * 设置此青蛙的变种.
+     * <p>
+     * 原文：Set the variant of this frog.
      *
-     * @param variant frog variant
+     * @param variant 青蛙变种
      */
     void setVariant(@NotNull Variant variant);
 
     /**
-     * Represents the variant of a frog - ie its color.
+     * 青蛙的变种 - 即其颜色.
      */
     interface Variant extends OldEnum<Variant>, Keyed, RegistryAware {
 
         /**
-         * Temperate (brown-orange) frog.
+         * 温带 (棕橙色) 青蛙.
          */
         Variant TEMPERATE = getVariant("temperate");
         /**
-         * Warm (gray) frog.
+         * 温暖 (灰色) 青蛙.
          */
         Variant WARM = getVariant("warm");
         /**
-         * Cold (green) frog.
+         * 寒冷 (绿色) 青蛙.
          */
         Variant COLD = getVariant("cold");
 

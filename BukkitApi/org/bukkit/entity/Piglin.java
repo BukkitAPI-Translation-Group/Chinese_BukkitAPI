@@ -6,26 +6,29 @@ import org.bukkit.inventory.InventoryHolder;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a Piglin.
+ * 代表一只猪灵。
  */
 public interface Piglin extends PiglinAbstract, InventoryHolder {
 
     /**
-     * Get whether the piglin is able to hunt hoglins.
+     * 获取猪灵是否能猎杀疣猪兽。
+     * <p>原文：Get whether the piglin is able to hunt hoglins.
      *
      * @return Whether the piglin is able to hunt hoglins
      */
     public boolean isAbleToHunt();
 
     /**
-     * Sets whether the piglin is able to hunt hoglins.
+     * 设置猪灵是否能猎杀疣猪兽。
+     * <p>原文：Sets whether the piglin is able to hunt hoglins.
      *
      * @param flag Whether the piglin is able to hunt hoglins.
      */
     public void setIsAbleToHunt(boolean flag);
 
     /**
-     * Adds a material to the allowed list of materials to barter with.
+     * 添加一个材料到允许以物易物的材料列表中。
+     * <p>原文：Adds a material to the allowed list of materials to barter with.
      *
      * @param material The material to add
      *
@@ -34,7 +37,8 @@ public interface Piglin extends PiglinAbstract, InventoryHolder {
     public boolean addBarterMaterial(@NotNull Material material);
 
     /**
-     * Removes a material from the allowed list of materials to barter with.
+     * 从允许以物易物的材料列表中移除一个材料。
+     * <p>原文：Removes a material from the allowed list of materials to barter with.
      *
      * <strong>Note:</strong> It's not possible to override the default
      * bartering item gold_ingots as payment. To block gold_ingots see
@@ -47,7 +51,8 @@ public interface Piglin extends PiglinAbstract, InventoryHolder {
     public boolean removeBarterMaterial(@NotNull Material material);
 
     /**
-     * Adds a material the piglin will pickup and store in his inventory.
+     * 添加一个猪灵会拾取并存储在其物品栏中的材料。
+     * <p>原文：Adds a material the piglin will pickup and store in his inventory.
      *
      * @param material The material you want the piglin to be interested in
      *
@@ -56,7 +61,8 @@ public interface Piglin extends PiglinAbstract, InventoryHolder {
     public boolean addMaterialOfInterest(@NotNull Material material);
 
     /**
-     * Removes a material from the list of materials the piglin will pickup.
+     * 从猪灵会拾取的材料列表中移除一个材料。
+     * <p>原文：Removes a material from the list of materials the piglin will pickup.
      *
      * <strong>Note:</strong> It's not possible to override the default list of
      * item the piglin will pickup. To cancel pickup see
@@ -68,7 +74,8 @@ public interface Piglin extends PiglinAbstract, InventoryHolder {
     public boolean removeMaterialOfInterest(@NotNull Material material);
 
     /**
-     * Returns a immutable set of materials the piglins will pickup.
+     * 返回猪灵会拾取的材料的不可变集合。
+     * <p>原文：Returns a immutable set of materials the piglins will pickup.
      * <br>
      * <strong>Note:</strong> This set will not include the items that are set
      * by default. To interact with those items see
@@ -80,7 +87,8 @@ public interface Piglin extends PiglinAbstract, InventoryHolder {
     public Set<Material> getInterestList();
 
     /**
-     * Returns a immutable set of materials the piglins will barter with.
+     * 返回猪灵会以物易物的材料的不可变集合。
+     * <p>原文：Returns a immutable set of materials the piglins will barter with.
      *
      * <strong>Note:</strong> This set will not include the items that are set
      * by default. To interact with those items see

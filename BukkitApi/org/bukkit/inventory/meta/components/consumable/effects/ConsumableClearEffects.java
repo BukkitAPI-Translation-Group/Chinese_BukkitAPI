@@ -1,7 +1,7 @@
 package org.bukkit.inventory.meta.components.consumable.effects;
 
 /**
- * Represent the removal/clearing of all effects when an item is consumed.
+ * 表示物品被消耗时移除/清除所有效果。
  */
 public interface ConsumableClearEffects extends ConsumableEffect {
 }

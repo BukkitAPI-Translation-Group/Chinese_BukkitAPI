@@ -1,53 +1,44 @@
 package org.bukkit.inventory;
 
 /**
- * Represents a category in the creative inventory.
+ * 代表创造模式物品栏中的一个分类.
  */
 public enum CreativeCategory {
 
     /**
-     * An assortment of building blocks including dirt, bricks, planks, ores
-     * slabs, etc.
+     * 各种建筑方块, 包括泥土、砖块、木板、矿石、台阶等.
      */
     BUILDING_BLOCKS,
     /**
-     * Blocks and items typically used for decorative purposes including
-     * candles, saplings, flora, fauna, fences, walls, carpets, etc.
+     * 通常用于装饰的方块和物品, 包括蜡烛、树苗、植物、动物、栅栏、墙壁、地毯等.
      */
     DECORATIONS,
     /**
-     * Blocks used and associated with redstone contraptions including buttons,
-     * levers, pressure plates, redstone components, pistons, etc.
+     * 用于红石装置的方块和物品, 包括按钮、拉杆、压力板、红石元件、活塞等.
      */
     REDSTONE,
     /**
-     * Items pertaining to transportation including minecarts, rails, boats,
-     * elytra, etc.
+     * 与运输相关的物品, 包括矿车、铁轨、船、鞘翅等.
      */
     TRANSPORTATION,
     /**
-     * Miscellaneous items and blocks that do not fit into other categories
-     * including gems, dyes, spawn eggs, discs, banner patterns, etc.
+     * 不属于其他分类的杂项物品和方块, 包括宝石、染料、刷怪蛋、唱片、旗帜图案等.
      */
     MISC,
     /**
-     * Food items consumable by the player including meats, berries, edible
-     * drops from creatures, etc.
+     * 玩家可食用的食物物品, 包括肉类、浆果、生物掉落的可食用物等.
      */
     FOOD,
     /**
-     * Equipment items meant for general utility including pickaxes, axes, hoes,
-     * flint and steel, and useful enchantment books for said tools.
+     * 用于一般用途的装备物品, 包括镐、斧、锄、打火石, 以及适用于上述工具的附魔书.
      */
     TOOLS,
     /**
-     * Equipment items meant for combat including armor, swords, bows, tipped
-     * arrows, and useful enchantment books for said equipment.
+     * 用于战斗的装备物品, 包括盔甲、剑、弓、药箭, 以及适用于上述装备的附魔书.
      */
     COMBAT,
     /**
-     * All items related to brewing and potions including all types of potions,
-     * their variants, and ingredients to brew them.
+     * 所有与酿造和药水相关的物品, 包括所有类型的药水、其变体以及酿造原料.
      */
     BREWING;
 }

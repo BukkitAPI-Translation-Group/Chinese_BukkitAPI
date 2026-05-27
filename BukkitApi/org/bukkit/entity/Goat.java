@@ -1,55 +1,71 @@
 package org.bukkit.entity;
 
 /**
- * A Goat.
+ * 山羊.
  */
 public interface Goat extends Animals {
 
     /**
-     * Gets if this goat has its left horn.
+     * 获取此山羊是否有左角.
+     * <p>
+     * 原文：Gets if this goat has its left horn.
      *
-     * @return left horn status
+     * @return 左角状态
      */
     boolean hasLeftHorn();
 
     /**
-     * Sets if this goat has its left horn.
+     * 设置此山羊是否有左角.
+     * <p>
+     * 原文：Sets if this goat has its left horn.
      *
-     * @param hasHorn left horn status
+     * @param hasHorn 左角状态
      */
     void setLeftHorn(boolean hasHorn);
 
     /**
-     * Gets if this goat has its right horn.
+     * 获取此山羊是否有右角.
+     * <p>
+     * 原文：Gets if this goat has its right horn.
      *
-     * @return right horn status
+     * @return 右角状态
      */
     boolean hasRightHorn();
 
     /**
-     * Sets if this goat has its right horn.
+     * 设置此山羊是否有右角.
+     * <p>
+     * 原文：Sets if this goat has its right horn.
      *
-     * @param hasHorn right horn status
+     * @param hasHorn 右角状态
      */
     void setRightHorn(boolean hasHorn);
 
     /**
-     * Gets if this is a screaming goat.
+     * 获取此山羊是否为尖叫山羊.
+     *
+     * 尖叫山羊会发出尖叫声音并更频繁地冲撞. 它们不提供房屋贷款.
+     * <p>
+     * 原文：Gets if this is a screaming goat.
      *
      * A screaming goat makes screaming sounds and rams more often. They do not
      * offer home loans.
      *
-     * @return screaming status
+     * @return 尖叫状态
      */
     boolean isScreaming();
 
     /**
-     * Sets if this is a screaming goat.
+     * 设置此山羊是否为尖叫山羊.
+     *
+     * 尖叫山羊会发出尖叫声音并更频繁地冲撞. 它们不提供房屋贷款.
+     * <p>
+     * 原文：Sets if this is a screaming goat.
      *
      * A screaming goat makes screaming sounds and rams more often. They do not
      * offer home loans.
      *
-     * @param screaming screaming status
+     * @param screaming 尖叫状态
      */
     void setScreaming(boolean screaming);
 }

@@ -14,10 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a key used for accessing memory values of a
- * {@link org.bukkit.entity.LivingEntity}.
+ * 表示用于访问{@link org.bukkit.entity.LivingEntity}记忆值的键。
  *
- * @param <T> the class type of the memory value
+ * @param <T> 记忆值的类类型
  */
 public final class MemoryKey<T> implements Keyed, RegistryAware {
 
@@ -53,6 +52,12 @@ public final class MemoryKey<T> implements Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
+     * @deprecated 密钥可能并不总是存在，请使用{@link #getKeyOrThrow()}代替。
+     * <p>
+     * 原文：{@inheritDoc}
+     *
+     * @see #getKeyOrThrow()
+     * @see #isRegistered()
      * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
@@ -63,7 +68,11 @@ public final class MemoryKey<T> implements Keyed, RegistryAware {
     }
 
     /**
-     * Gets the class of values associated with this memory.
+     * 获取与此记忆关联的值的类。
+     *
+     * @return 值对象的类
+     * <p>
+     * 原文：Gets the class of values associated with this memory.
      *
      * @return the class of value objects
      */
@@ -104,7 +113,12 @@ public final class MemoryKey<T> implements Keyed, RegistryAware {
     public static final MemoryKey<Integer> ITEM_PICKUP_COOLDOWN_TICKS = new MemoryKey<>(NamespacedKey.minecraft("item_pickup_cooldown_ticks"), Integer.class);
 
     /**
-     * Returns a {@link MemoryKey} by a {@link NamespacedKey}.
+     * 通过{@link NamespacedKey}返回{@link MemoryKey}。
+     *
+     * @param namespacedKey 引用{@link MemoryKey}的{@link NamespacedKey}
+     * @return {@link MemoryKey}，当该键下没有可用的{@link MemoryKey}时返回null
+     * <p>
+     * 原文：Returns a {@link MemoryKey} by a {@link NamespacedKey}.
      *
      * @param namespacedKey the {@link NamespacedKey} referencing a
      * {@link MemoryKey}
@@ -117,7 +131,11 @@ public final class MemoryKey<T> implements Keyed, RegistryAware {
     }
 
     /**
-     * Returns the set of all MemoryKeys.
+     * 返回所有MemoryKey的集合。
+     *
+     * @return memoryKeys
+     * <p>
+     * 原文：Returns the set of all MemoryKeys.
      *
      * @return the memoryKeys
      */

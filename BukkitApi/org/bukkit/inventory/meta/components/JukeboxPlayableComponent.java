@@ -8,38 +8,42 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a component which can be inserted into a jukebox.
+ * 表示一个可以插入唱片机的组件。
  */
 @ApiStatus.Experimental
 public interface JukeboxPlayableComponent extends ConfigurationSerializable {
 
     /**
-     * Gets the song assigned to this component.
+     * 获取分配给此组件的歌曲。
+     * <p>原文：Gets the song assigned to this component.
      *
-     * @return song, or null if the song does not exist on the server
+     * @return 歌曲，如果服务器上不存在该歌曲则返回null
      */
     @Nullable
     JukeboxSong getSong();
 
     /**
-     * Gets the key of the song assigned to this component.
+     * 获取分配给此组件的歌曲的键。
+     * <p>原文：Gets the key of the song assigned to this component.
      *
-     * @return the song key
+     * @return 歌曲键
      */
     @Nullable
     NamespacedKey getSongKey();
 
     /**
-     * Sets the song assigned to this component.
+     * 设置分配给此组件的歌曲。
+     * <p>原文：Sets the song assigned to this component.
      *
-     * @param song the song
+     * @param song 歌曲
      */
     void setSong(@NotNull JukeboxSong song);
 
     /**
-     * Sets the key of the song assigned to this component.
+     * 设置分配给此组件的歌曲的键。
+     * <p>原文：Sets the key of the song assigned to this component.
      *
-     * @param song the song key
+     * @param song 歌曲键
      */
     void setSongKey(@NotNull NamespacedKey song);
 }

@@ -25,7 +25,11 @@ public interface InventoryView {
          */
         BREW_TIME(0, InventoryType.BREWING),
         /**
-         * The progress of the fuel slot in a brewing inventory.
+         * 酿造台燃料槽的进度.
+         *
+         * 取值范围为 0 到 20, 0 表示空, 20 表示满.
+         * <p>
+         * 原文：The progress of the fuel slot in a brewing inventory.
          *
          * This is a value between 0 and 20, with 0 making the bar empty, and 20
          * making the bar full.
@@ -48,46 +52,66 @@ public interface InventoryView {
          */
         TICKS_FOR_CURRENT_SMELTING(3, InventoryType.FURNACE),
         /**
-         * In an enchanting inventory, the top button's experience level
+         * 附魔台中, 顶部按钮的经验等级值.
+         * <p>
+         * 原文：In an enchanting inventory, the top button's experience level
          * value.
          */
         ENCHANT_BUTTON1(0, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the middle button's experience level
+         * 附魔台中, 中间按钮的经验等级值.
+         * <p>
+         * 原文：In an enchanting inventory, the middle button's experience level
          * value.
          */
         ENCHANT_BUTTON2(1, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the bottom button's experience level
+         * 附魔台中, 底部按钮的经验等级值.
+         * <p>
+         * 原文：In an enchanting inventory, the bottom button's experience level
          * value.
          */
         ENCHANT_BUTTON3(2, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the first four bits of the player's xpSeed.
+         * 附魔台中, 玩家 xpSeed 的前四位.
+         * <p>
+         * 原文：In an enchanting inventory, the first four bits of the player's xpSeed.
          */
         ENCHANT_XP_SEED(3, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the top button's enchantment's id
+         * 附魔台中, 顶部按钮的附魔 ID.
+         * <p>
+         * 原文：In an enchanting inventory, the top button's enchantment's id
          */
         ENCHANT_ID1(4, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the middle button's enchantment's id
+         * 附魔台中, 中间按钮的附魔 ID.
+         * <p>
+         * 原文：In an enchanting inventory, the middle button's enchantment's id
          */
         ENCHANT_ID2(5, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the bottom button's enchantment's id
+         * 附魔台中, 底部按钮的附魔 ID.
+         * <p>
+         * 原文：In an enchanting inventory, the bottom button's enchantment's id
          */
         ENCHANT_ID3(6, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the top button's level value.
+         * 附魔台中, 顶部按钮的等级值.
+         * <p>
+         * 原文：In an enchanting inventory, the top button's level value.
          */
         ENCHANT_LEVEL1(7, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the middle button's level value.
+         * 附魔台中, 中间按钮的等级值.
+         * <p>
+         * 原文：In an enchanting inventory, the middle button's level value.
          */
         ENCHANT_LEVEL2(8, InventoryType.ENCHANTING),
         /**
-         * In an enchanting inventory, the bottom button's level value.
+         * 附魔台中, 底部按钮的等级值.
+         * <p>
+         * 原文：In an enchanting inventory, the bottom button's level value.
          */
         ENCHANT_LEVEL3(9, InventoryType.ENCHANTING),
         /**
@@ -107,7 +131,9 @@ public interface InventoryView {
          */
         REPAIR_COST(0, InventoryType.ANVIL),
         /**
-         * The lectern's current open book page
+         * 讲台当前打开的书页.
+         * <p>
+         * 原文：The lectern's current open book page
          */
         BOOK_PAGE(0, InventoryType.LECTERN);
         int id;
@@ -224,7 +250,13 @@ public interface InventoryView {
     public ItemStack getCursor();
 
     /**
-     * Gets the inventory corresponding to the given raw slot ID.
+     * 获取与给定原始槽位 ID 对应的物品栏.
+     *
+     * 如果槽位 ID 是 {@link #OUTSIDE} 则返回 null, 否则对于非法和负数槽位 ID 的行为是未定义的.
+     *
+     * 可与 {@link #convertSlot(int)} 一起使用来直接索引底层物品栏.
+     * <p>
+     * 原文：Gets the inventory corresponding to the given raw slot ID.
      *
      * If the slot ID is {@link #OUTSIDE} null will be returned, otherwise
      * behaviour for illegal and negative slot IDs is undefined.
@@ -232,8 +264,8 @@ public interface InventoryView {
      * May be used with {@link #convertSlot(int)} to directly index an
      * underlying inventory.
      *
-     * @param rawSlot The raw slot ID.
-     * @return corresponding inventory, or null
+     * @param rawSlot 原始槽位 ID
+     * @return 对应的物品栏, 或 null
      */
     @Nullable
     public Inventory getInventory(int rawSlot);
@@ -283,13 +315,17 @@ public interface InventoryView {
     public int convertSlot(int rawSlot);
 
     /**
-     * Determine the type of the slot by its raw slot ID.
+     * 根据原始槽位 ID 确定槽位的类型.
+     * <p>
+     * 如果槽位类型未知, 则返回 {@link InventoryType.SlotType#CONTAINER}.
+     * <p>
+     * 原文：Determine the type of the slot by its raw slot ID.
      * <p>
      * If the type of the slot is unknown, then
      * {@link InventoryType.SlotType#CONTAINER} will be returned.
      *
-     * @param slot The raw slot ID
-     * @return the slot type
+     * @param slot 原始槽位 ID
+     * @return 槽位类型
      */
     @NotNull
     public InventoryType.SlotType getSlotType(int slot);
@@ -302,24 +338,29 @@ public interface InventoryView {
     public void close();
 
     /**
-     * Check the total number of slots in this view, combining the upper and
+     * 检查此视图中的总槽位数, 合并上方和下方物品栏.
+     * <p>
+     * 注意, 如果某些槽位未被使用, 此值可能大于两个物品栏的总和.
+     * <p>
+     * 原文：Check the total number of slots in this view, combining the upper and
      * lower inventories.
      * <p>
      * Note though that it's possible for this to be greater than the sum of
      * the two inventories if for example some slots are not being used.
      *
-     * @return The total size
+     * @return 总大小
      */
     public int countSlots();
 
     /**
-     * Sets an extra property of this inventory if supported by that
+     * 设置此物品栏的额外属性 (如果该物品栏支持), 例如进度条的状态.
+     * <p>
+     * 原文：Sets an extra property of this inventory if supported by that
      * inventory, for example the state of a progress bar.
      *
-     * @param prop the window property to update
-     * @param value the new value for the window property
-     * @return true if the property was updated successfully, false if the
-     *     property is not supported by that inventory
+     * @param prop 要更新的窗口属性
+     * @param value 窗口属性的新值
+     * @return 如果属性更新成功则返回 true, 如果该物品栏不支持该属性则返回 false
      */
     public boolean setProperty(@NotNull Property prop, int value);
 
@@ -334,23 +375,29 @@ public interface InventoryView {
     public String getTitle();
 
     /**
-     * Get the original title of this inventory window, before any changes were
+     * 获取此物品栏窗口的原始标题 (在使用 {@link #setTitle(String)} 进行任何更改之前).
+     * <p>
+     * 原文：Get the original title of this inventory window, before any changes were
      * made using {@link #setTitle(String)}.
      *
-     * @return the original title
+     * @return 原始标题
      */
     @NotNull
     public String getOriginalTitle();
 
     /**
-     * Sets the title of this inventory window to the specified title if the
+     * 设置此物品栏窗口的标题 (如果物品栏窗口支持).
+     * <p>
+     * 注意, 如果物品栏不支持可更改的标题 (即不是可创建的或由玩家查看的), 则此方法将抛出异常.
+     * <p>
+     * 原文：Sets the title of this inventory window to the specified title if the
      * inventory window supports it.
      * <p>
      * Note if the inventory does not support titles that can be changed (ie, it
      * is not creatable or viewed by a player), then this method will throw an
      * exception.
      *
-     * @param title The new title.
+     * @param title 新标题
      */
     public void setTitle(@NotNull String title);
 }

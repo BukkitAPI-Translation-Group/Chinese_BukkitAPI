@@ -6,67 +6,74 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents a component which can turn any item into piercing weapon that
- * damages multiple entities.
+ * 表示一个可以将任何物品转变为穿透武器的组件，该武器可以伤害多个实体。
  */
 @ApiStatus.Experimental
 public interface PiercingWeaponComponent extends ConfigurationSerializable {
 
     /**
-     * Gets whether the attack deals knockback to the target.
+     * 获取攻击是否会对目标造成击退效果。
+     * <p>原文：Gets whether the attack deals knockback to the target.
      *
-     * @return true if knockback
+     * @return 如果有击退效果则返回true
      */
     boolean isDealsKnockback();
 
     /**
-     * Sets whether the attack deals knockback to the target.
+     * 设置攻击是否会对目标造成击退效果。
+     * <p>原文：Sets whether the attack deals knockback to the target.
      *
-     * @param knockback true if knockback
+     * @param knockback 如果有击退效果则为true
      */
     void setDealsKnockback(boolean knockback);
 
     /**
-     * Gets whether the attack dismounts the target.
+     * 获取攻击是否会使目标下马。
+     * <p>原文：Gets whether the attack dismounts the target.
      *
-     * @return true if dismounts
+     * @return 如果会使目标下马则返回true
      */
     boolean isDismounts();
 
     /**
-     * Sets whether the attack dismounts the target.
+     * 设置攻击是否会使目标下马。
+     * <p>原文：Sets whether the attack dismounts the target.
      *
-     * @param dismounts true if dismounts
+     * @param dismounts 如果会使目标下马则为true
      */
     void setDismounts(boolean dismounts);
 
     /**
-     * Gets the sound to play when the item is used.
+     * 获取使用物品时播放的音效。
+     * <p>原文：Gets the sound to play when the item is used.
      *
-     * @return the sound
+     * @return 音效
      */
     @Nullable
     Sound getSound();
 
     /**
-     * Sets the sound to play when the item is used.
+     * 设置使用物品时播放的音效。
+     * <p>原文：Sets the sound to play when the item is used.
      *
-     * @param sound sound or null for current default
+     * @param sound 音效或null表示使用当前默认值
      */
     void setSound(@Nullable Sound sound);
 
     /**
-     * Gets the sound to play when the item successfully hits a target.
+     * 获取物品成功击中目标时播放的音效。
+     * <p>原文：Gets the sound to play when the item successfully hits a target.
      *
-     * @return the sound
+     * @return 音效
      */
     @Nullable
     Sound getHitSound();
 
     /**
-     * Sets the sound to play when the item successfully hits a target.
+     * 设置物品成功击中目标时播放的音效。
+     * <p>原文：Sets the sound to play when the item successfully hits a target.
      *
-     * @param sound sound or null for current default
+     * @param sound 音效或null表示使用当前默认值
      */
     void setHitSound(@Nullable Sound sound);
 }

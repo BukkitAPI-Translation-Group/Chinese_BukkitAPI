@@ -15,19 +15,23 @@ import org.jetbrains.annotations.Nullable;
 public interface PotionMeta extends ItemMeta {
 
     /**
-     * Sets the underlying potion data
+     * 设置底层药水数据.
+     * <p>
+     * 原文：Sets the underlying potion data
      *
-     * @param data PotionData to set the base potion state to
-     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #setBasePotionType} instead.
+     * @param data 要设置的基础药水状态的 PotionData
+     * @deprecated 升级/延长的药水现在是独立的 {@link PotionType}，请使用 {@link #setBasePotionType} 代替.
      */
     @Deprecated(since = "1.20.6")
     void setBasePotionData(@Nullable PotionData data);
 
     /**
-     * Returns the potion data about the base potion
+     * 返回关于基础药水的药水数据.
+     * <p>
+     * 原文：Returns the potion data about the base potion
      *
-     * @return a PotionData object
-     * @deprecated Upgraded / extended potions are now their own {@link PotionType} use {@link #getBasePotionType()} instead.
+     * @return PotionData 对象
+     * @deprecated 升级/延长的药水现在是独立的 {@link PotionType}，请使用 {@link #getBasePotionType()} 代替.
      */
     @Nullable
     @Deprecated(since = "1.20.6")
@@ -55,9 +59,11 @@ public interface PotionMeta extends ItemMeta {
     PotionType getBasePotionType();
 
     /**
-     * Checks for the presence of a base potion type
+     * 检查是否存在基础药水类型.
+     * <p>
+     * 原文：Checks for the presence of a base potion type
      *
-     * @return true if a base potion type is present
+     * @return 如果存在基础药水类型则为 true
      */
     boolean hasBasePotionType();
 
@@ -192,52 +198,62 @@ public interface PotionMeta extends ItemMeta {
     void setColor(@Nullable Color color);
 
     /**
-     * Checks for existence of a custom potion name translation suffix.
+     * 检查是否存在自定义药水名称翻译后缀.
+     * <p>
+     * 原文：Checks for existence of a custom potion name translation suffix.
      *
-     * @return true if this has a custom potion name
+     * @return 如果存在自定义药水名称则为 true
      */
     boolean hasCustomName();
 
     /**
-     * Gets the potion name translation suffix that is set.
+     * 获取已设置的药水名称翻译后缀.
      * <p>
-     * Plugins should check that hasCustomName() returns <code>true</code>
-     * before calling this method.
+     * 插件应该在调用此方法之前检查 hasCustomName() 是否返回 <code>true</code>.
+     * <p>
+     * 原文：Gets the potion name translation suffix that is set. Plugins should check that hasCustomName() returns <code>true</code> before calling this method.
      *
-     * @return the potion name that is set
+     * @return 已设置的药水名称
      */
     @Nullable
     String getCustomName();
 
     /**
-     * Sets the potion name translation suffix.
+     * 设置药水名称翻译后缀.
+     * <p>
+     * 原文：Sets the potion name translation suffix.
      *
-     * @param name the name to set
+     * @param name 要设置的名称
      */
     void setCustomName(@Nullable String name);
 
     /**
-     * Checks for existence of a potion duration scale.
+     * 检查是否存在药水持续时间缩放.
+     * <p>
+     * 原文：Checks for existence of a potion duration scale.
      *
-     * @return true if this has a potion duration scale.
+     * @return 如果存在药水持续时间缩放则为 true
      */
     boolean hasDurationScale();
 
     /**
-     * Gets the potion duration scale that is set.
+     * 获取已设置的药水持续时间缩放.
      * <p>
-     * Plugins should check that hasDurationScale() returns <code>true</code>
-     * before calling this method.
+     * 插件应该在调用此方法之前检查 hasDurationScale() 是否返回 <code>true</code>.
+     * <p>
+     * 原文：Gets the potion duration scale that is set. Plugins should check that hasDurationScale() returns <code>true</code> before calling this method.
      *
-     * @return the scale factor applied to all potion effect durations
+     * @return 应用于所有药水效果持续时间的缩放因子
      */
     @Nullable
     float getDurationScale();
 
     /**
-     * Gets the potion duration scale.
+     * 设置药水持续时间缩放.
+     * <p>
+     * 原文：Sets the potion duration scale.
      *
-     * @param scale the scale factor applied to all potion effect durations
+     * @param scale 应用于所有药水效果持续时间的缩放因子
      */
     void setDurationScale(@Nullable Float scale);
 
