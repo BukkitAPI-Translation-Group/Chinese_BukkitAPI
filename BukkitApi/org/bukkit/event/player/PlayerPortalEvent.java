@@ -34,73 +34,74 @@ public class PlayerPortalEvent extends PlayerTeleportEvent {
     }
 
     /**
-     * Set the Block radius to search in for available portals.
+     * 设置搜索可用传送门的方块半径.
      *
-     * @param searchRadius the radius in which to search for a portal from the
-     * location
+     * @param searchRadius 从当前位置搜索传送门的半径
+     * <p>
+     * 原文：Set the Block radius to search in for available portals.
      */
     public void setSearchRadius(int searchRadius) {
         this.getSearchRadius = searchRadius;
     }
 
     /**
-     * Gets the search radius value for finding an available portal.
+     * 获取搜索可用传送门的半径.
      *
-     * @return the currently set search radius
+     * @return 当前设置的搜索半径
+     * <p>
+     * 原文：Gets the search radius value for finding an available portal.
      */
     public int getSearchRadius() {
         return getSearchRadius;
     }
 
     /**
-     * Returns whether the server will attempt to create a destination portal or
-     * not.
+     * 返回服务器是否将尝试创建目标传送门.
      *
-     * @return whether there should create be a destination portal created
+     * @return 是否应创建目标传送门
+     * <p>
+     * 原文：Returns whether the server will attempt to create a destination portal or not.
      */
     public boolean getCanCreatePortal() {
         return canCreatePortal;
     }
 
     /**
-     * Sets whether the server should attempt to create a destination portal or
-     * not.
+     * 设置服务器是否应尝试创建目标传送门.
      *
-     * @param canCreatePortal Sets whether there should be a destination portal
-     * created
+     * @param canCreatePortal 是否应创建目标传送门
+     * <p>
+     * 原文：Sets whether the server should attempt to create a destination portal or not.
      */
     public void setCanCreatePortal(boolean canCreatePortal) {
         this.canCreatePortal = canCreatePortal;
     }
 
     /**
-     * Sets the maximum radius the world is searched for a free space from the
-     * given location.
+     * 设置从给定位置搜索空闲空间的最大世界半径.
+     * <p>
+     * 如果找到足够的空闲空间，则传送门将创建在该处；否则将在目标位置强制以空气空间创建.
+     * <p>
+     * 不适用于末地传送门目标平台，该平台将始终出现在目标位置.
      *
-     * If enough free space is found then the portal will be created there, if
-     * not it will force create with air-space at the target location.
-     *
-     * Does not apply to end portal target platforms which will always appear at
-     * the target location.
-     *
-     * @param creationRadius the radius in which to create a portal from the
-     * location
+     * @param creationRadius 从当前位置创建传送门的半径
+     * <p>
+     * 原文：Sets the maximum radius the world is searched for a free space from the given location.
      */
     public void setCreationRadius(int creationRadius) {
         this.creationRadius = creationRadius;
     }
 
     /**
-     * Gets the maximum radius the world is searched for a free space from the
-     * given location.
+     * 获取从给定位置搜索空闲空间的最大世界半径.
+     * <p>
+     * 如果找到足够的空闲空间，则传送门将创建在该处；否则将在目标位置强制以空气空间创建.
+     * <p>
+     * 不适用于末地传送门目标平台，该平台将始终出现在目标位置.
      *
-     * If enough free space is found then the portal will be created there, if
-     * not it will force create with air-space at the target location.
-     *
-     * Does not apply to end portal target platforms which will always appear at
-     * the target location.
-     *
-     * @return the currently set creation radius
+     * @return 当前设置的创建半径
+     * <p>
+     * 原文：Gets the maximum radius the world is searched for a free space from the given location.
      */
     public int getCreationRadius() {
         return creationRadius;
