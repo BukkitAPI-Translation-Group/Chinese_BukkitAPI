@@ -58,9 +58,11 @@ public class PlayerRiptideEvent extends PlayerEvent {
     }
 
     /**
-     * Get the velocity applied to the player as a result of this riptide.
+     * 获取因本次激流而施加给玩家的速度向量.
+     * <p>
+     * 原文：Get the velocity applied to the player as a result of this riptide.
      *
-     * @return the riptide velocity
+     * @return 激流速度向量
      */
     @NotNull
     public Vector getVelocity() {
