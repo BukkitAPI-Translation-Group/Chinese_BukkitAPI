@@ -15,22 +15,26 @@ import org.jetbrains.annotations.NotNull;
 public interface AbstractHorse extends Vehicle, InventoryHolder, Tameable {
 
     /**
-     * Gets the horse's variant.
+     * 获得此马的变种.
+     * <p>
+     * 马的变种决定了其外观和能力. 一匹马是普通马、驴、骡还是其他种类的马由变种决定.
+     * <p>
+     * 原文: Gets the horse's variant.
      * <p>
      * A horse's variant defines its physical appearance and capabilities.
      * Whether a horse is a regular horse, donkey, mule, or other kind of horse
      * is determined using the variant.
      *
-     * @return a {@link Horse.Variant} representing the horse's variant
-     * @deprecated different variants are different classes
+     * @return 代表此马变种的 {@link Horse.Variant}
+     * @deprecated 不同变种属于不同类
      */
     @Deprecated(since = "1.11")
     @NotNull
     public Horse.Variant getVariant();
 
     /**
-     * @param variant variant
-     * @deprecated you are required to spawn a different entity
+     * @param variant 变种
+     * @deprecated 需要生成一个不同的实体
      */
     @Deprecated(since = "1.11")
     @Contract("_ -> fail")
@@ -143,16 +147,20 @@ public interface AbstractHorse extends Vehicle, InventoryHolder, Tameable {
     public void setJumpStrength(double strength);
 
     /**
-     * Gets whether the horse is currently grazing hay.
+     * 获得此马是否正在吃干草.
+     * <p>
+     * 原文: Gets whether the horse is currently grazing hay.
      *
-     * @return true if eating hay
+     * @return 如果正在吃干草则为 true
      */
     boolean isEatingHaystack();
 
     /**
-     * Sets whether the horse is grazing hay.
+     * 设置此马是否正在吃干草.
+     * <p>
+     * 原文: Sets whether the horse is grazing hay.
      *
-     * @param eatingHaystack new hay grazing status
+     * @param eatingHaystack 新的干草进食状态
      */
     void setEatingHaystack(boolean eatingHaystack);
 
