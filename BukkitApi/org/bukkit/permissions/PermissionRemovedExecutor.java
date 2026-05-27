@@ -9,6 +9,10 @@ public interface PermissionRemovedExecutor {
 
     /**
      * 当{@link PermissionAttachment}从{@link Permissible}中移除时调用.
+     * <p>
+     * 原文：
+     * Called when a {@link PermissionAttachment} is removed from a {@link
+     * Permissible}
      *
      * @param attachment 被移除的附件
      */

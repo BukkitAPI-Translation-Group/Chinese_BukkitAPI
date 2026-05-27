@@ -7,6 +7,9 @@ public interface Tadpole extends Fish {
 
     /**
      * 获取此生物的年龄.
+     * <p>
+     * 原文：
+     * Gets the age of this mob.
      *
      * @return 年龄
      */
@@ -14,6 +17,9 @@ public interface Tadpole extends Fish {
 
     /**
      * 设置此生物的年龄.
+     * <p>
+     * 原文：
+     * Sets the age of this mob.
      *
      * @param age 新的年龄
      */

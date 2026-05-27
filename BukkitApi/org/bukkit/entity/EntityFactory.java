@@ -8,8 +8,12 @@ public interface EntityFactory {
 
     /**
      * 使用提供的输入创建一个新的EntitySnapshot.
-     * <br>
+     * <p>
      * 接受{@link EntitySnapshot#getAsString()}输出格式的字符串.
+     * <p>
+     * 原文：
+     * Create a new EntitySnapshot with the supplied input.<br>
+     * Accepts strings in the format output by {@link EntitySnapshot#getAsString()}.
      *
      * @param input 输入字符串
      * @return 创建的EntitySnapshot

@@ -7,6 +7,9 @@ public interface Directional {
 
     /**
      * 设置此方块的朝向.
+     * <p>
+     * 原文：
+     * Sets the direction that this block is facing in
      *
      * @param face 朝向
      */
@@ -14,6 +17,9 @@ public interface Directional {
 
     /**
      * 获取此方块的朝向.
+     * <p>
+     * 原文：
+     * Gets the direction this block is facing
      *
      * @return 此方块的朝向
      */

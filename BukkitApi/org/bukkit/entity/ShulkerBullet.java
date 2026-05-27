@@ -6,6 +6,9 @@ public interface ShulkerBullet extends Projectile {
 
     /**
      * 获取此弹射物的目标.
+     * <p>
+     * 原文：
+     * Retrieve the target of this bullet.
      *
      * @return 目标实体
      */
@@ -14,6 +17,9 @@ public interface ShulkerBullet extends Projectile {
 
     /**
      * 设置此弹射物的目标.
+     * <p>
+     * 原文：
+     * Sets the target of this bullet
      *
      * @param target 要锁定的实体
      */

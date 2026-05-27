@@ -10,6 +10,9 @@ public interface Attachable extends Directional {
 
     /**
      * 获取此方块附着的面.
+     * <p>
+     * 原文：
+     * Gets the face that this block is attached on
      *
      * @return 附着的面
      */

@@ -9,6 +9,9 @@ public abstract class StringPrompt implements Prompt {
 
     /**
      * 确保提示等待用户提供输入.
+     * <p>
+     * 原文：
+     * Ensures that the prompt waits for the user to provide input.
      *
      * @param context 对话的上下文信息.
      * @return True.

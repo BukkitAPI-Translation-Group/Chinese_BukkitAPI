@@ -9,6 +9,9 @@ public interface Translatable {
 
     /**
      * 获取翻译键, 适用于在翻译组件中使用.
+     * <p>
+     * 原文：
+     * Get the translation key, suitable for use in a translation component.
      *
      * @return 翻译键
      */

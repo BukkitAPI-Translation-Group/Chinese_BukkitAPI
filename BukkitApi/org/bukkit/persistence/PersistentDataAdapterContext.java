@@ -9,6 +9,9 @@ public interface PersistentDataAdapterContext {
 
     /**
      * 创建一个新的空元数据容器实例.
+     * <p>
+     * 原文：
+     * Creates a new and empty meta container instance.
      *
      * @return 新的容器实例
      */

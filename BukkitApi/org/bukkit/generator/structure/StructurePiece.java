@@ -12,6 +12,9 @@ public interface StructurePiece {
 
     /**
      * 获取此结构部件的边界框.
+     * <p>
+     * 原文：
+     * Gets the bounding box of this structure piece.
      *
      * @return 此结构部件的边界框
      */
