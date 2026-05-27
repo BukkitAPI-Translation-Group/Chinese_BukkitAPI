@@ -84,9 +84,11 @@ public class SignChangeEvent extends BlockEvent implements Cancellable {
     }
 
     /**
-     * Returns which side is changed.
+     * 返回被更改的牌子面.
+     * <p>
+     * 原文：Returns which side is changed.
      *
-     * @return the affected side of the sign
+     * @return 牌子受影响的面
      */
     @NotNull
     public Side getSide() {
