@@ -87,9 +87,11 @@ public class PlayerItemConsumeEvent extends PlayerEvent implements Cancellable {
     }
 
     /**
-     * Get the hand used to consume the item.
+     * 获取用于消耗物品的手.
+     * <p>
+     * 原文:Get the hand used to consume the item.
      *
-     * @return the hand
+     * @return 使用的手
      */
     @NotNull
     public EquipmentSlot getHand() {
