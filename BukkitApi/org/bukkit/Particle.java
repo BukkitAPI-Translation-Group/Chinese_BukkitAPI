@@ -22,15 +22,21 @@ public enum Particle implements Keyed, RegistryAware {
     SMOKE("smoke"),
     LARGE_SMOKE("large_smoke"),
     /**
-     * Uses {@link Spell} as DataType
+     * 使用 {@link Spell} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Spell} as DataType
      */
     EFFECT("effect", Spell.class),
     /**
-     * Uses {@link Spell} as DataType
+     * 使用 {@link Spell} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Spell} as DataType
      */
     INSTANT_EFFECT("instant_effect", Spell.class),
     /**
-     * Uses {@link Color} as DataType
+     * 使用 {@link Color} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Color} as DataType
      */
     ENTITY_EFFECT("entity_effect", Color.class),
     WITCH("witch"),
@@ -46,31 +52,41 @@ public enum Particle implements Keyed, RegistryAware {
     LAVA("lava"),
     CLOUD("cloud"),
     /**
-     * Uses {@link Particle.DustOptions} as DataType
+     * 使用 {@link Particle.DustOptions} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Particle.DustOptions} as DataType
      */
     DUST("dust", DustOptions.class),
     ITEM_SNOWBALL("item_snowball"),
     ITEM_SLIME("item_slime"),
     HEART("heart"),
     /**
-     * Uses {@link ItemStack} as DataType
+     * 使用 {@link ItemStack} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link ItemStack} as DataType
      */
     ITEM("item", ItemStack.class),
     /**
-     * Uses {@link BlockData} as DataType
+     * 使用 {@link BlockData} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link BlockData} as DataType
      */
     BLOCK("block", BlockData.class),
     RAIN("rain"),
     ELDER_GUARDIAN("elder_guardian"),
     /**
-     * Uses {@link Float} as DataType
+     * 使用 {@link Float} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Float} as DataType
      */
     DRAGON_BREATH("dragon_breath", Float.class),
     END_ROD("end_rod"),
     DAMAGE_INDICATOR("damage_indicator"),
     SWEEP_ATTACK("sweep_attack"),
     /**
-     * Uses {@link BlockData} as DataType
+     * 使用 {@link BlockData} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link BlockData} as DataType
      */
     FALLING_DUST("falling_dust", BlockData.class),
     TOTEM_OF_UNDYING("totem_of_undying"),
@@ -86,7 +102,9 @@ public enum Particle implements Keyed, RegistryAware {
     CAMPFIRE_SIGNAL_SMOKE("campfire_signal_smoke"),
     COMPOSTER("composter"),
     /**
-     * Uses {@link Color} as DataType
+     * 使用 {@link Color} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Color} as DataType
      */
     FLASH("flash", Color.class),
     FALLING_LAVA("falling_lava"),
@@ -107,11 +125,15 @@ public enum Particle implements Keyed, RegistryAware {
     REVERSE_PORTAL("reverse_portal"),
     WHITE_ASH("white_ash"),
     /**
-     * Uses {@link DustTransition} as DataType
+     * 使用 {@link DustTransition} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link DustTransition} as DataType
      */
     DUST_COLOR_TRANSITION("dust_color_transition", DustTransition.class),
     /**
-     * Uses {@link Vibration} as DataType
+     * 使用 {@link Vibration} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Vibration} as DataType
      */
     VIBRATION("vibration", Vibration.class),
     FALLING_SPORE_BLOSSOM("falling_spore_blossom"),
@@ -131,18 +153,24 @@ public enum Particle implements Keyed, RegistryAware {
     SONIC_BOOM("sonic_boom"),
     SCULK_SOUL("sculk_soul"),
     /**
-     * Use {@link Float} as DataType
+     * 使用 {@link Float} 作为数据类型。
+     * <p>
+     * 原文：Use {@link Float} as DataType
      */
     SCULK_CHARGE("sculk_charge", Float.class),
     SCULK_CHARGE_POP("sculk_charge_pop"),
     /**
-     * Use {@link Integer} as DataType
+     * 使用 {@link Integer} 作为数据类型。
+     * <p>
+     * 原文：Use {@link Integer} as DataType
      */
     SHRIEK("shriek", Integer.class),
     CHERRY_LEAVES("cherry_leaves"),
     PALE_OAK_LEAVES("pale_oak_leaves"),
     /**
-     * Uses {@link Color} as DataType
+     * 使用 {@link Color} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Color} as DataType
      */
     TINTED_LEAVES("tinted_leaves", Color.class),
     EGG_CRACK("egg_crack"),
@@ -158,16 +186,22 @@ public enum Particle implements Keyed, RegistryAware {
     INFESTED("infested"),
     ITEM_COBWEB("item_cobweb"),
     /**
-     * Uses {@link BlockData} as DataType
+     * 使用 {@link BlockData} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link BlockData} as DataType
      */
     DUST_PILLAR("dust_pillar", BlockData.class),
     /**
-     * Uses {@link BlockData} as DataType
+     * 使用 {@link BlockData} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link BlockData} as DataType
      */
     @ApiStatus.Experimental
     BLOCK_CRUMBLE("block_crumble", BlockData.class),
     /**
-     * Uses {@link Trail} as DataType
+     * 使用 {@link Trail} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link Trail} as DataType
      */
     @ApiStatus.Experimental
     TRAIL("trail", Trail.class),
@@ -175,7 +209,9 @@ public enum Particle implements Keyed, RegistryAware {
     RAID_OMEN("raid_omen"),
     TRIAL_OMEN("trial_omen"),
     /**
-     * Uses {@link BlockData} as DataType
+     * 使用 {@link BlockData} 作为数据类型。
+     * <p>
+     * 原文：Uses {@link BlockData} as DataType
      */
     BLOCK_MARKER("block_marker", BlockData.class),
     FIREFLY("firefly"),
