@@ -281,13 +281,19 @@ public class WorldCreator {
     }
 
     /**
+     * 获取将被用于创建或加载世界的生物群系提供器。
+     * <p>
+     * 可能为null值，在这种情况下会使用{@link ChunkGenerator}的生物群系提供器。
+     * 如果没有指定{@link ChunkGenerator}，则会使用此环境的"natural"型生物群系提供器。
+     * <p>
+     * 原文：
      * Gets the biome provider that will be used to create or load the world.
      * <p>
      * This may be null, in which case the biome provider from the {@link ChunkGenerator}
      * will be used. If no {@link ChunkGenerator} is specific the "natural" biome provider
      * for this environment will be used.
      *
-     * @return Biome provider
+     * @return 生物群系提供器
      */
     @Nullable
     public BiomeProvider biomeProvider() {
@@ -295,14 +301,20 @@ public class WorldCreator {
     }
 
     /**
+     * 设置将被用于创建或加载世界的生物群系提供器。
+     * <p>
+     * 可能为null值，在这种情况下会使用{@link ChunkGenerator}的生物群系提供器。
+     * 如果没有指定{@link ChunkGenerator}，则会使用此环境的"natural"型生物群系提供器。
+     * <p>
+     * 原文：
      * Sets the biome provider that will be used to create or load the world.
      * <p>
      * This may be null, in which case the biome provider from the
      * {@link ChunkGenerator} will be used. If no {@link ChunkGenerator} is
      * specific the "natural" biome provider for this environment will be used.
      *
-     * @param biomeProvider Biome provider
-     * @return This object, for chaining
+     * @param biomeProvider 生物群系提供器
+     * @return 用于连接的对象
      */
     @NotNull
     public WorldCreator biomeProvider(@Nullable BiomeProvider biomeProvider) {
@@ -312,6 +324,14 @@ public class WorldCreator {
     }
 
     /**
+     * 设置将被用于创建或加载世界的生物群系提供器。
+     * <p>
+     * 可能为null值，在这种情况下会使用{@link ChunkGenerator}的生物群系提供器。
+     * 如果没有指定{@link ChunkGenerator}，则会使用此环境的"natural"型生物群系提供器。
+     * <p>
+     * 如果找不到指定名字的生物群系提供器且没有指定{@link ChunkGenerator}，则会使用自然环境的生物群系提供器以代替并且会向指定的输出处输出一条警告。
+     * <p>
+     * 原文：
      * Sets the biome provider that will be used to create or load the world.
      * <p>
      * This may be null, in which case the biome provider from the
@@ -323,9 +343,8 @@ public class WorldCreator {
      * provider will be used instead and a warning will be printed to the
      * specified output
      *
-     * @param biomeProvider Name of the biome provider to use, in "plugin:id"
-     * notation
-     * @return This object, for chaining
+     * @param biomeProvider 使用的生物群系提供器的名字，形式为"plugin:id"
+     * @return 用于连接的对象
      */
     @NotNull
     public WorldCreator biomeProvider(@Nullable String biomeProvider) {
@@ -335,6 +354,14 @@ public class WorldCreator {
     }
 
     /**
+     * 设置将被用于创建或加载世界的生物群系提供器。
+     * <p>
+     * 可能为null值，在这种情况下会使用{@link ChunkGenerator}的生物群系提供器。
+     * 如果没有指定{@link ChunkGenerator}，则会使用此环境的"natural"型生物群系提供器。
+     * <p>
+     * 如果找不到指定名字的生物群系提供器且没有指定{@link ChunkGenerator}，则会使用自然环境的生物群系提供器以代替并且会向指定的输出处输出一条警告。
+     * <p>
+     * 原文：
      * Sets the biome provider that will be used to create or load the world.
      * <p>
      * This may be null, in which case the biome provider from the
@@ -346,10 +373,9 @@ public class WorldCreator {
      * provider will be used instead and a warning will be printed to the
      * specified output
      *
-     * @param biomeProvider Name of the biome provider to use, in "plugin:id"
-     * notation
-     * @param output {@link CommandSender} that will receive any error messages
-     * @return This object, for chaining
+     * @param biomeProvider 使用的生物群系提供器的名字，形式为"plugin:id"
+     * @param output 将用于接收任何错误信息的{@link CommandSender}
+     * @return 用于连接的对象
      */
     @NotNull
     public WorldCreator biomeProvider(@Nullable String biomeProvider, @Nullable CommandSender output) {
@@ -359,6 +385,12 @@ public class WorldCreator {
     }
 
     /**
+     * 设置将被创建或加载的世界的生成器配置。
+     * <p>
+     * 目前只有{@link WorldType#FLAT}使用这些配置，并且期望它们是JSON格式且定义了有效的生物群系（1.18.2及以上版本）。一个有效的配置示例如下：
+     * <code>{"layers": [{"block": "stone", "height": 1}, {"block": "grass_block", "height": 1}], "biome":"plains"}</code>
+     * <p>
+     * 原文：
      * Sets the generator settings of the world that will be created or loaded.
      * <p>
      * Currently only {@link WorldType#FLAT} uses these settings, and expects
@@ -366,12 +398,9 @@ public class WorldCreator {
      * above) defined. An example valid configuration is as follows:
      * <code>{"layers": [{"block": "stone", "height": 1}, {"block": "grass_block", "height": 1}], "biome":"plains"}</code>
      *
-     * @param generatorSettings The settings that should be used by the
-     * generator
-     * @return This object, for chaining
-     * @see <a href="https://minecraft.wiki/w/Custom_dimension">Custom
-     * dimension</a> (scroll to "When the generator ID type is
-     * <code>minecraft:flat</code>)"
+     * @param generatorSettings 生成器应使用的配置
+     * @return 用于连接的对象
+     * @see <a href="https://minecraft.wiki/w/Custom_dimension">自定义维度</a>（滚动至 "When the generator ID type is <code>minecraft:flat</code>")
      */
     @NotNull
     public WorldCreator generatorSettings(@NotNull String generatorSettings) {
@@ -424,12 +453,17 @@ public class WorldCreator {
     }
 
     /**
+     * 设置世界是否为极限模式。
+     * <p>
+     * 在极限模式世界中，难度将被锁定为困难。
+     * <p>
+     * 原文：
      * Sets whether the world will be hardcore or not.
-     *
+     * <p>
      * In a hardcore world the difficulty will be locked to hard.
      *
-     * @param hardcore Whether the world will be hardcore
-     * @return This object, for chaining
+     * @param hardcore 世界是否为极限模式
+     * @return 用于连接的对象
      */
     @NotNull
     public WorldCreator hardcore(boolean hardcore) {
@@ -439,26 +473,39 @@ public class WorldCreator {
     }
 
     /**
+     * 获取世界是否为极限模式。
+     * <p>
+     * 在极限模式世界中，难度将被锁定为困难。
+     * <p>
+     * 原文：
      * Gets whether the world will be hardcore or not.
-     *
+     * <p>
      * In a hardcore world the difficulty will be locked to hard.
      *
-     * @return hardcore status
+     * @return 极限模式状态
      */
     public boolean hardcore() {
         return hardcore;
     }
 
     /**
-     * Sets whether the spawn chunks will be kept loaded. <br>
+     * 设置出生点区块是否保持加载状态。
+     * <p>
+     * 将此设置为false也会在创建新世界时阻止出生点区块被生成。
+     * <p>
+     * 除非配合重写了{@link ChunkGenerator#getFixedSpawnLocation(World, Random)}的{@link ChunkGenerator}，否则几乎没有性能提升。
+     * <p>
+     * 原文：
+     * Sets whether the spawn chunks will be kept loaded.
+     * <p>
      * Setting this to false will also stop the spawn chunks from being generated
      * when creating a new world.
      * <p>
      * Has little performance benefit unless paired with a {@link ChunkGenerator}
      * that overrides {@link ChunkGenerator#getFixedSpawnLocation(World, Random)}.
      *
-     * @param keepSpawnInMemory Whether the spawn chunks will be kept loaded
-     * @return This object, for chaining
+     * @param keepSpawnInMemory 出生点区块是否保持加载
+     * @return 用于连接的对象
      * @deprecated "出生点区块"的概念已被移除, 使用
      * {@link World#setChunkForceLoaded(int, int, boolean)} 以更好地控制
      */
@@ -469,9 +516,12 @@ public class WorldCreator {
     }
 
     /**
+     * 获取出生点区块是否保持加载状态。
+     * <p>
+     * 原文：
      * Gets whether or not the spawn chunks will be kept loaded.
      *
-     * @return True if the spawn chunks will be kept loaded
+     * @return 如果出生点区块保持加载则返回true
      * @deprecated "出生点区块"的概念已被移除, 使用
      * {@link World#isChunkForceLoaded(int, int)} 以更好地控制
      */
@@ -562,6 +612,13 @@ public class WorldCreator {
     }
 
     /**
+     * 试图使用指定的名称获取{@link BiomeProvider}。
+     * <p>
+     * 如果生物群系提供器找不到，则会返回null并会向指定的{@link CommandSender}输出一条信息来解释原因。
+     * <p>
+     * 名称的形式必须为"plugin:id"或"plugin"形式，请求的插件的"plugin"为一个插件的安全名称并且"id"是生物群系提供器的可选的唯一的标识符。
+     * <p>
+     * 原文：
      * Attempts to get the {@link BiomeProvider} with the given name.
      * <p>
      * If the biome provider is not found, null will be returned and a message
@@ -572,10 +629,10 @@ public class WorldCreator {
      * optional unique identifier for the biome provider you wish to request
      * from the plugin.
      *
-     * @param world Name of the world this will be used for
-     * @param name Name of the biome provider to retrieve
-     * @param output Where to output if errors are present
-     * @return Resulting biome provider, or null
+     * @param world 将被使用的世界名
+     * @param name 检索的生物群系提供器的名字
+     * @param output 错误发生时的输出处
+     * @return 若存在则返回获取的生物群系提供器，否则返回null
      */
     @Nullable
     public static BiomeProvider getBiomeProviderForName(@NotNull String world, @Nullable String name, @Nullable CommandSender output) {
