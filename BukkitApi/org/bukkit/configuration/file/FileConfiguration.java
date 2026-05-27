@@ -96,22 +96,22 @@ public abstract class FileConfiguration extends MemoryConfiguration {
     public abstract String saveToString();
 
     /**
-     * 从指定位置加载 {@link FileConfiguration} 
+     * 从指定位置加载 {@link FileConfiguration}.
      * <p>
-     * All the values contained within this configuration will be removed,
-     * leaving only settings and defaults, and the new values will be loaded
-     * from the given file.
+     * 此配置中包含的所有值都将被移除,只保留设置和默认值,新的值将从给定的文件中加载.
      * <p>
-     * If the file cannot be loaded for any reason, an exception will be
-     * thrown.
+     * 如果文件因任何原因无法加载,将会抛出异常.
+     * <p>
+     * 原文：Load from the specified file. All the values contained within this
+     * configuration will be removed, leaving only settings and defaults, and the
+     * new values will be loaded from the given file. If the file cannot be loaded
+     * for any reason, an exception will be thrown.
      *
-     * @param file File to load from.
-     * @throws FileNotFoundException Thrown when the given file cannot be
-     *     opened.
-     * @throws IOException Thrown when the given file cannot be read.
-     * @throws InvalidConfigurationException Thrown when the given file is not
-     *     a valid Configuration.
-     * @throws IllegalArgumentException Thrown when file is null.
+     * @param file 要加载的文件
+     * @throws FileNotFoundException 当给定的文件无法被打开时抛出
+     * @throws IOException 当给定的文件无法被读取时抛出
+     * @throws InvalidConfigurationException 当给定的文件不是有效的配置时抛出
+     * @throws IllegalArgumentException 当文件为null时抛出
      */
     public void load(@NotNull File file) throws FileNotFoundException, IOException, InvalidConfigurationException {
         Preconditions.checkArgument(file != null, "File cannot be null");
@@ -122,17 +122,18 @@ public abstract class FileConfiguration extends MemoryConfiguration {
     }
 
     /**
-     * Loads this {@link FileConfiguration} from the specified reader.
+     * 从指定的读取器加载此 {@link FileConfiguration}.
      * <p>
-     * All the values contained within this configuration will be removed,
-     * leaving only settings and defaults, and the new values will be loaded
-     * from the given stream.
+     * 此配置中包含的所有值都将被移除,只保留设置和默认值,新的值将从给定的流中加载.
+     * <p>
+     * 原文：Loads this FileConfiguration from the specified reader. All the values
+     * contained within this configuration will be removed, leaving only settings
+     * and defaults, and the new values will be loaded from the given stream.
      *
-     * @param reader the reader to load from
-     * @throws IOException thrown when underlying reader throws an IOException
-     * @throws InvalidConfigurationException thrown when the reader does not
-     *      represent a valid Configuration
-     * @throws IllegalArgumentException thrown when reader is null
+     * @param reader 要从中加载的读取器
+     * @throws IOException 当底层读取器抛出IOException时抛出
+     * @throws InvalidConfigurationException 当读取器不表示有效的配置时抛出
+     * @throws IllegalArgumentException 当reader为null时抛出
      */
     public void load(@NotNull Reader reader) throws IOException, InvalidConfigurationException {
         BufferedReader input = reader instanceof BufferedReader ? (BufferedReader) reader : new BufferedReader(reader);
@@ -154,22 +155,22 @@ public abstract class FileConfiguration extends MemoryConfiguration {
     }
 
     /**
-     * Loads this {@link FileConfiguration} from the specified location.
+     * 从指定位置加载 {@link FileConfiguration}.
      * <p>
-     * All the values contained within this configuration will be removed,
-     * leaving only settings and defaults, and the new values will be loaded
-     * from the given file.
+     * 此配置中包含的所有值都将被移除,只保留设置和默认值,新的值将从给定的文件中加载.
      * <p>
-     * If the file cannot be loaded for any reason, an exception will be
-     * thrown.
+     * 如果文件因任何原因无法加载,将会抛出异常.
+     * <p>
+     * 原文：Loads this FileConfiguration from the specified location. All the values
+     * contained within this configuration will be removed, leaving only settings
+     * and defaults, and the new values will be loaded from the given file. If the
+     * file cannot be loaded for any reason, an exception will be thrown.
      *
-     * @param file File to load from.
-     * @throws FileNotFoundException Thrown when the given file cannot be
-     *     opened.
-     * @throws IOException Thrown when the given file cannot be read.
-     * @throws InvalidConfigurationException Thrown when the given file is not
-     *     a valid Configuration.
-     * @throws IllegalArgumentException Thrown when file is null.
+     * @param file 要加载的文件
+     * @throws FileNotFoundException 当给定的文件无法被打开时抛出
+     * @throws IOException 当给定的文件无法被读取时抛出
+     * @throws InvalidConfigurationException 当给定的文件不是有效的配置时抛出
+     * @throws IllegalArgumentException 当文件为null时抛出
      */
     public void load(@NotNull String file) throws FileNotFoundException, IOException, InvalidConfigurationException {
         Preconditions.checkArgument(file != null, "File cannot be null");
@@ -178,28 +179,29 @@ public abstract class FileConfiguration extends MemoryConfiguration {
     }
 
     /**
-     * Loads this {@link FileConfiguration} from the specified string, as
-     * opposed to from file.
+     * 从指定的字符串加载此 {@link FileConfiguration},而不是从文件加载.
      * <p>
-     * All the values contained within this configuration will be removed,
-     * leaving only settings and defaults, and the new values will be loaded
-     * from the given string.
+     * 此配置中包含的所有值都将被移除,只保留设置和默认值,新的值将从给定的字符串中加载.
      * <p>
-     * If the string is invalid in any way, an exception will be thrown.
+     * 如果字符串在任何方面无效,将会抛出异常.
+     * <p>
+     * 原文：Loads this FileConfiguration from the specified string, as opposed to
+     * from file. All the values contained within this configuration will be
+     * removed, leaving only settings and defaults, and the new values will be
+     * loaded from the given string. If the string is invalid in any way, an
+     * exception will be thrown.
      *
-     * @param contents Contents of a Configuration to load.
-     * @throws InvalidConfigurationException Thrown if the specified string is
-     *     invalid.
-     * @throws IllegalArgumentException Thrown if contents is null.
+     * @param contents 要加载的配置内容
+     * @throws InvalidConfigurationException 如果指定的字符串无效则抛出
+     * @throws IllegalArgumentException 如果contents为null则抛出
      */
     public abstract void loadFromString(@NotNull String contents) throws InvalidConfigurationException;
 
     /**
      * @return 空白字符串
      *
-     * @deprecated This method only exists for backwards compatibility. It will
-     * do nothing and should not be used! Please use
-     * {@link FileConfigurationOptions#getHeader()} instead.
+     * @deprecated 此方法仅为向后兼容而存在.它不会执行任何操作,请勿使用!请使用
+     * {@link FileConfigurationOptions#getHeader()} 代替.
      */
     @NotNull
     @Deprecated(since = "1.18.1")
