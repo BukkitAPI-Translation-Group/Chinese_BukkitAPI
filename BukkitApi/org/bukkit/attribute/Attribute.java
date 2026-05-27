@@ -118,7 +118,9 @@ public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, Regi
      */
     Attribute BURNING_TIME = getAttribute("burning_time");
     /**
-     * The distance at which the camera is placed away.
+     * 摄像机放置的距离。
+     * <p>
+     * 原文: The distance at which the camera is placed away.
      */
     Attribute CAMERA_DISTANCE = getAttribute("camera_distance");
     /**
@@ -147,7 +149,9 @@ public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, Regi
      */
     Attribute WATER_MOVEMENT_EFFICIENCY = getAttribute("water_movement_efficiency");
     /**
-     * Range at which mobs will be tempted by items.
+     * 生物被物品吸引的范围。
+     * <p>
+     * 原文: Range at which mobs will be tempted by items.
      */
     Attribute TEMPT_RANGE = getAttribute("tempt_range");
     /**
@@ -204,11 +208,15 @@ public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, Regi
      */
     Attribute SPAWN_REINFORCEMENTS = getAttribute("spawn_reinforcements");
     /**
-     * Waypoint transmission range.
+     * 路径点传输范围。
+     * <p>
+     * 原文: Waypoint transmission range.
      */
     Attribute WAYPOINT_TRANSMIT_RANGE = getAttribute("waypoint_transmit_range");
     /**
-     * Waypoing receive range.
+     * 路径点接收范围。
+     * <p>
+     * 原文: Waypoing receive range.
      */
     Attribute WAYPOINT_RECEIVE_RANGE = getAttribute("waypoint_receive_range");
 
@@ -222,7 +230,9 @@ public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, Regi
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请改用 {@link #getKeyOrThrow()}.
+     * <p>
+     * 原文: A key might not always be present, use {@link #getKeyOrThrow()} instead.
      */
     @NotNull
     @Override
@@ -230,9 +240,11 @@ public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, Regi
     NamespacedKey getKey();
 
     /**
-     * @param name of the attribute.
-     * @return the attribute with the given name.
-     * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+     * @param name 属性的名称.
+     * @return 具有给定名称的属性.
+     * @deprecated 仅为向后兼容，请改用 {@link Registry#get(NamespacedKey)}.
+     * <p>
+     * 原文: only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
      */
     @NotNull
     @Deprecated(since = "1.21.3")
@@ -243,8 +255,8 @@ public interface Attribute extends OldEnum<Attribute>, Keyed, Translatable, Regi
     }
 
     /**
-     * @return an array of all known attributes.
-     * @deprecated use {@link Registry#iterator()}.
+     * @return 所有已知属性的数组.
+     * @deprecated 请使用 {@link Registry#iterator()}.
      */
     @NotNull
     @Deprecated(since = "1.21.3")
