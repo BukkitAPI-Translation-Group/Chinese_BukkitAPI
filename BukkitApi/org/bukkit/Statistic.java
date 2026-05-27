@@ -20,7 +20,9 @@ public enum Statistic implements Keyed {
     DROP(Type.ITEM),
     PICKUP(Type.ITEM),
     /**
-     * Name is misleading, actually records ticks played.
+     * 名称具有误导性，实际上记录的是已游玩的tick数。
+     * <p>
+     * 原文：Name is misleading, actually records ticks played.
      */
     PLAY_ONE_MINUTE,
     TOTAL_WORLD_TIME,

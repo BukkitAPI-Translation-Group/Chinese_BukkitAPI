@@ -18,7 +18,7 @@ public interface FallingBlock extends Entity {
      * 原文:
      * Get the Material of the falling block
      *
-     * @return Material of the block
+     * @return 方块的材质
      * @deprecated 请使用 {@link #getBlockData()}
      */
     @Deprecated(since = "1.6.2")
