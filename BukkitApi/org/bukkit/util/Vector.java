@@ -581,25 +581,21 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Rotates the vector around a given arbitrary axis in 3 dimensional space.
-     *
+     * 将向量绕给定的任意轴在三维空间中旋转.
      * <p>
-     * Rotation will follow the general Right-Hand-Rule, which means rotation
-     * will be counterclockwise when the axis is pointing towards the observer.
+     * 旋转遵循一般的右手定则,这意味着当轴指向观察者时,旋转方向为逆时针.
      * <p>
-     * This method will always make sure the provided axis is a unit vector, to
-     * not modify the length of the vector when rotating. If you are experienced
-     * with the scaling of a non-unit axis vector, you can use
+     * 这个方法会确保提供的轴是单位向量,以免在旋转时改变向量的长度.
+     * 如果你熟悉非单位轴向量的缩放,可以使用
      * {@link Vector#rotateAroundNonUnitAxis(Vector, double)}.
+     * <p>
+     * 原文:Rotates the vector around a given arbitrary axis in 3 dimensional space.
      *
-     * @param axis the axis to rotate the vector around. If the passed vector is
-     * not of length 1, it gets copied and normalized before using it for the
-     * rotation. Please use {@link Vector#normalize()} on the instance before
-     * passing it to this method
-     * @param angle the angle to rotate the vector around the axis
-     * @return the same vector
-     * @throws IllegalArgumentException if the provided axis vector instance is
-     * null
+     * @param axis 旋转轴.如果传入的向量长度不是1,它会被复制并归一化后再用于旋转.
+     *             请在传入此方法之前对实例使用 {@link Vector#normalize()}
+     * @param angle 绕轴旋转的角度
+     * @return 返回自身作为结果向量
+     * @throws IllegalArgumentException 如果提供的轴向量实例为null
      */
     @NotNull
     public Vector rotateAroundAxis(@NotNull Vector axis, double angle) throws IllegalArgumentException {
@@ -609,24 +605,21 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Rotates the vector around a given arbitrary axis in 3 dimensional space.
-     *
+     * 将向量绕给定的任意轴在三维空间中旋转.
      * <p>
-     * Rotation will follow the general Right-Hand-Rule, which means rotation
-     * will be counterclockwise when the axis is pointing towards the observer.
+     * 旋转遵循一般的右手定则,这意味着当轴指向观察者时,旋转方向为逆时针.
      * <p>
-     * Note that the vector length will change accordingly to the axis vector
-     * length. If the provided axis is not a unit vector, the rotated vector
-     * will not have its previous length. The scaled length of the resulting
-     * vector will be related to the axis vector. If you are not perfectly sure
-     * about the scaling of the vector, use
+     * 注意向量的长度会相应地根据轴向量的长度而改变.如果提供的轴不是单位向量,
+     * 旋转后的向量将不会保持原来的长度.结果向量的缩放长度将与轴向量相关.
+     * 如果你不确定向量的缩放情况,请使用
      * {@link Vector#rotateAroundAxis(Vector, double)}
+     * <p>
+     * 原文:Rotates the vector around a given arbitrary axis in 3 dimensional space.
      *
-     * @param axis the axis to rotate the vector around.
-     * @param angle the angle to rotate the vector around the axis
-     * @return the same vector
-     * @throws IllegalArgumentException if the provided axis vector instance is
-     * null
+     * @param axis 旋转轴
+     * @param angle 绕轴旋转的角度
+     * @return 返回自身作为结果向量
+     * @throws IllegalArgumentException 如果提供的轴向量实例为null
      */
     @NotNull
     public Vector rotateAroundNonUnitAxis(@NotNull Vector axis, double angle) throws IllegalArgumentException {
@@ -907,7 +900,7 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     /**
      * 返回这个向量的坐标表示 x,y,z.
      * <p>
-     * Returns this vector's components as x,y,z.
+     * 原文:Returns this vector's components as x,y,z.
      */
     @Override
     public String toString() {
@@ -956,9 +949,11 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Get this vector as a JOML {@link Vector3f}.
+     * 将此向量转换为 JOML {@link Vector3f}.
+     * <p>
+     * 原文:Get this vector as a JOML {@link Vector3f}.
      *
-     * @return the JOML vector
+     * @return JOML向量
      */
     @NotNull
     public Vector3f toVector3f() {
@@ -966,9 +961,11 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Get this vector as a JOML {@link Vector3d}.
+     * 将此向量转换为 JOML {@link Vector3d}.
+     * <p>
+     * 原文:Get this vector as a JOML {@link Vector3d}.
      *
-     * @return the JOML vector
+     * @return JOML向量
      */
     @NotNull
     public Vector3d toVector3d() {
@@ -976,10 +973,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Get this vector as a JOML {@link Vector3i}.
+     * 将此向量转换为 JOML {@link Vector3i}.
+     * <p>
+     * 原文:Get this vector as a JOML {@link Vector3i}.
      *
-     * @param roundingMode the {@link RoundingMode} to use for this vector's components
-     * @return the JOML vector
+     * @param roundingMode 用于此向量坐标的 {@link RoundingMode}
+     * @return JOML向量
      */
     @NotNull
     public Vector3i toVector3i(int roundingMode) {
@@ -987,9 +986,11 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Get this vector as a JOML {@link Vector3i} with its components floored.
+     * 将此向量转换为 JOML {@link Vector3i},其坐标向下取整.
+     * <p>
+     * 原文:Get this vector as a JOML {@link Vector3i} with its components floored.
      *
-     * @return the JOML vector
+     * @return JOML向量
      * @see #toVector3i(int)
      */
     @NotNull
@@ -1055,8 +1056,10 @@ public class Vector implements Cloneable, ConfigurationSerializable {
 
     /**
      * 获取一个随机向量,其坐标值均为0到1之间(不含1).
+     * <p>
+     * 原文:Gets a random vector with components between 0 and 1 (exclusive).
      *
-     * @return A random vector.
+     * @return 一个随机向量
      */
     @NotNull
     public static Vector getRandom() {
@@ -1064,10 +1067,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a vector with components that match the provided JOML {@link Vector3f}.
+     * 获取一个坐标与提供的 JOML {@link Vector3f} 匹配的向量.
+     * <p>
+     * 原文:Gets a vector with components that match the provided JOML {@link Vector3f}.
      *
-     * @param vector the vector to match
-     * @return the new vector
+     * @param vector 要匹配的向量
+     * @return 新向量
      */
     @NotNull
     public static Vector fromJOML(@NotNull Vector3f vector) {
@@ -1075,10 +1080,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a vector with components that match the provided JOML {@link Vector3d}.
+     * 获取一个坐标与提供的 JOML {@link Vector3d} 匹配的向量.
+     * <p>
+     * 原文:Gets a vector with components that match the provided JOML {@link Vector3d}.
      *
-     * @param vector the vector to match
-     * @return the new vector
+     * @param vector 要匹配的向量
+     * @return 新向量
      */
     @NotNull
     public static Vector fromJOML(@NotNull Vector3d vector) {
@@ -1086,10 +1093,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a vector with components that match the provided JOML {@link Vector3i}.
+     * 获取一个坐标与提供的 JOML {@link Vector3i} 匹配的向量.
+     * <p>
+     * 原文:Gets a vector with components that match the provided JOML {@link Vector3i}.
      *
-     * @param vector the vector to match
-     * @return the new vector
+     * @param vector 要匹配的向量
+     * @return 新向量
      */
     @NotNull
     public static Vector fromJOML(@NotNull Vector3i vector) {
@@ -1097,10 +1106,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a vector with components that match the provided JOML {@link Vector3fc}.
+     * 获取一个坐标与提供的 JOML {@link Vector3fc} 匹配的向量.
+     * <p>
+     * 原文:Gets a vector with components that match the provided JOML {@link Vector3fc}.
      *
-     * @param vector the vector to match
-     * @return the new vector
+     * @param vector 要匹配的向量
+     * @return 新向量
      */
     @NotNull
     public static Vector fromJOML(@NotNull Vector3fc vector) {
@@ -1108,10 +1119,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a vector with components that match the provided JOML {@link Vector3dc}.
+     * 获取一个坐标与提供的 JOML {@link Vector3dc} 匹配的向量.
+     * <p>
+     * 原文:Gets a vector with components that match the provided JOML {@link Vector3dc}.
      *
-     * @param vector the vector to match
-     * @return the new vector
+     * @param vector 要匹配的向量
+     * @return 新向量
      */
     @NotNull
     public static Vector fromJOML(@NotNull Vector3dc vector) {
@@ -1119,10 +1132,12 @@ public class Vector implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * Gets a vector with components that match the provided JOML {@link Vector3ic}.
+     * 获取一个坐标与提供的 JOML {@link Vector3ic} 匹配的向量.
+     * <p>
+     * 原文:Gets a vector with components that match the provided JOML {@link Vector3ic}.
      *
-     * @param vector the vector to match
-     * @return the new vector
+     * @param vector 要匹配的向量
+     * @return 新向量
      */
     @NotNull
     public static Vector fromJOML(@NotNull Vector3ic vector) {
