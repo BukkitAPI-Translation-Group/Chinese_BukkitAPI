@@ -13,10 +13,9 @@ public interface Mob extends LivingEntity, Lootable {
      * 指示此生物将指定的活体实体设为其目标。
      * <p>原文：Instructs this Mob to set the specified LivingEntity as its target.
      * <p>
-     * Hostile creatures may attack their target, and friendly creatures may
-     * follow their target.
+     * 敌对生物可能会攻击其目标，友好生物可能会跟随其目标。
      *
-     * @param target New LivingEntity to target, or null to clear the target
+     * @param target 新的目标活体实体，或 null 以清除目标
      */
     public void setTarget(@Nullable LivingEntity target);
 
@@ -24,7 +23,7 @@ public interface Mob extends LivingEntity, Lootable {
      * 获取此生物的当前目标。
      * <p>原文：Gets the current target of this Mob
      *
-     * @return Current target of this creature, or null if none exists
+     * @return 此生物的当前目标，如果不存在则为 null
      */
     @Nullable
     public LivingEntity getTarget();
@@ -32,24 +31,22 @@ public interface Mob extends LivingEntity, Lootable {
     /**
      * 设置此生物是否意识到周围环境。
      * <p>原文：Sets whether this mob is aware of its surroundings.
+     * <p>
+     * 未意识到周围环境的生物在被推、被攻击等情况下仍会移动，但不会自行移动或执行任何操作。
+     * 未意识到周围环境的生物可能还会禁用其他未明确指定的行为，例如溺水。
      *
-     * Unaware mobs will still move if pushed, attacked, etc. but will not move
-     * or perform any actions on their own. Unaware mobs may also have other
-     * unspecified behaviours disabled, such as drowning.
-     *
-     * @param aware whether the mob is aware
+     * @param aware 生物是否意识到周围环境
      */
     public void setAware(boolean aware);
 
     /**
      * 获取此生物是否意识到周围环境。
      * <p>原文：Gets whether this mob is aware of its surroundings.
+     * <p>
+     * 未意识到周围环境的生物在被推、被攻击等情况下仍会移动，但不会自行移动或执行任何操作。
+     * 未意识到周围环境的生物可能还会禁用其他未明确指定的行为，例如溺水。
      *
-     * Unaware mobs will still move if pushed, attacked, etc. but will not move
-     * or perform any actions on their own. Unaware mobs may also have other
-     * unspecified behaviours disabled, such as drowning.
-     *
-     * @return whether the mob is aware
+     * @return 生物是否意识到周围环境
      */
     public boolean isAware();
 
@@ -62,7 +59,7 @@ public interface Mob extends LivingEntity, Lootable {
      * on whether or not they are actively trading with a player, or make no
      * ambient noise while sleeping.
      *
-     * @return the ambient sound, or null if this entity is ambiently quiet
+     * @return 环境声音，如果此实体在环境中静默则为 null
      */
     @Nullable
     public Sound getAmbientSound();
