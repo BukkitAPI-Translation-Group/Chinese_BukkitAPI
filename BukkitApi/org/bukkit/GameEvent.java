@@ -127,7 +127,7 @@ public abstract class GameEvent implements Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并非始终存在, 请使用 {@link #getKeyOrThrow()} 代替.
      */
     @NotNull
     @Override
@@ -139,7 +139,7 @@ public abstract class GameEvent implements Keyed, RegistryAware {
      * <p>
      * 原文:Returns a {@link GameEvent} by a {@link NamespacedKey}.
      *
-     * @param namespacedKey the key
+     * @param namespacedKey 键
      * @return 游戏事件, 如果 key 不存在则返回 null
      * @deprecated 请使用 {@link Registry#get(NamespacedKey)}
      */
