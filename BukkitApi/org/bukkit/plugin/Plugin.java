@@ -194,13 +194,14 @@ public interface Plugin extends TabExecutor {
     public ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, @Nullable String id);
 
     /**
-     * Gets a {@link BiomeProvider} for use in a default world, as specified
+     * 获取在服务器配置中指定的默认世界中使用的 {@link BiomeProvider}.
+     * <p>
+     * 原文:Gets a {@link BiomeProvider} for use in a default world, as specified
      * in the server configuration
      *
-     * @param worldName Name of the world that this will be applied to
-     * @param id Unique ID, if any, that was specified to indicate which
-     *     biome provider was requested
-     * @return BiomeProvider for use in the default world generation
+     * @param worldName 将应用于世界的名称
+     * @param id 唯一 ID,如果有的话,被指定来指示哪个生物群系提供器被请求
+     * @return 用于默认世界生成的 BiomeProvider
      */
     @Nullable
     public BiomeProvider getDefaultBiomeProvider(@NotNull String worldName, @Nullable String id);
