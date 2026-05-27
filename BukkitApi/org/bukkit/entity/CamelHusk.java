@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Camel Husk.
+ * 代表一只枯萎骆驼.
  */
 public interface CamelHusk extends Camel {
 }

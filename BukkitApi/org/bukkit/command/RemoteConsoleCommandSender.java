@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 public interface RemoteConsoleCommandSender extends CommandSender {
 
     /**
-     * Gets the socket address of this remote sender.
+     * 获取此远程发送者的套接字地址.
      *
-     * @return the remote sender's address
+     * @return 远程发送者的地址
      */
     @NotNull
     public SocketAddress getAddress();

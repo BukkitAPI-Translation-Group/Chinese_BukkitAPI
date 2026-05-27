@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Wind Charge.
+ * 代表一个风弹.
  */
 public interface WindCharge extends AbstractWindCharge {
 

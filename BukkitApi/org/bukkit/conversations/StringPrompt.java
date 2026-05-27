@@ -3,15 +3,14 @@ package org.bukkit.conversations;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * StringPrompt is the base class for any prompt that accepts an arbitrary
- * string from the user.
+ * StringPrompt是所有接受用户任意字符串输入的提示的基类.
  */
 public abstract class StringPrompt implements Prompt {
 
     /**
-     * Ensures that the prompt waits for the user to provide input.
+     * 确保提示等待用户提供输入.
      *
-     * @param context Context information about the conversation.
+     * @param context 对话的上下文信息.
      * @return True.
      */
     @Override

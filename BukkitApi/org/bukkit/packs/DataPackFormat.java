@@ -1,21 +1,21 @@
 package org.bukkit.packs;
 
 /**
- * Represents a data pack format version.
+ * 代表一个数据包格式版本.
  */
 public interface DataPackFormat extends Comparable<DataPackFormat> {
 
     /**
-     * Gets the major version component.
+     * 获取主版本号.
      *
-     * @return major version
+     * @return 主版本号
      */
     int getMajor();
 
     /**
-     * Gets the minor version component.
+     * 获取次版本号.
      *
-     * @return minor version
+     * @return 次版本号
      */
     int getMinor();
 }

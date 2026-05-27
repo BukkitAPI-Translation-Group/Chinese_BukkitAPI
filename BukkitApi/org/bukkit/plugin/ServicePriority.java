@@ -1,7 +1,7 @@
 package org.bukkit.plugin;
 
 /**
- * Represents various priorities of a provider.
+ * 代表服务提供者的各种优先级.
  */
 public enum ServicePriority {
     Lowest,

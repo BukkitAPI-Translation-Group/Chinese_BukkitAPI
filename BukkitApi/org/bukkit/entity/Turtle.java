@@ -1,21 +1,21 @@
 package org.bukkit.entity;
 
 /**
- * Represents a turtle.
+ * 代表一只海龟.
  */
 public interface Turtle extends Animals {
 
     /**
-     * Gets whether the turtle has an egg
+     * 获取海龟是否拥有蛋.
      *
-     * @return Whether the turtle has an egg
+     * @return 海龟是否有蛋
      */
     boolean hasEgg();
 
     /**
-     * Gets whether the turtle is laying an egg
+     * 获取海龟是否正在下蛋.
      *
-     * @return Whether the turtle is laying an egg
+     * @return 海龟是否正在下蛋
      */
     boolean isLayingEgg();
 }

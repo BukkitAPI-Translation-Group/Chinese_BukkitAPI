@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Cow.
+ * 代表一头牛.
  */
 public interface AbstractCow extends Animals {}

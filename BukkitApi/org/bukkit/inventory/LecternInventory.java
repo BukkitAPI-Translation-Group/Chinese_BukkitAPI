@@ -4,7 +4,7 @@ import org.bukkit.block.Lectern;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Interface to the inventory of a Lectern.
+ * 讲台的物品栏接口.
  */
 public interface LecternInventory extends Inventory {
 

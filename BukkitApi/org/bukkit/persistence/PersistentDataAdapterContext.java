@@ -3,15 +3,14 @@ package org.bukkit.persistence;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * This interface represents the context in which the {@link PersistentDataType} can
- * serialize and deserialize the passed values.
+ * 此接口代表{@link PersistentDataType}可以序列化和反序列化传入值的上下文.
  */
 public interface PersistentDataAdapterContext {
 
     /**
-     * Creates a new and empty meta container instance.
+     * 创建一个新的空元数据容器实例.
      *
-     * @return the fresh container instance
+     * @return 新的容器实例
      */
     @NotNull
     PersistentDataContainer newPersistentDataContainer();

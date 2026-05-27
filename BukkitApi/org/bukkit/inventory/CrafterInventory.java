@@ -1,6 +1,6 @@
 package org.bukkit.inventory;
 
 /**
- * Interface to the inventory of a Crafter.
+ * 合成器的物品栏接口.
  */
 public interface CrafterInventory extends Inventory { }

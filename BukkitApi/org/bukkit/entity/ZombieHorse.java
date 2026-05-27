@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a ZombieHorse - variant of {@link AbstractHorse}.
+ * 代表一匹僵尸马, 是{@link AbstractHorse}的变种.
  */
 public interface ZombieHorse extends AbstractHorse { }

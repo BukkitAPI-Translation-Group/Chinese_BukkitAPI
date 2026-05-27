@@ -4,17 +4,15 @@ import org.bukkit.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a block inventory holder - either a BlockState, or a regular
- * Block.
+ * 代表一个方块物品栏持有者 - 可以是BlockState或普通Block.
  */
 public interface BlockInventoryHolder extends InventoryHolder {
 
     /**
-     * Gets the block associated with this holder.
+     * 获取与此持有者关联的方块.
      *
-     * @return the block associated with this holder
-     * @throws IllegalStateException if the holder is a block state and is not
-     * placed
+     * @return 与此持有者关联的方块
+     * @throws IllegalStateException 如果持有者是方块状态且未被放置
      */
     @NotNull
     Block getBlock();

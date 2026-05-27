@@ -6,17 +6,17 @@ import org.jetbrains.annotations.NotNull;
 public interface ThrowableProjectile extends Projectile {
 
     /**
-     * Gets the ItemStack the thrown projectile will display.
+     * 获取投掷弹射物将显示的ItemStack.
      *
-     * @return The thrown item display ItemStack
+     * @return 投掷物品显示的ItemStack
      */
     @NotNull
     ItemStack getItem();
 
     /**
-     * Sets the display ItemStack for the thrown projectile.
+     * 设置投掷弹射物显示的ItemStack.
      *
-     * @param item ItemStack set to be displayed
+     * @param item 要显示的ItemStack
      */
     void setItem(@NotNull ItemStack item);
 }

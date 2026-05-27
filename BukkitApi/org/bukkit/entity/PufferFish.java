@@ -1,21 +1,21 @@
 package org.bukkit.entity;
 
 /**
- * Represents a puffer fish.
+ * 代表一条河豚.
  */
 public interface PufferFish extends Fish {
 
     /**
-     * Returns the current puff state of this fish (i.e. how inflated it is).
+     * 获取此河豚的当前膨胀状态(即膨胀程度).
      *
-     * @return current puff state
+     * @return 当前膨胀状态
      */
     int getPuffState();
 
     /**
-     * Sets the current puff state of this fish (i.e. how inflated it is).
+     * 设置此河豚的当前膨胀状态(即膨胀程度).
      *
-     * @param state new puff state
+     * @param state 新的膨胀状态
      */
     void setPuffState(int state);
 }

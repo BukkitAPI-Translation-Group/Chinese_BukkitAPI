@@ -1,8 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * @deprecated tipped status depends only on base potion type not being
- * UNCRAFTABLE and effects being empty.
+ * @deprecated 药箭状态仅取决于基础药水类型不是UNCRAFTABLE且效果为空.
  */
 @Deprecated(since = "1.14")
 public interface TippedArrow extends Arrow { }

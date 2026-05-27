@@ -6,16 +6,16 @@ import org.jetbrains.annotations.NotNull;
 public interface Directional {
 
     /**
-     * Sets the direction that this block is facing in
+     * 设置此方块的朝向.
      *
-     * @param face The facing direction
+     * @param face 朝向
      */
     public void setFacingDirection(@NotNull BlockFace face);
 
     /**
-     * Gets the direction this block is facing
+     * 获取此方块的朝向.
      *
-     * @return the direction this block is facing
+     * @return 此方块的朝向
      */
     @NotNull
     public BlockFace getFacing();

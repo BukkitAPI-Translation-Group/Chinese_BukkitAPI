@@ -1,21 +1,21 @@
 package org.bukkit.entity;
 
 /**
- * Represents an entity which can be shorn with shears.
+ * 代表一个可以被剪刀剪毛的实体.
  */
 public interface Shearable {
 
     /**
-     * Gets whether the entity is in its sheared state.
+     * 获取实体是否处于已剪毛状态.
      *
-     * @return Whether the entity is sheared.
+     * @return 实体是否已剪毛
      */
     boolean isSheared();
 
     /**
-     * Sets whether the entity is in its sheared state.
+     * 设置实体是否处于已剪毛状态.
      *
-     * @param flag Whether to shear the entity
+     * @param flag 是否剪毛
      */
     void setSheared(boolean flag);
 }

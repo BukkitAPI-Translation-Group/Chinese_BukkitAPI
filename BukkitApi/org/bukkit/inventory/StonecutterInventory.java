@@ -1,6 +1,6 @@
 package org.bukkit.inventory;
 
 /**
- * Interface to the inventory of a Stonecutter.
+ * 切石机的物品栏接口.
  */
 public interface StonecutterInventory extends Inventory { }

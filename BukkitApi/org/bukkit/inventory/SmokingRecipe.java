@@ -5,7 +5,7 @@ import org.bukkit.NamespacedKey;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a campfire recipe.
+ * 代表一个烟熏炉烹饪配方.
  */
 public class SmokingRecipe extends CookingRecipe<SmokingRecipe> {
 

@@ -1,15 +1,14 @@
 package org.bukkit.material;
 
 /**
- * Indicated a Material that may carry or create a Redstone current
+ * 表示一种可以携带或产生红石信号的材料.
  */
 public interface Redstone {
 
     /**
-     * Gets the current state of this Material, indicating if it's powered or
-     * unpowered
+     * 获取此材料的当前状态, 表示其是否被充能.
      *
-     * @return true if powered, otherwise false
+     * @return 如果被充能则返回true, 否则返回false
      */
     public boolean isPowered();
 }

@@ -5,17 +5,17 @@ import org.jetbrains.annotations.Nullable;
 public interface ShulkerBullet extends Projectile {
 
     /**
-     * Retrieve the target of this bullet.
+     * 获取此弹射物的目标.
      *
-     * @return the targeted entity
+     * @return 目标实体
      */
     @Nullable
     Entity getTarget();
 
     /**
-     * Sets the target of this bullet
+     * 设置此弹射物的目标.
      *
-     * @param target the entity to target
+     * @param target 要锁定的实体
      */
     void setTarget(@Nullable Entity target);
 }

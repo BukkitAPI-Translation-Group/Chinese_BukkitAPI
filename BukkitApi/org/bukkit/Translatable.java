@@ -3,15 +3,14 @@ package org.bukkit;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents an object with a text representation that can be translated by the
- * Minecraft client.
+ * 代表一个具有可被Minecraft客户端翻译的文本表示的对象.
  */
 public interface Translatable {
 
     /**
-     * Get the translation key, suitable for use in a translation component.
+     * 获取翻译键, 适用于在翻译组件中使用.
      *
-     * @return the translation key
+     * @return 翻译键
      */
     @NotNull
     String getTranslationKey();

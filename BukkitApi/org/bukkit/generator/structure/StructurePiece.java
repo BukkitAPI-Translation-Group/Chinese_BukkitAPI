@@ -4,16 +4,16 @@ import org.bukkit.util.BoundingBox;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents an individual part of a {@link GeneratedStructure}.
+ * 代表{@link GeneratedStructure}的一个独立组成部分.
  *
  * @see GeneratedStructure
  */
 public interface StructurePiece {
 
     /**
-     * Gets the bounding box of this structure piece.
+     * 获取此结构部件的边界框.
      *
-     * @return bounding box of this structure piece
+     * @return 此结构部件的边界框
      */
     @NotNull
     public BoundingBox getBoundingBox();

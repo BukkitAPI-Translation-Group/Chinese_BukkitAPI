@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents an Armadillo.
+ * 代表一只犰狳.
  */
 public interface Armadillo extends Animals {
 

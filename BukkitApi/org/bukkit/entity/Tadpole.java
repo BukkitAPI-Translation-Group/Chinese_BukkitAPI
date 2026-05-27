@@ -1,21 +1,21 @@
 package org.bukkit.entity;
 
 /**
- * A baby {@link Frog}.
+ * {@link Frog}的幼崽.
  */
 public interface Tadpole extends Fish {
 
     /**
-     * Gets the age of this mob.
+     * 获取此生物的年龄.
      *
-     * @return Age
+     * @return 年龄
      */
     public int getAge();
 
     /**
-     * Sets the age of this mob.
+     * 设置此生物的年龄.
      *
-     * @param age New age
+     * @param age 新的年龄
      */
     public void setAge(int age);
 }

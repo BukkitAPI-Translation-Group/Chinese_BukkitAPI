@@ -1,7 +1,7 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Patched Skeleton.
+ * 代表一具干枯骷髅.
  */
 public interface Parched extends AbstractSkeleton {
 }

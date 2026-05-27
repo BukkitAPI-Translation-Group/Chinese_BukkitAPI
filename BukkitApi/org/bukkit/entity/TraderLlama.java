@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a trader Llama.
+ * 代表一只行商羊驼.
  */
 public interface TraderLlama extends Llama { }

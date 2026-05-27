@@ -1,22 +1,21 @@
 package org.bukkit.entity;
 
 /**
- * Represents a spectral arrow.
+ * 代表一支光灵箭.
  */
 public interface SpectralArrow extends AbstractArrow {
 
     /**
-     * Returns the amount of time that this arrow will apply
-     * the glowing effect for.
+     * 获取此箭矢施加发光效果的持续时间.
      *
-     * @return the glowing effect ticks
+     * @return 发发光效果的刻数
      */
     int getGlowingTicks();
 
     /**
-     * Sets the amount of time to apply the glowing effect for.
+     * 设置施加发光效果的持续时间.
      *
-     * @param duration the glowing effect ticks
+     * @param duration 发光效果的刻数
      */
     void setGlowingTicks(int duration);
 }

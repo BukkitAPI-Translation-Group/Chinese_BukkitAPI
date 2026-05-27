@@ -3,16 +3,14 @@ package org.bukkit.permissions;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents a class which is to be notified when a {@link
- * PermissionAttachment} is removed from a {@link Permissible}
+ * 代表一个在{@link PermissionAttachment}从{@link Permissible}中移除时被通知的类.
  */
 public interface PermissionRemovedExecutor {
 
     /**
-     * Called when a {@link PermissionAttachment} is removed from a {@link
-     * Permissible}
+     * 当{@link PermissionAttachment}从{@link Permissible}中移除时调用.
      *
-     * @param attachment Attachment which was removed
+     * @param attachment 被移除的附件
      */
     public void attachmentRemoved(@NotNull PermissionAttachment attachment);
 }

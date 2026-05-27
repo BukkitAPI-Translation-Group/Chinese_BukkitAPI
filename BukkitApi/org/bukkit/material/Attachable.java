@@ -4,14 +4,14 @@ import org.bukkit.block.BlockFace;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Indicates that a block can be attached to another block
+ * 表示一个方块可以附着在另一个方块上.
  */
 public interface Attachable extends Directional {
 
     /**
-     * Gets the face that this block is attached on
+     * 获取此方块附着的面.
      *
-     * @return BlockFace attached to
+     * @return 附着的面
      */
     @NotNull
     public BlockFace getAttachedFace();

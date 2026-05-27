@@ -1,6 +1,6 @@
 package org.bukkit.entity;
 
 /**
- * Represents a Piglin Brute.
+ * 代表一个猪灵蛮兵.
  */
 public interface PiglinBrute extends PiglinAbstract { }

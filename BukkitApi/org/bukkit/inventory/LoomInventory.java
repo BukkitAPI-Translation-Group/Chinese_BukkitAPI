@@ -1,6 +1,6 @@
 package org.bukkit.inventory;
 
 /**
- * Interface to the inventory of a Loom.
+ * 织布机的物品栏接口.
  */
 public interface LoomInventory extends Inventory { }

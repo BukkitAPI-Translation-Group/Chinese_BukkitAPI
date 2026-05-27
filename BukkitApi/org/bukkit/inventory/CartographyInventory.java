@@ -1,6 +1,6 @@
 package org.bukkit.inventory;
 
 /**
- * Interface to the inventory of a Cartography table.
+ * 制图台的物品栏接口.
  */
 public interface CartographyInventory extends Inventory { }
