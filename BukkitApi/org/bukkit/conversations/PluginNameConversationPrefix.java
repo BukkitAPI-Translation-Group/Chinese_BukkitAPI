@@ -5,8 +5,7 @@ import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * PluginNameConversationPrefix is a {@link ConversationPrefix} implementation
- * that displays the plugin name in front of conversation output.
+ * PluginNameConversationPrefix 是一个 {@link ConversationPrefix} 实现，它在对话输出前显示插件名称。
  */
 public class PluginNameConversationPrefix implements ConversationPrefix {
 
@@ -29,10 +28,13 @@ public class PluginNameConversationPrefix implements ConversationPrefix {
     }
 
     /**
+     * 在每条对话消息前添加插件名称。
+     * <p>
+     * 原文：
      * Prepends each conversation message with the plugin name.
      *
-     * @param context Context information about the conversation.
-     * @return An empty string.
+     * @param context 关于对话的上下文信息。
+     * @return 空字符串。
      */
     @Override
     @NotNull

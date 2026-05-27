@@ -5,8 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * NumericPrompt is the base class for any prompt that requires a {@link
- * Number} response from the user.
+ * NumericPrompt 是任何需要用户 {@link Number} 响应的提示的基类。
  */
 public abstract class NumericPrompt extends ValidatingPrompt {
     public NumericPrompt() {
@@ -19,12 +18,15 @@ public abstract class NumericPrompt extends ValidatingPrompt {
     }
 
     /**
+     * 覆盖此方法以在输入被确定为数字后对数字玩家输入进行进一步验证。
+     * <p>
+     * 原文：
      * Override this method to do further validation on the numeric player
      * input after the input has been determined to actually be a number.
      *
-     * @param context Context information about the conversation.
-     * @param input The number the player provided.
-     * @return The validity of the player's input.
+     * @param context 关于对话的上下文信息。
+     * @param input 玩家提供的数字。
+     * @return 玩家输入的有效性。
      */
     protected boolean isNumberValid(@NotNull ConversationContext context, @NotNull Number input) {
         return true;
@@ -41,12 +43,15 @@ public abstract class NumericPrompt extends ValidatingPrompt {
     }
 
     /**
+     * 覆盖此方法以对用户的整数响应执行某些操作。
+     * <p>
+     * 原文：
      * Override this method to perform some action with the user's integer
      * response.
      *
-     * @param context Context information about the conversation.
-     * @param input The user's response as a {@link Number}.
-     * @return The next {@link Prompt} in the prompt graph.
+     * @param context 关于对话的上下文信息。
+     * @param input 用户的响应作为 {@link Number}。
+     * @return 提示图中的下一个 {@link Prompt}。
      */
     @Nullable
     protected abstract Prompt acceptValidatedInput(@NotNull ConversationContext context, @NotNull Number input);
@@ -62,12 +67,15 @@ public abstract class NumericPrompt extends ValidatingPrompt {
     }
 
     /**
+     * 可选择覆盖此方法以在用户输入无效数字时显示额外消息。
+     * <p>
+     * 原文：
      * Optionally override this method to display an additional message if the
      * user enters an invalid number.
      *
-     * @param context Context information about the conversation.
-     * @param invalidInput The invalid input provided by the user.
-     * @return A message explaining how to correct the input.
+     * @param context 关于对话的上下文信息。
+     * @param invalidInput 用户提供的无效输入。
+     * @return 解释如何纠正输入的消息。
      */
     @Nullable
     protected String getInputNotNumericText(@NotNull ConversationContext context, @NotNull String invalidInput) {
@@ -75,12 +83,15 @@ public abstract class NumericPrompt extends ValidatingPrompt {
     }
 
     /**
+     * 可选择覆盖此方法以在用户输入无效数字输入时显示额外消息。
+     * <p>
+     * 原文：
      * Optionally override this method to display an additional message if the
      * user enters an invalid numeric input.
      *
-     * @param context Context information about the conversation.
-     * @param invalidInput The invalid input provided by the user.
-     * @return A message explaining how to correct the input.
+     * @param context 关于对话的上下文信息。
+     * @param invalidInput 用户提供的无效输入。
+     * @return 解释如何纠正输入的消息。
      */
     @Nullable
     protected String getFailedValidationText(@NotNull ConversationContext context, @NotNull Number invalidInput) {

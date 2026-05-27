@@ -3,7 +3,7 @@ package org.bukkit.map;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Represents the built-in Minecraft font.
+ * 表示内置的Minecraft字体。
  */
 public class MinecraftFont extends MapFont {
 
@@ -282,12 +282,15 @@ public class MinecraftFont extends MapFont {
     // CHECKSTYLE:ON
 
     /**
-     * A static non-malleable MinecraftFont.
+     * 一个静态的不可修改的MinecraftFont实例。
      */
     @NotNull
     public static final MinecraftFont Font = new MinecraftFont(false);
 
     /**
+     * 初始化一个新的MinecraftFont。
+     * <p>
+     * 原文：
      * Initialize a new MinecraftFont.
      */
     public MinecraftFont() {

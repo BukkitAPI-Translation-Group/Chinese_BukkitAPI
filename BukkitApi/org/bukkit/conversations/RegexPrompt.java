@@ -4,8 +4,7 @@ import java.util.regex.Pattern;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * RegexPrompt is the base class for any prompt that requires an input
- * validated by a regular expression.
+ * RegexPrompt 是任何需要通过正则表达式验证输入的提示的基类。
  */
 public abstract class RegexPrompt extends ValidatingPrompt {
 

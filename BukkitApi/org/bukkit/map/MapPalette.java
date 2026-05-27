@@ -9,10 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Represents the palette that map items use.
+ * 表示地图物品使用的调色板。
  * <p>
- * These fields are hee base color ranges. Each entry corresponds to four
- * colors of varying shades with values entry to entry + 3.
+ * 这些字段是基础颜色范围。每个条目对应四种不同深浅的颜色，其值从条目到条目+3。
  */
 public final class MapPalette {
     // Internal mechanisms
@@ -107,81 +106,84 @@ public final class MapPalette {
 
     // Interface
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte TRANSPARENT = 0;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte LIGHT_GREEN = 4;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte LIGHT_BROWN = 8;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte GRAY_1 = 12;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte RED = 16;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte PALE_BLUE = 20;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte GRAY_2 = 24;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte DARK_GREEN = 28;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte WHITE = 32;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte LIGHT_GRAY = 36;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte BROWN = 40;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte DARK_GRAY = 44;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte BLUE = 48;
     /**
-     * @deprecated Magic value
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static final byte DARK_BROWN = 52;
 
     /**
+     * 将图像调整为128x128大小。
+     * <p>
+     * 原文：
      * Resize an image to 128x128.
      *
-     * @param image The image to resize.
-     * @return The resized image.
+     * @param image 要调整大小的图像。
+     * @return 调整大小后的图像。
      */
     @NotNull
     public static BufferedImage resizeImage(@Nullable Image image) {
@@ -193,11 +195,14 @@ public final class MapPalette {
     }
 
     /**
+     * 使用调色板将图像转换为byte[]。
+     * <p>
+     * 原文：
      * Convert an Image to a byte[] using the palette.
      *
-     * @param image The image to convert.
-     * @return A byte[] containing the pixels of the image.
-     * @deprecated Magic value
+     * @param image 要转换的图像。
+     * @return 包含图像像素的byte[]。
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     @NotNull
@@ -218,14 +223,17 @@ public final class MapPalette {
     }
 
     /**
+     * 获取调色板中与给定颜色最匹配的颜色索引。
+     * <p>
+     * 原文：
      * Get the index of the closest matching color in the palette to the given
      * color.
      *
-     * @param r The red component of the color.
-     * @param b The blue component of the color.
-     * @param g The green component of the color.
-     * @return The index in the palette.
-     * @deprecated Magic value
+     * @param r 颜色的红色分量。
+     * @param b 颜色的蓝色分量。
+     * @param g 颜色的绿色分量。
+     * @return 调色板中的索引。
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static byte matchColor(int r, int g, int b) {
@@ -233,12 +241,15 @@ public final class MapPalette {
     }
 
     /**
+     * 获取调色板中与给定颜色最匹配的颜色索引。
+     * <p>
+     * 原文：
      * Get the index of the closest matching color in the palette to the given
      * color.
      *
-     * @param color The Color to match.
-     * @return The index in the palette.
-     * @deprecated Magic value
+     * @param color 要匹配的Color对象。
+     * @return 调色板中的索引。
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     public static byte matchColor(@NotNull Color color) {
@@ -264,11 +275,14 @@ public final class MapPalette {
     }
 
     /**
+     * 获取调色板中给定颜色的值。
+     * <p>
+     * 原文：
      * Get the value of the given color in the palette.
      *
-     * @param index The index in the palette.
-     * @return The Color of the palette entry.
-     * @deprecated Magic value
+     * @param index 调色板中的索引。
+     * @return 调色板条目的Color对象。
+     * @deprecated 魔法值
      */
     @Deprecated(since = "1.6.2")
     @NotNull
@@ -280,9 +294,12 @@ public final class MapPalette {
     private static MapColorCache mapColorCache;
 
     /**
+     * 设置给定的MapColorCache。
+     * <p>
+     * 原文：
      * Sets the given MapColorCache.
      *
-     * @param mapColorCache The map color cache to set
+     * @param mapColorCache 要设置的地图颜色缓存。
      */
     public static void setMapColorCache(@NotNull MapColorCache mapColorCache) {
         Preconditions.checkState(MapPalette.mapColorCache == null, "Map color cache already set");
@@ -291,27 +308,34 @@ public final class MapPalette {
     }
 
     /**
-     * Holds cached information for matching map colors of a given RBG color.
+     * 保存用于匹配给定RGB颜色的缓存信息。
      */
     public interface MapColorCache {
 
         /**
+         * 如果MapColorCache有缓存值则返回true，否则返回false。
+         * 可能返回false的情况是缓存尚未构建。
+         * <p>
+         * 原文：
          * Returns true if the MapColorCache has values cached, if not it will
          * return false.
          * A case where it might return false is when the cache is not build jet.
          *
-         * @return true if this MapColorCache has values cached otherwise false
+         * @return 如果此MapColorCache有缓存值则返回true，否则返回false。
          */
         boolean isCached();
 
         /**
+         * 获取调色板中与给定颜色最匹配的缓存索引。
+         * <p>
+         * 原文：
          * Get the cached index of the closest matching color in the palette to the given
          * color.
          *
-         * @param color The Color to match.
-         * @return The index in the palette.
-         * @throws IllegalStateException if {@link #isCached()} returns false
-         * @deprecated Magic value
+         * @param color 要匹配的Color对象。
+         * @return 调色板中的索引。
+         * @throws IllegalStateException 如果{@link #isCached()}返回false。
+         * @deprecated 魔法值
          */
         @Deprecated(since = "1.19")
         byte matchColor(@NotNull Color color);

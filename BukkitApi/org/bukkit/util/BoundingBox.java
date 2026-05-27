@@ -13,29 +13,27 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * A mutable axis aligned bounding box (AABB).
+ * 可变轴对齐边界框（AABB）。
  * <p>
- * This basically represents a rectangular box (specified by minimum and maximum
- * corners) that can for example be used to describe the position and extents of
- * an object (such as an entity, block, or rectangular region) in 3D space. Its
- * edges and faces are parallel to the axes of the cartesian coordinate system.
+ * 这基本上表示一个矩形框（由最小和最大角指定），可用于描述对象（如实体、方块或矩形区域）在 3D 空间中的位置和范围。其边缘和面与笛卡尔坐标系的轴平行。
  * <p>
- * The bounding box may be degenerate (one or more sides having the length 0).
+ * 边界框可能是退化的（一个或多个边的长度为 0）。
  * <p>
- * Because bounding boxes are mutable, storing them long term may be dangerous
- * if they get modified later. If you want to keep around a bounding box, it may
- * be wise to call {@link #clone()} in order to get a copy.
+ * 由于边界框是可变的，如果以后修改它们，长期存储可能会很危险。如果您想保留边界框，调用 {@link #clone()} 获取副本可能是明智的。
  */
 @SerializableAs("BoundingBox")
 public class BoundingBox implements Cloneable, ConfigurationSerializable {
 
     /**
+     * 使用给定向量的坐标作为角创建新的边界框。
+     * <p>
+     * 原文：
      * Creates a new bounding box using the coordinates of the given vectors as
      * corners.
      *
-     * @param corner1 the first corner
-     * @param corner2 the second corner
-     * @return the bounding box
+     * @param corner1 第一个角
+     * @param corner2 第二个角
+     * @return 边界框
      */
     @NotNull
     public static BoundingBox of(@NotNull Vector corner1, @NotNull Vector corner2) {
@@ -45,12 +43,15 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 使用给定位置的坐标作为角创建新的边界框。
+     * <p>
+     * 原文：
      * Creates a new bounding box using the coordinates of the given locations
      * as corners.
      *
-     * @param corner1 the first corner
-     * @param corner2 the second corner
-     * @return the bounding box
+     * @param corner1 第一个角
+     * @param corner2 第二个角
+     * @return 边界框
      */
     @NotNull
     public static BoundingBox of(@NotNull Location corner1, @NotNull Location corner2) {
@@ -61,14 +62,19 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 使用给定方块的坐标作为角创建新的边界框。
+     * <p>
+     * 边界框的大小将完全包含两个方块。
+     * <p>
+     * 原文：
      * Creates a new bounding box using the coordinates of the given blocks as
      * corners.
      * <p>
      * The bounding box will be sized to fully contain both blocks.
      *
-     * @param corner1 the first corner block
-     * @param corner2 the second corner block
-     * @return the bounding box
+     * @param corner1 第一个角方块
+     * @param corner2 第二个角方块
+     * @return 边界框
      */
     @NotNull
     public static BoundingBox of(@NotNull Block corner1, @NotNull Block corner2) {
@@ -94,10 +100,13 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 创建包含给定方块的新 1x1x1 大小边界框。
+     * <p>
+     * 原文：
      * Creates a new 1x1x1 sized bounding box containing the given block.
      *
-     * @param block the block
-     * @return the bounding box
+     * @param block 方块
+     * @return 边界框
      */
     @NotNull
     public static BoundingBox of(@NotNull Block block) {
@@ -106,13 +115,16 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 使用给定中心和范围创建新的边界框。
+     * <p>
+     * 原文：
      * Creates a new bounding box using the given center and extents.
      *
-     * @param center the center
-     * @param x 1/2 the size of the bounding box along the x axis
-     * @param y 1/2 the size of the bounding box along the y axis
-     * @param z 1/2 the size of the bounding box along the z axis
-     * @return the bounding box
+     * @param center 中心
+     * @param x 边界框沿 x 轴大小的 1/2
+     * @param y 边界框沿 y 轴大小的 1/2
+     * @param z 边界框沿 z 轴大小的 1/2
+     * @return 边界框
      */
     @NotNull
     public static BoundingBox of(@NotNull Vector center, double x, double y, double z) {
@@ -121,13 +133,16 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 使用给定中心和范围创建新的边界框。
+     * <p>
+     * 原文：
      * Creates a new bounding box using the given center and extents.
      *
-     * @param center the center
-     * @param x 1/2 the size of the bounding box along the x axis
-     * @param y 1/2 the size of the bounding box along the y axis
-     * @param z 1/2 the size of the bounding box along the z axis
-     * @return the bounding box
+     * @param center 中心
+     * @param x 边界框沿 x 轴大小的 1/2
+     * @param y 边界框沿 y 轴大小的 1/2
+     * @param z 边界框沿 z 轴大小的 1/2
+     * @return 边界框
      */
     @NotNull
     public static BoundingBox of(@NotNull Location center, double x, double y, double z) {
@@ -143,37 +158,42 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     private double maxZ;
 
     /**
-     * Creates a new (degenerate) bounding box with all corner coordinates at
-     * <code>0</code>.
+     * 创建一个新的（退化）边界框，所有角坐标为 <code>0</code>。
      */
     public BoundingBox() {
         this.resize(0.0D, 0.0D, 0.0D, 0.0D, 0.0D, 0.0D);
     }
 
     /**
+     * 从给定角坐标创建新的边界框。
+     * <p>
+     * 原文：
      * Creates a new bounding box from the given corner coordinates.
      *
-     * @param x1 the first corner's x value
-     * @param y1 the first corner's y value
-     * @param z1 the first corner's z value
-     * @param x2 the second corner's x value
-     * @param y2 the second corner's y value
-     * @param z2 the second corner's z value
+     * @param x1 第一个角的 x 值
+     * @param y1 第一个角的 y 值
+     * @param z1 第一个角的 z 值
+     * @param x2 第二个角的 x 值
+     * @param y2 第二个角的 y 值
+     * @param z2 第二个角的 z 值
      */
     public BoundingBox(double x1, double y1, double z1, double x2, double y2, double z2) {
         this.resize(x1, y1, z1, x2, y2, z2);
     }
 
     /**
+     * 调整此边界框的大小。
+     * <p>
+     * 原文：
      * Resizes this bounding box.
      *
-     * @param x1 the first corner's x value
-     * @param y1 the first corner's y value
-     * @param z1 the first corner's z value
-     * @param x2 the second corner's x value
-     * @param y2 the second corner's y value
-     * @param z2 the second corner's z value
-     * @return this bounding box (resized)
+     * @param x1 第一个角的 x 值
+     * @param y1 第一个角的 y 值
+     * @param z1 第一个角的 z 值
+     * @param x2 第二个角的 x 值
+     * @param y2 第二个角的 y 值
+     * @param z2 第二个角的 z 值
+     * @return 此边界框（已调整大小）
      */
     @NotNull
     public BoundingBox resize(double x1, double y1, double z1, double x2, double y2, double z2) {
@@ -194,36 +214,48 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 获取最小 x 值。
+     * <p>
+     * 原文：
      * Gets the minimum x value.
      *
-     * @return the minimum x value
+     * @return 最小 x 值
      */
     public double getMinX() {
         return minX;
     }
 
     /**
+     * 获取最小 y 值。
+     * <p>
+     * 原文：
      * Gets the minimum y value.
      *
-     * @return the minimum y value
+     * @return 最小 y 值
      */
     public double getMinY() {
         return minY;
     }
 
     /**
+     * 获取最小 z 值。
+     * <p>
+     * 原文：
      * Gets the minimum z value.
      *
-     * @return the minimum z value
+     * @return 最小 z 值
      */
     public double getMinZ() {
         return minZ;
     }
 
     /**
+     * 获取最小角作为向量。
+     * <p>
+     * 原文：
      * Gets the minimum corner as vector.
      *
-     * @return the minimum corner as vector
+     * @return 最小角作为向量
      */
     @NotNull
     public Vector getMin() {
@@ -231,36 +263,48 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 获取最大 x 值。
+     * <p>
+     * 原文：
      * Gets the maximum x value.
      *
-     * @return the maximum x value
+     * @return 最大 x 值
      */
     public double getMaxX() {
         return maxX;
     }
 
     /**
+     * 获取最大 y 值。
+     * <p>
+     * 原文：
      * Gets the maximum y value.
      *
-     * @return the maximum y value
+     * @return 最大 y 值
      */
     public double getMaxY() {
         return maxY;
     }
 
     /**
+     * 获取最大 z 值。
+     * <p>
+     * 原文：
      * Gets the maximum z value.
      *
-     * @return the maximum z value
+     * @return 最大 z 值
      */
     public double getMaxZ() {
         return maxZ;
     }
 
     /**
+     * 获取最大角作为向量。
+     * <p>
+     * 原文：
      * Gets the maximum corner as vector.
      *
-     * @return the maximum corner vector
+     * @return 最大角向量
      */
     @NotNull
     public Vector getMax() {
@@ -268,72 +312,96 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 获取边界框在 x 方向的宽度。
+     * <p>
+     * 原文：
      * Gets the width of the bounding box in the x direction.
      *
-     * @return the width in the x direction
+     * @return x 方向的宽度
      */
     public double getWidthX() {
         return (this.maxX - this.minX);
     }
 
     /**
+     * 获取边界框在 z 方向的宽度。
+     * <p>
+     * 原文：
      * Gets the width of the bounding box in the z direction.
      *
-     * @return the width in the z direction
+     * @return z 方向的宽度
      */
     public double getWidthZ() {
         return (this.maxZ - this.minZ);
     }
 
     /**
+     * 获取边界框的高度。
+     * <p>
+     * 原文：
      * Gets the height of the bounding box.
      *
-     * @return the height
+     * @return 高度
      */
     public double getHeight() {
         return (this.maxY - this.minY);
     }
 
     /**
+     * 获取边界框的体积。
+     * <p>
+     * 原文：
      * Gets the volume of the bounding box.
      *
-     * @return the volume
+     * @return 体积
      */
     public double getVolume() {
         return (this.getHeight() * this.getWidthX() * this.getWidthZ());
     }
 
     /**
+     * 获取边界框中心的 x 坐标。
+     * <p>
+     * 原文：
      * Gets the x coordinate of the center of the bounding box.
      *
-     * @return the center's x coordinate
+     * @return 中心的 x 坐标
      */
     public double getCenterX() {
         return (this.minX + this.getWidthX() * 0.5D);
     }
 
     /**
+     * 获取边界框中心的 y 坐标。
+     * <p>
+     * 原文：
      * Gets the y coordinate of the center of the bounding box.
      *
-     * @return the center's y coordinate
+     * @return 中心的 y 坐标
      */
     public double getCenterY() {
         return (this.minY + this.getHeight() * 0.5D);
     }
 
     /**
+     * 获取边界框中心的 z 坐标。
+     * <p>
+     * 原文：
      * Gets the z coordinate of the center of the bounding box.
      *
-     * @return the center's z coordinate
+     * @return 中心的 z 坐标
      */
     public double getCenterZ() {
         return (this.minZ + this.getWidthZ() * 0.5D);
     }
 
     /**
+     * 获取边界框的中心。
+     * <p>
+     * 原文：
      * Gets the center of the bounding box.
      *
-     * @return the center
+     * @return 中心
      */
     @NotNull
     public Vector getCenter() {
@@ -341,10 +409,13 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 复制另一个边界框。
+     * <p>
+     * 原文：
      * Copies another bounding box.
      *
-     * @param other the other bounding box
-     * @return this bounding box
+     * @param other 另一个边界框
+     * @return 此边界框
      */
     @NotNull
     public BoundingBox copy(@NotNull BoundingBox other) {
@@ -353,6 +424,11 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在相应方向上按给定值扩展此边界框。
+     * <p>
+     * 负值将在相应方向上收缩边界框。收缩将限制在受影响相对面以均匀速度收缩时会相遇的点。
+     * <p>
+     * 原文：
      * Expands this bounding box by the given values in the corresponding
      * directions.
      * <p>
@@ -360,13 +436,13 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
      * direction. Shrinking will be limited to the point where the affected
      * opposite faces would meet if the they shrank at uniform speeds.
      *
-     * @param negativeX the amount of expansion in the negative x direction
-     * @param negativeY the amount of expansion in the negative y direction
-     * @param negativeZ the amount of expansion in the negative z direction
-     * @param positiveX the amount of expansion in the positive x direction
-     * @param positiveY the amount of expansion in the positive y direction
-     * @param positiveZ the amount of expansion in the positive z direction
-     * @return this bounding box (now expanded)
+     * @param negativeX 负 x 方向的扩展量
+     * @param negativeY 负 y 方向的扩展量
+     * @param negativeZ 负 z 方向的扩展量
+     * @param positiveX 正 x 方向的扩展量
+     * @param positiveY 正 y 方向的扩展量
+     * @param positiveZ 正 z 方向的扩展量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(double negativeX, double negativeY, double negativeZ, double positiveX, double positiveY, double positiveZ) {
@@ -418,19 +494,21 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在正负方向上按给定值均匀扩展此边界框。
+     * <p>
+     * 负值将收缩边界框。收缩将限制在边界框的当前大小。
+     * <p>
+     * 原文：
      * Expands this bounding box uniformly by the given values in both positive
      * and negative directions.
      * <p>
      * Negative values will shrink the bounding box. Shrinking will be limited
      * to the bounding box's current size.
      *
-     * @param x the amount of expansion in both positive and negative x
-     * direction
-     * @param y the amount of expansion in both positive and negative y
-     * direction
-     * @param z the amount of expansion in both positive and negative z
-     * direction
-     * @return this bounding box (now expanded)
+     * @param x 正负 x 方向上的扩展量
+     * @param y 正负 y 方向上的扩展量
+     * @param z 正负 z 方向上的扩展量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(double x, double y, double z) {
@@ -438,14 +516,19 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在正负方向上按给定值均匀扩展此边界框。
+     * <p>
+     * 负值将收缩边界框。收缩将限制在边界框的当前大小。
+     * <p>
+     * 原文：
      * Expands this bounding box uniformly by the given values in both positive
      * and negative directions.
      * <p>
      * Negative values will shrink the bounding box. Shrinking will be limited
      * to the bounding box's current size.
      *
-     * @param expansion the expansion values
-     * @return this bounding box (now expanded)
+     * @param expansion 扩展值
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(@NotNull Vector expansion) {
@@ -457,13 +540,18 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在所有方向上按给定值均匀扩展此边界框。
+     * <p>
+     * 负值将收缩边界框。收缩将限制在边界框的当前大小。
+     * <p>
+     * 原文：
      * Expands this bounding box uniformly by the given value in all directions.
      * <p>
      * A negative value will shrink the bounding box. Shrinking will be limited
      * to the bounding box's current size.
      *
-     * @param expansion the amount of expansion
-     * @return this bounding box (now expanded)
+     * @param expansion 扩展量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(double expansion) {
@@ -471,17 +559,22 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在指定方向上扩展此边界框。
+     * <p>
+     * 方向的大小将缩放扩展。负的扩展值将在此方向上收缩边界框。收缩将限制在边界框的当前大小。
+     * <p>
+     * 原文：
      * Expands this bounding box in the specified direction.
      * <p>
      * The magnitude of the direction will scale the expansion. A negative
      * expansion value will shrink the bounding box in this direction. Shrinking
      * will be limited to the bounding box's current size.
      *
-     * @param dirX the x direction component
-     * @param dirY the y direction component
-     * @param dirZ the z direction component
-     * @param expansion the amount of expansion
-     * @return this bounding box (now expanded)
+     * @param dirX x 方向分量
+     * @param dirY y 方向分量
+     * @param dirZ z 方向分量
+     * @param expansion 扩展量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(double dirX, double dirY, double dirZ, double expansion) {
@@ -498,15 +591,20 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在指定方向上扩展此边界框。
+     * <p>
+     * 方向的大小将缩放扩展。负的扩展值将在此方向上收缩边界框。收缩将限制在边界框的当前大小。
+     * <p>
+     * 原文：
      * Expands this bounding box in the specified direction.
      * <p>
      * The magnitude of the direction will scale the expansion. A negative
      * expansion value will shrink the bounding box in this direction. Shrinking
      * will be limited to the bounding box's current size.
      *
-     * @param direction the direction
-     * @param expansion the amount of expansion
-     * @return this bounding box (now expanded)
+     * @param direction 方向
+     * @param expansion 扩展量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(@NotNull Vector direction, double expansion) {
@@ -515,15 +613,20 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在给定方块面指定的方向上扩展此边界框。
+     * <p>
+     * 负的扩展值将在此方向上收缩边界框。收缩将限制在边界框的当前大小。
+     * <p>
+     * 原文：
      * Expands this bounding box in the direction specified by the given block
      * face.
      * <p>
      * A negative expansion value will shrink the bounding box in this
      * direction. Shrinking will be limited to the bounding box's current size.
      *
-     * @param blockFace the block face
-     * @param expansion the amount of expansion
-     * @return this bounding box (now expanded)
+     * @param blockFace 方块面
+     * @param expansion 扩展量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expand(@NotNull BlockFace blockFace, double expansion) {
@@ -534,6 +637,11 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在指定方向上扩展此边界框。
+     * <p>
+     * 负值将在负方向上扩展边界框，正值将在正方向上扩展。方向分量的大小决定相应的扩展量。
+     * <p>
+     * 原文：
      * Expands this bounding box in the specified direction.
      * <p>
      * Negative values will expand the bounding box in the negative direction,
@@ -541,10 +649,10 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
      * of the direction components determine the corresponding amounts of
      * expansion.
      *
-     * @param dirX the x direction component
-     * @param dirY the y direction component
-     * @param dirZ the z direction component
-     * @return this bounding box (now expanded)
+     * @param dirX x 方向分量
+     * @param dirY y 方向分量
+     * @param dirZ z 方向分量
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expandDirectional(double dirX, double dirY, double dirZ) {
@@ -552,14 +660,19 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 在指定方向上扩展此边界框。
+     * <p>
+     * 负值将在负方向上扩展边界框，正值将在正方向上扩展。方向向量的大小决定扩展量。
+     * <p>
+     * 原文：
      * Expands this bounding box in the specified direction.
      * <p>
      * Negative values will expand the bounding box in the negative direction,
      * positive values will expand it in the positive direction. The magnitude
      * of the direction vector determines the amount of expansion.
      *
-     * @param direction the direction and magnitude of the expansion
-     * @return this bounding box (now expanded)
+     * @param direction 扩展的方向和大小
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox expandDirectional(@NotNull Vector direction) {
@@ -568,12 +681,15 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 扩展此边界框以包含（或边界）指定位置。
+     * <p>
+     * 原文：
      * Expands this bounding box to contain (or border) the specified position.
      *
-     * @param posX the x position value
-     * @param posY the y position value
-     * @param posZ the z position value
-     * @return this bounding box (now expanded)
+     * @param posX x 位置值
+     * @param posY y 位置值
+     * @param posZ z 位置值
+     * @return 此边界框（已扩展）
      * @see #contains(double, double, double)
      */
     @NotNull
@@ -591,37 +707,42 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 扩展此边界框以包含（或边界）指定位置。
+     * <p>
+     * 原文：
      * Expands this bounding box to contain (or border) the specified position.
      *
-     * @param position the position
-     * @return this bounding box (now expanded)
+     * @param position 位置
+     * @return 此边界框（已扩展）
      * @see #contains(double, double, double)
      */
-    @NotNull
-    public BoundingBox union(@NotNull Vector position) {
         Preconditions.checkArgument(position != null, "Position is null!");
         return this.union(position.getX(), position.getY(), position.getZ());
     }
 
     /**
+     * 扩展此边界框以包含（或边界）指定位置。
+     * <p>
+     * 原文：
      * Expands this bounding box to contain (or border) the specified position.
      *
-     * @param position the position
-     * @return this bounding box (now expanded)
+     * @param position 位置
+     * @return 此边界框（已扩展）
      * @see #contains(double, double, double)
      */
-    @NotNull
-    public BoundingBox union(@NotNull Location position) {
         Preconditions.checkArgument(position != null, "Position is null!");
         return this.union(position.getX(), position.getY(), position.getZ());
     }
 
     /**
+     * 扩展此边界框以包含此边界框和给定边界框。
+     * <p>
+     * 原文：
      * Expands this bounding box to contain both this and the given bounding
      * box.
      *
-     * @param other the other bounding box
-     * @return this bounding box (now expanded)
+     * @param other 另一个边界框
+     * @return 此边界框（已扩展）
      */
     @NotNull
     public BoundingBox union(@NotNull BoundingBox other) {
@@ -637,12 +758,15 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 调整此边界框大小以表示此边界框与给定边界的交集。
+     * <p>
+     * 原文：
      * Resizes this bounding box to represent the intersection of this and the
      * given bounding box.
      *
-     * @param other the other bounding box
-     * @return this bounding box (now representing the intersection)
-     * @throws IllegalArgumentException if the bounding boxes don't overlap
+     * @param other 另一个边界框
+     * @return 此边界框（现在表示交集）
+     * @throws IllegalArgumentException 如果边界框不重叠
      */
     @NotNull
     public BoundingBox intersection(@NotNull BoundingBox other) {
@@ -658,12 +782,15 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 按给定量移动此边界框。
+     * <p>
+     * 原文：
      * Shifts this bounding box by the given amounts.
      *
-     * @param shiftX the shift in x direction
-     * @param shiftY the shift in y direction
-     * @param shiftZ the shift in z direction
-     * @return this bounding box (now shifted)
+     * @param shiftX x 方向的移动量
+     * @param shiftY y 方向的移动量
+     * @param shiftZ z 方向的移动量
+     * @return 此边界框（已移动）
      */
     @NotNull
     public BoundingBox shift(double shiftX, double shiftY, double shiftZ) {
@@ -673,25 +800,27 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 按给定量移动此边界框。
+     * <p>
+     * 原文：
      * Shifts this bounding box by the given amounts.
      *
-     * @param shift the shift
-     * @return this bounding box (now shifted)
+     * @param shift 移动量
+     * @return 此边界框（已移动）
      */
-    @NotNull
-    public BoundingBox shift(@NotNull Vector shift) {
         Preconditions.checkArgument(shift != null, "Shift is null!");
         return this.shift(shift.getX(), shift.getY(), shift.getZ());
     }
 
     /**
+     * 按给定量移动此边界框。
+     * <p>
+     * 原文：
      * Shifts this bounding box by the given amounts.
      *
-     * @param shift the shift
-     * @return this bounding box (now shifted)
+     * @param shift 移动量
+     * @return 此边界框（已移动）
      */
-    @NotNull
-    public BoundingBox shift(@NotNull Location shift) {
         Preconditions.checkArgument(shift != null, "Shift is null!");
         return this.shift(shift.getX(), shift.getY(), shift.getZ());
     }
@@ -703,13 +832,18 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 检查此边界框是否与给定边界框重叠。
+     * <p>
+     * 仅在边界处相交的边界框不被视为重叠。
+     * <p>
+     * 原文：
      * Checks if this bounding box overlaps with the given bounding box.
      * <p>
      * Bounding boxes that are only intersecting at the borders are not
      * considered overlapping.
      *
-     * @param other the other bounding box
-     * @return <code>true</code> if overlapping
+     * @param other 另一个边界框
+     * @return <code>true</code> 如果重叠
      */
     public boolean overlaps(@NotNull BoundingBox other) {
         Preconditions.checkArgument(other != null, "Other bounding box is null!");
@@ -717,15 +851,20 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 检查此边界框是否与给定角定义的边界框重叠。
+     * <p>
+     * 仅在边界处相交的边界框不被视为重叠。
+     * <p>
+     * 原文：
      * Checks if this bounding box overlaps with the bounding box that is
      * defined by the given corners.
      * <p>
      * Bounding boxes that are only intersecting at the borders are not
      * considered overlapping.
      *
-     * @param min the first corner
-     * @param max the second corner
-     * @return <code>true</code> if overlapping
+     * @param min 第一个角
+     * @param max 第二个角
+     * @return <code>true</code> 如果重叠
      */
     public boolean overlaps(@NotNull Vector min, @NotNull Vector max) {
         Preconditions.checkArgument(min != null, "Min is null!");
@@ -741,6 +880,11 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 检查此边界框是否包含指定位置。
+     * <p>
+     * 恰好在边界框最小边界上的位置被视为在边界框内，而恰好在最大边界上的位置被视为在外。这允许边界框直接相邻放置，位置始终只位于其中一个边界框内。
+     * <p>
+     * 原文：
      * Checks if this bounding box contains the specified position.
      * <p>
      * Positions exactly on the minimum borders of the bounding box are
@@ -749,10 +893,10 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
      * to reside directly next to each other with positions always only residing
      * in exactly one of them.
      *
-     * @param x the position's x coordinates
-     * @param y the position's y coordinates
-     * @param z the position's z coordinates
-     * @return <code>true</code> if the bounding box contains the position
+     * @param x 位置的 x 坐标
+     * @param y 位置的 y 坐标
+     * @param z 位置的 z 坐标
+     * @return <code>true</code> 如果边界框包含该位置
      */
     public boolean contains(double x, double y, double z) {
         return x >= this.minX && x < this.maxX
@@ -761,6 +905,11 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 检查此边界框是否包含指定位置。
+     * <p>
+     * 恰好在边界框最小边界上的位置被视为在边界框内，而恰好在最大边界上的位置被视为在外。这允许边界框直接相邻放置，位置始终只位于其中一个边界框内。
+     * <p>
+     * 原文：
      * Checks if this bounding box contains the specified position.
      * <p>
      * Positions exactly on the minimum borders of the bounding box are
@@ -769,8 +918,8 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
      * to reside directly next to each other with positions always only residing
      * in exactly one of them.
      *
-     * @param position the position
-     * @return <code>true</code> if the bounding box contains the position
+     * @param position 位置
+     * @return <code>true</code> 如果边界框包含该位置
      */
     public boolean contains(@NotNull Vector position) {
         Preconditions.checkArgument(position != null, "Position is null!");
@@ -784,11 +933,13 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 检查此边界框是否完全包含给定边界框。
+     * <p>
+     * 原文：
      * Checks if this bounding box fully contains the given bounding box.
      *
-     * @param other the other bounding box
-     * @return <code>true</code> if the bounding box contains the given bounding
-     * box
+     * @param other 另一个边界框
+     * @return <code>true</code> 如果边界框包含给定边界框
      */
     public boolean contains(@NotNull BoundingBox other) {
         Preconditions.checkArgument(other != null, "Other bounding box is null!");
@@ -796,13 +947,15 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 检查此边界框是否完全包含给定角定义的边界框。
+     * <p>
+     * 原文：
      * Checks if this bounding box fully contains the bounding box that is
      * defined by the given corners.
      *
-     * @param min the first corner
-     * @param max the second corner
-     * @return <code>true</code> if the bounding box contains the specified
-     *     bounding box
+     * @param min 第一个角
+     * @param max 第二个角
+     * @return <code>true</code> 如果边界框包含指定的边界框
      */
     public boolean contains(@NotNull Vector min, @NotNull Vector max) {
         Preconditions.checkArgument(min != null, "Min is null!");
@@ -818,16 +971,21 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 计算此边界框与指定线段的交点。
+     * <p>
+     * 在边和角处的交点会产生一个受影响的方块面作为命中结果，但不确定是哪一个。
+     * <p>
+     * 原文：
      * Calculates the intersection of this bounding box with the specified line
      * segment.
      * <p>
      * Intersections at edges and corners yield one of the affected block faces
      * as hit result, but it is not defined which of them.
      *
-     * @param start the start position
-     * @param direction the ray direction
-     * @param maxDistance the maximum distance
-     * @return the ray trace hit result, or <code>null</code> if there is no hit
+     * @param start 起始位置
+     * @param direction 光线方向
+     * @param maxDistance 最大距离
+     * @return 光线追踪命中结果，如果没有命中则返回 <code>null</code>
      */
     @Nullable
     public RayTraceResult rayTrace(@NotNull Vector start, @NotNull Vector direction, double maxDistance) {
@@ -1006,9 +1164,12 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
+     * 创建此边界框的副本。
+     * <p>
+     * 原文：
      * Creates a copy of this bounding box.
      *
-     * @return the cloned bounding box
+     * @return 克隆的边界框
      */
     @NotNull
     @Override

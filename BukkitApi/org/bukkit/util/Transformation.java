@@ -8,7 +8,7 @@ import org.joml.Quaternionf;
 import org.joml.Vector3f;
 
 /**
- * Represents an arbitrary affine transformation.
+ * 表示任意仿射变换。
  */
 public class Transformation {
 
@@ -46,9 +46,12 @@ public class Transformation {
     }
 
     /**
+     * 获取此变换的平移分量。
+     * <p>
+     * 原文：
      * Gets the translation component of this transformation.
      *
-     * @return translation component
+     * @return 平移分量
      */
     @NotNull
     public Vector3f getTranslation() {
@@ -56,9 +59,12 @@ public class Transformation {
     }
 
     /**
+     * 获取此变换的左旋转分量。
+     * <p>
+     * 原文：
      * Gets the left rotation component of this transformation.
      *
-     * @return left rotation component
+     * @return 左旋转分量
      */
     @NotNull
     public Quaternionf getLeftRotation() {
@@ -66,9 +72,12 @@ public class Transformation {
     }
 
     /**
+     * 获取此变换的缩放分量。
+     * <p>
+     * 原文：
      * Gets the scale component of this transformation.
      *
-     * @return scale component
+     * @return 缩放分量
      */
     @NotNull
     public Vector3f getScale() {
@@ -76,9 +85,12 @@ public class Transformation {
     }
 
     /**
+     * 获取此变换的右旋转分量。
+     * <p>
+     * 原文：
      * Gets the right rotation component of this transformation.
      *
-     * @return right rotation component
+     * @return 右旋转分量
      */
     @NotNull
     public Quaternionf getRightRotation() {

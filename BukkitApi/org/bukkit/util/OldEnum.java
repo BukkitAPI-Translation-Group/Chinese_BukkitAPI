@@ -4,38 +4,35 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Class which holds common methods which are present in an enum.
+ * 包含枚举中常见方法的类。
  *
- * @param <T> the type of the old enum.
- * @deprecated only for backwards compatibility.
+ * @param <T> 旧枚举的类型
+ * @deprecated 仅用于向后兼容
  */
 @ApiStatus.Internal
 @Deprecated(since = "1.21")
 public interface OldEnum<T extends OldEnum<T>> extends Comparable<T> {
 
     /**
-     * @param other to compare to.
-     * @return negative if this old enum is lower, zero if equal and positive if
-     * higher than the given old enum.
-     * @deprecated only for backwards compatibility, old enums can not be
-     * compared.
+     * @param other 要比较的对象
+     * @return 如果此旧枚举较低则返回负数，相等返回零，高于给定旧枚举返回正数
+     * @deprecated 仅用于向后兼容，旧枚举无法比较
      */
     @Deprecated(since = "1.21")
     @Override
     int compareTo(@NotNull T other);
 
     /**
-     * @return the name of the old enum.
-     * @deprecated only for backwards compatibility.
+     * @return 旧枚举的名称
+     * @deprecated 仅用于向后兼容
      */
     @NotNull
     @Deprecated(since = "1.21")
     String name();
 
     /**
-     * @return the ordinal of the old enum.
-     * @deprecated only for backwards compatibility, it is not guaranteed that
-     * an old enum always has the same ordinal.
+     * @return 旧枚举的序数
+     * @deprecated 仅用于向后兼容，不保证旧枚举始终具有相同的序数
      */
     @Deprecated(since = "1.21")
     int ordinal();
