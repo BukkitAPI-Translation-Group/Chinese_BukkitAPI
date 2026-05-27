@@ -74,10 +74,12 @@ public class HangingPlaceEvent extends HangingEvent implements Cancellable {
     }
 
     /**
-     * Returns the hand that was used to place the hanging entity, or null
+     * 返回用于放置此悬挂实体的手, 如果不是玩家放置的则返回 null.
+     * <p>
+     * 原文：Returns the hand that was used to place the hanging entity, or null
      * if a player did not place the hanging entity.
      *
-     * @return the hand
+     * @return 使用的手
      */
     @Nullable
     public EquipmentSlot getHand() {
