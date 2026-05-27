@@ -16,15 +16,13 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * 用于初始化一个整体的区块的区块生成器。比如说，地狱的区块生成器用于生成地狱岩和灵魂沙.
+ * 用于初始化一个整体的区块的区块生成器。比如说，地狱的区块生成器用于生成地狱岩和灵魂沙。
  *
- * A chunk is generated in multiple steps, those steps are always in the same
- * order. Between those steps however an unlimited time may pass. This means, a
- * chunk may generated until the surface step and continue with the bedrock step
- * after one or multiple server restarts or even after multiple Minecraft
- * versions.
+ * 区块的生成分为多个步骤，这些步骤始终按照相同的顺序执行。
+ * 然而，在这些步骤之间可能会经过无限长的时间。这意味着，一个区块可能在表面步骤生成后，
+ * 经过一次或多次服务器重启，甚至经过多个 Minecraft 版本后才继续执行基岩步骤。
  *
- * The order of generation is as follows
+ * 生成顺序如下：
  * <ol>
  * <li>{@link #generateNoise(WorldInfo, Random, int, int, ChunkData)}</li>
  * <li>{@link #generateSurface(WorldInfo, Random, int, int, ChunkData)}</li>
@@ -32,20 +30,19 @@ import org.jetbrains.annotations.Nullable;
  * <li>{@link #generateCaves(WorldInfo, Random, int, int, ChunkData)}</li>
  * </ol>
  *
- * Every method listed above as well as
+ * 上述列出的每个方法以及
  * {@link #getBaseHeight(WorldInfo, Random, int, int, HeightMap)}
- * <b>must</b> be completely thread safe and able to handle multiple concurrent
- * callers.
+ * <b>必须</b>完全线程安全，并且能够处理多个并发调用者。
  *
- * Some aspects of world generation can be delegated to the Vanilla generator.
- * The following methods can be overridden to enable this:
+ * 世界生成的某些方面可以委托给原版生成器。
+ * 可以重写以下方法来启用此功能：
  * <ul>
- * <li>{@link ChunkGenerator#shouldGenerateNoise()} or {@link ChunkGenerator#shouldGenerateNoise(WorldInfo, Random, int, int)}</li>
- * <li>{@link ChunkGenerator#shouldGenerateSurface()} or {@link ChunkGenerator#shouldGenerateSurface(WorldInfo, Random, int, int)}</li>
- * <li>{@link ChunkGenerator#shouldGenerateCaves()} or {@link ChunkGenerator#shouldGenerateCaves(WorldInfo, Random, int, int)}</li>
- * <li>{@link ChunkGenerator#shouldGenerateDecorations()} or {@link ChunkGenerator#shouldGenerateDecorations(WorldInfo, Random, int, int)}</li>
- * <li>{@link ChunkGenerator#shouldGenerateMobs()} or {@link ChunkGenerator#shouldGenerateMobs(WorldInfo, Random, int, int)}</li>
- * <li>{@link ChunkGenerator#shouldGenerateStructures()} or {@link ChunkGenerator#shouldGenerateStructures(WorldInfo, Random, int, int)}</li>
+ * <li>{@link ChunkGenerator#shouldGenerateNoise()} 或 {@link ChunkGenerator#shouldGenerateNoise(WorldInfo, Random, int, int)}</li>
+ * <li>{@link ChunkGenerator#shouldGenerateSurface()} 或 {@link ChunkGenerator#shouldGenerateSurface(WorldInfo, Random, int, int)}</li>
+ * <li>{@link ChunkGenerator#shouldGenerateCaves()} 或 {@link ChunkGenerator#shouldGenerateCaves(WorldInfo, Random, int, int)}</li>
+ * <li>{@link ChunkGenerator#shouldGenerateDecorations()} 或 {@link ChunkGenerator#shouldGenerateDecorations(WorldInfo, Random, int, int)}</li>
+ * <li>{@link ChunkGenerator#shouldGenerateMobs()} 或 {@link ChunkGenerator#shouldGenerateMobs(WorldInfo, Random, int, int)}</li>
+ * <li>{@link ChunkGenerator#shouldGenerateStructures()} 或 {@link ChunkGenerator#shouldGenerateStructures(WorldInfo, Random, int, int)}</li>
  * </ul>
  */
 public abstract class ChunkGenerator {
