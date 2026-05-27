@@ -62,7 +62,7 @@ public interface PatternType extends OldEnum<PatternType>, Keyed, RegistryAware 
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键可能并不总是存在，请使用 {@link #getKeyOrThrow()} 代替.
      */
     @NotNull
     @Override
@@ -119,9 +119,9 @@ public interface PatternType extends OldEnum<PatternType>, Keyed, RegistryAware 
     }
 
     /**
-     * @param name of the pattern type.
-     * @return the pattern type with the given name.
-     * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+     * @param name 图案类型的名称.
+     * @return 具有给定名称的图案类型.
+     * @deprecated 仅用于向后兼容，请使用 {@link Registry#get(NamespacedKey)} 代替.
      */
     @NotNull
     @Deprecated(since = "1.21")
@@ -132,8 +132,8 @@ public interface PatternType extends OldEnum<PatternType>, Keyed, RegistryAware 
     }
 
     /**
-     * @return an array of all known pattern types.
-     * @deprecated use {@link Registry#iterator()}.
+     * @return 所有已知图案类型的数组.
+     * @deprecated 请使用 {@link Registry#iterator()}.
      */
     @NotNull
     @Deprecated(since = "1.21")
