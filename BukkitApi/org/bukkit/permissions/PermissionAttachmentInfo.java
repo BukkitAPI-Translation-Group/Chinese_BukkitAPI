@@ -4,8 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Holds information on a permission and which {@link PermissionAttachment}
- * provides it
+ * 保存关于权限以及提供该权限的{@link PermissionAttachment}的信息
  */
 public class PermissionAttachmentInfo {
     private final Permissible permissible;
@@ -27,9 +26,12 @@ public class PermissionAttachmentInfo {
     }
 
     /**
+     * 获取此权限附加到的可权限对象.
+     * <p>
+     * 原文：
      * Gets the permissible this is attached to
      *
-     * @return Permissible this permission is for
+     * @return 此权限所属的Permissible
      */
     @NotNull
     public Permissible getPermissible() {
@@ -37,9 +39,12 @@ public class PermissionAttachmentInfo {
     }
 
     /**
+     * 获取被设置的权限.
+     * <p>
+     * 原文：
      * Gets the permission being set
      *
-     * @return Name of the permission
+     * @return 权限名称
      */
     @NotNull
     public String getPermission() {
@@ -47,10 +52,13 @@ public class PermissionAttachmentInfo {
     }
 
     /**
+     * 获取提供此权限的附件. 对于默认权限(通常是父权限)可能为null.
+     * <p>
+     * 原文：
      * Gets the attachment providing this permission. This may be null for
      * default permissions (usually parent permissions).
      *
-     * @return Attachment
+     * @return 附件
      */
     @Nullable
     public PermissionAttachment getAttachment() {
@@ -58,9 +66,12 @@ public class PermissionAttachmentInfo {
     }
 
     /**
+     * 获取此权限的值.
+     * <p>
+     * 原文：
      * Gets the value of this permission
      *
-     * @return Value of the permission
+     * @return 权限的值
      */
     public boolean getValue() {
         return value;
