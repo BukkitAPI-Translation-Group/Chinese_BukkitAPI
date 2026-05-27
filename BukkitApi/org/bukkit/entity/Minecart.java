@@ -71,41 +71,49 @@ public interface Minecart extends Vehicle {
     public void setSlowWhenEmpty(boolean slow);
 
     /**
-     * Gets the flying velocity modifier. Used for minecarts that are in
+     * 获取飞行中的速率修正值. 用于处于半空中的矿车. 飞行中的矿车的速度每刻都会乘以该修正值.
+     * <p>
+     * 原文:Gets the flying velocity modifier. Used for minecarts that are in
      * mid-air. A flying minecart's velocity is multiplied by this factor each
      * tick.
      *
-     * @return The vector factor
+     * @return 速率修正向量
      */
     @NotNull
     public Vector getFlyingVelocityMod();
 
     /**
-     * Sets the flying velocity modifier. Used for minecarts that are in
+     * 设置飞行中的速率修正值. 用于处于半空中的矿车. 飞行中的矿车的速度每刻都会乘以该修正值.
+     * <p>
+     * 原文:Sets the flying velocity modifier. Used for minecarts that are in
      * mid-air. A flying minecart's velocity is multiplied by this factor each
      * tick.
      *
-     * @param flying velocity modifier vector
+     * @param flying 速率修正向量
      */
     public void setFlyingVelocityMod(@NotNull Vector flying);
 
     /**
-     * Gets the derailed velocity modifier. Used for minecarts that are on the
-     * ground, but not on rails.
+     * 获取脱轨时的速率修正值. 用于处于地面上但不在铁轨上的矿车.
+     * 脱轨矿车的速度每刻都会乘以该修正值.
      * <p>
+     * 原文:Gets the derailed velocity modifier. Used for minecarts that are on the
+     * ground, but not on rails.
      * A derailed minecart's velocity is multiplied by this factor each tick.
      *
-     * @return derailed visible speed
+     * @return 脱轨时的可见速率
      */
     @NotNull
     public Vector getDerailedVelocityMod();
 
     /**
-     * Sets the derailed velocity modifier. Used for minecarts that are on the
+     * 设置脱轨时的速率修正值. 用于处于地面上但不在铁轨上的矿车. 脱轨矿车的速度每刻都会乘以该修正值.
+     * <p>
+     * 原文:Sets the derailed velocity modifier. Used for minecarts that are on the
      * ground, but not on rails. A derailed minecart's velocity is multiplied
      * by this factor each tick.
      *
-     * @param derailed visible speed
+     * @param derailed 脱轨时的可见速率
      */
     public void setDerailedVelocityMod(@NotNull Vector derailed);
 
@@ -174,18 +182,22 @@ public interface Minecart extends Vehicle {
     public int getDisplayBlockOffset();
 
     /**
-     * Sets the multiplier of the minecart's acceleration while on powered
+     * 设置矿车在充能铁轨上的加速度倍率.
+     * <p>
+     * 原文:Sets the multiplier of the minecart's acceleration while on powered
      * rails.
      *
-     * @param multiplier a value of 1.0 is the default acceleration
+     * @param multiplier 倍率值, 1.0 为默认加速度
      */
     public void setPoweredRailAccelerationMultiplier(double multiplier);
 
     /**
-     * Gets the multiplier of the minecart's acceleration while on powered
+     * 获取矿车在充能铁轨上的加速度倍率.
+     * <p>
+     * 原文:Gets the multiplier of the minecart's acceleration while on powered
      * rails.
      *
-     * @return acceleration multiplier
+     * @return 加速度倍率
      */
     public double getPoweredRailAccelerationMultiplier();
 }
