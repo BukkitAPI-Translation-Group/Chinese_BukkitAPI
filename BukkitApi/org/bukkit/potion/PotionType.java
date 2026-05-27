@@ -73,8 +73,8 @@ public enum PotionType implements Keyed, RegistryAware {
     }
 
     /**
-     * @return the potion effect type of this potion type
-     * @deprecated Potions can have multiple effects use {@link #getPotionEffects()}
+     * @return 此药水类型的状态效果类型
+     * @deprecated 药水可以有多种效果, 请使用 {@link #getPotionEffects()}
      */
     @Nullable
     @Deprecated(since = "1.20.2")
@@ -83,7 +83,7 @@ public enum PotionType implements Keyed, RegistryAware {
     }
 
     /**
-     * @return a list of all effects this potion type has
+     * @return 此药水类型拥有的所有效果列表
      */
     @NotNull
     public List<PotionEffect> getPotionEffects() {
@@ -91,9 +91,9 @@ public enum PotionType implements Keyed, RegistryAware {
     }
 
     /**
-     * @return if this potion type is instant
-     * @deprecated PotionType can have multiple effects, some of which can be instant and others not.
-     * Use {@link PotionEffectType#isInstant()} in combination with {@link #getPotionEffects()} and {@link PotionEffect#getType()}
+     * @return 此药水类型是否为瞬间效果
+     * @deprecated PotionType 可以有多种效果, 其中一些可能是瞬间效果, 其他则不是.
+     * 请结合使用 {@link PotionEffectType#isInstant()}、{@link #getPotionEffects()} 和 {@link PotionEffect#getType()}
      */
     @Deprecated(since = "1.20.2")
     public boolean isInstant() {
@@ -126,6 +126,13 @@ public enum PotionType implements Keyed, RegistryAware {
         return internalPotionDataSupplier.get().isExtendable();
     }
 
+    /**
+     * 获得此药水类型的最大等级.
+     * <p>
+     * 原文: Gets the maximum level of this potion type.
+     *
+     * @return 最大等级
+     */
     public int getMaxLevel() {
         return internalPotionDataSupplier.get().getMaxLevel();
     }
@@ -170,7 +177,7 @@ public enum PotionType implements Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 键不一定总是存在, 请使用 {@link #getKeyOrThrow()} 代替.
      */
     @NotNull
     @Override
