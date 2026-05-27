@@ -9,26 +9,22 @@ import org.jetbrains.annotations.NotNull;
 public interface Vehicle extends Entity {
 
     /**
-     * 获取载具的速度。
-     *
-     * @return 速度向量
+     * 获取载具的速度.
      * <p>
      * 原文：Gets the vehicle's velocity.
      *
-     * @return velocity vector
+     * @return 速度向量
      */
     @Override
     @NotNull
     public Vector getVelocity();
 
     /**
-     * 设置载具的速度（单位：米/刻）。
-     *
-     * @param vel 速度向量
+     * 设置载具的速度(单位: 米/刻).
      * <p>
      * 原文：Sets the vehicle's velocity in meters per tick.
      *
-     * @param vel velocity vector
+     * @param vel 速度向量
      */
     @Override
     public void setVelocity(@NotNull Vector vel);
