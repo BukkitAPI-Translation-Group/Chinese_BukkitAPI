@@ -11,27 +11,33 @@ import org.jetbrains.annotations.Nullable;
 public interface EntityEquipment {
 
     /**
-     * Stores the ItemStack at the given equipment slot in the inventory.
+     * 将给定的 ItemStack 存储到物品栏中指定的装备槽位.
+     * <p>
+     * 原文: Stores the ItemStack at the given equipment slot in the inventory.
      *
-     * @param slot the slot to put the ItemStack
-     * @param item the ItemStack to set
+     * @param slot 要放置物品的槽位
+     * @param item 要设置的物品
      */
     public void setItem(@NotNull EquipmentSlot slot, @Nullable ItemStack item);
 
     /**
-     * Stores the ItemStack at the given equipment slot in the inventory.
+     * 将给定的 ItemStack 存储到物品栏中指定的装备槽位.
+     * <p>
+     * 原文: Stores the ItemStack at the given equipment slot in the inventory.
      *
-     * @param slot the slot to put the ItemStack
-     * @param item the ItemStack to set
-     * @param silent whether or not the equip sound should be silenced
+     * @param slot 要放置物品的槽位
+     * @param item 要设置的物品
+     * @param silent 是否播放装备动作的声音
      */
     public void setItem(@NotNull EquipmentSlot slot, @Nullable ItemStack item, boolean silent);
 
     /**
-     * Gets the ItemStack at the given equipment slot in the inventory.
+     * 获取物品栏中指定装备槽位的 ItemStack.
+     * <p>
+     * 原文: Gets the ItemStack at the given equipment slot in the inventory.
      *
-     * @param slot the slot to get the ItemStack
-     * @return the ItemStack in the given slot
+     * @param slot 要获取物品的槽位
+     * @return 指定槽位中的物品
      */
     @NotNull
     public ItemStack getItem(@NotNull EquipmentSlot slot);
