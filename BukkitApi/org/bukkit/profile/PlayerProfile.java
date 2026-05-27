@@ -58,19 +58,22 @@ public interface PlayerProfile extends Cloneable, ConfigurationSerializable {
     void setTextures(@Nullable PlayerTextures textures);
 
     /**
-     * Gets the {@link PlayerSkinPatch} of this profile.
+     * 获取此资料的 {@link PlayerSkinPatch}.
+     * <p>
+     * 原文:Gets the {@link PlayerSkinPatch} of this profile.
      *
-     * @return the skin patch, not <code>null</code>
+     * @return 皮肤补丁,不为 <code>null</code>
      */
     @NotNull
     @ApiStatus.Experimental
     PlayerSkinPatch getSkinPatch();
 
     /**
-     * Copies the given patch.
+     * 复制指定的补丁.
+     * <p>
+     * 原文:Copies the given patch.
      *
-     * @param patch the patch to copy, or <code>null</code> to clear the
-     * patch
+     * @param patch 要复制的补丁,指定 <code>null</code> 以清除补丁
      */
     @ApiStatus.Experimental
     void setSkinPatch(@Nullable PlayerSkinPatch patch);
