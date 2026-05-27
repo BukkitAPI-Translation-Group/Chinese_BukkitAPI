@@ -48,52 +48,70 @@ public interface Item extends Entity {
     public void setPickupDelay(int delay);
 
     /**
-     * Sets if this Item should live forever
+     * 设置此掉落物是否应永久存在.
+     * <p>
+     * 原文：Sets if this Item should live forever
      *
-     * @param unlimited true if the lifetime is unlimited
+     * @param unlimited 如果为true则掉落物的生存时间无限制
      */
     public void setUnlimitedLifetime(boolean unlimited);
 
     /**
-     * Gets if this Item lives forever
+     * 获取此掉落物是否永久存在.
+     * <p>
+     * 原文：Gets if this Item lives forever
      *
-     * @return true if the lifetime is unlimited
+     * @return 如果生存时间无限制则返回true
      */
     public boolean isUnlimitedLifetime();
 
     /**
-     * Sets the owner of this item.
-     *
+     * 设置此掉落物的所有者.
+     * <p>
+     * 设置所有者后, 其他实体将无法拾取此掉落物.
+     * <p>
+     * 原文：Sets the owner of this item.
+     * <p>
      * Other entities will not be able to pickup this item when an owner is set.
      *
-     * @param owner UUID of new owner
+     * @param owner 新所有者的UUID
      */
     public void setOwner(@Nullable UUID owner);
 
     /**
-     * Get the owner of this item.
+     * 获取此掉落物的所有者.
+     * <p>
+     * 原文：Get the owner of this item.
      *
-     * @return UUID of owner
+     * @return 所有者的UUID
      */
     @Nullable
     public UUID getOwner();
 
     /**
-     * Set the thrower of this item.
-     *
+     * 设置此掉落物的投掷者.
+     * <p>
+     * 投掷者是掉落此物品的实体. 这会影响物品拾取的触发条件, 例如进度的触发.
+     * <p>
+     * 原文：Set the thrower of this item.
+     * <p>
      * The thrower is the entity which dropped the item. This affects the
      * trigger criteria for item pickups, for things such as advancements.
      *
-     * @param uuid UUID of thrower
+     * @param uuid 投掷者的UUID
      */
     public void setThrower(@Nullable UUID uuid);
 
     /**
-     * Get the thrower of this item.
-     *
+     * 获取此掉落物的投掷者.
+     * <p>
+     * 投掷者是掉落此物品的实体.
+     * <p>
+     * 原文：Get the thrower of this item.
+     * <p>
      * The thrower is the entity which dropped the item.
      *
-     * @return UUID of thrower
+     * @return 投掷者的UUID
      */
     @Nullable
     public UUID getThrower();
