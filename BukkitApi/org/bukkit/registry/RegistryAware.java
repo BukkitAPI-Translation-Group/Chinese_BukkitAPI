@@ -19,8 +19,8 @@ public interface RegistryAware {
      * <p>
      * 原文：Gets the key of this instance if it is registered otherwise throws an error. This is a convenience method and plugins should always check {@link #isRegistered()} before using this method.
      *
-     * @return the key with which this instance is registered.
-     * @throws IllegalStateException if this instance is not registered.
+     * @return 此实例注册时使用的键.
+     * @throws IllegalStateException 如果此实例未注册.
      * @see #isRegistered()
      * @see #getKeyOrNull()
      * @see Registry
@@ -33,7 +33,7 @@ public interface RegistryAware {
      * <p>
      * 原文：Gets the key of this instance if it is registered otherwise returns {@code null}.
      *
-     * @return the key with which this instance is registered or {@code null} if not registered.
+     * @return 此实例注册时使用的键，如果未注册则返回 {@code null}.
      * @see #getKeyOrThrow()
      * @see Registry
      */
@@ -45,7 +45,7 @@ public interface RegistryAware {
      * <p>
      * 原文：Returns whether this instance is register in a registry and therefore has a key or not.
      *
-     * @return true, if this instance is registered. Otherwise, false.
+     * @return 如果此实例已注册则返回 true，否则返回 false.
      * @see #getKeyOrThrow()
      * @see Registry
      */
