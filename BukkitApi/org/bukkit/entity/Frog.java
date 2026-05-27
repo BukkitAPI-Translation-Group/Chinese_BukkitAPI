@@ -82,7 +82,7 @@ public interface Frog extends Animals {
          *
          * @see #getKeyOrThrow()
          * @see #isRegistered()
-         * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+         * @deprecated 键不一定总是存在, 请改用 {@link #getKeyOrThrow()}.
          */
         @NotNull
         @Override
@@ -90,9 +90,9 @@ public interface Frog extends Animals {
         NamespacedKey getKey();
 
         /**
-         * @param name of the frog variant.
-         * @return the frog variant with the given name.
-         * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+         * @param name 青蛙变种的名称.
+         * @return 具有给定名称的青蛙变种.
+         * @deprecated 仅用于向后兼容, 请改用 {@link Registry#get(NamespacedKey)}.
          */
         @NotNull
         @Deprecated(since = "1.21")
@@ -103,8 +103,8 @@ public interface Frog extends Animals {
         }
 
         /**
-         * @return an array of all known frog variants.
-         * @deprecated use {@link Registry#iterator()}.
+         * @return 所有已知青蛙变种的数组.
+         * @deprecated 请改用 {@link Registry#iterator()}.
          */
         @NotNull
         @Deprecated(since = "1.21")
