@@ -35,20 +35,26 @@ public interface Boat extends Leashable, Vehicle {
     void setWoodType(@NotNull TreeSpecies species);
 
     /**
+     * 获取船的类型.
+     * <p>
+     * 原文:
      * Gets the type of the boat.
      *
-     * @return the boat type
-     * @deprecated different boats types are now different entity types
+     * @return 船的类型
+     * @deprecated 不同的船类型现在是不同的实体类型
      */
     @Deprecated(since = "1.21.2")
     @NotNull
     Type getBoatType();
 
     /**
+     * 设置船的类型.
+     * <p>
+     * 原文:
      * Sets the type of the boat.
      *
-     * @param type the new type
-     * @deprecated different boats types are now different entity types
+     * @param type 新的类型
+     * @deprecated 不同的船类型现在是不同的实体类型
      */
     @Deprecated(since = "1.21.2")
     void setBoatType(@NotNull Type type);
@@ -163,16 +169,19 @@ public interface Boat extends Leashable, Vehicle {
     public void setWorkOnLand(boolean workOnLand);
 
     /**
+     * 获取船的状态.
+     * <p>
+     * 原文:
      * Gets the status of the boat.
      *
-     * @return the status
+     * @return 船的状态
      */
     @NotNull
     public Status getStatus();
 
     /**
-     * Represents the type of boats.
-     * @deprecated different boats types are now different entity types
+     * 代表船的类型.
+     * @deprecated 不同的船类型现在是不同的实体类型
      */
     @Deprecated(since = "1.21.2")
     public enum Type {
@@ -194,9 +203,12 @@ public interface Boat extends Leashable, Vehicle {
         }
 
         /**
+         * 获取该船类型对应的材料.
+         * <p>
+         * 原文:
          * Gets the material of the boat type.
          *
-         * @return a material
+         * @return 对应的材料
          */
         @NotNull
         public Material getMaterial() {
@@ -205,7 +217,7 @@ public interface Boat extends Leashable, Vehicle {
     }
 
     /**
-     * Represents the status of the boat.
+     * 代表船的状态.
      */
     public enum Status {
 
