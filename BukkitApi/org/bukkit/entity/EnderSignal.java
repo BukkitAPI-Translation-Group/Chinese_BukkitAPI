@@ -57,19 +57,23 @@ public interface EnderSignal extends Entity {
     public void setDropItem(boolean drop);
 
     /**
-     * Get the {@link ItemStack} to be displayed while in the air and to be
+     * 获取末影之眼在空中时显示的{@link ItemStack 物品堆}以及死亡时掉落的物品.
+     * <p>
+     * 原文:Get the {@link ItemStack} to be displayed while in the air and to be
      * dropped on death.
      *
-     * @return the item stack
+     * @return 物品堆
      */
     @NotNull
     public ItemStack getItem();
 
     /**
-     * Set the {@link ItemStack} to be displayed while in the air and to be
+     * 设置末影之眼在空中时显示的{@link ItemStack 物品堆}以及死亡时掉落的物品.
+     * <p>
+     * 原文:Set the {@link ItemStack} to be displayed while in the air and to be
      * dropped on death.
      *
-     * @param item the item to set. If null, resets to the default eye of ender
+     * @param item 要设置的物品. 如果为null, 则重置为默认的末影之眼
      */
     public void setItem(@Nullable ItemStack item);
 
