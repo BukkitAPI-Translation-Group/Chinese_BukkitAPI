@@ -96,26 +96,28 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Block getHighestBlockAt(@NotNull Location location);
 
     /**
-     * Gets the highest block corresponding to the {@link HeightMap} at the
+     * 获取给定坐标处对应于指定{@link HeightMap 高度映射}的最高方块.
+     * <p>
+     * 原文：Gets the highest block corresponding to the {@link HeightMap} at the
      * given coordinates.
      *
-     * @param x X-coordinate of the block
-     * @param z Z-coordinate of the block
-     * @param heightMap the heightMap that is used to determine the highest
-     * point
-     * @return Highest block corresponding to the {@link HeightMap}
+     * @param x 方块的X坐标
+     * @param z 方块的Z坐标
+     * @param heightMap 用于确定最高点的高度映射
+     * @return 对应于指定{@link HeightMap 高度映射}的最高方块
      */
     @NotNull
     public Block getHighestBlockAt(int x, int z, @NotNull HeightMap heightMap);
 
     /**
-     * Gets the highest block corresponding to the {@link HeightMap} at the
+     * 获取给定{@link Location 位置}处对应于指定{@link HeightMap 高度映射}的最高方块.
+     * <p>
+     * 原文：Gets the highest block corresponding to the {@link HeightMap} at the
      * given coordinates.
      *
-     * @param location Coordinates to get the highest block
-     * @param heightMap the heightMap that is used to determine the highest
-     * point
-     * @return Highest block corresponding to the {@link HeightMap}
+     * @param location 获取最高方块的坐标位置
+     * @param heightMap 用于确定最高点的高度映射
+     * @return 对应于指定{@link HeightMap 高度映射}的最高方块
      */
     @NotNull
     public Block getHighestBlockAt(@NotNull Location location, @NotNull HeightMap heightMap);
@@ -133,12 +135,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Chunk getChunkAt(int x, int z);
 
     /**
-     * Gets the {@link Chunk} at the given coordinates
+     * 获取给定坐标所在的{@link Chunk 区块}.
+     * <p>
+     * 原文：Gets the {@link Chunk} at the given coordinates
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param generate Whether the chunk should be fully generated or not
-     * @return Chunk at the given coordinates
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param generate 如果区块未完全生成, 是否应该被完整生成
+     * @return 给定坐标所在的区块
      */
     @NotNull
     public Chunk getChunkAt(int x, int z, boolean generate);
@@ -385,130 +389,167 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public boolean refreshChunk(int x, int z);
 
     /**
-     * Get a list of all players who are can view the specified chunk from their
+     * 获取可以从客户端查看指定{@link Chunk 区块}的所有玩家列表.
+     * <p>
+     * 如果没有玩家正在查看该区块, 或者该区块已卸载, 则此列表为空.
+     * <p>
+     * 原文：Get a list of all players who are can view the specified chunk from their
      * client
      * <p>
      * This list will be empty if no players are viewing the chunk, or the chunk
      * is unloaded.
      *
-     * @param chunk the chunk to check
-     * @return collection of players who can see the chunk
+     * @param chunk 要检查的区块
+     * @return 可以看到该区块的玩家集合
      */
     @NotNull
     public Collection<Player> getPlayersSeeingChunk(@NotNull Chunk chunk);
 
     /**
-     * Get a list of all players who are can view the specified chunk from their
+     * 获取可以从客户端查看指定{@link Chunk 区块}的所有玩家列表.
+     * <p>
+     * 如果没有玩家正在查看该区块, 或者该区块已卸载, 则此列表为空.
+     * <p>
+     * 原文：Get a list of all players who are can view the specified chunk from their
      * client
      * <p>
      * This list will be empty if no players are viewing the chunk, or the chunk
      * is unloaded.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return collection of players who can see the chunk
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @return 可以看到该区块的玩家集合
      */
     @NotNull
     public Collection<Player> getPlayersSeeingChunk(int x, int z);
 
     /**
-     * Gets whether the chunk at the specified chunk coordinates is force
+     * 获取指定坐标处的{@link Chunk 区块}是否被强制加载.
+     * <p>
+     * 被强制加载的区块不会因缺少玩家活动而被卸载.
+     * <p>
+     * 原文：Gets whether the chunk at the specified chunk coordinates is force
      * loaded.
      * <p>
      * A force loaded chunk will not be unloaded due to lack of player activity.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return force load status
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @return 强制加载状态
      */
     public boolean isChunkForceLoaded(int x, int z);
 
     /**
-     * Sets whether the chunk at the specified chunk coordinates is force
+     * 设置指定坐标处的{@link Chunk 区块}是否被强制加载.
+     * <p>
+     * 被强制加载的区块不会因缺少玩家活动而被卸载.
+     * <p>
+     * 原文：Sets whether the chunk at the specified chunk coordinates is force
      * loaded.
      * <p>
      * A force loaded chunk will not be unloaded due to lack of player activity.
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param forced force load status
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param forced 强制加载状态
      */
     public void setChunkForceLoaded(int x, int z, boolean forced);
 
     /**
-     * Returns all force loaded chunks in this world.
+     * 返回这个世界中所有被强制加载的区块.
+     * <p>
+     * 被强制加载的区块不会因缺少玩家活动而被卸载.
+     * <p>
+     * 原文：Returns all force loaded chunks in this world.
      * <p>
      * A force loaded chunk will not be unloaded due to lack of player activity.
      *
-     * @return unmodifiable collection of force loaded chunks
+     * @return 不可修改的强制加载区块集合
      */
     @NotNull
     public Collection<Chunk> getForceLoadedChunks();
 
     /**
-     * Adds a plugin ticket for the specified chunk, loading the chunk if it is
+     * 为指定区块添加一个插件票证, 如果该区块尚未加载则会加载它.
+     * <p>
+     * 插件票证会阻止区块被卸载, 直到该票证被显式移除. 每个插件实例对每个区块只能持有一张票证,
+     * 但每个区块可以拥有多张来自不同插件的票证.
+     * </p>
+     * <p>
+     * 原文：Adds a plugin ticket for the specified chunk, loading the chunk if it is
      * not already loaded.
      * <p>
      * A plugin ticket will prevent a chunk from unloading until it is
      * explicitly removed. A plugin instance may only have one ticket per chunk,
      * but each chunk can have multiple plugin tickets.
-     * </p>
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param plugin Plugin which owns the ticket
-     * @return {@code true} if a plugin ticket was added, {@code false} if the
-     * ticket already exists for the plugin
-     * @throws IllegalStateException If the specified plugin is not enabled
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param plugin 拥有该票证的插件
+     * @return {@code true} 如果成功添加了插件票证, {@code false} 如果该插件已持有该区块的票证
+     * @throws IllegalStateException 如果指定的插件未启用
      * @see #removePluginChunkTicket(int, int, Plugin)
      */
     public boolean addPluginChunkTicket(int x, int z, @NotNull Plugin plugin);
 
     /**
-     * Removes the specified plugin's ticket for the specified chunk
+     * 移除指定插件对指定区块的票证.
+     * <p>
+     * 插件票证会阻止区块被卸载, 直到该票证被显式移除. 每个插件实例对每个区块只能持有一张票证,
+     * 但每个区块可以拥有多张来自不同插件的票证.
+     * </p>
+     * <p>
+     * 原文：Removes the specified plugin's ticket for the specified chunk
      * <p>
      * A plugin ticket will prevent a chunk from unloading until it is
      * explicitly removed. A plugin instance may only have one ticket per chunk,
      * but each chunk can have multiple plugin tickets.
-     * </p>
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @param plugin Plugin which owns the ticket
-     * @return {@code true} if the plugin ticket was removed, {@code false} if
-     * there is no plugin ticket for the chunk
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @param plugin 拥有该票证的插件
+     * @return {@code true} 如果成功移除了插件票证, {@code false} 如果该区块没有来自该插件的票证
      * @see #addPluginChunkTicket(int, int, Plugin)
      */
     public boolean removePluginChunkTicket(int x, int z, @NotNull Plugin plugin);
 
     /**
-     * Removes all plugin tickets for the specified plugin
+     * 移除指定插件的所有票证.
+     * <p>
+     * 插件票证会阻止区块被卸载, 直到该票证被显式移除. 每个插件实例对每个区块只能持有一张票证,
+     * 但每个区块可以拥有多张来自不同插件的票证.
+     * </p>
+     * <p>
+     * 原文：Removes all plugin tickets for the specified plugin
      * <p>
      * A plugin ticket will prevent a chunk from unloading until it is
      * explicitly removed. A plugin instance may only have one ticket per chunk,
      * but each chunk can have multiple plugin tickets.
-     * </p>
      *
-     * @param plugin Specified plugin
+     * @param plugin 指定的插件
      * @see #addPluginChunkTicket(int, int, Plugin)
      * @see #removePluginChunkTicket(int, int, Plugin)
      */
     public void removePluginChunkTickets(@NotNull Plugin plugin);
 
     /**
-     * Retrieves a collection specifying which plugins have tickets for the
+     * 获取一个集合, 指定哪些插件对指定区块持有票证. 当对该区块添加或移除插件票证时, 该集合不会被更新.
+     * <p>
+     * 插件票证会阻止区块被卸载, 直到该票证被显式移除. 每个插件实例对每个区块只能持有一张票证,
+     * 但每个区块可以拥有多张来自不同插件的票证.
+     * </p>
+     * <p>
+     * 原文：Retrieves a collection specifying which plugins have tickets for the
      * specified chunk. This collection is not updated when plugin tickets are
      * added or removed to the chunk.
      * <p>
      * A plugin ticket will prevent a chunk from unloading until it is
      * explicitly removed. A plugin instance may only have one ticket per chunk,
      * but each chunk can have multiple plugin tickets.
-     * </p>
      *
-     * @param x X-coordinate of the chunk
-     * @param z Z-coordinate of the chunk
-     * @return unmodifiable collection containing which plugins have tickets for
-     * the chunk
+     * @param x 区块的X坐标
+     * @param z 区块的Z坐标
+     * @return 不可修改的集合, 包含对该区块持有票证的插件
      * @see #addPluginChunkTicket(int, int, Plugin)
      * @see #removePluginChunkTicket(int, int, Plugin)
      */
@@ -516,17 +557,22 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Collection<Plugin> getPluginChunkTickets(int x, int z);
 
     /**
-     * Returns a map of which plugins have tickets for what chunks. The returned
+     * 返回一个映射, 包含哪些插件对哪些区块持有票证. 返回的映射在添加或移除插件票证时不会被更新.
+     * 如果某个插件没有持有任何票证, 则不会出现在映射中.
+     * <p>
+     * 插件票证会阻止区块被卸载, 直到该票证被显式移除. 每个插件实例对每个区块只能持有一张票证,
+     * 但每个区块可以拥有多张来自不同插件的票证.
+     * </p>
+     * <p>
+     * 原文：Returns a map of which plugins have tickets for what chunks. The returned
      * map is not updated when plugin tickets are added or removed to chunks. If
      * a plugin has no tickets, it will be absent from the map.
      * <p>
      * A plugin ticket will prevent a chunk from unloading until it is
      * explicitly removed. A plugin instance may only have one ticket per chunk,
      * but each chunk can have multiple plugin tickets.
-     * </p>
      *
-     * @return unmodifiable map containing which plugins have tickets for what
-     * chunks
+     * @return 不可修改的映射, 包含哪些插件对哪些区块持有票证
      * @see #addPluginChunkTicket(int, int, Plugin)
      * @see #removePluginChunkTicket(int, int, Plugin)
      */
@@ -534,10 +580,12 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Map<Plugin, Collection<Chunk>> getPluginChunkTickets();
 
     /**
-     * Gets all Chunks intersecting the given BoundingBox.
+     * 获取与给定{@link BoundingBox 边界框}相交的所有区块.
+     * <p>
+     * 原文：Gets all Chunks intersecting the given BoundingBox.
      *
-     * @param box BoundingBox to check
-     * @return A collection of Chunks intersecting the given BoundingBox
+     * @param box 要检查的边界框
+     * @return 与给定边界框相交的区块集合
      */
     @NotNull
     public Collection<Chunk> getIntersectingChunks(@NotNull BoundingBox box);
@@ -556,13 +604,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Item dropItem(@NotNull Location location, @NotNull ItemStack item);
 
     /**
-     * Drops an item at the specified {@link Location}
+     * 在指定的{@link Location 位置}丢出一个物品.
+     * <p>
+     * 注意, 函数将在实体生成之前运行.
+     * <p>
+     * 原文：Drops an item at the specified {@link Location}
      * Note that functions will run before the entity is spawned
      *
-     * @param location Location to drop the item
-     * @param item ItemStack to drop
-     * @param function the function to be run before the entity is spawned.
-     * @return ItemDrop entity created as a result of this method
+     * @param location 丢出物品的位置
+     * @param item 丢出的物品堆
+     * @param function 在实体生成之前运行的函数
+     * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
     @NotNull
     public Item dropItem(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<? super Item> function);
@@ -580,13 +632,17 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item);
 
     /**
-     * Drops an item at the specified {@link Location} with a random offset
+     * 在指定的{@link Location 位置}丢出一个随机偏移的物品.
+     * <p>
+     * 注意, 函数将在实体生成之前运行.
+     * <p>
+     * 原文：Drops an item at the specified {@link Location} with a random offset
      * Note that functions will run before the entity is spawned
      *
-     * @param location Location to drop the item
-     * @param item ItemStack to drop
-     * @param function the function to be run before the entity is spawned.
-     * @return ItemDrop entity created as a result of this method
+     * @param location 丢出物品的位置
+     * @param item 丢出的物品堆
+     * @param function 在实体生成之前运行的函数
+     * @return 这个方法会创建一个ItemDrop（物品掉落）实体作为结果
      */
     @NotNull
     public Item dropItemNaturally(@NotNull Location location, @NotNull ItemStack item, @Nullable Consumer<? super Item> function);
@@ -607,16 +663,18 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Arrow spawnArrow(@NotNull Location location, @NotNull Vector direction, float speed, float spread);
 
     /**
-     * Creates an arrow entity of the given class at the given {@link Location}
+     * 在给定的{@link Location 位置}生成指定类型的箭矢实体.
+     * <p>
+     * 原文：Creates an arrow entity of the given class at the given {@link Location}
      *
-     * @param <T> type of arrow to spawn
-     * @param location Location to spawn the arrow
-     * @param direction Direction to shoot the arrow in
-     * @param speed Speed of the arrow. A recommend speed is 0.6
-     * @param spread Spread of the arrow. A recommend spread is 12
-     * @param clazz the Entity class for the arrow
+     * @param <T> 要生成的箭矢类型
+     * @param location 生成箭矢的位置
+     * @param direction 箭矢射击的方向
+     * @param speed 箭矢的速度, 建议值为0.6
+     * @param spread 箭矢的散射度, 建议值为12
+     * @param clazz 箭矢的实体类
      * {@link org.bukkit.entity.SpectralArrow},{@link org.bukkit.entity.Arrow},{@link org.bukkit.entity.TippedArrow}
-     * @return Arrow entity spawned as a result of this method
+     * @return 作为此方法结果生成的箭矢实体
      */
     @NotNull
     public <T extends AbstractArrow> T spawnArrow(@NotNull Location location, @NotNull Vector direction, float speed, float spread, @NotNull Class<T> clazz);
@@ -771,51 +829,58 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Collection<Entity> getNearbyEntities(@NotNull Location location, double x, double y, double z);
 
     /**
-     * Returns a list of entities within a bounding box centered around a
+     * 返回一个以这个位置为中心的包围着的所有实体的列表.
+     * <p>
+     * 这可能不会考虑当前尚未加载的区块中的实体. 一些实现可能会对搜索的范围的大小施加限制.
+     * <p>
+     * 原文：Returns a list of entities within a bounding box centered around a
      * Location.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
      * implementations may impose artificial restrictions on the size of the
      * search bounding box.
      *
-     * @param location The center of the bounding box
-     * @param x 1/2 the size of the box along x axis
-     * @param y 1/2 the size of the box along y axis
-     * @param z 1/2 the size of the box along z axis
-     * @param filter only entities that fulfill this predicate are considered,
-     *     or <code>null</code> to consider all entities
-     * @return the collection of entities near location. This will always be a
-     *     non-null collection.
+     * @param location 搜索范围的中心
+     * @param x 搜索范围的x半轴长度
+     * @param y 搜索范围的y半轴长度
+     * @param z 搜索范围的z半轴长度
+     * @param filter 只考虑满足此过滤器的实体, 或者 <code>null</code> 考虑所有实体
+     * @return 在位置附近的实体的集合, 一般不为空
      */
     @NotNull
     public Collection<Entity> getNearbyEntities(@NotNull Location location, double x, double y, double z, @Nullable Predicate<? super Entity> filter);
 
     /**
-     * Returns a list of entities within the given bounding box.
+     * 返回给定{@link BoundingBox 边界框}内的所有实体列表.
+     * <p>
+     * 这可能不会考虑当前尚未加载的区块中的实体. 一些实现可能会对搜索的范围的大小施加限制.
+     * <p>
+     * 原文：Returns a list of entities within the given bounding box.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
      * implementations may impose artificial restrictions on the size of the
      * search bounding box.
      *
-     * @param boundingBox the bounding box
-     * @return the collection of entities within the bounding box, will always
-     *     be a non-null collection
+     * @param boundingBox 边界框
+     * @return 边界框内的实体集合, 总是非null的集合
      */
     @NotNull
     public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox);
 
     /**
-     * Returns a list of entities within the given bounding box.
+     * 返回给定{@link BoundingBox 边界框}内的所有实体列表.
+     * <p>
+     * 这可能不会考虑当前尚未加载的区块中的实体. 一些实现可能会对搜索的范围的大小施加限制.
+     * <p>
+     * 原文：Returns a list of entities within the given bounding box.
      * <p>
      * This may not consider entities in currently unloaded chunks. Some
      * implementations may impose artificial restrictions on the size of the
      * search bounding box.
      *
-     * @param boundingBox the bounding box
-     * @param filter only entities that fulfill this predicate are considered,
-     *     or <code>null</code> to consider all entities
-     * @return the collection of entities within the bounding box, will always
-     *     be a non-null collection
+     * @param boundingBox 边界框
+     * @param filter 只考虑满足此过滤器的实体, 或者 <code>null</code> 考虑所有实体
+     * @return 边界框内的实体集合, 总是非null的集合
      */
     @NotNull
     public Collection<Entity> getNearbyEntities(@NotNull BoundingBox boundingBox, @Nullable Predicate<? super Entity> filter);
@@ -1153,11 +1218,13 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public void setFullTime(long time);
 
     /**
-     * Gets the full in-game time on this world since the world generation
+     * 获取这个世界自世界生成以来的完整游戏时间.
+     * <p>
+     * 原文：Gets the full in-game time on this world since the world generation
      *
-     * @return The current absolute time since the world generation
-     * @see #getTime() Returns a relative time of this world
-     * @see #getFullTime() Returns an absolute time of this world
+     * @return 自世界生成以来的当前绝对时间
+     * @see #getTime() 返回这个世界的相对时间
+     * @see #getFullTime() 返回这个世界的绝对时间
      */
     public long getGameTime();
 
@@ -1344,7 +1411,13 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks);
 
     /**
-     * Creates explosion at given coordinates with given power and optionally
+     * 在指定的坐标生成指定威力的爆炸并设置方块是否会着火或被破坏.
+     * <p>
+     * 注意, 如果提供了非null的{@code source}实体且{@code breakBlocks}为{@code true},
+     * 当爆炸所在世界中的{@link GameRule#MOB_GRIEFING}为{@code false}时,
+     * {@code breakBlocks}的值将被忽略. 换言之, 如果不允许爆炸, mob griefing游戏规则将优先于{@code breakBlocks}.
+     * <p>
+     * 原文：Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire or breaking blocks.
      * <p>
      * Note that if a non-null {@code source} Entity is provided and {@code
@@ -1353,14 +1426,14 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * in which the explosion occurs. In other words, the mob griefing gamerule
      * will take priority over {@code breakBlocks} if explosions are not allowed.
      *
-     * @param x X coordinate
-     * @param y Y coordinate
-     * @param z Z coordinate
-     * @param power The power of explosion, where 4F is TNT
-     * @param setFire Whether or not to set blocks on fire
-     * @param breakBlocks Whether or not to have blocks be destroyed
-     * @param source the source entity, used for tracking damage
-     * @return false if explosion was canceled, otherwise true
+     * @param x X坐标
+     * @param y Y坐标
+     * @param z Z坐标
+     * @param power 爆炸的威力, 其中4F相当于TNT
+     * @param setFire 是否设置方块着火
+     * @param breakBlocks 是否允许方块被破坏
+     * @param source 用于追踪伤害来源的实体
+     * @return 如果爆炸被取消则返回false, 否则返回true
      */
     public boolean createExplosion(double x, double y, double z, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
 
@@ -1391,19 +1464,27 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public boolean createExplosion(@NotNull Location loc, float power, boolean setFire);
 
     /**
-     * Creates explosion at given coordinates with given power and optionally
+     * 在指定位置生成指定威力的爆炸并设置方块是否会着火或被破坏.
+     * <p>
+     * 原文：Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire or breaking blocks.
      *
-     * @param loc Location to blow up
-     * @param power The power of explosion, where 4F is TNT
-     * @param setFire Whether or not to set blocks on fire
-     * @param breakBlocks Whether or not to have blocks be destroyed
-     * @return false if explosion was canceled, otherwise true
+     * @param loc 爆炸位置
+     * @param power 爆炸的威力, 其中4F相当于TNT
+     * @param setFire 是否设置方块着火
+     * @param breakBlocks 是否允许方块被破坏
+     * @return 如果爆炸被取消则返回false, 否则返回true
      */
     public boolean createExplosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks);
 
     /**
-     * Creates explosion at given coordinates with given power and optionally
+     * 在指定位置生成指定威力的爆炸并设置方块是否会着火或被破坏.
+     * <p>
+     * 注意, 如果提供了非null的{@code source}实体且{@code breakBlocks}为{@code true},
+     * 当爆炸所在世界中的{@link GameRule#MOB_GRIEFING}为{@code false}时,
+     * {@code breakBlocks}的值将被忽略. 换言之, 如果不允许爆炸, mob griefing游戏规则将优先于{@code breakBlocks}.
+     * <p>
+     * 原文：Creates explosion at given coordinates with given power and optionally
      * setting blocks on fire or breaking blocks.
      * <p>
      * Note that if a non-null {@code source} Entity is provided and {@code
@@ -1412,12 +1493,12 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * in which the explosion occurs. In other words, the mob griefing gamerule
      * will take priority over {@code breakBlocks} if explosions are not allowed.
      *
-     * @param loc Location to blow up
-     * @param power The power of explosion, where 4F is TNT
-     * @param setFire Whether or not to set blocks on fire
-     * @param breakBlocks Whether or not to have blocks be destroyed
-     * @param source the source entity, used for tracking damage
-     * @return false if explosion was canceled, otherwise true
+     * @param loc 爆炸位置
+     * @param power 爆炸的威力, 其中4F相当于TNT
+     * @param setFire 是否设置方块着火
+     * @param breakBlocks 是否允许方块被破坏
+     * @param source 用于追踪伤害来源的实体
+     * @return 如果爆炸被取消则返回false, 否则返回true
      */
     public boolean createExplosion(@NotNull Location loc, float power, boolean setFire, boolean breakBlocks, @Nullable Entity source);
 
@@ -1453,9 +1534,11 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public ChunkGenerator getGenerator();
 
     /**
-     * Gets the biome provider for this world
+     * 获取这个世界使用的{@link BiomeProvider 生物群系提供器}.
+     * <p>
+     * 原文：Gets the biome provider for this world
      *
-     * @return BiomeProvider associated with this world
+     * @return 与这个世界关联的生物群系提供器
      */
     @Nullable
     public BiomeProvider getBiomeProvider();
@@ -1479,7 +1562,13 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public List<BlockPopulator> getPopulators();
 
     /**
-     * Creates a new entity at the given {@link Location} with the supplied
+     * 在给定的{@link Location 位置}创建一个新实体, 并在实体被添加到世界之前运行提供的函数.
+     * <br>
+     * 注意, 当函数运行时, 实体实际上还未进入世界. 在此函数返回之前, 任何涉及该实体的操作(如传送实体)都是未定义的.
+     * 但是, 传入的函数在潜在实体的生成随机化之后运行, 因此已经允许访问生物的值,
+     * 无论这些值是否被随机化, 例如属性或实体装备.
+     * <p>
+     * 原文：Creates a new entity at the given {@link Location} with the supplied
      * function run before the entity is added to the world.
      * <br>
      * Note that when the function is run, the entity will not be actually in
@@ -1490,46 +1579,41 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * whether or not those were randomized, such as attributes or the entity
      * equipment.
      *
-     * @param location      the location at which the entity will be spawned.
-     * @param clazz         the class of the {@link LivingEntity} that is to be spawned.
-     * @param <T>           the generic type of the entity that is being created.
-     * @param spawnReason   the reason provided during the {@link CreatureSpawnEvent} call.
-     * @param randomizeData whether or not the entity's data should be randomised
-     *                      before spawning. By default entities are randomised
-     *                      before spawning in regards to their equipment, age,
-     *                      attributes, etc.
-     *                      An example of this randomization would be the color of
-     *                      a sheep, random enchantments on the equipment of mobs
-     *                      or even a zombie becoming a chicken jockey.
-     *                      If set to false, the entity will not be randomised
-     *                      before spawning, meaning all their data will remain
-     *                      in their default state and not further modifications
-     *                      to the entity will be made.
-     *                      Notably only entities that extend the
-     *                      {@link org.bukkit.entity.Mob} interface provide
-     *                      randomisation logic for their spawn.
-     *                      This parameter is hence useless for any other type
-     *                      of entity.
-     * @param function      the function to be run before the entity is spawned.
-     * @return the spawned entity instance.
-     * @throws IllegalArgumentException if either the world or clazz parameter are null.
+     * @param location      实体将被生成的位置.
+     * @param clazz         要生成的{@link LivingEntity 生物实体}的类.
+     * @param <T>           正在创建的实体的泛型类型.
+     * @param spawnReason   在{@link CreatureSpawnEvent}调用期间提供的原因.
+     * @param randomizeData 实体的数据是否应该在生成前被随机化. 默认情况下, 实体在生成前会对其装备、年龄、属性等进行随机化.
+     *                      这种随机化的示例包括羊的颜色、生物装备上的随机附魔, 甚至僵尸变成骑鸡僵尸.
+     *                      如果设置为false, 实体在生成前不会被随机化, 意味着所有数据将保持默认状态, 不会对实体进行进一步修改.
+     *                      值得注意的是, 只有继承{@link org.bukkit.entity.Mob}接口的实体才提供生成随机化逻辑.
+     *                      因此此参数对任何其他类型的实体无用.
+     * @param function      在实体生成之前运行的函数.
+     * @return 生成的实体实例.
+     * @throws IllegalArgumentException 如果world或clazz参数为null.
      */
     @NotNull
     public <T extends LivingEntity> T spawn(@NotNull Location location, @NotNull Class<T> clazz, @NotNull CreatureSpawnEvent.SpawnReason spawnReason, boolean randomizeData, @Nullable Consumer<? super T> function) throws IllegalArgumentException;
 
     /**
-     * Spawn a {@link FallingBlock} entity at the given {@link Location} of
+     * 在给定的{@link Location 位置}生成一个{@link FallingBlock 掉落中的方块}实体, 使用指定的{@link MaterialData}.
+     * MaterialData决定下落的内容. 当下落方块碰到地面时, 它将放置该方块.
+     * <p>
+     * Material必须是方块类型, 可通过{@link Material#isBlock()
+     * data.getItemType().isBlock()}检查. Material不能是空气.
+     * <p>
+     * 原文：Spawn a {@link FallingBlock} entity at the given {@link Location} of
      * the specified {@link MaterialData}. The MaterialData dictates what is falling.
      * When the FallingBlock hits the ground, it will place that block.
      * <p>
      * The Material must be a block type, check with {@link Material#isBlock()
      * data.getItemType().isBlock()}. The Material may not be air.
      *
-     * @param location The {@link Location} to spawn the FallingBlock
-     * @param data The block data
-     * @return The spawned {@link FallingBlock} instance
-     * @throws IllegalArgumentException if {@link Location} or {@link
-     *     MaterialData} are null or {@link Material} of the {@link MaterialData} is not a block
+     * @param location 生成{@link FallingBlock 掉落中的方块}的{@link Location 位置}
+     * @param data 方块数据
+     * @return 生成的{@link FallingBlock 掉落中的方块}实例
+     * @throws IllegalArgumentException 如果{@link Location}或{@link
+     *     MaterialData}为null, 或{@link MaterialData}的{@link Material}不是方块
      */
     @NotNull
     public FallingBlock spawnFallingBlock(@NotNull Location location, @NotNull MaterialData data) throws IllegalArgumentException;
@@ -1732,7 +1816,13 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public double getTemperature(int x, int z);
 
     /**
-     * Gets the temperature for the given block coordinates.
+     * 获取指定方块坐标的温度.
+     * <p>
+     * 方块不存在时运行这个方法是安全的, 它不会创建方块.
+     * <p>
+     * 本方法将返回原始温度值, 不以方块高度所带来的影响而判断.
+     * <p>
+     * 原文：Gets the temperature for the given block coordinates.
      * <p>
      * It is safe to run this method when the block does not exist, it will
      * not create the block.
@@ -1740,10 +1830,10 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * This method will return the raw temperature without adjusting for block
      * height effects.
      *
-     * @param x X coordinate of the block
-     * @param y Y coordinate of the block
-     * @param z Z coordinate of the block
-     * @return Temperature of the requested block
+     * @param x 方块的X坐标
+     * @param y 方块的Y坐标
+     * @param z 方块的Z坐标
+     * @return 查询方块的温度
      */
     public double getTemperature(int x, int y, int z);
 
@@ -1767,89 +1857,123 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public double getHumidity(int x, int z);
 
     /**
-     * Gets the humidity for the given block coordinates.
+     * 获取指定方块坐标的湿度.
+     * <p>
+     * 方块不存在时运行这个方法是安全的, 它不会创建方块.
+     * <p>
+     * 原文：Gets the humidity for the given block coordinates.
      * <p>
      * It is safe to run this method when the block does not exist, it will
      * not create the block.
      *
-     * @param x X coordinate of the block
-     * @param y Y coordinate of the block
-     * @param z Z coordinate of the block
-     * @return Humidity of the requested block
+     * @param x 方块的X坐标
+     * @param y 方块的Y坐标
+     * @param z 方块的Z坐标
+     * @return 查询方块的湿度
      */
     public double getHumidity(int x, int y, int z);
 
     /**
-     * Gets the maximum height to which chorus fruits and nether portals can
+     * 获取紫颂果和下界传送门可以将玩家传送到此维度的最大高度.
+     * <p>
+     * 这不包括已在限制之上建造的传送门, 因为它们仍然可以正常连接. 不会大于{@link #getMaxHeight()}.
+     * <p>
+     * 原文：Gets the maximum height to which chorus fruits and nether portals can
      * bring players within this dimension.
      *
      * This excludes portals that were already built above the limit as they
      * still connect normally. May not be greater than {@link #getMaxHeight()}.
      *
-     * @return maximum logical height for chorus fruits and nether portals
+     * @return 紫颂果和下界传送门的最大逻辑高度
      */
     public int getLogicalHeight();
 
     /**
-     * Gets if this world is natural.
+     * 获取这个世界是否为自然世界.
+     * <p>
+     * 当为false时, 指南针会随机旋转, 使用床设置重生点或睡觉将被禁用. 当为true时, 下界传送门可以生成僵尸猪灵.
+     * <p>
+     * 原文：Gets if this world is natural.
      *
      * When false, compasses spin randomly, and using a bed to set the respawn
      * point or sleep, is disabled. When true, nether portals can spawn
      * zombified piglins.
      *
-     * @return true if world is natural
+     * @return 如果世界是自然世界则返回true
      */
     public boolean isNatural();
 
     /**
-     * Gets if beds work in this world.
+     * 获取床在这个世界是否有效.
+     * <p>
+     * 无效的床在尝试睡觉时会爆炸. {@link #isNatural()}定义了床是否可用于设置重生点.
+     * <p>
+     * 原文：Gets if beds work in this world.
      *
      * A non-working bed will blow up when trying to sleep. {@link #isNatural()}
      * defines if a bed can be used to set spawn point.
      *
-     * @return true if beds work in this world
+     * @return 如果床在此世界有效则返回true
      */
     public boolean isBedWorks();
 
     /**
-     * Gets if this world has skylight access.
+     * 获取这个世界是否有天空光照.
+     * <p>
+     * 原文：Gets if this world has skylight access.
      *
-     * @return true if this world has skylight access
+     * @return 如果这个世界有天空光照则返回true
      */
     public boolean hasSkyLight();
 
     /**
-     * Gets if this world has a ceiling.
+     * 获取这个世界是否有天花板.
+     * <p>
+     * 原文：Gets if this world has a ceiling.
      *
-     * @return true if this world has a bedrock ceiling
+     * @return 如果这个世界有基岩天花板则返回true
      */
     public boolean hasCeiling();
 
     /**
-     * Gets if this world allow to piglins to survive without shaking and
+     * 获取这个世界是否允许猪灵在不颤抖和不变身为僵尸猪灵的情况下存活.
+     * <p>
+     * 原文：Gets if this world allow to piglins to survive without shaking and
      * transforming to zombified piglins.
      *
-     * @return true if piglins will not transform to zombified piglins
+     * @return 如果猪灵不会变身为僵尸猪灵则返回true
      */
     public boolean isPiglinSafe();
 
     /**
-     * Gets if this world allows players to charge and use respawn anchors.
+     * 获取这个世界是否允许玩家充能和使用重生锚.
+     * <p>
+     * 原文：Gets if this world allows players to charge and use respawn anchors.
      *
-     * @return true if players can charge and use respawn anchors
+     * @return 如果玩家可以充能和使用重生锚则返回true
      */
     public boolean isRespawnAnchorWorks();
 
     /**
-     * Gets if players with the bad omen effect in this world will trigger a
+     * 获取在此世界中带有不祥之兆效果的玩家是否将触发袭击.
+     * <p>
+     * 原文：Gets if players with the bad omen effect in this world will trigger a
      * raid.
      *
-     * @return true if raids will be triggered
+     * @return 如果袭击将被触发则返回true
      */
     public boolean hasRaids();
 
     /**
-     * Gets if various water/lava mechanics will be triggered in this world, eg:
+     * 获取此世界是否会触发各种水/岩浆机制, 例如:
+     * <br>
+     * <ul>
+     * <li>水被蒸发</li>
+     * <li>海绵变干</li>
+     * <li>岩浆扩散更快更远</li>
+     * </ul>
+     * <p>
+     * 原文：Gets if various water/lava mechanics will be triggered in this world, eg:
      * <br>
      * <ul>
      * <li>Water is evaporated</li>
@@ -1857,7 +1981,7 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <li>Lava spreads faster and further</li>
      * </ul>
      *
-     * @return true if this world has the above mechanics
+     * @return 如果这个世界有上述机制则返回true
      */
     public boolean isUltraWarm();
 
@@ -1946,16 +2070,20 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public Difficulty getDifficulty();
 
     /**
-     * Returns the view distance used for this world.
+     * 获取这个世界使用的视距.
+     * <p>
+     * 原文：Returns the view distance used for this world.
      *
-     * @return the view distance used for this world
+     * @return 这个世界使用的视距
      */
     int getViewDistance();
 
     /**
-     * Returns the simulation distance used for this world.
+     * 获取这个世界使用的模拟距离.
+     * <p>
+     * 原文：Returns the simulation distance used for this world.
      *
-     * @return the simulation distance used for this world
+     * @return 这个世界使用的模拟距离
      */
     int getSimulationDistance();
 
@@ -1996,20 +2124,28 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public boolean canGenerateStructures();
 
     /**
-     * Gets whether the world is hardcore or not.
+     * 获取这个世界是否为极限模式.
+     * <p>
+     * 在极限模式世界中, 难度被锁定为困难.
+     * <p>
+     * 原文：Gets whether the world is hardcore or not.
      *
      * In a hardcore world the difficulty is locked to hard.
      *
-     * @return hardcore status
+     * @return 极限模式状态
      */
     public boolean isHardcore();
 
     /**
-     * Sets whether the world is hardcore or not.
+     * 设置这个世界是否为极限模式.
+     * <p>
+     * 在极限模式世界中, 难度被锁定为困难.
+     * <p>
+     * 原文：Sets whether the world is hardcore or not.
      *
      * In a hardcore world the difficulty is locked to hard.
      *
-     * @param hardcore Whether the world is hardcore
+     * @param hardcore 世界是否为极限模式
      */
     public void setHardcore(boolean hardcore);
 
@@ -2194,7 +2330,23 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public void setTicksPerMonsterSpawns(int ticksPerMonsterSpawns);
 
     /**
-     * Gets the world's ticks per water mob spawns value
+     * 获取世界生成水生生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成水生生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成水生生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成水生生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成水生生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Gets the world's ticks per water mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn water mobs.
@@ -2213,14 +2365,30 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @return The world's ticks per water mob spawns value
+     * @return 世界生成水生生物的时间间隔（单位为tick）
      * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     public long getTicksPerWaterSpawns();
 
     /**
-     * Sets the world's ticks per water mob spawns value
+     * 设置世界生成水生生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成水生生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成水生生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成水生生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成水生生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Sets the world's ticks per water mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn water mobs.
@@ -2239,15 +2407,27 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @param ticksPerWaterSpawns the ticks per water mob spawns value you
-     *     want to set the world to
-     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
+     * @param ticksPerWaterSpawns 要设置的世界生成水生生物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
     @Deprecated(since = "1.18.1")
     public void setTicksPerWaterSpawns(int ticksPerWaterSpawns);
 
     /**
-     * Gets the default ticks per water ambient mob spawns value.
+     * 获取默认的水生环境生物生成时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试生成水生环境生物.
+     * <li>数值为400意味着服务器每400tick会尝试生成水生环境生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b> 如果设置为0, 则水生环境生物的生成将被禁用.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Gets the default ticks per water ambient mob spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -2262,14 +2442,30 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water ambient mobs spawn value
-     * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
+     * @return 默认的水生环境生物生成时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     public long getTicksPerWaterAmbientSpawns();
 
     /**
-     * Sets the world's ticks per water ambient mob spawns value
+     * 设置世界生成水生环境生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成水生环境生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成水生环境生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成水生环境生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成水生环境生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Sets the world's ticks per water ambient mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn water ambient mobs.
@@ -2288,15 +2484,27 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @param ticksPerAmbientSpawns the ticks per water ambient mob spawns value you
-     *     want to set the world to
-     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
+     * @param ticksPerAmbientSpawns 要设置的世界生成水生环境生物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
     @Deprecated(since = "1.18.1")
     public void setTicksPerWaterAmbientSpawns(int ticksPerAmbientSpawns);
 
     /**
-     * Gets the default ticks per water underground creature spawns value.
+     * 获取默认的水生地下生物生成时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试生成水生地下生物.
+     * <li>数值为400意味着服务器每400tick会尝试生成水生地下生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b> 如果设置为0, 则水生地下生物的生成将被禁用.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Gets the default ticks per water underground creature spawns value.
      * <p>
      * <b>Example Usage:</b>
      * <ul>
@@ -2311,14 +2519,30 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per water underground creature spawn value
-     * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
+     * @return 默认的水生地下生物生成时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     public long getTicksPerWaterUndergroundCreatureSpawns();
 
     /**
-     * Sets the world's ticks per water underground creature spawns value
+     * 设置世界生成水生地下生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成水生地下生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成水生地下生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成水生地下生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成水生地下生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Sets the world's ticks per water underground creature spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn water underground creature.
@@ -2337,15 +2561,30 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @param ticksPerWaterUndergroundCreatureSpawns the ticks per water underground creature spawns value you
-     *     want to set the world to
-     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
+     * @param ticksPerWaterUndergroundCreatureSpawns 要设置的世界生成水生地下生物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
     @Deprecated(since = "1.18.1")
     public void setTicksPerWaterUndergroundCreatureSpawns(int ticksPerWaterUndergroundCreatureSpawns);
 
     /**
-     * Gets the world's ticks per ambient mob spawns value
+     * 获取世界生成环境生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成环境生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成环境生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成环境生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成环境生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Gets the world's ticks per ambient mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn ambient mobs.
@@ -2364,14 +2603,30 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @return the default ticks per ambient mobs spawn value
-     * @deprecated Deprecated in favor of {@link #getTicksPerSpawns(SpawnCategory)}
+     * @return 默认的环境生物生成时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #getTicksPerSpawns(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     public long getTicksPerAmbientSpawns();
 
     /**
-     * Sets the world's ticks per ambient mob spawns value
+     * 设置世界生成环境生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成环境生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成环境生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成环境生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成环境生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Sets the world's ticks per ambient mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn ambient mobs.
@@ -2390,15 +2645,30 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @param ticksPerAmbientSpawns the ticks per ambient mob spawns value you
-     *     want to set the world to
-     * @deprecated Deprecated in favor of {@link #setTicksPerSpawns(SpawnCategory, int)}
+     * @param ticksPerAmbientSpawns 要设置的世界生成环境生物的时间间隔（单位为tick）
+     * @deprecated 建议使用 {@link #setTicksPerSpawns(SpawnCategory, int)}
      */
     @Deprecated(since = "1.18.1")
     public void setTicksPerAmbientSpawns(int ticksPerAmbientSpawns);
 
     /**
-     * Gets the world's ticks per {@link SpawnCategory} mob spawns value
+     * 获取世界生成指定{@link SpawnCategory 生成类别}生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成指定{@link SpawnCategory 生成类别}生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成指定{@link SpawnCategory 生成类别}的生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成指定{@link SpawnCategory 生成类别}的生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成指定{@link SpawnCategory 生成类别}的生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Gets the world's ticks per {@link SpawnCategory} mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn {@link SpawnCategory} mobs.
@@ -2417,13 +2687,29 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @param spawnCategory the category spawn
-     * @return The world's ticks per {@link SpawnCategory} mob spawns value
+     * @param spawnCategory 生成类别
+     * @return 世界生成指定{@link SpawnCategory 生成类别}生物的时间间隔（单位为tick）
      */
     public long getTicksPerSpawns(@NotNull SpawnCategory spawnCategory);
 
     /**
-     * Sets the world's ticks per {@link SpawnCategory} mob spawns value
+     * 设置世界生成指定{@link SpawnCategory 生成类别}生物的时间间隔（单位为tick）.
+     * <p>
+     * 这个数值决定每次尝试生成指定{@link SpawnCategory 生成类别}生物之间的时间间隔（单位为tick）.
+     * <p>
+     * <b>用法示例：</b>
+     * <ul>
+     * <li>数值为1意味着服务器每1tick都会尝试在这个世界生成指定{@link SpawnCategory 生成类别}的生物.
+     * <li>数值为400意味着服务器每400tick会尝试在这个世界生成指定{@link SpawnCategory 生成类别}的生物.
+     * <li>数值低于0则会被重置为Minecraft的默认值.
+     * </ul>
+     * <p>
+     * <b>注意：</b>
+     * 如果设置为0, 则会禁止这个世界生成指定{@link SpawnCategory 生成类别}的生物.
+     * <p>
+     * Minecraft的默认值：1.
+     * <p>
+     * 原文：Sets the world's ticks per {@link SpawnCategory} mob spawns value
      * <p>
      * This value determines how many ticks there are between attempts to
      * spawn {@link SpawnCategory} mobs.
@@ -2442,9 +2728,8 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
      * <p>
      * Minecraft default: 1.
      *
-     * @param spawnCategory the category spawn
-     * @param ticksPerCategorySpawn the ticks per {@link SpawnCategory} mob spawns value you
-     *     want to set the world to
+     * @param spawnCategory 生成类别
+     * @param ticksPerCategorySpawn 要设置的世界生成指定{@link SpawnCategory 生成类别}生物的时间间隔（单位为tick）
      */
     public void setTicksPerSpawns(@NotNull SpawnCategory spawnCategory, int ticksPerCategorySpawn);
 
@@ -2542,47 +2827,59 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     void setWaterAnimalSpawnLimit(int limit);
 
     /**
-     * Gets the limit for number of water underground creature that can spawn in a chunk in
+     * 获取这个世界一个区块内的水生地下生物生成数限制.
+     * <p>
+     * 原文：Gets the limit for number of water underground creature that can spawn in a chunk in
      * this world
      *
-     * @return The water underground creature spawn limit
-     * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
+     * @return 水生地下生物生成限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     int getWaterUndergroundCreatureSpawnLimit();
 
     /**
-     * Sets the limit for number of water underground creature that can spawn in a chunk in
+     * 设置这个世界一个区块内的水生地下生物生成数限制.
+     * <p>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替.
+     * <p>
+     * 原文：Sets the limit for number of water underground creature that can spawn in a chunk in
      * this world
      * <p>
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      *
-     * @param limit the new mob limit
-     * @deprecated Deprecated in favor of {@link #setSpawnLimit(SpawnCategory, int)}
+     * @param limit 新的生物限制
+     * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
     @Deprecated(since = "1.18.1")
     void setWaterUndergroundCreatureSpawnLimit(int limit);
 
     /**
-     * Gets user-specified limit for number of water ambient mobs that can spawn
+     * 获取这个世界一个区块内的水生环境生物生成数限制.
+     * <p>
+     * 原文：Gets user-specified limit for number of water ambient mobs that can spawn
      * in a chunk.
      *
-     * @return the water ambient spawn limit
-     * @deprecated Deprecated in favor of {@link #getSpawnLimit(SpawnCategory)}
+     * @return 水生环境生物生成限制
+     * @deprecated 建议使用 {@link #getSpawnLimit(SpawnCategory)}
      */
     @Deprecated(since = "1.18.1")
     int getWaterAmbientSpawnLimit();
 
     /**
-     * Sets the limit for number of water ambient mobs that can spawn in a chunk
+     * 设置这个世界一个区块内的水生环境生物生成数限制.
+     * <p>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替.
+     * <p>
+     * 原文：Sets the limit for number of water ambient mobs that can spawn in a chunk
      * in this world
      * <p>
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      *
-     * @param limit the new mob limit
-     * @deprecated Deprecated in favor of {@link #setSpawnLimit(SpawnCategory, int)}
+     * @param limit 新的生物限制
+     * @deprecated 建议使用 {@link #setSpawnLimit(SpawnCategory, int)}
      */
     @Deprecated(since = "1.18.1")
     void setWaterAmbientSpawnLimit(int limit);
@@ -2619,35 +2916,46 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     void setAmbientSpawnLimit(int limit);
 
     /**
-     * Gets the limit for number of {@link SpawnCategory} entities that can spawn in a chunk in
+     * 获取这个世界一个区块内指定{@link SpawnCategory 生成类别}实体的生成数限制.
+     * <p>
+     * 原文：Gets the limit for number of {@link SpawnCategory} entities that can spawn in a chunk in
      * this world
      *
-     * @param spawnCategory the entity category
-     * @return The ambient spawn limit
+     * @param spawnCategory 实体生成类别
+     * @return 指定类别的生成限制
      */
     int getSpawnLimit(@NotNull SpawnCategory spawnCategory);
 
     /**
-     * Sets the limit for number of {@link SpawnCategory} entities that can spawn in a chunk in
+     * 设置这个世界一个区块内指定{@link SpawnCategory 生成类别}实体的生成数限制.
+     * <p>
+     * <b>注意：</b>如果设置为负数则这个世界会使用服务器普遍的生成限制来代替.
+     * <p>
+     * 原文：Sets the limit for number of {@link SpawnCategory} entities that can spawn in a chunk in
      * this world
      * <p>
      * <b>Note:</b> If set to a negative number the world will use the
      * server-wide spawn limit instead.
      *
-     * @param spawnCategory the entity category
-     * @param limit the new mob limit
+     * @param spawnCategory 实体生成类别
+     * @param limit 新的生物限制
      */
     void setSpawnLimit(@NotNull SpawnCategory spawnCategory, int limit);
 
     /**
-     * Play a note at the provided Location in the World. <br>
+     * 在世界中指定的位置播放一个音符. <br>
+     * 这个方法<i>可以</i>与蛋糕一起使用.
+     * <p>
+     * 当使用{@link Instrument#CUSTOM_HEAD}调用时, 此方法会静默失败.
+     * <p>
+     * 原文：Play a note at the provided Location in the World. <br>
      * This <i>will</i> work with cake.
      * <p>
      * This method will fail silently when called with {@link Instrument#CUSTOM_HEAD}.
      *
-     * @param loc The location to play the note
-     * @param instrument The instrument
-     * @param note The note
+     * @param loc 播放音符的位置
+     * @param instrument 乐器
+     * @param note 音符
      */
     void playNote(@NotNull Location loc, @NotNull Instrument instrument, @NotNull Note note);
 
@@ -2669,158 +2977,202 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     void playSound(@NotNull Location location, @NotNull Sound sound, float volume, float pitch);
 
     /**
-     * Play a Sound at the provided Location in the World.
+     * 在世界中指定的位置播放一个声音.
+     * <p>
+     * 如果位置或声音为空则这个函数会失效. 如果客户端没有对应传入值的声音, 玩家将不会听到任何声音.
+     * <p>
+     * 原文：Play a Sound at the provided Location in the World.
      * <p>
      * This function will fail silently if Location or Sound are null. No
      * sound will be heard by the players if their clients do not have the
      * respective sound for the value passed.
      *
-     * @param location The location to play the sound
-     * @param sound The internal sound name to play
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的内部声音名称
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Location location, @NotNull String sound, float volume, float pitch);
 
 	/**
-     * Play a Sound at the provided Location in the World.
+     * 在世界中指定的位置播放一个声音.
+     * <p>
+     * 如果位置或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the provided Location in the World.
      * <p>
      * This function will fail silently if Location or Sound are null.
      *
-     * @param location The location to play the sound
-     * @param sound The sound to play
-     * @param category the category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的声音
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a Sound at the provided Location in the World.
+     * 在世界中指定的位置播放一个声音.
+     * <p>
+     * 如果位置或声音为空则这个函数会失效. 如果客户端没有对应传入值的声音, 玩家将不会听到任何声音.
+     * <p>
+     * 原文：Play a Sound at the provided Location in the World.
      * <p>
      * This function will fail silently if Location or Sound are null. No sound
      * will be heard by the players if their clients do not have the respective
      * sound for the value passed.
      *
-     * @param location The location to play the sound
-     * @param sound The internal sound name to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的内部声音名称
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a Sound at the provided Location in the World. For sounds with multiple
+     * 在世界中指定的位置播放一个声音. 对于有多个变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果位置或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the provided Location in the World. For sounds with multiple
      * variations passing the same seed will always play the same variation.
      * <p>
      * This function will fail silently if Location or Sound are null.
      *
-     * @param location The location to play the sound
-     * @param sound The sound to play
-     * @param category the category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的声音
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
+     * @param seed 声音种子
      */
     void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
-     * Play a Sound at the provided Location in the World. For sounds with multiple
+     * 在世界中指定的位置播放一个声音. 对于有多个变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果位置或声音为空则这个函数会失效. 如果客户端没有对应传入值的声音, 玩家将不会听到任何声音.
+     * <p>
+     * 原文：Play a Sound at the provided Location in the World. For sounds with multiple
      * variations passing the same seed will always play the same variation.
      * <p>
      * This function will fail silently if Location or Sound are null. No sound will
      * be heard by the players if their clients do not have the respective sound for
      * the value passed.
      *
-     * @param location The location to play the sound
-     * @param sound The internal sound name to play
-     * @param category the category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的内部声音名称
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
+     * @param seed 声音种子
      */
     void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
-     * Play a Sound at the location of the provided entity in the World.
+     * 在世界中指定实体的位置播放一个声音.
+     * <p>
+     * 如果实体或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the location of the provided entity in the World.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Entity entity, @NotNull Sound sound, float volume, float pitch);
 
     /**
-     * Play a Sound at the location of the provided entity in the World.
+     * 在世界中指定实体的位置播放一个声音.
+     * <p>
+     * 如果实体或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the location of the provided entity in the World.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Entity entity, @NotNull String sound, float volume, float pitch);
 
     /**
-     * Play a Sound at the location of the provided entity in the World.
+     * 在世界中指定实体的位置播放一个声音.
+     * <p>
+     * 如果实体或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the location of the provided entity in the World.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category the category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a Sound at the location of the provided entity in the World.
+     * 在世界中指定实体的位置播放一个声音.
+     * <p>
+     * 如果实体或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the location of the provided entity in the World.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
      */
     void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a Sound at the location of the provided entity in the World. For sounds
+     * 在世界中指定实体的位置播放一个声音. 对于有多个变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果实体或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the location of the provided entity in the World. For sounds
      * with multiple variations passing the same seed will always play the same
      * variation.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
+     * @param seed 声音种子
      */
     void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
-     * Play a Sound at the location of the provided entity in the World. For sounds
+     * 在世界中指定实体的位置播放一个声音. 对于有多个变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果实体或声音为空则这个函数会失效.
+     * <p>
+     * 原文：Play a Sound at the location of the provided entity in the World. For sounds
      * with multiple variations passing the same seed will always play the same
      * variation.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音类别
+     * @param volume 声音音量
+     * @param pitch 声音音调
+     * @param seed 声音种子
      */
     void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
@@ -2898,140 +3250,153 @@ public interface World extends RegionAccessor, WorldInfo, PluginMessageRecipient
     public WorldBorder getWorldBorder();
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
      */
     public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
      */
     public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, @Nullable T data);
 
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
      */
     public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
      */
     public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
+     * @param <T> 粒子数据类型（参见{@link Particle#getDataType()}）
+     * @param particle 要生成的粒子
+     * @param x 生成粒子的X轴位置
+     * @param y 生成粒子的Y轴位置
+     * @param z 生成粒子的Z轴位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param data 用于粒子的数据或null, 其类型取决于{@link Particle#getDataType()}
      */
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在目标位置生成粒子（由count指定数量）. 每个粒子的位置将根据偏移参数在每个轴上进行正向和负向的随机偏移.
+     * <p>
+     * 原文：Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
+     * @param particle 要生成的粒子
+     * @param location 生成粒子的位置
+     * @param count 粒子数量
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于使用的粒子（通常是速度）
      */
     public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
 

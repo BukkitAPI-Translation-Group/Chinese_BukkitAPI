@@ -122,56 +122,70 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void setPlayerListName(@Nullable String name);
 
     /**
-     * Gets the relative order that the player is shown on the player list.
+     * 获取玩家在玩家列表中的相对排序位置.
+     * <p>
+     * 原文:Gets the relative order that the player is shown on the player list.
      *
-     * @return the player list order
+     * @return 玩家列表排序值
      */
     public int getPlayerListOrder();
 
     /**
-     * Sets the relative order that the player is shown on the in-game player
+     * 设置玩家在玩家列表中的相对排序位置.
+     * <p>
+     * 原文:Sets the relative order that the player is shown on the in-game player
      * list.
      *
-     * @param order new player list order, must be non-negative
+     * @param order 新的玩家列表排序值, 必须为非负数
      */
     public void setPlayerListOrder(int order);
 
     /**
-     * Gets the currently displayed player list header for this player.
+     * 获取当前显示给该玩家的玩家列表头部文本.
+     * <p>
+     * 原文:Gets the currently displayed player list header for this player.
      *
-     * @return player list header or null
+     * @return 玩家列表头部文本或null
      */
     @Nullable
     public String getPlayerListHeader();
 
     /**
-     * Gets the currently displayed player list footer for this player.
+     * 获取当前显示给该玩家的玩家列表底部文本.
+     * <p>
+     * 原文:Gets the currently displayed player list footer for this player.
      *
-     * @return player list header or null
+     * @return 玩家列表底部文本或null
      */
     @Nullable
     public String getPlayerListFooter();
 
     /**
-     * Sets the currently displayed player list header for this player.
+     * 设置当前显示给该玩家的玩家列表头部文本.
+     * <p>
+     * 原文:Sets the currently displayed player list header for this player.
      *
-     * @param header player list header, null for empty
+     * @param header 玩家列表头部文本, null表示空
      */
     public void setPlayerListHeader(@Nullable String header);
 
     /**
-     * Sets the currently displayed player list footer for this player.
+     * 设置当前显示给该玩家的玩家列表底部文本.
+     * <p>
+     * 原文:Sets the currently displayed player list footer for this player.
      *
-     * @param footer player list footer, null for empty
+     * @param footer 玩家列表底部文本, null表示空
      */
     public void setPlayerListFooter(@Nullable String footer);
 
     /**
-     * Sets the currently displayed player list header and footer for this
+     * 设置当前显示给该玩家的玩家列表头部和底部文本.
+     * <p>
+     * 原文:Sets the currently displayed player list header and footer for this
      * player.
      *
-     * @param header player list header, null for empty
-     * @param footer player list footer, null for empty
+     * @param header 玩家列表头部文本, null表示空
+     * @param footer 玩家列表底部文本, null表示空
      */
     public void setPlayerListHeaderFooter(@Nullable String header, @Nullable String footer);
 
@@ -207,41 +221,46 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public InetSocketAddress getAddress();
 
     /**
-     * Gets if this connection has been transferred from another server.
+     * 获取该连接是否是从另一个服务器转移过来的.
+     * <p>
+     * 原文:Gets if this connection has been transferred from another server.
      *
-     * @return true if the connection has been transferred
+     * @return 如果该连接是转移过来的则返回true
      */
     public boolean isTransferred();
 
     /**
-     * Retrieves a cookie from this player.
+     * 从该玩家客户端检索一个Cookie.
+     * <p>
+     * 原文:Retrieves a cookie from this player.
      *
-     * @param key the key identifying the cookie cookie
-     * @return a {@link CompletableFuture} that will be completed when the
-     * Cookie response is received or otherwise available. If the cookie is not
-     * set in the client, the {@link CompletableFuture} will complete with a
-     * null value.
+     * @param key 标识Cookie的键
+     * @return 一个 {@link CompletableFuture}, 当收到Cookie响应或可用时将完成.
+     *         如果客户端中未设置该Cookie, {@link CompletableFuture} 将以null值完成.
      */
     @NotNull
     CompletableFuture<byte[]> retrieveCookie(@NotNull NamespacedKey key);
 
     /**
-     * Stores a cookie in this player's client.
+     * 在该玩家客户端中存储一个Cookie.
+     * <p>
+     * 原文:Stores a cookie in this player's client.
      *
-     * @param key the key identifying the cookie cookie
-     * @param value the data to store in the cookie
-     * @throws IllegalStateException if a cookie cannot be stored at this time
+     * @param key 标识Cookie的键
+     * @param value 要存储在Cookie中的数据
+     * @throws IllegalStateException 如果此时无法存储Cookie
      */
     void storeCookie(@NotNull NamespacedKey key, @NotNull byte[] value);
 
     /**
-     * Requests this player to connect to a different server specified by host
+     * 请求该玩家连接到由主机和端口指定的另一个服务器.
+     * <p>
+     * 原文:Requests this player to connect to a different server specified by host
      * and port.
      *
-     * @param host the host of the server to transfer to
-     * @param port the port of the server to transfer to
-     * @throws IllegalStateException if a transfer cannot take place at this
-     * time
+     * @param host 要转移到的服务器主机
+     * @param port 要转移到的服务器端口
+     * @throws IllegalStateException 如果此时无法进行转移
      */
     void transfer(@NotNull String host, int port);
 
@@ -267,97 +286,100 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void kickPlayer(@Nullable String message);
 
     /**
-     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * 将该用户添加到 {@link ProfileBanList}. 如果已存在封禁记录, 则会更新该记录.
+     * <p>
+     * 原文:Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
      * update the entry.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @param kickPlayer if the player need to be kick
+     * @param reason 封禁原因, null表示使用默认值
+     * @param expires 封禁到期(解封)日期, null表示永久封禁
+     * @param source 封禁来源, null表示使用默认值
+     * @param kickPlayer 是否需要踢出该玩家
      *
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @return 新创建的封禁记录, 或(更新后的)已有封禁记录
      */
     @Nullable
     public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Date expires, @Nullable String source, boolean kickPlayer);
 
     /**
-     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * 将该用户添加到 {@link ProfileBanList}. 如果已存在封禁记录, 则会更新该记录.
+     * <p>
+     * 原文:Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
      * update the entry.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @param kickPlayer if the player need to be kick
+     * @param reason 封禁原因, null表示使用默认值
+     * @param expires 封禁到期(解封)时间点, null表示永久封禁
+     * @param source 封禁来源, null表示使用默认值
+     * @param kickPlayer 是否需要踢出该玩家
      *
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @return 新创建的封禁记录, 或(更新后的)已有封禁记录
      */
     @Nullable
     public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Instant expires, @Nullable String source, boolean kickPlayer);
 
     /**
-     * Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
+     * 将该用户添加到 {@link ProfileBanList}. 如果已存在封禁记录, 则会更新该记录.
+     * <p>
+     * 原文:Adds this user to the {@link ProfileBanList}. If a previous ban exists, this will
      * update the entry.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param duration the duration how long the ban lasts, or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @param kickPlayer if the player need to be kick
+     * @param reason 封禁原因, null表示使用默认值
+     * @param duration 封禁持续时长, null表示永久封禁
+     * @param source 封禁来源, null表示使用默认值
+     * @param kickPlayer 是否需要踢出该玩家
      *
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @return 新创建的封禁记录, 或(更新后的)已有封禁记录
      */
     @Nullable
     public BanEntry<PlayerProfile> ban(@Nullable String reason, @Nullable Duration duration, @Nullable String source, boolean kickPlayer);
 
     /**
-     * Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
+     * 将该用户的当前IP地址添加到 {@link IpBanList}. 如果已存在封禁记录, 则会更新该记录.
+     * 如果 {@link #getAddress()} 返回null, 则此方法将抛出异常.
+     * <p>
+     * 原文:Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
      * update the entry. If {@link #getAddress()} is null this method will throw an exception.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @param kickPlayer if the player need to be kick
+     * @param reason 封禁原因, null表示使用默认值
+     * @param expires 封禁到期(解封)日期, null表示永久封禁
+     * @param source 封禁来源, null表示使用默认值
+     * @param kickPlayer 是否需要踢出该玩家
      *
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @return 新创建的封禁记录, 或(更新后的)已有封禁记录
      */
     @Nullable
     public BanEntry<InetAddress> banIp(@Nullable String reason, @Nullable Date expires, @Nullable String source, boolean kickPlayer);
 
     /**
-     * Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
+     * 将该用户的当前IP地址添加到 {@link IpBanList}. 如果已存在封禁记录, 则会更新该记录.
+     * 如果 {@link #getAddress()} 返回null, 则此方法将抛出异常.
+     * <p>
+     * 原文:Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
      * update the entry. If {@link #getAddress()} is null this method will throw an exception.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param expires date for the ban's expiration (unban), or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @param kickPlayer if the player need to be kick
+     * @param reason 封禁原因, null表示使用默认值
+     * @param expires 封禁到期(解封)时间点, null表示永久封禁
+     * @param source 封禁来源, null表示使用默认值
+     * @param kickPlayer 是否需要踢出该玩家
      *
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @return 新创建的封禁记录, 或(更新后的)已有封禁记录
      */
     @Nullable
     public BanEntry<InetAddress> banIp(@Nullable String reason, @Nullable Instant expires, @Nullable String source, boolean kickPlayer);
 
     /**
-     * Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
+     * 将该用户的当前IP地址添加到 {@link IpBanList}. 如果已存在封禁记录, 则会更新该记录.
+     * 如果 {@link #getAddress()} 返回null, 则此方法将抛出异常.
+     * <p>
+     * 原文:Adds this user's current IP address to the {@link IpBanList}. If a previous ban exists, this will
      * update the entry. If {@link #getAddress()} is null this method will throw an exception.
      *
-     * @param reason reason for the ban, null indicates implementation default
-     * @param duration the duration how long the ban lasts, or null to imply
-     *     forever
-     * @param source source of the ban, null indicates implementation default
-     * @param kickPlayer if the player need to be kick
+     * @param reason 封禁原因, null表示使用默认值
+     * @param duration 封禁持续时长, null表示永久封禁
+     * @param source 封禁来源, null表示使用默认值
+     * @param kickPlayer 是否需要踢出该玩家
      *
-     * @return the entry for the newly created ban, or the entry for the
-     *     (updated) previous ban
+     * @return 新创建的封禁记录, 或(更新后的)已有封禁记录
      */
     @Nullable
     public BanEntry<InetAddress> banIp(@Nullable String reason, @Nullable Duration duration, @Nullable String source, boolean kickPlayer);
@@ -382,14 +404,16 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public boolean performCommand(@NotNull String command);
 
     /**
-     * Returns true if the entity is supported by a block.
+     * 判断实体是否被方块支撑着(是否在地面上).
+     * <p>
+     * 该值是由客户端在每次移动后更新的状态.
+     * <p>
+     * 原文:Returns true if the entity is supported by a block.
      *
      * This value is a state updated by the client after each movement.
      *
-     * @return True if entity is on ground.
-     * @deprecated This value is controlled only by the client and is therefore
-     * unreliable and vulnerable to spoofing and/or desync depending on the
-     * context/time which it is accessed
+     * @return 如果实体在地面上则返回true
+     * @deprecated 该值仅由客户端控制, 因此不可靠, 易于被伪造和/或因访问时机不同而不同步
      */
     @Override
     @Deprecated(since = "1.16.1")
@@ -476,14 +500,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public boolean isSleepingIgnored();
 
     /**
-     * Gets the Location where the player will spawn at their bed, null if
+     * 获取玩家在床上的重生位置, 如果玩家没有在床上睡过或当前的床重生点无效则返回null.
+     * <p>
+     * 原文:Gets the Location where the player will spawn at their bed, null if
      * they have not slept in one or their current bed spawn is invalid.
      *
-     * @return Bed Spawn Location if bed exists, otherwise null.
+     * @return 如果床存在则返回床的重生位置, 否则返回null
      *
      * @see #getRespawnLocation()
-     * @deprecated Misleading name. This method also returns the location of
-     * respawn anchors.
+     * @deprecated 名称有误导性. 该方法也会返回重生锚的位置.
      */
     @Nullable
     @Override
@@ -491,76 +516,90 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public Location getBedSpawnLocation();
 
     /**
-     * Gets the Location where the player will spawn at, null if they
+     * 获取玩家的重生位置, 如果没有有效的重生点则返回null.
+     * <p>
+     * 原文:Gets the Location where the player will spawn at, null if they
      * don't have a valid respawn point.
      *
-     * @return respawn location if exists, otherwise null.
+     * @return 如果重生点存在则返回重生位置, 否则返回null
      */
     @Nullable
     @Override
     public Location getRespawnLocation();
 
     /**
-     * Sets the Location where the player will spawn at their bed.
+     * 设置玩家在床上的重生位置.
+     * <p>
+     * 原文:Sets the Location where the player will spawn at their bed.
      *
-     * @param location where to set the respawn location
+     * @param location 要设置的重生位置
      *
      * @see #setRespawnLocation(Location)
-     * @deprecated Misleading name. This method sets the player's respawn
-     * location more generally and is not limited to beds.
+     * @deprecated 名称有误导性. 该方法设置玩家重生位置的范围更广, 不仅限于床.
      */
     @Deprecated(since = "1.20.4")
     public void setBedSpawnLocation(@Nullable Location location);
 
     /**
-     * Sets the Location where the player will respawn.
+     * 设置玩家的重生位置.
+     * <p>
+     * 原文:Sets the Location where the player will respawn.
      *
-     * @param location where to set the respawn location
+     * @param location 要设置的重生位置
      */
     public void setRespawnLocation(@Nullable Location location);
 
     /**
-     * Sets the Location where the player will spawn at their bed.
+     * 设置玩家在床上的重生位置.
+     * <p>
+     * 原文:Sets the Location where the player will spawn at their bed.
      *
-     * @param location where to set the respawn location
-     * @param force whether to forcefully set the respawn location even if a
-     *     valid bed is not present
+     * @param location 要设置的重生位置
+     * @param force 是否强制设置重生位置, 即使没有有效的床
      *
      * @see #setRespawnLocation(Location, boolean)
-     * @deprecated Misleading name. This method sets the player's respawn
-     * location more generally and is not limited to beds.
+     * @deprecated 名称有误导性. 该方法设置玩家重生位置的范围更广, 不仅限于床.
      */
     @Deprecated(since = "1.20.4")
     public void setBedSpawnLocation(@Nullable Location location, boolean force);
 
     /**
-     * Sets the Location where the player will respawn.
+     * 设置玩家的重生位置.
+     * <p>
+     * 原文:Sets the Location where the player will respawn.
      *
-     * @param location where to set the respawn location
-     * @param force whether to forcefully set the respawn location even if a
-     *     valid respawn point is not present
+     * @param location 要设置的重生位置
+     * @param force 是否强制设置重生位置, 即使没有有效的重生点
      */
     public void setRespawnLocation(@Nullable Location location, boolean force);
 
     /**
-     * Gets the ender pearls currently associated with this entity.
+     * 获取当前与该实体关联的末影珍珠.
+     * <p>
+     * 返回的列表不会直接链接到实体当前的末影珍珠, 且不保证其可变性.
+     * <p>
+     * 原文:Gets the ender pearls currently associated with this entity.
      * <p>
      * The returned list will not be directly linked to the entity's current
      * pearls, and no guarantees are made as to its mutability.
      *
-     * @return collection of entities corresponding to current pearls.
+     * @return 对应于当前末影珍珠的实体集合
      */
     @NotNull
     @ApiStatus.Experimental
     public Collection<EnderPearl> getEnderPearls();
 
     /**
-     * Gets the current movement input, as last provided by the player.
+     * 获取玩家当前的移动输入, 即玩家最后提供的输入.
+     * <br>
+     * <b>注意: 这可能并不总是与玩家当前的移动一致.</b>
+     * <p>
+     * 原文:Gets the current movement input, as last provided by the player.
      * <br>
      * <b>Note: that this may not always be consistent with the current movement
      * of the player.</b>
      *
-     * @return current input
+     * @return 当前输入
      */
     @NotNull
     @ApiStatus.Experimental
@@ -666,114 +705,146 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location. For sounds with multiple
+     * 在指定位置为玩家播放声音. 对于有多种变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果位置或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location. For sounds with multiple
      * variations passing the same seed will always play the same variation.
      * <p>
      * This function will fail silently if Location or Sound are null.
      *
-     * @param location The location to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
+     * @param seed 声音的种子
      */
     public void playSound(@NotNull Location location, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
-     * Play a sound for a player at the location. For sounds with multiple
+     * 在指定位置为玩家播放声音. 对于有多种变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果位置或声音为null, 此方法将静默失败. 如果玩家客户端不存在指定声音, 则不会播放任何声音.
+     * <p>
+     * 原文:Play a sound for a player at the location. For sounds with multiple
      * variations passing the same seed will always play the same variation.
      * <p>
      * This function will fail silently if Location or Sound are null. No sound
      * will be heard by the player if their client does not have the respective
      * sound for the value passed.
      *
-     * @param location The location to play the sound
-     * @param sound The internal sound name to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param location 播放声音的位置
+     * @param sound 要播放的声音的内部名称
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
+     * @param seed 声音的种子
      */
     public void playSound(@NotNull Location location, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
-     * Play a sound for a player at the location of the entity.
+     * 在实体所在位置为玩家播放声音.
+     * <p>
+     * 如果实体或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location of the entity.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param volume 音量
+     * @param pitch 音调
      */
     public void playSound(@NotNull Entity entity, @NotNull Sound sound, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location of the entity.
+     * 在实体所在位置为玩家播放声音.
+     * <p>
+     * 如果实体或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location of the entity.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param volume 音量
+     * @param pitch 音调
      */
     public void playSound(@NotNull Entity entity, @NotNull String sound, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location of the entity.
+     * 在实体所在位置为玩家播放声音.
+     * <p>
+     * 如果实体或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location of the entity.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
      */
     public void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location of the entity.
+     * 在实体所在位置为玩家播放声音.
+     * <p>
+     * 如果实体或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location of the entity.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
      */
     public void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch);
 
     /**
-     * Play a sound for a player at the location of the entity. For sounds with
+     * 在实体所在位置为玩家播放声音. 对于有多种变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果实体或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location of the entity. For sounds with
      * multiple variations passing the same seed will always play the same variation.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
+     * @param seed 声音的种子
      */
     public void playSound(@NotNull Entity entity, @NotNull Sound sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
     /**
-     * Play a sound for a player at the location of the entity. For sounds with
+     * 在实体所在位置为玩家播放声音. 对于有多种变体的声音, 传递相同的种子将始终播放相同的变体.
+     * <p>
+     * 如果实体或声音为null, 此方法将静默失败.
+     * <p>
+     * 原文:Play a sound for a player at the location of the entity. For sounds with
      * multiple variations passing the same seed will always play the same variation.
      * <p>
      * This function will fail silently if Entity or Sound are null.
      *
-     * @param entity The entity to play the sound
-     * @param sound The sound to play
-     * @param category The category of the sound
-     * @param volume The volume of the sound
-     * @param pitch The pitch of the sound
-     * @param seed The seed for the sound
+     * @param entity 播放声音的实体
+     * @param sound 要播放的声音
+     * @param category 声音的分类
+     * @param volume 音量
+     * @param pitch 音调
+     * @param seed 声音的种子
      */
     public void playSound(@NotNull Entity entity, @NotNull String sound, @NotNull SoundCategory category, float volume, float pitch, long seed);
 
@@ -816,9 +887,11 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void stopSound(@NotNull String sound, @Nullable SoundCategory category);
 
     /**
-     * Stop the specified sound category from playing.
+     * 停止播放指定分类的声音.
+     * <p>
+     * 原文:Stop the specified sound category from playing.
      *
-     * @param category the sound category to stop
+     * @param category 要停止播放的声音分类
      */
     public void stopSound(@NotNull SoundCategory category);
 
@@ -859,7 +932,18 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void playEffect(@NotNull Location loc, @NotNull Effect effect, @Nullable T data);
 
     /**
-     * Force this player to break a Block using the item in their main hand.
+     * 强制玩家使用主手中的物品破坏方块.
+     * <p>
+     * 此方法会考虑附魔效果, 处理物品耐久度(如适用), 并根据玩家手中的工具/物品掉落经验和正确的物品.
+     * <p>
+     * 注意: 此方法会调用 {@link BlockBreakEvent}, 这意味着如果事件被第三方插件取消, 此方法可能无法成功破坏方块.
+     * 如果在 BlockBreakEvent 监听器中运行此方法, 请注意可能会对同一 {@link Block} 产生递归调用.
+     * <p>
+     * 此外, 此方法掉落的物品会触发 {@link BlockDropItemEvent}(如果成功).
+     * <p>
+     * 方块必须与玩家处于同一世界.
+     * <p>
+     * 原文:Force this player to break a Block using the item in their main hand.
      *
      * This method will respect enchantments, handle item durability (if
      * applicable) and drop experience and the correct items according to the
@@ -876,9 +960,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * <p>
      * The block must be in the same world as the player.
      *
-     * @param block the block to break
+     * @param block 要破坏的方块
      *
-     * @return true if the block was broken, false if the break failed
+     * @return 如果方块被成功破坏返回true, 如果破坏失败返回false
      */
     public boolean breakBlock(@NotNull Block block);
 
@@ -912,7 +996,14 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendBlockChange(@NotNull Location loc, @NotNull BlockData block);
 
     /**
-     * Send a multi-block change. This fakes a block change packet for a user
+     * 向该玩家发送多个伪造的方块更改数据包. 这不会实际改变世界中的任何方块.
+     * <p>
+     * 根据集合中的方块数量, 此方法可能会向客户端发送多个数据包. 每个被修改的区块区域(16x16x16)需要发送一个数据包.
+     * 即使在两个不同的区块区域中各只更改了一个方块, 也会发送两个数据包.
+     * <p>
+     * 此外, 此方法无法保证对客户端未加载的区块中的更改能够正常发送给玩家. 调用者有责任确保客户端在更改方块的范围内, 或处理由此引起的任何副作用.
+     * <p>
+     * 原文:Send a multi-block change. This fakes a block change packet for a user
      * at multiple locations. This will not actually change the world in any
      * way.
      * <p>
@@ -927,12 +1018,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * responsibility of the caller to ensure that the client is within range
      * of the changed blocks or to handle any side effects caused as a result.
      *
-     * @param blocks the block states to send to the player
+     * @param blocks 要发送给玩家的方块状态
      */
     public void sendBlockChanges(@NotNull Collection<BlockState> blocks);
 
     /**
-     * Send a multi-block change. This fakes a block change packet for a user
+     * 向该玩家发送多个伪造的方块更改数据包. 这不会实际改变世界中的任何方块.
+     * <p>
+     * 根据集合中的方块数量, 此方法可能会向客户端发送多个数据包. 每个被修改的区块区域(16x16x16)需要发送一个数据包.
+     * 即使在两个不同的区块区域中各只更改了一个方块, 也会发送两个数据包.
+     * <p>
+     * 此外, 此方法无法保证对客户端未加载的区块中的更改能够正常发送给玩家. 调用者有责任确保客户端在更改方块的范围内, 或处理由此引起的任何副作用.
+     * <p>
+     * 原文:Send a multi-block change. This fakes a block change packet for a user
      * at multiple locations. This will not actually change the world in any
      * way.
      * <p>
@@ -947,28 +1045,32 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * responsibility of the caller to ensure that the client is within range
      * of the changed blocks or to handle any side effects caused as a result.
      *
-     * @param blocks the block states to send to the player
-     * @param suppressLightUpdates whether or not light updates should be
-     * suppressed when updating the blocks on the client
-     * @deprecated suppressLightUpdates is not functional in versions greater
-     * than 1.19.4
+     * @param blocks 要发送给玩家的方块状态
+     * @param suppressLightUpdates 在客户端更新方块时是否抑制光照更新
+     * @deprecated suppressLightUpdates 在 1.19.4 以上版本中不起作用
      */
     @Deprecated(since = "1.20")
     public void sendBlockChanges(@NotNull Collection<BlockState> blocks, boolean suppressLightUpdates);
 
     /**
-     * Send block damage. This fakes block break progress at a certain location
+     * 发送方块损坏效果. 这会伪造指定位置的方块破坏进度, 由该玩家作为来源. 这不会实际改变方块的破坏进度.
+     * <p>
+     * 原文:Send block damage. This fakes block break progress at a certain location
      * sourced by this player. This will not actually change the block's break
      * progress in any way.
      *
-     * @param loc the location of the damaged block
-     * @param progress the progress from 0.0 - 1.0 where 0 is no damage and
-     * 1.0 is the most damaged
+     * @param loc 被损坏方块的位置
+     * @param progress 进度, 范围 0.0 - 1.0, 其中 0 表示无损坏, 1.0 表示完全损坏
      */
     public void sendBlockDamage(@NotNull Location loc, float progress);
 
     /**
-     * Send block damage. This fakes block break progress at a certain location
+     * 发送方块损坏效果. 这会伪造指定位置的方块破坏进度, 由提供的实体作为来源. 这不会实际改变方块的破坏进度.
+     * <p>
+     * 在同一位置, 对于发送给玩家的每个不同的损坏来源, 都会显示一个带有给定进度的独立损坏覆盖层.
+     * 这允许同时显示来自多个实体的不同进度的方块损坏.
+     * <p>
+     * 原文:Send block damage. This fakes block break progress at a certain location
      * sourced by the provided entity. This will not actually change the block's
      * break progress in any way.
      * <p>
@@ -976,15 +1078,19 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * separate damage overlay will be displayed with the given progress. This allows
      * for block damage at different progress from multiple entities at once.
      *
-     * @param loc the location of the damaged block
-     * @param progress the progress from 0.0 - 1.0 where 0 is no damage and
-     * 1.0 is the most damaged
-     * @param source the entity to which the damage belongs
+     * @param loc 被损坏方块的位置
+     * @param progress 进度, 范围 0.0 - 1.0, 其中 0 表示无损坏, 1.0 表示完全损坏
+     * @param source 损坏所属的实体
      */
     public void sendBlockDamage(@NotNull Location loc, float progress, @NotNull Entity source);
 
     /**
-     * Send block damage. This fakes block break progress at a certain location
+     * 发送方块损坏效果. 这会伪造指定位置的方块破坏进度, 由提供的实体ID作为来源. 这不会实际改变方块的破坏进度.
+     * <p>
+     * 在同一位置, 对于发送给玩家的每个不同的损坏来源, 都会显示一个带有给定进度的独立损坏覆盖层.
+     * 这允许同时显示来自多个实体的不同进度的方块损坏.
+     * <p>
+     * 原文:Send block damage. This fakes block break progress at a certain location
      * sourced by the provided entity id. This will not actually change the block's
      * break progress in any way.
      * <p>
@@ -992,11 +1098,9 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * separate damage overlay will be displayed with the given progress. This allows
      * for block damage at different progress from multiple entities at once.
      *
-     * @param loc the location of the damaged block
-     * @param progress the progress from 0.0 - 1.0 where 0 is no damage and
-     * 1.0 is the most damaged
-     * @param sourceId the entity id of the entity to which the damage belongs.
-     * Can be an id that does not associate directly with an existing or loaded entity.
+     * @param loc 被损坏方块的位置
+     * @param progress 进度, 范围 0.0 - 1.0, 其中 0 表示无损坏, 1.0 表示完全损坏
+     * @param sourceId 损坏所属实体的实体ID. 可以是不与已存在或已加载实体直接关联的ID
      */
     public void sendBlockDamage(@NotNull Location loc, float progress, int sourceId);
 
@@ -1015,12 +1119,13 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull EquipmentSlot slot, @Nullable ItemStack item);
 
     /**
-     * Send multiple equipment changes for the target entity. This will not
+     * 发送目标实体的多个装备槽变更数据包. 这不会实际改变实体的装备.
+     * <p>
+     * 原文:Send multiple equipment changes for the target entity. This will not
      * actually change the entity's equipment in any way.
      *
-     * @param entity the entity whose equipment to change
-     * @param items the slots to change, where the values are the items to which
-     * the slot should be changed. null values will set the slot to air
+     * @param entity 要更改装备的实体
+     * @param items 要更改的装备槽, 其中值为该槽位应更改到的物品. null值会将该槽位设为空气
      */
     public void sendEquipmentChange(@NotNull LivingEntity entity, @NotNull Map<EquipmentSlot, ItemStack> items);
 
@@ -1116,7 +1221,15 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void sendSignChange(@NotNull Location loc, @Nullable String[] lines, @NotNull DyeColor dyeColor, boolean hasGlowingText) throws IllegalArgumentException;
 
     /**
-     * Send a TileState change. This fakes a TileState change for a user at
+     * 发送一个 TileState 变更数据包. 这会在给定位置为用户伪造一个 TileState 变更. 这不会实际改变世界中的任何方块.
+     * 此方法会使用该位置方块的 TileState, 或通过
+     * {@link #sendBlockChange(org.bukkit.Location, org.bukkit.block.data.BlockData)} 发送伪造的 TileState.
+     * <p>
+     * 如果客户端在给定位置没有合适的方块实体, 可能会向用户显示错误消息.
+     * <p>
+     * 可以使用 {@link BlockData#createBlockState()} 创建 {@link BlockState}.
+     * <p>
+     * 原文:Send a TileState change. This fakes a TileState change for a user at
      * the given location. This will not actually change the world in any way.
      * This method will use a TileState at the location's block or a faked TileState
      * sent via
@@ -1127,16 +1240,21 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * <p>
      * {@link BlockData#createBlockState()} can be used to create a {@link BlockState}.
      *
-     * @param loc the location of the sign
-     * @param tileState the tile state
-     * @throws IllegalArgumentException if location is null
-     * @throws IllegalArgumentException if tileState is null
+     * @param loc 告示牌的位置
+     * @param tileState 方块实体状态
+     * @throws IllegalArgumentException 如果location为null
+     * @throws IllegalArgumentException 如果tileState为null
      */
     @ApiStatus.Experimental
     public void sendBlockUpdate(@NotNull Location loc, @NotNull TileState tileState) throws IllegalArgumentException;
 
     /**
-     * Change a potion effect for the target entity. This will not actually
+     * 变更目标实体的药水效果. 这不会实际改变实体的药水效果.
+     * <p>
+     * <b>注意:</b> 向玩家自身发送效果变更可能会在客户端上引起意外行为. 以这种方式发送的效果在其计时器到达0时也不会被移除, 可以使用
+     * {@link #sendPotionEffectChangeRemove(LivingEntity, PotionEffectType)} 移除它们.
+     * <p>
+     * 原文:Change a potion effect for the target entity. This will not actually
      * change the entity's potion effects in any way.
      * <p>
      * <b>Note:</b> Sending an effect change to a player for themselves may
@@ -1144,76 +1262,95 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * not be removed when their timer reaches 0, they can be removed with
      * {@link #sendPotionEffectChangeRemove(LivingEntity, PotionEffectType)}
      *
-     * @param entity the entity whose potion effects to change
-     * @param effect the effect to change
+     * @param entity 要更改药水效果的实体
+     * @param effect 要变更的效果
      */
     public void sendPotionEffectChange(@NotNull LivingEntity entity, @NotNull PotionEffect effect);
 
     /**
-     * Remove a potion effect for the target entity. This will not actually
+     * 移除目标实体的药水效果. 这不会实际改变实体的药水效果.
+     * <p>
+     * <b>注意:</b> 向玩家自身发送效果变更可能会在客户端上引起意外行为.
+     * <p>
+     * 原文:Remove a potion effect for the target entity. This will not actually
      * change the entity's potion effects in any way.
      * <p>
      * <b>Note:</b> Sending an effect change to a player for themselves may
      * cause unexpected behavior on the client.
      *
-     * @param entity the entity whose potion effects to change
-     * @param type the effect type to remove
+     * @param entity 要移除药水效果的实体
+     * @param type 要移除的效果类型
      */
     public void sendPotionEffectChangeRemove(@NotNull LivingEntity entity, @NotNull PotionEffectType type);
 
     /**
-     * Render a map and send it to the player in its entirety. This may be
+     * 渲染地图并将其完整地发送给玩家. 当不希望通过正常方式流式传输地图时, 可以使用此方法.
+     * <p>
+     * 原文:Render a map and send it to the player in its entirety. This may be
      * used when streaming the map in the normal manner is not desirable.
      *
-     * @param map The map to be sent
+     * @param map 要发送的地图
      */
     public void sendMap(@NotNull MapView map);
 
     /**
-     * Send a hurt animation. This fakes incoming damage towards the player from
+     * 发送受伤动画. 这会伪造来自给定偏航角(相对于玩家方向)的伤害效果.
+     * <p>
+     * 原文:Send a hurt animation. This fakes incoming damage towards the player from
      * the given yaw relative to the player's direction.
      *
-     * @param yaw the yaw in degrees relative to the player's direction where 0
-     * is in front of the player, 90 is to the right, 180 is behind, and 270 is
-     * to the left
+     * @param yaw 相对于玩家方向的偏航角(以度为单位), 其中 0 为玩家前方, 90 为右方, 180 为后方, 270 为左方
      */
     public void sendHurtAnimation(float yaw);
 
     /**
-     * Sends the given server links to the player.
+     * 向玩家发送给定的服务器链接.
+     * <p>
+     * 原文:Sends the given server links to the player.
      *
-     * @param links links to send
+     * @param links 要发送的链接
      */
     public void sendLinks(@NotNull ServerLinks links);
 
     /**
-     * Add custom chat completion suggestions shown to the player while typing a
+     * 添加在玩家输入消息时显示的自定义聊天补全建议.
+     * <p>
+     * 原文:Add custom chat completion suggestions shown to the player while typing a
      * message.
      *
-     * @param completions the completions to send
+     * @param completions 要发送的补全建议
      */
     public void addCustomChatCompletions(@NotNull Collection<String> completions);
 
     /**
-     * Remove custom chat completion suggestions shown to the player while
+     * 移除在玩家输入消息时显示的自定义聊天补全建议.
+     * <p>
+     * 在线玩家名称无法通过此方法移除. 此方法仅影响通过 {@link #addCustomChatCompletions(Collection)}
+     * 或 {@link #setCustomChatCompletions(Collection)} 添加的自定义补全建议.
+     * <p>
+     * 原文:Remove custom chat completion suggestions shown to the player while
      * typing a message.
      *
      * Online player names cannot be removed with this method. This will affect
      * only custom completions added by {@link #addCustomChatCompletions(Collection)}
      * or {@link #setCustomChatCompletions(Collection)}.
      *
-     * @param completions the completions to remove
+     * @param completions 要移除的补全建议
      */
     public void removeCustomChatCompletions(@NotNull Collection<String> completions);
 
     /**
-     * Set the list of chat completion suggestions shown to the player while
+     * 设置在玩家输入消息时显示的聊天补全建议列表.
+     * <p>
+     * 如果之前已设置过补全建议, 此方法将移除所有旧的补全建议并替换为提供的补全建议.
+     * <p>
+     * 原文:Set the list of chat completion suggestions shown to the player while
      * typing a message.
      * <p>
      * If completions were set previously, this method will remove them all and
      * replace them with the provided completions.
      *
-     * @param completions the completions to set
+     * @param completions 要设置的补全建议
      */
     public void setCustomChatCompletions(@NotNull Collection<String> completions);
 
@@ -1229,9 +1366,11 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void updateInventory();
 
     /**
-     * Gets this player's previous {@link GameMode}
+     * 获取该玩家之前的游戏模式.
+     * <p>
+     * 原文:Gets this player's previous {@link GameMode}
      *
-     * @return Previous game mode or null
+     * @return 之前的游戏模式或null
      */
     @Nullable
     public GameMode getPreviousGameMode();
@@ -1320,14 +1459,22 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void resetPlayerWeather();
 
     /**
-     * Gets the player's cooldown between picking up experience orbs.
+     * 获取玩家拾取经验球之间的冷却时间.
+     * <p>
+     * 原文:Gets the player's cooldown between picking up experience orbs.
      *
-     * @return The cooldown in ticks
+     * @return 冷却时间(以tick为单位)
      */
     public int getExpCooldown();
 
     /**
-     * Sets the player's cooldown between picking up experience orbs..
+     * 设置玩家拾取经验球之间的冷却时间.
+     * <p>
+     * <strong>注意:</strong> 设置为0允许玩家立即拾取, 但设置为负值会导致玩家无法拾取经验球.
+     * <p>
+     * 调用此方法将触发 {@link PlayerExpCooldownChangeEvent} 事件.
+     * <p>
+     * 原文:Sets the player's cooldown between picking up experience orbs..
      *
      * <strong>Note:</strong> Setting this to 0 allows the player to pick up
      * instantly, but setting this to a negative value will cause the player to
@@ -1336,7 +1483,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * Calling this Method will result in {@link PlayerExpCooldownChangeEvent}
      * being called.
      *
-     * @param ticks The cooldown in ticks
+     * @param ticks 冷却时间(以tick为单位)
      */
     public void setExpCooldown(int ticks);
 
@@ -1426,24 +1573,28 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void setTotalExperience(int exp);
 
     /**
-     * Send an experience change.
+     * 发送经验变更数据包. 这会伪造用户的经验变更. 这不会实际改变经验值.
+     * <p>
+     * 原文:Send an experience change.
      *
      * This fakes an experience change packet for a user. This will not actually
      * change the experience points in any way.
      *
-     * @param progress Experience progress percentage (between 0.0 and 1.0)
+     * @param progress 经验进度百分比(0.0 到 1.0 之间)
      * @see #setExp(float)
      */
     public void sendExperienceChange(float progress);
 
     /**
-     * Send an experience change.
+     * 发送经验变更数据包. 这会伪造用户的经验变更. 这不会实际改变经验值.
+     * <p>
+     * 原文:Send an experience change.
      *
      * This fakes an experience change packet for a user. This will not actually
      * change the experience points in any way.
      *
-     * @param progress New experience progress percentage (between 0.0 and 1.0)
-     * @param level New experience level
+     * @param progress 新的经验进度百分比(0.0 到 1.0 之间)
+     * @param level 新的经验等级
      *
      * @see #setExp(float)
      * @see #setLevel(int)
@@ -1537,21 +1688,24 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void hideEntity(@NotNull Plugin plugin, @NotNull Entity entity);
 
     /**
-     * Allows this player to see an entity that was previously hidden. If
+     * 允许该玩家看到之前被隐藏的实体. 如果另一个插件也隐藏了该实体, 则该实体将继续处于隐藏状态, 直到另一个插件也调用此方法.
+     * <p>
+     * 原文:Allows this player to see an entity that was previously hidden. If
      * another another plugin had hidden the entity too, then the entity will
      * remain hidden until the other plugin calls this method too.
      *
-     * @param plugin Plugin that wants to show the entity
-     * @param entity Entity to show
+     * @param plugin 要显示该实体的插件
+     * @param entity 要显示的实体
      */
     public void showEntity(@NotNull Plugin plugin, @NotNull Entity entity);
 
     /**
-     * Checks to see if an entity has been visually hidden from this player.
+     * 检查实体是否在视觉上对该玩家隐藏.
+     * <p>
+     * 原文:Checks to see if an entity has been visually hidden from this player.
      *
-     * @param entity Entity to check
-     * @return True if the provided entity is not being hidden from this
-     *     player
+     * @param entity 要检查的实体
+     * @return 如果该实体未被隐藏则返回true
      */
     public boolean canSee(@NotNull Entity entity);
 
@@ -1744,7 +1898,21 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void setResourcePack(@NotNull String url, @Nullable byte[] hash);
 
     /**
-     * Request that the player's client download and switch resource packs.
+     * 请求玩家的客户端下载并切换资源包.
+     * <p>
+     * 玩家的客户端将在后台异步下载新的资源包, 下载完成后会自动切换到该资源包. 如果客户端之前下载并缓存过相同哈希值的资源包, 则不会下载, 而是直接应用缓存的资源包.
+     * 如果哈希值为null且客户端之前下载并缓存过相同的资源包, 则会对响应内容执行文件大小检查, 以确定资源包是否已更改并需要重新下载.
+     * 当此请求首次从给定服务器发送时, 客户端会在继续下载之前向玩家显示确认界面.
+     * <p>
+     * 注意:
+     * <ul>
+     * <li>玩家可以在客户端上禁用服务器资源, 在这种情况下此方法对他们无效. 使用
+     * {@link PlayerResourcePackStatusEvent} 来判断玩家是否加载了资源包!
+     * <li>要移除资源包, 可以使用 {@link #removeResourcePack(UUID)} 或 {@link #removeResourcePacks()}.
+     * <li>当未提供哈希值时, 请求会以空字符串作为哈希值发送. 这可能导致较新版本无法正确加载资源包.
+     * </ul>
+     * <p>
+     * 原文:Request that the player's client download and switch resource packs.
      * <p>
      * The player's client will download the new resource pack asynchronously
      * in the background, and will automatically switch to it once the
@@ -1771,23 +1939,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     pack correctly.
      * </ul>
      *
-     * @param url The URL from which the client will download the resource
-     *     pack. The string must contain only US-ASCII characters and should
-     *     be encoded as per RFC 1738.
-     * @param hash The sha1 hash sum of the resource pack file which is used
-     *     to apply a cached version of the pack directly without downloading
-     *     if it is available. Hast to be 20 bytes long!
-     * @param prompt The optional custom prompt message to be shown to client.
-     * @throws IllegalArgumentException Thrown if the URL is null.
-     * @throws IllegalArgumentException Thrown if the URL is too long. The
-     *     length restriction is an implementation specific arbitrary value.
-     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
-     *     long.
+     * @param url 客户端下载资源包的URL地址. 字符串必须仅包含US-ASCII字符, 并应按照RFC 1738编码.
+     * @param hash 资源包文件的SHA1哈希值, 用于在可用时直接应用缓存版本的资源包而无需重新下载. 必须为20字节长!
+     * @param prompt 要显示给客户端的可选自定义提示消息
+     * @throws IllegalArgumentException 如果URL为null
+     * @throws IllegalArgumentException 如果URL过长. 长度限制为实现特定的任意值
+     * @throws IllegalArgumentException 如果哈希值不是20字节长
      */
     public void setResourcePack(@NotNull String url, @Nullable byte[] hash, @Nullable String prompt);
 
     /**
-     * Request that the player's client download and switch resource packs.
+     * 请求玩家的客户端下载并切换资源包.
+     * <p>
+     * 玩家的客户端将在后台异步下载新的资源包, 下载完成后会自动切换到该资源包. 如果客户端之前下载并缓存过相同哈希值的资源包, 则不会下载, 而是直接应用缓存的资源包.
+     * 如果哈希值为null且客户端之前下载并缓存过相同的资源包, 则会对响应内容执行文件大小检查, 以确定资源包是否已更改并需要重新下载.
+     * 当此请求首次从给定服务器发送时, 客户端会在继续下载之前向玩家显示确认界面.
+     * <p>
+     * 注意:
+     * <ul>
+     * <li>玩家可以在客户端上禁用服务器资源, 在这种情况下此方法对他们无效. 使用
+     * {@link PlayerResourcePackStatusEvent} 来判断玩家是否加载了资源包!
+     * <li>要移除资源包, 可以使用 {@link #removeResourcePack(UUID)} 或 {@link #removeResourcePacks()}.
+     * <li>当未提供哈希值时, 请求会以空字符串作为哈希值发送. 这可能导致较新版本无法正确加载资源包.
+     * </ul>
+     * <p>
+     * 原文:Request that the player's client download and switch resource packs.
      * <p>
      * The player's client will download the new resource pack asynchronously
      * in the background, and will automatically switch to it once the
@@ -1814,24 +1990,31 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     pack correctly.
      * </ul>
      *
-     * @param url The URL from which the client will download the resource
-     *     pack. The string must contain only US-ASCII characters and should
-     *     be encoded as per RFC 1738.
-     * @param hash The sha1 hash sum of the resource pack file which is used
-     *     to apply a cached version of the pack directly without downloading
-     *     if it is available. Hast to be 20 bytes long!
-     * @param force If true, the client will be disconnected from the server
-     *     when it declines to use the resource pack.
-     * @throws IllegalArgumentException Thrown if the URL is null.
-     * @throws IllegalArgumentException Thrown if the URL is too long. The
-     *     length restriction is an implementation specific arbitrary value.
-     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
-     *     long.
+     * @param url 客户端下载资源包的URL地址. 字符串必须仅包含US-ASCII字符, 并应按照RFC 1738编码.
+     * @param hash 资源包文件的SHA1哈希值, 用于在可用时直接应用缓存版本的资源包而无需重新下载. 必须为20字节长!
+     * @param force 如果为true, 当客户端拒绝使用资源包时将断开与服务器的连接
+     * @throws IllegalArgumentException 如果URL为null
+     * @throws IllegalArgumentException 如果URL过长. 长度限制为实现特定的任意值
+     * @throws IllegalArgumentException 如果哈希值不是20字节长
      */
     public void setResourcePack(@NotNull String url, @Nullable byte[] hash, boolean force);
 
     /**
-     * Request that the player's client download and switch resource packs.
+     * 请求玩家的客户端下载并切换资源包.
+     * <p>
+     * 玩家的客户端将在后台异步下载新的资源包, 下载完成后会自动切换到该资源包. 如果客户端之前下载并缓存过相同哈希值的资源包, 则不会下载, 而是直接应用缓存的资源包.
+     * 如果哈希值为null且客户端之前下载并缓存过相同的资源包, 则会对响应内容执行文件大小检查, 以确定资源包是否已更改并需要重新下载.
+     * 当此请求首次从给定服务器发送时, 客户端会在继续下载之前向玩家显示确认界面.
+     * <p>
+     * 注意:
+     * <ul>
+     * <li>玩家可以在客户端上禁用服务器资源, 在这种情况下此方法对他们无效. 使用
+     * {@link PlayerResourcePackStatusEvent} 来判断玩家是否加载了资源包!
+     * <li>要移除资源包, 可以使用 {@link #removeResourcePack(UUID)} 或 {@link #removeResourcePacks()}.
+     * <li>当未提供哈希值时, 请求会以空字符串作为哈希值发送. 这可能导致较新版本无法正确加载资源包.
+     * </ul>
+     * <p>
+     * 原文:Request that the player's client download and switch resource packs.
      * <p>
      * The player's client will download the new resource pack asynchronously
      * in the background, and will automatically switch to it once the
@@ -1858,25 +2041,32 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     pack correctly.
      * </ul>
      *
-     * @param url The URL from which the client will download the resource
-     *     pack. The string must contain only US-ASCII characters and should
-     *     be encoded as per RFC 1738.
-     * @param hash The sha1 hash sum of the resource pack file which is used
-     *     to apply a cached version of the pack directly without downloading
-     *     if it is available. Hast to be 20 bytes long!
-     * @param prompt The optional custom prompt message to be shown to client.
-     * @param force If true, the client will be disconnected from the server
-     *     when it declines to use the resource pack.
-     * @throws IllegalArgumentException Thrown if the URL is null.
-     * @throws IllegalArgumentException Thrown if the URL is too long. The
-     *     length restriction is an implementation specific arbitrary value.
-     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
-     *     long.
+     * @param url 客户端下载资源包的URL地址. 字符串必须仅包含US-ASCII字符, 并应按照RFC 1738编码.
+     * @param hash 资源包文件的SHA1哈希值, 用于在可用时直接应用缓存版本的资源包而无需重新下载. 必须为20字节长!
+     * @param prompt 要显示给客户端的可选自定义提示消息
+     * @param force 如果为true, 当客户端拒绝使用资源包时将断开与服务器的连接
+     * @throws IllegalArgumentException 如果URL为null
+     * @throws IllegalArgumentException 如果URL过长. 长度限制为实现特定的任意值
+     * @throws IllegalArgumentException 如果哈希值不是20字节长
      */
     public void setResourcePack(@NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
 
     /**
-     * Request that the player's client download and switch resource packs.
+     * 请求玩家的客户端下载并切换资源包.
+     * <p>
+     * 玩家的客户端将在后台异步下载新的资源包, 下载完成后会自动切换到该资源包. 如果客户端之前下载并缓存过相同哈希值的资源包, 则不会下载, 而是直接应用缓存的资源包.
+     * 如果哈希值为null且客户端之前下载并缓存过相同的资源包, 则会对响应内容执行文件大小检查, 以确定资源包是否已更改并需要重新下载.
+     * 当此请求首次从给定服务器发送时, 客户端会在继续下载之前向玩家显示确认界面.
+     * <p>
+     * 注意:
+     * <ul>
+     * <li>玩家可以在客户端上禁用服务器资源, 在这种情况下此方法对他们无效. 使用
+     * {@link PlayerResourcePackStatusEvent} 来判断玩家是否加载了资源包!
+     * <li>要移除资源包, 可以使用 {@link #removeResourcePack(UUID)} 或 {@link #removeResourcePacks()}.
+     * <li>当未提供哈希值时, 请求会以空字符串作为哈希值发送. 这可能导致较新版本无法正确加载资源包.
+     * </ul>
+     * <p>
+     * 原文:Request that the player's client download and switch resource packs.
      * <p>
      * The player's client will download the new resource pack asynchronously
      * in the background, and will automatically switch to it once the
@@ -1903,26 +2093,33 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     pack correctly.
      * </ul>
      *
-     * @param id Unique resource pack ID.
-     * @param url The URL from which the client will download the resource
-     *     pack. The string must contain only US-ASCII characters and should
-     *     be encoded as per RFC 1738.
-     * @param hash The sha1 hash sum of the resource pack file which is used
-     *     to apply a cached version of the pack directly without downloading
-     *     if it is available. Hast to be 20 bytes long!
-     * @param prompt The optional custom prompt message to be shown to client.
-     * @param force If true, the client will be disconnected from the server
-     *     when it declines to use the resource pack.
-     * @throws IllegalArgumentException Thrown if the URL is null.
-     * @throws IllegalArgumentException Thrown if the URL is too long. The
-     *     length restriction is an implementation specific arbitrary value.
-     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
-     *     long.
+     * @param id 唯一的资源包ID
+     * @param url 客户端下载资源包的URL地址. 字符串必须仅包含US-ASCII字符, 并应按照RFC 1738编码.
+     * @param hash 资源包文件的SHA1哈希值, 用于在可用时直接应用缓存版本的资源包而无需重新下载. 必须为20字节长!
+     * @param prompt 要显示给客户端的可选自定义提示消息
+     * @param force 如果为true, 当客户端拒绝使用资源包时将断开与服务器的连接
+     * @throws IllegalArgumentException 如果URL为null
+     * @throws IllegalArgumentException 如果URL过长. 长度限制为实现特定的任意值
+     * @throws IllegalArgumentException 如果哈希值不是20字节长
      */
     public void setResourcePack(@NotNull UUID id, @NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
 
     /**
-     * Request that the player's client download and include another resource pack.
+     * 请求玩家的客户端下载并添加另一个资源包.
+     * <p>
+     * 玩家的客户端将在后台异步下载新的资源包, 下载完成后会自动添加到现有资源包中. 如果客户端之前下载并缓存过相同哈希值的资源包, 则不会下载, 而是直接应用缓存的资源包.
+     * 如果哈希值为null且客户端之前下载并缓存过相同的资源包, 则会对响应内容执行文件大小检查, 以确定资源包是否已更改并需要重新下载.
+     * 当此请求首次从给定服务器发送时, 客户端会在继续下载之前向玩家显示确认界面.
+     * <p>
+     * 注意:
+     * <ul>
+     * <li>玩家可以在客户端上禁用服务器资源, 在这种情况下此方法对他们无效. 使用
+     * {@link PlayerResourcePackStatusEvent} 来判断玩家是否加载了资源包!
+     * <li>要移除资源包, 可以使用 {@link #removeResourcePack(UUID)} 或 {@link #removeResourcePacks()}.
+     * <li>当未提供哈希值时, 请求会以空字符串作为哈希值发送. 这可能导致较新版本无法正确加载资源包.
+     * </ul>
+     * <p>
+     * 原文:Request that the player's client download and include another resource pack.
      * <p>
      * The player's client will download the new resource pack asynchronously
      * in the background, and will automatically add to it once the
@@ -1949,35 +2146,32 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      *     pack correctly.
      * </ul>
      *
-     * @param id Unique resource pack ID.
-     * @param url The URL from which the client will download the resource
-     *     pack. The string must contain only US-ASCII characters and should
-     *     be encoded as per RFC 1738.
-     * @param hash The sha1 hash sum of the resource pack file which is used
-     *     to apply a cached version of the pack directly without downloading
-     *     if it is available. Hast to be 20 bytes long!
-     * @param prompt The optional custom prompt message to be shown to client.
-     * @param force If true, the client will be disconnected from the server
-     *     when it declines to use the resource pack.
-     * @throws IllegalArgumentException Thrown if the URL is null.
-     * @throws IllegalArgumentException Thrown if the URL is too long. The
-     *     length restriction is an implementation specific arbitrary value.
-     * @throws IllegalArgumentException Thrown if the hash is not 20 bytes
-     *     long.
+     * @param id 唯一的资源包ID
+     * @param url 客户端下载资源包的URL地址. 字符串必须仅包含US-ASCII字符, 并应按照RFC 1738编码.
+     * @param hash 资源包文件的SHA1哈希值, 用于在可用时直接应用缓存版本的资源包而无需重新下载. 必须为20字节长!
+     * @param prompt 要显示给客户端的可选自定义提示消息
+     * @param force 如果为true, 当客户端拒绝使用资源包时将断开与服务器的连接
+     * @throws IllegalArgumentException 如果URL为null
+     * @throws IllegalArgumentException 如果URL过长. 长度限制为实现特定的任意值
+     * @throws IllegalArgumentException 如果哈希值不是20字节长
      */
     public void addResourcePack(@NotNull UUID id, @NotNull String url, @Nullable byte[] hash, @Nullable String prompt, boolean force);
 
     /**
-     * Request that the player's client remove a resource pack sent by the
+     * 请求玩家的客户端移除服务器发送的资源包.
+     * <p>
+     * 原文:Request that the player's client remove a resource pack sent by the
      * server.
      *
-     * @param id the id of the resource pack.
-     * @throws IllegalArgumentException If the ID is null.
+     * @param id 资源包的ID
+     * @throws IllegalArgumentException 如果ID为null
      */
     public void removeResourcePack(@NotNull UUID id);
 
     /**
-     * Request that the player's client remove all loaded resource pack sent by
+     * 请求玩家的客户端移除服务器发送的所有已加载的资源包.
+     * <p>
+     * 原文:Request that the player's client remove all loaded resource pack sent by
      * the server.
      */
     public void removeResourcePacks();
@@ -2005,41 +2199,48 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void setScoreboard(@NotNull Scoreboard scoreboard) throws IllegalArgumentException, IllegalStateException;
 
     /**
-     * Gets the {@link WorldBorder} visible to this Player, or null if viewing
+     * 获取对该玩家可见的 {@link WorldBorder}, 如果查看的是世界的世界边界则返回null.
+     * <p>
+     * 原文:Gets the {@link WorldBorder} visible to this Player, or null if viewing
      * the world's world border.
      *
-     * @return the player's world border
+     * @return 玩家的世界边界
      */
     @Nullable
     public WorldBorder getWorldBorder();
 
     /**
-     * Sets the {@link WorldBorder} visible to this Player.
+     * 设置对该玩家可见的 {@link WorldBorder}.
+     * <p>
+     * 原文:Sets the {@link WorldBorder} visible to this Player.
      *
-     * @param border the border to set, or null to set to the world border of
-     * the player's current world
+     * @param border 要设置的边界, 或null表示设置为玩家当前世界的世界边界
      *
-     * @throws UnsupportedOperationException if setting the border to that of
-     * a world in which the player is not currently present.
+     * @throws UnsupportedOperationException 如果将边界设置为玩家当前不在的世界
      *
      * @see Server#createWorldBorder()
      */
     public void setWorldBorder(@Nullable WorldBorder border);
 
     /**
-     * Send a health update to the player. This will adjust the health, food, and
+     * 向玩家发送健康状态更新. 这会调整客户端上的生命值、饥饿值和饱和度, 不会影响服务器上玩家的实际值.
+     * 一旦服务器上这些值中的任何一个发生变化, 此方法发送的变更将不再可见.
+     * <p>
+     * 原文:Send a health update to the player. This will adjust the health, food, and
      * saturation on the client and will not affect the player's actual values on
      * the server. As soon as any of these values change on the server, changes sent
      * by this method will no longer be visible.
      *
-     * @param health the health. If 0.0, the client will believe it is dead
-     * @param foodLevel the food level
-     * @param saturation the saturation
+     * @param health 生命值. 如果为0.0, 客户端会认为玩家已死亡
+     * @param foodLevel 饥饿值
+     * @param saturation 饱和度
      */
     public void sendHealthUpdate(double health, int foodLevel, float saturation);
 
     /**
-     * Send a health update to the player using its known server values. This will
+     * 使用已知的服务器值向玩家发送健康状态更新. 这会同步客户端上的生命值、饥饿值和饱和度, 因此在更改玩家的最大生命值属性时可能很有用.
+     * <p>
+     * 原文:Send a health update to the player using its known server values. This will
      * synchronize the health, food, and saturation on the client and therefore may
      * be useful when changing a player's maximum health attribute.
      */
@@ -2231,34 +2432,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果(按count指定的次数). 每个粒子的位置将由各轴上的偏移参数进行正负方向的随机偏移.
+     * <p>
+     * 原文:Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
+     * @param particle 要产生的粒子效果
+     * @param location 产生位置
+     * @param count 粒子数目
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
      */
     public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果(按count指定的次数). 每个粒子的位置将由各轴上的偏移参数进行正负方向的随机偏移.
+     * <p>
+     * 原文:Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
+     * @param particle 要产生的粒子效果
+     * @param x 产生位置的x轴坐标
+     * @param y 产生位置的y轴坐标
+     * @param z 产生位置的z轴坐标
+     * @param count 粒子数目
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
      */
     public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ);
 
@@ -2299,38 +2504,40 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果(按count指定的次数). 每个粒子的位置将由各轴上的偏移参数进行正负方向的随机偏移.
+     * <p>
+     * 原文:Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
+     * @param particle 要产生的粒子效果
+     * @param location 产生位置
+     * @param count 粒子数目
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于所使用的粒子效果(通常为速度)
      */
     public void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果(按count指定的次数). 每个粒子的位置将由各轴上的偏移参数进行正负方向的随机偏移.
+     * <p>
+     * 原文:Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
+     * @param particle 要产生的粒子效果
+     * @param x 产生位置的x轴坐标
+     * @param y 产生位置的y轴坐标
+     * @param z 产生位置的z轴坐标
+     * @param count 粒子数目
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于所使用的粒子效果(通常为速度)
      */
     public void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra);
 
@@ -2375,50 +2582,46 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果(按count指定的次数). 每个粒子的位置将由各轴上的偏移参数进行正负方向的随机偏移.
+     * <p>
+     * 原文:Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param location the location to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
-     * @param force whether to send the particle to the player in an extended
-     *              range and encourage their client to render it regardless of
-     *              settings
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()})
+     * @param particle 要产生的粒子效果
+     * @param location 产生位置
+     * @param count 粒子数目
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于所使用的粒子效果(通常为速度)
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
+     * @param force 是否在扩展范围内向玩家发送粒子效果, 并强制客户端渲染, 无论设置如何
      */
     public <T> void spawnParticle(@NotNull Particle particle, @NotNull Location location, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
     /**
-     * Spawns the particle (the number of times specified by count)
+     * 在指定位置产生粒子效果(按count指定的次数). 每个粒子的位置将由各轴上的偏移参数进行正负方向的随机偏移.
+     * <p>
+     * 原文:Spawns the particle (the number of times specified by count)
      * at the target location. The position of each particle will be
      * randomized positively and negatively by the offset parameters
      * on each axis.
      *
-     * @param <T> type of particle data (see {@link Particle#getDataType()}
-     * @param particle the particle to spawn
-     * @param x the position on the x axis to spawn at
-     * @param y the position on the y axis to spawn at
-     * @param z the position on the z axis to spawn at
-     * @param count the number of particles
-     * @param offsetX the maximum random offset on the X axis
-     * @param offsetY the maximum random offset on the Y axis
-     * @param offsetZ the maximum random offset on the Z axis
-     * @param extra the extra data for this particle, depends on the
-     *              particle used (normally speed)
-     * @param data the data to use for the particle or null,
-     *             the type of this depends on {@link Particle#getDataType()}
-     * @param force whether to send the particle to the player in an extended
-     *              range and encourage their client to render it regardless of
-     *              settings
+     * @param <T> 粒子效果数据类型 (请参阅 {@link Particle#getDataType()})
+     * @param particle 要产生的粒子效果
+     * @param x 产生位置的x轴坐标
+     * @param y 产生位置的y轴坐标
+     * @param z 产生位置的z轴坐标
+     * @param count 粒子数目
+     * @param offsetX X轴上的最大随机偏移量
+     * @param offsetY Y轴上的最大随机偏移量
+     * @param offsetZ Z轴上的最大随机偏移量
+     * @param extra 此粒子的额外数据, 取决于所使用的粒子效果(通常为速度)
+     * @param data 粒子效果的数据或null, 其数据类型取决于{@link Particle#getDataType()}
+     * @param force 是否在扩展范围内向玩家发送粒子效果, 并强制客户端渲染, 无论设置如何
      */
     public <T> void spawnParticle(@NotNull Particle particle, double x, double y, double z, int count, double offsetX, double offsetY, double offsetZ, double extra, @Nullable T data, boolean force);
 
@@ -2433,17 +2636,26 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public AdvancementProgress getAdvancementProgress(@NotNull Advancement advancement);
 
     /**
-     * Get the player's current client side view distance.
+     * 获取玩家当前客户端侧的视距.
+     * <br>
+     * 如果客户端尚未通信此信息, 则默认为服务器视距.
+     * <p>
+     * 原文:Get the player's current client side view distance.
      * <br>
      * Will default to the server view distance if the client has not yet
      * communicated this information,
      *
-     * @return client view distance as above
+     * @return 客户端视距
      */
     public int getClientViewDistance();
 
     /**
-     * Gets the player's estimated ping in milliseconds.
+     * 获取玩家的估计延迟(以毫秒为单位).
+     * <p>
+     * 在原版中, 此值表示发送的应用层ping数据包响应时间的加权平均值. 此值不代表网络往返时间, 因此可能粒度较低且受其他因素影响.
+     * 因此, 它<b>不应</b>被用于反作弊目的. 建议仅将其作为连接质量的<b>定性</b>指标(原版在标签列表中就是为此目的使用它).
+     * <p>
+     * 原文:Gets the player's estimated ping in milliseconds.
      *
      * In Vanilla this value represents a weighted average of the response time
      * to application layer ping packets sent. This value does not represent the
@@ -2453,7 +2665,7 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
      * <b>qualitative</b> indicator of connection quality (Vanilla uses it for
      * this purpose in the tab list).
      *
-     * @return player ping
+     * @return 玩家延迟
      */
     public int getPing();
 
@@ -2477,7 +2689,11 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public String getLocale();
 
     /**
-     * Update the list of commands sent to the client.
+     * 更新发送给客户端的命令列表.
+     * <br>
+     * 通常在权限变更完成后用于确保客户端拥有完整的命令列表.
+     * <p>
+     * 原文:Update the list of commands sent to the client.
      * <br>
      * Generally useful to ensure the client has a complete list of commands
      * after permission changes are done.
@@ -2494,26 +2710,38 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void openBook(@NotNull ItemStack book);
 
     /**
-     * Open a Sign for editing by the Player.
+     * 为玩家打开告示牌以进行编辑.
+     * <p>
+     * 告示牌必须放置在与玩家相同的世界中.
+     * <p>
+     * 原文:Open a Sign for editing by the Player.
      *
      * The Sign must be placed in the same world as the player.
      *
-     * @param sign The sign to edit
+     * @param sign 要编辑的告示牌
      */
     public void openSign(@NotNull Sign sign);
 
     /**
-     * Open a Sign for editing by the Player.
+     * 为玩家打开告示牌以进行编辑.
+     * <p>
+     * 告示牌必须放置在与玩家相同的世界中.
+     * <p>
+     * 原文:Open a Sign for editing by the Player.
      *
      * The Sign must be placed in the same world as the player.
      *
-     * @param sign The sign to edit
-     * @param side The side to edit
+     * @param sign 要编辑的告示牌
+     * @param side 要编辑的面
      */
     public void openSign(@NotNull Sign sign, @NotNull Side side);
 
     /**
-     * Shows the demo screen to the player, this screen is normally only seen in
+     * 向玩家显示演示界面, 此界面通常只在游戏的演示版本中可见.
+     * <br>
+     * 服务器可以使用资源包修改此界面上的文本.
+     * <p>
+     * 原文:Shows the demo screen to the player, this screen is normally only seen in
      * the demo version of the game.
      * <br>
      * Servers can modify the text on this screen using a resource pack.
@@ -2521,32 +2749,39 @@ public interface Player extends HumanEntity, Conversable, OfflinePlayer, PluginM
     public void showDemoScreen();
 
     /**
-     * Gets whether the player has the "Allow Server Listings" setting enabled.
+     * 获取玩家是否启用了"允许服务器列表显示"设置.
+     * <p>
+     * 原文:Gets whether the player has the "Allow Server Listings" setting enabled.
      *
-     * @return whether the player allows server listings
+     * @return 玩家是否允许服务器列表显示
      */
     public boolean isAllowingServerListings();
 
     /**
-     * Clear the player's open dialog.
+     * 清除玩家当前打开的对话框.
+     * <p>
+     * 原文:Clear the player's open dialog.
      */
     @ApiStatus.Experimental
     public void clearDialog();
 
     /**
-     * Show a dialog to the player.
+     * 向玩家显示对话框.
+     * <p>
+     * 原文:Show a dialog to the player.
      *
-     * @param dialog the dialog to show
-     * @throws IllegalArgumentException if the dialog does not exist on the
-     * server
+     * @param dialog 要显示的对话框
+     * @throws IllegalArgumentException 如果服务器上不存在该对话框
      */
     @ApiStatus.Experimental
     public void showDialog(@NotNull NamespacedKey dialog);
 
     /**
-     * Show a dialog to the player.
+     * 向玩家显示对话框.
+     * <p>
+     * 原文:Show a dialog to the player.
      *
-     * @param dialog the dialog to show
+     * @param dialog 要显示的对话框
      */
     @ApiStatus.Experimental
     public void showDialog(@NotNull net.md_5.bungee.api.dialog.Dialog dialog);
