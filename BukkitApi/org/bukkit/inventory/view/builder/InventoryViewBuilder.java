@@ -6,35 +6,41 @@ import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
 /**
- * Generic Builder for InventoryView's with no special attributes or parameters
+ * 没有特殊属性或参数的通用 InventoryView 构建器
  *
- * @param <V> the type of InventoryView created from this builder
+ * @param <V> 通过此构建器创建的 InventoryView 的类型
  */
 @ApiStatus.Experimental
 public interface InventoryViewBuilder<V extends InventoryView> {
 
     /**
-     * Makes a copy of this builder
+     * 创建此构建器的副本
+     * <p>
+     * 原文：Makes a copy of this builder
      *
-     * @return a copy of this builder
+     * @return 此构建器的副本
      */
     @NotNull
     InventoryViewBuilder<V> copy();
 
     /**
-     * Sets the title of the builder
+     * 设置构建器的标题
+     * <p>
+     * 原文：Sets the title of the builder
      *
-     * @param title the title
-     * @return this builder
+     * @param title 标题
+     * @return 此构建器
      */
     @NotNull
     InventoryViewBuilder<V> title(@NotNull final String title);
 
     /**
-     * Builds this builder into a InventoryView
+     * 将此构建器构建为 InventoryView
+     * <p>
+     * 原文：Builds this builder into a InventoryView
      *
-     * @param player the player to assign to the view
-     * @return the created InventoryView
+     * @param player 要分配给视图的玩家
+     * @return 创建的 InventoryView
      */
     @NotNull
     V build(@NotNull final HumanEntity player);
