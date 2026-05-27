@@ -16,10 +16,8 @@ import org.jetbrains.annotations.NotNull;
 /**
  * 所有生物群系的枚举.
  * <p>
- * The Biomes listed in this interface are present in the default server
- * or can be enabled via a {@link FeatureFlag}.
- * There may be additional biomes present in the server, for example from a {@link DataPack}
- * which can be accessed via {@link Registry#BIOME}.
+ * 此接口中列出的生物群系存在于默认服务器中, 或可通过{@link FeatureFlag}启用.
+ * 服务器中可能存在其他生物群系, 例如来自{@link DataPack}的生物群系, 可通过{@link Registry#BIOME}访问.
  */
 public interface Biome extends OldEnum<Biome>, Keyed, RegistryAware {
 
@@ -92,7 +90,7 @@ public interface Biome extends OldEnum<Biome>, Keyed, RegistryAware {
     /**
      * 自定义生物群系
      *
-     * @deprecated Biome is no longer an enum, custom biomes will have their own biome instance.
+     * @deprecated Biome不再是枚举, 自定义生物群系将拥有自己的biome实例.
      */
     @Deprecated(since = "1.21.3")
     Biome CUSTOM = Bukkit.getUnsafe().getCustomBiome();
@@ -107,7 +105,7 @@ public interface Biome extends OldEnum<Biome>, Keyed, RegistryAware {
      *
      * @see #getKeyOrThrow()
      * @see #isRegistered()
-     * @deprecated A key might not always be present, use {@link #getKeyOrThrow()} instead.
+     * @deprecated 密钥可能并非始终存在, 请改用{@link #getKeyOrThrow()}.
      */
     @NotNull
     @Override
@@ -115,9 +113,9 @@ public interface Biome extends OldEnum<Biome>, Keyed, RegistryAware {
     NamespacedKey getKey();
 
     /**
-     * @param name of the biome.
-     * @return the biome with the given name.
-     * @deprecated only for backwards compatibility, use {@link Registry#get(NamespacedKey)} instead.
+     * @param name 生物群系的名称.
+     * @return 具有给定名称的生物群系.
+     * @deprecated 仅为向后兼容, 请改用{@link Registry#get(NamespacedKey)}.
      */
     @NotNull
     @Deprecated(since = "1.21.3")
@@ -132,8 +130,8 @@ public interface Biome extends OldEnum<Biome>, Keyed, RegistryAware {
     }
 
     /**
-     * @return an array of all known biomes.
-     * @deprecated use {@link Registry#iterator()}.
+     * @return 所有已知生物群系的数组.
+     * @deprecated 请改用{@link Registry#iterator()}.
      */
     @NotNull
     @Deprecated(since = "1.21.3")
