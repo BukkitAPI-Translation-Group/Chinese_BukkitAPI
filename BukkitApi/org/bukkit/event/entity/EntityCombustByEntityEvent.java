@@ -23,9 +23,8 @@ public class EntityCombustByEntityEvent extends EntityCombustEvent {
 
     /**
      * 返回造成燃烧的实体.
-     * 
-     * @return 
-     * 
+     * <p>
+     * 原文：
      * Get the entity that caused the combustion event.
      *
      * @return 造成燃烧的实体
