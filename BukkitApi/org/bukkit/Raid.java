@@ -87,6 +87,18 @@ public interface Raid {
     int getTotalWaves();
 
     /**
+     * Sets the total number of waves in this raid.
+     * <br>
+     * <b>Note:</b> There is an automatic raid timeout that will cancel the raid entirely.
+     * At the time of writing, it is 48,000 ticks or 40 minutes. Please keep that in
+     * mind when changing the total number of waves, as your raid may be cut short without reward.
+     *
+     * @param waves new number of waves
+     * @throws IllegalArgumentException if total waves are less than 1
+     */
+    void setTotalWaves(int waves);
+
+    /**
      * Gets the sum of all raider's health.
      *
      * @return total raiders health
