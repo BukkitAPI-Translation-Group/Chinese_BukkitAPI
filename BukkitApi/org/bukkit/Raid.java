@@ -19,6 +19,13 @@ public interface Raid {
     boolean isStarted();
 
     /**
+     * Stops this raid.
+     *
+     * @param removeSpawnedRaiders whether to remove spawned raiders
+     */
+    void stopRaid(boolean removeSpawnedRaiders);
+
+    /**
      * Gets the amount of ticks this raid has existed.
      *
      * @return active ticks
