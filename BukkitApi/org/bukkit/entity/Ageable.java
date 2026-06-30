@@ -19,22 +19,17 @@ public interface Ageable extends Creature {
     public void setAge(int age);
 
     /**
-     * Lock the age of the animal, setting this will prevent the animal from
-     * maturing or getting ready for mating.
+     * Lock the age of the animal.
      *
      * @param lock new lock
-     * @deprecated see {@link Breedable#setAgeLock(boolean)}
      */
-    @Deprecated(since = "1.16.2")
     public void setAgeLock(boolean lock);
 
     /**
      * Gets the current agelock.
      *
      * @return the current agelock
-     * @deprecated see {@link Breedable#getAgeLock()}
      */
-    @Deprecated(since = "1.16.2")
     public boolean getAgeLock();
 
     /**

@@ -3,7 +3,7 @@ package org.bukkit.entity;
 /**
  * Represents a Slime-like mob.
  */
-public interface AbstractCubeMob extends Mob {
+public interface AbstractCubeMob extends Ageable, Mob {
 
     /**
      * @return The size of the slime
