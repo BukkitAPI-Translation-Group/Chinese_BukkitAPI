@@ -307,7 +307,7 @@ public interface Tag<T extends Keyed> extends Keyed {
     /**
      * Vanilla block tag representing all concrete powder.
      */
-    Tag<Material> CONCRETE_POWDERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("concrete_powder"), Material.class);
+    Tag<Material> CONCRETE_POWDERS = Bukkit.getTag(REGISTRY_BLOCKS, NamespacedKey.minecraft("concrete_powders"), Material.class);
     /**
      * Vanilla block tag representing all concrete powder.
      *
