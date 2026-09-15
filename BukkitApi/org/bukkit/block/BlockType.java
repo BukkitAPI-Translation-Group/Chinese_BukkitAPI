@@ -101,6 +101,7 @@ import org.bukkit.block.data.type.SculkShrieker;
 import org.bukkit.block.data.type.SculkVein;
 import org.bukkit.block.data.type.SeaPickle;
 import org.bukkit.block.data.type.Shelf;
+import org.bukkit.block.data.type.ShelfMushroom;
 import org.bukkit.block.data.type.Sign;
 import org.bukkit.block.data.type.Skull;
 import org.bukkit.block.data.type.Slab;
@@ -216,8 +217,13 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> ACACIA_PLANKS = getBlockType("acacia_planks");
     BlockType.Typed<BlockData> CHERRY_PLANKS = getBlockType("cherry_planks");
     BlockType.Typed<BlockData> DARK_OAK_PLANKS = getBlockType("dark_oak_planks");
+    /**
+     * BlockData: {@link Orientable}
+     */
+    BlockType.Typed<Orientable> PALE_OAK_WOOD = getBlockType("pale_oak_wood");
     BlockType.Typed<BlockData> PALE_OAK_PLANKS = getBlockType("pale_oak_planks");
     BlockType.Typed<BlockData> MANGROVE_PLANKS = getBlockType("mangrove_planks");
+    BlockType.Typed<BlockData> POPLAR_PLANKS = getBlockType("poplar_planks");
     BlockType.Typed<BlockData> BAMBOO_PLANKS = getBlockType("bamboo_planks");
     BlockType.Typed<BlockData> BAMBOO_MOSAIC = getBlockType("bamboo_mosaic");
     /**
@@ -256,6 +262,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link MangrovePropagule}
      */
     BlockType.Typed<MangrovePropagule> MANGROVE_PROPAGULE = getBlockType("mangrove_propagule");
+    /**
+     * BlockData: {@link Sapling}
+     */
+    BlockType.Typed<Sapling> POPLAR_SAPLING = getBlockType("poplar_sapling");
     BlockType.Typed<BlockData> BEDROCK = getBlockType("bedrock");
     /**
      * BlockData: {@link Levelled}
@@ -320,6 +330,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Orientable> MANGROVE_LOG = getBlockType("mangrove_log");
     /**
+     * BlockData: {@link Orientable}
+     */
+    BlockType.Typed<Orientable> POPLAR_LOG = getBlockType("poplar_log");
+    /**
      * BlockData: {@link Waterlogged}
      */
     BlockType.Typed<Waterlogged> MANGROVE_ROOTS = getBlockType("mangrove_roots");
@@ -370,6 +384,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Orientable}
      */
+    BlockType.Typed<Orientable> STRIPPED_POPLAR_LOG = getBlockType("stripped_poplar_log");
+    /**
+     * BlockData: {@link Orientable}
+     */
     BlockType.Typed<Orientable> STRIPPED_BAMBOO_BLOCK = getBlockType("stripped_bamboo_block");
     /**
      * BlockData: {@link Orientable}
@@ -402,11 +420,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Orientable}
      */
-    BlockType.Typed<Orientable> PALE_OAK_WOOD = getBlockType("pale_oak_wood");
+    BlockType.Typed<Orientable> MANGROVE_WOOD = getBlockType("mangrove_wood");
     /**
      * BlockData: {@link Orientable}
      */
-    BlockType.Typed<Orientable> MANGROVE_WOOD = getBlockType("mangrove_wood");
+    BlockType.Typed<Orientable> POPLAR_WOOD = getBlockType("poplar_wood");
     /**
      * BlockData: {@link Orientable}
      */
@@ -444,6 +462,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Orientable> STRIPPED_MANGROVE_WOOD = getBlockType("stripped_mangrove_wood");
     /**
+     * BlockData: {@link Orientable}
+     */
+    BlockType.Typed<Orientable> STRIPPED_POPLAR_WOOD = getBlockType("stripped_poplar_wood");
+    /**
      * BlockData: {@link Leaves}
      */
     BlockType.Typed<Leaves> OAK_LEAVES = getBlockType("oak_leaves");
@@ -479,6 +501,18 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Leaves}
      */
     BlockType.Typed<Leaves> MANGROVE_LEAVES = getBlockType("mangrove_leaves");
+    /**
+     * BlockData: {@link Leaves}
+     */
+    BlockType.Typed<Leaves> RED_POPLAR_LEAVES = getBlockType("red_poplar_leaves");
+    /**
+     * BlockData: {@link Leaves}
+     */
+    BlockType.Typed<Leaves> ORANGE_POPLAR_LEAVES = getBlockType("orange_poplar_leaves");
+    /**
+     * BlockData: {@link Leaves}
+     */
+    BlockType.Typed<Leaves> YELLOW_POPLAR_LEAVES = getBlockType("yellow_poplar_leaves");
     /**
      * BlockData: {@link Leaves}
      */
@@ -569,6 +603,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Bed> BLACK_BED = getBlockType("black_bed");
     /**
+     * BlockData: {@link Bed}
+     */
+    BlockType.Typed<Bed> STRAW_BED = getBlockType("straw_bed");
+    /**
      * BlockData: {@link RedstoneRail}
      */
     BlockType.Typed<RedstoneRail> POWERED_RAIL = getBlockType("powered_rail");
@@ -585,6 +623,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> FERN = getBlockType("fern");
     BlockType.Typed<BlockData> DEAD_BUSH = getBlockType("dead_bush");
     BlockType.Typed<BlockData> BUSH = getBlockType("bush");
+    BlockType.Typed<BlockData> RED_SHRUB = getBlockType("red_shrub");
     BlockType.Typed<BlockData> SHORT_DRY_GRASS = getBlockType("short_dry_grass");
     BlockType.Typed<BlockData> TALL_DRY_GRASS = getBlockType("tall_dry_grass");
     BlockType.Typed<BlockData> SEAGRASS = getBlockType("seagrass");
@@ -616,6 +655,134 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> GREEN_WOOL = getBlockType("green_wool");
     BlockType.Typed<BlockData> RED_WOOL = getBlockType("red_wool");
     BlockType.Typed<BlockData> BLACK_WOOL = getBlockType("black_wool");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> WHITE_WOOL_STAIRS = getBlockType("white_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> ORANGE_WOOL_STAIRS = getBlockType("orange_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> MAGENTA_WOOL_STAIRS = getBlockType("magenta_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> LIGHT_BLUE_WOOL_STAIRS = getBlockType("light_blue_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> YELLOW_WOOL_STAIRS = getBlockType("yellow_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> LIME_WOOL_STAIRS = getBlockType("lime_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> PINK_WOOL_STAIRS = getBlockType("pink_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> GRAY_WOOL_STAIRS = getBlockType("gray_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> LIGHT_GRAY_WOOL_STAIRS = getBlockType("light_gray_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> CYAN_WOOL_STAIRS = getBlockType("cyan_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> PURPLE_WOOL_STAIRS = getBlockType("purple_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> BLUE_WOOL_STAIRS = getBlockType("blue_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> BROWN_WOOL_STAIRS = getBlockType("brown_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> GREEN_WOOL_STAIRS = getBlockType("green_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> RED_WOOL_STAIRS = getBlockType("red_wool_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> BLACK_WOOL_STAIRS = getBlockType("black_wool_stairs");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> WHITE_WOOL_SLAB = getBlockType("white_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> ORANGE_WOOL_SLAB = getBlockType("orange_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> MAGENTA_WOOL_SLAB = getBlockType("magenta_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> LIGHT_BLUE_WOOL_SLAB = getBlockType("light_blue_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> YELLOW_WOOL_SLAB = getBlockType("yellow_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> LIME_WOOL_SLAB = getBlockType("lime_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> PINK_WOOL_SLAB = getBlockType("pink_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> GRAY_WOOL_SLAB = getBlockType("gray_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> LIGHT_GRAY_WOOL_SLAB = getBlockType("light_gray_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> CYAN_WOOL_SLAB = getBlockType("cyan_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> PURPLE_WOOL_SLAB = getBlockType("purple_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> BLUE_WOOL_SLAB = getBlockType("blue_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> BROWN_WOOL_SLAB = getBlockType("brown_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> GREEN_WOOL_SLAB = getBlockType("green_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> RED_WOOL_SLAB = getBlockType("red_wool_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> BLACK_WOOL_SLAB = getBlockType("black_wool_slab");
     /**
      * BlockData: {@link TechnicalPiston}
      */
@@ -692,6 +859,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Shelf}
      */
+    BlockType.Typed<Shelf> POPLAR_SHELF = getBlockType("poplar_shelf");
+    /**
+     * BlockData: {@link Shelf}
+     */
     BlockType.Typed<Shelf> SPRUCE_SHELF = getBlockType("spruce_shelf");
     /**
      * BlockData: {@link Shelf}
@@ -711,7 +882,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> SOUL_FIRE = getBlockType("soul_fire");
     BlockType.Typed<BlockData> SPAWNER = getBlockType("spawner");
     /**
-     * BlockData: {@link Fire}
+     * BlockData: {@link CreakingHeart}
      */
     BlockType.Typed<CreakingHeart> CREAKING_HEART = getBlockType("creaking_heart");
     /**
@@ -781,6 +952,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Sign}
      */
+    BlockType.Typed<Sign> POPLAR_SIGN = getBlockType("poplar_sign");
+    /**
+     * BlockData: {@link Sign}
+     */
     BlockType.Typed<Sign> BAMBOO_SIGN = getBlockType("bamboo_sign");
     /**
      * BlockData: {@link Door}
@@ -837,6 +1012,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link WallSign}
      */
+    BlockType.Typed<WallSign> POPLAR_WALL_SIGN = getBlockType("poplar_wall_sign");
+    /**
+     * BlockData: {@link WallSign}
+     */
     BlockType.Typed<WallSign> BAMBOO_WALL_SIGN = getBlockType("bamboo_wall_sign");
     /**
      * BlockData: {@link HangingSign}
@@ -885,6 +1064,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link HangingSign}
      */
+    BlockType.Typed<HangingSign> POPLAR_HANGING_SIGN = getBlockType("poplar_hanging_sign");
+    /**
+     * BlockData: {@link HangingSign}
+     */
     BlockType.Typed<HangingSign> BAMBOO_HANGING_SIGN = getBlockType("bamboo_hanging_sign");
     /**
      * BlockData: {@link WallHangingSign}
@@ -922,6 +1105,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link WallHangingSign}
      */
     BlockType.Typed<WallHangingSign> MANGROVE_WALL_HANGING_SIGN = getBlockType("mangrove_wall_hanging_sign");
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    BlockType.Typed<WallHangingSign> POPLAR_WALL_HANGING_SIGN = getBlockType("poplar_wall_hanging_sign");
     /**
      * BlockData: {@link WallHangingSign}
      */
@@ -982,6 +1169,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Powerable}
      */
     BlockType.Typed<Powerable> MANGROVE_PRESSURE_PLATE = getBlockType("mangrove_pressure_plate");
+    /**
+     * BlockData: {@link Powerable}
+     */
+    BlockType.Typed<Powerable> POPLAR_PRESSURE_PLATE = getBlockType("poplar_pressure_plate");
     /**
      * BlockData: {@link Powerable}
      */
@@ -1124,6 +1315,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link TrapDoor}
      */
     BlockType.Typed<TrapDoor> MANGROVE_TRAPDOOR = getBlockType("mangrove_trapdoor");
+    /**
+     * BlockData: {@link TrapDoor}
+     */
+    BlockType.Typed<TrapDoor> POPLAR_TRAPDOOR = getBlockType("poplar_trapdoor");
     /**
      * BlockData: {@link TrapDoor}
      */
@@ -1338,6 +1533,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Cocoa> COCOA = getBlockType("cocoa");
     /**
+     * BlockData: {@link ShelfMushroom}
+     */
+    BlockType.Typed<ShelfMushroom> SHELF_MUSHROOM = getBlockType("shelf_mushroom");
+    /**
      * BlockData: {@link Stairs}
      */
     BlockType.Typed<Stairs> SANDSTONE_STAIRS = getBlockType("sandstone_stairs");
@@ -1391,6 +1590,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> POTTED_CHERRY_SAPLING = getBlockType("potted_cherry_sapling");
     BlockType.Typed<BlockData> POTTED_DARK_OAK_SAPLING = getBlockType("potted_dark_oak_sapling");
     BlockType.Typed<BlockData> POTTED_PALE_OAK_SAPLING = getBlockType("potted_pale_oak_sapling");
+    BlockType.Typed<BlockData> POTTED_POPLAR_SAPLING = getBlockType("potted_poplar_sapling");
     BlockType.Typed<BlockData> POTTED_MANGROVE_PROPAGULE = getBlockType("potted_mangrove_propagule");
     BlockType.Typed<BlockData> POTTED_FERN = getBlockType("potted_fern");
     BlockType.Typed<BlockData> POTTED_DANDELION = getBlockType("potted_dandelion");
@@ -1455,6 +1655,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Switch}
      */
     BlockType.Typed<Switch> MANGROVE_BUTTON = getBlockType("mangrove_button");
+    /**
+     * BlockData: {@link Switch}
+     */
+    BlockType.Typed<Switch> POPLAR_BUTTON = getBlockType("poplar_button");
     /**
      * BlockData: {@link Switch}
      */
@@ -1671,6 +1875,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Stairs}
      */
     BlockType.Typed<Stairs> MANGROVE_STAIRS = getBlockType("mangrove_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> POPLAR_STAIRS = getBlockType("poplar_stairs");
     /**
      * BlockData: {@link Stairs}
      */
@@ -1941,6 +2149,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Slab}
      */
+    BlockType.Typed<Slab> POPLAR_SLAB = getBlockType("poplar_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
     BlockType.Typed<Slab> BAMBOO_SLAB = getBlockType("bamboo_slab");
     /**
      * BlockData: {@link Slab}
@@ -1950,10 +2162,6 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Slab}
      */
     BlockType.Typed<Slab> STONE_SLAB = getBlockType("stone_slab");
-    /**
-     * BlockData: {@link Slab}
-     */
-    BlockType.Typed<Slab> SMOOTH_STONE_SLAB = getBlockType("smooth_stone_slab");
     /**
      * BlockData: {@link Slab}
      */
@@ -1998,11 +2206,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Slab}
      */
     BlockType.Typed<Slab> CUT_RED_SANDSTONE_SLAB = getBlockType("cut_red_sandstone_slab");
+    BlockType.Typed<BlockData> SMOOTH_STONE = getBlockType("smooth_stone");
     /**
      * BlockData: {@link Slab}
      */
-    BlockType.Typed<Slab> PURPUR_SLAB = getBlockType("purpur_slab");
-    BlockType.Typed<BlockData> SMOOTH_STONE = getBlockType("smooth_stone");
+    BlockType.Typed<Slab> SMOOTH_STONE_SLAB = getBlockType("smooth_stone_slab");
     BlockType.Typed<BlockData> SMOOTH_SANDSTONE = getBlockType("smooth_sandstone");
     BlockType.Typed<BlockData> SMOOTH_QUARTZ = getBlockType("smooth_quartz");
     BlockType.Typed<BlockData> SMOOTH_RED_SANDSTONE = getBlockType("smooth_red_sandstone");
@@ -2038,6 +2246,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Gate}
      */
     BlockType.Typed<Gate> MANGROVE_FENCE_GATE = getBlockType("mangrove_fence_gate");
+    /**
+     * BlockData: {@link Gate}
+     */
+    BlockType.Typed<Gate> POPLAR_FENCE_GATE = getBlockType("poplar_fence_gate");
     /**
      * BlockData: {@link Gate}
      */
@@ -2077,6 +2289,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Fence}
      */
+    BlockType.Typed<Fence> POPLAR_FENCE = getBlockType("poplar_fence");
+    /**
+     * BlockData: {@link Fence}
+     */
     BlockType.Typed<Fence> BAMBOO_FENCE = getBlockType("bamboo_fence");
     /**
      * BlockData: {@link Door}
@@ -2113,6 +2329,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Door}
      */
+    BlockType.Typed<Door> POPLAR_DOOR = getBlockType("poplar_door");
+    /**
+     * BlockData: {@link Door}
+     */
     BlockType.Typed<Door> BAMBOO_DOOR = getBlockType("bamboo_door");
     /**
      * BlockData: {@link Directional}
@@ -2127,6 +2347,10 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      */
     BlockType.Typed<Ageable> CHORUS_FLOWER = getBlockType("chorus_flower");
     BlockType.Typed<BlockData> PURPUR_BLOCK = getBlockType("purpur_block");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> PURPUR_SLAB = getBlockType("purpur_slab");
     /**
      * BlockData: {@link Orientable}
      */
@@ -2326,6 +2550,134 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> GREEN_CONCRETE = getBlockType("green_concrete");
     BlockType.Typed<BlockData> RED_CONCRETE = getBlockType("red_concrete");
     BlockType.Typed<BlockData> BLACK_CONCRETE = getBlockType("black_concrete");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> WHITE_CONCRETE_STAIRS = getBlockType("white_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> ORANGE_CONCRETE_STAIRS = getBlockType("orange_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> MAGENTA_CONCRETE_STAIRS = getBlockType("magenta_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> LIGHT_BLUE_CONCRETE_STAIRS = getBlockType("light_blue_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> YELLOW_CONCRETE_STAIRS = getBlockType("yellow_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> LIME_CONCRETE_STAIRS = getBlockType("lime_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> PINK_CONCRETE_STAIRS = getBlockType("pink_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> GRAY_CONCRETE_STAIRS = getBlockType("gray_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> LIGHT_GRAY_CONCRETE_STAIRS = getBlockType("light_gray_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> CYAN_CONCRETE_STAIRS = getBlockType("cyan_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> PURPLE_CONCRETE_STAIRS = getBlockType("purple_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> BLUE_CONCRETE_STAIRS = getBlockType("blue_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> BROWN_CONCRETE_STAIRS = getBlockType("brown_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> GREEN_CONCRETE_STAIRS = getBlockType("green_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> RED_CONCRETE_STAIRS = getBlockType("red_concrete_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> BLACK_CONCRETE_STAIRS = getBlockType("black_concrete_stairs");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> WHITE_CONCRETE_SLAB = getBlockType("white_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> ORANGE_CONCRETE_SLAB = getBlockType("orange_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> MAGENTA_CONCRETE_SLAB = getBlockType("magenta_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> LIGHT_BLUE_CONCRETE_SLAB = getBlockType("light_blue_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> YELLOW_CONCRETE_SLAB = getBlockType("yellow_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> LIME_CONCRETE_SLAB = getBlockType("lime_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> PINK_CONCRETE_SLAB = getBlockType("pink_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> GRAY_CONCRETE_SLAB = getBlockType("gray_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> LIGHT_GRAY_CONCRETE_SLAB = getBlockType("light_gray_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> CYAN_CONCRETE_SLAB = getBlockType("cyan_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> PURPLE_CONCRETE_SLAB = getBlockType("purple_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> BLUE_CONCRETE_SLAB = getBlockType("blue_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> BROWN_CONCRETE_SLAB = getBlockType("brown_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> GREEN_CONCRETE_SLAB = getBlockType("green_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> RED_CONCRETE_SLAB = getBlockType("red_concrete_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> BLACK_CONCRETE_SLAB = getBlockType("black_concrete_slab");
     BlockType.Typed<BlockData> WHITE_CONCRETE_POWDER = getBlockType("white_concrete_powder");
     BlockType.Typed<BlockData> ORANGE_CONCRETE_POWDER = getBlockType("orange_concrete_powder");
     BlockType.Typed<BlockData> MAGENTA_CONCRETE_POWDER = getBlockType("magenta_concrete_powder");
@@ -3298,28 +3650,32 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> EXPOSED_COPPER = getBlockType("exposed_copper");
     BlockType.Typed<BlockData> WEATHERED_COPPER = getBlockType("weathered_copper");
     BlockType.Typed<BlockData> OXIDIZED_COPPER = getBlockType("oxidized_copper");
+    BlockType.Typed<BlockData> WAXED_COPPER_BLOCK = getBlockType("waxed_copper_block");
+    BlockType.Typed<BlockData> WAXED_EXPOSED_COPPER = getBlockType("waxed_exposed_copper");
+    BlockType.Typed<BlockData> WAXED_WEATHERED_COPPER = getBlockType("waxed_weathered_copper");
+    BlockType.Typed<BlockData> WAXED_OXIDIZED_COPPER = getBlockType("waxed_oxidized_copper");
     BlockType.Typed<BlockData> COPPER_ORE = getBlockType("copper_ore");
     BlockType.Typed<BlockData> DEEPSLATE_COPPER_ORE = getBlockType("deepslate_copper_ore");
-    BlockType.Typed<BlockData> OXIDIZED_CUT_COPPER = getBlockType("oxidized_cut_copper");
-    BlockType.Typed<BlockData> WEATHERED_CUT_COPPER = getBlockType("weathered_cut_copper");
-    BlockType.Typed<BlockData> EXPOSED_CUT_COPPER = getBlockType("exposed_cut_copper");
     BlockType.Typed<BlockData> CUT_COPPER = getBlockType("cut_copper");
-    BlockType.Typed<BlockData> OXIDIZED_CHISELED_COPPER = getBlockType("oxidized_chiseled_copper");
-    BlockType.Typed<BlockData> WEATHERED_CHISELED_COPPER = getBlockType("weathered_chiseled_copper");
-    BlockType.Typed<BlockData> EXPOSED_CHISELED_COPPER = getBlockType("exposed_chiseled_copper");
+    BlockType.Typed<BlockData> EXPOSED_CUT_COPPER = getBlockType("exposed_cut_copper");
+    BlockType.Typed<BlockData> WEATHERED_CUT_COPPER = getBlockType("weathered_cut_copper");
+    BlockType.Typed<BlockData> OXIDIZED_CUT_COPPER = getBlockType("oxidized_cut_copper");
+    BlockType.Typed<BlockData> WAXED_CUT_COPPER = getBlockType("waxed_cut_copper");
+    BlockType.Typed<BlockData> WAXED_EXPOSED_CUT_COPPER = getBlockType("waxed_exposed_cut_copper");
+    BlockType.Typed<BlockData> WAXED_WEATHERED_CUT_COPPER = getBlockType("waxed_weathered_cut_copper");
+    BlockType.Typed<BlockData> WAXED_OXIDIZED_CUT_COPPER = getBlockType("waxed_oxidized_cut_copper");
     BlockType.Typed<BlockData> CHISELED_COPPER = getBlockType("chiseled_copper");
-    BlockType.Typed<BlockData> WAXED_OXIDIZED_CHISELED_COPPER = getBlockType("waxed_oxidized_chiseled_copper");
-    BlockType.Typed<BlockData> WAXED_WEATHERED_CHISELED_COPPER = getBlockType("waxed_weathered_chiseled_copper");
-    BlockType.Typed<BlockData> WAXED_EXPOSED_CHISELED_COPPER = getBlockType("waxed_exposed_chiseled_copper");
+    BlockType.Typed<BlockData> EXPOSED_CHISELED_COPPER = getBlockType("exposed_chiseled_copper");
+    BlockType.Typed<BlockData> WEATHERED_CHISELED_COPPER = getBlockType("weathered_chiseled_copper");
+    BlockType.Typed<BlockData> OXIDIZED_CHISELED_COPPER = getBlockType("oxidized_chiseled_copper");
     BlockType.Typed<BlockData> WAXED_CHISELED_COPPER = getBlockType("waxed_chiseled_copper");
+    BlockType.Typed<BlockData> WAXED_EXPOSED_CHISELED_COPPER = getBlockType("waxed_exposed_chiseled_copper");
+    BlockType.Typed<BlockData> WAXED_WEATHERED_CHISELED_COPPER = getBlockType("waxed_weathered_chiseled_copper");
+    BlockType.Typed<BlockData> WAXED_OXIDIZED_CHISELED_COPPER = getBlockType("waxed_oxidized_chiseled_copper");
     /**
      * BlockData: {@link Stairs}
      */
-    BlockType.Typed<Stairs> OXIDIZED_CUT_COPPER_STAIRS = getBlockType("oxidized_cut_copper_stairs");
-    /**
-     * BlockData: {@link Stairs}
-     */
-    BlockType.Typed<Stairs> WEATHERED_CUT_COPPER_STAIRS = getBlockType("weathered_cut_copper_stairs");
+    BlockType.Typed<Stairs> CUT_COPPER_STAIRS = getBlockType("cut_copper_stairs");
     /**
      * BlockData: {@link Stairs}
      */
@@ -3327,39 +3683,15 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Stairs}
      */
-    BlockType.Typed<Stairs> CUT_COPPER_STAIRS = getBlockType("cut_copper_stairs");
-    /**
-     * BlockData: {@link Slab}
-     */
-    BlockType.Typed<Slab> OXIDIZED_CUT_COPPER_SLAB = getBlockType("oxidized_cut_copper_slab");
-    /**
-     * BlockData: {@link Slab}
-     */
-    BlockType.Typed<Slab> WEATHERED_CUT_COPPER_SLAB = getBlockType("weathered_cut_copper_slab");
-    /**
-     * BlockData: {@link Slab}
-     */
-    BlockType.Typed<Slab> EXPOSED_CUT_COPPER_SLAB = getBlockType("exposed_cut_copper_slab");
-    /**
-     * BlockData: {@link Slab}
-     */
-    BlockType.Typed<Slab> CUT_COPPER_SLAB = getBlockType("cut_copper_slab");
-    BlockType.Typed<BlockData> WAXED_COPPER_BLOCK = getBlockType("waxed_copper_block");
-    BlockType.Typed<BlockData> WAXED_WEATHERED_COPPER = getBlockType("waxed_weathered_copper");
-    BlockType.Typed<BlockData> WAXED_EXPOSED_COPPER = getBlockType("waxed_exposed_copper");
-    BlockType.Typed<BlockData> WAXED_OXIDIZED_COPPER = getBlockType("waxed_oxidized_copper");
-    BlockType.Typed<BlockData> WAXED_OXIDIZED_CUT_COPPER = getBlockType("waxed_oxidized_cut_copper");
-    BlockType.Typed<BlockData> WAXED_WEATHERED_CUT_COPPER = getBlockType("waxed_weathered_cut_copper");
-    BlockType.Typed<BlockData> WAXED_EXPOSED_CUT_COPPER = getBlockType("waxed_exposed_cut_copper");
-    BlockType.Typed<BlockData> WAXED_CUT_COPPER = getBlockType("waxed_cut_copper");
+    BlockType.Typed<Stairs> WEATHERED_CUT_COPPER_STAIRS = getBlockType("weathered_cut_copper_stairs");
     /**
      * BlockData: {@link Stairs}
      */
-    BlockType.Typed<Stairs> WAXED_OXIDIZED_CUT_COPPER_STAIRS = getBlockType("waxed_oxidized_cut_copper_stairs");
+    BlockType.Typed<Stairs> OXIDIZED_CUT_COPPER_STAIRS = getBlockType("oxidized_cut_copper_stairs");
     /**
      * BlockData: {@link Stairs}
      */
-    BlockType.Typed<Stairs> WAXED_WEATHERED_CUT_COPPER_STAIRS = getBlockType("waxed_weathered_cut_copper_stairs");
+    BlockType.Typed<Stairs> WAXED_CUT_COPPER_STAIRS = getBlockType("waxed_cut_copper_stairs");
     /**
      * BlockData: {@link Stairs}
      */
@@ -3367,15 +3699,31 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Stairs}
      */
-    BlockType.Typed<Stairs> WAXED_CUT_COPPER_STAIRS = getBlockType("waxed_cut_copper_stairs");
+    BlockType.Typed<Stairs> WAXED_WEATHERED_CUT_COPPER_STAIRS = getBlockType("waxed_weathered_cut_copper_stairs");
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BlockType.Typed<Stairs> WAXED_OXIDIZED_CUT_COPPER_STAIRS = getBlockType("waxed_oxidized_cut_copper_stairs");
     /**
      * BlockData: {@link Slab}
      */
-    BlockType.Typed<Slab> WAXED_OXIDIZED_CUT_COPPER_SLAB = getBlockType("waxed_oxidized_cut_copper_slab");
+    BlockType.Typed<Slab> CUT_COPPER_SLAB = getBlockType("cut_copper_slab");
     /**
      * BlockData: {@link Slab}
      */
-    BlockType.Typed<Slab> WAXED_WEATHERED_CUT_COPPER_SLAB = getBlockType("waxed_weathered_cut_copper_slab");
+    BlockType.Typed<Slab> EXPOSED_CUT_COPPER_SLAB = getBlockType("exposed_cut_copper_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> WEATHERED_CUT_COPPER_SLAB = getBlockType("weathered_cut_copper_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> OXIDIZED_CUT_COPPER_SLAB = getBlockType("oxidized_cut_copper_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> WAXED_CUT_COPPER_SLAB = getBlockType("waxed_cut_copper_slab");
     /**
      * BlockData: {@link Slab}
      */
@@ -3383,7 +3731,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Slab}
      */
-    BlockType.Typed<Slab> WAXED_CUT_COPPER_SLAB = getBlockType("waxed_cut_copper_slab");
+    BlockType.Typed<Slab> WAXED_WEATHERED_CUT_COPPER_SLAB = getBlockType("waxed_weathered_cut_copper_slab");
+    /**
+     * BlockData: {@link Slab}
+     */
+    BlockType.Typed<Slab> WAXED_OXIDIZED_CUT_COPPER_SLAB = getBlockType("waxed_oxidized_cut_copper_slab");
     /**
      * BlockData: {@link Door}
      */
@@ -3395,11 +3747,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Door}
      */
-    BlockType.Typed<Door> OXIDIZED_COPPER_DOOR = getBlockType("oxidized_copper_door");
+    BlockType.Typed<Door> WEATHERED_COPPER_DOOR = getBlockType("weathered_copper_door");
     /**
      * BlockData: {@link Door}
      */
-    BlockType.Typed<Door> WEATHERED_COPPER_DOOR = getBlockType("weathered_copper_door");
+    BlockType.Typed<Door> OXIDIZED_COPPER_DOOR = getBlockType("oxidized_copper_door");
     /**
      * BlockData: {@link Door}
      */
@@ -3411,11 +3763,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Door}
      */
-    BlockType.Typed<Door> WAXED_OXIDIZED_COPPER_DOOR = getBlockType("waxed_oxidized_copper_door");
+    BlockType.Typed<Door> WAXED_WEATHERED_COPPER_DOOR = getBlockType("waxed_weathered_copper_door");
     /**
      * BlockData: {@link Door}
      */
-    BlockType.Typed<Door> WAXED_WEATHERED_COPPER_DOOR = getBlockType("waxed_weathered_copper_door");
+    BlockType.Typed<Door> WAXED_OXIDIZED_COPPER_DOOR = getBlockType("waxed_oxidized_copper_door");
     /**
      * BlockData: {@link TrapDoor}
      */
@@ -3427,11 +3779,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link TrapDoor}
      */
-    BlockType.Typed<TrapDoor> OXIDIZED_COPPER_TRAPDOOR = getBlockType("oxidized_copper_trapdoor");
+    BlockType.Typed<TrapDoor> WEATHERED_COPPER_TRAPDOOR = getBlockType("weathered_copper_trapdoor");
     /**
      * BlockData: {@link TrapDoor}
      */
-    BlockType.Typed<TrapDoor> WEATHERED_COPPER_TRAPDOOR = getBlockType("weathered_copper_trapdoor");
+    BlockType.Typed<TrapDoor> OXIDIZED_COPPER_TRAPDOOR = getBlockType("oxidized_copper_trapdoor");
     /**
      * BlockData: {@link TrapDoor}
      */
@@ -3443,11 +3795,11 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link TrapDoor}
      */
-    BlockType.Typed<TrapDoor> WAXED_OXIDIZED_COPPER_TRAPDOOR = getBlockType("waxed_oxidized_copper_trapdoor");
+    BlockType.Typed<TrapDoor> WAXED_WEATHERED_COPPER_TRAPDOOR = getBlockType("waxed_weathered_copper_trapdoor");
     /**
      * BlockData: {@link TrapDoor}
      */
-    BlockType.Typed<TrapDoor> WAXED_WEATHERED_COPPER_TRAPDOOR = getBlockType("waxed_weathered_copper_trapdoor");
+    BlockType.Typed<TrapDoor> WAXED_OXIDIZED_COPPER_TRAPDOOR = getBlockType("waxed_oxidized_copper_trapdoor");
     /**
      * BlockData: {@link Waterlogged}
      */
@@ -3608,6 +3960,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link LightningRod}
      */
     BlockType.Typed<LightningRod> WAXED_OXIDIZED_LIGHTNING_ROD = getBlockType("waxed_oxidized_lightning_rod");
+    BlockType.Typed<BlockData> DRIPSTONE_BLOCK = getBlockType("dripstone_block");
     /**
      * BlockData: {@link PointedDripstone}
      */
@@ -3616,7 +3969,6 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link PointedDripstone}
      */
     BlockType.Typed<PointedDripstone> SULFUR_SPIKE = getBlockType("sulfur_spike");
-    BlockType.Typed<BlockData> DRIPSTONE_BLOCK = getBlockType("dripstone_block");
     /**
      * BlockData: {@link CaveVines}
      */
@@ -3628,6 +3980,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
     BlockType.Typed<BlockData> SPORE_BLOSSOM = getBlockType("spore_blossom");
     BlockType.Typed<BlockData> AZALEA = getBlockType("azalea");
     BlockType.Typed<BlockData> FLOWERING_AZALEA = getBlockType("flowering_azalea");
+    BlockType.Typed<BlockData> MOSS_CARPET = getBlockType("moss_carpet");
     /**
      * BlockData: {@link PinkPetals}
      */
@@ -3640,17 +3993,7 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link LeafLitter}
      */
     BlockType.Typed<LeafLitter> LEAF_LITTER = getBlockType("leaf_litter");
-    BlockType.Typed<BlockData> MOSS_CARPET = getBlockType("moss_carpet");
     BlockType.Typed<BlockData> MOSS_BLOCK = getBlockType("moss_block");
-    /**
-     * BlockData: {@link MossyCarpet}
-     */
-    BlockType.Typed<MossyCarpet> PALE_MOSS_CARPET = getBlockType("pale_moss_carpet");
-    /**
-     * BlockData: {@link HangingMoss}
-     */
-    BlockType.Typed<HangingMoss> PALE_HANGING_MOSS = getBlockType("pale_hanging_moss");
-    BlockType.Typed<BlockData> PALE_MOSS_BLOCK = getBlockType("pale_moss_block");
     /**
      * BlockData: {@link BigDripleaf}
      */
@@ -3772,6 +4115,15 @@ public interface BlockType extends Keyed, Translatable, RegistryAware {
      * BlockData: {@link Waterlogged}
      */
     BlockType.Typed<Waterlogged> HEAVY_CORE = getBlockType("heavy_core");
+    BlockType.Typed<BlockData> PALE_MOSS_BLOCK = getBlockType("pale_moss_block");
+    /**
+     * BlockData: {@link MossyCarpet}
+     */
+    BlockType.Typed<MossyCarpet> PALE_MOSS_CARPET = getBlockType("pale_moss_carpet");
+    /**
+     * BlockData: {@link HangingMoss}
+     */
+    BlockType.Typed<HangingMoss> PALE_HANGING_MOSS = getBlockType("pale_hanging_moss");
     BlockType.Typed<BlockData> OPEN_EYEBLOSSOM = getBlockType("open_eyeblossom");
     BlockType.Typed<BlockData> CLOSED_EYEBLOSSOM = getBlockType("closed_eyeblossom");
     BlockType.Typed<BlockData> POTTED_OPEN_EYEBLOSSOM = getBlockType("potted_open_eyeblossom");

@@ -267,6 +267,11 @@ public final class MapCursor {
         Type JUNGLE_TEMPLE = getType("jungle_temple");
         Type SWAMP_HUT = getType("swamp_hut");
         Type TRIAL_CHAMBERS = getType("trial_chambers");
+        Type ABANDONED_CAMP = getType("abandoned_camp");
+        Type ANCIENT_CITY = getType("ancient_city");
+        Type DESERT_PYRAMID = getType("desert_pyramid");
+        Type MINESHAFT = getType("mineshaft");
+        Type OCEAN_RUIN_WARM = getType("ocean_ruin_warm");
 
         @NotNull
         private static Type getType(@NotNull String key) {

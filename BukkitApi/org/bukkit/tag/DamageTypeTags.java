@@ -86,6 +86,10 @@ public final class DamageTypeTags {
      */
     public static final Tag<DamageType> NO_ANGER = getTag("no_anger");
     /**
+     * Vanilla tag representing damage types which do not cause wolves to defend their owner.
+     */
+    public static final Tag<DamageType> NO_WOLF_RETALIATION = getTag("no_wolf_retaliation");
+    /**
      * Vanilla tag representing damage types which do not cause an impact.
      */
     public static final Tag<DamageType> NO_IMPACT = getTag("no_impact");

@@ -185,6 +185,7 @@ public enum LootTables implements Keyed {
     HARVEST_SWEET_BERRY_BUSH("harvest/sweet_berry_bush"),
     HARVEST_BEEHIVE("harvest/beehive"),
     CARVE_PUMPKIN("carve/pumpkin"),
+    TILL_ROOTED_DIRT("till/rooted_dirt"),
     PIGLIN_BARTERING("gameplay/piglin_bartering"),
     // Spawners
     TRIAL_CHAMBER_KEY("spawners/trial_chamber/key"),
@@ -231,6 +232,10 @@ public enum LootTables implements Keyed {
     TRAIL_RUINS_ARCHAEOLOGY_RARE("archaeology/trail_ruins_rare"),
     OCEAN_RUIN_WARM_ARCHAEOLOGY("archaeology/ocean_ruin_warm"),
     OCEAN_RUIN_COLD_ARCHAEOLOGY("archaeology/ocean_ruin_cold"),
+    // Abandoned camps
+    ABANDONED_CAMP_BARREL("barrels/abandoned_camp_barrel"),
+    ABANDONED_CAMP_COMMON_CHEST("chests/abandoned_camp_common_chest"),
+    ABANDONED_CAMP_SECRET_CHEST("chests/abandoned_camp_secret_chest"),
     // Sheep
     SHEEP("entities/sheep"),
     SHEEP_BLACK("entities/sheep/black"),

@@ -597,6 +597,12 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     Sound BLOCK_POLISHED_TUFF_HIT = getSound("block.polished_tuff.hit");
     Sound BLOCK_POLISHED_TUFF_PLACE = getSound("block.polished_tuff.place");
     Sound BLOCK_POLISHED_TUFF_STEP = getSound("block.polished_tuff.step");
+    Sound BLOCK_POPLAR_LEAVES_AMBIENT = getSound("block.poplar_leaves.ambient");
+    Sound BLOCK_POPLAR_LEAVES_BREAK = getSound("block.poplar_leaves.break");
+    Sound BLOCK_POPLAR_LEAVES_FALL = getSound("block.poplar_leaves.fall");
+    Sound BLOCK_POPLAR_LEAVES_HIT = getSound("block.poplar_leaves.hit");
+    Sound BLOCK_POPLAR_LEAVES_PLACE = getSound("block.poplar_leaves.place");
+    Sound BLOCK_POPLAR_LEAVES_STEP = getSound("block.poplar_leaves.step");
     Sound BLOCK_PORTAL_AMBIENT = getSound("block.portal.ambient");
     Sound BLOCK_PORTAL_TRAVEL = getSound("block.portal.travel");
     Sound BLOCK_PORTAL_TRIGGER = getSound("block.portal.trigger");
@@ -617,6 +623,8 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     Sound BLOCK_POWDER_SNOW_STEP = getSound("block.powder_snow.step");
     Sound BLOCK_PUMPKIN_CARVE = getSound("block.pumpkin.carve");
     Sound BLOCK_REDSTONE_TORCH_BURNOUT = getSound("block.redstone_torch.burnout");
+    Sound BLOCK_RED_SHRUB_BREAK = getSound("block.red_shrub.break");
+    Sound BLOCK_RED_SHRUB_PLACE = getSound("block.red_shrub.place");
     Sound BLOCK_RESIN_BREAK = getSound("block.resin.break");
     Sound BLOCK_RESIN_BRICKS_BREAK = getSound("block.resin_bricks.break");
     Sound BLOCK_RESIN_BRICKS_FALL = getSound("block.resin_bricks.fall");
@@ -688,6 +696,11 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     Sound BLOCK_SHELF_FALL = getSound("block.shelf.fall");
     Sound BLOCK_SHELF_HIT = getSound("block.shelf.hit");
     Sound BLOCK_SHELF_MULTI_SWAP = getSound("block.shelf.multi_swap");
+    Sound BLOCK_SHELF_MUSHROOM_BOUNCE = getSound("block.shelf_mushroom.bounce");
+    Sound BLOCK_SHELF_MUSHROOM_BREAK = getSound("block.shelf_mushroom.break");
+    Sound BLOCK_SHELF_MUSHROOM_FALL = getSound("block.shelf_mushroom.fall");
+    Sound BLOCK_SHELF_MUSHROOM_PLACE = getSound("block.shelf_mushroom.place");
+    Sound BLOCK_SHELF_MUSHROOM_STEP = getSound("block.shelf_mushroom.step");
     Sound BLOCK_SHELF_PLACE = getSound("block.shelf.place");
     Sound BLOCK_SHELF_PLACE_ITEM = getSound("block.shelf.place_item");
     Sound BLOCK_SHELF_SINGLE_SWAP = getSound("block.shelf.single_swap");
@@ -763,6 +776,12 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     Sound BLOCK_STONE_PRESSURE_PLATE_CLICK_OFF = getSound("block.stone_pressure_plate.click_off");
     Sound BLOCK_STONE_PRESSURE_PLATE_CLICK_ON = getSound("block.stone_pressure_plate.click_on");
     Sound BLOCK_STONE_STEP = getSound("block.stone.step");
+    Sound BLOCK_STRAW_BED_BREAK = getSound("block.straw_bed.break");
+    Sound BLOCK_STRAW_BED_BREAK_LEAVE = getSound("block.straw_bed.break_leave");
+    Sound BLOCK_STRAW_BED_FALL = getSound("block.straw_bed.fall");
+    Sound BLOCK_STRAW_BED_HIT = getSound("block.straw_bed.hit");
+    Sound BLOCK_STRAW_BED_PLACE = getSound("block.straw_bed.place");
+    Sound BLOCK_STRAW_BED_STEP = getSound("block.straw_bed.step");
     Sound BLOCK_SULFUR_BREAK = getSound("block.sulfur.break");
     Sound BLOCK_SULFUR_FALL = getSound("block.sulfur.fall");
     Sound BLOCK_SULFUR_HIT = getSound("block.sulfur.hit");
@@ -1082,6 +1101,10 @@ public interface Sound extends OldEnum<Sound>, Keyed, RegistryAware {
     Sound ENTITY_CREEPER_DEATH = getSound("entity.creeper.death");
     Sound ENTITY_CREEPER_HURT = getSound("entity.creeper.hurt");
     Sound ENTITY_CREEPER_PRIMED = getSound("entity.creeper.primed");
+    Sound ENTITY_CUSHION_BREAK = getSound("entity.cushion.break");
+    Sound ENTITY_CUSHION_GET_UP = getSound("entity.cushion.get_up");
+    Sound ENTITY_CUSHION_PLACE = getSound("entity.cushion.place");
+    Sound ENTITY_CUSHION_SIT = getSound("entity.cushion.sit");
     Sound ENTITY_DOLPHIN_AMBIENT = getSound("entity.dolphin.ambient");
     Sound ENTITY_DOLPHIN_AMBIENT_WATER = getSound("entity.dolphin.ambient_water");
     Sound ENTITY_DOLPHIN_ATTACK = getSound("entity.dolphin.attack");

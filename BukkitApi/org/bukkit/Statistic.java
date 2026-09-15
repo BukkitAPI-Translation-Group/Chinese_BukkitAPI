@@ -69,6 +69,7 @@ public enum Statistic implements Keyed {
     CRAFTING_TABLE_INTERACTION,
     CHEST_OPENED,
     SLEEP_IN_BED,
+    SLEEP_IN_STRAW_BED,
     SHULKER_BOX_OPENED,
     TIME_SINCE_REST,
     SWIM_ONE_CM,

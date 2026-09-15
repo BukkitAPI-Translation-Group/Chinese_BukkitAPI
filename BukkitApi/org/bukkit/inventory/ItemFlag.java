@@ -116,8 +116,6 @@ public enum ItemFlag {
     @ApiStatus.Experimental
     HIDE_DYED_COLOR("dyed_color"),
     @ApiStatus.Experimental
-    HIDE_MAP_COLOR("map_color"),
-    @ApiStatus.Experimental
     HIDE_MAP_ID("map_id"),
     @ApiStatus.Experimental
     HIDE_MAP_DECORATIONS("map_decorations"),

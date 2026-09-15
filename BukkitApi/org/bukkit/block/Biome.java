@@ -89,6 +89,7 @@ public interface Biome extends OldEnum<Biome>, Keyed, RegistryAware {
     Biome JAGGED_PEAKS = getBiome("jagged_peaks");
     Biome STONY_PEAKS = getBiome("stony_peaks");
     Biome CHERRY_GROVE = getBiome("cherry_grove");
+    Biome DAPPLED_FOREST = getBiome("dappled_forest");
 
     /**
      * Represents a custom Biome

@@ -42,9 +42,7 @@ import org.jetbrains.annotations.Nullable;
  * Some aspects of world generation can be delegated to the Vanilla generator.
  * The following methods can be overridden to enable this:
  * <ul>
- * <li>{@link ChunkGenerator#shouldGenerateNoise()} or {@link ChunkGenerator#shouldGenerateNoise(WorldInfo, Random, int, int)}</li>
  * <li>{@link ChunkGenerator#shouldGenerateSurface()} or {@link ChunkGenerator#shouldGenerateSurface(WorldInfo, Random, int, int)}</li>
- * <li>{@link ChunkGenerator#shouldGenerateCaves()} or {@link ChunkGenerator#shouldGenerateCaves(WorldInfo, Random, int, int)}</li>
  * <li>{@link ChunkGenerator#shouldGenerateDecorations()} or {@link ChunkGenerator#shouldGenerateDecorations(WorldInfo, Random, int, int)}</li>
  * <li>{@link ChunkGenerator#shouldGenerateMobs()} or {@link ChunkGenerator#shouldGenerateMobs(WorldInfo, Random, int, int)}</li>
  * <li>{@link ChunkGenerator#shouldGenerateStructures()} or {@link ChunkGenerator#shouldGenerateStructures(WorldInfo, Random, int, int)}</li>
@@ -379,7 +377,9 @@ public abstract class ChunkGenerator {
      *
      * @return true if the server should generate Vanilla noise
      * @see #shouldGenerateNoise(WorldInfo, Random, int, int)
+     * @deprecated has no effect, generation is part of the surface step, see {@link #shouldGenerateSurface()}
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateNoise() {
         return false;
     }
@@ -399,7 +399,9 @@ public abstract class ChunkGenerator {
      * @param chunkZ The Z-coordinate of the chunk
      * @return true if the server should generate Vanilla noise
      * @see #shouldGenerateNoise()
+     * @deprecated has no effect, generation is part of the surface step, see {@link #shouldGenerateSurface()}
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateNoise(@NotNull WorldInfo worldInfo, @NotNull Random random, int chunkX, int chunkZ) {
         return shouldGenerateNoise();
     }
@@ -468,7 +470,9 @@ public abstract class ChunkGenerator {
      *
      * @return true if the server should generate Vanilla caves
      * @see #shouldGenerateCaves(WorldInfo, Random, int, int)
+     * @deprecated has no effect, generation is part of the surface step, see {@link #shouldGenerateSurface()}
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateCaves() {
         return false;
     }
@@ -488,7 +492,9 @@ public abstract class ChunkGenerator {
      * @param chunkZ The Z-coordinate of the chunk
      * @return true if the server should generate Vanilla caves
      * @see #shouldGenerateCaves()
+     * @deprecated has no effect, generation is part of the surface step, see {@link #shouldGenerateSurface()}
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateCaves(@NotNull WorldInfo worldInfo, @NotNull Random random, int chunkX, int chunkZ) {
         return shouldGenerateCaves();
     }

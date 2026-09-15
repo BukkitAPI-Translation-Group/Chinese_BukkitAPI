@@ -18,4 +18,18 @@ public interface ConsumableTeleportRandomly extends ConsumableEffect {
      * @param diameter new diameter
      */
     void setDiameter(float diameter);
+
+    /**
+     * Gets whether directional particles will be displayed.
+     *
+     * @return whether to display particles
+     */
+    boolean isDirectionalParticles();
+
+    /**
+     * Sets whether directional particles will be displayed.
+     *
+     * @param directionalParticles whether to display particles
+     */
+    void setDirectionalParticles(boolean directionalParticles);
 }
