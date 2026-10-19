@@ -34,7 +34,6 @@ public interface Ageable extends Creature {
      * @param lock 是否锁定
      * @deprecated 另请参阅 {@link Breedable#setAgeLock(boolean)}
      */
-    @Deprecated(since = "1.16.2")
     public void setAgeLock(boolean lock);
 
     /**
@@ -46,7 +45,6 @@ public interface Ageable extends Creature {
      * @return 这个动物的年龄是否被锁定
      * @deprecated 另请参阅 {@link Breedable#getAgeLock()}
      */
-    @Deprecated(since = "1.16.2")
     public boolean getAgeLock();
 
     /**

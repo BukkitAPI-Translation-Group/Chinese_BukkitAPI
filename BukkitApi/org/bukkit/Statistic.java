@@ -71,6 +71,7 @@ public enum Statistic implements Keyed {
     CRAFTING_TABLE_INTERACTION,
     CHEST_OPENED,
     SLEEP_IN_BED,
+    SLEEP_IN_STRAW_BED,
     SHULKER_BOX_OPENED,
     TIME_SINCE_REST,
     SWIM_ONE_CM,
@@ -173,14 +174,17 @@ public enum Statistic implements Keyed {
          * 无类型的统计数据（通用统计数据）
          */
         UNTYPED,
+
         /**
          * 与物品有关的统计数据
          */
         ITEM,
+
         /**
          * 与方块有关的统计数据
          */
         BLOCK,
+
         /**
          * 与实体有关的统计数据
          */

@@ -85,6 +85,10 @@ public final class DamageTypeTags {
      */
     public static final Tag<DamageType> NO_ANGER = getTag("no_anger");
     /**
+     * Vanilla tag representing damage types which do not cause wolves to defend their owner.
+     */
+    public static final Tag<DamageType> NO_WOLF_RETALIATION = getTag("no_wolf_retaliation");
+    /**
      * 表示不会造成冲击的伤害类型的原版标签。
      */
     public static final Tag<DamageType> NO_IMPACT = getTag("no_impact");
@@ -96,6 +100,10 @@ public final class DamageTypeTags {
      * 表示凋灵对其免疫的伤害类型的原版标签。
      */
     public static final Tag<DamageType> WITHER_IMMUNE_TO = getTag("wither_immune_to");
+    /**
+     * Vanilla tag representing damage types types which sulfur cubes with block absorbed are immune to.
+     */
+    public static final Tag<DamageType> SULFUR_CUBE_WITH_BLOCK_IMMUNE_TO = getTag("sulfur_cube_with_block_immune_to");
     /**
      * 表示点燃盔甲架的伤害类型的原版标签。
      */

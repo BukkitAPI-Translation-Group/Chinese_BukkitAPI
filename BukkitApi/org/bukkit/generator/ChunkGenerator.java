@@ -434,6 +434,7 @@ public abstract class ChunkGenerator {
      * @return 如果服务器应该生成原版噪声则返回true
      * @see #shouldGenerateNoise(WorldInfo, Random, int, int)
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateNoise() {
         return false;
     }
@@ -457,6 +458,7 @@ public abstract class ChunkGenerator {
      * @return 如果服务器应该生成原版噪声则返回true
      * @see #shouldGenerateNoise()
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateNoise(@NotNull WorldInfo worldInfo, @NotNull Random random, int chunkX, int chunkZ) {
         return shouldGenerateNoise();
     }
@@ -538,6 +540,7 @@ public abstract class ChunkGenerator {
      * @return 如果服务器应该生成原版洞穴则返回true
      * @see #shouldGenerateCaves(WorldInfo, Random, int, int)
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateCaves() {
         return false;
     }
@@ -561,9 +564,11 @@ public abstract class ChunkGenerator {
      * @return 如果服务器应该生成原版洞穴则返回true
      * @see #shouldGenerateCaves()
      */
+    @Deprecated(since = "26.3")
     public boolean shouldGenerateCaves(@NotNull WorldInfo worldInfo, @NotNull Random random, int chunkX, int chunkZ) {
         return shouldGenerateCaves();
     }
+
     /**
      * 获取服务器是否应该在此ChunkGenerator之后生成原版装饰.
      * <p>
@@ -719,14 +724,14 @@ public abstract class ChunkGenerator {
         public int getMaxHeight();
 
         /**
-         * 获取在区块内x, y, z位置的生物群系.
+         * 获取在区块内x, z位置的生物群系.
          * <p>
          * 原文：
-         * Get the biome at x, y, z within chunk being generated
+         * Get biome at x, z within chunk being generated
          *
-         * @param x 区块中的x位置，范围0-15（包含）
-         * @param y 区块中的y位置，范围从最小高度（包含）到最大高度（不包含）
-         * @param z 区块中的z位置，范围0-15（包含）
+         * @param x - 0-15
+         * @param y - 世界最小高度（包含） - 世界最大高度（不包含）
+         * @param z - 0-15
          * @return 生物群系值
          */
         @NotNull

@@ -109,12 +109,10 @@ public interface ServerTickManager {
      */
     void setFrozen(boolean frozen);
 
-    * 如果服务器当前已冻结，则步进游戏指定数量的刻。
+    /**
+     * 如果服务器当前已冻结，则步进游戏指定数量的刻。
      * <p>
      * 步进在服务器处于冻结状态时发生，可以通过使用游戏内的 /tick freeze 命令或 {@link #setFrozen(boolean)} 方法来启动。
-     *
-     * @param ticks 要步进游戏的刻数。
-     * @return 如果游戏现在正在步进则返回 true。如果游戏未冻结，则返回 false，请求无法完成。
      *
      * 原文：
      * Steps the game a certain amount of ticks if the server is currently
@@ -124,9 +122,8 @@ public interface ServerTickManager {
      * either using the in game /tick freeze command or the
      * {@link #setFrozen(boolean)} method.
      *
-     * @param ticks the amount of ticks to step the game for
-     * @return true if the game is now stepping. False if the game is not frozen
-     * so the request could not be fulfilled.
+     * @param ticks 要步进游戏的刻数。
+     * @return 如果游戏现在正在步进则返回 true。如果游戏未冻结，则返回 false，请求无法完成。
      */
     boolean stepGameIfFrozen(int ticks);
 

@@ -181,6 +181,7 @@ public interface MapMeta extends ItemMeta {
      *
      * @return 是否有自定义的颜色
      */
+    @Deprecated(since = "26.3")
     boolean hasColor();
 
     /**
@@ -198,6 +199,7 @@ public interface MapMeta extends ItemMeta {
      * @return 颜色
      */
     @Nullable
+    @Deprecated(since = "26.3")
     Color getColor();
 
     /**
@@ -209,6 +211,7 @@ public interface MapMeta extends ItemMeta {
      *
      * @param color 颜色
      */
+    @Deprecated(since = "26.3")
     void setColor(@Nullable Color color);
 
     @Override

@@ -79,6 +79,66 @@ public interface AbstractArrow extends Projectile {
     public int getPierceLevel();
 
     /**
+     * Sets the number of times this arrow can pierce through an entity.
+     *
+     * Must be between 0 and 127 times.
+     *
+     * @param pierceLevel new pierce level
+     */
+    public void setPierceLevel(int pierceLevel);
+
+    /**
+     * Gets whether this arrow is critical.
+     * <p>
+     * Critical arrows have increased damage and cause particle effects.
+     * <p>
+     * Critical arrows generally occur when a player fully draws a bow before
+     * firing.
+     *
+     * @return true if it is critical
+     */
+    public boolean isCritical();
+
+    /**
+     * Sets whether or not this arrow should be critical.
+     *
+     * @param critical whether or not it should be critical
+     */
+    public void setCritical(boolean critical);
+
+    /**
+     * Gets whether this arrow is in a block or not.
+     * <p>
+     * Arrows in a block are motionless and may be picked up by players.
+     *
+     * @return true if in a block
+     */
+    public boolean isInBlock();
+
+    /**
+     * Gets the block to which this arrow is attached.
+     *
+     * @return the attached block or null if not attached
+     */
+    @Nullable
+    public Block getAttachedBlock();
+
+    /**
+     * Gets the current pickup status of this arrow.
+     *
+     * @return the pickup status of this arrow.
+     */
+    @NotNull
+    public PickupStatus getPickupStatus();
+
+    /**
+     * Sets the current pickup status of this arrow.
+     *
+     * @param status new pickup status of this arrow.
+     */
+    public void setPickupStatus(@NotNull PickupStatus status);
+
+    /**
      * 获得此箭是否由弩射出.
      * <p>
      * 原文:

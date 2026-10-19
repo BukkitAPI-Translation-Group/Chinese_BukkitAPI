@@ -24,6 +24,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最高温度
      */
+    @Deprecated(since = "26.3")
     double getMaxTemperature();
 
     /**
@@ -34,6 +35,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最低温度
      */
+    @Deprecated(since = "26.3")
     double getMinTemperature();
 
     /**
@@ -55,6 +57,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最高湿度
      */
+    @Deprecated(since = "26.3")
     double getMaxHumidity();
 
     /**
@@ -65,6 +68,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最低湿度
      */
+    @Deprecated(since = "26.3")
     double getMinHumidity();
 
     /**
@@ -86,6 +90,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最高大陆性
      */
+    @Deprecated(since = "26.3")
     double getMaxContinentalness();
 
     /**
@@ -96,6 +101,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最低大陆性
      */
+    @Deprecated(since = "26.3")
     double getMinContinentalness();
 
     /**
@@ -117,6 +123,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最高侵蚀度
      */
+    @Deprecated(since = "26.3")
     double getMaxErosion();
 
     /**
@@ -127,6 +134,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最低侵蚀度
      */
+    @Deprecated(since = "26.3")
     double getMinErosion();
 
     /**
@@ -148,6 +156,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最高深度
      */
+    @Deprecated(since = "26.3")
     double getMaxDepth();
 
     /**
@@ -158,6 +167,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最低深度
      */
+    @Deprecated(since = "26.3")
     double getMinDepth();
 
     /**
@@ -179,6 +189,7 @@ public interface BiomeParameterPoint {
      *
      * @return 最高奇异度
      */
+    @Deprecated(since = "26.3")
     double getMaxWeirdness();
 
     /**
@@ -189,5 +200,6 @@ public interface BiomeParameterPoint {
      *
      * @return 最低奇异度
      */
+    @Deprecated(since = "26.3")
     double getMinWeirdness();
 }

@@ -700,7 +700,20 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @return 伤害类型标签, 如果未设置则返回 null
      */
     @Nullable
+    @Deprecated(since = "26.1")
     Tag<DamageType> getDamageResistant();
+
+    /**
+     * Gets the types of damage this item will be resistant to when in entity
+     * form.
+     *
+     * Plugins should check {@link #hasDamageResistant()} before calling this
+     * method.
+     *
+     * @return damage type
+     */
+    @Nullable
+    Collection<DamageType> getDamageResistances();
 
     /**
      * 设置当此物品以实体形式存在时, 其对何种伤害类型具有抗性.
@@ -712,6 +725,14 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param tag 伤害类型标签, 设置为 null 以清除
      */
     void setDamageResistant(@Nullable Tag<DamageType> tag);
+
+    /**
+     * Sets the type of damage this item will be resistant to when in entity
+     * form.
+     *
+     * @param damages the tag, or null to clear
+     */
+    void setDamageResistant(@Nullable Collection<DamageType> damages);
 
     /**
      * 获取此物品是否设置了能造成的伤害类型.
@@ -804,6 +825,29 @@ public interface ItemMeta extends Cloneable, ConfigurationSerializable, Persiste
      * @param max 最大堆叠数量, 必须在 1 到 99 之间(包含边界)
      */
     void setMaxStackSize(@Nullable Integer max);
+
+    /**
+     * Gets if the additional_trade_cost is set.
+     *
+     * @return if a additional_trade_cost is set.
+     */
+    boolean hasAdditionalTradeCost();
+
+    /**
+     * Gets the additional_trade_cost. This is the additional cost for villager
+     * trades.
+     *
+     * @return max_stack_size
+     */
+    int getAdditionalTradeCost();
+
+    /**
+     * Sets the additional_trade_cost. This is the additional cost for villager
+     * trades.
+     *
+     * @param cost additional_trade_cost
+     */
+    void setAdditionalTradeCost(@Nullable Integer cost);
 
     /**
      * 获取是否设置了稀有度.

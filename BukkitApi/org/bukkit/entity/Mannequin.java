@@ -99,7 +99,16 @@ public interface Mannequin extends LivingEntity {
      * @return description the description text
      */
     @Nullable
+    @Deprecated(since = "1.21.11")
     String getDescripion();
+
+    /**
+     * Gets the description which shows as part of the mannequin's name.
+     *
+     * @return description the description text
+     */
+    @Nullable
+    String getDescription();
 
     /**
      * 设置显示为假人名称一部分的描述。

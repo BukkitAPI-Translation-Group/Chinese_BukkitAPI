@@ -191,7 +191,6 @@ public interface GameRule<T> extends Keyed, RegistryAware {
      * 当中立生物被激怒时, 是否攻击附近所有玩家 (而不仅仅是激怒此生物的玩家).
      */
     public static final GameRule<Boolean> UNIVERSAL_ANGER = getRule("universal_anger");
-
     /**
      * 方块爆炸是否摧毁掉落物.
      * <p>
@@ -365,6 +364,14 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     }
 
     /**
+     * Gets the default value of this rule.
+     *
+     * @return the default value
+     */
+    @NotNull
+    public T getDefaultValue();
+
+    /**
      * {@inheritDoc}
      *
      * @see #getKeyOrThrow()
@@ -387,7 +394,6 @@ public interface GameRule<T> extends Keyed, RegistryAware {
     @NotNull
     @Deprecated(since = "1.21.11")
     public String getName();
-
     /**
      * 获取此游戏规则的数据类型.
      * <p>

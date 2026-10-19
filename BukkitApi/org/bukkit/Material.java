@@ -92,6 +92,7 @@ import org.bukkit.block.data.type.Piston;
 import org.bukkit.block.data.type.PistonHead;
 import org.bukkit.block.data.type.PitcherCrop;
 import org.bukkit.block.data.type.PointedDripstone;
+import org.bukkit.block.data.type.PotentSulfur;
 import org.bukkit.block.data.type.RedstoneRail;
 import org.bukkit.block.data.type.RedstoneWallTorch;
 import org.bukkit.block.data.type.RedstoneWire;
@@ -106,6 +107,7 @@ import org.bukkit.block.data.type.SculkShrieker;
 import org.bukkit.block.data.type.SculkVein;
 import org.bukkit.block.data.type.SeaPickle;
 import org.bukkit.block.data.type.Shelf;
+import org.bukkit.block.data.type.ShelfMushroom;
 import org.bukkit.block.data.type.Sign;
 import org.bukkit.block.data.type.Skull;
 import org.bukkit.block.data.type.Slab;
@@ -199,6 +201,90 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     TUFF_BRICK_WALL(11761, Wall.class),
     CHISELED_TUFF_BRICKS(8601),
+    SULFUR(22665),
+    /**
+     * BlockData: {@link PotentSulfur}
+     */
+    POTENT_SULFUR(6653, PotentSulfur.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    SULFUR_SLAB(15800, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    SULFUR_STAIRS(17152, Stairs.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    SULFUR_WALL(17292, Wall.class),
+    POLISHED_SULFUR(27503),
+    /**
+     * BlockData: {@link Slab}
+     */
+    POLISHED_SULFUR_SLAB(31000, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    POLISHED_SULFUR_STAIRS(13441, Stairs.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    POLISHED_SULFUR_WALL(22981, Wall.class),
+    SULFUR_BRICKS(19556),
+    /**
+     * BlockData: {@link Slab}
+     */
+    SULFUR_BRICK_SLAB(14428, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    SULFUR_BRICK_STAIRS(31077, Stairs.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    SULFUR_BRICK_WALL(19178, Wall.class),
+    CHISELED_SULFUR(29208),
+    CINNABAR(17980),
+    /**
+     * BlockData: {@link Slab}
+     */
+    CINNABAR_SLAB(14647, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    CINNABAR_STAIRS(6463, Stairs.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    CINNABAR_WALL(16298, Wall.class),
+    POLISHED_CINNABAR(5092),
+    /**
+     * BlockData: {@link Slab}
+     */
+    POLISHED_CINNABAR_SLAB(13254, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    POLISHED_CINNABAR_STAIRS(31959, Stairs.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    POLISHED_CINNABAR_WALL(28123, Wall.class),
+    CINNABAR_BRICKS(24463),
+    /**
+     * BlockData: {@link Slab}
+     */
+    CINNABAR_BRICK_SLAB(16426, Slab.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    CINNABAR_BRICK_STAIRS(8658, Stairs.class),
+    /**
+     * BlockData: {@link Wall}
+     */
+    CINNABAR_BRICK_WALL(4702, Wall.class),
+    CHISELED_CINNABAR(27471),
     DRIPSTONE_BLOCK(26227),
     /**
      * BlockData: {@link Snowable}
@@ -224,6 +310,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     DARK_OAK_PLANKS(20869),
     PALE_OAK_PLANKS(21660),
     MANGROVE_PLANKS(7078),
+    POPLAR_PLANKS(18976),
     BAMBOO_PLANKS(8520),
     CRIMSON_PLANKS(18812),
     WARPED_PLANKS(16045),
@@ -264,6 +351,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link MangrovePropagule}
      */
     MANGROVE_PROPAGULE(18688, MangrovePropagule.class),
+    /**
+     * BlockData: {@link Sapling}
+     */
+    POPLAR_SAPLING(32238, Sapling.class),
     BEDROCK(23130),
     SAND(11542),
     /**
@@ -313,20 +404,32 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     BUDDING_AMETHYST(13963),
     IRON_BLOCK(24754),
     COPPER_BLOCK(12880),
-    GOLD_BLOCK(27392),
-    DIAMOND_BLOCK(5944),
-    NETHERITE_BLOCK(6527),
     EXPOSED_COPPER(28488),
     WEATHERED_COPPER(19699),
     OXIDIZED_COPPER(19490),
+    WAXED_COPPER_BLOCK(14638),
+    WAXED_EXPOSED_COPPER(27989),
+    WAXED_WEATHERED_COPPER(5960),
+    WAXED_OXIDIZED_COPPER(25626),
+    GOLD_BLOCK(27392),
+    DIAMOND_BLOCK(5944),
+    NETHERITE_BLOCK(6527),
     CHISELED_COPPER(12143),
     EXPOSED_CHISELED_COPPER(4570),
     WEATHERED_CHISELED_COPPER(30876),
     OXIDIZED_CHISELED_COPPER(27719),
+    WAXED_CHISELED_COPPER(7500),
+    WAXED_EXPOSED_CHISELED_COPPER(30658),
+    WAXED_WEATHERED_CHISELED_COPPER(5970),
+    WAXED_OXIDIZED_CHISELED_COPPER(7735),
     CUT_COPPER(32519),
     EXPOSED_CUT_COPPER(18000),
     WEATHERED_CUT_COPPER(21158),
     OXIDIZED_CUT_COPPER(5382),
+    WAXED_CUT_COPPER(11030),
+    WAXED_EXPOSED_CUT_COPPER(30043),
+    WAXED_WEATHERED_CUT_COPPER(13823),
+    WAXED_OXIDIZED_CUT_COPPER(22582),
     /**
      * BlockData: {@link Stairs}
      */
@@ -344,34 +447,6 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      */
     OXIDIZED_CUT_COPPER_STAIRS(25379, Stairs.class),
     /**
-     * BlockData: {@link Slab}
-     */
-    CUT_COPPER_SLAB(28988, Slab.class),
-    /**
-     * BlockData: {@link Slab}
-     */
-    EXPOSED_CUT_COPPER_SLAB(26694, Slab.class),
-    /**
-     * BlockData: {@link Slab}
-     */
-    WEATHERED_CUT_COPPER_SLAB(4602, Slab.class),
-    /**
-     * BlockData: {@link Slab}
-     */
-    OXIDIZED_CUT_COPPER_SLAB(29642, Slab.class),
-    WAXED_COPPER_BLOCK(14638),
-    WAXED_EXPOSED_COPPER(27989),
-    WAXED_WEATHERED_COPPER(5960),
-    WAXED_OXIDIZED_COPPER(25626),
-    WAXED_CHISELED_COPPER(7500),
-    WAXED_EXPOSED_CHISELED_COPPER(30658),
-    WAXED_WEATHERED_CHISELED_COPPER(5970),
-    WAXED_OXIDIZED_CHISELED_COPPER(7735),
-    WAXED_CUT_COPPER(11030),
-    WAXED_EXPOSED_CUT_COPPER(30043),
-    WAXED_WEATHERED_CUT_COPPER(13823),
-    WAXED_OXIDIZED_CUT_COPPER(22582),
-    /**
      * BlockData: {@link Stairs}
      */
     WAXED_CUT_COPPER_STAIRS(23125, Stairs.class),
@@ -387,6 +462,22 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Stairs}
      */
     WAXED_OXIDIZED_CUT_COPPER_STAIRS(9842, Stairs.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    CUT_COPPER_SLAB(28988, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    EXPOSED_CUT_COPPER_SLAB(26694, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    WEATHERED_CUT_COPPER_SLAB(4602, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    OXIDIZED_CUT_COPPER_SLAB(29642, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -439,6 +530,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Orientable}
      */
     MANGROVE_LOG(23890, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
+    POPLAR_LOG(4466, Orientable.class),
     /**
      * BlockData: {@link Waterlogged}
      */
@@ -498,6 +593,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Orientable}
      */
+    STRIPPED_POPLAR_LOG(24991, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     STRIPPED_CRIMSON_STEM(16882, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -539,6 +638,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Orientable}
      */
     STRIPPED_MANGROVE_WOOD(4828, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
+    STRIPPED_POPLAR_WOOD(5695, Orientable.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -590,6 +693,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Orientable}
      */
+    POPLAR_WOOD(8374, Orientable.class),
+    /**
+     * BlockData: {@link Orientable}
+     */
     CRIMSON_HYPHAE(6550, Orientable.class),
     /**
      * BlockData: {@link Orientable}
@@ -634,6 +741,18 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Leaves}
      */
+    RED_POPLAR_LEAVES(16011, Leaves.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
+    ORANGE_POPLAR_LEAVES(30684, Leaves.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
+    YELLOW_POPLAR_LEAVES(30525, Leaves.class),
+    /**
+     * BlockData: {@link Leaves}
+     */
     AZALEA_LEAVES(23001, Leaves.class),
     /**
      * BlockData: {@link Leaves}
@@ -651,6 +770,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     SHORT_GRASS(16335),
     FERN(15794),
     BUSH(17693),
+    RED_SHRUB(4114),
     AZALEA(29386),
     FLOWERING_AZALEA(28270),
     DEAD_BUSH(22888),
@@ -678,7 +798,136 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     GREEN_WOOL(25085),
     RED_WOOL(11621),
     BLACK_WOOL(16693),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    WHITE_WOOL_STAIRS(21164, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    ORANGE_WOOL_STAIRS(20541, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    MAGENTA_WOOL_STAIRS(25453, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    LIGHT_BLUE_WOOL_STAIRS(31588, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    YELLOW_WOOL_STAIRS(6470, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    LIME_WOOL_STAIRS(29186, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    PINK_WOOL_STAIRS(14412, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    GRAY_WOOL_STAIRS(11098, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    LIGHT_GRAY_WOOL_STAIRS(20524, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    CYAN_WOOL_STAIRS(30436, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    PURPLE_WOOL_STAIRS(17853, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BLUE_WOOL_STAIRS(21884, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BROWN_WOOL_STAIRS(5116, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    GREEN_WOOL_STAIRS(30116, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    RED_WOOL_STAIRS(21928, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BLACK_WOOL_STAIRS(23186, Stairs.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    WHITE_WOOL_SLAB(11617, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    ORANGE_WOOL_SLAB(22997, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    MAGENTA_WOOL_SLAB(18613, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    LIGHT_BLUE_WOOL_SLAB(4486, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    YELLOW_WOOL_SLAB(11170, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    LIME_WOOL_SLAB(16617, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    PINK_WOOL_SLAB(9149, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    GRAY_WOOL_SLAB(24917, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    LIGHT_GRAY_WOOL_SLAB(29573, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    CYAN_WOOL_SLAB(32167, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    PURPLE_WOOL_SLAB(24704, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BLUE_WOOL_SLAB(12169, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BROWN_WOOL_SLAB(11084, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    GREEN_WOOL_SLAB(12806, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    RED_WOOL_SLAB(25934, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BLACK_WOOL_SLAB(22899, Slab.class),
     DANDELION(30558),
+    GOLDEN_DANDELION(21472),
     OPEN_EYEBLOSSOM(31238),
     CLOSED_EYEBLOSSOM(29262),
     POPPY(12851),
@@ -701,6 +950,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     SPORE_BLOSSOM(20627),
     BROWN_MUSHROOM(9665),
     RED_MUSHROOM(19728),
+    /**
+     * BlockData: {@link ShelfMushroom}
+     */
+    SHELF_MUSHROOM(10945, ShelfMushroom.class),
     CRIMSON_FUNGUS(26268),
     WARPED_FUNGUS(19799),
     CRIMSON_ROOTS(14064),
@@ -797,6 +1050,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Slab}
      */
     MANGROVE_SLAB(13704, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    POPLAR_SLAB(27903, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -918,6 +1175,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Shelf}
      */
     MANGROVE_SHELF(11590, Shelf.class),
+    /**
+     * BlockData: {@link Shelf}
+     */
+    POPLAR_SHELF(27770, Shelf.class),
     /**
      * BlockData: {@link Shelf}
      */
@@ -1045,6 +1306,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Fence}
      */
     MANGROVE_FENCE(15021, Fence.class),
+    /**
+     * BlockData: {@link Fence}
+     */
+    POPLAR_FENCE(32766, Fence.class),
     /**
      * BlockData: {@link Fence}
      */
@@ -1313,6 +1578,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Stairs}
      */
     MANGROVE_STAIRS(27641, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    POPLAR_STAIRS(26817, Stairs.class),
     /**
      * BlockData: {@link Stairs}
      */
@@ -1679,7 +1948,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Directional}
      */
-    CYAN_SHULKER_BOX(28123, Directional.class),
+    CYAN_SHULKER_BOX(31670, Directional.class),
     /**
      * BlockData: {@link Directional}
      */
@@ -1784,6 +2053,134 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     GREEN_CONCRETE(17949),
     RED_CONCRETE(8032),
     BLACK_CONCRETE(13338),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    WHITE_CONCRETE_STAIRS(16413, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    ORANGE_CONCRETE_STAIRS(4263, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    MAGENTA_CONCRETE_STAIRS(13547, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    LIGHT_BLUE_CONCRETE_STAIRS(18158, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    YELLOW_CONCRETE_STAIRS(6428, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    LIME_CONCRETE_STAIRS(5069, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    PINK_CONCRETE_STAIRS(18002, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    GRAY_CONCRETE_STAIRS(29458, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    LIGHT_GRAY_CONCRETE_STAIRS(15559, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    CYAN_CONCRETE_STAIRS(19592, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    PURPLE_CONCRETE_STAIRS(4199, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BLUE_CONCRETE_STAIRS(16984, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BROWN_CONCRETE_STAIRS(23910, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    GREEN_CONCRETE_STAIRS(12727, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    RED_CONCRETE_STAIRS(19695, Stairs.class),
+    /**
+     * BlockData: {@link Stairs}
+     */
+    BLACK_CONCRETE_STAIRS(15632, Stairs.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    WHITE_CONCRETE_SLAB(5827, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    ORANGE_CONCRETE_SLAB(23554, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    MAGENTA_CONCRETE_SLAB(24461, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    LIGHT_BLUE_CONCRETE_SLAB(27909, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    YELLOW_CONCRETE_SLAB(8404, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    LIME_CONCRETE_SLAB(5796, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    PINK_CONCRETE_SLAB(18148, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    GRAY_CONCRETE_SLAB(13237, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    LIGHT_GRAY_CONCRETE_SLAB(22814, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    CYAN_CONCRETE_SLAB(18800, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    PURPLE_CONCRETE_SLAB(23522, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BLUE_CONCRETE_SLAB(14838, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BROWN_CONCRETE_SLAB(9487, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    GREEN_CONCRETE_SLAB(26266, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    RED_CONCRETE_SLAB(4127, Slab.class),
+    /**
+     * BlockData: {@link Slab}
+     */
+    BLACK_CONCRETE_SLAB(20549, Slab.class),
     WHITE_CONCRETE_POWDER(10363),
     ORANGE_CONCRETE_POWDER(30159),
     MAGENTA_CONCRETE_POWDER(8272),
@@ -2042,7 +2439,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Slab}
      */
-    DEEPSLATE_BRICK_SLAB(23910, Slab.class),
+    DEEPSLATE_BRICK_SLAB(22578, Slab.class),
     /**
      * BlockData: {@link Slab}
      */
@@ -2214,6 +2611,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Switch}
      */
+    POPLAR_BUTTON(25121, Switch.class),
+    /**
+     * BlockData: {@link Switch}
+     */
     BAMBOO_BUTTON(21810, Switch.class),
     /**
      * BlockData: {@link Switch}
@@ -2278,6 +2679,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Powerable}
      */
+    POPLAR_PRESSURE_PLATE(16783, Powerable.class),
+    /**
+     * BlockData: {@link Powerable}
+     */
     BAMBOO_PRESSURE_PLATE(26740, Powerable.class),
     /**
      * BlockData: {@link Powerable}
@@ -2327,6 +2732,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Door}
      */
     MANGROVE_DOOR(18964, Door.class),
+    /**
+     * BlockData: {@link Door}
+     */
+    POPLAR_DOOR(18662, Door.class),
     /**
      * BlockData: {@link Door}
      */
@@ -2414,6 +2823,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link TrapDoor}
      */
+    POPLAR_TRAPDOOR(31960, TrapDoor.class),
+    /**
+     * BlockData: {@link TrapDoor}
+     */
     BAMBOO_TRAPDOOR(9174, TrapDoor.class),
     /**
      * BlockData: {@link TrapDoor}
@@ -2494,6 +2907,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Gate}
      */
+    POPLAR_FENCE_GATE(12140, Gate.class),
+    /**
+     * BlockData: {@link Gate}
+     */
     BAMBOO_FENCE_GATE(14290, Gate.class),
     /**
      * BlockData: {@link Gate}
@@ -2563,6 +2980,8 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     PALE_OAK_CHEST_BOAT(26297),
     MANGROVE_BOAT(20792),
     MANGROVE_CHEST_BOAT(12568),
+    POPLAR_BOAT(13836),
+    POPLAR_CHEST_BOAT(24043),
     BAMBOO_RAFT(25901),
     BAMBOO_CHEST_RAFT(20056),
     /**
@@ -2639,7 +3058,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     NETHERITE_HOE(27385),
     STICK(9773),
     MUSHROOM_STEW(16336),
-    STRING(12806),
+    STRING(21257),
     FEATHER(30548),
     GUNPOWDER(29974),
     WHEAT_SEEDS(28742),
@@ -2721,6 +3140,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link Sign}
      */
+    POPLAR_SIGN(12228, Sign.class),
+    /**
+     * BlockData: {@link Sign}
+     */
     BAMBOO_SIGN(26139, Sign.class),
     /**
      * BlockData: {@link Sign}
@@ -2769,6 +3192,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link HangingSign}
      */
+    POPLAR_HANGING_SIGN(24182, HangingSign.class),
+    /**
+     * BlockData: {@link HangingSign}
+     */
     BAMBOO_HANGING_SIGN(4726, HangingSign.class),
     /**
      * BlockData: {@link HangingSign}
@@ -2790,6 +3217,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     COD_BUCKET(28601),
     TROPICAL_FISH_BUCKET(29995),
     AXOLOTL_BUCKET(20669),
+    SULFUR_CUBE_BUCKET(4750),
     TADPOLE_BUCKET(9731),
     BRICK(6820),
     CLAY_BALL(24603),
@@ -2819,6 +3247,22 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     GREEN_BUNDLE(4597),
     RED_BUNDLE(19986),
     BLACK_BUNDLE(22519),
+    WHITE_CUSHION(5889),
+    ORANGE_CUSHION(15984),
+    MAGENTA_CUSHION(24152),
+    LIGHT_BLUE_CUSHION(15228),
+    YELLOW_CUSHION(23711),
+    LIME_CUSHION(17086),
+    PINK_CUSHION(30129),
+    GRAY_CUSHION(10896),
+    LIGHT_GRAY_CUSHION(17231),
+    CYAN_CUSHION(31321),
+    PURPLE_CUSHION(16912),
+    BLUE_CUSHION(21862),
+    BROWN_CUSHION(11316),
+    GREEN_CUSHION(10620),
+    RED_CUSHION(11666),
+    BLACK_CUSHION(4353),
     FISHING_ROD(4167),
     CLOCK(14980),
     SPYGLASS(27490),
@@ -2919,12 +3363,32 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link Bed}
      */
     BLACK_BED(20490, Bed.class),
+    /**
+     * BlockData: {@link Bed}
+     */
+    STRAW_BED(23435, Bed.class),
     COOKIE(27431),
     /**
      * BlockData: {@link Crafter}
      */
     CRAFTER(25243, Crafter.class),
     FILLED_MAP(23504),
+    OCEAN_MONUMENT_MAP(24866),
+    WOODLAND_MANSION_MAP(16956),
+    BURIED_TRIAL_CHAMBERS_MAP(19741),
+    JUNGLE_PYRAMID_MAP(11791),
+    SWAMP_HUT_MAP(17169),
+    DESERT_VILLAGE_MAP(9558),
+    PLAINS_VILLAGE_MAP(17285),
+    SAVANNA_VILLAGE_MAP(21915),
+    SNOWY_VILLAGE_MAP(27536),
+    TAIGA_VILLAGE_MAP(24179),
+    BURIED_TREASURE_MAP(30288),
+    BURIED_ANCIENT_CITY_MAP(28180),
+    BURIED_MINESHAFT_MAP(24669),
+    DESERT_PYRAMID_MAP(13090),
+    ABANDONED_CAMP_MAP(6381),
+    WARM_OCEAN_RUINS_MAP(19436),
     SHEARS(27971),
     MELON_SLICE(5347),
     DRIED_KELP(21042),
@@ -2933,7 +3397,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     BEEF(4803),
     COOKED_BEEF(21595),
     CHICKEN(17281),
-    COOKED_CHICKEN(16984),
+    COOKED_CHICKEN(13188),
     ROTTEN_FLESH(21591),
     ENDER_PEARL(5259),
     BLAZE_ROD(8289),
@@ -2992,6 +3456,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     ALLAY_SPAWN_EGG(7909),
     MOOSHROOM_SPAWN_EGG(22125),
     SNIFFER_SPAWN_EGG(27473),
+    SULFUR_CUBE_SPAWN_EGG(24453),
     COPPER_GOLEM_SPAWN_EGG(7297),
     IRON_GOLEM_SPAWN_EGG(12781),
     SNOW_GOLEM_SPAWN_EGG(24732),
@@ -3041,7 +3506,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     ZOMBIFIED_PIGLIN_SPAWN_EGG(6626),
     ENDER_DRAGON_SPAWN_EGG(28092),
     ENDERMAN_SPAWN_EGG(29488),
-    ENDERMITE_SPAWN_EGG(16617),
+    ENDERMITE_SPAWN_EGG(29371),
     SHULKER_SPAWN_EGG(31848),
     EXPERIENCE_BOTTLE(12858),
     FIRE_CHARGE(4842),
@@ -3207,7 +3672,8 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     MUSIC_DISC_13(16359),
     MUSIC_DISC_CAT(16246),
     MUSIC_DISC_BLOCKS(26667),
-    MUSIC_DISC_CHIRP(19436),
+    MUSIC_DISC_BOUNCE(10520),
+    MUSIC_DISC_CHIRP(14296),
     MUSIC_DISC_CREATOR(20345),
     MUSIC_DISC_CREATOR_MUSIC_BOX(7202),
     MUSIC_DISC_FAR(31742),
@@ -3468,6 +3934,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link PointedDripstone}
      */
     POINTED_DRIPSTONE(18755, PointedDripstone.class),
+    /**
+     * BlockData: {@link PointedDripstone}
+     */
+    SULFUR_SPIKE(21598, PointedDripstone.class),
     /**
      * BlockData: {@link Orientable}
      */
@@ -3736,6 +4206,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link WallSign}
      */
+    POPLAR_WALL_SIGN(29259, WallSign.class),
+    /**
+     * BlockData: {@link WallSign}
+     */
     BAMBOO_WALL_SIGN(18857, WallSign.class),
     /**
      * BlockData: {@link WallHangingSign}
@@ -3764,7 +4238,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     /**
      * BlockData: {@link WallHangingSign}
      */
-    DARK_OAK_WALL_HANGING_SIGN(14296, WallHangingSign.class),
+    DARK_OAK_WALL_HANGING_SIGN(9156, WallHangingSign.class),
     /**
      * BlockData: {@link WallHangingSign}
      */
@@ -3773,6 +4247,10 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * BlockData: {@link WallHangingSign}
      */
     MANGROVE_WALL_HANGING_SIGN(16974, WallHangingSign.class),
+    /**
+     * BlockData: {@link WallHangingSign}
+     */
+    POPLAR_WALL_HANGING_SIGN(10817, WallHangingSign.class),
     /**
      * BlockData: {@link WallHangingSign}
      */
@@ -3844,9 +4322,11 @@ public enum Material implements Keyed, Translatable, RegistryAware {
     POTTED_CHERRY_SAPLING(30785),
     POTTED_DARK_OAK_SAPLING(6486),
     POTTED_PALE_OAK_SAPLING(15538),
+    POTTED_POPLAR_SAPLING(24759),
     POTTED_MANGROVE_PROPAGULE(22003),
     POTTED_FERN(23315),
     POTTED_DANDELION(9727),
+    POTTED_GOLDEN_DANDELION(29394),
     POTTED_POPPY(7457),
     POTTED_BLUE_ORCHID(6599),
     POTTED_ALLIUM(13184),
@@ -5565,6 +6045,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
             case POTTED_DEAD_BUSH:
             case POTTED_FERN:
             case POTTED_FLOWERING_AZALEA_BUSH:
+            case POTTED_GOLDEN_DANDELION:
             case POTTED_JUNGLE_SAPLING:
             case POTTED_OAK_SAPLING:
             case POTTED_ORANGE_TULIP:
@@ -6135,6 +6616,7 @@ public enum Material implements Keyed, Translatable, RegistryAware {
      * @throws IllegalArgumentException 如果此Material不可堆肥
      * @see #isCompostable()
      */
+    @Deprecated(since = "26.3")
     public float getCompostChance() {
         ItemType type = asItemType();
         Preconditions.checkArgument(type != null, "The Material is not an item!");

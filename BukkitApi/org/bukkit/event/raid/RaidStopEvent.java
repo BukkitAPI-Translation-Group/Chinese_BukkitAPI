@@ -63,6 +63,10 @@ public class RaidStopEvent extends RaidEvent {
         /**
          * 发生袭击的位置不再是一个村庄.
          */
-        NOT_IN_VILLAGE
+        NOT_IN_VILLAGE,
+        /**
+         * A plugin forcibly stopped the raid.
+         */
+        PLUGIN,
     }
 }

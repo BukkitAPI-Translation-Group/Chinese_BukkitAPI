@@ -89,6 +89,7 @@ public interface AdvancementDisplay {
      *
      * @return X坐标, 浮点数形式
      */
+    @Deprecated(since = "26.3")
     float getX();
 
     /**
@@ -99,6 +100,7 @@ public interface AdvancementDisplay {
      *
      * @return Y坐标, 浮点数形式
      */
+    @Deprecated(since = "26.3")
     float getY();
 
     /**

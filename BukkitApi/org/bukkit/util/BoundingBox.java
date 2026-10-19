@@ -707,29 +707,27 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 扩展此边界框以包含（或边界）指定位置。
-     * <p>
-     * 原文：
      * Expands this bounding box to contain (or border) the specified position.
      *
-     * @param position 位置
-     * @return 此边界框（已扩展）
+     * @param position the position
+     * @return this bounding box (now expanded)
      * @see #contains(double, double, double)
      */
+    @NotNull
+    public BoundingBox union(@NotNull Vector position) {
         Preconditions.checkArgument(position != null, "Position is null!");
         return this.union(position.getX(), position.getY(), position.getZ());
     }
 
     /**
-     * 扩展此边界框以包含（或边界）指定位置。
-     * <p>
-     * 原文：
      * Expands this bounding box to contain (or border) the specified position.
      *
-     * @param position 位置
-     * @return 此边界框（已扩展）
+     * @param position the position
+     * @return this bounding box (now expanded)
      * @see #contains(double, double, double)
      */
+    @NotNull
+    public BoundingBox union(@NotNull Location position) {
         Preconditions.checkArgument(position != null, "Position is null!");
         return this.union(position.getX(), position.getY(), position.getZ());
     }
@@ -800,27 +798,25 @@ public class BoundingBox implements Cloneable, ConfigurationSerializable {
     }
 
     /**
-     * 按给定量移动此边界框。
-     * <p>
-     * 原文：
      * Shifts this bounding box by the given amounts.
      *
-     * @param shift 移动量
-     * @return 此边界框（已移动）
+     * @param shift the shift
+     * @return this bounding box (now shifted)
      */
+    @NotNull
+    public BoundingBox shift(@NotNull Vector shift) {
         Preconditions.checkArgument(shift != null, "Shift is null!");
         return this.shift(shift.getX(), shift.getY(), shift.getZ());
     }
 
     /**
-     * 按给定量移动此边界框。
-     * <p>
-     * 原文：
      * Shifts this bounding box by the given amounts.
      *
-     * @param shift 移动量
-     * @return 此边界框（已移动）
+     * @param shift the shift
+     * @return this bounding box (now shifted)
      */
+    @NotNull
+    public BoundingBox shift(@NotNull Location shift) {
         Preconditions.checkArgument(shift != null, "Shift is null!");
         return this.shift(shift.getX(), shift.getY(), shift.getZ());
     }

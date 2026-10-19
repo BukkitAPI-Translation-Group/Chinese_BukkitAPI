@@ -28,6 +28,8 @@ import org.bukkit.entity.boat.OakBoat;
 import org.bukkit.entity.boat.OakChestBoat;
 import org.bukkit.entity.boat.PaleOakBoat;
 import org.bukkit.entity.boat.PaleOakChestBoat;
+import org.bukkit.entity.boat.PoplarBoat;
+import org.bukkit.entity.boat.PoplarChestBoat;
 import org.bukkit.entity.boat.SpruceBoat;
 import org.bukkit.entity.boat.SpruceChestBoat;
 import org.bukkit.entity.minecart.CommandMinecart;
@@ -329,6 +331,8 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
     OAK_CHEST_BOAT("oak_chest_boat", OakChestBoat.class, -1),
     PALE_OAK_BOAT("pale_oak_boat", PaleOakBoat.class, -1),
     PALE_OAK_CHEST_BOAT("pale_oak_chest_boat", PaleOakChestBoat.class, -1),
+    POPLAR_BOAT("poplar_boat", PoplarBoat.class, -1),
+    POPLAR_CHEST_BOAT("poplar_chest_boat", PoplarChestBoat.class, -1),
     SPRUCE_BOAT("spruce_boat", SpruceBoat.class, -1),
     SPRUCE_CHEST_BOAT("spruce_chest_boat", SpruceChestBoat.class, -1),
     CREAKING("creaking", Creaking.class, -1),
@@ -339,6 +343,8 @@ public enum EntityType implements Keyed, Translatable, RegistryAware {
     NAUTILUS("nautilus", Nautilus.class, -1),
     PARCHED("parched", Parched.class, -1),
     ZOMBIE_NAUTILUS("zombie_nautilus", ZombieNautilus.class, -1),
+    SULFUR_CUBE("sulfur_cube", SulfurCube.class, -1),
+    CUSHION("cushion", Cushion.class, -1),
     /**
      * 钓鱼线和浮漂.
      */

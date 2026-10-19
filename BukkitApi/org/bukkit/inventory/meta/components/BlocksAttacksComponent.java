@@ -261,7 +261,16 @@ public interface BlocksAttacksComponent extends ConfigurationSerializable {
      * @return 伤害类型标签
      */
     @Nullable
+    @Deprecated(since = "26.1")
     Tag<DamageType> getBypassedBy();
+
+    /**
+     * Gets the type of damage that will bypass blocking by this item.
+     *
+     * @return damage type
+     */
+    @Nullable
+    Collection<DamageType> getBypassedBys();
 
     /**
      * 设置将会绕过此物品格挡的伤害类型.
@@ -272,6 +281,13 @@ public interface BlocksAttacksComponent extends ConfigurationSerializable {
      * @param tag 伤害类型标签, 或设置为 null 以清除
      */
     void setBypassedBy(@Nullable Tag<DamageType> tag);
+
+    /**
+     * Sets the types of damage that will bypass blocking by this item.
+     *
+     * @param damages the tag, or null to clear
+     */
+    void setBypassedBy(@Nullable Collection<DamageType> damages);
 
     /**
      * 针对一组特定伤害类型的伤害减免.
