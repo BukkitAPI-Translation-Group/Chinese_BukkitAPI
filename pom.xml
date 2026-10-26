@@ -74,7 +74,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.32</version>
+            <version>1.18.48</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -124,7 +124,7 @@
                     <dependency>
                         <groupId>org.projectlombok</groupId>
                         <artifactId>lombok</artifactId>
-                        <version>1.18.32</version>
+                        <version>1.18.48</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -132,7 +132,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.6.3</version>
+                <version>3.12.0</version>
                 <executions>
                     <execution>
                         <id>delombok</id>
@@ -157,9 +157,14 @@
                         </tag>
                     </tags>
                     <sourcepath>BukkitApi;${project.build.directory}/delombok</sourcepath>
-                    <reportOutputDirectory>${project.build.directory}/apidocs</reportOutputDirectory>
-                    <destDir>apidocs</destDir>
-                    <stylesheetfile>javadoc/stylesheet.css</stylesheetfile>
+                    <outputDirectory>${project.build.directory}/apidocs</outputDirectory>
+                    <!-- JDK 18+ 的 javadoc 页面结构已变，自定义样式改为叠加，保留新版默认布局 -->
+                    <additionalOptions>
+                        <additionalOption>--add-stylesheet</additionalOption>
+                        <additionalOption>${project.basedir}/javadoc/stylesheet.css</additionalOption>
+                        <additionalOption>--add-script</additionalOption>
+                        <additionalOption>${project.basedir}/javadoc/favicon.js</additionalOption>
+                    </additionalOptions>
                     <overview>javadoc/overview.html</overview>
                     <docfilessubdirs>true</docfilessubdirs>
                     <use>true</use>
